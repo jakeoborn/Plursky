@@ -194,31 +194,32 @@ function NightWizard({ state, setState, onClose }) {
     <div style={{ position: "fixed", inset: 0, zIndex: 90, background: "var(--paper)", display: "flex", flexDirection: "column" }}>
       {/* Header */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
+        columnGap: 10, rowGap: 8,
         padding: "16px 18px 12px",
         paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
         borderBottom: "1px solid var(--line)",
       }}>
         <button onClick={onClose} aria-label="Close Build My Night" style={{
-          width: 36, height: 36, borderRadius: 36, background: "var(--paper-2)",
-          border: "1px solid var(--line-2)", fontSize: 18, cursor: "pointer",
+          width: 44, height: 44, borderRadius: 44, background: "var(--s2)", boxShadow: "var(--e1)",
+          border: "none", color: "var(--ink)", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-        }}>←</button>
-        <div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.8, fontWeight: 700, textAlign: "center" }}>BUILD MY NIGHT</div>
-          <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", marginTop: 2 }}>
+        }}><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg></button>
+        <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+          <div className="duo-label" style={{ whiteSpace: "nowrap" }}>My night</div>
+          <div className="duo-data-s duo-ink3" style={{ marginTop: 4, whiteSpace: "nowrap" }}>
             {liveLocalIds.length} SETS SAVED
           </div>
         </div>
-        <div style={{ display: "flex", gap: 6 }}>
+        <div style={{ display: "flex", gap: 6, marginLeft: "auto" }}>
           {liveLocalIds.length > 0 && (<>
             <button
               onClick={() => exportSavedSetsICS(liveLocalIds)}
               aria-label="Export to calendar"
               title="Export to calendar"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -235,8 +236,8 @@ function NightWizard({ state, setState, onClose }) {
               aria-label="Share lineup"
               title="Share lineup"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -245,16 +246,8 @@ function NightWizard({ state, setState, onClose }) {
               </svg>
             </button>
           </>)}
-          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" style={{
-            background: "var(--signal)", color: "var(--on-signal)", border: "none",
-            borderRadius: 999, padding: "8px 13px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>✦ AUTO</button>
-          <button onClick={handleSave} style={{
-            background: "var(--ember)", color: "var(--on-ember)", border: "none",
-            borderRadius: 999, padding: "8px 16px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>SAVE ✓</button>
+          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" className="duo-chip"><span>Auto</span></button>
+          <button onClick={handleSave} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 15 }}>Save</button>
         </div>
       </div>
 
@@ -263,19 +256,20 @@ function NightWizard({ state, setState, onClose }) {
         {dayStats.map(d => {
           const on = d.n === activeDay;
           return (
-            <button key={d.n} onClick={() => setActiveDay(d.n)} style={{
-              flex: 1, padding: "8px 6px", borderRadius: 12, cursor: "pointer", textAlign: "center",
-              background: on ? "var(--ink)" : "var(--paper-2)",
-              border: on ? "none" : "1px solid var(--line)",
-              transition: "all .15s",
+            <button key={d.n} onClick={() => setActiveDay(d.n)} aria-pressed={on} style={{
+              flex: 1, padding: "10px 6px", borderRadius: "var(--rad-sm)", cursor: "pointer", textAlign: "center",
+              background: "var(--s2)", border: "none", color: "var(--ink)",
+              boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)",
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)" }}>{d.short}</div>
-              <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
+              {/* DAYS rows carry `label` (FRI); `short` never existed, so these
+                  tiles printed no day at all. */}
+              <div className="duo-label" style={{ color: on ? "var(--ink)" : "var(--ink-3)" }}>{d.label}</div>
+              <div className="duo-clock" style={{ fontSize: 24, marginTop: 6 }}>{d.count}</div>
               {d.clashes > 0
-                ? <div className="mono" style={{ fontSize: 8, color: "var(--ember-ink)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
+                ? <div className="duo-data-s" style={{ color: "var(--clash)", marginTop: 4 }}>{d.clashes} CLASH</div>
                 : d.count > 0
-                  ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
-                  : <div style={{ height: 12 }} />
+                  ? <div className="duo-data-s duo-ink3" style={{ marginTop: 4 }}>CLEAN</div>
+                  : <div style={{ height: 15, marginTop: 4 }} />
               }
             </button>
           );
@@ -286,11 +280,8 @@ function NightWizard({ state, setState, onClose }) {
       <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "14px 16px 40px" }}>
         {sorted.length === 0 ? (
           <div style={{ textAlign: "center", paddingTop: 60 }}>
-            <div style={{ fontSize: 28, opacity: 0.25, marginBottom: 6 }}>★</div>
-            <div className="serif" style={{ fontSize: 24, fontStyle: "italic", color: "var(--muted)" }}>Nothing saved</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--muted)", marginTop: 8 }}>
-              SAVE SETS IN LINEUP FIRST
-            </div>
+            <div className="duo-headline">Nothing saved for this day</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 6 }}>Save sets in the lineup first.</div>
           </div>
         ) : (
           <>
@@ -300,37 +291,29 @@ function NightWizard({ state, setState, onClose }) {
                 const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
                 const clash = conflictIds.has(a.id);
                 return (
-                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 7, alignItems: "flex-start" }}>
+                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 8, alignItems: "flex-start" }}>
                     {/* Time */}
-                    <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, letterSpacing: 0.5, color: "var(--muted)", textAlign: "right", paddingTop: 11 }}>
+                    <div className="duo-data-s duo-ink3" style={{ width: 52, flexShrink: 0, textAlign: "right", paddingTop: 14 }}>
                       {fmt12(a.start)}
                     </div>
-                    {/* Block */}
+                    {/* Block: on your plan = the accent wash; a clash takes the
+                        clash edge. The name is whole: it wraps, never "…". */}
                     <div style={{
-                      flex: 1,
-                      background: clash ? "var(--ink)" : "var(--paper-2)",
-                      border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-                      borderLeft: "4px solid var(--line-2)",
-                      borderRadius: 12, padding: "9px 12px",
+                      flex: 1, minWidth: 0,
+                      background: "var(--acc-wash)", "--ring-bg": "var(--acc-wash)",
+                      boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+                      borderRadius: "var(--rad-sm)", padding: "8px 6px 8px 10px",
+                      display: "flex", alignItems: "center", gap: 10,
                     }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontSize: 14, fontWeight: 600, color: clash ? "var(--paper)" : "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                            {a.name}
-                          </div>
-                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)", marginTop: 3 }}>
-                            {stage.short} · {fmt12(a.start)}–{fmt12(a.end)}
-                          </div>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
-                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>⚠ CLASH</span>}
-                          <button onClick={() => drop(a.id)} style={{
-                            background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.25)",
-                            borderRadius: 999, padding: "3px 9px", cursor: "pointer",
-                            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)",
-                          }}>DROP</button>
+                      <DuoAvatar name={a.name} size={34} ring={clash ? "cl" : "on"} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="duo-headline duo-name" style={{ fontSize: 15 }}>{actDisplayName(a.name)}</div>
+                        <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>
+                          {clash && <span style={{ color: "var(--clash)", fontWeight: 650 }}>Clash · </span>}
+                          {stage.name} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span>
                         </div>
                       </div>
+                      <button onClick={() => drop(a.id)} className="duo-chip" aria-label={`Drop ${a.name}`}><span>Drop</span></button>
                     </div>
                   </div>
                 );
@@ -345,7 +328,7 @@ function NightWizard({ state, setState, onClose }) {
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 0" }}>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", whiteSpace: "nowrap" }}>
+                        <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>
                           FREE · {fmtGap(item.gapMin)}
                         </span>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
@@ -355,13 +338,8 @@ function NightWizard({ state, setState, onClose }) {
                           {item.fits.map(f => {
                             const fs = (STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE);
                             return (
-                              <button key={f.id} onClick={() => add(f.id)} style={{
-                                background: "transparent", border: "1px dashed var(--line-2)",
-                                borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-                                fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
-                                color: "var(--ink)",
-                              }}>
-                                + {f.name} {fmt12(f.start)} {fs.short}
+                              <button key={f.id} onClick={() => add(f.id)} className="duo-chip" aria-label={`Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`}>
+                                <span style={{ borderStyle: "dashed" }}>+ {actDisplayName(f.name)} <b>{fmt12(f.start)}</b> {fs.name}</span>
                               </button>
                             );
                           })}
@@ -377,10 +355,10 @@ function NightWizard({ state, setState, onClose }) {
             {/* Sunrise */}
             {sunrise && (
               <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 6 }}>
-                <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, color: "var(--flare)", textAlign: "right", letterSpacing: 0.5 }}>{sunrise}</div>
+                <div className="duo-data-s duo-sun" style={{ width: 52, flexShrink: 0, textAlign: "right" }}>{sunrise}</div>
                 <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, var(--flare), transparent)` }} />
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>☀ SUNRISE</span>
+                  <div style={{ flex: 1, height: 1, background: "var(--sun)", opacity: 0.6 }} />
+                  <span className="duo-label duo-sun">Sunrise</span>
                 </div>
               </div>
             )}
@@ -1284,7 +1262,7 @@ function LineupScreen({ state, setState }) {
                 className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
                 style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
                 <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
-                  style={{ width: 64, flexShrink: 0, whiteSpace: "nowrap" }}>
+                  style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
                   {fmt12(a.start)}
                 </div>
                 <DuoAvatar name={a.name} size={42} ring={ring} />

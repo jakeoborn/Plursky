@@ -196,6 +196,9 @@ function NightWizard({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      flexWrap: "wrap",
+      columnGap: 10,
+      rowGap: 8,
       padding: "16px 18px 12px",
       paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
       borderBottom: "1px solid var(--line)"
@@ -204,49 +207,63 @@ function NightWizard({
     onClick: onClose,
     "aria-label": "Close Build My Night",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      fontSize: 18,
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      color: "var(--ink)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
-  }, "←"), React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M15 6 L9 12 L15 18"
+  }))), React.createElement("div", {
     style: {
-      fontSize: 10,
-      letterSpacing: 1.8,
-      fontWeight: 700,
-      textAlign: "center"
+      flex: "1 1 auto",
+      minWidth: 0
     }
-  }, "BUILD MY NIGHT"), React.createElement("div", {
-    className: "mono",
+  }, React.createElement("div", {
+    className: "duo-label",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      textAlign: "center",
-      marginTop: 2
+      whiteSpace: "nowrap"
+    }
+  }, "My night"), React.createElement("div", {
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginTop: 4,
+      whiteSpace: "nowrap"
     }
   }, liveLocalIds.length, " SETS SAVED")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6
+      gap: 6,
+      marginLeft: "auto"
     }
   }, liveLocalIds.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => exportSavedSetsICS(liveLocalIds),
     "aria-label": "Export to calendar",
     title: "Export to calendar",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -290,11 +307,12 @@ function NightWizard({
     "aria-label": "Share lineup",
     title: "Share lineup",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -326,33 +344,16 @@ function NightWizard({
   })))), React.createElement("button", {
     onClick: autoFill,
     title: "Auto-fill best non-clashing sets for this day",
-    style: {
-      background: "var(--signal)",
-      color: "var(--on-signal)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 13px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "✦ AUTO"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Auto")), React.createElement("button", {
     onClick: handleSave,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--on-ember)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 16px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 15
     }
-  }, "SAVE ✓"))), React.createElement("div", {
+  }, "Save"))), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6,
@@ -364,51 +365,44 @@ function NightWizard({
     return React.createElement("button", {
       key: d.n,
       onClick: () => setActiveDay(d.n),
+      "aria-pressed": on,
       style: {
         flex: 1,
-        padding: "8px 6px",
-        borderRadius: 12,
+        padding: "10px 6px",
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         textAlign: "center",
-        background: on ? "var(--ink)" : "var(--paper-2)",
-        border: on ? "none" : "1px solid var(--line)",
-        transition: "all .15s"
+        background: "var(--s2)",
+        border: "none",
+        color: "var(--ink)",
+        boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)"
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)"
+        color: on ? "var(--ink)" : "var(--ink-3)"
       }
-    }, d.short), React.createElement("div", {
-      className: "mono",
+    }, d.label), React.createElement("div", {
+      className: "duo-clock",
       style: {
-        fontSize: 20,
-        fontWeight: 700,
-        letterSpacing: -0.5,
-        color: on ? "var(--paper)" : "var(--ink)",
-        lineHeight: 1.15
+        fontSize: 24,
+        marginTop: 6
       }
     }, d.count), d.clashes > 0 ? React.createElement("div", {
-      className: "mono",
+      className: "duo-data-s",
       style: {
-        fontSize: 8,
-        color: "var(--ember-ink)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        color: "var(--clash)",
+        marginTop: 4
       }
-    }, "⚠ ", d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
-      className: "mono",
+    }, d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
+      className: "duo-data-s duo-ink3",
       style: {
-        fontSize: 8,
-        color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        marginTop: 4
       }
-    }, "● CLEAN") : React.createElement("div", {
+    }, "CLEAN") : React.createElement("div", {
       style: {
-        height: 12
+        height: 15,
+        marginTop: 4
       }
     }));
   })), React.createElement("div", {
@@ -424,27 +418,13 @@ function NightWizard({
       paddingTop: 60
     }
   }, React.createElement("div", {
+    className: "duo-headline"
+  }, "Nothing saved for this day"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
-      fontSize: 28,
-      opacity: 0.25,
-      marginBottom: 6
+      marginTop: 6
     }
-  }, "★"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      fontStyle: "italic",
-      color: "var(--muted)"
-    }
-  }, "Nothing saved"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 8
-    }
-  }, "SAVE SETS IN LINEUP FIRST")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
+  }, "Save sets in the lineup first.")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
     if (item.type === "set") {
       var a = item.artist;
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
@@ -454,87 +434,64 @@ function NightWizard({
         style: {
           display: "flex",
           gap: 10,
-          marginBottom: 7,
+          marginBottom: 8,
           alignItems: "flex-start"
         }
       }, React.createElement("div", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          width: 36,
+          width: 52,
           flexShrink: 0,
-          fontSize: 9,
-          letterSpacing: 0.5,
-          color: "var(--muted)",
           textAlign: "right",
-          paddingTop: 11
+          paddingTop: 14
         }
       }, fmt12(a.start)), React.createElement("div", {
         style: {
           flex: 1,
-          background: clash ? "var(--ink)" : "var(--paper-2)",
-          border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-          borderLeft: "4px solid var(--line-2)",
-          borderRadius: 12,
-          padding: "9px 12px"
-        }
-      }, React.createElement("div", {
-        style: {
+          minWidth: 0,
+          background: "var(--acc-wash)",
+          "--ring-bg": "var(--acc-wash)",
+          boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+          borderRadius: "var(--rad-sm)",
+          padding: "8px 6px 8px 10px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          gap: 8
+          gap: 10
         }
-      }, React.createElement("div", {
+      }, React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 34,
+        ring: clash ? "cl" : "on"
+      }), React.createElement("div", {
         style: {
+          flex: 1,
           minWidth: 0
         }
       }, React.createElement("div", {
+        className: "duo-headline duo-name",
         style: {
-          fontSize: 14,
-          fontWeight: 600,
-          color: clash ? "var(--paper)" : "var(--ink)",
-          lineHeight: 1.2,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          fontSize: 15
         }
-      }, a.name), React.createElement("div", {
-        className: "mono",
+      }, actDisplayName(a.name)), React.createElement("div", {
         style: {
-          fontSize: 9,
-          letterSpacing: 0.9,
-          color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)",
-          marginTop: 3
-        }
-      }, stage.short, " · ", fmt12(a.start), "–", fmt12(a.end))), React.createElement("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          flexShrink: 0
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
+          marginTop: 2
         }
       }, clash && React.createElement("span", {
-        className: "mono",
         style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)",
-          fontWeight: 700
+          color: "var(--clash)",
+          fontWeight: 650
         }
-      }, "⚠ CLASH"), React.createElement("button", {
+      }, "Clash · "), stage.name, " · ", React.createElement("span", {
+        style: {
+          whiteSpace: "nowrap"
+        }
+      }, fmt12(a.start), "–", fmt12(a.end)))), React.createElement("button", {
         onClick: () => drop(a.id),
-        style: {
-          background: "rgba(var(--signal-rgb),0.12)",
-          border: "1px solid rgba(var(--signal-rgb),0.25)",
-          borderRadius: 999,
-          padding: "3px 9px",
-          cursor: "pointer",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)"
-        }
-      }, "DROP")))));
+        className: "duo-chip",
+        "aria-label": `Drop ${a.name}`
+      }, React.createElement("span", null, "Drop"))));
     }
     if (item.type === "gap") {
       return React.createElement("div", {
@@ -577,11 +534,8 @@ function NightWizard({
           background: "var(--line)"
         }
       }), React.createElement("span", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          fontSize: 8,
-          letterSpacing: 1.2,
-          color: "var(--muted)",
           whiteSpace: "nowrap"
         }
       }, "FREE · ", fmtGap(item.gapMin)), React.createElement("div", {
@@ -602,18 +556,13 @@ function NightWizard({
         return React.createElement("button", {
           key: f.id,
           onClick: () => add(f.id),
+          className: "duo-chip",
+          "aria-label": `Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`
+        }, React.createElement("span", {
           style: {
-            background: "transparent",
-            border: "1px dashed var(--line-2)",
-            borderRadius: 999,
-            padding: "4px 10px",
-            cursor: "pointer",
-            fontFamily: "Geist Mono, monospace",
-            fontSize: 8,
-            letterSpacing: 0.8,
-            color: "var(--ink)"
+            borderStyle: "dashed"
           }
-        }, "+ ", f.name, " ", fmt12(f.start), " ", fs.short);
+        }, "+ ", actDisplayName(f.name), " ", React.createElement("b", null, fmt12(f.start)), " ", fs.name));
       }))));
     }
     return null;
@@ -625,14 +574,11 @@ function NightWizard({
       marginTop: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-sun",
     style: {
-      width: 36,
+      width: 52,
       flexShrink: 0,
-      fontSize: 9,
-      color: "var(--flare)",
-      textAlign: "right",
-      letterSpacing: 0.5
+      textAlign: "right"
     }
   }, sunrise), React.createElement("div", {
     style: {
@@ -645,17 +591,12 @@ function NightWizard({
     style: {
       flex: 1,
       height: 1,
-      background: `linear-gradient(90deg, var(--flare), transparent)`
+      background: "var(--sun)",
+      opacity: 0.6
     }
   }), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.4,
-      color: "var(--flare)",
-      fontWeight: 700
-    }
-  }, "☀ SUNRISE"))))));
+    className: "duo-label duo-sun"
+  }, "Sunrise"))))));
 }
 function LineupFilterSheet({
   onClose,
@@ -1763,9 +1704,10 @@ function LineupScreen({
         "data-set-time": true,
         className: `duo-data${saved || isLive ? "" : " duo-ink2"}`,
         style: {
-          width: 64,
+          width: 72,
           flexShrink: 0,
-          whiteSpace: "nowrap"
+          whiteSpace: "nowrap",
+          fontSize: 13
         }
       }, fmt12(a.start)), React.createElement(DuoAvatar, {
         name: a.name,
