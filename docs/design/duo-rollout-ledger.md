@@ -50,18 +50,18 @@ match those selectors.
 | Lineup list | `lineup.jsx` | **built** | Faces drop under 360pt so a name never wraps. Kept from the readability rulings: name weight 700, rows ≤ 60px, neutral dot in the main list and the stage dot in Saved/Now. |
 | Lineup grid | `lineup.jsx` | **built** | Face + status head only on blocks taller than 40px; narrow lanes keep the name alone. The 96px column floor stays. |
 | Filters sheet, My night | `lineup.jsx` | **built** | none known |
-| Artist page | `artist.jsx` | **built below the hero** | The hero is the compliant version: no name over a Spotify photo (the board puts it there). Stats row and lower sections are legacy on tokens. |
-| Map chrome | `map.jsx` | **built (chrome)** | Canvas, pins and stage pills unchanged and night in both modes. Layers popover, amenity key and the place card are legacy on tokens. |
+| Artist page | `artist.jsx` | **built below the hero** | The hero is the compliant version: no name over a Spotify photo (the board puts it there). Stats, similar artists, live set, Mixcloud, shows and setlists take board cards and labels. |
+| Map chrome | `map.jsx` | **built (chrome)** | Canvas, pins and stage pills unchanged and night in both modes. Layers popover, amenity key, stage place card, routing bar, meet card and search results are on the board; the stage colour survives only as a dot. |
 | Music / Spotify | `spotify.jsx` | **partial** | Eyebrows, hint and panels on the board; actions get the board button shape through a CSS scope, but keep their caps copy. Brand fills (Spotify, Apple Music) stay. |
-| Me / Headliner | `spotify.jsx` Me | **partial** | Identity, stats, tiles and entries built. The board's quiet recap card with festival chips and the passport are NOT built: Me holds no per-festival recap data to fill them. Lower sections (history, crew, safety, headliners) are legacy on tokens. |
-| Memories / recap | `spotify.jsx`, `recap-engine.jsx` | **header only** | TopBar is on the board. Library and recap views are legacy on tokens; exports stay one look (ruling 2026-09-26). |
+| Me / Headliner | `spotify.jsx` Me, `supabase.jsx`, `chrome.jsx` | **built, two pieces held** | Identity, stats, tiles, history/records, badges, music, friends, crew, account, appearance, settings (reminders, battery, pack list), safety, headliners (board rows) and footer built. The board's quiet recap card with festival chips and the passport are NOT built: Me holds no per-festival recap data to fill them, and nothing is drawn for show. |
+| Memories / recap | `spotify.jsx`, `recap-engine.jsx` | **built (app views)** | Library (filters, import, review, night headers, set cards, peak card, night map, share menu, Wall, Manage), photo viewer and the import review sheet are on the board. Exports (collage, GIF, recap video) stay one look (ruling 2026-09-26). |
 | Past library / edition | `historical.jsx` | **built** | none known |
 | Landing | `landing.jsx` | **built** | none known |
 | Onboarding | `app.jsx` | **built** | none known |
 | Sheets | `chrome.jsx` `FieldSheet`, `FieldButton` | **built** | Every FieldSheet (switcher, Filters, Personalize, history info, Today's night sheet) takes the board's sheet and button. |
-| Banners, empty/loading/error | `app.jsx`, `chrome.jsx`, `supabase.jsx` | pending | |
-| Public `/f/` pages | `scripts/gen-festival-pages.mjs` | audit pending | independent web layout, keeps edition disclaimers |
-| Commerce | `spotify.jsx` paywall | tokens only | no behaviour, price or offer change |
+| Banners, empty/loading/error | `app.jsx`, `chrome.jsx`, `home.jsx`, `lineup.jsx`, `map.jsx`, `historical.jsx`, `index.html` | **built** | Toast, root error screen, install, battery, shared-lineup and you-follow banners, Today's plan sheet, offline / times-pending notices, empty states, past-festival load/error, one skeleton shimmer. |
+| Public `/f/` pages | `scripts/gen-festival-pages.mjs` | **audited, built** | Data audit 2026-10-01: all 25 pages match their data sets (names, timed sets, JSON-LD, no orphans). Stylesheet on the board's Dark/Light values with Martian Mono times; markup, copy, JSON-LD and edition disclaimers unchanged. |
+| Commerce | `spotify.jsx` paywall | tokens only | Deliberately untouched beyond tokens: paywall copy and prices need founder sign-off. |
 
 ## Bugs fixed during the rollout
 
@@ -70,3 +70,15 @@ match those selectors.
 - Switcher dates were `nowrap`, so Summerfest's "Jun 18–20, Jun 25–27 & Jul 2–4, 2026" ran past the chevron at 320.
 - Map's Meet up was a 24pt pill; it is a 44pt chip.
 - A two-digit hour overran the list's time column (76px at 14px in a 64px column).
+- The photo viewer printed "12:undefined AM" for any takenAt without a wall clock; `test-memories-a11y` now opens the viewer and fails on undefined/NaN/null text.
+- The toast ellipsised every long message to one line; it wraps now.
+- The root error screen drew shade-coloured copy on `--ink`: dark on dark in Light.
+- `.skel-dark` was a hardcoded cream sweep from the paper theme.
+- Map artist search printed raw 24h "00:32 · D2" and cut names with an ellipsis.
+- The Friends stage picker's border template had a stray `)"`, so the declaration was dropped.
+- Locked badges and filtered-out amenity rows were dimmed with opacity (below AA); they read quieter by colour now.
+
+## Findings, not fixed here
+
+- `scripts/test-import.mjs` (v161) is not in verify or CI and no longer runs: its "ARTIST" view button and "TO RETAG" header left the app long before this PR.
+- `scripts/e2e-lineup-grid.mjs` needs an output path argument and is not in verify or CI.
