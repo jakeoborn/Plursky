@@ -327,9 +327,50 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
   );
 }
 
+// The search placeholder, whole or shortened. At 320 with large text the
+// full string runs past the field's padding and the iPhone cuts it; measure
+// it in the field's own font and fall back to "Search" only when it does not
+// fit, so every width that fits today reads exactly as before.
+// Returns [placeholder, ref]; a callback ref, so the measuring starts
+// whenever the field mounts.
+function useFittedPlaceholder(full, short) {
+  const [text, setText] = React.useState(full);
+  const [el, ref] = React.useState(null);
+  React.useEffect(() => {
+    if (!el) return;
+    const ctx = document.createElement("canvas").getContext("2d");
+    const fit = () => {
+      const cs = getComputedStyle(el);
+      const room = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      setText(room > 0 && ctx.measureText(full).width > room ? short : full);
+    };
+    fit();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(fit) : null;
+    ro?.observe(el);
+    // A font-size change on the field itself does not resize it (min-height
+    // holds), so watch its style too. Under Reduce Motion every element has a
+    // 0.01ms `transition: all`, so the size the observer reads is still the
+    // old one; measure again when the transition ends.
+    const mo = new MutationObserver(fit);
+    mo.observe(el, { attributes: true, attributeFilter: ["style", "class"] });
+    el.addEventListener("transitionend", fit);
+    window.addEventListener("resize", fit);
+    document.fonts?.addEventListener?.("loadingdone", fit);
+    return () => {
+      ro?.disconnect(); mo.disconnect();
+      el.removeEventListener("transitionend", fit);
+      window.removeEventListener("resize", fit);
+      document.fonts?.removeEventListener?.("loadingdone", fit);
+    };
+  }, [el, full, short]);
+  return [text, ref];
+}
+
 function GeneralLandingScreen({ state, setState }) {
   const [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   const [q, setQ] = React.useState("");
+  const [searchPlaceholder, searchRef] = useFittedPlaceholder("Search festivals", "Search");
   // Same offer sheet and the same feature string the FestivalSwitcher uses,
   // so early access is sold in one voice from both doors.
   const [plusOpen, setPlusOpen] = React.useState(false);
@@ -532,11 +573,13 @@ function GeneralLandingScreen({ state, setState }) {
         {/* ── Browse ───────────────────────────────────────────────────── */}
         <h2 className="duo-sect" style={eyebrow}>Browse festivals</h2>
         <input
+          ref={searchRef}
+          data-landing-search
           value={q}
           onChange={e => setQ(e.target.value)}
           type="search"
           aria-label="Search festivals"
-          placeholder="Search festivals"
+          placeholder={searchPlaceholder}
           style={{
             width: "100%", boxSizing: "border-box", marginTop: 6, marginBottom: 2,
             minHeight: 44, padding: "0 14px", borderRadius: 14,

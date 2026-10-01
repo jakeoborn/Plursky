@@ -1443,7 +1443,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v393"
+        version: "v394"
       }));
     } catch {}
   }
@@ -1495,7 +1495,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v393"))
+      }, "Plursky · v394"))
     );
   }
 }

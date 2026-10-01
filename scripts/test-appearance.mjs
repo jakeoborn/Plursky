@@ -81,8 +81,34 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null, photo = null } = {}) => {
+  // THE NETWORK, for the leak check. A screen's content can come from outside
+  // (the artist screen asks Last.fm, YouTube, Ticketmaster, Mixcloud and
+  // Supabase). Two live loads can get different answers, or the same answer
+  // at different times, and then the fresh and toggled screens hold different
+  // elements: CI and this Mac saw the artist screen at 335 elements in one
+  // load and 381 in the other, three branches in one day, which is not a
+  // colour leak. So the fresh load RECORDS every outside response (after the
+  // real network answers or fails) and the toggled load REPLAYS exactly that
+  // tape; anything not on the tape is refused in both. Local files are never
+  // touched. The check itself is unchanged: same elements, same colours.
+  const isLocal = (u) => new URL(u).hostname === '127.0.0.1';
+  const wireNet = async (ctx, tape, how) => {
+    tape.inFlight = 0;
+    await ctx.route((u) => !isLocal(u.toString()), async (route) => {
+      const req = route.request(), k = `${req.method()} ${req.url()} ${req.postData() || ''}`;
+      if (how === 'replay') { const t = tape.get(k); return t ? route.fulfill(t) : route.abort(); }
+      tape.inFlight++;
+      try {
+        const res = await route.fetch({ timeout: 15000 });
+        const t = { status: res.status(), headers: res.headers(), body: await res.body() };
+        tape.set(k, t); await route.fulfill(t);
+      } catch { tape.set(k, null); await route.abort().catch(() => {}); }
+      finally { tape.inFlight--; }
+    });
+  };
+  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null, photo = null, tape = null, net = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (tape) await wireNet(ctx, tape, net);
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
       if (sessionStorage.getItem('__seeded')) return;   // seed once: a reload must see what the app stored
@@ -122,6 +148,12 @@ try {
       const h = await page.evaluate(() => Math.max(...[...document.querySelectorAll('*')].map(e => e.scrollHeight)));
       same = h === last ? same + 1 : 0; last = h;
       await page.clock.runFor(500); await page.waitForTimeout(150);
+    }
+    // Recording: let every outside request answer or fail before anything is
+    // read, so the tape holds what this load renders (≤ 20 s of real time).
+    if (tape && net === 'record') {
+      for (let i = 0; i < 80 && tape.inFlight > 0; i++) await page.waitForTimeout(250);
+      await page.clock.runFor(1500); await page.waitForTimeout(300);
     }
     return { ctx, page, errors };
   };
@@ -361,7 +393,8 @@ try {
     for (const mode of ['dark', 'light']) {
       const other = mode === 'dark' ? 'light' : 'dark';
       // fresh in this mode
-      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font, go, photo });
+      const tape = new Map();
+      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font, go, photo, tape, net: 'record' });
       check((await modeOf(A.page)) === mode, `[${key}] picked ${mode} but the page is ${await modeOf(A.page)}`);
       { const sc = await isScreen(A.page, is); check(sc.ok, `[${key}] ${mode}: the screen that mounted is not ${key} (${sc.saw})`); }
       // Audit the whole screen, not the first viewport: step the main
@@ -393,7 +426,7 @@ try {
       check(!A.errors.length, `[${key}/${mode}] page errors: ${A.errors.join(' | ')}`);
       await A.ctx.close();
       // loaded in the other mode, then toggled into this one
-      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font, go, photo });
+      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font, go, photo, tape, net: 'replay' });
       await B.page.evaluate(m => window.PlurskyAppearance.set(m), mode);
       await B.page.clock.runFor(500); await B.page.waitForTimeout(250);
       await shot(B.page);
@@ -513,6 +546,55 @@ try {
     });
     check(r.over <= 0, `320px: the Appearance row overflows by ${r.over}px`);
     for (const o of r.opts) check(o.l >= 0 && o.r <= 320 && o.w <= 0, `320px: the ${o.v} option is not whole on screen (${Math.round(o.l)}–${Math.round(o.r)}px, text over by ${o.w}px)`);
+    await ctx.close();
+  }
+  // The recap kicker prints the festival's year once ("YOUR EDC LV 2026 ·
+  // 2026" was the bug: the short name already carries it) and clears the
+  // Share button, with and without a hero photo, in both modes, at the
+  // smallest phone and a common one.
+  for (const [fx, extra, photo] of [['photo', RECAP_DATA, 'appearance-hero'], ['plain', RECAP_PLAIN, null]]) {
+    for (const pick of ['dark', 'light']) for (const width of [320, 393]) {
+      const { ctx, page } = await open({ pick, extra, photo, width, go: { tab: 'recap' } });
+      const k = await page.evaluate(() => {
+        const el = document.querySelector('[data-recap-kicker]'); if (!el) return null;
+        const share = document.querySelector('[aria-label="Share recap"]');
+        const rg = document.createRange(); rg.selectNodeContents(el); const t = rg.getBoundingClientRect();
+        return { text: el.textContent.trim(), year: String(window.FESTIVAL_CONFIG?.year || ''), right: t.right, shareLeft: share ? share.getBoundingClientRect().left : null };
+      });
+      const tag = `recap kicker (${fx}, ${pick}, ${width}px)`;
+      check(!!k, `${tag}: no [data-recap-kicker] rendered`);
+      if (!k) { await ctx.close(); continue; }
+      check(k.year && k.text.split(k.year).length - 1 === 1, `${tag}: the year ${k.year} shows ${k.text.split(k.year).length - 1} times in "${k.text}", not once`);
+      check(k.shareLeft !== null && k.right <= k.shareLeft, `${tag}: "${k.text}" runs under the Share button (text ends ${Math.round(k.right)}px, Share starts ${Math.round(k.shareLeft)}px)`);
+      await ctx.close();
+    }
+  }
+  // General Home's search placeholder at 200% text: whole inside the field at
+  // the smallest phone (and at 280, margin for the runner's wider fonts, in a
+  // wide face too), and unchanged at 393, where it always fit. 200% = every
+  // resolved font size doubled, as test-memories-a11y does it.
+  for (const font of [null, 'Verdana']) for (const [width, big] of [[320, true], [280, true], [393, true], [393, false], [320, false]]) {
+    const { ctx, page } = await open({ query: null, width, font });
+    if (big) {
+      await page.evaluate(() => {
+        const els = [...document.body.querySelectorAll('*')]; const sz = els.map(e => parseFloat(getComputedStyle(e).fontSize));
+        els.forEach((e, i) => { if (sz[i]) e.style.setProperty('font-size', (sz[i] * 2) + 'px', 'important'); });
+      });
+      await page.clock.runFor(500); await page.waitForTimeout(300);   // the clock is pinned: let the re-render run
+    }
+    const r = await page.evaluate(() => {
+      const i = document.querySelector('[data-landing-search]'); if (!i) return null;
+      const cs = getComputedStyle(i); const c = document.createElement('canvas').getContext('2d');
+      c.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const q = i.getBoundingClientRect();
+      return { ph: i.placeholder, text: c.measureText(i.placeholder).width, room: i.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), fs: cs.fontSize, l: q.left, r: q.right };
+    });
+    const tag = `landing search${font ? ' (wide face)' : ''} @${width}${big ? ' 200% text' : ''}`;
+    check(!!r, `${tag}: no [data-landing-search] field`);
+    if (!r) { await ctx.close(); continue; }
+    check(!big || r.fs === '32px', `${tag}: the field's font is ${r.fs}, not doubled (the 200% pass did not land)`);
+    check(r.text <= r.room && r.l >= 0 && r.r <= width, `${tag}: placeholder "${r.ph}" is ${Math.ceil(r.text)}px in ${Math.floor(r.room)}px of room`);
+    if (width === 393) check(r.ph === 'Search festivals', `${tag}: placeholder changed to "${r.ph}" at a width where it always fit`);
     await ctx.close();
   }
   // The list at the smallest phone: the clash lines ("vs Mathame · 1:30 AM ·
