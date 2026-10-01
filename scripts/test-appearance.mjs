@@ -515,6 +515,55 @@ try {
     for (const o of r.opts) check(o.l >= 0 && o.r <= 320 && o.w <= 0, `320px: the ${o.v} option is not whole on screen (${Math.round(o.l)}–${Math.round(o.r)}px, text over by ${o.w}px)`);
     await ctx.close();
   }
+  // The recap kicker prints the festival's year once ("YOUR EDC LV 2026 ·
+  // 2026" was the bug: the short name already carries it) and clears the
+  // Share button, with and without a hero photo, in both modes, at the
+  // smallest phone and a common one.
+  for (const [fx, extra, photo] of [['photo', RECAP_DATA, 'appearance-hero'], ['plain', RECAP_PLAIN, null]]) {
+    for (const pick of ['dark', 'light']) for (const width of [320, 393]) {
+      const { ctx, page } = await open({ pick, extra, photo, width, go: { tab: 'recap' } });
+      const k = await page.evaluate(() => {
+        const el = document.querySelector('[data-recap-kicker]'); if (!el) return null;
+        const share = document.querySelector('[aria-label="Share recap"]');
+        const rg = document.createRange(); rg.selectNodeContents(el); const t = rg.getBoundingClientRect();
+        return { text: el.textContent.trim(), year: String(window.FESTIVAL_CONFIG?.year || ''), right: t.right, shareLeft: share ? share.getBoundingClientRect().left : null };
+      });
+      const tag = `recap kicker (${fx}, ${pick}, ${width}px)`;
+      check(!!k, `${tag}: no [data-recap-kicker] rendered`);
+      if (!k) { await ctx.close(); continue; }
+      check(k.year && k.text.split(k.year).length - 1 === 1, `${tag}: the year ${k.year} shows ${k.text.split(k.year).length - 1} times in "${k.text}", not once`);
+      check(k.shareLeft !== null && k.right <= k.shareLeft, `${tag}: "${k.text}" runs under the Share button (text ends ${Math.round(k.right)}px, Share starts ${Math.round(k.shareLeft)}px)`);
+      await ctx.close();
+    }
+  }
+  // General Home's search placeholder at 200% text: whole inside the field at
+  // the smallest phone (and at 280, margin for the runner's wider fonts, in a
+  // wide face too), and unchanged at 393, where it always fit. 200% = every
+  // resolved font size doubled, as test-memories-a11y does it.
+  for (const font of [null, 'Verdana']) for (const [width, big] of [[320, true], [280, true], [393, true], [393, false], [320, false]]) {
+    const { ctx, page } = await open({ query: null, width, font });
+    if (big) {
+      await page.evaluate(() => {
+        const els = [...document.body.querySelectorAll('*')]; const sz = els.map(e => parseFloat(getComputedStyle(e).fontSize));
+        els.forEach((e, i) => { if (sz[i]) e.style.setProperty('font-size', (sz[i] * 2) + 'px', 'important'); });
+      });
+      await page.clock.runFor(500); await page.waitForTimeout(300);   // the clock is pinned: let the re-render run
+    }
+    const r = await page.evaluate(() => {
+      const i = document.querySelector('[data-landing-search]'); if (!i) return null;
+      const cs = getComputedStyle(i); const c = document.createElement('canvas').getContext('2d');
+      c.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const q = i.getBoundingClientRect();
+      return { ph: i.placeholder, text: c.measureText(i.placeholder).width, room: i.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), fs: cs.fontSize, l: q.left, r: q.right };
+    });
+    const tag = `landing search${font ? ' (wide face)' : ''} @${width}${big ? ' 200% text' : ''}`;
+    check(!!r, `${tag}: no [data-landing-search] field`);
+    if (!r) { await ctx.close(); continue; }
+    check(!big || r.fs === '32px', `${tag}: the field's font is ${r.fs}, not doubled (the 200% pass did not land)`);
+    check(r.text <= r.room && r.l >= 0 && r.r <= width, `${tag}: placeholder "${r.ph}" is ${Math.ceil(r.text)}px in ${Math.floor(r.room)}px of room`);
+    if (width === 393) check(r.ph === 'Search festivals', `${tag}: placeholder changed to "${r.ph}" at a width where it always fit`);
+    await ctx.close();
+  }
   // The list at the smallest phone: the clash lines ("vs Mathame · 1:30 AM ·
   // Quantum Valley") wrap, and no name runs past a hidden edge.
   {

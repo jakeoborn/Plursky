@@ -12991,6 +12991,11 @@ function _computeRecap(state) {
     })()
   };
 }
+function _festivalYearKicker(cfg) {
+  var name = String(cfg?.shortName || "FESTIVAL").toUpperCase();
+  var year = cfg?.year ? String(cfg.year) : "";
+  return !year || new RegExp(`\\b${year}\\b`).test(name) ? name : `${name} · ${year}`;
+}
 function _fmtHrsMin(mins) {
   var h = Math.floor(mins / 60);
   var m = mins % 60;
@@ -13040,7 +13045,7 @@ function WrappedStory({
     var c = [];
     c.push({
       bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
-      kicker: (CFG.shortName || "FESTIVAL").toUpperCase() + " · " + (CFG.year || ""),
+      kicker: _festivalYearKicker(CFG),
       headline: React.createElement(React.Fragment, null, "Your ", React.createElement("em", null, "Wrapped")),
       sub: `${recap.setsCount} sets · ${recap.nights} nights · ${recap.stagesVisitedCount} stages`
     });
@@ -15110,6 +15115,7 @@ function RecapScreen({
       alignItems: "flex-start"
     }
   }, React.createElement("div", {
+    "data-recap-kicker": true,
     className: "mono",
     style: {
       fontSize: 9,
@@ -15118,7 +15124,7 @@ function RecapScreen({
       fontWeight: 700,
       marginBottom: 10
     }
-  }, "YOUR ", (CFG.shortName || "FESTIVAL").toUpperCase(), " · ", CFG.year || "")), React.createElement("div", {
+  }, "YOUR ", _festivalYearKicker(CFG))), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 42,

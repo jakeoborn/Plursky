@@ -305,12 +305,46 @@ function _LandingFestivalCard({
     d: "M9 6 L15 12 L9 18"
   })));
 }
+function useFittedPlaceholder(full, short) {
+  var [text, setText] = React.useState(full);
+  var [el, ref] = React.useState(null);
+  React.useEffect(() => {
+    if (!el) return;
+    var ctx = document.createElement("canvas").getContext("2d");
+    var fit = () => {
+      var cs = getComputedStyle(el);
+      var room = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      setText(room > 0 && ctx.measureText(full).width > room ? short : full);
+    };
+    fit();
+    var ro = typeof ResizeObserver === "function" ? new ResizeObserver(fit) : null;
+    ro?.observe(el);
+    var mo = new MutationObserver(fit);
+    mo.observe(el, {
+      attributes: true,
+      attributeFilter: ["style", "class"]
+    });
+    el.addEventListener("transitionend", fit);
+    window.addEventListener("resize", fit);
+    document.fonts?.addEventListener?.("loadingdone", fit);
+    return () => {
+      ro?.disconnect();
+      mo.disconnect();
+      el.removeEventListener("transitionend", fit);
+      window.removeEventListener("resize", fit);
+      document.fonts?.removeEventListener?.("loadingdone", fit);
+    };
+  }, [el, full, short]);
+  return [text, ref];
+}
 function GeneralLandingScreen({
   state,
   setState
 }) {
   var [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   var [q, setQ] = React.useState("");
+  var [searchPlaceholder, searchRef] = useFittedPlaceholder("Search festivals", "Search");
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [plus, setPlus] = React.useState(() => !!window._isPlusSub?.());
   React.useEffect(() => {
@@ -533,11 +567,13 @@ function GeneralLandingScreen({
     className: "duo-sect",
     style: eyebrow
   }, "Browse festivals"), React.createElement("input", {
+    ref: searchRef,
+    "data-landing-search": true,
     value: q,
     onChange: e => setQ(e.target.value),
     type: "search",
     "aria-label": "Search festivals",
-    placeholder: "Search festivals",
+    placeholder: searchPlaceholder,
     style: {
       width: "100%",
       boxSizing: "border-box",
