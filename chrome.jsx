@@ -1243,14 +1243,14 @@ function NotificationsCard({ state }) {
   if (!supported) {
     return (
       <div style={{
-        padding: "12px 14px", borderRadius: 12,
-        background: "var(--paper)", border: "1px solid var(--line)",
+        padding: "14px 16px", borderRadius: "var(--rad-md)",
+        background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
         marginBottom: 12,
       }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           NOTIFICATIONS · UNSUPPORTED
         </div>
-        <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4, lineHeight: 1.4 }}>
+        <div style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 4, lineHeight: 1.43 }}>
           {window.Capacitor?.isNativePlatform?.()
             ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update."
             : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."}
@@ -1260,26 +1260,26 @@ function NotificationsCard({ state }) {
   }
 
   const label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  const labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
+  const labelColor = perm === "granted" ? "var(--acc-ink)" : perm === "denied" ? "var(--alert)" : "var(--ink-2)";
 
   return (
     <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
+      padding: 16, borderRadius: "var(--rad-md)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       marginBottom: 12,
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           REMINDERS
         </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: labelColor, fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: labelColor }}>
           {flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="duo-headline" style={{ marginBottom: 4 }}>
         {leadMin}-min head-up before each set
       </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: perm === "denied" ? 8 : 12 }}>
+      <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: perm === "denied" ? 8 : 12 }}>
         {perm === "granted"
           ? scheduled > 0
             ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.`
@@ -1291,7 +1291,7 @@ function NotificationsCard({ state }) {
             : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`}
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, flexWrap: "wrap" }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: "var(--ink-3)", }}>
           LEAD TIME
         </span>
         <div style={{ display: "flex", gap: 5 }}>
@@ -1300,8 +1300,8 @@ function NotificationsCard({ state }) {
             return (
               <button key={m} onClick={() => onPickLead(m)} className="mono" style={{
                 padding: "4px 9px", borderRadius: 999, cursor: "pointer",
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--ink)",
+                background: on ? "var(--s1)" : "transparent", boxShadow: on ? "var(--e1)" : "none",
+                color: on ? "var(--ink)" : "var(--ink-2)",
                 border: on ? "none" : "1px solid var(--line-2)",
                 fontSize: 10, letterSpacing: 1.1, fontWeight: on ? 700 : 500,
               }}>{m}M</button>
@@ -1311,10 +1311,10 @@ function NotificationsCard({ state }) {
       </div>
       {perm === "denied" && (
         <div style={{
-          background: "var(--paper-2)", border: "1px solid var(--line-2)",
-          borderRadius: 10, padding: "10px 12px", marginBottom: 12,
+          background: "var(--s3)", border: "none",
+          borderRadius: "var(--rad-sm)", padding: "10px 12px", marginBottom: 12,
         }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+          <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 6 }}>
             HOW TO RE-ENABLE
           </div>
           {window.Capacitor?.isNativePlatform?.() ? (
@@ -1815,51 +1815,50 @@ function BatterySaverToast() {
 function BatterySaverCard() {
   const { active, mode, battery, setMode } = useBatterySaver();
   const segs = [
-    { id: "off",  label: "OFF" },
-    { id: "auto", label: "AUTO" },
-    { id: "on",   label: "ON" },
+    { id: "off",  label: "Off" },
+    { id: "auto", label: "Auto" },
+    { id: "on",   label: "On" },
   ];
   const battPct = battery ? Math.round(battery.level * 100) : null;
-  const battColor = battPct == null ? "var(--muted)"
-    : battPct > 50 ? "var(--success)"
+  const battColor = battPct == null ? "var(--ink-2)"
+    : battPct > 50 ? "var(--acc-ink)"
     : battPct > 20 ? "var(--flare)"
     : "var(--alert)";
 
   return (
     <div style={{
-      padding: 14, borderRadius: 14,
-      background: "var(--paper)", border: "1px solid var(--line)",
+      padding: 16, borderRadius: "var(--rad-md)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       marginBottom: 12,
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.5, color: "var(--muted)", fontWeight: 700 }}>
+        <div className="duo-label" style={{ color: "var(--ink-3)", }}>
           BATTERY SAVER
         </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: active ? "var(--success)" : "var(--muted)", fontWeight: 700 }}>
+        <span className="duo-label" style={{ color: active ? "var(--acc-ink)" : "var(--ink-2)" }}>
           {active ? "✓ ACTIVE" : "STANDBY"}
         </span>
       </div>
-      <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, marginBottom: 4 }}>
+      <div className="duo-headline" style={{ marginBottom: 4 }}>
         Stretch the phone past sunrise
       </div>
-      <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 12 }}>
+      <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
         Dims the screen, freezes animations, and slows GPS polling.
         Auto kicks in at 2 AM or when battery drops under 25%.
       </div>
 
       <div style={{
         display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4,
-        background: "var(--paper-2)", borderRadius: 999, padding: 3,
-        border: "1px solid var(--line)",
+        background: "var(--s3)", borderRadius: 999, padding: 3,
       }}>
         {segs.map(s => {
           const on = mode === s.id;
           return (
             <button key={s.id} onClick={() => setMode(s.id)} style={{
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: "none", borderRadius: 999, padding: "7px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+              background: on ? "var(--s1)" : "transparent", boxShadow: on ? "var(--e1)" : "none",
+              color: on ? "var(--ink)" : "var(--ink-2)",
+              border: "none", borderRadius: 999, padding: "0 10px", minHeight: 36,
+              fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650,
               cursor: "pointer",
             }}>{s.label}</button>
           );
@@ -1985,8 +1984,8 @@ function AppearanceRow() {
     <div data-appearance-row style={{
       display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
       flexWrap: "wrap",   // 320px: the selector drops under the label, never off-screen
-      padding: "8px 8px 8px 16px", borderRadius: 14, marginBottom: 12,
-      background: "var(--paper-2)", border: "1px solid var(--line)",
+      padding: "8px 8px 8px 16px", borderRadius: "var(--rad-md)", marginBottom: 12,
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
     }}>
       <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)" }}>Appearance</div>
       <div role="radiogroup" aria-label="Appearance" style={{

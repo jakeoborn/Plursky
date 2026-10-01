@@ -1093,72 +1093,65 @@ function SafetyCards() {
     }
   }, SAFETY_LINKS.map(item => {
     var onClick = item.href ? () => window.open(item.href, "_blank", "noopener") : () => item.onClick?.();
-    return React.createElement("button", {
-      key: item.id,
-      onClick: onClick,
-      style: {
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 12,
-        padding: "12px 14px",
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        borderLeft: `3px solid ${item.color}`,
-        cursor: "pointer",
-        textAlign: "left",
-        color: "var(--ink)",
-        fontFamily: "inherit"
-      }
-    }, React.createElement("div", {
-      style: {
-        width: 34,
-        height: 34,
-        borderRadius: 10,
-        background: `${item.color}1f`,
-        color: item.color,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0
-      }
-    }, React.createElement(SafetyIcon, {
-      kind: item.icon,
-      color: item.color
-    })), React.createElement("div", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        lineHeight: 1.1
-      }
-    }, item.title), React.createElement("div", {
-      style: {
-        fontSize: 13,
-        color: "var(--muted)",
-        marginTop: 3,
-        lineHeight: 1.45
-      }
-    }, item.sub)), item.href && React.createElement("svg", {
-      width: "13",
-      height: "13",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "var(--muted)",
-      strokeWidth: "2",
-      style: {
-        flexShrink: 0,
-        marginTop: 4
-      }
-    }, React.createElement("path", {
-      d: "M7 17 L17 7"
-    }), React.createElement("path", {
-      d: "M9 7 H17 V15"
-    })));
+    return (React.createElement("button", {
+        key: item.id,
+        onClick: onClick,
+        className: "duo-card",
+        style: {
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 12,
+          padding: "14px 16px",
+          border: "none",
+          cursor: "pointer",
+          textAlign: "left",
+          color: "var(--ink)",
+          fontFamily: "inherit"
+        }
+      }, React.createElement("div", {
+        className: "duo-well",
+        style: {
+          width: 36,
+          height: 36,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0
+        }
+      }, React.createElement(SafetyIcon, {
+        kind: item.icon,
+        color: item.id === "medical" ? "var(--clash)" : "var(--acc-ink)"
+      })), React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, React.createElement("div", {
+        className: "duo-headline"
+      }, item.title), React.createElement("div", {
+        className: "duo-body-s duo-ink2",
+        style: {
+          marginTop: 2,
+          fontWeight: 400
+        }
+      }, item.sub)), item.href && React.createElement("svg", {
+        "aria-hidden": "true",
+        width: "13",
+        height: "13",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "var(--ink-3)",
+        strokeWidth: "2",
+        style: {
+          flexShrink: 0,
+          marginTop: 4
+        }
+      }, React.createElement("path", {
+        d: "M7 17 L17 7"
+      }), React.createElement("path", {
+        d: "M9 7 H17 V15"
+      })))
+    );
   }));
 }
 var PACK_ITEMS = [{
@@ -1261,16 +1254,20 @@ function PackListCard() {
       display: "flex",
       alignItems: "center",
       gap: 12,
-      padding: "11px 4px",
+      padding: "0 4px",
+      minHeight: 48,
       borderBottom: isLast ? "none" : "1px solid var(--line)"
     }
   }, React.createElement("button", {
     onClick: () => toggle(it.id),
+    role: "checkbox",
+    "aria-checked": !!checked[it.id],
     style: {
       display: "flex",
       alignItems: "center",
       gap: 12,
       flex: 1,
+      minHeight: 48,
       background: "transparent",
       border: "none",
       cursor: "pointer",
@@ -1279,15 +1276,15 @@ function PackListCard() {
     }
   }, React.createElement("span", {
     style: {
-      width: 20,
-      height: 20,
-      borderRadius: 6,
-      background: checked[it.id] ? "var(--ember)" : "transparent",
-      border: `1.5px solid ${checked[it.id] ? "var(--ember)" : "var(--line-2)"}`,
+      width: 22,
+      height: 22,
+      borderRadius: "var(--rad-xs)",
+      background: checked[it.id] ? "var(--acc)" : "transparent",
+      border: `1.5px solid ${checked[it.id] ? "var(--acc)" : "var(--line-2)"}`,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "var(--ink)",
+      color: "var(--on-acc)",
       fontSize: 12,
       fontWeight: 700,
       flexShrink: 0,
@@ -1301,11 +1298,12 @@ function PackListCard() {
       textAlign: "center"
     }
   }, it.emoji), React.createElement("span", {
+    className: "duo-body-s",
     style: {
       flex: 1,
-      fontFamily: "Geist, sans-serif",
-      fontSize: 14,
-      color: checked[it.id] ? "var(--muted)" : "var(--ink)",
+      fontWeight: 400,
+      fontSize: 15,
+      color: checked[it.id] ? "var(--ink-2)" : "var(--ink)",
       textDecoration: checked[it.id] ? "line-through" : "none",
       transition: "color .15s"
     }
@@ -1316,19 +1314,18 @@ function PackListCard() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--muted)",
-      fontSize: 16,
+      color: "var(--ink-2)",
+      fontSize: 18,
       lineHeight: 1,
-      padding: "0 2px",
+      minWidth: 44,
+      minHeight: 44,
       flexShrink: 0
     }
   }, "×"));
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       marginTop: 20,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      borderRadius: 16,
       padding: 16
     }
   }, React.createElement("div", {
@@ -1336,20 +1333,14 @@ function PackListCard() {
       display: "flex",
       alignItems: "baseline",
       justifyContent: "space-between",
-      marginBottom: 12
+      marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22
-    }
+    className: "duo-headline"
   }, "Pack list"), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: done === allItems.length ? "var(--success)" : "var(--muted)",
-      fontWeight: 700
+      color: done === allItems.length ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, done, "/", allItems.length, " ", done === allItems.length && "✓")), PACK_ITEMS.map((it, i) => itemRow(it, i === allItems.length - 1 && custom.length === 0, false)), custom.map((it, i) => itemRow(it, i === custom.length - 1, true)), React.createElement("div", {
     style: {
@@ -1365,33 +1356,25 @@ function PackListCard() {
     onChange: e => setDraft(e.target.value),
     onKeyDown: e => e.key === "Enter" && addItem(),
     placeholder: "Add an item…",
+    "aria-label": "Add an item",
+    className: "duo-input",
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
-      padding: "9px 12px",
-      fontFamily: "Geist, sans-serif",
-      fontSize: 14,
-      color: "var(--ink)",
-      outline: "none"
+      padding: "0 14px",
+      background: "var(--s3)",
+      boxShadow: "none"
     }
   }), React.createElement("button", {
     onClick: addItem,
+    className: "duo-btn",
     style: {
-      background: draft.trim() ? "var(--ember)" : "var(--paper-2)",
-      color: draft.trim() ? "var(--ink)" : "var(--muted)",
-      border: "none",
-      borderRadius: 10,
-      padding: "9px 14px",
-      cursor: draft.trim() ? "pointer" : "default",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1,
-      fontWeight: 700,
-      transition: "all .15s"
+      background: draft.trim() ? "var(--acc)" : "var(--s3)",
+      color: draft.trim() ? "var(--on-acc)" : "var(--ink-2)",
+      minHeight: 44,
+      padding: "0 16px",
+      cursor: draft.trim() ? "pointer" : "default"
     }
-  }, "ADD")));
+  }, "Add")));
 }
 var _FESTIVAL_BADGE_PACKS = {
   "edc-lv-2026": ctx => [{
@@ -1591,112 +1574,64 @@ function BadgesSection({
   var BADGES = _computeBadges(state.saved);
   var earned = BADGES.filter(b => b.earned);
   var locked = BADGES.filter(b => !b.earned);
-  var cardStyle = on => ({
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    padding: "10px 12px",
-    borderRadius: 12,
-    background: on ? "var(--paper-2)" : "var(--paper)",
-    border: on ? "1px solid var(--line)" : "1px dashed var(--line-2)",
-    opacity: on ? 1 : 0.55
-  });
-  var iconCircle = on => ({
-    width: 36,
-    height: 36,
-    borderRadius: 999,
-    background: on ? "var(--signal)" : "var(--paper-2)",
-    color: on ? "var(--on-signal)" : "var(--muted)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontFamily: "Instrument Serif, serif",
-    fontSize: 18,
-    flexShrink: 0,
-    border: on ? "none" : "1px solid var(--line-2)"
-  });
+  var row = (b, on) => React.createElement("div", {
+    key: b.id,
+    className: on ? "duo-card" : "duo-well",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: "12px 14px",
+      minHeight: 60
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: on ? "var(--acc)" : "transparent",
+      color: on ? "var(--on-acc)" : "var(--ink-2)",
+      boxShadow: on ? "none" : "inset 0 0 0 1.5px var(--line-2)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 17
+    }
+  }, b.icon), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      color: on ? "var(--ink)" : "var(--ink-2)"
+    }
+  }, b.name), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      marginTop: 2,
+      fontWeight: 400
+    }
+  }, on ? "Earned" : "Locked", " · ", b.desc)));
   return React.createElement("div", {
     style: {
       marginBottom: 14
     }
   }, React.createElement("div", {
+    className: "duo-data-s duo-ink2",
     style: {
-      display: "flex",
-      alignItems: "baseline",
-      gap: 8,
       marginBottom: 8
     }
-  }, React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      color: "var(--ink)"
-    }
-  }, "BADGES"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)"
-    }
-  }, earned.length, " of ", BADGES.length, " EARNED")), React.createElement("div", {
+  }, earned.length, " of ", BADGES.length, " earned"), React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      gap: 8
     }
-  }, earned.map(b => React.createElement("div", {
-    key: b.id,
-    style: cardStyle(true)
-  }, React.createElement("div", {
-    style: iconCircle(true)
-  }, b.icon), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15
-    }
-  }, b.name), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 2
-    }
-  }, "EARNED · ", b.desc.toUpperCase())))), locked.map(b => React.createElement("div", {
-    key: b.id,
-    style: cardStyle(false)
-  }, React.createElement("div", {
-    style: iconCircle(false)
-  }, b.icon), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15,
-      color: "var(--muted)"
-    }
-  }, b.name), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 2
-    }
-  }, "LOCKED · ", b.desc.toUpperCase()))))));
+  }, earned.map(b => row(b, true)), locked.map(b => row(b, false))));
 }
 function HistoryRecordsSection({
   state,
@@ -1749,7 +1684,7 @@ function HistoryRecordsSection({
     if (topStage) {
       out.push({
         label: "TOP STAGE",
-        value: `${topStage.name.toUpperCase()} · ${stageAll[topId]}×`,
+        value: `${topStage.name} · ${stageAll[topId]}×`,
         accent: topStage.color
       });
     }
@@ -1763,7 +1698,7 @@ function HistoryRecordsSection({
       if (len > 0) {
         out.push({
           label: "LONGEST SET",
-          value: `${longest.name.toUpperCase()} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}H` : ""}${len % 60}M`,
+          value: `${actDisplayName(longest.name)} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}h ` : ""}${len % 60}m`,
           accent: window.STAGES.find(s => s.id === longest.stage)?.color || "var(--horizon)"
         });
       }
@@ -1775,37 +1710,38 @@ function HistoryRecordsSection({
       marginBottom: 14
     }
   }, React.createElement("div", {
+    className: "duo-seg",
+    role: "radiogroup",
+    "aria-label": "History or records",
     style: {
       display: "inline-flex",
-      padding: 3,
-      gap: 2,
-      background: "var(--paper-2)",
-      borderRadius: 999,
       marginBottom: 10
     }
   }, ["history", "records"].map(k => {
     var on = view === k;
     return React.createElement("button", {
       key: k,
+      role: "radio",
+      "aria-checked": on,
       onClick: () => setView(k),
-      className: "mono",
+      className: "duo-body-s",
       style: {
-        padding: "5px 12px",
-        borderRadius: 999,
+        minHeight: 36,
+        padding: "0 14px",
+        borderRadius: "var(--rad-pill)",
         border: "none",
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
-        fontSize: 9,
-        letterSpacing: 1.3,
-        fontWeight: 700,
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
+        fontWeight: 650,
         cursor: "pointer"
       }
-    }, k.toUpperCase());
+    }, k === "history" ? "History" : "Records");
   })), view === "history" && React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      gap: 8
     }
   }, nights.map(n => React.createElement("button", {
     key: n.n,
@@ -1814,18 +1750,18 @@ function HistoryRecordsSection({
       tab: "memories",
       memoriesNight: n.n
     })),
+    className: "duo-card" + (n.isLive ? " duo-lift" : ""),
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      padding: "10px 12px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      borderLeft: `3px solid ${n.topStage?.color || "var(--line-2)"}`,
+      gap: 12,
+      padding: "12px 12px 12px 16px",
+      minHeight: 60,
       border: "none",
       cursor: "pointer",
       textAlign: "left",
-      width: "100%"
+      width: "100%",
+      color: "var(--ink)"
     }
   }, React.createElement("div", {
     style: {
@@ -1833,109 +1769,93 @@ function HistoryRecordsSection({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15,
-      color: n.count === 0 && !n.isLive ? "var(--text-2)" : "var(--ink)"
-    }
-  }, n.name || `Night ${n.n}`, n.isLive && React.createElement("span", {
-    className: "mono",
-    style: {
-      marginLeft: 8,
-      fontSize: 8,
-      letterSpacing: 1.2,
-      fontWeight: 800,
-      color: "var(--success)",
-      background: "transparent",
-      padding: "1px 6px",
-      borderRadius: 999,
-      border: "1px solid var(--success)"
-    }
-  }, "● LIVE")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 3,
-      display: "flex",
-      gap: 8,
-      flexWrap: "wrap"
-    }
-  }, React.createElement("span", null, n.count, " ", n.count === 1 ? "SET" : "SETS"), n.totalMin > 0 && React.createElement("span", null, "· ", Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : "", n.totalMin % 60, "M"), n.topStage && React.createElement("span", {
-    style: {
-      color: "var(--signal-ink)",
-      fontWeight: 700
-    }
-  }, "· ", n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()))), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: n.isPast ? "var(--muted)" : n.isLive ? "var(--success)" : "var(--horizon)"
-    }
-  }, n.isPast ? "DONE" : n.isLive ? "TONIGHT" : "UPCOMING"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      color: "var(--muted)",
-      marginLeft: 6
-    }
-  }, "›")))), view === "records" && React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 6
-    }
-  }, records.length === 0 ? React.createElement("div", {
-    style: {
-      padding: "18px 14px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      textAlign: "center"
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      marginBottom: 4
-    }
-  }, "No records yet"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)"
-    }
-  }, "SAVE SETS TO UNLOCK SUPERLATIVES")) : records.map((r, i) => React.createElement("div", {
-    key: i,
     style: {
       display: "flex",
       alignItems: "center",
       gap: 10,
-      padding: "10px 12px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      borderLeft: "3px solid var(--line-2)"
+      flexWrap: "wrap"
+    }
+  }, React.createElement("span", {
+    className: "duo-headline",
+    style: {
+      color: n.count === 0 && !n.isLive ? "var(--ink-2)" : "var(--ink)"
+    }
+  }, n.name || `Night ${n.n}`), n.isLive && typeof DuoLive === "function" && React.createElement(DuoLive, null)), React.createElement("div", {
+    className: "duo-data-s duo-ink2",
+    style: {
+      marginTop: 3,
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("span", null, n.count, " ", n.count === 1 ? "set" : "sets"), n.totalMin > 0 && React.createElement("span", null, "· ", Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}h ` : "", n.totalMin % 60, "m")), n.topStage && React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      marginTop: 1,
+      fontWeight: 400
+    }
+  }, "Mostly ", n.topStage.name)), React.createElement("span", {
+    className: "duo-label",
+    style: {
+      flexShrink: 0,
+      color: n.isPast ? "var(--ink-3)" : "var(--acc-ink)"
+    }
+  }, n.isPast ? "Done" : n.isLive ? "Tonight" : "Upcoming"), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "12",
+    height: "12",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      flexShrink: 0
+    }
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))))), view === "records" && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, records.length === 0 ? React.createElement("div", {
+    className: "duo-card",
+    style: {
+      padding: "18px 16px",
+      textAlign: "center"
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-headline",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
-      width: 110,
+      marginBottom: 4
+    }
+  }, "No records yet"), React.createElement("div", {
+    className: "duo-body-s duo-ink2"
+  }, "Save sets to unlock superlatives.")) : records.map((r, i) => React.createElement("div", {
+    key: i,
+    className: "duo-card",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: "12px 16px",
+      minHeight: 52
+    }
+  }, React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      width: 118,
       flexShrink: 0
     }
   }, r.label), React.createElement("div", {
+    className: "duo-body-s duo-name",
     style: {
-      fontFamily: "Geist, sans-serif",
-      fontSize: 13,
-      fontWeight: 500,
-      flex: 1
+      flex: 1,
+      minWidth: 0,
+      color: "var(--ink)"
     }
   }, r.value)))));
 }
@@ -11122,28 +11042,39 @@ function Collapsible({
     }
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
-    className: "mono",
+    "aria-expanded": open,
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       width: "100%",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
-      padding: "12px 14px",
+      border: "none",
+      minHeight: 52,
+      padding: "12px 16px",
       cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.3,
-      fontWeight: 700,
       color: "var(--ink)"
     }
-  }, React.createElement("span", null, title), React.createElement("span", {
+  }, React.createElement("span", {
+    className: "duo-label"
+  }, title), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      color: "var(--muted)",
-      fontSize: 12
+      flexShrink: 0,
+      transition: "transform 0.25s var(--ease-spring)",
+      transform: open ? "rotate(90deg)" : "rotate(0deg)"
     }
-  }, open ? "▾" : "▸")), open && React.createElement("div", {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))), open && React.createElement("div", {
     style: {
       marginTop: 12
     }
@@ -11594,45 +11525,34 @@ function MeScreen({
   }, "→")), React.createElement("div", {
     "data-animate": true,
     style: {
-      borderTop: "1px solid var(--line)",
-      marginTop: 6,
-      paddingTop: 14,
+      marginTop: 10,
       marginBottom: 18
     }
   }, React.createElement("button", {
     onClick: () => setFestivalOpen(o => !o),
+    "aria-expanded": festivalOpen,
     style: {
       width: "100%",
+      minHeight: 44,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      padding: "0 0 12px",
+      padding: "0 0 4px",
       textAlign: "left",
       color: "var(--ink)"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22,
-      lineHeight: 1.05
-    }
-  }, "Festival"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, "HISTORY · BADGES · MUSIC · HEADLINERS")), React.createElement("svg", {
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, "Festival"), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11662,17 +11582,16 @@ function MeScreen({
       tab: "landing",
       artist: null
     })),
+    className: "duo-card",
     style: {
       width: "100%",
       minHeight: 52,
       marginBottom: 14,
-      padding: "10px 14px",
+      padding: "10px 16px",
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      background: "var(--paper-2)",
+      gap: 12,
       border: "none",
-      borderRadius: 14,
       color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left",
@@ -11682,22 +11601,18 @@ function MeScreen({
     "aria-hidden": "true",
     style: {
       fontSize: 16,
-      color: "var(--text-2)"
+      color: "var(--ink-2)"
     }
   }, "⌂"), React.createElement("span", {
+    className: "duo-headline",
     style: {
       flex: 1,
-      minWidth: 0,
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
+      minWidth: 0
     }
   }, "All festivals"), React.createElement("span", {
+    className: "duo-body-s duo-ink2",
     style: {
-      flexShrink: 0,
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      flexShrink: 0
     }
   }, "Your plan is kept")), React.createElement(HistoryRecordsSection, {
     state: state,
@@ -11721,26 +11636,25 @@ function MeScreen({
       ...state,
       tab: "spotify"
     }),
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       gap: 12,
       width: "100%",
-      padding: "13px 14px",
+      padding: "12px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      border: "none",
       cursor: "pointer",
       textAlign: "left"
     }
   }, React.createElement("div", {
     style: {
-      width: 38,
-      height: 38,
-      borderRadius: 38,
+      width: 40,
+      height: 40,
+      borderRadius: 40,
       flexShrink: 0,
-      background: state.spotifyConnected ? "var(--spotify)" : "var(--paper-3)",
+      background: state.spotifyConnected ? "var(--spotify)" : "var(--s3)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
@@ -11770,26 +11684,22 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 18,
-      lineHeight: 1.05,
       color: "var(--ink)"
     }
   }, state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 3
+      marginTop: 2
     }
-  }, state.spotifyConnected ? "TOP ARTISTS · DISCOVERIES · BUILD PLAYLIST" : "TAP TO CONNECT")), React.createElement("svg", {
+  }, state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect")), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11800,48 +11710,33 @@ function MeScreen({
     d: "M9 18 L15 12 L9 6"
   })))))), React.createElement("div", {
     style: {
-      borderTop: "1px solid var(--line)",
-      paddingTop: 14,
       marginBottom: 18
     }
   }, React.createElement("button", {
     onClick: () => setSocialOpen(o => !o),
+    "aria-expanded": socialOpen,
     style: {
       width: "100%",
+      minHeight: 44,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      padding: "0 0 12px",
+      padding: "0 0 4px",
       textAlign: "left",
       color: "var(--ink)"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22,
-      lineHeight: 1.05
-    }
-  }, "Friends & ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "crew")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, "LIVE LOCATION · SHARED LINEUPS")), React.createElement("svg", {
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, "Friends & crew"), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11886,12 +11781,13 @@ function MeScreen({
     }
   }, React.createElement("button", {
     onClick: () => setSettingsOpen(o => !o),
+    "aria-expanded": settingsOpen,
+    className: "duo-card",
     style: {
       width: "100%",
-      padding: "13px 14px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      padding: "12px 16px",
+      minHeight: 60,
+      border: "none",
       cursor: "pointer",
       textAlign: "left",
       display: "flex",
@@ -11906,25 +11802,19 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 18,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Settings"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 3
+      marginTop: 2
     }
-  }, "NOTIFICATIONS · BATTERY · PACK LIST")), React.createElement("svg", {
+  }, "Notifications, battery, pack list")), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11947,162 +11837,134 @@ function MeScreen({
     }
   }, React.createElement("button", {
     onClick: () => window.plurskyOpenPersonalize?.(),
+    className: "duo-btn",
     style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
-      minHeight: 44,
-      padding: "0 16px",
-      cursor: "pointer",
+      background: "var(--s3)",
       color: "var(--ink)",
-      fontSize: 15,
-      fontWeight: 500
+      minHeight: 44
     }
   }, "Personalize Plursky")))), _mePostFest ? React.createElement(Collapsible, {
     title: "SAFETY & CARE"
-  }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "serif",
+  }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("h2", {
+    className: "duo-sect",
     style: {
-      fontSize: 22,
-      marginTop: 20,
-      marginBottom: 3
+      marginTop: 24
     }
-  }, "Safety & ", React.createElement("span", {
+  }, "Safety & care"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontStyle: "italic"
-    }
-  }, "care")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
+      marginTop: 4,
       marginBottom: 12
     }
-  }, "ON-SITE TEAMS · NO QUESTIONS ASKED"), React.createElement(SafetyCards, null)), (() => {
+  }, "On-site teams. No questions asked."), React.createElement(SafetyCards, null)), (() => {
     var savedHeadliners = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.tier === 3).slice(0, 6);
     if (savedHeadliners.length === 0) return null;
-    return React.createElement(React.Fragment, null, React.createElement("div", {
-      className: "serif",
+    return React.createElement(React.Fragment, null, React.createElement("h2", {
+      className: "duo-sect",
       style: {
-        fontSize: 22,
-        marginTop: 20,
-        marginBottom: 10
+        marginTop: 24,
+        marginBottom: 6
       }
-    }, "Your ", React.createElement("span", {
+    }, "Your headliners"), React.createElement("div", {
       style: {
-        fontStyle: "italic"
+        display: "flex",
+        flexDirection: "column"
       }
-    }, "headliners")), React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 6
-      }
-    }, savedHeadliners.map(a => React.createElement("button", {
-      key: a.id,
-      onClick: () => setState({
-        ...state,
-        artist: a.id
-      }),
-      style: {
-        aspectRatio: "1/1",
-        borderRadius: 10,
-        background: a.img,
-        position: "relative",
-        overflow: "hidden",
-        border: "none",
-        padding: 0,
-        cursor: "pointer"
-      }
-    }, React.createElement("div", {
-      style: {
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(180deg,transparent 40%,rgba(var(--shade-rgb),0.65))"
-      }
-    }), React.createElement("div", {
-      style: {
-        position: "absolute",
-        bottom: 6,
-        left: 6,
-        right: 6,
-        color: "var(--media-ink)",
-        textAlign: "left"
-      },
-      className: "mono"
-    }, React.createElement("div", {
-      style: {
-        fontSize: 10,
-        letterSpacing: 0.4,
-        fontWeight: 700,
-        lineHeight: 1.1,
-        marginBottom: 2,
-        overflowWrap: "break-word"
-      }
-    }, actDisplayName(a.name)), React.createElement("div", {
-      style: {
-        fontSize: 8,
-        letterSpacing: 1,
-        opacity: 0.8
-      }
-    }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", " · ", fmt12(a.start)))))));
+    }, savedHeadliners.map(a => {
+      var st = STAGES.find(x => x.id === a.stage);
+      return React.createElement("button", {
+        key: a.id,
+        onClick: () => setState({
+          ...state,
+          artist: a.id
+        }),
+        className: "duo-lrow duo-press",
+        style: {
+          display: "flex",
+          width: "auto",
+          color: "var(--ink)"
+        }
+      }, React.createElement("span", {
+        className: "duo-data-s duo-ink2",
+        style: {
+          width: 72,
+          flexShrink: 0
+        }
+      }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", React.createElement("br", null), fmt12(a.start)), typeof DuoAvatar === "function" && React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 42
+      }), React.createElement("span", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, React.createElement("span", {
+        className: "duo-headline duo-name",
+        style: {
+          display: "block",
+          fontWeight: 700
+        }
+      }, actDisplayName(a.name)), React.createElement("span", {
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block"
+        }
+      }, st?.name || "")));
+    })));
   })(), React.createElement("div", {
     style: {
-      padding: "24px 0 40px",
+      padding: "20px 0 40px",
       textAlign: "center",
       borderTop: "1px solid var(--line)",
       marginTop: 24
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      marginBottom: 10
+      marginBottom: 4
     }
-  }, "PLURSKY · ", window.FESTIVAL_CONFIG?.shortName || ""), React.createElement("div", {
+  }, "Plursky · ", window.FESTIVAL_CONFIG?.shortName || ""), React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "center",
-      gap: 16
+      gap: 8,
+      flexWrap: "wrap"
     }
   }, React.createElement("a", {
     href: "https://plursky.com/privacy",
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 44,
+      padding: "0 8px",
       textDecoration: "none"
     }
-  }, "PRIVACY POLICY"), React.createElement("a", {
+  }, "Privacy policy"), React.createElement("a", {
     href: "https://plursky.com/terms",
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 44,
+      padding: "0 8px",
       textDecoration: "none"
     }
-  }, "TERMS"), React.createElement("button", {
+  }, "Terms"), React.createElement("button", {
     onClick: () => window.open("mailto:hello@plursky.com"),
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      minHeight: 44,
+      padding: "0 8px",
       background: "none",
       border: "none",
-      cursor: "pointer",
-      padding: 0
+      cursor: "pointer"
     }
-  }, "CONTACT")))));
+  }, "Contact")))));
 }
 function FollowedNudge({
   state,

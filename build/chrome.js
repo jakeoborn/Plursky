@@ -1463,37 +1463,36 @@ function NotificationsCard({
   if (!supported) {
     return React.createElement("div", {
       style: {
-        padding: "12px 14px",
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
+        padding: "14px 16px",
+        borderRadius: "var(--rad-md)",
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
         marginBottom: 12
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
-        fontWeight: 700
+        color: "var(--ink-3)"
       }
     }, "NOTIFICATIONS · UNSUPPORTED"), React.createElement("div", {
       style: {
-        fontSize: 12,
-        color: "var(--muted)",
+        fontSize: 14,
+        color: "var(--ink-2)",
         marginTop: 4,
-        lineHeight: 1.4
+        lineHeight: 1.43
       }
     }, window.Capacitor?.isNativePlatform?.() ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update." : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."));
   }
   var label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  var labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "var(--alert)" : "var(--muted)";
+  var labelColor = perm === "granted" ? "var(--acc-ink)" : perm === "denied" ? "var(--alert)" : "var(--ink-2)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -1504,33 +1503,25 @@ function NotificationsCard({
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "REMINDERS"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: labelColor,
-      fontWeight: 700
+      color: labelColor
     }
   }, flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label)), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, leadMin, "-min head-up before each set"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: perm === "denied" ? 8 : 12
     }
   }, perm === "granted" ? scheduled > 0 ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.` : "No sets starting in the next 24 hours — reminders will activate automatically during the festival." : perm === "denied" ? window.Capacitor?.isNativePlatform?.() ? "Notifications are blocked in iOS Settings." : "Notifications are blocked for this site." : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`), React.createElement("div", {
@@ -1542,12 +1533,9 @@ function NotificationsCard({
       flexWrap: "wrap"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "LEAD TIME"), React.createElement("div", {
     style: {
@@ -1564,8 +1552,9 @@ function NotificationsCard({
         padding: "4px 9px",
         borderRadius: 999,
         cursor: "pointer",
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontSize: 10,
         letterSpacing: 1.1,
@@ -1574,19 +1563,16 @@ function NotificationsCard({
     }, m, "M");
   }))), perm === "denied" && React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
       padding: "10px 12px",
       marginBottom: 12
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700,
+      color: "var(--ink-3)",
       marginBottom: 6
     }
   }, "HOW TO RE-ENABLE"), window.Capacitor?.isNativePlatform?.() ? React.createElement("div", {
@@ -2388,22 +2374,23 @@ function BatterySaverCard() {
   } = useBatterySaver();
   var segs = [{
     id: "off",
-    label: "OFF"
+    label: "Off"
   }, {
     id: "auto",
-    label: "AUTO"
+    label: "Auto"
   }, {
     id: "on",
-    label: "ON"
+    label: "On"
   }];
   var battPct = battery ? Math.round(battery.level * 100) : null;
-  var battColor = battPct == null ? "var(--muted)" : battPct > 50 ? "var(--success)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
+  var battColor = battPct == null ? "var(--ink-2)" : battPct > 50 ? "var(--acc-ink)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -2414,33 +2401,25 @@ function BatterySaverCard() {
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "BATTERY SAVER"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: active ? "var(--success)" : "var(--muted)",
-      fontWeight: 700
+      color: active ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, active ? "✓ ACTIVE" : "STANDBY")), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, "Stretch the phone past sunrise"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: 12
     }
   }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in at 2 AM or when battery drops under 25%."), React.createElement("div", {
@@ -2448,10 +2427,9 @@ function BatterySaverCard() {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: 4,
-      background: "var(--paper-2)",
+      background: "var(--s3)",
       borderRadius: 999,
-      padding: 3,
-      border: "1px solid var(--line)"
+      padding: 3
     }
   }, segs.map(s => {
     var on = mode === s.id;
@@ -2459,15 +2437,16 @@ function BatterySaverCard() {
       key: s.id,
       onClick: () => setMode(s.id),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: "none",
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
+        padding: "0 10px",
+        minHeight: 36,
+        fontFamily: "var(--f-ui)",
+        fontSize: 14,
+        fontWeight: 650,
         cursor: "pointer"
       }
     }, s.label);
@@ -2608,10 +2587,11 @@ function AppearanceRow() {
       gap: 12,
       flexWrap: "wrap",
       padding: "8px 8px 8px 16px",
-      borderRadius: 14,
+      borderRadius: "var(--rad-md)",
       marginBottom: 12,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)"
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none"
     }
   }, React.createElement("div", {
     style: {

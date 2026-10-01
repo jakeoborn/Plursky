@@ -622,28 +622,27 @@ function SafetyCards() {
           ? () => window.open(item.href, "_blank", "noopener")
           : () => item.onClick?.();
         return (
-          <button key={item.id} onClick={onClick} style={{
+          // Board card: one icon well, the accent for every team and the
+          // clash red only for Medical, so the colour still means "urgent".
+          <button key={item.id} onClick={onClick} className="duo-card" style={{
             display: "flex", alignItems: "flex-start", gap: 12,
-            padding: "12px 14px", borderRadius: 12,
-            background: "var(--paper)", border: "1px solid var(--line)",
-            borderLeft: `3px solid ${item.color}`,
+            padding: "14px 16px", border: "none",
             cursor: "pointer", textAlign: "left", color: "var(--ink)",
             fontFamily: "inherit",
           }}>
-            <div style={{
-              width: 34, height: 34, borderRadius: 10,
-              background: `${item.color}1f`, color: item.color,
+            <div className="duo-well" style={{
+              width: 36, height: 36,
               display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0,
             }}>
-              <SafetyIcon kind={item.icon} color={item.color} />
+              <SafetyIcon kind={item.icon} color={item.id === "medical" ? "var(--clash)" : "var(--acc-ink)"} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 18, lineHeight: 1.1 }}>{item.title}</div>
-              <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 3, lineHeight: 1.45 }}>{item.sub}</div>
+              <div className="duo-headline">{item.title}</div>
+              <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>{item.sub}</div>
             </div>
             {item.href && (
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0, marginTop: 4 }}>
+              <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" style={{ flexShrink: 0, marginTop: 4 }}>
                 <path d="M7 17 L17 7"/><path d="M9 7 H17 V15"/>
               </svg>
             )}
@@ -711,25 +710,25 @@ function PackListCard() {
   const itemRow = (it, isLast, isCustom) => (
     <div key={it.id} style={{
       display: "flex", alignItems: "center", gap: 12,
-      padding: "11px 4px",
+      padding: "0 4px", minHeight: 48,
       borderBottom: isLast ? "none" : "1px solid var(--line)",
     }}>
-      <button onClick={() => toggle(it.id)} style={{
-        display: "flex", alignItems: "center", gap: 12, flex: 1,
+      <button onClick={() => toggle(it.id)} role="checkbox" aria-checked={!!checked[it.id]} style={{
+        display: "flex", alignItems: "center", gap: 12, flex: 1, minHeight: 48,
         background: "transparent", border: "none", cursor: "pointer", textAlign: "left", padding: 0,
       }}>
         <span style={{
-          width: 20, height: 20, borderRadius: 6,
-          background: checked[it.id] ? "var(--ember)" : "transparent",
-          border: `1.5px solid ${checked[it.id] ? "var(--ember)" : "var(--line-2)"}`,
+          width: 22, height: 22, borderRadius: "var(--rad-xs)",
+          background: checked[it.id] ? "var(--acc)" : "transparent",
+          border: `1.5px solid ${checked[it.id] ? "var(--acc)" : "var(--line-2)"}`,
           display: "flex", alignItems: "center", justifyContent: "center",
-          color: "var(--ink)", fontSize: 12, fontWeight: 700,
+          color: "var(--on-acc)", fontSize: 12, fontWeight: 700,
           flexShrink: 0, transition: "all .15s",
         }}>{checked[it.id] ? "✓" : ""}</span>
         <span style={{ fontSize: 14, opacity: 0.7, width: 22, textAlign: "center" }}>{it.emoji}</span>
-        <span style={{
-          flex: 1, fontFamily: "Geist, sans-serif", fontSize: 14,
-          color: checked[it.id] ? "var(--muted)" : "var(--ink)",
+        <span className="duo-body-s" style={{
+          flex: 1, fontWeight: 400, fontSize: 15,
+          color: checked[it.id] ? "var(--ink-2)" : "var(--ink)",
           textDecoration: checked[it.id] ? "line-through" : "none",
           transition: "color .15s",
         }}>{it.label}</span>
@@ -737,17 +736,17 @@ function PackListCard() {
       {isCustom && (
         <button onClick={() => removeCustom(it.id)} aria-label="Remove item" style={{
           background: "transparent", border: "none", cursor: "pointer",
-          color: "var(--muted)", fontSize: 16, lineHeight: 1, padding: "0 2px", flexShrink: 0,
+          color: "var(--ink-2)", fontSize: 18, lineHeight: 1, minWidth: 44, minHeight: 44, flexShrink: 0,
         }}>×</button>
       )}
     </div>
   );
 
   return (
-    <div style={{ marginTop: 20, background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 16, padding: 16 }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-        <div className="serif" style={{ fontSize: 22 }}>Pack list</div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: done === allItems.length ? "var(--success)" : "var(--muted)", fontWeight: 700 }}>
+    <div className="duo-card" style={{ marginTop: 20, padding: 16 }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 6 }}>
+        <div className="duo-headline">Pack list</div>
+        <div className="duo-data-s" style={{ color: done === allItems.length ? "var(--acc-ink)" : "var(--ink-2)" }}>
           {done}/{allItems.length} {done === allItems.length && "✓"}
         </div>
       </div>
@@ -761,20 +760,16 @@ function PackListCard() {
           onChange={e => setDraft(e.target.value)}
           onKeyDown={e => e.key === "Enter" && addItem()}
           placeholder="Add an item…"
-          style={{
-            flex: 1, background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 10, padding: "9px 12px",
-            fontFamily: "Geist, sans-serif", fontSize: 14, color: "var(--ink)", outline: "none",
-          }}
+          aria-label="Add an item"
+          className="duo-input"
+          style={{ flex: 1, padding: "0 14px", background: "var(--s3)", boxShadow: "none" }}
         />
-        <button onClick={addItem} style={{
-          background: draft.trim() ? "var(--ember)" : "var(--paper-2)",
-          color: draft.trim() ? "var(--ink)" : "var(--muted)",
-          border: "none", borderRadius: 10, padding: "9px 14px",
+        <button onClick={addItem} className="duo-btn" style={{
+          background: draft.trim() ? "var(--acc)" : "var(--s3)",
+          color: draft.trim() ? "var(--on-acc)" : "var(--ink-2)",
+          minHeight: 44, padding: "0 16px",
           cursor: draft.trim() ? "pointer" : "default",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1, fontWeight: 700,
-          transition: "all .15s",
-        }}>ADD</button>
+        }}>Add</button>
       </div>
     </div>
   );
@@ -884,56 +879,36 @@ function BadgesSection({ state }) {
   const earned = BADGES.filter(b => b.earned);
   const locked = BADGES.filter(b => !b.earned);
 
-  const cardStyle = (on) => ({
-    display: "flex", alignItems: "center", gap: 10,
-    padding: "10px 12px", borderRadius: 12,
-    background: on ? "var(--paper-2)" : "var(--paper)",
-    border: on ? "1px solid var(--line)" : "1px dashed var(--line-2)",
-    opacity: on ? 1 : 0.55,
-  });
-  const iconCircle = (on) => ({
-    width: 36, height: 36, borderRadius: 999,
-    background: on ? "var(--signal)" : "var(--paper-2)",
-    color: on ? "var(--on-signal)" : "var(--muted)",
-    display: "flex", alignItems: "center", justifyContent: "center",
-    fontFamily: "Instrument Serif, serif", fontSize: 18, flexShrink: 0,
-    border: on ? "none" : "1px solid var(--line-2)",
-  });
+  // Locked reads quieter through a flat well and ink-2 copy, never opacity
+  // (opacity took the old locked rows under AA).
+  const row = (b, on) => (
+    <div key={b.id} className={on ? "duo-card" : "duo-well"} style={{
+      display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", minHeight: 60,
+    }}>
+      <div aria-hidden="true" style={{
+        width: 36, height: 36, borderRadius: "50%", flexShrink: 0,
+        background: on ? "var(--acc)" : "transparent",
+        color: on ? "var(--on-acc)" : "var(--ink-2)",
+        boxShadow: on ? "none" : "inset 0 0 0 1.5px var(--line-2)",
+        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17,
+      }}>{b.icon}</div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="duo-headline" style={{ color: on ? "var(--ink)" : "var(--ink-2)" }}>{b.name}</div>
+        <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
+          {on ? "Earned" : "Locked"} · {b.desc}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div style={{ marginBottom: 14 }}>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 8 }}>
-        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.4, fontWeight: 700, color: "var(--ink)" }}>
-          BADGES
-        </span>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)" }}>
-          {earned.length} of {BADGES.length} EARNED
-        </span>
+      <div className="duo-data-s duo-ink2" style={{ marginBottom: 8 }}>
+        {earned.length} of {BADGES.length} earned
       </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        {earned.map(b => (
-          <div key={b.id} style={cardStyle(true)}>
-            <div style={iconCircle(true)}>{b.icon}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.15 }}>{b.name}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
-                EARNED · {b.desc.toUpperCase()}
-              </div>
-            </div>
-          </div>
-        ))}
-        {locked.map(b => (
-          <div key={b.id} style={cardStyle(false)}>
-            <div style={iconCircle(false)}>{b.icon}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, color: "var(--muted)" }}>{b.name}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
-                LOCKED · {b.desc.toUpperCase()}
-              </div>
-            </div>
-          </div>
-        ))}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {earned.map(b => row(b, true))}
+        {locked.map(b => row(b, false))}
       </div>
     </div>
   );
@@ -1004,7 +979,7 @@ function HistoryRecordsSection({ state, setState }) {
     if (topStage) {
       out.push({
         label: "TOP STAGE",
-        value: `${topStage.name.toUpperCase()} · ${stageAll[topId]}×`,
+        value: `${topStage.name} · ${stageAll[topId]}×`,
         accent: topStage.color,
       });
     }
@@ -1019,7 +994,7 @@ function HistoryRecordsSection({ state, setState }) {
       if (len > 0) {
         out.push({
           label: "LONGEST SET",
-          value: `${longest.name.toUpperCase()} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}H` : ""}${len % 60}M`,
+          value: `${actDisplayName(longest.name)} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}h ` : ""}${len % 60}m`,
           accent: window.STAGES.find((s) => s.id === longest.stage)?.color || "var(--horizon)",
         });
       }
@@ -1029,98 +1004,72 @@ function HistoryRecordsSection({ state, setState }) {
 
   return (
     <div style={{ marginBottom: 14 }}>
-      {/* Toggle pills */}
-      <div style={{
-        display: "inline-flex", padding: 3, gap: 2,
-        background: "var(--paper-2)", borderRadius: 999,
-        marginBottom: 10,
-      }}>
+      <div className="duo-seg" role="radiogroup" aria-label="History or records" style={{ display: "inline-flex", marginBottom: 10 }}>
         {["history", "records"].map((k) => {
           const on = view === k;
           return (
-            <button key={k} onClick={() => setView(k)} className="mono" style={{
-              padding: "5px 12px", borderRadius: 999, border: "none",
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-              cursor: "pointer",
-            }}>{k.toUpperCase()}</button>
+            <button key={k} role="radio" aria-checked={on} onClick={() => setView(k)} className="duo-body-s" style={{
+              minHeight: 36, padding: "0 14px", borderRadius: "var(--rad-pill)", border: "none",
+              background: on ? "var(--s1)" : "transparent", boxShadow: on ? "var(--e1)" : "none",
+              color: on ? "var(--ink)" : "var(--ink-2)", fontWeight: 650, cursor: "pointer",
+            }}>{k === "history" ? "History" : "Records"}</button>
           );
         })}
       </div>
 
       {view === "history" && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {nights.map((n) => (
             <button key={n.n}
               onClick={() => setState && setState(s => ({ ...s, tab: "memories", memoriesNight: n.n }))}
+              className={"duo-card" + (n.isLive ? " duo-lift" : "")}
               style={{
-                display: "flex", alignItems: "center", gap: 10,
-                padding: "10px 12px", borderRadius: 12,
-                background: "var(--paper-2)",
-                borderLeft: `3px solid ${n.topStage?.color || "var(--line-2)"}`,
-                // An empty night reads quieter through its title colour, not
-                // opacity: opacity took every label on the row below AA.
+                display: "flex", alignItems: "center", gap: 12,
+                padding: "12px 12px 12px 16px", minHeight: 60,
                 border: "none", cursor: "pointer", textAlign: "left",
-                width: "100%",
+                width: "100%", color: "var(--ink)",
               }}>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, color: n.count === 0 && !n.isLive ? "var(--text-2)" : "var(--ink)" }}>
-                  {n.name || `Night ${n.n}`}
-                  {n.isLive && (
-                    <span className="mono" style={{
-                      marginLeft: 8, fontSize: 8, letterSpacing: 1.2, fontWeight: 800,
-                      color: "var(--success)", background: "transparent",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "1px solid var(--success)",
-                    }}>● LIVE</span>
-                  )}
+                <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                  {/* An empty night reads quieter through its title colour, not
+                      opacity: opacity took every label on the row below AA. */}
+                  <span className="duo-headline" style={{ color: n.count === 0 && !n.isLive ? "var(--ink-2)" : "var(--ink)" }}>
+                    {n.name || `Night ${n.n}`}
+                  </span>
+                  {n.isLive && typeof DuoLive === "function" && <DuoLive />}
                 </div>
-                <div className="mono" style={{
-                  fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 3,
-                  display: "flex", gap: 8, flexWrap: "wrap",
-                }}>
-                  <span>{n.count} {n.count === 1 ? "SET" : "SETS"}</span>
+                <div className="duo-data-s duo-ink2" style={{ marginTop: 3, display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  <span>{n.count} {n.count === 1 ? "set" : "sets"}</span>
                   {n.totalMin > 0 && (
-                    <span>· {Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : ""}{n.totalMin % 60}M</span>
+                    <span>· {Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}h ` : ""}{n.totalMin % 60}m</span>
                   )}
-                  {n.topStage && <span style={{ color: "var(--signal-ink)", fontWeight: 700 }}>· {n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()}</span>}
                 </div>
+                {n.topStage && <div className="duo-body-s duo-ink2" style={{ marginTop: 1, fontWeight: 400 }}>Mostly {n.topStage.name}</div>}
               </div>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                color: n.isPast ? "var(--muted)" : (n.isLive ? "var(--success)" : "var(--horizon)"),
-              }}>{n.isPast ? "DONE" : n.isLive ? "TONIGHT" : "UPCOMING"}</div>
-              <span className="mono" style={{ fontSize: 10, color: "var(--muted)", marginLeft: 6 }}>›</span>
+              <span className="duo-label" style={{
+                flexShrink: 0,
+                color: n.isPast ? "var(--ink-3)" : "var(--acc-ink)",
+              }}>{n.isPast ? "Done" : n.isLive ? "Tonight" : "Upcoming"}</span>
+              <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M9 18 L15 12 L9 6"/></svg>
             </button>
           ))}
         </div>
       )}
 
       {view === "records" && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {records.length === 0 ? (
-            <div style={{
-              padding: "18px 14px", borderRadius: 12, background: "var(--paper-2)",
-              textAlign: "center",
-            }}>
-              <div className="serif" style={{ fontSize: 16, marginBottom: 4 }}>No records yet</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)" }}>
-                SAVE SETS TO UNLOCK SUPERLATIVES
-              </div>
+            <div className="duo-card" style={{ padding: "18px 16px", textAlign: "center" }}>
+              <div className="duo-headline" style={{ marginBottom: 4 }}>No records yet</div>
+              <div className="duo-body-s duo-ink2">Save sets to unlock superlatives.</div>
             </div>
           ) : records.map((r, i) => (
-            <div key={i} style={{
-              display: "flex", alignItems: "center", gap: 10,
-              padding: "10px 12px", borderRadius: 12,
-              background: "var(--paper-2)",
-              borderLeft: "3px solid var(--line-2)",
+            <div key={i} className="duo-card" style={{
+              display: "flex", alignItems: "center", gap: 12,
+              padding: "12px 16px", minHeight: 52,
             }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--muted)",
-                width: 110, flexShrink: 0,
-              }}>{r.label}</div>
-              <div style={{ fontFamily: "Geist, sans-serif", fontSize: 13, fontWeight: 500, flex: 1 }}>
+              <div className="duo-label duo-ink3" style={{ width: 118, flexShrink: 0 }}>{r.label}</div>
+              <div className="duo-body-s duo-name" style={{ flex: 1, minWidth: 0, color: "var(--ink)" }}>
                 {r.value}
               </div>
             </div>
@@ -7538,14 +7487,16 @@ function Collapsible({ title, defaultOpen = false, children }) {
   const [open, setOpen] = React.useState(defaultOpen);
   return (
     <div style={{ marginTop: 20 }}>
-      <button onClick={() => setOpen(o => !o)} className="mono" style={{
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} className="duo-card" style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        width: "100%", background: "var(--paper-2)", border: "1px solid var(--line)",
-        borderRadius: 12, padding: "12px 14px", cursor: "pointer",
-        fontSize: 11, letterSpacing: 1.3, fontWeight: 700, color: "var(--ink)",
+        width: "100%", border: "none", minHeight: 52,
+        padding: "12px 16px", cursor: "pointer", color: "var(--ink)",
       }}>
-        <span>{title}</span>
-        <span style={{ color: "var(--muted)", fontSize: 12 }}>{open ? "▾" : "▸"}</span>
+        <span className="duo-label">{title}</span>
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+          style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>
+          <path d="M9 18 L15 12 L9 6"/>
+        </svg>
       </button>
       {open && <div style={{ marginTop: 12 }}>{children}</div>}
     </div>
@@ -7861,21 +7812,14 @@ function MeScreen({ state, setState }) {
         )}
 
         {/* ── FESTIVAL section (collapsible) ──────────────────── */}
-        <div data-animate style={{ borderTop: "1px solid var(--line)", marginTop: 6, paddingTop: 14, marginBottom: 18 }}>
-          <button onClick={() => setFestivalOpen(o => !o)} style={{
-            width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 12px",
+        <div data-animate style={{ marginTop: 10, marginBottom: 18 }}>
+          <button onClick={() => setFestivalOpen(o => !o)} aria-expanded={festivalOpen} style={{
+            width: "100%", minHeight: 44, display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 4px",
             textAlign: "left", color: "var(--ink)",
           }}>
-            <div>
-              <div className="serif" style={{ fontSize: 22, lineHeight: 1.05 }}>
-                Festival
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 3 }}>
-                HISTORY · BADGES · MUSIC · HEADLINERS
-              </div>
-            </div>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            <h2 className="duo-sect">Festival</h2>
+            <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: festivalOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
@@ -7896,17 +7840,18 @@ function MeScreen({ state, setState }) {
                   changes the screen, not active_festival_id or any saved key. */}
               <button
                 onClick={() => setState(s => ({ ...s, tab: "landing", artist: null }))}
+                className="duo-card"
                 style={{
-                  width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 14px",
-                  display: "flex", alignItems: "center", gap: 10,
-                  background: "var(--paper-2)", border: "none", borderRadius: 14,
+                  width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
+                  display: "flex", alignItems: "center", gap: 12,
+                  border: "none",
                   color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
                 }}>
-                <span aria-hidden="true" style={{ fontSize: 16, color: "var(--text-2)" }}>⌂</span>
-                <span style={{ flex: 1, minWidth: 0, fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>
+                <span aria-hidden="true" style={{ fontSize: 16, color: "var(--ink-2)" }}>⌂</span>
+                <span className="duo-headline" style={{ flex: 1, minWidth: 0 }}>
                   All festivals
                 </span>
-                <span style={{ flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                <span className="duo-body-s duo-ink2" style={{ flexShrink: 0 }}>
                   Your plan is kept
                 </span>
               </button>
@@ -7919,16 +7864,15 @@ function MeScreen({ state, setState }) {
               <div style={{ marginTop: 14 }}/>
               <button
                 onClick={() => setState({ ...state, tab: "spotify" })}
+                className="duo-card"
                 style={{
                   display: "flex", alignItems: "center", gap: 12,
-                  width: "100%", padding: "13px 14px", marginBottom: 14,
-                  background: "var(--paper-2)",
-                  border: "1px solid var(--line-2)",
-                  borderRadius: 14, cursor: "pointer", textAlign: "left",
+                  width: "100%", padding: "12px 16px", marginBottom: 14,
+                  border: "none", cursor: "pointer", textAlign: "left",
                 }}>
                 <div style={{
-                  width: 38, height: 38, borderRadius: 38, flexShrink: 0,
-                  background: state.spotifyConnected ? "var(--spotify)" : "var(--paper-3)",
+                  width: 40, height: 40, borderRadius: 40, flexShrink: 0,
+                  background: state.spotifyConnected ? "var(--spotify)" : "var(--s3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -7937,14 +7881,14 @@ function MeScreen({ state, setState }) {
                   </svg>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "var(--ink)" }}>
+                  <div className="duo-headline" style={{ color: "var(--ink)" }}>
                     {state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"}
                   </div>
-                  <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-                    {state.spotifyConnected ? "TOP ARTISTS · DISCOVERIES · BUILD PLAYLIST" : "TAP TO CONNECT"}
+                  <div className="duo-body-s duo-ink2" style={{ marginTop: 2 }}>
+                    {state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect"}
                   </div>
                 </div>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                   <path d="M9 18 L15 12 L9 6"/>
                 </svg>
               </button>
@@ -7953,21 +7897,14 @@ function MeScreen({ state, setState }) {
         </div>
 
         {/* ── SOCIAL section (collapsible) ─────────────────────── */}
-        <div style={{ borderTop: "1px solid var(--line)", paddingTop: 14, marginBottom: 18 }}>
-          <button onClick={() => setSocialOpen(o => !o)} style={{
-            width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 12px",
+        <div style={{ marginBottom: 18 }}>
+          <button onClick={() => setSocialOpen(o => !o)} aria-expanded={socialOpen} style={{
+            width: "100%", minHeight: 44, display: "flex", alignItems: "center", justifyContent: "space-between",
+            background: "transparent", border: "none", cursor: "pointer", padding: "0 0 4px",
             textAlign: "left", color: "var(--ink)",
           }}>
-            <div>
-              <div className="serif" style={{ fontSize: 22, lineHeight: 1.05 }}>
-                Friends & <span style={{ fontStyle: "italic" }}>crew</span>
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginTop: 3 }}>
-                LIVE LOCATION · SHARED LINEUPS
-              </div>
-            </div>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            <h2 className="duo-sect">Friends &amp; crew</h2>
+            <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: socialOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
@@ -7998,20 +7935,21 @@ function MeScreen({ state, setState }) {
         <div style={{ marginBottom: 14 }}>
           <button
             onClick={() => setSettingsOpen(o => !o)}
+            aria-expanded={settingsOpen}
+            className="duo-card"
             style={{
-              width: "100%", padding: "13px 14px",
-              background: "var(--paper-2)", border: "1px solid var(--line-2)",
-              borderRadius: 14, cursor: "pointer", textAlign: "left",
+              width: "100%", padding: "12px 16px", minHeight: 60,
+              border: "none", cursor: "pointer", textAlign: "left",
               display: "flex", alignItems: "center", gap: 12,
               fontFamily: "inherit", color: "var(--ink)",
             }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>Settings</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-                NOTIFICATIONS · BATTERY · PACK LIST
+              <div className="duo-headline">Settings</div>
+              <div className="duo-body-s duo-ink2" style={{ marginTop: 2 }}>
+                Notifications, battery, pack list
               </div>
             </div>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: settingsOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
               <path d="M9 18 L15 12 L9 6"/>
             </svg>
@@ -8022,10 +7960,8 @@ function MeScreen({ state, setState }) {
               <BatterySaverCard />
               <PackListCard />
               <div style={{ marginTop: 14 }}>
-                <button onClick={() => window.plurskyOpenPersonalize?.()} style={{
-                  background: "transparent", border: "1px solid var(--line-2)",
-                  borderRadius: 14, minHeight: 44, padding: "0 16px", cursor: "pointer",
-                  color: "var(--ink)", fontSize: 15, fontWeight: 500,
+                <button onClick={() => window.plurskyOpenPersonalize?.()} className="duo-btn" style={{
+                  background: "var(--s3)", color: "var(--ink)", minHeight: 44,
                 }}>
                   Personalize Plursky
                 </button>
@@ -8039,11 +7975,9 @@ function MeScreen({ state, setState }) {
         {_mePostFest ? (
           <Collapsible title="SAFETY & CARE"><SafetyCards /></Collapsible>
         ) : (<>
-          <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 3 }}>
-            Safety & <span style={{ fontStyle: "italic" }}>care</span>
-          </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 12 }}>
-            ON-SITE TEAMS · NO QUESTIONS ASKED
+          <h2 className="duo-sect" style={{ marginTop: 24 }}>Safety &amp; care</h2>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 4, marginBottom: 12 }}>
+            On-site teams. No questions asked.
           </div>
           <SafetyCards />
         </>)}
@@ -8059,47 +7993,48 @@ function MeScreen({ state, setState }) {
           if (savedHeadliners.length === 0) return null;
           return (
             <>
-              <div className="serif" style={{ fontSize: 22, marginTop: 20, marginBottom: 10 }}>
-                Your <span style={{ fontStyle: "italic" }}>headliners</span>
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6 }}>
-                {savedHeadliners.map(a => (
-                  <button key={a.id} onClick={() => setState({ ...state, artist: a.id })} style={{
-                    aspectRatio: "1/1", borderRadius: 10, background: a.img,
-                    position: "relative", overflow: "hidden", border: "none", padding: 0, cursor: "pointer",
-                  }}>
-                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,transparent 40%,rgba(var(--shade-rgb),0.65))" }}/>
-                    <div style={{ position: "absolute", bottom: 6, left: 6, right: 6, color: "var(--media-ink)", textAlign: "left" }} className="mono">
-                      <div style={{ fontSize: 10, letterSpacing: 0.4, fontWeight: 700, lineHeight: 1.1, marginBottom: 2, overflowWrap: "break-word" }}>{actDisplayName(a.name)}</div>
-                      <div style={{ fontSize: 8, letterSpacing: 1, opacity: 0.8 }}>
-                        {FESTIVAL_CONFIG.dayDates[a.day]?.short || ""} · {fmt12(a.start)}
-                      </div>
-                    </div>
-                  </button>
-                ))}
+              <h2 className="duo-sect" style={{ marginTop: 24, marginBottom: 6 }}>Your headliners</h2>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {savedHeadliners.map(a => {
+                  const st = STAGES.find(x => x.id === a.stage);
+                  return (
+                    <button key={a.id} onClick={() => setState({ ...state, artist: a.id })} className="duo-lrow duo-press" style={{
+                      display: "flex", width: "auto", color: "var(--ink)",
+                    }}>
+                      <span className="duo-data-s duo-ink2" style={{ width: 72, flexShrink: 0 }}>
+                        {FESTIVAL_CONFIG.dayDates[a.day]?.short || ""}<br/>{fmt12(a.start)}
+                      </span>
+                      {typeof DuoAvatar === "function" && <DuoAvatar name={a.name} size={42} />}
+                      <span style={{ flex: 1, minWidth: 0 }}>
+                        <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                        <span className="duo-body-s duo-ink2" style={{ display: "block" }}>{st?.name || ""}</span>
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </>
           );
         })()}
         <div style={{
-          padding: "24px 0 40px", textAlign: "center",
+          padding: "20px 0 40px", textAlign: "center",
           borderTop: "1px solid var(--line)", marginTop: 24,
         }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10 }}>
-            PLURSKY · {window.FESTIVAL_CONFIG?.shortName || ""}
+          <div className="duo-label duo-ink3" style={{ marginBottom: 4 }}>
+            Plursky · {window.FESTIVAL_CONFIG?.shortName || ""}
           </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: 16 }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
             <a href="https://plursky.com/privacy" target="_blank" rel="noopener noreferrer"
-              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textDecoration: "none" }}>
-              PRIVACY POLICY
+              className="duo-body-s duo-ink2" style={{ display: "inline-flex", alignItems: "center", minHeight: 44, padding: "0 8px", textDecoration: "none" }}>
+              Privacy policy
             </a>
             <a href="https://plursky.com/terms" target="_blank" rel="noopener noreferrer"
-              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textDecoration: "none" }}>
-              TERMS
+              className="duo-body-s duo-ink2" style={{ display: "inline-flex", alignItems: "center", minHeight: 44, padding: "0 8px", textDecoration: "none" }}>
+              Terms
             </a>
             <button onClick={() => window.open("mailto:hello@plursky.com")}
-              className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-              CONTACT
+              className="duo-body-s duo-ink2" style={{ minHeight: 44, padding: "0 8px", background: "none", border: "none", cursor: "pointer" }}>
+              Contact
             </button>
           </div>
         </div>
