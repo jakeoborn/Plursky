@@ -44,17 +44,29 @@ match those selectors.
 
 | Surface | Files | State | Gap to the board |
 |---|---|---|---|
-| Today (live, upcoming, ended) | `home.jsx` | **checkpoint built** | Crew row ("3 of your crew at …") not built: no crew-at-stage data on Today. |
+| Today (live, upcoming, ended) | `home.jsx` | **built** | Crew row ("3 of your crew at …") not built: no crew-at-stage data on Today. |
 | Tab bar | `chrome.jsx` `TabBar` | **built** | none known |
-| Festival switcher | `chrome.jsx` `FestivalSwitcher` | pending | legacy grid cards and film gradient fallback |
-| Lineup list | `lineup.jsx` | pending | 21 hex + 15 rgb literals, 43 mono labels; rows need faces, circled add, Now row lift |
-| Lineup grid | `lineup.jsx` | pending | blocks need faces and the plan tint; measured 96px column floor stays |
-| Artist page | `artist.jsx` | pending | the board puts the name over the Spotify photo; the Spotify compliance rule (no overlay) wins, so the hero stays attributed and un-overlaid |
-| Map chrome | `map.jsx` | pending | 66 hex + 60 rgb literals (most are map art, documented exceptions); canvas stays night in both modes |
-| Music / Spotify | `spotify.jsx` | pending | 64 hex, 85 serif, 239 mono uses |
-| Me / Headliner | `spotify.jsx` Me, `recap-engine.jsx` | pending | quiet recap card + festival chips + passport per board `me()` |
-| Memories / recap | `recap-engine.jsx`, `photo-tag.jsx` | pending | exports stay one look (ruling 2026-09-26) |
-| Past library / edition | `historical.jsx` | pending | no literals; needs duo type roles |
-| Onboarding, search, sheets, dialogs, banners, empty/loading/error | `app.jsx`, `chrome.jsx`, `supabase.jsx` | pending | `FieldSheet`, `FieldButton` still the Field primitives |
+| Festival switcher | `chrome.jsx` `FestivalSwitcher` | **built** | Grid cards keep their 258px floor (empty space under short rows). |
+| Lineup list | `lineup.jsx` | **built** | Faces drop under 360pt so a name never wraps. Kept from the readability rulings: name weight 700, rows ≤ 60px, neutral dot in the main list and the stage dot in Saved/Now. |
+| Lineup grid | `lineup.jsx` | **built** | Face + status head only on blocks taller than 40px; narrow lanes keep the name alone. The 96px column floor stays. |
+| Filters sheet, My night | `lineup.jsx` | **built** | none known |
+| Artist page | `artist.jsx` | **built below the hero** | The hero is the compliant version: no name over a Spotify photo (the board puts it there). Stats row and lower sections are legacy on tokens. |
+| Map chrome | `map.jsx` | **built (chrome)** | Canvas, pins and stage pills unchanged and night in both modes. Layers popover, amenity key and the place card are legacy on tokens. |
+| Music / Spotify | `spotify.jsx` | **partial** | Eyebrows, hint and panels on the board; actions get the board button shape through a CSS scope, but keep their caps copy. Brand fills (Spotify, Apple Music) stay. |
+| Me / Headliner | `spotify.jsx` Me | **partial** | Identity, stats, tiles and entries built. The board's quiet recap card with festival chips and the passport are NOT built: Me holds no per-festival recap data to fill them. Lower sections (history, crew, safety, headliners) are legacy on tokens. |
+| Memories / recap | `spotify.jsx`, `recap-engine.jsx` | **header only** | TopBar is on the board. Library and recap views are legacy on tokens; exports stay one look (ruling 2026-09-26). |
+| Past library / edition | `historical.jsx` | **built** | none known |
+| Landing | `landing.jsx` | **built** | none known |
+| Onboarding | `app.jsx` | **built** | none known |
+| Sheets | `chrome.jsx` `FieldSheet`, `FieldButton` | **built** | Every FieldSheet (switcher, Filters, Personalize, history info, Today's night sheet) takes the board's sheet and button. |
+| Banners, empty/loading/error | `app.jsx`, `chrome.jsx`, `supabase.jsx` | pending | |
 | Public `/f/` pages | `scripts/gen-festival-pages.mjs` | audit pending | independent web layout, keeps edition disclaimers |
 | Commerce | `spotify.jsx` paywall | tokens only | no behaviour, price or offer change |
+
+## Bugs fixed during the rollout
+
+- My night printed no day name on its tiles (`d.short` on a DAYS row, which has `label`).
+- My night cut artist names with an ellipsis; they wrap now.
+- Switcher dates were `nowrap`, so Summerfest's "Jun 18–20, Jun 25–27 & Jul 2–4, 2026" ran past the chevron at 320.
+- Map's Meet up was a 24pt pill; it is a 44pt chip.
+- A two-digit hour overran the list's time column (76px at 14px in a 64px column).

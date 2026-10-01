@@ -1452,7 +1452,7 @@ function ArtistScreen({ state, setState }) {
               </div>
               <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
               {a.day == null || !a.start
-                ? <div className="duo-body-s duo-ink2" style={{ marginTop: 4 }}>{a.day == null ? "Day and set time not published" : "Set time not published"}</div>
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
                 : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
               {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
               {saveCount != null && saveCount >= 2 && (

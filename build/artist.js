@@ -1777,11 +1777,11 @@ function ArtistScreen({
         marginTop: 8
       }
     }, stage.name), a.day == null || !a.start ? React.createElement("div", {
-      className: "duo-body-s duo-ink2",
+      className: "duo-data-s duo-ink2",
       style: {
-        marginTop: 4
+        marginTop: 6
       }
-    }, a.day == null ? "Day and set time not published" : "Set time not published") : React.createElement("div", {
+    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED") : React.createElement("div", {
       className: "duo-clock",
       style: {
         fontSize: "clamp(20px, 7vw, 28px)",
