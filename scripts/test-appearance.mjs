@@ -394,7 +394,13 @@ try {
     check(pairs > 300, `token pairs: only ${pairs} fill/text pairs found in ${jsx.length} .jsx files (the scan broke?)`);
     for (const f of fails) check(false, `token pair ${f}`);
     const st = stageFillFailures(jsx);
-    check(st.fills >= 7, `stage fills: only ${st.fills} stage-colour fills with text found (the scan broke?)`);
+    // Scanner health is proven on a fixture, not inferred from how many stage
+    // fills the app happens to have: the board keeps stage colours on the map,
+    // so the live count fell (9 → 3) by design and a count floor would only
+    // measure content. The fixture holds one AA-correct fill and one wrong one.
+    const ctl = stageFillFailures(['scripts/fixtures/stage-fill-control.jsx']);
+    check(ctl.fills === 2 && ctl.fails.length === 1 && /:5: /.test(ctl.fails[0] || ''),
+      `stage fills: the scanner must find both fixture fills and flag only the wrong one (found ${ctl.fills}, flagged ${JSON.stringify(ctl.fails)})`);
     for (const f of st.fails) check(false, `stage fill ${f}`);
   }
   // Text on a photo or artwork sits on the picture, not on the mode's ground,
