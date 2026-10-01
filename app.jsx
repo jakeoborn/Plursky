@@ -58,18 +58,28 @@ function OnbSchedulePreview() {
   const rows = _onbHeadliners(4)
     .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
     .slice(0, 3);
+  // The Lineup list row as it now looks: mono time, face, name over stage,
+  // the circled add (filled on the first: on your plan).
   return (
-    <div style={{ background: "var(--paper-2)", borderRadius: 16, padding: "4px 16px" }}>
+    <div className="duo-card" style={{ padding: "6px 12px" }}>
       {rows.map((a, i) => {
         const st = STAGES.find(s => s.id === a.stage);
+        const on = i === 0;
         return (
-          <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 64, borderBottom: i < rows.length - 1 ? "1px solid var(--line)" : "none" }}>
-            <div style={{ width: 76, flexShrink: 0, fontSize: 15, lineHeight: "21px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{fmt12(a.start)}</div>
+          <div key={a.id} className={`duo-lrow${on ? " plan" : ""}`} style={{ margin: "2px -4px", paddingLeft: 8 }}>
+            <div className={`duo-data${on ? "" : " duo-ink2"}`} style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>{fmt12(a.start)}</div>
+            <DuoAvatar name={a.name} size={42} ring={on ? "on" : ""} />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
-              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{FESTIVAL_CONFIG.dayDates?.[a.day]?.name || ""}{st ? ` · ${st.name}` : ""}</div>
+              <div className="duo-headline duo-name" style={{ fontWeight: 700 }}>{a.name}</div>
+              <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{FESTIVAL_CONFIG.dayDates?.[a.day]?.name || ""}{st ? ` · ${st.name}` : ""}</div>
             </div>
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill={i === 0 ? "var(--signal)" : "none"} stroke={i === 0 ? "var(--signal)" : "var(--text-2)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span className="duo-add" aria-hidden="true" {...(on ? { "aria-pressed": "true" } : {})} style={{ color: on ? "var(--on-acc)" : "var(--ink-2)" }}>
+              <span style={on ? { background: "var(--acc)", boxShadow: "0 6px 16px -8px var(--acc-55)" } : undefined}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  {on ? <path d="M5 12.5 L10 17.5 L19 7"/> : <path d="M12 5 V19 M5 12 H19"/>}
+                </svg>
+              </span>
+            </span>
           </div>
         );
       })}
@@ -143,10 +153,6 @@ function OnboardingModal({ onDone, setState, state }) {
     .filter(f => (f.config.endMs || 0) >= now)
     .sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0))
     .filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
-  const inputStyle = {
-    width: "100%", height: 44, borderRadius: 14, border: "none", background: "var(--paper-2)",
-    color: "var(--ink)", padding: "0 16px", fontSize: 16, outline: "none", fontFamily: "inherit",
-  };
   return (
     <div role="dialog" aria-modal="true" aria-label="Welcome to Plursky" style={{
       position: "absolute", inset: 0, zIndex: 100, background: "var(--paper)", color: "var(--ink)",
@@ -155,7 +161,7 @@ function OnboardingModal({ onDone, setState, state }) {
       animation: "fadeIn .25s",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
-        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{story ? `${page + 1} of 3` : "Almost there"}</span>
+        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{story ? `${page + 1} / 3` : "Almost there"}</span>
         {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
       </div>
       {story ? (
@@ -164,13 +170,13 @@ function OnboardingModal({ onDone, setState, state }) {
             {cur.preview}
           </div>
           <div style={{ padding: "24px 20px 16px" }}>
-            <h1 style={{ margin: 0, fontSize: 34, lineHeight: "41px", fontWeight: 700, letterSpacing: "-0.01em" }}>{cur.title}</h1>
-            <p style={{ margin: cur.plus ? "8px 0 12px" : "8px 0 24px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{cur.body}</p>
+            <h1 style={{ margin: 0, font: "800 34px/1.15 var(--f-ui)", letterSpacing: "-0.03em" }}>{cur.title}</h1>
+            <p className="duo-body duo-ink2" style={{ margin: cur.plus ? "10px 0 12px" : "10px 0 24px" }}>{cur.body}</p>
             {/* One line, no price and no button: the free app is complete, this
                 only says what Plursky+ adds. */}
             {cur.plus && (
               <p style={{ margin: "0 0 24px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-                <span style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Plursky+</span> {cur.plus}
+                <span style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Plursky+</span> {cur.plus}
               </p>
             )}
             <FieldButton onClick={() => setPage(p => Math.min(p + 1, 3))}>{page < 2 ? "Continue" : "Choose your festival"}</FieldButton>
@@ -179,8 +185,8 @@ function OnboardingModal({ onDone, setState, state }) {
       ) : (
         <>
           <div style={{ padding: "0 20px 8px" }}>
-            <h1 style={{ margin: "0 0 12px", fontSize: 28, lineHeight: "34px", fontWeight: 700 }}>Where are you raving?</h1>
-            <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search festivals" aria-label="Search festivals" style={inputStyle} />
+            <h1 className="duo-title" style={{ margin: "0 0 12px" }}>Where are you raving?</h1>
+            <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search festivals" aria-label="Search festivals" className="duo-input" style={{ padding: "0 16px" }} />
           </div>
           <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
             {list.map(f => {
@@ -203,11 +209,11 @@ function OnboardingModal({ onDone, setState, state }) {
                 }}>
                   <FestivalThumb entry={f} />
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{f.config.name}</div>
-                    <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{f.config.location} · {f.config.dates}</div>
+                    <div className="duo-headline">{f.config.name}</div>
+                    <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{f.config.location} · {f.config.dates}</div>
                     {(isActive || locked) && (
-                      <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: isActive ? "var(--signal-ink)" : "var(--text-2)" }}>
-                        {isActive ? "✓ Selected" : f.previewOnly ? (locked ? "Early access · Plursky+" : "Early access") : "Soon"}
+                      <div style={{ marginTop: 2, font: "650 13px/1.385 var(--f-ui)", color: isActive ? "var(--acc-ink)" : "var(--ink-2)" }}>
+                        {isActive ? "Selected" : f.previewOnly ? (locked ? "Early access · Plursky+" : "Early access") : "Soon"}
                       </div>
                     )}
                   </div>
@@ -517,20 +523,21 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      <div key={msg.id} className="mono" role="status" aria-live="polite" style={{
-        background: "var(--ink)", color: "var(--paper)",
-        padding: hasAction ? "7px 7px 7px 16px" : "9px 16px", borderRadius: 999,
-        fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-        boxShadow: "var(--shadow-pop)",
-        animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: "100%",
+      // Board toast: an elevated card in SF that WRAPS. The old one-line
+      // pill ellipsised every long message ("No photos received — pick a
+      // few at a time; if they're in iCloud…" lost its instruction).
+      <div key={msg.id} role="status" aria-live="polite" style={{
+        background: "var(--s1)", color: "var(--ink)",
+        padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
+        font: "500 14px/1.36 var(--f-ui)",
+        boxShadow: "var(--e2)",
+        animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: 440,
         pointerEvents: hasAction ? "auto" : "none",
       }}>
-        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{msg.text}</span>
+        <span style={{ minWidth: 0, overflowWrap: "anywhere" }}>{msg.text}</span>
         {hasAction && (
-          <button onClick={() => { try { msg.onAction(); } catch {} setMsg(null); }} className="mono" style={{
-            flexShrink: 0, background: "var(--paper)", color: "var(--ink)", border: "none",
-            borderRadius: 999, padding: "6px 13px", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
+          <button onClick={() => { try { msg.onAction(); } catch {} setMsg(null); }} className="duo-link" style={{
+            flexShrink: 0, padding: "0 10px",
           }}>{msg.actionLabel}</button>
         )}
       </div>
@@ -991,7 +998,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v382",
+        version: "v393",
       }));
     } catch {}
   }
@@ -1006,25 +1013,23 @@ class RootErrorBoundary extends React.Component {
   render() {
     if (!this.state.err) return this.props.children;
     return (
+      // The page's own background and ink. The old screen painted --ink with
+      // body copy in the SHADE colour, which in Light is dark on dark.
       <div style={{
         minHeight: "100vh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center", padding: "40px 24px",
-        background: "var(--ink)", color: "var(--paper)", fontFamily: "Geist, system-ui, sans-serif",
+        background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--f-ui)",
         textAlign: "center",
       }}>
-        <div style={{ fontFamily: "Instrument Serif, serif", fontSize: 36, marginBottom: 6 }}>
+        <div className="duo-title" style={{ marginBottom: 8 }}>
           Something glitched.
         </div>
-        <div style={{ fontSize: 14, color: "rgba(var(--shade-rgb),0.65)", marginBottom: 22, maxWidth: 340, lineHeight: 1.5 }}>
+        <div className="duo-body" style={{ color: "var(--ink-2)", marginBottom: 22, maxWidth: 340 }}>
           Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it.
         </div>
-        <button onClick={this.reload} style={{
-          background: "var(--paper)", color: "var(--ink)", border: "none",
-          borderRadius: 12, padding: "12px 22px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-        }}>RELOAD</button>
-        <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(var(--shade-rgb),0.45)" }}>
-          PLURSKY · v382
+        <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
+        <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
+          Plursky · v393
         </div>
       </div>
     );

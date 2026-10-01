@@ -68,6 +68,14 @@ const historicalFiles = existsSync(path.join(root, 'data', 'historical', 'editio
       .filter(f => f.endsWith('.json')).map(f => path.join('data', 'historical', 'editions', f))]
   : [];
 
+// Self-hosted type (Michroma labels, Martian Mono data; SIL OFL, licences
+// alongside). The native app has no network at first paint, so a font that is
+// not in dist/ silently falls back to SF.
+const fontFiles = existsSync(path.join(root, 'fonts'))
+  ? (await readdir(path.join(root, 'fonts')))
+      .filter(f => /\.(woff2|txt)$/i.test(f)).map(f => path.join('fonts', f))
+  : [];
+
 const buildFiles = existsSync(path.join(root, 'build'))
   ? (await readdir(path.join(root, 'build')))
       .filter(f => f.endsWith('.js')).map(f => path.join('build', f))
@@ -77,7 +85,7 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles])];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {
@@ -96,7 +104,7 @@ for (const file of allFiles) {
   const html = (await import('node:fs')).readFileSync(path.join(root, 'index.html'), 'utf8');
   const refs = [...html.matchAll(/(?:src|href)="(?!https?:|data:|#)([^"?]+)(?:\?[^"]*)?"/g)]
     .map(m => m[1].replace(/^\.\//, ''))
-    .filter(f => !f.startsWith('/') && /\.(js|jsx|css|json|svg|png|webp|jpe?g)$/i.test(f));
+    .filter(f => !f.startsWith('/') && /\.(js|jsx|css|json|svg|png|webp|jpe?g|woff2)$/i.test(f));
   const missing = [...new Set(refs)].filter(f => !existsSync(path.join(dist, f)));
   if (missing.length) {
     console.error(`[build] index.html references files missing from dist/: ${missing.join(', ')}`);

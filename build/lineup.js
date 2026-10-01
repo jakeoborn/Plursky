@@ -196,6 +196,9 @@ function NightWizard({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      flexWrap: "wrap",
+      columnGap: 10,
+      rowGap: 8,
       padding: "16px 18px 12px",
       paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
       borderBottom: "1px solid var(--line)"
@@ -204,49 +207,63 @@ function NightWizard({
     onClick: onClose,
     "aria-label": "Close Build My Night",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      fontSize: 18,
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      color: "var(--ink)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
-  }, "←"), React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M15 6 L9 12 L15 18"
+  }))), React.createElement("div", {
     style: {
-      fontSize: 10,
-      letterSpacing: 1.8,
-      fontWeight: 700,
-      textAlign: "center"
+      flex: "1 1 auto",
+      minWidth: 0
     }
-  }, "BUILD MY NIGHT"), React.createElement("div", {
-    className: "mono",
+  }, React.createElement("div", {
+    className: "duo-label",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      textAlign: "center",
-      marginTop: 2
+      whiteSpace: "nowrap"
+    }
+  }, "My night"), React.createElement("div", {
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginTop: 4,
+      whiteSpace: "nowrap"
     }
   }, liveLocalIds.length, " SETS SAVED")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6
+      gap: 6,
+      marginLeft: "auto"
     }
   }, liveLocalIds.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => exportSavedSetsICS(liveLocalIds),
     "aria-label": "Export to calendar",
     title: "Export to calendar",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -290,11 +307,12 @@ function NightWizard({
     "aria-label": "Share lineup",
     title: "Share lineup",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -326,33 +344,16 @@ function NightWizard({
   })))), React.createElement("button", {
     onClick: autoFill,
     title: "Auto-fill best non-clashing sets for this day",
-    style: {
-      background: "var(--signal)",
-      color: "var(--on-signal)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 13px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "✦ AUTO"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Auto")), React.createElement("button", {
     onClick: handleSave,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--on-ember)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 16px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 15
     }
-  }, "SAVE ✓"))), React.createElement("div", {
+  }, "Save"))), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6,
@@ -364,51 +365,44 @@ function NightWizard({
     return React.createElement("button", {
       key: d.n,
       onClick: () => setActiveDay(d.n),
+      "aria-pressed": on,
       style: {
         flex: 1,
-        padding: "8px 6px",
-        borderRadius: 12,
+        padding: "10px 6px",
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         textAlign: "center",
-        background: on ? "var(--ink)" : "var(--paper-2)",
-        border: on ? "none" : "1px solid var(--line)",
-        transition: "all .15s"
+        background: "var(--s2)",
+        border: "none",
+        color: "var(--ink)",
+        boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)"
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)"
+        color: on ? "var(--ink)" : "var(--ink-3)"
       }
-    }, d.short), React.createElement("div", {
-      className: "mono",
+    }, d.label), React.createElement("div", {
+      className: "duo-clock",
       style: {
-        fontSize: 20,
-        fontWeight: 700,
-        letterSpacing: -0.5,
-        color: on ? "var(--paper)" : "var(--ink)",
-        lineHeight: 1.15
+        fontSize: 24,
+        marginTop: 6
       }
     }, d.count), d.clashes > 0 ? React.createElement("div", {
-      className: "mono",
+      className: "duo-data-s",
       style: {
-        fontSize: 8,
-        color: "var(--ember-ink)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        color: "var(--clash)",
+        marginTop: 4
       }
-    }, "⚠ ", d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
-      className: "mono",
+    }, d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
+      className: "duo-data-s duo-ink3",
       style: {
-        fontSize: 8,
-        color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        marginTop: 4
       }
-    }, "● CLEAN") : React.createElement("div", {
+    }, "CLEAN") : React.createElement("div", {
       style: {
-        height: 12
+        height: 15,
+        marginTop: 4
       }
     }));
   })), React.createElement("div", {
@@ -424,27 +418,13 @@ function NightWizard({
       paddingTop: 60
     }
   }, React.createElement("div", {
+    className: "duo-headline"
+  }, "Nothing saved for this day"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
-      fontSize: 28,
-      opacity: 0.25,
-      marginBottom: 6
+      marginTop: 6
     }
-  }, "★"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      fontStyle: "italic",
-      color: "var(--muted)"
-    }
-  }, "Nothing saved"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 8
-    }
-  }, "SAVE SETS IN LINEUP FIRST")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
+  }, "Save sets in the lineup first.")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
     if (item.type === "set") {
       var a = item.artist;
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
@@ -454,87 +434,64 @@ function NightWizard({
         style: {
           display: "flex",
           gap: 10,
-          marginBottom: 7,
+          marginBottom: 8,
           alignItems: "flex-start"
         }
       }, React.createElement("div", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          width: 36,
+          width: 52,
           flexShrink: 0,
-          fontSize: 9,
-          letterSpacing: 0.5,
-          color: "var(--muted)",
           textAlign: "right",
-          paddingTop: 11
+          paddingTop: 14
         }
       }, fmt12(a.start)), React.createElement("div", {
         style: {
           flex: 1,
-          background: clash ? "var(--ink)" : "var(--paper-2)",
-          border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-          borderLeft: "4px solid var(--line-2)",
-          borderRadius: 12,
-          padding: "9px 12px"
-        }
-      }, React.createElement("div", {
-        style: {
+          minWidth: 0,
+          background: "var(--acc-wash)",
+          "--ring-bg": "var(--acc-wash)",
+          boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+          borderRadius: "var(--rad-sm)",
+          padding: "8px 6px 8px 10px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          gap: 8
+          gap: 10
         }
-      }, React.createElement("div", {
+      }, React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 34,
+        ring: clash ? "cl" : "on"
+      }), React.createElement("div", {
         style: {
+          flex: 1,
           minWidth: 0
         }
       }, React.createElement("div", {
+        className: "duo-headline duo-name",
         style: {
-          fontSize: 14,
-          fontWeight: 600,
-          color: clash ? "var(--paper)" : "var(--ink)",
-          lineHeight: 1.2,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          fontSize: 15
         }
-      }, a.name), React.createElement("div", {
-        className: "mono",
+      }, actDisplayName(a.name)), React.createElement("div", {
         style: {
-          fontSize: 9,
-          letterSpacing: 0.9,
-          color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)",
-          marginTop: 3
-        }
-      }, stage.short, " · ", fmt12(a.start), "–", fmt12(a.end))), React.createElement("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          flexShrink: 0
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
+          marginTop: 2
         }
       }, clash && React.createElement("span", {
-        className: "mono",
         style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)",
-          fontWeight: 700
+          color: "var(--clash)",
+          fontWeight: 650
         }
-      }, "⚠ CLASH"), React.createElement("button", {
+      }, "Clash · "), stage.name, " · ", React.createElement("span", {
+        style: {
+          whiteSpace: "nowrap"
+        }
+      }, fmt12(a.start), "–", fmt12(a.end)))), React.createElement("button", {
         onClick: () => drop(a.id),
-        style: {
-          background: "rgba(var(--signal-rgb),0.12)",
-          border: "1px solid rgba(var(--signal-rgb),0.25)",
-          borderRadius: 999,
-          padding: "3px 9px",
-          cursor: "pointer",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)"
-        }
-      }, "DROP")))));
+        className: "duo-chip",
+        "aria-label": `Drop ${a.name}`
+      }, React.createElement("span", null, "Drop"))));
     }
     if (item.type === "gap") {
       return React.createElement("div", {
@@ -577,11 +534,8 @@ function NightWizard({
           background: "var(--line)"
         }
       }), React.createElement("span", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          fontSize: 8,
-          letterSpacing: 1.2,
-          color: "var(--muted)",
           whiteSpace: "nowrap"
         }
       }, "FREE · ", fmtGap(item.gapMin)), React.createElement("div", {
@@ -602,18 +556,13 @@ function NightWizard({
         return React.createElement("button", {
           key: f.id,
           onClick: () => add(f.id),
+          className: "duo-chip",
+          "aria-label": `Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`
+        }, React.createElement("span", {
           style: {
-            background: "transparent",
-            border: "1px dashed var(--line-2)",
-            borderRadius: 999,
-            padding: "4px 10px",
-            cursor: "pointer",
-            fontFamily: "Geist Mono, monospace",
-            fontSize: 8,
-            letterSpacing: 0.8,
-            color: "var(--ink)"
+            borderStyle: "dashed"
           }
-        }, "+ ", f.name, " ", fmt12(f.start), " ", fs.short);
+        }, "+ ", actDisplayName(f.name), " ", React.createElement("b", null, fmt12(f.start)), " ", fs.name));
       }))));
     }
     return null;
@@ -625,14 +574,11 @@ function NightWizard({
       marginTop: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-sun",
     style: {
-      width: 36,
+      width: 52,
       flexShrink: 0,
-      fontSize: 9,
-      color: "var(--flare)",
-      textAlign: "right",
-      letterSpacing: 0.5
+      textAlign: "right"
     }
   }, sunrise), React.createElement("div", {
     style: {
@@ -645,17 +591,12 @@ function NightWizard({
     style: {
       flex: 1,
       height: 1,
-      background: `linear-gradient(90deg, var(--flare), transparent)`
+      background: "var(--sun)",
+      opacity: 0.6
     }
   }), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.4,
-      color: "var(--flare)",
-      fontWeight: 700
-    }
-  }, "☀ SUNRISE"))))));
+    className: "duo-label duo-sun"
+  }, "Sunrise"))))));
 }
 function LineupFilterSheet({
   onClose,
@@ -684,43 +625,25 @@ function LineupFilterSheet({
       return true;
     }).length;
   }, [f, day, savedSet, weekendFilter]);
-  var chip = on => ({
-    flexShrink: 0,
-    minHeight: 44,
-    padding: "0 16px",
-    borderRadius: 18,
-    background: on ? "var(--paper-2)" : "transparent",
-    color: on ? "var(--ink)" : "var(--text-2)",
-    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
-    fontSize: 15,
-    lineHeight: "20px",
-    fontWeight: on ? 600 : 500,
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6
-  });
   var sectionLabel = {
-    ..._fieldEyebrow,
-    color: "var(--text-2)",
-    margin: "20px 0 8px"
+    margin: "20px 0 4px"
   };
   var row = {
     display: "flex",
-    gap: 8,
+    columnGap: 8,
     flexWrap: "wrap"
   };
   var opt = (key, id, label, extra) => React.createElement("button", {
     key: id,
     "aria-pressed": f[key] === id,
     onClick: () => set(key, id),
-    style: chip(f[key] === id)
-  }, extra, label);
+    className: "duo-chip"
+  }, React.createElement("span", null, extra, label));
   return React.createElement(FieldSheet, {
     title: "Filters",
     onClose: onClose
   }, React.createElement("div", {
+    className: "duo-sect",
     style: {
       ...sectionLabel,
       marginTop: 4
@@ -728,18 +651,22 @@ function LineupFilterSheet({
   }, "Show"), React.createElement("div", {
     style: row
   }, opt("filter", "all", "All"), opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`), opt("filter", "now", "Now")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
   }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
     style: row
   }, opt("stageFilter", "all", "All stages"), STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))), dayGenres.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Genre"), React.createElement("div", {
     style: row
   }, opt("genreFilter", "all", "All genres"), dayGenres.map(g => opt("genreFilter", g, g)))), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Sort by"), React.createElement("div", {
     style: row
@@ -1104,13 +1031,14 @@ function LineupScreen({
     height: "16",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--text-2)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     style: {
       position: "absolute",
       left: 14,
-      pointerEvents: "none"
+      pointerEvents: "none",
+      zIndex: 1
     }
   }, React.createElement("circle", {
     cx: "11",
@@ -1124,18 +1052,9 @@ function LineupScreen({
     onChange: e => setQ(e.target.value),
     placeholder: "Search artists, stages, genres…",
     "aria-label": "Search the lineup",
+    className: "duo-input",
     style: {
-      width: "100%",
-      boxSizing: "border-box",
-      height: 44,
-      padding: "0 44px 0 40px",
-      borderRadius: 14,
-      border: "none",
-      background: "var(--paper-2)",
-      color: "var(--ink)",
-      fontSize: 15,
-      outline: "none",
-      fontFamily: "inherit"
+      padding: "0 44px 0 40px"
     }
   }), q && React.createElement("button", {
     onClick: () => setQ(""),
@@ -1187,11 +1106,9 @@ function LineupScreen({
       gap: 4
     }
   }, React.createElement("div", {
+    className: "duo-data-s duo-ink3",
     style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
+      textTransform: "uppercase"
     }
   }, dayArtists.length, " ", dayArtists.length === 1 ? "set" : "sets"), React.createElement("div", {
     style: {
@@ -1205,10 +1122,21 @@ function LineupScreen({
       onClick: () => setWizardOpen(true),
       style: {
         ...textBtn,
-        color: clash ? "var(--warn)" : "var(--ink)",
-        fontWeight: 600
+        color: clash ? "var(--clash)" : "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, clash ? "⚠ My night" : "My night");
+    }, clash && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        display: "inline-block",
+        width: 7,
+        height: 7,
+        borderRadius: 4,
+        background: "var(--clash)",
+        marginRight: 6,
+        verticalAlign: "1px"
+      }
+    }), "My night");
   })(), liveSavedCount > 0 && React.createElement(ShareLineupButton, {
     state: state
   }), liveSavedCount > 0 && React.createElement("button", {
@@ -1304,6 +1232,11 @@ function LineupScreen({
   }, React.createElement("div", {
     ref: filtersRef
   }, React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      padding: "8px 20px 0"
+    }
+  }, FESTIVAL_CONFIG.brand, " · ", FESTIVAL_CONFIG.dates), React.createElement("div", {
     "data-lineup-header": true,
     style: {
       padding: "4px 8px 4px 20px",
@@ -1334,18 +1267,10 @@ function LineupScreen({
       flex: 1,
       minWidth: 0
     }
-  }, React.createElement("div", {
+  }, React.createElement("h1", {
+    className: "duo-title",
     style: {
-      ..._fieldEyebrow,
-      color: "var(--text-2)"
-    }
-  }, FESTIVAL_CONFIG.brand, " · ", FESTIVAL_CONFIG.dates), React.createElement("h1", {
-    style: {
-      margin: "2px 0 0",
-      fontSize: 28,
-      lineHeight: "34px",
-      fontWeight: 700,
-      letterSpacing: "-0.01em"
+      margin: 0
     }
   }, "Lineup")), hasFeed && React.createElement("button", {
     "data-sched-check": true,
@@ -1397,9 +1322,10 @@ function LineupScreen({
     "aria-label": "Festival day",
     style: {
       display: "flex",
-      gap: 8,
+      gap: 22,
       flexShrink: 0,
-      padding: "4px 20px 12px"
+      flexWrap: "wrap",
+      padding: "6px 20px 8px"
     }
   }, dayStats.map(d => {
     var on = d.n === day;
@@ -1407,6 +1333,7 @@ function LineupScreen({
       key: d.n,
       role: "tab",
       "aria-selected": on,
+      className: "duo-tab",
       "aria-label": `${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
       onClick: () => {
         setDay(d.n);
@@ -1414,55 +1341,31 @@ function LineupScreen({
           ...s,
           lineupDay: d.n
         }));
-      },
-      style: {
-        flex: 1,
-        minWidth: 0,
-        minHeight: 64,
-        padding: "6px 2px",
-        borderRadius: 14,
-        background: on ? "var(--paper-3)" : "transparent",
-        border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-        color: "var(--ink)",
-        cursor: "pointer",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 1
       }
     }, React.createElement("span", {
+      className: "duo-label",
       style: {
-        fontSize: 11,
-        lineHeight: "14px",
-        fontWeight: 600,
-        letterSpacing: "0.04em",
-        color: on ? "var(--ink)" : "var(--text-2)"
+        fontSize: 12
       }
     }, d.label), React.createElement("span", {
+      className: "duo-data-s",
       style: {
-        fontSize: 20,
-        lineHeight: "25px",
-        fontWeight: 600,
-        fontVariantNumeric: "tabular-nums"
+        color: on ? "var(--ink-2)" : "var(--ink-3)"
       }
     }, d.date.split(" ")[1]), d.count > 0 && React.createElement("span", {
       "aria-hidden": "true",
+      className: "duo-data-s",
       style: {
-        fontSize: 12,
-        lineHeight: "16px",
-        color: d.clashes ? "var(--warn)" : "var(--text-2)",
-        whiteSpace: "nowrap",
-        fontVariantNumeric: "tabular-nums"
+        color: d.clashes ? "var(--clash)" : "var(--acc-ink)",
+        whiteSpace: "nowrap"
       }
-    }, d.clashes ? `${d.count} · ⚠` : `${d.count} saved`));
+    }, d.count));
   })), hasWeekends && React.createElement("div", {
     role: "tablist",
     "aria-label": "Weekend",
+    className: "duo-seg",
     style: {
-      display: "flex",
-      gap: 8,
-      padding: "0 20px 12px"
+      margin: "0 20px 8px"
     }
   }, [{
     value: "W1",
@@ -1476,26 +1379,15 @@ function LineupScreen({
       key: w.value,
       role: "tab",
       "aria-selected": on,
-      onClick: () => setWeekendFilter(w.value),
-      style: {
-        flex: 1,
-        minHeight: 44,
-        borderRadius: 14,
-        cursor: "pointer",
-        background: on ? "var(--paper-3)" : "transparent",
-        border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-        color: on ? "var(--ink)" : "var(--text-2)",
-        fontSize: 15,
-        lineHeight: "20px",
-        fontWeight: 600
-      }
+      "aria-pressed": on,
+      onClick: () => setWeekendFilter(w.value)
     }, w.label);
   })), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
-      padding: "0 20px 12px",
+      padding: "0 20px 6px",
       borderBottom: "1px solid var(--line)"
     }
   }, React.createElement("div", {
@@ -1505,15 +1397,16 @@ function LineupScreen({
       flex: 1,
       minWidth: 0,
       display: "flex",
-      background: "var(--paper-2)",
-      borderRadius: 14
+      flexWrap: "wrap",
+      columnGap: 8
     }
   }, [{
     id: "all",
     label: "All stages"
   }, {
     id: "saved",
-    label: "Saved"
+    label: "Saved",
+    n: dayStats.find(x => x.n === day)?.count
   }, {
     id: "now",
     label: "Now"
@@ -1523,54 +1416,28 @@ function LineupScreen({
       key: o.id,
       role: "radio",
       "aria-checked": on,
+      className: "duo-chip",
       onClick: () => {
         setFilter(o.id);
         if (o.id === "all") setStageFilter("all");
-      },
-      style: {
-        flex: o.id === "all" ? 1.4 : 1,
-        minWidth: 0,
-        minHeight: 44,
-        borderRadius: 14,
-        border: "none",
-        cursor: "pointer",
-        background: on ? "var(--paper-3)" : "transparent",
-        boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-        color: on ? "var(--ink)" : "var(--text-2)",
-        fontSize: 15,
-        lineHeight: "20px",
-        fontWeight: 600,
-        whiteSpace: "nowrap",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 6
       }
-    }, o.id === "now" && React.createElement("span", {
+    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
       "aria-hidden": "true",
       style: {
         width: 7,
         height: 7,
         borderRadius: 4,
-        background: NOW.night === day ? "var(--signal)" : "var(--text-3)"
+        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
       }
-    }), o.label);
+    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
   })), React.createElement("button", {
     onClick: () => setFilterSheetOpen(true),
     "aria-label": `Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`,
-    style: {
-      ...fieldIconBtn,
-      width: "auto",
-      minWidth: 44,
-      padding: "0 12px",
-      gap: 6,
-      background: "var(--paper-2)",
-      fontSize: 15,
-      fontWeight: 600
-    }
-  }, React.createElement("svg", {
-    width: "18",
-    height: "18",
+    "aria-pressed": otherFilterCount > 0,
+    className: "duo-chip"
+  }, React.createElement("span", null, React.createElement("svg", {
+    width: "16",
+    height: "16",
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -1578,11 +1445,7 @@ function LineupScreen({
     strokeLinecap: "round"
   }, React.createElement("path", {
     d: "M4 7 H20 M7 12 H17 M10 17 H14"
-  })), otherFilterCount > 0 && React.createElement("span", {
-    style: {
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, otherFilterCount))), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+  })), otherFilterCount > 0 && React.createElement("b", null, otherFilterCount)))), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
     "data-lineup-compact": true,
     "data-collapsed": collapsed ? "1" : "0",
     inert: collapsed ? undefined : "",
@@ -1673,31 +1536,42 @@ function LineupScreen({
     d: "M21 21 L16.65 16.65"
   }))))), !online && React.createElement("div", {
     role: "status",
+    className: "duo-card duo-body-s",
     style: {
-      padding: "8px 20px",
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      borderBottom: "1px solid var(--line)"
+      margin: "8px 16px 0",
+      padding: "10px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      color: "var(--ink-2)",
+      fontWeight: 400
     }
-  }, "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
-    role: "status",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      padding: "10px 20px",
-      borderBottom: "1px solid var(--line)"
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--ink-3)",
+      flexShrink: 0
+    }
+  }), "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
+    role: "status",
+    className: "duo-card",
+    style: {
+      margin: "8px 16px 0",
+      padding: "12px 16px"
     }
   }, React.createElement("div", {
+    className: "duo-headline",
     style: {
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
+      fontSize: 15
     }
   }, "Set times pending from the festival"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
       marginTop: 2,
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      fontWeight: 400
     }
   }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
     state: state,
@@ -1777,17 +1651,12 @@ function LineupScreen({
         padding: "40px 0"
       }
     }, React.createElement("div", {
-      style: {
-        fontSize: 17,
-        lineHeight: "22px",
-        fontWeight: 600
-      }
+      className: "duo-headline"
     }, empty.title), React.createElement("div", {
+      className: "duo-body duo-ink2",
       style: {
         marginTop: 4,
-        fontSize: 15,
-        lineHeight: "21px",
-        color: "var(--text-2)"
+        fontSize: 15
       }
     }, empty.sub), empty.action && React.createElement(FieldButton, {
       kind: "secondary",
@@ -1801,17 +1670,12 @@ function LineupScreen({
       padding: "40px 20px"
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, "No sets saved yet"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
       marginTop: 4,
-      fontSize: 15,
-      lineHeight: "21px",
-      color: "var(--text-2)"
+      fontSize: 15
     }
   }, "Switch to All stages and tap any set to save it."), React.createElement(FieldButton, {
     kind: "secondary",
@@ -1827,35 +1691,30 @@ function LineupScreen({
       var clashWith = conflictById[a.id];
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
-      var dotColor = filter === "all" ? "var(--text-3)" : stage.color || "var(--text-3)";
+      var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
+      var dotColor = filter === "all" ? "var(--ink-3)" : stage.color || "var(--ink-3)";
       return React.createElement("div", {
         key: a.id,
         "data-animate": true,
         "data-lineup-highlight": isHighlighted ? "true" : undefined,
+        className: `duo-lrow${isLive ? " live" : saved ? " plan" : ""}`,
         style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          minHeight: 56,
-          padding: "6px 8px",
-          margin: "0 -8px",
-          borderBottom: "1px solid var(--line)",
-          borderRadius: isHighlighted ? 14 : 0,
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
       }, React.createElement("div", {
         "data-set-time": true,
+        className: `duo-data${saved || isLive ? "" : " duo-ink2"}`,
         style: {
-          width: 76,
+          width: 72,
           flexShrink: 0,
-          fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap",
-          fontSize: 15,
-          lineHeight: "20px",
-          fontWeight: 600,
-          color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)"
+          fontSize: 13
         }
-      }, fmt12(a.start)), React.createElement("button", {
+      }, fmt12(a.start)), React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 42,
+        ring: ring
+      }), React.createElement("button", {
         onClick: () => setState({
           ...state,
           artist: a.id
@@ -1878,10 +1737,9 @@ function LineupScreen({
       }, React.createElement("span", {
         "data-set-name": true,
         "data-fit-name": true,
-        "data-fit-min": "16",
+        "data-fit-min": "14",
+        className: "duo-headline",
         style: {
-          fontSize: 17,
-          lineHeight: "22px",
           fontWeight: 700,
           color: "var(--ink)",
           whiteSpace: "nowrap",
@@ -1890,9 +1748,8 @@ function LineupScreen({
       }, actDisplayName(a.name)), React.createElement("span", {
         "data-set-meta": true,
         style: {
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--text-2)",
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis"
@@ -1904,50 +1761,48 @@ function LineupScreen({
           width: 7,
           height: 7,
           borderRadius: 4,
-          background: isLive && filter === "all" ? "var(--signal)" : dotColor,
+          background: isLive && filter === "all" ? "var(--live)" : dotColor,
           marginRight: 6,
           verticalAlign: "1px"
         }
       }), isLive && filter !== "now" && React.createElement("span", {
         style: {
-          color: "var(--signal-ink)",
+          color: "var(--live)",
           fontWeight: 600
         }
       }, "Live · "), clashWith && React.createElement("span", {
         style: {
-          color: "var(--warn)",
+          color: "var(--clash)",
           fontWeight: 600
         }
       }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && clashWith.map(o => React.createElement("span", {
         key: o.id,
         "data-clash-with": o.id,
         style: {
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--warn)",
-          fontWeight: 600
+          font: "600 13px/1.385 var(--f-ui)",
+          color: "var(--clash)"
         }
       }, "vs ", actDisplayName(o.name), " · ", fmt12(o.start), " · ", (STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name))), React.createElement("button", {
         onClick: () => toggleSave(state, setState, a.id),
+        className: "duo-add",
         "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
-        "aria-pressed": saved,
-        style: {
-          ...fieldIconBtn,
-          alignSelf: "center",
-          color: saved ? "var(--signal-ink)" : "var(--text-2)"
-        }
+        "aria-pressed": saved
+      }, React.createElement("span", {
+        "aria-hidden": "true"
       }, React.createElement("svg", {
-        width: "22",
-        height: "22",
+        width: "16",
+        height: "16",
         viewBox: "0 0 24 24",
-        fill: saved ? "currentColor" : "none",
+        fill: "none",
         stroke: "currentColor",
-        strokeWidth: "1.8",
+        strokeWidth: "2.4",
         strokeLinecap: "round",
         strokeLinejoin: "round"
-      }, React.createElement("path", {
-        d: "M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
-      }))));
+      }, saved ? React.createElement("path", {
+        d: "M5 12.5 L10 17.5 L19 7"
+      }) : React.createElement("path", {
+        d: "M12 5 V19 M5 12 H19"
+      })))));
     });
     if (nowMin != null && dayArtists.length) {
       var i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
@@ -1958,29 +1813,22 @@ function LineupScreen({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          padding: "10px 0"
+          padding: "12px 0 8px"
         }
       }, React.createElement("span", {
-        "aria-hidden": "true",
+        className: "duo-sect",
         style: {
-          width: 8,
-          height: 8,
-          borderRadius: 4,
-          background: "var(--signal)",
-          flexShrink: 0
+          color: "var(--acc-ink)"
         }
-      }), React.createElement("span", {
-        style: {
-          ..._fieldEyebrow,
-          color: "var(--signal-ink)",
-          fontVariantNumeric: "tabular-nums"
-        }
-      }, "Now · ", fmt12(NOW.time)), React.createElement("span", {
+      }, "Now"), React.createElement("span", {
+        className: "duo-data-s duo-acc"
+      }, fmt12(NOW.time)), React.createElement("span", {
         "aria-hidden": "true",
         style: {
           flex: 1,
-          height: 1,
-          background: "var(--signal)"
+          height: 1.5,
+          background: "var(--acc)",
+          boxShadow: "0 0 10px var(--acc-55)"
         }
       })));
     }
@@ -2689,6 +2537,7 @@ function GridSetBlock({
 }) {
   var isHeadliner = a.tier === 3;
   var _saved = (state.saved || []).includes(a.id);
+  var _live = typeof isSetLive === "function" && isSetLive(a);
   var _store = refStore;
   var _resetHold = e => {
     var el = e.currentTarget,
@@ -2755,78 +2604,71 @@ function GridSetBlock({
       left,
       width,
       height,
-      background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
-      borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
-      borderRadius: 6,
-      padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+      background: _saved ? "var(--acc-wash)" : "var(--s2)",
+      borderRadius: narrow ? 8 : 10,
+      padding: narrow ? "3px 4px" : "5px 6px 5px 7px",
       cursor: "pointer",
       overflow: "hidden",
       opacity: active || isHighlighted ? 1 : 0.32,
-      transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
-      boxShadow: dueMins != null ? "0 0 0 2px var(--signal)" : clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
+      transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease",
+      boxShadow: dueMins != null ? "var(--glow)" : _saved ? `inset 0 0 0 1.5px ${clash && active ? "var(--clash)" : "var(--acc)"}` : "inset 0 0 0 1px var(--line)",
+      "--ring-bg": _saved ? "var(--acc-wash)" : "var(--s2)",
       zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
       animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
       display: "flex",
       flexDirection: "column"
     }
-  }, React.createElement("div", {
+  }, !narrow && React.createElement("div", {
+    "data-grid-time": true,
+    className: "duo-gb-head"
+  }, height > 40 && React.createElement(DuoAvatar, {
+    name: a.name,
+    size: 22,
+    ring: _saved ? clash && active ? "cl" : "on" : ""
+  }), React.createElement("span", {
+    className: "duo-data-s",
+    style: {
+      fontSize: 11,
+      whiteSpace: "nowrap",
+      marginLeft: "auto",
+      color: clash && active ? "var(--clash)" : _live ? "var(--live)" : "var(--ink-3)"
+    }
+  }, clash && active ? "CLASH" : _live ? "LIVE" : fmt12(a.start))), React.createElement("div", {
     "data-grid-name": true,
     style: {
       fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-      fontWeight: isHeadliner ? 800 : 700,
-      lineHeight: narrow ? 1.05 : 1.1,
-      color: "var(--ink)",
+      fontWeight: _saved ? 700 : isHeadliner ? 650 : 550,
+      lineHeight: narrow ? 1.05 : 1.15,
+      color: _saved ? "var(--ink)" : "var(--ink-2)",
       hyphens: "auto",
       WebkitHyphens: "auto",
       overflowWrap: "break-word",
-      paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
-      fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
+      fontFamily: "var(--f-ui)"
     }
-  }, actDisplayName(a.name)), !narrow && React.createElement("div", {
-    "data-grid-time": true,
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.3,
-      color: "var(--muted)",
-      marginTop: 2,
-      whiteSpace: "nowrap"
-    }
-  }, fmt12(a.start), showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""), dueMins != null && height > 46 && React.createElement("div", {
-    className: "mono",
+  }, actDisplayName(a.name)), dueMins != null && height > 46 && React.createElement("div", {
+    className: "duo-data-s",
     style: {
       marginTop: "auto",
-      fontSize: 8,
-      letterSpacing: 1,
-      fontWeight: 800,
-      color: "var(--ember-ink)"
+      fontSize: 11,
+      color: "var(--acc-ink)"
     }
-  }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
-    style: {
-      position: "absolute",
-      top: 3,
-      right: 5,
-      fontSize: 10,
-      color: "var(--ember-ink)",
-      fontWeight: 800,
-      lineHeight: 1
-    }
-  }, "★"), clash && React.createElement("span", {
+  }, "DUE · ", dueMins, " MIN"), clash && narrow && React.createElement("span", {
     title: "Overlaps another saved set",
     "aria-label": "clash",
     style: {
       position: "absolute",
-      top: 2.5,
-      right: narrow ? 13 : 16,
-      fontSize: 9,
-      color: "var(--ember-ink)",
-      fontWeight: 800,
-      lineHeight: 1
+      top: 3,
+      right: 3,
+      width: 6,
+      height: 6,
+      borderRadius: 3,
+      background: "var(--clash)"
     }
-  }, "⚠"), !saved && matched && height > 30 && React.createElement("span", {
+  }), !saved && matched && height > 30 && React.createElement("span", {
+    "aria-hidden": "true",
     style: {
       position: "absolute",
-      top: 4,
+      bottom: 4,
       right: 5,
       fontSize: 9,
       color: "var(--spotify)",
@@ -3014,7 +2856,7 @@ function TimelineGrid({
         position: "sticky",
         left: 0,
         zIndex: 2,
-        background: "var(--paper)",
+        background: "var(--bg)",
         borderRight: "1px solid var(--line)",
         borderBottom: "1px solid var(--line-2)"
       }
@@ -3032,7 +2874,6 @@ function TimelineGrid({
           scrollToStage(s.id);
         },
         title: s.name,
-        className: "mono",
         style: {
           width: COL_W,
           flexShrink: 0,
@@ -3040,34 +2881,30 @@ function TimelineGrid({
           border: "none",
           borderLeft: "1px solid var(--line)",
           borderBottom: "1px solid var(--line-2)",
-          background: "var(--paper)",
-          color: "var(--ink)",
+          background: "var(--bg)",
+          color: n > 0 ? "var(--ink)" : "var(--ink-2)",
           padding: "3px 5px 0",
           cursor: "pointer",
           position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: 4,
-          fontSize: 10,
-          letterSpacing: 1.1,
-          fontWeight: 800,
-          fontFamily: "inherit"
+          gap: 5,
+          font: "600 12px/1.15 var(--f-ui)"
         }
       }, React.createElement("span", {
         style: {
-          lineHeight: "12px",
-          textAlign: "center",
-          letterSpacing: 0.4
+          textAlign: "center"
         }
       }, s.short), n > 0 && React.createElement("span", {
+        "aria-label": `${n} on your plan`,
+        className: "duo-data-s",
         style: {
           flexShrink: 0,
-          color: "var(--ember-ink)",
-          fontSize: 8.5,
-          fontWeight: 800
+          fontSize: 11,
+          color: "var(--acc-ink)"
         }
-      }, "★", n));
+      }, n));
     })), React.createElement("div", {
       style: {
         display: "flex",
@@ -3086,32 +2923,39 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
-      className: "mono",
+      className: "duo-data-s duo-ink3",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 6,
+        top: minToTop(h.mins) - 7,
         right: 6,
-        fontSize: 9,
-        letterSpacing: 0.3,
-        color: "var(--muted)",
-        fontWeight: 700
+        fontSize: 11,
+        whiteSpace: "nowrap"
       }
     }, h.label)), nowTop != null && React.createElement("span", {
-      className: "mono",
+      className: "duo-data-s",
       style: {
         position: "absolute",
         left: 2,
-        top: nowTop - 7,
+        top: nowTop - 9,
         zIndex: 6,
-        fontSize: 8,
-        letterSpacing: 0.6,
-        color: "var(--on-ember)",
-        fontWeight: 800,
-        background: "var(--ember)",
-        padding: "1px 4px",
-        borderRadius: 3
+        fontSize: 11,
+        color: "var(--on-acc)",
+        background: "var(--acc)",
+        padding: "2px 5px",
+        borderRadius: 5
       }
-    }, "NOW")), cols.map(({
+    }, "NOW")), nowTop != null && React.createElement("div", {
+      style: {
+        position: "absolute",
+        left: GUTTER_W,
+        right: 0,
+        top: nowTop,
+        height: 0,
+        borderTop: "1.5px solid var(--acc)",
+        boxShadow: "0 0 10px var(--acc-55)",
+        pointerEvents: "none"
+      }
+    }), cols.map(({
       stage,
       artists: stageArtists
     }, si) => {
@@ -3165,18 +3009,6 @@ function TimelineGrid({
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));
-    }), nowTop != null && React.createElement("div", {
-      style: {
-        position: "absolute",
-        left: GUTTER_W,
-        right: 0,
-        top: nowTop,
-        height: 0,
-        borderTop: "2px solid var(--ember)",
-        boxShadow: "0 0 8px rgba(var(--signal-rgb),0.55)",
-        zIndex: 3,
-        pointerEvents: "none"
-      }
     }))) : React.createElement("div", {
       className: "mono",
       style: {

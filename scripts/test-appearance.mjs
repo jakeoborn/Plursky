@@ -31,23 +31,46 @@ const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 const ONLY = process.argv.slice(2);   // optional: screen keys to run
 
 const FID = 'edc-lv-2026', AT = '2026-05-17T07:50:00Z';
-// key, url query, extra localStorage, a selector that proves the screen mounted
+// key, url query, extra localStorage, a selector that proves the screen mounted,
+// a font, what the mounted screen must show (its h1 / selected tab / artist),
+// and an in-app navigation to make after boot.
+// A screen is labelled by what it SHOWS: tab=recap and tab=landing are not
+// deep-link tabs, so both silently rendered Today and every check ran on Today
+// under those names (#275's QA). Recap is reached through the app's own
+// navigation; General Home is a bare URL (no f=, no tab), as a visitor gets it.
+// A weekend with sets caught and one photo, for the POPULATED recap: the empty
+// one shows no hero totals, so a hero card whose labels were written in theme
+// ink (dark on its always-dark ground in Light) passed here and reached QA.
+// The photo is drawn in the page (a night shot: dark sky, bright lights), so
+// nothing private is committed.
+const RECAP_DATA = {
+  plursky_attended_v1: JSON.stringify({ 1: ['n4', 'k1', 'k6'] }),
+  plursky_moments_v1: JSON.stringify({ 1: [{ kind: 'photo', festivalId: FID, createdAt: 1, id: 'appearance-m1', night: 1, photoId: 'appearance-hero', _fingerprint: 'appearance-m1', artistId: 'n4', takenAt: '2026-05-16T05:30:00.000Z' }] }),
+};
+const RECAP_PLAIN = { plursky_attended_v1: RECAP_DATA.plursky_attended_v1 };
 const SCREENS = [
-  ['home',     'tab=home',            {},                                   '#root > *'],
-  ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]'],
+  ['home',     'tab=home',            {},                                   '#root > *', null, { h1: 'EDC Las Vegas', tab: 'Today' }],
+  ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
   // The list again in a wider face than this Mac's, as CI's runner has: it
   // puts names on the fit borderline, where a re-measure during the mode
   // switch's re-render landed a pixel the other way and shifted every row.
-  ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana'],
-  ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]'],
-  ['map',      'tab=map',             {},                                   '#root > *'],
-  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *'],
-  ['me',       'tab=me',              {},                                   '[data-appearance-row]'],
-  ['memories', 'tab=memories',        {},                                   '#root > *'],
-  ['recap',    'tab=recap',           {},                                   '#root > *'],
-  ['past',     'tab=past',            {},                                   '#root > *'],
-  ['spotify',  'tab=spotify',         {},                                   '#root > *'],
-  ['landing',  'tab=landing',         {},                                   '#root > *'],
+  // Today in the wide face too: CI's runner fitted a clash card's name at
+  // 11px on a Dark load and 14px on a Light one (an inline `font:` shorthand
+  // with a var() could not be resized, and the fit's attempts stuck), and a
+  // mode switch kept whichever it had.
+  ['home-wide', 'tab=home',           {},                                   '#root > *', 'Verdana', { h1: 'EDC Las Vegas', tab: 'Today' }],
+  ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana', { h1: 'Lineup', tab: 'Lineup' }],
+  ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
+  ['map',      'tab=map',             {},                                   '#root > *', null, { tab: 'Map' }],
+  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *', null, { artist: 'k9' }],
+  ['me',       'tab=me',              {},                                   '[data-appearance-row]', null, { h1: 'Me', tab: 'Me' }],
+  ['memories', 'tab=memories',        {},                                   '#root > *', null, { h1: 'Memories' }],
+  ['recap',    'tab=home',            {},                                   '#root > *', null, { h1: 'Recap' }, { tab: 'recap' }],
+  ['recap-photo', 'tab=home',         RECAP_DATA,                           '#root > *', null, { h1: 'Recap', text: 'SETS CAUGHT', photo: true }, { tab: 'recap' }, 'appearance-hero'],
+  ['recap-plain', 'tab=home',         RECAP_PLAIN,                          '#root > *', null, { h1: 'Recap', text: 'SETS CAUGHT' }, { tab: 'recap' }],
+  ['past',     'tab=past',            {},                                   '#root > *', null, { h1: 'Past festivals' }],
+  ['spotify',  'tab=spotify',         {},                                   '#root > *', null, { h1: 'Music' }],
+  ['landing',  null,                  {},                                   '#root > *', null, { h1: 'Plursky' }],
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
 
 const PORT = await reservePort();
@@ -58,7 +81,7 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null } = {}) => {
+  const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null, photo = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
@@ -80,10 +103,17 @@ try {
     if (font) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, font);
     const page = await ctx.newPage();
     const errors = []; page.on('pageerror', e => errors.push(e.message));
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&${query}`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html${query === null ? '' : `?f=${fid}&${query}`}`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(([fid, sel]) => window.FESTIVAL_CONFIG?.id === fid && document.querySelector(sel), [fid, ready], { timeout: 60000 });
     await page.clock.runFor(2500);
     await page.waitForTimeout(300);
+    if (photo) await page.evaluate(async (id) => {
+      const k = document.createElement('canvas'); k.width = 600; k.height = 800; const g = k.getContext('2d');
+      const sky = g.createLinearGradient(0, 0, 0, 800); sky.addColorStop(0, '#1a1040'); sky.addColorStop(0.6, '#3b1f6e'); sky.addColorStop(1, '#0c0a14'); g.fillStyle = sky; g.fillRect(0, 0, 600, 800);
+      for (let i = 0; i < 9; i++) { const x = 40 + i * 64, r = g.createRadialGradient(x, 420, 0, x, 420, 70); r.addColorStop(0, i % 2 ? '#ffe9a8' : '#9fe8ff'); r.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = r; g.fillRect(x - 70, 350, 140, 140); }
+      const blob = await new Promise(r => k.toBlob(r, 'image/jpeg', 0.9)); await window._putPhoto(id, blob);
+    }, photo);
+    if (go) { await page.evaluate((g) => window._pushNav(g), go); await page.clock.runFor(800); await page.waitForTimeout(200); }
     // Settle: offline fetches (tracklists, bios, counts) fail on their own
     // clocks, so a page can still be growing. Wait until the tallest scroller
     // stops changing height three times running (≤ 12 tries).
@@ -96,6 +126,16 @@ try {
     return { ctx, page, errors };
   };
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
+  // What the mounted screen actually shows, checked against what it claims.
+  const isScreen = (page, is) => page.evaluate((is) => {
+    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.trim());
+    const tab = (document.querySelector('[aria-current=page]')?.innerText || '').trim();
+    const artist = is.artist ? (window.ARTISTS || []).find(a => a.id === is.artist)?.name : null;
+    const photo = [...document.querySelectorAll('body *')].some(e => /url\("?blob:/.test(getComputedStyle(e).backgroundImage));
+    const ok = (!is.h1 || h1.includes(is.h1)) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
+      && (!is.text || document.body.innerText.includes(is.text)) && (!is.photo || photo);
+    return { ok, saw: `h1 ${JSON.stringify(h1)}, tab "${tab}"${is.text ? `, ${is.text} ${document.body.innerText.includes(is.text) ? 'shown' : 'missing'}` : ''}${is.photo ? `, photo ${photo ? 'painted' : 'missing'}` : ''}` };
+  }, is);
 
   // Contrast audit of what is on screen right now.
   const audit = (page) => page.evaluate(() => {
@@ -317,12 +357,13 @@ try {
   const fitStats = { recorded: 0, pinned: 0, moved: 0 };
   const nameFails = new Set();
   const onMediaInk = {};   // `${screen}/${mode}` → text → colour, for text on a photo
-  for (const [key, query, extra, ready, font] of SCREENS) {
+  for (const [key, query, extra, ready, font, is, go, photo] of SCREENS) {
     for (const mode of ['dark', 'light']) {
       const other = mode === 'dark' ? 'light' : 'dark';
       // fresh in this mode
-      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font });
+      const A = await open({ scheme: 'dark', pick: mode, query, extra, ready, font, go, photo });
       check((await modeOf(A.page)) === mode, `[${key}] picked ${mode} but the page is ${await modeOf(A.page)}`);
+      { const sc = await isScreen(A.page, is); check(sc.ok, `[${key}] ${mode}: the screen that mounted is not ${key} (${sc.saw})`); }
       // Audit the whole screen, not the first viewport: step the main
       // scroller, and keep a settled screenshot of every screenful for the
       // leak check below (a leak below the fold is still a leak).
@@ -352,7 +393,7 @@ try {
       check(!A.errors.length, `[${key}/${mode}] page errors: ${A.errors.join(' | ')}`);
       await A.ctx.close();
       // loaded in the other mode, then toggled into this one
-      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font });
+      const B = await open({ scheme: 'dark', pick: other, query, extra, ready, font, go, photo });
       await B.page.evaluate(m => window.PlurskyAppearance.set(m), mode);
       await B.page.clock.runFor(500); await B.page.waitForTimeout(250);
       await shot(B.page);
@@ -394,7 +435,13 @@ try {
     check(pairs > 300, `token pairs: only ${pairs} fill/text pairs found in ${jsx.length} .jsx files (the scan broke?)`);
     for (const f of fails) check(false, `token pair ${f}`);
     const st = stageFillFailures(jsx);
-    check(st.fills >= 7, `stage fills: only ${st.fills} stage-colour fills with text found (the scan broke?)`);
+    // Scanner health is proven on a fixture, not inferred from how many stage
+    // fills the app happens to have: the board keeps stage colours on the map,
+    // so the live count fell (9 → 3) by design and a count floor would only
+    // measure content. The fixture holds one AA-correct fill and one wrong one.
+    const ctl = stageFillFailures(['scripts/fixtures/stage-fill-control.jsx']);
+    check(ctl.fills === 2 && ctl.fails.length === 1 && /:5: /.test(ctl.fails[0] || ''),
+      `stage fills: the scanner must find both fixture fills and flag only the wrong one (found ${ctl.fills}, flagged ${JSON.stringify(ctl.fails)})`);
     for (const f of st.fails) check(false, `stage fill ${f}`);
   }
   // Text on a photo or artwork sits on the picture, not on the mode's ground,
@@ -428,6 +475,33 @@ try {
     await page.emulateMedia({ colorScheme: 'light' }); await page.waitForTimeout(150);
     check((await modeOf(page)) === 'light', 'rule: on System, the iPhone flipping to Light was not followed live');
     check(!(await page.evaluate(() => localStorage.getItem('theme_pref'))), 'rule: the retired theme_pref key was written');
+    await ctx.close();
+  }
+  // Native sync: the iOS plugin gets the PICK, and "system" on System. Sending
+  // the resolved mode on System pins the window, and with it the WebView's
+  // prefers-color-scheme, so a live iPhone switch never reaches the page
+  // (seen on the #275 Simulator: iOS Light, System picked, app stayed Dark).
+  {
+    const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: 'dark' });
+    await ctx.clock.install({ time: new Date(AT) });
+    await ctx.addInitScript(({ FID }) => {
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1');
+      window.__nativeStyles = [];
+      window.Capacitor = { isNativePlatform: () => false, Plugins: { Appearance: { setStyle: (o) => { window.__nativeStyles.push(o && o.style); return Promise.resolve(); } } } };
+    }, { FID });
+    const page = await ctx.newPage(); const errs = []; page.on('pageerror', e => errs.push(String(e)));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=me`, { waitUntil: 'domcontentloaded' }); await page.waitForSelector('[data-appearance-row]', { timeout: 60000 });
+    const last = async () => page.evaluate(() => window.__nativeStyles[window.__nativeStyles.length - 1]);
+    check((await last()) === 'system', `native sync: launch on System sent ${await last()}, not "system"`);
+    await page.click('[data-appearance-row] [data-appearance="dark"]');
+    check((await last()) === 'dark', `native sync: a Dark pick sent ${await last()}`);
+    await page.click('[data-appearance-row] [data-appearance="light"]');
+    check((await last()) === 'light', `native sync: a Light pick sent ${await last()}`);
+    await page.click('[data-appearance-row] [data-appearance="system"]');
+    check((await last()) === 'system', `native sync: back to System sent ${await last()}, not "system"`);
+    await page.emulateMedia({ colorScheme: 'light' }); await page.waitForTimeout(150);
+    check((await last()) === 'system' && (await modeOf(page)) === 'light', `native sync: on System an iPhone flip to Light sent ${await last()} (page ${await modeOf(page)})`);
+    check(!errs.length, `native sync: page errors ${errs.join(' | ')}`);
     await ctx.close();
   }
   // The smallest supported phone: every option of the Me selector is whole on screen.
