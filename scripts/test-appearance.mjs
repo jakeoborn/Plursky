@@ -123,6 +123,11 @@ try {
     }, { FID: fid, pick, extra });
     // No signal at all: a browser without prefers-color-scheme. Every real
     // engine reports light or dark, so the only faithful stand-in is none.
+    // The Mac's own battery reaches the page through getBattery(): below 20%
+    // the app dims and shows an amber pill, so a laptop running low failed
+    // the leak check on whichever load happened to cross the line. Pinned
+    // full, as CI's runner (no battery) renders it.
+    await ctx.addInitScript(() => { if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} }); });
     if (noSignal) await ctx.addInitScript(() => { window.matchMedia = undefined; });
     // A wider face than this Mac's, as CI's runner has: it puts list names on
     // the fit borderline, where a re-measure can land a pixel either way.
@@ -661,6 +666,32 @@ try {
       return out;
     });
     check(!covered.length, `[grid lollapalooza day ${day} @320] a grown block covers the next set: ${covered.join(' · ')}`);
+    await ctx.close();
+  }
+
+  // Fitted names settle to ONE size, whatever came before. settle() puts every
+  // name back to its real size and fits it again; a read through Reduce
+  // Motion's transition once took the previous fitted size as the real one,
+  // so "Interplanetary Criminal" on Home's stage board went 13 → 12 → 13 on
+  // successive settles and a mode switch kept whichever it was on (the
+  // home-wide leak check failed 3 runs in 4). Re-settle twice: every fitted
+  // name keeps its size and its real size, and the board's name is fitted at
+  // all, or the fixture stopped reaching the case.
+  for (const pick of ['dark', 'light']) {
+    const { ctx, page } = await open({ pick, query: 'tab=home', font: 'Verdana', ready: '[data-duo-stages]' });
+    const read = () => page.evaluate(() => [...document.querySelectorAll('[data-fit-set]')].map(n => `${n.textContent.trim().slice(0, 40)}: ${getComputedStyle(n).fontSize} of ${n.dataset.fitBase}px`));
+    const before = await read(), moved = [];
+    for (let i = 0; i < 2; i++) {
+      await page.evaluate(() => document.fonts.dispatchEvent(new Event('loadingdone')));
+      await page.clock.runFor(300); await page.waitForTimeout(100);
+      const after = await read();
+      moved.push(...after.map((x, j) => x === before[j] ? null : `${before[j]} → ${x}`).filter(Boolean));
+      check(after.length === before.length, `fit settle (${pick}): ${before.length} fitted names became ${after.length} on re-settle ${i + 1}`);
+    }
+    const card = before.find(x => x.startsWith('Interplanetary Criminal'));
+    check(!!card && !card.includes(': 14px'), `fit settle (${pick}): "Interplanetary Criminal" on the stage board is not fitted below its real size (${card || 'absent'}): the fixture no longer reaches the case`);
+    check(!card || card.endsWith(' of 14px'), `fit settle (${pick}): the stage board name's real size is read as ${card}, not 14px`);
+    check(!moved.length, `fit settle (${pick}): ${moved.length} fitted name(s) changed size on a re-settle: ${moved.slice(0, 3).join(' · ')}`);
     await ctx.close();
   }
 
