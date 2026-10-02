@@ -2246,6 +2246,7 @@ function ScheduleReviewSheet({
   }, actions)))), document.body);
 }
 function toNightMin(hhmm) {
+  if (typeof hhmm !== "string") return NaN;
   var [h, m] = hhmm.split(":").map(Number);
   return (h < 8 ? h + 24 : h) * 60 + m;
 }
