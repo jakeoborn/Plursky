@@ -3020,7 +3020,7 @@ function MapScreen({
       background: "var(--paper-2)"
     }
   }, React.createElement(WellnessPill, null), React.createElement("div", {
-    "data-map-posture": true,
+    "data-map-left-col": true,
     style: {
       position: "absolute",
       top: 68,
@@ -3028,7 +3028,17 @@ function MapScreen({
       zIndex: 4,
       maxWidth: "calc(100% - 100px)",
       boxSizing: "border-box",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: 6,
       pointerEvents: "none"
+    }
+  }, React.createElement("div", {
+    "data-map-posture": true,
+    style: {
+      maxWidth: "100%",
+      minHeight: 38
     }
   }, React.createElement("span", {
     className: "duo-code",
@@ -3042,7 +3052,28 @@ function MapScreen({
       maxWidth: "100%",
       boxSizing: "border-box"
     }
-  }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
+  }, mapPostureLabel)), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
+    style: {
+      padding: "4px 10px",
+      borderRadius: 999,
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      border: "1px solid var(--line-2)",
+      backdropFilter: "blur(8px)",
+      maxWidth: "100%",
+      boxSizing: "border-box",
+      pointerEvents: "auto"
+    },
+    title: "Location permission is denied — enable it for this site to place yourself on the map"
+  }, React.createElement("span", {
+    style: {
+      font: "600 11px/1.3 var(--f-ui)",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "block"
+    }
+  }, "GPS denied · enable location"))), state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
     "aria-label": "Back",
     style: {
@@ -3396,30 +3427,7 @@ function MapScreen({
     }
   }, _packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
     onClose: () => setPacksOpen(false)
-  }), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 112,
-      left: 10,
-      zIndex: 4,
-      padding: "4px 10px",
-      borderRadius: 999,
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      backdropFilter: "blur(8px)",
-      maxWidth: "calc(100% - 120px)"
-    },
-    title: "Location permission is denied — enable it for this site to place yourself on the map"
-  }, React.createElement("span", {
-    style: {
-      font: "600 11px/1.3 var(--f-ui)",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "block"
-    }
-  }, "GPS denied · enable location")), amenityKey && !meetMode && React.createElement("div", {
+  }), amenityKey && !meetMode && React.createElement("div", {
     role: "group",
     "aria-label": "Amenity key",
     style: {

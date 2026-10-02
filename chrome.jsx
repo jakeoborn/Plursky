@@ -1999,6 +1999,18 @@ function _fitSize(el, px) {
   el.dataset.fitSet = String(px);
 }
 function fitWords(el) {
+  // No transition while measuring. Reduced motion gives every element a
+  // 0.01ms `transition: all`, and while one is in flight a new font-size is
+  // neither computed nor laid out: each step measured the OLD size, so the
+  // fit ran to its floor or gave up depending on timing (CI's runner: one
+  // name 11px on a fresh load, 14px after a mode switch). It goes off BEFORE
+  // the first read: settle() puts a name back to its real size and then fits
+  // it, and a read through the transition took the previous FITTED size as
+  // the real one, so "Interplanetary Criminal" (14px) stepped 13 → 12 → 13 on
+  // successive settles and a mode switch kept whichever it was on.
+  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
@@ -2006,7 +2018,7 @@ function fitWords(el) {
   // The face is part of the key: a family swap (a fallback replaced) changes
   // every word's width without moving the box.
   const key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
-  if (el.dataset.fitKey === key) return;
+  if (el.dataset.fitKey === key) { done(); return; }
   // Words split on space, hyphen, dash, slash and the middot: a break AFTER
   // "Auto-" is a hyphen doing its job, not a word broken inside itself.
   const words = [];
@@ -2024,14 +2036,6 @@ function fitWords(el) {
     });
   };
   const set = (px) => _fitSize(el, px);
-  // No transition while measuring. Reduced motion gives every element a
-  // 0.01ms `transition: all`, and while one is in flight a new font-size is
-  // neither computed nor laid out: each step measured the OLD size, so the
-  // fit ran to its floor or gave up depending on timing (CI's runner: one
-  // name 11px on a fresh load, 14px after a mode switch).
-  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
-  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
   let size = cur;
   if (size < base) { size = base; set(size); }   // a wider box: start again from the real size
   const min = parseFloat(el.dataset.fitMin || "11");

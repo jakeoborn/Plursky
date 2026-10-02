@@ -2389,15 +2389,21 @@ function MapScreen({ state, setState }) {
       <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
         <WellnessPill />
 
-        {/* Kept clear of the control column on the right: the other-edition
-            label is long, and at 320 px it ran underneath the GPS chip and
-            the zoom stack. It wraps instead, and still ends above the
-            GPS-denied pill at top: 112. */}
-        <div data-map-posture style={{
+        {/* The left column under the hydration pill: the map's posture label,
+            then the GPS-denied pill. Kept clear of the control column on the
+            right: the other-edition label is long, and at 320 px it ran
+            underneath the GPS chip and the zoom stack. It wraps instead, and
+            the denied pill follows it in the column, so a third line at a
+            narrow width pushes the pill down rather than running under it. */}
+        <div data-map-left-col style={{
           position: "absolute", top: 68, left: 10, zIndex: 4,
           maxWidth: "calc(100% - 100px)", boxSizing: "border-box",
+          display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6,
           pointerEvents: "none",
         }}>
+        {/* minHeight keeps the denied pill at top 112 under a one-line label,
+            where it has always sat; only a wrapped label moves it down. */}
+        <div data-map-posture style={{ maxWidth: "100%", minHeight: 38 }}>
           {/* The board's source code: Michroma caps in a hairline box. It
               wraps (duo-code is nowrap) so the long other-edition label stays
               inside the cap above instead of running under the controls. */}
@@ -2406,6 +2412,30 @@ function MapScreen({ state, setState }) {
             whiteSpace: "normal", lineHeight: 1.35, maxWidth: "100%", boxSizing: "border-box" }}>
             {mapPostureLabel}
           </span>
+        </div>
+        {/* GPS denied: a small pill in the left column, under the venue
+            chip. Top-centre it sat across the hydration pill. It gives way to
+            the amenity key, which opens in the same column. */}
+        {gpsLive && gpsStatus === "denied" && !amenityKey && (
+          <div style={{
+            padding: "4px 10px", borderRadius: 999,
+            background: "rgba(var(--glass),0.92)", color: "var(--ink)",
+            border: "1px solid var(--line-2)",
+            backdropFilter: "blur(8px)",
+            maxWidth: "100%", boxSizing: "border-box", pointerEvents: "auto",
+          }} title="Location permission is denied — enable it for this site to place yourself on the map">
+            {/* One line, always. The long form wrapped to two lines at phone
+                width and sat across the top of the artwork for the whole
+                festival; the GPS chip in the corner already reads DENIED. */}
+            <span style={{
+              font: "600 11px/1.3 var(--f-ui)",
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              display: "block",
+            }}>
+              GPS denied · enable location
+            </span>
+          </div>
+        )}
         </div>
 
         {state._navStack?.length > 0 && (
@@ -2581,31 +2611,6 @@ function MapScreen({ state, setState }) {
         )}
         {packsOpen && <OfflinePacksSheet onClose={() => setPacksOpen(false)} />}
 
-        {/* GPS denied: a small pill in the left column, under the venue
-            chip. Top-centre it sat across the hydration pill. It gives way to
-            the amenity key, which opens in the same column. */}
-        {gpsLive && gpsStatus === "denied" && !amenityKey && (
-          <div style={{
-            position: "absolute", top: 112, left: 10,
-            zIndex: 4,
-            padding: "4px 10px", borderRadius: 999,
-            background: "rgba(var(--glass),0.92)", color: "var(--ink)",
-            border: "1px solid var(--line-2)",
-            backdropFilter: "blur(8px)",
-            maxWidth: "calc(100% - 120px)",
-          }} title="Location permission is denied — enable it for this site to place yourself on the map">
-            {/* One line, always. The long form wrapped to two lines at phone
-                width and sat across the top of the artwork for the whole
-                festival; the GPS chip in the corner already reads DENIED. */}
-            <span style={{
-              font: "600 11px/1.3 var(--f-ui)",
-              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              display: "block",
-            }}>
-              GPS denied · enable location
-            </span>
-          </div>
-        )}
 
         {/* Amenity key — legible replacement for the poster's baked-in legend.
             Tap a row to isolate that type on the map; tap again to clear. */}

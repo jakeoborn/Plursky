@@ -80,12 +80,15 @@ try {
     await page.waitForTimeout(1200);
     const s = await page.evaluate(() => {
       const box = document.querySelector("[data-map-posture]"), span = box.querySelector("span");
-      const r = box.getBoundingClientRect(), host = box.parentElement.getBoundingClientRect();
+      // The label sits in the map's left column (with the GPS-denied pill), so
+      // the map itself is the column's parent.
+      const mapEl = box.closest("[data-map-left-col]").parentElement;
+      const r = span.getBoundingClientRect(), host = mapEl.getBoundingClientRect();
       const rect = e => { const q = e.getBoundingClientRect(); return { left: q.left, right: q.right, top: q.top, bottom: q.bottom }; };
       // The control column: every button in the top-right of the map.
-      const controls = [...box.parentElement.querySelectorAll("button")].map(rect)
+      const controls = [...mapEl.querySelectorAll("button")].map(rect)
         .filter(q => q.right > q.left && q.left > host.left + host.width / 2 && q.top < host.top + 260);
-      const gps = [...box.parentElement.querySelectorAll("span")].find(e => /GPS DENIED/.test(e.textContent));
+      const gps = [...mapEl.querySelectorAll("span")].find(e => /GPS denied/i.test(e.textContent));
       return {
         text: span.textContent.trim(), left: r.left, right: r.right, top: r.top, bottom: r.bottom,
         clipped: span.scrollWidth > span.clientWidth + 1 || span.scrollHeight > span.clientHeight + 1,
