@@ -517,38 +517,31 @@ var FESTIVALS_REGISTRY = [{
     },
     gpsAnchors: [{
       stageId: "kinetic",
-      lat: 28.53700,
-      lng: -81.40040,
+      lat: 28.537024,
+      lng: -81.399828,
       src: "poster"
     }, {
       stageId: "circuit",
-      lat: 28.53999,
-      lng: -81.40219,
+      lat: 28.539811,
+      lng: -81.404500,
       src: "poster"
     }, {
       stageId: "neon",
-      lat: 28.53900,
-      lng: -81.39850,
-      src: "poster"
-    }, {
-      stageId: "stereo",
-      lat: 28.53730,
-      lng: -81.40310,
-      src: "poster"
-    }, {
-      stageId: "bacardi",
-      lat: 28.53660,
-      lng: -81.40240,
+      lat: 28.539153,
+      lng: -81.398598,
       src: "poster"
     }],
     mainStageId: "kinetic",
-    mapImage: "edco-tinker-2026.jpg",
+    mapImage: "edco-tinker-2025.webp",
+    mapArtYear: 2025,
     mapStyle: "image-overlay",
     mapTheme: "park",
+    mapPrintsStageNames: true,
     weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
     setTimesProvisional: true
   },
-  available: false,
+  available: true,
+  scheduleTBA: true,
   accent: "#22c55e",
   emoji: "🌴",
   region: "North America"
@@ -2208,8 +2201,8 @@ var EDCO_STAGES = [{
   name: "kineticFIELD",
   short: "KINETIC",
   color: "#f97316",
-  x: 57,
-  y: 76,
+  x: 73.4,
+  y: 64.3,
   size: 1.7,
   desc: "Main stage",
   vibe: "Main Event",
@@ -2220,8 +2213,8 @@ var EDCO_STAGES = [{
   name: "circuitGROUNDS",
   short: "CIRCUIT",
   color: "#38bdf8",
-  x: 26,
-  y: 17,
+  x: 16.5,
+  y: 25.4,
   size: 1.4,
   desc: "Epic-melody big room",
   vibe: "Big Melodies",
@@ -2232,8 +2225,8 @@ var EDCO_STAGES = [{
   name: "neonGARDEN",
   short: "NEON",
   color: "#a855f7",
-  x: 90,
-  y: 36,
+  x: 88.5,
+  y: 38.2,
   size: 1.3,
   desc: "Factory 93 home base",
   vibe: "House & Techno",
@@ -2244,8 +2237,8 @@ var EDCO_STAGES = [{
   name: "stereoBLOOM",
   short: "STEREO",
   color: "#f43f5e",
-  x: 10,
-  y: 70,
+  x: 13,
+  y: 65.9,
   size: 1.1,
   desc: "Insomniac Records stage",
   vibe: "Label Sounds",
@@ -2256,8 +2249,8 @@ var EDCO_STAGES = [{
   name: "CASA BACARDÍ",
   short: "BACARDÍ",
   color: "#22c55e",
-  x: 22,
-  y: 83,
+  x: 44.1,
+  y: 75,
   size: 0.9,
   desc: "Lounge stage",
   vibe: "Lounge Sessions",
@@ -2268,8 +2261,6 @@ var EDCO_STAGES = [{
   name: "Schedule TBA",
   short: "TBA",
   color: "#9ca3af",
-  x: 50,
-  y: 50,
   size: 0.1,
   desc: "PROVISIONAL: stage assignments drop with the official schedule",
   vibe: "Unscheduled",
@@ -2290,59 +2281,11 @@ var _edcoMk = (id, name, genre, day) => {
     end: s ? s[2] : "",
     tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: s ? "Playing EDC Orlando 2026." : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
+    bio: s ? "Playing EDC Orlando 2026." : `Playing EDC Orlando 2026 on ${["Friday, November 6", "Saturday, November 7", "Sunday, November 8"][day - 1]}. ` + "Stage and set time are not published yet — Insomniac posts the schedule in the days before the festival."
   };
 };
 var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1), _edcoMk("ecf3", "Afrojack", "Electronic", 1), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1), _edcoMk("ecf5", "Azzecca", "House", 1), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1), _edcoMk("ecf7", "Big Florida", "Bass", 1), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1), _edcoMk("ecf11", "Chris Lorenzo", "House", 1), _edcoMk("ecf12", "David Guetta", "Electronic", 1), _edcoMk("ecf13", "HAYLA", "Electronic", 1), _edcoMk("ecf14", "IDEMI", "Electronic", 1), _edcoMk("ecf15", "Inbal", "Electronic", 1), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1), _edcoMk("ecf17", "JOA", "Electronic", 1), _edcoMk("ecf18", "Josh Baker", "House", 1), _edcoMk("ecf19", "Joshwa", "House", 1), _edcoMk("ecf20", "Kompany", "Bass", 1), _edcoMk("ecf21", "KREAM", "Electronic", 1), _edcoMk("ecf22", "Level Up", "Bass", 1), _edcoMk("ecf23", "Levity", "Bass", 1), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1), _edcoMk("ecf25", "Matthias", "Electronic", 1), _edcoMk("ecf26", "Mau P", "Electronic", 1), _edcoMk("ecf27", "MPH", "Electronic", 1), _edcoMk("ecf28", "Omar+", "House", 1), _edcoMk("ecf29", "Pegassi", "Electronic", 1), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1), _edcoMk("ecf31", "Prospa", "Electronic", 1), _edcoMk("ecf32", "RAJE", "Electronic", 1), _edcoMk("ecf33", "Sloth", "Electronic", 1), _edcoMk("ecf34", "Whethan", "Electronic", 1), _edcoMk("ecf35", "Wooli", "Bass", 1), _edcoMk("ecf36", "Zack Martino", "Electronic", 1), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2), _edcoMk("ecs6", "Alves", "Electronic", 2), _edcoMk("ecs7", "AVELLO", "Electronic", 2), _edcoMk("ecs8", "AYYBO", "Electronic", 2), _edcoMk("ecs9", "ChaseWest", "Electronic", 2), _edcoMk("ecs10", "Dennis Cruz", "House", 2), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2), _edcoMk("ecs12", "Discip", "Electronic", 2), _edcoMk("ecs13", "Disco Lines", "Electronic", 2), _edcoMk("ecs14", "Fallon", "Electronic", 2), _edcoMk("ecs15", "Franky Rizardo", "House", 2), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2), _edcoMk("ecs17", "Gabss", "Electronic", 2), _edcoMk("ecs18", "Greg 99", "Electronic", 2), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2), _edcoMk("ecs20", "Kaskade", "Electronic", 2), _edcoMk("ecs21", "KinAhau", "House", 2), _edcoMk("ecs22", "LAYZ", "Bass", 2), _edcoMk("ecs23", "MADVKTM", "Electronic", 2), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2), _edcoMk("ecs26", "Me n ü", "Electronic", 2), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2), _edcoMk("ecs28", "Monoky", "Electronic", 2), _edcoMk("ecs29", "Nico Moreno", "Techno", 2), _edcoMk("ecs30", "Ray Volpe", "Bass", 2), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2), _edcoMk("ecs35", "Subsonic", "Electronic", 2), _edcoMk("ecs36", "Twinsick", "Electronic", 2), _edcoMk("ecu1", "A Little Sound", "Electronic", 3), _edcoMk("ecu2", "Adrián Mills", "Techno", 3), _edcoMk("ecu3", "Alok", "Electronic", 3), _edcoMk("ecu4", "AR/CO", "Electronic", 3), _edcoMk("ecu5", "ATLiens", "Bass", 3), _edcoMk("ecu6", "Boogie T", "Bass", 3), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3), _edcoMk("ecu9", "CØNTRA", "Electronic", 3), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3), _edcoMk("ecu11", "Discovery Project", "Electronic", 3), _edcoMk("ecu12", "ESSE", "Electronic", 3), _edcoMk("ecu13", "Hardwell", "Electronic", 3), _edcoMk("ecu14", "Holy Priest", "Electronic", 3), _edcoMk("ecu15", "I Hate Models", "Techno", 3), _edcoMk("ecu16", "Ian Asher", "Electronic", 3), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3), _edcoMk("ecu18", "Kaivon", "Bass", 3), _edcoMk("ecu19", "KI/KI", "Techno", 3), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3), _edcoMk("ecu21", "Know Good", "Electronic", 3), _edcoMk("ecu22", "M81!", "Electronic", 3), _edcoMk("ecu23", "Maddix", "Electronic", 3), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3), _edcoMk("ecu26", "Meduza", "Electronic", 3), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3), _edcoMk("ecu28", "phrva", "Electronic", 3), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3), _edcoMk("ecu31", "SHDW", "Techno", 3), _edcoMk("ecu32", "Sippy", "Bass", 3), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3), _edcoMk("ecu35", "TroyBoi", "Electronic", 3), _edcoMk("ecu36", "Ultrathem", "Electronic", 3)];
-var EDCO_AMENITIES = [{
-  id: "eoa1",
-  type: "water",
-  label: "Hydration",
-  x: 44,
-  y: 30
-}, {
-  id: "eoa2",
-  type: "water",
-  label: "Hydration",
-  x: 60,
-  y: 62
-}, {
-  id: "eoa3",
-  type: "food",
-  label: "Vendor Village",
-  x: 50,
-  y: 50
-}, {
-  id: "eoa4",
-  type: "food",
-  label: "Westside Eats",
-  x: 22,
-  y: 58
-}, {
-  id: "eoa5",
-  type: "med",
-  label: "Medical",
-  x: 54,
-  y: 40
-}, {
-  id: "eoa6",
-  type: "toilet",
-  label: "Restrooms",
-  x: 30,
-  y: 40
-}, {
-  id: "eoa7",
-  type: "toilet",
-  label: "Restrooms",
-  x: 70,
-  y: 56
-}, {
-  id: "eoa8",
-  type: "info",
-  label: "Info & Guest Services",
-  x: 48,
-  y: 18
-}];
+var EDCO_AMENITIES = [];
 var LL_STAGES = [{
   id: "prehistoric",
   name: "Prehistoric Paradox",
