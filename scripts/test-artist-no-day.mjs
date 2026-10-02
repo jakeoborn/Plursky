@@ -59,7 +59,8 @@ try {
     await page.waitForTimeout(800);
     const s = await page.evaluate(() => ({
       text: document.body.innerText,
-      schedule: [...document.querySelectorAll("button")].some(b => b.innerText.trim() === "SCHEDULE"),
+      // The board's chip is sentence case ("Schedule"); the gate is about the jump existing.
+      schedule: [...document.querySelectorAll("button")].some(b => /^schedule$/i.test(b.innerText.trim())),
       // Exact text of the hero pill. A substring match let "DAY TBA · —" pass.
       pill: [...document.querySelectorAll("[data-artist-day-pill]")].map(e => e.textContent.trim()),
     }));

@@ -100,8 +100,8 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Nocturnal Wonderland 2026 | `nocturnal-wonderland-2026` | Sep 19–20, 2026 | 86 | 86 | 0 | 5 | live |
 | CRSSD Fest Fall 2026 | `crssd-fall-2026` | Sep 26–27, 2026 | 53 | 53 | 0 | 3 | live |
 | Portola 2026 | `portola-2026` | Sep 26–27, 2026 | 64 | 64 | 0 | 5 | live |
-| Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 137 | 137 | 0 | 7 | live |
-| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 215 | 0 | 215 | 0 | live |
+| Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 136 | 136 | 0 | 7 | live |
+| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 229 | 0 | 229 | 0 | live |
 | Escape Halloween 2026 | `escape-halloween-2026` | Oct 30–31, 2026 | 103 | 0 | 103 | 5 | live |
 | EDC Orlando 2026 | `edc-orlando-2026` | Nov 6–8, 2026 | 108 | 0 | 108 | 6 | live |
 | Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 0 | live |
@@ -116,7 +116,7 @@ live in the generated table above, never here.
 
 | # | Festival | Dates | Flip needs |
 |---|---|---|---|
-| 1 | CRSSD Fall | Sep 26–27 | 2026-09-27: all 53 sets imported from the official set-times page as re-pulled that day (PR, not merged); Fall 2026 map cited, not used (art rights/anchors unsettled) |
+| 1 | CRSSD Fall | Sep 26–27 | **Done, and over.** All 53 official sets merged in #249 (`0908b37`, 2026-09-29) after the festival ended; the edition is archived as past and its public page reads Past. Fall 2026 map cited, not used |
 | 2 | III Points | Oct 16–17 | import/matching built now; flip when the official schedule lands |
 | 3 | Escape Halloween | Oct 30–31 | official times + a 2026 map check, then flip |
 | 4 | EDC Orlando | Nov 6–8 | every act from the official app; replace the provisional map (W-3) |
@@ -133,11 +133,11 @@ festivals stay free (Plus sells offline packs, not festivals).
 ⚠️ **Two entries that look like work and are not:**
 - **ACL 2026 needs nothing.** Its schedule is the OFFICIAL per-day grid,
   transcribed from aclfestival.com posters and corroborated by two outlets
-  (`data.jsx`, "ACL 2026 lineup — OFFICIAL per-day schedule grid"). It already
-  replaced the 2025-estimated grid. What is still 2025 is the park **map**, and
-  that is correct: an edition falls back to last year's map until its own is
-  released. The only open ACL item is checking whether an official 2026 Zilker
-  map has since published.
+  (`data.jsx`, "ACL 2026 lineup — OFFICIAL per-day schedule grid"). Its map is
+  the official 2026 patron map, shipped in #222 (`484a780`, 2026-09-23) and
+  cited as the 2026 map on its page since #242. What stays open is the
+  registration waiver (`blind`, expires 2026-10-19): no distance or walk
+  readout until `snapchat` is measured on the ground or on satellite.
 - **Portola already has all 64 set times.** It is not a twin session with CRSSD.
 
 The reasoning behind the order: an in-season flip that misses its weekend is
@@ -189,39 +189,23 @@ Re-run once the verdict lands, so the strings match what actually shipped.
 
 ## Watches — nothing to do until the trigger fires
 
-### W-1 — Lost Lands set times (~Sep 12, festival Sep 18–20)
-**Status: WATCH** · This is the one with a deadline.
-**Nocturnal Wonderland (Sep 19–20) is APPROVED for the same week — 2026-09-08.**
+### W-1 — Lost Lands and Nocturnal Wonderland set times
+**Status: CLOSED** · Both flipped from their official schedules and both
+festivals have ended.
 
-⚠️ **Two INDEPENDENT schedule sources. Never assume they drop together.** These
-are different festivals with different organisers publishing on their own
-timelines; an earlier draft of this file claimed a shared cadence, which was
-wrong. Each carries its own trigger, either can slip without the other, and
-neither one's silence tells you anything about the other. **Watch them
-separately and fill whichever lands first** — do not hold a completed sheet
-waiting for its neighbour.
+- Lost Lands (Sep 18–20): official app schedule, #142 (`92eadb3`, 2026-09-11).
+  206 of 206 sets timed.
+- Nocturnal Wonderland (Sep 19–20): official set times for all 86 acts, #125
+  (`cf53b9a`, 2026-09-10).
 
-What makes the pairing affordable is the workload, not a shared source: Lost
-Lands is a full stage+time fill across 201 acts, Nocturnal is a **times-only**
-fill across 86 whose stages are already assigned (`noStage=0`). Different sizes,
-so they do not contend even if both land in the same week.
+Counts are in the generated table above. Two rules from this watch still hold
+for every later flip: stage and time land together, per row, from the
+festival's own schedule; and two festivals' schedules are independent sources,
+so neither waits for the other.
 
-⚠️ Times-only does not mean the gate relaxes. **Stage and time still land
-together, per row** — a row ships only when BOTH are real. For Nocturnal the
-stages are already in, so supplying the time completes the pair; for Lost Lands
-both arrive in the same sheet. A row with a time and no stage, or a stage and an
-invented time, is the exact defect the set-time honesty and unplaced-stage gates
-exist to catch. TBA and `stage: null` remain real answers.
-
-All 201 acts are already in the repo with `stage: null` and no times — that is
-correct and deliberate, not an omission. When the official app schedule drops,
-deliver **stage AND set time together** in one sheet. Partial data re-opens the
-exact defect the set-time honesty gate was built for.
-
-⛔ Do NOT re-attempt to georeference the Lost Lands festival art. #97 recorded, in
-the file, that it has no surveyable feature and is non-conformal with the real
-ground. The five ortho-confirmed OSM control points are in `data.jsx` if they are
-ever needed; the map is `mapMode: "real"` and stays that way.
+⛔ Still true: do NOT re-attempt to georeference the Lost Lands festival art.
+#97 recorded that it has no surveyable feature and is non-conformal with the
+real ground. The map is `mapMode: "real"` and stays that way.
 
 ### W-2 — Escape Halloween flip checklist (~late Oct)
 **Status: WATCH** — re-measure all five x/y at flip time. `cashless: false` stands

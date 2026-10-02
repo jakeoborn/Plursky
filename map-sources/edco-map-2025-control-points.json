@@ -1,0 +1,61 @@
+{
+  "plate": "edco-tinker-2025.webp",
+  "plateSize": [
+    940,
+    940
+  ],
+  "measuredAt": "2026-09-30",
+  "method": "Street intersections the 2025 art draws, read by eye at 4x on the plate (about +-5 px, at the centre of each drawn road), against OpenStreetMap geometry fetched from api.openstreetmap.org/api/0.6/map on 2026-09-30. Where two named ways share a node, that node; for Tampa Avenue under SR-408 (no shared node), the mean of Tampa's crossings with the two carriageways. Least-squares affine with scripts/georef-map.mjs.",
+  "controlPoints": [
+    {
+      "name": "W Church St x Tampa Ave (NW)",
+      "px": 44.5,
+      "py": 205.5,
+      "lat": 28.5401379,
+      "lng": -81.4054887,
+      "osm": "node shared by West Church Street and Tampa Avenue"
+    },
+    {
+      "name": "W Church St x Rio Grande Ave (N)",
+      "px": 505,
+      "py": 204,
+      "lat": 28.5401883,
+      "lng": -81.4014289,
+      "osm": "node shared by West Church Street and Rio Grande Avenue"
+    },
+    {
+      "name": "W Anderson St x Nashville Ave (SE)",
+      "px": 757,
+      "py": 676,
+      "lat": 28.5365183,
+      "lng": -81.3992577,
+      "osm": "node shared by West Anderson Street and Nashville Avenue"
+    },
+    {
+      "name": "Tampa Ave x SR-408 (SW)",
+      "px": 55,
+      "py": 635,
+      "lat": 28.5363673,
+      "lng": -81.4053432,
+      "osm": "mean of Tampa Avenue's crossings with the two East-West Expressway carriageways"
+    }
+  ],
+  "stages": [
+    {
+      "stageId": "kinetic",
+      "px": 690,
+      "py": 604
+    },
+    {
+      "stageId": "circuit",
+      "px": 155,
+      "py": 239
+    },
+    {
+      "stageId": "neon",
+      "px": 832,
+      "py": 359
+    }
+  ],
+  "stagesNote": "the three stages that carry a GPS anchor (founder ruling 2026-09-30); px are the measured pins in scripts/build-edco-map-2025.mjs"
+}

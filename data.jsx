@@ -647,13 +647,21 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "06:39", set: "17:34" },
         3: { rise: "06:40", set: "17:33" },
       },
-      // Grounds centroid, MEASURED 2026-09-06 from the festival polygon
-      // (Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / S Tampa
-      // -81.40353 W / S Nashville -81.39935 E). This replaces a Nominatim
-      // "Tinker Field Plaza" hit that sat 378 m WEST of the grounds, in the
-      // residential block on the far side of Tampa. onSiteRadiusMi 0.6 clears
-      // every anchor with room to spare — the farthest, neon, is 0.19 mi out.
+      // Grounds centroid, taken 2026-09-06 as the midpoint of four edges:
+      // Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / a west edge
+      // at -81.40353 / S Nashville -81.39935 E. That comment called the west
+      // edge "S Tampa"; it is not. Checked 2026-09-30 against OpenStreetMap:
+      // Tampa Avenue runs at -81.40549 (Church x Tampa 28.54014, -81.40549),
+      // and -81.40353 falls inside the stadium's footprint (-81.40393 to
+      // -81.40157). The centroid value is kept as it was (founder ruling
+      // 2026-09-30: fix the comment). It is the midpoint of the edges above,
+      // so with Tampa as the west edge the midpoint would sit about 95 m
+      // further west. It is not an input to the map's affine, which reads
+      // only the first three anchors and their pins. It replaced a Nominatim
+      // "Tinker Field Plaza" hit 378 m west of the grounds. onSiteRadiusMi
+      // 0.6 clears every anchor with room to spare.
       gps: { lat: 28.53826, lng: -81.40144, onSiteRadiusMi: 0.6 },
+      // HISTORY, superseded 2026-09-30 by the re-fit further down.
       // Anchors MEASURED 2026-09-06, replacing five venue-centroid offsets
       // that were 170–481 m from the real stage positions. Method: the
       // official EDCO 2025 map (Insomniac; north-up, real street frame)
@@ -670,13 +678,17 @@ const FESTIVALS_REGISTRY = [
       // promote any of these to "osm"/"crowd" without a real measurement.
       //
       // neon/stereo/bacardi were SNAPPED to the festival polygon where the
-      // raw fit landed outside the fence; each snap is inside the art's own
-      // residual envelope. Raw pre-snap fits, for the record:
+      // raw fit landed outside the fence. The snap distances below are
+      // calculated from the two recorded coordinate sets (raw fit to shipped
+      // anchor). Corrected 2026-09-30: this comment used to say ~85 m, ~85 m
+      // and ~40 m, and that each snap was inside the art's own 22–96 m
+      // residual envelope. neon and stereo are NOT inside it. Raw pre-snap
+      // fits, for the record:
       //   kinetic 28.537000,-81.400398 (unsnapped)
       //   circuit 28.539991,-81.402186 (unsnapped)
-      //   neon    28.539542,-81.397451 → snapped ~85 m W into the practice field
-      //   stereo  28.536498,-81.403728 → snapped ~85 m NE, east of Tampa
-      //   bacardi 28.535902,-81.402559 → snapped ~40 m N of SR-408
+      //   neon    28.539542,-81.397451 → snapped 118.9 m SW into the practice field
+      //   stereo  28.536498,-81.403728 → snapped 108.1 m NE, east of Tampa
+      //   bacardi 28.535902,-81.402559 → snapped 78.9 m N of SR-408
       //
       // ⚠ The old note claiming `stereo` was "56.9 grid units off the
       // kinetic/circuit/neon affine" and `bacardi` 13.0 is GONE, not merely
@@ -686,27 +698,32 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-fit from the official 2026 map with
       // scripts/georef-map.mjs, from control points saved as a points.json.
       //
-      // ⚠ Since 2026-09-30 the anchors feed a LIVE festival, and there are
-      // THREE of them (founder ruling 2026-09-30: keep kinetic/circuit/neon,
-      // remove stereo and bacardi). The stereo and bacardi STAGES are untouched:
-      // they keep their pins on the art (EDCO_STAGES x/y). What they lost is a
-      // lat/lng, so nothing GPS-side (live stage detection, presence) can match
-      // those two stages until the flip. Removed, for the record:
-      //   stereo  28.53730,-81.40310   bacardi 28.53660,-81.40240
-      // They were never in the fit: map.jsx solves its GPS-to-map affine from
-      // the first three anchors against their x/y on the 2025 plate, so the
-      // blue dot is drawn exactly as it was with five. Three points fit an
-      // affine with zero residual BY CONSTRUCTION, which is not agreement: the
-      // two removed anchors sat 98 m and 48 m from where this affine draws
-      // their art pins, and the affine is sheared (its axes meet at 114° on
-      // the ground, not 90°) on art that is drawn north-up. The blue dot is a
-      // poster read pushed through a poster read. That is what the dated
-      // registration waiver in verify.mjs excuses (unsourced + blind), and why
-      // every distance readout stays withheld.
+      // ⚠ Since 2026-09-30 the anchors feed a LIVE festival, there are THREE
+      // of them (founder ruling: kinetic, circuit, neon; stereo and bacardi
+      // keep their pins on the art and carry no lat/lng), and they are
+      // RE-FITTED on the 2025 plate itself (founder ruling, same day: "fix the
+      // art"). The #73 values above were fitted on other art, and against a
+      // west edge that is not Tampa Avenue (see below); on this plate they gave
+      // an affine whose axes met at 114 degrees and put the site's corners
+      // 70-165 plate px off.
+      //
+      // The fit: four street intersections the 2025 art draws, each read on
+      // the plate and matched to OpenStreetMap geometry, least squares with
+      // scripts/georef-map.mjs. The points, with their sources, are
+      // map-sources/edco-map-2025-control-points.json; re-run it with
+      //   node scripts/georef-map.mjs fit map-sources/edco-map-2025-control-points.json
+      // Residuals 7-12 m (rms 9.6), axes 93.7 degrees, 0.86 / 0.93 m per px.
+      // Each anchor is that fit applied to its stage's pin. They stay `poster`:
+      // a read off art through a fit, not a survey, and the blue dot is only as
+      // good as the art is to scale (the drawn stadium sits ~54 m from the real
+      // one's centre). Distances and walk minutes stay withheld.
+      //
+      // The fit uses no centroid and no edge from the comment above; its
+      // coordinates come from OpenStreetMap directly.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "kinetic", lat: 28.537024, lng: -81.399828, src: "poster" }, // the long stage wall, SE field, N of W Anderson
+        { stageId: "circuit", lat: 28.539811, lng: -81.404500, src: "poster" }, // Tinker Field, between Tampa Ave and the stadium
+        { stageId: "neon",    lat: 28.539153, lng: -81.398598, src: "poster" }, // practice field EAST of Nashville Ave
       ],
       mainStageId: "kinetic",
       // edco-tinker-2025.webp = the official EDC Orlando 2025 festival map
@@ -773,8 +790,8 @@ const FESTIVALS_REGISTRY = [
     config: {
       id:        "acl-2026",
       // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
-      // transcribed Sep 3–4 2026.
-      scheduleSource: { url: "https://aclfestival.com/schedule", observedAt: "2026-09-04", official: true },
+      // refreshed September 30 2026.
+      scheduleSource: { url: "https://www.aclfestival.com/schedule", observedAt: "2026-09-30", official: true },
       name:      "Austin City Limits 2026",
       shortName: "ACL 2026",
       brand:     "ACL",
@@ -855,7 +872,9 @@ const FESTIVALS_REGISTRY = [
         // or projected off it. It also must not inherit Lady Bird's old
         // coords. A guessed anchor mis-tags photos silently.
         //
-        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // `ladybird` / `bonus`: not stages in the current app model. Bonus
+        // Tracks now has September 30 programming in its separate readiness
+        // collection, without a surveyed GPS anchor. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
@@ -2353,17 +2372,31 @@ const ACL_STAGES = [
   { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 27.8, y: 72.9, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
 ];
 
+const ACL_GRID_SOURCES_0930 = {
+  "W1": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp"
+  },
+  "W2": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp"
+  }
+};
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
   const h = parseInt(start.split(':')[0]);
   const tier = h >= 19 ? 3 : h >= 16 ? 2 : 1;
   return { id, name, genre, country: "—", stage, day, start, end, tier, weekend: wk || "both",
+    scheduleSources: (wk ? [wk] : ["W1", "W2"]).map(w => ({ url: ACL_GRID_SOURCES_0930[w][day], observedAt: "2026-09-30", edition: "2026", weekend: w })),
+    endSource: (["tmobile", "amex"].includes(stage) && parseInt(start) >= 20) ? "existing-22:00-closing-policy; grid-prints-start-only" : "printed-grid",
     img: `linear-gradient(135deg, ${ACL_STAGES.find(s=>s.id===stage)?.color || "#e85d2e"}, #1a0a28)`,
     bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}` };
 };
 
 // ── ACL 2026 lineup — OFFICIAL per-day schedule grid ────────────────
 // Transcribed from the official posters on aclfestival.com/schedule
-// (CDN assets ACL26-Schedule-Wk1/Wk2-...-20260826-Draft3), Sep 3-4 2026;
+// (CDN assets ACL26-Schedule-Wk1/Wk2-...-9.30), September 30 2026;
 // corroborated by CultureMap (Aug 17) and TEENS Media (Aug 18). This
 // REPLACES the previous 2025-estimated grid.
 //
@@ -2376,12 +2409,12 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · "Silent Disco" (Tito's, 20:00-22:00 nightly) is a real poster slot.
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
-// 137 entries across 7 programmed stages — which is now every stage the app
-// defines for ACL. Lady Bird and Bonus Tracks carry ZERO 2026 programming, so
-// their defs were dropped in v254 rather than ship two filter chips that
-// select nothing. On the official 2026 patron map, Bonus Tracks is still a
-// labelled structure, and Lady Bird appears only as an entrance and a box
-// office, not a stage. See the gpsAnchors note above before restoring either.
+// 136 music entries across 7 programmed stages — which is now every stage the app
+// defines for ACL music. The official September 30 grids now publish Bonus
+// Tracks programming, recorded separately in data/programming/acl-2026.json
+// (20 events, including three unnamed placeholders). That collection is data
+// readiness only: no app consumer, stage coordinates or GPS anchor is added.
+// Lady Bird remains an entrance/box office, not a programmed stage.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
@@ -2439,7 +2472,7 @@ const ACL_ARTISTS = [
   _aclMk("af46","Faouzia","—","amex",1,"14:45","15:30","W2"),
   _aclMk("af47","Amyl And The Sniffers","—","amex",1,"16:30","17:30"),
   _aclMk("af48","Labrinth","—","amex",1,"18:30","19:30"),
-  _aclMk("af49","Charli XCX","Pop","amex",1,"20:40","22:00"),
+  _aclMk("af49","Charli XCX","Pop","amex",1,"20:35","22:00"),
   // ── SATURDAY (day 2) ──
   // T-Mobile
   _aclMk("as01","Night Tapes","—","tmobile",2,"13:00","13:45"),
@@ -2451,7 +2484,7 @@ const ACL_ARTISTS = [
   _aclMk("as06","Temper City","—","miller",2,"13:45","14:30"),
   _aclMk("as07","Arcy Drive","—","miller",2,"15:15","16:15","W1"),
   _aclMk("as08","Laszewo","—","miller",2,"15:15","16:15","W2"),
-  _aclMk("as09","Snow Strippers","Electronic","miller",2,"17:15","18:15"),
+  _aclMk("as09","Snow Strippers","Electronic","beatbox",2,"19:30","20:10"),
   _aclMk("as10","Levity","Electronic","miller",2,"19:15","20:15"),
   // BMI
   _aclMk("as11","Fightmaster","—","bmi",2,"12:45","13:15","W1"),
@@ -2463,18 +2496,16 @@ const ACL_ARTISTS = [
   _aclMk("as17","Fai Laci","—","bmi",2,"17:15","18:15","W1"),
   _aclMk("as18","Chloe Qisha","—","bmi",2,"17:15","18:15","W2"),
   // Beatbox
-  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"14:00","14:45","W1"),
-  _aclMk("as20","LLUVII","—","beatbox",2,"14:00","14:45","W2"),
-  _aclMk("as21","Ryan Beatty","—","beatbox",2,"15:30","16:30","W1"),
-  _aclMk("as22","Arcy Drive","—","beatbox",2,"15:30","16:30","W2"),
-  _aclMk("as23","Palace","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"15:00","16:15","W1"),
+  _aclMk("as20","LLUVII","—","beatbox",2,"15:30","16:15","W2"),
+  _aclMk("as21","Ryan Beatty","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as22","Arcy Drive","—","miller",2,"17:15","18:15","W2"),
+  _aclMk("as23","Palace","—","miller",2,"17:15","18:15","W1"),
   _aclMk("as24","Ryan Beatty","—","beatbox",2,"17:30","18:30","W2"),
-  _aclMk("as25","Fakemink","—","beatbox",2,"19:30","20:30"),
   // Tito's
   _aclMk("as26","Left Lucid","—","titos",2,"12:45","13:30","W1"),
   _aclMk("as27","Montclair","—","titos",2,"12:45","13:30","W2"),
-  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45","W1"),
-  _aclMk("as29","Nat Myers","—","titos",2,"14:00","14:45","W2"),
+  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45"),
   _aclMk("as30","Don West","—","titos",2,"15:15","16:00"),
   _aclMk("as31","Rodrigo Y Gabriela","—","titos",2,"16:30","17:30"),
   _aclMk("as32","Yousuke Yukimatsu","Electronic","titos",2,"18:30","19:30"),
@@ -2497,26 +2528,27 @@ const ACL_ARTISTS = [
   _aclMk("au02","Thomas Day","—","tmobile",3,"13:15","14:00","W2"),
   _aclMk("au03","Stella Lefty","—","tmobile",3,"14:45","15:30","W1"),
   _aclMk("au04","Charlotte Lawrence","—","tmobile",3,"14:45","15:30","W2"),
-  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:30"),
-  _aclMk("au06","Geese","—","tmobile",3,"18:30","19:30"),
-  _aclMk("au07","The xx","—","tmobile",3,"20:30","22:00"),
+  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:20"),
+  _aclMk("au06","Geese","—","tmobile",3,"18:20","19:20"),
+  _aclMk("au07","The xx","—","tmobile",3,"20:35","22:00"),
   // Miller Lite
   _aclMk("au08","Jess Williamson","—","miller",3,"14:00","14:45","W1"),
   _aclMk("au09","Joshua Jensen","—","miller",3,"14:00","14:45","W2"),
   _aclMk("au10","Claire Rosinkranz","—","miller",3,"15:30","16:30"),
-  _aclMk("au11","Saint Motel","—","miller",3,"17:30","18:30"),
-  _aclMk("au12","Parcels","—","miller",3,"19:30","20:30"),
+  _aclMk("au11","Saint Motel","—","miller",3,"17:20","18:20"),
+  _aclMk("au12","Parcels","—","miller",3,"19:20","20:35"),
   // BMI
-  _aclMk("au13","Rubio","—","bmi",3,"12:45","13:15","W1"),
+  _aclMk("au-vinny-w1","Vinny","—","bmi",3,"12:45","13:15","W1"),
   _aclMk("au14","Marzz","—","bmi",3,"12:45","13:15","W2"),
   _aclMk("au15","Aaron Rowe","—","bmi",3,"14:00","14:45","W1"),
-  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:00","14:45","W2"),
+  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:15","14:45","W2"),
   _aclMk("au17","Fancy Hagood","—","bmi",3,"15:30","16:15","W1"),
   _aclMk("au18","Vwillz","—","bmi",3,"15:30","16:15","W2"),
   _aclMk("au19","Lauren Sanderson","—","bmi",3,"17:30","18:30","W1"),
-  _aclMk("au20","Sasha Keable","—","bmi",3,"18:00","18:30","W2"),
   // Beatbox
-  _aclMk("au21","Britton","—","beatbox",3,"14:00","14:45","W1"),
+  _aclMk("au-jason-scott-w2","Jason Scott & The High Heat","—","bmi",3,"18:00","18:30","W2"),
+  _aclMk("au21","Britton","—","snapchat",3,"15:30","16:30","W1"),
+  _aclMk("au-flight-by-nothing-w1","Flight By Nothing","—","beatbox",3,"14:00","14:45","W1"),
   _aclMk("au22","Kevin Atwater","—","beatbox",3,"14:00","14:45","W2"),
   _aclMk("au23","Underscores","—","beatbox",3,"15:30","16:30","W1"),
   _aclMk("au24","Bad Nerves","—","beatbox",3,"15:30","16:30","W2"),
@@ -2525,7 +2557,7 @@ const ACL_ARTISTS = [
   // Tito's
   _aclMk("au27","The Moriah Sisters","—","titos",3,"12:45","13:30","W1"),
   _aclMk("au28","Huston-Tillotson University Jazz Collective","—","titos",3,"12:45","13:30","W2"),
-  _aclMk("au29","Paloma Morphy","—","titos",3,"14:00","14:45"),
+  _aclMk("au-girlsweetvoiced","girlsweetvoiced","—","titos",3,"14:00","14:45"),
   _aclMk("au30","Calder Allen","—","titos",3,"15:15","16:00"),
   _aclMk("au31","Rio Kosta","—","titos",3,"16:30","17:30"),
   _aclMk("au32","Fcukers","—","titos",3,"18:30","19:30"),
@@ -2544,6 +2576,104 @@ const ACL_ARTISTS = [
   _aclMk("au43","Max McNown","—","amex",3,"16:30","17:30"),
   _aclMk("au44","Sofi Tukker","Electronic","amex",3,"18:30","19:30"),
   _aclMk("au45","Twenty One Pilots","—","amex",3,"20:30","22:00"),
+];
+
+const ACL_REMOVED_FROM_LINEUP = [
+  {
+    "id": "as25",
+    "name": "Fakemink",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as25",
+      "name": "Fakemink",
+      "genre": "—",
+      "stage": "beatbox",
+      "day": "2",
+      "start": "19:30",
+      "end": "20:30",
+      "weekend": null
+    }
+  },
+  {
+    "id": "as29",
+    "name": "Nat Myers",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as29",
+      "name": "Nat Myers",
+      "genre": "—",
+      "stage": "titos",
+      "day": "2",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au13",
+    "name": "Rubio",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au13",
+      "name": "Rubio",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "12:45",
+      "end": "13:15",
+      "weekend": "W1"
+    }
+  },
+  {
+    "id": "au20",
+    "name": "Sasha Keable",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au20",
+      "name": "Sasha Keable",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "18:00",
+      "end": "18:30",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au29",
+    "name": "Paloma Morphy",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au29",
+      "name": "Paloma Morphy",
+      "genre": "—",
+      "stage": "titos",
+      "day": "3",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": null
+    }
+  }
 ];
 
 // Amenities measured on acl-park-2026.webp like the stages: each pin sits on
@@ -3426,7 +3556,7 @@ const WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
 
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
-  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
+  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, removedFromLineup: ACL_REMOVED_FROM_LINEUP, config: _regConfig("acl-2026") },
   "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
   "edc-orlando-2026":     { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };

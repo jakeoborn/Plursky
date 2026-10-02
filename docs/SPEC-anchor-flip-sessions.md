@@ -150,10 +150,14 @@ described the tree before PR #73 (v264, 2026-09-06) and is no longer true:
   from the official 2025 map onto Orange County orthos. They stay
   `src: "poster"`: a read off map art, so every distance readout stays
   withheld. (`EDCO_STAGES` x/y was derived from them until 2026-09-30; it is
-  now measured on the 2025 plate.) Only the first three still ship. They are
-  the whole affine basis, so the fit is exact at all three by construction
-  and nothing in the data checks it; the two removed anchors sat 98 m and
-  48 m from where it draws them. Treat the blue dot as approximate.
+  now measured on the 2025 plate.) Superseded on 2026-09-30: three anchors
+  ship (kinetic, circuit, neon), re-fitted on the 2025 plate itself from four
+  street intersections matched to OpenStreetMap
+  (`map-sources/edco-map-2025-control-points.json`, residuals 7-12 m). The
+  four corners are checked in plate pixels and on screen
+  (`scripts/test-edco-corners.mjs`). The #73 values put those corners
+  120-434 plate px off on this plate. Also found: OSM has Tampa Avenue at
+  -81.40549, not the -81.40353 the centroid comment gives.
 - No `venue.footprint`, by design. No OSM polygon matches the fence.
 
 What the flip session owns, once the official 2026 map publishes:
