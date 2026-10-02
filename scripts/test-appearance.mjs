@@ -677,8 +677,27 @@ try {
   // home-wide leak check failed 3 runs in 4). Re-settle twice: every fitted
   // name keeps its size and its real size, and the board's name is fitted at
   // all, or the fixture stopped reaching the case.
+  // The case is MADE, not found: whether the name overflows at 14px depends on
+  // the face (Verdana here; CI's runner has none and its fallback fitted the
+  // name at 14px, so a Verdana-only fixture reached nothing there). The board's
+  // name gets the letter-spacing that puts its longest word at 112% of its box
+  // at the real size, in whatever face loaded, so it fits at 12px everywhere.
   for (const pick of ['dark', 'light']) {
-    const { ctx, page } = await open({ pick, query: 'tab=home', font: 'Verdana', ready: '[data-duo-stages]' });
+    const { ctx, page } = await open({ pick, query: 'tab=home', ready: '[data-duo-stages]' });
+    const made = await page.evaluate(() => {
+      const el = [...document.querySelectorAll('[data-duo-stages] [data-fit-words], [data-duo-stages] .duo-name')].find(n => n.textContent.trim() === 'Interplanetary Criminal');
+      if (!el) return null;
+      const cs = getComputedStyle(el), real = parseFloat(el.dataset.fitBase || cs.fontSize);
+      const g = document.createElement('canvas').getContext('2d');
+      g.font = `${cs.fontStyle} ${cs.fontWeight} ${real}px ${cs.fontFamily}`;
+      const word = 'Interplanetary', w = g.measureText(word).width;
+      const em = Math.max(0, (1.12 * el.clientWidth - w) / (word.length * real));
+      el.style.setProperty('letter-spacing', `${em}em`, 'important');
+      return { real, w: Math.round(w), room: el.clientWidth, em: +em.toFixed(3) };
+    });
+    check(!!made, `fit settle (${pick}): "Interplanetary Criminal" is not on Home's stage board, so the fixture cannot be made`);
+    await page.evaluate(() => document.fonts.dispatchEvent(new Event('loadingdone')));
+    await page.clock.runFor(300); await page.waitForTimeout(100);
     const read = () => page.evaluate(() => [...document.querySelectorAll('[data-fit-set]')].map(n => `${n.textContent.trim().slice(0, 40)}: ${getComputedStyle(n).fontSize} of ${n.dataset.fitBase}px`));
     const before = await read(), moved = [];
     for (let i = 0; i < 2; i++) {
@@ -689,7 +708,7 @@ try {
       check(after.length === before.length, `fit settle (${pick}): ${before.length} fitted names became ${after.length} on re-settle ${i + 1}`);
     }
     const card = before.find(x => x.startsWith('Interplanetary Criminal'));
-    check(!!card && !card.includes(': 14px'), `fit settle (${pick}): "Interplanetary Criminal" on the stage board is not fitted below its real size (${card || 'absent'}): the fixture no longer reaches the case`);
+    check(!!card && !card.includes(': 14px'), `fit settle (${pick}): "Interplanetary Criminal" on the stage board is not fitted below its real size (${card || 'absent'}, made ${JSON.stringify(made)}): the fixture no longer reaches the case`);
     check(!card || card.endsWith(' of 14px'), `fit settle (${pick}): the stage board name's real size is read as ${card}, not 14px`);
     check(!moved.length, `fit settle (${pick}): ${moved.length} fitted name(s) changed size on a re-settle: ${moved.slice(0, 3).join(' · ')}`);
     await ctx.close();
