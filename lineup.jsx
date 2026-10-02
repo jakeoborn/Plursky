@@ -1541,7 +1541,11 @@ function ScheduleReviewSheet({ saved, onClose }) {
 }
 
 // Treat times before 08:00 as "next day" so 23:00 < 01:30 etc. compares correctly.
+// An act with a day but no published set time has start null: NaN, never a
+// throw, so it compares false everywhere (never live, never next). Home's
+// stage board threw here on a live night and took the whole screen down.
 function toNightMin(hhmm) {
+  if (typeof hhmm !== "string") return NaN;
   const [h, m] = hhmm.split(":").map(Number);
   return (h < 8 ? h + 24 : h) * 60 + m;
 }

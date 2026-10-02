@@ -2558,12 +2558,20 @@ function _fitSize(el, px) {
   el.dataset.fitSet = String(px);
 }
 function fitWords(el) {
+  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  var done = () => {
+    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+  };
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
   var base = parseFloat(el.dataset.fitBase);
   var key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
-  if (el.dataset.fitKey === key) return;
+  if (el.dataset.fitKey === key) {
+    done();
+    return;
+  }
   var words = [];
   var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   while (tw.nextNode()) {
@@ -2584,11 +2592,6 @@ function fitWords(el) {
     });
   };
   var set = px => _fitSize(el, px);
-  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
-  var done = () => {
-    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
-  };
   var size = cur;
   if (size < base) {
     size = base;
