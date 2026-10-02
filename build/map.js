@@ -3022,22 +3022,15 @@ function MapScreen({
       top: 68,
       left: 10,
       zIndex: 4,
-      padding: "5px 9px",
-      borderRadius: 999,
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      backdropFilter: "blur(10px)",
-      WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
       pointerEvents: "none"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-code",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.05,
-      fontWeight: 800
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)"
     }
   }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
@@ -3076,10 +3069,11 @@ function MapScreen({
     "aria-pressed": gpsActive,
     style: {
       minWidth: 46,
+      minHeight: 44,
       padding: "6px 8px",
-      borderRadius: 14,
-      background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
+      borderRadius: "var(--rad-sm)",
+      background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
+      color: gpsActive ? "var(--on-acc)" : "var(--ink)",
       border: gpsActive ? "none" : "1px solid var(--line-2)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3111,12 +3105,9 @@ function MapScreen({
     fill: "currentColor",
     stroke: "none"
   })), React.createElement("span", {
-    className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 0.8,
-      fontWeight: 800,
-      lineHeight: 1
+      font: "500 10px/1 var(--f-data)",
+      letterSpacing: "-0.01em"
     }
   }, gpsLabel)), React.createElement("div", {
     style: {
@@ -3124,7 +3115,7 @@ function MapScreen({
       flexDirection: "column",
       background: "rgba(var(--glass),0.92)",
       border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       overflow: "hidden",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
@@ -3138,8 +3129,8 @@ function MapScreen({
       width: 46,
       height: 36,
       padding: 0,
-      background: menuOpen ? "var(--ink)" : "transparent",
-      color: menuOpen ? "var(--paper)" : "var(--ink)",
+      background: menuOpen ? "var(--acc)" : "transparent",
+      color: menuOpen ? "var(--on-acc)" : "var(--ink)",
       border: "none",
       borderBottom: "1px solid var(--line)",
       cursor: "pointer",
@@ -3179,9 +3170,9 @@ function MapScreen({
       alignItems: "center",
       justifyContent: "center",
       color: "var(--ink)",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 18,
-      fontWeight: 600,
+      fontFamily: "var(--f-ui)",
+      fontSize: 20,
+      fontWeight: 500,
       lineHeight: 1
     }
   }, "+"), React.createElement("button", {
@@ -3200,9 +3191,9 @@ function MapScreen({
       alignItems: "center",
       justifyContent: "center",
       color: "var(--ink)",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 20,
-      fontWeight: 600,
+      fontFamily: "var(--f-ui)",
+      fontSize: 22,
+      fontWeight: 500,
       lineHeight: 1
     }
   }, "−"), (mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && React.createElement("button", {
@@ -3210,18 +3201,16 @@ function MapScreen({
     "aria-label": "Reset zoom",
     style: {
       width: 46,
-      padding: "5px 0",
-      background: "var(--ink)",
-      color: "var(--paper)",
+      minHeight: 32,
+      padding: 0,
+      background: "var(--s3)",
+      color: "var(--acc-ink)",
       border: "none",
       borderTop: "1px solid var(--line)",
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 8,
-      letterSpacing: 1.1,
-      fontWeight: 700
+      font: "650 12px/1 var(--f-ui)"
     }
-  }, "RESET"))), menuOpen && React.createElement(React.Fragment, null, React.createElement("div", {
+  }, "Reset"))), menuOpen && React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: () => setMenuOpen(false),
     style: {
       position: "fixed",
@@ -3229,21 +3218,23 @@ function MapScreen({
       zIndex: 5
     }
   }), React.createElement("div", {
+    role: "group",
+    "aria-label": "Map layers",
     style: {
       position: "absolute",
       top: 90,
       right: 10,
       zIndex: 6,
-      background: "var(--paper)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 12,
-      padding: 5,
-      minWidth: 220,
-      boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.20)"
+      background: "var(--s1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
+      padding: 6,
+      minWidth: 232,
+      boxShadow: "var(--e2)"
     }
   }, [{
     id: "notify",
-    label: "🔔  Reminders",
+    label: "Reminders",
     active: notifyEnabled,
     onToggle: async () => {
       if (typeof Notification === "undefined") return;
@@ -3270,7 +3261,7 @@ function MapScreen({
     }
   }, {
     id: "compass",
-    label: "⌖  Compass mode",
+    label: "Compass mode",
     active: compass && compassStatus === "live",
     onToggle: () => {
       if (compass) {
@@ -3280,12 +3271,12 @@ function MapScreen({
     }
   }, {
     id: "crowd",
-    label: "🔥  Crowd heatmap",
+    label: "Crowd heatmap",
     active: showHeat,
     onToggle: () => setShowHeat(s => !s)
   }, {
     id: "amenity",
-    label: "🚻  Amenity key",
+    label: "Amenity key",
     active: amenityKey,
     onToggle: () => {
       setAmenityKey(v => !v);
@@ -3293,12 +3284,12 @@ function MapScreen({
     }
   }, {
     id: "labels",
-    label: "🏷  Landmark labels",
+    label: "Landmark labels",
     active: showLabels,
     onToggle: () => setShowLabels(s => !s)
   }, ...(REAL_MAP_ONLY ? [] : [{
     id: "realmap",
-    label: "🗺  Real map (BETA)",
+    label: "Real map (beta)",
     active: useRealMap,
     onToggle: () => {
       var v = !useRealMap;
@@ -3311,27 +3302,40 @@ function MapScreen({
   }])].map(item => React.createElement("div", {
     key: item.id,
     role: "button",
+    "aria-pressed": !!item.active,
+    tabIndex: 0,
     onClick: item.onToggle,
+    onKeyDown: e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        item.onToggle();
+      }
+    },
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: "8px 10px",
-      borderRadius: 8,
+      gap: 12,
+      minHeight: 44,
+      padding: "0 10px",
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer"
     }
   }, React.createElement("span", {
+    className: "duo-body-s",
     style: {
-      fontSize: 13,
+      fontSize: 15,
       color: "var(--ink)",
       fontWeight: 500
     }
   }, item.label), React.createElement("span", {
+    "aria-hidden": "true",
     style: {
-      width: 30,
-      height: 18,
-      borderRadius: 18,
-      background: item.active ? "var(--ember)" : "var(--line-2)",
+      width: 40,
+      height: 24,
+      borderRadius: 24,
+      background: item.active ? "var(--acc)" : "var(--s3)",
+      boxShadow: item.active ? "none" : "inset 0 0 0 1.5px var(--line-2)",
       position: "relative",
       flexShrink: 0,
       transition: "background 0.15s"
@@ -3339,12 +3343,12 @@ function MapScreen({
   }, React.createElement("span", {
     style: {
       position: "absolute",
-      top: 2,
-      left: item.active ? 14 : 2,
-      width: 14,
-      height: 14,
-      borderRadius: 14,
-      background: "var(--ink)",
+      top: 3,
+      left: item.active ? 19 : 3,
+      width: 18,
+      height: 18,
+      borderRadius: 18,
+      background: item.active ? "var(--on-acc)" : "var(--ink-2)",
       transition: "left 0.18s"
     }
   })))), React.createElement("button", {
@@ -3357,30 +3361,30 @@ function MapScreen({
       alignItems: "center",
       justifyContent: "space-between",
       width: "100%",
-      padding: "8px 10px",
-      borderRadius: 8,
+      minHeight: 44,
+      padding: "0 10px",
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
       background: "transparent",
       border: "none",
       borderTop: "1px solid var(--line)",
-      marginTop: 3,
+      marginTop: 4,
       textAlign: "left"
     }
   }, React.createElement("span", {
+    className: "duo-body-s",
     style: {
-      fontSize: 13,
+      fontSize: 15,
       color: "var(--ink)",
       fontWeight: 500
     }
-  }, "⬇  Offline map"), React.createElement("span", {
-    className: "mono",
+  }, "Offline map"), React.createElement("span", {
+    className: "duo-body-s",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--ember-ink)"
+      fontWeight: 650,
+      color: "var(--acc-ink)"
     }
-  }, _packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
+  }, _packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
     onClose: () => setPacksOpen(false)
   }), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
     style: {
@@ -3398,30 +3402,29 @@ function MapScreen({
     },
     title: "Location permission is denied — enable it for this site to place yourself on the map"
   }, React.createElement("span", {
-    className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      font: "600 11px/1.3 var(--f-ui)",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis",
       display: "block"
     }
-  }, "GPS DENIED · ENABLE LOCATION")), amenityKey && !meetMode && React.createElement("div", {
+  }, "GPS denied · enable location")), amenityKey && !meetMode && React.createElement("div", {
+    role: "group",
+    "aria-label": "Amenity key",
     style: {
       position: "absolute",
       left: 10,
       top: 90,
       zIndex: 6,
       background: "rgba(var(--glass),0.94)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 12,
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: 4,
-      minWidth: 124,
+      minWidth: 140,
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
-      boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.22)"
+      boxShadow: "var(--e2)"
     }
   }, AMENITY_KEY.map(a => {
     var on = amenityFilter === a.type;
@@ -3443,13 +3446,13 @@ function MapScreen({
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 7,
-        padding: "5px 7px",
-        borderRadius: 8,
+        gap: 9,
+        minHeight: 44,
+        padding: "0 10px",
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         background: on ? "var(--ink)" : "transparent",
-        opacity: amenityFilter && !on ? 0.42 : 1,
-        transition: "background 0.12s, opacity 0.12s"
+        transition: "background 0.12s"
       }
     }, React.createElement("span", {
       style: {
@@ -3463,18 +3466,18 @@ function MapScreen({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "Geist Mono, monospace",
+        fontFamily: "var(--f-ui)",
         fontSize: 8,
-        fontWeight: 900,
+        fontWeight: 800,
         color: a.ink,
         lineHeight: 1
       }
     }, a.letter), React.createElement("span", {
+      className: "duo-body-s",
       style: {
-        fontSize: 11,
-        fontWeight: 600,
+        fontSize: 14,
         flex: 1,
-        color: on ? "var(--paper)" : "var(--ink)"
+        color: on ? "var(--bg)" : amenityFilter ? "var(--ink-2)" : "var(--ink)"
       }
     }, a.label));
   })), isSharing && React.createElement("button", {
@@ -3539,7 +3542,7 @@ function MapScreen({
     var hasPlaceCard = !!(stage || meetMode && meetTarget);
     var sheetMode = hasPlaceCard ? "place-card" : search.trim().length > 0 ? "full" : searchSheetExpanded ? "half" : "collapsed";
     var isShort = typeof window !== "undefined" && window.innerHeight < 700;
-    var sheetMaxH = sheetMode === "full" ? isShort ? "44vh" : "48vh" : sheetMode === "half" ? isShort ? 260 : 320 : 82;
+    var sheetMaxH = sheetMode === "full" ? isShort ? "44vh" : "48vh" : sheetMode === "half" ? isShort ? 260 : 320 : 116;
     if (sheetMode === "place-card") return null;
     return React.createElement("div", {
       style: {
@@ -3548,10 +3551,12 @@ function MapScreen({
         right: 8,
         bottom: 10,
         zIndex: 5,
-        background: "var(--paper)",
-        border: "1px solid var(--line-2)",
-        borderRadius: 16,
-        boxShadow: "0 -6px 24px rgba(var(--shade-rgb),0.18)",
+        background: "rgba(var(--glass),0.94)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        border: "1px solid var(--line)",
+        borderRadius: "var(--rad-md)",
+        boxShadow: "var(--e2)",
         maxHeight: sheetMaxH,
         overflow: "hidden",
         display: "flex",
@@ -3585,17 +3590,18 @@ function MapScreen({
         display: "flex",
         alignItems: "center",
         gap: 7,
-        background: "var(--paper-2)",
-        borderRadius: 999,
-        padding: "7px 11px",
-        border: "1px solid var(--line)"
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        borderRadius: "var(--rad-sm)",
+        padding: "0 12px",
+        minHeight: 44
       }
     }, React.createElement("svg", {
-      width: "14",
-      height: "14",
+      width: "16",
+      height: "16",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "var(--muted)",
+      stroke: "var(--ink-3)",
       strokeWidth: "2",
       style: {
         flexShrink: 0
@@ -3619,8 +3625,7 @@ function MapScreen({
         border: "none",
         outline: "none",
         color: "var(--ink)",
-        fontFamily: "Geist, sans-serif",
-        fontSize: 13
+        font: "400 16px/1.2 var(--f-ui)"
       }
     }), search && React.createElement("button", {
       onClick: () => {
@@ -3646,7 +3651,7 @@ function MapScreen({
       }
     }, "×"))), sheetMode === "collapsed" && React.createElement("div", {
       style: {
-        padding: "0 10px 8px",
+        padding: "0 10px 4px",
         display: "flex",
         alignItems: "center",
         gap: 5,
@@ -3660,21 +3665,31 @@ function MapScreen({
           setMeetMode(true);
         }
       },
-      style: {
-        background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: meetMode ? "var(--on-ember)" : "var(--paper)",
-        border: "none",
-        borderRadius: 999,
-        padding: "4px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer",
-        whiteSpace: "nowrap",
-        flexShrink: 0
-      }
-    }, meetMode ? "× CANCEL" : "MEET UP"), React.createElement("div", {
+      className: "duo-chip",
+      "aria-pressed": meetMode
+    }, React.createElement("span", null, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "15",
+      height: "15",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.8",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, meetMode ? React.createElement("path", {
+      d: "M6 6 L18 18 M18 6 L6 18"
+    }) : React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "9",
+      cy: "8",
+      r: "3.2"
+    }), React.createElement("circle", {
+      cx: "16.5",
+      cy: "9.5",
+      r: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"
+    }))), meetMode ? "Cancel" : "Meet up")), React.createElement("div", {
       className: "no-scrollbar",
       style: {
         display: "flex",
@@ -3781,15 +3796,12 @@ function MapScreen({
         background: "var(--paper-2)",
         borderRadius: 10
       }
-    }, stageMatches.length > 0 && React.createElement("div", {
-      className: "mono",
+    }, stageMatches.length > 0 && React.createElement("h3", {
+      className: "duo-sect",
       style: {
-        padding: "8px 12px 4px",
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)"
+        padding: "10px 12px 4px"
       }
-    }, "STAGES"), stageMatches.map(s => React.createElement("button", {
+    }, "Stages"), stageMatches.map(s => React.createElement("button", {
       key: `stage-${s.id}`,
       onClick: () => {
         setSelectedStage(s.id);
@@ -3800,47 +3812,44 @@ function MapScreen({
         width: "100%",
         display: "flex",
         alignItems: "center",
-        gap: 8,
-        padding: "10px 12px",
+        gap: 10,
+        padding: "0 12px",
+        minHeight: 48,
         background: "transparent",
         border: "none",
         color: "var(--ink)",
         textAlign: "left",
         cursor: "pointer",
-        borderRadius: 10
+        borderRadius: "var(--rad-sm)"
       }
     }, React.createElement("span", {
       style: {
-        width: 8,
-        height: 8,
-        borderRadius: 8,
+        width: 10,
+        height: 10,
+        borderRadius: 10,
         background: s.color,
-        boxShadow: `0 0 6px ${s.color}`
+        flexShrink: 0
       }
     }), React.createElement("span", {
+      className: "duo-headline",
       style: {
-        fontFamily: "Geist, sans-serif",
-        fontSize: 13,
+        fontSize: 15,
         flex: 1
       }
     }, s.name), savedStages.has(s.id) && React.createElement("span", {
       "aria-label": "Saved",
       style: {
-        color: "var(--ember-ink)",
-        fontSize: 12
+        color: "var(--acc-ink)",
+        fontSize: 13
       }
-    }, "♥"))), artistMatches.length > 0 && React.createElement("div", {
-      className: "mono",
+    }, "♥"))), artistMatches.length > 0 && React.createElement("h3", {
+      className: "duo-sect",
       style: {
-        padding: "8px 12px 4px",
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)"
+        padding: "10px 12px 4px"
       }
-    }, "ARTISTS"), artistMatches.map(a => {
+    }, "Artists"), artistMatches.map(a => {
       var st = STAGES.find(s => s.id === a.stage);
       var isSaved = state.saved.includes(a.id);
-      var when = a.start ? `${a.start}${a.day ? ` · D${a.day}` : ""}` : "";
       return React.createElement("button", {
         key: `artist-${a.id}`,
         onClick: () => {
@@ -3852,23 +3861,20 @@ function MapScreen({
           width: "100%",
           display: "flex",
           alignItems: "center",
-          gap: 8,
-          padding: "10px 12px",
-          background: "transparent",
+          gap: 12,
+          padding: "6px 12px",
+          minHeight: 56,
+          background: isSaved ? "var(--acc-08)" : "transparent",
           border: "none",
           color: "var(--ink)",
           textAlign: "left",
           cursor: "pointer",
-          borderRadius: 10
+          borderRadius: "var(--rad-sm)"
         }
-      }, React.createElement("span", {
-        style: {
-          width: 8,
-          height: 8,
-          borderRadius: 8,
-          background: st?.color || "var(--muted)",
-          flexShrink: 0
-        }
+      }, React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 38,
+        ring: isSaved ? "on" : ""
       }), React.createElement("span", {
         style: {
           display: "flex",
@@ -3878,49 +3884,32 @@ function MapScreen({
           gap: 1
         }
       }, React.createElement("span", {
+        className: "duo-headline duo-name",
         style: {
-          fontFamily: "Geist, sans-serif",
-          fontSize: 13,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          fontSize: 15,
+          fontWeight: 700
         }
-      }, isSaved && React.createElement("span", {
+      }, actDisplayName(a.name)), React.createElement("span", {
+        className: "duo-body-s duo-ink2",
         style: {
-          color: "var(--ember-ink)",
-          marginRight: 4
+          fontWeight: 400
         }
-      }, "★"), a.name), when && React.createElement("span", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 0.5,
-          color: "var(--muted)"
-        }
-      }, when)), React.createElement("span", {
-        className: "mono",
-        style: {
-          fontSize: 9,
-          letterSpacing: 1,
-          color: "var(--muted)",
-          flexShrink: 0
-        }
-      }, "→ ", st?.short || st?.name || ""));
+      }, [st?.name, a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · "))));
     }), stageMatches.length === 0 && artistMatches.length === 0 && React.createElement("div", {
       style: {
         padding: "18px 14px",
         textAlign: "center"
       }
     }, React.createElement("div", {
+      className: "duo-headline",
       style: {
-        fontSize: 13,
-        color: "var(--ink)",
+        fontSize: 15,
         marginBottom: 4
       }
-    }, "No matches for \"", search, "\""), React.createElement("div", {
+    }, "No matches for “", search, "”"), React.createElement("div", {
+      className: "duo-body-s duo-ink2",
       style: {
-        fontSize: 11,
-        color: "var(--muted)"
+        fontWeight: 400
       }
     }, "Try an artist name, a stage, or a genre.")))), !search && sheetMode === "half" && React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
@@ -4093,21 +4082,31 @@ function MapScreen({
           setMeetMode(true);
         }
       },
-      style: {
-        background: meetMode ? "var(--ember)" : "var(--ink)",
-        color: meetMode ? "var(--on-ember)" : "var(--paper)",
-        border: "none",
-        borderRadius: 999,
-        padding: "6px 11px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.3,
-        fontWeight: 700,
-        cursor: "pointer",
-        whiteSpace: "nowrap",
-        flexShrink: 0
-      }
-    }, meetMode ? "× CANCEL" : "MEET UP"), React.createElement("button", {
+      className: "duo-chip",
+      "aria-pressed": meetMode
+    }, React.createElement("span", null, React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "15",
+      height: "15",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.8",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, meetMode ? React.createElement("path", {
+      d: "M6 6 L18 18 M18 6 L6 18"
+    }) : React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "9",
+      cy: "8",
+      r: "3.2"
+    }), React.createElement("circle", {
+      cx: "16.5",
+      cy: "9.5",
+      r: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"
+    }))), meetMode ? "Cancel" : "Meet up")), React.createElement("button", {
       onClick: () => setMoreOpen(o => !o),
       "aria-label": "More options",
       "aria-pressed": moreOpen,
@@ -7148,7 +7147,7 @@ function RealMap({
     }
   }), packMode ? React.createElement("div", {
     role: "status",
-    className: "mono",
+    className: "duo-code",
     style: {
       position: "absolute",
       top: 108,
@@ -7156,12 +7155,8 @@ function RealMap({
       zIndex: 4,
       background: "rgba(var(--shade-rgb),0.78)",
       color: "var(--ink)",
-      border: "1px solid rgba(var(--ink-rgb),0.18)",
-      borderRadius: 999,
-      padding: "6px 11px",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      fontWeight: 700,
+      borderColor: "rgba(var(--ink-rgb),0.18)",
+      padding: "8px 10px 7px",
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)"
     }
@@ -8306,6 +8301,7 @@ function TopDownMap({
     dur: "2.2s",
     repeatCount: "indefinite"
   })), React.createElement("circle", {
+    "data-avatar-dot": true,
     cx: avatar.x,
     cy: avatar.y,
     r: "1.8",
@@ -8318,20 +8314,26 @@ function TopDownMap({
     r: "0.7",
     fill: "var(--ink)"
   })))), React.createElement("div", {
+    "data-map-html-overlay": true,
     style: {
       position: "absolute",
-      top: "50%",
       left: 0,
       width: "100%",
-      aspectRatio: "1 / 1",
-      transform: "translateY(-50%)",
-      pointerEvents: "none"
+      pointerEvents: "none",
+      ...(VB_H > 100 ? {
+        top: 0,
+        height: "100%"
+      } : {
+        top: "50%",
+        aspectRatio: "1 / 1",
+        transform: "translateY(-50%)"
+      })
     }
   }, (FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && React.createElement(React.Fragment, null, FESTIVAL_CONFIG.placeLabel && React.createElement("div", {
     style: {
       position: "absolute",
       left: "50%",
-      top: "43%",
+      top: `${mapY(43)}%`,
       transform: "translate(-50%, -130%)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 8,
@@ -8552,6 +8554,7 @@ function TopDownMap({
       }
     }, "· ", seen.label)));
   }), React.createElement("div", {
+    "data-avatar-label": true,
     style: {
       position: "absolute",
       left: `${avatar.x}%`,
@@ -9002,34 +9005,37 @@ function StageNavBar({
   }, [onStop]);
   return React.createElement("div", {
     style: {
-      background: "var(--paper)",
+      background: "var(--s1)",
       color: "var(--ink)",
-      padding: "12px 14px calc(12px + env(safe-area-inset-bottom, 0px))",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
+      padding: "12px 12px calc(12px + env(safe-area-inset-bottom, 0px)) 16px",
+      borderTopLeftRadius: "var(--rad-lg)",
+      borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
       display: "flex",
       alignItems: "center",
-      gap: 11,
+      gap: 10,
+      flexWrap: "wrap",
       animation: "sheetUp 0.25s var(--ease-smooth)"
     }
   }, React.createElement("div", {
+    className: "duo-well",
     style: {
       width: 40,
       height: 40,
-      borderRadius: 40,
-      background: stage.color,
+      borderRadius: "50%",
       flexShrink: 0,
+      color: "var(--acc-ink)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
   }, React.createElement("svg", {
+    "aria-hidden": "true",
     width: "18",
     height: "18",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: _inkOn(stage.color),
+    stroke: "currentColor",
     strokeWidth: "2.4",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -9037,68 +9043,38 @@ function StageNavBar({
     d: "M3 11l19-9-9 19-2-8-8-2z"
   }))), React.createElement("div", {
     style: {
-      flex: 1,
+      flex: "1 1 120px",
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3"
+  }, "Routing to"), React.createElement("div", {
+    className: "duo-headline duo-name",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      color: "var(--muted)"
-    }
-  }, "ROUTING TO"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 19,
-      lineHeight: 1.05,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
+      marginTop: 2
     }
   }, stage.name), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      fontWeight: 600,
       marginTop: 1
     }
-  }, eta ? `~${eta} MIN \u00b7 ` : "", "FOLLOW THE ROUTE")), React.createElement("button", {
+  }, eta ? `~${eta} min \u00b7 ` : "", "follow the route")), React.createElement("button", {
     onClick: onDetails,
     "aria-label": "Show stage details",
-    className: "mono",
-    style: {
-      flexShrink: 0,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      color: "var(--ink)",
-      borderRadius: 999,
-      padding: "9px 13px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "DETAILS"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Details")), React.createElement("button", {
     onClick: onStop,
     "aria-label": "Stop routing",
-    className: "mono",
+    className: "duo-btn",
     style: {
       flexShrink: 0,
-      background: "var(--ink)",
-      border: "none",
-      color: "var(--paper)",
-      borderRadius: 999,
-      padding: "9px 13px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 800
+      background: "var(--s3)",
+      color: "var(--ink)",
+      minHeight: 44,
+      padding: "0 14px",
+      fontSize: 14
     }
-  }, "✕ STOP"));
+  }, "Stop"));
 }
 function BottomSheet({
   stage,
@@ -9135,12 +9111,12 @@ function BottomSheet({
     var routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
     return React.createElement("div", {
       style: {
-        background: "var(--paper)",
+        background: "var(--s1)",
         color: "var(--ink)",
         padding: "14px 16px 12px",
-        borderTopLeftRadius: 22,
-        borderTopRightRadius: 22,
-        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)"
+        borderTopLeftRadius: "var(--rad-lg)",
+        borderTopRightRadius: "var(--rad-lg)",
+        boxShadow: "var(--e2)"
       }
     }, React.createElement("div", {
       style: {
@@ -9151,11 +9127,11 @@ function BottomSheet({
       }
     }, React.createElement("div", {
       style: {
-        width: 38,
-        height: 38,
-        borderRadius: 38,
-        background: "var(--ember)",
-        color: "var(--on-ember)",
+        width: 40,
+        height: 40,
+        borderRadius: 40,
+        background: "var(--acc)",
+        color: "var(--on-acc)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -9181,73 +9157,43 @@ function BottomSheet({
         minWidth: 0
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label duo-acc"
+    }, "Meeting"), React.createElement("div", {
+      className: "duo-headline",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--ember-ink)",
-        fontWeight: 700
-      }
-    }, "MEETING"), React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 20,
-        lineHeight: 1.05
+        marginTop: 2
       }
     }, title), React.createElement("div", {
-      className: "mono",
+      className: "duo-data-s duo-ink2",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
         marginTop: 2
       }
     }, eta == null ? "" : `ETA ~${eta} MIN \u00b7 `, routingLabel)), React.createElement("button", {
       onClick: onCancelMeet,
-      style: {
-        background: "transparent",
-        border: "1px solid var(--line-2)",
-        color: "var(--muted)",
-        borderRadius: 999,
-        padding: "7px 10px",
-        cursor: "pointer",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 600
-      }
-    }, "END")), React.createElement("div", {
+      className: "duo-chip"
+    }, React.createElement("span", null, "End"))), React.createElement("div", {
       style: {
         display: "flex",
         flexWrap: "wrap",
         gap: 8
       }
     }, React.createElement("div", {
+      className: "duo-card",
       style: {
         flex: "1 0 calc(50% - 4px)",
-        background: "var(--paper-2)",
-        borderRadius: 10,
-        padding: "7px 10px"
+        padding: "10px 12px"
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label duo-ink3"
+    }, "Your ETA"), React.createElement("div", {
+      className: "duo-clock",
       style: {
-        fontSize: 8,
-        letterSpacing: 1.3,
-        color: "var(--muted)"
-      }
-    }, "YOUR ETA"), React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        marginTop: 2
+        fontSize: 22,
+        marginTop: 4
       }
     }, youMins == null ? React.createElement("span", {
-      style: {
-        fontSize: 11,
-        color: "var(--muted)"
-      }
-    }, "UNSURVEYED") : React.createElement(React.Fragment, null, youMins, " ", React.createElement("span", {
+      className: "duo-data-s duo-ink2"
+    }, "Unsurveyed") : React.createElement(React.Fragment, null, youMins, " ", React.createElement("span", {
       style: {
         fontSize: 11
       }
@@ -9256,24 +9202,18 @@ function BottomSheet({
       mins
     }) => React.createElement("div", {
       key: f.id,
+      className: "duo-card",
       style: {
         flex: "1 0 calc(50% - 4px)",
-        background: "var(--paper-2)",
-        borderRadius: 10,
-        padding: "7px 10px"
+        padding: "10px 12px"
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label duo-ink3"
+    }, f.name, " ETA"), React.createElement("div", {
+      className: "duo-clock",
       style: {
-        fontSize: 8,
-        letterSpacing: 1.3,
-        color: f.color
-      }
-    }, f.name.toUpperCase(), " ETA"), React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        marginTop: 2
+        fontSize: 22,
+        marginTop: 4
       }
     }, mins, " ", React.createElement("span", {
       style: {
@@ -9340,34 +9280,27 @@ function YourStagePhotosStrip({
   var preview = mine.slice(0, 6);
   var more = mine.length - preview.length;
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       marginBottom: 10,
-      padding: "10px 12px",
-      background: `${accent}14`,
-      border: `1px solid ${accent}40`,
-      borderRadius: 12
+      padding: "12px 12px 10px 14px"
     }
   }, React.createElement("div", {
     style: {
       display: "flex",
-      alignItems: "baseline",
+      alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 8
+      gap: 8,
+      flexWrap: "wrap",
+      marginBottom: 6
     }
   }, React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3"
+  }, "Your nights at this stage"), React.createElement("div", {
+    className: "duo-body-s",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: accent,
-      fontWeight: 700
-    }
-  }, "◐ YOUR NIGHTS AT THIS STAGE"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 13,
       color: "var(--ink)",
-      marginTop: 2
+      marginTop: 3
     }
   }, mine.length, " ", mine.length === 1 ? "memory" : "memories", " saved")), React.createElement("div", {
     style: {
@@ -9377,50 +9310,16 @@ function YourStagePhotosStrip({
     }
   }, stageObj && mine.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => window._shareStageCollage?.(stageObj, mine),
-    className: "mono",
-    title: "Share a photo collage of your nights at this stage",
-    style: {
-      background: accent,
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 11px",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap"
-    }
-  }, "📸 SHARE"), React.createElement("button", {
+    className: "duo-chip",
+    title: "Share a photo collage of your nights at this stage"
+  }, React.createElement("span", null, "Share")), React.createElement("button", {
     onClick: () => window._shareStageCollage?.(stageObj, mine, "gif"),
-    className: "mono",
-    title: "Share an animated GIF of your nights at this stage",
-    style: {
-      background: "var(--signal)",
-      color: "var(--on-signal)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 11px",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap"
-    }
-  }, "🎬 GIF")), React.createElement("button", {
+    className: "duo-chip",
+    title: "Share an animated GIF of your nights at this stage"
+  }, React.createElement("span", null, "GIF"))), React.createElement("button", {
     onClick: onOpen,
-    className: "mono",
-    style: {
-      background: "transparent",
-      border: "none",
-      color: "var(--muted)",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      padding: 0
-    }
-  }, "VIEW ALL →"))), React.createElement("div", {
+    className: "duo-link"
+  }, "View all →"))), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6,
@@ -9437,20 +9336,17 @@ function YourStagePhotosStrip({
     onClick: () => onOpen(m.night)
   })), more > 0 && React.createElement("button", {
     onClick: onOpen,
-    className: "mono",
+    className: "duo-data",
     "aria-label": `View all ${mine.length} memories`,
     style: {
       width: 76,
       height: 76,
       flexShrink: 0,
-      borderRadius: 10,
-      background: "transparent",
-      border: `1px dashed ${accent}66`,
-      color: accent,
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1,
-      fontWeight: 700
+      borderRadius: "var(--rad-sm)",
+      background: "var(--s3)",
+      border: "none",
+      color: "var(--ink-2)",
+      cursor: "pointer"
     }
   }, "+", more)));
 }
@@ -9486,14 +9382,15 @@ function StageLineupSheet({
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
+  var cellNote = t => t == null ? null : String(t).charAt(0) + String(t).slice(1).toLowerCase();
   return React.createElement("div", {
     style: {
-      background: "var(--paper)",
+      background: "var(--s1)",
       color: "var(--ink)",
       padding: "0 0 10px",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
+      borderTopLeftRadius: "var(--rad-lg)",
+      borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex",
       flexDirection: "column",
@@ -9502,9 +9399,7 @@ function StageLineupSheet({
     }
   }, React.createElement("div", {
     style: {
-      background: stage.color,
-      color: heroInk,
-      padding: "6px 16px 12px",
+      padding: "6px 16px 4px",
       position: "relative"
     }
   }, React.createElement("div", {
@@ -9520,7 +9415,7 @@ function StageLineupSheet({
       width: 36,
       height: 4,
       borderRadius: 4,
-      background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.55)" : "rgba(var(--shade-rgb),0.45)"
+      background: "var(--line-2)"
     }
   })), React.createElement("div", {
     style: {
@@ -9534,194 +9429,161 @@ function StageLineupSheet({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      opacity: 0.85,
-      marginBottom: 3
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      marginBottom: 4
     }
-  }, stage.short, " · STAGE"), React.createElement("div", {
-    className: "serif",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      fontSize: 24,
-      lineHeight: 1,
-      letterSpacing: -0.3
+      width: 10,
+      height: 10,
+      borderRadius: "50%",
+      background: stage.color,
+      flexShrink: 0
     }
+  }), stage.short, " · Stage"), React.createElement("div", {
+    className: "duo-title duo-name"
   }, stage.name)), React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     style: {
-      background: heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.22)" : "rgba(var(--shade-rgb),0.14)",
-      border: `1px solid ${heroInk === "var(--ink)" ? "rgba(var(--ink-rgb),0.35)" : "rgba(var(--shade-rgb),0.25)"}`,
-      color: heroInk,
-      borderRadius: 999,
-      width: 30,
-      height: 30,
+      background: "var(--s3)",
+      border: "none",
+      color: "var(--ink)",
+      borderRadius: "50%",
+      width: 44,
+      height: 44,
       padding: 0,
       cursor: "pointer",
-      fontSize: 16,
-      fontWeight: 700,
+      fontSize: 20,
       flexShrink: 0,
+      marginRight: -6,
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
-      backdropFilter: "blur(6px)"
+      justifyContent: "center"
     }
   }, "×"))), React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 6,
-      padding: "10px 14px 0"
+      gridTemplateColumns: "repeat(auto-fit, minmax(104px, 1fr))",
+      gap: 8,
+      padding: "8px 16px 0"
     }
   }, [walk.known === false ? {
-    label: "WALK",
+    label: "Walk",
     value: "—",
     unit: "",
     note: "UNSURVEYED"
   } : {
-    label: "WALK",
+    label: "Walk",
     value: walkMinsLabel(walk),
     unit: "min",
     note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null
   }, distM == null ? {
-    label: "DISTANCE",
+    label: "Distance",
     value: "—",
     unit: "",
     note: "UNSURVEYED"
   } : {
-    label: "DISTANCE",
+    label: "Distance",
     value: `${distM}`,
     unit: "m",
     note: null
   }, {
-    label: "SETS",
+    label: "Sets",
     value: `${sets.length}`,
     unit: day === NOW.night ? "today" : "set day",
     note: `${totalAcrossDays} · ${DAYS.length} NIGHTS`
   }].map(c => React.createElement("div", {
     key: c.label,
+    className: "duo-card",
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
-      padding: "8px 10px",
+      padding: "10px 12px",
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
-    }
+    className: "duo-label duo-ink3"
   }, c.label), React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 20,
-      lineHeight: 1,
-      marginTop: 3,
+      fontSize: 24,
+      marginTop: 6,
       color: "var(--ink)"
     }
   }, c.value, c.unit ? React.createElement("span", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 10,
       fontWeight: 400,
-      color: "var(--muted)"
+      letterSpacing: 0
     }
   }, " ", c.unit) : null), c.note && React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 0.8,
-      color: "var(--muted)",
-      fontWeight: 700,
-      marginTop: 2,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
+      marginTop: 4
     }
-  }, c.note)))), React.createElement("div", {
+  }, cellNote(c.note))))), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6,
-      padding: "8px 14px 0"
+      gap: 8,
+      padding: "10px 16px 0"
     }
   }, React.createElement("button", {
     onClick: () => onGoHere?.(stage),
-    className: "mono",
+    className: "duo-btn pri",
     style: {
       flex: 2,
-      background: stage.color,
-      color: heroInk,
-      border: "none",
-      borderRadius: 12,
-      padding: "11px 10px",
-      cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.2,
-      fontWeight: 800,
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 6
+      minHeight: 48,
+      fontSize: 15,
+      padding: "0 10px"
     }
   }, React.createElement("svg", {
-    width: "13",
-    height: "13",
+    "aria-hidden": "true",
+    width: "14",
+    height: "14",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: heroInk,
+    stroke: "currentColor",
     strokeWidth: "2.4",
     strokeLinecap: "round",
     strokeLinejoin: "round"
   }, React.createElement("path", {
     d: "M3 11l19-9-9 19-2-8-8-2z"
-  })), "GO HERE"), React.createElement("button", {
+  })), "Go here"), React.createElement("button", {
     onClick: () => setPeek(p => !p),
     "aria-pressed": peek,
-    className: "mono",
+    className: "duo-btn",
     style: {
       flex: 1,
-      background: peek ? stage.color : "var(--paper-2)",
-      color: peek ? _inkOnHex(stage.color) : "var(--ink)",
-      border: peek ? "none" : "1px solid var(--line-2)",
-      borderRadius: 12,
-      padding: "11px 8px",
-      cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      minHeight: 48,
+      fontSize: 15,
+      padding: "0 8px",
+      background: peek ? "var(--acc-14)" : "var(--s3)",
+      color: peek ? "var(--acc-ink)" : "var(--ink)"
     }
-  }, peek ? "◉ PEEK" : "◯ PEEK"), React.createElement("button", {
+  }, "Peek"), React.createElement("button", {
     onClick: () => onToggleSave?.(stage.id),
     "aria-pressed": !!stageSaved,
     "aria-label": stageSaved ? "Saved — remove this stage" : "Save this stage",
-    className: "mono",
+    className: "duo-btn",
     style: {
       flex: 1,
-      background: stageSaved ? "rgba(var(--signal-rgb),0.12)" : "var(--paper-2)",
-      color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
-      border: stageSaved ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line-2)",
-      borderRadius: 12,
-      padding: "11px 8px",
-      cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 5
+      minHeight: 48,
+      fontSize: 15,
+      padding: "0 8px",
+      background: stageSaved ? "var(--acc-14)" : "var(--s3)",
+      color: stageSaved ? "var(--acc-ink)" : "var(--ink)"
     }
-  }, stageSaved ? "♥ SAVED" : "♡ SAVE")), React.createElement("div", {
+  }, stageSaved ? "♥ Saved" : "♡ Save")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6,
-      padding: "8px 14px 2px"
+      gap: 8,
+      padding: "6px 16px 2px",
+      alignItems: "center",
+      flexWrap: "wrap"
     }
   }, React.createElement("button", {
     onClick: () => setState({
@@ -9730,78 +9592,42 @@ function StageLineupSheet({
       lineupDay: day,
       stageFilter: stage.id
     }),
-    className: "mono",
+    className: "duo-chip"
+  }, React.createElement("span", null, "Full lineup")), walk.known !== false && walk.lo > 25 && React.createElement("span", {
+    className: "duo-data-s",
     style: {
-      flex: 1,
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      color: "var(--muted)",
-      borderRadius: 999,
-      padding: "7px 13px",
-      cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap"
+      color: "var(--clash)"
     }
-  }, "☰ FULL LINEUP"), walk.known !== false && walk.lo > 25 && React.createElement("div", {
-    className: "mono",
+  }, "↗ Far · ", walk.lo, " min")), React.createElement("div", {
     style: {
-      flexShrink: 0,
-      background: "rgba(var(--alert-rgb),0.1)",
-      border: "1px solid rgba(var(--alert-rgb),0.35)",
-      color: "var(--alert)",
-      borderRadius: 999,
-      padding: "7px 13px",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap",
-      display: "inline-flex",
-      alignItems: "center"
-    }
-  }, "↗ FAR · ", walk.lo, " MIN")), React.createElement("div", {
-    style: {
-      padding: "6px 14px 0"
+      padding: "6px 16px 0"
     }
   }, stage.vibe && React.createElement("div", {
+    className: "duo-well",
     style: {
       marginBottom: 10,
-      padding: "9px 11px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      borderLeft: `3px solid ${stage.color}`
+      padding: "10px 12px"
     }
   }, React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "baseline",
       justifyContent: "space-between",
-      gap: 8
+      gap: 8,
+      flexWrap: "wrap"
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      fontWeight: 800,
-      color: stage.color,
-      textTransform: "uppercase"
+      color: "var(--ink)"
     }
   }, stage.vibe), stage.peak && React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-ink2"
+  }, "Peaks ", stage.peak)), stage.vibeNote && React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      fontWeight: 600
-    }
-  }, "PEAKS ", stage.peak)), stage.vibeNote && React.createElement("div", {
-    style: {
-      fontSize: 12,
-      lineHeight: 1.35,
-      color: "var(--ink)",
-      marginTop: 4
+      marginTop: 4,
+      fontWeight: 400
     }
   }, stage.vibeNote)), React.createElement(YourStagePhotosStrip, {
     stageId: stage.id,
@@ -9814,9 +9640,10 @@ function StageLineupSheet({
       focusStage: null
     })
   }), React.createElement("div", {
+    className: "duo-seg",
+    role: "radiogroup",
+    "aria-label": "Day",
     style: {
-      display: "flex",
-      gap: 4,
       marginBottom: 10
     }
   }, DAYS.map(d => {
@@ -9824,98 +9651,65 @@ function StageLineupSheet({
     var count = activeLineup().filter(a => a.stage === stage.id && a.day === d.n).length;
     return React.createElement("button", {
       key: d.n,
+      role: "radio",
+      "aria-checked": on,
       onClick: () => {
         setDay(d.n);
         setExpanded(true);
       },
       style: {
-        flex: 1,
-        padding: "7px 6px",
-        borderRadius: 8,
-        background: on ? stage.color : "var(--paper-2)",
-        color: on ? _inkOnHex(stage.color) : "var(--ink)",
-        border: "none",
-        cursor: "pointer",
+        minHeight: 44,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 1
+        justifyContent: "center",
+        gap: 2
       }
-    }, React.createElement("span", {
-      className: "mono",
+    }, React.createElement("span", null, d.label), React.createElement("span", {
+      className: "duo-data-s",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        opacity: on ? 1 : 0.55,
-        fontWeight: 600
+        color: on ? "var(--ink-2)" : "var(--ink-3)"
       }
-    }, d.label), React.createElement("span", {
-      className: "serif",
-      style: {
-        fontSize: 13,
-        lineHeight: 1
-      }
-    }, count, " ", React.createElement("span", {
-      style: {
-        fontSize: 9,
-        opacity: on ? 1 : 0.7
-      }
-    }, "sets")));
+    }, count, " sets"));
   })), day === NOW.night && nowAtStage && React.createElement("div", {
     onClick: () => onOpenArtist(nowAtStage.id),
+    className: "duo-card duo-lift",
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      padding: "8px 10px",
+      gap: 12,
+      padding: "10px 12px",
       marginBottom: 8,
-      background: stage.color,
-      color: _inkOnHex(stage.color),
-      borderRadius: 12,
       cursor: "pointer"
     }
-  }, React.createElement("span", {
-    style: {
-      width: 7,
-      height: 7,
-      borderRadius: 7,
-      background: "var(--ink)",
-      boxShadow: "0 0 0 4px rgba(var(--ink-rgb),0.3)",
-      animation: "pulse 1.6s infinite",
-      flexShrink: 0
-    }
+  }, React.createElement(DuoAvatar, {
+    name: nowAtStage.name,
+    size: 42,
+    ring: "on"
   }), React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
-  }, React.createElement("div", {
-    className: "mono",
+  }, React.createElement(DuoLive, null, "On stage now"), React.createElement("div", {
+    className: "duo-headline duo-name",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      fontWeight: 700
+      fontWeight: 700,
+      marginTop: 2
     }
-  }, "ON STAGE NOW"), React.createElement("div", {
-    className: "serif",
+  }, actDisplayName(nowAtStage.name)), React.createElement("div", {
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 16,
-      lineHeight: 1.05
+      marginTop: 2
     }
-  }, nowAtStage.name)), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      opacity: 0.9,
-      whiteSpace: "nowrap"
-    }
-  }, fmt12(nowAtStage.start), "–", fmt12(nowAtStage.end))), React.createElement("div", {
+  }, fmt12(nowAtStage.start), "–", fmt12(nowAtStage.end)))), React.createElement("div", {
     style: {
       overflowY: "auto",
       flex: 1,
       maxHeight: expanded ? "50vh" : 180,
-      paddingBottom: 6
+      paddingBottom: 6,
+      margin: "0 -4px",
+      padding: "0 4px"
     }
   }, sets.length === 0 && React.createElement("div", {
     style: {
@@ -9923,11 +9717,10 @@ function StageLineupSheet({
       textAlign: "center"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 16,
-      fontStyle: "italic",
-      color: "var(--muted)"
+      fontWeight: 400,
+      fontSize: 15
     }
   }, "No sets scheduled — stage dark tonight")), sets.map(s => {
     var live = isSetLive(s);
@@ -9944,101 +9737,83 @@ function StageLineupSheet({
     return React.createElement("div", {
       key: s.id,
       onClick: () => onOpenArtist(s.id),
+      className: "duo-lrow" + (live ? " live" : isSaved ? " plan" : ""),
       style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        padding: "9px 4px",
-        borderBottom: "1px solid var(--line)",
         cursor: "pointer",
-        opacity: live ? 1 : 0.92
+        margin: 0,
+        paddingLeft: 8
       }
     }, React.createElement("div", {
       style: {
-        width: 52,
+        width: 72,
         flexShrink: 0
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-data",
       style: {
-        fontSize: 10,
-        letterSpacing: 0.3,
-        fontWeight: 600,
-        color: live ? stage.color : "var(--ink)"
+        fontSize: 13,
+        color: "var(--ink)"
       }
     }, fmt12(s.start)), React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 0.8,
-        color: "var(--muted)"
-      }
-    }, fmt12(s.end))), React.createElement("div", {
+      className: "duo-data-s duo-ink2"
+    }, fmt12(s.end))), React.createElement(DuoAvatar, {
+      name: s.name,
+      size: 42,
+      ring: live || isSaved ? "on" : ""
+    }), React.createElement("div", {
       style: {
         flex: 1,
         minWidth: 0
       }
     }, React.createElement("div", {
-      className: "serif",
+      className: "duo-headline duo-name",
       style: {
-        fontSize: 18,
-        lineHeight: 1.1,
-        letterSpacing: -0.2
+        fontWeight: 700
       }
-    }, s.name), React.createElement("div", {
-      className: "mono",
+    }, actDisplayName(s.name)), React.createElement("div", {
+      className: "duo-body-s duo-ink2",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
-        color: "var(--muted)",
-        marginTop: 2
+        fontWeight: 400
       }
-    }, s.genre.toUpperCase())), live && React.createElement("span", {
-      className: "mono",
+    }, live ? React.createElement("span", {
       style: {
-        fontSize: 8,
-        letterSpacing: 1.3,
-        fontWeight: 700,
-        color: _inkOnHex(stage.color),
-        background: stage.color,
-        padding: "2px 6px",
-        borderRadius: 4
+        color: "var(--live)"
       }
-    }, "LIVE"), React.createElement("button", {
+    }, "Live · ") : null, s.genre)), React.createElement("button", {
       onClick: toggleSaveSet,
-      "aria-pressed": isSaved,
+      "aria-pressed": !!isSaved,
       "aria-label": isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`,
-      style: {
-        background: isSaved ? "var(--ember)" : "transparent",
-        border: `1px solid ${isSaved ? "var(--ember)" : "var(--line-2)"}`,
-        color: isSaved ? "var(--ink)" : "var(--muted)",
-        borderRadius: 999,
-        width: 28,
-        height: 28,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        flexShrink: 0,
-        fontSize: 13,
-        transition: "all .15s"
-      }
-    }, isSaved ? "✓" : "+"));
+      className: "duo-add"
+    }, React.createElement("span", null, isSaved ? React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.4",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("path", {
+      d: "M5 12.5l4.5 4.5L19 7"
+    })) : React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinecap: "round"
+    }, React.createElement("path", {
+      d: "M12 5v14M5 12h14"
+    })))));
   })), !expanded && sets.length > 3 && React.createElement("button", {
     onClick: () => setExpanded(true),
+    className: "duo-link",
     style: {
-      marginTop: 4,
-      padding: "8px",
-      background: "transparent",
-      border: "none",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      cursor: "pointer",
-      fontWeight: 600
+      marginTop: 2,
+      padding: "0 4px"
     }
-  }, "SEE ALL ", sets.length, " SETS ↓")));
+  }, "See all ", sets.length, " sets ↓")));
 }
 function _crewRowToThreadItem(row, myPid) {
   return {

@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -153,11 +153,7 @@ function eventDaySet(cfg) {
 function statusOf(cfg, today) {
   const dates = eventDates(cfg);
   if (!dates) return null;
-  if (today > dates.end) return 'past';
-  const days = [...eventDaySet(cfg)].filter(d => d >= dates.start && d <= dates.end).sort();
-  if (days.includes(today) || (!days.length && today >= dates.start)) return 'live';
-  const next = days.find(d => d > today) || dates.start;
-  return (Date.parse(next) - Date.parse(today)) / DAY_MS <= 6 ? 'soon' : 'upcoming';
+  return pageStatus(dates, [...eventDaySet(cfg)], today, Object.keys(cfg.dayDates || {}).length);
 }
 
 // The schedule grid: the same acts schedule.json ships, grouped (weekend,)
@@ -630,10 +626,21 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
 <meta name="twitter:image" content="${ORIGIN}/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
+  /* The app's board tokens (index.html), both modes: Dark by default, Light when
+     the reader's system asks for it. --ember is kept as the name of the link /
+     accent-text role so the rules below did not have to move. */
+  :root { color-scheme:dark light;
+          --ink:#F3F0FA; --bg:#07060B; --muted:#ABA4BB; --line:#221E2B; --ember:#B7A3FF; --panel:#19161F;
+          --acc:#9474FF; --on-acc:#0B0816; --target:rgba(148,116,255,.16); }
+  @media (prefers-color-scheme: light) {
+    :root { --ink:#14121C; --bg:#F4F3F8; --muted:#565266; --line:#E6E3EE; --ember:#4A2BFF; --panel:#FFFFFF;
+            --acc:#4A2BFF; --on-acc:#FFFFFF; --target:rgba(74,43,255,.10); }
+  }
+  @font-face { font-family:"Martian Mono"; font-style:normal; font-weight:300 600; font-display:swap;
+               src:url(/fonts/martian-mono-latin.woff2) format("woff2"); unicode-range:U+0000-00FF; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
-         font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+         font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
   nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
   nav.crumbs a { color:var(--muted); }
@@ -648,12 +655,12 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
   .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
-         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         display:flex; align-items:center; justify-content:center; background:var(--bg);
          border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
   ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
   figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
-         background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
+         background:var(--acc); color:var(--on-acc); text-decoration:none; font-weight:700; }
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
@@ -663,8 +670,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
   ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
-  ul.sets li:target { background:rgba(232,93,46,0.14); }
-  ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
+  ul.sets li:target { background:var(--target); }
+  ul.sets li time { color:var(--muted); font-family:"Martian Mono",ui-monospace,'SF Mono',Menlo,monospace; font-size:13px; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; min-width:116px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
   ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
@@ -809,10 +816,20 @@ const drift = [];
 // A festival ending moves its page's content, and so its fingerprint, with no
 // commit behind it; comparing that in --check would fail an unrelated PR for
 // the calendar, which is the exact wolf the two-mode split exists to avoid.
-// So --check still normalises lastmod away, and --check-strict — the scheduled
-// job that owns the clock — is where the date has to actually be current.
-// A page's "Last updated" line IS its sitemap lastmod, so it is normalised by
-// the same rule and for the same reason.
+// So --check still normalises lastmod away here, and --check-strict — the
+// scheduled job that owns the clock — is where the festival dates have to
+// actually be current. A page's "Last updated" line IS its sitemap lastmod,
+// so it is normalised by the same rule and for the same reason.
+//
+// The homepage, terms and privacy rows are different: their fingerprints are
+// of committed files only (index.html, terms.html, privacy.html), with no
+// calendar input, so only a commit can move them. --check holds those rows'
+// ledger entries AND their sitemap <lastmod> to the committed values (see
+// COMMIT_ROWS, after the sitemap is built). Before that, a cache-bust in
+// index.html moved the homepage fingerprint, passed every PR's verify, and
+// turned the scheduled strict job red on main after the merge. That check
+// lives outside this render slice on purpose: code here feeds
+// templateFingerprint, and moving it would re-date every festival page.
 const norm = (t, f) => CHECK_STRICT ? t
   : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
@@ -1004,6 +1021,23 @@ ${urls.map(u => `  <url>
 </urlset>
 `);
 emit(LEDGER, JSON.stringify(ledger, null, 2) + '\n', null, true);
+// The rows no calendar can move. --check holds each one to what is committed:
+// its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
+// festival rows stay strict-only (see norm above).
+const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
+if (CHECK && !CHECK_STRICT) {
+  const committed = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {};
+  const published = {};
+  if (existsSync(SITEMAP)) for (const m of readFileSync(SITEMAP, 'utf8')
+       .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) published[m[1]] = m[2];
+  for (const loc of COMMIT_ROWS) {
+    const was = committed[loc], now = ledger[loc], path_ = loc.slice(ORIGIN.length);
+    if (!was || was.fp !== now.fp || was.lastmod !== now.lastmod)
+      drift.push(`sitemap-lastmod.json (${path_}: fingerprint ${was ? was.fp : 'missing'}, content is ${now.fp})`);
+    if (published[loc] !== now.lastmod)
+      drift.push(`sitemap.xml (${path_}: <lastmod> ${published[loc] || 'missing'}, should be ${now.lastmod})`);
+  }
+}
 if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls  (${urls.filter(u => u.lastmod === TODAY).length} dated ${TODAY})`);
 
 // A festival retired from the registry leaves its directory behind. The

@@ -5,14 +5,33 @@
 // a tap or a condition (the Map's signal buttons, the install banner).
 import { readFileSync } from 'node:fs';
 
+// A mode's tokens are the plain `:root{…}` blocks (where the board's role
+// names alias the legacy ones: --s2:var(--paper-2), --ink-2:var(--text-2),
+// --acc:var(--signal)) overlaid by EVERY `:root[data-mode="…"]` block, in
+// source order. Reading only the first mode block, as this did, resolved no
+// board token at all, so every pair written in board tokens was skipped as
+// "not a flat colour" and the static check never saw it.
 export function modeTokens(html) {
-  const block = (m) => {
-    const i = html.indexOf(`:root[data-mode="${m}"]`), j = html.indexOf('}', i), t = {};
-    for (const [, k, v] of html.slice(i, j).matchAll(/--([a-z0-9-]+):\s*([^;]+);/g)) t[k] = v.trim();
+  const blocks = (sel) => {
+    const t = {}; let i = 0;
+    while ((i = html.indexOf(sel, i)) !== -1) {
+      const o = html.indexOf('{', i), j = html.indexOf('}', o);
+      for (const [, k, v] of html.slice(o + 1, j).matchAll(/--([a-z0-9-]+):\s*([^;]+);/g)) t[k] = v.trim();
+      i = j;
+    }
     return t;
   };
-  return { dark: block('dark'), light: block('light') };
+  const base = blocks(':root{');
+  return { dark: { ...base, ...blocks(':root[data-mode="dark"]') }, light: { ...base, ...blocks(':root[data-mode="light"]') } };
 }
+
+// The board's classes carry a fill or a text colour of their own, so an
+// element written `className="duo-card"` with a colour, or
+// `className="duo-card duo-ink2"`, is a fill/text pair the style object alone
+// does not show. (Order matters only for fills: the first fill class wins.)
+const CLASS_FILL = { 'duo-card': 's2', 'duo-well': 's3', 'duo-input': 's2' };
+const CLASS_TEXT = { 'duo-ink2': 'ink-2', 'duo-ink3': 'ink-3', 'duo-acc': 'acc-ink', 'duo-clash': 'clash', 'duo-sun': 'sun' };
+const PRI = { bg: 'acc', fg: 'on-acc' };   // .duo-btn.pri
 
 const lum = (h) => {
   const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
@@ -20,20 +39,46 @@ const lum = (h) => {
 };
 export const contrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
 
-// Every `style={{ … }}` object in a file, with its line, fill token and text token.
+// The static className on the element that owns a style object at `at`
+// (searched back to the tag's opening `<`), or "".
+function classesBefore(src, at) {
+  const lt = src.lastIndexOf('<', at);
+  const m = src.slice(lt, at).match(/className="([^"]*)"/);
+  return m ? m[1].split(/\s+/) : [];
+}
+
+// Every `style={{ … }}` object in a file, with its line, fill token and text
+// token; plus every board-class element whose classes alone make a pair.
 export function stylePairs(file, src = readFileSync(file, 'utf8')) {
   const out = [], re = /style=\{\{/g; let m;
   while ((m = re.exec(src))) {
     let i = m.index + 8, d = 1;
     for (; i < src.length && d; i++) { if (src[i] === '{') d++; else if (src[i] === '}') d--; }
     const obj = src.slice(m.index + 8, i - 1);
-    const fg = obj.match(/(?:^|[\s,{])color:\s*"var\(--([a-z0-9-]+)\)"/);
-    const bg = obj.match(/(?:^|[\s,{])background(?:Color)?:\s*"var\(--([a-z0-9-]+)\)"/);
+    const cls = classesBefore(src, m.index);
+    const cFill = cls.includes('pri') && cls.includes('duo-btn') ? PRI.bg : cls.map(c => CLASS_FILL[c]).find(Boolean);
+    const cText = cls.includes('pri') && cls.includes('duo-btn') ? PRI.fg : cls.map(c => CLASS_TEXT[c]).find(Boolean);
+    const fgM = obj.match(/(?:^|[\s,{])color:\s*"var\(--([a-z0-9-]+)\)"/);
+    const bgM = obj.match(/(?:^|[\s,{])background(?:Color)?:\s*"var\(--([a-z0-9-]+)\)"/);
+    const fg = fgM || (cText ? [null, cText] : null);
+    const hasOwnBg = /(?:^|[\s,{])background(?:Color|Image)?:/.test(obj);
+    const bg = bgM || (!hasOwnBg && cFill ? [null, cFill] : null);
     // A gradient is judged by every token stop: text has to read on each end.
     const gr = obj.match(/(?:^|[\s,{])background(?:Image)?:\s*"(?:linear|radial)-gradient\(([^"]*)\)"/);
     const stops = bg ? [bg[1]] : gr ? [...gr[1].matchAll(/var\(--([a-z0-9-]+)\)/g)].map(x => x[1]).filter(k => !/-rgb$/.test(k)) : [];
     const line = src.slice(0, m.index).split('\n').length;
     if (fg) for (const k of new Set(stops)) out.push({ at: `${file}:${line}`, bg: k, fg: fg[1] });
+  }
+  // Elements with no style object at all: the classes are the whole pair.
+  const ce = /className="([^"]*)"/g; let c;
+  while ((c = ce.exec(src))) {
+    const gt = src.indexOf('>', c.index), tagEnd = src.slice(c.index, gt);
+    if (/style=\{\{/.test(tagEnd)) continue;
+    const cls = c[1].split(/\s+/);
+    const pri = cls.includes('pri') && cls.includes('duo-btn');
+    const bgK = pri ? PRI.bg : cls.map(x => CLASS_FILL[x]).find(Boolean);
+    const fgK = pri ? PRI.fg : cls.map(x => CLASS_TEXT[x]).find(Boolean);
+    if (bgK && fgK) out.push({ at: `${file}:${src.slice(0, c.index).split('\n').length}`, bg: bgK, fg: fgK });
   }
   return out;
 }

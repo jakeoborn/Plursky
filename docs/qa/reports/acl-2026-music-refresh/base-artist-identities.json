@@ -1,0 +1,1372 @@
+[
+  {
+    "id": "af01",
+    "name": "Asleep At The Wheel",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "13:00",
+    "end": "13:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "af02",
+    "name": "Happy Landing",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "13:00",
+    "end": "13:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "af03",
+    "name": "New Constellations",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "14:30",
+    "end": "15:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "af04",
+    "name": "Bella Kay",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "14:30",
+    "end": "15:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "af05",
+    "name": "Jesse Welles",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "16:15",
+    "end": "17:15",
+    "weekend": null
+  },
+  {
+    "id": "af06",
+    "name": "Turnstile",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "18:15",
+    "end": "19:15",
+    "weekend": null
+  },
+  {
+    "id": "af07",
+    "name": "Skrillex",
+    "genre": "Electronic",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "20:15",
+    "end": "22:00",
+    "weekend": "W1"
+  },
+  {
+    "id": "af08",
+    "name": "Kings of Leon",
+    "genre": "Rock",
+    "stage": "tmobile",
+    "day": "1",
+    "start": "20:15",
+    "end": "22:00",
+    "weekend": "W2"
+  },
+  {
+    "id": "af09",
+    "name": "Faouzia",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af10",
+    "name": "Radio Free Alice",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af11",
+    "name": "Paris Paloma",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "15:15",
+    "end": "16:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "af12",
+    "name": "Sienna Spiro",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "af13",
+    "name": "Brandon Flowers",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "af14",
+    "name": "Paris Paloma",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "af15",
+    "name": "Leon Thomas",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "1",
+    "start": "19:15",
+    "end": "20:15",
+    "weekend": null
+  },
+  {
+    "id": "af16",
+    "name": "Elle Coves",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af17",
+    "name": "Leon Knight",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af18",
+    "name": "Izzy Escobar",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "af19",
+    "name": "Girlfriend",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "af20",
+    "name": "Grocery Bag",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "af21",
+    "name": "Joe Jordan",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "1",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "af22",
+    "name": "Night Traveler",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "af23",
+    "name": "S.G. Goodman",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "af24",
+    "name": "Marlon Funaki",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af25",
+    "name": "World Famous Pets",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af26",
+    "name": "Rusowsky",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": null
+  },
+  {
+    "id": "af27",
+    "name": "Molly Santana",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af28",
+    "name": "Live",
+    "genre": "Rock",
+    "stage": "beatbox",
+    "day": "1",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af29",
+    "name": "The 4411",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af30",
+    "name": "Almost Heaven",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af31",
+    "name": "Solomon Hicks",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "af32",
+    "name": "Cassandra Coleman",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "af33",
+    "name": "Bo Staloch",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "15:15",
+    "end": "16:00",
+    "weekend": null
+  },
+  {
+    "id": "af34",
+    "name": "Rebecca Black",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af35",
+    "name": "Natasha Bedingfield",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af36",
+    "name": "Steve Aoki",
+    "genre": "Electronic",
+    "stage": "titos",
+    "day": "1",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "af37",
+    "name": "Silent Disco",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "1",
+    "start": "20:00",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "af38",
+    "name": "Elijah Delgado",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "af39",
+    "name": "Dallas Wax",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "1",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "af40",
+    "name": "LP",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "1",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": null
+  },
+  {
+    "id": "af41",
+    "name": "BUNT.",
+    "genre": "Electronic",
+    "stage": "snapchat",
+    "day": "1",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": null
+  },
+  {
+    "id": "af42",
+    "name": "The Chainsmokers",
+    "genre": "Electronic",
+    "stage": "snapchat",
+    "day": "1",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "af43",
+    "name": "Hunx And His Punx",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W1"
+  },
+  {
+    "id": "af44",
+    "name": "Brigitte Calls Me Baby",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W2"
+  },
+  {
+    "id": "af45",
+    "name": "CMAT",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "af46",
+    "name": "Faouzia",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "af47",
+    "name": "Amyl And The Sniffers",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "af48",
+    "name": "Labrinth",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "1",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "af49",
+    "name": "Charli XCX",
+    "genre": "Pop",
+    "stage": "amex",
+    "day": "1",
+    "start": "20:40",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "as01",
+    "name": "Night Tapes",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "2",
+    "start": "13:00",
+    "end": "13:45",
+    "weekend": null
+  },
+  {
+    "id": "as02",
+    "name": "Balu Brigada",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "2",
+    "start": "14:30",
+    "end": "15:15",
+    "weekend": null
+  },
+  {
+    "id": "as03",
+    "name": "Suki Waterhouse",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "2",
+    "start": "16:15",
+    "end": "17:15",
+    "weekend": null
+  },
+  {
+    "id": "as04",
+    "name": "Bleachers",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "2",
+    "start": "18:15",
+    "end": "19:15",
+    "weekend": null
+  },
+  {
+    "id": "as05",
+    "name": "Lorde",
+    "genre": "Pop",
+    "stage": "tmobile",
+    "day": "2",
+    "start": "20:15",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "as06",
+    "name": "Temper City",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "2",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": null
+  },
+  {
+    "id": "as07",
+    "name": "Arcy Drive",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "2",
+    "start": "15:15",
+    "end": "16:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "as08",
+    "name": "Laszewo",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "2",
+    "start": "15:15",
+    "end": "16:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "as09",
+    "name": "Snow Strippers",
+    "genre": "Electronic",
+    "stage": "miller",
+    "day": "2",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": null
+  },
+  {
+    "id": "as10",
+    "name": "Levity",
+    "genre": "Electronic",
+    "stage": "miller",
+    "day": "2",
+    "start": "19:15",
+    "end": "20:15",
+    "weekend": null
+  },
+  {
+    "id": "as11",
+    "name": "Fightmaster",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "12:45",
+    "end": "13:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "as12",
+    "name": "Macy Todd",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "12:45",
+    "end": "13:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "as13",
+    "name": "Emma Ogier",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "as14",
+    "name": "Damaris Bojor",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "13:45",
+    "end": "14:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "as15",
+    "name": "Coleman Jennings",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "as16",
+    "name": "Common People",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "as17",
+    "name": "Fai Laci",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "as18",
+    "name": "Chloe Qisha",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "2",
+    "start": "17:15",
+    "end": "18:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "as19",
+    "name": "Cure For Paranoia",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "as20",
+    "name": "LLUVII",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "as21",
+    "name": "Ryan Beatty",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "as22",
+    "name": "Arcy Drive",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "as23",
+    "name": "Palace",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "as24",
+    "name": "Ryan Beatty",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "as25",
+    "name": "Fakemink",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "2",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "as26",
+    "name": "Left Lucid",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "as27",
+    "name": "Montclair",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "as28",
+    "name": "DJ Cassandra",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "as29",
+    "name": "Nat Myers",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "as30",
+    "name": "Don West",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "15:15",
+    "end": "16:00",
+    "weekend": null
+  },
+  {
+    "id": "as31",
+    "name": "Rodrigo Y Gabriela",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "as32",
+    "name": "Yousuke Yukimatsu",
+    "genre": "Electronic",
+    "stage": "titos",
+    "day": "2",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "as33",
+    "name": "Silent Disco",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "2",
+    "start": "20:00",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "as34",
+    "name": "Rochelle Jordan",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "as35",
+    "name": "Gabriel Jacoby",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "2",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "as36",
+    "name": "Skye Newman",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "2",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": null
+  },
+  {
+    "id": "as37",
+    "name": "It's Murph",
+    "genre": "Electronic",
+    "stage": "snapchat",
+    "day": "2",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": null
+  },
+  {
+    "id": "as38",
+    "name": "Lykke Li",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "2",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "as39",
+    "name": "Annie DiRusso",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "2",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": null
+  },
+  {
+    "id": "as40",
+    "name": "Finn Wolfhard",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "2",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": null
+  },
+  {
+    "id": "as41",
+    "name": "Young Miko",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "2",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "as42",
+    "name": "Lola Young",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "2",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "as43",
+    "name": "R\u00fcf\u00fcs Du Sol",
+    "genre": "Electronic",
+    "stage": "amex",
+    "day": "2",
+    "start": "20:30",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "au01",
+    "name": "Solya",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W1"
+  },
+  {
+    "id": "au02",
+    "name": "Thomas Day",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W2"
+  },
+  {
+    "id": "au03",
+    "name": "Stella Lefty",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au04",
+    "name": "Charlotte Lawrence",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au05",
+    "name": "Audrey Hobert",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "au06",
+    "name": "Geese",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "au07",
+    "name": "The xx",
+    "genre": "\u2014",
+    "stage": "tmobile",
+    "day": "3",
+    "start": "20:30",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "au08",
+    "name": "Jess Williamson",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "au09",
+    "name": "Joshua Jensen",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "au10",
+    "name": "Claire Rosinkranz",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": null
+  },
+  {
+    "id": "au11",
+    "name": "Saint Motel",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "3",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": null
+  },
+  {
+    "id": "au12",
+    "name": "Parcels",
+    "genre": "\u2014",
+    "stage": "miller",
+    "day": "3",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "au13",
+    "name": "Rubio",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "12:45",
+    "end": "13:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "au14",
+    "name": "Marzz",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "12:45",
+    "end": "13:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "au15",
+    "name": "Aaron Rowe",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "au16",
+    "name": "Chelsea Jordan",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "au17",
+    "name": "Fancy Hagood",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W1"
+  },
+  {
+    "id": "au18",
+    "name": "Vwillz",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:15",
+    "weekend": "W2"
+  },
+  {
+    "id": "au19",
+    "name": "Lauren Sanderson",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au20",
+    "name": "Sasha Keable",
+    "genre": "\u2014",
+    "stage": "bmi",
+    "day": "3",
+    "start": "18:00",
+    "end": "18:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au21",
+    "name": "Britton",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W1"
+  },
+  {
+    "id": "au22",
+    "name": "Kevin Atwater",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": "W2"
+  },
+  {
+    "id": "au23",
+    "name": "Underscores",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au24",
+    "name": "Bad Nerves",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au25",
+    "name": "Noga Erez",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": null
+  },
+  {
+    "id": "au26",
+    "name": "Blood Orange",
+    "genre": "\u2014",
+    "stage": "beatbox",
+    "day": "3",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "au27",
+    "name": "The Moriah Sisters",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au28",
+    "name": "Huston-Tillotson University Jazz Collective",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "12:45",
+    "end": "13:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au29",
+    "name": "Paloma Morphy",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": null
+  },
+  {
+    "id": "au30",
+    "name": "Calder Allen",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "15:15",
+    "end": "16:00",
+    "weekend": null
+  },
+  {
+    "id": "au31",
+    "name": "Rio Kosta",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "au32",
+    "name": "Fcukers",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "au33",
+    "name": "Silent Disco",
+    "genre": "\u2014",
+    "stage": "titos",
+    "day": "3",
+    "start": "20:00",
+    "end": "22:00",
+    "weekend": null
+  },
+  {
+    "id": "au34",
+    "name": "Sunday (1994)",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "3",
+    "start": "14:00",
+    "end": "14:45",
+    "weekend": null
+  },
+  {
+    "id": "au35",
+    "name": "Grace Ives",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "3",
+    "start": "15:30",
+    "end": "16:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au36",
+    "name": "Cannons",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "3",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au37",
+    "name": "Houndmouth",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "3",
+    "start": "17:30",
+    "end": "18:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au38",
+    "name": "The War On Drugs",
+    "genre": "\u2014",
+    "stage": "snapchat",
+    "day": "3",
+    "start": "19:30",
+    "end": "20:30",
+    "weekend": null
+  },
+  {
+    "id": "au39",
+    "name": "Villanelle",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W1"
+  },
+  {
+    "id": "au40",
+    "name": "Rum Jungle",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "13:15",
+    "end": "14:00",
+    "weekend": "W2"
+  },
+  {
+    "id": "au41",
+    "name": "Dexter And The Moonrocks",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W1"
+  },
+  {
+    "id": "au42",
+    "name": "Ethan Regan",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "14:45",
+    "end": "15:30",
+    "weekend": "W2"
+  },
+  {
+    "id": "au43",
+    "name": "Max McNown",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "16:30",
+    "end": "17:30",
+    "weekend": null
+  },
+  {
+    "id": "au44",
+    "name": "Sofi Tukker",
+    "genre": "Electronic",
+    "stage": "amex",
+    "day": "3",
+    "start": "18:30",
+    "end": "19:30",
+    "weekend": null
+  },
+  {
+    "id": "au45",
+    "name": "Twenty One Pilots",
+    "genre": "\u2014",
+    "stage": "amex",
+    "day": "3",
+    "start": "20:30",
+    "end": "22:00",
+    "weekend": null
+  }
+]

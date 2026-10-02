@@ -2176,6 +2176,14 @@ const REGISTRATION_TOL_M = 25;
   }
 }
 
+console.log("▸ ACL September30 stable-identity and source gate");
+try { console.log(execFileSync(process.execPath, ["scripts/test-acl-september30.mjs"], {cwd:ROOT,encoding:"utf8"})); }
+catch(e) { fail("ACL September30 regression: " + (e.stdout || e.message)); }
+console.log("▸ ACL programming readiness - independent event identities and source-only vendor map");
+try {
+  console.log(execFileSync(process.execPath, ["scripts/test-acl-programming-readiness.mjs"], { cwd: ROOT }).toString().trim());
+} catch (e) { fail("ACL programming readiness: " + (e.stdout || e.message)); }
+
 if (process.argv.includes("--parse-only")) process.exit(0);
 
 // ── 1z. Mixed-import toast regression ─────────────────────────────────────
@@ -2270,6 +2278,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL W2 now-playing failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 {
@@ -2388,6 +2407,24 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
+// The homepage, terms and privacy fingerprints come from committed files only,
+// so plain --check (the freshness gate above) must hold them to the committed
+// ledger and <lastmod>. A cache-bust that skipped the regenerate used to pass
+// here and turn the scheduled --check-strict job red after the merge. Runs the
+// real generator in scratch copies, with festival-row controls.
+{
+  console.log("▸ Sitemap commit-row gate — a stale homepage/terms/privacy fingerprint fails plain --check");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-commit-rows.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap commit rows failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
@@ -2451,6 +2488,87 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`landing state failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist screen: an act with no day ─────────────────────────────────────
+// A billed act no official schedule has placed renders ("DAY + SET TIME NOT
+// PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so
+// the gate survives Escape's set times publishing.
+{
+  console.log("▸ Artist no-day — a billed, unplaced act renders instead of crashing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-no-day.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── /f/ page status chip ─────────────────────────────────────────────────
+// A festival whose day split is unpublished (one dayDates bucket, a two-day
+// printed range) is "Happening now" on every printed day; a festival that
+// runs in blocks is not in its gap. Real registry festivals at pinned dates.
+{
+  console.log("▸ Page status — single-bucket festivals stay live through their last day; gaps are not live");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-page-status.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`page status failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Map: HTML labels sit on the SVG points they name ─────────────────────
+// The YOU label and the stage pills are HTML over an SVG map. In a portrait
+// container the HTML layer applied the map's vertical centring twice, so the
+// YOU label rendered ~85 px off its dot. Measured against the SVG's own
+// transform; pills come from a fixture so the gate does not depend on which
+// live festival's art prints its own stage names.
+{
+  console.log("▸ Map overlay registration — the YOU label and stage pills sit on their points");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-overlay-registration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map overlay registration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── III Points 2026: each act's day is the official day graphic's ─────────
+// The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
+// day-split/graphic.tsv; the list page is the lineup. Both directions of the
+// join, B2B order as billed, and no stage or time anywhere.
+{
+  console.log("▸ III Points day split — every act on the official graphic's day, B2B as billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iii-points-days.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2974,6 +3092,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`ACL 2026 map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Georeference tool + EDC Orlando 2026 map pipeline ─────────────────────
+// scripts/georef-map.mjs re-derives the grid, scale and centroid edc-orlando
+// ships from its own anchors, and build-edco-map-2026.mjs may ship only the
+// placeholder until an official 2026 map is pinned by hash.
+{
+  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`georef failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

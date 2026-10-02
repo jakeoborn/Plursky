@@ -286,9 +286,12 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
         borderBottom: "1px solid var(--line)",
         color: "var(--ink)", textAlign: "left", fontFamily: "inherit",
         cursor: dead ? "default" : "pointer",
-        opacity: dead ? 0.55 : st.upsell ? 0.8 : 1,
       }}>
-      {typeof FestivalThumb === "function" ? <FestivalThumb entry={entry} /> : null}
+      {/* A row that is not open yet reads quieter by COLOUR: dimming the row
+          with opacity took its text below AA in both modes (2.49:1 in Light),
+          which nobody saw while the gate's "landing" screen was really Today.
+          Only the picture keeps the dim. */}
+      {typeof FestivalThumb === "function" ? <span style={{ flexShrink: 0, display: "flex", opacity: dead ? 0.55 : st.upsell ? 0.8 : 1 }}><FestivalThumb entry={entry} /></span> : null}
       <div style={{ flex: 1, minWidth: 0 }}>
         {/* Everything on this row WRAPS. At 320px "Henry Maier Festival Park ·
             Milwaukee, WI" pushed the row 42px wide and the card panned
@@ -299,12 +302,12 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
             one unbreakable 234px date string in a 192px column was the entire
             42px overflow. A date range that wraps beats a card that pans. */}
         <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap", minWidth: 0 }}>
-          <span style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600, minWidth: 0, overflowWrap: "anywhere" }}>{c.name}</span>
+          <span data-fit-words data-fit-min="13" style={{ fontSize: 17, lineHeight: 1.29, fontWeight: 600, minWidth: 0, color: st.locked ? "var(--ink-2)" : undefined }}>{c.name}</span>
           {saved && (
             <span aria-hidden="true" title="Saved" style={{ flexShrink: 0, fontSize: 12, color: "var(--signal-ink)" }}>★</span>
           )}
         </div>
-        <div style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0, overflowWrap: "anywhere" }}>
+        <div data-fit-words data-fit-min="11" style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0 }}>
           {c.location}{c.dates ? " · " : ""}{c.dates || null}
         </div>
         <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: toneColor, fontVariantNumeric: "tabular-nums" }}>
@@ -324,9 +327,50 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
   );
 }
 
+// The search placeholder, whole or shortened. At 320 with large text the
+// full string runs past the field's padding and the iPhone cuts it; measure
+// it in the field's own font and fall back to "Search" only when it does not
+// fit, so every width that fits today reads exactly as before.
+// Returns [placeholder, ref]; a callback ref, so the measuring starts
+// whenever the field mounts.
+function useFittedPlaceholder(full, short) {
+  const [text, setText] = React.useState(full);
+  const [el, ref] = React.useState(null);
+  React.useEffect(() => {
+    if (!el) return;
+    const ctx = document.createElement("canvas").getContext("2d");
+    const fit = () => {
+      const cs = getComputedStyle(el);
+      const room = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      setText(room > 0 && ctx.measureText(full).width > room ? short : full);
+    };
+    fit();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(fit) : null;
+    ro?.observe(el);
+    // A font-size change on the field itself does not resize it (min-height
+    // holds), so watch its style too. Under Reduce Motion every element has a
+    // 0.01ms `transition: all`, so the size the observer reads is still the
+    // old one; measure again when the transition ends.
+    const mo = new MutationObserver(fit);
+    mo.observe(el, { attributes: true, attributeFilter: ["style", "class"] });
+    el.addEventListener("transitionend", fit);
+    window.addEventListener("resize", fit);
+    document.fonts?.addEventListener?.("loadingdone", fit);
+    return () => {
+      ro?.disconnect(); mo.disconnect();
+      el.removeEventListener("transitionend", fit);
+      window.removeEventListener("resize", fit);
+      document.fonts?.removeEventListener?.("loadingdone", fit);
+    };
+  }, [el, full, short]);
+  return [text, ref];
+}
+
 function GeneralLandingScreen({ state, setState }) {
   const [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   const [q, setQ] = React.useState("");
+  const [searchPlaceholder, searchRef] = useFittedPlaceholder("Search festivals", "Search");
   // Same offer sheet and the same feature string the FestivalSwitcher uses,
   // so early access is sold in one voice from both doors.
   const [plusOpen, setPlusOpen] = React.useState(false);
@@ -447,10 +491,8 @@ function GeneralLandingScreen({ state, setState }) {
     { label: "Past",          fests: browse.filter(f => phaseOf(f) === "ended") },
   ].filter(g => g.fests.length > 0);
 
-  const eyebrow = {
-    margin: "18px 0 2px", fontSize: 11, lineHeight: 1.27, fontWeight: 600,
-    letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)",
-  };
+  // The board's section eyebrow (duo-sect): Michroma caps.
+  const eyebrow = { margin: "20px 0 6px" };
   const card = (f) => (
     <_LandingFestivalCard
       key={f.config.id}
@@ -473,7 +515,7 @@ function GeneralLandingScreen({ state, setState }) {
     <Screen>
       <ScrollBody style={{ padding: "0 16px calc(96px + env(safe-area-inset-bottom, 0px))" }}>
         <header style={{ paddingTop: 10 }}>
-          <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.21, fontWeight: 700, letterSpacing: "-0.01em" }}>
+          <h1 className="duo-title" style={{ margin: 0 }}>
             Plursky
           </h1>
           <p style={{ margin: "4px 0 0", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
@@ -504,7 +546,7 @@ function GeneralLandingScreen({ state, setState }) {
         )}
 
         {/* ── Saved festivals ──────────────────────────────────────────── */}
-        <h2 style={eyebrow}>Saved festivals</h2>
+        <h2 className="duo-sect" style={eyebrow}>Saved festivals</h2>
         {saved.length > 0 ? saved.map(card) : (
           <p style={{ margin: "6px 0 0", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
             Open a festival and tap Save to keep it here.
@@ -529,13 +571,15 @@ function GeneralLandingScreen({ state, setState }) {
         )}
 
         {/* ── Browse ───────────────────────────────────────────────────── */}
-        <h2 style={eyebrow}>Browse festivals</h2>
+        <h2 className="duo-sect" style={eyebrow}>Browse festivals</h2>
         <input
+          ref={searchRef}
+          data-landing-search
           value={q}
           onChange={e => setQ(e.target.value)}
           type="search"
           aria-label="Search festivals"
-          placeholder="Search festivals"
+          placeholder={searchPlaceholder}
           style={{
             width: "100%", boxSizing: "border-box", marginTop: 6, marginBottom: 2,
             minHeight: 44, padding: "0 14px", borderRadius: 14,
@@ -549,7 +593,7 @@ function GeneralLandingScreen({ state, setState }) {
           </p>
         ) : groups.map(g => (
           <section key={g.label}>
-            <h3 style={eyebrow}>{g.label}</h3>
+            <h3 className="duo-sect" style={eyebrow}>{g.label}</h3>
             {g.fests.map(card)}
           </section>
         ))}

@@ -426,20 +426,14 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
   };
 
   return (
-    <div style={{
-      background: "var(--paper-2)", borderRadius: 16,
-      padding: "12px 12px 8px", marginBottom: 18,
-    }}>
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        marginBottom: 6, padding: "0 2px",
-      }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "var(--text-3)", fontWeight: 700 }}>
-          SIMILAR ARTISTS
+    <div className="duo-card" style={{ padding: "14px 12px 8px", marginBottom: 18 }}>
+      <div style={{ marginBottom: 6, padding: "0 4px" }}>
+        <span className="duo-label duo-ink3" style={{ display: "block" }}>
+          Similar artists
         </span>
         {edcCount > 0 && (
-          <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 700 }}>
-            {edcCount} ALSO AT {(FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase()} — TAP TO EXPLORE
+          <span className="duo-body-s duo-acc" style={{ display: "block", marginTop: 4, fontWeight: 650 }}>
+            {edcCount} also at {FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "this festival"} — tap to explore
           </span>
         )}
       </div>
@@ -582,7 +576,7 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
   return (
     <button onClick={onClick} aria-label="Open moment" style={{
       width: 76, height: 76, flexShrink: 0,
-      borderRadius: 10, overflow: "hidden",
+      borderRadius: "var(--rad-sm)", overflow: "hidden",
       background: "var(--paper-2)",
       border: `1px solid rgba(var(--signal-rgb),0.13)`,
       padding: 0, cursor: "pointer", position: "relative",
@@ -609,7 +603,7 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
         <span className="mono" style={{
           position: "absolute", inset: 0, display: "flex",
           alignItems: "center", justifyContent: "center",
-          fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700,
+          fontSize: 8, letterSpacing: 1.2, color: "var(--ink-2)", fontWeight: 700,
         }}>···</span>
       )}
     </button>
@@ -785,7 +779,7 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
           <button
             onClick={() => window._shareScopedRecap?.({ scope: "artist", artist: artistObj, moments: mine })}
             style={{
-              width: "100%", minHeight: 44, padding: "0 16px", borderRadius: 14,
+              width: "100%", minHeight: 44, padding: "0 16px", borderRadius: "var(--rad-md)",
               background: "var(--signal)", border: "none", color: "var(--on-signal)", cursor: "pointer",
               fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
             }}>My {artistObj.name} set</button>
@@ -1191,7 +1185,12 @@ function ArtistScreen({ state, setState }) {
           </button>
         )}
         <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
-          DAY {a.day} · {fmt12(a.start)}
+          {/* The time joins only when there is one: fmt12("") is an em dash, and
+              "DAY TBA · —" reads as a time that exists. One text node, so the
+              gate can assert the exact string. */}
+          <span data-artist-day-pill>
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+          </span>
         </Pill>
         <ShareArtistButton artist={a} />
       </div>
@@ -1371,12 +1370,12 @@ function ArtistScreen({ state, setState }) {
         {/* Section-jump chips — scroll-spy highlights the active section */}
         {(() => {
           const sections = [
-            { id: "artist-section-bio",        label: "BIO" },
-            { id: "artist-section-tracklist",  label: "TRACKLIST" },
-            { id: "artist-section-livestream", label: "LIVE SET" },
-            { id: "artist-section-setlists",   label: "SETLISTS" },
-            { id: "artist-section-similar",    label: "SIMILAR" },
-            { id: "artist-section-upcoming",   label: "UPCOMING" },
+            { id: "artist-section-bio",        label: "Bio" },
+            { id: "artist-section-tracklist",  label: "Tracklist" },
+            { id: "artist-section-livestream", label: "Live set" },
+            { id: "artist-section-setlists",   label: "Setlists" },
+            { id: "artist-section-similar",    label: "Similar" },
+            { id: "artist-section-upcoming",   label: "Upcoming" },
           ];
           const [activeChip, setActiveChip] = React.useState(sections[0].id);
           React.useEffect(() => {
@@ -1391,8 +1390,8 @@ function ArtistScreen({ state, setState }) {
           }, [a.id]);
           return (
             <div style={{
-              display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
-              marginBottom: 16, marginLeft: -20, marginRight: -20,
+              display: "flex", gap: 8, overflowX: "auto", overflowY: "hidden",
+              marginBottom: 8, marginLeft: -20, marginRight: -20,
               paddingLeft: 20, paddingRight: 20,
               scrollbarWidth: "none",
             }}>
@@ -1401,19 +1400,11 @@ function ArtistScreen({ state, setState }) {
                 return (
                   <button
                     key={c.id}
+                    className="duo-chip" aria-pressed={on}
                     onClick={() => {
                       document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    style={{
-                      background: on ? "var(--ink)" : "var(--paper-2)",
-                      border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
-                      borderRadius: 999, padding: "6px 12px",
-                      fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-                      color: on ? "var(--paper)" : "var(--ink)", cursor: "pointer",
-                      whiteSpace: "nowrap", flexShrink: 0,
-                      transition: "all 0.2s ease",
-                    }}
-                  >{c.label}</button>
+                  ><span>{c.label}</span></button>
                 );
               })}
             </div>
@@ -1427,41 +1418,47 @@ function ArtistScreen({ state, setState }) {
           {a.bio}
         </div>
 
-        {/* Stage & time */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: 14,
-          background: "var(--paper-2)",
-          borderRadius: 14,
-          marginBottom: 16,
-        }}>
-          <div style={{ width: 6, alignSelf: "stretch", background: "var(--signal)", borderRadius: 3 }} />
-          <div style={{ flex: 1 }}>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1 }}>{stage.name}</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {DAYS.find(d => d.n === a.day).label} · {fmt12(a.start)}–{fmt12(a.end)}
-            </div>
-            {saveCount != null && saveCount >= 2 && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", marginTop: 5 }}>
-                ● {saveCount} FANS GOING
+        {/* Stage & time: the board's set card. Lifted while the set is on,
+            with minutes left and progress (Today's math); otherwise the day
+            and the clock. A billed act no official schedule has placed
+            (Escape's lineup-card acts, CRSSD's late adds) has no day: say so,
+            rather than look up a day that does not exist and crash. */}
+        {(() => {
+          const live = typeof isSetLive === "function" && isSetLive(a);
+          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
+          let minsLeft = null, pct = 0;
+          if (live && a.start && a.end && typeof festivalNightDate === "function") {
+            try {
+              const startMs = festivalNightDate(a.day, a.start).getTime();
+              const endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
+              const now = Date.now();
+              minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+              pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
+            } catch {}
+          }
+          const go = (n) => (window._pushNav || ((x) => setState({ ...state, ...x })))(n);
+          return (
+            <div className={`duo-card${live ? " duo-lift" : ""}`} style={{ padding: "14px 16px", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", columnGap: 12, rowGap: 4, flexWrap: "wrap" }}>
+                {live ? <span style={{ whiteSpace: "nowrap" }}><DuoLive>{`Live now${dayLabel ? ` · ${dayLabel}` : ""}`}</DuoLive></span>
+                  : <span className="duo-label duo-ink3">{dayLabel || "Day TBA"}</span>}
+                {minsLeft != null && <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>{minsLeft} MIN LEFT</span>}
               </div>
-            )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6, flexShrink: 0 }}>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "map", focusStage: a.stage, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer",
-            }}>ON MAP</button>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer", whiteSpace: "nowrap",
-            }}>SCHEDULE</button>
-          </div>
-        </div>
+              <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
+              {a.day == null || !a.start
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
+                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
+              {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
+              {saveCount != null && saveCount >= 2 && (
+                <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
+              )}
+              <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap", marginTop: 6 }}>
+                <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
+                {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Per-artist memories strip — the first surface in the rewatch
             loop. Hidden when the user has no moments tagged to this
@@ -1597,10 +1594,10 @@ function ArtistScreen({ state, setState }) {
               )}
               {spotifyStats.followers > 0 && (
                 <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                  <span className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.5 }}>
+                  <span className="duo-headline" style={{ letterSpacing: -0.5 }}>
                     {_fmtCount(spotifyStats.followers)}
                   </span>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)" }}>SPOTIFY FOLLOWERS</span>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--ink-2)" }}>SPOTIFY FOLLOWERS</span>
                 </div>
               )}
             </div>
@@ -1623,7 +1620,7 @@ function ArtistScreen({ state, setState }) {
           <div style={{ marginBottom: 18 }}>
             <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
               {[0, 1].map(i => (
-                <div key={i} style={{ flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "10px 14px" }}>
+                <div key={i} style={{ flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", padding: "10px 14px" }}>
                   <div className="skel" style={{ width: "50%", height: 22, marginBottom: 8 }}/>
                   <div className="skel" style={{ width: "70%", height: 9 }}/>
                 </div>
@@ -1648,26 +1645,26 @@ function ArtistScreen({ state, setState }) {
               }}>
                 {lfm.listeners > 0 && (
                   <div style={{
-                    flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)",
-                    borderRadius: 12, padding: "10px 14px",
+                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                    borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="serif" style={{ fontSize: 22, lineHeight: 1, letterSpacing: -0.5 }}>
+                    <div className="duo-clock" style={{ fontSize: 26 }}>
                       {_fmtCount(lfm.listeners)}
                     </div>
-                    <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4 }}>
+                    <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
                       LISTENERS
                     </div>
                   </div>
                 )}
                 {lfm.playcount > 0 && (
                   <div style={{
-                    flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)",
-                    borderRadius: 12, padding: "10px 14px",
+                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                    borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="serif" style={{ fontSize: 22, lineHeight: 1, letterSpacing: -0.5 }}>
+                    <div className="duo-clock" style={{ fontSize: 26 }}>
                       {_fmtCount(lfm.playcount)}
                     </div>
-                    <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4 }}>
+                    <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
                       TOTAL SCROBBLES
                     </div>
                   </div>
@@ -1685,7 +1682,7 @@ function ArtistScreen({ state, setState }) {
                     background: "var(--paper-2)",
                     border: "1px solid var(--line-2)",
                     borderRadius: 999,
-                    color: "var(--muted)",
+                    color: "var(--ink-2)",
                   }}>{tag.toUpperCase()}</span>
                 ))}
               </div>
@@ -1694,7 +1691,7 @@ function ArtistScreen({ state, setState }) {
             {/* Bio supplement — only show if not a stub */}
             {lfm.bio && lfm.bio.length > 40 && (
               <div style={{
-                fontSize: 13, lineHeight: 1.55, color: "var(--muted)",
+                fontSize: 13, lineHeight: 1.55, color: "var(--ink-2)",
                 marginBottom: 12,
               }}>
                 {lfm.bio}
@@ -1726,14 +1723,13 @@ function ArtistScreen({ state, setState }) {
           const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(lookupName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
           return (
             <div style={{ marginBottom: 18 }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10,
+              <div className="duo-sect" style={{ marginBottom: 10,
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 LIVE SET
                 <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                  color: "var(--muted)", textDecoration: "none",
+                  color: "var(--ink-2)", textDecoration: "none",
                 }}>SEARCH YOUTUBE ↗</a>
               </div>
 
@@ -1741,12 +1737,12 @@ function ArtistScreen({ state, setState }) {
               {YOUTUBE_KEY && ytVideo === undefined && (
                 <div style={{
                   borderRadius: 16, overflow: "hidden", aspectRatio: "16/9",
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <div style={{
                     width: 20, height: 20, borderRadius: "50%",
-                    border: "2px solid var(--line)", borderTopColor: "var(--muted)",
+                    border: "2px solid var(--line)", borderTopColor: "var(--ink-2)",
                     animation: "spin 0.8s linear infinite",
                   }}/>
                 </div>
@@ -1814,7 +1810,7 @@ function ArtistScreen({ state, setState }) {
 
               {/* Inline iframe after tap */}
               {YOUTUBE_KEY && ytVideo && ytPlaying && (
-                <div style={{ borderRadius: 14, overflow: "hidden", aspectRatio: "16/9", background: "var(--paper)" }}>
+                <div style={{ borderRadius: "var(--rad-md)", overflow: "hidden", aspectRatio: "16/9", background: "var(--paper)" }}>
                   <iframe
                     src={`https://www.youtube.com/embed/${ytVideo.videoId}?autoplay=1`}
                     style={{ width: "100%", height: "100%", border: "none", display: "block" }}
@@ -1827,18 +1823,18 @@ function ArtistScreen({ state, setState }) {
               {/* No result — show error retry or fallback search link */}
               {YOUTUBE_KEY && ytVideo === null && (
                 <div style={{
-                  padding: "16px 14px", borderRadius: 12,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  padding: "16px 14px", borderRadius: "var(--rad-md)",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                   textAlign: "center",
                 }}>
                   <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                     {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
                   </div>
                   {ytError && (
                     <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
                       marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                      background: "var(--s3)", border: "none",
                       color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                       cursor: "pointer",
                     }}>↻ RETRY</button>
@@ -1846,8 +1842,8 @@ function ArtistScreen({ state, setState }) {
                   {!ytError && (
                     <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" className="mono" style={{
                       display: "inline-block", marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                      color: "var(--muted)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                      background: "var(--s3)", border: "none",
+                      color: "var(--ink-2)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                       textDecoration: "none",
                     }}>SEARCH YOUTUBE ↗</a>
                   )}
@@ -1858,8 +1854,8 @@ function ArtistScreen({ state, setState }) {
               {!YOUTUBE_KEY && (
                 <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   display: "flex", alignItems: "center", gap: 10,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
-                  borderRadius: 12, padding: "12px 14px", textDecoration: "none",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  borderRadius: "var(--rad-md)", padding: "12px 14px", textDecoration: "none",
                 }}>
                   <div style={{
                     width: 36, height: 36, borderRadius: 36, background: "var(--alert)",
@@ -1869,11 +1865,11 @@ function ArtistScreen({ state, setState }) {
                   </div>
                   <div>
                     <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>Watch on YouTube</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", marginTop: 2 }}>
                       {activeName.toUpperCase()} LIVE SET · {(FESTIVAL_CONFIG.brand || "FESTIVAL").toUpperCase()}
                     </div>
                   </div>
-                  <div style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 14 }}>↗</div>
+                  <div style={{ marginLeft: "auto", color: "var(--ink-2)", fontSize: 14 }}>↗</div>
                 </a>
               )}
             </div>
@@ -1885,8 +1881,7 @@ function ArtistScreen({ state, setState }) {
           const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(lookupName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
           return (
             <div style={{ marginBottom: 18 }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10,
+              <div className="duo-sect" style={{ marginBottom: 10,
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -1894,7 +1889,7 @@ function ArtistScreen({ state, setState }) {
                 </span>
                 <a href={mcSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                  color: "var(--muted)", textDecoration: "none",
+                  color: "var(--ink-2)", textDecoration: "none",
                 }}>SEARCH ↗</a>
               </div>
 
@@ -1902,7 +1897,7 @@ function ArtistScreen({ state, setState }) {
               {mcTracks === undefined && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {[0, 1].map(i => (
-                    <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", background: "var(--paper-2)", borderRadius: 14, overflow: "hidden" }}>
+                    <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", background: "var(--paper-2)", borderRadius: "var(--rad-md)", overflow: "hidden" }}>
                       <div className="skel-dark" style={{ width: 72, height: 72, flexShrink: 0, borderRadius: 0 }}/>
                       <div style={{ flex: 1, padding: "10px 14px 10px 0" }}>
                         <div className="skel-dark" style={{ width: "80%", height: 12, marginBottom: 8 }}/>
@@ -1920,7 +1915,7 @@ function ArtistScreen({ state, setState }) {
                   {mcPlaying !== track.key && (
                     <div onClick={() => setMcPlaying(track.key)} style={{
                       display: "flex", gap: 12, alignItems: "center",
-                      background: "var(--paper-2)", borderRadius: 14, overflow: "hidden",
+                      background: "var(--paper-2)", borderRadius: "var(--rad-md)", overflow: "hidden",
                       cursor: "pointer",
                     }}>
                       {/* Thumbnail */}
@@ -1979,7 +1974,7 @@ function ArtistScreen({ state, setState }) {
 
                   {/* Embedded player */}
                   {mcPlaying === track.key && (
-                    <div style={{ borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
+                    <div style={{ borderRadius: "var(--rad-md)", overflow: "hidden", background: "var(--paper-2)" }}>
                       <iframe
                         src={`https://www.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(track.key)}&mini=0&hide_cover=0&light=0&autoplay=1`}
                         style={{ width: "100%", height: 120, border: "none", display: "block" }}
@@ -2000,8 +1995,8 @@ function ArtistScreen({ state, setState }) {
               {Array.isArray(mcTracks) && mcTracks.length === 0 && (
                 <a href={mcSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   display: "flex", alignItems: "center", gap: 10,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
-                  borderRadius: 12, padding: "12px 14px", textDecoration: "none",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  borderRadius: "var(--rad-md)", padding: "12px 14px", textDecoration: "none",
                 }}>
                   <div style={{
                     width: 36, height: 36, borderRadius: 36, background: "var(--signal)",
@@ -2011,11 +2006,11 @@ function ArtistScreen({ state, setState }) {
                   </div>
                   <div>
                     <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>Search on Mixcloud</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", marginTop: 2 }}>
                       {activeName.toUpperCase()} · SETS & MIXES
                     </div>
                   </div>
-                  <div style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 14 }}>↗</div>
+                  <div style={{ marginLeft: "auto", color: "var(--ink-2)", fontSize: 14 }}>↗</div>
                 </a>
               )}
             </div>
@@ -2026,14 +2021,14 @@ function ArtistScreen({ state, setState }) {
         <div id="artist-section-upcoming" />
         {TICKETMASTER_KEY && (
           <div style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="duo-sect" style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               UPCOMING SHOWS
             </div>
 
             {tmEvents === undefined && (
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {[0, 1].map(i => (
-                  <div key={i} style={{ background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+                  <div key={i} style={{ background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
                     <div className="skel" style={{ width: 42, height: 56, borderRadius: 8 }}/>
                     <div style={{ flex: 1 }}>
                       <div className="skel" style={{ width: "75%", height: 13, marginBottom: 6 }}/>
@@ -2046,18 +2041,18 @@ function ArtistScreen({ state, setState }) {
 
             {tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && (
               <div style={{
-                padding: "16px 14px", borderRadius: 12,
-                background: "var(--paper-2)", border: "1px solid var(--line)",
+                padding: "16px 14px", borderRadius: "var(--rad-md)",
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"}
                 </div>
                 {tmError && (
                   <button onClick={() => { setTmError(false); setTmEvents(undefined); fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    background: "var(--s3)", border: "none",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                     cursor: "pointer",
                   }}>↻ RETRY</button>
@@ -2067,8 +2062,8 @@ function ArtistScreen({ state, setState }) {
 
             {Array.isArray(tmEvents) && tmEvents.map((ev, idx) => (
               <div key={idx} style={{
-                background: "var(--paper-2)", border: "1px solid var(--line)",
-                borderRadius: 12, padding: "12px 16px", marginBottom: 8,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                borderRadius: "var(--rad-md)", padding: "12px 16px", marginBottom: 8,
                 display: "flex", alignItems: "center", gap: 12,
               }}>
                 {/* Date block */}
@@ -2080,7 +2075,7 @@ function ArtistScreen({ state, setState }) {
                   <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--on-ember)" }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""}
                   </div>
-                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "var(--on-ember)", letterSpacing: -0.5 }}>
+                  <div className="duo-headline" style={{ color: "var(--on-ember)", letterSpacing: -0.5 }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[1].replace(",","") : "—"}
                   </div>
                   <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--on-ember)" }}>
@@ -2093,7 +2088,7 @@ function ArtistScreen({ state, setState }) {
                   <div style={{ fontSize: 13, fontWeight: 500, color: "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {ev.venueName}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 3 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--ink-2)", marginTop: 3 }}>
                     {ev.location}{ev.time ? ` · ${ev.time.slice(0,5)}` : ""}
                   </div>
                 </div>
@@ -2117,14 +2112,14 @@ function ArtistScreen({ state, setState }) {
         <div id="artist-section-setlists" />
         {SETLISTS_PROXY_URL && (
           <div style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="duo-sect" style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               SETLIST HISTORY
             </div>
 
             {setlists === undefined && (
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[0, 1].map(i => (
-                  <div key={i} style={{ background: "var(--paper-2)", borderRadius: 12, padding: "12px 14px", border: "1px solid var(--line)" }}>
+                  <div key={i} style={{ background: "var(--paper-2)", borderRadius: "var(--rad-md)", padding: "12px 14px", border: "1px solid var(--line)" }}>
                     <div className="skel" style={{ width: "40%", height: 10, marginBottom: 8 }}/>
                     <div className="skel" style={{ width: "70%", height: 12, marginBottom: 10 }}/>
                     <div style={{ borderTop: "1px solid var(--line)", paddingTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
@@ -2142,18 +2137,18 @@ function ArtistScreen({ state, setState }) {
 
             {setlists !== undefined && setlists !== null && setlists.length === 0 && (
               <div style={{
-                padding: "16px 14px", borderRadius: 12,
-                background: "var(--paper-2)", border: "1px solid var(--line)",
+                padding: "16px 14px", borderRadius: "var(--rad-md)",
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
                 </div>
                 {slError && (
                   <button onClick={() => { setSlError(false); setSetlists(undefined); fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    background: "var(--s3)", border: "none",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                     cursor: "pointer",
                   }}>↻ RETRY</button>
@@ -2171,7 +2166,7 @@ function ArtistScreen({ state, setState }) {
               const state = sl.venue?.city?.stateCode || sl.venue?.city?.country?.code || "";
               return (
                 <div key={idx} style={{
-                  background: "var(--paper-2)", borderRadius: 12,
+                  background: "var(--paper-2)", borderRadius: "var(--rad-md)",
                   padding: "12px 14px", marginBottom: 10,
                   border: `1px solid ${isFest ? "rgba(var(--signal-rgb),0.4)" : "var(--line)"}`,
                 }}>
@@ -2185,14 +2180,14 @@ function ArtistScreen({ state, setState }) {
                       <div className="mono" style={{ fontSize: 10, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 600 }}>
                         {_slDate(sl.eventDate)}
                       </div>
-                      <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: "var(--ink-2)", marginTop: 2 }}>
                         {venue}{city ? ` · ${city}${state ? `, ${state}` : ""}` : ""}
                       </div>
                     </div>
                     {sl.url && (
                       <a href={sl.url} target="_blank" rel="noopener noreferrer" style={{
                         fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                        color: "var(--muted)", textDecoration: "none", flexShrink: 0, marginLeft: 8, marginTop: 2,
+                        color: "var(--ink-2)", textDecoration: "none", flexShrink: 0, marginLeft: 8, marginTop: 2,
                       }}>SETLIST.FM ↗</a>
                     )}
                   </div>
@@ -2200,7 +2195,7 @@ function ArtistScreen({ state, setState }) {
                   {songs.length === 0 ? (
                     <div className="mono" style={{
                       borderTop: "1px solid var(--line)", paddingTop: 8,
-                      fontSize: 10, letterSpacing: 1, color: "var(--muted)",
+                      fontSize: 10, letterSpacing: 1, color: "var(--ink-2)",
                       fontStyle: "italic",
                     }}>
                       SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS
@@ -2213,10 +2208,10 @@ function ArtistScreen({ state, setState }) {
                                       || lfm?.topTrackNames?.includes(sn);
                         return (
                           <div key={si} style={{ display: "flex", alignItems: "center", gap: 10, padding: "3px 0" }}>
-                            <span className="mono" style={{ fontSize: 9, color: "var(--muted)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
+                            <span className="mono" style={{ fontSize: 9, color: "var(--ink-2)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
                             <span style={{ fontSize: 13, color: isBanger ? "var(--signal-ink)" : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
                             {isBanger && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 700 }}>BANGER</span>}
-                            {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 1 }}>TAPE</span>}
+                            {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--ink-2)", letterSpacing: 1 }}>TAPE</span>}
                           </div>
                         );
                       })}
@@ -2239,7 +2234,7 @@ function ArtistScreen({ state, setState }) {
 
         {/* Personal note */}
         <div style={{ marginBottom: 16 }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ink-2)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
             MY NOTE
             {note.trim() && <span style={{ width: 5, height: 5, borderRadius: 5, background: "var(--ember)" }} />}
           </div>
@@ -2251,8 +2246,8 @@ function ArtistScreen({ state, setState }) {
             maxLength={500}
             style={{
               width: "100%", padding: "10px 12px", boxSizing: "border-box",
-              background: "var(--paper-2)", border: "1px solid var(--line-2)",
-              borderRadius: 12, resize: "none",
+              background: "var(--s3)", border: "none",
+              borderRadius: "var(--rad-md)", resize: "none",
               fontFamily: "Geist, sans-serif", fontSize: 14, lineHeight: 1.4,
               color: "var(--ink)", outline: "none",
             }}
@@ -2333,18 +2328,19 @@ function ArtistScreen({ state, setState }) {
       <div style={{
         flexShrink: 0,
         padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-        background: saveFlash ? (saved ? "rgba(var(--signal-rgb),0.08)" : "var(--paper)") : "var(--paper)",
+        background: saveFlash && saved ? "var(--acc-wash)" : "var(--bg)",
         borderTop: "1px solid var(--line)",
         display: "flex", gap: 8,
         transition: "background 0.3s ease",
       }}>
         <button onClick={handleSave} style={{
-          flex: 1, padding: "14px", borderRadius: 14,
+          flex: 1, padding: "14px", borderRadius: "var(--rad-sm)",
           minHeight: 52,
-          background: saved ? "var(--paper-2)" : "var(--signal)",
-          color: saved ? "var(--ink)" : "var(--on-signal)",
+          background: saved ? "transparent" : "var(--acc)",
+          color: saved ? "var(--ink)" : "var(--on-acc)",
           border: saved ? "1px solid var(--line-2)" : "none", cursor: "pointer",
-          fontSize: 17, lineHeight: "22px", fontWeight: 600,
+          boxShadow: saved ? "none" : "0 10px 28px -12px var(--acc-55)",
+          font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
           transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
           transform: saveFlash ? "scale(1.03)" : "scale(1)",
         }}>
@@ -2352,7 +2348,7 @@ function ArtistScreen({ state, setState }) {
           {saved ? (saveFlash ? "Saved" : "✓ Saved to lineup") : "Add to lineup"}
         </button>
         <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} aria-label="Open memories" style={{
-          width: 54, borderRadius: 14,
+          width: 54, borderRadius: "var(--rad-sm)",
           background: "transparent", border: "1px solid var(--line-2)",
           cursor: "pointer", color: "var(--ink)",
           display: "flex", alignItems: "center", justifyContent: "center",
