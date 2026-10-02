@@ -701,7 +701,7 @@ function liveAcrossStages() {
     const live = activeLineup().find(a => a.stage === s.id && isSetLive(a));
     // When stage is dark, find the next artist starting on this stage tonight
     const upcoming = !live && night != null ? activeLineup()
-      .filter(a => a.stage === s.id && a.day === night && toNightMin(a.start) > now)
+      .filter(a => a.stage === s.id && a.day === night && a.start && toNightMin(a.start) > now)
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null
       : null;
     const minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
@@ -722,7 +722,7 @@ function buildTonightsPlan(state) {
   const lineup = activeLineup(saved);
   const sets = saved
     .map(id => lineup.find(a => a.id === id))
-    .filter(a => a && a.day === night)
+    .filter(a => a && a.day === night && a.start)
     .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
 
   return sets.map((a, i) => {
