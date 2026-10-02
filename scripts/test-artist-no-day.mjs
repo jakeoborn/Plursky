@@ -37,6 +37,11 @@ try {
     localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
   }, FID);
   const page = await ctx.newPage();
+  // The clock is PINNED before ACL (Sep 20). On the real clock this gate went
+  // red on Oct 2, ACL's first day, through a different path: Home's stage
+  // board ran toNightMin(null) on a live night. That path has its own case
+  // below, pinned inside a live night, so neither depends on today's date.
+  await page.clock.setFixedTime(new Date("2026-09-20T17:00:00Z"));
   // React catches a render crash and logs it, so a pageerror alone misses it.
   const errors = []; page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => { if (m.type() === "error" && /TypeError|Cannot read|is not a function|The above error/.test(m.text())) errors.push(m.text().slice(0, 160)); });
@@ -89,6 +94,40 @@ try {
   check(!c.text.includes("NOT PUBLISHED"), "control: a timed act shows no 'not published' copy");
   const controlTime = await page.evaluate(t => fmt12(t), control.start);
   check(c.pill.length === 1 && c.pill[0] === `DAY ${control.day} · ${controlTime}`, `control: a timed act keeps its day and time in the pill (got ${JSON.stringify(c.pill)})`);
+
+  // Live night: an act with a day but no set time, on TONIGHT's night. Home's
+  // stage board ("next on this stage") and Tonight's Plan both sort tonight's
+  // acts by start; a null start threw and took the whole Home screen down.
+  // Pinned to ACL W1 Saturday 20:00 CDT, with the fixture saved.
+  {
+    const lctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 844 } });
+    await lctx.addInitScript(fid => {
+      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    }, FID);
+    const lp = await lctx.newPage();
+    await lp.clock.setFixedTime(new Date("2026-10-04T01:00:00Z"));
+    const lerr = []; lp.on("pageerror", e => lerr.push(e.message));
+    lp.on("console", m => { if (m.type() === "error" && /TypeError|Cannot read|is not a function|The above error/.test(m.text())) lerr.push(m.text().slice(0, 160)); });
+    await lp.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=home`, { waitUntil: "domcontentloaded" });
+    await lp.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && window.ARTISTS?.length && typeof window._pushNav === "function", FID, { timeout: 60000 });
+    const night = await lp.evaluate(() => { try { return NOW.night; } catch { return undefined; } });
+    check(night != null, `live night: the pinned clock is inside an ACL night (NOW.night = ${night})`);
+    await lp.evaluate(n => {
+      const a = { id: "fixture-tonight-no-time", name: "Fixture Tonight No Time", stage: window.STAGES[0].id, genre: "house", tier: 1, img: "linear-gradient(#222,#444)", day: n, start: null, end: null };
+      window.ARTISTS = [...window.ARTISTS, a];
+      try { localStorage.setItem(`${window.FESTIVAL_CONFIG.id}_saved_v1`, JSON.stringify([a.id])); } catch {}
+    }, night);
+    // Re-render Home over the new lineup: open an artist and come back.
+    await lp.evaluate(() => window._pushNav({ artist: window.ARTISTS[0].id }));
+    await lp.waitForTimeout(500);
+    await lp.evaluate(() => window._popNav && window._popNav());
+    await lp.waitForTimeout(800);
+    const home = await lp.evaluate(() => ({ kids: document.querySelector("#root")?.childElementCount || 0, text: document.body.innerText.length }));
+    check(lerr.length === 0, `live night: Home throws nothing with an untimed act tonight (got ${JSON.stringify(lerr)})`);
+    check(home.kids > 0 && home.text > 200, `live night: Home still renders (root children ${home.kids}, ${home.text} chars of text)`);
+    await lctx.close();
+  }
   await browser.close();
 } finally {
   server.kill();

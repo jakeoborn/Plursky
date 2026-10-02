@@ -844,7 +844,7 @@ function liveAcrossStages() {
   var now = toNightMin(NOW.time);
   return STAGES.map(s => {
     var live = activeLineup().find(a => a.stage === s.id && isSetLive(a));
-    var upcoming = !live && night != null ? activeLineup().filter(a => a.stage === s.id && a.day === night && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
+    var upcoming = !live && night != null ? activeLineup().filter(a => a.stage === s.id && a.day === night && a.start && toNightMin(a.start) > now).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null : null;
     var minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
     return {
       stage: s,
@@ -860,7 +860,7 @@ function buildTonightsPlan(state) {
   var nowMin = toNightMin(NOW.time);
   var saved = savedInLineup(state.saved);
   var lineup = activeLineup(saved);
-  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
