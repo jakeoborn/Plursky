@@ -1415,10 +1415,11 @@ function FestivalChip({ compact = false, accent = "var(--ink)", title = null }) 
   );
 }
 
-// Real festival art only: raster official maps. SVG plates and the one raster
-// placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
-// their emoji on a plain surface instead.
-const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+// Real festival art only: raster official maps. SVG plates are generated, so
+// those festivals show their emoji on a plain surface instead. The set is for
+// a generated RASTER; the last one (EDC Orlando's placeholder) was replaced
+// by the official 2025 map on 2026-09-30, so it is empty today.
+const _GENERATED_ART = new Set([]);
 function _festivalArt(cfg) {
   const img = cfg && cfg.mapImage;
   return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;

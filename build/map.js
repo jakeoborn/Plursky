@@ -501,6 +501,9 @@ function _solveMapAffine(cfg, stages) {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 function _gpsFromAffine(affine, cfg, x, y) {
   if (!affine) return null;
@@ -2582,7 +2585,7 @@ function MapScreen({
   var [amenityKey, setAmenityKey] = React.useState(false);
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapPostureLabel = _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · OFFICIAL ${FESTIVAL_CONFIG.year} MAP PENDING` : REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
@@ -3017,12 +3020,25 @@ function MapScreen({
       background: "var(--paper-2)"
     }
   }, React.createElement(WellnessPill, null), React.createElement("div", {
+    "data-map-left-col": true,
     style: {
       position: "absolute",
       top: 68,
       left: 10,
       zIndex: 4,
+      maxWidth: "calc(100% - 100px)",
+      boxSizing: "border-box",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: 6,
       pointerEvents: "none"
+    }
+  }, React.createElement("div", {
+    "data-map-posture": true,
+    style: {
+      maxWidth: "100%",
+      minHeight: 38
     }
   }, React.createElement("span", {
     className: "duo-code",
@@ -3030,9 +3046,34 @@ function MapScreen({
       background: "rgba(var(--glass),0.92)",
       color: "var(--ink)",
       backdropFilter: "blur(10px)",
-      WebkitBackdropFilter: "blur(10px)"
+      WebkitBackdropFilter: "blur(10px)",
+      whiteSpace: "normal",
+      lineHeight: 1.35,
+      maxWidth: "100%",
+      boxSizing: "border-box"
     }
-  }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
+  }, mapPostureLabel)), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
+    style: {
+      padding: "4px 10px",
+      borderRadius: 999,
+      background: "rgba(var(--glass),0.92)",
+      color: "var(--ink)",
+      border: "1px solid var(--line-2)",
+      backdropFilter: "blur(8px)",
+      maxWidth: "100%",
+      boxSizing: "border-box",
+      pointerEvents: "auto"
+    },
+    title: "Location permission is denied — enable it for this site to place yourself on the map"
+  }, React.createElement("span", {
+    style: {
+      font: "600 11px/1.3 var(--f-ui)",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      display: "block"
+    }
+  }, "GPS denied · enable location"))), state._navStack?.length > 0 && React.createElement("button", {
     onClick: () => window._popNav?.(),
     "aria-label": "Back",
     style: {
@@ -3386,30 +3427,7 @@ function MapScreen({
     }
   }, _packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
     onClose: () => setPacksOpen(false)
-  }), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 112,
-      left: 10,
-      zIndex: 4,
-      padding: "4px 10px",
-      borderRadius: 999,
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      backdropFilter: "blur(8px)",
-      maxWidth: "calc(100% - 120px)"
-    },
-    title: "Location permission is denied — enable it for this site to place yourself on the map"
-  }, React.createElement("span", {
-    style: {
-      font: "600 11px/1.3 var(--f-ui)",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "block"
-    }
-  }, "GPS denied · enable location")), amenityKey && !meetMode && React.createElement("div", {
+  }), amenityKey && !meetMode && React.createElement("div", {
     role: "group",
     "aria-label": "Amenity key",
     style: {

@@ -148,7 +148,7 @@ export function festivalById(id, root = ROOT) {
   const entry = REG.find(f => f.config && f.config.id === id);
   if (!entry) throw new Error(`no festival "${id}" in the registry`);
   if (!DS[id]) throw new Error(`festival "${id}" has no data set`);
-  return { config: entry.config, stages: DS[id].stages };
+  return { config: entry.config, stages: DS[id].stages, amenities: DS[id].amenities || [], entry };
 }
 
 const isMain = import.meta.url === `file://${process.argv[1]}`;

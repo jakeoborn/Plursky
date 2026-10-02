@@ -1507,6 +1507,39 @@ const REGISTRATION_TOL_M = 25;
             "until a fourth tie point exists. grove is satellite-measured; " +
             "verizon and snapchat are fitted to the official 2025 map",
     },
+    "edc-orlando-2026": {
+      excuses: ["unsourced", "blind"],
+      // The day after the festival ends. If the official 2026 map publishes
+      // first, the flip re-fits the anchors and this entry has to go with it;
+      // if it never publishes, the gate goes red once the event is over and
+      // someone has to decide what the archived edition keeps.
+      expires: "2026-11-09",
+      // NOT grandfathered breakage, and the first waiver granted to a festival
+      // at the moment it opens. The 2026-09-05 call says a festival flipping
+      // available:true arrives with a sourced basis or does not arrive. The
+      // founder ruling of 2026-09-30 is the exception, made knowingly: "use
+      // 2025 and say we are waiting for official 2026 map". EDC Orlando opens
+      // on its lineup over the official 2025 map, labelled as such.
+      //
+      // Both conditions are real. Three anchors ship (kinetic, circuit, neon;
+      // founder ruling 2026-09-30), all `poster`: the 2025 plate fitted to four
+      // OpenStreetMap street intersections the art draws (control points in
+      // map-sources/edco-map-2025-control-points.json, residuals 7-12 m), then
+      // applied to each stage's pin. A fit off art is still a read off art, so
+      // the basis is unsourced; and the three are the whole basis, so it is
+      // blind. The four corners are checked in scripts/test-georef-map.mjs and
+      // on screen in scripts/test-edco-corners.mjs. Every distance readout
+      // stays withheld.
+      //
+      // This waiver covers EDC Orlando's three anchors and nothing else. It is
+      // not a precedent for any other festival opening unsourced.
+      //
+      // Clears at the flip: control points saved and re-fitted on the official
+      // 2026 art with scripts/georef-map.mjs, plus one osm or ground anchor.
+      note: "opened on its lineup over the official 2025 map (founder ruling " +
+            "2026-09-30); three anchors fitted on the 2025 plate to four OSM street corners, all of them the basis. " +
+            "Clears when the official 2026 map is fitted from saved control points",
+    },
   };
   const regProblems = [];
   const waived = new Set();
@@ -1745,11 +1778,15 @@ const REGISTRATION_TOL_M = 25;
   // checks and had to be deleted, not adjusted.
   //
   // Recorded as a gate rather than a comment because a comment is exactly
-  // what the next flip session will not read. EDC Orlando is grandfathered:
-  // its five poster anchors are already authored and internally consistent
-  // (3 m / 7 m off their own affine), so they stand as the calibration set
-  // for whenever a real osm/crowd source lands. That is the last batch.
-  const LAYOUT_ONLY_GRANDFATHERED = new Set(["edc-orlando-2026"]);
+  // what the next flip session will not read.
+  //
+  // Nothing is grandfathered any more. EDC Orlando was the one entry (five
+  // poster anchors authored before the ruling); it opened on 2026-09-30, and
+  // a live festival is out of this gate's scope, so the entry excused
+  // nothing. Its anchors are now the registration gate's business, under a
+  // dated waiver. An id listed here that is not a gated festival carrying
+  // poster-class anchors is fatal below, same closure as the waivers above.
+  const LAYOUT_ONLY_GRANDFATHERED = new Set([]);
   const LO_EVIDENCE = EVIDENCE_SRC;
   console.log("▸ Layout-only gate — no new poster-class anchors on a gated festival");
   let loHard = 0, loOk = 0;
@@ -1771,6 +1808,11 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (loHard) fail(`${loHard} gated festival(s) carry poster-class anchors — see above`);
+  for (const id of LAYOUT_ONLY_GRANDFATHERED) {
+    const f = REG.find(x => x.config.id === id);
+    const excuses = f && f.available !== true && (f.config.gpsAnchors || []).some(a => !LO_EVIDENCE.has(a.src));
+    if (!excuses) fail(`layout-only grandfather entry for ${id} is STALE: it is not a gated festival with poster-class anchors. Delete the entry.`);
+  }
   console.log(`  ✓ ${loOk} gated festival(s) hold the layout-only default`);
 
   // ── Crowd-anchor gate ────────────────────────────────────────────────────
@@ -2254,8 +2296,8 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 //   · LIVE — _allDataSets() filters to registry-`available`. Correct for
 //     _resolveFestivalForPhoto, which ATTRIBUTES (a gated id strands a moment,
 //     since getActiveFestivalId() also requires `available`); wrong for a trust
-//     question, where availability is a UI concern. edc-orlando-2026 is gated
-//     and is the only gated festival with a data module, so a genuine EDC
+//     question, where availability is a UI concern. edc-orlando-2026 was gated
+//     (until 2026-09-30) and the only gated festival with a data module, so a genuine EDC
 //     Orlando capture time was rejected as junk and the clip imported as
 //     no-date.
 //
@@ -2739,8 +2781,8 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // presented as attributed must be claimed by that festival's night windows, a
 // record that cannot be proved must SAY so, and — so the flag cannot buy a
 // trivial pass — every provable record must come back evidence-backed. It also
-// covers the gated case (edc-orlando-2026 is invisible to photo-tag's
-// registry-filtered _allDataSets) and the once-per-load flag that used to be
+// covers the gated case (a gated festival is invisible to photo-tag's
+// registry-filtered _allDataSets; the test gates edc-orlando-2026 in its harness) and the once-per-load flag that used to be
 // burned by an early return before FESTIVAL_CONFIG was ready.
 {
   console.log("▸ Festival-migration gate — legacy moments attributed from their own capture time");
@@ -3082,7 +3124,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // ships from its own anchors, and build-edco-map-2026.mjs may ship only the
 // placeholder until an official 2026 map is pinned by hash.
 {
-  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
+  console.log("▸ Georef gate — EDC Orlando ships the pinned 2025 plate with measured pins; no unpinned 2026 map ships");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
@@ -3090,6 +3132,38 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── EDC Orlando: the four corners, on screen ─────────────────────────────
+// A mocked position at each street corner the 2025 art draws must be drawn on
+// that corner (within 16 plate px). The fit itself is held above; this holds
+// what the app renders from the three anchors.
+{
+  console.log("▸ EDC Orlando corners — a person at each street corner is drawn on it");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-edco-corners.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC Orlando corners failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Map plate drawn for another edition ───────────────────────────────────
+// A festival shipping last year's map says so on the map screen ("2025 MAP ·
+// OFFICIAL 2026 MAP PENDING"), and the long label stays clear of the control
+// column and the GPS pill down to 280 px. Fixture field on a live festival.
+{
+  console.log("▸ Map edition label — another edition's art is labelled as such, and the label fits");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-edition-label.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map edition label failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
