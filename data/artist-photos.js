@@ -1,0 +1,17 @@
+window.PLURSKY_ARTIST_PHOTOS = {
+  "skrillex": {
+    "artist": "Skrillex",
+    "author": "Michael Nusbaum / Weekly Dig",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Skrillex.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-09-30T23:31:21.396113+00:00",
+    "allowExport": false,
+    "asset": "artist-photos/skrillex.webp",
+    "sha256": "ef2751f76a907b73476d24dcf92b506a049e4abb43795c5f944a52bc9de19648",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/skrillex.webp"
+  }
+};
