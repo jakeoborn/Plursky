@@ -1,39 +1,31 @@
 # Plursky — Visual Design System
 
-A multi-festival companion app (EDC, ACL, and more). Aesthetic: **desert-dawn editorial.**
-Warm paper, ink, ember; serif display + mono caps. Reads like a printed
-program zine, behaves like a phone app. **Not** dark-mode, **not** neon-rave,
-**not** Material — those are explicit non-goals.
+A multi-festival companion app (EDC, ACL, and more).
 
-Source of truth: `index.html` `:root { … }` + `.serif` + `.mono` classes.
-All tokens below come straight from there or from observed usage frequency
-in `*.jsx`. When in doubt, grep the codebase — the existing patterns win.
+> **This file is not the source of truth.** It was written on 2026-05-26, before
+> the dark/light rollout, and its palette and non-goals no longer describe the
+> app. Use these three sources, in this order:
+>
+> | What | Where | Role |
+> |---|---|---|
+> | **Design guide** | [`docs/design/duo-rollout-ledger.md`](docs/design/duo-rollout-ledger.md) | The source of truth: token map (dark and light), contrast rulings, gap ledger. |
+> | **Implemented tokens and components** | [`index.html`](index.html) (`:root[data-mode="dark"]`, `:root[data-mode="light"]`, `.theme-field` rules) | What the app actually renders. If it disagrees with the guide, the code ships; fix one of them. |
+> | **Historical board** | [`design/system-exploration` @ `6524ccb`](https://github.com/jakeoborn/Plursky/tree/6524ccbdb5aebc7069081d09df910c527ed3a219/design/system-exploration) (`shared/duo-tokens.js`, `shared/duo.css`, `shared/duo.js`) | The selected dark/light exploration board the guide was mapped from. Reference only; do not copy values from it over the guide. |
+>
+> Dark is the default mode and Light is a full mode of the same system; both are
+> gated by `scripts/test-appearance.mjs`. The sections below (typography,
+> spacing, radii, components, motion, iOS chrome) are pre-rollout observations
+> kept for history; where they disagree with the three sources above, those win.
 
 ---
 
 ## Palette
 
-CSS variables (declared in `index.html`):
-
-| Token | Hex / rgba | Role |
-|---|---|---|
-| `--ink`     | `#1a120d` | Body text, dark surfaces, primary buttons |
-| `--paper`   | `#f7ede0` | Base background (everywhere) |
-| `--paper-2` | `#eee0cb` | Card / inset background |
-| `--dune`    | `#d9bf94` | Soft accent (rare) |
-| `--ember`   | `#e85d2e` | **Primary CTA**, destructive, "alive" highlights |
-| `--flare`   | `#f59a36` | Secondary warm accent (orange-yellow) |
-| `--horizon` | `#7b3d9a` | Cool counterpoint to ember (purple) |
-| `--night`   | `#1a1030` | Deep-night surfaces (sparingly) |
-| `--dusk`    | `#2a1a3d` | Between night + horizon |
-| `--sky`     | `#6f8fb8` | Cool blue accent |
-| `--line`    | `rgba(26,18,13,0.12)` | Hairline borders on light surfaces |
-| `--line-2`  | `rgba(26,18,13,0.22)` | Stronger borders / dividers |
-| `--muted`   | `rgba(26,18,13,0.55)` | Secondary text |
-| `--success` | `#2d7a55` | Confirmation, "● SYNCED" badges |
-
-Stage-specific accents live in `data.jsx` (`STAGES[].color`). Don't invent new
-top-level palette entries; pull from these.
+Moved. See the design guide's token map in
+[`docs/design/duo-rollout-ledger.md`](docs/design/duo-rollout-ledger.md) and the
+implemented values in [`index.html`](index.html). The May desert-dawn palette
+(paper, ink, ember) is retired; its legacy token names (`--paper`, `--ember`,
+`--dune` ...) survive only as aliases that follow the active mode.
 
 ---
 
@@ -165,13 +157,9 @@ Color encodes the state — `var(--success)` for OK, `var(--ember)` for warning.
 
 ## Non-goals
 
-- **No dark mode.** The "night" tokens exist for specific surfaces (e.g. the
-  CrewCard dark hero); the app is fundamentally paper-and-ink.
-- **No iconography library.** Inline SVG only. Stroke width 1.8, round caps.
-- **No CSS-in-JS framework.** Inline `style={{ … }}` objects directly, with
-  occasional `className="serif"/"mono"` shortcuts.
-- **No Tailwind / utility classes.** Existing styles win over abstractions.
-- **No new font families.** Three is the budget; the contrast is the design.
+Moved to the design guide,
+[`docs/design/duo-rollout-ledger.md`](docs/design/duo-rollout-ledger.md). The
+May non-goals list is retired: dark mode is now the default.
 
 ---
 
