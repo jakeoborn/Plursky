@@ -24,7 +24,11 @@ const COPY = [
   'icon-192.png',
   'icon-512.png',
   'og.svg',
+  'data/artist-photos.js',
 ];
+
+execFileSync(process.execPath, [path.join(root, 'scripts', 'build-artist-photo-ledger.mjs')],
+  { cwd: root, stdio: 'inherit' });
 
 // Compile FIRST — dist/ must never carry a build/ older than the sources.
 execFileSync(process.execPath, [path.join(root, 'scripts', 'compile.mjs')],
@@ -85,7 +89,9 @@ if (!buildFiles.length) {
   process.exit(1);
 }
 
-const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles])];
+const artistPhotoFiles = existsSync(path.join(root, 'artist-photos'))
+  ? (await readdir(path.join(root, 'artist-photos'))).filter(f => /\.(webp|png|jpg)$/.test(f)).map(f => path.join('artist-photos', f)) : [];
+const allFiles = [...new Set([...COPY, ...buildFiles, ...imgFiles, ...dataFiles, ...festivalArtFiles, ...historicalFiles, ...fontFiles, ...artistPhotoFiles])];
 for (const file of allFiles) {
   const src = path.join(root, file);
   if (!existsSync(src)) {

@@ -1227,6 +1227,13 @@ function ArtistScreen({ state, setState }) {
         const y = e.currentTarget.scrollTop;
         setHeroParallax(Math.min(60, y * 0.3));
       }}>
+      {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
+        <div data-artist-photo-credit="1" style={{ padding: "8px 18px", fontSize: 12, lineHeight: "18px", color: "var(--text-2)" }}>
+          Photo: {heroCacheRec.author} · <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer">Source</a>
+          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer">{heroCacheRec.license}</a>
+          {" · Display cropped"}
+        </div>
+      )}
       {/* Hero */}
       {spotifyHero ? (
         // Spotify's Design Guidelines for Spotify artwork: "Don't crop the

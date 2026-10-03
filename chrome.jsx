@@ -314,9 +314,22 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 
+// Reviewed self-hosted artwork wins over temporary platform images. The build
+// validates source, license, attribution and asset hash; localStorage cannot
+// promote an arbitrary URL to permanent artwork.
+function getPermanentArtistImage(name) {
+  const rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  if (!rec || !["commons", "press-kit"].includes(rec.source) ||
+      !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") ||
+      !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
+  return rec;
+}
+
 // The entry to SHOW for an artist, or null (missing, expired, or unknown).
 function getArtistImage(name, now = Date.now()) {
   if (!name) return null;
+  const permanent = getPermanentArtistImage(name);
+  if (permanent) return permanent;
   const rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
   return _artistImageShowable(rec, now) ? rec : null;
 }
@@ -324,7 +337,7 @@ function getArtistImage(name, now = Date.now()) {
 // The entry a share/recap EXPORT may draw: never Spotify, never unknown.
 function getShareableArtistImage(name) {
   const rec = getArtistImage(name);
-  return rec && rec.source !== "spotify" ? rec : null;
+  return rec && rec.source !== "spotify" && rec.allowExport === true ? rec : null;
 }
 
 // Drops expired Spotify entries and unknown legacy ones. Runs on every write
