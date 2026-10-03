@@ -183,7 +183,8 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     // the generator renders with (scripts/lib/festival-page-data.mjs).
     plate: (() => { const p = plateFor(cfg); return p ? [p.file, p.w, p.h, fp(p.svg)] : null; })(),
     editions: pastEditionsFor(cfg.id),
-    stageProgramming: stageProgrammingFor(cfg.id),
+    // Only festivals with programming add the key, so the rest keep their fp.
+    ...(stageProgrammingFor(cfg.id) ? { stageProgramming: stageProgrammingFor(cfg.id) } : {}),
     amenities: amenitySummary(DS, cfg.id, !!entry.available),
     // The Watch & listen section: the embeds the page shows, in order. A
     // verification that drops or restores one moves the page, and so lastmod.

@@ -1460,7 +1460,23 @@ function ArtistScreen({
       var y = e.currentTarget.scrollTop;
       setHeroParallax(Math.min(60, y * 0.3));
     }
-  }, spotifyHero ? React.createElement("div", {
+  }, heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+    "data-artist-photo-credit": "1",
+    style: {
+      padding: "8px 18px",
+      fontSize: 12,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Photo: ", heroCacheRec.author, " · ", React.createElement("a", {
+    href: heroCacheRec.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Source"), " · ", React.createElement("a", {
+    href: heroCacheRec.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, heroCacheRec.license), " · Display cropped"), spotifyHero ? React.createElement("div", {
     "data-hero": "spotify",
     style: {
       position: "relative",

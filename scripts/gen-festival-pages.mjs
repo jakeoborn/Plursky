@@ -203,6 +203,15 @@ ${body}
   </section>`;
 }
 
+// Only a page that renders the section carries its styles, so the other
+// festival pages (and their sitemap lastmod) do not move.
+const STAGE_PROGRAMMING_CSS = `  details.program-stage { margin:10px 0; border:1px solid var(--line); border-radius:10px; padding:0 14px; }
+  details.program-stage summary { cursor:pointer; font-weight:650; min-height:44px; padding:12px 0; overflow-wrap:anywhere; }
+  details.program-stage ol { padding-left:24px; }
+  details.program-stage li { padding:6px 0; overflow-wrap:anywhere; }
+  details.program-stage time { font-variant-numeric:tabular-nums; font-weight:650; }
+`;
+
 // Official stage/day running order is not a full clock-time schedule.
 function stageProgrammingSection(entry) {
   const data = stageProgrammingFor(entry.config.id);
@@ -743,12 +752,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
-  details.program-stage { margin:10px 0; border:1px solid var(--line); border-radius:10px; padding:0 14px; }
-  details.program-stage summary { cursor:pointer; font-weight:650; min-height:44px; padding:12px 0; overflow-wrap:anywhere; }
-  details.program-stage ol { padding-left:24px; }
-  details.program-stage li { padding:6px 0; overflow-wrap:anywhere; }
-  details.program-stage time { font-variant-numeric:tabular-nums; font-weight:650; }
-  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
+${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
   details.more { margin:4px 0 0; }
@@ -798,8 +802,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
-${scheduleGrid(entry, dates, blocks)}
-${stageProgrammingSection(entry)}
+${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
 ${planSection(entry, amenities)}

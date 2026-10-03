@@ -23,6 +23,9 @@ const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
   .filter(f => f.endsWith(".js")).sort();
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
+execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
 // 2026-08-29: `git add -A` picked up a `node_modules` symlink because

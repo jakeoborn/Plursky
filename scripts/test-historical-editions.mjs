@@ -252,7 +252,10 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   const sw = readFileSync(join(ROOT, "sw.js"), "utf8");
   ok(/\.\/build\/historical\.js/.test(sw) && !/historical\/(index|editions)/.test(sw), "sw.js must precache the screen (build/historical.js) and never the library data");
   const bld = code("scripts/build.mjs");
-  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bld),
+  // Only the lines that name the historical library: the artist-photo ledger's build
+  // step is a different ledger, and a blanket /ledger/ refused it (2026-10-03).
+  const bldHist = bld.split("\n").filter(l => /historical/.test(l)).join("\n");
+  ok(/'data\/historical\/index\.json'/.test(bld) && /'historical', 'editions'/.test(bld) && !/sheets|ledger|'review'/.test(bldHist),
     "build.mjs must ship data/historical/index.json and editions/*.json only (sheets, ledgers and review manifests stay out of the app)");
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));

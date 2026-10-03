@@ -375,14 +375,21 @@ function _artistImageShowable(rec, now = Date.now()) {
   }
   return false;
 }
+function getPermanentArtistImage(name) {
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
+  return rec;
+}
 function getArtistImage(name, now = Date.now()) {
   if (!name) return null;
+  var permanent = getPermanentArtistImage(name);
+  if (permanent) return permanent;
   var rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
   return _artistImageShowable(rec, now) ? rec : null;
 }
 function getShareableArtistImage(name) {
   var rec = getArtistImage(name);
-  return rec && rec.source !== "spotify" ? rec : null;
+  return rec && rec.source !== "spotify" && rec.allowExport === true ? rec : null;
 }
 function _pruneArtistImageStore(store, now = Date.now()) {
   var changed = false;
