@@ -1079,6 +1079,14 @@ function PyroStarburst({
     }
   }));
 }
+function _licenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+}
+var _creditLink = {
+  color: "inherit",
+  textDecoration: "underline",
+  textUnderlineOffset: 2
+};
 function ArtistScreen({
   state,
   setState
@@ -1412,14 +1420,15 @@ function ArtistScreen({
   }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a
   })));
+  var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
   var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
-      marginBottom: 8
+      marginBottom: 12
     }
-  }, React.createElement("div", {
+  }, heroGenre && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -1427,7 +1436,7 @@ function ArtistScreen({
       opacity: 0.85,
       fontWeight: 600
     }
-  }, a.genre.toUpperCase()), stage && React.createElement("div", {
+  }, heroGenre.toUpperCase()), heroGenre && stage && React.createElement("div", {
     style: {
       width: 4,
       height: 4,
@@ -1460,23 +1469,7 @@ function ArtistScreen({
       var y = e.currentTarget.scrollTop;
       setHeroParallax(Math.min(60, y * 0.3));
     }
-  }, heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
-    "data-artist-photo-credit": "1",
-    style: {
-      padding: "8px 18px",
-      fontSize: 12,
-      lineHeight: "18px",
-      color: "var(--text-2)"
-    }
-  }, "Photo: ", heroCacheRec.author, " · ", React.createElement("a", {
-    href: heroCacheRec.sourceUrl,
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Source"), " · ", React.createElement("a", {
-    href: heroCacheRec.licenseUrl,
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, heroCacheRec.license), " · Display cropped"), spotifyHero ? React.createElement("div", {
+  }, spotifyHero ? React.createElement("div", {
     "data-hero": "spotify",
     style: {
       position: "relative",
@@ -1580,7 +1573,27 @@ function ArtistScreen({
       right: 18,
       zIndex: 3
     }
-  }, heroNameInner)), isB2B && React.createElement("div", {
+  }, heroNameInner)), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+    "data-artist-photo-credit": "1",
+    "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
+    style: {
+      padding: "8px 18px 0",
+      fontSize: "var(--fs-label)",
+      lineHeight: "16px",
+      color: "var(--text-3)",
+      whiteSpace: "nowrap"
+    }
+  }, React.createElement("a", {
+    href: heroCacheRec.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _creditLink
+  }, heroCacheRec.author), " · ", React.createElement("a", {
+    href: heroCacheRec.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _creditLink
+  }, _licenseLabel(heroCacheRec.license)), " · Cropped"), isB2B && React.createElement("div", {
     style: {
       display: "flex",
       background: "var(--paper-2)",
