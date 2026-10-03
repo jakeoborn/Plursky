@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": 1,
+  "festivalId": "acl-2026",
+  "status": "data-readiness-not-consumed",
+  "map": {
+    "source": {
+      "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+      "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+      "observedAt": "2026-09-30",
+      "edition": "2026"
+    },
+    "reuse": "external-source-link-only",
+    "coordinates": "none; numbered areas refer only to the printed vendor map"
+  },
+  "areas": [
+    {
+      "mapNumber": 1,
+      "label": "ACL Eats",
+      "printedOrder": "west-to-east",
+      "entries": [
+        {
+          "printedName": "High Road Deli & Bar",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Wicky's Walking Tacos",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Mama Fried",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Bao'd Up",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Four Brothers Venezuelan Grill",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "La Taquicardia",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Tender Daddy",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Blenders & Bowls",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Koko's Bavarian",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Saigon on 7th",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Southside Flying Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Skull & Cakebones",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Salt & Time",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Steamies Dumplings",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Vaquero Taquero",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Austin Daily Press",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "P. Terry's Burger Stand",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Lamba's Kitchen",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "KG BBQ",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Thai Fresh",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "T-Loc's Sonora Hot Dogs",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Shawarma Point",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Mighty Cone",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "JABS Burgers & Fries",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Cuantos Tacos",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Show Me Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Deep End Subs",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "BBG's",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Happy Chicks",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Cabo Bob's",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Lonesome Dove",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Kababeque",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Chi'lantro",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "CM Smokehouse",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "La Santa Barbacha",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Juiceland",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Dan's Hamburgers",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Veracruz Tacos",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Hawk's Hot Chicken",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Austin's Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 2,
+      "label": "ACL Eats South",
+      "printedOrder": "west-to-east",
+      "entries": [
+        {
+          "printedName": "Four Brothers Venezuelan Kitchen",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Southside Flying Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Mighty Cone",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Happy Chicks",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Goodtimes Burgers",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Vaquero Taquero",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Tender Daddy",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 3,
+      "label": "ACL Sweets",
+      "printedOrder": "west-to-east",
+      "entries": [
+        {
+          "printedName": "Gelato Paradiso",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "El Postrecito ATX",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Sno-Beach",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Bananarchy",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Amy's Ice Creams",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Gati Ice Cream",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Baba's Fried Sweets",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Blenders & Bowls",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Tiff's Treats",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Dulce Amor Mio",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 4,
+      "label": "GA+ Lounge",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Goodtimes Burgers",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Hattie B's Hot Chicken",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Taqueria Los Regios",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 5,
+      "label": "VIP Lounge East",
+      "printedOrder": "north-to-south",
+      "entries": [
+        {
+          "printedName": "BRB Coffee",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Show Me Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Dovetail Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Well",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Aba",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Mexico Ceaty",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Zilker Provisions",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 6,
+      "label": "VIP Lounge West",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "Royal Blue Grocery",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 7,
+      "label": "ACL Market",
+      "printedOrder": "west-to-east",
+      "entries": [
+        {
+          "printedName": "Exit82Art",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Ornamental Things",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Rancho Sueño",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Divine Mystics",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Roommate Collective",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Austin Art Garage",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Lost Valley",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Mutiny Market",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Spare Finery Permanent Jewelry",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 8,
+      "label": "Austin Kiddie Limits",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "Goodpop",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 9,
+      "label": "Rock Island",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "El Patio",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 10,
+      "label": "The Big Tent",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "Cocktails & frozens",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Bambino Pizza",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 11,
+      "label": "The Big Shade",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "Blenders & Bowls",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 12,
+      "label": "The Grove",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "The Corndog Company",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Craft Beer",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Ranch 616",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Sushushi",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Wine & Frosé",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": 13,
+      "label": "Bodega",
+      "printedOrder": null,
+      "entries": [
+        {
+          "printedName": "Snacks & festival necessities",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "mapNumber": null,
+      "label": "Hawkers & Carts",
+      "printedOrder": "roaming",
+      "entries": [
+        {
+          "printedName": "Amy's Ice Creams",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Bodega",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Goodpop",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        },
+        {
+          "printedName": "Lemonade Stands",
+          "source": {
+            "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+            "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+            "observedAt": "2026-09-30",
+            "edition": "2026"
+          }
+        }
+      ],
+      "source": {
+        "url": "https://support.aclfestival.com/hc/article_attachments/54098802602004",
+        "page": "https://support.aclfestival.com/hc/en-us/articles/41707631932564-Food-and-Beverage-Vendor-Map",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    }
+  ]
+}

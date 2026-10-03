@@ -85,8 +85,8 @@ function _HistHeader({ title, sub, onBack, right }) {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg>
       </button>
       <div style={{ flex: 1, minWidth: 0, paddingTop: 2 }}>
-        {sub && <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)", marginBottom: 2 }}>{sub}</div>}
-        <h1 style={{ margin: 0, fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em", overflowWrap: "anywhere" }}>{title}</h1>
+        {sub && <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>{sub}</div>}
+        <h1 className="duo-title" style={{ margin: 0, overflowWrap: "anywhere" }}>{title}</h1>
       </div>
       {right}
     </div>
@@ -94,10 +94,10 @@ function _HistHeader({ title, sub, onBack, right }) {
 }
 
 function _HistStatus({ res, retry, what }) {
-  if (res.status === "loading") return <p role="status" style={{ margin: "24px 20px", color: "var(--text-2)" }}>Loading {what}…</p>;
+  if (res.status === "loading") return <p role="status" className="duo-body-s duo-ink2" style={{ margin: "24px 20px", fontWeight: 400 }}>Loading {what}…</p>;
   return (
-    <div role="status" style={{ margin: "24px 20px", display: "grid", gap: 12 }}>
-      <p style={{ margin: 0, color: "var(--text-2)" }}>Couldn't load {what}. Past festivals need a connection the first time you open them.</p>
+    <div role="status" className="duo-card" style={{ margin: "24px 16px", padding: 16, display: "grid", gap: 12 }}>
+      <p className="duo-body" style={{ margin: 0, color: "var(--ink-2)" }}>Couldn't load {what}. Past festivals need a connection the first time you open them.</p>
       <FieldButton kind="secondary" onClick={retry}>Try again</FieldButton>
     </div>
   );
@@ -186,7 +186,7 @@ function _HistLibrary({ state, setState }) {
         {res.status !== "ready" && <_HistStatus res={res} retry={retry} what="past festivals" />}
         {years.map(y => (
           <section key={y} style={{ marginTop: 16 }}>
-            <h2 style={{ margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>{y}</h2>
+            <h2 className="duo-sect" style={{ margin: "0 0 4px" }}>{y}</h2>
             {editions.filter(e => e.year === y).map(e => (
               <button key={e.id} onClick={() => setState(s => ({ ...s, pastEdition: e.id }))} style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "10px 0",
@@ -194,9 +194,9 @@ function _HistLibrary({ state, setState }) {
                 color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer",
               }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{e.festivalName}</div>
-                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{_histDateRange(e.days)}</div>
-                  <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+                  <div className="duo-headline">{e.festivalName}</div>
+                  <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{_histDateRange(e.days)}</div>
+                  <div className="duo-data-s duo-ink2" style={{ marginTop: 3 }}>
                     {e.completeness === "lineup_only"
                       ? `${e.counts.artists} artists · lineup only`
                       : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`}
@@ -250,11 +250,7 @@ function _HistProvenance({ edition, onClose }) {
 
 function _HistChip({ on, onClick, children, label }) {
   return (
-    <button onClick={onClick} aria-pressed={on} aria-label={label} style={{
-      minHeight: 36, padding: "0 12px", borderRadius: 999, border: on ? "none" : "1px solid var(--line-2)",
-      background: on ? "var(--signal)" : "transparent", color: on ? "var(--on-signal)" : "var(--ink)",
-      fontFamily: "inherit", fontSize: 14, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap",
-    }}>{children}</button>
+    <button onClick={onClick} aria-pressed={on} aria-label={label} className="duo-chip"><span>{children}</span></button>
   );
 }
 
@@ -389,8 +385,8 @@ function _HistEdition({ meta, back }) {
           {checked && <> · source archived {checked}</>}
         </p>
         {!lineupOnly && !query && groups.map(g => (
-          <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
-            {g.name && <span style={{ width: 84, fontSize: 11, fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>{g.name}</span>}
+          <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 6 }}>
+            {g.name && <span style={{ width: 84, font: "600 13px/1.3 var(--f-ui)", color: "var(--ink-2)" }}>{g.name}</span>}
             {g.days.map(d => (
               <_HistChip key={d.day} on={d.day === day} label={`${d.label}, ${_histDate(d.date, { month: "long", day: "numeric" })}`}
                 onClick={() => { setDay(d.day); scroller.current?.scrollTo({ top: 0 }); }}>

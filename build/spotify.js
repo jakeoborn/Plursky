@@ -116,10 +116,11 @@ function SpotifyScreen({
       padding: "8px 20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Music"),
+    title: "Music",
     sub: "SOUNDTRACK",
     tight: true
   })), React.createElement(ScrollBody, {
+    "data-duo-music": true,
     style: {
       padding: "10px 20px 94px"
     }
@@ -189,12 +190,10 @@ function SpotifyScreen({
     strokeLinecap: "round",
     fill: "none"
   })), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      opacity: 0.65,
-      marginBottom: 8
+      marginBottom: 8,
+      maxWidth: "calc(100% - 48px)"
     }
   }, connected ? "CONNECTED" : "CONNECT SPOTIFY"), React.createElement("div", {
     className: "serif",
@@ -303,13 +302,10 @@ function SpotifyScreen({
       animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined
     }
   }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
-    className: "mono",
     style: {
       marginTop: 10,
-      fontSize: 9,
-      letterSpacing: 0.5,
-      lineHeight: 1.5,
-      color: "var(--text-3)"
+      font: "400 13px/1.45 var(--f-ui)",
+      color: "var(--ink-2)"
     }
   }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
     style: {
@@ -366,12 +362,10 @@ function SpotifyScreen({
     r: "1.5",
     fill: "var(--on-apple-music)"
   })), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      color: "var(--text-2)",
-      marginBottom: 8
+      marginBottom: 8,
+      maxWidth: "calc(100% - 48px)"
     }
   }, amConnected ? "APPLE MUSIC CONNECTED" : "CONNECT APPLE MUSIC"), React.createElement("div", {
     className: "serif",
@@ -1099,72 +1093,65 @@ function SafetyCards() {
     }
   }, SAFETY_LINKS.map(item => {
     var onClick = item.href ? () => window.open(item.href, "_blank", "noopener") : () => item.onClick?.();
-    return React.createElement("button", {
-      key: item.id,
-      onClick: onClick,
-      style: {
-        display: "flex",
-        alignItems: "flex-start",
-        gap: 12,
-        padding: "12px 14px",
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        borderLeft: `3px solid ${item.color}`,
-        cursor: "pointer",
-        textAlign: "left",
-        color: "var(--ink)",
-        fontFamily: "inherit"
-      }
-    }, React.createElement("div", {
-      style: {
-        width: 34,
-        height: 34,
-        borderRadius: 10,
-        background: `${item.color}1f`,
-        color: item.color,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0
-      }
-    }, React.createElement(SafetyIcon, {
-      kind: item.icon,
-      color: item.color
-    })), React.createElement("div", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        lineHeight: 1.1
-      }
-    }, item.title), React.createElement("div", {
-      style: {
-        fontSize: 13,
-        color: "var(--muted)",
-        marginTop: 3,
-        lineHeight: 1.45
-      }
-    }, item.sub)), item.href && React.createElement("svg", {
-      width: "13",
-      height: "13",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "var(--muted)",
-      strokeWidth: "2",
-      style: {
-        flexShrink: 0,
-        marginTop: 4
-      }
-    }, React.createElement("path", {
-      d: "M7 17 L17 7"
-    }), React.createElement("path", {
-      d: "M9 7 H17 V15"
-    })));
+    return (React.createElement("button", {
+        key: item.id,
+        onClick: onClick,
+        className: "duo-card",
+        style: {
+          display: "flex",
+          alignItems: "flex-start",
+          gap: 12,
+          padding: "14px 16px",
+          border: "none",
+          cursor: "pointer",
+          textAlign: "left",
+          color: "var(--ink)",
+          fontFamily: "inherit"
+        }
+      }, React.createElement("div", {
+        className: "duo-well",
+        style: {
+          width: 36,
+          height: 36,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0
+        }
+      }, React.createElement(SafetyIcon, {
+        kind: item.icon,
+        color: item.id === "medical" ? "var(--clash)" : "var(--acc-ink)"
+      })), React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, React.createElement("div", {
+        className: "duo-headline"
+      }, item.title), React.createElement("div", {
+        className: "duo-body-s duo-ink2",
+        style: {
+          marginTop: 2,
+          fontWeight: 400
+        }
+      }, item.sub)), item.href && React.createElement("svg", {
+        "aria-hidden": "true",
+        width: "13",
+        height: "13",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "var(--ink-3)",
+        strokeWidth: "2",
+        style: {
+          flexShrink: 0,
+          marginTop: 4
+        }
+      }, React.createElement("path", {
+        d: "M7 17 L17 7"
+      }), React.createElement("path", {
+        d: "M9 7 H17 V15"
+      })))
+    );
   }));
 }
 var PACK_ITEMS = [{
@@ -1267,16 +1254,20 @@ function PackListCard() {
       display: "flex",
       alignItems: "center",
       gap: 12,
-      padding: "11px 4px",
+      padding: "0 4px",
+      minHeight: 48,
       borderBottom: isLast ? "none" : "1px solid var(--line)"
     }
   }, React.createElement("button", {
     onClick: () => toggle(it.id),
+    role: "checkbox",
+    "aria-checked": !!checked[it.id],
     style: {
       display: "flex",
       alignItems: "center",
       gap: 12,
       flex: 1,
+      minHeight: 48,
       background: "transparent",
       border: "none",
       cursor: "pointer",
@@ -1285,15 +1276,15 @@ function PackListCard() {
     }
   }, React.createElement("span", {
     style: {
-      width: 20,
-      height: 20,
-      borderRadius: 6,
-      background: checked[it.id] ? "var(--ember)" : "transparent",
-      border: `1.5px solid ${checked[it.id] ? "var(--ember)" : "var(--line-2)"}`,
+      width: 22,
+      height: 22,
+      borderRadius: "var(--rad-xs)",
+      background: checked[it.id] ? "var(--acc)" : "transparent",
+      border: `1.5px solid ${checked[it.id] ? "var(--acc)" : "var(--line-2)"}`,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "var(--ink)",
+      color: "var(--on-acc)",
       fontSize: 12,
       fontWeight: 700,
       flexShrink: 0,
@@ -1307,11 +1298,12 @@ function PackListCard() {
       textAlign: "center"
     }
   }, it.emoji), React.createElement("span", {
+    className: "duo-body-s",
     style: {
       flex: 1,
-      fontFamily: "Geist, sans-serif",
-      fontSize: 14,
-      color: checked[it.id] ? "var(--muted)" : "var(--ink)",
+      fontWeight: 400,
+      fontSize: 15,
+      color: checked[it.id] ? "var(--ink-2)" : "var(--ink)",
       textDecoration: checked[it.id] ? "line-through" : "none",
       transition: "color .15s"
     }
@@ -1322,19 +1314,18 @@ function PackListCard() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "var(--muted)",
-      fontSize: 16,
+      color: "var(--ink-2)",
+      fontSize: 18,
       lineHeight: 1,
-      padding: "0 2px",
+      minWidth: 44,
+      minHeight: 44,
       flexShrink: 0
     }
   }, "×"));
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       marginTop: 20,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      borderRadius: 16,
       padding: 16
     }
   }, React.createElement("div", {
@@ -1342,20 +1333,14 @@ function PackListCard() {
       display: "flex",
       alignItems: "baseline",
       justifyContent: "space-between",
-      marginBottom: 12
+      marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22
-    }
+    className: "duo-headline"
   }, "Pack list"), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: done === allItems.length ? "var(--success)" : "var(--muted)",
-      fontWeight: 700
+      color: done === allItems.length ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, done, "/", allItems.length, " ", done === allItems.length && "✓")), PACK_ITEMS.map((it, i) => itemRow(it, i === allItems.length - 1 && custom.length === 0, false)), custom.map((it, i) => itemRow(it, i === custom.length - 1, true)), React.createElement("div", {
     style: {
@@ -1371,33 +1356,25 @@ function PackListCard() {
     onChange: e => setDraft(e.target.value),
     onKeyDown: e => e.key === "Enter" && addItem(),
     placeholder: "Add an item…",
+    "aria-label": "Add an item",
+    className: "duo-input",
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
-      padding: "9px 12px",
-      fontFamily: "Geist, sans-serif",
-      fontSize: 14,
-      color: "var(--ink)",
-      outline: "none"
+      padding: "0 14px",
+      background: "var(--s3)",
+      boxShadow: "none"
     }
   }), React.createElement("button", {
     onClick: addItem,
+    className: "duo-btn",
     style: {
-      background: draft.trim() ? "var(--ember)" : "var(--paper-2)",
-      color: draft.trim() ? "var(--ink)" : "var(--muted)",
-      border: "none",
-      borderRadius: 10,
-      padding: "9px 14px",
-      cursor: draft.trim() ? "pointer" : "default",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1,
-      fontWeight: 700,
-      transition: "all .15s"
+      background: draft.trim() ? "var(--acc)" : "var(--s3)",
+      color: draft.trim() ? "var(--on-acc)" : "var(--ink-2)",
+      minHeight: 44,
+      padding: "0 16px",
+      cursor: draft.trim() ? "pointer" : "default"
     }
-  }, "ADD")));
+  }, "Add")));
 }
 var _FESTIVAL_BADGE_PACKS = {
   "edc-lv-2026": ctx => [{
@@ -1597,112 +1574,64 @@ function BadgesSection({
   var BADGES = _computeBadges(state.saved);
   var earned = BADGES.filter(b => b.earned);
   var locked = BADGES.filter(b => !b.earned);
-  var cardStyle = on => ({
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    padding: "10px 12px",
-    borderRadius: 12,
-    background: on ? "var(--paper-2)" : "var(--paper)",
-    border: on ? "1px solid var(--line)" : "1px dashed var(--line-2)",
-    opacity: on ? 1 : 0.55
-  });
-  var iconCircle = on => ({
-    width: 36,
-    height: 36,
-    borderRadius: 999,
-    background: on ? "var(--signal)" : "var(--paper-2)",
-    color: on ? "var(--on-signal)" : "var(--muted)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontFamily: "Instrument Serif, serif",
-    fontSize: 18,
-    flexShrink: 0,
-    border: on ? "none" : "1px solid var(--line-2)"
-  });
+  var row = (b, on) => React.createElement("div", {
+    key: b.id,
+    className: on ? "duo-card" : "duo-well",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: "12px 14px",
+      minHeight: 60
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      width: 36,
+      height: 36,
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: on ? "var(--acc)" : "transparent",
+      color: on ? "var(--on-acc)" : "var(--ink-2)",
+      boxShadow: on ? "none" : "inset 0 0 0 1.5px var(--line-2)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontSize: 17
+    }
+  }, b.icon), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      color: on ? "var(--ink)" : "var(--ink-2)"
+    }
+  }, b.name), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      marginTop: 2,
+      fontWeight: 400
+    }
+  }, on ? "Earned" : "Locked", " · ", b.desc)));
   return React.createElement("div", {
     style: {
       marginBottom: 14
     }
   }, React.createElement("div", {
+    className: "duo-data-s duo-ink2",
     style: {
-      display: "flex",
-      alignItems: "baseline",
-      gap: 8,
       marginBottom: 8
     }
-  }, React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 700,
-      color: "var(--ink)"
-    }
-  }, "BADGES"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)"
-    }
-  }, earned.length, " of ", BADGES.length, " EARNED")), React.createElement("div", {
+  }, earned.length, " of ", BADGES.length, " earned"), React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      gap: 8
     }
-  }, earned.map(b => React.createElement("div", {
-    key: b.id,
-    style: cardStyle(true)
-  }, React.createElement("div", {
-    style: iconCircle(true)
-  }, b.icon), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15
-    }
-  }, b.name), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 2
-    }
-  }, "EARNED · ", b.desc.toUpperCase())))), locked.map(b => React.createElement("div", {
-    key: b.id,
-    style: cardStyle(false)
-  }, React.createElement("div", {
-    style: iconCircle(false)
-  }, b.icon), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15,
-      color: "var(--muted)"
-    }
-  }, b.name), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 2
-    }
-  }, "LOCKED · ", b.desc.toUpperCase()))))));
+  }, earned.map(b => row(b, true)), locked.map(b => row(b, false))));
 }
 function HistoryRecordsSection({
   state,
@@ -1755,7 +1684,7 @@ function HistoryRecordsSection({
     if (topStage) {
       out.push({
         label: "TOP STAGE",
-        value: `${topStage.name.toUpperCase()} · ${stageAll[topId]}×`,
+        value: `${topStage.name} · ${stageAll[topId]}×`,
         accent: topStage.color
       });
     }
@@ -1769,7 +1698,7 @@ function HistoryRecordsSection({
       if (len > 0) {
         out.push({
           label: "LONGEST SET",
-          value: `${longest.name.toUpperCase()} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}H` : ""}${len % 60}M`,
+          value: `${actDisplayName(longest.name)} · ${Math.floor(len / 60) ? `${Math.floor(len / 60)}h ` : ""}${len % 60}m`,
           accent: window.STAGES.find(s => s.id === longest.stage)?.color || "var(--horizon)"
         });
       }
@@ -1781,37 +1710,38 @@ function HistoryRecordsSection({
       marginBottom: 14
     }
   }, React.createElement("div", {
+    className: "duo-seg",
+    role: "radiogroup",
+    "aria-label": "History or records",
     style: {
       display: "inline-flex",
-      padding: 3,
-      gap: 2,
-      background: "var(--paper-2)",
-      borderRadius: 999,
       marginBottom: 10
     }
   }, ["history", "records"].map(k => {
     var on = view === k;
     return React.createElement("button", {
       key: k,
+      role: "radio",
+      "aria-checked": on,
       onClick: () => setView(k),
-      className: "mono",
+      className: "duo-body-s",
       style: {
-        padding: "5px 12px",
-        borderRadius: 999,
+        minHeight: 36,
+        padding: "0 14px",
+        borderRadius: "var(--rad-pill)",
         border: "none",
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
-        fontSize: 9,
-        letterSpacing: 1.3,
-        fontWeight: 700,
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
+        fontWeight: 650,
         cursor: "pointer"
       }
-    }, k.toUpperCase());
+    }, k === "history" ? "History" : "Records");
   })), view === "history" && React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      gap: 8
     }
   }, nights.map(n => React.createElement("button", {
     key: n.n,
@@ -1820,18 +1750,18 @@ function HistoryRecordsSection({
       tab: "memories",
       memoriesNight: n.n
     })),
+    className: "duo-card" + (n.isLive ? " duo-lift" : ""),
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      padding: "10px 12px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      borderLeft: `3px solid ${n.topStage?.color || "var(--line-2)"}`,
+      gap: 12,
+      padding: "12px 12px 12px 16px",
+      minHeight: 60,
       border: "none",
       cursor: "pointer",
       textAlign: "left",
-      width: "100%"
+      width: "100%",
+      color: "var(--ink)"
     }
   }, React.createElement("div", {
     style: {
@@ -1839,109 +1769,93 @@ function HistoryRecordsSection({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1.15,
-      color: n.count === 0 && !n.isLive ? "var(--text-2)" : "var(--ink)"
-    }
-  }, n.name || `Night ${n.n}`, n.isLive && React.createElement("span", {
-    className: "mono",
-    style: {
-      marginLeft: 8,
-      fontSize: 8,
-      letterSpacing: 1.2,
-      fontWeight: 800,
-      color: "var(--success)",
-      background: "transparent",
-      padding: "1px 6px",
-      borderRadius: 999,
-      border: "1px solid var(--success)"
-    }
-  }, "● LIVE")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)",
-      marginTop: 3,
-      display: "flex",
-      gap: 8,
-      flexWrap: "wrap"
-    }
-  }, React.createElement("span", null, n.count, " ", n.count === 1 ? "SET" : "SETS"), n.totalMin > 0 && React.createElement("span", null, "· ", Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}H ` : "", n.totalMin % 60, "M"), n.topStage && React.createElement("span", {
-    style: {
-      color: "var(--signal-ink)",
-      fontWeight: 700
-    }
-  }, "· ", n.topStage.short || n.topStage.name.split(" ")[0].toUpperCase()))), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: n.isPast ? "var(--muted)" : n.isLive ? "var(--success)" : "var(--horizon)"
-    }
-  }, n.isPast ? "DONE" : n.isLive ? "TONIGHT" : "UPCOMING"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      color: "var(--muted)",
-      marginLeft: 6
-    }
-  }, "›")))), view === "records" && React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 6
-    }
-  }, records.length === 0 ? React.createElement("div", {
-    style: {
-      padding: "18px 14px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      textAlign: "center"
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      marginBottom: 4
-    }
-  }, "No records yet"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--muted)"
-    }
-  }, "SAVE SETS TO UNLOCK SUPERLATIVES")) : records.map((r, i) => React.createElement("div", {
-    key: i,
     style: {
       display: "flex",
       alignItems: "center",
       gap: 10,
-      padding: "10px 12px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      borderLeft: "3px solid var(--line-2)"
+      flexWrap: "wrap"
+    }
+  }, React.createElement("span", {
+    className: "duo-headline",
+    style: {
+      color: n.count === 0 && !n.isLive ? "var(--ink-2)" : "var(--ink)"
+    }
+  }, n.name || `Night ${n.n}`), n.isLive && typeof DuoLive === "function" && React.createElement(DuoLive, null)), React.createElement("div", {
+    className: "duo-data-s duo-ink2",
+    style: {
+      marginTop: 3,
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("span", null, n.count, " ", n.count === 1 ? "set" : "sets"), n.totalMin > 0 && React.createElement("span", null, "· ", Math.floor(n.totalMin / 60) ? `${Math.floor(n.totalMin / 60)}h ` : "", n.totalMin % 60, "m")), n.topStage && React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      marginTop: 1,
+      fontWeight: 400
+    }
+  }, "Mostly ", n.topStage.name)), React.createElement("span", {
+    className: "duo-label",
+    style: {
+      flexShrink: 0,
+      color: n.isPast ? "var(--ink-3)" : "var(--acc-ink)"
+    }
+  }, n.isPast ? "Done" : n.isLive ? "Tonight" : "Upcoming"), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "12",
+    height: "12",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2.2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      flexShrink: 0
+    }
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))))), view === "records" && React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 8
+    }
+  }, records.length === 0 ? React.createElement("div", {
+    className: "duo-card",
+    style: {
+      padding: "18px 16px",
+      textAlign: "center"
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-headline",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
-      width: 110,
+      marginBottom: 4
+    }
+  }, "No records yet"), React.createElement("div", {
+    className: "duo-body-s duo-ink2"
+  }, "Save sets to unlock superlatives.")) : records.map((r, i) => React.createElement("div", {
+    key: i,
+    className: "duo-card",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: "12px 16px",
+      minHeight: 52
+    }
+  }, React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      width: 118,
       flexShrink: 0
     }
   }, r.label), React.createElement("div", {
+    className: "duo-body-s duo-name",
     style: {
-      fontFamily: "Geist, sans-serif",
-      fontSize: 13,
-      fontWeight: 500,
-      flex: 1
+      flex: 1,
+      minWidth: 0,
+      color: "var(--ink)"
     }
   }, r.value)))));
 }
@@ -3532,14 +3446,14 @@ function BulkRetagRow({
       padding: "9px 10px",
       background: "var(--paper-2)",
       border: "1px dashed var(--line-2)",
-      borderRadius: 10
+      borderRadius: "var(--rad-sm)"
     }
   }, React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 700,
       marginBottom: 6
     }
@@ -3575,7 +3489,7 @@ function BulkRetagRow({
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -3846,15 +3760,13 @@ function MomentLightbox({
   if (!m) return null;
   var prettyTime = (() => {
     if (!m.takenAt) return null;
-    try {
-      var t = m.takenAt.split(" ")[1] || "";
-      var [h, mm] = t.split(":").map(Number);
-      var ap = h >= 12 ? "PM" : "AM";
-      var h12 = h % 12 || 12;
-      return `${h12}:${String(mm).padStart(2, "0")} ${ap}`;
-    } catch {
-      return null;
-    }
+    var hit = /^\d{4}-\d{2}-\d{2} (\d{1,2}):(\d{2})/.exec(String(m.takenAt));
+    if (!hit) return null;
+    var h = +hit[1],
+      mm = +hit[2];
+    var ap = h >= 12 ? "PM" : "AM";
+    var h12 = h % 12 || 12;
+    return `${h12}:${String(mm).padStart(2, "0")} ${ap}`;
   })();
   var onTouchStart = e => {
     touch.current.x = e.touches[0].clientX;
@@ -3906,12 +3818,9 @@ function MomentLightbox({
       gap: 12
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.4,
-      color: "var(--text-2)",
-      fontWeight: 700
+      color: "var(--text-2)"
     }
   }, index + 1, " / ", moments.length), onUpdate && React.createElement(_FavStar, {
     favorite: !!m.favorite,
@@ -4017,60 +3926,51 @@ function MomentLightbox({
       display: "block"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-title duo-name",
     style: {
-      fontSize: 26,
-      lineHeight: 1,
       color: "var(--ink)",
-      marginBottom: 6
+      marginBottom: 4
     }
   }, artist.name)) : React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 22,
-      lineHeight: 1,
       color: "var(--text-3)",
       fontStyle: "italic",
       marginBottom: 6
     }
   }, "Untagged moment"), song?.song && React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s",
     style: {
-      fontSize: 11,
-      letterSpacing: 0.8,
-      color: "var(--signal-ink)",
-      fontWeight: 700,
+      color: "var(--acc-ink)",
+      fontWeight: 650,
       marginBottom: 4
     }
   }, "♫ ", song.song, m.confirmedSong && React.createElement("span", {
     style: {
-      color: "var(--text-3)",
+      color: "var(--ink-2)",
+      fontWeight: 400,
       marginLeft: 6
     }
-  }, "· SHAZAMED")), React.createElement("div", {
-    className: "mono",
+  }, "· Shazamed")), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--text-3)",
-      fontWeight: 600
+      fontWeight: 400
     }
-  }, [stage?.name?.toUpperCase(), prettyTime, m.location?.label?.toUpperCase()].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
+  }, [stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
     onClick: runIdentify,
     disabled: idState !== "idle" && idState !== "fail",
-    className: "mono",
     style: {
       marginTop: 12,
-      padding: "12px 14px",
-      borderRadius: 14,
+      padding: "12px 16px",
+      borderRadius: "var(--rad-md)",
       width: "100%",
-      background: idState === "fail" ? "linear-gradient(135deg, rgba(232,93,46,0.28), rgba(245,154,54,0.16))" : "linear-gradient(135deg, rgba(109,40,217,0.85), rgba(232,93,46,0.78))",
-      border: "1px solid rgba(var(--ink-rgb),0.22)",
-      color: "var(--ink)",
-      boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.28)",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 800,
+      minHeight: 56,
+      background: idState === "fail" ? "var(--s3)" : "var(--acc)",
+      border: "none",
+      color: idState === "fail" ? "var(--ink)" : "var(--on-acc)",
+      boxShadow: idState === "fail" ? "none" : "var(--glow)",
+      font: "650 15px/1.3 var(--f-ui)",
+      textAlign: "left",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -4097,34 +3997,28 @@ function MomentLightbox({
     style: {
       display: "block"
     }
-  }, idState === "idle" ? "SHAZAM THIS VIDEO" : idState === "listening" ? "LISTENING TO YOUR VIDEO…" : idState === "matching" ? "MATCHING WITH SHAZAM…" : idState === "fail" ? "NO MATCH — TRY A LOUDER CLIP" : "IDENTIFIED"), React.createElement("span", {
+  }, idState === "idle" ? "Shazam this video" : idState === "listening" ? "Listening to your video…" : idState === "matching" ? "Matching with Shazam…" : idState === "fail" ? "No match — try a louder clip" : "Identified"), React.createElement("span", {
     style: {
       display: "block",
-      marginTop: 3,
-      fontSize: 8,
-      letterSpacing: 1,
-      color: "var(--text-2)",
-      fontWeight: 700
+      marginTop: 2,
+      fontSize: 13,
+      fontWeight: 400,
+      opacity: 1
     }
-  }, "PROVES THE SONG FROM THE CLIP'S AUDIO"))), React.createElement("span", {
+  }, "Proves the song from the clip’s audio"))), React.createElement("span", {
     style: {
       fontSize: 18
     }
   }, "→")), React.createElement("button", {
     onClick: () => setRetagging(r => !r),
-    className: "mono",
+    className: "duo-link",
     style: {
-      marginTop: 9,
-      background: "transparent",
-      border: "none",
+      marginTop: 2,
       padding: 0,
-      color: "var(--text-3)",
-      fontSize: 9,
-      letterSpacing: 1.1,
-      fontWeight: 700,
-      cursor: "pointer"
+      textAlign: "left",
+      fontSize: 15
     }
-  }, retagging ? "✕ CANCEL" : artist ? "✎ WRONG ACT? FIX IT" : "✎ TAG THIS MOMENT"), retagging && React.createElement("div", {
+  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("div", {
     className: "no-scrollbar",
     style: {
       marginTop: 8,
@@ -4155,7 +4049,7 @@ function MomentLightbox({
         alignItems: "center",
         gap: 8,
         padding: "8px 10px",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
         border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`,
         cursor: "pointer",
@@ -4211,7 +4105,7 @@ function MomentLightbox({
       marginTop: 14,
       minHeight: 48,
       padding: "0 16px",
-      borderRadius: 14,
+      borderRadius: "var(--rad-md)",
       width: "100%",
       background: "var(--signal)",
       color: "var(--on-signal)",
@@ -4240,7 +4134,7 @@ function MomentLightbox({
       marginTop: 8,
       minHeight: 44,
       padding: "0 16px",
-      borderRadius: 14,
+      borderRadius: "var(--rad-md)",
       width: "100%",
       background: confirmDelete ? "rgba(var(--warn-rgb, 220,38,38),0.16)" : "transparent",
       color: confirmDelete ? "var(--warn)" : "rgba(var(--ink-rgb),0.7)",
@@ -4263,7 +4157,7 @@ function MomentLightbox({
     style: {
       marginTop: 8,
       padding: "10px 12px",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       width: "100%",
       background: "rgba(var(--signal-rgb),0.15)",
       border: "1px solid rgba(var(--signal-rgb),0.45)",
@@ -4292,7 +4186,7 @@ function MomentLightbox({
     style: {
       marginTop: 8,
       padding: "10px 12px",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       width: "100%",
       background: "rgba(var(--signal-rgb),0.15)",
       border: "1px solid rgba(var(--signal-rgb),0.45)",
@@ -4862,9 +4756,10 @@ function MomentCard({
   return React.createElement("div", {
     ref: cardRef,
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: 12,
       marginBottom: 10
     }
@@ -4879,7 +4774,7 @@ function MomentCard({
     onClick: () => onOpenLightbox?.(groupMoments || [moment], idx || 0),
     style: {
       width: "100%",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       display: "block",
       marginBottom: moment.text ? 10 : 8,
       cursor: "pointer"
@@ -4888,27 +4783,23 @@ function MomentCard({
     style: {
       width: "100%",
       aspectRatio: "4/3",
-      borderRadius: 10,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      borderRadius: "var(--rad-sm)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       marginBottom: moment.text ? 10 : 8
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "LOADING…"))), moment.text && React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 18,
-      lineHeight: 1.3,
       color: "var(--ink)"
     }
   }, moment.text), moment.kind === "checkin" && (() => {
@@ -4931,7 +4822,7 @@ function MomentCard({
         fontSize: 9,
         letterSpacing: 1.2,
         fontWeight: 700,
-        color: st ? st.color : "var(--muted)"
+        color: st ? st.color : "var(--ink-2)"
       }
     }, "✓ CHECKED IN", st ? ` · ${st.name.toUpperCase()}` : ""), React.createElement("div", {
       style: {
@@ -4962,7 +4853,7 @@ function MomentCard({
     className: "mono",
     style: {
       background: "var(--paper-2)",
-      color: stage ? "var(--ink)" : "var(--muted)",
+      color: stage ? "var(--ink)" : "var(--ink-2)",
       border: "1px solid var(--line-2)",
       borderRadius: 999,
       padding: "3px 9px",
@@ -5037,7 +4928,7 @@ function MomentCard({
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.1,
@@ -5056,7 +4947,7 @@ function MomentCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.1,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 600
     }
   }, _fmtMomentTime(_momentTime(moment))), onUpdate && React.createElement(_FavStar, {
@@ -5071,7 +4962,7 @@ function MomentCard({
     className: "mono",
     style: {
       background: editing ? "var(--ink)" : "transparent",
-      color: editing ? "var(--paper)" : "var(--muted)",
+      color: editing ? "var(--paper)" : "var(--ink-2)",
       border: "none",
       borderRadius: 999,
       cursor: "pointer",
@@ -5086,7 +4977,7 @@ function MomentCard({
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
       fontSize: 14,
       lineHeight: 1,
@@ -5101,7 +4992,7 @@ function MomentCard({
       fontSize: 8.5,
       letterSpacing: 1,
       fontWeight: 600,
-      color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--muted)",
+      color: tagInfo?.tone === "warn" ? "var(--ember-ink)" : "var(--ink-2)",
       opacity: tagInfo?.tone === "warn" ? 1 : 0.85
     }
   }, tagInfo ? `${tagInfo.text}${moment.takenAt ? ` · ${moment.takenAt.slice(11)}` : ""}` : "", moment.hasGps === false && moment.autoTagged && moment.kind !== "checkin" ? `${tagInfo ? "  ·  " : ""}📡 NO GPS` : ""), nowPlaying && React.createElement("div", {
@@ -5168,7 +5059,7 @@ function MomentCard({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 1,
         display: "flex",
         alignItems: "center",
@@ -5198,7 +5089,7 @@ function MomentCard({
       borderRadius: 4,
       flexShrink: 0,
       background: nowPlaying.confidence === "exact" ? "rgba(var(--signal-rgb),0.15)" : "rgba(var(--signal-rgb),0.1)",
-      color: nowPlaying.confidence === "exact" ? "var(--success)" : "var(--ember-ink)",
+      color: nowPlaying.confidence === "exact" ? "var(--acc-ink)" : "var(--ember-ink)",
       fontWeight: 700
     }
   }, _songConfidenceLabel(nowPlaying.confidence)))), editing && onUpdate && React.createElement("div", {
@@ -5212,7 +5103,7 @@ function MomentCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginBottom: 6,
       fontWeight: 700
     }
@@ -5246,7 +5137,7 @@ function MomentCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginBottom: 6,
       fontWeight: 700
     }
@@ -5281,7 +5172,7 @@ function MomentCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.1,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 600
     }
   }, "NO SETS LISTED FOR THIS NIGHT")), savedNightArtists?.length > 0 && (nightArtists?.length || 0) > savedNightArtists.length && React.createElement("button", {
@@ -5290,7 +5181,7 @@ function MomentCard({
     style: {
       background: "transparent",
       border: "none",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.1,
@@ -5509,99 +5400,70 @@ function PeakMomentCard({
   var spanMs = typeof peak.spanMs === "number" ? peak.spanMs : Math.max(0, endMs - startMs);
   var windowLabel = _fmtSpanMins(windowMs);
   var a = accent || "var(--ember)";
-  return React.createElement("div", {
-    style: {
-      marginTop: 10,
-      marginBottom: 6,
-      borderRadius: 14,
-      padding: 12,
-      background: `linear-gradient(135deg, ${a}1f, var(--paper-2))`,
-      border: `1px solid ${a}40`
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 9,
-      flexWrap: "wrap",
-      rowGap: 8
-    }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 15
-    },
-    "aria-hidden": "true"
-  }, "🔥"), React.createElement("div", {
-    style: {
-      flex: "1 1 160px",
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8.5,
-      letterSpacing: 1.4,
-      fontWeight: 800,
-      color: a
-    }
-  }, "YOUR PEAK"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 17,
-      color: "var(--ink)",
-      lineHeight: 1.15,
-      marginTop: 1
-    }
-  }, items.length, " moment", items.length === 1 ? "" : "s", " in your busiest ", windowLabel), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      color: "var(--muted)",
-      fontWeight: 600,
-      marginTop: 2,
-      lineHeight: 1.5
-    }
-  }, _clock12(startMs), " – ", _clock12(endMs), " · captures span ", _fmtSpanMins(spanMs))), onPlayReel && React.createElement("button", {
-    onClick: () => {
-      try {
-        window.plurskyHaptic?.("MEDIUM");
-      } catch {}
-      onPlayReel(items);
-    },
-    className: "mono",
-    style: {
-      flexShrink: 0,
-      background: a,
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "0 14px",
-      minHeight: 44,
-      minWidth: 44,
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 800,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: 5
-    }
-  }, "▶ RELIVE")), React.createElement("div", {
-    className: "no-scrollbar",
-    style: {
-      display: "flex",
-      gap: 5,
-      overflowX: "auto",
-      marginTop: 10
-    }
-  }, items.map((m, i) => React.createElement(_GroupHeroThumb, {
-    key: m.id,
-    moment: m,
-    accent: a,
-    onClick: () => onOpenLightbox?.(items, i)
-  }))));
+  return (React.createElement("div", {
+      className: "duo-card duo-lift",
+      style: {
+        marginTop: 10,
+        marginBottom: 6,
+        padding: "14px 16px"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 9,
+        flexWrap: "wrap",
+        rowGap: 8
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: "1 1 160px",
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      className: "duo-label duo-acc"
+    }, "Your peak"), React.createElement("div", {
+      className: "duo-headline",
+      style: {
+        color: "var(--ink)",
+        marginTop: 4
+      }
+    }, items.length, " moment", items.length === 1 ? "" : "s", " in your busiest ", windowLabel), React.createElement("div", {
+      className: "duo-data-s duo-ink2",
+      style: {
+        marginTop: 3
+      }
+    }, _clock12(startMs), " – ", _clock12(endMs), " · captures span ", _fmtSpanMins(spanMs))), onPlayReel && React.createElement("button", {
+      onClick: () => {
+        try {
+          window.plurskyHaptic?.("MEDIUM");
+        } catch {}
+        onPlayReel(items);
+      },
+      className: "duo-btn",
+      style: {
+        flexShrink: 0,
+        background: "var(--acc)",
+        color: "var(--on-acc)",
+        minHeight: 44,
+        padding: "0 16px",
+        fontSize: 15
+      }
+    }, "▶ Relive")), React.createElement("div", {
+      className: "no-scrollbar",
+      style: {
+        display: "flex",
+        gap: 5,
+        overflowX: "auto",
+        marginTop: 10
+      }
+    }, items.map((m, i) => React.createElement(_GroupHeroThumb, {
+      key: m.id,
+      moment: m,
+      accent: a,
+      onClick: () => onOpenLightbox?.(items, i)
+    }))))
+  );
 }
 function SetSongTimeline({
   artist,
@@ -5673,7 +5535,7 @@ function SetSongTimeline({
   }, React.createElement("span", null, "🎵 ", filmed.length, " SONG", filmed.length === 1 ? "" : "S", " YOU FILMED"), React.createElement("span", {
     style: {
       marginLeft: "auto",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontSize: 11
     }
   }, open ? "▾" : "▸")), open && React.createElement("div", {
@@ -5700,9 +5562,10 @@ function SetSongTimeline({
       alignItems: "center",
       gap: 10,
       width: "100%",
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      borderRadius: 10,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
       padding: 6,
       cursor: "pointer",
       textAlign: "left"
@@ -5731,7 +5594,7 @@ function SetSongTimeline({
     style: {
       fontSize: 8,
       letterSpacing: 1,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 700,
       marginTop: 2
     }
@@ -5962,9 +5825,9 @@ function AddMomentForm({
   };
   return React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: 14,
       marginTop: 8,
       marginBottom: 14
@@ -5980,7 +5843,7 @@ function AddMomentForm({
     playsInline: true,
     style: {
       width: "100%",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       display: "block",
       background: "var(--paper)"
     }
@@ -5989,7 +5852,7 @@ function AddMomentForm({
     alt: "",
     style: {
       width: "100%",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       display: "block"
     }
   }), React.createElement("button", {
@@ -6022,10 +5885,10 @@ function AddMomentForm({
       padding: "14px",
       background: "var(--paper)",
       border: "1px dashed var(--line-2)",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
       marginBottom: 10,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
       letterSpacing: 1.3,
@@ -6050,7 +5913,7 @@ function AddMomentForm({
       boxSizing: "border-box",
       background: "var(--paper)",
       border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       resize: "none",
       fontFamily: "Geist, sans-serif",
       fontSize: 14,
@@ -6068,7 +5931,7 @@ function AddMomentForm({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginBottom: 6,
       fontWeight: 700
     }
@@ -6118,7 +5981,7 @@ function AddMomentForm({
     style: {
       flex: 1,
       padding: "12px",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       background: "transparent",
       border: "1px solid var(--line-2)",
       color: "var(--ink)",
@@ -6134,8 +5997,8 @@ function AddMomentForm({
     style: {
       flex: 2,
       padding: "12px",
-      borderRadius: 10,
-      background: busy ? "var(--muted)" : "var(--ember)",
+      borderRadius: "var(--rad-sm)",
+      background: busy ? "var(--ink-2)" : "var(--ember)",
       color: "var(--ink)",
       border: "none",
       fontSize: 10,
@@ -6357,12 +6220,9 @@ function _ReviewPicker({
       flexShrink: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, n === 1 ? "TAG THIS MOMENT" : `TAG ${n} MOMENTS`), React.createElement("div", {
     style: {
@@ -6385,7 +6245,7 @@ function _ReviewPicker({
       boxSizing: "border-box",
       marginTop: 8,
       padding: "9px 11px",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       border: "1px solid var(--line-2)",
       background: "var(--paper)",
       color: "var(--ink)",
@@ -6444,7 +6304,7 @@ function _ReviewPicker({
       style: {
         fontSize: 9,
         letterSpacing: 0.8,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         flexShrink: 0
       }
     }, [st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")));
@@ -6453,16 +6313,13 @@ function _ReviewPicker({
     style: {
       fontSize: 9,
       letterSpacing: 1,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       padding: "12px 0"
     }
   }, "NO SETS MATCH"), React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      fontWeight: 700,
+      color: "var(--ink-3)",
       margin: "12px 0 6px"
     }
   }, "OR JUST THE STAGE"), React.createElement("div", {
@@ -6597,9 +6454,11 @@ function ImportReview({
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
   var mono = {
-    fontFamily: "Geist Mono, monospace",
-    letterSpacing: 1.1,
-    fontWeight: 700
+    fontFamily: "var(--f-display)",
+    letterSpacing: "0.14em",
+    fontWeight: 400,
+    textTransform: "uppercase",
+    lineHeight: 1.27
   };
   return React.createElement("div", {
     onClick: onClose,
@@ -6623,10 +6482,10 @@ function ImportReview({
       width: "100%",
       maxWidth: 520,
       maxHeight: "86vh",
-      background: "var(--paper)",
-      borderRadius: "18px 18px 0 0",
-      border: "1px solid var(--line)",
-      borderBottom: "none",
+      background: "var(--s1)",
+      borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+      border: "none",
+      boxShadow: "var(--e2)",
       display: "flex",
       flexDirection: "column",
       overflow: "hidden"
@@ -6638,21 +6497,11 @@ function ImportReview({
       flexShrink: 0
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 22,
-      lineHeight: 1.05,
       color: "var(--ink)"
     }
-  }, need === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "tagged")) : React.createElement(React.Fragment, null, need, " need", need === 1 ? "s" : "", " a ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "set"))), React.createElement("div", {
+  }, need === 0 ? React.createElement(React.Fragment, null, "All ", rows.length, " tagged") : React.createElement(React.Fragment, null, need, " need", need === 1 ? "s" : "", " a set")), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -6663,24 +6512,14 @@ function ImportReview({
     "data-review-counts": true,
     style: {
       ...mono,
-      fontSize: 9,
-      color: "var(--muted)",
+      fontSize: 11,
+      color: "var(--ink-2)",
       flex: 1
     }
   }, [(results || []).some(r => r.name) && `${rows.length} IMPORTED`, need ? `${need} NEED REVIEW` : "ALL ANSWERED"].filter(Boolean).join(" · ")), need > 0 && React.createElement("button", {
     onClick: () => setSel(new Set(rows.filter(r => r.review).map(r => r.id))),
-    style: {
-      ...mono,
-      fontSize: 9,
-      background: "none",
-      border: "none",
-      color: "var(--ember-ink)",
-      cursor: "pointer",
-      padding: "0 8px",
-      minHeight: 44,
-      minWidth: 44
-    }
-  }, "SELECT THESE"))), React.createElement("div", {
+    className: "duo-link"
+  }, "Select these"))), React.createElement("div", {
     style: {
       flex: 1,
       minHeight: 0,
@@ -6694,8 +6533,8 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 9,
-      color: "var(--muted)",
+      fontSize: 11,
+      color: "var(--ink-2)",
       margin: "12px 2px 4px"
     }
   }, [g.fest && g.fest.toUpperCase(), g.day ? (g.day.name || g.day.short || "").toUpperCase() : `NIGHT ${g.night}`].filter(Boolean).join(" · ")), [...g.stages.values()].map(sg => React.createElement("div", {
@@ -6703,7 +6542,7 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 8,
+      fontSize: 11,
       color: "var(--text-2)",
       margin: "6px 4px 3px"
     }
@@ -6719,7 +6558,7 @@ function ImportReview({
         gap: 9,
         padding: "7px 8px",
         marginBottom: 4,
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         background: r.review ? "rgba(var(--signal-rgb),0.07)" : "transparent",
         border: r.review ? "1px solid rgba(var(--signal-rgb),0.45)" : "1px solid var(--line)"
       }
@@ -6753,8 +6592,8 @@ function ImportReview({
         justifyContent: "center",
         boxSizing: "border-box",
         border: on ? "none" : "1.5px solid var(--line-2)",
-        background: on ? "var(--ink)" : "transparent",
-        color: "var(--paper)",
+        background: on ? "var(--acc)" : "transparent",
+        color: "var(--on-acc)",
         fontSize: 13,
         lineHeight: "24px"
       }
@@ -6775,21 +6614,18 @@ function ImportReview({
         fontFamily: "inherit"
       }
     }, React.createElement("div", {
+      className: "duo-name",
       style: {
-        fontSize: 14,
-        lineHeight: 1.15,
+        fontSize: 15,
+        lineHeight: 1.25,
         fontWeight: r.artist ? 700 : 500,
-        color: r.artist ? "var(--ink)" : r.review ? "var(--ember-ink)" : "var(--muted)",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap"
+        color: r.artist ? "var(--ink)" : r.review ? "var(--acc-ink)" : "var(--ink-2)"
       }
     }, r.artist ? r.artist.name : r.m.tagSource === "unknown" ? "Unknown" : r.stage ? "Set not picked" : "No set matched"), React.createElement("div", {
       style: {
         ...mono,
-        fontSize: 8.5,
-        letterSpacing: 0.9,
-        color: "var(--muted)",
+        fontSize: 11,
+        color: "var(--ink-2)",
         marginTop: 2,
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -6799,7 +6635,7 @@ function ImportReview({
       "data-review-basis": true,
       style: {
         fontSize: 10.5,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2,
         opacity: 0.85,
         overflow: "hidden",
@@ -6810,10 +6646,10 @@ function ImportReview({
       style: {
         ...mono,
         flexShrink: 0,
-        fontSize: 9,
-        color: r.review ? "var(--ember-ink)" : "var(--success)"
+        fontSize: 11,
+        color: "var(--acc-ink)"
       }
-    }, r.review ? "FIX" : "✓"));
+    }, r.review ? "Fix" : "✓"));
   })))))), React.createElement("div", {
     style: {
       padding: "10px 14px calc(12px + env(safe-area-inset-bottom))",
@@ -6829,57 +6665,36 @@ function ImportReview({
   }, React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 9,
-      color: "var(--muted)",
+      fontSize: 11,
+      color: "var(--ink-2)",
       flex: 1
     }
   }, oneFestival ? `${sel.size} SELECTED` : "SELECT ONE FESTIVAL'S MOMENTS"), React.createElement("button", {
     onClick: () => setSel(new Set()),
-    style: {
-      ...mono,
-      fontSize: 10,
-      minHeight: 44,
-      padding: "0 14px",
-      borderRadius: 12,
-      border: "1px solid var(--line-2)",
-      background: "transparent",
-      color: "var(--ink)",
-      cursor: "pointer"
-    }
-  }, "CLEAR"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Clear")), React.createElement("button", {
     "data-review-batch": true,
     disabled: !oneFestival,
     onClick: () => setPicking([...sel]),
+    className: "duo-btn",
     style: {
-      ...mono,
-      fontSize: 10,
       minHeight: 44,
       padding: "0 16px",
-      borderRadius: 12,
-      border: "none",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      cursor: oneFestival ? "pointer" : "default",
-      opacity: oneFestival ? 1 : 0.4
+      fontSize: 15,
+      background: oneFestival ? "var(--acc)" : "var(--s3)",
+      color: oneFestival ? "var(--on-acc)" : "var(--ink-2)",
+      cursor: oneFestival ? "pointer" : "default"
     }
-  }, "TAG ", sel.size)) : React.createElement("button", {
+  }, "Tag ", sel.size)) : React.createElement("button", {
     "data-review-done": true,
     onClick: onClose,
-    className: "mono",
+    className: "duo-btn pri",
     style: {
       width: "100%",
-      minHeight: 44,
-      padding: "12px 0",
-      borderRadius: 12,
-      border: "none",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.3,
-      fontWeight: 800
+      minHeight: 48,
+      fontSize: 15
     }
-  }, need === 0 ? `LOOKS RIGHT · ${rows.length} SAVED` : `DONE · ${need} LEFT TO REVIEW LATER`))), pickMoments.length > 0 && React.createElement(_ReviewPicker, {
+  }, need === 0 ? `Looks right · ${rows.length} saved` : `Done · ${need} left to review later`))), pickMoments.length > 0 && React.createElement(_ReviewPicker, {
     moments: pickMoments,
     onClose: () => setPicking(null),
     onApply: apply
@@ -6939,17 +6754,15 @@ function StorageManager({
     style: {
       marginTop: 22,
       padding: "14px 16px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)"
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700,
+      color: "var(--ink-3)",
       marginBottom: 10
     }
   }, "STORAGE"), React.createElement("div", {
@@ -6969,7 +6782,7 @@ function StorageManager({
     style: {
       fontSize: 10,
       letterSpacing: 1,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 600
     }
   }, fmtBytes(usage.used), usage.quota ? ` / ${fmtBytes(usage.quota)}` : "")), usedPct != null && React.createElement(React.Fragment, null, React.createElement("div", {
@@ -7039,7 +6852,7 @@ function StorageManager({
       style: {
         fontSize: 10,
         letterSpacing: 1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         fontWeight: 600
       }
     }, "· ", list.length, " TOTAL")), (photos > 0 || videos > 0) && React.createElement("div", {
@@ -7047,7 +6860,7 @@ function StorageManager({
       style: {
         fontSize: 9,
         letterSpacing: 1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2,
         fontWeight: 600
       }
@@ -7102,7 +6915,7 @@ function StorageManager({
         justifyContent: "center",
         background: "transparent",
         border: "1px solid var(--line-2)",
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         cursor: "pointer",
         fontSize: 9,
         letterSpacing: 1,
@@ -7177,7 +6990,7 @@ function StorageManager({
       borderRadius: 8,
       background: "transparent",
       border: "1px dashed var(--line-2)",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       cursor: "pointer",
       fontSize: 10,
       letterSpacing: 1.2,
@@ -8897,35 +8710,45 @@ function _NightMap({
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
     "aria-expanded": open,
-    className: "mono",
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      gap: 10,
       width: "100%",
-      minHeight: 44,
-      padding: "0 12px",
-      borderRadius: 10,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      color: "var(--muted)",
-      cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      fontWeight: 700
+      minHeight: 48,
+      padding: "0 16px",
+      border: "none",
+      color: "var(--ink)",
+      cursor: "pointer"
     }
   }, React.createElement("span", {
+    className: "duo-body-s",
     style: {
       minWidth: 0,
       overflowWrap: "anywhere",
-      textAlign: "left"
+      textAlign: "left",
+      fontSize: 15
     }
-  }, "📍 WHERE THIS NIGHT HAPPENED"), React.createElement("span", {
+  }, "Where this night happened"), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
       flexShrink: 0,
-      marginLeft: 8
+      transform: open ? "rotate(90deg)" : "none",
+      transition: "transform .2s"
     }
-  }, open ? "▾" : "▸")), open && React.createElement("div", {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))), open && React.createElement("div", {
     style: {
       marginTop: 8
     }
@@ -8946,25 +8769,9 @@ function _NightShareMenu({
     }
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
-    className: "mono",
-    style: {
-      background: "var(--paper-2)",
-      color: "var(--text-2)",
-      border: "none",
-      borderRadius: 999,
-      padding: "0 12px",
-      cursor: "pointer",
-      minHeight: 44,
-      minWidth: 44,
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      whiteSpace: "nowrap"
-    }
-  }, "📸 SHARE ▾"), open && React.createElement(React.Fragment, null, React.createElement("div", {
+    "aria-expanded": open,
+    className: "duo-chip"
+  }, React.createElement("span", null, "Share ▾")), open && React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: () => setOpen(false),
     style: {
       position: "fixed",
@@ -8977,12 +8784,12 @@ function _NightShareMenu({
       right: 0,
       top: "calc(100% + 4px)",
       zIndex: 5,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      borderRadius: 10,
-      boxShadow: "0 6px 20px rgba(var(--shade-rgb),0.18)",
+      background: "var(--s1)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
+      boxShadow: "var(--e2)",
       overflow: "hidden",
-      minWidth: 140
+      minWidth: 168
     }
   }, [["📸 Collage", undefined], ["🎬 Animated GIF", "gif"], ["🎞 Night video", "video"]].map(([lbl, mode], i) => React.createElement("button", {
     key: lbl,
@@ -8998,7 +8805,7 @@ function _NightShareMenu({
       }
       window._shareNightCollage?.(night, moments, mode);
     },
-    className: "mono",
+    className: "duo-body-s",
     style: {
       display: "block",
       width: "100%",
@@ -9006,12 +8813,11 @@ function _NightShareMenu({
       background: "transparent",
       border: "none",
       borderTop: i ? "1px solid var(--line)" : "none",
-      padding: "10px 12px",
+      padding: "0 14px",
+      minHeight: 44,
       cursor: "pointer",
-      fontSize: 10,
-      letterSpacing: 0.6,
-      color: "var(--ink)",
-      fontWeight: 600
+      fontSize: 15,
+      color: "var(--ink)"
     }
   }, lbl)))));
 }
@@ -9178,12 +8984,12 @@ function _LibraryCover({
       flexShrink: 0,
       width: 56,
       height: 56,
-      borderRadius: 12,
+      borderRadius: "var(--rad-sm)",
       padding: 0,
       cursor: "pointer",
       overflow: "hidden",
-      border: "1px solid var(--line)",
-      background: "var(--paper-2)",
+      border: "none",
+      background: "var(--s3)",
       position: "relative"
     }
   }, React.createElement(_ThumbMedia, {
@@ -9208,9 +9014,9 @@ function _LibraryCover({
 function _libraryGroupChrome(group) {
   if (group.kind === "between") {
     return {
-      eyebrow: "BETWEEN SETS",
-      eyebrowColor: "var(--ember-ink)",
-      spine: "var(--ember)",
+      eyebrow: "Between sets",
+      eyebrowColor: "var(--ink-2)",
+      spine: "var(--line-2)",
       title: "Other moments",
       note: null
     };
@@ -9221,7 +9027,7 @@ function _libraryGroupChrome(group) {
     var festOnly = all.every(m => m.festivalReview);
     var retag = [...(group.media || []), ...(group.notes || [])].filter(m => !m.festivalReview);
     return {
-      eyebrow: "NEEDS REVIEW",
+      eyebrow: "Needs review",
       eyebrowColor: "var(--warn)",
       spine: "var(--warn)",
       retag,
@@ -9232,9 +9038,10 @@ function _libraryGroupChrome(group) {
   var a = group.artist,
     s = group.stage;
   return {
-    eyebrow: [(s && (s.short || s.name) || "").toUpperCase(), group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
-    eyebrowColor: "var(--text-2)",
-    spine: "var(--line-2)",
+    eyebrow: null,
+    eyebrowColor: null,
+    spine: null,
+    meta: [s && s.name, group.setTime && typeof fmt12 === "function" ? fmt12(group.setTime) : ""].filter(Boolean).join(" · "),
     title: a && a.name || "Unknown set",
     note: null
   };
@@ -9255,12 +9062,11 @@ function LibraryGroupCard({
   var openAt = i => onOpenLightbox(group.ordered, i);
   var titleTap = group.kind === "set" && group.artistId ? () => onArtistClick(group.artistId) : group.ordered.length > 0 ? () => openAt(0) : null;
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       marginTop: 10,
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
+      padding: "10px 12px 10px 16px",
+      boxShadow: chrome.spine ? `inset 3px 0 0 ${chrome.spine}, var(--e1)` : "var(--e1)",
       minHeight: 64,
       boxSizing: "border-box"
     }
@@ -9270,17 +9076,7 @@ function LibraryGroupCard({
       alignItems: "center",
       gap: 10
     }
-  }, React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      width: 4,
-      alignSelf: "stretch",
-      minHeight: 40,
-      background: chrome.spine,
-      borderRadius: 3,
-      flexShrink: 0
-    }
-  }), React.createElement("button", {
+  }, React.createElement("button", {
     onClick: titleTap || undefined,
     disabled: !titleTap,
     style: {
@@ -9297,33 +9093,31 @@ function LibraryGroupCard({
       minHeight: 44
     }
   }, chrome.eyebrow && React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
       display: "block",
-      fontSize: 9,
-      letterSpacing: 1.3,
-      fontWeight: 700,
-      color: chrome.eyebrowColor
+      color: chrome.eyebrowColor,
+      marginBottom: 2
     }
   }, chrome.eyebrow), React.createElement("span", {
-    className: "serif",
+    className: "duo-headline",
     style: {
       display: "block",
-      fontSize: 18,
-      lineHeight: 1.15,
+      fontWeight: 700,
       color: "var(--ink)",
-      marginTop: 2,
       overflowWrap: "anywhere"
     }
-  }, chrome.title)), React.createElement("span", {
-    className: "mono",
+  }, chrome.title), chrome.meta && React.createElement("span", {
+    className: "duo-body-s duo-ink2",
     style: {
-      flexShrink: 0,
-      fontSize: 9,
-      letterSpacing: 1.1,
-      fontWeight: 700,
-      color: n ? "var(--muted)" : "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
+      display: "block",
+      fontWeight: 400,
+      marginTop: 1
+    }
+  }, chrome.meta)), React.createElement("span", {
+    className: "duo-data-s duo-ink2",
+    style: {
+      flexShrink: 0
     }
   }, countLabel), group.hero && React.createElement(_LibraryCover, {
     moment: group.hero,
@@ -9384,14 +9178,14 @@ function LibraryGroupCard({
       minHeight: 44,
       width: "100%",
       padding: "0 14px",
-      borderRadius: 12,
-      background: "var(--paper-3)",
+      borderRadius: "var(--rad-sm)",
+      background: "var(--s3)",
       border: "none",
       cursor: "pointer",
       color: "var(--ink)",
       fontSize: 15,
       lineHeight: 1.33,
-      fontWeight: 600,
+      fontWeight: 650,
       fontFamily: "inherit"
     }
   }, "Retag ", chrome.retag.length === 1 ? "this clip" : `these ${chrome.retag.length} clips`), group.kind === "between" && bulkRetag);
@@ -10188,7 +9982,7 @@ function MemoriesScreen({
       margin: "0 -20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Memories"),
+    title: "Memories",
     sub: `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "") + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
     tight: true
   })), React.createElement("input", {
@@ -10203,17 +9997,17 @@ function MemoriesScreen({
   }), pickerAvailable && totalCount > 0 && React.createElement("button", {
     onClick: handlePickClick,
     disabled: !!batch && batch.done < batch.total,
+    className: "duo-card",
     style: {
       display: "flex",
+      flexWrap: "wrap",
       alignItems: "center",
       gap: 12,
       width: "100%",
       minHeight: 64,
       marginTop: 12,
       padding: "10px 16px",
-      background: "var(--paper-2)",
       border: "none",
-      borderRadius: 14,
       color: "var(--ink)",
       textAlign: "left",
       fontFamily: "inherit",
@@ -10221,35 +10015,62 @@ function MemoriesScreen({
     }
   }, React.createElement("span", {
     "aria-hidden": "true",
+    className: "duo-well",
     style: {
-      fontSize: 20
+      width: 40,
+      height: 40,
+      flexShrink: 0,
+      display: "grid",
+      placeItems: "center",
+      color: "var(--acc-ink)"
     }
-  }, "✨"), React.createElement("span", {
+  }, React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("rect", {
+    x: "3",
+    y: "5",
+    width: "18",
+    height: "14",
+    rx: "2.5"
+  }), React.createElement("circle", {
+    cx: "9",
+    cy: "10",
+    r: "1.6"
+  }), React.createElement("path", {
+    d: "M21 16 l-5-5 L6 19"
+  }))), React.createElement("span", {
     style: {
-      flex: 1,
-      minWidth: 0,
-      overflowWrap: "anywhere"
+      flex: "1 1 150px",
+      minWidth: 0
     }
   }, React.createElement("span", {
+    "data-fit-words": true,
+    "data-fit-min": "13",
+    className: "duo-headline",
     style: {
-      display: "block",
-      fontSize: 17,
-      lineHeight: 1.29,
-      fontWeight: 600
+      display: "block"
     }
   }, "Import from camera roll"), React.createElement("span", {
+    "data-fit-words": true,
+    "data-fit-min": "11",
+    className: "duo-body-s duo-ink2",
     style: {
       display: "block",
-      fontSize: 13,
-      lineHeight: 1.38,
-      color: "var(--text-2)"
+      fontWeight: 400
     }
   }, "Auto-tags by time and location")), React.createElement("span", {
+    className: batch && batch.done < batch.total ? "duo-data" : "duo-body-s",
     style: {
-      fontSize: 15,
-      lineHeight: 1.33,
-      fontWeight: 600,
-      fontVariantNumeric: "tabular-nums"
+      color: "var(--acc-ink)",
+      fontWeight: 650,
+      fontSize: 15
     }
   }, batch && batch.done < batch.total ? `${batch.done}/${batch.total}` : "Pick")), (() => {
     var msg = _pickerMessage(pickerState);
@@ -10320,25 +10141,44 @@ function MemoriesScreen({
     onClick: () => setReview(reviewIds.map(id => ({
       momentId: id
     }))),
+    className: "duo-card",
     style: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
       width: "100%",
       textAlign: "left",
       marginTop: 8,
-      minHeight: 44,
+      minHeight: 52,
       padding: "8px 16px",
-      borderRadius: 14,
       cursor: "pointer",
-      background: "var(--paper-2)",
       border: "none",
-      color: "var(--warn)",
-      fontSize: 15,
-      lineHeight: 1.33,
-      fontWeight: 600,
+      color: "var(--ink)",
       fontFamily: "inherit",
       overflowWrap: "anywhere"
     }
-  }, "⚑ ", reviewIds.length, " ", reviewIds.length === 1 ? "moment needs" : "moments need", " a set · Review"), batch && batch.done === batch.total && (() => {
+  }, React.createElement("i", {
+    "aria-hidden": "true",
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--warn)",
+      flexShrink: 0
+    }
+  }), React.createElement("span", {
+    className: "duo-body-s",
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 15
+    }
+  }, reviewIds.length, " ", reviewIds.length === 1 ? "moment needs" : "moments need", " a set · ", React.createElement("span", {
+    style: {
+      color: "var(--acc-ink)",
+      fontWeight: 650
+    }
+  }, "Review"))), batch && batch.done === batch.total && (() => {
     var tagged = batch.results.filter(r => !r.err && !r.skipped && r.artistId).length;
     var needRetag = batch.results.filter(r => !r.err && !r.skipped && !r.artistId).length;
     var failed = batch.results.filter(r => r.err).length;
@@ -10563,48 +10403,34 @@ function MemoriesScreen({
       key: f.id,
       role: "tab",
       "aria-selected": on,
+      className: "duo-chip",
       onClick: () => {
         setView("library");
         setFilter(f.id);
-      },
-      style: {
-        flex: "0 0 auto",
-        minHeight: 44,
-        padding: "0 14px",
-        borderRadius: 999,
-        border: "none",
-        cursor: "pointer",
-        background: on ? "var(--paper-3)" : "var(--paper-2)",
-        boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-        color: on ? "var(--ink)" : "var(--text-2)",
-        fontSize: 15,
-        lineHeight: 1.33,
-        fontWeight: 600,
-        fontFamily: "inherit"
       }
-    }, f.label);
+    }, React.createElement("span", {
+      style: {
+        fontSize: 14,
+        height: 36,
+        padding: "0 13px"
+      }
+    }, f.label));
   })), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
+      flexWrap: "wrap",
       gap: 4,
-      marginTop: 2
+      marginTop: 2,
+      minWidth: 0
     }
   }, React.createElement("button", {
     onClick: () => setView(v => v === "grid" ? "library" : "grid"),
     "aria-pressed": view === "grid",
+    className: "duo-link",
     style: {
-      minHeight: 44,
-      padding: "0 10px",
-      borderRadius: 12,
-      border: "none",
-      cursor: "pointer",
-      background: "transparent",
-      color: view === "grid" ? "var(--ink)" : "var(--text-2)",
-      fontSize: 15,
-      lineHeight: 1.33,
-      fontWeight: 600,
-      fontFamily: "inherit"
+      padding: "0 4px",
+      fontSize: 15
     }
   }, view === "grid" ? "← Library" : "Wall →"), React.createElement("span", {
     style: {
@@ -10613,18 +10439,11 @@ function MemoriesScreen({
   }), React.createElement("button", {
     onClick: () => setManage(m => !m),
     "aria-pressed": manage,
+    className: "duo-link",
     style: {
-      minHeight: 44,
-      padding: "0 10px",
-      borderRadius: 12,
-      background: "transparent",
-      border: "none",
-      cursor: "pointer",
-      color: manage ? "var(--ink)" : "var(--text-2)",
+      padding: "0 4px",
       fontSize: 15,
-      lineHeight: 1.33,
-      fontWeight: 500,
-      fontFamily: "inherit"
+      color: manage ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, manage ? "Done" : "Manage"))), offlineMedia && view === "library" && React.createElement("div", {
     role: "status",
@@ -10668,19 +10487,11 @@ function MemoriesScreen({
     value: memQuery,
     onChange: e => setMemQuery(e.target.value),
     placeholder: "Search artist, song, or stage…",
-    className: "mono",
+    "aria-label": "Search artist, song, or stage",
+    className: "duo-input",
     style: {
-      width: "100%",
-      boxSizing: "border-box",
-      marginBottom: 8,
-      padding: "9px 12px",
-      borderRadius: 999,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      color: "var(--ink)",
-      fontSize: 11,
-      letterSpacing: 0.5,
-      outline: "none"
+      marginBottom: 10,
+      padding: "0 14px"
     }
   }), React.createElement(MemoryGrid, {
     allMoments: (() => {
@@ -10840,10 +10651,9 @@ function MemoriesScreen({
         gap: 8,
         flexWrap: "wrap",
         rowGap: 4,
-        paddingTop: 14,
-        paddingBottom: 8,
-        marginBottom: 4,
-        borderBottom: "1px solid var(--line)"
+        paddingTop: 16,
+        paddingBottom: 6,
+        marginBottom: 2
       }
     }, React.createElement("button", {
       onClick: () => toggleDay(d.n),
@@ -10869,7 +10679,7 @@ function MemoriesScreen({
       height: "13",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "var(--muted)",
+      stroke: "var(--ink-3)",
       strokeWidth: "2",
       strokeLinecap: "round",
       strokeLinejoin: "round",
@@ -10885,41 +10695,30 @@ function MemoriesScreen({
         minWidth: 0
       }
     }, React.createElement("h2", {
-      className: "serif",
+      className: "duo-title",
       style: {
         display: "inline",
         margin: 0,
-        fontSize: 24,
-        fontWeight: "inherit",
-        color: "var(--ink)",
-        lineHeight: 1.1
+        fontSize: 22,
+        color: "var(--ink)"
       }
-    }, d.label), React.createElement("span", {
-      className: "mono",
+    }, dateInfo?.name || d.label), React.createElement("span", {
+      className: "duo-data-s duo-ink2",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
-        fontWeight: 700,
         marginLeft: 8
       }
     }, dayLabel), React.createElement("span", {
-      className: "mono",
+      className: "duo-data-s duo-ink2",
       style: {
         display: "block",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
-        fontWeight: 700,
-        marginTop: 3,
-        fontVariantNumeric: "tabular-nums"
+        marginTop: 3
       }
     }, summary))), day.counts.moments > 0 && React.createElement(_NightShareMenu, {
       night: d.n,
       moments: moments
     })), !collapsed && React.createElement(React.Fragment, null, filter !== "sets" && day.counts.moments > 0 && React.createElement(PeakMomentCard, {
       peak: _peakWindow(day.groups.flatMap(g => g.media)),
-      accent: "var(--ember)",
+      accent: "var(--acc)",
       onOpenLightbox: openLightbox,
       onPlayReel: items => playReel(items, `${d.label} peak`, d.n)
     }), filter === "all" && day.counts.moments > 0 && React.createElement(_NightMap, {
@@ -10964,22 +10763,21 @@ function MemoriesScreen({
       onCancel: () => setAdding(null)
     }) : React.createElement("button", {
       onClick: () => setAdding(d.n),
-      className: "mono",
+      className: "duo-body-s",
       style: {
         width: "100%",
-        minHeight: 44,
-        padding: "12px",
+        minHeight: 48,
+        padding: "0 12px",
         background: "transparent",
         border: "1px dashed var(--line-2)",
-        borderRadius: 12,
-        color: "var(--ink)",
-        fontSize: 10,
-        letterSpacing: 1.4,
-        fontWeight: 700,
+        borderRadius: "var(--rad-md)",
+        color: "var(--acc-ink)",
+        fontSize: 15,
+        fontWeight: 650,
         cursor: "pointer",
         marginTop: 8
       }
-    }, "+ ADD MOMENT")), manage && savedNightArtists.length > 0 && React.createElement(AttendanceReview, {
+    }, "+ Add moment")), manage && savedNightArtists.length > 0 && React.createElement(AttendanceReview, {
       night: d.n,
       savedNightArtists: savedNightArtists
     })));
@@ -11128,28 +10926,39 @@ function Collapsible({
     }
   }, React.createElement("button", {
     onClick: () => setOpen(o => !o),
-    className: "mono",
+    "aria-expanded": open,
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       width: "100%",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
-      padding: "12px 14px",
+      border: "none",
+      minHeight: 52,
+      padding: "12px 16px",
       cursor: "pointer",
-      fontSize: 11,
-      letterSpacing: 1.3,
-      fontWeight: 700,
       color: "var(--ink)"
     }
-  }, React.createElement("span", null, title), React.createElement("span", {
+  }, React.createElement("span", {
+    className: "duo-label"
+  }, title), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      color: "var(--muted)",
-      fontSize: 12
+      flexShrink: 0,
+      transition: "transform 0.25s var(--ease-spring)",
+      transform: open ? "rotate(90deg)" : "rotate(0deg)"
     }
-  }, open ? "▾" : "▸")), open && React.createElement("div", {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))), open && React.createElement("div", {
     style: {
       marginTop: 12
     }
@@ -11235,7 +11044,7 @@ function MeScreen({
       padding: "8px 20px"
     }
   }, React.createElement(TopBar, {
-    title: React.createElement("span", null, "Me"),
+    title: "Me",
     sub: FESTIVAL_CONFIG.shortName.toUpperCase(),
     tight: true
   })), React.createElement(ScrollBody, {
@@ -11247,25 +11056,24 @@ function MeScreen({
     "data-animate": true,
     style: {
       display: "flex",
-      flexDirection: "column",
       alignItems: "center",
-      padding: "18px 16px 20px",
-      marginBottom: 16
+      gap: 12,
+      padding: "4px 0 16px"
     }
   }, React.createElement("div", {
     onClick: profile ? undefined : promptName,
     style: {
-      width: 78,
-      height: 78,
+      width: 52,
+      height: 52,
       borderRadius: 999,
-      background: profile?.image ? "transparent" : "var(--paper-3)",
-      border: "1px solid var(--line-2)",
+      flexShrink: 0,
+      background: profile?.image ? "transparent" : "var(--s3)",
+      boxShadow: "0 0 0 1.5px var(--acc)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      cursor: profile ? "default" : "pointer",
-      marginBottom: 10
+      cursor: profile ? "default" : "pointer"
     }
   }, profile?.image ? React.createElement("img", {
     src: profile.image,
@@ -11276,34 +11084,38 @@ function MeScreen({
       objectFit: "cover"
     }
   }) : React.createElement("span", {
-    className: "serif",
     style: {
-      fontSize: 34,
-      color: "var(--ink)",
-      lineHeight: 1
+      font: "700 19px/1 var(--f-ui)",
+      color: "var(--ink)"
     }
   }, initial)), React.createElement("div", {
-    className: "serif",
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline duo-name",
     onClick: rawName ? undefined : promptName,
     style: {
-      fontSize: 28,
-      lineHeight: 1.05,
-      color: rawName ? "var(--ink)" : "var(--muted)",
-      textAlign: "center",
-      marginBottom: 8,
+      fontSize: 21,
+      color: rawName ? "var(--ink)" : "var(--ink-2)",
       cursor: rawName ? "default" : "pointer"
     }
   }, displayName), React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginTop: 4
+    }
+  }, tagline), React.createElement("span", {
+    className: "duo-code",
     style: {
       display: "inline-flex",
       alignItems: "center",
       gap: 6,
-      background: "var(--paper-2)",
-      borderRadius: 999,
-      padding: "4px 10px",
-      marginBottom: 8
+      marginTop: 8
     }
   }, React.createElement("span", {
+    "aria-hidden": "true",
     style: {
       width: 6,
       height: 6,
@@ -11311,32 +11123,14 @@ function MeScreen({
       background: pingColor,
       display: "inline-block"
     }
-  }), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--ink)"
-    }
-  }, "PING · ", pingCode)), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)"
-    }
-  }, tagline)), React.createElement("div", {
+  }), "PING · ", pingCode))), React.createElement("div", {
     "data-animate": true,
+    className: "duo-card",
     style: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14,
-      padding: "14px 4px",
-      marginBottom: 18
+      padding: "16px 4px",
+      marginBottom: 14
     }
   }, [{
     n: setsCaught,
@@ -11354,20 +11148,14 @@ function MeScreen({
       padding: "2px 6px"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 28,
-      lineHeight: 1,
       color: "var(--ink)",
-      marginBottom: 6
+      marginBottom: 8
     }
   }, s.n), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
       textAlign: "center"
     }
   }, s.label)))), plusActive ? React.createElement("div", {
@@ -11378,9 +11166,9 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 16,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      borderRadius: "var(--rad-md)",
       color: "var(--ink)",
       textAlign: "left"
     }
@@ -11405,21 +11193,13 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Plursky+"), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 4,
-      fontWeight: 700
+      marginTop: 4
     }
-  }, "ACTIVE · THANK YOU")), React.createElement("span", {
+  }, "Active · thank you")), React.createElement("span", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -11437,9 +11217,10 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       minHeight: 64,
       color: "var(--ink)",
       cursor: "pointer",
@@ -11453,8 +11234,8 @@ function MeScreen({
       height: 36,
       borderRadius: 18,
       flexShrink: 0,
-      background: "var(--signal)",
-      color: "var(--on-signal)",
+      background: "var(--acc)",
+      color: "var(--on-acc)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -11468,16 +11249,11 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, "Plursky+"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)",
       marginTop: 2
     }
   }, "No watermarks, cloud backup and more")), React.createElement("svg", {
@@ -11547,11 +11323,10 @@ function MeScreen({
   }].map(card => React.createElement("button", {
     key: card.key,
     onClick: card.onClick,
+    className: "duo-card",
     style: {
       position: "relative",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 14,
+      border: "none",
       padding: 14,
       minHeight: 96,
       display: "flex",
@@ -11570,23 +11345,18 @@ function MeScreen({
       right: 14,
       fontSize: 18,
       lineHeight: 1,
-      color: "var(--muted)"
+      color: "var(--ink-3)"
     }
   }, card.icon), React.createElement("div", null), React.createElement("div", null, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 22,
-      lineHeight: 1,
+      fontSize: 26,
       color: "var(--ink)"
     }
   }, card.count), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      color: "var(--muted)",
-      marginTop: 4
+      marginTop: 6
     }
   }, card.label))))), typeof window.FESTIVAL_CONFIG?.endMs === "number" && Date.now() > window.FESTIVAL_CONFIG.endMs && React.createElement("button", {
     onClick: () => setState(s => ({
@@ -11600,9 +11370,10 @@ function MeScreen({
       width: "100%",
       padding: "14px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left"
@@ -11611,7 +11382,8 @@ function MeScreen({
     style: {
       fontSize: 24,
       lineHeight: 1,
-      flexShrink: 0
+      flexShrink: 0,
+      color: "var(--acc-ink)"
     }
   }, "✦"), React.createElement("div", {
     style: {
@@ -11619,24 +11391,15 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Your ", React.createElement("span", {
     style: {
-      fontStyle: "italic",
-      color: "var(--flare)"
+      color: "var(--acc-ink)"
     }
   }, _cfg.brand || "festival"), " weekend"), React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--text-2)",
-      marginTop: 4,
-      fontWeight: 700
+      marginTop: 4
     }
   }, "THE RECAP · ", getAttendedCount?.() || 0, " SETS CAUGHT · TAP TO SEE")), React.createElement("span", {
     style: {
@@ -11646,45 +11409,34 @@ function MeScreen({
   }, "→")), React.createElement("div", {
     "data-animate": true,
     style: {
-      borderTop: "1px solid var(--line)",
-      marginTop: 6,
-      paddingTop: 14,
+      marginTop: 10,
       marginBottom: 18
     }
   }, React.createElement("button", {
     onClick: () => setFestivalOpen(o => !o),
+    "aria-expanded": festivalOpen,
     style: {
       width: "100%",
+      minHeight: 44,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      padding: "0 0 12px",
+      padding: "0 0 4px",
       textAlign: "left",
       color: "var(--ink)"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22,
-      lineHeight: 1.05
-    }
-  }, "Festival"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, "HISTORY · BADGES · MUSIC · HEADLINERS")), React.createElement("svg", {
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, "Festival"), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11714,17 +11466,16 @@ function MeScreen({
       tab: "landing",
       artist: null
     })),
+    className: "duo-card",
     style: {
       width: "100%",
       minHeight: 52,
       marginBottom: 14,
-      padding: "10px 14px",
+      padding: "10px 16px",
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      background: "var(--paper-2)",
+      gap: 12,
       border: "none",
-      borderRadius: 14,
       color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left",
@@ -11734,22 +11485,18 @@ function MeScreen({
     "aria-hidden": "true",
     style: {
       fontSize: 16,
-      color: "var(--text-2)"
+      color: "var(--ink-2)"
     }
   }, "⌂"), React.createElement("span", {
+    className: "duo-headline",
     style: {
       flex: 1,
-      minWidth: 0,
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
+      minWidth: 0
     }
   }, "All festivals"), React.createElement("span", {
+    className: "duo-body-s duo-ink2",
     style: {
-      flexShrink: 0,
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      flexShrink: 0
     }
   }, "Your plan is kept")), React.createElement(HistoryRecordsSection, {
     state: state,
@@ -11773,26 +11520,25 @@ function MeScreen({
       ...state,
       tab: "spotify"
     }),
+    className: "duo-card",
     style: {
       display: "flex",
       alignItems: "center",
       gap: 12,
       width: "100%",
-      padding: "13px 14px",
+      padding: "12px 16px",
       marginBottom: 14,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      border: "none",
       cursor: "pointer",
       textAlign: "left"
     }
   }, React.createElement("div", {
     style: {
-      width: 38,
-      height: 38,
-      borderRadius: 38,
+      width: 40,
+      height: 40,
+      borderRadius: 40,
       flexShrink: 0,
-      background: state.spotifyConnected ? "var(--spotify)" : "var(--paper-3)",
+      background: state.spotifyConnected ? "var(--spotify)" : "var(--s3)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
@@ -11822,26 +11568,22 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 18,
-      lineHeight: 1.05,
       color: "var(--ink)"
     }
   }, state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 3
+      marginTop: 2
     }
-  }, state.spotifyConnected ? "TOP ARTISTS · DISCOVERIES · BUILD PLAYLIST" : "TAP TO CONNECT")), React.createElement("svg", {
+  }, state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect")), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11852,48 +11594,33 @@ function MeScreen({
     d: "M9 18 L15 12 L9 6"
   })))))), React.createElement("div", {
     style: {
-      borderTop: "1px solid var(--line)",
-      paddingTop: 14,
       marginBottom: 18
     }
   }, React.createElement("button", {
     onClick: () => setSocialOpen(o => !o),
+    "aria-expanded": socialOpen,
     style: {
       width: "100%",
+      minHeight: 44,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      padding: "0 0 12px",
+      padding: "0 0 4px",
       textAlign: "left",
       color: "var(--ink)"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22,
-      lineHeight: 1.05
-    }
-  }, "Friends & ", React.createElement("span", {
-    style: {
-      fontStyle: "italic"
-    }
-  }, "crew")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, "LIVE LOCATION · SHARED LINEUPS")), React.createElement("svg", {
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, "Friends & crew"), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11938,12 +11665,13 @@ function MeScreen({
     }
   }, React.createElement("button", {
     onClick: () => setSettingsOpen(o => !o),
+    "aria-expanded": settingsOpen,
+    className: "duo-card",
     style: {
       width: "100%",
-      padding: "13px 14px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
+      padding: "12px 16px",
+      minHeight: 60,
+      border: "none",
       cursor: "pointer",
       textAlign: "left",
       display: "flex",
@@ -11958,25 +11686,19 @@ function MeScreen({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 18,
-      lineHeight: 1.05
-    }
+    className: "duo-headline"
   }, "Settings"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 3
+      marginTop: 2
     }
-  }, "NOTIFICATIONS · BATTERY · PACK LIST")), React.createElement("svg", {
+  }, "Notifications, battery, pack list")), React.createElement("svg", {
+    "aria-hidden": "true",
     width: "13",
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--muted)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     strokeLinejoin: "round",
@@ -11999,162 +11721,134 @@ function MeScreen({
     }
   }, React.createElement("button", {
     onClick: () => window.plurskyOpenPersonalize?.(),
+    className: "duo-btn",
     style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 14,
-      minHeight: 44,
-      padding: "0 16px",
-      cursor: "pointer",
+      background: "var(--s3)",
       color: "var(--ink)",
-      fontSize: 15,
-      fontWeight: 500
+      minHeight: 44
     }
   }, "Personalize Plursky")))), _mePostFest ? React.createElement(Collapsible, {
     title: "SAFETY & CARE"
-  }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "serif",
+  }, React.createElement(SafetyCards, null)) : React.createElement(React.Fragment, null, React.createElement("h2", {
+    className: "duo-sect",
     style: {
-      fontSize: 22,
-      marginTop: 20,
-      marginBottom: 3
+      marginTop: 24
     }
-  }, "Safety & ", React.createElement("span", {
+  }, "Safety & care"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontStyle: "italic"
-    }
-  }, "care")), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
+      marginTop: 4,
       marginBottom: 12
     }
-  }, "ON-SITE TEAMS · NO QUESTIONS ASKED"), React.createElement(SafetyCards, null)), (() => {
+  }, "On-site teams. No questions asked."), React.createElement(SafetyCards, null)), (() => {
     var savedHeadliners = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.tier === 3).slice(0, 6);
     if (savedHeadliners.length === 0) return null;
-    return React.createElement(React.Fragment, null, React.createElement("div", {
-      className: "serif",
+    return React.createElement(React.Fragment, null, React.createElement("h2", {
+      className: "duo-sect",
       style: {
-        fontSize: 22,
-        marginTop: 20,
-        marginBottom: 10
+        marginTop: 24,
+        marginBottom: 6
       }
-    }, "Your ", React.createElement("span", {
+    }, "Your headliners"), React.createElement("div", {
       style: {
-        fontStyle: "italic"
+        display: "flex",
+        flexDirection: "column"
       }
-    }, "headliners")), React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: 6
-      }
-    }, savedHeadliners.map(a => React.createElement("button", {
-      key: a.id,
-      onClick: () => setState({
-        ...state,
-        artist: a.id
-      }),
-      style: {
-        aspectRatio: "1/1",
-        borderRadius: 10,
-        background: a.img,
-        position: "relative",
-        overflow: "hidden",
-        border: "none",
-        padding: 0,
-        cursor: "pointer"
-      }
-    }, React.createElement("div", {
-      style: {
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(180deg,transparent 40%,rgba(var(--shade-rgb),0.65))"
-      }
-    }), React.createElement("div", {
-      style: {
-        position: "absolute",
-        bottom: 6,
-        left: 6,
-        right: 6,
-        color: "var(--media-ink)",
-        textAlign: "left"
-      },
-      className: "mono"
-    }, React.createElement("div", {
-      style: {
-        fontSize: 10,
-        letterSpacing: 0.4,
-        fontWeight: 700,
-        lineHeight: 1.1,
-        marginBottom: 2,
-        overflowWrap: "break-word"
-      }
-    }, actDisplayName(a.name)), React.createElement("div", {
-      style: {
-        fontSize: 8,
-        letterSpacing: 1,
-        opacity: 0.8
-      }
-    }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", " · ", fmt12(a.start)))))));
+    }, savedHeadliners.map(a => {
+      var st = STAGES.find(x => x.id === a.stage);
+      return React.createElement("button", {
+        key: a.id,
+        onClick: () => setState({
+          ...state,
+          artist: a.id
+        }),
+        className: "duo-lrow duo-press",
+        style: {
+          display: "flex",
+          width: "auto",
+          color: "var(--ink)"
+        }
+      }, React.createElement("span", {
+        className: "duo-data-s duo-ink2",
+        style: {
+          width: 72,
+          flexShrink: 0
+        }
+      }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", React.createElement("br", null), fmt12(a.start)), typeof DuoAvatar === "function" && React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 42
+      }), React.createElement("span", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, React.createElement("span", {
+        className: "duo-headline duo-name",
+        style: {
+          display: "block",
+          fontWeight: 700
+        }
+      }, actDisplayName(a.name)), React.createElement("span", {
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block"
+        }
+      }, st?.name || "")));
+    })));
   })(), React.createElement("div", {
     style: {
-      padding: "24px 0 40px",
+      padding: "20px 0 40px",
       textAlign: "center",
       borderTop: "1px solid var(--line)",
       marginTop: 24
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      marginBottom: 10
+      marginBottom: 4
     }
-  }, "PLURSKY · ", window.FESTIVAL_CONFIG?.shortName || ""), React.createElement("div", {
+  }, "Plursky · ", window.FESTIVAL_CONFIG?.shortName || ""), React.createElement("div", {
     style: {
       display: "flex",
       justifyContent: "center",
-      gap: 16
+      gap: 8,
+      flexWrap: "wrap"
     }
   }, React.createElement("a", {
     href: "https://plursky.com/privacy",
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 44,
+      padding: "0 8px",
       textDecoration: "none"
     }
-  }, "PRIVACY POLICY"), React.createElement("a", {
+  }, "Privacy policy"), React.createElement("a", {
     href: "https://plursky.com/terms",
     target: "_blank",
     rel: "noopener noreferrer",
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 44,
+      padding: "0 8px",
       textDecoration: "none"
     }
-  }, "TERMS"), React.createElement("button", {
+  }, "Terms"), React.createElement("button", {
     onClick: () => window.open("mailto:hello@plursky.com"),
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
+      minHeight: 44,
+      padding: "0 8px",
       background: "none",
       border: "none",
-      cursor: "pointer",
-      padding: 0
+      cursor: "pointer"
     }
-  }, "CONTACT")))));
+  }, "Contact")))));
 }
 function FollowedNudge({
   state,
@@ -12179,107 +11873,107 @@ function FollowedNudge({
     }));
   };
   return React.createElement("div", {
+    className: "duo-card",
     style: {
-      background: "rgba(var(--spotify-rgb),0.1)",
-      border: "1px solid rgba(var(--spotify-rgb),0.25)",
-      borderRadius: 16,
       padding: "14px 16px",
       marginBottom: 14
     }
   }, React.createElement("div", {
     style: {
       display: "flex",
-      justifyContent: "space-between",
       alignItems: "center",
-      marginBottom: 8
+      gap: 10
     }
-  }, React.createElement("div", null, React.createElement("span", {
-    className: "mono",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--spotify)",
-      fontWeight: 700
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--spotify)",
+      flexShrink: 0
     }
-  }, "YOU FOLLOW ", followed.length, " ", (FESTIVAL_CONFIG.brand || "").toUpperCase(), " ACT", followed.length > 1 ? "S" : "", " NOT IN YOUR LINEUP")), React.createElement("div", {
+  }), React.createElement("span", {
+    className: "duo-body-s",
+    style: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: 15
+    }
+  }, "You follow ", followed.length, " ", FESTIVAL_CONFIG.brand || "", " act", followed.length > 1 ? "s" : "", " not in your lineup")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6
+      gap: 8,
+      marginTop: 6,
+      flexWrap: "wrap"
     }
   }, React.createElement("button", {
     onClick: handleSaveAll,
+    className: "duo-btn pri",
     style: {
-      background: "var(--spotify)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 999,
-      padding: "5px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 14
     }
-  }, "SAVE ALL"), React.createElement("button", {
+  }, "Save all"), React.createElement("button", {
     onClick: () => setExpanded(e => !e),
-    style: {
-      background: "transparent",
-      color: "var(--text-3)",
-      border: "1px solid rgba(var(--ink-rgb),0.2)",
-      borderRadius: 999,
-      padding: "5px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1
-    }
-  }, expanded ? "HIDE" : "VIEW"))), expanded && React.createElement("div", {
+    "aria-expanded": expanded,
+    className: "duo-chip"
+  }, React.createElement("span", null, expanded ? "Hide" : "View"))), expanded && React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
-      gap: 6
+      marginTop: 6
     }
   }, followed.map(a => {
     var st = STAGES.find(s => s.id === a.stage);
+    var day = FESTIVAL_CONFIG.dayDates?.[a.day];
     return React.createElement("div", {
       key: a.id,
+      className: "duo-lrow"
+    }, React.createElement("span", {
+      className: "duo-data duo-ink2",
       style: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: "rgba(var(--shade-rgb),0.2)",
-        borderRadius: 10,
-        padding: "8px 12px"
+        width: 72,
+        flexShrink: 0,
+        fontSize: 13
       }
-    }, React.createElement("div", null, React.createElement("div", {
+    }, fmt12(a.start)), React.createElement(DuoAvatar, {
+      name: a.name,
+      size: 42
+    }), React.createElement("span", {
       style: {
-        fontSize: 13,
-        fontWeight: 600,
-        color: "var(--ink)"
+        flex: 1,
+        minWidth: 0
       }
-    }, a.name), React.createElement("div", {
-      className: "mono",
+    }, React.createElement("span", {
+      className: "duo-headline duo-name",
       style: {
-        fontSize: 8,
-        letterSpacing: 1.1,
-        color: "var(--muted)",
-        marginTop: 2
-      }
-    }, st?.short, " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("button", {
-      onClick: () => handleSave(a),
-      style: {
-        background: "transparent",
-        color: st?.color || "var(--spotify)",
-        border: `1px solid ${st?.color || "var(--spotify)"}`,
-        borderRadius: 999,
-        padding: "5px 10px",
-        cursor: "pointer",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 8,
-        letterSpacing: 1,
+        display: "block",
         fontWeight: 700
       }
-    }, "+ SAVE"));
+    }, actDisplayName(a.name)), React.createElement("span", {
+      className: "duo-body-s duo-ink2",
+      style: {
+        display: "block",
+        fontWeight: 400
+      }
+    }, [st?.name, day?.name].filter(Boolean).join(" · "))), React.createElement("button", {
+      onClick: () => handleSave(a),
+      className: "duo-add",
+      "aria-pressed": "false",
+      "aria-label": `Save ${a.name}`
+    }, React.createElement("span", null, React.createElement("svg", {
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinecap: "round"
+    }, React.createElement("path", {
+      d: "M12 5v14M5 12h14"
+    })))));
   })));
 }
 function BoardPlaylistCard({
@@ -13297,6 +12991,11 @@ function _computeRecap(state) {
     })()
   };
 }
+function _festivalYearKicker(cfg) {
+  var name = String(cfg?.shortName || "FESTIVAL").toUpperCase();
+  var year = cfg?.year ? String(cfg.year) : "";
+  return !year || new RegExp(`\\b${year}\\b`).test(name) ? name : `${name} · ${year}`;
+}
 function _fmtHrsMin(mins) {
   var h = Math.floor(mins / 60);
   var m = mins % 60;
@@ -13346,7 +13045,7 @@ function WrappedStory({
     var c = [];
     c.push({
       bg: "linear-gradient(155deg, #0a0618 0%, #6D28D9 50%, #e85d2e 100%)",
-      kicker: (CFG.shortName || "FESTIVAL").toUpperCase() + " · " + (CFG.year || ""),
+      kicker: _festivalYearKicker(CFG),
       headline: React.createElement(React.Fragment, null, "Your ", React.createElement("em", null, "Wrapped")),
       sub: `${recap.setsCount} sets · ${recap.nights} nights · ${recap.stagesVisitedCount} stages`
     });
@@ -15309,7 +15008,7 @@ function RecapScreen({
         flexShrink: 0
       }
     }, "←"), React.createElement(TopBar, {
-      title: React.createElement("span", null, "Recap"),
+      title: "Recap",
       sub: CFG.shortName?.toUpperCase(),
       tight: true
     })), React.createElement(ScrollBody, {
@@ -15371,7 +15070,7 @@ function RecapScreen({
       flexShrink: 0
     }
   }, "←"), React.createElement(TopBar, {
-    title: React.createElement("span", null, "Recap"),
+    title: "Recap",
     sub: (CFG.shortName || "Festival").toUpperCase() + " · YOUR WEEKEND",
     tight: true
   })), React.createElement(ScrollBody, {
@@ -15383,7 +15082,7 @@ function RecapScreen({
       borderRadius: 22,
       padding: "26px 22px",
       marginBottom: 14,
-      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--paper-3) 0%, var(--paper-2) 60%, rgba(var(--signal-rgb),0.5) 130%)",
+      background: heroPhotoUrl ? `linear-gradient(155deg, rgba(var(--shade-rgb),0.72) 0%, rgba(var(--shade-rgb),0.45) 55%, rgba(var(--signal-rgb),0.35) 130%), url(${heroPhotoUrl}) center/cover` : "linear-gradient(155deg, var(--media-ground) 0%, var(--media-ground) 55%, rgba(var(--signal-rgb),0.5) 130%)",
       color: "var(--media-ink)",
       position: "relative",
       overflow: "hidden"
@@ -15399,9 +15098,9 @@ function RecapScreen({
       right: 16,
       padding: "7px 12px",
       borderRadius: 999,
-      background: "rgba(var(--ink-rgb),0.18)",
-      color: "var(--ink)",
-      border: "1px solid rgba(var(--ink-rgb),0.35)",
+      background: "var(--media-badge)",
+      color: "var(--media-ink)",
+      border: "1px solid var(--media-ink-2)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -15416,15 +15115,16 @@ function RecapScreen({
       alignItems: "flex-start"
     }
   }, React.createElement("div", {
+    "data-recap-kicker": true,
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.6,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       fontWeight: 700,
       marginBottom: 10
     }
-  }, "YOUR ", (CFG.shortName || "FESTIVAL").toUpperCase(), " · ", CFG.year || "")), React.createElement("div", {
+  }, "YOUR ", _festivalYearKicker(CFG))), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 42,
@@ -15435,7 +15135,7 @@ function RecapScreen({
   }, "That was ", React.createElement("span", {
     style: {
       fontStyle: "italic",
-      color: "var(--flare)"
+      color: "var(--media-flare)"
     }
   }, "your"), " weekend."), React.createElement("div", {
     style: {
@@ -15455,7 +15155,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "SETS CAUGHT")), React.createElement("div", null, React.createElement("div", {
@@ -15470,7 +15170,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "ON DANCEFLOORS")), React.createElement("div", null, React.createElement("div", {
@@ -15485,7 +15185,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "NIGHTS")), React.createElement("div", null, React.createElement("div", {
@@ -15500,7 +15200,7 @@ function RecapScreen({
       fontSize: 9,
       letterSpacing: 1.3,
       fontWeight: 700,
-      color: "var(--text-2)",
+      color: "var(--media-ink-2)",
       marginTop: 3
     }
   }, "HEADLINERS")))), recap.setsCount > 0 && React.createElement("button", {
@@ -16656,7 +16356,7 @@ function RecapScreen({
     className: "mono",
     style: {
       padding: "12px",
-      background: "linear-gradient(90deg, var(--signal), var(--signal), var(--signal), var(--signal))",
+      background: "var(--signal)",
       color: "var(--on-signal)",
       border: "none",
       borderRadius: 10,
