@@ -2813,6 +2813,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 {
   console.log("▸ Festival pages gate — every section backed, nothing unbacked");
   try {
+    execFileSync(process.execPath, ["scripts/test-iii-points-stage-programming.mjs"], { cwd: ROOT, stdio: "pipe" });
     const out = execFileSync(process.execPath, ["scripts/test-festival-pages.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);

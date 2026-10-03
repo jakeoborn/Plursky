@@ -142,3 +142,11 @@ export function pageStatus(dates, eventDays, today, dayBuckets) {
   const next = days.find(d => d > today) || dates.start;
   return (Date.parse(next) - Date.parse(today)) / _DAY_MS <= 6 ? 'soon' : 'upcoming';
 }
+
+// Official stage/day billings separate from timed app acts. A running order
+// cannot become a synthetic set or a now-playing window.
+export function stageProgrammingFor(id, root = ROOT) {
+  if (id !== 'iii-points-2026') return null;
+  const file = path.join(root, 'data', 'programming', `${id}.json`);
+  return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : null;
+}
