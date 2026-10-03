@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -200,6 +200,41 @@ function scheduleGrid(entry, dates, blocks) {
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
     <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
 ${body}
+  </section>`;
+}
+
+// Only a page that renders the section carries its styles, so the other
+// festival pages (and their sitemap lastmod) do not move.
+const STAGE_PROGRAMMING_CSS = `  details.program-stage { margin:10px 0; border:1px solid var(--line); border-radius:10px; padding:0 14px; }
+  details.program-stage summary { cursor:pointer; font-weight:650; min-height:44px; padding:12px 0; overflow-wrap:anywhere; }
+  details.program-stage ol { padding-left:24px; }
+  details.program-stage li { padding:6px 0; overflow-wrap:anywhere; }
+  details.program-stage time { font-variant-numeric:tabular-nums; font-weight:650; }
+`;
+
+// Official stage/day running order is not a full clock-time schedule.
+function stageProgrammingSection(entry) {
+  const data = stageProgrammingFor(entry.config.id);
+  if (!data) return '';
+  const localClock = hm => { const [h,m] = hm.split(':').map(Number); return `${h % 12 || 12}:${String(m).padStart(2,'0')} ${h < 12 ? 'AM' : 'PM'}`; };
+  return `
+  <section aria-labelledby="stage-programming-h" class="stage-programming">
+    <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
+    <p class="note">Official stage and day billings, in the order printed by the festival. Only the six 444 extended sets have published clock times here. All other rows are running order, not set times. End times are not supplied.</p>
+    <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
+    <p class="note"><a href="${esc(data.source.url)}">Official stage schedule</a> · checked ${esc(data.source.observedAt)}</p>
+${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
+` + data.stages.map(stage => {
+    const block = stage.days.find(d => d.day === day);
+    if (!block) return '';
+    const timed = block.rows.some(r => r.start);
+    return `    <details class="program-stage"${stage.id === '444' ? ' open' : ''}>
+      <summary>${esc(stage.name)} · ${timed ? 'Published start times' : 'Running order'} · ${block.rows.length} sets</summary>
+      <ol>
+` + block.rows.map(row => `        <li>${row.start ? `<time>${esc(localClock(row.start))}</time> · ` : ''}${esc(row.name)}</li>`).join('\n') + `
+      </ol>
+    </details>`;
+  }).join('\n')).join('\n')}
   </section>`;
 }
 
@@ -717,7 +752,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
-  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
+${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
   details.more { margin:4px 0 0; }
@@ -767,7 +802,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
-${scheduleGrid(entry, dates, blocks)}
+${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
 ${planSection(entry, amenities)}
