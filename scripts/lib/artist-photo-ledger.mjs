@@ -26,6 +26,8 @@ function validateGrant(rec, fail) {
 export function validatePhoto(rec, root) {
   const fail = reason => { throw new Error(`Artist photo: ${reason}`); };
   if (!rec || !cleanText(rec.artist) || !cleanText(rec.author)) fail('artist/author required');
+  // The credit prints on one line under the hero; 32 characters fits 320px with margin.
+  if (rec.author.length > 32) fail('author credit longer than 32 characters');
   if (!['commons', 'press-kit'].includes(rec.source)) fail('source not permitted');
   if (!licenses.has(rec.license) || !https(rec.licenseUrl) || !https(rec.sourceUrl)) fail('license/source evidence required');
   if (!cleanText(rec.reviewedBy) || !/^\d{4}-\d{2}-\d{2}T/.test(rec.reviewedAt || '') || !Number.isFinite(Date.parse(rec.reviewedAt))) fail('review receipt required');

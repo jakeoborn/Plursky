@@ -17,7 +17,7 @@ try {
   ok(Object.keys(validateLedger([], root)).length === 0, 'empty stays honest');
   for (const patch of [
     {source:'spotify'}, {source:'instagram'}, {license:'all-rights-reserved'},
-    {author:''}, {reviewedBy:''}, {reviewedAt:'bad'}, {allowExport:true},
+    {author:''}, {author:'x'.repeat(33)}, {reviewedBy:''}, {reviewedAt:'bad'}, {allowExport:true},
     {sourceUrl:'https://example.com/photo'}, {licenseUrl:'http://bad.invalid'},
     {sha256:'0'.repeat(64)}, {asset:'../outside.jpg'}, {asset:'artist-photos/file.svg'},
     {license:'Press-Grant'}, {source:'press-kit',license:'Press-Grant',grantUrl:'https://example.com/press',grantText:''},
