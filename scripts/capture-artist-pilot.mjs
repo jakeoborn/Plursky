@@ -27,7 +27,7 @@ for(const name of names) for(const width of [320,393]) for(const mode of ['dark'
  await p.goto(`http://127.0.0.1:${port}/index.html?artist=${artist.id}`);
  await p.waitForSelector('[data-artist-photo-credit="1"]');
  await p.waitForTimeout(1000);
- console.log(name,width,mode,await p.evaluate(n=>({credit:document.querySelector('[data-artist-photo-credit]').innerText,image:getArtistImage(n).url,overflow:document.documentElement.scrollWidth>innerWidth}),name));
+ console.log(name,width,mode,await p.evaluate(n=>({credit:(()=>{const c=document.querySelector('[data-artist-photo-credit]'),r=c.getBoundingClientRect(),hero=document.querySelector('.media-scope').getBoundingClientRect();return{text:c.innerText,lines:Math.round((r.height-parseFloat(getComputedStyle(c).paddingTop)-parseFloat(getComputedStyle(c).paddingBottom))/parseFloat(getComputedStyle(c).lineHeight)),fits:c.scrollWidth<=c.clientWidth,over:c.scrollWidth-c.clientWidth,belowHero:r.top>=hero.bottom-0.5,fontSize:getComputedStyle(c).fontSize,color:getComputedStyle(c).color};})(),eyebrowGap:(()=>{const nm=[...document.querySelectorAll('.media-scope .serif')].find(e=>e.textContent.trim()===n);const row=nm&&nm.previousElementSibling;if(!nm||!row)return null;const t=document.createRange();t.selectNodeContents(nm);const rects=[...t.getClientRects()];return Math.round(Math.min(...rects.map(x=>x.top))-row.getBoundingClientRect().bottom);})(),image:getArtistImage(n).url,overflow:document.documentElement.scrollWidth>innerWidth}),name));
  const slug=name.toLowerCase().replace(/[^a-z0-9]+/g,'-');
  await p.screenshot({path:`${outDir}/${names.length>1||name!=='Skrillex'?slug+'-':''}${width}-${mode}.png`});await c.close();
 }

@@ -906,6 +906,12 @@ function PyroStarburst({ color }) {
   );
 }
 
+// "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
+function _licenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+}
+const _creditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
+
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
@@ -1196,13 +1202,17 @@ function ArtistScreen({ state, setState }) {
       </div>
     </>
   );
+  const heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
   const heroNameInner = (
     <>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
-          {a.genre.toUpperCase()}
-        </div>
-        {stage && (
+      {/* 12px clears the name's cap height: at lineHeight 0.88 a two-line
+          name (Amyl And The Sniffers at 320) put its first line into the
+          eyebrow at 8px. A placeholder genre ("—") prints nothing. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+          {heroGenre.toUpperCase()}
+        </div>}
+        {heroGenre && stage && (
           <div style={{
             width: 4, height: 4, borderRadius: 4, background: "var(--signal)",
             boxShadow: `0 0 6px var(--signal)`,
@@ -1227,13 +1237,6 @@ function ArtistScreen({ state, setState }) {
         const y = e.currentTarget.scrollTop;
         setHeroParallax(Math.min(60, y * 0.3));
       }}>
-      {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
-        <div data-artist-photo-credit="1" style={{ padding: "8px 18px", fontSize: 12, lineHeight: "18px", color: "var(--text-2)" }}>
-          Photo: {heroCacheRec.author} · <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer">Source</a>
-          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer">{heroCacheRec.license}</a>
-          {" · Display cropped"}
-        </div>
-      )}
       {/* Hero */}
       {spotifyHero ? (
         // Spotify's Design Guidelines for Spotify artwork: "Don't crop the
@@ -1322,6 +1325,22 @@ function ArtistScreen({ state, setState }) {
           {heroNameInner}
         </div>
       </div>
+      )}
+
+      {/* Licensed photo credit, a caption directly under the photo it
+          credits: label type (11px floor) in --text-3, links underlined in
+          the same colour. The author links to the source page, the license
+          name to its deed; "Cropped" is the change notice. One line at 320:
+          the ledger caps author length (scripts/lib/artist-photo-ledger.mjs). */}
+      {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
+        <div data-artist-photo-credit="1" aria-label={"Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped"} style={{
+          padding: "8px 18px 0", fontSize: "var(--fs-label)", lineHeight: "16px",
+          color: "var(--text-3)", whiteSpace: "nowrap",
+        }}>
+          <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{heroCacheRec.author}</a>
+          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{_licenseLabel(heroCacheRec.license)}</a>
+          {" · Cropped"}
+        </div>
       )}
 
       {/* B2B artist tabs — one per individual artist */}
