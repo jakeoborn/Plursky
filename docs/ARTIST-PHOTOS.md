@@ -22,6 +22,12 @@ Run:
 - node scripts/verify.mjs --parse-only
 - node scripts/capture-artist-pilot.mjs
 
+Batch 2 (ACL 2026 billing, Commons only): Lorde, Charli XCX, Amyl And The
+Sniffers, The War On Drugs, Kings of Leon. Each row carries the Commons file
+page, author, license link, review time, change note and the WebP's SHA-256.
+Capture them with:
+- node scripts/capture-artist-pilot.mjs <out-dir> "Lorde" "Charli XCX" ...
+
 Spotify remains the 24-hour fallback. Unknown legacy caches stay refused. All
 permanent-image recap/share exports remain off in this increment. Enabling them
 requires preserving author/license/change attribution in the exported artifact,
