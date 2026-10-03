@@ -8,6 +8,18 @@ receipt and SHA-256 matching its local bytes. Commons and an explicit permanent
 storage/display grant in an artist press kit are the only sources. A public
 artist website alone is not a license. Instagram remains embed-only.
 
+Press grants (`source: press-kit`, `license: Press-Grant`) come in two forms:
+- `grantType: press-page` (the default and the preferred form): the permission
+  is published on the artist's, management's or label's press page. `grantUrl`
+  is that page and `grantText` quotes the permission.
+- `grantType: email`: a documented written grant by email. The ledger ships
+  publicly, so the row records `grantFrom` (organisation and role, never a
+  person's address), `grantDate`, `grantText` (the quoted permission) and
+  `grantEvidenceSha256`, the SHA-256 of the archived `.eml`. The message itself
+  is kept in private storage, never in this repo. No `grantUrl`: if the team
+  also publishes the permission, record the row as `press-page` instead.
+  `sourceUrl` and `licenseUrl` point at the granting party's official page.
+
 Pilot: Skrillex. Michael Nusbaum / Weekly Dig, CC BY 2.0.
 Source: https://commons.wikimedia.org/wiki/File:Skrillex.jpg
 License: https://creativecommons.org/licenses/by/2.0/
