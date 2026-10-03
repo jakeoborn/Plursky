@@ -366,16 +366,50 @@ ${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href
 
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
+// Each link opens that edition in Plursky (?tab=past&edition=<id>).
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function ymdLabel(a, b) {
+  if (!a) return '';
+  const [ya, ma, da] = a.split('-').map(Number), [yb, mb, db] = (b || a).split('-').map(Number);
+  if (a === (b || a)) return `${MON[ma - 1]} ${da}, ${ya}`;
+  if (ya === yb && ma === mb) return `${MON[ma - 1]} ${da}–${db}, ${ya}`;
+  return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
+}
+const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+function editionSummary(e) {
+  return e.lineupOnly
+    ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+}
+
+// A festival not open in Plursky yet (a gated entry, usually next year's)
+// leads with its newest past edition instead of an empty page: clearly a
+// past edition, with its own dates and the date its source was archived, and
+// kept apart from everything this page says about the upcoming edition.
+function lookBackSection(entry, editions) {
+  if (entry.available || !editions.length) return '';
+  const e = editions[0];
+  return `
+  <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
+    <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
+    <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
+    <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
+  </section>`;
+}
+
 function pastSection(entry, editions) {
-  if (!editions.length) return '';
+  const rest = entry.available ? editions : editions.slice(1);
+  if (!rest.length) return '';
   const cfg = entry.config;
   return `
   <section aria-labelledby="past-h">
-    <h2 id="past-h">Past editions of ${esc(cfg.brand || cfg.name)}</h2>
+    <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a> — ${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
     </ul>
-    <p class="note">Each link opens Past Festivals in Plursky.</p>
+    <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
 }
 
@@ -730,7 +764,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
-  <p>${esc(cfg.tagline || '')}</p>
+  <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}

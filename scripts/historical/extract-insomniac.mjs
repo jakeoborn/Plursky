@@ -26,6 +26,10 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const INSOMNIAC_EDITIONS = {
   "hard-summer-2025": { year: 2025, base: "https://www.hardsummer.com/lineup/set-times", days: 2, window: ["20250802", "20251231"] },
   "edc-las-vegas-2025": { year: 2025, base: "https://lasvegas.electricdaisycarnival.com/lineup/set-times", days: 3, window: ["20250516", "20251231"] },
+  // One capture per day exists, taken 2026-06-27 04:48 UTC (Jun 26, 21:48 PDT):
+  // the schedule as published the night before day 1, not a post-event final.
+  "beyond-wonderland-gorge-2026": { year: 2026, base: "https://pnw.beyondwonderland.com/lineup/set-times", days: 2, window: ["20260601", "20261231"] },
+  "beyond-wonderland-socal-2026": { year: 2026, base: "https://socal.beyondwonderland.com/lineup/set-times", days: 2, window: ["20260327", "20261231"] },
 };
 
 // The page's own day tabs: [{ day, label, date|null }].

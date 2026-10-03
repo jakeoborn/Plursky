@@ -2939,6 +2939,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`Past Festivals UI failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+{
+  console.log("▸ Past look-backs gate — a gated festival opens its past edition as a labelled look-back, or stays gated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-lookbacks.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old

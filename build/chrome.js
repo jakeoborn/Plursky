@@ -1797,6 +1797,7 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var pastIndex = usePastEditionIndex();
   var [viewMode, setViewMode] = React.useState(() => {
     try {
       return localStorage.getItem("plursky_switcher_view_v1") || "grid";
@@ -1902,7 +1903,8 @@ function FestivalSwitcher({
   }));
   var row = f => {
     var isActive = f.config.id === activeId;
-    var locked = !f.available && !f.previewOnly && !isActive;
+    var lookBack = !f.available && !f.previewOnly && !isActive ? pastEditionsOf(pastIndex, f.config.id)[0] : null;
+    var locked = !f.available && !f.previewOnly && !isActive && !lookBack;
     var st = _festivalPlanStatus(f.config.id);
     var parts = [];
     if (st.saved) parts.push(React.createElement("span", {
@@ -1923,9 +1925,18 @@ function FestivalSwitcher({
       }
     }, "Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
       key: "e"
-    }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
-      key: "l"
-    }, f.previewOnly ? "Early access" : "Soon"));else if (f.scheduleTBA) parts.push(React.createElement("span", {
+    }, "Ended"));else if (!f.available) {
+      parts.push(React.createElement("span", {
+        key: "l"
+      }, f.previewOnly ? "Early access" : "Soon"));
+      if (lookBack) parts.push(React.createElement("span", {
+        key: "lb",
+        style: {
+          color: "var(--signal-ink)",
+          fontWeight: 600
+        }
+      }, "Look back: ", lookBack.year));
+    } else if (f.scheduleTBA) parts.push(React.createElement("span", {
       key: "tba"
     }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
@@ -1936,7 +1947,7 @@ function FestivalSwitcher({
     }, "Ready"));
     return React.createElement("button", {
       key: f.config.id,
-      onClick: () => onPick(f.config.id, f),
+      onClick: () => lookBack ? (onClose(), openPastEdition(lookBack.id)) : onPick(f.config.id, f),
       disabled: locked,
       "aria-current": isActive ? "true" : undefined,
       style: {

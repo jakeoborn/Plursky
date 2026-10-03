@@ -663,6 +663,11 @@ function App() {
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
     const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
+    // shape is checked here; HistoricalEditionView opens an id only if the
+    // library index lists it, so a bad id reads "not in the library".
+    const dlEdition   = params.get("edition");
+    const validEdition = validTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(dlEdition || "") ? dlEdition : null;
     const validStage  = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     const validDay    = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
@@ -741,6 +746,7 @@ function App() {
       lineupDay:       validDay || NOW.day,
       friendLineup:    validFriendIds.length ? validFriendIds : null,
       friendName:      validFriendIds.length ? validFrom : null,
+      pastEdition:     validEdition,
       _navStack:       [],
     };
   });
@@ -757,7 +763,9 @@ function App() {
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
         if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
-          setState(prev => ({ ...prev, tab }));
+          const edition = params.get("edition");
+          const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
+          setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
           setShowOnboarding(false);
         }
       } catch {}
@@ -998,7 +1006,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v396",
+        version: "v400",
       }));
     } catch {}
   }
@@ -1029,7 +1037,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v396
+          Plursky · v400
         </div>
       </div>
     );

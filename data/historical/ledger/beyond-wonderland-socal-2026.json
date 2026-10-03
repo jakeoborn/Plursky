@@ -1,0 +1,109 @@
+{
+  "id": "beyond-wonderland-socal-2026",
+  "method": "structured_html",
+  "official": "https://socal.beyondwonderland.com/lineup/set-times",
+  "window": [
+    "20260327",
+    "20261231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://socal.beyondwonderland.com/lineup/set-times/day-1/",
+      "date": "2026-03-27",
+      "chosen": "20260627051346",
+      "archivedUrl": "https://web.archive.org/web/20260627051346/https://socal.beyondwonderland.com/lineup/set-times/day-1/",
+      "sha256": "8eeeeed1d335157910b0dd9cd8ed34ab968d32a076672686ae7df7d9b8ce2dcb",
+      "rows": 66,
+      "stages": {
+        "Queen's Domain": 10,
+        "Mad Hatter's Castle": 11,
+        "Caterpillar's Garden": 11,
+        "Cheshire Woods": 10,
+        "The Looking Glass": 7,
+        "The Sea of Wonder": 7,
+        "Beatbox": 10
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20260627051346",
+          "archivedUrl": "https://web.archive.org/web/20260627051346/https://socal.beyondwonderland.com/lineup/set-times/day-1/",
+          "sha256": "8eeeeed1d335157910b0dd9cd8ed34ab968d32a076672686ae7df7d9b8ce2dcb",
+          "bytes": 417545,
+          "tabs": [
+            "Friday, March 27",
+            "Saturday, March 28"
+          ],
+          "date": "2026-03-27",
+          "valid": true,
+          "rows": 66,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://socal.beyondwonderland.com/lineup/set-times/day-2/",
+      "date": "2026-03-28",
+      "chosen": "20260627051349",
+      "archivedUrl": "https://web.archive.org/web/20260627051349/https://socal.beyondwonderland.com/lineup/set-times/day-2/",
+      "sha256": "ad2f5139a6d824b2717cfc1ffc48d62114fd285e5263c13cb986c19eebc3bc82",
+      "rows": 69,
+      "stages": {
+        "Queen's Domain": 10,
+        "Mad Hatter's Castle": 11,
+        "Caterpillar's Garden": 11,
+        "Cheshire Woods": 10,
+        "The Looking Glass": 7,
+        "The Sea of Wonder": 10,
+        "Beatbox": 10
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20260627051349",
+          "archivedUrl": "https://web.archive.org/web/20260627051349/https://socal.beyondwonderland.com/lineup/set-times/day-2/",
+          "sha256": "ad2f5139a6d824b2717cfc1ffc48d62114fd285e5263c13cb986c19eebc3bc82",
+          "bytes": 470993,
+          "tabs": [
+            "Friday, March 27",
+            "Saturday, March 28"
+          ],
+          "date": "2026-03-28",
+          "valid": true,
+          "rows": 69,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Beatbox",
+      "start": "19:00",
+      "end": "19:45",
+      "billing": "Line Dancing with The Redheaded Cowgirl",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    }
+  ],
+  "lineupCheck": {
+    "page": "https://socal.beyondwonderland.com/lineup/",
+    "archivedUrl": "https://web.archive.org/web/20260419043528/https://socal.beyondwonderland.com/lineup/",
+    "captureTimestamp": "20260419043528",
+    "sha256": "c13d3f97221feaa8364ccf07399906e3d1fd0cc1752bb1cbb4cd88c0ce35e350",
+    "title": "Lineup – Beyond Wonderland SoCal 2026",
+    "billings": 133,
+    "matched": 132,
+    "aliased": [
+      {
+        "lineup": "Diesel",
+        "setTimes": "DJ Diesel"
+      }
+    ],
+    "unmatched": [],
+    "setTimesOnly": [
+      "CHYL (K-Speed Set)"
+    ]
+  }
+}
