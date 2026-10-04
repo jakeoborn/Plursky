@@ -26,6 +26,17 @@ try {
   assert.throws(() => validateLedger([row,row], root)); checks++;
   const press = {...row,source:'press-kit',license:'Press-Grant',sourceUrl:'https://artist.example/press',grantUrl:'https://artist.example/press-terms',grantText:'Fixture grant permits permanent display and storage.'};
   ok(!!validateLedger([press],root), 'explicit press grant passes');
+  ok(!!validateLedger([{...press,grantType:'press-page'}],root), 'press page is the default grant type');
+  const {grantUrl, ...noUrl} = press;
+  const email = {...noUrl,grantType:'email',grantFrom:'Fixture Management (artist management)',grantDate:'2026-09-29',grantText:'Yes, you may store and display this photo in the app with credit.',grantEvidenceSha256:'a'.repeat(64)};
+  ok(!!validateLedger([email],root), 'documented email grant passes');
+  for (const patch of [
+    {grantType:'dm'}, {grantUrl:'https://artist.example/press-terms'}, {grantFrom:''},
+    {grantFrom:'manager@artist.example'}, {grantText:'OK. Reach me at manager@artist.example'},
+    {grantDate:''}, {grantDate:'2026-10-01'}, {grantDate:'29/09/2026'}, {grantEvidenceSha256:''},
+    {grantEvidenceSha256:'A'.repeat(64)}, {license:'CC-BY-4.0'},
+  ]) { assert.throws(() => validateLedger([{...email,...patch}], root)); checks++; }
+  { const {grantType, ...asPressPage} = email; assert.throws(() => validateLedger([asPressPage], root)); checks++; }
   console.log(`Artist photo ledger: ${checks} checks passed`);
 } finally { rmSync(root,{recursive:true,force:true}); }
 // Test the actual runtime resolver, not a duplicated implementation.
