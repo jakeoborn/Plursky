@@ -1203,12 +1203,23 @@ function ArtistScreen({ state, setState }) {
     </>
   );
   const heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
-  const heroNameInner = (
+  // `backed`: the eyebrow sits on art (the full-bleed hero), so it carries
+  // its own backing. The Chainsmokers' sunset sky left the violet stage label
+  // unreadable at 320; the backing sits behind the label, not in the scrim,
+  // so it holds over any photo without darkening the photo itself. On the
+  // Spotify hero the eyebrow is on paper and needs none.
+  const heroNameInner = (backed) => (
     <>
       {/* 12px clears the name's cap height: at lineHeight 0.88 a two-line
           name (Amyl And The Sniffers at 320) put its first line into the
           eyebrow at 8px. A placeholder genre ("—") prints nothing. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+      <div data-artist-hero-eyebrow style={{
+        display: backed ? "inline-flex" : "flex", alignItems: "center", gap: 8, marginBottom: 12,
+        ...(backed ? {
+          background: "rgba(var(--shade-rgb),0.85)", backdropFilter: "blur(8px)",
+          borderRadius: 999, padding: "4px 9px",
+        } : null),
+      }}>
         {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
           {heroGenre.toUpperCase()}
         </div>}
@@ -1224,7 +1235,10 @@ function ArtistScreen({ state, setState }) {
           </div>
         )}
       </div>
-      <div className="serif" style={{
+      {/* data-fit-words: a word too wide for the box steps the size down
+          (fitWords, chrome.jsx) instead of being clipped by the hero; "The
+          Chainsmokers" lost its last letter at 320. */}
+      <div className="serif" data-fit-words data-fit-min="28" data-artist-hero-name style={{
         fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
         textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
       }}>{a.name}</div>
@@ -1264,7 +1278,7 @@ function ArtistScreen({ state, setState }) {
             </a>
           </figure>
           <div style={{ marginTop: 6 }}>
-            {heroNameInner}
+            {heroNameInner(false)}
           </div>
         </div>
       ) : (
@@ -1322,7 +1336,7 @@ function ArtistScreen({ state, setState }) {
             same amount — proven by painting the scrim solid green and
             watching the name go green with it. */}
         <div style={{ position: "absolute", bottom: 16, left: 18, right: 18, zIndex: 3 }}>
-          {heroNameInner}
+          {heroNameInner(true)}
         </div>
       </div>
       )}
