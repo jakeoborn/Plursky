@@ -598,6 +598,141 @@ function NightWizard({
     className: "duo-label duo-sun"
   }, "Sunrise"))))));
 }
+function LineupOverview({
+  sets,
+  savedSet,
+  liveNight,
+  stageFilter,
+  onStage
+}) {
+  var lanes = React.useMemo(() => {
+    var by = new Map();
+    for (var a of sets) {
+      var s = toNightMin(a.start),
+        e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({
+        a,
+        s,
+        e: Number.isFinite(e) && e > s ? e : s + 60
+      });
+    }
+    return STAGES.filter(st => by.has(st.id)).map(st => ({
+      stage: st,
+      sets: by.get(st.id)
+    }));
+  }, [sets]);
+  if (lanes.length < 2) return null;
+  var all = lanes.flatMap(l => l.sets);
+  var t0 = Math.floor(Math.min(...all.map(x => x.s)) / 60) * 60;
+  var t1 = Math.ceil(Math.max(...all.map(x => x.e)) / 60) * 60;
+  var span = Math.max(60, t1 - t0);
+  var pct = m => `${(m - t0) / span * 100}%`;
+  var nowMin = liveNight && NOW.time ? toNightMin(NOW.time) : null;
+  var showNow = nowMin != null && nowMin >= t0 && nowMin <= t1;
+  var step = span > 8 * 60 ? 120 : 60;
+  var ticks = [];
+  for (var m = Math.ceil(t0 / step) * step; m <= t1; m += step) ticks.push(m);
+  var tick = m => {
+    var h = Math.floor(m / 60) % 24;
+    return `${h % 12 || 12}${h >= 12 ? "P" : "A"}`;
+  };
+  return React.createElement("div", {
+    "data-lineup-overview": true,
+    role: "group",
+    "aria-label": "Every stage tonight",
+    style: {
+      padding: "4px 20px 8px"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)",
+      columnGap: 12,
+      alignItems: "center"
+    }
+  }, lanes.map(({
+    stage,
+    sets
+  }) => {
+    var on = stageFilter === stage.id;
+    var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    return React.createElement(React.Fragment, {
+      key: stage.id
+    }, React.createElement("button", {
+      type: "button",
+      "data-overview-stage": stage.id,
+      "aria-pressed": on,
+      "aria-label": `${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`,
+      onClick: () => onStage(stage.id),
+      style: {
+        border: 0,
+        background: "none",
+        padding: "1px 0",
+        minHeight: 16,
+        cursor: "pointer",
+        textAlign: "left",
+        font: `${on ? 650 : 500} 11px/14px var(--f-ui)`,
+        color: on ? "var(--acc-ink)" : "var(--ink-2)",
+        overflowWrap: "anywhere"
+      }
+    }, stage.name), React.createElement("div", {
+      "aria-hidden": "true",
+      style: {
+        position: "relative",
+        height: 16
+      }
+    }, sets.map(({
+      a,
+      s,
+      e
+    }) => {
+      var mineSet = savedSet.has(a.id),
+        live = isSetLive(a);
+      return React.createElement("span", {
+        key: a.id,
+        style: {
+          position: "absolute",
+          left: pct(s),
+          width: `calc(${(e - s) / span * 100}% - 2px)`,
+          top: mineSet ? 5.5 : 7,
+          height: mineSet ? 5 : 2,
+          borderRadius: 3,
+          minWidth: 2,
+          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)"
+        }
+      });
+    }), showNow && React.createElement("span", {
+      style: {
+        position: "absolute",
+        left: pct(nowMin),
+        top: 0,
+        bottom: 0,
+        width: 1,
+        background: "var(--ink)"
+      }
+    })));
+  }), React.createElement("span", null), React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "relative",
+      height: 16
+    }
+  }, ticks.map(m => React.createElement("span", {
+    key: m,
+    className: "duo-data-s duo-ink3",
+    style: {
+      position: "absolute",
+      left: pct(m),
+      top: 4,
+      transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)",
+      fontSize: 11,
+      lineHeight: "12px",
+      whiteSpace: "nowrap"
+    }
+  }, tick(m))))));
+}
 function LineupFilterSheet({
   onClose,
   day,
@@ -721,6 +856,7 @@ function LineupScreen({
   var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
   var [q, setQ] = React.useState("");
+  var [searchOpen, setSearchOpen] = React.useState(false);
   React.useEffect(() => {
     if (!highlightId) return;
     var scroller = setTimeout(() => {
@@ -990,6 +1126,7 @@ function LineupScreen({
   }, [viewMode, day, dayArtists, filter, sortBy]);
   var searchInputRef = React.useRef(null);
   var openSearch = () => {
+    setSearchOpen(true);
     setCollapsed(false);
     if (viewMode === "grid") {
       var g = document.querySelector("[data-grid-scroll]");
@@ -1011,13 +1148,26 @@ function LineupScreen({
     var d = dayStats.find(x => x.n === day);
     var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    var show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
+    var show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
   })();
-  var searchRow = React.createElement("div", {
+  var surpriseMe = () => {
+    var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    var savedGenres = new Set(savedArtists.map(a => a.genre));
+    var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({
+      ...state,
+      artist: pick.id
+    });
+  };
+  var searchRow = !(searchOpen || q) ? null : React.createElement("div", {
+    "data-lineup-search": true,
     style: {
-      padding: gridLead ? "12px 12px 0" : "12px 20px 4px"
+      padding: gridLead ? "8px 12px 0" : "4px 20px 4px"
     }
   }, React.createElement("div", {
     style: {
@@ -1075,7 +1225,24 @@ function LineupScreen({
     strokeLinecap: "round"
   }, React.createElement("path", {
     d: "M6 6 L18 18 M18 6 L6 18"
-  })))));
+  })))), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      margin: "0 -8px"
+    }
+  }, React.createElement("button", {
+    onClick: surpriseMe,
+    title: "Discover a random artist that matches your taste",
+    style: textBtn
+  }, "Surprise me"), React.createElement("button", {
+    onClick: () => {
+      setQ("");
+      setSearchOpen(false);
+    },
+    style: textBtn
+  }, "Done")));
   var saveDayCard = savedToday.length === 0 ? (() => {
     var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
     if (dayTopPicks.length === 0) return null;
@@ -1096,27 +1263,7 @@ function LineupScreen({
       }
     }, "Save top picks · ", dayTopPicks.length);
   })() : null;
-  var actionsRow = React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px",
-      gap: 4
-    }
-  }, React.createElement("div", {
-    className: "duo-data-s duo-ink3",
-    style: {
-      textTransform: "uppercase"
-    }
-  }, dayArtists.length, " ", dayArtists.length === 1 ? "set" : "sets"), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      flexWrap: "wrap"
-    }
-  }, saveDayCard, totalSaved >= 2 && (() => {
+  var planActions = filter === "saved" ? React.createElement(React.Fragment, null, totalSaved >= 2 && (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
@@ -1145,22 +1292,22 @@ function LineupScreen({
       exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
-  }, "Calendar"), React.createElement("button", {
-    onClick: () => {
-      var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-      var savedGenres = new Set(savedArtists.map(a => a.genre));
-      var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-      var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
-      if (!(pool.length ? pool : unsaved).length) return;
-      var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-      setState({
-        ...state,
-        artist: pick.id
-      });
-    },
-    title: "Discover a random artist that matches your taste",
+  }, "Calendar"), hasFeed && React.createElement("button", {
+    "data-sched-check": true,
+    onClick: () => setSyncOpen(true),
+    "aria-label": "Check for schedule changes",
     style: textBtn
-  }, "Surprise me")));
+  }, "Updates")) : null;
+  var actionsRow = saveDayCard || planActions ? React.createElement("div", {
+    "data-lineup-actions": true,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px",
+      gap: 4
+    }
+  }, saveDayCard, planActions) : null;
   var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
@@ -1212,7 +1359,18 @@ function LineupScreen({
         fontSize: 15,
         lineHeight: "21px"
       }
-    }, stage.vibeNote));
+    }, stage.vibeNote), React.createElement("button", {
+      onClick: () => setState({
+        ...state,
+        tab: "map",
+        focusStage: stage.id
+      }),
+      style: {
+        ...textBtn,
+        margin: "4px 0 -8px -8px",
+        color: "var(--acc-ink)"
+      }
+    }, "Show on map"));
   })() : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
@@ -1232,14 +1390,9 @@ function LineupScreen({
   }, React.createElement("div", {
     ref: filtersRef
   }, React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      padding: "8px 20px 0"
-    }
-  }, FESTIVAL_CONFIG.brand, " · ", FESTIVAL_CONFIG.dates), React.createElement("div", {
     "data-lineup-header": true,
     style: {
-      padding: "4px 8px 4px 20px",
+      padding: "8px 8px 4px 20px",
       display: "flex",
       alignItems: "center",
       gap: 4
@@ -1272,19 +1425,15 @@ function LineupScreen({
     style: {
       margin: 0
     }
-  }, "Lineup")), hasFeed && React.createElement("button", {
-    "data-sched-check": true,
-    onClick: () => setSyncOpen(true),
-    "aria-label": "Check for schedule changes",
-    style: textBtn
-  }, "Updates"), React.createElement("button", {
-    onClick: () => setViewMode(viewMode === "grid" ? "list" : "grid"),
-    "aria-label": viewMode === "grid" ? "Show as list" : "Show as stage grid",
-    hidden: _schedTBA || undefined,
-    style: _schedTBA ? {
+  }, "Lineup")), React.createElement("button", {
+    "data-lineup-search-toggle": true,
+    onClick: () => searchOpen || q ? (setQ(""), setSearchOpen(false)) : openSearch(),
+    "aria-label": "Search",
+    "aria-expanded": !!(searchOpen || q),
+    style: {
       ...fieldIconBtn,
-      display: "none"
-    } : fieldIconBtn
+      color: "var(--ink-2)"
+    }
   }, React.createElement("svg", {
     width: "20",
     height: "20",
@@ -1292,20 +1441,22 @@ function LineupScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.8",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, viewMode === "grid" ? React.createElement("path", {
-    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
-  }) : React.createElement("path", {
-    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+    strokeLinecap: "round"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "7"
+  }), React.createElement("path", {
+    d: "M21 21 L16.65 16.65"
   }))), React.createElement("button", {
-    onClick: () => setState({
-      ...state,
-      tab: "map",
-      focusStage: stageFilter !== "all" ? stageFilter : undefined
-    }),
-    "aria-label": "Open map",
-    style: fieldIconBtn
+    "data-lineup-filters-open": true,
+    onClick: () => setFilterSheetOpen(true),
+    "aria-label": `Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`,
+    style: {
+      ...fieldIconBtn,
+      position: "relative",
+      color: otherFilterCount ? "var(--acc-ink)" : "var(--ink-2)"
+    }
   }, React.createElement("svg", {
     width: "20",
     height: "20",
@@ -1313,11 +1464,34 @@ function LineupScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.8",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
+    strokeLinecap: "round"
   }, React.createElement("path", {
-    d: "M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"
-  })))), React.createElement("div", {
+    d: "M4 7 H13 M17 7 H20 M4 17 H7 M11 17 H20"
+  }), React.createElement("circle", {
+    cx: "15",
+    cy: "7",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "9",
+    cy: "17",
+    r: "2"
+  })), otherFilterCount > 0 && React.createElement("b", {
+    "aria-hidden": "true",
+    className: "duo-data-s",
+    style: {
+      position: "absolute",
+      top: 6,
+      right: 4,
+      minWidth: 16,
+      height: 16,
+      borderRadius: 8,
+      background: "var(--acc)",
+      color: "var(--on-acc)",
+      fontSize: 11,
+      lineHeight: "16px",
+      textAlign: "center"
+    }
+  }, otherFilterCount))), React.createElement("div", {
     role: "tablist",
     "aria-label": "Festival day",
     style: {
@@ -1382,45 +1556,82 @@ function LineupScreen({
       "aria-pressed": on,
       onClick: () => setWeekendFilter(w.value)
     }, w.label);
-  })), React.createElement("div", {
+  })), !_schedTBA && React.createElement(LineupOverview, {
+    sets: lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")),
+    savedSet: savedSetIds,
+    liveNight: NOW.night === day,
+    stageFilter: viewMode === "list" ? stageFilter : "all",
+    onStage: id => {
+      if (viewMode === "grid") {
+        window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
+          detail: id
+        }));
+        return;
+      }
+      setStageFilter(stageFilter === id ? "all" : id);
+    }
+  }), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
       padding: "0 20px 6px",
-      borderBottom: "1px solid var(--line)"
-    }
-  }, React.createElement("div", {
-    role: "radiogroup",
-    "aria-label": "Show",
-    style: {
-      flex: 1,
-      minWidth: 0,
-      display: "flex",
+      borderBottom: "1px solid var(--line)",
       flexWrap: "wrap",
-      columnGap: 8
+      rowGap: 0
+    }
+  }, !_schedTBA && React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "View",
+    style: {
+      display: "flex",
+      gap: 8
     }
   }, [{
-    id: "all",
-    label: "All stages"
+    id: "list",
+    label: "List"
   }, {
+    id: "grid",
+    label: "Grid"
+  }].map(o => React.createElement("button", {
+    key: o.id,
+    role: "radio",
+    "aria-checked": viewMode === o.id,
+    "aria-label": o.label,
+    className: "duo-chip duo-viewchip",
+    onClick: () => setViewMode(o.id)
+  }, React.createElement("span", null, React.createElement("span", {
+    className: "lbl"
+  }, o.label), React.createElement("svg", {
+    className: "ic",
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, o.id === "list" ? React.createElement("path", {
+    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
+  }) : React.createElement("path", {
+    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+  })))))), [{
     id: "saved",
-    label: "Saved",
+    label: "My plan",
     n: dayStats.find(x => x.n === day)?.count
   }, {
     id: "now",
-    label: "Now"
+    label: "Live",
+    n: NOW.night === day ? (NOW.liveIds || []).length : 0
   }].map(o => {
-    var on = o.id === "all" ? filter === "all" && stageFilter === "all" : filter === o.id;
+    var on = filter === o.id;
     return React.createElement("button", {
       key: o.id,
-      role: "radio",
-      "aria-checked": on,
+      "aria-pressed": on,
       className: "duo-chip",
-      onClick: () => {
-        setFilter(o.id);
-        if (o.id === "all") setStageFilter("all");
-      }
+      "data-lineup-show": o.id,
+      onClick: () => setFilter(on ? "all" : o.id)
     }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
       "aria-hidden": "true",
       style: {
@@ -1430,22 +1641,7 @@ function LineupScreen({
         background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
       }
     }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
-  })), React.createElement("button", {
-    onClick: () => setFilterSheetOpen(true),
-    "aria-label": `Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`,
-    "aria-pressed": otherFilterCount > 0,
-    className: "duo-chip"
-  }, React.createElement("span", null, React.createElement("svg", {
-    width: "16",
-    height: "16",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "1.8",
-    strokeLinecap: "round"
-  }, React.createElement("path", {
-    d: "M4 7 H20 M7 12 H17 M10 17 H14"
-  })), otherFilterCount > 0 && React.createElement("b", null, otherFilterCount)))), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+  })), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
     "data-lineup-compact": true,
     "data-collapsed": collapsed ? "1" : "0",
     inert: collapsed ? undefined : "",
@@ -1685,7 +1881,7 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
-    var rows = dayArtists.map(a => {
+    var renderRow = (a, pinned) => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
@@ -1694,9 +1890,10 @@ function LineupScreen({
       var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
       var dotColor = filter === "all" ? "var(--ink-3)" : stage.color || "var(--ink-3)";
       return React.createElement("div", {
-        key: a.id,
+        key: pinned ? `pin-${a.id}` : a.id,
         "data-animate": true,
-        "data-lineup-highlight": isHighlighted ? "true" : undefined,
+        "data-now-on-plan": pinned ? a.id : undefined,
+        "data-lineup-highlight": isHighlighted && !pinned ? "true" : undefined,
         className: `duo-lrow${isLive ? " live" : saved ? " plan" : ""}`,
         style: {
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
@@ -1749,10 +1946,7 @@ function LineupScreen({
         "data-set-meta": true,
         style: {
           font: "400 13px/1.385 var(--f-ui)",
-          color: "var(--ink-2)",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          color: "var(--ink-2)"
         }
       }, React.createElement("span", {
         "aria-hidden": "true",
@@ -1775,7 +1969,7 @@ function LineupScreen({
           color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && clashWith.map(o => React.createElement("span", {
+      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
         key: o.id,
         "data-clash-with": o.id,
         style: {
@@ -1803,7 +1997,8 @@ function LineupScreen({
       }) : React.createElement("path", {
         d: "M12 5 V19 M5 12 H19"
       })))));
-    });
+    };
+    var rows = dayArtists.map(a => renderRow(a));
     if (nowMin != null && dayArtists.length) {
       var i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
       rows.splice(i === -1 ? rows.length : i, 0, React.createElement("div", {
@@ -1832,6 +2027,19 @@ function LineupScreen({
         }
       })));
     }
+    var nowMine = filter === "all" && nowMin != null ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+    if (nowMine.length) rows.unshift(React.createElement("div", {
+      key: "__nowmine",
+      "data-now-on-plan-card": true,
+      style: {
+        padding: "8px 0 12px"
+      }
+    }, React.createElement("div", {
+      className: "duo-sect",
+      style: {
+        padding: "4px 0 8px"
+      }
+    }, "Now on your plan"), nowMine.map(a => renderRow(a, true))));
     return rows;
   })()), NOW.night === day && NOW.time && (viewMode === "grid" || nowOff && filter !== "now" && sortBy === "time") && React.createElement("button", {
     onClick: () => {
@@ -2791,6 +2999,13 @@ function TimelineGrid({
       behavior: "smooth"
     });
   };
+  var _toStage = React.useRef(scrollToStage);
+  _toStage.current = scrollToStage;
+  React.useEffect(() => {
+    var on = e => _toStage.current(e.detail);
+    window.addEventListener("plursky:grid-stage", on);
+    return () => window.removeEventListener("plursky:grid-stage", on);
+  }, []);
   var didInit = React.useRef(false);
   React.useLayoutEffect(() => {
     var el = scrollRef.current;

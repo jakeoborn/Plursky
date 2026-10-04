@@ -246,26 +246,79 @@ try {
         return { text, dot: getComputedStyle(meta.querySelector('span')).backgroundColor, want: st && st.color ? norm(st.color) : null };
       });
     });
-    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const saved = await dotsFor();
     check(saved.length >= 3, `control: Saved shows ${saved.length} rows`);
     check(saved.every(d => d.want && d.dot === d.want), `Saved: a dot is not its stage's map colour: ${JSON.stringify(saved)}`);
     check(new Set(saved.map(d => d.dot)).size >= 2, 'Saved: dots do not vary by stage');
     check(saved.filter(d => /^Clash · /.test(d.text)).length >= 2, `Saved: overlapping sets carry no "Clash ·" prefix: ${JSON.stringify(saved.map(d => d.text))}`);
-    await page.getByRole('radio', { name: 'Now' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    await page.locator('[data-lineup-show=now]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const now = await dotsFor();
     check(now.length >= 2, `control: Now shows ${now.length} live rows at the pinned clock`);
     check(now.every(d => d.want && d.dot === d.want), `Now: a dot is not its stage's map colour: ${JSON.stringify(now)}`);
     // P2: pick a stage in the Filters sheet, keep Saved; the folded bar names both.
-    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(300);
+    await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(300);
     await page.locator('button[aria-label^="Filters"]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const stage = await page.evaluate(() => (window.STAGES || [])[0]);
-    await page.locator('button[aria-pressed]', { hasText: stage.short || stage.name }).first().click();
+    await page.locator('[role=dialog] button[aria-pressed]', { hasText: stage.short || stage.name }).first().click();
     await page.getByRole('button', { name: /^Show \d+ sets?$/ }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const s = await state(page);
-    check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · Saved`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · Saved"`);
+    check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · My plan`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · My plan"`);
     await ctx.close();
   } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n")[0]}`); }
+
+  // ── The board's Lineup (design fidelity, 2026-10-04) ──────────────────────
+  // Header = title + search + Filters; the stage overview names every stage
+  // that plays the day in full, on one axis, without panning (ruling
+  // 2026-09-15); the mode row (List, Grid, My plan, Live) sits on one line
+  // down to 320; no standing search field; plan actions only under My plan;
+  // "Now on your plan" only while a saved set is actually live.
+  for (const width of [393, 320]) {
+    try {
+      // EDC night 2 at 00:50 PDT: John Summit (k15) is live and saved.
+      const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', width, saved: ['k15', 'k16', 'q17', 'bp8'] });
+      const r = await page.evaluate(() => {
+        const ov = document.querySelector('[data-lineup-overview]');
+        const day = window.ARTISTS.filter(a => a.day === 2);
+        const want = window.STAGES.filter(s => day.some(a => a.stage === s.id)).map(s => s.name);
+        const names = ov ? [...ov.querySelectorAll('[data-overview-stage]')].map(b => ({ t: b.textContent.trim(), clip: b.scrollWidth > b.clientWidth + 1 })) : [];
+        const chips = [...document.querySelectorAll('[data-lineup-filters] .duo-chip')].map(c => Math.round(c.getBoundingClientRect().top));
+        const pinned = [...document.querySelectorAll('[data-now-on-plan]')].map(n => n.dataset.nowOnPlan);
+        const actions = document.querySelector('[data-lineup-actions]')?.textContent || '';
+        return {
+          ov: !!ov, want, names, ovPans: ov ? ov.scrollWidth > ov.clientWidth + 1 : null,
+          chipRows: new Set(chips).size, nChips: chips.length,
+          searchField: !!document.querySelector('input[aria-label="Search the lineup"]'),
+          pinned, liveSaved: window.NOW.liveIds.filter(id => ['k15', 'k16', 'q17', 'bp8'].includes(id)),
+          actions,
+        };
+      });
+      check(r.ov, `${width}: no stage overview on a timed festival`);
+      check(JSON.stringify(r.names.map(n => n.t)) === JSON.stringify(r.want), `${width}: overview stages ${JSON.stringify(r.names.map(n => n.t))} ≠ every stage of the day ${JSON.stringify(r.want)}`);
+      check(r.names.length >= 9 && r.names.every(n => !n.clip), `${width}: an overview stage name is cut: ${JSON.stringify(r.names.filter(n => n.clip))}`);
+      check(r.ovPans === false, `${width}: the overview pans sideways`);
+      check(r.nChips === 4 && r.chipRows === 1, `${width}: mode row is ${r.nChips} chips on ${r.chipRows} lines (want 4 on 1)`);
+      check(!r.searchField, `${width}: a standing search field is back in the header`);
+      check(r.liveSaved.length >= 1 && JSON.stringify(r.pinned) === JSON.stringify(r.liveSaved), `${width}: "Now on your plan" holds ${JSON.stringify(r.pinned)}, live saved sets are ${JSON.stringify(r.liveSaved)}`);
+      check(!/My night|Calendar|Surprise me|Updates/.test(r.actions), `${width}: plan/discovery actions in the All header: "${r.actions}"`);
+      // Search opens on its icon and carries Surprise me.
+      await page.locator('[data-lineup-search-toggle]').click(); await page.clock.runFor(400); await page.waitForTimeout(200);
+      const s2 = await page.evaluate(() => ({ field: !!document.querySelector('input[aria-label="Search the lineup"]'), surprise: [...document.querySelectorAll('[data-lineup-search] button')].some(b => b.textContent.trim() === 'Surprise me') }));
+      check(s2.field && s2.surprise, `${width}: search icon did not open the field with Surprise me: ${JSON.stringify(s2)}`);
+      // My plan carries the plan actions.
+      await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(400); await page.waitForTimeout(200);
+      const a2 = await page.evaluate(() => document.querySelector('[data-lineup-actions]')?.textContent || '');
+      check(/My night/.test(a2) && /Calendar/.test(a2) && /Updates/.test(a2), `${width}: My plan lacks its actions: "${a2}"`);
+      await ctx.close();
+    } catch (err) { check(false, `${width} board block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
+  // Nothing saved is live (empty plan): no lifted card, never a placeholder.
+  try {
+    const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z' });
+    const n = await page.evaluate(() => document.querySelectorAll('[data-now-on-plan-card]').length);
+    check(n === 0, `empty plan shows ${n} "Now on your plan" cards`);
+    await ctx.close();
+  } catch (err) { check(false, `empty-plan block threw: ${String(err.message || err).split("\n")[0]}`); }
 
   // ── A single-weekend festival: summary has no weekend, rows unchanged ────
   try {
