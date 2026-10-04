@@ -1427,7 +1427,7 @@ function ArtistScreen({
       alignItems: "center",
       gap: 8,
       marginBottom: 12,
-      textShadow: "0 1px 8px rgba(var(--shade-rgb),0.7)"
+      textShadow: "0 0 2px rgba(var(--shade-rgb),0.9), 0 1px 8px rgba(var(--shade-rgb),0.8)"
     }
   }, heroGenre && React.createElement("div", {
     className: "mono",

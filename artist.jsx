@@ -1211,7 +1211,7 @@ function ArtistScreen({ state, setState }) {
       {/* The shadow is the name's, so the eyebrow reads over a bright photo
           too: The Chainsmokers' sunset sky left the violet stage label
           unreadable at 320. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, textShadow: "0 1px 8px rgba(var(--shade-rgb),0.7)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, textShadow: "0 0 2px rgba(var(--shade-rgb),0.9), 0 1px 8px rgba(var(--shade-rgb),0.8)" }}>
         {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
           {heroGenre.toUpperCase()}
         </div>}
