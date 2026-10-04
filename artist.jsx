@@ -1208,7 +1208,10 @@ function ArtistScreen({ state, setState }) {
       {/* 12px clears the name's cap height: at lineHeight 0.88 a two-line
           name (Amyl And The Sniffers at 320) put its first line into the
           eyebrow at 8px. A placeholder genre ("—") prints nothing. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+      {/* The shadow is the name's, so the eyebrow reads over a bright photo
+          too: The Chainsmokers' sunset sky left the violet stage label
+          unreadable at 320. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, textShadow: "0 1px 8px rgba(var(--shade-rgb),0.7)" }}>
         {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
           {heroGenre.toUpperCase()}
         </div>}
@@ -1224,7 +1227,10 @@ function ArtistScreen({ state, setState }) {
           </div>
         )}
       </div>
-      <div className="serif" style={{
+      {/* data-fit-words: a word too wide for the box steps the size down
+          (fitWords, chrome.jsx) instead of being clipped by the hero; "The
+          Chainsmokers" lost its last letter at 320. */}
+      <div className="serif" data-fit-words data-fit-min="28" data-artist-hero-name style={{
         fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
         textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
       }}>{a.name}</div>

@@ -590,6 +590,32 @@ try {
       await ctx.close();
     }
   }
+  // The artist hero name fits its box at the smallest phone: every word on
+  // one line and inside the hero, at 320 and at 280 (margin for the runner's
+  // wider fonts), in a wide face too. "The Chainsmokers" (EDC k6) was clipped
+  // to "Chainsmoker" at 320 with a fixed 52px. The name must be the fixture's,
+  // or the check proves nothing.
+  for (const [width, font] of [[320, null], [280, null], [320, 'Verdana']]) {
+    const { ctx, page } = await open({ query: 'tab=lineup&artist=k6', width, font, ready: '[data-artist-hero-name]' });
+    await page.waitForTimeout(400);   // the settled fit pass runs 200ms after mount
+    const h = await page.evaluate(() => {
+      const el = document.querySelector('[data-artist-hero-name]'); if (!el) return null;
+      const box = el.getBoundingClientRect(), bad = [];
+      const n = el.firstChild, re = /\S+/g; let m;
+      while (n && (m = re.exec(n.data))) {
+        const rg = document.createRange(); rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
+        const rs = rg.getClientRects(), r = rg.getBoundingClientRect();
+        if ((rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) || r.right > box.right + 0.5 || r.left < box.left - 0.5) bad.push(m[0]);
+      }
+      return { text: el.textContent, size: parseFloat(getComputedStyle(el).fontSize), bad };
+    });
+    const tag = `artist hero name (${width}px${font ? ', ' + font : ''})`;
+    check(h && h.text === 'The Chainsmokers', `${tag}: expected "The Chainsmokers", got ${h ? `"${h.text}"` : 'no [data-artist-hero-name]'}`);
+    if (h) check(!h.bad.length, `${tag}: ${h.bad.map(w => `"${w}"`).join(', ')} broken or outside the box at ${h.size}px`);
+    const nf = await names(page);
+    check(!nf.length, `[artist @${width}${font ? ' ' + font : ''}] ${nf.join(' · ')}`);
+    await ctx.close();
+  }
   // General Home's search placeholder at 200% text: whole inside the field at
   // the smallest phone (and at 280, margin for the runner's wider fonts, in a
   // wide face too), and unchanged at 393, where it always fit. 200% = every

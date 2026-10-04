@@ -1426,7 +1426,8 @@ function ArtistScreen({
       display: "flex",
       alignItems: "center",
       gap: 8,
-      marginBottom: 12
+      marginBottom: 12,
+      textShadow: "0 1px 8px rgba(var(--shade-rgb),0.7)"
     }
   }, heroGenre && React.createElement("div", {
     className: "mono",
@@ -1454,6 +1455,9 @@ function ArtistScreen({
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
     className: "serif",
+    "data-fit-words": true,
+    "data-fit-min": "28",
+    "data-artist-hero-name": true,
     style: {
       fontSize: isB2B ? 34 : 52,
       lineHeight: 0.88,
