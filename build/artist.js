@@ -1421,13 +1421,19 @@ function ArtistScreen({
     artist: a
   })));
   var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
-  var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
+  var heroNameInner = backed => React.createElement(React.Fragment, null, React.createElement("div", {
+    "data-artist-hero-eyebrow": true,
     style: {
-      display: "flex",
+      display: backed ? "inline-flex" : "flex",
       alignItems: "center",
       gap: 8,
       marginBottom: 12,
-      textShadow: "0 0 2px rgba(var(--shade-rgb),0.9), 0 1px 8px rgba(var(--shade-rgb),0.8)"
+      ...(backed ? {
+        background: "rgba(var(--shade-rgb),0.85)",
+        backdropFilter: "blur(8px)",
+        borderRadius: 999,
+        padding: "4px 9px"
+      } : null)
     }
   }, heroGenre && React.createElement("div", {
     className: "mono",
@@ -1516,7 +1522,7 @@ function ArtistScreen({
     style: {
       marginTop: 6
     }
-  }, heroNameInner)) : React.createElement("div", {
+  }, heroNameInner(false))) : React.createElement("div", {
     className: "media-scope",
     style: {
       height: 300,
@@ -1577,7 +1583,7 @@ function ArtistScreen({
       right: 18,
       zIndex: 3
     }
-  }, heroNameInner)), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+  }, heroNameInner(true))), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
     "data-artist-photo-credit": "1",
     "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
     style: {
