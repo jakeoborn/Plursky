@@ -163,5 +163,35 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "sha256": "cd50ec28af30e122226bfb9b03ac32f78a8a9b17ebb00507f2f8d41b31354f8a",
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/sofi-tukker.webp"
+  },
+  "the chainsmokers": {
+    "artist": "The Chainsmokers",
+    "author": "The Come Up Show",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Chainsmokers_%40_Veld_2016.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-04T12:02:38Z",
+    "allowExport": false,
+    "asset": "artist-photos/the-chainsmokers.webp",
+    "sha256": "0398bbaeb9908c96f3ad8cc6a30b4db725b93e1e940f0e1d9948be309e695e89",
+    "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/the-chainsmokers.webp"
+  },
+  "the xx": {
+    "artist": "The xx",
+    "author": "Dusty Knapp",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_xx_Coachella_2010.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-04T12:02:38Z",
+    "allowExport": false,
+    "asset": "artist-photos/the-xx.webp",
+    "sha256": "bcdccd0ec04bbf87205c3b0dcfff048a531b97619a1fc359cd40651c7d9e207b",
+    "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/the-xx.webp"
   }
 };

@@ -41,7 +41,8 @@ Capture them with:
 - node scripts/capture-artist-pilot.mjs <out-dir> "Lorde" "Charli XCX" ...
 
 Batch 3 (ACL 2026 billing, Commons only): Steve Aoki, Bleachers, Brandon
-Flowers, Rebecca Black, Sofi Tukker. Same row evidence as batch 2.
+Flowers, Rebecca Black, Sofi Tukker, The Chainsmokers, The xx. Same row
+evidence as batch 2.
 
 Spotify remains the 24-hour fallback. Unknown legacy caches stay refused. All
 permanent-image recap/share exports remain off in this increment. Enabling them
