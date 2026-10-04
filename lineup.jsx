@@ -1003,16 +1003,18 @@ function LineupScreen({ state, setState }) {
     );
   })() : null;
 
-  // Plan actions belong to the plan: My night, Share, Calendar and schedule
-  // Updates show under My plan. With nothing saved for this day the one
+  // Plan actions belong to the plan: Share, Calendar and schedule Updates
+  // show under My plan. With nothing saved for this day the one
   // header action is "Save top picks". Everything else is search (Surprise
   // me) or Filters, one tap away, so scanning sets is what the screen is for.
+  // My night stays in the header in every view: it is the plan's entry
+  // point and carries the plan-wide clash signal.
+  const myNight = totalSaved >= 2 ? (() => {
+    const clash = dayStats.some(d => d.clashes > 0);
+    return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
+  })() : null;
   const planActions = filter === "saved" ? (
     <>
-      {totalSaved >= 2 && (() => {
-        const clash = dayStats.some(d => d.clashes > 0);
-        return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
-      })()}
       {liveSavedCount > 0 && <ShareLineupButton state={state} />}
       {liveSavedCount > 0 && (
         <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
@@ -1022,12 +1024,13 @@ function LineupScreen({ state, setState }) {
       )}
     </>
   ) : null;
-  const actionsRow = (saveDayCard || planActions) ? (
+  const actionsRow = (saveDayCard || myNight || planActions) ? (
     <div data-lineup-actions style={{
       display: "flex", alignItems: "center", flexWrap: "wrap",
       padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px", gap: 4,
     }}>
       {saveDayCard}
+      {myNight}
       {planActions}
     </div>
   ) : null;

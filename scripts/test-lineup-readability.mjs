@@ -300,7 +300,7 @@ try {
       check(r.nChips === 4 && r.chipRows === 1, `${width}: mode row is ${r.nChips} chips on ${r.chipRows} lines (want 4 on 1)`);
       check(!r.searchField, `${width}: a standing search field is back in the header`);
       check(r.liveSaved.length >= 1 && JSON.stringify(r.pinned) === JSON.stringify(r.liveSaved), `${width}: "Now on your plan" holds ${JSON.stringify(r.pinned)}, live saved sets are ${JSON.stringify(r.liveSaved)}`);
-      check(!/My night|Calendar|Surprise me|Updates/.test(r.actions), `${width}: plan/discovery actions in the All header: "${r.actions}"`);
+      check(/My night/.test(r.actions) && !/Calendar|Share|Surprise me|Updates/.test(r.actions), `${width}: the All header should carry My night and nothing else of the plan: "${r.actions}"`);
       // Search opens on its icon and carries Surprise me.
       await page.locator('[data-lineup-search-toggle]').click(); await page.clock.runFor(400); await page.waitForTimeout(200);
       const s2 = await page.evaluate(() => ({ field: !!document.querySelector('input[aria-label="Search the lineup"]'), surprise: [...document.querySelectorAll('[data-lineup-search] button')].some(b => b.textContent.trim() === 'Surprise me') }));

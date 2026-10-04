@@ -1263,7 +1263,7 @@ function LineupScreen({
       }
     }, "Save top picks · ", dayTopPicks.length);
   })() : null;
-  var planActions = filter === "saved" ? React.createElement(React.Fragment, null, totalSaved >= 2 && (() => {
+  var myNight = totalSaved >= 2 ? (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
@@ -1284,7 +1284,8 @@ function LineupScreen({
         verticalAlign: "1px"
       }
     }), "My night");
-  })(), liveSavedCount > 0 && React.createElement(ShareLineupButton, {
+  })() : null;
+  var planActions = filter === "saved" ? React.createElement(React.Fragment, null, liveSavedCount > 0 && React.createElement(ShareLineupButton, {
     state: state
   }), liveSavedCount > 0 && React.createElement("button", {
     onClick: () => {
@@ -1298,7 +1299,7 @@ function LineupScreen({
     "aria-label": "Check for schedule changes",
     style: textBtn
   }, "Updates")) : null;
-  var actionsRow = saveDayCard || planActions ? React.createElement("div", {
+  var actionsRow = saveDayCard || myNight || planActions ? React.createElement("div", {
     "data-lineup-actions": true,
     style: {
       display: "flex",
@@ -1307,7 +1308,7 @@ function LineupScreen({
       padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px",
       gap: 4
     }
-  }, saveDayCard, planActions) : null;
+  }, saveDayCard, myNight, planActions) : null;
   var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
