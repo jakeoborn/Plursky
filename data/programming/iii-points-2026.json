@@ -1,11 +1,12 @@
 {
   "festivalId": "iii-points-2026",
+  "scope": "official-set-times",
   "source": {
-    "url": "https://www.iiipoints.com/experience/",
-    "observedAt": "2026-10-03",
-    "sha256": "db6ee28a546e88cc68f0039d04dcc98bd0182ca4652169b8382bce62c73c86ae"
+    "url": "https://www.iiipoints.com/",
+    "observedAt": "2026-10-05",
+    "sha256": "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9",
+    "evidence": "Attendee-supplied III Points-branded screenshot supplied by attendee; not a clock-time page on the website"
   },
-  "scope": "Official stage/day running order; six published start times at 444 only. End times not supplied. Venue map coming soon.",
   "stages": [
     {
       "id": "mind-melt",
@@ -17,40 +18,49 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
+              "name": "Ackdaddy",
+              "start": "16:00",
+              "end": "17:00"
+            },
+            {
+              "name": "Vania Junco",
+              "start": "17:05",
+              "end": "17:35"
+            },
+            {
+              "name": "Connan Mockasin",
+              "start": "18:00",
+              "end": "19:00"
+            },
+            {
+              "name": "Men I Trust",
+              "start": "19:25",
+              "end": "20:15"
+            },
+            {
+              "name": "Parcels",
+              "start": "20:45",
+              "end": "22:00"
+            },
+            {
+              "name": "Tokischa",
+              "start": "22:30",
+              "end": "23:15"
+            },
+            {
+              "name": "Cloonee",
+              "start": "23:30",
+              "end": "01:00"
+            },
+            {
+              "name": "Beltran B2B Ben Sterling",
+              "start": "01:00",
+              "end": "02:30"
+            },
+            {
               "name": "PAWSA",
-              "start": null
-            },
-            {
-              "name": "TOKISCHA",
-              "start": null
-            },
-            {
-              "name": "CLOONEE",
-              "start": null
-            },
-            {
-              "name": "BELTRAN B2B BEN STERLING",
-              "start": null
-            },
-            {
-              "name": "PARCELS",
-              "start": null
-            },
-            {
-              "name": "MEN I TRUST",
-              "start": null
-            },
-            {
-              "name": "CONNAN MOCKASIN",
-              "start": null
-            },
-            {
-              "name": "VANIA JUNCO",
-              "start": null
-            },
-            {
-              "name": "ACKDADDY",
-              "start": null
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         },
@@ -60,40 +70,49 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
+              "name": "Carter Jackson-Brown",
+              "start": "16:00",
+              "end": "17:00"
+            },
+            {
+              "name": "Loukeman",
+              "start": "17:15",
+              "end": "18:05"
+            },
+            {
+              "name": "ear",
+              "start": "18:20",
+              "end": "19:00"
+            },
+            {
+              "name": "Nettspend",
+              "start": "19:25",
+              "end": "20:10"
+            },
+            {
+              "name": "Blood Orange",
+              "start": "20:40",
+              "end": "21:50"
+            },
+            {
+              "name": "Adam Port",
+              "start": "22:15",
+              "end": "23:30"
+            },
+            {
+              "name": "Underworld",
+              "start": "00:00",
+              "end": "01:00"
+            },
+            {
+              "name": "Four Tet",
+              "start": "01:30",
+              "end": "02:45"
+            },
+            {
               "name": "KETTAMA",
-              "start": null
-            },
-            {
-              "name": "FOUR TET",
-              "start": null
-            },
-            {
-              "name": "UNDERWORLD",
-              "start": null
-            },
-            {
-              "name": "ADAM PORT",
-              "start": null
-            },
-            {
-              "name": "BLOOD ORANGE",
-              "start": null
-            },
-            {
-              "name": "FAKEMINK",
-              "start": null
-            },
-            {
-              "name": "EAR",
-              "start": null
-            },
-            {
-              "name": "LOUKEMAN",
-              "start": null
-            },
-            {
-              "name": "CARTER JACKSON-BROWN",
-              "start": null
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -109,48 +128,59 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "FLYING LOTUS",
-              "start": null
+              "name": "Kumi",
+              "start": "16:00",
+              "end": "17:00"
             },
             {
-              "name": "JANE REMOVER",
-              "start": null
+              "name": "Cumbiamba",
+              "start": "17:05",
+              "end": "17:45"
             },
             {
-              "name": "DANNY BROWN",
-              "start": null
+              "name": "amar",
+              "start": "18:10",
+              "end": "18:40"
             },
             {
-              "name": "PURITY RING",
-              "start": null
+              "name": "Ghostface Killah presents Supreme Clientele",
+              "start": "19:00",
+              "end": "19:55"
             },
             {
-              "name": "MIND ENTERPRISES",
-              "start": null
+              "name": "Bone Thugs-N-Harmony",
+              "start": "20:15",
+              "end": "21:00"
             },
             {
-              "name": "LIL' KIM",
-              "start": null
+              "name": "Lil' Kim",
+              "start": "21:15",
+              "end": "22:00"
             },
             {
-              "name": "BONE THUGS-N-HARMONY",
-              "start": null
+              "name": "Mind Enterprises",
+              "start": "22:20",
+              "end": "23:10"
             },
             {
-              "name": "GZA PERFORMING LIQUID SWORDS FEATURING PHUNKY NOMADS",
-              "start": null
+              "name": "Purity Ring",
+              "start": "23:35",
+              "end": "00:25"
             },
             {
-              "name": "AMAR",
-              "start": null
+              "name": "Danny Brown",
+              "start": "00:45",
+              "end": "01:30"
             },
             {
-              "name": "CUMBIAMBA",
-              "start": null
+              "name": "Jane Remover",
+              "start": "01:50",
+              "end": "02:35"
             },
             {
-              "name": "KUMI",
-              "start": null
+              "name": "Flying Lotus",
+              "start": "03:00",
+              "end": "04:00"
             }
           ]
         },
@@ -160,48 +190,59 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "SUNN O)))",
-              "start": null
+              "name": "Nikole",
+              "start": "16:15",
+              "end": "16:45"
             },
             {
-              "name": "MACHINE GIRL",
-              "start": null
+              "name": "doris dana (Live)",
+              "start": "17:00",
+              "end": "17:30"
             },
             {
-              "name": "BASSVICTIM",
-              "start": null
+              "name": "res_ (Live)",
+              "start": "17:45",
+              "end": "18:30"
             },
             {
-              "name": "HORSEGIIRL",
-              "start": null
+              "name": "ML Buch",
+              "start": "18:45",
+              "end": "19:30"
             },
             {
-              "name": "KELELA",
-              "start": null
+              "name": "Tricky",
+              "start": "19:55",
+              "end": "20:45"
             },
             {
-              "name": "RUSOWSKY",
-              "start": null
+              "name": "rusowsky",
+              "start": "21:10",
+              "end": "21:55"
             },
             {
-              "name": "TRICKY",
-              "start": null
+              "name": "Kelela",
+              "start": "22:20",
+              "end": "23:05"
             },
             {
-              "name": "ML BUCH",
-              "start": null
+              "name": "horsegiirL",
+              "start": "23:30",
+              "end": "00:20"
             },
             {
-              "name": "RES_ LIVE",
-              "start": null
+              "name": "Bassvictim",
+              "start": "00:40",
+              "end": "01:25"
             },
             {
-              "name": "DORIS DANA LIVE",
-              "start": null
+              "name": "Machine Girl",
+              "start": "01:45",
+              "end": "02:35"
             },
             {
-              "name": "NIKOLE",
-              "start": null
+              "name": "Sunn O)))",
+              "start": "03:00",
+              "end": "04:00"
             }
           ]
         }
@@ -217,48 +258,59 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "DISCO LINES",
-              "start": null
+              "name": "Mason Norris B2B Mia Vendetta",
+              "start": "16:00",
+              "end": "17:15"
             },
             {
-              "name": "ODD MOB",
-              "start": null
-            },
-            {
-              "name": "LEVITY B2B TAIKI NULIGHT",
-              "start": null
-            },
-            {
-              "name": "HAMDI",
-              "start": null
-            },
-            {
-              "name": "IVY LAB",
-              "start": null
-            },
-            {
-              "name": "MARY DROPPINZ",
-              "start": null
-            },
-            {
-              "name": "JIGITZ",
-              "start": null
-            },
-            {
-              "name": "1TBSP",
-              "start": null
+              "name": "Proletar B2B Zamurai",
+              "start": "17:15",
+              "end": "18:15"
             },
             {
               "name": "V1FRO",
-              "start": null
+              "start": "18:15",
+              "end": "19:15"
             },
             {
-              "name": "PROLETAR B2B ZAMURAI",
-              "start": null
+              "name": "1tbsp",
+              "start": "19:15",
+              "end": "20:15"
             },
             {
-              "name": "MASON NORRIS B2B MIA VENDETTA",
-              "start": null
+              "name": "Jigitz",
+              "start": "20:15",
+              "end": "21:15"
+            },
+            {
+              "name": "Mary Droppinz",
+              "start": "21:15",
+              "end": "22:15"
+            },
+            {
+              "name": "Ivy Lab",
+              "start": "22:15",
+              "end": "23:15"
+            },
+            {
+              "name": "Hamdi",
+              "start": "23:15",
+              "end": "00:15"
+            },
+            {
+              "name": "Levity B2B Taiki Nulight",
+              "start": "00:15",
+              "end": "01:30"
+            },
+            {
+              "name": "Odd Mob",
+              "start": "01:30",
+              "end": "02:45"
+            },
+            {
+              "name": "Disco Lines",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         },
@@ -268,44 +320,54 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "CHARLOTTE DE WITTE",
-              "start": null
+              "name": "DomnRob",
+              "start": "16:00",
+              "end": "17:00"
             },
             {
-              "name": "999999999",
-              "start": null
+              "name": "Generous B B2B Hakuna",
+              "start": "17:00",
+              "end": "18:15"
             },
             {
-              "name": "VTSS",
-              "start": null
+              "name": "Cole Knight B2B DREYA V",
+              "start": "18:15",
+              "end": "19:30"
             },
             {
-              "name": "¥ØU$UK€ ¥UKIMAT$U",
-              "start": null
+              "name": "Coffintexts B2B DJ Fuckoff",
+              "start": "19:30",
+              "end": "20:45"
+            },
+            {
+              "name": "Nick León",
+              "start": "20:45",
+              "end": "22:00"
             },
             {
               "name": "KI/KI",
-              "start": null
+              "start": "22:00",
+              "end": "23:15"
             },
             {
-              "name": "NICK LEÓN B2B SAFETY TRANCE",
-              "start": null
+              "name": "¥ØU$UK€ ¥UK1MAT$U",
+              "start": "23:15",
+              "end": "00:30"
             },
             {
-              "name": "COFFINTEXTS B2B DJ FUCKOFF",
-              "start": null
+              "name": "VTSS",
+              "start": "00:30",
+              "end": "01:30"
             },
             {
-              "name": "COLE KNIGHT B2B DREYA V",
-              "start": null
+              "name": "999999999",
+              "start": "01:30",
+              "end": "02:45"
             },
             {
-              "name": "GENEROUS B B2B HAKUNA",
-              "start": null
-            },
-            {
-              "name": "DOMNROB",
-              "start": null
+              "name": "Charlotte de Witte",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -321,36 +383,44 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "HONEY DIJON",
-              "start": null
+              "name": "duun B2B Sleepy C",
+              "start": "16:00",
+              "end": "18:00"
             },
             {
-              "name": "SHANTI CELESTE B2B PEACH",
-              "start": null
+              "name": "R/V Calypso",
+              "start": "18:00",
+              "end": "19:15"
             },
             {
-              "name": "DANNY DAZE B2B DJ GODFATHER",
-              "start": null
+              "name": "Jump Source (Live)",
+              "start": "19:15",
+              "end": "20:45"
             },
             {
-              "name": "ELI ESCOBAR B2B JUBILEE",
-              "start": null
+              "name": "Jacques Greene",
+              "start": "20:45",
+              "end": "22:00"
             },
             {
-              "name": "JACQUES GREENE",
-              "start": null
+              "name": "Eli Escobar B2B Jubilee",
+              "start": "22:00",
+              "end": "23:30"
             },
             {
-              "name": "JUMP SOURCE LIVE",
-              "start": null
+              "name": "Danny Daze B2B DJ Godfather",
+              "start": "23:30",
+              "end": "01:00"
             },
             {
-              "name": "R/V CALYPSO",
-              "start": null
+              "name": "Shanti Celeste B2B Peach",
+              "start": "01:00",
+              "end": "02:30"
             },
             {
-              "name": "DUUN B2B SLEEPY C",
-              "start": null
+              "name": "Honey Dijon",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         },
@@ -360,40 +430,49 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "TIGA",
-              "start": null
+              "name": "Grant Sabadash B2B Shir Miya",
+              "start": "16:00",
+              "end": "17:45"
             },
             {
-              "name": "HAAI",
-              "start": null
+              "name": "Natalia Roth B2B Max Stern",
+              "start": "17:45",
+              "end": "19:15"
             },
             {
-              "name": "INTERPLANETARY CRIMINAL",
-              "start": null
+              "name": "Rebolledo",
+              "start": "19:15",
+              "end": "20:30"
             },
             {
-              "name": "DAPHNI",
-              "start": null
+              "name": "Whitesquare",
+              "start": "20:30",
+              "end": "21:45"
             },
             {
-              "name": "ROMAN FLÜGEL",
-              "start": null
+              "name": "Roman Flügel",
+              "start": "21:45",
+              "end": "23:00"
             },
             {
-              "name": "WHITESQUARE",
-              "start": null
+              "name": "Daphni",
+              "start": "23:00",
+              "end": "00:15"
             },
             {
-              "name": "REBOLLEDO",
-              "start": null
+              "name": "Interplanetary Criminal",
+              "start": "00:15",
+              "end": "01:30"
             },
             {
-              "name": "NATALIA ROTH B2B MAX STERN",
-              "start": null
+              "name": "HAAi",
+              "start": "01:30",
+              "end": "02:45"
             },
             {
-              "name": "GRANT SABADASH B2B SHIR MIYA",
-              "start": null
+              "name": "Tiga",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -409,40 +488,49 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
+              "name": "Megusta B2B MIGS",
+              "start": "16:00",
+              "end": "17:30"
+            },
+            {
+              "name": "Grace Arribas B2B MARTE",
+              "start": "17:30",
+              "end": "19:00"
+            },
+            {
+              "name": "Rello",
+              "start": "19:00",
+              "end": "20:15"
+            },
+            {
+              "name": "Dan Molinari",
+              "start": "20:15",
+              "end": "21:30"
+            },
+            {
+              "name": "Slugg B2B RAJE",
+              "start": "21:30",
+              "end": "23:00"
+            },
+            {
+              "name": "Roddy Lima",
+              "start": "23:00",
+              "end": "00:15"
+            },
+            {
+              "name": "Discip",
+              "start": "00:15",
+              "end": "01:30"
+            },
+            {
+              "name": "Ragie Ban",
+              "start": "01:30",
+              "end": "02:45"
+            },
+            {
               "name": "INVT",
-              "start": null
-            },
-            {
-              "name": "RAGIE BAN",
-              "start": null
-            },
-            {
-              "name": "DISCIP",
-              "start": null
-            },
-            {
-              "name": "RODDY LIMA",
-              "start": null
-            },
-            {
-              "name": "SLUGG B2B RAJE",
-              "start": null
-            },
-            {
-              "name": "DAN MOLINARI",
-              "start": null
-            },
-            {
-              "name": "RELLO",
-              "start": null
-            },
-            {
-              "name": "GRACE ARRIBAS B2B MARTE",
-              "start": null
-            },
-            {
-              "name": "MEGUSTA B2B MIGS",
-              "start": null
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         },
@@ -452,40 +540,49 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "2UP!",
-              "start": null
+              "name": "Allnightkev B2B Lo-G",
+              "start": "16:00",
+              "end": "17:30"
+            },
+            {
+              "name": "Alezsandro B2B Dalva",
+              "start": "17:30",
+              "end": "19:00"
+            },
+            {
+              "name": "Idriss D B2B Danyelino",
+              "start": "19:00",
+              "end": "20:30"
+            },
+            {
+              "name": "Joss Dean",
+              "start": "20:30",
+              "end": "21:45"
+            },
+            {
+              "name": "KinAhau",
+              "start": "21:45",
+              "end": "23:00"
+            },
+            {
+              "name": "Dean Turnley",
+              "start": "23:00",
+              "end": "00:15"
+            },
+            {
+              "name": "Sam Alfred",
+              "start": "00:15",
+              "end": "01:30"
             },
             {
               "name": "MPH",
-              "start": null
+              "start": "01:30",
+              "end": "02:45"
             },
             {
-              "name": "SAM ALFRED",
-              "start": null
-            },
-            {
-              "name": "DEAN TURNLEY",
-              "start": null
-            },
-            {
-              "name": "KINAHAU",
-              "start": null
-            },
-            {
-              "name": "JOSS DEAN",
-              "start": null
-            },
-            {
-              "name": "IDRISS D B2B DANYELINO",
-              "start": null
-            },
-            {
-              "name": "ALEZSANDRO B2B DALVA",
-              "start": null
-            },
-            {
-              "name": "ALLNIGHTKEV B2B LO-G",
-              "start": null
+              "name": "2UP!",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -501,40 +598,49 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "DIFFER",
-              "start": null
+              "name": "Scotty Sobek",
+              "start": "16:00",
+              "end": "17:30"
             },
             {
-              "name": "DUDE SKYWALKER",
-              "start": null
+              "name": "Lauren Palma",
+              "start": "17:30",
+              "end": "18:45"
             },
             {
-              "name": "CAMI DI MARZO",
-              "start": null
+              "name": "Lagrimas de Oro",
+              "start": "18:45",
+              "end": "20:00"
             },
             {
-              "name": "PUMA",
-              "start": null
+              "name": "Deep Cleansing",
+              "start": "20:00",
+              "end": "21:15"
             },
             {
-              "name": "BABY JESUS B2B CHAOS!",
-              "start": null
+              "name": "Baby Jesus B2B CHAOS!",
+              "start": "21:15",
+              "end": "22:45"
             },
             {
-              "name": "DEEP CLEANSING",
-              "start": null
+              "name": "Puma",
+              "start": "22:45",
+              "end": "00:00"
             },
             {
-              "name": "LAGRIMAS DE ORO",
-              "start": null
+              "name": "Cami di Marzo",
+              "start": "00:00",
+              "end": "01:15"
             },
             {
-              "name": "LAUREN PALMA",
-              "start": null
+              "name": "Dude Skywalker",
+              "start": "01:15",
+              "end": "02:45"
             },
             {
-              "name": "SCOTTY SOBEK",
-              "start": null
+              "name": "Differ",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         },
@@ -544,44 +650,54 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "MONOKY",
-              "start": null
-            },
-            {
-              "name": "NII TEI",
-              "start": null
-            },
-            {
-              "name": "JASON RAULT",
-              "start": null
-            },
-            {
-              "name": "JEREMY ISMAEL",
-              "start": null
-            },
-            {
-              "name": "SAINT & ROMERO HYBRID",
-              "start": null
-            },
-            {
-              "name": "ELLYNORA",
-              "start": null
-            },
-            {
-              "name": "CANELA",
-              "start": null
-            },
-            {
-              "name": "VILLU",
-              "start": null
+              "name": "DJ Ahamed",
+              "start": "16:00",
+              "end": "17:30"
             },
             {
               "name": "JBZ",
-              "start": null
+              "start": "17:30",
+              "end": "18:30"
             },
             {
-              "name": "DJ AHAMED",
-              "start": null
+              "name": "Villu",
+              "start": "18:30",
+              "end": "19:45"
+            },
+            {
+              "name": "Canela",
+              "start": "19:45",
+              "end": "20:45"
+            },
+            {
+              "name": "Ellynora",
+              "start": "20:45",
+              "end": "22:00"
+            },
+            {
+              "name": "Saint & Romero (Hybrid)",
+              "start": "22:00",
+              "end": "23:00"
+            },
+            {
+              "name": "Jeremy Ismael",
+              "start": "23:00",
+              "end": "00:15"
+            },
+            {
+              "name": "Jason Rault",
+              "start": "00:15",
+              "end": "01:30"
+            },
+            {
+              "name": "Nii Tei",
+              "start": "01:30",
+              "end": "02:45"
+            },
+            {
+              "name": "Monoky",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -597,40 +713,49 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "TECH GIRLS",
-              "start": null
+              "name": "Aphex Twink B2B FORESEER",
+              "start": "16:00",
+              "end": "17:30"
             },
             {
-              "name": "JOANNA KUCHTA B2B ROBYN SIN LOVE",
-              "start": null
-            },
-            {
-              "name": "DR. RUBINSTEIN B2B ULTRATHEM",
-              "start": null
-            },
-            {
-              "name": "ELIAS GARCIA B2B MILA GAMA",
-              "start": null
-            },
-            {
-              "name": "FIUZA B2B MADISON KAY",
-              "start": null
-            },
-            {
-              "name": "MIGUEL CLARK B2B NAIM ZARZOUR",
-              "start": null
+              "name": "DJ Sabi B2B GRUE5OME",
+              "start": "17:30",
+              "end": "19:00"
             },
             {
               "name": "ALEJO",
-              "start": null
+              "start": "19:00",
+              "end": "20:00"
             },
             {
-              "name": "DJ SABI B2B GRUE5OME",
-              "start": null
+              "name": "Miguel Clark B2B Naim Zarzour",
+              "start": "20:00",
+              "end": "21:15"
             },
             {
-              "name": "APHEX TWINK B2B FORESEER",
-              "start": null
+              "name": "FIUZA B2B Madison Kay",
+              "start": "21:15",
+              "end": "22:30"
+            },
+            {
+              "name": "Elias Garcia B2B Mila Gama",
+              "start": "22:30",
+              "end": "00:00"
+            },
+            {
+              "name": "Dr. Rubinstein B2B Ultrathem",
+              "start": "00:00",
+              "end": "01:30"
+            },
+            {
+              "name": "Joanna Kuchta B2B Robyn Sin Love",
+              "start": "01:30",
+              "end": "03:00"
+            },
+            {
+              "name": "Tech G1rls",
+              "start": "03:00",
+              "end": "04:00"
             }
           ]
         },
@@ -640,48 +765,59 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "DUALITY B2B GUMTHEWRAPPER",
-              "start": null
+              "name": "Khami",
+              "start": "16:00",
+              "end": "17:00"
             },
             {
-              "name": "LADY NARCISSE B2B RACCI",
-              "start": null
+              "name": "Dennis Baker B2B D.Luxe",
+              "start": "17:00",
+              "end": "18:00"
             },
             {
-              "name": "FAITH LEAZAE",
-              "start": null
+              "name": "Bricolage B2B DAY/DEM",
+              "start": "18:00",
+              "end": "19:15"
             },
             {
-              "name": "BERRAKKA B2B PRESSURE POINT",
-              "start": null
+              "name": "Lupreme B2B SANTO",
+              "start": "19:15",
+              "end": "20:30"
             },
             {
-              "name": "MR. BITCH",
-              "start": null
+              "name": "Bonita Applebumz B2B Toni Shardai",
+              "start": "20:30",
+              "end": "21:45"
             },
             {
-              "name": "SEL. 6 B2B PLAYSHADO",
-              "start": null
+              "name": "Playshado B2B SEL.6",
+              "start": "21:45",
+              "end": "23:00"
             },
             {
-              "name": "BONITA APPLEBUMZ B2B TONI SHARDAI",
-              "start": null
+              "name": "Mr. Bitch",
+              "start": "23:00",
+              "end": "00:00"
             },
             {
-              "name": "LUPREME B2B SANTO",
-              "start": null
+              "name": "Berrakka B2B Pressure Point",
+              "start": "00:00",
+              "end": "01:15"
             },
             {
-              "name": "BRICOLAGE B2B DAY/DEM",
-              "start": null
+              "name": "Faith Leazae",
+              "start": "01:15",
+              "end": "01:45"
             },
             {
-              "name": "DENNIS BAKER B2B D. LUXE",
-              "start": null
+              "name": "Lady Narcisse B2B Racci",
+              "start": "01:45",
+              "end": "03:00"
             },
             {
-              "name": "KHAMI",
-              "start": null
+              "name": "Duality B2B GumtheWrapper",
+              "start": "03:00",
+              "end": "04:00"
             }
           ]
         }
@@ -697,48 +833,59 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
+              "name": "Lylac",
+              "start": "16:30",
+              "end": "17:00"
+            },
+            {
+              "name": "iiry?",
+              "start": "17:25",
+              "end": "17:55"
+            },
+            {
+              "name": "Blind Fish",
+              "start": "18:15",
+              "end": "19:00"
+            },
+            {
+              "name": "Nicholas G. Padilla",
+              "start": "19:15",
+              "end": "20:00"
+            },
+            {
+              "name": "Rental Snakes (Live)",
+              "start": "20:15",
+              "end": "21:00"
+            },
+            {
+              "name": "Corridos Ketamina",
+              "start": "21:15",
+              "end": "21:55"
+            },
+            {
+              "name": "Patch+",
+              "start": "22:10",
+              "end": "22:55"
+            },
+            {
+              "name": "nate sib",
+              "start": "23:15",
+              "end": "00:00"
+            },
+            {
+              "name": "B0YG1RL",
+              "start": "00:20",
+              "end": "00:50"
+            },
+            {
+              "name": "MGNA Crrrta",
+              "start": "01:10",
+              "end": "01:55"
+            },
+            {
               "name": "ZEP",
-              "start": null
-            },
-            {
-              "name": "MGNA CRRRTA",
-              "start": null
-            },
-            {
-              "name": "BOYGIRL",
-              "start": null
-            },
-            {
-              "name": "NATE SIB",
-              "start": null
-            },
-            {
-              "name": "PATCH +",
-              "start": null
-            },
-            {
-              "name": "CORRIDOS KETAMINA",
-              "start": null
-            },
-            {
-              "name": "RENTAL SNAKES",
-              "start": null
-            },
-            {
-              "name": "NICHOLAS G. PADILLA",
-              "start": null
-            },
-            {
-              "name": "BLIND FISH",
-              "start": null
-            },
-            {
-              "name": "IIRY?",
-              "start": null
-            },
-            {
-              "name": "LYLAC",
-              "start": null
+              "start": "02:15",
+              "end": "03:00"
             }
           ]
         },
@@ -748,48 +895,59 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "CRESPI DRUM SYNDICATE",
-              "start": null
+              "name": "Huracán",
+              "start": "16:15",
+              "end": "16:45"
             },
             {
-              "name": "YHWH NAILGUN",
-              "start": null
+              "name": "VVilhelm",
+              "start": "17:10",
+              "end": "17:40"
             },
             {
-              "name": "VELORA",
-              "start": null
+              "name": "Camp Blu",
+              "start": "18:05",
+              "end": "18:35"
             },
             {
-              "name": "CHANEL BEADS",
-              "start": null
-            },
-            {
-              "name": "FINE",
-              "start": null
-            },
-            {
-              "name": "EMILY AFRE",
-              "start": null
+              "name": "Homicide Jenny",
+              "start": "19:00",
+              "end": "19:30"
             },
             {
               "name": "LADYBOY",
-              "start": null
+              "start": "19:55",
+              "end": "20:25"
             },
             {
-              "name": "HOMICIDE JENNY",
-              "start": null
+              "name": "Emily Afre",
+              "start": "20:50",
+              "end": "21:20"
             },
             {
-              "name": "CAMP BLU",
-              "start": null
+              "name": "Fine",
+              "start": "21:45",
+              "end": "22:30"
             },
             {
-              "name": "VVILHELM",
-              "start": null
+              "name": "Chanel Beads",
+              "start": "22:55",
+              "end": "23:40"
             },
             {
-              "name": "HURACÁN",
-              "start": null
+              "name": "Velora",
+              "start": "00:05",
+              "end": "00:35"
+            },
+            {
+              "name": "YHWH Nailgun",
+              "start": "01:00",
+              "end": "01:45"
+            },
+            {
+              "name": "Crespi Drum Syndicate (Live)",
+              "start": "02:00",
+              "end": "03:00"
             }
           ]
         }
@@ -805,36 +963,44 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "ECO-SISTEMA",
-              "start": null
+              "name": "Feph B2B Mr. Tron",
+              "start": "16:00",
+              "end": "18:00"
             },
             {
-              "name": "OMA TOTEM B2B TRUE VINE",
-              "start": null
+              "name": "Adam At The Door",
+              "start": "18:00",
+              "end": "19:15"
             },
             {
-              "name": "BILL PATRICK B2B BORT",
-              "start": null
+              "name": "Uchi",
+              "start": "19:15",
+              "end": "20:30"
             },
             {
-              "name": "GIO ELIA B2B MEGHAN LEE",
-              "start": null
+              "name": "Julia Saturno B2B Lotusoph",
+              "start": "20:30",
+              "end": "22:00"
             },
             {
-              "name": "JULIA SATURNO B2B LOTUSOPH",
-              "start": null
+              "name": "Gio Elia B2B Meghan Lee",
+              "start": "22:00",
+              "end": "23:30"
             },
             {
-              "name": "UCHI",
-              "start": null
+              "name": "Bill Patrick B2B Bort",
+              "start": "23:30",
+              "end": "01:00"
             },
             {
-              "name": "ADAM AT THE DOOR",
-              "start": null
+              "name": "oma totem B2B True Vine",
+              "start": "01:00",
+              "end": "02:45"
             },
             {
-              "name": "FEPH B2B MR. TRON",
-              "start": null
+              "name": "eco-sistema",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         },
@@ -844,36 +1010,44 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "ASHLEY VENOM B2B SOULS DEPARTED",
-              "start": null
+              "name": "vsyana",
+              "start": "16:00",
+              "end": "17:15"
             },
             {
-              "name": "DJ THREE B2B SISTER SYSTEM",
-              "start": null
+              "name": "serafitz B2B SOL Discos",
+              "start": "17:15",
+              "end": "18:45"
             },
             {
-              "name": "TERENCE TABEAU",
-              "start": null
+              "name": "DJ Ray B2B EZ Dee",
+              "start": "18:45",
+              "end": "20:15"
             },
             {
-              "name": "DAVID VUNK",
-              "start": null
+              "name": "Mystic Bill B2B Artime",
+              "start": "20:15",
+              "end": "21:45"
             },
             {
-              "name": "ARTIME B2B MYSTIC BILL",
-              "start": null
+              "name": "David Vunk",
+              "start": "21:45",
+              "end": "23:45"
             },
             {
-              "name": "DJ RAY B2B EZ DEE",
-              "start": null
+              "name": "Terence Tabeau",
+              "start": "23:45",
+              "end": "01:00"
             },
             {
-              "name": "SOL DISCOS B2B SERAFITZ",
-              "start": null
+              "name": "DJ Three B2B Sister System",
+              "start": "01:00",
+              "end": "02:30"
             },
             {
-              "name": "VSYANA",
-              "start": null
+              "name": "Ashley Venom B2B Souls Departed",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         }
@@ -889,36 +1063,44 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "ALEXX IN CHAINSS B2B SOLTEK",
-              "start": null
+              "name": "Sportswax",
+              "start": "16:00",
+              "end": "18:00"
             },
             {
-              "name": "GODISOUND",
-              "start": null
+              "name": "Extra Andrew B2B Mutant Pete",
+              "start": "18:00",
+              "end": "19:30"
             },
             {
-              "name": "TAIMUR B2B WILL BUCK",
-              "start": null
+              "name": "Nicole Gallamini B2B Nikita Green",
+              "start": "19:30",
+              "end": "21:00"
             },
             {
-              "name": "WILL RENUART",
-              "start": null
+              "name": "Inbal B2B Rimaye",
+              "start": "21:00",
+              "end": "22:30"
             },
             {
-              "name": "INBAL B2B RIMAYE",
-              "start": null
+              "name": "Will Renuart",
+              "start": "22:30",
+              "end": "23:45"
             },
             {
-              "name": "NICOLE GALLAMINI B2B NIKITA GREEN",
-              "start": null
+              "name": "Taimur B2B Will Buck",
+              "start": "23:45",
+              "end": "01:15"
             },
             {
-              "name": "EXTRA ANDREW B2B MUTANT PETE",
-              "start": null
+              "name": "Godisound",
+              "start": "01:15",
+              "end": "02:30"
             },
             {
-              "name": "SPORTSWAX",
-              "start": null
+              "name": "Alexx in Chainss B2B Soltek",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         },
@@ -928,40 +1110,49 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "MANGO B2B MISTER LO",
-              "start": null
+              "name": "nxtel",
+              "start": "16:00",
+              "end": "17:00"
             },
             {
-              "name": "LIZZIE_MCGUIRE",
-              "start": null
+              "name": "Shinobi",
+              "start": "17:00",
+              "end": "18:00"
             },
             {
-              "name": "PHIPHI B2B WINTER WRONG",
-              "start": null
+              "name": "Jinks B2B Romulo Del Castillo",
+              "start": "18:00",
+              "end": "19:30"
             },
             {
-              "name": "RUDE BOY B2B SDRV",
-              "start": null
+              "name": "Milo Ziro B2B Xilla",
+              "start": "19:30",
+              "end": "21:00"
             },
             {
-              "name": "MARIE QRIE B2B VIVA VIDAL",
-              "start": null
+              "name": "Marie Qrie B2B Viva Vidal",
+              "start": "21:00",
+              "end": "22:30"
             },
             {
-              "name": "MILO ZIRO B2B XILLA",
-              "start": null
+              "name": "Rude Boy B2B SDRV",
+              "start": "22:30",
+              "end": "00:00"
             },
             {
-              "name": "ROMULO DEL CASTILLO B2B JINKS",
-              "start": null
+              "name": "phiphi B2B Winter Wrong",
+              "start": "00:00",
+              "end": "01:30"
             },
             {
-              "name": "SHINOBI",
-              "start": null
+              "name": "Lizzie_mcguire",
+              "start": "01:30",
+              "end": "02:30"
             },
             {
-              "name": "NXTEL",
-              "start": null
+              "name": "Mango B2B Mister Lo",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         }
@@ -977,36 +1168,44 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "VINTAGE CULTURE B2B MAX STYLER",
-              "start": null
+              "name": "Fiin",
+              "start": "16:00",
+              "end": "17:15"
             },
             {
-              "name": "AHMED SPINS B2B OMRI.",
-              "start": null
+              "name": "Daizy",
+              "start": "17:15",
+              "end": "18:30"
             },
             {
-              "name": "BRUNELLO B2B RAFAEL",
-              "start": null
+              "name": "Maher Daniel B2B Mai Iachetti",
+              "start": "18:30",
+              "end": "20:00"
             },
             {
-              "name": "MIGUELLE & TONS B2B SARAGA",
-              "start": null
+              "name": "Malóne B2B Miluhska",
+              "start": "20:00",
+              "end": "21:30"
             },
             {
-              "name": "MALÓNE MOREZ B2B MILUHSKA",
-              "start": null
+              "name": "Miguelle & Tons B2B Saraga",
+              "start": "21:30",
+              "end": "23:00"
             },
             {
-              "name": "MAHER DANIEL B2B MAI IACHETTI",
-              "start": null
+              "name": "Brunello B2B Rafael",
+              "start": "23:00",
+              "end": "00:30"
             },
             {
-              "name": "DAIZY",
-              "start": null
+              "name": "Ahmed Spins B2B OMRI.",
+              "start": "00:30",
+              "end": "02:00"
             },
             {
-              "name": "FIIN",
-              "start": null
+              "name": "Vintage Culture B2B Max Styler",
+              "start": "02:00",
+              "end": "04:00"
             }
           ]
         },
@@ -1016,40 +1215,49 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "MARCO CAROLA B2B FRANKY RIZARDO",
-              "start": null
+              "name": "La BB",
+              "start": "16:00",
+              "end": "17:15"
             },
             {
-              "name": "MAX DEAN B2B LUKE DEAN",
-              "start": null
+              "name": "GodBlessJai",
+              "start": "17:15",
+              "end": "18:30"
             },
             {
-              "name": "SOSA",
-              "start": null
+              "name": "Silvie Loto B2B Ms. Mada",
+              "start": "18:30",
+              "end": "20:00"
             },
             {
-              "name": "CHASEWEST",
-              "start": null
+              "name": "Marsolo",
+              "start": "20:00",
+              "end": "21:15"
             },
             {
-              "name": "OMAR+",
-              "start": null
+              "name": "Omar+",
+              "start": "21:15",
+              "end": "22:30"
             },
             {
-              "name": "MARSOLO",
-              "start": null
+              "name": "ChaseWest",
+              "start": "22:30",
+              "end": "23:45"
             },
             {
-              "name": "SILVIE LOTO B2B MS. MADA",
-              "start": null
+              "name": "Sosa",
+              "start": "23:45",
+              "end": "01:00"
             },
             {
-              "name": "GODBLESSJAI",
-              "start": null
+              "name": "Max Dean B2B Luke Dean",
+              "start": "01:00",
+              "end": "02:30"
             },
             {
-              "name": "LA BB",
-              "start": null
+              "name": "Marco Carola B2B Franky Rizardo",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         }
@@ -1065,36 +1273,44 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "LOUSY LOVER B2B LUCAZ",
-              "start": null
+              "name": "Katie Ox B2B Nat Siriani",
+              "start": "16:00",
+              "end": "18:00"
             },
             {
-              "name": "BAKKE",
-              "start": null
+              "name": "Thunderpony B2B Tiffy Vera",
+              "start": "18:00",
+              "end": "19:30"
             },
             {
-              "name": "EVEAVA B2B JOVIGIBS",
-              "start": null
+              "name": "Aabel B2B Siegel",
+              "start": "19:30",
+              "end": "21:00"
             },
             {
-              "name": "MOSCOMAN",
-              "start": null
+              "name": "Maccabi B2B Pezlo MD",
+              "start": "21:00",
+              "end": "22:30"
             },
             {
-              "name": "MACCABIII B2B PEZLO MD",
-              "start": null
+              "name": "Moscoman",
+              "start": "22:30",
+              "end": "23:45"
             },
             {
-              "name": "AABEL B2B SIEGEL",
-              "start": null
+              "name": "eveava B2B Jovigibs",
+              "start": "23:45",
+              "end": "01:15"
             },
             {
-              "name": "THUNDERPONY B2B TIFFY VERA",
-              "start": null
+              "name": "Bakke",
+              "start": "01:15",
+              "end": "02:30"
             },
             {
-              "name": "KATIE OX B2B NAT SIRIANI",
-              "start": null
+              "name": "Lousy Lover B2B Lucaz",
+              "start": "02:30",
+              "end": "04:00"
             }
           ]
         },
@@ -1104,44 +1320,54 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "KUJO B2B RARA",
-              "start": null
+              "name": "P1no B2B Trippie Hippie",
+              "start": "16:00",
+              "end": "17:30"
             },
             {
-              "name": "LIQUID DINOSAURS",
-              "start": null
+              "name": "Bozito B2B Gabo Escalona",
+              "start": "17:30",
+              "end": "18:45"
             },
             {
-              "name": "SATURNSARII B2B SUZ",
-              "start": null
+              "name": "Spice Crime B2B Violeta",
+              "start": "18:45",
+              "end": "20:00"
             },
             {
-              "name": "1-800-305",
-              "start": null
-            },
-            {
-              "name": "619!",
-              "start": null
+              "name": "Ale Acosta B2B Hazón",
+              "start": "20:00",
+              "end": "21:15"
             },
             {
               "name": "JINN_PR",
-              "start": null
+              "start": "21:15",
+              "end": "22:15"
             },
             {
-              "name": "ALE ACOSTA B2B HAZÓN",
-              "start": null
+              "name": "619!",
+              "start": "22:15",
+              "end": "23:30"
             },
             {
-              "name": "SPICE CRIME B2B VIOLETA",
-              "start": null
+              "name": "1-800-305",
+              "start": "23:30",
+              "end": "00:45"
             },
             {
-              "name": "BOZITO B2B GABO ESCALONA",
-              "start": null
+              "name": "SATURNSARii B2B SUZ",
+              "start": "00:45",
+              "end": "02:15"
             },
             {
-              "name": "PINO B2B TRIPPIE HIPPIE",
-              "start": null
+              "name": "Liquid Dinosaurs",
+              "start": "02:15",
+              "end": "02:45"
+            },
+            {
+              "name": "Kujo B2B RARA",
+              "start": "02:45",
+              "end": "04:00"
             }
           ]
         }
@@ -1157,16 +1383,19 @@
           "label": "FRIDAY · OCT 16",
           "rows": [
             {
-              "name": "HEIDI LAWDEN",
-              "start": "16:00"
+              "name": "Heidi Lawden",
+              "start": "16:00",
+              "end": "20:00"
             },
             {
-              "name": "DJ HARVEY",
-              "start": "20:00"
+              "name": "DJ Harvey",
+              "start": "20:00",
+              "end": "00:00"
             },
             {
-              "name": "FLOATING POINTS",
-              "start": "00:00"
+              "name": "Floating Points",
+              "start": "00:00",
+              "end": "04:00"
             }
           ]
         },
@@ -1176,16 +1405,19 @@
           "label": "SATURDAY · OCT 17",
           "rows": [
             {
-              "name": "WILLIKENS & IVKOVIC",
-              "start": "16:00"
+              "name": "Willikens & Ivkovic",
+              "start": "16:00",
+              "end": "20:00"
             },
             {
-              "name": "RED AXES",
-              "start": "20:00"
+              "name": "Red Axes",
+              "start": "20:00",
+              "end": "00:00"
             },
             {
-              "name": "SETH TROXLER",
-              "start": "00:00"
+              "name": "Seth Troxler",
+              "start": "00:00",
+              "end": "04:00"
             }
           ]
         }
