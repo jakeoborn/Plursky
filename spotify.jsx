@@ -186,12 +186,12 @@ function SpotifyScreen({ state, setState }) {
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
                 background: saveFlash ? "var(--signal)" : "var(--spotify)",
-                color: saveFlash ? "var(--on-signal)" : "var(--paper)", border: "none",
+                color: saveFlash ? "var(--on-signal)" : "var(--on-spotify)", border: "none",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 transition: "background 0.3s",
               }}>
-                {saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`}
+                {saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`}
               </button>
             )}
             {connected && savedInLineup(state.saved).length > 0 && (
@@ -208,15 +208,16 @@ function SpotifyScreen({ state, setState }) {
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
-                background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
-                color: "var(--ink)",
-                border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
+                background: connected ? "rgba(var(--spotify-rgb),0.2)" : "var(--spotify)",
+                color: connected ? "var(--ink)" : "var(--on-spotify)",
+                border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "none",
+                order: connected ? 0 : -1,
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
                 transition: "all 0.3s var(--ease-spring)",
                 animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined,
               }}>
-              {connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT"}
+              {connected && spotifyArtists === null ? "Loading…" : connected ? "Connected" : "Connect Spotify"}
             </button>
           </div>
           {/* #6 service-agnostic framing: your saved sets are the source;
@@ -224,7 +225,7 @@ function SpotifyScreen({ state, setState }) {
               (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
           {APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && (
             <div style={{ marginTop: 10, font: "400 13px/1.45 var(--f-ui)", color: "var(--ink-2)" }}>
-              💡 Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
+              Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
             </div>
           )}
         </div>
@@ -276,7 +277,7 @@ function SpotifyScreen({ state, setState }) {
                 borderRadius: 999, padding: "10px 18px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
               }}>
-                {amLoading ? "CONNECTING…" : "CONNECT APPLE MUSIC"}
+                {amLoading ? "Connecting…" : "Connect Apple Music"}
               </button>
             </>
           )}
@@ -288,19 +289,19 @@ function SpotifyScreen({ state, setState }) {
                   const newSaved = [...new Set([...state.saved, ...amMatched.map(a => a.id)])];
                   setState({ ...state, saved: newSaved });
                 }} style={{
-                  background: "var(--alert)", color: "var(--on-alert)", border: "none",
+                  background: "var(--apple-music)", color: "var(--on-apple-music)", border: "none",
                   borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 }}>
-                  SAVE ALL {amMatched.length} ARTISTS
+                  Save all {amMatched.length} artists
                 </button>
               )}
               <button onClick={handleAmDisconnect} style={{
-                background: "rgba(var(--ink-rgb),0.12)", color: "var(--paper)",
+                background: "rgba(var(--ink-rgb),0.12)", color: "var(--ink)",
                 border: "1px solid rgba(var(--ink-rgb),0.28)",
                 borderRadius: 999, padding: "10px 16px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              }}>DISCONNECT</button>
+              }}>Disconnect</button>
             </div>
           )}
 
@@ -7828,7 +7829,7 @@ function MeScreen({ state, setState }) {
                   background: state.spotifyConnected ? "var(--spotify)" : "var(--s3)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={state.spotifyConnected ? "var(--on-spotify)" : "var(--ink)"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="7" cy="17" r="2.5"/><circle cx="17" cy="15" r="2.5"/>
                     <path d="M9.5 17 L9.5 5 L19.5 3 L19.5 15"/>
                   </svg>
@@ -8082,7 +8083,8 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
     borderRadius: 20, padding: 20, marginBottom: 14,
     background: "var(--paper-2)", border: "1px solid var(--line)", color: "var(--ink)",
   };
-  const mono = { fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", textTransform: "uppercase" };
+  // The board's meta line (13px SF, quiet ink), not 8-9px tracked caps.
+  const mono = { font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" };
 
   if (!open) {
     return (
@@ -8090,7 +8092,7 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
         style={{ ...card, display: "block", width: "100%", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
           <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
-          <div style={{ ...mono, color: "var(--ink)" }}>Preview →</div>
+          <div style={{ ...mono, color: "var(--acc-ink)", fontWeight: 600, flexShrink: 0 }}>Preview →</div>
         </div>
         <div style={{ ...mono, marginTop: 4 }}>
           {plan.seeds.length} saved set{plan.seeds.length === 1 ? "" : "s"}{plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : ""} · nothing is built until you say so
@@ -8131,7 +8133,7 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
             <ArtistSwatch artist={a} size={40} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, textDecoration: off ? "line-through" : "none" }}>{a.name}</div>
-              <div style={{ ...mono, fontSize: 8, marginTop: 2 }}>{stg?.short || stg?.name || "Stage TBA"} · {when}</div>
+              <div style={{ ...mono, marginTop: 2 }}>{stg?.short || stg?.name || "Stage TBA"} · {when}</div>
               <div style={{ fontSize: 11, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>{p.reason}</div>
             </div>
             <button onClick={() => toggle(a.id)} aria-label={off ? `Add ${a.name} back` : `Drop ${a.name}`}
@@ -8153,11 +8155,11 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
       </div>
 
       <button onClick={() => setShowDiag(v => !v)}
-        style={{ ...mono, fontSize: 8, background: "transparent", border: "none", padding: "14px 0 0", cursor: "pointer" }}>
+        style={{ ...mono, background: "transparent", border: "none", padding: "14px 0 0", cursor: "pointer" }}>
         Diagnostics {showDiag ? "▴" : "▾"}
       </button>
       {showDiag && (
-        <div style={{ ...mono, fontSize: 8, lineHeight: 1.7, textTransform: "none", letterSpacing: 0.4, marginTop: 6 }}>
+        <div style={{ ...mono, lineHeight: 1.7, textTransform: "none", letterSpacing: 0.4, marginTop: 6 }}>
           <div>lineup {d.lineup} · saved {d.saved} · seeds {d.seeds}{d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : ""}{d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""}</div>
           <div>candidates {d.candidates} · cap {plan.cap} · left out by the cap {d.capped} · dropped by you {plan.picks.length - kept.picks.length}</div>
           <div>skipped: saved {e.saved} · same act {e.sameAct} · no reason {e.noSignal}</div>
@@ -8276,27 +8278,29 @@ function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResu
     run();
   };
 
-  let label, bg = "rgba(var(--spotify-rgb),0.14)", color = "var(--spotify)", border = "1px solid var(--spotify)";
+  // Readable ink on the brand tint: brand green as text on its own tint
+  // falls under AA in Light (the Apple Music button learned the same).
+  let label, bg = "rgba(var(--spotify-rgb),0.14)", color = "var(--ink)", border = "1px solid var(--spotify)";
   if (status === "working") {
-    label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
+    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
     label = soundtrack && sm > 0
-      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗`
-      : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
-    bg = "var(--spotify)"; color = "var(--paper)"; border = "none";
+      ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗`
+      : `✓ ${result?.added} tracks · in set order — open ↗`;
+    bg = "var(--spotify)"; color = "var(--on-spotify)"; border = "none";
   } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";
-    else if (result?.reason === "no_target_playlist") label = "↗ CREATE 'PLURSKY' PLAYLIST IN SPOTIFY";
-    else if (result?.reason === "rate_limited") label = "⏱ SPOTIFY BUSY · WAIT 30S, TAP AGAIN";
-    else if (result?.reason === "empty") label = "SAVE SETS FIRST";
+    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";
+    else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";
+    else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";
+    else if (result?.reason === "empty") label = "Save sets first";
     else if (result?.reason === "create_fail") {
       const msg = (result?.message || "").slice(0, 28);
-      label = msg ? `✕ ${result?.status} · ${msg}` : `✕ FAILED · ${result?.status || "?"}`;
-    } else label = "✕ TRY AGAIN";
+      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
+    } else label = "Try again";
     bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
-    label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
+    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
   }
 
   return (
@@ -8344,22 +8348,22 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   // tint fell under AA in both modes).
   let label, bg = "rgba(var(--apple-music-rgb),0.14)", color = "var(--ink)", border = "1px solid var(--apple-music)";
   if (status === "working") {
-    label = prog ? `BUILDING · ${prog}` : "BUILDING…";
+    label = prog ? `Building · ${prog}` : "Building…";
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
-    const open = result?.url ? " — OPEN ↗" : "";
+    const open = result?.url ? " — open ↗" : "";
     label = soundtrack && sm > 0
-      ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}`
-      : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
+      ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}`
+      : `✓ ${result?.added} tracks in Apple Music${open}`;
     bg = "var(--apple-music)"; color = "var(--on-apple-music)"; border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";
-    else if (result?.reason === "empty") label = "SAVE SETS FIRST";
+    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";
+    else if (result?.reason === "empty") label = "Save sets first";
     else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
-    else label = `✕ ${result?.status || ""} TRY AGAIN`;
+    else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
     bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
-    label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
+    label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
   }
 
   return (
@@ -10494,7 +10498,7 @@ function RecapScreen({ state, setState }) {
                 }} style={{
                   marginTop: 12, width: "100%", padding: "10px 16px",
                   borderRadius: 20, border: "none", cursor: "pointer",
-                  background: "var(--spotify)", color: "var(--paper)", fontWeight: 700,
+                  background: "var(--spotify)", color: "var(--on-spotify)", fontWeight: 700,
                   fontSize: 10, letterSpacing: 1,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                 }}>
@@ -11156,7 +11160,7 @@ function RecapScreen({ state, setState }) {
             ) : (
               <button onClick={buildAttendedPlaylist} disabled={playlistState.status === "building"} style={{
                 background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-                color: playlistState.status === "building" ? "var(--muted)" : "var(--paper)",
+                color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
                 border: "none", borderRadius: 999, padding: "11px 18px",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
                 cursor: playlistState.status === "building" ? "default" : "pointer",

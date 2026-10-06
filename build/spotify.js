@@ -261,7 +261,7 @@ function SpotifyScreen({
     onClick: handleSaveAll,
     style: {
       background: saveFlash ? "var(--signal)" : "var(--spotify)",
-      color: saveFlash ? "var(--on-signal)" : "var(--paper)",
+      color: saveFlash ? "var(--on-signal)" : "var(--on-spotify)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -272,7 +272,7 @@ function SpotifyScreen({
       fontWeight: 600,
       transition: "background 0.3s"
     }
-  }, saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
+  }, saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
     state: state
   }), savedInLineup(state.saved).length > 0 && React.createElement(AppleMusicPlaylistButton, {
     state: state
@@ -288,9 +288,10 @@ function SpotifyScreen({
       connected ? disconnectSpotify(setState, state) : startSpotifyAuth();
     },
     style: {
-      background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
-      color: "var(--ink)",
-      border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
+      background: connected ? "rgba(var(--spotify-rgb),0.2)" : "var(--spotify)",
+      color: connected ? "var(--ink)" : "var(--on-spotify)",
+      border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "none",
+      order: connected ? 0 : -1,
       borderRadius: 999,
       padding: "10px 16px",
       cursor: "pointer",
@@ -301,13 +302,13 @@ function SpotifyScreen({
       transition: "all 0.3s var(--ease-spring)",
       animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined
     }
-  }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
+  }, connected && spotifyArtists === null ? "Loading…" : connected ? "Connected" : "Connect Spotify")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
     style: {
       marginTop: 10,
       font: "400 13px/1.45 var(--f-ui)",
       color: "var(--ink-2)"
     }
-  }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
+  }, "Your saved sets build a playlist on ", React.createElement("span", {
     style: {
       color: "var(--ink)",
       fontWeight: 700
@@ -413,7 +414,7 @@ function SpotifyScreen({
       letterSpacing: 1.2,
       fontWeight: 600
     }
-  }, amLoading ? "CONNECTING…" : "CONNECT APPLE MUSIC")), amConnected && React.createElement("div", {
+  }, amLoading ? "Connecting…" : "Connect Apple Music")), amConnected && React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -428,8 +429,8 @@ function SpotifyScreen({
       });
     },
     style: {
-      background: "var(--alert)",
-      color: "var(--on-alert)",
+      background: "var(--apple-music)",
+      color: "var(--on-apple-music)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -439,11 +440,11 @@ function SpotifyScreen({
       letterSpacing: 1.2,
       fontWeight: 600
     }
-  }, "SAVE ALL ", amMatched.length, " ARTISTS"), React.createElement("button", {
+  }, "Save all ", amMatched.length, " artists"), React.createElement("button", {
     onClick: handleAmDisconnect,
     style: {
       background: "rgba(var(--ink-rgb),0.12)",
-      color: "var(--paper)",
+      color: "var(--ink)",
       border: "1px solid rgba(var(--ink-rgb),0.28)",
       borderRadius: 999,
       padding: "10px 16px",
@@ -452,7 +453,7 @@ function SpotifyScreen({
       fontSize: 10,
       letterSpacing: 1.2
     }
-  }, "DISCONNECT")), amConnected && amArtists === null && React.createElement("div", {
+  }, "Disconnect")), amConnected && amArtists === null && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -11576,7 +11577,7 @@ function MeScreen({
     height: "20",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--ink)",
+    stroke: state.spotifyConnected ? "var(--on-spotify)" : "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -12060,11 +12061,8 @@ function BoardPlaylistCard({
     color: "var(--ink)"
   };
   var mono = {
-    fontFamily: "Geist Mono, monospace",
-    fontSize: 9,
-    letterSpacing: 1.2,
-    color: "var(--muted)",
-    textTransform: "uppercase"
+    font: "400 13px/1.385 var(--f-ui)",
+    color: "var(--ink-2)"
   };
   if (!open) {
     return React.createElement("button", {
@@ -12096,7 +12094,9 @@ function BoardPlaylistCard({
     }, "Board playlist"), React.createElement("div", {
       style: {
         ...mono,
-        color: "var(--ink)"
+        color: "var(--acc-ink)",
+        fontWeight: 600,
+        flexShrink: 0
       }
     }, "Preview →")), React.createElement("div", {
       style: {
@@ -12198,7 +12198,6 @@ function BoardPlaylistCard({
     }, a.name), React.createElement("div", {
       style: {
         ...mono,
-        fontSize: 8,
         marginTop: 2
       }
     }, stg?.short || stg?.name || "Stage TBA", " · ", when), React.createElement("div", {
@@ -12248,7 +12247,6 @@ function BoardPlaylistCard({
     onClick: () => setShowDiag(v => !v),
     style: {
       ...mono,
-      fontSize: 8,
       background: "transparent",
       border: "none",
       padding: "14px 0 0",
@@ -12257,7 +12255,6 @@ function BoardPlaylistCard({
   }, "Diagnostics ", showDiag ? "▴" : "▾"), showDiag && React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 8,
       lineHeight: 1.7,
       textTransform: "none",
       letterSpacing: 0.4,
@@ -12421,26 +12418,26 @@ function BuildPlaylistButton({
   };
   var label,
     bg = "rgba(var(--spotify-rgb),0.14)",
-    color = "var(--spotify)",
+    color = "var(--ink)",
     border = "1px solid var(--spotify)";
   if (status === "working") {
-    label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
+    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗` : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗` : `✓ ${result?.added} tracks · in set order — open ↗`;
     bg = "var(--spotify)";
-    color = "var(--paper)";
+    color = "var(--on-spotify)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";else if (result?.reason === "no_target_playlist") label = "↗ CREATE 'PLURSKY' PLAYLIST IN SPOTIFY";else if (result?.reason === "rate_limited") label = "⏱ SPOTIFY BUSY · WAIT 30S, TAP AGAIN";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "create_fail") {
+    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "create_fail") {
       var msg = (result?.message || "").slice(0, 28);
-      label = msg ? `✕ ${result?.status} · ${msg}` : `✕ FAILED · ${result?.status || "?"}`;
-    } else label = "✕ TRY AGAIN";
+      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
+    } else label = "Try again";
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
   } else {
-    label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
+    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
   }
   return React.createElement("button", {
     onClick: onClick,
@@ -12503,21 +12500,21 @@ function AppleMusicPlaylistButton({
     color = "var(--ink)",
     border = "1px solid var(--apple-music)";
   if (status === "working") {
-    label = prog ? `BUILDING · ${prog}` : "BUILDING…";
+    label = prog ? `Building · ${prog}` : "Building…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
-    var open = result?.url ? " — OPEN ↗" : "";
-    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}` : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
+    var open = result?.url ? " — open ↗" : "";
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}` : `✓ ${result?.added} tracks in Apple Music${open}`;
     bg = "var(--apple-music)";
     color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `✕ ${result?.status || ""} TRY AGAIN`;
+    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
   } else {
-    label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
+    label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
   }
   return React.createElement("button", {
     onClick: onClick,
@@ -15345,7 +15342,7 @@ function RecapScreen({
         border: "none",
         cursor: "pointer",
         background: "var(--spotify)",
-        color: "var(--paper)",
+        color: "var(--on-spotify)",
         fontWeight: 700,
         fontSize: 10,
         letterSpacing: 1,
@@ -16608,7 +16605,7 @@ function RecapScreen({
     disabled: playlistState.status === "building",
     style: {
       background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-      color: playlistState.status === "building" ? "var(--muted)" : "var(--paper)",
+      color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
       border: "none",
       borderRadius: 999,
       padding: "11px 18px",
