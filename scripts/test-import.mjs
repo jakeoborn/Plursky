@@ -85,7 +85,7 @@ async function run() {
 
   // Land on Me, then tap MEMORIES tile (one of the four <button> cards in
   // the 4-card grid, with a "0\nMEMORIES" text run inside).
-  const memoriesTile = page.locator('button').filter({ hasText: /MEMORIES/ }).first();
+  const memoriesTile = page.locator('[data-me-action=memories]').first();
   await memoriesTile.waitFor({ state: 'visible', timeout: 15000 });
   await memoriesTile.click({ timeout: 5000 });
 
