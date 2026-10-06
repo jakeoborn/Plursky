@@ -9984,7 +9984,7 @@ function MemoriesScreen({
     }
   }, React.createElement(TopBar, {
     title: "Memories",
-    sub: `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "") + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
+    sub: [confirmedCount ? `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` : null, unconfirmedCount ? `${unconfirmedCount} UNCONFIRMED` : null, FESTIVAL_CONFIG.shortName.toUpperCase()].filter(Boolean).join(" · "),
     tight: true
   })), React.createElement("input", {
     ref: batchInputRef,

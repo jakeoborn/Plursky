@@ -6876,9 +6876,10 @@ function MemoriesScreen({ state, setState }) {
         <div style={{ margin: "0 -20px" }}>
           <TopBar
             title="Memories"
-            sub={`${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}`
-              + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "")
-              + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`}
+            // No "0 MOMENTS": an empty library says so in its own words below.
+            sub={[confirmedCount ? `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` : null,
+              unconfirmedCount ? `${unconfirmedCount} UNCONFIRMED` : null,
+              FESTIVAL_CONFIG.shortName.toUpperCase()].filter(Boolean).join(" · ")}
             tight
           />
         </div>
