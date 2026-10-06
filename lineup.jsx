@@ -685,10 +685,28 @@ function LineupScreen({ state, setState }) {
     };
   }, [viewMode, day]);
   // GRID opens collapsed: the grid IS the content there, and an expanded
-  // header left it ~390px of an 812px screen. LIST opens expanded — the title
-  // is the first thing you read on a list. Scrolling up restores the header in
-  // either mode.
-  React.useEffect(() => { setCollapsed(viewMode === "grid"); }, [day, viewMode, weekendFilter]);
+  // header left it ~390px of an 812px screen. LIST opens expanded, the title
+  // first, EXCEPT on the night that is running: there it opens at the current
+  // hour (Jake, 2026-10-06), scrolled to the first set of this hour or the
+  // earliest one still playing ([data-open-anchor]), with the header folded
+  // as GRID's is. Scrolling up, or a tap on the bar, restores the header.
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      const sc = document.querySelector("[data-lineup-scroll]");
+      const anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        const top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        // Near the top already (the night's first hour), or a list too short
+        // to scroll once folded: open as any other day.
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
+    setCollapsed(viewMode === "grid");
+  }, [day, viewMode, weekendFilter]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -1401,16 +1419,24 @@ function LineupScreen({ state, setState }) {
               </div>
             ));
           }
-          // Now on your plan: the one lifted card, only while a set you saved
-          // is actually playing on the night that is running. Empty means
-          // absent, never a placeholder.
-          const nowMine = filter === "all" && nowMin != null ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
-          if (nowMine.length) rows.unshift(
-            <div key="__nowmine" data-now-on-plan-card style={{ padding: "8px 0 12px" }}>
-              <div className="duo-sect" style={{ padding: "4px 0 8px" }}>Now on your plan</div>
-              {nowMine.map(a => renderRow(a, true))}
-            </div>
-          );
+          // Where the list opens on the running night: the first set of this
+          // hour, or the earliest one still playing if it started before.
+          // Now on your plan, the one lifted card (only while a set you saved
+          // is actually playing; empty means absent, never a placeholder),
+          // sits right there, so it is the first thing in view.
+          if (nowMin != null) {
+            const hour = Math.floor(nowMin / 60) * 60;
+            const at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+            const nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+            if (at !== -1) rows.splice(at, 0,
+              <div key="__open" data-open-anchor aria-hidden="true" style={{ height: 0 }} />,
+              ...(nowMine.length ? [
+                <div key="__nowmine" data-now-on-plan-card style={{ padding: "8px 0 12px" }}>
+                  <div className="duo-sect" style={{ padding: "4px 0 8px" }}>Now on your plan</div>
+                  {nowMine.map(a => renderRow(a, true))}
+                </div>
+              ] : []));
+          }
           return rows;
         })()}
       </ScrollBody>

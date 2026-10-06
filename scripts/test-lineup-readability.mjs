@@ -58,6 +58,12 @@ try {
       transition: f ? getComputedStyle(f).transitionDuration : null,
     };
   });
+  // On the running night the list opens folded at the current hour (Jake,
+  // 2026-10-06); blocks that drive header controls unfold it first, as a tap
+  // on the bar does.
+  const unfold = async (page) => {
+    if ((await state(page)).collapsed) { await page.click('[data-lineup-expand]'); await page.clock.runFor(500); await page.waitForTimeout(300); }
+  };
   // A thumb: small wheel steps with the clock moving between them.
   const drag = async (page, dy, steps = 6, sel = '[data-lineup-scroll]') => {
     const box = await page.locator(sel).first().boundingBox();
@@ -73,9 +79,9 @@ try {
     return tops;
   };
 
-  // ── Header, LIST ─────────────────────────────────────────────────────────
+  // ── Header, LIST (a day that is not running: opens at the top) ───────────
   try {
-    const { ctx, page } = await open();
+    const { ctx, page } = await open({ at: '2026-09-30T18:00:00Z' });
     let s = await state(page);
     check(!s.collapsed && s.filtersH > 200, `list opens with the full header (collapsed=${s.collapsed}, ${s.filtersH}px)`);
     check(s.compactH < 1 && s.compactInert, `the compact bar is hidden and inert while the header is open (${s.compactH}px, inert=${s.compactInert})`);
@@ -236,6 +242,7 @@ try {
     });
     await first.ctx.close();
     const { ctx, page } = await open({ saved: picked.ids });
+    await unfold(page);
     check(picked.pair && picked.ids.length >= 3, `control: could not pick overlapping sets on different stages (${JSON.stringify(picked)})`);
     const dotsFor = () => page.evaluate(() => {
       const norm = c => { const d = document.createElement('i'); d.style.background = c; document.body.appendChild(d); const v = getComputedStyle(d).backgroundColor; d.remove(); return v; };
@@ -277,6 +284,29 @@ try {
     try {
       // EDC night 2 at 00:50 PDT: John Summit (k15) is live and saved.
       const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', width, saved: ['k15', 'k16', 'q17', 'bp8'] });
+      // The running night opens at the current hour, folded, with the lifted
+      // card first in view; the first set shown is still playing or starts
+      // this hour, and nothing earlier in the night is above the fold.
+      await page.clock.runFor(600); await page.waitForTimeout(300);
+      const o = await page.evaluate(() => {
+        const sc = document.querySelector('[data-lineup-scroll]'), r0 = sc.getBoundingClientRect();
+        const card = document.querySelector('[data-now-on-plan-card]'), anchor = sc.querySelector('[data-open-anchor]');
+        const toMin = t => { const [h, m] = String(t).split(':').map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+        const hour = Math.floor(toMin(window.NOW.time) / 60) * 60;
+        const rows = [...sc.querySelectorAll('[data-set-name]')].map(n => n.closest('[data-animate]')).filter(r => !r.closest('[data-now-on-plan-card]'));
+        const visible = rows.filter(r => { const b = r.getBoundingClientRect(); return b.top >= r0.top - 1 && b.top < r0.bottom; });
+        const byName = new Map(window.ARTISTS.filter(a => a.day === 2).map(a => [a.name, a]));
+        const firstShown = visible.length ? byName.get(visible[0].querySelector('[data-set-name]').textContent) : null;
+        return { scrollTop: sc.scrollTop, anchorDy: anchor ? Math.round(anchor.getBoundingClientRect().top - r0.top) : null,
+          cardDy: card ? Math.round(card.getBoundingClientRect().top - r0.top) : null,
+          first: firstShown ? { name: firstShown.name, start: firstShown.start, live: window.isSetLive(firstShown), atHour: toMin(firstShown.start) >= hour } : null };
+      });
+      const so = await state(page);
+      check(so.collapsed && so.compactH >= 44, `${width}: the running night does not open folded (collapsed=${so.collapsed}, bar ${so.compactH}px)`);
+      check(o.scrollTop > 56 && o.anchorDy !== null && Math.abs(o.anchorDy) <= 2, `${width}: the list does not open at the current hour (scrollTop ${o.scrollTop}, anchor at ${o.anchorDy}px)`);
+      check(o.cardDy !== null && o.cardDy >= -2 && o.cardDy <= 16, `${width}: "Now on your plan" is not first in view on open (${o.cardDy}px)`);
+      check(o.first && (o.first.live || o.first.atHour), `${width}: the first set in view is neither playing nor this hour: ${JSON.stringify(o.first)}`);
+      await unfold(page);
       const r = await page.evaluate(() => {
         const ov = document.querySelector('[data-lineup-overview]');
         const day = window.ARTISTS.filter(a => a.day === 2);

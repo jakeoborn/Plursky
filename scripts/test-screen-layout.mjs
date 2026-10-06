@@ -160,6 +160,18 @@ try {
       check(r.got.length === 3, `${tag}: stage night shows ${r.got.length} rows (want before, this set, after)`);
       check(r.empty != null && r.empty <= 96, `${tag}: the empty moments state is ${r.empty}px tall (want a quiet line, not a card)`);
       check(!r.overflowX, `${tag}: Artist scrolls sideways`);
+      // Lineup rows ellipsise a long stage name (Jake, 2026-10-06: rows stay
+      // one line ≤60px); the set card is where it is read in full. Checked on
+      // the festival's longest stage name.
+      const longest = await page.evaluate(() => {
+        const st = [...window.STAGES].filter(s => window.ARTISTS.some(a => a.stage === s.id && a.start)).sort((x, y) => y.name.length - x.name.length)[0];
+        return { id: window.ARTISTS.find(a => a.stage === st.id && a.start).id, name: st.name };
+      });
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=lineup&artist=${longest.id}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-artist-set-card] .duo-headline'), null, { timeout: 60000 });
+      await page.clock.runFor(1500); await page.waitForTimeout(200);
+      const hd = await page.evaluate(() => { const h = document.querySelector('[data-artist-set-card] .duo-headline'); return { t: h.textContent.trim(), clip: h.scrollWidth > h.clientWidth + 1 || getComputedStyle(h).textOverflow === 'ellipsis' }; });
+      check(longest.name.length >= 10 && hd.t === longest.name && !hd.clip, `${tag}: the set card does not show "${longest.name}" in full: ${JSON.stringify(hd)}`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
@@ -197,7 +209,50 @@ try {
       check(!/rgba\(0, 0, 0, 0\)|transparent/.test(r.bg), `${tag}: the map header has no solid ground (${r.bg})`);
       check(!r.overflowX, `${tag}: Map scrolls sideways`);
       if (width === 393) check(r.deniedLines <= 1, `${tag}: the location line runs to ${r.deniedLines} lines`);
+      // Category chips (Jake, 2026-10-06): Stages / Water / Medical / Crew, one
+      // at a time, every label whole, no sideways scroll. Water and Medical
+      // show only that amenity type; Crew shows real presence or says none.
+      const chips = () => page.evaluate(() => {
+        const g = document.querySelector('[data-map-chips]');
+        const cs = g ? [...g.querySelectorAll('[data-map-cat]')] : [];
+        const types = [...document.querySelectorAll('[data-amenity]')].map(e => e.dataset.amenity);
+        return { labels: cs.map(c => c.textContent.trim()), on: cs.filter(c => c.getAttribute('aria-checked') === 'true').map(c => c.dataset.mapCat),
+          cut: cs.filter(c => { const sp = c.querySelector('span'); return sp.scrollWidth > sp.clientWidth + 1; }).length,
+          rows: new Set(cs.map(c => Math.round(c.getBoundingClientRect().top))).size,
+          inHeader: !!g && !!g.closest('[data-map-header]'), types: [...new Set(types)], n: types.length,
+          crew: document.querySelector('[data-map-crew-line]')?.textContent.trim() || null };
+      });
+      let c = await chips();
+      check(JSON.stringify(c.labels) === '["Stages","Water","Medical","Crew"]' && c.inHeader, `${tag}: map chips are ${JSON.stringify(c.labels)} (in header: ${c.inHeader})`);
+      check(JSON.stringify(c.on) === '["stages"]' && c.n === 0, `${tag}: the map does not open on Stages alone (on ${JSON.stringify(c.on)}, ${c.n} amenity marks)`);
+      check(c.cut === 0 && c.rows === 1, `${tag}: chips cut (${c.cut}) or on ${c.rows} rows`);
+      for (const [cat, type] of [['water', 'water'], ['med', 'med']]) {
+        await page.click(`[data-map-cat=${cat}]`); await page.clock.runFor(300); await page.waitForTimeout(150);
+        c = await chips();
+        check(c.n > 0 && JSON.stringify(c.types) === JSON.stringify([type]), `${tag}: ${cat} shows ${JSON.stringify(c.types)} (${c.n} marks)`);
+      }
+      await page.click('[data-map-cat=crew]'); await page.clock.runFor(300); await page.waitForTimeout(150);
+      c = await chips();
+      check(c.n === 0 && c.crew === 'No one in your crew is sharing a locationShare with crew', `${tag}: Crew with no one sharing reads "${c.crew}" (${c.n} amenity marks)`);
+      check(!(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)), `${tag}: Map scrolls sideways with Crew open`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
+  // A festival whose map carries no water or medical points gets no chip for
+  // them: never a chip with nothing behind it.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+    try {
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date(AT) });
+      await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1'); });
+      const page = await ctx.newPage();
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=hard-summer-2026&tab=map`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-map-chips]') && window.FESTIVAL_CONFIG?.id === 'hard-summer-2026', null, { timeout: 60000 });
+      const r = await page.evaluate(() => ({ labels: [...document.querySelectorAll('[data-map-cat]')].map(c => c.textContent.trim()), amen: (window.AMENITIES || []).length }));
+      check(r.amen === 0, `control: HARD Summer now has ${r.amen} amenity points, pick a festival without them`);
+      check(JSON.stringify(r.labels) === '["Stages","Crew"]', `map chips with no amenity data are ${JSON.stringify(r.labels)}`);
+    } catch (err) { check(false, `map chips (no amenities) threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
   // ── Festival switcher: cards size to their content, names in full ──
@@ -256,4 +311,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first), Map (header on solid ground), switcher (cards fit, names in full)`);
+console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first), Map (header on solid ground, category chips), switcher (cards fit, names in full)`);

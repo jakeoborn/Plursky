@@ -955,7 +955,19 @@ function LineupScreen({
       if (el) el.removeEventListener("scroll", onScroll);
     };
   }, [viewMode, day]);
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      var sc = document.querySelector("[data-lineup-scroll]");
+      var anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        var top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
   var gridSectionRefs = React.useRef({});
@@ -2031,19 +2043,30 @@ function LineupScreen({
         }
       })));
     }
-    var nowMine = filter === "all" && nowMin != null ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
-    if (nowMine.length) rows.unshift(React.createElement("div", {
-      key: "__nowmine",
-      "data-now-on-plan-card": true,
-      style: {
-        padding: "8px 0 12px"
-      }
-    }, React.createElement("div", {
-      className: "duo-sect",
-      style: {
-        padding: "4px 0 8px"
-      }
-    }, "Now on your plan"), nowMine.map(a => renderRow(a, true))));
+    if (nowMin != null) {
+      var hour = Math.floor(nowMin / 60) * 60;
+      var at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+      var nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+      if (at !== -1) rows.splice(at, 0, React.createElement("div", {
+        key: "__open",
+        "data-open-anchor": true,
+        "aria-hidden": "true",
+        style: {
+          height: 0
+        }
+      }), ...(nowMine.length ? [React.createElement("div", {
+        key: "__nowmine",
+        "data-now-on-plan-card": true,
+        style: {
+          padding: "8px 0 12px"
+        }
+      }, React.createElement("div", {
+        className: "duo-sect",
+        style: {
+          padding: "4px 0 8px"
+        }
+      }, "Now on your plan"), nowMine.map(a => renderRow(a, true)))] : []));
+    }
     return rows;
   })()), NOW.night === day && NOW.time && (viewMode === "grid" || nowOff && filter !== "now" && sortBy === "time") && React.createElement("button", {
     onClick: () => {

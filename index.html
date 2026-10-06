@@ -373,6 +373,8 @@
      truncated, and with the face a two-word name wrapped at 320. */
   @media (max-width:360px){.duo-lrow>.duo-av,.duo-lrow>.duo-avp{display:none}.duo-lrow{gap:10px}}
   .duo-viewchip .ic{display:none}
+  /* Map category chips: four on one line down to 320 (board row). */
+  @media (max-width:360px){[data-map-chips]{gap:4px !important}[data-map-chips] [data-map-cat]>span{padding:0 10px}}
   @media (max-width:360px){.duo-viewchip .ic{display:block}.duo-viewchip .lbl{display:none}.duo-viewchip>span{padding:0 10px}}
   /* Today's scoreboard. Two columns (Now | Next) need ~160px each for a face
      and a whole word; under 360px they stack, each cell saying which it is,

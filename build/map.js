@@ -2581,6 +2581,7 @@ function MapScreen({
   var [showHeat, setShowHeat] = React.useState(false);
   var [amenityKey, setAmenityKey] = React.useState(false);
   var [amenityFilter, setAmenityFilter] = React.useState(null);
+  var [mapCat, setMapCat] = React.useState("stages");
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
   var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
@@ -3049,7 +3050,53 @@ function MapScreen({
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
     className: "duo-code"
-  }, mapPostureLabel), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+  }, mapPostureLabel), (() => {
+    var has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+    var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
+    var cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
+    return React.createElement("div", {
+      "data-map-chips": true,
+      role: "radiogroup",
+      "aria-label": "Show on the map",
+      style: {
+        flexBasis: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 8,
+        paddingTop: 8
+      }
+    }, cats.map(([id, label]) => React.createElement("button", {
+      key: id,
+      role: "radio",
+      "aria-checked": cat === id,
+      "data-map-cat": id,
+      className: "duo-chip",
+      onClick: () => {
+        try {
+          window.plurskyHaptic?.("LIGHT");
+        } catch {}
+        setMapCat(id);
+      }
+    }, React.createElement("span", null, label))), cat === "crew" && React.createElement("div", {
+      "data-map-crew-line": true,
+      style: {
+        flexBasis: "100%",
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
+      }
+    }, React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"), React.createElement("button", {
+      className: "duo-chip",
+      onClick: () => setShareOpen(true)
+    }, React.createElement("span", null, "Share with crew"))));
+  })(), gpsLive && gpsStatus === "denied" && React.createElement("div", {
     "data-map-gps-denied": true,
     style: {
       flexBasis: "100%",
@@ -4262,8 +4309,8 @@ function MapScreen({
     saved: state.saved,
     showLabels: showLabels,
     showHeat: showHeat,
-    showAmenities: searchSheetExpanded || amenityKey,
-    amenityFilter: amenityKey ? amenityFilter : null,
+    showAmenities: searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med",
+    amenityFilter: mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null,
     compass: compass && compassStatus === "live",
     compassHeading: compassHeading,
     selected: selectedStage,
@@ -8002,7 +8049,8 @@ function TopDownMap({
       letter: ""
     };
     return React.createElement("g", {
-      key: a.id
+      key: a.id,
+      "data-amenity": a.type
     }, React.createElement("circle", {
       cx: a.x,
       cy: a.y,
