@@ -119,6 +119,44 @@ try {
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
+  // ── Artist: schedule and stage first, detail after ──
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    const tag = `artist ${scheme} ${width}`;
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    try {
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date(AT) });
+      await ctx.addInitScript(({ FID, scheme }) => {
+        if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+      }, { FID, scheme });
+      const page = await ctx.newPage();
+      // k15 = John Summit, Kinetic Field night 2: a set with one before and one after.
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=lineup&artist=k15`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-artist-set-card]') && document.getElementById('artist-section-bio'), null, { timeout: 60000 });
+      await page.clock.runFor(2500); await page.waitForTimeout(300);
+      const r = await page.evaluate(() => {
+        const a = window.ARTISTS.find(x => x.id === 'k15');
+        const tm = t => { const [h, m] = t.split(':').map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+        const night = window.ARTISTS.filter(x => x.stage === a.stage && x.day === a.day && x.start).sort((x, y) => tm(x.start) - tm(y.start));
+        const i = night.findIndex(x => x.id === a.id);
+        const want = [night[i - 1], a, night[i + 1]].filter(Boolean).map(x => (window.actDisplayName ? window.actDisplayName(x.name) : x.name));
+        const sn = document.querySelector('[data-artist-stage-night]');
+        const got = sn ? [...sn.querySelectorAll('.duo-name')].map(n => n.textContent.trim()) : [];
+        const top = el => el ? el.getBoundingClientRect().top : null;
+        return { want, got, card: top(document.querySelector('[data-artist-set-card]')), bio: top(document.getElementById('artist-section-bio')), night: top(sn),
+          empty: document.querySelector('[data-artist-moments-empty]')?.getBoundingClientRect().height ?? null,
+          overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
+      });
+      check(r.card != null && r.night != null && r.card < r.night && r.night < r.bio, `${tag}: order is not set card → stage night → bio (${r.card}, ${r.night}, ${r.bio})`);
+      check(JSON.stringify(r.got) === JSON.stringify(r.want), `${tag}: stage night lists ${JSON.stringify(r.got)}, schedule says ${JSON.stringify(r.want)}`);
+      check(r.got.length === 3, `${tag}: stage night shows ${r.got.length} rows (want before, this set, after)`);
+      check(r.empty != null && r.empty <= 96, `${tag}: the empty moments state is ${r.empty}px tall (want a quiet line, not a card)`);
+      check(!r.overflowX, `${tag}: Artist scrolls sideways`);
+    } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
 } finally {
   if (browser) await browser.close();
   server.kill();
@@ -128,4 +166,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll)`);
+console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first)`);

@@ -663,32 +663,12 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
   // set time and stage are the useful thing to show instead: the answer to
   // "why don't I have anything here" is usually "you haven't gone yet".
   if (mine.length === 0) {
-    const stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
-    const when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
+    // The set card at the top of the page carries the stage and time, so
+    // the empty state is one quiet line that says the feature exists.
     return (
-      <div style={{
-        marginBottom: 18, borderRadius: 16, padding: "16px",
-        background: "var(--night)", color: "var(--ink)",
-        border: "1px dashed rgba(var(--ink-rgb),0.12)",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(var(--ink-rgb),0.25)" }} />
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "var(--text-3)" }}>
-            YOUR MOMENTS
-          </span>
-        </div>
-        <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--text-2)" }}>
-          You haven't filmed anything at {artistObj?.name || "this set"} yet.
-        </div>
-        {(when || stage) && (
-          <button onClick={() => onOpenMap?.(artistObj)} className="mono" style={{
-            marginTop: 10, padding: "8px 12px", borderRadius: 8, width: "100%",
-            background: `rgba(var(--signal-rgb),0.09)`, border: `1px solid rgba(var(--signal-rgb),0.25)`, color: "var(--signal-ink)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
-          }}>
-            {stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE"}{when ? ` · ${when}` : ""} →
-          </button>
-        )}
+      <div data-artist-moments-empty style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18, padding: "10px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+        <span className="duo-sect" style={{ flexShrink: 0 }}>Your moments</span>
+        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>Photos and clips from this set will show here.</span>
       </div>
     );
   }
@@ -1352,8 +1332,8 @@ function ArtistScreen({ state, setState }) {
               background: "transparent", border: "none",
               borderBottom: `2px solid ${activeB2B === i ? ("var(--signal)") : "transparent"}`,
               cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-              color: activeB2B === i ? ("var(--signal-ink)") : "var(--muted)",
+              font: "500 11px/1.273 var(--f-display)", letterSpacing: ".12em", minHeight: 44,
+              color: activeB2B === i ? ("var(--signal-ink)") : "var(--ink-3)",
               fontWeight: activeB2B === i ? 700 : 400,
               transition: "color 0.15s, border-color 0.15s",
             }}>{part.toUpperCase()}</button>
@@ -1362,6 +1342,82 @@ function ArtistScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "18px 20px 24px" }}>
+        {/* Stage & time: the board's set card. Lifted while the set is on,
+            with minutes left and progress (Today's math); otherwise the day
+            and the clock. A billed act no official schedule has placed
+            (Escape's lineup-card acts, CRSSD's late adds) has no day: say so,
+            rather than look up a day that does not exist and crash. */}
+        {(() => {
+          const live = typeof isSetLive === "function" && isSetLive(a);
+          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
+          let minsLeft = null, pct = 0;
+          if (live && a.start && a.end && typeof festivalNightDate === "function") {
+            try {
+              const startMs = festivalNightDate(a.day, a.start).getTime();
+              const endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
+              const now = Date.now();
+              minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+              pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
+            } catch {}
+          }
+          const go = (n) => (window._pushNav || ((x) => setState({ ...state, ...x })))(n);
+          return (
+            <div data-artist-set-card className={`duo-card${live ? " duo-lift" : ""}`} style={{ padding: "14px 16px", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", columnGap: 12, rowGap: 4, flexWrap: "wrap" }}>
+                {live ? <span style={{ whiteSpace: "nowrap" }}><DuoLive>{`Live now${dayLabel ? ` · ${dayLabel}` : ""}`}</DuoLive></span>
+                  : <span className="duo-label duo-ink3">{dayLabel || "Day TBA"}</span>}
+                {minsLeft != null && <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>{minsLeft} MIN LEFT</span>}
+              </div>
+              <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
+              {a.day == null || !a.start
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
+                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
+              {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
+              {saveCount != null && saveCount >= 2 && (
+                <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
+              )}
+              <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap", marginTop: 6 }}>
+                <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
+                {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* On <stage> that night: who plays before and after this set, from
+            the published schedule only (same stage, same night, same weekend).
+            Absent when the set has no day, time or neighbours. */}
+        {(() => {
+          if (a.day == null || !a.start || !a.stage) return null;
+          const sameWk = (x) => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
+          const night = (window.ARTISTS || []).filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x))
+            .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+          const i = night.findIndex(x => x.id === a.id);
+          if (i < 0 || night.length < 2) return null;
+          const rows = [night[i - 1] && [night[i - 1], "Before"], [a, "This set"], night[i + 1] && [night[i + 1], "After"]].filter(Boolean);
+          const open = (id) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ artist: id });
+          return (
+            <section data-artist-stage-night style={{ marginBottom: 20 }}>
+              <h2 className="duo-sect" style={{ padding: "4px 0 6px" }}>On {stage.name} that night</h2>
+              {rows.map(([x, label]) => {
+                const me = x.id === a.id;
+                return (
+                  <button key={x.id} onClick={me ? undefined : () => open(x.id)} disabled={me}
+                    aria-label={`${label}: ${x.name}, ${fmt12(x.start)}`}
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", borderTop: "1px solid var(--line)", background: "none", color: "var(--ink)", textAlign: "left", cursor: me ? "default" : "pointer", fontFamily: "inherit" }}>
+                    <DuoAvatar name={x.name} size={36} ring={me ? "on" : ""} />
+                    <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+                      <span className="duo-name" style={{ font: "600 15px/1.33 var(--f-ui)", color: me ? "var(--acc-ink)" : "var(--ink)" }}>{actDisplayName(x.name)}</span>
+                      <span className="duo-label duo-ink3" style={{ marginTop: 2 }}>{label}</span>
+                    </span>
+                    <span className="duo-data" style={{ fontSize: 13, color: me ? "var(--ink)" : "var(--ink-2)", whiteSpace: "nowrap" }}>{fmt12(x.start)}</span>
+                  </button>
+                );
+              })}
+            </section>
+          );
+        })()}
+
         {/* Glance stats — only render cells with values; hide row entirely if none */}
         {(() => {
           const cells = [];
@@ -1370,10 +1426,9 @@ function ArtistScreen({ state, setState }) {
           if (spotifyStats?.popularity > 0)       cells.push({ label: "POPULARITY", value: spotifyStats.popularity });
           if (cells.length === 0) return null;
           return (
-            <div style={{
+            <div className="duo-card" style={{
               display: "grid", gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              borderRadius: 14, padding: "12px 4px", marginBottom: 12,
+              padding: "12px 4px", marginBottom: 12,
             }}>
               {cells.map((c, i) => (
                 <div key={c.label} style={{
@@ -1381,10 +1436,10 @@ function ArtistScreen({ state, setState }) {
                   borderLeft: i === 0 ? "none" : "1px solid var(--line)",
                   padding: "2px 6px",
                 }}>
-                  <div className="serif" style={{ fontSize: 22, lineHeight: 1, marginBottom: 5 }}>
+                  <div className="duo-data" style={{ fontSize: 20, lineHeight: 1, marginBottom: 6, color: "var(--ink)" }}>
                     {c.value}
                   </div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+                  <div className="duo-label duo-ink3">
                     {c.label}
                   </div>
                 </div>
@@ -1443,48 +1498,6 @@ function ArtistScreen({ state, setState }) {
         <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: 16, textWrap: "pretty" }}>
           {a.bio}
         </div>
-
-        {/* Stage & time: the board's set card. Lifted while the set is on,
-            with minutes left and progress (Today's math); otherwise the day
-            and the clock. A billed act no official schedule has placed
-            (Escape's lineup-card acts, CRSSD's late adds) has no day: say so,
-            rather than look up a day that does not exist and crash. */}
-        {(() => {
-          const live = typeof isSetLive === "function" && isSetLive(a);
-          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
-          let minsLeft = null, pct = 0;
-          if (live && a.start && a.end && typeof festivalNightDate === "function") {
-            try {
-              const startMs = festivalNightDate(a.day, a.start).getTime();
-              const endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
-              const now = Date.now();
-              minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
-              pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
-            } catch {}
-          }
-          const go = (n) => (window._pushNav || ((x) => setState({ ...state, ...x })))(n);
-          return (
-            <div className={`duo-card${live ? " duo-lift" : ""}`} style={{ padding: "14px 16px", marginBottom: 16 }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", columnGap: 12, rowGap: 4, flexWrap: "wrap" }}>
-                {live ? <span style={{ whiteSpace: "nowrap" }}><DuoLive>{`Live now${dayLabel ? ` · ${dayLabel}` : ""}`}</DuoLive></span>
-                  : <span className="duo-label duo-ink3">{dayLabel || "Day TBA"}</span>}
-                {minsLeft != null && <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>{minsLeft} MIN LEFT</span>}
-              </div>
-              <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
-              {a.day == null || !a.start
-                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
-                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
-              {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
-              {saveCount != null && saveCount >= 2 && (
-                <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
-              )}
-              <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap", marginTop: 6 }}>
-                <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
-                {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
-              </div>
-            </div>
-          );
-        })()}
 
         {/* Per-artist memories strip — the first surface in the rewatch
             loop. Hidden when the user has no moments tagged to this

@@ -696,63 +696,28 @@ function YourPhotosStrip({
     } catch {}
   };
   if (mine.length === 0) {
-    var stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
-    var when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
     return React.createElement("div", {
-      style: {
-        marginBottom: 18,
-        borderRadius: 16,
-        padding: "16px",
-        background: "var(--night)",
-        color: "var(--ink)",
-        border: "1px dashed rgba(var(--ink-rgb),0.12)"
-      }
-    }, React.createElement("div", {
+      "data-artist-moments-empty": true,
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8,
-        marginBottom: 6
+        gap: 10,
+        marginBottom: 18,
+        padding: "10px 0",
+        borderTop: "1px solid var(--line)",
+        borderBottom: "1px solid var(--line)"
       }
-    }, React.createElement("div", {
+    }, React.createElement("span", {
+      className: "duo-sect",
       style: {
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        background: "rgba(var(--ink-rgb),0.25)"
+        flexShrink: 0
       }
-    }), React.createElement("span", {
-      className: "mono",
+    }, "Your moments"), React.createElement("span", {
       style: {
-        fontSize: 9,
-        letterSpacing: 1.6,
-        fontWeight: 700,
-        color: "var(--text-3)"
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
-    }, "YOUR MOMENTS")), React.createElement("div", {
-      style: {
-        fontSize: 13,
-        lineHeight: 1.5,
-        color: "var(--text-2)"
-      }
-    }, "You haven't filmed anything at ", artistObj?.name || "this set", " yet."), (when || stage) && React.createElement("button", {
-      onClick: () => onOpenMap?.(artistObj),
-      className: "mono",
-      style: {
-        marginTop: 10,
-        padding: "8px 12px",
-        borderRadius: 8,
-        width: "100%",
-        background: `rgba(var(--signal-rgb),0.09)`,
-        border: `1px solid rgba(var(--signal-rgb),0.25)`,
-        color: "var(--signal-ink)",
-        cursor: "pointer",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        textAlign: "left"
-      }
-    }, stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE", when ? ` · ${when}` : "", " →"));
+    }, "Photos and clips from this set will show here."));
   }
   var preview = mine.slice(0, 8);
   var more = mine.length - preview.length;
@@ -1609,10 +1574,10 @@ function ArtistScreen({
       border: "none",
       borderBottom: `2px solid ${activeB2B === i ? "var(--signal)" : "transparent"}`,
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: activeB2B === i ? "var(--signal-ink)" : "var(--muted)",
+      font: "500 11px/1.273 var(--f-display)",
+      letterSpacing: ".12em",
+      minHeight: 44,
+      color: activeB2B === i ? "var(--signal-ink)" : "var(--ink-3)",
       fontWeight: activeB2B === i ? 700 : 400,
       transition: "color 0.15s, border-color 0.15s"
     }
@@ -1621,132 +1586,6 @@ function ArtistScreen({
       padding: "18px 20px 24px"
     }
   }, (() => {
-    var cells = [];
-    if (saveCount != null && saveCount > 0) cells.push({
-      label: "GOING",
-      value: _fmtCount(saveCount)
-    });
-    if (spotifyStats?.followers > 0) cells.push({
-      label: "FOLLOWERS",
-      value: _fmtCount(spotifyStats.followers)
-    });
-    if (spotifyStats?.popularity > 0) cells.push({
-      label: "POPULARITY",
-      value: spotifyStats.popularity
-    });
-    if (cells.length === 0) return null;
-    return React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
-        borderRadius: 14,
-        padding: "12px 4px",
-        marginBottom: 12
-      }
-    }, cells.map((c, i) => React.createElement("div", {
-      key: c.label,
-      style: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        borderLeft: i === 0 ? "none" : "1px solid var(--line)",
-        padding: "2px 6px"
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 22,
-        lineHeight: 1,
-        marginBottom: 5
-      }
-    }, c.value), React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 8,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
-    }, c.label))));
-  })(), (() => {
-    var sections = [{
-      id: "artist-section-bio",
-      label: "Bio"
-    }, {
-      id: "artist-section-tracklist",
-      label: "Tracklist"
-    }, {
-      id: "artist-section-livestream",
-      label: "Live set"
-    }, {
-      id: "artist-section-setlists",
-      label: "Setlists"
-    }, {
-      id: "artist-section-similar",
-      label: "Similar"
-    }, {
-      id: "artist-section-upcoming",
-      label: "Upcoming"
-    }];
-    var [activeChip, setActiveChip] = React.useState(sections[0].id);
-    React.useEffect(() => {
-      if (!window.IntersectionObserver) return;
-      var obs = new IntersectionObserver(entries => {
-        for (var e of entries) {
-          if (e.isIntersecting) {
-            setActiveChip(e.target.id);
-            break;
-          }
-        }
-      }, {
-        rootMargin: "-40% 0px -50% 0px",
-        threshold: 0
-      });
-      sections.forEach(s => {
-        var el = document.getElementById(s.id);
-        if (el) obs.observe(el);
-      });
-      return () => obs.disconnect();
-    }, [a.id]);
-    return React.createElement("div", {
-      style: {
-        display: "flex",
-        gap: 8,
-        overflowX: "auto",
-        overflowY: "hidden",
-        marginBottom: 8,
-        marginLeft: -20,
-        marginRight: -20,
-        paddingLeft: 20,
-        paddingRight: 20,
-        scrollbarWidth: "none"
-      }
-    }, sections.map(c => {
-      var on = activeChip === c.id;
-      return React.createElement("button", {
-        key: c.id,
-        className: "duo-chip",
-        "aria-pressed": on,
-        onClick: () => {
-          document.getElementById(c.id)?.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      }, React.createElement("span", null, c.label));
-    }));
-  })(), React.createElement("div", {
-    id: "artist-section-bio",
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.35,
-      marginBottom: 16,
-      textWrap: "pretty"
-    }
-  }, a.bio), (() => {
     var live = typeof isSetLive === "function" && isSetLive(a);
     var dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || {
       label: `DAY ${a.day}`
@@ -1767,6 +1606,7 @@ function ArtistScreen({
       ...x
     })))(n);
     return React.createElement("div", {
+      "data-artist-set-card": true,
       className: `duo-card${live ? " duo-lift" : ""}`,
       style: {
         padding: "14px 16px",
@@ -1850,7 +1690,202 @@ function ArtistScreen({
         artist: null
       })
     }, React.createElement("span", null, "Schedule"))));
-  })(), React.createElement(YourPhotosStrip, {
+  })(), (() => {
+    if (a.day == null || !a.start || !a.stage) return null;
+    var sameWk = x => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
+    var night = (window.ARTISTS || []).filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    var i = night.findIndex(x => x.id === a.id);
+    if (i < 0 || night.length < 2) return null;
+    var rows = [night[i - 1] && [night[i - 1], "Before"], [a, "This set"], night[i + 1] && [night[i + 1], "After"]].filter(Boolean);
+    var open = id => (window._pushNav || (x => setState({
+      ...state,
+      ...x
+    })))({
+      artist: id
+    });
+    return React.createElement("section", {
+      "data-artist-stage-night": true,
+      style: {
+        marginBottom: 20
+      }
+    }, React.createElement("h2", {
+      className: "duo-sect",
+      style: {
+        padding: "4px 0 6px"
+      }
+    }, "On ", stage.name, " that night"), rows.map(([x, label]) => {
+      var me = x.id === a.id;
+      return React.createElement("button", {
+        key: x.id,
+        onClick: me ? undefined : () => open(x.id),
+        disabled: me,
+        "aria-label": `${label}: ${x.name}, ${fmt12(x.start)}`,
+        style: {
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          minHeight: 56,
+          padding: "6px 0",
+          border: "none",
+          borderTop: "1px solid var(--line)",
+          background: "none",
+          color: "var(--ink)",
+          textAlign: "left",
+          cursor: me ? "default" : "pointer",
+          fontFamily: "inherit"
+        }
+      }, React.createElement(DuoAvatar, {
+        name: x.name,
+        size: 36,
+        ring: me ? "on" : ""
+      }), React.createElement("span", {
+        style: {
+          flex: 1,
+          minWidth: 0,
+          display: "flex",
+          flexDirection: "column"
+        }
+      }, React.createElement("span", {
+        className: "duo-name",
+        style: {
+          font: "600 15px/1.33 var(--f-ui)",
+          color: me ? "var(--acc-ink)" : "var(--ink)"
+        }
+      }, actDisplayName(x.name)), React.createElement("span", {
+        className: "duo-label duo-ink3",
+        style: {
+          marginTop: 2
+        }
+      }, label)), React.createElement("span", {
+        className: "duo-data",
+        style: {
+          fontSize: 13,
+          color: me ? "var(--ink)" : "var(--ink-2)",
+          whiteSpace: "nowrap"
+        }
+      }, fmt12(x.start)));
+    }));
+  })(), (() => {
+    var cells = [];
+    if (saveCount != null && saveCount > 0) cells.push({
+      label: "GOING",
+      value: _fmtCount(saveCount)
+    });
+    if (spotifyStats?.followers > 0) cells.push({
+      label: "FOLLOWERS",
+      value: _fmtCount(spotifyStats.followers)
+    });
+    if (spotifyStats?.popularity > 0) cells.push({
+      label: "POPULARITY",
+      value: spotifyStats.popularity
+    });
+    if (cells.length === 0) return null;
+    return React.createElement("div", {
+      className: "duo-card",
+      style: {
+        display: "grid",
+        gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
+        padding: "12px 4px",
+        marginBottom: 12
+      }
+    }, cells.map((c, i) => React.createElement("div", {
+      key: c.label,
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        borderLeft: i === 0 ? "none" : "1px solid var(--line)",
+        padding: "2px 6px"
+      }
+    }, React.createElement("div", {
+      className: "duo-data",
+      style: {
+        fontSize: 20,
+        lineHeight: 1,
+        marginBottom: 6,
+        color: "var(--ink)"
+      }
+    }, c.value), React.createElement("div", {
+      className: "duo-label duo-ink3"
+    }, c.label))));
+  })(), (() => {
+    var sections = [{
+      id: "artist-section-bio",
+      label: "Bio"
+    }, {
+      id: "artist-section-tracklist",
+      label: "Tracklist"
+    }, {
+      id: "artist-section-livestream",
+      label: "Live set"
+    }, {
+      id: "artist-section-setlists",
+      label: "Setlists"
+    }, {
+      id: "artist-section-similar",
+      label: "Similar"
+    }, {
+      id: "artist-section-upcoming",
+      label: "Upcoming"
+    }];
+    var [activeChip, setActiveChip] = React.useState(sections[0].id);
+    React.useEffect(() => {
+      if (!window.IntersectionObserver) return;
+      var obs = new IntersectionObserver(entries => {
+        for (var e of entries) {
+          if (e.isIntersecting) {
+            setActiveChip(e.target.id);
+            break;
+          }
+        }
+      }, {
+        rootMargin: "-40% 0px -50% 0px",
+        threshold: 0
+      });
+      sections.forEach(s => {
+        var el = document.getElementById(s.id);
+        if (el) obs.observe(el);
+      });
+      return () => obs.disconnect();
+    }, [a.id]);
+    return React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        overflowX: "auto",
+        overflowY: "hidden",
+        marginBottom: 8,
+        marginLeft: -20,
+        marginRight: -20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        scrollbarWidth: "none"
+      }
+    }, sections.map(c => {
+      var on = activeChip === c.id;
+      return React.createElement("button", {
+        key: c.id,
+        className: "duo-chip",
+        "aria-pressed": on,
+        onClick: () => {
+          document.getElementById(c.id)?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }, React.createElement("span", null, c.label));
+    }));
+  })(), React.createElement("div", {
+    id: "artist-section-bio",
+    className: "serif",
+    style: {
+      fontSize: 20,
+      lineHeight: 1.35,
+      marginBottom: 16,
+      textWrap: "pretty"
+    }
+  }, a.bio), React.createElement(YourPhotosStrip, {
     artistId: a.id,
     night: a.day,
     accent: "var(--signal)",
