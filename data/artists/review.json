@@ -1,347 +1,135 @@
 [
  {
-  "id": "edc-lv-2026:bp1",
-  "printed": "Fallen with MC Dino",
-  "reason": "feat / with billing"
- },
- {
-  "id": "edc-lv-2026:bp12",
-  "printed": "Nightstalker with MC Dino",
-  "reason": "feat / with billing"
- },
- {
-  "id": "edc-lv-2026:bp32",
-  "printed": "A.M.C w/ Phantom",
-  "reason": "feat / with billing"
- },
- {
-  "id": "lost-lands-2026:lls40",
-  "printed": "Mefjus + Daxta MC",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "edc-orlando-2026:ecs16",
-  "printed": "Fury with MC Dino",
-  "reason": "feat / with billing"
- },
- {
-  "id": "edc-orlando-2026:ecs33",
-  "printed": "Skull Machine (Black Tiger Sex Machine x Kai Wachi)",
-  "reason": "parenthetical names people"
- },
- {
-  "id": "acl-2026:au34",
-  "printed": "Sunday (1994)",
-  "reason": "parenthetical is not a known set tag"
- },
- {
-  "id": "summerfest-2026:su48",
-  "printed": "Don Toliver with SahBabii, SoFaygo, Che, Lelo, Chase B, and sosocamo",
-  "reason": "feat / with billing"
- },
- {
   "id": "summerfest-2026:su374",
   "printed": "Wave X Nile",
-  "reason": "\"x\" billing whose sides are not both known acts"
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "outside-lands-2026:os79",
   "printed": "Sultan + Shepard",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "outside-lands-2026:os82",
-  "printed": "OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger",
-  "reason": "feat / with billing"
- },
- {
-  "id": "outside-lands-2026:os85",
-  "printed": "REPARATIONS w/ DJ Newoncé",
-  "reason": "feat / with billing"
- },
- {
-  "id": "outside-lands-2026:os86",
-  "printed": "REPARATIONS w/ Nicki Jizz feat. Kori King",
-  "reason": "feat / with billing"
- },
- {
-  "id": "outside-lands-2026:os88",
-  "printed": "PRINCESS w/ Tito Soto feat. Lydia B Kollins",
-  "reason": "feat / with billing"
- },
- {
-  "id": "nocturnal-wonderland-2026:nw-nightstalker-with-mc-dino",
-  "printed": "Nightstalker with MC Dino",
-  "reason": "feat / with billing"
- },
- {
-  "id": "nocturnal-wonderland-2026:nw-simply-jeff-feat-sharyn-maceren-live",
-  "printed": "Simply Jeff feat. Sharyn Maceren (Live)",
-  "reason": "feat / with billing"
- },
- {
-  "id": "portola-2026:pt1-dog-blood-skrillex-boys-noize",
-  "printed": "DOG BLOOD (SKRILLEX + BOYS NOIZE)",
-  "reason": "parenthetical names people"
- },
- {
-  "id": "hard-summer-2026:hs1-small-danny-g-luvs-u-b2b-bori",
-  "printed": "Small (danny g luvs u B2B Bori)",
-  "reason": "parenthetical names people"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-above-and-beyond-anjunabeats-classics",
-  "printed": "Above & Beyond (Anjunabeats Classics)",
-  "reason": "parenthetical is not a known set tag"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-allen-watts-and-talla-2xlc",
-  "printed": "Allen Watts + Talla 2XLC",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-alpha-9-and-ilan-bluestone",
-  "printed": "ALPHA 9 + Ilan Bluestone",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
-  "printed": "Aly & Fila + Billy Gillies",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-bryan-kearney-and-john-ocallaghan-pres-key4050",
-  "printed": "Bryan Kearney + John O'Callaghan pres Key4050",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-bt-and-matt-fax",
-  "printed": "BT + Matt Fax",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-darren-porter-and-sean-tyas",
-  "printed": "Darren Porter + Sean Tyas",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-david-forbes-and-mark-sherry-pres-thick-as-thieves",
-  "printed": "David Forbes + Mark Sherry pres Thick As Thieves",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-david-rust-and-olly-james",
-  "printed": "David Rust + Olly James",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-eddie-halliwell-and-judge-jules",
-  "printed": "Eddie Halliwell + Judge Jules",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
-  "printed": "Ferry Corsten + Marsh",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-ferry-tayle-and-tonks-pres-mirage-live",
-  "printed": "Ferry Tayle + Tonks pres Mirage (Live)",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
-  "printed": "Hannah Laing + Marie Vaunt",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-john-askew-and-simon-patterson",
-  "printed": "John Askew + Simon Patterson",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-kaufmann-de",
-  "printed": "KAUFMANN (DE)",
-  "reason": "parenthetical is not a known set tag"
- },
- {
-  "id": "dreamstate-socal-2026:dssc-paul-denton-and-will-rees-pres-parallel-worlds",
-  "printed": "Paul Denton + Will Rees pres Parallel Worlds",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "countdown-nye-2026:cdny-s-y-n-svdden-death-yvm3-nimda",
-  "printed": "S.Y.N (SVDDEN DEATH, yvm3, NIMDA)",
-  "reason": "parenthetical names people"
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
-  "reason": "\"+\" billing"
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:2200:giuseppe-ottaviani-ilan-bluestone",
   "printed": "Giuseppe Ottaviani + Ilan Bluestone",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "edc-las-vegas-2025:d1:bionic-jungle:1700:alex-chapman-zoe-gitter",
-  "printed": "Alex Chapman + Zoe Gitter",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "edc-las-vegas-2025:d2:circuit-grounds:0430:space-92-x-popof-present-turbulences",
-  "printed": "Space 92 x Popof present: Turbulences",
-  "reason": "\"x\" billing whose sides are not both known acts"
- },
- {
-  "id": "edc-las-vegas-2025:d2:circuit-grounds:0330:tchami-x-malaa-no-redemption",
-  "printed": "Tchami x Malaa (No Redemption)",
-  "reason": "parenthetical is not a known set tag"
- },
- {
-  "id": "edc-las-vegas-2025:d2:basspod:1900:fury-with-mc-dino",
-  "printed": "Fury with MC Dino",
-  "reason": "feat / with billing"
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. Ilan Bluestone is billed alone at EDC Las Vegas 2026; his arc misses this set until it is ruled."
  },
  {
   "id": "edc-las-vegas-2025:d2:forest-house:0315:bunny-rabbit-in-the-moon",
   "printed": "Bunny (Rabbit in the Moon)",
-  "reason": "parenthetical is not a known set tag"
- },
- {
-  "id": "edc-las-vegas-2025:d3:cosmic-meadow:2000:girl-math-vnssa-b2b-nala",
-  "printed": "Girl Math (VNSSA B2B Nala)",
-  "reason": "parenthetical names people"
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
   "id": "edc-las-vegas-2025:d3:ubuntu:0200:meedy-pizzi",
   "printed": "Meedy + Pizzi",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron",
-  "printed": "One Tribe Presents (AMÉMÉ B2B Baron)",
-  "reason": "parenthetical names people"
- },
- {
-  "id": "hard-summer-2025:d1:purple-stage:1600:alex-chapman-zoe-gitter",
-  "printed": "Alex Chapman + Zoe Gitter",
-  "reason": "\"+\" billing"
- },
- {
-  "id": "key:laidback-luke",
-  "printed": "Laidback Luke",
-  "reason": "genre families conflict across festivals: hard, house"
- },
- {
-  "id": "key:chris-lorenzo",
-  "printed": "Chris Lorenzo",
-  "reason": "genre families conflict across festivals: bass, house"
- },
- {
-  "id": "key:armin-van-buuren",
-  "printed": "Armin van Buuren",
-  "reason": "genre families conflict across festivals: bass, trance"
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "key:bou",
   "printed": "Bou",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:r-z",
+  "id": "key:roz",
   "printed": "RØZ",
-  "reason": "very short name billed at more than one festival brand"
- },
- {
-  "id": "key:lilly-palmer",
-  "printed": "Lilly Palmer",
-  "reason": "genre families conflict across festivals: bass, techno"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:mph",
   "printed": "MPH",
-  "reason": "very short name billed at more than one festival brand"
- },
- {
-  "id": "key:matty-ralph",
-  "printed": "Matty Ralph",
-  "reason": "genre families conflict across festivals: bass, trance"
- },
- {
-  "id": "key:superstrings",
-  "printed": "Superstrings",
-  "reason": "genre families conflict across festivals: bass, trance"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:cid",
   "printed": "Cid",
-  "reason": "very short name billed at more than one festival brand"
- },
- {
-  "id": "key:bolo",
-  "printed": "Bolo",
-  "reason": "genre families conflict across festivals: bass, house"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:klo",
   "printed": "KLO",
-  "reason": "genre families conflict across festivals: bass, house"
- },
- {
-  "id": "key:bullet-tooth",
-  "printed": "Bullet Tooth",
-  "reason": "genre families conflict across festivals: bass, techno"
+  "reason": "genre families conflict across festivals: bass, house",
+  "pending": true,
+  "why": "Possibly two acts: tech house at EDC Las Vegas 2026, bass at Lost Lands 2026 (both per-artist labels). Not merged into one arc until a first-party link ties them; the billings render separately."
  },
  {
   "id": "key:ydg",
   "printed": "YDG",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:hol",
   "printed": "Hol!",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:joa",
   "printed": "JOA",
-  "reason": "very short name billed at more than one festival brand"
- },
- {
-  "id": "key:marlon-hoffstadt",
-  "printed": "Marlon Hoffstadt",
-  "reason": "genre families conflict across festivals: bass, techno"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:kwn",
   "printed": "kwn",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:djo",
   "printed": "Djo",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:ear",
   "printed": "ear",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:jev",
   "printed": "Jev",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:d-o-d",
   "printed": "D.O.D",
-  "reason": "very short name billed at more than one festival brand"
- },
- {
-  "id": "key:tta",
-  "printed": "ØTTA",
-  "reason": "very short name billed at more than one festival brand"
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  }
 ]

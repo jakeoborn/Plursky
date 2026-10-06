@@ -3,5 +3,669 @@
  "split": [],
  "display": [],
  "project": [],
- "notAnAct": []
+ "notAnAct": [],
+ "billing": [
+  {
+   "printed": "Fallen with MC Dino",
+   "performers": [
+    {
+     "name": "Fallen",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://festivaldust.com/"
+  },
+  {
+   "printed": "Nightstalker with MC Dino",
+   "performers": [
+    {
+     "name": "Nightstalker",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": [
+    "https://festivaldust.com/",
+    "https://nocturnalwonderland.com/lineup/set-times/day-1/"
+   ]
+  },
+  {
+   "printed": "Fury with MC Dino",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": [
+    "https://orlando.edc.com/lineup/",
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+   ]
+  },
+  {
+   "printed": "Mefjus + Daxta MC",
+   "performers": [
+    {
+     "name": "Mefjus",
+     "role": "performer"
+    },
+    {
+     "name": "Daxta MC",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts"
+  },
+  {
+   "printed": "A.M.C w/ Phantom",
+   "performers": [
+    {
+     "name": "A.M.C",
+     "role": "performer"
+    },
+    {
+     "name": "Phantom",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://festivaldust.com/"
+  },
+  {
+   "printed": "Don Toliver with SahBabii, SoFaygo, Che, Lelo, Chase B, and sosocamo",
+   "performers": [
+    {
+     "name": "Don Toliver",
+     "role": "performer"
+    },
+    {
+     "name": "SahBabii",
+     "role": "guest"
+    },
+    {
+     "name": "SoFaygo",
+     "role": "guest"
+    },
+    {
+     "name": "Che",
+     "role": "guest"
+    },
+    {
+     "name": "Lelo",
+     "role": "guest"
+    },
+    {
+     "name": "Chase B",
+     "role": "guest"
+    },
+    {
+     "name": "sosocamo",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://summerfest.com/lineup"
+  },
+  {
+   "printed": "OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger",
+   "performers": [
+    {
+     "name": "OUT TONIGHT: A Musical Singalong",
+     "role": "performer"
+    },
+    {
+     "name": "D’Arcy Drollinger",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The billed name is a show, kept as printed.",
+   "source": "https://inmusicblog.com/"
+  },
+  {
+   "printed": "REPARATIONS w/ DJ Newoncé",
+   "performers": [
+    {
+     "name": "REPARATIONS",
+     "role": "performer"
+    },
+    {
+     "name": "DJ Newoncé",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://inmusicblog.com/"
+  },
+  {
+   "printed": "REPARATIONS w/ Nicki Jizz feat. Kori King",
+   "performers": [
+    {
+     "name": "REPARATIONS",
+     "role": "performer"
+    },
+    {
+     "name": "Nicki Jizz",
+     "role": "guest"
+    },
+    {
+     "name": "Kori King",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://inmusicblog.com/"
+  },
+  {
+   "printed": "PRINCESS w/ Tito Soto feat. Lydia B Kollins",
+   "performers": [
+    {
+     "name": "PRINCESS",
+     "role": "performer"
+    },
+    {
+     "name": "Tito Soto",
+     "role": "guest"
+    },
+    {
+     "name": "Lydia B Kollins",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "https://inmusicblog.com/"
+  },
+  {
+   "printed": "Simply Jeff feat. Sharyn Maceren (Live)",
+   "performers": [
+    {
+     "name": "Simply Jeff",
+     "role": "performer"
+    },
+    {
+     "name": "Sharyn Maceren",
+     "role": "guest"
+    }
+   ],
+   "setTag": "Live",
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"(Live)\" is the set tag.",
+   "source": "https://nocturnalwonderland.com/lineup/set-times/day-1/"
+  },
+  {
+   "printed": "Allen Watts + Talla 2XLC",
+   "performers": [
+    {
+     "name": "Allen Watts",
+     "role": "cobilled"
+    },
+    {
+     "name": "Talla 2XLC",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "ALPHA 9 + Ilan Bluestone",
+   "performers": [
+    {
+     "name": "ALPHA 9",
+     "role": "cobilled"
+    },
+    {
+     "name": "Ilan Bluestone",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Aly & Fila + Billy Gillies",
+   "performers": [
+    {
+     "name": "Aly & Fila",
+     "role": "cobilled"
+    },
+    {
+     "name": "Billy Gillies",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "BT + Matt Fax",
+   "performers": [
+    {
+     "name": "BT",
+     "role": "cobilled"
+    },
+    {
+     "name": "Matt Fax",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Darren Porter + Sean Tyas",
+   "performers": [
+    {
+     "name": "Darren Porter",
+     "role": "cobilled"
+    },
+    {
+     "name": "Sean Tyas",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "David Rust + Olly James",
+   "performers": [
+    {
+     "name": "David Rust",
+     "role": "cobilled"
+    },
+    {
+     "name": "Olly James",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Eddie Halliwell + Judge Jules",
+   "performers": [
+    {
+     "name": "Eddie Halliwell",
+     "role": "cobilled"
+    },
+    {
+     "name": "Judge Jules",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Ferry Corsten + Marsh",
+   "performers": [
+    {
+     "name": "Ferry Corsten",
+     "role": "cobilled"
+    },
+    {
+     "name": "Marsh",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Hannah Laing + Marie Vaunt",
+   "performers": [
+    {
+     "name": "Hannah Laing",
+     "role": "cobilled"
+    },
+    {
+     "name": "Marie Vaunt",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "John Askew + Simon Patterson",
+   "performers": [
+    {
+     "name": "John Askew",
+     "role": "cobilled"
+    },
+    {
+     "name": "Simon Patterson",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Bryan Kearney + John O'Callaghan pres Key4050",
+   "performers": [
+    {
+     "name": "Key4050",
+     "role": "project",
+     "parents": [
+      "Bryan Kearney",
+      "John O'Callaghan"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule). The press release names the parents; the lineup page prints \"Key4050\".",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "David Forbes + Mark Sherry pres Thick As Thieves",
+   "performers": [
+    {
+     "name": "Thick As Thieves",
+     "role": "project",
+     "parents": [
+      "David Forbes",
+      "Mark Sherry"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Ferry Tayle + Tonks pres Mirage (Live)",
+   "performers": [
+    {
+     "name": "Mirage",
+     "role": "project",
+     "parents": [
+      "Ferry Tayle",
+      "Tonks"
+     ]
+    }
+   ],
+   "setTag": "Live",
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule). \"(Live)\" is the set tag.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Paul Denton + Will Rees pres Parallel Worlds",
+   "performers": [
+    {
+     "name": "Parallel Worlds",
+     "role": "project",
+     "parents": [
+      "Paul Denton",
+      "Will Rees"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Alex Chapman + Zoe Gitter",
+   "performers": [
+    {
+     "name": "Alex Chapman",
+     "role": "cobilled"
+    },
+    {
+     "name": "Zoe Gitter",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Both names are billed on their own at Escape Halloween 2026 (separate rows), so the \"+\" joins two performers on one set, not one name. Each is credited as co-billed.",
+   "source": [
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+    "https://www.hardsummer.com/lineup/set-times"
+   ]
+  },
+  {
+   "printed": "Space 92 x Popof present: Turbulences",
+   "performers": [
+    {
+     "name": "Turbulences",
+     "role": "project",
+     "parents": [
+      "Space 92",
+      "Popof"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A x B present: C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+  },
+  {
+   "printed": "Tchami x Malaa (No Redemption)",
+   "performers": [
+    {
+     "name": "No Redemption",
+     "role": "project",
+     "parents": [
+      "Tchami",
+      "Malaa"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the project the two billed artists play as: No Redemption is a project with Tchami and Malaa as parents. Both are billed on their own elsewhere in the data (Countdown NYE 2026, Nocturnal Wonderland 2026).",
+   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+  },
+  {
+   "printed": "Skull Machine (Black Tiger Sex Machine x Kai Wachi)",
+   "performers": [
+    {
+     "name": "Skull Machine",
+     "role": "project",
+     "parents": [
+      "Black Tiger Sex Machine",
+      "Kai Wachi"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.edc.com/lineup/"
+  },
+  {
+   "printed": "DOG BLOOD (SKRILLEX + BOYS NOIZE)",
+   "performers": [
+    {
+     "name": "DOG BLOOD",
+     "role": "project",
+     "parents": [
+      "SKRILLEX",
+      "BOYS NOIZE"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://portolamusicfestival.com/set-times"
+  },
+  {
+   "printed": "Small (danny g luvs u B2B Bori)",
+   "performers": [
+    {
+     "name": "Small",
+     "role": "project",
+     "parents": [
+      "danny g luvs u",
+      "Bori"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://hardsummer.com/lineup/set-times/day-1/"
+  },
+  {
+   "printed": "S.Y.N (SVDDEN DEATH, yvm3, NIMDA)",
+   "performers": [
+    {
+     "name": "S.Y.N",
+     "role": "project",
+     "parents": [
+      "SVDDEN DEATH",
+      "yvm3",
+      "NIMDA"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://countdownnye.com/lineup/"
+  },
+  {
+   "printed": "Girl Math (VNSSA B2B Nala)",
+   "performers": [
+    {
+     "name": "Girl Math",
+     "role": "project",
+     "parents": [
+      "VNSSA",
+      "Nala"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+  },
+  {
+   "printed": "One Tribe Presents (AMÉMÉ B2B Baron)",
+   "performers": [
+    {
+     "name": "AMÉMÉ",
+     "role": "b2b"
+    },
+    {
+     "name": "Baron",
+     "role": "b2b"
+    }
+   ],
+   "why": "The parenthetical is a b2b of two named artists, presented under the One Tribe banner: each artist is credited b2b, and the banner is not an artist.",
+   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+  },
+  {
+   "printed": "Above & Beyond (Anjunabeats Classics)",
+   "performers": [
+    {
+     "name": "Above & Beyond",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Anjunabeats Classics",
+   "why": "\"Anjunabeats Classics\" names the set (Anjunabeats is the act's own label), not a person: it is the set tag, and the billing counts on Above & Beyond.",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Sunday (1994)",
+   "performers": [
+    {
+     "name": "Sunday (1994)",
+     "role": "performer"
+    }
+   ],
+   "why": "The parenthetical is part of the billed name, not a set format: kept whole, so it is never merged with another \"Sunday\".",
+   "source": "https://www.aclfestival.com/schedule"
+  },
+  {
+   "printed": "KAUFMANN (DE)",
+   "performers": [
+    {
+     "name": "KAUFMANN (DE)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Kaufmann\".",
+   "source": "https://socal.dreamstateusa.com/lineup/"
+  }
+ ],
+ "pending": [
+  {
+   "printed": "Sultan + Shepard",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tinzo + Jojo",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Meedy + Pizzi",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Giuseppe Ottaviani + Ilan Bluestone",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. Ilan Bluestone is billed alone at EDC Las Vegas 2026; his arc misses this set until it is ruled."
+  },
+  {
+   "printed": "Wave X Nile",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bunny (Rabbit in the Moon)",
+   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+  },
+  {
+   "key": "klo",
+   "why": "Possibly two acts: tech house at EDC Las Vegas 2026, bass at Lost Lands 2026 (both per-artist labels). Not merged into one arc until a first-party link ties them; the billings render separately."
+  },
+  {
+   "key": "bou",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "roz",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "mph",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "cid",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "ydg",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "hol",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "joa",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "kwn",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "djo",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "ear",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "jev",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "d-o-d",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  }
+ ]
 }
