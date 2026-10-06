@@ -1947,7 +1947,10 @@ function LineupScreen({
         "data-set-meta": true,
         style: {
           font: "400 13px/1.385 var(--f-ui)",
-          color: "var(--ink-2)"
+          color: "var(--ink-2)",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis"
         }
       }, React.createElement("span", {
         "aria-hidden": "true",

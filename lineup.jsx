@@ -1362,7 +1362,8 @@ function LineupScreen({ state, setState }) {
                 }}>
                   <span data-set-name data-fit-name data-fit-min="14" className="duo-headline"
                     style={{ fontWeight: 700, color: "var(--ink)", whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
-                  <span data-set-meta style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
+                  <span data-set-meta style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
                       background: isLive && filter === "all" ? "var(--live)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
                     {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
