@@ -4,7 +4,7 @@
 // them, review rows are flagged and never guessed, and the generated files
 // are current. No network.
 import { readFileSync } from 'node:fs';
-import { build, parseBilling, keyOf } from './build-artist-registry.mjs';
+import { build, parseBilling, keyOf, indexStages } from './build-artist-registry.mjs';
 
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
@@ -127,6 +127,38 @@ const out = build();
   // Outside the folded letters, the key is the historical library's slug.
   const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþð]/.test(t));
   check(plain.every(t => keyOf(t) === slug(t)), 'keyOf drifted from the historical slug');
+}
+
+// ── M4: stage overlay ─────────────────────────────────────────────────────
+{
+  const { billings, stageErrors } = out;
+  const doc = JSON.parse(readFileSync('data/artists/stages.json', 'utf8'));
+  const lineages = Object.values(doc.brands).flatMap(b => b.lineages);
+  check(lineages.length >= 120, `control: only ${lineages.length} stage lineages read`);
+  check(!stageErrors.length, `stage overlay: ${stageErrors.slice(0, 3).join(' · ')}`);
+  const staged = billings.filter(b => b.stage != null);
+  check(staged.length >= 3000 && staged.every(b => b.stageLineage), `${staged.filter(b => !b.stageLineage).length} billings with a stage have no lineage`);
+  check(billings.filter(b => b.stage == null).every(b => b.stageLineage === null && b.mainStage === null), 'a billing without a stage carries a lineage or a main-stage claim');
+  check(!billings.some(b => b.stage === 'Schedule TBA'), 'the app placeholder "Schedule TBA" is read as a stage');
+  const lin = (fid, stage) => billings.find(b => b.festivalId === fid && b.stage === stage)?.stageLineage;
+  check(lin('governors-ball-2025', 'GOVBALLNYC') === lin('governors-ball-2026', 'GovBallNYC'), 'case variants of one stage name are two lineages');
+  check(lin('acl-2025', 'T-MOBILE') !== lin('acl-2026', 'T-Mobile Stage') && lin('hard-summer-2025', 'HARD Stage') !== lin('hard-summer-2026', 'HARD'), 'a rename was joined without a source');
+  // Main stage: only where an official page names it, per edition, and every
+  // other stage of that edition is false; every other edition makes no claim.
+  const claims = billings.filter(b => b.mainStage !== null);
+  check(claims.length && claims.every(b => b.festivalId === 'ultra-miami-2026'), `main-stage claims outside the sourced edition: ${[...new Set(claims.filter(b => b.festivalId !== 'ultra-miami-2026').map(b => b.festivalId))]}`);
+  check(claims.filter(b => b.mainStage).every(b => b.stage === 'ULTRA Main Stage') && claims.some(b => b.mainStage) && claims.some(b => b.mainStage === false), 'Ultra 2026 main stage is not exactly ULTRA Main Stage');
+  check(!billings.some(b => b.festivalBrand === 'edc-lv' && b.mainStage !== null), 'EDC LV carries a main-stage claim (no official page names one)');
+  // The rules reject what they should, on planted documents.
+  const L = (id, names, extra = {}) => ({ id, names: names.map(p => ({ printed: p, editions: ['x-2026'] })), joins: [], mainStage: null, ...extra });
+  const bad = brands => indexStages({ version: 1, brands }).errors.length > 0;
+  check(bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'])] } }), 'two names in one lineage without a join were accepted');
+  check(bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'], { joins: [{ from: 'A Stage', to: 'B Stage', why: 'w' }] })] } }), 'a join without a source was accepted');
+  check(!bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'], { joins: [{ from: 'A Stage', to: 'B Stage', why: 'w', source: 'https://x', observedAt: '2026-10-06' }] })] } }), 'control: a sourced join was rejected');
+  check(bad({ x: { lineages: [L('x:a', ['A']), L('x:b', ['a'])] } }), 'one printed name in two lineages was accepted');
+  check(bad({ x: { lineages: [L('x:a', ['A'], { mainStage: { editions: ['x-2026'], source: 'https://x', observedAt: '2026-10-06' } })] } }), 'a main stage without its quote was accepted');
+  const ms = { editions: ['x-2026'], source: 'https://x', quote: 'q', observedAt: '2026-10-06' };
+  check(bad({ x: { lineages: [L('x:a', ['A'], { mainStage: ms }), L('x:b', ['B'], { mainStage: ms })] } }), 'two main stages in one edition were accepted');
 }
 
 // ── Overrides need a why and a source ─────────────────────────────────────
