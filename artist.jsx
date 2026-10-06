@@ -1390,7 +1390,9 @@ function ArtistScreen({ state, setState }) {
         {(() => {
           if (a.day == null || !a.start || !a.stage) return null;
           const sameWk = (x) => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
-          const night = (window.ARTISTS || []).filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x))
+          // This act's own weekend when it has one, else the weekend the user is on.
+          const pool = a.weekend === "W1" || a.weekend === "W2" ? lineupFor(a.weekend) : activeLineup(state.saved);
+          const night = pool.filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x))
             .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
           const i = night.findIndex(x => x.id === a.id);
           if (i < 0 || night.length < 2) return null;

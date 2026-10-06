@@ -1693,7 +1693,8 @@ function ArtistScreen({
   })(), (() => {
     if (a.day == null || !a.start || !a.stage) return null;
     var sameWk = x => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
-    var night = (window.ARTISTS || []).filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    var pool = a.weekend === "W1" || a.weekend === "W2" ? lineupFor(a.weekend) : activeLineup(state.saved);
+    var night = pool.filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
     var i = night.findIndex(x => x.id === a.id);
     if (i < 0 || night.length < 2) return null;
     var rows = [night[i - 1] && [night[i - 1], "Before"], [a, "This set"], night[i + 1] && [night[i + 1], "After"]].filter(Boolean);
