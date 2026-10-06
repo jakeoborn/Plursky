@@ -26,6 +26,9 @@ const reservePort = () => new Promise((resolve, reject) => { const s = createSer
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 const FID = 'edc-lv-2026', AT = '2026-05-17T07:50:00Z';
+// SL_FONT=Verdana runs every screen in a wider face, as CI's runner lays text
+// out wider than this Mac (names and rows sit on the fit borderline there).
+const WIDE = process.env.SL_FONT || null;
 
 const PORT = await reservePort();
 const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.cwd(), stdio: 'ignore' });
@@ -37,6 +40,7 @@ try {
   for (const scheme of ['dark', 'light']) for (const width of [393, 320]) for (const populated of [false, true]) {
     const tag = `${scheme} ${width} ${populated ? 'populated' : 'empty'}`;
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
       await ctx.clock.install({ time: new Date(AT) });
@@ -85,6 +89,7 @@ try {
   for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
     const tag = `today upcoming ${scheme} ${width}`;
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
@@ -123,6 +128,7 @@ try {
   for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
     const tag = `artist ${scheme} ${width}`;
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
       await ctx.clock.install({ time: new Date(AT) });
@@ -161,6 +167,7 @@ try {
   for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
     const tag = `map ${scheme} ${width}`;
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
       await ctx.clock.install({ time: new Date(AT) });
