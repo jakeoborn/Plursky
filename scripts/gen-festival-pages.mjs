@@ -482,7 +482,7 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
   if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
-    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5. The same timetable is available in the app.'});
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5. The same timetable is available in the app.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
