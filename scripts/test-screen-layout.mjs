@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Me, as the board draws it, in the running app.
+// Me and Today (before the festival), as the board draws them, in the running app.
+// ── Me ──
 //   · identity: a name, or for an empty account the one action "Add your
 //     name" (never a dash standing in for one)
 //   · Plan / Memories / Crew / Badges are four round actions on ONE row; a
@@ -10,6 +11,10 @@
 //   · festival rows keep their title on one line at 320 (side by side with
 //     its description, it broke one word per line)
 //   · no horizontal overflow
+// ── Today, before the festival ──
+//   · saved sets are list rows (time, face, full name, day · stage), never a
+//     sideways rail of tiles; essentials are a wrapping grid, two columns
+//     down to 320; nothing on Today scrolls sideways
 // Both modes, 393 and 320, an empty account and a populated one. No network.
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -76,13 +81,51 @@ try {
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
+  // ── Today, before the festival ──
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    const tag = `today upcoming ${scheme} ${width}`;
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    try {
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
+      await ctx.addInitScript(({ FID, scheme }) => {
+        if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+        localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8', 'k9', 'n4', 'k1']));
+      }, { FID, scheme });
+      const page = await ctx.newPage();
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=home`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-today-essentials]') && document.querySelector('[data-today-saved]'), null, { timeout: 60000 });
+      await page.clock.runFor(2500); await page.waitForTimeout(300);
+      const r = await page.evaluate(() => {
+        const ess = document.querySelector('[data-today-essentials]'), sv = document.querySelector('[data-today-saved]');
+        const pans = [...document.querySelectorAll('#root *')].filter(el => { const cs = getComputedStyle(el); return /auto|scroll/.test(cs.overflowX) && el.scrollWidth > el.clientWidth + 1 && el.getBoundingClientRect().height > 40; }).map(el => el.className || el.tagName);
+        const rows = [...sv.querySelectorAll('button[aria-label]')].filter(b => b.querySelector('.duo-name'));
+        return {
+          cols: new Set([...ess.children].map(c => Math.round(c.getBoundingClientRect().left))).size,
+          essOver: ess.scrollWidth > ess.clientWidth + 1,
+          pans, rows: rows.length,
+          cut: rows.filter(b => { const n = b.querySelector('.duo-name'); return n.scrollWidth > n.clientWidth + 1; }).map(b => b.getAttribute('aria-label')),
+          more: [...sv.querySelectorAll('button')].some(b => /^All \d+ saved sets$/.test(b.textContent.trim())),
+          overflowX: document.documentElement.scrollWidth > innerWidth + 1,
+        };
+      });
+      check(r.cols >= 2 && !r.essOver, `${tag}: essentials are ${r.cols} column(s)${r.essOver ? ', and overflow' : ''}`);
+      check(!r.pans.length, `${tag}: something on Today scrolls sideways: ${JSON.stringify(r.pans).slice(0, 160)}`);
+      check(r.rows === 5 && r.more, `${tag}: saved sets show ${r.rows} rows${r.more ? '' : ' and no "All N saved sets"'} (want 5 of 7 and the link)`);
+      check(!r.cut.length, `${tag}: a saved set's name is cut: ${JSON.stringify(r.cut)}`);
+      check(!r.overflowX, `${tag}: Today scrolls sideways`);
+    } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
 } finally {
   if (browser) await browser.close();
   server.kill();
 }
 if (problems.length) {
-  console.log(`  ✗ me layout: ${problems.length} of ${checks} checks failed`);
+  console.log(`  ✗ screen layout: ${problems.length} of ${checks} checks failed`);
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ me layout: ${checks} checks — identity, actions without zeros, Plursky+ on screen, festival rows`);
+console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll)`);

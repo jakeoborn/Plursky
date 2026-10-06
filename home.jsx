@@ -1638,13 +1638,22 @@ function HomeScreen({ state, setState }) {
       .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
       .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
     if (!rows.length) return null;
+    // The board's list rows, not 132px tiles in a sideways rail: time,
+    // face, the name in full, day and stage. The first five; the rest are
+    // one tap away in the plan sheet.
+    const SHOW = 5;
     return (
-      <section>
+      <section data-today-saved>
         <DuoSect title={isLive ? "Saved tonight" : "Your saved sets"}
           right={<ShareLineupButton state={state} />} style={{ padding: "0 20px", minHeight: 44 }} />
-        <FieldMediaRow>
-          {rows.map(a => <SavedTile key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
-        </FieldMediaRow>
+        <div style={{ padding: "0 20px", display: "grid", gap: 2 }}>
+          {rows.slice(0, SHOW).map(a => <SavedRow key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
+          {rows.length > SHOW && (
+            <button className="duo-link" onClick={() => setSheet("night")} style={{ justifySelf: "start", minHeight: 44, padding: 0, border: "none", background: "none", cursor: "pointer", font: "600 15px/1.33 var(--f-ui)", color: "var(--acc-ink)" }}>
+              All {rows.length} saved sets
+            </button>
+          )}
+        </div>
       </section>
     );
   })();
@@ -1708,9 +1717,11 @@ function HomeScreen({ state, setState }) {
 
         <section>
           <DuoSect title="Festival essentials" style={{ padding: "0 20px", minHeight: 44 }} />
-          <FieldMediaRow>
+          {/* A wrapping grid, never a sideways rail: every essential is on
+              screen at once. */}
+          <div data-today-essentials style={{ padding: "0 20px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))", gap: 8 }}>
             {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
-          </FieldMediaRow>
+          </div>
         </section>
 
         {/* Recent memories: the rewatch loop's front door. Post-festival,
@@ -2131,23 +2142,20 @@ function DuoStageBoard({ state, setState }) {
 
 // Saved set tile: the artist's real photo when one is cached, else a plain
 // well with initials. Never a generated gradient. Name and time sit under it.
-function SavedTile({ a, onOpen }) {
-  const photo = useArtistPhoto(a.name);
+// One saved set on Today before the festival: the board's list row.
+function SavedRow({ a, onOpen }) {
   const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
   const day = dd?.short || `Day ${a.day}`;
+  const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
   return (
-    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}`}
-      style={{ width: 132, flexShrink: 0, scrollSnapAlign: "start" }}>
-      <div className="duo-card" style={{
-        width: 132, height: 132, overflow: "hidden", position: "relative",
-        display: "grid", placeItems: "center",
-      }}>
-        {photo
-          ? <img src={photo} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-          : <span aria-hidden="true" className="duo-ink3" style={{ font: "650 30px/1 var(--f-ui)", letterSpacing: ".02em" }}>{_duoInitials(a.name)}</span>}
-      </div>
-      <div className="duo-name" style={{ marginTop: 8, fontWeight: 600, fontSize: 15, lineHeight: 1.4, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</div>
-      <div className="duo-data-s duo-ink3" style={{ marginTop: 2 }}>{day} · {fmt12(a.start)}</div>
+    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
+      style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", background: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer", width: "100%" }}>
+      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
+      <DuoAvatar name={a.name} size={36} />
+      <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <span className="duo-name" style={{ font: "650 15px/1.33 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{[dd?.name || day, stage].filter(Boolean).join(" · ")}</span>
+      </span>
     </button>
   );
 }
@@ -2155,12 +2163,12 @@ function SavedTile({ a, onOpen }) {
 function EssentialTile({ label, sub, icon, onClick }) {
   return (
     <button className="duo-press duo-card" onClick={onClick} style={{
-      width: 112, minHeight: 96, flexShrink: 0, scrollSnapAlign: "start",
-      display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12,
-      padding: 14, color: "var(--ink)", background: "var(--s2)",
+      minWidth: 0, minHeight: 52,
+      display: "flex", alignItems: "center", gap: 10,
+      padding: "10px 12px", color: "var(--ink)", background: "var(--s2)", textAlign: "left",
     }}>
-      <span aria-hidden="true" style={{ display: "flex", color: "var(--ink-2)" }}>{icon}</span>
-      <span style={{ font: "600 15px/1.4 var(--f-ui)" }}>
+      <span aria-hidden="true" style={{ display: "flex", flexShrink: 0, color: "var(--ink-2)" }}>{icon}</span>
+      <span style={{ font: "600 15px/1.33 var(--f-ui)", minWidth: 0 }}>
         {label}
         {sub && <span className="duo-data-s duo-acc" style={{ display: "block", marginTop: 2 }}>{sub}</span>}
       </span>
