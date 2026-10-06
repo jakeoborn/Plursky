@@ -1858,7 +1858,7 @@ function LineupScreen({
     onClose: () => setWizardOpen(false)
   }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
     "data-lineup-scroll": true,
-    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`),
+    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
     style: viewMode === "grid" ? {
       overflowY: "hidden",
       display: "flex",

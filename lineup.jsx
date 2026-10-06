@@ -1320,7 +1320,7 @@ function LineupScreen({ state, setState }) {
           only scrolling element on the screen. Two nested scroll regions was
           the whole "tough to navigate" complaint — a drag on iOS would pick
           whichever one it liked. LIST mode is unchanged. */}
-      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={
+      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time")} style={
         viewMode === "grid"
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
