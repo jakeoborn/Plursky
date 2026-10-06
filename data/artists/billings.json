@@ -896,11 +896,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "r-z",
+    "key": "roz",
     "role": "performer"
    }
   ],
-  "act": "r-z",
+  "act": "roz",
   "closing": false,
   "mainStage": null
  },
@@ -3570,11 +3570,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "d-mina",
+    "key": "domina",
     "role": "performer"
    }
   ],
-  "act": "d-mina",
+  "act": "domina",
   "closing": false,
   "mainStage": null
  },
@@ -5143,14 +5143,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "fallen-with-mc-dino",
-    "role": "act"
+    "key": "fallen",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
    }
   ],
   "act": "fallen-with-mc-dino",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "edc-lv-2026:bp2",
@@ -5413,14 +5416,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "nightstalker-with-mc-dino",
-    "role": "act"
+    "key": "nightstalker",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
    }
   ],
   "act": "nightstalker-with-mc-dino",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "edc-lv-2026:bp13",
@@ -5510,14 +5516,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "a-m-c-w-phantom",
-    "role": "act"
+    "key": "a-m-c",
+    "role": "performer"
+   },
+   {
+    "key": "phantom",
+    "role": "guest"
    }
   ],
   "act": "a-m-c-w-phantom",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "edc-lv-2026:bp16",
@@ -5657,11 +5666,11 @@
   "setTag": "Sunrise Set",
   "performers": [
    {
-    "key": "on-mode",
+    "key": "aeon-mode",
     "role": "performer"
    }
   ],
-  "act": "on-mode",
+  "act": "aeon-mode",
   "closing": true,
   "mainStage": null
  },
@@ -8702,14 +8711,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "mefjus-daxta-mc",
-    "role": "act"
+    "key": "mefjus",
+    "role": "performer"
+   },
+   {
+    "key": "daxta-mc",
+    "role": "mc"
    }
   ],
   "act": "mefjus-daxta-mc",
   "closing": false,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "lost-lands-2026:lls41",
@@ -11660,14 +11672,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "fury-with-mc-dino",
-    "role": "act"
+    "key": "fury",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
    }
   ],
   "act": "fury-with-mc-dino",
   "closing": null,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "edc-orlando-2026:ecs17",
@@ -12052,14 +12067,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "skull-machine-black-tiger-sex-machine-x-kai-wachi",
-    "role": "act"
+    "key": "skull-machine",
+    "role": "project"
    }
   ],
   "act": "skull-machine-black-tiger-sex-machine-x-kai-wachi",
   "closing": null,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "edc-orlando-2026:ecs34",
@@ -12333,11 +12347,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "c-ntra",
+    "key": "contra",
     "role": "performer"
    }
   ],
-  "act": "c-ntra",
+  "act": "contra",
   "closing": null,
   "mainStage": null
  },
@@ -15765,13 +15779,12 @@
   "performers": [
    {
     "key": "sunday-1994",
-    "role": "act"
+    "role": "performer"
    }
   ],
   "act": "sunday-1994",
   "closing": false,
-  "mainStage": null,
-  "review": "parenthetical is not a known set tag"
+  "mainStage": null
  },
  {
   "id": "acl-2026:au35",
@@ -17601,11 +17614,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "u-uk-uk1mat-u",
+    "key": "you-uk-yuk1mat-u",
     "role": "performer"
    }
   ],
-  "act": "u-uk-uk1mat-u",
+  "act": "you-uk-yuk1mat-u",
   "closing": false,
   "mainStage": null
  },
@@ -22357,14 +22370,37 @@
   "setTag": null,
   "performers": [
    {
-    "key": "don-toliver-with-sahbabii-sofaygo-che-lelo-chase-b-and-sosocamo",
-    "role": "act"
+    "key": "don-toliver",
+    "role": "performer"
+   },
+   {
+    "key": "sahbabii",
+    "role": "guest"
+   },
+   {
+    "key": "sofaygo",
+    "role": "guest"
+   },
+   {
+    "key": "che",
+    "role": "guest"
+   },
+   {
+    "key": "lelo",
+    "role": "guest"
+   },
+   {
+    "key": "chase-b",
+    "role": "guest"
+   },
+   {
+    "key": "sosocamo",
+    "role": "guest"
    }
   ],
   "act": "don-toliver-with-sahbabii-sofaygo-che-lelo-chase-b-and-sosocamo",
   "closing": true,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "summerfest-2026:su49",
@@ -27004,11 +27040,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "b-rns",
+    "key": "borns",
     "role": "performer"
    }
   ],
-  "act": "b-rns",
+  "act": "borns",
   "closing": true,
   "mainStage": null
  },
@@ -32916,11 +32952,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "r-z",
+    "key": "roz",
     "role": "performer"
    }
   ],
-  "act": "r-z",
+  "act": "roz",
   "closing": false,
   "mainStage": null
  },
@@ -36274,11 +36310,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "u-uk-uk1mat-u",
+    "key": "you-uk-yuk1mat-u",
     "role": "performer"
    }
   ],
-  "act": "u-uk-uk1mat-u",
+  "act": "you-uk-yuk1mat-u",
   "closing": false,
   "mainStage": null
  },
@@ -37425,14 +37461,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "out-tonight-a-musical-singalong-feat-d-arcy-drollinger",
-    "role": "act"
+    "key": "out-tonight-a-musical-singalong",
+    "role": "performer"
+   },
+   {
+    "key": "d-arcy-drollinger",
+    "role": "guest"
    }
   ],
   "act": "out-tonight-a-musical-singalong-feat-d-arcy-drollinger",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "outside-lands-2026:os83",
@@ -37495,14 +37534,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "reparations-w-dj-newonce",
-    "role": "act"
+    "key": "reparations",
+    "role": "performer"
+   },
+   {
+    "key": "dj-newonce",
+    "role": "guest"
    }
   ],
   "act": "reparations-w-dj-newonce",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "outside-lands-2026:os86",
@@ -37519,14 +37561,21 @@
   "setTag": null,
   "performers": [
    {
-    "key": "reparations-w-nicki-jizz-feat-kori-king",
-    "role": "act"
+    "key": "reparations",
+    "role": "performer"
+   },
+   {
+    "key": "nicki-jizz",
+    "role": "guest"
+   },
+   {
+    "key": "kori-king",
+    "role": "guest"
    }
   ],
   "act": "reparations-w-nicki-jizz-feat-kori-king",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "outside-lands-2026:os87",
@@ -37566,14 +37615,21 @@
   "setTag": null,
   "performers": [
    {
-    "key": "princess-w-tito-soto-feat-lydia-b-kollins",
-    "role": "act"
+    "key": "princess",
+    "role": "performer"
+   },
+   {
+    "key": "tito-soto",
+    "role": "guest"
+   },
+   {
+    "key": "lydia-b-kollins",
+    "role": "guest"
    }
   ],
   "act": "princess-w-tito-soto-feat-lydia-b-kollins",
   "closing": true,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "outside-lands-2026:os89",
@@ -43839,11 +43895,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "u-uk-uk1mat-u",
+    "key": "you-uk-yuk1mat-u",
     "role": "performer"
    }
   ],
-  "act": "u-uk-uk1mat-u",
+  "act": "you-uk-yuk1mat-u",
   "closing": null,
   "mainStage": null
  },
@@ -45002,14 +45058,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "nightstalker-with-mc-dino",
-    "role": "act"
+    "key": "nightstalker",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
    }
   ],
   "act": "nightstalker-with-mc-dino",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "nocturnal-wonderland-2026:nw-riot",
@@ -45739,14 +45798,17 @@
   "setTag": "Live",
   "performers": [
    {
-    "key": "simply-jeff-feat-sharyn-maceren",
-    "role": "act"
+    "key": "simply-jeff",
+    "role": "performer"
+   },
+   {
+    "key": "sharyn-maceren",
+    "role": "guest"
    }
   ],
   "act": "simply-jeff-feat-sharyn-maceren",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "nocturnal-wonderland-2026:nw-stanton-warriors",
@@ -47700,14 +47762,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "dog-blood-skrillex-boys-noize",
-    "role": "act"
+    "key": "dog-blood",
+    "role": "project"
    }
   ],
   "act": "dog-blood-skrillex-boys-noize",
   "closing": true,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "portola-2026:pt1-erika-b2b-sf-cowboy",
@@ -49254,11 +49315,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "r-z",
+    "key": "roz",
     "role": "performer"
    }
   ],
-  "act": "r-z",
+  "act": "roz",
   "closing": false,
   "mainStage": null
  },
@@ -49653,11 +49714,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "u-uk-uk1mat-u",
+    "key": "you-uk-yuk1mat-u",
     "role": "performer"
    }
   ],
-  "act": "u-uk-uk1mat-u",
+  "act": "you-uk-yuk1mat-u",
   "closing": true,
   "mainStage": null
  },
@@ -49937,11 +49998,11 @@
     "role": "b2b"
    },
    {
-    "key": "nyx",
+    "key": "onyx",
     "role": "b2b"
    }
   ],
-  "act": "lake-hills-b2b-nyx",
+  "act": "lake-hills-b2b-onyx",
   "closing": false,
   "mainStage": null
  },
@@ -50029,14 +50090,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "small-danny-g-luvs-u-b2b-bori",
-    "role": "act"
+    "key": "small",
+    "role": "project"
    }
   ],
   "act": "small-danny-g-luvs-u-b2b-bori",
   "closing": false,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "hard-summer-2026:hs1-dj-kita",
@@ -55996,17 +56056,16 @@
   "start": null,
   "end": null,
   "printed": "Above & Beyond (Anjunabeats Classics)",
-  "setTag": null,
+  "setTag": "Anjunabeats Classics",
   "performers": [
    {
-    "key": "above-and-beyond-anjunabeats-classics",
-    "role": "act"
+    "key": "above-and-beyond",
+    "role": "performer"
    }
   ],
-  "act": "above-and-beyond-anjunabeats-classics",
+  "act": "above-and-beyond",
   "closing": null,
-  "mainStage": null,
-  "review": "parenthetical is not a known set tag"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-ace-ventura",
@@ -56046,14 +56105,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "allen-watts-talla-2xlc",
-    "role": "act"
+    "key": "allen-watts",
+    "role": "cobilled"
+   },
+   {
+    "key": "talla-2xlc",
+    "role": "cobilled"
    }
   ],
   "act": "allen-watts-talla-2xlc",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-alpha-9-and-ilan-bluestone",
@@ -56070,14 +56132,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "alpha-9-ilan-bluestone",
-    "role": "act"
+    "key": "alpha-9",
+    "role": "cobilled"
+   },
+   {
+    "key": "ilan-bluestone",
+    "role": "cobilled"
    }
   ],
   "act": "alpha-9-ilan-bluestone",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
@@ -56094,14 +56159,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "aly-and-fila-billy-gillies",
-    "role": "act"
+    "key": "aly-and-fila",
+    "role": "cobilled"
+   },
+   {
+    "key": "billy-gillies",
+    "role": "cobilled"
    }
   ],
   "act": "aly-and-fila-billy-gillies",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-andrew-rayel-pres-extasia",
@@ -56279,14 +56347,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "bryan-kearney-john-o-callaghan-pres-key4050",
-    "role": "act"
+    "key": "key4050",
+    "role": "project"
    }
   ],
   "act": "bryan-kearney-john-o-callaghan-pres-key4050",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-bt-and-matt-fax",
@@ -56303,14 +56370,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "bt-matt-fax",
-    "role": "act"
+    "key": "bt",
+    "role": "cobilled"
+   },
+   {
+    "key": "matt-fax",
+    "role": "cobilled"
    }
   ],
   "act": "bt-matt-fax",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-burn-in-noise",
@@ -56396,14 +56466,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "darren-porter-sean-tyas",
-    "role": "act"
+    "key": "darren-porter",
+    "role": "cobilled"
+   },
+   {
+    "key": "sean-tyas",
+    "role": "cobilled"
    }
   ],
   "act": "darren-porter-sean-tyas",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-das-pharaoh",
@@ -56466,14 +56539,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "david-forbes-mark-sherry-pres-thick-as-thieves",
-    "role": "act"
+    "key": "thick-as-thieves",
+    "role": "project"
    }
   ],
   "act": "david-forbes-mark-sherry-pres-thick-as-thieves",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-david-rust-and-olly-james",
@@ -56490,14 +56562,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "david-rust-olly-james",
-    "role": "act"
+    "key": "david-rust",
+    "role": "cobilled"
+   },
+   {
+    "key": "olly-james",
+    "role": "cobilled"
    }
   ],
   "act": "david-rust-olly-james",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-discovery-project",
@@ -56537,14 +56612,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "eddie-halliwell-judge-jules",
-    "role": "act"
+    "key": "eddie-halliwell",
+    "role": "cobilled"
+   },
+   {
+    "key": "judge-jules",
+    "role": "cobilled"
    }
   ],
   "act": "eddie-halliwell-judge-jules",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-enrico-sangiuliano",
@@ -56584,14 +56662,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "ferry-corsten-marsh",
-    "role": "act"
+    "key": "ferry-corsten",
+    "role": "cobilled"
+   },
+   {
+    "key": "marsh",
+    "role": "cobilled"
    }
   ],
   "act": "ferry-corsten-marsh",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-ferry-tayle-and-tonks-pres-mirage-live",
@@ -56608,14 +56689,13 @@
   "setTag": "Live",
   "performers": [
    {
-    "key": "ferry-tayle-tonks-pres-mirage",
-    "role": "act"
+    "key": "mirage",
+    "role": "project"
    }
   ],
   "act": "ferry-tayle-tonks-pres-mirage",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-frankyeffe",
@@ -56701,14 +56781,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "hannah-laing-marie-vaunt",
-    "role": "act"
+    "key": "hannah-laing",
+    "role": "cobilled"
+   },
+   {
+    "key": "marie-vaunt",
+    "role": "cobilled"
    }
   ],
   "act": "hannah-laing-marie-vaunt",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-infected-mushroom",
@@ -56794,14 +56877,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "john-askew-simon-patterson",
-    "role": "act"
+    "key": "john-askew",
+    "role": "cobilled"
+   },
+   {
+    "key": "simon-patterson",
+    "role": "cobilled"
    }
   ],
   "act": "john-askew-simon-patterson",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-karm",
@@ -56842,13 +56928,12 @@
   "performers": [
    {
     "key": "kaufmann-de",
-    "role": "act"
+    "role": "performer"
    }
   ],
   "act": "kaufmann-de",
   "closing": null,
-  "mainStage": null,
-  "review": "parenthetical is not a known set tag"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-lee-ann-roberts",
@@ -57118,14 +57203,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "paul-denton-will-rees-pres-parallel-worlds",
-    "role": "act"
+    "key": "parallel-worlds",
+    "role": "project"
    }
   ],
   "act": "paul-denton-will-rees-pres-parallel-worlds",
   "closing": null,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "dreamstate-socal-2026:dssc-paul-van-dyk-pres-essence-of-acid",
@@ -57786,11 +57870,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "y-u-uk-uk1mat-u",
+    "key": "you-uk-yuk1mat-u",
     "role": "performer"
    }
   ],
-  "act": "y-u-uk-uk1mat-u",
+  "act": "you-uk-yuk1mat-u",
   "closing": null,
   "mainStage": null
  },
@@ -58545,11 +58629,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "d-mina",
+    "key": "domina",
     "role": "performer"
    }
   ],
-  "act": "d-mina",
+  "act": "domina",
   "closing": null,
   "mainStage": null
  },
@@ -59362,11 +59446,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "r-z",
+    "key": "roz",
     "role": "performer"
    }
   ],
-  "act": "r-z",
+  "act": "roz",
   "closing": null,
   "mainStage": null
  },
@@ -59385,14 +59469,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "s-y-n-svdden-death-yvm3-nimda",
-    "role": "act"
+    "key": "s-y-n",
+    "role": "project"
    }
   ],
   "act": "s-y-n-svdden-death-yvm3-nimda",
   "closing": null,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "countdown-nye-2026:cdny-seven-lions",
@@ -66175,11 +66258,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "aszewo",
+    "key": "laszewo",
     "role": "performer"
    }
   ],
-  "act": "aszewo",
+  "act": "laszewo",
   "closing": false,
   "mainStage": null
  },
@@ -68167,11 +68250,11 @@
     "role": "b2b"
    },
    {
-    "key": "tta",
+    "key": "otta",
     "role": "b2b"
    }
   ],
-  "act": "bad-boombox-b2b-tta",
+  "act": "bad-boombox-b2b-otta",
   "closing": false,
   "mainStage": null
  },
@@ -69832,11 +69915,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "shl-mo",
+    "key": "shlomo",
     "role": "performer"
    }
   ],
-  "act": "shl-mo",
+  "act": "shlomo",
   "closing": false,
   "mainStage": null
  },
@@ -70664,14 +70747,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "alex-chapman-zoe-gitter",
-    "role": "act"
+    "key": "alex-chapman",
+    "role": "cobilled"
+   },
+   {
+    "key": "zoe-gitter",
+    "role": "cobilled"
    }
   ],
   "act": "alex-chapman-zoe-gitter",
   "closing": false,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d1:forest-house:0400:pls-and-ty",
@@ -72237,14 +72323,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "space-92-x-popof-present-turbulences",
-    "role": "act"
+    "key": "turbulences",
+    "role": "project"
    }
   ],
   "act": "space-92-x-popof-present-turbulences",
   "closing": true,
-  "mainStage": null,
-  "review": "\"x\" billing whose sides are not both known acts"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d2:circuit-grounds:0330:tchami-x-malaa-no-redemption",
@@ -72261,14 +72346,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "tchami-x-malaa-no-redemption",
-    "role": "act"
+    "key": "no-redemption",
+    "role": "project"
    }
   ],
   "act": "tchami-x-malaa-no-redemption",
   "closing": false,
-  "mainStage": null,
-  "review": "parenthetical is not a known set tag"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d2:circuit-grounds:0230:charlotte-de-witte",
@@ -72849,14 +72933,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "fury-with-mc-dino",
-    "role": "act"
+    "key": "fury",
+    "role": "performer"
+   },
+   {
+    "key": "mc-dino",
+    "role": "mc"
    }
   ],
   "act": "fury-with-mc-dino",
   "closing": false,
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d2:wasteland:0430:restricted",
@@ -73103,11 +73190,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "tta",
+    "key": "otta",
     "role": "performer"
    }
   ],
-  "act": "tta",
+  "act": "otta",
   "closing": true,
   "mainStage": null
  },
@@ -75225,14 +75312,13 @@
   "setTag": null,
   "performers": [
    {
-    "key": "girl-math-vnssa-b2b-nala",
-    "role": "act"
+    "key": "girl-math",
+    "role": "project"
    }
   ],
   "act": "girl-math-vnssa-b2b-nala",
   "closing": false,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d3:cosmic-meadow:1900:gudfella",
@@ -75514,11 +75600,11 @@
     "role": "b2b"
    },
    {
-    "key": "tta",
+    "key": "otta",
     "role": "b2b"
    }
   ],
-  "act": "funk-tribu-b2b-tta",
+  "act": "funk-tribu-b2b-otta",
   "closing": false,
   "mainStage": null
  },
@@ -77410,14 +77496,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "one-tribe-presents-ameme-b2b-baron",
-    "role": "act"
+    "key": "ameme",
+    "role": "b2b"
+   },
+   {
+    "key": "baron",
+    "role": "b2b"
    }
   ],
   "act": "one-tribe-presents-ameme-b2b-baron",
   "closing": false,
-  "mainStage": null,
-  "review": "parenthetical names people"
+  "mainStage": null
  },
  {
   "id": "edc-las-vegas-2025:d3:ubuntu:2200:da-capo",
@@ -79658,14 +79747,17 @@
   "setTag": null,
   "performers": [
    {
-    "key": "alex-chapman-zoe-gitter",
-    "role": "act"
+    "key": "alex-chapman",
+    "role": "cobilled"
+   },
+   {
+    "key": "zoe-gitter",
+    "role": "cobilled"
    }
   ],
   "act": "alex-chapman-zoe-gitter",
   "closing": false,
-  "mainStage": null,
-  "review": "\"+\" billing"
+  "mainStage": null
  },
  {
   "id": "hard-summer-2025:d1:purple-stage:1500:villager",
@@ -80556,11 +80648,11 @@
   "setTag": null,
   "performers": [
    {
-    "key": "tta",
+    "key": "otta",
     "role": "performer"
    }
   ],
-  "act": "tta",
+  "act": "otta",
   "closing": false,
   "mainStage": null
  },
