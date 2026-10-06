@@ -200,6 +200,53 @@ try {
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
+  // ── Festival switcher: cards size to their content, names in full ──
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    const tag = `switcher ${scheme} ${width}`;
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
+    try {
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
+      await ctx.addInitScript(({ FID, scheme }) => {
+        if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+        localStorage.setItem('plursky_switcher_view_v1', 'grid');
+      }, { FID, scheme });
+      const page = await ctx.newPage();
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=home`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelectorAll('#root button').length > 3, null, { timeout: 60000 });
+      await page.clock.runFor(2500);
+      await page.locator('button[aria-label*="estival"]').first().click();
+      await page.clock.runFor(800); await page.waitForTimeout(300);
+      const gridBtn = page.locator('[role=dialog] button', { hasText: /^grid$/i }).first();
+      if (await gridBtn.count()) { await gridBtn.click(); await page.clock.runFor(400); await page.waitForTimeout(200); }
+      const r = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('.midnight-festival-grid > button')];
+        return cards.map(c => {
+          const name = c.querySelector(':scope > div:nth-child(2) > div:first-child');
+          const cb = c.getBoundingClientRect();
+          // The text block stretches to the card, so measure the TEXT: a range
+          // over each child's contents is where the content really ends.
+          const inner = [...c.querySelectorAll(':scope > div')].reduce((m, d, i) => { if (i === 0) return Math.max(m, d.getBoundingClientRect().bottom); /* the thumb is a fixed box */ const rg = document.createRange(); rg.selectNodeContents(d); const b = rg.getBoundingClientRect(); return Math.max(m, b.height ? b.bottom : d.getBoundingClientRect().bottom); }, cb.top);
+          const pb = parseFloat(getComputedStyle(c).paddingBottom) || 0;
+          return { name: name?.textContent.trim(), cut: name ? name.scrollHeight > name.clientHeight + 1 : false, slack: Math.round(cb.bottom - inner),
+            top: Math.round(cb.top), h: Math.round(cb.height), need: Math.round(inner - cb.top + pb) };
+        });
+      });
+      // A card is never taller than the tallest content in its row: a fixed
+      // floor (the old 258px) made every short row taller than anything in it.
+      const rows = new Map(); for (const c of r) rows.set(c.top, Math.max(rows.get(c.top) || 0, c.need));
+      const floored = r.filter(c => c.h > rows.get(c.top) + 3);
+      check(r.length >= 6, `${tag}: control: only ${r.length} switcher cards`);
+      check(!r.some(c => c.cut), `${tag}: a festival name is cut: ${JSON.stringify(r.filter(c => c.cut).map(c => c.name))}`);
+      // Rows stretch to their tallest card, so allow that; a fixed floor left
+      // 200px+ of empty card.
+      check(!floored.length, `${tag}: cards taller than their row's content (a fixed floor): ${JSON.stringify(floored.slice(0, 3).map(c => [c.name, c.h, rows.get(c.top)]))}`);
+    } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
 } finally {
   if (browser) await browser.close();
   server.kill();
@@ -209,4 +256,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first), Map (header on solid ground)`);
+console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first), Map (header on solid ground), switcher (cards fit, names in full)`);
