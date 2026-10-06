@@ -1,0 +1,476 @@
+{
+ "festivalsInRegistry": 25,
+ "festivalsWithLineup": 19,
+ "billingRows2026": 2582,
+ "distinctBillingStrings2026": 2071,
+ "distinctFolded2026": 1967,
+ "spellingGroups": [
+  [
+   "10CUST",
+   "10cust"
+  ],
+  [
+   "ADÉLA",
+   "Adéla"
+  ],
+  [
+   "Adrian Mills",
+   "Adrián Mills"
+  ],
+  [
+   "AFTER MIDNIGHT",
+   "After Midnight"
+  ],
+  [
+   "ALLEYCVT",
+   "Alleycvt"
+  ],
+  [
+   "Amyl And The Sniffers",
+   "Amyl and the Sniffers"
+  ],
+  [
+   "ARMNHMR",
+   "Armnhmr"
+  ],
+  [
+   "AVELLO",
+   "Avello"
+  ],
+  [
+   "AYYBO",
+   "ayybo"
+  ],
+  [
+   "AZZECCA",
+   "Azzecca"
+  ],
+  [
+   "BARELY ALIVE",
+   "Barely Alive"
+  ],
+  [
+   "BASSVICTIM",
+   "Bassvictim"
+  ],
+  [
+   "BELTRAN",
+   "Beltran"
+  ],
+  [
+   "BELTRAN B2B BEN STERLING",
+   "Beltran B2B Ben Sterling"
+  ],
+  [
+   "BEN UFO",
+   "Ben UFO"
+  ],
+  [
+   "BOU",
+   "Bou"
+  ],
+  [
+   "BRUNELLO",
+   "Brunello"
+  ],
+  [
+   "BRUTALISMUS 3000",
+   "Brutalismus 3000"
+  ],
+  [
+   "BUSHBABY",
+   "Bushbaby"
+  ],
+  [
+   "CAMOUFLY",
+   "Camoufly"
+  ],
+  [
+   "CANARY YELLOW",
+   "Canary Yellow"
+  ],
+  [
+   "Charli XCX",
+   "Charli xcx"
+  ],
+  [
+   "CHASEWEST",
+   "ChaseWest"
+  ],
+  [
+   "CHOZEN",
+   "Chozen"
+  ],
+  [
+   "CHRIS STUSSY",
+   "Chris Stussy"
+  ],
+  [
+   "CLOONEE",
+   "Cloonee"
+  ],
+  [
+   "DAPHNI",
+   "Daphni"
+  ],
+  [
+   "DEAN TURNLEY",
+   "Dean Turnley"
+  ],
+  [
+   "DØMINA",
+   "Dømina"
+  ],
+  [
+   "EAR",
+   "ear"
+  ],
+  [
+   "FCUKERS",
+   "Fcukers"
+  ],
+  [
+   "Flipturn",
+   "flipturn"
+  ],
+  [
+   "FOUR TET",
+   "Four Tet"
+  ],
+  [
+   "GHENGAR",
+   "Ghengar"
+  ],
+  [
+   "GorillaT",
+   "Gorillat"
+  ],
+  [
+   "GRAVAGERZ",
+   "Gravagerz"
+  ],
+  [
+   "GRAVEDGR",
+   "Gravedgr"
+  ],
+  [
+   "GREG 99",
+   "Greg 99"
+  ],
+  [
+   "HAYLA",
+   "Hayla"
+  ],
+  [
+   "HerShe",
+   "Hershe"
+  ],
+  [
+   "HOL!",
+   "Hol!"
+  ],
+  [
+   "HONEY DIJON",
+   "Honey Dijon"
+  ],
+  [
+   "HORSEGIIRL",
+   "Horsegiirl",
+   "horsegiirL"
+  ],
+  [
+   "I HATE MODELS",
+   "I Hate Models"
+  ],
+  [
+   "Infekt B2B Samplifire",
+   "Infekt b2b Samplifire"
+  ],
+  [
+   "ISOXO",
+   "ISOxo"
+  ],
+  [
+   "It's Murph",
+   "It’s murph",
+   "it’s murph"
+  ],
+  [
+   "JIGITZ",
+   "Jigitz"
+  ],
+  [
+   "JOSH BAKER",
+   "Josh Baker"
+  ],
+  [
+   "KELELA",
+   "Kelela"
+  ],
+  [
+   "KETTAMA",
+   "Kettama"
+  ],
+  [
+   "KI/KI",
+   "Ki/Ki"
+  ],
+  [
+   "KinAhau",
+   "Kinahau"
+  ],
+  [
+   "KLO",
+   "Klo"
+  ],
+  [
+   "KLOUD",
+   "Kloud"
+  ],
+  [
+   "KREAM",
+   "Kream"
+  ],
+  [
+   "Lady Faith B2B LNY TNZ",
+   "Lady Faith b2b LNY TNZ"
+  ],
+  [
+   "LAYZ",
+   "Layz"
+  ],
+  [
+   "LOCKLEAD",
+   "Locklead"
+  ],
+  [
+   "MALUGI",
+   "Malugi"
+  ],
+  [
+   "MARLON HOFFSTADT",
+   "Marlon Hoffstadt"
+  ],
+  [
+   "MAU P",
+   "Mau P"
+  ],
+  [
+   "MAX DEAN B2B LUKE DEAN",
+   "Max Dean B2B Luke Dean"
+  ],
+  [
+   "MAX STYLER",
+   "Max Styler"
+  ],
+  [
+   "ME N U",
+   "Me n ü"
+  ],
+  [
+   "MEDUZA",
+   "Meduza"
+  ],
+  [
+   "MGNA CRRRTA",
+   "MGNA Crrrta"
+  ],
+  [
+   "MIND ENTERPRISES",
+   "Mind Enterprises"
+  ],
+  [
+   "MOCHAKK",
+   "Mochakk"
+  ],
+  [
+   "MODAL NODES",
+   "Modal Nodes"
+  ],
+  [
+   "NATE SIB",
+   "nate sib"
+  ],
+  [
+   "NGHTMRE",
+   "Nghtmre"
+  ],
+  [
+   "NICO MORENO",
+   "Nico Moreno"
+  ],
+  [
+   "NINAJIRACHI",
+   "Ninajirachi"
+  ],
+  [
+   "Not For Radio",
+   "Not for Radio"
+  ],
+  [
+   "ODD MOB",
+   "Odd Mob"
+  ],
+  [
+   "OMNOM",
+   "Omnom"
+  ],
+  [
+   "OSKAR MED K",
+   "oskar med k"
+  ],
+  [
+   "PARCELS",
+   "Parcels"
+  ],
+  [
+   "PEGASSI",
+   "Pegassi"
+  ],
+  [
+   "Phrva",
+   "phrva"
+  ],
+  [
+   "PROSPA",
+   "Prospa"
+  ],
+  [
+   "RIOT",
+   "Riot"
+  ],
+  [
+   "RÜFÜS DU SOL",
+   "Rüfüs Du Sol"
+  ],
+  [
+   "Rusowsky",
+   "rusowsky"
+  ],
+  [
+   "SALUTE",
+   "salute"
+  ],
+  [
+   "SAM ALFRED",
+   "Sam Alfred"
+  ],
+  [
+   "SHIMA",
+   "Shima"
+  ],
+  [
+   "SIDEPIECE",
+   "Sidepiece"
+  ],
+  [
+   "SILVA BUMPA",
+   "Silva Bumpa"
+  ],
+  [
+   "SIX SEX",
+   "Six Sex"
+  ],
+  [
+   "SON OF SON",
+   "Son of Son"
+  ],
+  [
+   "TIËSTO",
+   "Tiësto"
+  ],
+  [
+   "Tobiahs",
+   "tobiahs"
+  ],
+  [
+   "TORREN FOOT",
+   "Torren Foot"
+  ],
+  [
+   "TRICKY",
+   "Tricky"
+  ],
+  [
+   "UNDERSCORES",
+   "Underscores",
+   "underscores"
+  ],
+  [
+   "UNDERWORLD",
+   "Underworld"
+  ],
+  [
+   "WALKER & ROYCE B2B VNSSA",
+   "Walker & Royce b2b VNSSA"
+  ],
+  [
+   "X CLUB.",
+   "X Club."
+  ],
+  [
+   "ZARA LARSSON",
+   "Zara Larsson"
+  ]
+ ],
+ "separators2026": {
+  "b2b": 214,
+  "amp": 42,
+  "x": 7,
+  "presents": 6,
+  "paren": 58
+ },
+ "performers2026": 2009,
+ "timedPerformers2026": 1581,
+ "untimedRows2026": 604,
+ "archivedEditions": [
+  {
+   "id": "acl-2025",
+   "artists": 135,
+   "sets": 199
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026",
+   "artists": 56,
+   "sets": 56
+  },
+  {
+   "id": "beyond-wonderland-socal-2026",
+   "artists": 133,
+   "sets": 134
+  },
+  {
+   "id": "edc-las-vegas-2025",
+   "artists": 378,
+   "sets": 392
+  },
+  {
+   "id": "governors-ball-2025",
+   "artists": 53,
+   "sets": 53
+  },
+  {
+   "id": "hard-summer-2025",
+   "artists": 91,
+   "sets": 91
+  },
+  {
+   "id": "lollapalooza-2025",
+   "artists": 190,
+   "sets": 225
+  }
+ ],
+ "performersArchived": 871,
+ "performersAll": 2575,
+ "performersArchivedAnd2026": 305,
+ "billingsPerPerformer": {
+  "1": 1936,
+  "2": 351,
+  "3": 151,
+  "4": 76,
+  "5": 38,
+  "6": 15,
+  "7": 3,
+  "8": 5
+ }
+}
