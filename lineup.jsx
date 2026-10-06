@@ -620,11 +620,15 @@ function LineupScreen({ state, setState }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
-  // Opening at the current hour moves the list and folds the header in one
-  // step; the scroll events that causes are not the user's (openLock), and
-  // once the fold has rendered the hour is re-anchored (pendingOpen).
-  const openLockRef = React.useRef(0);
-  const pendingOpenRef = React.useRef(false);
+  // Opening at the current hour HOLDS the hour until the user's first input
+  // (touch, wheel, pointer, key). Until then nothing the page does moves the
+  // list off it, the fold, a late font, a row that resizes, and no scroll
+  // event folds or unfolds the header, because none of them is the user.
+  const openHoldRef = React.useRef(false);
+  // A fold or unfold the user asked for by a tap (the bar, search) resizes the
+  // list and nudges its scroll; for a moment that is not a drag either.
+  const tapLockRef = React.useRef(0);
+  const unfoldByTap = () => { tapLockRef.current = performance.now() + 400; setCollapsed(false); };
   // The whole filter header folds, so its height is measured, not guessed:
   // max-height animates to the real number and the list never jumps.
   const filtersRef = React.useRef(null);
@@ -644,15 +648,24 @@ function LineupScreen({ state, setState }) {
   React.useEffect(() => {
     // The scrolling element differs by mode: LIST scrolls the page body,
     // GRID scrolls the grid itself (it owns the only scroll region there).
-    let el = null, lastY = 0, lockUntil = 0, lastH = 0;
+    let el = null, lastY = 0, lockUntil = 0, lastH = 0, lastInput = -1e9;
+    // Only scrolling the user drives folds or unfolds the header. The page
+    // moves the list too (opening at the hour, scroll anchoring after a
+    // resize, Jump to now), and none of that may toggle it.
+    const onInput = () => { lastInput = performance.now(); };
+    const onKey = (e) => { if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput(); };
     const attach = () => {
       const next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
       el = next;
       lastY = el ? el.scrollTop : 0;
       lastH = el ? el.clientHeight : 0;
-      if (el) el.addEventListener("scroll", onScroll, { passive: true });
+      if (el) {
+        el.addEventListener("scroll", onScroll, { passive: true });
+        el.addEventListener("wheel", onInput, { passive: true });
+        el.addEventListener("touchmove", onInput, { passive: true });
+      }
     };
     // Read straight through — no rAF. The handler only reads scrollTop and
     // may set one boolean, and coalescing it behind a frame made the collapse
@@ -666,7 +679,7 @@ function LineupScreen({ state, setState }) {
       // makes the scroller taller, which CLAMPS scrollTop upward near the
       // end of the list: read as "the user scrolled up", that reopened the
       // header, the list re-clamped, and GRID oscillated every ~500ms.
-      if (t < lockUntil || t < openLockRef.current || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
       // Hysteresis: collapse only after a real downward drag, expand on any
       // meaningful upward move. Without the gap the header flickers on the
       // momentum bounce.
@@ -682,11 +695,13 @@ function LineupScreen({ state, setState }) {
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     // The grid mounts a beat after a mode switch, so retry once.
     const t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
     };
   }, [viewMode, day]);
   // GRID opens collapsed: the grid IS the content there, and an expanded
@@ -704,28 +719,42 @@ function LineupScreen({ state, setState }) {
         // Near the top already (the night's first hour), or a list too short
         // to scroll once folded: open as any other day.
         if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
-          openLockRef.current = performance.now() + 500;
-          pendingOpenRef.current = true;
+          openHoldRef.current = true;
           setCollapsed(true);
           sc.scrollTop = top;
           return;
         }
       }
     }
+    openHoldRef.current = false;
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
-  // The fold shrinks rows above the hour inside the list (the plan actions);
-  // Chrome's scroll anchoring compensates, WebKit's does not. Re-anchor once
-  // the folded header has rendered, either way.
-  React.useLayoutEffect(() => {
-    if (!collapsed || !pendingOpenRef.current) return;
-    pendingOpenRef.current = false;
+  // The hold: re-anchor whenever the list box or anything above the hour
+  // resizes (the fold shrinks the plan actions; Chrome's scroll anchoring
+  // compensates, WebKit's does not), and let go on the first input.
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
     const sc = document.querySelector("[data-lineup-scroll]");
-    const anchor = sc && sc.querySelector("[data-open-anchor]");
-    if (!anchor) return;
-    openLockRef.current = performance.now() + 500;
-    sc.scrollTop = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
-  }, [collapsed]);
+    if (!sc) return undefined;
+    const reanchor = () => {
+      if (!openHoldRef.current) return;
+      const a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (const c of sc.children) { if (c.hasAttribute("data-open-anchor")) break; ro.observe(c); }
+    }
+    const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    const stop = () => { if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
+    function release() { openHoldRef.current = false; stop(); }
+    INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
+    reanchor();
+    return stop;
+  }, [day, viewMode, weekendFilter]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -965,7 +994,7 @@ function LineupScreen({ state, setState }) {
   // (in GRID it rides the grid's own scroller, so bring that to the top).
   const openSearch = () => {
     setSearchOpen(true);
-    setCollapsed(false);
+    unfoldByTap();
     if (viewMode === "grid") {
       const g = document.querySelector("[data-grid-scroll]");
       if (g) try { g.scrollTo({ top: 0 }); } catch {}
@@ -1242,7 +1271,7 @@ function LineupScreen({ state, setState }) {
           transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
         }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "2px 8px 2px 20px", minHeight: 48 }}>
-          <button data-lineup-expand onClick={() => setCollapsed(false)}
+          <button data-lineup-expand onClick={unfoldByTap}
             aria-label={`Show days and filters. Showing ${compactSummary}`}
             style={{
               flex: 1, minWidth: 0, minHeight: 44, padding: 0, border: "none", background: "transparent",

@@ -896,8 +896,12 @@ function LineupScreen({
   var [collapsed, setCollapsed] = React.useState(false);
   var collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
-  var openLockRef = React.useRef(0);
-  var pendingOpenRef = React.useRef(false);
+  var openHoldRef = React.useRef(false);
+  var tapLockRef = React.useRef(0);
+  var unfoldByTap = () => {
+    tapLockRef.current = performance.now() + 400;
+    setCollapsed(false);
+  };
   var filtersRef = React.useRef(null);
   var [filtersH, setFiltersH] = React.useState(0);
   var filtersHRef = React.useRef(0);
@@ -918,23 +922,42 @@ function LineupScreen({
     var el = null,
       lastY = 0,
       lockUntil = 0,
-      lastH = 0;
+      lastH = 0,
+      lastInput = -1e9;
+    var onInput = () => {
+      lastInput = performance.now();
+    };
+    var onKey = e => {
+      if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput();
+    };
     var attach = () => {
       var next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) {
+        el.removeEventListener("scroll", onScroll);
+        el.removeEventListener("wheel", onInput);
+        el.removeEventListener("touchmove", onInput);
+      }
       el = next;
       lastY = el ? el.scrollTop : 0;
       lastH = el ? el.clientHeight : 0;
-      if (el) el.addEventListener("scroll", onScroll, {
-        passive: true
-      });
+      if (el) {
+        el.addEventListener("scroll", onScroll, {
+          passive: true
+        });
+        el.addEventListener("wheel", onInput, {
+          passive: true
+        });
+        el.addEventListener("touchmove", onInput, {
+          passive: true
+        });
+      }
     };
     function onScroll() {
       if (!el) return;
       var y = el.scrollTop;
       var t = performance.now();
-      if (t < lockUntil || t < openLockRef.current || el.clientHeight !== lastH) {
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) {
         lastY = y;
         lastH = el.clientHeight;
         return;
@@ -951,10 +974,16 @@ function LineupScreen({
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     var t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) {
+        el.removeEventListener("scroll", onScroll);
+        el.removeEventListener("wheel", onInput);
+        el.removeEventListener("touchmove", onInput);
+      }
     };
   }, [viewMode, day]);
   React.useLayoutEffect(() => {
@@ -964,25 +993,51 @@ function LineupScreen({
       if (anchor) {
         var top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
         if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
-          openLockRef.current = performance.now() + 500;
-          pendingOpenRef.current = true;
+          openHoldRef.current = true;
           setCollapsed(true);
           sc.scrollTop = top;
           return;
         }
       }
     }
+    openHoldRef.current = false;
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
-  React.useLayoutEffect(() => {
-    if (!collapsed || !pendingOpenRef.current) return;
-    pendingOpenRef.current = false;
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
     var sc = document.querySelector("[data-lineup-scroll]");
-    var anchor = sc && sc.querySelector("[data-open-anchor]");
-    if (!anchor) return;
-    openLockRef.current = performance.now() + 500;
-    sc.scrollTop = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
-  }, [collapsed]);
+    if (!sc) return undefined;
+    var reanchor = () => {
+      if (!openHoldRef.current) return;
+      var a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      var top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (var c of sc.children) {
+        if (c.hasAttribute("data-open-anchor")) break;
+        ro.observe(c);
+      }
+    }
+    var INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    var stop = () => {
+      if (ro) ro.disconnect();
+      INPUT.forEach(e => window.removeEventListener(e, release, true));
+    };
+    function release() {
+      openHoldRef.current = false;
+      stop();
+    }
+    INPUT.forEach(e => window.addEventListener(e, release, {
+      capture: true,
+      passive: true
+    }));
+    reanchor();
+    return stop;
+  }, [day, viewMode, weekendFilter]);
   var gridSectionRefs = React.useRef({});
   var [, _tickT] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {
@@ -1152,7 +1207,7 @@ function LineupScreen({
   var searchInputRef = React.useRef(null);
   var openSearch = () => {
     setSearchOpen(true);
-    setCollapsed(false);
+    unfoldByTap();
     if (viewMode === "grid") {
       var g = document.querySelector("[data-grid-scroll]");
       if (g) try {
@@ -1691,7 +1746,7 @@ function LineupScreen({
     }
   }, React.createElement("button", {
     "data-lineup-expand": true,
-    onClick: () => setCollapsed(false),
+    onClick: unfoldByTap,
     "aria-label": `Show days and filters. Showing ${compactSummary}`,
     style: {
       flex: 1,

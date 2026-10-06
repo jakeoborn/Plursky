@@ -85,6 +85,14 @@ try {
     let s = await state(page);
     check(!s.collapsed && s.filtersH > 200, `list opens with the full header (collapsed=${s.collapsed}, ${s.filtersH}px)`);
     check(s.compactH < 1 && s.compactInert, `the compact bar is hidden and inert while the header is open (${s.compactH}px, inert=${s.compactInert})`);
+    // A scroll the page makes (no wheel, touch or key) never folds it: only
+    // the user's own scrolling does.
+    await page.evaluate(() => { document.querySelector('[data-lineup-scroll]').scrollTop = 900; });
+    await page.clock.runFor(400); await page.waitForTimeout(300);
+    s = await state(page);
+    check(!s.collapsed && s.scrollTop >= 800, `a scripted scroll folded the header (collapsed=${s.collapsed}, scrollTop ${s.scrollTop})`);
+    await page.evaluate(() => { document.querySelector('[data-lineup-scroll]').scrollTop = 0; });
+    await page.clock.runFor(400); await page.waitForTimeout(300);
     // A tiny scroll must not fold it.
     await drag(page, 30, 3);
     s = await state(page);
@@ -278,7 +286,7 @@ try {
     const s = await state(page);
     check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · My plan`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · My plan"`);
     await ctx.close();
-  } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n")[0]}`); }
+  } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n").slice(0, 6).join(' | ')}`); }
 
   // ── The board's Lineup (design fidelity, 2026-10-04) ──────────────────────
   // Header = title + search + Filters; the stage overview names every stage
@@ -350,9 +358,14 @@ try {
   }
   // Nothing saved is live (empty plan): no lifted card, never a placeholder.
   try {
-    const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z' });
+    const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', reduced: true });
     const n = await page.evaluate(() => document.querySelectorAll('[data-now-on-plan-card]').length);
     check(n === 0, `empty plan shows ${n} "Now on your plan" cards`);
+    // With nothing lifted, the hour itself is the top of the list, and it
+    // stays there while the page settles (fold, fonts, rows), until input.
+    await page.clock.runFor(1500); await page.waitForTimeout(600);
+    const e = await page.evaluate(() => { const sc = document.querySelector('[data-lineup-scroll]'), a = sc.querySelector('[data-open-anchor]'); return a ? Math.round(a.getBoundingClientRect().top - sc.getBoundingClientRect().top) : null; });
+    check(e !== null && Math.abs(e) <= 2, `empty plan: the hour is ${e}px from the top of the list after the page settles`);
     await ctx.close();
   } catch (err) { check(false, `empty-plan block threw: ${String(err.message || err).split("\n")[0]}`); }
 
