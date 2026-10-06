@@ -19,8 +19,8 @@ assert.ok(rows.some(r=>r.name==='Homicide Jenny'&&r.day===2&&r.start==='19:00'&&
 assert.equal(rows.find(r=>r.name==='Loukeman').end,'18:05');
 assert.equal(rows.find(r=>r.name==='Dude Skywalker').day,1);assert.equal(rows.find(r=>r.name==='Jeremy Ismael').day,2);
 const {REG,DS,scheduleActs,eventDates}=loadRegistry(process.cwd()),entry=REG.find(e=>e.config.id==='iii-points-2026');
-assert.equal(DS['iii-points-2026'].artists.length,229);assert.ok(DS['iii-points-2026'].artists.every(a=>!a.start),'website-only directive must not change app clocks');
+assert.equal(DS['iii-points-2026'].artists.length,231); for (const row of rows) { const a=DS['iii-points-2026'].artists.find(a=>a.id===row.actId); assert.ok(a,row.name); for(const f of ['name','day','start','end'])assert.equal(a[f],row[f]); }
 const deps={DS,scheduleActs,eventDates,TODAY:'2026-10-05'},file='data/programming/iii-points-2026.json',original=readFileSync(file,'utf8'),before=festivalFingerprint(entry,deps);
 try{const changed=JSON.parse(original);changed.stages[0].days[0].rows[0].end='05:00';writeFileSync(file,JSON.stringify(changed));assert.notEqual(festivalFingerprint(entry,deps),before);}finally{writeFileSync(file,original);}
 assert.equal(stageProgrammingFor('acl-2026'),null);
-console.log('✓ III Points website: 231 exact sheet intervals, 26 blocks, non-overlap, end-time fingerprint mutant; app unchanged');
+console.log('✓ III Points website: 231 exact sheet intervals, 26 blocks, non-overlap, end-time fingerprint mutant; app/web parity');

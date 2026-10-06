@@ -318,7 +318,7 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
   <section aria-labelledby="lineup-h">
     <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
     <p>${names.length} artists announced.</p>
-${cfg.id === 'iii-points-2026' ? `    <p class="note">This is the September 30 lineup snapshot used by the app. The current October 5 stage timetable above supersedes its billings and days where they differ: Nettspend, solo Nick Leon and Homicide Jenny are in that timetable; fakemink and Nick Leon B2B Safety Trance are not. Dude Skywalker is Friday and Jeremy Ismael is Saturday.</p>\n` : hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
+${hasTimes ? '' : `    <p class="note">Plursky does not have stage assignments or set times for every act at ${esc(cfg.name)} yet; each row shows what it has.</p>\n`}    <ul class="lineup">
 ${rows.slice(0, LINEUP_SHOWN).join('\n')}
     </ul>
 ${rows.length > LINEUP_SHOWN ? `    <details class="more">
@@ -482,7 +482,7 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
   if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
-    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5. App clocks have not changed.'});
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5. The same timetable is available in the app.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
@@ -819,7 +819,7 @@ ${pastSection(entry, editions)}
     <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app remains on its earlier lineup snapshot; app set times are not part of this update.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 
