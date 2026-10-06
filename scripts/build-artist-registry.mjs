@@ -80,6 +80,44 @@ export function parseBilling(printed, known = null) {
   return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'performer' }], review: null };
 }
 
+// ── Stage overlay (M4): data/artists/stages.json, hand-written ────────────
+// Every printed stage name maps to exactly one lineage per festival brand.
+// Names equal after case folding are one name ("THE GROVE" / "The Grove");
+// any other pair shares a lineage only through a sourced join. mainStage is
+// per edition, sourced and quoted, never inferred. --seed-stages adds each
+// unmapped printed name as its own lineage (the default is separate).
+const STAGES_FILE = 'data/artists/stages.json';
+const foldName = n => String(n).trim().toLowerCase();
+export function readStages(root = ROOT) {
+  return indexStages(existsSync(`${root}/${STAGES_FILE}`) ? JSON.parse(readFileSync(`${root}/${STAGES_FILE}`, 'utf8')) : { version: 1, brands: {} });
+}
+export function indexStages(doc) {
+  const errors = [], index = new Map(), mainByEdition = new Map();
+  for (const [brand, b] of Object.entries(doc.brands || {})) for (const l of b.lineages || []) {
+    if (!l.id || !l.id.startsWith(`${brand}:`)) errors.push(`lineage ${l.id} is not under ${brand}`);
+    const folds = [...new Set((l.names || []).map(n => foldName(n.printed)))];
+    for (const n of l.names || []) {
+      const k = `${brand}|${foldName(n.printed)}`;
+      if (index.has(k) && index.get(k) !== l.id) errors.push(`"${n.printed}" (${brand}) is in two lineages: ${index.get(k)}, ${l.id}`);
+      index.set(k, l.id);
+    }
+    for (const j of l.joins || []) if (!j.why || !j.source || !j.observedAt || !j.from || !j.to) errors.push(`join in ${l.id} needs from, to, why, source and observedAt`);
+    // Two distinct names in one lineage need a join that connects them.
+    if (folds.length > 1) {
+      const joined = new Set([folds[0]]); let grew = true;
+      while (grew) { grew = false; for (const j of l.joins || []) { const a = foldName(j.from), c = foldName(j.to); if (joined.has(a) !== joined.has(c)) { joined.add(a); joined.add(c); grew = true; } } }
+      const loose = folds.filter(f => !joined.has(f));
+      if (loose.length) errors.push(`${l.id} merges ${loose.join(', ')} without a sourced join`);
+    }
+    if (l.mainStage) {
+      const m = l.mainStage;
+      if (!Array.isArray(m.editions) || !m.editions.length || !m.source || !m.quote || !m.observedAt) errors.push(`mainStage on ${l.id} needs editions, source, quote and observedAt`);
+      for (const e of m.editions || []) { if (mainByEdition.has(e)) errors.push(`${e} has two main stages: ${mainByEdition.get(e)}, ${l.id}`); mainByEdition.set(e, l.id); }
+    }
+  }
+  return { doc, errors, lineageOf: (brand, printed) => printed == null ? null : index.get(`${brand}|${foldName(printed)}`) || undefined, mainByEdition };
+}
+
 // ── Genre families: a review TRIGGER, never an identity rule ──────────────
 function family(genre) {
   const g = String(genre || '').toLowerCase();
@@ -126,7 +164,8 @@ export function build(root = ROOT, overrides = null) {
   for (const e of REG) {
     const cfg = e.config || {}; const fid = cfg.id || e.id; const ds = DS[fid];
     if (!ds?.artists?.length) continue;
-    const stageName = new Map((ds.stages || []).map(s => [s.id, s.name]));
+    // "tba" is the app's placeholder bucket ("Schedule TBA"), not a stage.
+    const stageName = new Map((ds.stages || []).filter(s => s.id !== 'tba').map(s => [s.id, s.name]));
     const src = (cfg.scheduleSource || cfg.lineupSource || {}).url || null;
     for (const a of ds.artists) {
       const dd = cfg.dayDates?.[a.day];
@@ -177,6 +216,8 @@ export function build(root = ROOT, overrides = null) {
   const lastStart = new Map();
   for (const r of rows) if (r.start && r.stage) { const k = `${r.festivalId}|${r.date || r.day}|${r.stage}`; lastStart.set(k, Math.max(lastStart.get(k) ?? -1, nightMin(r.start))); }
 
+  const stagesIx = readStages(root);
+  const unmappedStages = new Set();
   const billings = [], review = [], excluded = [];
   const reg = new Map();
   const touch = (key, kind) => { if (!reg.has(key)) reg.set(key, { key, kind, parents: new Set(), projects: new Set(), printings: new Map(), billings: [], dates: [], families: new Set(), festivals: new Set() }); return reg.get(key); };
@@ -189,7 +230,11 @@ export function build(root = ROOT, overrides = null) {
     billings.push({ id: r.id, source: r.source, festivalId: r.festivalId, festivalBrand: r.festivalBrand, year: r.year, date: r.date, day: r.day,
       stage: r.stage, start: r.start, end: r.end, printed: r.printed, setTag: p.setTag,
       performers: p.performers.map(({ key, role }) => ({ key, role })), act: p.act,
-      closing: r.start && r.stage ? nightMin(r.start) === lastStart.get(k) : null, mainStage: null, ...(p.review ? { review: p.review } : {}) });
+      closing: r.start && r.stage ? nightMin(r.start) === lastStart.get(k) : null,
+      stageLineage: (() => { const l = stagesIx.lineageOf(r.festivalBrand, r.stage); if (l === undefined) unmappedStages.add(`${r.festivalBrand}|${r.stage}`); return l ?? null; })(),
+      // true / false only for an edition with a sourced main-stage ruling; null means no claim.
+      mainStage: r.stage == null || !stagesIx.mainByEdition.has(r.festivalId) ? null : stagesIx.mainByEdition.get(r.festivalId) === stagesIx.lineageOf(r.festivalBrand, r.stage),
+      ...(p.review ? { review: p.review } : {}) });
     for (const perf of p.performers) {
       const rec = touch(perf.key, perf.role === 'project' || (!p.ruled && p.kind === 'project') ? 'project' : p.kind === 'collab' ? 'collab' : 'performer');
       for (const par of perf.parents || []) rec.parents.add(par);
@@ -227,12 +272,40 @@ export function build(root = ROOT, overrides = null) {
       billings: rec.billings, firstSeen: dates[0] || null, lastSeen: dates[dates.length - 1] || null, photo: null, links: [] };
   });
   const unruled = review.filter(r => !r.pending).length;
-  return { registry, billings, review, excluded, sources, overrides: ov,
+  const stageErrors = [...stagesIx.errors, ...[...unmappedStages].map(k => `printed stage not in ${STAGES_FILE}: ${k.replace('|', ' → ')} (run --seed-stages, then join with a source)`)];
+  return { registry, billings, review, excluded, sources, overrides: ov, stageErrors, rows,
     counts: { rows: rows.length, billings: billings.length, excluded: excluded.length, review: review.length, pending: review.length - unruled, unruled, ruled: billings.filter(b => billingOv.has(b.printed)).length, artists: registry.length } };
+}
+
+if (import.meta.url === `file://${process.argv[1]}` && process.argv[2] === '--seed-stages') {
+  // Adds every unmapped printed stage name as its own lineage, ordered by the
+  // edition that printed it first. Never joins and never sets a main stage.
+  const { rows } = build();
+  const { doc, lineageOf } = readStages(ROOT);
+  const first = new Map();
+  for (const r of [...rows].sort((a, b) => (a.year || 0) - (b.year || 0) || a.festivalId.localeCompare(b.festivalId))) {
+    if (r.stage == null) continue;
+    const k = `${r.festivalBrand}|${foldName(r.stage)}`;
+    if (!first.has(k)) first.set(k, { brand: r.festivalBrand, printed: new Map() });
+    const f = first.get(k).printed; if (!f.has(r.stage)) f.set(r.stage, new Set()); f.get(r.stage).add(r.festivalId);
+  }
+  let added = 0;
+  for (const { brand, printed } of first.values()) {
+    const names = [...printed].map(([p, eds]) => ({ printed: p, editions: [...eds].sort() }));
+    if (lineageOf(brand, names[0].printed) !== undefined) continue;
+    const b = (doc.brands[brand] ||= { lineages: [] });
+    let id = `${brand}:${keyOf(names[0].printed)}`; for (let i = 2; b.lineages.some(l => l.id === id); i++) id = `${brand}:${keyOf(names[0].printed)}-${i}`;
+    b.lineages.push({ id, names, joins: [], mainStage: null }); added++;
+  }
+  doc.brands = Object.fromEntries(Object.entries(doc.brands).sort(([a], [b]) => a.localeCompare(b)));
+  writeFileSync(`${ROOT}/${STAGES_FILE}`, JSON.stringify(doc, null, 1) + '\n');
+  console.log(`[stages] ${added} lineages added`);
+  process.exit(0);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const out = build();
+  if (out.stageErrors.length) { console.log(`✗ stage overlay: ${out.stageErrors.length} problems`); for (const e of out.stageErrors.slice(0, 10)) console.log(`  ✗ ${e}`); process.exit(1); }
   const files = { 'registry.json': out.registry, 'billings.json': out.billings, 'review.json': out.review, 'excluded.json': out.excluded };
   const text = v => JSON.stringify(v, null, 1) + '\n';
   if (process.argv[2] === '--check') {
