@@ -2644,6 +2644,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Artists directory (artist repository, M5) ──
+// Opens from Me; windowed (a few dozen rows of ~2,500 in the DOM); every name
+// in full at 393 and 320 in both modes; scrubber, search, the sheet equals the
+// registry's billings; a key under review never reads as one career; the
+// slice ships but is never precached.
+{
+  console.log("▸ Artists directory gate — windowed, names in full, sheet = registry");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-directory.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artists directory failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is

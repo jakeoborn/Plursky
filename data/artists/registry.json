@@ -252,17 +252,17 @@
   "links": []
  },
  {
-  "key": "55-odd-mob-and-omnom-present-hyperbeam",
-  "name": "55 ODD MOB & OMNOM present HYPERBEAM",
+  "key": "55-odd-mob-and-omnom",
+  "name": "55 ODD MOB & OMNOM",
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
-  "billings": [
-   "outside-lands-2026:os33"
+  "projects": [
+   "hyperbeam"
   ],
-  "firstSeen": "2026-08-07",
-  "lastSeen": "2026-08-07",
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -4141,17 +4141,17 @@
   "links": []
  },
  {
-  "key": "bicep-present-chroma",
-  "name": "Bicep present Chroma",
+  "key": "bicep",
+  "name": "Bicep",
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
-  "billings": [
-   "edc-las-vegas-2025:d2:cosmic-meadow:2110:bicep-present-chroma"
+  "projects": [
+   "chroma"
   ],
-  "firstSeen": "2025-05-17",
-  "lastSeen": "2025-05-17",
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -6987,6 +6987,23 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chroma",
+  "name": "Chroma",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "bicep"
+  ],
+  "projects": [],
+  "billings": [
+   "edc-las-vegas-2025:d2:cosmic-meadow:2110:bicep-present-chroma"
+  ],
+  "firstSeen": "2025-05-17",
+  "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
  },
@@ -12642,18 +12659,17 @@
   "links": []
  },
  {
-  "key": "finneas-and-ashe-present-the-favors",
-  "name": "FINNEAS & ASHE PRESENT THE FAVORS",
+  "key": "finneas-and-ashe",
+  "name": "FINNEAS & ASHE",
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
-  "billings": [
-   "acl-2025:d1:miller-lite:1700:finneas-and-ashe-present-the-favors",
-   "acl-2025:d4:miller-lite:1700:finneas-and-ashe-present-the-favors"
+  "projects": [
+   "the-favors"
   ],
-  "firstSeen": "2025-10-03",
-  "lastSeen": "2025-10-10",
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -16097,15 +16113,20 @@
  {
   "key": "hyperbeam",
   "name": "Hyperbeam",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
+  "aliases": [
+   "HYPERBEAM"
+  ],
+  "kind": "project",
+  "parents": [
+   "55-odd-mob-and-omnom"
+  ],
   "projects": [],
   "billings": [
+   "outside-lands-2026:os33",
    "hard-summer-2026:hs2-hyperbeam"
   ],
   "firstSeen": "2026-08-02",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2026-08-07",
   "photo": null,
   "links": []
  },
@@ -35829,6 +35850,24 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-favors",
+  "name": "THE FAVORS",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "finneas-and-ashe"
+  ],
+  "projects": [],
+  "billings": [
+   "acl-2025:d1:miller-lite:1700:finneas-and-ashe-present-the-favors",
+   "acl-2025:d4:miller-lite:1700:finneas-and-ashe-present-the-favors"
+  ],
+  "firstSeen": "2025-10-03",
+  "lastSeen": "2025-10-10",
   "photo": null,
   "links": []
  },

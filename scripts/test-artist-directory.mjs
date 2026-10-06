@@ -1,0 +1,115 @@
+#!/usr/bin/env node
+// Artists directory gate (artist repository, M5). In Dark and Light at 393
+// and 320: the directory opens from Me, every name renders in full (no
+// clipping, no sideways scroll), the list is WINDOWED (a few dozen rows in
+// the DOM out of ~2,500), the scrubber jumps to a letter, search finds an
+// artist and a project's members, Playing 2026 narrows the list, the sheet
+// lists exactly the registry's billings, a key under review says it may be
+// more than one act, and the slice is never precached. No network beyond
+// the local server and the script CDNs.
+import { chromium } from 'playwright';
+import { spawn } from 'node:child_process';
+import { createServer } from 'node:net';
+import { existsSync, readFileSync } from 'node:fs';
+import { serverReady } from './lib/server-ready.mjs';
+
+const problems = []; let checks = 0;
+const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
+const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
+const DIR = JSON.parse(readFileSync('data/artists/directory.json', 'utf8'));
+const AT = '2026-10-06T17:00:00Z';
+const WIDE = process.env.AD_FONT || null;
+
+// Static: the slice is shipped but never precached.
+const sw = readFileSync('sw.js', 'utf8');
+check(!/artists\/directory\.json/.test(sw), 'sw.js precaches the directory slice (it loads on demand)');
+check(/'data\/artists\/directory\.json'/.test(readFileSync('scripts/build.mjs', 'utf8')), 'the build does not ship data/artists/directory.json');
+check(DIR.artists.length >= 2400, `control: directory has ${DIR.artists.length} artists`);
+
+const PORT = await reservePort();
+const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.cwd(), stdio: 'ignore' });
+try {
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
+  const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
+  const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    const tag = `${scheme} ${width}`;
+    const ctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    try {
+      if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date(AT) });
+      await ctx.addInitScript(({ scheme }) => {
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'acl-2026'); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+      }, { scheme });
+      const page = await ctx.newPage();
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=acl-2026&tab=me`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-artists-entry]'), null, { timeout: 60000 });
+      await page.click('[data-artists-entry]');
+      await page.waitForFunction(() => document.querySelector('[data-artist-row]'), null, { timeout: 30000 });
+      await page.clock.runFor(400); await page.waitForTimeout(200);
+      const r = await page.evaluate(() => {
+        const rows = [...document.querySelectorAll('[data-artist-row]')];
+        const cut = rows.filter(b => { const n = b.querySelector('.duo-name'); return n.scrollWidth > n.clientWidth + 1 || n.getBoundingClientRect().right > b.getBoundingClientRect().right - 32; }).map(b => b.dataset.artistRow);
+        return { rows: rows.length, cut, count: document.querySelector('[data-artists-count]')?.textContent.trim(),
+          title: document.querySelector('h1')?.textContent.trim(), letters: [...document.querySelectorAll('[data-artists-scrubber] button')].map(b => b.textContent),
+          overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
+      });
+      check(r.title === 'Artists', `${tag}: directory title is "${r.title}"`);
+      check(r.count === `${DIR.artists.filter(a => a.b.length || a.p).length.toLocaleString('en-US')} artists`, `${tag}: count reads "${r.count}"`);
+      check(r.rows > 5 && r.rows < 80, `${tag}: ${r.rows} rows in the DOM (want a window, not the whole list)`);
+      check(!r.cut.length, `${tag}: names cut: ${r.cut.slice(0, 5)}`);
+      check(r.letters.length >= 20 && r.letters.includes('A') && r.letters.includes('Z'), `${tag}: scrubber letters ${r.letters.join('')}`);
+      check(!r.overflowX, `${tag}: the directory scrolls sideways`);
+      // The scrubber jumps to a letter.
+      await page.click('[data-artists-scrubber] button[aria-label="Artists starting with S"]'); await page.clock.runFor(200); await page.waitForTimeout(200);
+      const s = await page.evaluate(() => { const sc = document.querySelector('[data-artists-scroll]'), r0 = sc.getBoundingClientRect(); const h = [...document.querySelectorAll('[data-dir-letter]')].find(e => { const b = e.getBoundingClientRect(); return b.bottom > r0.top + 1 && b.top < r0.bottom; }); return h ? h.dataset.dirLetter : null; });
+      check(s === 'S', `${tag}: the S button shows section ${s}`);
+      // The longest names are whole when they scroll in: search them one at a time.
+      for (const a of [...DIR.artists].sort((x, y) => y.n.length - x.n.length).slice(0, 3)) {
+        await page.fill('input[aria-label="Search artists"]', a.n); await page.clock.runFor(200); await page.waitForTimeout(150);
+        const c = await page.evaluate(k => { const b = document.querySelector(`[data-artist-row="${CSS.escape(k)}"]`); if (!b) return 'missing'; const n = b.querySelector('.duo-name'); return n.scrollWidth > n.clientWidth + 1 ? 'cut' : n.textContent; }, a.k);
+        check(c === a.n, `${tag}: "${a.n}" renders as ${JSON.stringify(c)}`);
+      }
+      // Search reaches a project's members: "Boys Noize" finds DOG BLOOD with its members line.
+      await page.fill('input[aria-label="Search artists"]', 'boys noize'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      const dog = await page.evaluate(() => document.querySelector('[data-artist-row="dog-blood"]')?.innerText.replace(/\s+/g, ' ') || null);
+      check(dog && /Boys Noize · Skrillex/.test(dog), `${tag}: "boys noize" does not find DOG BLOOD with its members: ${dog}`);
+      // The sheet lists exactly the registry's billings for an artist.
+      const want = DIR.artists.find(a => a.k === 'cloonee');
+      const DIRF = DIR.festivals.map(f => f.brand);
+      await page.fill('input[aria-label="Search artists"]', 'Cloonee'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      await page.click('[data-artist-row="cloonee"]'); await page.clock.runFor(300); await page.waitForTimeout(200);
+      const sh = await page.evaluate(() => ({ n: document.querySelectorAll('[data-artist-sheet] [data-artist-billing]').length, title: document.querySelector('[role=dialog]')?.getAttribute('aria-label') }));
+      check(sh.title === 'Cloonee' && sh.n === want.b.length, `${tag}: Cloonee's sheet lists ${sh.n} billings, registry has ${want.b.length}`);
+      // Festivals count brands, not editions: EDC LV 2025 and 2026 are one.
+      const cl = await page.evaluate(() => document.querySelector('[data-artist-row="cloonee"]')?.innerText || '');
+      const brands = new Set(want.b.map(b => DIRF[b[0]]));
+      check(new RegExp(`^${brands.size} festivals`, 'm').test(cl), `${tag}: Cloonee reads "${cl.replace(/\s+/g, ' ')}", want ${brands.size} festivals`);
+      await page.keyboard.press('Escape'); await page.clock.runFor(200);
+      // A key under review never reads as one career.
+      await page.fill('input[aria-label="Search artists"]', 'klo'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      const klo = await page.evaluate(() => document.querySelector('[data-artist-row="klo"]')?.innerText || '');
+      check(/may be more than one act/.test(klo), `${tag}: klo (pending) reads "${klo.replace(/\s+/g, ' ')}"`);
+      await page.click('[data-artist-row="klo"]'); await page.clock.runFor(300); await page.waitForTimeout(150);
+      check(await page.evaluate(() => !!document.querySelector('[data-artist-sheet-pending]')), `${tag}: klo's sheet has no "may be more than one act" note`);
+      await page.keyboard.press('Escape'); await page.clock.runFor(200);
+      // Playing 2026 narrows to artists with a set still to come.
+      await page.fill('input[aria-label="Search artists"]', ''); await page.click('[data-artists-playing]'); await page.clock.runFor(300); await page.waitForTimeout(150);
+      const today = AT.slice(0, 10);
+      const wantPlaying = DIR.artists.filter(a => a.b.some(b => b[1] && b[1] >= today)).length;
+      const pc = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
+      check(wantPlaying > 100 && pc === `${wantPlaying.toLocaleString('en-US')} artists`, `${tag}: Playing 2026 reads "${pc}", want ${wantPlaying}`);
+    } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
+  await browser.close();
+} finally { server.kill(); }
+
+if (problems.length) {
+  console.log(`  ✗ artist directory: ${problems.length} of ${checks} checks failed`);
+  for (const p of problems) console.log(`    ✗ ${p}`);
+  process.exit(1);
+}
+console.log(`  ✓ artist directory: ${checks} checks — opens from Me, windowed, names in full, scrubber, search, sheet = registry, pending keys honest, never precached`);

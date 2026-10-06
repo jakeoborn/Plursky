@@ -66,7 +66,7 @@ export function parseBilling(printed, known = null) {
   }
   if (/\s\+\s/.test(name)) return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'act' }], review: '"+" billing' };
   if (/\b(feat\.?|ft\.?|with|w\/)\s/i.test(name)) return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'act' }], review: 'feat / with billing' };
-  const pres = name.match(/^(.*?)\s+(?:presents|pres\.?)\s*:?\s+(.*)$/i);
+  const pres = name.match(/^(.*?)\s+(?:presents?|pres\.?)\s*:?\s+(.*)$/i);
   if (pres) {
     const parent = keyOf(pres[1]), project = keyOf(pres[2]);
     return { act, setTag, kind: 'project', performers: [{ key: project, role: 'project', parents: [parent], parentNames: [pres[1].trim()] }], review: null };
@@ -173,7 +173,7 @@ export function build(root = ROOT, overrides = null) {
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src });
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid });
     }
   }
   const H = `${root}/data/historical/editions`;
@@ -184,7 +184,7 @@ export function build(root = ROOT, overrides = null) {
       const a = art.get(s.artistId);
       rows.push({ id: s.id, source: 'edition', festivalId: ed.id, festivalBrand: brandOf(ed.festivalId || ed.id), year: ed.year,
         date: days.get(s.day) || null, day: s.day ?? null, stage: st.get(s.stageId) || null,
-        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null });
+        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id });
     }
   }
 
@@ -244,7 +244,7 @@ export function build(root = ROOT, overrides = null) {
       // parent billed alone.
       (perf.parentNames || []).forEach((n, i) => { const pr = touch(perf.parents[i], 'performer'); if (!pr.printings.size) pr.printings.set(n, 0); });
       // A review row is keyed by its whole printing, so it is named by it too.
-      const shown = perf.name ? perf.name : p.review ? r.printed : p.performers.length > 1 ? null : r.printed.replace(/\s*\([^()]*\)\s*$/, '').replace(/^.*?\s+(?:presents|pres\.?)\s*:?\s+/i, '');
+      const shown = perf.name ? perf.name : p.review ? r.printed : p.performers.length > 1 ? null : r.printed.replace(/\s*\([^()]*\)\s*$/, '').replace(/^.*?\s+(?:presents?|pres\.?)\s*:?\s+/i, '');
       // b2b members are named by their own segment of the printing.
       const seg = shown ?? (r.printed.replace(/\s*\([^()]*\)\s*$/, '').split(/\s+b[23]b\s+/i).find(s => keyOf(s) === perf.key) || perf.key);
       rec.printings.set(seg, (rec.printings.get(seg) || 0) + 1);
@@ -271,9 +271,32 @@ export function build(root = ROOT, overrides = null) {
     return { key: rec.key, name, aliases: printings.map(([s]) => s).filter(s => s !== name), kind: rec.kind, parents: [...rec.parents].sort(), projects: [...rec.projects].sort(),
       billings: rec.billings, firstSeen: dates[0] || null, lastSeen: dates[dates.length - 1] || null, photo: null, links: [] };
   });
+  // The in-app Artists directory slice (M5), loaded on demand, never
+  // precached: one row per artist with a billing or a project, display name,
+  // the people behind a project or collab, and its billings compactly as
+  // [festival, date, stage, start, setTag, role]. Pending collisions (§3.4)
+  // are flagged so the app shows their billings separately, never as one arc.
+  const festIx = [], festPos = new Map();
+  const festOf = r => { if (!festPos.has(r.festivalId)) { festPos.set(r.festivalId, festIx.length); festIx.push({ id: r.festivalId, brand: r.festivalBrand, name: r.festivalName, year: r.year }); } return festPos.get(r.festivalId); };
+  const rowById = new Map(rows.map(r => [r.id, r]));
+  const billingById = new Map(billings.map(b => [b.id, b]));
+  const pendingKeys = new Set(review.filter(r => r.pending && r.id.startsWith('key:')).map(r => r.id.slice(4)));
+  const nameOf = new Map(registry.map(r => [r.key, r.name]));
+  const directory = {
+    version: 1,
+    festivals: null,
+    artists: registry.filter(r => r.billings.length || r.projects.length).map(r => {
+      const bs = r.billings.map(id => { const b = billingById.get(id), row = rowById.get(id); const role = b.performers.find(x => x.key === r.key)?.role || 'performer';
+        // Last: the festival's own artist id for a live row (opens its artist page), null for an archived set.
+        return [festOf(row), b.date, b.stage, b.start, b.setTag, role, b.printed, row.source === 'live' ? id.slice(row.festivalId.length + 1) : null]; })
+        .sort((a, b) => String(a[1]).localeCompare(String(b[1])) || String(a[3]).localeCompare(String(b[3])));
+      return { k: r.key, n: r.name, ...(r.parents.length ? { m: r.parents.map(k => nameOf.get(k) || k) } : {}), ...(r.projects.length ? { p: r.projects.map(k => nameOf.get(k) || k) } : {}), ...(pendingKeys.has(r.key) ? { pending: 1 } : {}), b: bs };
+    }),
+  };
+  directory.festivals = festIx;
   const unruled = review.filter(r => !r.pending).length;
   const stageErrors = [...stagesIx.errors, ...[...unmappedStages].map(k => `printed stage not in ${STAGES_FILE}: ${k.replace('|', ' → ')} (run --seed-stages, then join with a source)`)];
-  return { registry, billings, review, excluded, sources, overrides: ov, stageErrors, rows,
+  return { registry, billings, review, excluded, directory, sources, overrides: ov, stageErrors, rows,
     counts: { rows: rows.length, billings: billings.length, excluded: excluded.length, review: review.length, pending: review.length - unruled, unruled, ruled: billings.filter(b => billingOv.has(b.printed)).length, artists: registry.length } };
 }
 
@@ -307,14 +330,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const out = build();
   if (out.stageErrors.length) { console.log(`✗ stage overlay: ${out.stageErrors.length} problems`); for (const e of out.stageErrors.slice(0, 10)) console.log(`  ✗ ${e}`); process.exit(1); }
   const files = { 'registry.json': out.registry, 'billings.json': out.billings, 'review.json': out.review, 'excluded.json': out.excluded };
+  // The directory slice ships to the app, so it is written compact.
+  const compact = { 'directory.json': JSON.stringify(out.directory) + '\n' };
   const text = v => JSON.stringify(v, null, 1) + '\n';
   if (process.argv[2] === '--check') {
-    const drift = Object.entries(files).filter(([f, v]) => !existsSync(`${OUT}/${f}`) || readFileSync(`${OUT}/${f}`, 'utf8') !== text(v)).map(([f]) => f);
+    const drift = [...Object.entries(files).map(([f, v]) => [f, text(v)]), ...Object.entries(compact)].filter(([f, t]) => !existsSync(`${OUT}/${f}`) || readFileSync(`${OUT}/${f}`, 'utf8') !== t).map(([f]) => f);
     if (drift.length) { console.log(`✗ artist registry is stale: ${drift.join(', ')} — run: node scripts/build-artist-registry.mjs`); process.exit(1); }
     console.log(`✓ artist registry current: ${out.counts.artists} artists, ${out.counts.billings} billings, ${out.counts.review} in review, ${out.counts.excluded} excluded`);
   } else {
     mkdirSync(OUT, { recursive: true });
     for (const [f, v] of Object.entries(files)) writeFileSync(`${OUT}/${f}`, text(v));
+    for (const [f, t] of Object.entries(compact)) writeFileSync(`${OUT}/${f}`, t);
     console.log(`[artists] ${out.counts.rows} rows → ${out.counts.billings} billings (${out.counts.ruled} by ruling), ${out.counts.artists} artists, ${out.counts.review} in review (${out.counts.pending} pending, ${out.counts.unruled} unruled), ${out.counts.excluded} excluded`);
   }
 }
