@@ -157,6 +157,42 @@ try {
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }
+  // ── Map chrome: a header on solid ground, nothing floating in its place ──
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    const tag = `map ${scheme} ${width}`;
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
+    try {
+      await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await ctx.clock.install({ time: new Date(AT) });
+      await ctx.addInitScript(({ FID, scheme }) => {
+        if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+      }, { FID, scheme });
+      const page = await ctx.newPage();
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=map`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-map-header]'), null, { timeout: 60000 });
+      await page.clock.runFor(2500); await page.waitForTimeout(300);
+      const r = await page.evaluate(() => {
+        const h = document.querySelector('[data-map-header]');
+        const posture = h.querySelector('[data-map-posture]')?.textContent.trim();
+        const hb = h.getBoundingClientRect();
+        // Any other element painting the posture label is a duplicate floating chip.
+        const dup = [...document.querySelectorAll('.duo-code')].filter(e => e.textContent.trim() === posture && !h.contains(e)).length;
+        const lines = el => el ? Math.round(el.getBoundingClientRect().height / (parseFloat(getComputedStyle(el).lineHeight) || 18)) : 0;
+        return { title: h.querySelector('h1')?.textContent.trim(), posture, dup, headerBottom: hb.bottom,
+          denied: document.querySelector('[data-map-gps-denied]'), deniedLines: lines(document.querySelector('[data-map-gps-denied]')),
+          bg: getComputedStyle(h).backgroundColor, overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
+      });
+      check(r.title === 'Map', `${tag}: map header title is "${r.title}"`);
+      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
+      check(r.dup === 0, `${tag}: the posture label also floats over the map (${r.dup})`);
+      check(!/rgba\(0, 0, 0, 0\)|transparent/.test(r.bg), `${tag}: the map header has no solid ground (${r.bg})`);
+      check(!r.overflowX, `${tag}: Map scrolls sideways`);
+      if (width === 393) check(r.deniedLines <= 1, `${tag}: the location line runs to ${r.deniedLines} lines`);
+    } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+    await ctx.close();
+  }
 } finally {
   if (browser) await browser.close();
   server.kill();
@@ -166,4 +202,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first)`);
+console.log(`  ✓ screen layout: ${checks} checks — Me (identity, actions without zeros, Plursky+ on screen, festival rows), Today before the festival (saved rows, essentials grid, no sideways scroll), Artist (set card and stage night first), Map (header on solid ground)`);
