@@ -29,7 +29,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/lorde.webp"
   },
-  "charli xcx": {
+  "charli-xcx": {
     "artist": "Charli XCX",
     "author": "Elena Ternovaja",
     "source": "commons",
@@ -44,7 +44,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/charli-xcx.webp"
   },
-  "amyl and the sniffers": {
+  "amyl-and-the-sniffers": {
     "artist": "Amyl And The Sniffers",
     "author": "kingArthur_aus",
     "source": "commons",
@@ -59,7 +59,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/amyl-and-the-sniffers.webp"
   },
-  "the war on drugs": {
+  "the-war-on-drugs": {
     "artist": "The War On Drugs",
     "author": "Jeff Marquis",
     "source": "commons",
@@ -74,7 +74,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/the-war-on-drugs.webp"
   },
-  "kings of leon": {
+  "kings-of-leon": {
     "artist": "Kings of Leon",
     "author": "Raph_PH",
     "source": "commons",

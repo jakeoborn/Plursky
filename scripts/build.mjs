@@ -25,6 +25,7 @@ const COPY = [
   'icon-512.png',
   'og.svg',
   'data/artist-photos.js',
+  'data/artist-key.js',
 ];
 
 execFileSync(process.execPath, [path.join(root, 'scripts', 'build-artist-photo-ledger.mjs')],

@@ -112,6 +112,23 @@ const out = build();
   check(threw, 'a merge override was silently ignored');
 }
 
+// ── M3: the app's photo key is the registry's key ─────────────────────────
+{
+  const { slug } = await import('./historical/lib.mjs');
+  const { artistKey } = globalThis.PlurskyArtistKey;
+  const ruledPrinted = new Set((out.overrides.billing || []).map(o => o.printed));
+  let solo = 0; const off = [];
+  for (const b of out.billings) {
+    if (b.performers.length !== 1 || b.performers[0].role !== 'performer' || ruledPrinted.has(b.printed)) continue;
+    solo++; if (artistKey(b.printed) !== b.performers[0].key) off.push(b.printed);
+  }
+  check(solo >= 3000, `control: only ${solo} solo billings compared`);
+  check(!off.length, `app photo key differs from the registry key for ${off.length}: ${off.slice(0, 3)}`);
+  // Outside the folded letters, the key is the historical library's slug.
+  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþð]/.test(t));
+  check(plain.every(t => keyOf(t) === slug(t)), 'keyOf drifted from the historical slug');
+}
+
 // ── Overrides need a why and a source ─────────────────────────────────────
 {
   let threw = false;

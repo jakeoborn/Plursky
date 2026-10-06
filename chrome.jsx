@@ -314,11 +314,13 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 
-// Reviewed self-hosted artwork wins over temporary platform images. The build
+// Reviewed self-hosted artwork wins over temporary platform images. It is
+// keyed by artist key (data/artist-key.js), so "Lorde", "LORDE" and a set-tag
+// billing all find the one reviewed photo. The build
 // validates source, license, attribution and asset hash; localStorage cannot
 // promote an arbitrary URL to permanent artwork.
 function getPermanentArtistImage(name) {
-  const rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  const rec = window.PLURSKY_ARTIST_PHOTOS?.[window.PlurskyArtistKey.artistKey(name || "")];
   if (!rec || !["commons", "press-kit"].includes(rec.source) ||
       !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") ||
       !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
