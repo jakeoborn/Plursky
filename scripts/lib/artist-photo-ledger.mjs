@@ -1,6 +1,11 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
+// Runtime keys are artist keys (data/artist-key.js, the function the app's
+// lookup calls), so "Tiësto" and "TIËSTO" are one row, and a set-tag billing
+// finds its artist's photo. Ledger rows themselves are unchanged.
+import '../../data/artist-key.js';
+const { artistKey } = globalThis.PlurskyArtistKey;
 const licenses = new Set(['CC0-1.0', 'Public-Domain', 'CC-BY-4.0', 'CC-BY-3.0', 'CC-BY-2.0', 'CC-BY-SA-4.0', 'CC-BY-SA-3.0', 'CC-BY-SA-2.0', 'Press-Grant']);
 const cleanText = v => typeof v === 'string' && !!v.trim() && !/[<>\u0000-\u001f]/.test(v);
 const https = v => { try { return new URL(v).protocol === 'https:'; } catch { return false; } };
@@ -48,7 +53,7 @@ export function validateLedger(records, root) {
   if (!Array.isArray(records)) throw new Error('Artist photo ledger must be an array');
   const out = {}, names = new Set();
   for (const rec of records) {
-    const row = validatePhoto(rec, root), key = row.artist.trim().toLowerCase();
+    const row = validatePhoto(rec, root), key = artistKey(row.artist);
     if (names.has(key)) throw new Error('Duplicate artist photo: ' + key);
     names.add(key); out[key] = row;
   }
