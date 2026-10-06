@@ -1023,7 +1023,9 @@ function LineupScreen({
       }
     }
     var INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    var settle = setTimeout(() => release(), 1500);
     var stop = () => {
+      clearTimeout(settle);
       if (ro) ro.disconnect();
       INPUT.forEach(e => window.removeEventListener(e, release, true));
     };

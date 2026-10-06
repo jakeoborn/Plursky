@@ -620,8 +620,9 @@ function LineupScreen({ state, setState }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
-  // Opening at the current hour HOLDS the hour until the user's first input
-  // (touch, wheel, pointer, key). Until then nothing the page does moves the
+  // Opening at the current hour HOLDS the hour while the page settles: until
+  // the user's first input (touch, wheel, pointer, key) or 1.5 s, whichever
+  // comes first. Until then nothing the page does moves the
   // list off it, the fold, a late font, a row that resizes, and no scroll
   // event folds or unfolds the header, because none of them is the user.
   const openHoldRef = React.useRef(false);
@@ -749,7 +750,8 @@ function LineupScreen({ state, setState }) {
       for (const c of sc.children) { if (c.hasAttribute("data-open-anchor")) break; ro.observe(c); }
     }
     const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
-    const stop = () => { if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
+    const settle = setTimeout(() => release(), 1500);
+    const stop = () => { clearTimeout(settle); if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
     function release() { openHoldRef.current = false; stop(); }
     INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
     reanchor();
