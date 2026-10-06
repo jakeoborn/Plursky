@@ -2627,6 +2627,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Artist registry (artist repository, M1) ──
+// Every billing row (live lineups + archived editions) maps to artist keys or
+// is excluded with its reason; set tags come off identity, b2b splits, "&"
+// never does, presents makes a project, unclear rows go to review and are
+// never guessed; the generated data/artists files are current.
+{
+  console.log("▸ Artist registry gate — every billing maps, identity rules hold");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-registry.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist registry failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
