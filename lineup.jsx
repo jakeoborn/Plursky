@@ -620,6 +620,11 @@ function LineupScreen({ state, setState }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
+  // Opening at the current hour moves the list and folds the header in one
+  // step; the scroll events that causes are not the user's (openLock), and
+  // once the fold has rendered the hour is re-anchored (pendingOpen).
+  const openLockRef = React.useRef(0);
+  const pendingOpenRef = React.useRef(false);
   // The whole filter header folds, so its height is measured, not guessed:
   // max-height animates to the real number and the list never jumps.
   const filtersRef = React.useRef(null);
@@ -661,7 +666,7 @@ function LineupScreen({ state, setState }) {
       // makes the scroller taller, which CLAMPS scrollTop upward near the
       // end of the list: read as "the user scrolled up", that reopened the
       // header, the list re-clamped, and GRID oscillated every ~500ms.
-      if (t < lockUntil || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      if (t < lockUntil || t < openLockRef.current || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
       // Hysteresis: collapse only after a real downward drag, expand on any
       // meaningful upward move. Without the gap the header flickers on the
       // momentum bounce.
@@ -699,6 +704,8 @@ function LineupScreen({ state, setState }) {
         // Near the top already (the night's first hour), or a list too short
         // to scroll once folded: open as any other day.
         if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openLockRef.current = performance.now() + 500;
+          pendingOpenRef.current = true;
           setCollapsed(true);
           sc.scrollTop = top;
           return;
@@ -707,6 +714,18 @@ function LineupScreen({ state, setState }) {
     }
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
+  // The fold shrinks rows above the hour inside the list (the plan actions);
+  // Chrome's scroll anchoring compensates, WebKit's does not. Re-anchor once
+  // the folded header has rendered, either way.
+  React.useLayoutEffect(() => {
+    if (!collapsed || !pendingOpenRef.current) return;
+    pendingOpenRef.current = false;
+    const sc = document.querySelector("[data-lineup-scroll]");
+    const anchor = sc && sc.querySelector("[data-open-anchor]");
+    if (!anchor) return;
+    openLockRef.current = performance.now() + 500;
+    sc.scrollTop = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+  }, [collapsed]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 

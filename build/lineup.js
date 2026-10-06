@@ -896,6 +896,8 @@ function LineupScreen({
   var [collapsed, setCollapsed] = React.useState(false);
   var collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
+  var openLockRef = React.useRef(0);
+  var pendingOpenRef = React.useRef(false);
   var filtersRef = React.useRef(null);
   var [filtersH, setFiltersH] = React.useState(0);
   var filtersHRef = React.useRef(0);
@@ -932,7 +934,7 @@ function LineupScreen({
       if (!el) return;
       var y = el.scrollTop;
       var t = performance.now();
-      if (t < lockUntil || el.clientHeight !== lastH) {
+      if (t < lockUntil || t < openLockRef.current || el.clientHeight !== lastH) {
         lastY = y;
         lastH = el.clientHeight;
         return;
@@ -962,6 +964,8 @@ function LineupScreen({
       if (anchor) {
         var top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
         if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openLockRef.current = performance.now() + 500;
+          pendingOpenRef.current = true;
           setCollapsed(true);
           sc.scrollTop = top;
           return;
@@ -970,6 +974,15 @@ function LineupScreen({
     }
     setCollapsed(viewMode === "grid");
   }, [day, viewMode, weekendFilter]);
+  React.useLayoutEffect(() => {
+    if (!collapsed || !pendingOpenRef.current) return;
+    pendingOpenRef.current = false;
+    var sc = document.querySelector("[data-lineup-scroll]");
+    var anchor = sc && sc.querySelector("[data-open-anchor]");
+    if (!anchor) return;
+    openLockRef.current = performance.now() + 500;
+    sc.scrollTop = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+  }, [collapsed]);
   var gridSectionRefs = React.useRef({});
   var [, _tickT] = React.useReducer(x => x + 1, 0);
   React.useEffect(() => {

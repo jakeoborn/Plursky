@@ -134,6 +134,12 @@ try {
     // index.html's global reduced-motion rule forces 0.01ms on everything;
     // anything under a millisecond is "no animation".
     check(parseFloat(s.transition) < 0.001, `reduced motion still animates the header (${s.transition})`);
+    // The running night opens folded at the hour with motion off too: the
+    // instant fold shifts the list, and that shift must not read as the user
+    // scrolling up and reopen the header.
+    await page.clock.runFor(600); await page.waitForTimeout(300);
+    const rs = await state(page);
+    check(rs.collapsed && rs.scrollTop > 56, `reduced motion: the running night does not stay folded at the hour (collapsed=${rs.collapsed}, scrollTop ${rs.scrollTop})`);
     await ctx.close();
   } catch (err) { check(false, `Reduced motion block threw: ${String(err.message || err).split("\n")[0]}`); }
 
