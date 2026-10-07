@@ -71,6 +71,8 @@ try {
       collab:_amPickArtistSongs([s('1','x','Fred again.., Skrillex & Four Tet')],'Four Tet',5).length,
       substr:_amPickArtistSongs([s('1','x','Lorde Tribute Band'),s('2','y','Lordes')],'Lorde',5).length,
       diacritic:_amPickArtistSongs([s('1','x','Beyoncé')],'Beyonce',5).length,
+      setNote:_amPickArtistSongs([s('1','x','GZA'),s('2','y','Liquid Swords Band')],'GZA performing Liquid Swords',5).map(x=>x.id).join(','),
+      paren:_amPickArtistSongs([s('1','x','Small (danny g luvs u B2B Bori)'),s('2','y','Small (danny g luvs u')],'Small (danny g luvs u B2B Bori)',5).map(x=>x.id).join(','),
       noArtistSong:_amPickMomentSong([s('1','Ribs','Lorde')],'Ribs',''),
       exactFirst:_amPickMomentSong([s('2','Ribs (Live)','Lorde'),s('1','Ribs','Lorde')],'Ribs','Lorde')?.id,
     };
@@ -80,6 +82,8 @@ try {
   check('a multi-artist credit matches one of its artists',pure.collab===1);
   check('a substring is not a credit ("Lorde Tribute Band", "Lordes")',pure.substr===0);
   check('diacritics fold ("Beyoncé" = "Beyonce")',pure.diacritic===1);
+  check('a set note is not part of the name ("GZA performing Liquid Swords" = GZA)',pure.setNote==='1',pure.setNote);
+  check('a B2B inside a parenthetical is one act',pure.paren==='1',pure.paren);
   check('a moment song with no artist never matches',pure.noArtistSong===null);
   check('an exact title beats a base-title match',pure.exactFirst==='1',pure.exactFirst);
 

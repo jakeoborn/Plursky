@@ -195,9 +195,13 @@ function _amCredits(artistName) {
     .map(_amNorm).filter(Boolean)
     .concat(_amNorm(artistName));
 }
+// The billed name, its set-note-free form ("GZA performing Liquid Swords" is
+// GZA) and each side of a B2B (split by the shared _b2bParts, which never
+// cuts inside a parenthetical).
 function _amTargets(billed) {
-  const parts = String(billed || "").split(/\s+b2b\s+|\s+b3b\s+/i);
-  return [...new Set([billed, ...parts].map(_amNorm).filter(Boolean))];
+  const look = typeof _lookupName === "function" ? _lookupName : (x => x);
+  const parts = typeof _b2bParts === "function" ? _b2bParts(billed) : [billed];
+  return [...new Set([billed, look(billed), ...parts, ...parts.map(look)].map(_amNorm).filter(Boolean))];
 }
 function _amCredited(song, billed) {
   const targets = _amTargets(billed);
@@ -326,7 +330,8 @@ async function _createAppleMusicPlaylist(state, opts = {}) {
     prog(`Finding ${a.name}…`);
     searches++;
     try {
-      const pool = _amPickArtistSongs(await search(a.name, 25), a.name, 25);
+      const term = typeof _lookupName === "function" ? _lookupName(a.name) : a.name;
+      const pool = _amPickArtistSongs(await search(term, 25), a.name, 25);
       let added = 0;
       for (const s of pool) {
         if (added >= trackLimit(a.tier)) break;

@@ -169,8 +169,9 @@ function _amCredits(artistName) {
   return String(artistName || "").split(/\s*(?:,|&|\bx\b|\band\b|\bfeat\.?|\bft\.?|\bwith\b|\bvs\.?)\s*/i).map(_amNorm).filter(Boolean).concat(_amNorm(artistName));
 }
 function _amTargets(billed) {
-  var parts = String(billed || "").split(/\s+b2b\s+|\s+b3b\s+/i);
-  return [...new Set([billed, ...parts].map(_amNorm).filter(Boolean))];
+  var look = typeof _lookupName === "function" ? _lookupName : x => x;
+  var parts = typeof _b2bParts === "function" ? _b2bParts(billed) : [billed];
+  return [...new Set([billed, look(billed), ...parts, ...parts.map(look)].map(_amNorm).filter(Boolean))];
 }
 function _amCredited(song, billed) {
   var targets = _amTargets(billed);
@@ -352,7 +353,8 @@ async function _createAppleMusicPlaylist(state, opts = {}) {
     prog(`Finding ${a.name}…`);
     searches++;
     try {
-      var pool = _amPickArtistSongs(await search(a.name, 25), a.name, 25);
+      var term = typeof _lookupName === "function" ? _lookupName(a.name) : a.name;
+      var pool = _amPickArtistSongs(await search(term, 25), a.name, 25);
       var added = 0;
       for (var _s of pool) {
         if (added >= trackLimit(a.tier)) break;
