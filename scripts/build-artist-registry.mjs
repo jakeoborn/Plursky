@@ -173,7 +173,10 @@ export function build(root = ROOT, overrides = null) {
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid });
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid,
+        // ACL bills a "both" act once and plays it each weekend: the second
+        // date, a week on, rides the directory slice (the billing stays one).
+        ...(date && a.weekend === 'both' ? { date2: new Date(date.getTime() + 7 * 86400000).toISOString().slice(0, 10) } : {}) });
     }
   }
   const H = `${root}/data/historical/editions`;
@@ -288,7 +291,8 @@ export function build(root = ROOT, overrides = null) {
     artists: registry.filter(r => r.billings.length || r.projects.length).map(r => {
       const bs = r.billings.map(id => { const b = billingById.get(id), row = rowById.get(id); const role = b.performers.find(x => x.key === r.key)?.role || 'performer';
         // Last: the festival's own artist id for a live row (opens its artist page), null for an archived set.
-        return [festOf(row), b.date, b.stage, b.start, b.setTag, role, b.printed, row.source === 'live' ? id.slice(row.festivalId.length + 1) : null]; })
+        // An optional ninth field is the same set's second date (ACL's "both" weekends).
+        return [festOf(row), b.date, b.stage, b.start, b.setTag, role, b.printed, row.source === 'live' ? id.slice(row.festivalId.length + 1) : null, ...(row.date2 ? [row.date2] : [])]; })
         .sort((a, b) => String(a[1]).localeCompare(String(b[1])) || String(a[3]).localeCompare(String(b[3])));
       return { k: r.key, n: r.name, ...(r.parents.length ? { m: r.parents.map(k => nameOf.get(k) || k) } : {}), ...(r.projects.length ? { p: r.projects.map(k => nameOf.get(k) || k) } : {}), ...(pendingKeys.has(r.key) ? { pending: 1 } : {}), b: bs };
     }),

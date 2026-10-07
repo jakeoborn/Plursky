@@ -67,12 +67,17 @@ function _artMeta(a, fests, today) {
   if (!a.b.length) return "";
   var brands = new Set(a.b.map(b => fests[b[0]].brand));
   var parts = [`${brands.size} festival${brands.size === 1 ? "" : "s"}`];
-  var next = a.b.find(b => b[1] && b[1] >= today);
-  if (next) parts.push(`next: ${_artFestShort(fests[next[0]].name)}, ${_artDay(next[1])}`);else {
+  var next = a.b.find(b => _artUpcoming(b, today));
+  if (next) parts.push(`next: ${_artFestShort(fests[next[0]].name)}, ${_artDay(_artUpcoming(next, today))}`);else {
     var last = [...a.b].reverse().find(b => b[1]);
     if (last) parts.push(`last: ${_artFestShort(fests[last[0]].name)} ${last[1].slice(0, 4)}`);
   }
   return parts.join(" · ");
+}
+function _artUpcoming(b, today) {
+  if (b[1] && b[1] >= today) return b[1];
+  if (b[8] && b[8] >= today) return b[8];
+  return null;
 }
 function _artSecond(a) {
   if (a.m) return a.m.join(" · ");
@@ -122,7 +127,10 @@ function ArtistsDirectoryScreen({
     var fq = q.trim() ? _artFold(q.trim()) : "";
     var fi = fest === "" ? -1 : +fest;
     return data.artists.filter(a => {
-      if (playing && !a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(year))) return false;
+      if (playing && !a.b.some(b => {
+        var d = _artUpcoming(b, today);
+        return d && d.startsWith(year);
+      })) return false;
       if (fi >= 0 && !a.b.some(b => b[0] === fi)) return false;
       if (fq && ![a.n, ...(a.m || []), ...(a.p || [])].some(s => _artFold(s).includes(fq))) return false;
       return true;
@@ -558,7 +566,7 @@ function _ArtistBillingsSheet({
   }, y), a.b.filter(b => ((b[1] || "").slice(0, 4) || String(fests[b[0]].year || "")) === y).slice().reverse().map((b, i) => {
     var f = fests[b[0]];
     var can = b[7] && f.id === activeId || !b[7];
-    var when = [b[1] ? _artDay(b[1], true) : "Date to be announced", b[3] && typeof fmt12 === "function" ? fmt12(b[3]) : b[3]].filter(Boolean).join(" · ");
+    var when = [b[1] ? _artDay(b[1], true) + (b[8] ? ` and ${_artDay(b[8], true)}` : "") : "Date to be announced", b[3] && typeof fmt12 === "function" ? fmt12(b[3]) : b[3]].filter(Boolean).join(" · ");
     var where = [b[2], b[4]].filter(Boolean).join(" · ");
     var body = React.createElement("span", {
       style: {

@@ -56,8 +56,8 @@ function _artMeta(a, fests, today) {
   if (!a.b.length) return "";
   const brands = new Set(a.b.map(b => fests[b[0]].brand));
   const parts = [`${brands.size} festival${brands.size === 1 ? "" : "s"}`];
-  const next = a.b.find(b => b[1] && b[1] >= today);
-  if (next) parts.push(`next: ${_artFestShort(fests[next[0]].name)}, ${_artDay(next[1])}`);
+  const next = a.b.find(b => _artUpcoming(b, today));
+  if (next) parts.push(`next: ${_artFestShort(fests[next[0]].name)}, ${_artDay(_artUpcoming(next, today))}`);
   else {
     const last = [...a.b].reverse().find(b => b[1]);
     if (last) parts.push(`last: ${_artFestShort(fests[last[0]].name)} ${last[1].slice(0, 4)}`);
@@ -66,6 +66,13 @@ function _artMeta(a, fests, today) {
 }
 // The second line: the people behind a project or collab (Weverse's members
 // line), or the projects an artist also plays as.
+// A billing's next date on or after today: its own, or the second weekend
+// of an ACL "both" act (b[8]); null once both have passed.
+function _artUpcoming(b, today) {
+  if (b[1] && b[1] >= today) return b[1];
+  if (b[8] && b[8] >= today) return b[8];
+  return null;
+}
 function _artSecond(a) {
   if (a.m) return a.m.join(" · ");
   if (a.p) return `Also plays as ${a.p.join(", ")}`;
@@ -109,7 +116,7 @@ function ArtistsDirectoryScreen({ state, setState }) {
     return data.artists.filter(a => {
       // Playing this year: a billing of its own, dated, still to come. A
       // name that only plays as a project (Bryan Kearney as Key4050) is not.
-      if (playing && !a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(year))) return false;
+      if (playing && !a.b.some(b => { const d = _artUpcoming(b, today); return d && d.startsWith(year); })) return false;
       if (fi >= 0 && !a.b.some(b => b[0] === fi)) return false;
       if (fq && ![a.n, ...(a.m || []), ...(a.p || [])].some(s => _artFold(s).includes(fq))) return false;
       return true;
@@ -286,7 +293,7 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
             {a.b.filter(b => ((b[1] || "").slice(0, 4) || String(fests[b[0]].year || "")) === y).slice().reverse().map((b, i) => {
               const f = fests[b[0]];
               const can = (b[7] && f.id === activeId) || !b[7];
-              const when = [b[1] ? _artDay(b[1], true) : "Date to be announced", b[3] && typeof fmt12 === "function" ? fmt12(b[3]) : b[3]].filter(Boolean).join(" · ");
+              const when = [b[1] ? _artDay(b[1], true) + (b[8] ? ` and ${_artDay(b[8], true)}` : "") : "Date to be announced", b[3] && typeof fmt12 === "function" ? fmt12(b[3]) : b[3]].filter(Boolean).join(" · ");
               const where = [b[2], b[4]].filter(Boolean).join(" · ");
               const body = (
                 <span style={{ flex: 1, minWidth: 0 }}>

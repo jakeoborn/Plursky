@@ -101,9 +101,18 @@ try {
       // Playing 2026 narrows to artists with a set still to come.
       await page.fill('input[aria-label="Search artists"]', ''); await page.click('[data-artists-playing]'); await page.clock.runFor(300); await page.waitForTimeout(150);
       const today = AT.slice(0, 10);
-      const wantPlaying = DIR.artists.filter(a => a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(today.slice(0, 4)))).length;
+      // A billing's next date: its own, or an ACL "both" act's second weekend (b[8]).
+      const upcoming = b => (b[1] && b[1] >= today ? b[1] : b[8] && b[8] >= today ? b[8] : null);
+      const wantPlaying = DIR.artists.filter(a => a.b.some(b => { const d = upcoming(b); return d && d.startsWith(today.slice(0, 4)); })).length;
+      const both = DIR.artists.filter(a => a.b.some(b => b[8]) && !a.b.some(b => b[1] && b[1] >= today)).length;
+      check(both >= 30, `control: ${both} artists play only ACL's second weekend from here (want the W1+W2 "both" acts)`);
       const pc = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
       check(wantPlaying > 100 && pc === `${wantPlaying.toLocaleString('en-US')} artists`, `${tag}: Playing 2026 reads "${pc}", want ${wantPlaying}`);
+      // ACL bills Charli xcx once for both weekends: W1 (Oct 2) has passed,
+      // W2 (Oct 9) has not, so she is Playing 2026 with "next: …, Oct 9".
+      await page.fill('input[aria-label="Search artists"]', 'charli xcx'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      const cx = await page.evaluate(() => document.querySelector('[data-artist-row="charli-xcx"]')?.innerText.replace(/\s+/g, ' ').trim() || null);
+      check(cx && /next: .*Oct 9/.test(cx), `${tag}: Playing 2026 + Charli xcx reads ${JSON.stringify(cx)} (want her ACL W2 date, Oct 9)`);
       // Parents-only records (a name billed only through a project) are listed
       // with "Also plays as", and are never Playing 2026 on the project's
       // billing: Bryan Kearney plays 2026 only as Key4050.
