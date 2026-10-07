@@ -2627,6 +2627,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Screen layout: the board's Me and Today (before the festival) ──
+// An empty account asks for a name (never a dash), Plan / Memories / Crew /
+// Badges are four round actions on one row with no zero counts, the
+// Plursky+ entry stays fully on screen at the top, festival rows keep their
+// title on one line at 320. Both modes, 393 and 320, empty and populated.
+{
+  console.log("▸ Screen layout gate — Me and Today before the festival, on the board");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Artist registry (artist repository, M1) ──
 // Every billing row (live lineups + archived editions) maps to artist keys or
 // is excluded with its reason; set tags come off identity, b2b splits, "&"
@@ -2641,6 +2658,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`artist registry failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artists directory (artist repository, M5) ──
+// Opens from Me; windowed (a few dozen rows of ~2,500 in the DOM); every name
+// in full at 393 and 320 in both modes; scrubber, search, the sheet equals the
+// registry's billings; a key under review never reads as one career; the
+// slice ships but is never precached.
+{
+  console.log("▸ Artists directory gate — windowed, names in full, sheet = registry");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-directory.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artists directory failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

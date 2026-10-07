@@ -230,11 +230,14 @@ function useModalOpen() {
 // ── Stagger-fade entrance for scrollable cards ───────────────
 // Returns a ref to attach to a container. Children with
 // [data-animate] get an intersection-triggered fade-in.
-function useStaggerFade(depKey) {
+function useStaggerFade(depKey, skip = false) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
-    if (!el || !window.IntersectionObserver) return;
+    // skip: a list that opens somewhere other than its top (Lineup at the
+    // current hour) shows its rows as they are; sliding rows in under a jump
+    // reads as the list moving twice.
+    if (!el || skip || !window.IntersectionObserver) return;
     const targets = el.querySelectorAll("[data-animate]");
     if (!targets.length) return;
     targets.forEach(t => { t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });

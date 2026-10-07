@@ -25,6 +25,8 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
   check(same(keys(b3b), ['josh-baker:b2b', 'kettama:b2b', 'prospa:b2b']), `b3b: ${JSON.stringify(b3b)}`);
   const unnamed = parseBilling('VNSSA B2B ????');
   check(same(keys(unnamed), ['vnssa:b2b']), `an unnamed partner never becomes an artist: ${JSON.stringify(unnamed)}`);
+  const present = parseBilling('Bicep present Chroma');
+  check(present.kind === 'project' && present.performers[0].key === 'chroma' && same(present.performers[0].parents, ['bicep']), `"present" is "presents": ${JSON.stringify(present)}`);
   const proj = parseBilling('Levity presents Lasership');
   check(proj.kind === 'project' && proj.performers[0].key === 'lasership' && same(proj.performers[0].parents, ['levity']), `presents: ${JSON.stringify(proj)}`);
   const people = parseBilling('Skull Machine (Black Tiger Sex Machine x Kai Wachi)');

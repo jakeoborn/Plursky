@@ -233,7 +233,7 @@ const mutants = [
   ['a walk-time sentence on unverified geometry', unverified, (h) => h.replace('</main>', `${WALK}\n</main>`), false],
   // A lineup-only page losing its only source line, and a preview losing its
   // only official link.
-  ['a lineup-only page with its Lineup source dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>Lineup: [^\n]*<\/li>/, ''), false],
+  ['an acts page with both source rows dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>(?:Lineup|Set times): [^\n]*<\/li>/g, ''), false],
   ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/[^"]*"[^>]*>[^<]*<\/a>/g, 'coachella'), false], // site AND maps page
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
