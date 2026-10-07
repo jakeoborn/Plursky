@@ -711,11 +711,24 @@ function LineupScreen({ state, setState }) {
   // hour (Jake, 2026-10-06), scrolled to the first set of this hour or the
   // earliest one still playing ([data-open-anchor]), with the header folded
   // as GRID's is. Scrolling up, or a tap on the bar, restores the header.
+  // Late on the running night the sets after the hour are shorter than the
+  // screen, so scrollTop maxes out with the hour still far down the list
+  // (ACL Fri 20:30: 407px). The tail after the last set takes up exactly the
+  // difference, never more; it exists only on the running night.
+  const fitOpenTail = (sc) => {
+    const a = sc.querySelector("[data-open-anchor]"), tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    const base = sc.scrollHeight - tail.offsetHeight;
+    const need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
   React.useLayoutEffect(() => {
     if (viewMode === "list") {
       const sc = document.querySelector("[data-lineup-scroll]");
       const anchor = sc && sc.querySelector("[data-open-anchor]");
       if (anchor) {
+        fitOpenTail(sc);
         const top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
         // Near the top already (the night's first hour), or a list too short
         // to scroll once folded: open as any other day.
@@ -741,6 +754,7 @@ function LineupScreen({ state, setState }) {
       if (!openHoldRef.current) return;
       const a = sc.querySelector("[data-open-anchor]");
       if (!a) return;
+      fitOpenTail(sc);
       const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
       if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
     };
@@ -752,7 +766,9 @@ function LineupScreen({ state, setState }) {
     const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
     const settle = setTimeout(() => release(), 1500);
     const stop = () => { clearTimeout(settle); if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
-    function release() { openHoldRef.current = false; stop(); }
+    // The fold may still be settling when the hold lets go: size the tail to
+    // the final box once more, so it never adds more room than the hour needs.
+    function release() { openHoldRef.current = false; stop(); fitOpenTail(sc); }
     INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
     reanchor();
     return stop;
@@ -1486,6 +1502,10 @@ function LineupScreen({ state, setState }) {
                   {nowMine.map(a => renderRow(a, true))}
                 </div>
               ] : []));
+            // Late in the night too few sets follow the hour to scroll it to
+            // the top; this tail (sized by fitOpenTail, 0 when not needed)
+            // gives the list the room. Running night only.
+            if (at !== -1) rows.push(<div key="__tail" data-open-tail aria-hidden="true" />);
           }
           return rows;
         })()}

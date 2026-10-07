@@ -34,14 +34,15 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, reduced = false, saved = null } = {}) => {
-    const ctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: 'block', reducedMotion: reduced ? 'reduce' : 'no-preference' });
+  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, height = 844, reduced = false, saved = null, scheme = null } = {}) => {
+    const ctx = await browser.newContext({ viewport: { width, height }, serviceWorkers: 'block', reducedMotion: reduced ? 'reduce' : 'no-preference', ...(scheme ? { colorScheme: scheme } : {}) });
     await ctx.clock.install({ time: new Date(at) });
-    await ctx.addInitScript(({ fid, view, saved }) => {
+    await ctx.addInitScript(({ fid, view, saved, scheme }) => {
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
       localStorage.setItem('plursky_lineup_view', view); localStorage.setItem('cloud_nudge_seen', '1');
       if (saved) localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
-    }, { fid, view, saved });
+      if (scheme) localStorage.setItem('plursky.appearance', scheme);
+    }, { fid, view, saved, scheme });
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&tab=lineup`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && document.querySelector('[data-lineup-filters]') && document.querySelector('[data-lineup-scroll]'), fid, { timeout: 60000 });
@@ -84,6 +85,8 @@ try {
     const { ctx, page } = await open({ at: '2026-09-30T18:00:00Z' });
     let s = await state(page);
     check(!s.collapsed && s.filtersH > 200, `list opens with the full header (collapsed=${s.collapsed}, ${s.filtersH}px)`);
+    // The end-of-night tail is the running night's alone.
+    check(await page.evaluate(() => !document.querySelector('[data-open-tail]')), 'a day that is not running carries the end-of-night tail');
     check(s.compactH < 1 && s.compactInert, `the compact bar is hidden and inert while the header is open (${s.compactH}px, inert=${s.compactInert})`);
     // A scroll the page makes (no wheel, touch or key) never folds it: only
     // the user's own scrolling does.
@@ -356,6 +359,45 @@ try {
       await ctx.close();
     } catch (err) { check(false, `${width} board block threw: ${String(err.message || err).split("\n")[0]}`); }
   }
+  // Late in the running night (ACL Fri 2 at 20:30 CDT) the sets after the
+  // hour are shorter than the screen; the list still opens with the hour at
+  // the top (it opened 407px down when scrollTop maxed out), Dark and Light,
+  // 393 and 320, and the tail that makes room is no taller than it needs.
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    try {
+      const { ctx, page } = await open({ at: '2026-10-03T01:30:00Z', width, height: 852, scheme });
+      await page.clock.runFor(600); await page.waitForTimeout(300);
+      const o = await page.evaluate(() => {
+        const sc = document.querySelector('[data-lineup-scroll]'), r0 = sc.getBoundingClientRect(), a = sc.querySelector('[data-open-anchor]');
+        const toMin = t => { const [h, m] = String(t).split(':').map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+        const hour = Math.floor(toMin(window.NOW.time) / 60) * 60;
+        const byName = new Map(window.ARTISTS.filter(x => x.day === window.NOW.night).map(x => [x.name, x]));
+        const first = [...sc.querySelectorAll('[data-set-name]')].find(n => n.getBoundingClientRect().top >= r0.top - 1);
+        const f = first ? byName.get(first.textContent) : null;
+        return { night: window.NOW.night, time: window.NOW.time, theme: document.documentElement.dataset.mode || null, scrollTop: Math.round(sc.scrollTop),
+          anchorDy: a ? Math.round(a.getBoundingClientRect().top - r0.top) : null,
+          first: f ? { name: f.name, start: f.start, ok: window.isSetLive(f) || toMin(f.start) >= hour } : null };
+      });
+      const tag = `ACL late ${scheme} ${width}`;
+      check(o.night === 1 && o.time === '20:30', `${tag} control: clock reads night ${o.night} at ${o.time}`);
+      check(o.theme === scheme, `${tag} control: page theme is ${o.theme}`);
+      check(o.scrollTop > 56 && o.anchorDy !== null && Math.abs(o.anchorDy) <= 2, `${tag}: the hour opens ${o.anchorDy}px below the top of the list (scrollTop ${o.scrollTop})`);
+      check(o.first && o.first.ok, `${tag}: the first set in view is neither playing nor this hour: ${JSON.stringify(o.first)}`);
+      check((await state(page)).collapsed, `${tag}: the running night does not open folded`);
+      await ctx.close();
+    } catch (err) { check(false, `ACL late ${scheme} ${width} block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
+  try {
+    // Motion off, so the fold has settled: the tail adds exactly the room the
+    // hour needs, no blank screen past it.
+    const { ctx, page } = await open({ at: '2026-10-03T01:30:00Z', height: 852, reduced: true });
+    await page.clock.runFor(1500); await page.waitForTimeout(400);
+    const t = await page.evaluate(() => { const sc = document.querySelector('[data-lineup-scroll]'), a = sc.querySelector('[data-open-anchor]'), tl = sc.querySelector('[data-open-tail]');
+      return { tail: tl ? tl.offsetHeight : null, spare: Math.round(sc.scrollHeight - sc.clientHeight - (a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop)) }; });
+    check(t.tail > 0 && Math.abs(t.spare) <= 2, `ACL late: the end-of-night tail is ${t.tail}px and leaves ${t.spare}px of scroll past the hour (want 0)`);
+    await ctx.close();
+  } catch (err) { check(false, `ACL late tail block threw: ${String(err.message || err).split("\n")[0]}`); }
+
   // Nothing saved is live (empty plan): no lifted card, never a placeholder.
   try {
     const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', reduced: true });

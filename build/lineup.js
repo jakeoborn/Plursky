@@ -986,11 +986,21 @@ function LineupScreen({
       }
     };
   }, [viewMode, day]);
+  var fitOpenTail = sc => {
+    var a = sc.querySelector("[data-open-anchor]"),
+      tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    var top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    var base = sc.scrollHeight - tail.offsetHeight;
+    var need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
   React.useLayoutEffect(() => {
     if (viewMode === "list") {
       var sc = document.querySelector("[data-lineup-scroll]");
       var anchor = sc && sc.querySelector("[data-open-anchor]");
       if (anchor) {
+        fitOpenTail(sc);
         var top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
         if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
           openHoldRef.current = true;
@@ -1011,6 +1021,7 @@ function LineupScreen({
       if (!openHoldRef.current) return;
       var a = sc.querySelector("[data-open-anchor]");
       if (!a) return;
+      fitOpenTail(sc);
       var top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
       if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
     };
@@ -1032,6 +1043,7 @@ function LineupScreen({
     function release() {
       openHoldRef.current = false;
       stop();
+      fitOpenTail(sc);
     }
     INPUT.forEach(e => window.addEventListener(e, release, {
       capture: true,
@@ -2136,6 +2148,11 @@ function LineupScreen({
           padding: "4px 0 8px"
         }
       }, "Now on your plan"), nowMine.map(a => renderRow(a, true)))] : []));
+      if (at !== -1) rows.push(React.createElement("div", {
+        key: "__tail",
+        "data-open-tail": true,
+        "aria-hidden": "true"
+      }));
     }
     return rows;
   })()), NOW.night === day && NOW.time && (viewMode === "grid" || nowOff && filter !== "now" && sortBy === "time") && React.createElement("button", {
