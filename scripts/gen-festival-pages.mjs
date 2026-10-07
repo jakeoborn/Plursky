@@ -482,7 +482,12 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
   if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
-    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+    // Provenance follows scheduleSource, like every other festival's answer:
+    // this sentence said "community sources" after the source went official.
+    const src = cfg.scheduleSource;
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: src && src.official === true
+      ? `Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, from the official set times${src.observedAt ? ` confirmed ${src.observedAt}` : ''}.`
+      : 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
