@@ -2666,13 +2666,69 @@ function DuoTodayHeader({
     color: "var(--ink-2)",
     position: "relative"
   };
+  var skin = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.editionSkin || null;
+  var band = skin ? {
+    "--ink": skin.ink,
+    "--ink-2": skin.ink2,
+    "--ink-3": skin.ink3,
+    "--acc-ink": skin.ink,
+    "--s2": "rgba(255,255,255,0.55)",
+    "--bg": skin.chip,
+    background: skin.band,
+    color: skin.ink,
+    paddingBottom: 12,
+    borderBottom: `1.5px dashed ${skin.wire}`,
+    position: "relative",
+    overflow: "hidden"
+  } : null;
   return React.createElement("header", {
+    "data-edition-skin": skin ? "on" : undefined,
     style: {
-      paddingTop: "calc(var(--top-pad, 0px) + 14px)"
+      paddingTop: "calc(var(--top-pad, 0px) + 14px)",
+      ...band
     }
-  }, React.createElement("div", {
+  }, skin && React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "104",
+    height: "32",
+    viewBox: "0 0 104 32",
+    fill: "none",
+    stroke: skin.wire,
+    strokeWidth: "1.5",
     style: {
-      padding: "0 20px"
+      position: "absolute",
+      right: 0,
+      top: "calc(var(--top-pad, 0px) + 46px)",
+      pointerEvents: "none"
+    }
+  }, React.createElement("path", {
+    d: "M104 5 H62 L54 6 H30"
+  }), React.createElement("circle", {
+    cx: "26",
+    cy: "6",
+    r: "3.5",
+    fill: skin.chip,
+    stroke: skin.ink
+  }), React.createElement("path", {
+    d: "M104 16 H70 L62 16 H42"
+  }), React.createElement("circle", {
+    cx: "38",
+    cy: "16",
+    r: "3.5",
+    fill: skin.chip,
+    stroke: skin.ink
+  }), React.createElement("path", {
+    d: "M104 27 H78 L70 26 H54"
+  }), React.createElement("circle", {
+    cx: "50",
+    cy: "26",
+    r: "3.5",
+    fill: skin.chip,
+    stroke: skin.ink
+  })), React.createElement("div", {
+    style: {
+      padding: "0 20px",
+      position: "relative"
     }
   }, React.createElement("div", {
     style: {
@@ -2683,7 +2739,17 @@ function DuoTodayHeader({
       flexWrap: "wrap",
       minHeight: 20
     }
-  }, React.createElement("span", {
+  }, skin ? React.createElement("span", {
+    className: "duo-label",
+    "data-edition-chip": true,
+    style: {
+      background: skin.chip,
+      color: skin.chipInk,
+      border: `1.5px dashed ${skin.ink}`,
+      padding: "4px 8px",
+      maxWidth: "100%"
+    }
+  }, status, deviceOffline ? " · No signal" : "") : React.createElement("span", {
     className: "duo-label duo-ink3"
   }, status, deviceOffline ? " · No signal" : ""), rise && React.createElement("span", {
     className: "duo-sun",

@@ -59,6 +59,15 @@ const US_STATES = new Set(['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI
 // "Legend Valley · Thornville, OH" -> venue + PostalAddress parts.
 // `entry.region` supplies the country when the location string omits it
 // ("Tinker Field · Orlando" gives a locality but no country).
+// Edition skin (festival config): the page's title block in the festival's own
+// look, matching the app's Today header band. Colours only; no artwork.
+function editionHeadOpen(cfg) {
+  const k = cfg.editionSkin;
+  if (!k) return '';
+  const v = (n, x) => `${n}:${String(x).replace(/[;"<>]/g, '')}`;
+  return `  <header class="edition" style="${[v('--ed-band', k.band), v('--ed-ink', k.ink), v('--ed-chip', k.chip), v('--ed-wire', k.wire)].join(';')}">\n`;
+}
+
 function place(cfg, region) {
   const [venueRaw, whereRaw] = String(cfg.location || '').split('·').map(s => (s || '').trim());
   const venue = venueRaw || cfg.locationShort || cfg.name;
@@ -785,6 +794,10 @@ ${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.so
   section.watch figure.tapped .embed-tap { display:none; }
   section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
   section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
+  header.edition { background:var(--ed-band); color:var(--ed-ink); border:1.5px dashed var(--ed-wire); border-radius:16px; padding:18px 18px 14px; margin:8px 0 18px; }
+  header.edition h1, header.edition p { color:var(--ed-ink); }
+  header.edition h1 { margin-top:0; }
+  header.edition .meta { display:inline-block; background:var(--ed-chip); border:1.5px dashed var(--ed-ink); padding:4px 8px; }
 </style>
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -799,9 +812,9 @@ ${JSON.stringify(crumbLd, null, 2)}
 <body>
 <main>
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
-  <h1>${esc(cfg.name)}</h1>
+${editionHeadOpen(cfg)}  <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
-  <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
+  <p>${esc(cfg.tagline || '')}</p>${cfg.editionSkin ? '\n  </header>' : ''}${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
