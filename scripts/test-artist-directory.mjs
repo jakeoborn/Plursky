@@ -5,7 +5,10 @@
 // the DOM out of ~2,500), the scrubber jumps to a letter, search finds an
 // artist and a project's members, Playing 2026 narrows the list, the sheet
 // lists exactly the registry's billings, a key under review says it may be
-// more than one act, and the slice is never precached. No network beyond
+// more than one act, a name billed only through a project reads "Also plays
+// as" and is never Playing 2026 on the project's billing, Lineup's search
+// opens it scoped to the open festival (Me's row stays every festival), and
+// the slice is never precached. No network beyond
 // the local server and the script CDNs.
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -98,9 +101,64 @@ try {
       // Playing 2026 narrows to artists with a set still to come.
       await page.fill('input[aria-label="Search artists"]', ''); await page.click('[data-artists-playing]'); await page.clock.runFor(300); await page.waitForTimeout(150);
       const today = AT.slice(0, 10);
-      const wantPlaying = DIR.artists.filter(a => a.b.some(b => b[1] && b[1] >= today)).length;
+      const wantPlaying = DIR.artists.filter(a => a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(today.slice(0, 4)))).length;
       const pc = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
       check(wantPlaying > 100 && pc === `${wantPlaying.toLocaleString('en-US')} artists`, `${tag}: Playing 2026 reads "${pc}", want ${wantPlaying}`);
+      // Parents-only records (a name billed only through a project) are listed
+      // with "Also plays as", and are never Playing 2026 on the project's
+      // billing: Bryan Kearney plays 2026 only as Key4050.
+      const bk = DIR.artists.find(a => a.k === 'bryan-kearney');
+      check(bk && !bk.b.length && bk.p?.includes('Key4050'), `control: bryan-kearney is parents-only in the registry: ${JSON.stringify(bk)}`);
+      await page.fill('input[aria-label="Search artists"]', 'kearney'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      const pk = await page.evaluate(() => [...document.querySelectorAll('[data-artist-row]')].map(b => b.dataset.artistRow));
+      check(pk.includes('key4050') && !pk.includes('bryan-kearney'), `${tag}: Playing 2026 + "kearney" lists ${JSON.stringify(pk)} (want Key4050, not Bryan Kearney)`);
+      await page.click('[data-artists-playing]'); await page.clock.runFor(200); await page.waitForTimeout(150);
+      const bkRow = await page.evaluate(() => document.querySelector('[data-artist-row="bryan-kearney"]')?.innerText.replace(/\s+/g, ' ').trim() || null);
+      check(bkRow && /Also plays as Key4050/.test(bkRow) && !/2026|next:/.test(bkRow), `${tag}: Bryan Kearney reads ${JSON.stringify(bkRow)}`);
+      const poAll = DIR.artists.filter(a => !a.b.length && a.p).length;
+      check(poAll > 0, `control: ${poAll} parents-only records`);
+
+      // Lineup's search opens the directory scoped to the open festival,
+      // carrying the search; the chip widens it. Me's row stays every festival.
+      const FI = DIR.festivals.findIndex(f => f.id === 'acl-2026');
+      await page.goto(`http://127.0.0.1:${PORT}/index.html?f=acl-2026&tab=lineup`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(() => document.querySelector('[data-lineup-search-toggle]'), null, { timeout: 60000 });
+      await page.clock.runFor(1500);
+      await page.click('[data-lineup-search-toggle]'); await page.clock.runFor(300);
+      await page.fill('input[aria-label="Search the lineup"]', 'charli'); await page.clock.runFor(300); await page.waitForTimeout(150);
+      const foot = await page.evaluate(() => {
+        const e = document.querySelector('[data-lineup-artists-entry]'); if (!e) return null;
+        const row = [...e.parentElement.children].map(b => b.getBoundingClientRect());
+        return { text: e.textContent, oneLine: new Set(row.map(r => Math.round(r.top))).size === 1, inside: row.every(r => r.left >= -1 && r.right <= innerWidth + 1), wraps: e.scrollWidth > e.clientWidth + 1 || e.getBoundingClientRect().height > 48 };
+      });
+      check(foot && foot.oneLine && foot.inside && !foot.wraps, `${tag}: the Lineup search entry does not sit on one line in the search footer: ${JSON.stringify(foot)}`);
+      await page.click('[data-lineup-artists-entry]');
+      await page.waitForFunction(() => document.querySelector('[data-artists-count]') && document.querySelector('[data-artist-row]'), null, { timeout: 30000 });
+      await page.clock.runFor(300); await page.waitForTimeout(200);
+      const wantS = await page.evaluate(({ FI }) => fetch('data/artists/directory.json').then(r => r.json()).then(D => {
+        const f = s => window.PlurskyArtistKey.foldKey(s), fq = f('charli');
+        const scoped = D.artists.filter(a => a.b.some(b => b[0] === FI));
+        return { q: scoped.filter(a => [a.n, ...(a.m || []), ...(a.p || [])].some(s => f(s).includes(fq))).length, all: scoped.length };
+      }), { FI });
+      const sc1 = await page.evaluate(() => ({ title: document.querySelector('h1')?.textContent.trim(), q: document.querySelector('input[aria-label="Search artists"]')?.value,
+        fest: document.querySelector('[data-artists-festival]')?.value, count: document.querySelector('[data-artists-count]')?.textContent.trim(), charli: !!document.querySelector('[data-artist-row="charli-xcx"]') }));
+      check(sc1.title === 'Artists' && sc1.q === 'charli' && sc1.fest === String(FI), `${tag}: Lineup entry opens ${JSON.stringify(sc1)} (want Artists, "charli", festival ${FI})`);
+      check(wantS.q >= 1 && sc1.count === `${wantS.q} ${wantS.q === 1 ? 'artist' : 'artists'}` && sc1.charli, `${tag}: Lineup entry lists ${sc1.count}, want ${wantS.q} with Charli xcx`);
+      await page.fill('input[aria-label="Search artists"]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
+      const sc2 = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
+      check(wantS.all > 100 && wantS.all < DIR.artists.length && sc2 === `${wantS.all} artists`, `${tag}: the scoped directory reads "${sc2}", want ${wantS.all} (ACL 2026 only)`);
+      await page.selectOption('[data-artists-festival]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
+      const sc3 = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
+      check(sc3 === r.count, `${tag}: the Festival chip does not widen the scope: "${sc3}", want "${r.count}"`);
+      // Back to the lineup, then Me's row: every festival, no leftover scope.
+      await page.click('button[aria-label="Back"]'); await page.clock.runFor(300);
+      await page.locator('button', { hasText: /^Me$/ }).last().click(); await page.clock.runFor(600);
+      await page.waitForFunction(() => document.querySelector('[data-artists-entry]'), null, { timeout: 30000 });
+      await page.click('[data-artists-entry]');
+      await page.waitForFunction(() => document.querySelector('[data-artists-count]') && document.querySelector('[data-artist-row]'), null, { timeout: 30000 });
+      await page.clock.runFor(300); await page.waitForTimeout(150);
+      const me = await page.evaluate(() => ({ q: document.querySelector('input[aria-label="Search artists"]')?.value, fest: document.querySelector('[data-artists-festival]')?.value, count: document.querySelector('[data-artists-count]')?.textContent.trim() }));
+      check(me.q === '' && me.fest === '' && me.count === r.count, `${tag}: Me's row after the Lineup entry opens ${JSON.stringify(me)}, want every festival (${r.count})`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }

@@ -1068,6 +1068,12 @@ function LineupScreen({ state, setState }) {
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0 -8px" }}>
         <button onClick={surpriseMe} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
+        {/* The Artists directory, scoped to this festival and carrying the
+            search: where else these acts have played. */}
+        {typeof ArtistsDirectoryScreen === "function" && (
+          <button data-lineup-artists-entry style={textBtn}
+            onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: q.trim(), artistsFestival: FESTIVAL_CONFIG.id })}>Artist history</button>
+        )}
         <button onClick={() => { setQ(""); setSearchOpen(false); }} style={textBtn}>Done</button>
       </div>
     </div>

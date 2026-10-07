@@ -106,20 +106,28 @@ function ArtistsDirectoryScreen({
   var [playing, setPlaying] = React.useState(false);
   var [fest, setFest] = React.useState("");
   var [open, setOpen] = React.useState(null);
-  var today = _artToday();
+  var today = _artToday(),
+    year = today.slice(0, 4);
   var data = res.status === "ready" ? res.data : null;
   var fests = data ? data.festivals : [];
+  var scoped = React.useRef(false);
+  React.useLayoutEffect(() => {
+    if (!data || scoped.current) return;
+    scoped.current = true;
+    var i = state.artistsFestival ? data.festivals.findIndex(f => f.id === state.artistsFestival) : -1;
+    if (i >= 0) setFest(String(i));
+  }, [data]);
   var list = React.useMemo(() => {
     if (!data) return [];
     var fq = q.trim() ? _artFold(q.trim()) : "";
     var fi = fest === "" ? -1 : +fest;
     return data.artists.filter(a => {
-      if (playing && !a.b.some(b => b[1] && b[1] >= today)) return false;
+      if (playing && !a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(year))) return false;
       if (fi >= 0 && !a.b.some(b => b[0] === fi)) return false;
       if (fq && ![a.n, ...(a.m || []), ...(a.p || [])].some(s => _artFold(s).includes(fq))) return false;
       return true;
     }).sort((x, y) => _artFold(x.n).localeCompare(_artFold(y.n)));
-  }, [data, q, playing, fest, today]);
+  }, [data, q, playing, fest, today, year]);
   var items = React.useMemo(() => {
     var out = [];
     var cur = null;
@@ -211,7 +219,7 @@ function ArtistsDirectoryScreen({
     "aria-pressed": playing,
     "data-artists-playing": true,
     onClick: () => setPlaying(v => !v)
-  }, React.createElement("span", null, "Playing 2026")), React.createElement("label", {
+  }, React.createElement("span", null, "Playing ", year)), React.createElement("label", {
     className: "duo-chip",
     style: {
       position: "relative"
@@ -631,7 +639,9 @@ function ArtistsDirectoryRow() {
     "data-artists-entry": true,
     onClick: () => (window._pushNav || (() => {}))({
       tab: "artists",
-      artist: null
+      artist: null,
+      artistsQuery: "",
+      artistsFestival: null
     }),
     className: "duo-card",
     style: {

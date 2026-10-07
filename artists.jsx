@@ -89,21 +89,32 @@ function ArtistsDirectoryScreen({ state, setState }) {
   const [playing, setPlaying] = React.useState(false);
   const [fest, setFest] = React.useState("");
   const [open, setOpen] = React.useState(null);
-  const today = _artToday();
+  const today = _artToday(), year = today.slice(0, 4);
   const data = res.status === "ready" ? res.data : null;
   const fests = data ? data.festivals : [];
+  // Lineup's search opens the directory scoped to the festival you have
+  // open (Me's row opens it across every festival); the chip widens it.
+  const scoped = React.useRef(false);
+  React.useLayoutEffect(() => {
+    if (!data || scoped.current) return;
+    scoped.current = true;
+    const i = state.artistsFestival ? data.festivals.findIndex(f => f.id === state.artistsFestival) : -1;
+    if (i >= 0) setFest(String(i));
+  }, [data]);
 
   const list = React.useMemo(() => {
     if (!data) return [];
     const fq = q.trim() ? _artFold(q.trim()) : "";
     const fi = fest === "" ? -1 : +fest;
     return data.artists.filter(a => {
-      if (playing && !a.b.some(b => b[1] && b[1] >= today)) return false;
+      // Playing this year: a billing of its own, dated, still to come. A
+      // name that only plays as a project (Bryan Kearney as Key4050) is not.
+      if (playing && !a.b.some(b => b[1] && b[1] >= today && b[1].startsWith(year))) return false;
       if (fi >= 0 && !a.b.some(b => b[0] === fi)) return false;
       if (fq && ![a.n, ...(a.m || []), ...(a.p || [])].some(s => _artFold(s).includes(fq))) return false;
       return true;
     }).sort((x, y) => _artFold(x.n).localeCompare(_artFold(y.n)));
-  }, [data, q, playing, fest, today]);
+  }, [data, q, playing, fest, today, year]);
 
   const items = React.useMemo(() => {
     const out = []; let cur = null;
@@ -134,7 +145,7 @@ function ArtistsDirectoryScreen({ state, setState }) {
           style={{ width: "100%", boxSizing: "border-box", height: 44, padding: "0 14px", borderRadius: "var(--rad-md)",
             border: "1px solid var(--line-2)", background: "var(--s2)", color: "var(--ink)", font: "400 16px/1 var(--f-ui)" }} />
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
-          <button className="duo-chip" aria-pressed={playing} data-artists-playing onClick={() => setPlaying(v => !v)}><span>Playing 2026</span></button>
+          <button className="duo-chip" aria-pressed={playing} data-artists-playing onClick={() => setPlaying(v => !v)}><span>Playing {year}</span></button>
           <label className="duo-chip" style={{ position: "relative" }}>
             <span>{fest === "" ? "Festival" : _artFestShort(fests[+fest]?.name || "Festival") + (fests[+fest]?.year ? ` ${fests[+fest].year}` : "")}</span>
             <select data-artists-festival aria-label="Festival" value={fest} onChange={e => setFest(e.target.value)}
@@ -304,7 +315,7 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
 // The entry on Me, under All festivals.
 function ArtistsDirectoryRow() {
   return (
-    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null })}
+    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: "", artistsFestival: null })}
       className="duo-card" style={{
         width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
         display: "flex", alignItems: "center", gap: 12, border: "none",
