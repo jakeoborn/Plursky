@@ -72,7 +72,11 @@ function _appleMusicOriginOk() {
 async function connectAppleMusic() {
   if (!APPLE_DEV_TOKEN) return { error: "not_configured" };
   if (!_appleMusicOriginOk()) {
-    return { error: "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there." };
+    // The iPhone app runs at capacitor://localhost too, so it gets its own
+    // sentence instead of a developer's.
+    return { error: window.Capacitor?.isNativePlatform?.()
+      ? "Apple Music sign-in isn't available in the iPhone app yet. Build this playlist at plursky.com."
+      : "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there." };
   }
   try {
     const music = await _ensureMusicKitConfigured();
@@ -172,13 +176,91 @@ function _collectMomentSongs() {
   return out;
 }
 
+// ── Apple Music catalog matching ─────────────────────────────
+// A catalog search is ranked by relevance, not by who made the song, so the
+// first result for "Lorde" can be another artist's track and the first result
+// for "Ribs Lorde" can be a cover. Both used to be taken as a fallback, which
+// seeded a stranger's song into the playlist with no sign anything was off.
+// Now a song is used only when the catalog CREDITS the artist (one of the
+// credited names equals the billed name, or one side of a B2B billing), and a
+// moment's song only when its title also matches. No match → skipped, named,
+// and reported; never a guess.
+function _amNorm(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+}
+function _amCredits(artistName) {
+  return String(artistName || "")
+    .split(/\s*(?:,|&|\bx\b|\band\b|\bfeat\.?|\bft\.?|\bwith\b|\bvs\.?)\s*/i)
+    .map(_amNorm).filter(Boolean)
+    .concat(_amNorm(artistName));
+}
+// The billed name, its set-note-free form ("GZA performing Liquid Swords" is
+// GZA) and each side of a B2B (split by the shared _b2bParts, which never
+// cuts inside a parenthetical).
+function _amTargets(billed) {
+  const look = typeof _lookupName === "function" ? _lookupName : (x => x);
+  const parts = typeof _b2bParts === "function" ? _b2bParts(billed) : [billed];
+  return [...new Set([billed, look(billed), ...parts, ...parts.map(look)].map(_amNorm).filter(Boolean))];
+}
+function _amCredited(song, billed) {
+  const targets = _amTargets(billed);
+  if (!targets.length) return false;
+  const credits = _amCredits(song?.attributes?.artistName);
+  return credits.some(c => targets.includes(c));
+}
+function _amBaseTitle(t) {
+  return _amNorm(String(t || "").replace(/\s*[\(\[][^\)\]]*[\)\]]/g, "").replace(/\s+-\s+.*$/, ""));
+}
+// Songs credited to the billed act, in catalog order, capped. [] = no match.
+function _amPickArtistSongs(songs, billed, limit) {
+  return (songs || []).filter(s => s?.id && _amCredited(s, billed)).slice(0, limit);
+}
+// The one catalog song for a moment's confirmed song, or null. Exact title
+// beats a base-title match ("Song (Remix)" ≠ "Song" unless nothing exact).
+// An unknown artist cannot be confirmed, so it never matches.
+function _amPickMomentSong(songs, title, artist) {
+  if (!artist || !title) return null;
+  const credited = (songs || []).filter(s => s?.id && _amCredited(s, artist));
+  const t = _amNorm(title), bt = _amBaseTitle(title);
+  return credited.find(s => _amNorm(s.attributes?.name) === t)
+    || credited.find(s => _amBaseTitle(s.attributes?.name) === bt)
+    || null;
+}
+function _amLog(event, detail) {
+  try { console.warn(`[plursky:applemusic] ${event}`, detail === undefined ? "" : JSON.stringify(detail)); } catch {}
+}
+// User-facing sentence for every failure reason. Kept beside the reasons so a
+// new reason cannot ship without words.
+function appleMusicFailureMessage(r) {
+  if (!r || r.ok) return "";
+  switch (r.reason) {
+    case "not_configured": return "Apple Music isn't set up in this build.";
+    case "not_connected":  return r.message || "Apple Music isn't connected. Tap to connect.";
+    case "empty":          return r.source === "attended" ? "No sets marked as caught at this festival yet." : "Save sets first.";
+    case "no_tracks":      return r.searchFailed
+      ? "Couldn't reach Apple Music's catalog. Check your connection and try again."
+      : `Apple Music has no songs credited to ${r.skipped?.length === 1 ? r.skipped[0].name : `your ${r.skipped?.length || 0} acts`}.`;
+    case "reconnect":      return "Apple Music sign-in expired. Tap to reconnect.";
+    case "create_fail":    return `Apple Music refused the playlist (${r.status || "network"})${r.message ? `: ${r.message}` : ""}.`;
+    default:               return `Apple Music playlist failed (${r.reason || "unknown"}).`;
+  }
+}
+
 // Build an Apple Music playlist from saved/attended sets. The big win over
 // Spotify: the Apple Music API has NO Development-Mode 5-user cap and NO
 // playlist-creation block — any Apple Music subscriber can authorize and we
 // POST /me/library/playlists directly. Inert until APPLE_DEV_TOKEN is set
 // (see top of file). Mirrors createEdcPlaylist: day-ordered FRI→SAT→SUN,
-// more tracks for higher-tier acts.
+// more tracks for higher-tier acts. Every outcome is logged with the
+// [plursky:applemusic] tag (Xcode console on device, devtools on web).
 async function createAppleMusicPlaylist(state, opts = {}) {
+  const r = await _createAppleMusicPlaylist(state, opts);
+  if (!r.ok) r.userMessage = appleMusicFailureMessage(r);
+  _amLog(r.ok ? "created" : "failed", { reason: r.reason, status: r.status, message: r.message, added: r.added, skipped: r.skipped, url: r.url });
+  return r;
+}
+async function _createAppleMusicPlaylist(state, opts = {}) {
   const prog = (m) => { if (opts.onProgress) opts.onProgress(m); };
   if (!APPLE_DEV_TOKEN) return { ok: false, reason: "not_configured" };
 
@@ -199,7 +281,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     ? Object.values(window.getAllAttended?.() || {}).flat()
     : (state.saved || []);
   const saved = sourceIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean);
-  if (!saved.length) return { ok: false, reason: "empty" };
+  if (!saved.length) return { ok: false, reason: "empty", source };
 
   const timeKey = hhmm => { const h = parseInt(hhmm); return h < 6 ? h + 24 : h; };
   const sorted = [...saved].sort((a, b) =>
@@ -212,11 +294,19 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   try {
     const sr = await fetch("https://api.music.apple.com/v1/me/storefront", { headers: userHeaders });
     if (sr.ok) { const sj = await sr.json(); storefront = sj.data?.[0]?.id || "us"; }
-  } catch {}
+    else _amLog("storefront_fallback_us", { status: sr.status });
+  } catch (e) { _amLog("storefront_fallback_us", { error: String(e?.message || e) }); }
+
+  const search = async (term, limit) => {
+    const r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=${limit}&term=${encodeURIComponent(term)}`, { headers: devHeaders });
+    if (!r.ok) throw Object.assign(new Error(`search ${r.status}`), { status: r.status });
+    return (await r.json()).results?.songs?.data || [];
+  };
 
   const tracks = [];
   const seen = new Set();
-  let missed = 0;
+  const skipped = [];          // [{ name, kind: "act"|"song", reason }]
+  let searchErrors = 0, searches = 0;
 
   // Soundtrack mode: lead with the exact songs Shazam confirmed in your
   // moments — the real tracks you were there for — then fill with saved sets.
@@ -224,68 +314,70 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   if (opts.soundtrack) {
     for (const ms of _collectMomentSongs()) {
       prog(`Finding ${ms.title}…`);
+      const label = ms.artist ? `${ms.artist} — ${ms.title}` : ms.title;
+      if (!ms.artist) { skipped.push({ name: label, kind: "song", reason: "no_artist" }); continue; }
+      searches++;
       try {
-        const term = encodeURIComponent(`${ms.title} ${ms.artist}`.trim());
-        const r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=5&term=${term}`, { headers: devHeaders });
-        if (!r.ok) continue;
-        const s = ((await r.json()).results?.songs?.data || [])[0];
-        if (s?.id && !seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); songsMatched++; }
-      } catch {}
+        const s = _amPickMomentSong(await search(`${ms.title} ${ms.artist}`, 10), ms.title, ms.artist);
+        if (!s) { skipped.push({ name: label, kind: "song", reason: "no_match" }); continue; }
+        if (!seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); songsMatched++; }
+      } catch (e) { searchErrors++; skipped.push({ name: label, kind: "song", reason: `search_fail:${e.status || "network"}` }); }
     }
   }
 
   // Resolve each saved artist to catalog song IDs, kept in set order.
   for (const a of sorted) {
     prog(`Finding ${a.name}…`);
+    searches++;
     try {
-      const r = await fetch(
-        `https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=15&term=${encodeURIComponent(a.name)}`,
-        { headers: devHeaders }
-      );
-      if (!r.ok) { missed++; continue; }
-      const j = await r.json();
-      const songs = j.results?.songs?.data || [];
-      const ln = a.name.toLowerCase();
-      const byArtist = songs.filter(s => (s.attributes?.artistName || "").toLowerCase().includes(ln));
-      const pool = byArtist.length ? byArtist : songs.slice(0, 1);
+      const term = typeof _lookupName === "function" ? _lookupName(a.name) : a.name;
+      const pool = _amPickArtistSongs(await search(term, 25), a.name, 25);
       let added = 0;
       for (const s of pool) {
         if (added >= trackLimit(a.tier)) break;
-        if (s.id && !seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); added++; }
+        if (!seen.has(s.id)) { seen.add(s.id); tracks.push({ id: s.id, type: "songs" }); added++; }
       }
-      if (!added) missed++;
-    } catch { missed++; }
+      if (!added) skipped.push({ name: a.name, kind: "act", reason: pool.length ? "duplicates_only" : "no_match" });
+    } catch (e) { searchErrors++; skipped.push({ name: a.name, kind: "act", reason: `search_fail:${e.status || "network"}` }); }
   }
-  if (!tracks.length) return { ok: false, reason: "no_tracks" };
+  const missed = skipped.filter(x => x.kind === "act").length;
+  if (!tracks.length) return { ok: false, reason: "no_tracks", skipped, searchFailed: searches > 0 && searchErrors === searches };
 
   prog("Creating playlist…");
   const CFG = window.FESTIVAL_CONFIG || {};
   const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  const res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
-    method: "POST",
-    headers: { ...userHeaders, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      attributes: {
-        name: opts.soundtrack ? `${CFG.shortName || "Festival"} — Your Weekend` : `${CFG.shortName || "Festival"} — Plursky`,
-        description: opts.soundtrack
-          ? `${songsMatched} song${songsMatched === 1 ? "" : "s"} you were there for + ${saved.length} sets · built with Plursky · ${dateStr}`
-          : `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`,
-      },
-      relationships: { tracks: { data: tracks } },
-    }),
-  });
+  let res;
+  try {
+    res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
+      method: "POST",
+      headers: { ...userHeaders, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        attributes: {
+          name: opts.soundtrack ? `${CFG.shortName || "Festival"} — Your Weekend` : `${CFG.shortName || "Festival"} — Plursky`,
+          description: opts.soundtrack
+            ? `${songsMatched} song${songsMatched === 1 ? "" : "s"} you were there for + ${saved.length} sets · built with Plursky · ${dateStr}`
+            : `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`,
+        },
+        relationships: { tracks: { data: tracks } },
+      }),
+    });
+  } catch (e) {
+    return { ok: false, reason: "create_fail", message: String(e?.message || e), skipped };
+  }
   if (!res.ok) {
+    let detail = "";
+    try { const j = await res.json(); detail = j.errors?.[0]?.detail || j.errors?.[0]?.title || ""; } catch {}
     if (res.status === 401 || res.status === 403) {
       try { localStorage.removeItem("am_user_token"); } catch {}
-      return { ok: false, reason: "reconnect", status: res.status };
+      return { ok: false, reason: "reconnect", status: res.status, message: detail, skipped };
     }
-    return { ok: false, reason: "create_fail", status: res.status };
+    return { ok: false, reason: "create_fail", status: res.status, message: detail, skipped };
   }
   let id = null;
   try { const j = await res.json(); id = j.data?.[0]?.id || null; } catch {}
   // Library-playlist deep link — opens the Music app on iOS, web player otherwise.
   const url = id ? `https://music.apple.com/library/playlist/${id}` : null;
-  return { ok: true, service: "apple", added: tracks.length, missed, songsMatched, id, url };
+  return { ok: true, service: "apple", added: tracks.length, missed, skipped, songsMatched, id, url };
 }
 
 // ShazamKit bridge — iOS only, auto-detects via Capacitor
@@ -1786,6 +1878,6 @@ function planBoardPlaylist({
 Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
   createSetsPlaylist, createEdcPlaylist, fetchPreviewUrl,
-  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured, _ensureMusicKitConfigured,
+  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, appleMusicFailureMessage, _amPickArtistSongs, _amPickMomentSong, _appleMusicConfigured, _ensureMusicKitConfigured,
   _collectMomentSongs, planBoardPlaylist,
 });

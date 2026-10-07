@@ -138,7 +138,11 @@ for (const id of pages) {
           if (!answer.endsWith(COMMUNITY_TAIL)) {
             fail(`${id}: the community-sourced answer must stop at its own provenance — got "…${answer.slice(-80)}"`);
           } else { ok(); communitySeen++; }
-        }
+        } else if (/community sources/i.test(answer)) {
+          // The reverse drift: the schedule note went official and an answer
+          // kept the old provenance (III Points, 2026-10-07).
+          fail(`${id}: the schedule is not community-sourced, but the set-times answer says "community sources"`);
+        } else ok();
       } else {
         if (hasSchedule) fail(`${id}: gives the no-ingested-times answer while rendering a schedule grid`);
         else ok();

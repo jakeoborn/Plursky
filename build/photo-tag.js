@@ -8,6 +8,37 @@ var _EXIF_TAG_GPS_LAT_REF = 0x0001;
 var _EXIF_TAG_GPS_LAT = 0x0002;
 var _EXIF_TAG_GPS_LNG_REF = 0x0003;
 var _EXIF_TAG_GPS_LNG = 0x0004;
+var IMPORT_LOG_KEY = "plursky_import_log_v1";
+function _importLog(event, detail) {
+  var row = {
+    t: new Date().toISOString(),
+    event,
+    ...(detail || {})
+  };
+  try {
+    console.info(`[plursky:import] ${event} ${JSON.stringify(detail || {})}`);
+  } catch {}
+  try {
+    var log = JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+    log.push(row);
+    localStorage.setItem(IMPORT_LOG_KEY, JSON.stringify(log.slice(-400)));
+  } catch {}
+}
+function plurskyImportLog() {
+  try {
+    return JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+function _allFestivalAttendedIds() {
+  try {
+    var store = typeof getAttendedStore === "function" ? getAttendedStore() : {};
+    return [...new Set(Object.values(store).flatMap(n => Object.values(n || {}).flat()))];
+  } catch {
+    return [];
+  }
+}
 function _parseDateString(s) {
   if (!s) return null;
   var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/.exec(s);

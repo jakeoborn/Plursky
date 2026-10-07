@@ -1,6 +1,6 @@
 {
   "festivalId": "iii-points-2026",
-  "source": {"url":"https://www.iiipoints.com/","observedAt":"2026-10-05","official":false,"evidence":"Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website","sha256":"8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9"},
+  "source": {"url":"https://www.instagram.com/p/DeHtxkalDzN/","observedAt":"2026-10-07","official":true,"evidence":"Official III Points Instagram set-time grid (4 slides); all 231 intervals match the 2026-10-05 screenshot transcription","sha256":"8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9","officialSlidesSha256":["5bd7b7fd0239a710ab6ae6277db1b42fa57f78eef8a9c851ecc695606f846db7","50f5f225095478a1809558f8f9e6d6f078dd909007c29a2488319b354e206ae4","a13e5950252ddb9adf3e397f7b5efb6f203c299090bd75c72d7e02477e15fa15","a34a3d5eb7d461a00c87502d0c061000d9e1677bdfbc4b36472c486cd0e54d92"]},
   "scheduleHash": "cb4cb26404417fdf",
   "acts": [
     {"id":"iiip-nettspend","name":"Nettspend","day":2,"stage":"mind-melt","start":"19:25","end":"20:10"},

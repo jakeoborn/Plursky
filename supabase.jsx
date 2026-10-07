@@ -556,7 +556,7 @@ async function sbExportUserData(state) {
       spotifyProfile: parseJson(safeLs("spotify_profile")),
     },
     saved:    state.saved || [],
-    attended: parseJson(safeLs("plursky_attended_v1")) || {},
+    attended: (typeof getAttendedStore === "function" ? getAttendedStore() : parseJson(safeLs("plursky_attended_v1"))) || {},
     moments:  parseJson(safeLs("plursky_moments_v1"))  || {},
     notes:    parseJson(safeLs("artist_notes_v1")) || {},
     crewCode: safeLs("plursky_group_code"),
@@ -568,6 +568,11 @@ async function sbExportUserData(state) {
     // Conflicts the user explicitly chose to keep both
     keptBothConflicts: parseJson(safeLs("plursky_conflicts_kept_both_v1")) || [],
     blockedPids:       parseJson(safeLs("plursky_blocked_pids_v1")) || [],
+    // Last 400 photo/video import outcomes (one row per file: tag reason,
+    // capture-time source, GPS presence + accuracy, never coordinates). A
+    // release build's WebView is not inspectable, so this is how a device
+    // import is diagnosed.
+    importLog:         parseJson(safeLs("plursky_import_log_v1")) || [],
   };
   const json = JSON.stringify(payload, null, 2);
   const blob = new Blob([json], { type: "application/json" });

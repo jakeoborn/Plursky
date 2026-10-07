@@ -1984,10 +1984,7 @@ async function _renderFestivalPassport(state) {
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || "2026"}`, W / 2, 180);
   var attended = [];
   try {
-    var raw = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
-    for (var [id, v] of Object.entries(raw)) {
-      if (v) attended.push(id);
-    }
+    for (var id of new Set(Object.values(getAllAttended()).flat())) attended.push(id);
   } catch {}
   var stages = window.STAGES || [];
   var artists = window.ARTISTS || [];
