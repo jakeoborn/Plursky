@@ -45,6 +45,34 @@ const _EXIF_TAG_GPS_LNG     = 0x0004;
 
 // Try multiple date formats — ISO 8601 (XMP-style) and EXIF (colon-sep).
 // Returns the canonical { yr, mo, dy, hh, mm, ss } shape or null.
+// ── Import diagnostics ───────────────────────────────────────
+// One structured line per imported file, tagged [plursky:import], so a real
+// device import is diagnosable from the Xcode console or Safari Web Inspector
+// without asking for screenshots. The last 400 lines are also kept on device
+// (plursky_import_log_v1) and readable with plurskyImportLog() in the
+// inspector. Never logs coordinates: GPS presence and accuracy only.
+const IMPORT_LOG_KEY = "plursky_import_log_v1";
+function _importLog(event, detail) {
+  const row = { t: new Date().toISOString(), event, ...(detail || {}) };
+  try { console.info(`[plursky:import] ${event} ${JSON.stringify(detail || {})}`); } catch {}
+  try {
+    const log = JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]");
+    log.push(row);
+    localStorage.setItem(IMPORT_LOG_KEY, JSON.stringify(log.slice(-400)));
+  } catch {}
+}
+function plurskyImportLog() {
+  try { return JSON.parse(localStorage.getItem(IMPORT_LOG_KEY) || "[]"); } catch { return []; }
+}
+// Every festival's attended artist ids, flat. For the photo matcher only: it
+// keeps an id only when the photo's own festival bills it.
+function _allFestivalAttendedIds() {
+  try {
+    const store = typeof getAttendedStore === "function" ? getAttendedStore() : {};
+    return [...new Set(Object.values(store).flatMap(n => Object.values(n || {}).flat()))];
+  } catch { return []; }
+}
+
 function _parseDateString(s) {
   if (!s) return null;
   // ISO 8601: 2026-05-15T23:35:00(.000)?(±HH:MM|Z)?

@@ -4040,7 +4040,7 @@ function AddMomentForm({ night, savedNightArtists, onAdd, onCancel }) {
       const exif = await _parseExifMeta(file).catch(() => null);
       const meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        const attendedIds = _allFestivalAttendedIds();
         const matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         // The chip must only ever name an artist from the festival this
         // moment will be SAVED under (handleSave stamps the ACTIVE festival).
@@ -6151,8 +6151,12 @@ function MemoriesScreen({ state, setState }) {
     const results = [];
     setBatch({ total: files.length, done: 0, results });
     const savedIds = state.saved || [];
-    const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    // Every festival's attendance: the matcher keeps only ids its photo's own
+    // festival bills (ids are unique per festival), so an EDC photo imported
+    // while ACL is on screen still gets its EDC attended sets.
+    const attendedIds = _allFestivalAttendedIds();
     const current = { ..._readMoments() };
+    _importLog("batch_start", { files: files.length, active: window.FESTIVAL_CONFIG?.id || null, saved: savedIds.length, attended: attendedIds.length });
 
     const existingFingerprints = new Set();
     for (const moments of Object.values(current)) {
@@ -6174,6 +6178,7 @@ function MemoriesScreen({ state, setState }) {
         if (fp && existingFingerprints.has(fp)) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
+          _importLog("file_duplicate", { i, name: f.name });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
           continue;
         }
@@ -6281,6 +6286,16 @@ function MemoriesScreen({ state, setState }) {
         if (fp) existingFingerprints.add(fp);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
+        _importLog("file", {
+          i, name: f.name, type: f.type || null, kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none", exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified, gps: moment.hasGps, gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected, festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null, stamp: moment.festivalStampSource,
+          night, nightFromCapture: !!matched.night, artistId: moment.artistId || null,
+          reason: matched.reason || null, tagSource, ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource, recovered: !!recovered,
+        });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
         // (common on large iOS selections that include videos / iCloud photos)
         // keeps what's already imported and the grid fills in live — instead
@@ -6296,6 +6311,7 @@ function MemoriesScreen({ state, setState }) {
         if (!results.some(r => r.fileIndex === i && r.momentId)) {
           results.push({ name: f.name, fileIndex: i, night: null, artistId: null, err: err?.message || "failed" });
         }
+        _importLog("file_failed", { i, name: f.name, type: f.type || null, size: f.size ?? null, error: String(err?.message || err), stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ") });
       }
       setBatch({ total: files.length, done: i + 1, results: results.slice() });
     }
@@ -6309,6 +6325,11 @@ function MemoriesScreen({ state, setState }) {
     const landed = settledResults.filter(r => r.momentId);
     const failedResults = settledResults.filter(r => r.err);
     const duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length, landed: landed.length, failed: failedResults.length, duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length, fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {}),
+    });
     // Never fail silently: if nothing landed, say why out loud.
     // ...and never file silently either. A cross-festival import is now
     // stamped correctly, which means it is CORRECTLY not visible on this
@@ -8331,10 +8352,11 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
       const r = await createAppleMusicPlaylist(state, { soundtrack, onProgress: setProg });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
-      setStatus("err"); setTimeout(() => setStatus("idle"), 4500);
+      const r = { ok: false, reason: "create_fail", message: String(e?.message || e) };
+      r.userMessage = appleMusicFailureMessage(r);
+      try { console.warn("[plursky:applemusic] threw", r.message); } catch {}
+      setResult(r); setStatus("err");
     }
   };
   const onClick = () => {
@@ -8353,15 +8375,15 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   } else if (status === "done") {
     const sm = result?.songsMatched || 0;
     const open = result?.url ? " — open ↗" : "";
+    const miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
     label = soundtrack && sm > 0
-      ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}`
-      : `✓ ${result?.added} tracks in Apple Music${open}`;
+      ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}`
+      : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)"; color = "var(--on-apple-music)"; border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";
-    else if (result?.reason === "empty") label = "Save sets first";
-    else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";
-    else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    // The reason stays on the button until the next tap (it used to reset to
+    // idle after 4.5 s, and "not connected" never said WHY it could not connect).
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
   } else {
     label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
@@ -8369,7 +8391,8 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
 
   return (
     <button onClick={onClick} disabled={status === "working"} style={{
-      background: bg, color, border, borderRadius: 999, padding: "10px 16px",
+      background: bg, color, border, borderRadius: status === "err" ? 14 : 999, padding: "10px 16px",
+      maxWidth: "100%", textAlign: "left", overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
       transition: "all .2s",
@@ -8394,7 +8417,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
     const archive = _readArchive();
     // Don't overwrite an existing snapshot — first archive wins (the user
     // explicitly archived) unless empty (auto-archive after re-entry).
-    const attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    const attended = getAllAttended(festivalId);   // this festival only, never the mixed store
     const moments  = JSON.parse(localStorage.getItem("plursky_moments_v1")  || "{}");
     const saved    = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     const totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);

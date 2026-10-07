@@ -5765,7 +5765,7 @@ function AddMomentForm({
       var exif = await _parseExifMeta(file).catch(() => null);
       var meta = _metaFromFile(file, exif);
       if (meta && meta.date && !artistId) {
-        var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+        var attendedIds = _allFestivalAttendedIds();
         var matched = _matchArtistForPhoto(meta, savedNightArtists.map(a => a.id), attendedIds);
         var activeId = window.FESTIVAL_CONFIG?.id || null;
         if (matched.artistId && (!matched.festivalId || matched.festivalId === activeId)) {
@@ -9288,10 +9288,16 @@ function MemoriesScreen({
       results
     });
     var savedIds = state.saved || [];
-    var attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
+    var attendedIds = _allFestivalAttendedIds();
     var current = {
       ..._readMoments()
     };
+    _importLog("batch_start", {
+      files: files.length,
+      active: window.FESTIVAL_CONFIG?.id || null,
+      saved: savedIds.length,
+      attended: attendedIds.length
+    });
     var existingFingerprints = new Set();
     for (var moments of Object.values(current)) {
       for (var m of moments) {
@@ -9312,6 +9318,10 @@ function MemoriesScreen({
             night: null,
             artistId: null,
             skipped: "duplicate"
+          });
+          _importLog("file_duplicate", {
+            i,
+            name: f.name
           });
           setBatch({
             total: files.length,
@@ -9397,6 +9407,29 @@ function MemoriesScreen({
           tagSource,
           festivalId: moment.festivalId
         });
+        _importLog("file", {
+          i,
+          name: f.name,
+          type: f.type || null,
+          kind: out.kind,
+          takenAtSource: meta?.takenAtSource || "none",
+          exifDate: hadExifDate,
+          dateUnverified: !!meta?.dateUnverified,
+          gps: moment.hasGps,
+          gpsAccM: moment.gpsAccM,
+          gpsRejected: moment.gpsRejected,
+          festivalId: moment.festivalId,
+          resolvedBy: matched.resolvedBy || null,
+          stamp: moment.festivalStampSource,
+          night,
+          nightFromCapture: !!matched.night,
+          artistId: moment.artistId || null,
+          reason: matched.reason || null,
+          tagSource,
+          ambiguous: moment.tagAmbiguous,
+          anchorSource: moment.anchorSource,
+          recovered: !!recovered
+        });
         _writeMoments(current);
         setAll({
           ...current
@@ -9411,6 +9444,14 @@ function MemoriesScreen({
             err: err?.message || "failed"
           });
         }
+        _importLog("file_failed", {
+          i,
+          name: f.name,
+          type: f.type || null,
+          size: f.size ?? null,
+          error: String(err?.message || err),
+          stack: String(err?.stack || "").split("\n").slice(0, 3).join(" | ")
+        });
       }
       setBatch({
         total: files.length,
@@ -9431,6 +9472,15 @@ function MemoriesScreen({
     var landed = settledResults.filter(r => r.momentId);
     var failedResults = settledResults.filter(r => r.err);
     var duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
+    _importLog("batch_end", {
+      files: files.length,
+      landed: landed.length,
+      failed: failedResults.length,
+      duplicates: duplicateResults.length,
+      tagged: landed.filter(r => r.artistId).length,
+      fallbackNight: landed.filter(r => r.fallback).length,
+      byFestival: landed.reduce((m, r) => (m[r.festivalId || "none"] = (m[r.festivalId || "none"] || 0) + 1, m), {})
+    });
     var activeFid = window.FESTIVAL_CONFIG?.id || null;
     var elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
     if (elsewhere.length) {
@@ -12475,15 +12525,18 @@ function AppleMusicPlaylistButton({
       });
       setResult(r);
       setStatus(r.ok ? "done" : "err");
-      if (!r.ok && r.reason !== "not_connected") setTimeout(() => setStatus("idle"), 4500);
     } catch (e) {
-      setResult({
+      var _r2 = {
         ok: false,
         reason: "create_fail",
         message: String(e?.message || e)
-      });
+      };
+      _r2.userMessage = appleMusicFailureMessage(_r2);
+      try {
+        console.warn("[plursky:applemusic] threw", _r2.message);
+      } catch {}
+      setResult(_r2);
       setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
     }
   };
   var onClick = () => {
@@ -12504,12 +12557,13 @@ function AppleMusicPlaylistButton({
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
     var open = result?.url ? " — open ↗" : "";
-    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}` : `✓ ${result?.added} tracks in Apple Music${open}`;
+    var miss = result?.missed ? ` · ${result.missed} act${result.missed === 1 ? "" : "s"} not on Apple Music` : "";
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${miss}${open}` : `✓ ${result?.added} tracks in Apple Music${miss}${open}`;
     bg = "var(--apple-music)";
     color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
+    label = result?.userMessage || appleMusicFailureMessage(result) || "Apple Music playlist failed";
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
@@ -12523,8 +12577,11 @@ function AppleMusicPlaylistButton({
       background: bg,
       color,
       border,
-      borderRadius: 999,
+      borderRadius: status === "err" ? 14 : 999,
       padding: "10px 16px",
+      maxWidth: "100%",
+      textAlign: "left",
+      overflowWrap: "anywhere",
       cursor: status === "working" ? "wait" : "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -12546,7 +12603,7 @@ function archiveFestival(festivalId, festivalName, festivalConfig) {
   if (!festivalId) return false;
   try {
     var archive = _readArchive();
-    var attended = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
+    var attended = getAllAttended(festivalId);
     var moments = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
     var saved = JSON.parse(localStorage.getItem("edc_saved") || "[]");
     var totalAttended = Object.values(attended).reduce((s, a) => s + (Array.isArray(a) ? a.length : 0), 0);
@@ -15999,8 +16056,8 @@ function RecapScreen({
         }
         if (!audioUrl && recap.topByPop?.name) {
           try {
-            var _r2 = await fetchPreviewUrl(recap.topByPop.name);
-            audioUrl = _r2?.url;
+            var _r3 = await fetchPreviewUrl(recap.topByPop.name);
+            audioUrl = _r3?.url;
           } catch {}
         }
         await window._shareRecapVideo?.({

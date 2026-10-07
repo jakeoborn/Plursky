@@ -2243,6 +2243,38 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a2b. Apple Music playlists use credited songs only ─────────────────
+// The real createAppleMusicPlaylist against a stubbed Apple API: a song is
+// used only when the catalog credits the act (or the moment's artist and
+// title), an unmatched act is skipped and named, and every failure reason
+// reaches the user as a sentence and the log as [plursky:applemusic].
+{
+  console.log("▸ Apple Music playlist gate — credited songs only, every failure has a reason");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-apple-music-playlist.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Apple Music playlist regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a2c. Attendance is festival-scoped ─────────────────────────────────
+// Night keys are bare day numbers, so one shared map leaked every festival's
+// night-N sets into every other's. Legacy rows migrate by artist id.
+{
+  console.log("▸ Attended scope gate — each festival reads only its own attendance");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-attended-scope.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`attended scope regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-a3. Capture-time trust answers with a boolean ──────────────────────
 // "Is this a real festival capture time?" is a TRUST question, and it must not
 // be answered with a festival identity nobody can justify. The old

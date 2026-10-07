@@ -1719,8 +1719,9 @@ async function _renderFestivalPassport(state) {
 
   const attended = [];
   try {
-    const raw = JSON.parse(localStorage.getItem("plursky_attended_v1") || "{}");
-    for (const [id, v] of Object.entries(raw)) { if (v) attended.push(id); }
+    // The store maps night → artist ids (this used to push the NIGHT keys as
+    // ids, so no stage ever matched); active festival only.
+    for (const id of new Set(Object.values(getAllAttended()).flat())) attended.push(id);
   } catch {}
 
   const stages = window.STAGES || [];

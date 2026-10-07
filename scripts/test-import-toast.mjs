@@ -55,5 +55,14 @@ try {
   await sleep(800);
   const still=await page.evaluate(()=>[...document.querySelectorAll('[role=status]')].some(s=>/Imported 1 · 1 failed/.test(s.textContent||'')));
   if(!still){const log=await page.evaluate(()=>window.__statusLog||[]);throw new Error(`import toast was replaced within 800 ms:\n  ${log.join('\n  ')}`);}
-  console.log('✓ mixed batch landed 1 moment; the exact non-action toast "Imported 1 · 1 failed" stayed readable'); await browser.close();
+  // The same batch is diagnosable from the device log: one line per file with
+  // its tag reason, the failure with its error, and a batch summary. No coordinates.
+  const ilog=await page.evaluate(()=>typeof plurskyImportLog==='function'?plurskyImportLog():null);
+  const ev=e=>(ilog||[]).filter(r=>r.event===e);
+  if(!ilog) throw new Error('plurskyImportLog() missing');
+  if(ev('file').length!==1||!('reason' in ev('file')[0])||!ev('file')[0].tagSource) throw new Error(`import log: want 1 file row with reason+tagSource, got ${JSON.stringify(ev('file'))}`);
+  if(ev('file_failed').length!==1||!ev('file_failed')[0].error) throw new Error(`import log: want 1 file_failed row with error, got ${JSON.stringify(ev('file_failed'))}`);
+  const end=ev('batch_end')[0]; if(!end||end.landed!==1||end.failed!==1) throw new Error(`import log: batch_end ${JSON.stringify(end)}`);
+  if(/"lat"|"lng"|parsedGps/.test(JSON.stringify(ilog))) throw new Error('import log leaked coordinates');
+  console.log('✓ mixed batch landed 1 moment; the exact non-action toast "Imported 1 · 1 failed" stayed readable; the import log names each file\'s outcome'); await browser.close();
 } finally {server.kill('SIGTERM');}
