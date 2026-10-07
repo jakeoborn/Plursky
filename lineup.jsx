@@ -375,6 +375,73 @@ function NightWizard({ state, setState, onClose }) {
 // commits via onApply or wipes via onReset. Live count on the
 // primary CTA so users see how many sets they'll land on before
 // they tap Apply.
+// The board's stage overview: every stage that plays this day, by its full
+// name, on one shared time axis, so the whole night reads at a glance on a
+// phone without panning (ruling 2026-09-15: all stages visible, full names,
+// never a horizontally panning view). The grid keeps its 96px columns for
+// reading sets; this strip is the overview the grid cannot be at that width.
+// Your plan is the accent bar, a set playing now is ink, the rest is a quiet
+// line. A stage name is a button: in LIST it narrows to that stage (tap again
+// for all), in GRID it brings that stage's column into view.
+function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
+  const lanes = React.useMemo(() => {
+    const by = new Map();
+    for (const a of sets) {
+      const s = toNightMin(a.start), e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({ a, s, e: Number.isFinite(e) && e > s ? e : s + 60 });
+    }
+    // Map order, as the grid and the Filters sheet list stages.
+    return STAGES.filter(st => by.has(st.id)).map(st => ({ stage: st, sets: by.get(st.id) }));
+  }, [sets]);
+  if (lanes.length < 2) return null;
+  const all = lanes.flatMap(l => l.sets);
+  const t0 = Math.floor(Math.min(...all.map(x => x.s)) / 60) * 60;
+  const t1 = Math.ceil(Math.max(...all.map(x => x.e)) / 60) * 60;
+  const span = Math.max(60, t1 - t0);
+  const pct = m => `${((m - t0) / span) * 100}%`;
+  const nowMin = liveNight && NOW.time ? toNightMin(NOW.time) : null;
+  const showNow = nowMin != null && nowMin >= t0 && nowMin <= t1;
+  const step = span > 8 * 60 ? 120 : 60;
+  const ticks = []; for (let m = Math.ceil(t0 / step) * step; m <= t1; m += step) ticks.push(m);
+  const tick = m => { const h = Math.floor(m / 60) % 24; return `${h % 12 || 12}${h >= 12 ? "P" : "A"}`; };
+  return (
+    <div data-lineup-overview role="group" aria-label="Every stage tonight" style={{ padding: "4px 20px 8px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)", columnGap: 12, alignItems: "center" }}>
+        {lanes.map(({ stage, sets }) => {
+          const on = stageFilter === stage.id;
+          const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+          return (
+            <React.Fragment key={stage.id}>
+              <button type="button" data-overview-stage={stage.id} aria-pressed={on}
+                aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
+                onClick={() => onStage(stage.id)}
+                style={{ border: 0, background: "none", padding: "1px 0", minHeight: 16, cursor: "pointer", textAlign: "left",
+                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere" }}>
+                {stage.name}
+              </button>
+              <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+                {sets.map(({ a, s, e }) => {
+                  const mineSet = savedSet.has(a.id), live = isSetLive(a);
+                  return <span key={a.id} style={{ position: "absolute", left: pct(s), width: `calc(${((e - s) / span) * 100}% - 2px)`,
+                    top: mineSet ? 5.5 : 7, height: mineSet ? 5 : 2, borderRadius: 3, minWidth: 2,
+                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)" }} />;
+                })}
+                {showNow && <span style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
+              </div>
+            </React.Fragment>
+          );
+        })}
+        <span />
+        <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+          {ticks.map(m => <span key={m} className="duo-data-s duo-ink3" style={{ position: "absolute", left: pct(m), top: 4, transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)", fontSize: 11, lineHeight: "12px", whiteSpace: "nowrap" }}>{tick(m)}</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LineupFilterSheet({
   onClose, day, dayGenres, savedIds = [], weekendFilter = "all",
   initial,           // { filter, tierFilter, stageFilter, genreFilter, sortBy }
@@ -506,6 +573,9 @@ function LineupScreen({ state, setState }) {
   const [weekendFilter, setWeekendFilter] = React.useState(
     () => hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends)
   const [q, setQ] = React.useState(""); // artist/stage/genre search
+  // Search is one icon in the header (the board's), not a standing field: the
+  // field opens on a tap and stays while it holds a term.
+  const [searchOpen, setSearchOpen] = React.useState(false);
 
   // After the screen renders, scroll the highlighted card/block into view and
   // let the CSS flash play. Then clear the highlight so re-mounts don't fire
@@ -550,6 +620,16 @@ function LineupScreen({ state, setState }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
+  // Opening at the current hour HOLDS the hour while the page settles: until
+  // the user's first input (touch, wheel, pointer, key) or 1.5 s, whichever
+  // comes first. Until then nothing the page does moves the
+  // list off it, the fold, a late font, a row that resizes, and no scroll
+  // event folds or unfolds the header, because none of them is the user.
+  const openHoldRef = React.useRef(false);
+  // A fold or unfold the user asked for by a tap (the bar, search) resizes the
+  // list and nudges its scroll; for a moment that is not a drag either.
+  const tapLockRef = React.useRef(0);
+  const unfoldByTap = () => { tapLockRef.current = performance.now() + 400; setCollapsed(false); };
   // The whole filter header folds, so its height is measured, not guessed:
   // max-height animates to the real number and the list never jumps.
   const filtersRef = React.useRef(null);
@@ -569,15 +649,24 @@ function LineupScreen({ state, setState }) {
   React.useEffect(() => {
     // The scrolling element differs by mode: LIST scrolls the page body,
     // GRID scrolls the grid itself (it owns the only scroll region there).
-    let el = null, lastY = 0, lockUntil = 0, lastH = 0;
+    let el = null, lastY = 0, lockUntil = 0, lastH = 0, lastInput = -1e9;
+    // Only scrolling the user drives folds or unfolds the header. The page
+    // moves the list too (opening at the hour, scroll anchoring after a
+    // resize, Jump to now), and none of that may toggle it.
+    const onInput = () => { lastInput = performance.now(); };
+    const onKey = (e) => { if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput(); };
     const attach = () => {
       const next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
       el = next;
       lastY = el ? el.scrollTop : 0;
       lastH = el ? el.clientHeight : 0;
-      if (el) el.addEventListener("scroll", onScroll, { passive: true });
+      if (el) {
+        el.addEventListener("scroll", onScroll, { passive: true });
+        el.addEventListener("wheel", onInput, { passive: true });
+        el.addEventListener("touchmove", onInput, { passive: true });
+      }
     };
     // Read straight through — no rAF. The handler only reads scrollTop and
     // may set one boolean, and coalescing it behind a frame made the collapse
@@ -591,7 +680,7 @@ function LineupScreen({ state, setState }) {
       // makes the scroller taller, which CLAMPS scrollTop upward near the
       // end of the list: read as "the user scrolled up", that reopened the
       // header, the list re-clamped, and GRID oscillated every ~500ms.
-      if (t < lockUntil || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
       // Hysteresis: collapse only after a real downward drag, expand on any
       // meaningful upward move. Without the gap the header flickers on the
       // momentum bounce.
@@ -607,18 +696,83 @@ function LineupScreen({ state, setState }) {
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     // The grid mounts a beat after a mode switch, so retry once.
     const t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
     };
   }, [viewMode, day]);
   // GRID opens collapsed: the grid IS the content there, and an expanded
-  // header left it ~390px of an 812px screen. LIST opens expanded — the title
-  // is the first thing you read on a list. Scrolling up restores the header in
-  // either mode.
-  React.useEffect(() => { setCollapsed(viewMode === "grid"); }, [day, viewMode, weekendFilter]);
+  // header left it ~390px of an 812px screen. LIST opens expanded, the title
+  // first, EXCEPT on the night that is running: there it opens at the current
+  // hour (Jake, 2026-10-06), scrolled to the first set of this hour or the
+  // earliest one still playing ([data-open-anchor]), with the header folded
+  // as GRID's is. Scrolling up, or a tap on the bar, restores the header.
+  // Late on the running night the sets after the hour are shorter than the
+  // screen, so scrollTop maxes out with the hour still far down the list
+  // (ACL Fri 20:30: 407px). The tail after the last set takes up exactly the
+  // difference, never more; it exists only on the running night.
+  const fitOpenTail = (sc) => {
+    const a = sc.querySelector("[data-open-anchor]"), tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    const base = sc.scrollHeight - tail.offsetHeight;
+    const need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      const sc = document.querySelector("[data-lineup-scroll]");
+      const anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        fitOpenTail(sc);
+        const top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        // Near the top already (the night's first hour), or a list too short
+        // to scroll once folded: open as any other day.
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openHoldRef.current = true;
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
+    openHoldRef.current = false;
+    setCollapsed(viewMode === "grid");
+  }, [day, viewMode, weekendFilter]);
+  // The hold: re-anchor whenever the list box or anything above the hour
+  // resizes (the fold shrinks the plan actions; Chrome's scroll anchoring
+  // compensates, WebKit's does not), and let go on the first input.
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
+    const sc = document.querySelector("[data-lineup-scroll]");
+    if (!sc) return undefined;
+    const reanchor = () => {
+      if (!openHoldRef.current) return;
+      const a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      fitOpenTail(sc);
+      const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (const c of sc.children) { if (c.hasAttribute("data-open-anchor")) break; ro.observe(c); }
+    }
+    const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    const settle = setTimeout(() => release(), 1500);
+    const stop = () => { clearTimeout(settle); if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
+    // The fold may still be settling when the hold lets go: size the tail to
+    // the final box once more, so it never adds more room than the hour needs.
+    function release() { openHoldRef.current = false; stop(); fitOpenTail(sc); }
+    INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
+    reanchor();
+    return stop;
+  }, [day, viewMode, weekendFilter]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -857,7 +1011,8 @@ function LineupScreen({ state, setState }) {
   // The compact bar's search button: unfold, then focus the one search input
   // (in GRID it rides the grid's own scroller, so bring that to the top).
   const openSearch = () => {
-    setCollapsed(false);
+    setSearchOpen(true);
+    unfoldByTap();
     if (viewMode === "grid") {
       const g = document.querySelector("[data-grid-scroll]");
       if (g) try { g.scrollTo({ top: 0 }); } catch {}
@@ -870,7 +1025,7 @@ function LineupScreen({ state, setState }) {
     const d = dayStats.find(x => x.n === day);
     const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    const show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
+    const show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [
       dayText,
@@ -880,8 +1035,19 @@ function LineupScreen({ state, setState }) {
       q.trim() ? `“${q.trim()}”` : null,
     ].filter(Boolean).join(" · ");
   })();
-  const searchRow = (
-    <div style={{ padding: gridLead ? "12px 12px 0" : "12px 20px 4px" }}>
+  const surpriseMe = () => {
+    const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    const savedGenres = new Set(savedArtists.map(a => a.genre));
+    const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    const pool = savedGenres.size
+      ? unsaved.filter(a => savedGenres.has(a.genre))
+      : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({ ...state, artist: pick.id });
+  };
+  const searchRow = !(searchOpen || q) ? null : (
+    <div data-lineup-search style={{ padding: gridLead ? "8px 12px 0" : "4px 20px 4px" }}>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round"
           style={{ position: "absolute", left: 14, pointerEvents: "none", zIndex: 1 }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
@@ -900,6 +1066,10 @@ function LineupScreen({ state, setState }) {
           </button>
         )}
       </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0 -8px" }}>
+        <button onClick={surpriseMe} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
+        <button onClick={() => { setQ(""); setSearchOpen(false); }} style={textBtn}>Done</button>
+      </div>
     </div>
   );
 
@@ -917,39 +1087,37 @@ function LineupScreen({ state, setState }) {
     );
   })() : null;
 
-  // Set count, then quiet text actions: My night, Share, Calendar, Surprise me.
-  const actionsRow = (
-    <div style={{
-      display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
-      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px", gap: 4,
+  // Plan actions belong to the plan: Share, Calendar and schedule Updates
+  // show under My plan. With nothing saved for this day the one
+  // header action is "Save top picks". Everything else is search (Surprise
+  // me) or Filters, one tap away, so scanning sets is what the screen is for.
+  // My night stays in the header in every view: it is the plan's entry
+  // point and carries the plan-wide clash signal.
+  const myNight = totalSaved >= 2 ? (() => {
+    const clash = dayStats.some(d => d.clashes > 0);
+    return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
+  })() : null;
+  const planActions = filter === "saved" ? (
+    <>
+      {liveSavedCount > 0 && <ShareLineupButton state={state} />}
+      {liveSavedCount > 0 && (
+        <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
+      )}
+      {hasFeed && (
+        <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
+      )}
+    </>
+  ) : null;
+  const actionsRow = (saveDayCard || myNight || planActions) ? (
+    <div data-lineup-actions style={{
+      display: "flex", alignItems: "center", flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px", gap: 4,
     }}>
-      <div className="duo-data-s duo-ink3" style={{ textTransform: "uppercase" }}>
-        {dayArtists.length} {dayArtists.length === 1 ? "set" : "sets"}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-        {saveDayCard}
-        {totalSaved >= 2 && (() => {
-          const clash = dayStats.some(d => d.clashes > 0);
-          return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
-        })()}
-        {liveSavedCount > 0 && <ShareLineupButton state={state} />}
-        {liveSavedCount > 0 && (
-          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
-        )}
-        <button onClick={() => {
-          const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-          const savedGenres = new Set(savedArtists.map(a => a.genre));
-          const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-          const pool = savedGenres.size
-            ? unsaved.filter(a => savedGenres.has(a.genre))
-            : unsaved;
-          if (!(pool.length ? pool : unsaved).length) return;
-          const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-          setState({ ...state, artist: pick.id });
-        }} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
-      </div>
+      {saveDayCard}
+      {myNight}
+      {planActions}
     </div>
-  );
+  ) : null;
 
   const conflictCard = conflicts.length > 0 && filter === "saved" ? (
     <ConflictResolver
@@ -973,6 +1141,7 @@ function LineupScreen({ state, setState }) {
         </div>
         {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
         {stage.vibeNote && <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px" }}>{stage.vibeNote}</div>}
+        <button onClick={() => setState({ ...state, tab: "map", focusStage: stage.id })} style={{ ...textBtn, margin: "4px 0 -8px -8px", color: "var(--acc-ink)" }}>Show on map</button>
       </div>
     );
   })() : null;
@@ -995,11 +1164,8 @@ function LineupScreen({ state, setState }) {
           transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
         }}>
       <div ref={filtersRef}>
-      {/* Brand and dates on their own line: Michroma is wide, and beside the
-          header's three actions it wrapped at 393. */}
-      <div className="duo-label duo-ink3" style={{ padding: "8px 20px 0" }}>{FESTIVAL_CONFIG.brand} · {FESTIVAL_CONFIG.dates}</div>
       <div data-lineup-header style={{
-        padding: "4px 8px 4px 20px",
+        padding: "8px 8px 4px 20px",
         display: "flex", alignItems: "center", gap: 4,
       }}>
         {state._navStack?.length > 0 && (
@@ -1010,30 +1176,15 @@ function LineupScreen({ state, setState }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <h1 className="duo-title" style={{ margin: 0 }}>Lineup</h1>
         </div>
-        {hasFeed && (
-          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
-        )}
-        <button onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-          aria-label={viewMode === "grid" ? "Show as list" : "Show as stage grid"}
-          // A timetable is a picture of TIME. With no set times published there
-          // is nothing to draw one from, so the grid is not offered rather than
-          // offered-and-empty: every act would stack on the same default hour.
-          //
-          // `hidden` alone does NOT hide this: fieldIconBtn sets an inline
-          // display, and an inline display beats the UA stylesheet's
-          // [hidden]{display:none}. The attribute stays for semantics; the
-          // style is what actually removes it. (Measured: the button was still
-          // on screen while `el.hidden` read true.)
-          hidden={_schedTBA || undefined}
-          style={_schedTBA ? { ...fieldIconBtn, display: "none" } : fieldIconBtn}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            {viewMode === "grid"
-              ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/>
-              : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
-          </svg>
+        {/* The board's two header actions: search and Filters. */}
+        <button data-lineup-search-toggle onClick={() => (searchOpen || q) ? (setQ(""), setSearchOpen(false)) : openSearch()}
+          aria-label="Search" aria-expanded={!!(searchOpen || q)} style={{ ...fieldIconBtn, color: "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         </button>
-        <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} aria-label="Open map" style={fieldIconBtn}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"/></svg>
+        <button data-lineup-filters-open onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`}
+          style={{ ...fieldIconBtn, position: "relative", color: otherFilterCount ? "var(--acc-ink)" : "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H13 M17 7 H20 M4 17 H7 M11 17 H20"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+          {otherFilterCount > 0 && <b aria-hidden="true" className="duo-data-s" style={{ position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, background: "var(--acc)", color: "var(--on-acc)", fontSize: 11, lineHeight: "16px", textAlign: "center" }}>{otherFilterCount}</b>}
         </button>
       </div>
 
@@ -1073,31 +1224,51 @@ function LineupScreen({ state, setState }) {
         </div>
       )}
 
-      {/* All stages / Saved / Now, one thumb away. Tier, stage, genre and
-          sort live in the Filters sheet. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 6px", borderBottom: "1px solid var(--line)" }}>
-        <div role="radiogroup" aria-label="Show" style={{ flex: 1, minWidth: 0, display: "flex", flexWrap: "wrap", columnGap: 8 }}>
-          {[{ id: "all", label: "All stages" }, { id: "saved", label: "Saved", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Now" }].map(o => {
-            const on = o.id === "all" ? (filter === "all" && stageFilter === "all") : filter === o.id;
-            return (
-              <button key={o.id} role="radio" aria-checked={on} className="duo-chip"
-                onClick={() => { setFilter(o.id); if (o.id === "all") setStageFilter("all"); }}>
+      {!_schedTBA && (
+        <LineupOverview
+          sets={lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"))}
+          savedSet={savedSetIds}
+          liveNight={NOW.night === day}
+          stageFilter={viewMode === "list" ? stageFilter : "all"}
+          onStage={id => {
+            if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
+            setStageFilter(stageFilter === id ? "all" : id);
+          }} />
+      )}
+
+      {/* The board's mode row: List or Grid, then My plan and Live as
+          toggles (both off = every set). Tier, stage, genre and sort live in
+          the Filters sheet behind the header's Filters button. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 6px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", rowGap: 0 }}>
+        {!_schedTBA && (
+          <div role="radiogroup" aria-label="View" style={{ display: "flex", gap: 8 }}>
+            {[{ id: "list", label: "List" }, { id: "grid", label: "Grid" }].map(o => (
+              <button key={o.id} role="radio" aria-checked={viewMode === o.id} aria-label={o.label} className="duo-chip duo-viewchip"
+                onClick={() => setViewMode(o.id)}>
                 <span>
-                  {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
-                  {o.label}
-                  {o.n > 0 && <b>{o.n}</b>}
+                  <span className="lbl">{o.label}</span>
+                  {/* Under 360pt the pair is two icons, so the row fits on one line. */}
+                  <svg className="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    {o.id === "list" ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/> : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
+                  </svg>
                 </span>
               </button>
-            );
-          })}
-        </div>
-        <button onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`}
-          aria-pressed={otherFilterCount > 0} className="duo-chip">
-          <span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H20 M7 12 H17 M10 17 H14"/></svg>
-            {otherFilterCount > 0 && <b>{otherFilterCount}</b>}
-          </span>
-        </button>
+            ))}
+          </div>
+        )}
+        {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
+          const on = filter === o.id;
+          return (
+            <button key={o.id} aria-pressed={on} className="duo-chip" data-lineup-show={o.id}
+              onClick={() => setFilter(on ? "all" : o.id)}>
+              <span>
+                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
+                {o.label}
+                {o.n > 0 && <b>{o.n}</b>}
+              </span>
+            </button>
+          );
+        })}
       </div>
       {/* LIST: the utility stack folds with the header. GRID: the same
           elements ride INSIDE the grid's one scroller (TimelineGrid lead),
@@ -1118,7 +1289,7 @@ function LineupScreen({ state, setState }) {
           transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
         }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "2px 8px 2px 20px", minHeight: 48 }}>
-          <button data-lineup-expand onClick={() => setCollapsed(false)}
+          <button data-lineup-expand onClick={unfoldByTap}
             aria-label={`Show days and filters. Showing ${compactSummary}`}
             style={{
               flex: 1, minWidth: 0, minHeight: 44, padding: 0, border: "none", background: "transparent",
@@ -1165,7 +1336,7 @@ function LineupScreen({ state, setState }) {
           only scrolling element on the screen. Two nested scroll regions was
           the whole "tough to navigate" complaint — a drag on iOS would pick
           whichever one it liked. LIST mode is unchanged. */}
-      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={
+      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time")} style={
         viewMode === "grid"
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
@@ -1244,7 +1415,7 @@ function LineupScreen({ state, setState }) {
           // One NOW rule, before the first set that hasn't started: only on the
           // night that is actually running, and only in time order.
           const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
-          const rows = dayArtists.map(a => {
+          const renderRow = (a, pinned) => {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
             const clashWith = conflictById[a.id];
@@ -1257,9 +1428,10 @@ function LineupScreen({ state, setState }) {
             // The board's list row: time, face, name over stage, circled add.
             // On your plan = a faint accent wash; playing now = the lifted card.
             return (
-              <div key={a.id}
+              <div key={pinned ? `pin-${a.id}` : a.id}
                 data-animate
-                data-lineup-highlight={isHighlighted ? "true" : undefined}
+                data-now-on-plan={pinned ? a.id : undefined}
+                data-lineup-highlight={isHighlighted && !pinned ? "true" : undefined}
                 className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
                 style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
                 <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
@@ -1285,7 +1457,7 @@ function LineupScreen({ state, setState }) {
                   {/* A clash names the other side (lane ruling 2026-09-26), so
                       choosing between them means something. It wraps: a name
                       is never truncated. */}
-                  {clashWith && clashWith.map(o => (
+                  {clashWith && !pinned && clashWith.map(o => (
                     <span key={o.id} data-clash-with={o.id} style={{ font: "600 13px/1.385 var(--f-ui)", color: "var(--clash)" }}>
                       vs {actDisplayName(o.name)} · {fmt12(o.start)} · {(STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name}
                     </span>
@@ -1301,7 +1473,8 @@ function LineupScreen({ state, setState }) {
                 </button>
               </div>
             );
-          });
+          };
+          const rows = dayArtists.map(a => renderRow(a));
           if (nowMin != null && dayArtists.length) {
             const i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
             rows.splice(i === -1 ? rows.length : i, 0, (
@@ -1311,6 +1484,28 @@ function LineupScreen({ state, setState }) {
                 <span aria-hidden="true" style={{ flex: 1, height: 1.5, background: "var(--acc)", boxShadow: "0 0 10px var(--acc-55)" }} />
               </div>
             ));
+          }
+          // Where the list opens on the running night: the first set of this
+          // hour, or the earliest one still playing if it started before.
+          // Now on your plan, the one lifted card (only while a set you saved
+          // is actually playing; empty means absent, never a placeholder),
+          // sits right there, so it is the first thing in view.
+          if (nowMin != null) {
+            const hour = Math.floor(nowMin / 60) * 60;
+            const at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+            const nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+            if (at !== -1) rows.splice(at, 0,
+              <div key="__open" data-open-anchor aria-hidden="true" style={{ height: 0 }} />,
+              ...(nowMine.length ? [
+                <div key="__nowmine" data-now-on-plan-card style={{ padding: "8px 0 12px" }}>
+                  <div className="duo-sect" style={{ padding: "4px 0 8px" }}>Now on your plan</div>
+                  {nowMine.map(a => renderRow(a, true))}
+                </div>
+              ] : []));
+            // Late in the night too few sets follow the hour to scroll it to
+            // the top; this tail (sized by fitOpenTail, 0 when not needed)
+            // gives the list the room. Running night only.
+            if (at !== -1) rows.push(<div key="__tail" data-open-tail aria-hidden="true" />);
           }
           return rows;
         })()}
@@ -1989,6 +2184,13 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
     // i * COL_W — that lands it flush against the gutter, not under it.
     el.scrollTo({ left: i * COL_W, behavior: "smooth" });
   };
+  // The header's stage overview names a stage; bring its column into view.
+  const _toStage = React.useRef(scrollToStage); _toStage.current = scrollToStage;
+  React.useEffect(() => {
+    const on = (e) => _toStage.current(e.detail);
+    window.addEventListener("plursky:grid-stage", on);
+    return () => window.removeEventListener("plursky:grid-stage", on);
+  }, []);
 
   // Open on the current hour (or the next saved set) instead of at the top of
   // a 12-hour day.

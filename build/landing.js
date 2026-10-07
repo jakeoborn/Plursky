@@ -619,17 +619,16 @@ function FestivalSaveRow({
     },
     "aria-pressed": saved,
     "aria-label": label,
+    className: "duo-card",
     style: {
       width: "100%",
       minHeight: 52,
       marginBottom: 14,
-      padding: "10px 14px",
+      padding: "10px 16px",
       display: "flex",
       alignItems: "center",
-      gap: 10,
-      background: "var(--paper-2)",
+      gap: 12,
       border: "none",
-      borderRadius: 14,
       color: "var(--ink)",
       cursor: "pointer",
       textAlign: "left",
@@ -645,16 +644,20 @@ function FestivalSaveRow({
     style: {
       flex: 1,
       minWidth: 0,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, React.createElement("span", {
+    style: {
       fontSize: 15,
       lineHeight: 1.33,
       fontWeight: 600
     }
   }, saved ? "Saved" : "Save this festival"), React.createElement("span", {
     style: {
-      flexShrink: 0,
       fontSize: 13,
       lineHeight: 1.38,
       color: "var(--text-2)"
     }
-  }, saved ? "Tap to remove" : "Keep it on your home screen"));
+  }, saved ? "Tap to remove" : "Keep it on your home screen")));
 }

@@ -2627,6 +2627,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Screen layout: the board's Me and Today (before the festival) ──
+// An empty account asks for a name (never a dash), Plan / Memories / Crew /
+// Badges are four round actions on one row with no zero counts, the
+// Plursky+ entry stays fully on screen at the top, festival rows keep their
+// title on one line at 320. Both modes, 393 and 320, empty and populated.
+{
+  console.log("▸ Screen layout gate — Me and Today before the festival, on the board");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
