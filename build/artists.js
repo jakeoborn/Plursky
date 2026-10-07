@@ -179,7 +179,7 @@ function ArtistsDirectoryScreen({
   })).sort((x, y) => (y.f.year || 0) - (x.f.year || 0) || x.f.name.localeCompare(y.f.name));
   return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Artists",
-    sub: "Across every festival",
+    sub: fest === "" ? "Across every festival" : "At one festival",
     onBack: back
   }), React.createElement("div", {
     "data-artists-controls": true,

@@ -138,7 +138,7 @@ function ArtistsDirectoryScreen({ state, setState }) {
 
   return (
     <Screen>
-      <_HistHeader title="Artists" sub="Across every festival" onBack={back} />
+      <_HistHeader title="Artists" sub={fest === "" ? "Across every festival" : "At one festival"} onBack={back} />
       <div data-artists-controls style={{ padding: "8px 20px 4px", display: "grid", gap: 4 }}>
         <input type="search" value={q} onChange={e => setQ(e.target.value)} placeholder="Search artists"
           aria-label="Search artists" autoComplete="off" spellCheck={false}

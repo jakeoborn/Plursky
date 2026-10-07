@@ -142,6 +142,8 @@ try {
       }), { FI });
       const sc1 = await page.evaluate(() => ({ title: document.querySelector('h1')?.textContent.trim(), q: document.querySelector('input[aria-label="Search artists"]')?.value,
         fest: document.querySelector('[data-artists-festival]')?.value, count: document.querySelector('[data-artists-count]')?.textContent.trim(), charli: !!document.querySelector('[data-artist-row="charli-xcx"]') }));
+      const subs = await page.evaluate(() => document.querySelector('h1')?.parentElement?.innerText.replace(/\s+/g, ' ').trim());
+      check(/At one festival/i.test(subs) && !/every festival/i.test(subs), `${tag}: the scoped header reads "${subs}" (want "At one festival"; the chip names it)`);
       check(sc1.title === 'Artists' && sc1.q === 'charli' && sc1.fest === String(FI), `${tag}: Lineup entry opens ${JSON.stringify(sc1)} (want Artists, "charli", festival ${FI})`);
       check(wantS.q >= 1 && sc1.count === `${wantS.q} ${wantS.q === 1 ? 'artist' : 'artists'}` && sc1.charli, `${tag}: Lineup entry lists ${sc1.count}, want ${wantS.q} with Charli xcx`);
       await page.fill('input[aria-label="Search artists"]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
