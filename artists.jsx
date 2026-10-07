@@ -218,12 +218,20 @@ function _ArtistsWindow({ items, fests, today, onOpen }) {
   // The index scrubber: letters present in the list; a press or drag jumps
   // to that section.
   const letters = React.useMemo(() => items.map((it, i) => it.t === "h" ? [it.letter, i] : null).filter(Boolean), [items]);
-  const jump = (y, rect) => {
-    if (!letters.length) return;
-    const i = Math.max(0, Math.min(letters.length - 1, Math.floor((y - rect.top) / (rect.height / letters.length))));
-    const sc = scRef.current; if (sc) sc.scrollTop = offsets[letters[i][1]];
+  // Letters sit at a fixed pitch, centred, and shrink only when they would not
+  // fit, so two letters stay together instead of being spread over the whole
+  // height beside unrelated rows. A press or drag picks the letter nearest the
+  // finger, read from the letters' own rects.
+  const jumpTo = (y, el) => {
+    if (!letters.length || !el) return;
+    let best = 0, bestD = Infinity;
+    [...el.children].forEach((c, k) => {
+      const r = c.getBoundingClientRect(), d = Math.abs(y - (r.top + r.height / 2));
+      if (d < bestD) { bestD = d; best = k; }
+    });
+    const sc = scRef.current; if (sc) sc.scrollTop = offsets[letters[best][1]];
   };
-  const onScrub = (e) => { const r = e.currentTarget.getBoundingClientRect(); jump(e.clientY, r); };
+  const onScrub = (e) => jumpTo(e.clientY, e.currentTarget);
   return (
     <div style={{ flex: 1, position: "relative", minHeight: 0 }}>
       <div ref={scRef} data-artists-scroll style={{ position: "absolute", inset: 0, overflowY: "auto", WebkitOverflowScrolling: "touch" }}>
@@ -258,11 +266,12 @@ function _ArtistsWindow({ items, fests, today, onOpen }) {
           onPointerDown={e => { try { e.currentTarget.setPointerCapture(e.pointerId); } catch {} onScrub(e); }}
           onPointerMove={e => { if (e.buttons) onScrub(e); }}
           style={{ position: "absolute", right: 0, top: 8, bottom: 94, width: 32, display: "flex", flexDirection: "column",
-            justifyContent: "space-evenly", alignItems: "center", touchAction: "none", userSelect: "none", cursor: "pointer" }}>
+            justifyContent: "center", alignItems: "center", touchAction: "none", userSelect: "none", cursor: "pointer" }}>
           {letters.map(([L, i]) => (
             <button key={L} aria-label={`Artists starting with ${L === "#" ? "a number or symbol" : L}`}
               onClick={() => { const sc = scRef.current; if (sc) sc.scrollTop = offsets[i]; }}
-              className="duo-data-s duo-acc" style={{ background: "none", border: "none", padding: 0, minHeight: 0, lineHeight: 1, font: "600 11px/1 var(--f-ui)", color: "var(--acc-ink)" }}>{L}</button>
+              className="duo-data-s duo-acc" style={{ flex: "0 1 18px", width: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+                background: "none", border: "none", padding: 0, minHeight: 0, lineHeight: 1, font: "600 11px/1 var(--f-ui)", color: "var(--acc-ink)" }}>{L}</button>
           ))}
         </div>
       )}
@@ -322,7 +331,7 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
 // The entry on Me, under All festivals.
 function ArtistsDirectoryRow() {
   return (
-    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: "", artistsFestival: null })}
+    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: "", artistsFestival: null, artistsFrom: "me" })}
       className="duo-card" style={{
         width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
         display: "flex", alignItems: "center", gap: 12, border: "none",

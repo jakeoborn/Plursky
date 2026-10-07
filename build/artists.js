@@ -370,16 +370,22 @@ function _ArtistsWindow({
     }
   });
   var letters = React.useMemo(() => items.map((it, i) => it.t === "h" ? [it.letter, i] : null).filter(Boolean), [items]);
-  var jump = (y, rect) => {
-    if (!letters.length) return;
-    var i = Math.max(0, Math.min(letters.length - 1, Math.floor((y - rect.top) / (rect.height / letters.length))));
+  var jumpTo = (y, el) => {
+    if (!letters.length || !el) return;
+    var best = 0,
+      bestD = Infinity;
+    [...el.children].forEach((c, k) => {
+      var r = c.getBoundingClientRect(),
+        d = Math.abs(y - (r.top + r.height / 2));
+      if (d < bestD) {
+        bestD = d;
+        best = k;
+      }
+    });
     var sc = scRef.current;
-    if (sc) sc.scrollTop = offsets[letters[i][1]];
+    if (sc) sc.scrollTop = offsets[letters[best][1]];
   };
-  var onScrub = e => {
-    var r = e.currentTarget.getBoundingClientRect();
-    jump(e.clientY, r);
-  };
+  var onScrub = e => jumpTo(e.clientY, e.currentTarget);
   return React.createElement("div", {
     style: {
       flex: 1,
@@ -494,7 +500,7 @@ function _ArtistsWindow({
       width: 32,
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-evenly",
+      justifyContent: "center",
       alignItems: "center",
       touchAction: "none",
       userSelect: "none",
@@ -509,6 +515,11 @@ function _ArtistsWindow({
     },
     className: "duo-data-s duo-acc",
     style: {
+      flex: "0 1 18px",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       background: "none",
       border: "none",
       padding: 0,
@@ -649,7 +660,8 @@ function ArtistsDirectoryRow() {
       tab: "artists",
       artist: null,
       artistsQuery: "",
-      artistsFestival: null
+      artistsFestival: null,
+      artistsFrom: "me"
     }),
     className: "duo-card",
     style: {

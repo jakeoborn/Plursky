@@ -1337,7 +1337,8 @@ function LineupScreen({
       tab: "artists",
       artist: null,
       artistsQuery: q.trim(),
-      artistsFestival: FESTIVAL_CONFIG.id
+      artistsFestival: FESTIVAL_CONFIG.id,
+      artistsFrom: "lineup"
     })
   }, "Artist history"), React.createElement("button", {
     onClick: () => {

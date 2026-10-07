@@ -899,7 +899,10 @@ function App() {
           const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
           return (
             <TabBar
-              active={meFold.includes(state.tab) ? "me" : state.tab}
+              // The directory belongs to the tab it was entered from: Lineup's
+              // "Artist history" keeps Lineup lit; Me's row (or a deep link) Me.
+              active={state.tab === "artists" && state.artistsFrom === "lineup" ? "lineup"
+                : meFold.includes(state.tab) ? "me" : state.tab}
               onChange={t => setState({ ...state, tab: t })}
             />
           );

@@ -155,6 +155,9 @@ try {
       check(/At one festival/i.test(subs) && !/every festival/i.test(subs), `${tag}: the scoped header reads "${subs}" (want "At one festival"; the chip names it)`);
       check(sc1.title === 'Artists' && sc1.q === 'charli' && sc1.fest === String(FI), `${tag}: Lineup entry opens ${JSON.stringify(sc1)} (want Artists, "charli", festival ${FI})`);
       check(wantS.q >= 1 && sc1.count === `${wantS.q} ${wantS.q === 1 ? 'artist' : 'artists'}` && sc1.charli, `${tag}: Lineup entry lists ${sc1.count}, want ${wantS.q} with Charli xcx`);
+      // Entered from Lineup, the tab bar keeps Lineup lit (it used to light Me).
+      const litL = await page.evaluate(() => [...document.querySelectorAll('button[aria-current="page"]')].map(b => b.textContent.trim()).join('|'));
+      check(/^Lineup$/i.test(litL), `${tag}: the directory from Lineup lights "${litL}" in the tab bar (want Lineup)`);
       await page.fill('input[aria-label="Search artists"]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
       const sc2 = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
       check(wantS.all > 100 && wantS.all < DIR.artists.length && sc2 === `${wantS.all} artists`, `${tag}: the scoped directory reads "${sc2}", want ${wantS.all} (ACL 2026 only)`);
@@ -170,6 +173,41 @@ try {
       await page.clock.runFor(300); await page.waitForTimeout(150);
       const me = await page.evaluate(() => ({ q: document.querySelector('input[aria-label="Search artists"]')?.value, fest: document.querySelector('[data-artists-festival]')?.value, count: document.querySelector('[data-artists-count]')?.textContent.trim() }));
       check(me.q === '' && me.fest === '' && me.count === r.count, `${tag}: Me's row after the Lineup entry opens ${JSON.stringify(me)}, want every festival (${r.count})`);
+      const litM = await page.evaluate(() => [...document.querySelectorAll('button[aria-current="page"]')].map(b => b.textContent.trim()).join('|'));
+      check(/^Me$/i.test(litM), `${tag}: the directory from Me lights "${litM}" in the tab bar (want Me)`);
+      // A sparse scrubber keeps its letters together at a fixed pitch instead of
+      // spreading them over the full height beside unrelated rows, and a press
+      // on the last letter still shows that letter's section.
+      let sparse = null;
+      for (const q of ['lorde', 'charli', 'four tet', 'skrillex', 'peggy', 'fred again', 'disclosure', 'kaytranada']) {
+        await page.fill('input[aria-label="Search artists"]', q); await page.clock.runFor(300); await page.waitForTimeout(150);
+        const sp = await page.evaluate(() => { const bs = [...document.querySelectorAll('[data-artists-scrubber] button')];
+          const cs = bs.map(b => { const r = b.getBoundingClientRect(); return r.top + r.height / 2; });
+          return { q: document.querySelector('input[aria-label="Search artists"]').value, letters: bs.map(b => b.textContent), maxGap: Math.max(...cs.slice(1).map((c, k) => c - cs[k])) }; });
+        if (sp.letters.length >= 2 && sp.letters.length <= 5) { sparse = sp; break; }
+      }
+      check(!!sparse, `${tag}: control: no search gave a 2–5 letter scrubber`);
+      if (sparse) {
+        check(sparse.maxGap <= 24, `${tag}: "${sparse.q}" spreads ${sparse.letters.join('')} ${Math.round(sparse.maxGap)}px apart (want ≤ 24px)`);
+        const last = sparse.letters[sparse.letters.length - 1];
+        await page.click(`[data-artists-scrubber] button[aria-label^="Artists starting with ${last === '#' ? 'a number' : last}"]`); await page.clock.runFor(200); await page.waitForTimeout(200);
+        const shown = await page.evaluate(() => { const sc = document.querySelector('[data-artists-scroll]'), top = sc.getBoundingClientRect().top;
+          const h = [...document.querySelectorAll('[data-dir-letter]')].find(e => Math.abs(e.getBoundingClientRect().top - top) < 4) || [...document.querySelectorAll('[data-dir-letter]')].filter(e => e.getBoundingClientRect().top <= top + 4).pop();
+          return h?.dataset.dirLetter || null; });
+        // A short list may not scroll far enough to put the last section on top;
+        // then it must at least be on screen.
+        const visible = await page.evaluate(L => { const sc = document.querySelector('[data-artists-scroll]').getBoundingClientRect(); const h = document.querySelector(`[data-dir-letter="${L}"]`); if (!h) return false; const r = h.getBoundingClientRect(); return r.top >= sc.top - 1 && r.bottom <= sc.bottom + 1; }, last);
+        check(shown === last || visible, `${tag}: pressing ${last} on the sparse scrubber shows ${shown}`);
+      }
+      // Drag on the full scrubber: the press point picks the nearest letter.
+      await page.fill('input[aria-label="Search artists"]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
+      const mBox = await page.evaluate(() => { const b = document.querySelector('[data-artists-scrubber] button[aria-label="Artists starting with M"]'); const r = b.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+      const scr = await page.locator('[data-artists-scrubber]').boundingBox();
+      await page.mouse.move(scr.x + scr.width / 2, scr.y + 2); await page.mouse.down(); await page.mouse.move(mBox.x, mBox.y, { steps: 4 }); await page.mouse.up();
+      await page.clock.runFor(200); await page.waitForTimeout(200);
+      const dragged = await page.evaluate(() => { const sc = document.querySelector('[data-artists-scroll]'), top = sc.getBoundingClientRect().top;
+        return [...document.querySelectorAll('[data-dir-letter]')].filter(e => e.getBoundingClientRect().top <= top + 4).pop()?.dataset.dirLetter || null; });
+      check(dragged === 'M', `${tag}: a drag ending on M shows section ${dragged}`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
   }

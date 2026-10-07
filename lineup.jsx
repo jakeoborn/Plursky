@@ -1072,7 +1072,7 @@ function LineupScreen({ state, setState }) {
             search: where else these acts have played. */}
         {typeof ArtistsDirectoryScreen === "function" && (
           <button data-lineup-artists-entry style={textBtn}
-            onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: q.trim(), artistsFestival: FESTIVAL_CONFIG.id })}>Artist history</button>
+            onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: q.trim(), artistsFestival: FESTIVAL_CONFIG.id, artistsFrom: "lineup" })}>Artist history</button>
         )}
         <button onClick={() => { setQ(""); setSearchOpen(false); }} style={textBtn}>Done</button>
       </div>
