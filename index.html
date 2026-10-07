@@ -188,7 +188,7 @@
   }
   /* Structure shared by both modes (type floor, radii). No colour here. */
   .theme-field{
-    --spotify:#1DB954; --spotify-rgb:29,185,84; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
+    --spotify:#1DB954; --spotify-rgb:29,185,84; --on-spotify:#000; --apple-music:#FA2D5A; --apple-music-rgb:250,45,90;
     --on-apple-music:#14121C;   /* brand fills are the same in both modes, so is their ink */
     --fs-label-s:11px; --fs-label:11px; --fs-label-l:12px;
     --fs-body-s:13px; --fs-body:15px; --fs-body-l:17px;
@@ -372,6 +372,10 @@
   /* Under 360pt the face gives its width back to the name: a name is never
      truncated, and with the face a two-word name wrapped at 320. */
   @media (max-width:360px){.duo-lrow>.duo-av,.duo-lrow>.duo-avp{display:none}.duo-lrow{gap:10px}}
+  .duo-viewchip .ic{display:none}
+  /* Map category chips: four on one line down to 320 (board row). */
+  @media (max-width:360px){[data-map-chips]{gap:4px !important}[data-map-chips] [data-map-cat]>span{padding:0 10px}}
+  @media (max-width:360px){.duo-viewchip .ic{display:block}.duo-viewchip .lbl{display:none}.duo-viewchip>span{padding:0 10px}}
   /* Today's scoreboard. Two columns (Now | Next) need ~160px each for a face
      and a whole word; under 360px they stack, each cell saying which it is,
      so a name wraps between words and never mid-word. The plan card's big
@@ -394,13 +398,13 @@
   .theme-field body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:var(--field-glow)}
   .theme-field [data-midnight-card]{background:linear-gradient(145deg,rgba(var(--signal-rgb),.08),var(--paper-2) 62%);border:1px solid var(--line-2);box-shadow:0 18px 50px rgba(var(--shade-rgb),.12)}
   .theme-field .midnight-festival-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .theme-field .midnight-festival-grid>button{min-height:258px!important;border:0!important;border-radius:var(--rad-md)!important;padding:10px!important;background:var(--s2)!important;box-shadow:var(--e1);align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
+  .theme-field .midnight-festival-grid>button{min-height:0!important;border:0!important;border-radius:var(--rad-md)!important;padding:10px!important;background:var(--s2)!important;box-shadow:var(--e1);align-items:flex-start!important;flex-direction:column!important;overflow:hidden!important}
   .theme-field .midnight-festival-grid>button>div:first-child{width:100%!important;height:82px!important;border-radius:12px!important}
   .theme-field .midnight-festival-grid>button>div:nth-child(2){width:100%;align-self:stretch;text-align:left}
-  .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:first-child{font-size:15px!important;line-height:19px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:first-child{font-size:15px!important;line-height:19px!important;overflow-wrap:anywhere}
   .theme-field .midnight-festival-grid>button>div:nth-child(2)>div:not(:first-child){font-size:12px!important;line-height:16px!important;overflow-wrap:anywhere}
-  .theme-field .midnight-festival-grid>button>svg{position:absolute;right:10px;bottom:10px}
-  @media(max-width:340px){.theme-field .midnight-festival-grid{grid-template-columns:1fr}.theme-field .midnight-festival-grid>button{min-height:118px!important;display:grid!important;grid-template-columns:72px 1fr 16px;align-items:center!important}.theme-field .midnight-festival-grid>button>div:first-child{width:72px!important;height:72px!important}.theme-field .midnight-festival-grid>button>svg{position:static}}
+  .theme-field .midnight-festival-grid>button{padding-bottom:30px!important}.theme-field .midnight-festival-grid>button>svg{position:absolute;right:10px;bottom:10px}
+  @media(max-width:340px){.theme-field .midnight-festival-grid{grid-template-columns:1fr}.theme-field .midnight-festival-grid>button{min-height:0!important;padding-bottom:10px!important;display:grid!important;grid-template-columns:72px 1fr 16px;align-items:center!important}.theme-field .midnight-festival-grid>button>div:first-child{width:72px!important;height:72px!important}.theme-field .midnight-festival-grid>button>svg{position:static}}
   /* System font only. Inline styles name 'Geist' or 'Instrument Serif' ~580
      times and only !important beats an inline style, so the swap lives here
      until each surface is restyled. Display serif becomes bold, upright sans. */
@@ -483,7 +487,7 @@
         <li><a href="/f/summerfest-2026/">Summerfest 2026 set times</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
         <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026 set times</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
         <li><a href="/f/outside-lands-2026/">Outside Lands 2026 set times</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
-        <li><a href="/f/iii-points-2026/">III Points 2026 lineup</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026 set times</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
         <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026 set times</a> — Sep 19–20, 2026 · Glen Helen Regional Park · San Bernardino, CA</li>
         <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026 set times</a> — Sep 26–27, 2026 · Waterfront Park · San Diego, CA</li>
         <li><a href="/f/portola-2026/">Portola 2026 set times</a> — Sep 26–27, 2026 · Pier 80 · San Francisco, CA</li>
@@ -520,7 +524,7 @@
         <li><a href="/f/summerfest-2026/">Summerfest 2026 set times</a> — Jun 18–20, Jun 25–27 &amp; Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI</li>
         <li><a href="/f/lollapalooza-2026/">Lollapalooza 2026 set times</a> — Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL</li>
         <li><a href="/f/outside-lands-2026/">Outside Lands 2026 set times</a> — Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA</li>
-        <li><a href="/f/iii-points-2026/">III Points 2026 lineup</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
+        <li><a href="/f/iii-points-2026/">III Points 2026 set times</a> — Oct 16–17, 2026 · Mana Wynwood · Miami, FL</li>
         <li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026 set times</a> — Sep 19–20, 2026 · Glen Helen Regional Park · San Bernardino, CA</li>
         <li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026 set times</a> — Sep 26–27, 2026 · Waterfront Park · San Diego, CA</li>
         <li><a href="/f/portola-2026/">Portola 2026 set times</a> — Sep 26–27, 2026 · Pier 80 · San Francisco, CA</li>

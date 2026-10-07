@@ -261,7 +261,7 @@ function SpotifyScreen({
     onClick: handleSaveAll,
     style: {
       background: saveFlash ? "var(--signal)" : "var(--spotify)",
-      color: saveFlash ? "var(--on-signal)" : "var(--paper)",
+      color: saveFlash ? "var(--on-signal)" : "var(--on-spotify)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -272,7 +272,7 @@ function SpotifyScreen({
       fontWeight: 600,
       transition: "background 0.3s"
     }
-  }, saveFlash ? `✓ SAVED ${matched.length} ARTISTS` : `SAVE ALL ${matched.length} ARTISTS`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
+  }, saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
     state: state
   }), savedInLineup(state.saved).length > 0 && React.createElement(AppleMusicPlaylistButton, {
     state: state
@@ -288,9 +288,10 @@ function SpotifyScreen({
       connected ? disconnectSpotify(setState, state) : startSpotifyAuth();
     },
     style: {
-      background: connected ? "rgba(var(--spotify-rgb),0.2)" : "rgba(var(--ink-rgb),0.12)",
-      color: "var(--ink)",
-      border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "1px solid rgba(var(--ink-rgb),0.28)",
+      background: connected ? "rgba(var(--spotify-rgb),0.2)" : "var(--spotify)",
+      color: connected ? "var(--ink)" : "var(--on-spotify)",
+      border: connected ? "1px solid rgba(var(--spotify-rgb),0.5)" : "none",
+      order: connected ? 0 : -1,
       borderRadius: 999,
       padding: "10px 16px",
       cursor: "pointer",
@@ -301,13 +302,13 @@ function SpotifyScreen({
       transition: "all 0.3s var(--ease-spring)",
       animation: connected && spotifyArtists === null ? "savePop 1.2s ease-in-out infinite" : undefined
     }
-  }, connected && spotifyArtists === null ? "⟳ LOADING…" : connected ? "✓ CONNECTED" : "CONNECT ACCOUNT")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
+  }, connected && spotifyArtists === null ? "Loading…" : connected ? "Connected" : "Connect Spotify")), APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && React.createElement("div", {
     style: {
       marginTop: 10,
       font: "400 13px/1.45 var(--f-ui)",
       color: "var(--ink-2)"
     }
-  }, "💡 Your saved sets build a playlist on ", React.createElement("span", {
+  }, "Your saved sets build a playlist on ", React.createElement("span", {
     style: {
       color: "var(--ink)",
       fontWeight: 700
@@ -413,7 +414,7 @@ function SpotifyScreen({
       letterSpacing: 1.2,
       fontWeight: 600
     }
-  }, amLoading ? "CONNECTING…" : "CONNECT APPLE MUSIC")), amConnected && React.createElement("div", {
+  }, amLoading ? "Connecting…" : "Connect Apple Music")), amConnected && React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -428,8 +429,8 @@ function SpotifyScreen({
       });
     },
     style: {
-      background: "var(--alert)",
-      color: "var(--on-alert)",
+      background: "var(--apple-music)",
+      color: "var(--on-apple-music)",
       border: "none",
       borderRadius: 999,
       padding: "10px 16px",
@@ -439,11 +440,11 @@ function SpotifyScreen({
       letterSpacing: 1.2,
       fontWeight: 600
     }
-  }, "SAVE ALL ", amMatched.length, " ARTISTS"), React.createElement("button", {
+  }, "Save all ", amMatched.length, " artists"), React.createElement("button", {
     onClick: handleAmDisconnect,
     style: {
       background: "rgba(var(--ink-rgb),0.12)",
-      color: "var(--paper)",
+      color: "var(--ink)",
       border: "1px solid rgba(var(--ink-rgb),0.28)",
       borderRadius: 999,
       padding: "10px 16px",
@@ -452,7 +453,7 @@ function SpotifyScreen({
       fontSize: 10,
       letterSpacing: 1.2
     }
-  }, "DISCONNECT")), amConnected && amArtists === null && React.createElement("div", {
+  }, "Disconnect")), amConnected && amArtists === null && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -9983,7 +9984,7 @@ function MemoriesScreen({
     }
   }, React.createElement(TopBar, {
     title: "Memories",
-    sub: `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` + (unconfirmedCount ? ` · ${unconfirmedCount} UNCONFIRMED` : "") + ` · ${FESTIVAL_CONFIG.shortName.toUpperCase()}`,
+    sub: [confirmedCount ? `${confirmedCount} ${confirmedCount === 1 ? "MOMENT" : "MOMENTS"}` : null, unconfirmedCount ? `${unconfirmedCount} UNCONFIRMED` : null, FESTIVAL_CONFIG.shortName.toUpperCase()].filter(Boolean).join(" · "),
     tight: true
   })), React.createElement("input", {
     ref: batchInputRef,
@@ -11045,7 +11046,6 @@ function MeScreen({
     }
   }, React.createElement(TopBar, {
     title: "Me",
-    sub: FESTIVAL_CONFIG.shortName.toUpperCase(),
     tight: true
   })), React.createElement(ScrollBody, {
     ref: useStaggerFade("me"),
@@ -11093,20 +11093,31 @@ function MeScreen({
       flex: 1,
       minWidth: 0
     }
-  }, React.createElement("div", {
+  }, rawName ? React.createElement("div", {
     className: "duo-headline duo-name",
-    onClick: rawName ? undefined : promptName,
     style: {
       fontSize: 21,
-      color: rawName ? "var(--ink)" : "var(--ink-2)",
-      cursor: rawName ? "default" : "pointer"
+      color: "var(--ink)"
     }
-  }, displayName), React.createElement("div", {
+  }, displayName) : React.createElement("button", {
+    "data-me-add-name": true,
+    onClick: promptName,
+    style: {
+      padding: 0,
+      minHeight: 32,
+      border: "none",
+      background: "none",
+      cursor: "pointer",
+      font: "600 17px/1.3 var(--f-ui)",
+      color: "var(--acc-ink)",
+      textAlign: "left"
+    }
+  }, "Add your name"), React.createElement("div", {
     className: "duo-label duo-ink3",
     style: {
       marginTop: 4
     }
-  }, tagline), React.createElement("span", {
+  }, tagline, setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""), React.createElement("span", {
     className: "duo-code",
     style: {
       display: "inline-flex",
@@ -11123,42 +11134,7 @@ function MeScreen({
       background: pingColor,
       display: "inline-block"
     }
-  }), "PING · ", pingCode))), React.createElement("div", {
-    "data-animate": true,
-    className: "duo-card",
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      padding: "16px 4px",
-      marginBottom: 14
-    }
-  }, [{
-    n: setsCaught,
-    label: "SETS CAUGHT"
-  }, {
-    n: daysHere,
-    label: "DAYS HERE"
-  }].map((s, i) => React.createElement("div", {
-    key: s.label,
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      borderLeft: i === 0 ? "none" : "1px solid var(--line)",
-      padding: "2px 6px"
-    }
-  }, React.createElement("div", {
-    className: "duo-clock",
-    style: {
-      color: "var(--ink)",
-      marginBottom: 8
-    }
-  }, s.n), React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      textAlign: "center"
-    }
-  }, s.label)))), plusActive ? React.createElement("div", {
+  }), "PING · ", pingCode))), plusActive ? React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -11276,89 +11252,134 @@ function MeScreen({
     onClose: () => setPlusOpen(false)
   }), React.createElement("div", {
     "data-animate": true,
+    "data-me-actions": true,
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 10,
+      gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+      gap: 8,
       marginBottom: 22
     }
   }, [{
     key: "saved",
-    label: "SAVED",
+    label: "Plan",
     count: savedCount,
-    icon: "★",
+    icon: React.createElement("path", {
+      d: "M12 3.5 L14.6 9 L20.5 9.6 L16 13.6 L17.3 19.5 L12 16.5 L6.7 19.5 L8 13.6 L3.5 9.6 L9.4 9 Z"
+    }),
     onClick: () => setState(st => ({
       ...st,
       tab: "lineup"
     }))
   }, {
     key: "memories",
-    label: "MEMORIES",
+    label: "Memories",
     count: _countMoments(),
-    icon: "◐",
+    icon: React.createElement(React.Fragment, null, React.createElement("rect", {
+      x: "3.5",
+      y: "5.5",
+      width: "17",
+      height: "13",
+      rx: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 15.5 L9 11 L14 15 L17 12.5 L20.5 15.5"
+    }), React.createElement("circle", {
+      cx: "15.5",
+      cy: "9.5",
+      r: "1.4"
+    })),
     onClick: () => setState(s => ({
       ...s,
       tab: "memories"
     }))
   }, {
     key: "crew",
-    label: "CREW",
+    label: "Crew",
     count: crewCount,
-    icon: "☷",
+    icon: React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "9",
+      cy: "9",
+      r: "3"
+    }), React.createElement("circle", {
+      cx: "16.5",
+      cy: "9.5",
+      r: "2.5"
+    }), React.createElement("path", {
+      d: "M3.5 19 C4 15.5 6.3 14 9 14 C11.7 14 14 15.5 14.5 19 M14.5 14.2 C17.6 13.8 19.8 15.5 20.5 18.5"
+    })),
     onClick: () => document.getElementById("plursky-crew-anchor")?.scrollIntoView({
       behavior: "smooth",
       block: "start"
     })
   }, {
     key: "badges",
-    label: "BADGES",
+    label: "Badges",
     count: badgesEarnedCount,
-    icon: "✦",
-    onClick: () => {
-      document.getElementById("plursky-badges-anchor")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  }].map(card => React.createElement("button", {
-    key: card.key,
-    onClick: card.onClick,
-    className: "duo-card",
+    icon: React.createElement(React.Fragment, null, React.createElement("circle", {
+      cx: "12",
+      cy: "9.5",
+      r: "5.5"
+    }), React.createElement("path", {
+      d: "M8.8 14 L7.5 20.5 L12 18.2 L16.5 20.5 L15.2 14"
+    })),
+    onClick: () => document.getElementById("plursky-badges-anchor")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    })
+  }].map(a => React.createElement("button", {
+    key: a.key,
+    "data-me-action": a.key,
+    onClick: a.onClick,
+    "aria-label": `${a.label}${a.count ? `, ${a.count}` : ""}`,
     style: {
-      position: "relative",
-      border: "none",
-      padding: 14,
-      minHeight: 96,
       display: "flex",
       flexDirection: "column",
-      alignItems: "stretch",
-      justifyContent: "space-between",
-      textAlign: "left",
+      alignItems: "center",
+      gap: 8,
+      minWidth: 0,
+      padding: "4px 0",
+      border: "none",
+      background: "none",
       cursor: "pointer",
-      fontFamily: "inherit",
+      color: "var(--ink)",
+      fontFamily: "inherit"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      width: 52,
+      height: 52,
+      borderRadius: 26,
+      flexShrink: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "inset 0 0 0 1.5px var(--line-2)",
       color: "var(--ink)"
     }
-  }, React.createElement("div", {
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, a.icon)), React.createElement("span", {
+    "data-fit-words": true,
     style: {
-      position: "absolute",
-      top: 12,
-      right: 14,
-      fontSize: 18,
-      lineHeight: 1,
+      font: "500 13px/1.25 var(--f-ui)",
+      color: "var(--ink-2)",
+      textAlign: "center",
+      maxWidth: "100%"
+    }
+  }, a.label), a.count > 0 && React.createElement("span", {
+    className: "duo-data-s",
+    style: {
+      marginTop: -6,
       color: "var(--ink-3)"
     }
-  }, card.icon), React.createElement("div", null), React.createElement("div", null, React.createElement("div", {
-    className: "duo-clock",
-    style: {
-      fontSize: 26,
-      color: "var(--ink)"
-    }
-  }, card.count), React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      marginTop: 6
-    }
-  }, card.label))))), typeof window.FESTIVAL_CONFIG?.endMs === "number" && Date.now() > window.FESTIVAL_CONFIG.endMs && React.createElement("button", {
+  }, a.count)))), typeof window.FESTIVAL_CONFIG?.endMs === "number" && Date.now() > window.FESTIVAL_CONFIG.endMs && React.createElement("button", {
     onClick: () => setState(s => ({
       ...s,
       tab: "recap"
@@ -11488,17 +11509,25 @@ function MeScreen({
       color: "var(--ink-2)"
     }
   }, "⌂"), React.createElement("span", {
-    className: "duo-headline",
     style: {
       flex: 1,
-      minWidth: 0
+      minWidth: 0,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 15,
+      lineHeight: 1.33,
+      fontWeight: 600
     }
   }, "All festivals"), React.createElement("span", {
-    className: "duo-body-s duo-ink2",
     style: {
-      flexShrink: 0
+      fontSize: 13,
+      lineHeight: 1.38,
+      color: "var(--text-2)"
     }
-  }, "Your plan is kept")), typeof ArtistsDirectoryRow === "function" && React.createElement(ArtistsDirectoryRow, null), React.createElement(HistoryRecordsSection, {
+  }, "Your plan is kept"))), typeof ArtistsDirectoryRow === "function" && React.createElement(ArtistsDirectoryRow, null), React.createElement(HistoryRecordsSection, {
     state: state,
     setState: setState
   }), React.createElement("div", {
@@ -11548,7 +11577,7 @@ function MeScreen({
     height: "20",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--ink)",
+    stroke: state.spotifyConnected ? "var(--on-spotify)" : "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -12032,11 +12061,8 @@ function BoardPlaylistCard({
     color: "var(--ink)"
   };
   var mono = {
-    fontFamily: "Geist Mono, monospace",
-    fontSize: 9,
-    letterSpacing: 1.2,
-    color: "var(--muted)",
-    textTransform: "uppercase"
+    font: "400 13px/1.385 var(--f-ui)",
+    color: "var(--ink-2)"
   };
   if (!open) {
     return React.createElement("button", {
@@ -12068,7 +12094,9 @@ function BoardPlaylistCard({
     }, "Board playlist"), React.createElement("div", {
       style: {
         ...mono,
-        color: "var(--ink)"
+        color: "var(--acc-ink)",
+        fontWeight: 600,
+        flexShrink: 0
       }
     }, "Preview →")), React.createElement("div", {
       style: {
@@ -12170,7 +12198,6 @@ function BoardPlaylistCard({
     }, a.name), React.createElement("div", {
       style: {
         ...mono,
-        fontSize: 8,
         marginTop: 2
       }
     }, stg?.short || stg?.name || "Stage TBA", " · ", when), React.createElement("div", {
@@ -12220,7 +12247,6 @@ function BoardPlaylistCard({
     onClick: () => setShowDiag(v => !v),
     style: {
       ...mono,
-      fontSize: 8,
       background: "transparent",
       border: "none",
       padding: "14px 0 0",
@@ -12229,7 +12255,6 @@ function BoardPlaylistCard({
   }, "Diagnostics ", showDiag ? "▴" : "▾"), showDiag && React.createElement("div", {
     style: {
       ...mono,
-      fontSize: 8,
       lineHeight: 1.7,
       textTransform: "none",
       letterSpacing: 0.4,
@@ -12393,26 +12418,26 @@ function BuildPlaylistButton({
   };
   var label,
     bg = "rgba(var(--spotify-rgb),0.14)",
-    color = "var(--spotify)",
+    color = "var(--ink)",
     border = "1px solid var(--spotify)";
   if (status === "working") {
-    label = buildProgress ? `BUILDING · ${buildProgress}` : "BUILDING…";
+    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE — OPEN ↗` : `✓ ${result?.added} TRACKS · IN SET ORDER — OPEN ↗`;
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗` : `✓ ${result?.added} tracks · in set order — open ↗`;
     bg = "var(--spotify)";
-    color = "var(--paper)";
+    color = "var(--on-spotify)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "↻ TAP TO GRANT SPOTIFY ACCESS";else if (result?.reason === "no_target_playlist") label = "↗ CREATE 'PLURSKY' PLAYLIST IN SPOTIFY";else if (result?.reason === "rate_limited") label = "⏱ SPOTIFY BUSY · WAIT 30S, TAP AGAIN";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "create_fail") {
+    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "create_fail") {
       var msg = (result?.message || "").slice(0, 28);
-      label = msg ? `✕ ${result?.status} · ${msg}` : `✕ FAILED · ${result?.status || "?"}`;
-    } else label = "✕ TRY AGAIN";
+      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
+    } else label = "Try again";
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
   } else {
-    label = idleLabel || (soundtrack ? "🎵 SOUNDTRACK → SPOTIFY" : "BUILD MY PLAYLIST");
+    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
   }
   return React.createElement("button", {
     onClick: onClick,
@@ -12475,21 +12500,21 @@ function AppleMusicPlaylistButton({
     color = "var(--ink)",
     border = "1px solid var(--apple-music)";
   if (status === "working") {
-    label = prog ? `BUILDING · ${prog}` : "BUILDING…";
+    label = prog ? `Building · ${prog}` : "Building…";
   } else if (status === "done") {
     var sm = result?.songsMatched || 0;
-    var open = result?.url ? " — OPEN ↗" : "";
-    label = soundtrack && sm > 0 ? `✓ ${sm} OF YOUR SONGS + ${result?.added - sm} MORE${open}` : `✓ ${result?.added} TRACKS IN APPLE MUSIC${open}`;
+    var open = result?.url ? " — open ↗" : "";
+    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more${open}` : `✓ ${result?.added} tracks in Apple Music${open}`;
     bg = "var(--apple-music)";
     color = "var(--on-apple-music)";
     border = "none";
   } else if (status === "err") {
-    if (result?.reason === "not_connected") label = "↻ TAP TO CONNECT APPLE MUSIC";else if (result?.reason === "empty") label = "SAVE SETS FIRST";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `✕ ${result?.status || ""} TRY AGAIN`;
+    if (result?.reason === "not_connected") label = "Tap to connect Apple Music";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "no_tracks") label = "✕ NO TRACKS FOUND";else label = `Try again${result?.status ? ` · ${result.status}` : ""}`;
     bg = "rgba(var(--alert-rgb),0.16)";
     color = "var(--ink)";
     border = "1px solid var(--alert)";
   } else {
-    label = soundtrack ? "🎵 SOUNDTRACK → APPLE MUSIC" : "BUILD APPLE MUSIC PLAYLIST";
+    label = soundtrack ? "Soundtrack to Apple Music" : "Build Apple Music playlist";
   }
   return React.createElement("button", {
     onClick: onClick,
@@ -15317,7 +15342,7 @@ function RecapScreen({
         border: "none",
         cursor: "pointer",
         background: "var(--spotify)",
-        color: "var(--paper)",
+        color: "var(--on-spotify)",
         fontWeight: 700,
         fontSize: 10,
         letterSpacing: 1,
@@ -16580,7 +16605,7 @@ function RecapScreen({
     disabled: playlistState.status === "building",
     style: {
       background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-      color: playlistState.status === "building" ? "var(--muted)" : "var(--paper)",
+      color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
       border: "none",
       borderRadius: 999,
       padding: "11px 18px",

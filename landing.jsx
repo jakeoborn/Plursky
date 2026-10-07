@@ -613,20 +613,20 @@ function FestivalSaveRow({ festivalId, name }) {
       onClick={() => { toggleSavedFestival(festivalId); setSaved(isFestivalSaved(festivalId)); }}
       aria-pressed={saved}
       aria-label={label}
+      className="duo-card"
       style={{
-        width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 14px",
-        display: "flex", alignItems: "center", gap: 10,
-        background: "var(--paper-2)", border: "none", borderRadius: 14,
+        width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
+        display: "flex", alignItems: "center", gap: 12, border: "none",
         color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
       }}>
       <span aria-hidden="true" style={{ fontSize: 16, color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
         {saved ? "★" : "☆"}
       </span>
-      <span style={{ flex: 1, minWidth: 0, fontSize: 15, lineHeight: 1.33, fontWeight: 600 }}>
-        {saved ? "Saved" : "Save this festival"}
-      </span>
-      <span style={{ flexShrink: 0, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
-        {saved ? "Tap to remove" : "Keep it on your home screen"}
+      {/* Title over its line: side by side, a narrow phone squeezed the
+          title to one word per line. */}
+      <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <span style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600 }}>{saved ? "Saved" : "Save this festival"}</span>
+        <span style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{saved ? "Tap to remove" : "Keep it on your home screen"}</span>
       </span>
     </button>
   );

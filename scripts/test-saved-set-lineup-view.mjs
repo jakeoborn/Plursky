@@ -158,10 +158,13 @@ try {
     await page.clock.runFor(400);
     return page.evaluate(() => (document.body.innerText.match(/YOUR LINEUP · (\d+) SETS?/) || [])[1] ?? null);
   };
+  // Me's Plan action: its count, or 0 when it shows none (a zero is never
+  // printed). null only when the action is missing.
   const meSaved = page => page.evaluate(() => {
-    const b = [...document.querySelectorAll("button")].find(x => /^\s*★?\s*\d+\s*SAVED\s*$/.test(x.innerText.replace(/\n/g, " ")) || /SAVED/.test(x.innerText) && /^\D*\d+\D*$/.test(x.innerText));
-    const m = b && b.innerText.match(/(\d+)/);
-    return m ? +m[1] : null;
+    const b = document.querySelector("[data-me-action=saved]");
+    if (!b) return null;
+    const m = b.innerText.match(/(\d+)/);
+    return m ? +m[1] : 0;
   });
 
   // 1. removed act, in the app

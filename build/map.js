@@ -2581,6 +2581,7 @@ function MapScreen({
   var [showHeat, setShowHeat] = React.useState(false);
   var [amenityKey, setAmenityKey] = React.useState(false);
   var [amenityFilter, setAmenityFilter] = React.useState(null);
+  var [mapCat, setMapCat] = React.useState("stages");
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
   var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
@@ -3004,12 +3005,105 @@ function MapScreen({
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "DENIED" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
   return React.createElement(Screen, {
     bg: "var(--paper)",
     ink: "var(--ink)"
   }, React.createElement("div", {
+    "data-map-header": true,
+    style: {
+      flexShrink: 0,
+      padding: "8px 16px 10px 20px",
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      columnGap: 10,
+      rowGap: 2,
+      background: "var(--paper)"
+    }
+  }, state._navStack?.length > 0 && React.createElement("button", {
+    onClick: () => window._popNav?.(),
+    "aria-label": "Back",
+    style: {
+      ...fieldIconBtn,
+      marginLeft: -12
+    }
+  }, React.createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M15 6 L9 12 L15 18"
+  }))), React.createElement("h1", {
+    className: "duo-title",
+    style: {
+      margin: 0,
+      flex: 1,
+      minWidth: 0
+    }
+  }, "Map"), React.createElement("span", {
+    "data-map-posture": true,
+    className: "duo-code"
+  }, mapPostureLabel), (() => {
+    var has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+    var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
+    var cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
+    return React.createElement("div", {
+      "data-map-chips": true,
+      role: "radiogroup",
+      "aria-label": "Show on the map",
+      style: {
+        flexBasis: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 8,
+        paddingTop: 8
+      }
+    }, cats.map(([id, label]) => React.createElement("button", {
+      key: id,
+      role: "radio",
+      "aria-checked": cat === id,
+      "data-map-cat": id,
+      className: "duo-chip",
+      onClick: () => {
+        try {
+          window.plurskyHaptic?.("LIGHT");
+        } catch {}
+        setMapCat(id);
+      }
+    }, React.createElement("span", null, label))), cat === "crew" && React.createElement("div", {
+      "data-map-crew-line": true,
+      style: {
+        flexBasis: "100%",
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
+      }
+    }, React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"), React.createElement("button", {
+      className: "duo-chip",
+      onClick: () => setShareOpen(true)
+    }, React.createElement("span", null, "Share with crew"))));
+  })(), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+    "data-map-gps-denied": true,
+    style: {
+      flexBasis: "100%",
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, "Location off · allow it to see yourself on the map")), React.createElement("div", {
     style: {
       flex: 1,
       position: "relative",
@@ -3017,43 +3111,6 @@ function MapScreen({
       background: "var(--paper-2)"
     }
   }, React.createElement(WellnessPill, null), React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 68,
-      left: 10,
-      zIndex: 4,
-      pointerEvents: "none"
-    }
-  }, React.createElement("span", {
-    className: "duo-code",
-    style: {
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      backdropFilter: "blur(10px)",
-      WebkitBackdropFilter: "blur(10px)"
-    }
-  }, mapPostureLabel)), state._navStack?.length > 0 && React.createElement("button", {
-    onClick: () => window._popNav?.(),
-    "aria-label": "Back",
-    style: {
-      position: "absolute",
-      top: 12,
-      left: 10,
-      zIndex: 5,
-      width: 38,
-      height: 38,
-      borderRadius: 12,
-      background: "rgba(var(--glass),0.92)",
-      backdropFilter: "blur(10px)",
-      border: "1px solid var(--line-2)",
-      color: "var(--ink)",
-      cursor: "pointer",
-      fontSize: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    }
-  }, "←"), React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
@@ -3386,30 +3443,7 @@ function MapScreen({
     }
   }, _packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›")))), packsOpen && React.createElement(OfflinePacksSheet, {
     onClose: () => setPacksOpen(false)
-  }), gpsLive && gpsStatus === "denied" && !amenityKey && React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 112,
-      left: 10,
-      zIndex: 4,
-      padding: "4px 10px",
-      borderRadius: 999,
-      background: "rgba(var(--glass),0.92)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      backdropFilter: "blur(8px)",
-      maxWidth: "calc(100% - 120px)"
-    },
-    title: "Location permission is denied — enable it for this site to place yourself on the map"
-  }, React.createElement("span", {
-    style: {
-      font: "600 11px/1.3 var(--f-ui)",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "block"
-    }
-  }, "GPS denied · enable location")), amenityKey && !meetMode && React.createElement("div", {
+  }), amenityKey && !meetMode && React.createElement("div", {
     role: "group",
     "aria-label": "Amenity key",
     style: {
@@ -4275,8 +4309,8 @@ function MapScreen({
     saved: state.saved,
     showLabels: showLabels,
     showHeat: showHeat,
-    showAmenities: searchSheetExpanded || amenityKey,
-    amenityFilter: amenityKey ? amenityFilter : null,
+    showAmenities: searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med",
+    amenityFilter: mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null,
     compass: compass && compassStatus === "live",
     compassHeading: compassHeading,
     selected: selectedStage,
@@ -8015,7 +8049,8 @@ function TopDownMap({
       letter: ""
     };
     return React.createElement("g", {
-      key: a.id
+      key: a.id,
+      "data-amenity": a.type
     }, React.createElement("circle", {
       cx: a.x,
       cy: a.y,

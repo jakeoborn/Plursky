@@ -25,7 +25,7 @@ try {
   // another message, or never render?
   await ctx.addInitScript(()=>{window.__statusLog=[];const t0=performance.now();new MutationObserver(()=>{for(const s of document.querySelectorAll('[role=status]')){const x=(s.textContent||'').trim();if(x&&s.__last!==x){s.__last=x;window.__statusLog.push(`${Math.round(performance.now()-t0)}ms ${x.slice(0,140)}`);}}}).observe(document,{subtree:true,childList:true,characterData:true});});
   const page=await ctx.newPage(); await page.goto(URL,{waitUntil:'domcontentloaded'}); await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000}); await sleep(800);
-  await page.locator('button').filter({hasText:/MEMORIES/}).first().click();
+  await page.locator('[data-me-action=memories]').first().click();
   await page.locator('input[type=file][multiple]').waitFor({state:'attached'});
   await page.evaluate(async()=>{
     const canvas=document.createElement('canvas');canvas.width=canvas.height=1;canvas.getContext('2d').fillRect(0,0,1,1);const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg'));

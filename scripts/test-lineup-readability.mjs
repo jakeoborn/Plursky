@@ -34,14 +34,15 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, reduced = false, saved = null } = {}) => {
-    const ctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: 'block', reducedMotion: reduced ? 'reduce' : 'no-preference' });
+  const open = async ({ fid = 'acl-2026', at = '2026-10-03T01:30:00Z', view = 'list', width = 393, height = 844, reduced = false, saved = null, scheme = null } = {}) => {
+    const ctx = await browser.newContext({ viewport: { width, height }, serviceWorkers: 'block', reducedMotion: reduced ? 'reduce' : 'no-preference', ...(scheme ? { colorScheme: scheme } : {}) });
     await ctx.clock.install({ time: new Date(at) });
-    await ctx.addInitScript(({ fid, view, saved }) => {
+    await ctx.addInitScript(({ fid, view, saved, scheme }) => {
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
       localStorage.setItem('plursky_lineup_view', view); localStorage.setItem('cloud_nudge_seen', '1');
       if (saved) localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
-    }, { fid, view, saved });
+      if (scheme) localStorage.setItem('plursky.appearance', scheme);
+    }, { fid, view, saved, scheme });
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&tab=lineup`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && document.querySelector('[data-lineup-filters]') && document.querySelector('[data-lineup-scroll]'), fid, { timeout: 60000 });
@@ -58,6 +59,12 @@ try {
       transition: f ? getComputedStyle(f).transitionDuration : null,
     };
   });
+  // On the running night the list opens folded at the current hour (Jake,
+  // 2026-10-06); blocks that drive header controls unfold it first, as a tap
+  // on the bar does.
+  const unfold = async (page) => {
+    if ((await state(page)).collapsed) { await page.click('[data-lineup-expand]'); await page.clock.runFor(500); await page.waitForTimeout(300); }
+  };
   // A thumb: small wheel steps with the clock moving between them.
   const drag = async (page, dy, steps = 6, sel = '[data-lineup-scroll]') => {
     const box = await page.locator(sel).first().boundingBox();
@@ -73,12 +80,22 @@ try {
     return tops;
   };
 
-  // ── Header, LIST ─────────────────────────────────────────────────────────
+  // ── Header, LIST (a day that is not running: opens at the top) ───────────
   try {
-    const { ctx, page } = await open();
+    const { ctx, page } = await open({ at: '2026-09-30T18:00:00Z' });
     let s = await state(page);
     check(!s.collapsed && s.filtersH > 200, `list opens with the full header (collapsed=${s.collapsed}, ${s.filtersH}px)`);
+    // The end-of-night tail is the running night's alone.
+    check(await page.evaluate(() => !document.querySelector('[data-open-tail]')), 'a day that is not running carries the end-of-night tail');
     check(s.compactH < 1 && s.compactInert, `the compact bar is hidden and inert while the header is open (${s.compactH}px, inert=${s.compactInert})`);
+    // A scroll the page makes (no wheel, touch or key) never folds it: only
+    // the user's own scrolling does.
+    await page.evaluate(() => { document.querySelector('[data-lineup-scroll]').scrollTop = 900; });
+    await page.clock.runFor(400); await page.waitForTimeout(300);
+    s = await state(page);
+    check(!s.collapsed && s.scrollTop >= 800, `a scripted scroll folded the header (collapsed=${s.collapsed}, scrollTop ${s.scrollTop})`);
+    await page.evaluate(() => { document.querySelector('[data-lineup-scroll]').scrollTop = 0; });
+    await page.clock.runFor(400); await page.waitForTimeout(300);
     // A tiny scroll must not fold it.
     await drag(page, 30, 3);
     s = await state(page);
@@ -128,6 +145,12 @@ try {
     // index.html's global reduced-motion rule forces 0.01ms on everything;
     // anything under a millisecond is "no animation".
     check(parseFloat(s.transition) < 0.001, `reduced motion still animates the header (${s.transition})`);
+    // The running night opens folded at the hour with motion off too: the
+    // instant fold shifts the list, and that shift must not read as the user
+    // scrolling up and reopen the header.
+    await page.clock.runFor(600); await page.waitForTimeout(300);
+    const rs = await state(page);
+    check(rs.collapsed && rs.scrollTop > 56, `reduced motion: the running night does not stay folded at the hour (collapsed=${rs.collapsed}, scrollTop ${rs.scrollTop})`);
     await ctx.close();
   } catch (err) { check(false, `Reduced motion block threw: ${String(err.message || err).split("\n")[0]}`); }
 
@@ -236,6 +259,7 @@ try {
     });
     await first.ctx.close();
     const { ctx, page } = await open({ saved: picked.ids });
+    await unfold(page);
     check(picked.pair && picked.ids.length >= 3, `control: could not pick overlapping sets on different stages (${JSON.stringify(picked)})`);
     const dotsFor = () => page.evaluate(() => {
       const norm = c => { const d = document.createElement('i'); d.style.background = c; document.body.appendChild(d); const v = getComputedStyle(d).backgroundColor; d.remove(); return v; };
@@ -246,26 +270,146 @@ try {
         return { text, dot: getComputedStyle(meta.querySelector('span')).backgroundColor, want: st && st.color ? norm(st.color) : null };
       });
     });
-    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const saved = await dotsFor();
     check(saved.length >= 3, `control: Saved shows ${saved.length} rows`);
     check(saved.every(d => d.want && d.dot === d.want), `Saved: a dot is not its stage's map colour: ${JSON.stringify(saved)}`);
     check(new Set(saved.map(d => d.dot)).size >= 2, 'Saved: dots do not vary by stage');
     check(saved.filter(d => /^Clash · /.test(d.text)).length >= 2, `Saved: overlapping sets carry no "Clash ·" prefix: ${JSON.stringify(saved.map(d => d.text))}`);
-    await page.getByRole('radio', { name: 'Now' }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
+    await page.locator('[data-lineup-show=now]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const now = await dotsFor();
     check(now.length >= 2, `control: Now shows ${now.length} live rows at the pinned clock`);
     check(now.every(d => d.want && d.dot === d.want), `Now: a dot is not its stage's map colour: ${JSON.stringify(now)}`);
     // P2: pick a stage in the Filters sheet, keep Saved; the folded bar names both.
-    await page.getByRole('radio', { name: 'Saved' }).click(); await page.clock.runFor(300);
+    await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(300);
     await page.locator('button[aria-label^="Filters"]').click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const stage = await page.evaluate(() => (window.STAGES || [])[0]);
-    await page.locator('button[aria-pressed]', { hasText: stage.short || stage.name }).first().click();
+    await page.locator('[role=dialog] button[aria-pressed]', { hasText: stage.short || stage.name }).first().click();
     await page.getByRole('button', { name: /^Show \d+ sets?$/ }).click(); await page.clock.runFor(500); await page.waitForTimeout(300);
     const s = await state(page);
-    check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · Saved`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · Saved"`);
+    check(s.summary === `Fri 2 · Weekend 1 · ${stage.name} · My plan`, `P2: folded bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · ${stage.name} · My plan"`);
     await ctx.close();
-  } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n")[0]}`); }
+  } catch (err) { check(false, `Saved/Now block threw: ${String(err.message || err).split("\n").slice(0, 6).join(' | ')}`); }
+
+  // ── The board's Lineup (design fidelity, 2026-10-04) ──────────────────────
+  // Header = title + search + Filters; the stage overview names every stage
+  // that plays the day in full, on one axis, without panning (ruling
+  // 2026-09-15); the mode row (List, Grid, My plan, Live) sits on one line
+  // down to 320; no standing search field; plan actions only under My plan;
+  // "Now on your plan" only while a saved set is actually live.
+  for (const width of [393, 320]) {
+    try {
+      // EDC night 2 at 00:50 PDT: John Summit (k15) is live and saved.
+      const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', width, saved: ['k15', 'k16', 'q17', 'bp8'] });
+      // The running night opens at the current hour, folded, with the lifted
+      // card first in view; the first set shown is still playing or starts
+      // this hour, and nothing earlier in the night is above the fold.
+      await page.clock.runFor(600); await page.waitForTimeout(300);
+      const o = await page.evaluate(() => {
+        const sc = document.querySelector('[data-lineup-scroll]'), r0 = sc.getBoundingClientRect();
+        const card = document.querySelector('[data-now-on-plan-card]'), anchor = sc.querySelector('[data-open-anchor]');
+        const toMin = t => { const [h, m] = String(t).split(':').map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+        const hour = Math.floor(toMin(window.NOW.time) / 60) * 60;
+        const rows = [...sc.querySelectorAll('[data-set-name]')].map(n => n.closest('[data-animate]')).filter(r => !r.closest('[data-now-on-plan-card]'));
+        const visible = rows.filter(r => { const b = r.getBoundingClientRect(); return b.top >= r0.top - 1 && b.top < r0.bottom; });
+        const byName = new Map(window.ARTISTS.filter(a => a.day === 2).map(a => [a.name, a]));
+        const firstShown = visible.length ? byName.get(visible[0].querySelector('[data-set-name]').textContent) : null;
+        return { scrollTop: sc.scrollTop, anchorDy: anchor ? Math.round(anchor.getBoundingClientRect().top - r0.top) : null,
+          cardDy: card ? Math.round(card.getBoundingClientRect().top - r0.top) : null,
+          first: firstShown ? { name: firstShown.name, start: firstShown.start, live: window.isSetLive(firstShown), atHour: toMin(firstShown.start) >= hour } : null };
+      });
+      const so = await state(page);
+      check(so.collapsed && so.compactH >= 44, `${width}: the running night does not open folded (collapsed=${so.collapsed}, bar ${so.compactH}px)`);
+      check(o.scrollTop > 56 && o.anchorDy !== null && Math.abs(o.anchorDy) <= 2, `${width}: the list does not open at the current hour (scrollTop ${o.scrollTop}, anchor at ${o.anchorDy}px)`);
+      check(o.cardDy !== null && o.cardDy >= -2 && o.cardDy <= 16, `${width}: "Now on your plan" is not first in view on open (${o.cardDy}px)`);
+      check(o.first && (o.first.live || o.first.atHour), `${width}: the first set in view is neither playing nor this hour: ${JSON.stringify(o.first)}`);
+      await unfold(page);
+      const r = await page.evaluate(() => {
+        const ov = document.querySelector('[data-lineup-overview]');
+        const day = window.ARTISTS.filter(a => a.day === 2);
+        const want = window.STAGES.filter(s => day.some(a => a.stage === s.id)).map(s => s.name);
+        const names = ov ? [...ov.querySelectorAll('[data-overview-stage]')].map(b => ({ t: b.textContent.trim(), clip: b.scrollWidth > b.clientWidth + 1 })) : [];
+        const chips = [...document.querySelectorAll('[data-lineup-filters] .duo-chip')].map(c => Math.round(c.getBoundingClientRect().top));
+        const pinned = [...document.querySelectorAll('[data-now-on-plan]')].map(n => n.dataset.nowOnPlan);
+        const actions = document.querySelector('[data-lineup-actions]')?.textContent || '';
+        return {
+          ov: !!ov, want, names, ovPans: ov ? ov.scrollWidth > ov.clientWidth + 1 : null,
+          chipRows: new Set(chips).size, nChips: chips.length,
+          searchField: !!document.querySelector('input[aria-label="Search the lineup"]'),
+          pinned, liveSaved: window.NOW.liveIds.filter(id => ['k15', 'k16', 'q17', 'bp8'].includes(id)),
+          actions,
+        };
+      });
+      check(r.ov, `${width}: no stage overview on a timed festival`);
+      check(JSON.stringify(r.names.map(n => n.t)) === JSON.stringify(r.want), `${width}: overview stages ${JSON.stringify(r.names.map(n => n.t))} ≠ every stage of the day ${JSON.stringify(r.want)}`);
+      check(r.names.length >= 9 && r.names.every(n => !n.clip), `${width}: an overview stage name is cut: ${JSON.stringify(r.names.filter(n => n.clip))}`);
+      check(r.ovPans === false, `${width}: the overview pans sideways`);
+      check(r.nChips === 4 && r.chipRows === 1, `${width}: mode row is ${r.nChips} chips on ${r.chipRows} lines (want 4 on 1)`);
+      check(!r.searchField, `${width}: a standing search field is back in the header`);
+      check(r.liveSaved.length >= 1 && JSON.stringify(r.pinned) === JSON.stringify(r.liveSaved), `${width}: "Now on your plan" holds ${JSON.stringify(r.pinned)}, live saved sets are ${JSON.stringify(r.liveSaved)}`);
+      check(/My night/.test(r.actions) && !/Calendar|Share|Surprise me|Updates/.test(r.actions), `${width}: the All header should carry My night and nothing else of the plan: "${r.actions}"`);
+      // Search opens on its icon and carries Surprise me.
+      await page.locator('[data-lineup-search-toggle]').click(); await page.clock.runFor(400); await page.waitForTimeout(200);
+      const s2 = await page.evaluate(() => ({ field: !!document.querySelector('input[aria-label="Search the lineup"]'), surprise: [...document.querySelectorAll('[data-lineup-search] button')].some(b => b.textContent.trim() === 'Surprise me') }));
+      check(s2.field && s2.surprise, `${width}: search icon did not open the field with Surprise me: ${JSON.stringify(s2)}`);
+      // My plan carries the plan actions.
+      await page.locator('[data-lineup-show=saved]').click(); await page.clock.runFor(400); await page.waitForTimeout(200);
+      const a2 = await page.evaluate(() => document.querySelector('[data-lineup-actions]')?.textContent || '');
+      check(/My night/.test(a2) && /Calendar/.test(a2) && /Updates/.test(a2), `${width}: My plan lacks its actions: "${a2}"`);
+      await ctx.close();
+    } catch (err) { check(false, `${width} board block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
+  // Late in the running night (ACL Fri 2 at 20:30 CDT) the sets after the
+  // hour are shorter than the screen; the list still opens with the hour at
+  // the top (it opened 407px down when scrollTop maxed out), Dark and Light,
+  // 393 and 320, and the tail that makes room is no taller than it needs.
+  for (const scheme of ['dark', 'light']) for (const width of [393, 320]) {
+    try {
+      const { ctx, page } = await open({ at: '2026-10-03T01:30:00Z', width, height: 852, scheme });
+      await page.clock.runFor(600); await page.waitForTimeout(300);
+      const o = await page.evaluate(() => {
+        const sc = document.querySelector('[data-lineup-scroll]'), r0 = sc.getBoundingClientRect(), a = sc.querySelector('[data-open-anchor]');
+        const toMin = t => { const [h, m] = String(t).split(':').map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
+        const hour = Math.floor(toMin(window.NOW.time) / 60) * 60;
+        const byName = new Map(window.ARTISTS.filter(x => x.day === window.NOW.night).map(x => [x.name, x]));
+        const first = [...sc.querySelectorAll('[data-set-name]')].find(n => n.getBoundingClientRect().top >= r0.top - 1);
+        const f = first ? byName.get(first.textContent) : null;
+        return { night: window.NOW.night, time: window.NOW.time, theme: document.documentElement.dataset.mode || null, scrollTop: Math.round(sc.scrollTop),
+          anchorDy: a ? Math.round(a.getBoundingClientRect().top - r0.top) : null,
+          first: f ? { name: f.name, start: f.start, ok: window.isSetLive(f) || toMin(f.start) >= hour } : null };
+      });
+      const tag = `ACL late ${scheme} ${width}`;
+      check(o.night === 1 && o.time === '20:30', `${tag} control: clock reads night ${o.night} at ${o.time}`);
+      check(o.theme === scheme, `${tag} control: page theme is ${o.theme}`);
+      check(o.scrollTop > 56 && o.anchorDy !== null && Math.abs(o.anchorDy) <= 2, `${tag}: the hour opens ${o.anchorDy}px below the top of the list (scrollTop ${o.scrollTop})`);
+      check(o.first && o.first.ok, `${tag}: the first set in view is neither playing nor this hour: ${JSON.stringify(o.first)}`);
+      check((await state(page)).collapsed, `${tag}: the running night does not open folded`);
+      await ctx.close();
+    } catch (err) { check(false, `ACL late ${scheme} ${width} block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
+  try {
+    // Motion off, so the fold has settled: the tail adds exactly the room the
+    // hour needs, no blank screen past it.
+    const { ctx, page } = await open({ at: '2026-10-03T01:30:00Z', height: 852, reduced: true });
+    await page.clock.runFor(1500); await page.waitForTimeout(400);
+    const t = await page.evaluate(() => { const sc = document.querySelector('[data-lineup-scroll]'), a = sc.querySelector('[data-open-anchor]'), tl = sc.querySelector('[data-open-tail]');
+      return { tail: tl ? tl.offsetHeight : null, spare: Math.round(sc.scrollHeight - sc.clientHeight - (a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop)) }; });
+    check(t.tail > 0 && Math.abs(t.spare) <= 2, `ACL late: the end-of-night tail is ${t.tail}px and leaves ${t.spare}px of scroll past the hour (want 0)`);
+    await ctx.close();
+  } catch (err) { check(false, `ACL late tail block threw: ${String(err.message || err).split("\n")[0]}`); }
+
+  // Nothing saved is live (empty plan): no lifted card, never a placeholder.
+  try {
+    const { ctx, page } = await open({ fid: 'edc-lv-2026', at: '2026-05-17T07:50:00Z', reduced: true });
+    const n = await page.evaluate(() => document.querySelectorAll('[data-now-on-plan-card]').length);
+    check(n === 0, `empty plan shows ${n} "Now on your plan" cards`);
+    // With nothing lifted, the hour itself is the top of the list, and it
+    // stays there while the page settles (fold, fonts, rows), until input.
+    await page.clock.runFor(1500); await page.waitForTimeout(600);
+    const e = await page.evaluate(() => { const sc = document.querySelector('[data-lineup-scroll]'), a = sc.querySelector('[data-open-anchor]'); return a ? Math.round(a.getBoundingClientRect().top - sc.getBoundingClientRect().top) : null; });
+    check(e !== null && Math.abs(e) <= 2, `empty plan: the hour is ${e}px from the top of the list after the page settles`);
+    await ctx.close();
+  } catch (err) { check(false, `empty-plan block threw: ${String(err.message || err).split("\n")[0]}`); }
 
   // ── A single-weekend festival: summary has no weekend, rows unchanged ────
   try {
