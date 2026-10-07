@@ -2275,6 +2275,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-a2d. Edition skin ─────────────────────────────────────────────────
+// A festival's own look on the Today header band and the website title block,
+// opt-in per config: AA on every stop, no collisions, control festival untouched.
+{
+  console.log("▸ Edition skin gate — III Points band, AA, no collisions, ACL untouched");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-edition-skin.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`edition skin regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-a3. Capture-time trust answers with a boolean ──────────────────────
 // "Is this a real festival capture time?" is a TRUST question, and it must not
 // be answered with a festival identity nobody can justify. The old

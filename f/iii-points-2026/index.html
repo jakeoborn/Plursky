@@ -112,6 +112,12 @@
   section.watch figure.tapped .embed-tap { display:none; }
   section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
   section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
+  header.edition { background:var(--ed-band); color:var(--ed-ink); border:1.5px dashed var(--ed-wire); border-radius:16px; padding:18px 18px 14px; margin:8px 0 18px; }
+  header.edition h1, header.edition p { color:var(--ed-ink); }
+  header.edition h1 { margin-top:0; }
+  header.edition .meta { display:inline-block; background:var(--ed-chip); border:1.5px dashed var(--ed-ink); padding:4px 8px; }
+  header.edition .chip { background:var(--ed-ink); color:var(--ed-chip); border-color:var(--ed-ink); }
+  header.edition p:last-child { margin-bottom:0; }
 </style>
 <script type="application/ld+json">
 {
@@ -1136,9 +1142,11 @@
 <body>
 <main>
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">III Points 2026</span></nav>
+  <header class="edition" style="--ed-band:linear-gradient(165deg, #B8ACFD 0%, #C9C0FD 38%, #FE8DA9 100%);--ed-ink:#0B0B0F;--ed-chip:#A6D23F;--ed-wire:rgba(11,11,15,0.22)">
   <h1>III Points 2026</h1>
   <p class="meta"><span class="chip chip-upcoming">Upcoming</span>Oct 16–17, 2026 · Mana Wynwood · Miami, FL</p>
   <p>Two days of music, art and technology in Wynwood</p>
+  </header>
 
   <section aria-labelledby="answers-h">
     <h2 id="answers-h">III Points 2026 — quick answers</h2>

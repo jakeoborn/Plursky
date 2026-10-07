@@ -1956,12 +1956,33 @@ function duoFestivalTitle(name) {
 function DuoTodayHeader({ status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {
   const rise = live ? duoSunrise() : null;
   const tool = { ...fieldIconBtn, color: "var(--ink-2)", position: "relative" };
+  // An edition skin (festival config) paints this band in the festival's own
+  // look, the same in Dark and Light, like a media card. It re-scopes the ink
+  // tokens inside the band, so every class below keeps working unchanged.
+  const skin = (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.editionSkin) || null;
+  const band = skin ? {
+    "--ink": skin.ink, "--ink-2": skin.ink2, "--ink-3": skin.ink3, "--acc-ink": skin.ink,
+    "--s2": "rgba(255,255,255,0.55)", "--bg": skin.chip,
+    background: skin.band, color: skin.ink, paddingBottom: 12,
+    borderBottom: `1.5px dashed ${skin.wire}`, position: "relative", overflow: "hidden",
+  } : null;
   return (
-    <header style={{ paddingTop: "calc(var(--top-pad, 0px) + 14px)" }}>
-      <div style={{ padding: "0 20px" }}>
+    <header data-edition-skin={skin ? "on" : undefined} style={{ paddingTop: "calc(var(--top-pad, 0px) + 14px)", ...band }}>
+      {skin && (
+        // Circuit traces, as on the posts' margins. Decorative only.
+        <svg aria-hidden="true" width="104" height="32" viewBox="0 0 104 32" fill="none" stroke={skin.wire} strokeWidth="1.5"
+          style={{ position: "absolute", right: 0, top: "calc(var(--top-pad, 0px) + 46px)", pointerEvents: "none" }}>
+          <path d="M104 5 H62 L54 6 H30" /><circle cx="26" cy="6" r="3.5" fill={skin.chip} stroke={skin.ink} />
+          <path d="M104 16 H70 L62 16 H42" /><circle cx="38" cy="16" r="3.5" fill={skin.chip} stroke={skin.ink} />
+          <path d="M104 27 H78 L70 26 H54" /><circle cx="50" cy="26" r="3.5" fill={skin.chip} stroke={skin.ink} />
+        </svg>
+      )}
+      <div style={{ padding: "0 20px", position: "relative" }}>
         {/* The board's first line: which night, and when the sun comes up. */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", minHeight: 20 }}>
-          <span className="duo-label duo-ink3">{status}{deviceOffline ? " · No signal" : ""}</span>
+          {skin
+            ? <span className="duo-label" data-edition-chip style={{ background: skin.chip, color: skin.chipInk, border: `1.5px dashed ${skin.ink}`, padding: "4px 8px", maxWidth: "100%" }}>{status}{deviceOffline ? " · No signal" : ""}</span>
+            : <span className="duo-label duo-ink3">{status}{deviceOffline ? " · No signal" : ""}</span>}
           {rise && (
             <span className="duo-sun" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
               <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 2.5v2 M12 19.5v2 M2.5 12h2 M19.5 12h2 M5.3 5.3l1.4 1.4 M17.3 17.3l1.4 1.4 M5.3 18.7l1.4-1.4 M17.3 6.7l1.4-1.4"/></svg>
