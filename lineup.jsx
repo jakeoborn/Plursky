@@ -557,6 +557,8 @@ function LineupScreen({ state, setState }) {
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
+  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
+  const [sortBy, setSortBy] = React.useState("time");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
   // the same slot and read as clutter). Single-weekend festivals stay "all" so
@@ -723,6 +725,14 @@ function LineupScreen({ state, setState }) {
     const need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
     if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
   };
+  // The tail is the open's alone: a filter, search or sort on the running
+  // night is a new list that does not scroll to the hour, so the tail goes
+  // back to 0 rather than end it in blank space. Declared before the open
+  // effect, so a change that also reopens (day, weekend) is sized after it.
+  React.useLayoutEffect(() => {
+    const tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
+    if (tail) tail.style.height = "0px";
+  }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
   React.useLayoutEffect(() => {
     if (viewMode === "list") {
       const sc = document.querySelector("[data-lineup-scroll]");
@@ -789,8 +799,6 @@ function LineupScreen({ state, setState }) {
 
   // (v165: grid now shows one day at a time like list, so the scroll-to-
   // section listener and sessionStorage position restore are no longer needed.)
-  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
-  const [sortBy, setSortBy] = React.useState("time");
   // Active-filter count powers the badge on the FILTERS trigger button — replaces
   // the old in-page dismissable-chip strip. "filter !== all" (Mine vs All) and
   // sortBy counted because they're meaningful state diverging from defaults.
