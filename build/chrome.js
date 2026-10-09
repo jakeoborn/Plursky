@@ -2576,10 +2576,13 @@ function _fitSize(el, px) {
   el.dataset.fitSet = String(px);
 }
 function fitWords(el) {
-  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
+  var nodes = [el, ...el.querySelectorAll("*")];
+  var trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (var n of nodes) n.style.setProperty("transition", "none", "important");
   var done = () => {
-    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+    nodes.forEach((n, i) => {
+      if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]);else n.style.removeProperty("transition");
+    });
   };
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
@@ -2593,10 +2596,10 @@ function fitWords(el) {
   var words = [];
   var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   while (tw.nextNode()) {
-    var n = tw.currentNode;
+    var _n = tw.currentNode;
     var re = /[^\s\-‐-—\/·]+/g;
     var m = void 0;
-    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+    while (m = re.exec(_n.data)) words.push([_n, m.index, m.index + m[0].length]);
   }
   var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
   var broken = () => {
@@ -2645,7 +2648,7 @@ function fitWordGroups(r) {
   for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
   for (var g of Object.values(groups)) {
     var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
-    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
+    for (var _n2 of g) if (Math.abs(parseFloat(getComputedStyle(_n2).fontSize) - size) > 0.1) _fitSize(_n2, size);
   }
 }
 if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
@@ -2672,9 +2675,9 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
       if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
       if (n.style.overflowWrap) n.style.overflowWrap = "";
     }
-    for (var _n2 of all) {
-      fitWords(_n2);
-      ro && ro.observe(_n2);
+    for (var _n3 of all) {
+      fitWords(_n3);
+      ro && ro.observe(_n3);
     }
     fitWordGroups(document);
   };
@@ -2695,7 +2698,7 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
         var fit = host && host.closest && host.closest(_FIT_WORDS);
         if (fit) touched.add(fit);
       }
-      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      for (var _n4 of touched) if (_n4.isConnected) fitIn(_n4);
       if (touched.size) {
         fitWordGroups(document);
         settleSoon();

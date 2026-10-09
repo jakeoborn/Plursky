@@ -1564,14 +1564,6 @@ function HomeScreen({ state, setState }) {
   const savedIds = savedInLineup(state.saved);
   const online = useOnlineStatus();
   const isLive = !countdown && !isPostFestival;
-  // The board's Today header: one Michroma status line, the festival as the
-  // hero title, sunrise on a live night. No photo hero: photos sit on the
-  // rows they belong to, never as the page's focal point.
-  const heroStatus = isPostFestival ? `That's a wrap · ${FESTIVAL_CONFIG.dates}`
-    : countdown ? `${countdown.days > 0
-        ? `In ${countdown.days} day${countdown.days === 1 ? "" : "s"}`
-        : `In ${countdown.hours} hr ${countdown.mins} min`} · ${FESTIVAL_CONFIG.dates}`
-    : duoNightLabel();
 
   const ip = useInstallPrompt();
   let userName = "";
@@ -1580,7 +1572,9 @@ function HomeScreen({ state, setState }) {
   const showInstall = !showSetup && ip.canInstall;
   // Set reminders only mean something while a saved set is still ahead.
   const showNotif = !showSetup && !showInstall && !isPostFestival && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
-  const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+  // A weather alert means something while the festival is ahead or on; two
+  // weeks after the last set it is noise on the recap.
+  const showWeather = !showSetup && !showInstall && !showNotif && !isPostFestival && weatherAlert && !weatherAlertDismissed;
   const dismissNotif = () => {
     setNotifNudgeDismissed(true);
     try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
@@ -1630,34 +1624,6 @@ function HomeScreen({ state, setState }) {
       onClick: () => setAlertsOpen(true) },
   ].filter(Boolean);
 
-  const savedRow = (() => {
-    // Live, the plan card and the night sheet carry tonight's saved sets;
-    // the board's Today has no second copy of them as photo tiles.
-    if (isPostFestival || isLive) return null;
-    const rows = activeLineup(savedIds)
-      .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
-      .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
-    if (!rows.length) return null;
-    // The board's list rows, not 132px tiles in a sideways rail: time,
-    // face, the name in full, day and stage. The first five; the rest are
-    // one tap away in the plan sheet.
-    const SHOW = 5;
-    return (
-      <section data-today-saved>
-        <DuoSect title={isLive ? "Saved tonight" : "Your saved sets"}
-          right={<ShareLineupButton state={state} />} style={{ padding: "0 20px", minHeight: 44 }} />
-        <div style={{ padding: "0 20px", display: "grid", gap: 2 }}>
-          {rows.slice(0, SHOW).map(a => <SavedRow key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
-          {rows.length > SHOW && (
-            <button className="duo-link" onClick={() => setSheet("night")} style={{ justifySelf: "start", minHeight: 44, padding: 0, border: "none", background: "none", cursor: "pointer", font: "600 15px/1.33 var(--f-ui)", color: "var(--acc-ink)" }}>
-              All {rows.length} saved sets
-            </button>
-          )}
-        </div>
-      </section>
-    );
-  })();
-
   const sheetView = (() => {
     switch (sheet) {
       case "night": return isLive
@@ -1672,71 +1638,112 @@ function HomeScreen({ state, setState }) {
     }
   })();
 
+  // ── Night Print composition ──
+  // Before the festival the poster leads; on the night the plan and the
+  // stage board lead above a compressed edition strip; after it the recap
+  // leads. Every block is real data or absent.
+  const bill = activeLineup().length;
+  const tba = typeof isScheduleTBA === "function" && isScheduleTBA(FESTIVAL_CONFIG.id);
+  const savedRows = activeLineup(savedIds).filter(a => savedIds.includes(a.id))
+    .sort((a, b) => ((a.day ?? 99) - (b.day ?? 99)) || ((a.start ? toNightMin(a.start) : 9999) - (b.start ? toNightMin(b.start) : 9999)));
+  const liveCount = liveStrip.filter(s => s.artist).length;
+  const stampText = countdown
+    ? (countdown.days > 0 ? `IN ${countdown.days} DAY${countdown.days === 1 ? "" : "S"}` : countdown.hours > 0 ? `IN ${countdown.hours} HR` : `IN ${countdown.mins} MIN`)
+    : "";
+  const steps = [
+    { id: "people", title: ["Pick your", "people."], aria: "Pick your people: open the lineup",
+      sub: savedIds.length ? `${savedIds.length} picked. Find more.` : "Find the artists you came for.",
+      onClick: () => setState({ ...state, tab: "lineup" }) },
+    { id: "night", title: ["Follow", "your night."], aria: isPostFestival ? "Follow your night: open your recap" : "Follow your night: open my night",
+      sub: isPostFestival ? "How your weekend went." : isLive ? "Now, next, and every stage." : savedIds.length ? "Your saved sets, in order." : "Save a set and it lands here.",
+      onClick: () => isPostFestival ? setState({ ...state, tab: "recap" }) : setSheet("night") },
+    { id: "playlist", title: ["Build Your", "Playlist."], aria: "Build Your Playlist: open Music",
+      sub: "Take the music with you.", onClick: () => setState({ ...state, tab: "spotify" }) },
+    { id: "gallery", title: ["Create Your", "Gallery."], aria: "Create Your Gallery: open Memories",
+      sub: "Keep your festival photos together.", onClick: () => setState({ ...state, tab: "memories" }) },
+  ];
+  const utilityLinks = essentials.map(({ id, label, sub, onClick }) => ({ id, label: label.toUpperCase(), sub: sub ? sub.toUpperCase() : null, onClick }));
+  const claim = isLive
+    ? <NpClaim eyebrow={`${liveCount} LIVE NOW / NO SETS SAVED`} title="ONE SET. YOUR WHOLE NIGHT." body="Nothing saved yet. Pick an act that's on now, or the next one up." action="FIND A SET NOW" onAction={() => setState({ ...state, tab: "lineup" })} />
+    : <NpClaim eyebrow={`NO SETS SAVED / ${bill} ON THE BILL`} title="ONE SET. YOUR WHOLE NIGHT."
+        body={tba ? "No sets saved yet. Start with one artist. Set times land here when they're published." : "No sets saved yet. Start with one artist. Then make the festival yours."}
+        action="FIND YOUR FIRST SET" onAction={() => setState({ ...state, tab: "lineup" })} />;
+  const boardGap = { display: "flex", flexDirection: "column", gap: 24, padding: "24px 0" };
+
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} style={{ padding: "0 0 96px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 96px", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
             width: 20, height: 20, borderRadius: "50%",
-            border: "2px solid var(--line)", borderTopColor: "var(--signal)",
+            border: "2px solid var(--line)", borderTopColor: "var(--np-ink)",
             animation: "spin 0.8s linear infinite",
           }}/>
         </div>
       )}
-      {/* One reading column on a wide screen: the board is a phone layout,
-          and a scoreboard stretched to 1280px reads as two lonely columns. */}
+      {/* One composed print column on a wide screen, never a stretched
+          phone screenshot: the sheet keeps its gutters and its rules. */}
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
-      <DuoTodayHeader
-        status={heroStatus}
-        live={isLive}
-        deviceOffline={!online}
-        title={FESTIVAL_CONFIG.name}
-        sub={FESTIVAL_CONFIG.locationShort}
-        offline={offline}
-        onToggleOffline={() => setOffline(o => !o)}
-        unread={unread}
-        onAlerts={() => setAlertsOpen(true)}
-        onSearch={() => window.plurskyOpenSearch?.()}
-      />
+      <NpHead online={online} offline={offline} onToggleOffline={() => setOffline(o => !o)}
+        unread={unread} onAlerts={() => setAlertsOpen(true)} onSearch={() => window.plurskyOpenSearch?.()} />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 28, paddingTop: 20 }}>
-        {isPostFestival
-          ? <div style={{ padding: "0 20px" }}><PostFestivalRecap state={state} setState={setState} /></div>
-          : <DuoPlanCard state={state} setState={setState} plan={tonight} onOpenNight={() => setSheet("night")} />}
+      {isPostFestival
+        ? <NpStrip status="ENDED" fold="THAT'S A WRAP" foldRight={FESTIVAL_CONFIG.dates} />
+        : isLive
+          ? <NpStrip status={duoNightLabel().toUpperCase()} fold="YOUR NIGHT IS ON" foldRight={FESTIVAL_CONFIG.dates} sunrise={duoSunrise()} />
+          : <NpPoster countdown={countdown} stampText={stampText} fold="YOUR NIGHT STARTS HERE" foldRight="↓" />}
 
-        {isLive && NOW.night != null && <DuoStageBoard state={state} setState={setState} />}
+      {isPostFestival && (
+        <div style={boardGap}>
+          <div style={{ padding: "0 18px" }}><PostFestivalRecap state={state} setState={setState} /></div>
+          {notice}
+          {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+        </div>
+      )}
 
-        {notice}
+      {isLive && (
+        <div style={boardGap}>
+          {savedIds.length > 0
+            ? <DuoPlanCard state={state} setState={setState} plan={tonight} onOpenNight={() => setSheet("night")} />
+            : <div style={{ margin: "-24px 0 0" }}>{claim}</div>}
+          {NOW.night != null && <DuoStageBoard state={state} setState={setState} />}
+          {notice}
+          {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+        </div>
+      )}
 
-        {state.friendLineup?.length > 0 && (
-          <div style={{ padding: "0 20px" }}><FriendLineupBanner state={state} setState={setState} /></div>
-        )}
+      {!isPostFestival && !isLive && (
+        <>
+          {(notice || state.friendLineup?.length > 0) && (
+            <div style={boardGap}>
+              {notice}
+              {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+            </div>
+          )}
+          {savedRows.length
+            ? <NpSaved rows={savedRows} state={state} setState={setState} onAll={() => setSheet("night")} />
+            : claim}
+        </>
+      )}
 
-        {savedRow}
+      <NpJourney steps={steps} />
 
-        <section>
-          <DuoSect title="Festival essentials" style={{ padding: "0 20px", minHeight: 44 }} />
-          {/* A wrapping grid, never a sideways rail: every essential is on
-              screen at once. */}
-          <div data-today-essentials style={{ padding: "0 20px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))", gap: 8 }}>
-            {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
-          </div>
-        </section>
+      {/* Recent memories: the rewatch loop's front door. Post-festival,
+          PostFestivalRecap above leads with its own memories. */}
+      {!isPostFestival && window.HomeMemoriesStrip && (
+        <div style={{ padding: "8px 18px 24px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
+      )}
 
-        {/* Recent memories: the rewatch loop's front door. Post-festival,
-            PostFestivalRecap above leads with its own memories. */}
-        {!isPostFestival && window.HomeMemoriesStrip && (
-          <div style={{ padding: "0 20px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
-        )}
+      <NpUtility eyebrow={isPostFestival ? "AFTER THE NIGHT" : isLive ? "TONIGHT" : "BEFORE YOU GO"} links={utilityLinks} />
 
-        {/* This festival's past editions (historical.jsx), newest first.
-            Read-only look-backs; nothing renders when there are none. */}
-        {typeof PastEditionsSection === "function" && <PastEditionsSection festivalId={FESTIVAL_CONFIG.id} />}
-      </div>
+      {/* This festival's past editions (historical.jsx), newest first.
+          Read-only look-backs; nothing renders when there are none. */}
+      {typeof PastEditionsSection === "function" && <div style={{ padding: "8px 0 0" }}><PastEditionsSection festivalId={FESTIVAL_CONFIG.id} /></div>}
       </div>
       </ScrollBody>
 
+      <div className="np" style={{ display: "contents" }}>
       {/* Alerts drawer */}
       {alertsOpen && (
         <AlertsDrawer alerts={alerts} onClose={() => {
@@ -1764,6 +1771,7 @@ function HomeScreen({ state, setState }) {
           {sheetView.body}
         </FieldSheet>
       )}
+      </div>
     </Screen>
   );
 }
@@ -1953,6 +1961,9 @@ function duoFestivalTitle(name) {
   return y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
 }
 
+// Not rendered since Night Print (v411) replaced the board header on Today;
+// kept because #296's edition-skin band is written into it until that PR is
+// reconciled against the print (which carries the festival's colour itself).
 function DuoTodayHeader({ status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {
   const rise = live ? duoSunrise() : null;
   const tool = { ...fieldIconBtn, color: "var(--ink-2)", position: "relative" };
@@ -2137,42 +2148,6 @@ function DuoStageBoard({ state, setState }) {
         ))}
       </div>
     </section>
-  );
-}
-
-// Saved set tile: the artist's real photo when one is cached, else a plain
-// well with initials. Never a generated gradient. Name and time sit under it.
-// One saved set on Today before the festival: the board's list row.
-function SavedRow({ a, onOpen }) {
-  const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
-  const day = dd?.short || `Day ${a.day}`;
-  const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
-  return (
-    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
-      style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", background: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer", width: "100%" }}>
-      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
-      <DuoAvatar name={a.name} size={36} />
-      <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
-        <span className="duo-name" style={{ font: "650 15px/1.33 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
-        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{[dd?.name || day, stage].filter(Boolean).join(" · ")}</span>
-      </span>
-    </button>
-  );
-}
-
-function EssentialTile({ label, sub, icon, onClick }) {
-  return (
-    <button className="duo-press duo-card" onClick={onClick} style={{
-      minWidth: 0, minHeight: 52,
-      display: "flex", alignItems: "center", gap: 10,
-      padding: "10px 12px", color: "var(--ink)", background: "var(--s2)", textAlign: "left",
-    }}>
-      <span aria-hidden="true" style={{ display: "flex", flexShrink: 0, color: "var(--ink-2)" }}>{icon}</span>
-      <span style={{ font: "600 15px/1.33 var(--f-ui)", minWidth: 0 }}>
-        {label}
-        {sub && <span className="duo-data-s duo-acc" style={{ display: "block", marginTop: 2 }}>{sub}</span>}
-      </span>
-    </button>
   );
 }
 
@@ -2828,3 +2803,260 @@ function FriendLineupBanner({ state, setState }) {
 }
 
 Object.assign(window, { HomeScreen, FriendLineupBanner });
+// ── Night Print: Today as a ticket / poster (round 5, Oct 7 steering) ──
+// Cream and ink are the body; ONE festival accent (the config's `print`
+// ledger, a verified first-party source per festival) paints the poster
+// identity, the chosen action and the Step 3 playlist ticket. Each piece is
+// real data or absent: the stamp carries the real countdown, the claim block
+// the real act count, the rows the real saved sets. Type is the interface.
+const NP_CREAM = "#EEE9D9", NP_BLACK = "#1A171A";
+function _npLum(hex) {
+  const h = hex.replace("#", "");
+  const n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
+  const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function _npContrast(a, b) { const x = _npLum(a), y = _npLum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+// The festival's print accent, with the print constant that reads on it.
+// null = no verified accent (or one neither constant can read at 3:1): the
+// poster keeps the neutral ink/paper treatment and says nothing it cannot.
+// `small` says whether 10-12px metadata may sit directly on the accent
+// (4.5:1); otherwise that metadata goes on an ink chip.
+function npAccent(cfg) {
+  const p = (cfg || FESTIVAL_CONFIG).print;
+  if (!p || !/^#[0-9a-f]{6}$/i.test(p.accent || "")) return null;
+  const onBlack = _npContrast(p.accent, NP_BLACK), onCream = _npContrast(p.accent, NP_CREAM);
+  const ratio = Math.max(onBlack, onCream);
+  if (ratio < 3) return null;
+  const fg = onBlack >= onCream ? NP_BLACK : NP_CREAM;
+  const acc2 = /^#[0-9a-f]{6}$/i.test(p.accent2 || "") ? p.accent2 : null;
+  return { acc: p.accent, fg, other: fg === NP_BLACK ? NP_CREAM : NP_BLACK, ratio, small: ratio >= 4.5, acc2 };
+}
+// The scheme's second colour as the ink bands' small type (the fold's line,
+// the utility eyebrow): on the ink band in Light, on the cream band in Dark,
+// and only where it reads at 4.5:1; otherwise the band's own paper.
+function npSchemeVars(cfg) {
+  const sk = npAccent(cfg);
+  const a2 = sk && sk.acc2;
+  return {
+    "--np-acc2-on-black": a2 && _npContrast(a2, NP_BLACK) >= 4.5 ? a2 : NP_CREAM,
+    "--np-acc2-on-cream": a2 && _npContrast(a2, NP_CREAM) >= 4.5 ? a2 : NP_BLACK,
+  };
+}
+// The festival's name as poster words: the edition year drops (the meta line
+// carries it), and a word that is a Roman numeral (III Points) is set in the
+// serif, as the festival sets it. Never forced on another name.
+function npWords(name) {
+  return duoFestivalTitle(name).split(/\s+/).filter(Boolean)
+    .map(w => ({ w, roman: /^[IVX]{2,}$/.test(w) }));
+}
+// Small print on the accent: directly when the pair passes 4.5:1, else on an
+// ink chip so the metadata is never the one thing that fails.
+function npMeta(sk, extra) {
+  if (!sk) return { className: "np-mono", style: extra };
+  return sk.small
+    ? { className: "np-mono", style: { color: sk.fg, ...extra } }
+    : { className: "np-mono", style: { background: sk.fg, color: sk.other, padding: "3px 6px", ...extra } };
+}
+function NpTool({ label, pressed, on, onClick, children }) {
+  return (
+    <button type="button" className="np-tool" onClick={onClick} aria-label={label} aria-pressed={pressed}
+      style={on ? { textDecoration: "underline", textUnderlineOffset: 6 } : undefined}>{children}</button>
+  );
+}
+// The print head: wordmark left, the page's three tools right (search,
+// offline, alerts), each a 44px target.
+function NpHead({ online, offline, onToggleOffline, unread, onAlerts, onSearch }) {
+  return (
+    <div className="np-head" data-np-head>
+      <span className="np-mono-m" style={{ fontWeight: 600 }}>PLURSKY®{!online ? <b style={{ fontWeight: 400, marginLeft: 8 }}>· NO SIGNAL</b> : null}</span>
+      <span className="np-tools">
+        {onSearch && (
+          <NpTool label="Search artists, stages, genres" onClick={onSearch}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z M15.3 15.3 20 20"/></svg>
+          </NpTool>
+        )}
+        <NpTool label="Offline mode" pressed={offline} on={offline} onClick={onToggleOffline}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            {offline
+              ? <><path d="M4 4 L20 20"/><path d="M8.5 16 Q12 13 15.5 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
+              : <><path d="M2 8.5 Q12 -1 22 8.5"/><path d="M5 12 Q12 5.5 19 12"/><path d="M8.5 15.5 Q12 12.5 15.5 15.5"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>}
+          </svg>
+        </NpTool>
+        <NpTool label={unread ? `Alerts, ${unread} new` : "Alerts"} onClick={onAlerts}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/><path d="M10 19 Q12 21 14 19"/></svg>
+          {unread > 0 && <span aria-hidden="true" style={{ position: "absolute", top: 9, right: 9, width: 8, height: 8, borderRadius: 4, background: "currentColor" }} />}
+        </NpTool>
+      </span>
+    </div>
+  );
+}
+// The festival's name is the switcher, as on the board: one block-width
+// button (so the word fit has a real box), the switcher sheet behind it.
+function NpTitle({ word, className, children }) {
+  const [open, setOpen] = React.useState(false);
+  const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  return (
+    <>
+      <button type="button" className={className} data-switch={canSwitch ? "on" : undefined}
+        onClick={canSwitch ? () => setOpen(true) : undefined} disabled={!canSwitch}
+        aria-label={canSwitch ? `${duoFestivalTitle(FESTIVAL_CONFIG.name)}, switch festival` : undefined}>
+        {children}
+      </button>
+      {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+// Before the festival: the full poster. Identity (real name, location,
+// dates), the countdown stamp, a barcode as print decoration, then the fold.
+function NpPoster({ countdown, stampText, fold, foldRight }) {
+  const sk = npAccent();
+  const words = npWords(FESTIVAL_CONFIG.name);
+  const tone = sk ? { background: sk.acc, color: sk.fg } : {};
+  const meta = npMeta(sk);
+  return (
+    <section className="np-poster" data-np-poster data-np-accent={sk ? sk.acc : "none"} style={tone}>
+      <div className="np-meta">
+        <span {...meta}>EDITION {FESTIVAL_CONFIG.year || ""}</span>
+        <span {...npMeta(sk, { whiteSpace: "nowrap" })}>{countdown ? "PRE\u2011FESTIVAL" : "FESTIVAL"}</span>
+      </div>
+      <div className="np-titlebox">
+        {FESTIVAL_CONFIG.locationShort && <div className="np-rot np-mono" aria-hidden="true">{FESTIVAL_CONFIG.locationShort}</div>}
+        <NpTitle className="np-title">
+          <h1 className="np-word" data-fit-words data-fit-min="32">
+            {words.map((x, i) => <React.Fragment key={i}>{i ? " " : ""}<span className={x.roman ? "np-roman" : undefined}>{x.w}</span></React.Fragment>)}
+          </h1>
+        </NpTitle>
+      </div>
+      <div className="np-foot">
+        <div>
+          <div {...npMeta(sk, { display: "inline-block" })}>{FESTIVAL_CONFIG.dates}</div>
+          <div className="np-barcode" aria-hidden="true" />
+        </div>
+        <div className="np-stamp" data-np-stamp aria-label={stampText.replace(/\s+/g, " ")}>{stampText}</div>
+      </div>
+      <div className="np-cut" data-np-cut><b>{fold}</b><span>{foldRight}</span></div>
+    </section>
+  );
+}
+// On the night and after: the poster compresses into an edition strip, so
+// the live plan and the stage board lead. Same accent, same fold.
+function NpStrip({ status, fold, foldRight, sunrise }) {
+  const sk = npAccent();
+  const tone = sk ? { background: sk.acc, color: sk.fg } : {};
+  const meta = npMeta(sk);
+  return (
+    <section className="np-poster" data-np-strip data-np-accent={sk ? sk.acc : "none"} style={{ ...tone, paddingTop: 16 }}>
+      <div className="np-meta">
+        <span {...meta}>EDITION {FESTIVAL_CONFIG.year || ""}</span>
+        <span {...npMeta(sk, { whiteSpace: "nowrap", textAlign: "right" })}>{status}</span>
+      </div>
+      <NpTitle className="np-title" >
+        <h1 className="np-strip-word" data-fit-words data-fit-min="20" style={{ margin: "14px 0 16px" }}>{duoFestivalTitle(FESTIVAL_CONFIG.name)}</h1>
+      </NpTitle>
+      <div className="np-cut" data-np-cut>
+        <b>{fold}</b>
+        {sunrise
+          ? <span className="duo-sun" style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "inherit" }}>
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 2.5v2 M12 19.5v2 M2.5 12h2 M19.5 12h2 M5.3 5.3l1.4 1.4 M17.3 17.3l1.4 1.4 M5.3 18.7l1.4-1.4 M17.3 6.7l1.4-1.4"/></svg>
+              SUNRISE {sunrise}
+            </span>
+          : <span>{foldRight}</span>}
+      </div>
+    </section>
+  );
+}
+// Nothing saved yet: the claim and the one action. The count is the real
+// bill; the line under it is honest about set times when they are pending.
+function NpClaim({ eyebrow, title, body, action, onAction }) {
+  return (
+    <section className="np-block" data-np-claim>
+      <div className="np-mono" style={{ marginBottom: 17 }}>{eyebrow}</div>
+      <h2 className="np-claim" data-fit-words data-fit-min="34">{title}</h2>
+      <p className="np-body">{body}</p>
+      <button type="button" className="np-act" onClick={onAction}>{action}<span aria-hidden="true">↗</span></button>
+    </section>
+  );
+}
+// Saved sets before the festival: the real rows, by day and time, the first
+// five and a path to all of them. Full name, day, stage, time; a tap opens
+// the act. Shares through the existing lineup share.
+function NpSaved({ rows, state, setState, onAll }) {
+  const SHOW = 5;
+  const days = new Set(rows.map(a => a.day).filter(d => d != null));
+  const n = rows.length;
+  return (
+    <section className="np-block" data-np-saved data-today-saved>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, minHeight: 44, marginBottom: 6 }}>
+        <span className="np-mono">YOUR NIGHT SO FAR</span>
+        <ShareLineupButton state={state} />
+      </div>
+      <h2 className="np-claim" data-fit-words data-fit-min="34">
+        <span style={{ display: "block" }}>{n} SET{n === 1 ? "" : "S"}.</span>
+        {days.size > 0 && <span style={{ display: "block" }}>{days.size} NIGHT{days.size === 1 ? "" : "S"}.</span>}
+      </h2>
+      <div style={{ marginTop: 20 }}>
+        {rows.slice(0, SHOW).map(a => {
+          const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
+          const day = dd?.name || (a.day != null ? `Day ${a.day}` : "Day TBA");
+          const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
+          return (
+            <button type="button" key={a.id} className="np-srow" onClick={() => setState({ ...state, artist: a.id })}
+              aria-label={`${a.name}, ${day}, ${a.start ? fmt12(a.start) : "time to be announced"}${stage ? `, ${stage}` : ""}`}>
+              <span className="np-mono-m" style={{ fontWeight: 500, whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
+              <span style={{ minWidth: 0 }}>
+                <span className="np-sname duo-name">{actDisplayName(a.name)}</span>
+                <span className="np-ssub np-mono">{[day, stage].filter(Boolean).join(" · ")}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <button type="button" className="np-act" onClick={onAll}>{n > SHOW ? `ALL ${n} SAVED SETS` : "YOUR SAVED SETS"}<span aria-hidden="true">↗</span></button>
+    </section>
+  );
+}
+// The four-step journey. Step 3's accent ticket is the emphasis; its plate
+// tilts, its hit area does not.
+function NpJourney({ steps }) {
+  const sk = npAccent();
+  const row = (s, i) => (
+    <>
+      <span className="np-idx" aria-hidden="true">0{i + 1}</span>
+      <span style={{ minWidth: 0 }}>
+        <h3 className="np-jt duo-name">{s.title.map((t, k) => <span key={k} style={{ display: "block" }}>{t}</span>)}</h3>
+        <p>{s.sub}</p>
+      </span>
+      <span className="np-arrow" aria-hidden="true">↗</span>
+    </>
+  );
+  return (
+    <section className="np-journey" data-np-journey aria-label="Your night, in four steps">
+      {steps.map((s, i) => i === 2 ? (
+        <button type="button" key={s.id} className="np-j3" data-np-step={s.id} onClick={s.onClick} aria-label={s.aria}
+          style={sk ? { color: sk.fg } : undefined}>
+          <span className="np-j3-plate" aria-hidden="true" style={{ background: sk ? sk.acc : "var(--np-ink)", ...(sk ? {} : {}) }} />
+          <span className="np-j" style={{ padding: "24px 8px", ...(sk ? {} : { color: "var(--np-paper)" }) }}>{row(s, i)}</span>
+        </button>
+      ) : (
+        <button type="button" key={s.id} className="np-j" data-np-step={s.id} onClick={s.onClick} aria-label={s.aria}>{row(s, i)}</button>
+      ))}
+    </section>
+  );
+}
+// The utility strip: every essential as a type link, inverted. Nothing from
+// the essentials row is dropped; each is a 44px target with its full label.
+function NpUtility({ eyebrow, links }) {
+  return (
+    <section className="np-util" data-np-util aria-label={eyebrow}>
+      <span className="np-mono">{eyebrow}</span>
+      <div className="np-links" data-today-essentials>
+        {links.map(l => (
+          <button type="button" key={l.id} className="np-link" data-np-link={l.id} onClick={l.onClick} aria-label={l.sub ? `${l.label}, ${l.sub}` : l.label}>
+            <span>{l.label}{l.sub && <b>{l.sub}</b>}</span><span aria-hidden="true">↗</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}

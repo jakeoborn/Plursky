@@ -280,6 +280,8 @@
     locationShort: "NOS Events Center",
     dates:     "Oct 30–31, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#E21C0F", source: { url: "https://escapehalloween.com/wp-content/assets/css/escape-halloween.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, active nav link (8 uses); hover state darkens to #bd0b00", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link and primary button to this red; no theme-color meta." },
     officialStages: ["The Big Top", "Feeding Grounds", "The Warehouse", "Sewer District", "The Cage"],
     officialEvent: {
       id: 521015, url: "https://escapehalloween.com/",

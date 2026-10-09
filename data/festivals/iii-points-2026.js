@@ -683,6 +683,8 @@
     locationShort: "Mana Wynwood",
     dates:     "Oct 16–17, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#EDDB50", accent2: "#EA9FDA", source: { url: "https://www.iiipoints.com/", observedAt: "2026-10-09", seenAs: "CSS custom properties --c: #eddb50 and --iii-yellow: #eddb50 in the homepage's inline <style>; background of the nav CTA ([data-cta=fill] .nav-cta__a), .xp-more-cta, .hp-stages-nav button and the selected .tk-switch button; most frequent non-grey hex (29 in CSS, 23 inline in the body)", confidence: "high" }, note: "theme-color meta is plain #000000 (black, not an accent), so the stylesheet rule applies: the site's own palette variables make yellow #eddb50 the CTA/button fill, with pink #ea9fda (--iii-pink) as the a:hover and focus colour." },
     // Miami is EDT (UTC-4) in October — DST does not end until Nov 1.
     // Gate/close times are NOT published; these bound the two program days
     // generously so night-crossing timestamps resolve to the right day, and

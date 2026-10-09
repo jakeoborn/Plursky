@@ -112,7 +112,7 @@ try {
           essOver: ess.scrollWidth > ess.clientWidth + 1,
           pans, rows: rows.length,
           cut: rows.filter(b => { const n = b.querySelector('.duo-name'); return n.scrollWidth > n.clientWidth + 1; }).map(b => b.getAttribute('aria-label')),
-          more: [...sv.querySelectorAll('button')].some(b => /^All \d+ saved sets$/.test(b.textContent.trim())),
+          more: [...sv.querySelectorAll('button')].some(b => /^All \d+ saved sets/i.test(b.textContent.trim())),
           overflowX: document.documentElement.scrollWidth > innerWidth + 1,
         };
       });

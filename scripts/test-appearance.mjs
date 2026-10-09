@@ -165,11 +165,14 @@ try {
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
   // What the mounted screen actually shows, checked against what it claims.
   const isScreen = (page, is) => page.evaluate((is) => {
-    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.trim());
+    // A heading set as stacked poster words (Today's print) reads back with
+    // line breaks and in caps; it is still the festival's name.
+    const norm = (t) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => norm(h.innerText));
     const tab = (document.querySelector('[aria-current=page]')?.innerText || '').trim();
     const artist = is.artist ? (window.ARTISTS || []).find(a => a.id === is.artist)?.name : null;
     const photo = [...document.querySelectorAll('body *')].some(e => /url\("?blob:/.test(getComputedStyle(e).backgroundImage));
-    const ok = (!is.h1 || h1.includes(is.h1)) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
+    const ok = (!is.h1 || h1.includes(norm(is.h1))) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
       && (!is.text || document.body.innerText.includes(is.text)) && (!is.photo || photo);
     return { ok, saw: `h1 ${JSON.stringify(h1)}, tab "${tab}"${is.text ? `, ${is.text} ${document.body.innerText.includes(is.text) ? 'shown' : 'missing'}` : ''}${is.photo ? `, photo ${photo ? 'painted' : 'missing'}` : ''}` };
   }, is);
@@ -227,9 +230,19 @@ try {
         mediaBoxes.push({ t, color: cs.color, op, large: px >= 24 || (px >= 18.66 && wt >= 700), x: Math.max(0, r.left), y: Math.max(0, r.top), w: Math.min(W, r.right) - Math.max(0, r.left), h: Math.min(H, r.bottom) - Math.max(0, r.top) });
         continue;
       }
+      // What is painted under the text, in real paint order (elementsFromPoint):
+      // its ancestors AND anything else beneath it, from the first opaque fill
+      // up. Today's Step 3 ticket paints its tilted plate as a sibling under
+      // the row (the hit area stays unrotated), and the ancestor walk alone read
+      // ink on ink there. The ancestor walk above still owns opacity and media.
+      const under = [];
+      { const own = parse(cs.backgroundColor); if (own && own.a > 0) under.push(own); }
+      { const stack = document.elementsFromPoint(x, y), i0 = stack.findIndex(u => u === el || el.contains(u));
+        for (const u of stack.slice(Math.max(0, i0) + 1)) { if (el.contains(u)) continue; const ub = parse(getComputedStyle(u).backgroundColor); if (ub && ub.a > 0) { under.push(ub); if (ub.a >= 0.999) break; } } }
       let bg = { r: 255, g: 255, b: 255, a: 1 };
       const root = parse(getComputedStyle(document.documentElement).backgroundColor); if (root && root.a > 0) bg = over(root, bg);
-      for (let i = layers.length - 1; i >= 0; i--) bg = over(layers[i], bg);
+      const fills = under.length ? under : layers;
+      for (let i = fills.length - 1; i >= 0; i--) bg = over(fills[i], bg);
       let fg = parse(cs.color); if (!fg) continue;
       fg = { ...fg, a: fg.a * op };
       if (fg.a < 0.02) continue;

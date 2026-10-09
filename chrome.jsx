@@ -2031,9 +2031,15 @@ function fitWords(el) {
   // it, and a read through the transition took the previous FITTED size as
   // the real one, so "Interplanetary Criminal" (14px) stepped 13 → 12 → 13 on
   // successive settles and a mode switch kept whichever it was on.
-  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
-  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
+  // ...and on every element INSIDE it: a child (a word on its own line, a
+  // b2b half) inherits the new font-size through its OWN transition, so with
+  // only the parent's off the child's text still measured at the old size
+  // and the fit ran to its floor (Summerfest's poster word printed at 32px
+  // where 53px fits, under Reduce Motion only).
+  const nodes = [el, ...el.querySelectorAll("*")];
+  const trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (const n of nodes) n.style.setProperty("transition", "none", "important");
+  const done = () => { nodes.forEach((n, i) => { if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]); else n.style.removeProperty("transition"); }); };
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);

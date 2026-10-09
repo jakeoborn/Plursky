@@ -365,6 +365,8 @@
     locationShort: "Waterfront Park",
     dates:     "Sep 26–27, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#EC7A2C", source: { url: "https://www.crssdfest.com/", observedAt: "2026-10-09", seenAs: "inline <style>: .vc-ty__cta--filled:hover{background;border-color} and .vc-ty__cta:focus-visible{outline} on the homepage CTA", confidence: "medium" }, note: "The site is in post-event 'Thank You' mode (body.event-mode--post) on a neutral cream #f5f0e7 / charcoal #2e2c2a palette, so this CTA hover orange is the only chromatic accent on the page (universal.css hovers use the same family, #ef9a36); no theme-color meta and no brand custom property." },
     // "Doors open at 12PM both days" (official FAQ). California is PDT
     // (UTC-7) in September — DST does not end until Nov 1. The close is the
     // official grid's last set: 11:00 PM Saturday, 10:00 PM Sunday.
