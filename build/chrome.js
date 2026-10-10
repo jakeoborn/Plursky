@@ -861,7 +861,7 @@ function FieldSheet({
   }, children), footer && React.createElement("div", {
     style: {
       flex: "none",
-      padding: "10px 20px 10px",
+      padding: "10px 20px 16px",
       borderTop: "1px solid var(--line)"
     }
   }, footer)));

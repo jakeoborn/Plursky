@@ -673,7 +673,7 @@ function FieldSheet({ title, eyebrow, footer, onClose, children }) {
         <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
           {children}
         </div>
-        {footer && <div style={{ flex: "none", padding: "10px 20px 10px", borderTop: "1px solid var(--line)" }}>{footer}</div>}
+        {footer && <div style={{ flex: "none", padding: "10px 20px 16px", borderTop: "1px solid var(--line)" }}>{footer}</div>}
       </div>
     </div>
   );

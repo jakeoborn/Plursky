@@ -716,6 +716,8 @@ try {
   // at the real size, in whatever face loaded, so it fits at 12px everywhere.
   for (const pick of ['dark', 'light']) {
     const { ctx, page } = await open({ pick, query: 'tab=home', ready: '[data-duo-stages]' });
+    // The board opens folded to the stages that matter; this reads a name on any stage.
+    if (await page.$('[data-duo-stages-toggle][aria-expanded="false"]')) { await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(300); }
     const made = await page.evaluate(() => {
       const el = [...document.querySelectorAll('[data-duo-stages] [data-fit-words], [data-duo-stages] .duo-name')].find(n => n.textContent.trim() === 'Interplanetary Criminal');
       if (!el) return null;

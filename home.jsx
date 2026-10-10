@@ -163,6 +163,18 @@ function pickRelevantPeriod(periods) {
 // Tonight info card — sunset/sunrise, weather, last-shuttle warning.
 // Visible pre-festival (focused on opening day) and during-festival
 // (focused on tonight).
+// The night the sun times are for: the sheet's eyebrow. The forecast block says whose
+// forecast it is (the site's, now), so a 14-day countdown never sits under "tonight".
+function tonightEyebrow() {
+  const now = Date.now();
+  if (now < FESTIVAL_START_MS) {
+    const d = FESTIVAL_CONFIG.dayDates?.[1];
+    let when = null;
+    if (d) { try { when = new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); } catch {} }
+    return `Opening night${when ? ` · ${when}` : ""}`;
+  }
+  return `Tonight · Day ${NOW.day}`;
+}
 function TonightCard({ state, setState }) {
   const { periods, fromCache, fetchedAt } = useNwsForecast();
   const period = pickRelevantPeriod(periods);
@@ -228,61 +240,29 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
-      <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--ink)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
+      <div className="np-mono" style={{ color: "var(--ink-3)" }}>{label}</div>
+      <div style={{ font: "700 clamp(17px, 5.6vw, 22px)/1 var(--f-data)", letterSpacing: "-0.01em", color: accent || "var(--ink)", marginTop: 6, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{value}</div>
+      {sub && <div className="np-mono" style={{ color: "var(--ink-3)", marginTop: 6 }}>{sub}</div>}
     </div>
   );
 
-  return (
-    <div style={{
-      marginTop: 18,
-      background: "var(--s3)",
-      borderRadius: "var(--rad-md)",
-      padding: "14px 16px 16px",
-      color: "var(--ink)",
-      position: "relative",
-      overflow: "hidden",
-    }}>
-      {/* Aurora glow */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
-        pointerEvents: "none",
-      }}/>
-      <div style={{ position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-3)" }}>
-            {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
-          </div>
-          {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 5 }}>
-              NWS · {period.name.toUpperCase()}
-              {cacheAgeLabel && (
-                <span style={{
-                  background: "rgba(var(--ink-rgb),0.1)", border: "1px solid rgba(var(--ink-rgb),0.18)",
-                  borderRadius: 4, padding: "1px 5px", fontSize: 8, letterSpacing: 1,
-                }}>
-                  CACHED · {cacheAgeLabel}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
 
-        <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-          {sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null)}
+  return (
+    <div style={{ marginTop: 2 }}>
+      <div>
+        <div style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "6px 0 16px", borderBottom: "1px solid var(--line)" }}>
+          {sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null)}
           {sunriseSet && card(
-            "SUNRISE",
-            sun.rise,
-            sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`
+            "Sunrise",
+            fmt12(sun.rise),
+            sunriseArtistId ? `${sunriseArtistId.name} · ${(STAGES || []).find(s => s.id === (FESTIVAL_CONFIG.mainStageId || "kinetic"))?.name || "main stage"}` : `in ${sunriseSet}`
           )}
           {period ? card(
-            "WEATHER",
+            "Weather",
             `${period.temperature}°${period.temperatureUnit}`,
             `${period.windSpeed} ${period.windDirection}`
           ) : (
-            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
+            <div style={{ flex: 1, minWidth: 80 }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
               <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
               <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
@@ -290,8 +270,12 @@ function TonightCard({ state, setState }) {
           )}
         </div>
 
-        {/* Hourly temperature curve — shows the next 12 hours so you can
-            see whether tonight's headliner slot will be warmer/cooler */}
+        {period && (
+          <div className="np-mono" style={{ color: "var(--ink-3)", padding: "12px 0 0" }}>
+            NWS · {period.name}{cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""}
+          </div>
+        )}
+        {/* Hourly temperature curve: the next 12 hours from now at the site. */}
         {hourly?.length > 0 && (() => {
           const next12 = hourly.slice(0, 12);
           const temps = next12.map(h => h.temperature);
@@ -307,14 +291,10 @@ function TonightCard({ state, setState }) {
           const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
-            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: "var(--rad-sm)", background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
-                  NEXT 12H
-                </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-3)" }}>
-                  {min}° → {max}°
-                </span>
+            <div style={{ padding: "14px 0 4px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>Next 12h{isPreEvent ? " at the site" : ""}</span>
+                <span className="np-mono" style={{ color: "var(--ink-3)", whiteSpace: "nowrap" }}>{min}° → {max}°</span>
               </div>
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
                 <polyline points={points} fill="none" stroke="var(--signal-ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -322,9 +302,9 @@ function TonightCard({ state, setState }) {
                   <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="var(--signal-ink)"/>
                 ))}
               </svg>
-              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(lastHour)}</span>
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{fmtH(firstHour)}</span>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -334,17 +314,17 @@ function TonightCard({ state, setState }) {
           <button
             onClick={() => setState({ ...state, tab: "map" })}
             style={{
-              marginTop: 14, width: "100%",
-              background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
-              border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
-              color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
-              borderRadius: 10, padding: "10px 12px", cursor: "pointer",
+              marginTop: 14, width: "100%", minHeight: 44,
+              background: shuttleUrgent ? "var(--acc)" : "transparent",
+              border: shuttleUrgent ? "none" : "1px solid var(--line-2)",
+              color: shuttleUrgent ? "var(--on-acc)" : "var(--ink)",
+              borderRadius: "var(--rad-sm)", padding: "10px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+              font: "700 10px/1.2 var(--f-data)", letterSpacing: "0.13em", textTransform: "uppercase",
               textAlign: "left",
             }}>
-            <span>🚌  LAST SHUTTLE TO STRIP</span>
-            <span style={{ color: shuttleUrgent ? "var(--ink)" : "var(--flare)" }}>
+            <span>Last shuttle to Strip</span>
+            <span style={{ color: shuttleUrgent ? "inherit" : "var(--sun)" }}>
               {shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED"}
             </span>
           </button>
@@ -822,7 +802,7 @@ function PostFestivalRecap({ state, setState }) {
                     <DuoAvatar name={a.name} size={40} />
                     <span style={{ flex: 1, minWidth: 0 }}>
                       <span className="duo-headline duo-name" style={{ display: "block" }}>{actDisplayName(a.name)}</span>
-                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span></span>
                     </span>
                   </button>
                 );
@@ -1627,7 +1607,7 @@ function HomeScreen({ state, setState }) {
       case "night": return isLive
         ? { title: "My night", body: <><LiveAcrossStrip strip={liveStrip} setState={setState} state={state} /><TonightsPlan plan={tonight} setState={setState} state={state} /></> }
         : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
-      case "tonight":    return { title: "Sun & weather", body: <TonightCard state={state} setState={setState} /> };
+      case "tonight":    return { title: "Sun & weather", eyebrow: tonightEyebrow(), body: <TonightCard state={state} setState={setState} /> };
       case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
       case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
       case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
@@ -1650,7 +1630,7 @@ function HomeScreen({ state, setState }) {
     : "";
   const steps = [
     { id: "people", title: ["Pick your", "people."], aria: "Pick your people: open the lineup",
-      sub: savedIds.length ? `${savedIds.length} picked. Find more.` : "Find the artists you came for.",
+      sub: isPostFestival ? (savedIds.length ? `${savedIds.length} picked. See who you caught.` : "The artists you came for.") : savedIds.length ? `${savedIds.length} picked. Find more.` : "Find the artists you came for.",
       onClick: () => setState({ ...state, tab: "lineup" }) },
     { id: "night", title: ["Follow", "your night."], aria: isPostFestival ? "Follow your night: open your recap" : "Follow your night: open my night",
       sub: isPostFestival ? "How your weekend went." : isLive ? "Now, next, and every stage." : savedIds.length ? "Your saved sets, in order." : "Save a set and it lands here.",
@@ -1670,7 +1650,7 @@ function HomeScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 40px", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 0", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
@@ -1737,7 +1717,7 @@ function HomeScreen({ state, setState }) {
 
       {/* This festival's past editions (historical.jsx), newest first.
           Read-only look-backs; nothing renders when there are none. */}
-      {typeof PastEditionsSection === "function" && <div style={{ padding: "8px 0 0" }}><PastEditionsSection festivalId={FESTIVAL_CONFIG.id} /></div>}
+      {typeof PastEditionsSection === "function" && <div style={{ padding: "8px 0 32px" }} data-np-after><PastEditionsSection festivalId={FESTIVAL_CONFIG.id} /></div>}
       </div>
       </ScrollBody>
 
@@ -1765,7 +1745,7 @@ function HomeScreen({ state, setState }) {
         />
       )}
       {sheetView && (
-        <FieldSheet title={sheetView.title} onClose={() => setSheet(null)}>
+        <FieldSheet title={sheetView.title} eyebrow={sheetView.eyebrow} onClose={() => setSheet(null)}>
           {sheetView.body}
         </FieldSheet>
       )}
@@ -2115,8 +2095,20 @@ function duoStageNowNext() {
 
 function DuoStageBoard({ state, setState }) {
   const rows = duoStageNowNext();
-  if (!rows.length) return null;
   const savedSet = new Set(state.saved || []);
+  // Nine rows of Now / Next pushed the rest of the page a screen and a half down on
+  // festival night. The board opens on the stages that carry one of your sets (filled
+  // to three with stages that are live), and one row shows every stage in place.
+  const [allStages, setAllStages] = React.useState(false);
+  const lead = React.useMemo(() => {
+    const picked = rows.filter(r => (r.on && savedSet.has(r.on.id)) || (r.next && savedSet.has(r.next.id)));
+    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r) && r.on) picked.push(r); }
+    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r)) picked.push(r); }
+    return new Set(picked);
+  }, [rows.length, state.saved]);
+  if (!rows.length) return null;
+  const folded = rows.length > 4 && !allStages;
+  const shown = folded ? rows.filter(r => lead.has(r)) : rows;
   const liveCount = rows.filter(r => r.on).length;
   const cell = (a, detail, spoken, tag) => a ? (
     <button className="duo-press" onClick={() => setState({ ...state, artist: a.id })} aria-label={`${a.name}, ${spoken}`}
@@ -2135,7 +2127,7 @@ function DuoStageBoard({ state, setState }) {
         <div className="duo-sb-grid duo-sb-head" style={{ padding: "10px 16px 8px" }}>
           <DuoLive>Now</DuoLive><span className="duo-label duo-ink3">Next</span>
         </div>
-        {rows.map(({ stage, on, next }) => (
+        {shown.map(({ stage, on, next }) => (
           <div key={stage.id} className="duo-hair" style={{ padding: "12px 16px 14px" }}>
             <div className="duo-ink2" style={{ font: "600 13px/1.23 var(--f-ui)" }}>{stage.name}</div>
             <div className="duo-sb-grid" style={{ marginTop: 10 }}>
@@ -2144,6 +2136,13 @@ function DuoStageBoard({ state, setState }) {
             </div>
           </div>
         ))}
+        {rows.length > 4 && (
+          <button className="duo-link duo-hair" data-duo-stages-toggle aria-expanded={!folded} onClick={() => setAllStages(v => !v)}
+            style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "0 16px", minHeight: 48, textAlign: "left" }}>
+            <span>{folded ? `All ${rows.length} stages` : "Fewer stages"}</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: folded ? "none" : "rotate(180deg)", transition: "transform .2s" }}><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        )}
       </div>
     </section>
   );
@@ -2530,9 +2529,9 @@ const FT_SECTIONS = [
     icon: "🚪",
     title: "Gates & entry",
     items: [
-      "Gates open 4 PM Friday-Sunday. Music runs 7 PM – 5:30 AM.",
+      "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
       "Bring a valid government-issued photo ID. 18+ event.",
-      "Wristband activates online before you arrive — don't show up with it un-paired.",
+      "Wristband activates online before you arrive — don't show up with it unpaired.",
       "One re-entry per day, only between 4 PM and midnight.",
       "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
     ],
@@ -2616,7 +2615,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
             }}>
               <span className="np-idx" style={{ color: "var(--ink-3)" }}>{String(i + 1).padStart(2, "0")}</span>
               <span style={{ flex: 1, font: "700 18px/1.15 var(--f-ui)", letterSpacing: "-0.02em" }}>{s.title}</span>
-              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}><path d="M9 6l6 6-6 6"/></svg>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }}><path d="M6 9l6 6 6-6"/></svg>
             </button>
             {isOpen && (
               <ul style={{ listStyle: "none", margin: 0, padding: "0 0 16px 38px" }}>
@@ -2871,7 +2870,7 @@ function useRailFit(ref, venue, city) {
   return fit;
 }
 // A date range never breaks inside itself: a word joiner on both sides of its dash.
-function npNoBreak(s) { return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b); }
+function npNoBreak(s) { return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b).replace(/([A-Za-z]{3,})\s(\d)/g, "$1\u00a0$2"); }
 // The barcode is seeded from the edition id, so each ticket prints its own bars.
 function npBarcode(id) {
   let x = 0, hsh = 2166136261;

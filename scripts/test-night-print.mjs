@@ -109,7 +109,7 @@ try {
     const backing = (el) => { const r = el.getBoundingClientRect(); const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2); let out = [255, 255, 255]; const layers = []; for (const n of stack) { if (n === el || el.contains(n)) continue; const bg = parse(getComputedStyle(n).backgroundColor); if (bg && bg[3] > 0) { layers.push(bg); if (bg[3] >= 1) break; } } for (const l of layers.reverse()) { const a = l[3]; out = [0, 1, 2].map(i => l[i] * a + out[i] * (1 - a)); } return out; };
     const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === 'Sun & weather');
     if (!dlg) return null;
-    return [...dlg.querySelectorAll('div')].filter(d => !d.children.length && /^(\d+°[FC]|\d{2}:\d{2})$/.test(d.textContent.trim())).map(d => {
+    return [...dlg.querySelectorAll('div')].filter(d => !d.children.length && /^(\d+°[FC]|\d{1,2}:\d{2}(?: ?[AP]M)?)$/i.test(d.textContent.trim())).map(d => {
       const fg = parse(getComputedStyle(d).color), bg = backing(d); const L1 = lum(fg), L2 = lum(bg);
       return { text: d.textContent.trim(), fg: getComputedStyle(d).color, bg: bg.map(Math.round).join(','), ratio: +((Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05)).toFixed(2) };
     });
