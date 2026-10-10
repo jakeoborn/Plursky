@@ -462,8 +462,6 @@
   .np-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0;background:none;border:0;border-bottom:1px solid rgba(238,233,217,.25);color:inherit;text-align:left;cursor:pointer;font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
   :root[data-mode="dark"] .np-link{border-bottom-color:rgba(26,23,26,.3)}
   @media (max-width:599px){.np-links>.np-link:nth-child(odd):last-child{grid-column:1/-1}}
-  /* the board's act names hold two lines (a b2b name ran to three and doubled the row) */
-  .np [data-duo-stages] .duo-name{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
   /* at 320 the stage / time pair stacks, so every row keeps the same pitch */
   @media (max-width:359px){.np .np-pair{flex-direction:column;gap:0}}
   /* the saved rows' times sit on a column */
