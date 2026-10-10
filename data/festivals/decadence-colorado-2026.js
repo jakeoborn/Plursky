@@ -208,6 +208,8 @@
     locationShort: "Colorado Convention Center",
     dates:     "Dec 30\u201331, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#F99D5E", accent2: "#F4675E", source: { url: "https://decadencenye.com/wp-content/themes/decadence-nye-2026/css/main.min.css?v=1.21", observedAt: "2026-10-09", seenAs: ".announcement-text a{color}, .nav-item span{color}, .nav-item:hover{background-color}, .ticket-tier-title{background-color}, hamburger (12 uses)", confidence: "medium" }, note: "The 2026 theme's own stylesheet uses this orange for links, nav text and ticket-tier headers; the sibling coral #f4675e is the fixed nav bar fill and the theme-color meta is plain #ffffff, so this is the chromatic accent rather than a declared brand token. Official site taken from the data file's lineupSource domain." },
     // Denver is MST (UTC-7) on these dates. Hours ARE published, so these
     // are the real ones: doors 5 PM Dec 30, last night ends 2 AM Jan 1.
     startMs: Date.UTC(2026, 11, 31, 0, 0, 0),   // Dec 30 17:00 MST, doors

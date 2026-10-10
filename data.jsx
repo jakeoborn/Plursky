@@ -84,6 +84,8 @@ const FESTIVAL_CONFIG = {
   locationShort:"Las Vegas Motor Speedway",
   dates:        "May 15–17, 2026",
   year:         2026,
+  // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+  print: { accent: "#ED3895", source: { url: "https://lasvegas.edc.com/wp-content/assets/css/edc-las-vegas.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#ed3895 }`, `button { background-color:#ed3895 }`, `.button--outline` border/text; hover darkens to #db187c (10 uses, the most of any non-grey colour).", confidence: "high" }, note: "No <meta theme-color> (the only custom property is WordPress's admin default #007cba), so the first-party sheet's link + primary-button colour is the accent." },
   officialEvent: {
     // Historical record frozen: the official site has rolled to the separate 2027 cycle.
     website: "https://lasvegas.edc.com/", observedAt: "2026-09-10",
@@ -388,6 +390,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Double JJ Ranch",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#6244BB", source: { url: "https://www.electricforestfestival.com/", observedAt: "2026-10-09", seenAs: "Inline <style> in the homepage HTML: `.c-button.primary { background-color:#6244BB; border:3px solid #6244BB }`, `a:hover { color:#6244BB }`, `.c-primaryButton:hover` text/border (21 uses); the AEG template sheet style.v3.css carries no site colour.", confidence: "high" }, note: "No <meta theme-color> and no custom properties; the site-specific inline CSS makes purple #6244BB the primary button and link-hover colour (dark green #2d4031 is used for borders/pass headers, teal #02A1A9 for info bars)." },
     },
     available: false,
     accent:    "#34d399",
@@ -413,6 +417,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Legend Valley",
       dates:     "Sep 18–20, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F8D861", source: { url: "https://www.lostlandsfestival.com/wp-content/themes/lostlands-2017/css/main.min.css?v=10.349", observedAt: "2026-10-09", seenAs: "Theme stylesheet: `section h1..h4 { color:#f8d861 }`, content links `a { color:#f8d861 }`, `a:hover { color:#f8d861 }`, `.read-more { background:#f8d861 }`, ticket accordion active/price state (33 uses, the dominant non-grey colour).", confidence: "high" }, note: "data.jsx records no official website for this festival, so the well-known official domain lostlandsfestival.com was used; its <meta theme-color> is plain #ffffff, so the theme sheet's heading/link/button yellow is the accent." },
       startMs: Date.UTC(2026, 8, 16, 16, 0, 0), // Sep 16 noon EDT (early-entry Wed opens)
       endMs:   Date.UTC(2026, 8, 21, 7, 0, 0),  // Sep 21 03:00 EDT (last Sunday-night sets end)
       tz:      "America/New_York",
@@ -619,6 +625,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Tinker Field",
       dates:     "Nov 6–8, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#FF0100", accent2: "#ED3895", source: { url: "https://orlando.edc.com/wp-content/assets/css/edc-orlando.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `.custom-form button, .global-footer button { background-color:#ff0100 }`, `.button--outline` border, lineup/nav/tab hover `color:#ff0100` (8 uses); base links stay the shared EDC pink `a { color:#ed3895 }` (7 uses).", confidence: "medium" }, note: "No <meta theme-color>; the Orlando sheet overrides the shared EDC theme's buttons and hover states to red #ff0100 while leaving link text pink, so red is the edition-specific accent but the sheet is split between the two." },
       // Five published stages; "Schedule TBA" below is an app placeholder, not a sixth stage.
       officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
       officialEvent: {
@@ -747,6 +755,8 @@ const FESTIVALS_REGISTRY = [
       location:  "De Schorre · Boom, Belgium",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#73123A", accent2: "#D63A76", source: { url: "https://belgium.tomorrowland.com/_next/static/css/310ad92fa7d6d932.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom property `[data-theme=belgium] { --theme-color:335,73%,26% }` (HSL triplet, converted to hex #73123a); the legacy fallback sheet tml-fallback-2.x.css styles its buttons/bar with a magenta gradient #d63a76 -> #9a0b44 -> #8c0038.", confidence: "medium" }, note: "The <meta theme-color> is plain #000000 and the Next.js chunks define eight different per-section `--accent-1-base` values, so the Belgium theme's own `--theme-color` token is the one site-wide accent; the hex is a conversion of an HSL token, not a literal." },
     },
     available: false,
     accent:    "#fbbf24",
@@ -767,6 +777,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Zilker Park",
       dates:     "Oct 2–4 & 9–11, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F03250", source: { url: "https://cdn.prod.website-files.com/67456b412d0e4219d58ef6c2/css/acl-2026.shared.26bfb3548.min.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom properties: `--swatches--red:#f03250`, `--button-color--primary:var(--swatches--red)`, `--link-color--default:var(--swatches--red)`; hover `--button-color--primary-hover:#f34b66`, `--link-color--hover:#f34b66`.", confidence: "high" }, note: "No <meta theme-color>, but the Webflow sheet names a primary button colour and default link colour and both resolve to the red swatch #f03250." },
       startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
       endMs:   Date.UTC(2026, 9, 12, 5, 0, 0),
       weekendStartMs: {
@@ -898,6 +910,8 @@ const FESTIVALS_REGISTRY = [
       location:  "Empire Polo Club · Indio, CA",
       dates:     "Apr 9–18, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#4E6234", accent2: "#44A1A4", source: { url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c", observedAt: "2026-10-09", seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.", confidence: "medium" }, note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token." },
     },
     available: false,
     accent:    "#ec4899",
@@ -928,6 +942,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Autódromo Hermanos Rodríguez",
       dates:     "Feb 19–21, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
       officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -949,6 +965,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "NOS Events Center",
       dates:     "Mar 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://socal.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the site's primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; most-used non-grey hex in the site's own stylesheet (8 of 27)", confidence: "medium" }, note: "No theme-color meta (only WP admin defaults); the site-specific stylesheet linked from the homepage paints every CTA/button teal #00babc, while the 2027 homepage's inline hero typography uses gold #fbd34d with a purple #4b1b6b stroke (key-art, not UI chrome)." },
       officialEvent: { id: 550731, url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/", website: "https://socal.beyondwonderland.com/", tickets: "https://beyondsocal.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -974,6 +992,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Gorge Amphitheatre",
       dates:     "Jun 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://pnw.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; PNW's stylesheet is byte-identical to SoCal's (cmp)", confidence: "medium" }, note: "No theme-color meta; the shared pnw-socal-beyond.min.css is byte-identical across both Beyond sites and paints every CTA teal #00babc, with the same inline gold #fbd34d / purple #4b1b6b 2027 hero typography as SoCal." },
       officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
       officialEvent: { id: 566426, url: "https://www.insomniac.com/events/beyond-wonderland-at-the-gorge-2027-2027-06-26-george-wa/", website: "https://pnw.beyondwonderland.com/", tickets: "https://beyondpnw.frontgatetickets.com/", observedAt: "2026-09-10" },
     },

@@ -167,6 +167,26 @@ function pickRelevantPeriod(periods) {
   if (future.length) return future[0];
   return periods[0];
 }
+function openingDateLabel() {
+  var d = FESTIVAL_CONFIG.dayDates?.[1];
+  if (!d) return null;
+  try {
+    return new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC"
+    });
+  } catch {
+    return null;
+  }
+}
+function tonightEyebrow() {
+  if (Date.now() < FESTIVAL_START_MS) {
+    var when = openingDateLabel();
+    return `Opening night${when ? ` · ${when}` : ""}`;
+  }
+  return `Tonight · Day ${NOW.day}`;
+}
 function TonightCard({
   state,
   setState
@@ -176,7 +196,6 @@ function TonightCard({
     fromCache,
     fetchedAt
   } = useNwsForecast();
-  var period = pickRelevantPeriod(periods);
   var hourly = useHourlyForecast();
   var cacheAgeLabel = (() => {
     if (!fromCache || !fetchedAt) return null;
@@ -192,6 +211,13 @@ function TonightCard({
   };
   var now = Date.now();
   var isPreEvent = now < FESTIVAL_START_MS;
+  var openingMs = festivalNightDate(1, (sunTimes[1] || sun).set).getTime();
+  var covers = p => p && new Date(p.startTime).getTime() <= openingMs && new Date(p.endTime).getTime() > openingMs;
+  var period = isPreEvent ? (periods || []).find(covers) || null : pickRelevantPeriod(periods);
+  var hourlyShown = isPreEvent ? (hourly || []).filter(x => {
+    var t = new Date(x.startTime).getTime();
+    return t >= openingMs - 3 * 3600000 && t < openingMs + 9 * 3600000;
+  }) : hourly;
   var sunsetMs = festivalNightDate(day, sun.set).getTime();
   var sunriseMs = festivalNightDate(day, sun.rise).getTime();
   var nextSun = sunTimes[day + 1] || sun;
@@ -225,99 +251,42 @@ function TonightCard({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "np-mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--text-3)",
-      fontWeight: 600
+      color: "var(--ink-3)"
     }
   }, label), React.createElement("div", {
     style: {
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 18,
-      fontWeight: 600,
-      color: accent || "var(--paper)",
-      marginTop: 3,
-      lineHeight: 1
+      font: "700 clamp(16px, 5.4vw, 22px)/1 var(--f-data)",
+      letterSpacing: "-0.01em",
+      color: accent || "var(--ink)",
+      marginTop: 6,
+      fontVariantNumeric: "tabular-nums",
+      whiteSpace: "nowrap"
     }
   }, value), sub && React.createElement("div", {
-    className: "mono",
+    className: "np-mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      color: "var(--text-3)",
-      marginTop: 4
+      color: "var(--ink-3)",
+      marginTop: 6
     }
   }, sub));
   return React.createElement("div", {
     style: {
-      marginTop: 18,
-      background: "var(--night)",
-      borderRadius: 16,
-      padding: "14px 16px 16px",
-      color: "var(--ink)",
-      position: "relative",
-      overflow: "hidden"
+      marginTop: 2
     }
-  }, React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
-      pointerEvents: "none"
-    }
-  }), React.createElement("div", {
-    style: {
-      position: "relative"
-    }
-  }, React.createElement("div", {
+  }, React.createElement("div", null, React.createElement("div", {
     style: {
       display: "flex",
-      alignItems: "baseline",
-      justifyContent: "space-between",
-      marginBottom: 12
+      gap: 16,
+      alignItems: "flex-start",
+      padding: "6px 0 16px",
+      borderBottom: "1px solid var(--line)"
     }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      color: "var(--text-3)"
-    }
-  }, isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`), period && React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--text-3)",
-      display: "flex",
-      alignItems: "center",
-      gap: 5
-    }
-  }, "NWS · ", period.name.toUpperCase(), cacheAgeLabel && React.createElement("span", {
-    style: {
-      background: "rgba(var(--ink-rgb),0.1)",
-      border: "1px solid rgba(var(--ink-rgb),0.18)",
-      borderRadius: 4,
-      padding: "1px 5px",
-      fontSize: 8,
-      letterSpacing: 1
-    }
-  }, "CACHED · ", cacheAgeLabel))), React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 12,
-      alignItems: "flex-start"
-    }
-  }, sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)"), sunriseSet && card("SUNRISE", sun.rise, sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`, "#fbbf24"), period ? card("WEATHER", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`, "#a8d4ff") : React.createElement("div", {
+  }, sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null), sunriseSet && card("Sunrise", fmt12(sun.rise), sunriseArtistId ? `${sunriseArtistId.name} · ${(STAGES || []).find(s => s.id === (FESTIVAL_CONFIG.mainStageId || "kinetic"))?.name || "main stage"}` : `in ${sunriseSet}`), period ? card("Weather", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`) : periods == null ? React.createElement("div", {
     style: {
       flex: 1,
-      minWidth: 80,
-      padding: "8px 10px",
-      borderRadius: 10,
-      background: "rgba(var(--ink-rgb),0.06)",
-      border: "1px solid rgba(var(--ink-rgb),0.1)"
+      minWidth: 80
     }
   }, React.createElement("div", {
     className: "skel-dark",
@@ -339,8 +308,20 @@ function TonightCard({
       width: "50%",
       height: 8
     }
-  }))), hourly?.length > 0 && (() => {
-    var next12 = hourly.slice(0, 12);
+  })) : null), period && React.createElement("div", {
+    className: "np-mono",
+    style: {
+      color: "var(--ink-3)",
+      padding: "12px 0 0"
+    }
+  }, "NWS · ", period.name, cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""), isPreEvent && !period && React.createElement("div", {
+    className: "np-mono",
+    style: {
+      color: "var(--ink-3)",
+      padding: "12px 0 4px"
+    }
+  }, "NWS forecast for ", openingDateLabel() || "opening night", " lands a week out"), hourlyShown?.length > 0 && (() => {
+    var next12 = hourlyShown.slice(0, 12);
     var temps = next12.map(h => h.temperature);
     var min = Math.min(...temps),
       max = Math.max(...temps);
@@ -353,37 +334,30 @@ function TonightCard({
       return `${x},${y}`;
     }).join(" ");
     var firstHour = new Date(next12[0].startTime).getHours();
-    var fmtH = h => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
+    var fmtH = h => h === 0 ? "12 AM" : h < 12 ? `${h} AM` : h === 12 ? "12 PM" : `${h - 12} PM`;
     var lastHour = new Date(next12[next12.length - 1].startTime).getHours();
     return React.createElement("div", {
       style: {
-        marginTop: 14,
-        padding: "10px 12px",
-        borderRadius: 10,
-        background: "rgba(var(--ink-rgb),0.05)",
-        border: "1px solid rgba(var(--ink-rgb),0.1)"
+        padding: "14px 0 4px"
       }
     }, React.createElement("div", {
       style: {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "baseline",
-        marginBottom: 6
+        gap: 10,
+        marginBottom: 8
       }
     }, React.createElement("span", {
-      className: "mono",
+      className: "np-mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--text-3)",
-        fontWeight: 600
+        color: "var(--ink-3)"
       }
-    }, "NEXT 12H"), React.createElement("span", {
-      className: "mono",
+    }, isPreEvent ? "Opening night, by the hour" : "Next 12h"), React.createElement("span", {
+      className: "np-mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
-        color: "var(--text-3)"
+        color: "var(--ink-3)",
+        whiteSpace: "nowrap"
       }
     }, min, "° → ", max, "°")), React.createElement("svg", {
       viewBox: `0 0 ${W} ${H}`,
@@ -410,21 +384,17 @@ function TonightCard({
       style: {
         display: "flex",
         justifyContent: "space-between",
-        marginTop: 4
+        marginTop: 6
       }
     }, React.createElement("span", {
-      className: "mono",
+      className: "np-mono",
       style: {
-        fontSize: 8,
-        letterSpacing: 1,
-        color: "var(--text-3)"
+        color: "var(--ink-3)"
       }
     }, fmtH(firstHour)), React.createElement("span", {
-      className: "mono",
+      className: "np-mono",
       style: {
-        fontSize: 8,
-        letterSpacing: 1,
-        color: "var(--text-3)"
+        color: "var(--ink-3)"
       }
     }, fmtH(lastHour))));
   })(), inShuttleWindow && React.createElement("button", {
@@ -435,25 +405,25 @@ function TonightCard({
     style: {
       marginTop: 14,
       width: "100%",
-      background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
-      border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
-      color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
-      borderRadius: 10,
+      minHeight: 44,
+      background: shuttleUrgent ? "var(--acc)" : "transparent",
+      border: shuttleUrgent ? "none" : "1px solid var(--line-2)",
+      color: shuttleUrgent ? "var(--on-acc)" : "var(--ink)",
+      borderRadius: "var(--rad-sm)",
       padding: "10px 12px",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       gap: 10,
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      font: "700 10px/1.2 var(--f-data)",
+      letterSpacing: "0.13em",
+      textTransform: "uppercase",
       textAlign: "left"
     }
-  }, React.createElement("span", null, "🚌  LAST SHUTTLE TO STRIP"), React.createElement("span", {
+  }, React.createElement("span", null, "Last shuttle to Strip"), React.createElement("span", {
     style: {
-      color: shuttleUrgent ? "var(--ink)" : "var(--flare)"
+      color: shuttleUrgent ? "inherit" : "var(--sun)"
     }
   }, shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED")), !inShuttleWindow && sunriseArtistId && !isPreEvent && React.createElement("button", {
     onClick: () => setState({
@@ -1006,7 +976,9 @@ function PostFestivalRecap({
         display: "block",
         marginTop: 3
       }
-    }, stage.name.toUpperCase(), " · ", fmt12(a.start), "–", fmt12(a.end))));
+    }, React.createElement("span", {
+      className: "np-pair"
+    }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, fmt12(a.start), "–", fmt12(a.end))))));
   })))), savedIds.length === 0 && React.createElement("div", {
     className: "duo-card",
     style: {
@@ -1988,7 +1960,6 @@ function HomeScreen({
   var savedIds = savedInLineup(state.saved);
   var online = useOnlineStatus();
   var isLive = !countdown && !isPostFestival;
-  var heroStatus = isPostFestival ? `That's a wrap · ${FESTIVAL_CONFIG.dates}` : countdown ? `${countdown.days > 0 ? `In ${countdown.days} day${countdown.days === 1 ? "" : "s"}` : `In ${countdown.hours} hr ${countdown.mins} min`} · ${FESTIVAL_CONFIG.dates}` : duoNightLabel();
   var ip = useInstallPrompt();
   var userName = "";
   try {
@@ -1997,7 +1968,7 @@ function HomeScreen({
   var showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
   var showInstall = !showSetup && ip.canInstall;
   var showNotif = !showSetup && !showInstall && !isPostFestival && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
-  var showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+  var showWeather = !showSetup && !showInstall && !showNotif && !isPostFestival && weatherAlert && !weatherAlertDismissed;
   var dismissNotif = () => {
     setNotifNudgeDismissed(true);
     try {
@@ -2094,50 +2065,6 @@ function HomeScreen({
     icon: icon("M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z M10 19 Q12 21 14 19"),
     onClick: () => setAlertsOpen(true)
   }].filter(Boolean);
-  var savedRow = (() => {
-    if (isPostFestival || isLive) return null;
-    var rows = activeLineup(savedIds).filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night)).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
-    if (!rows.length) return null;
-    var SHOW = 5;
-    return React.createElement("section", {
-      "data-today-saved": true
-    }, React.createElement(DuoSect, {
-      title: isLive ? "Saved tonight" : "Your saved sets",
-      right: React.createElement(ShareLineupButton, {
-        state: state
-      }),
-      style: {
-        padding: "0 20px",
-        minHeight: 44
-      }
-    }), React.createElement("div", {
-      style: {
-        padding: "0 20px",
-        display: "grid",
-        gap: 2
-      }
-    }, rows.slice(0, SHOW).map(a => React.createElement(SavedRow, {
-      key: a.id,
-      a: a,
-      onOpen: () => setState({
-        ...state,
-        artist: a.id
-      })
-    })), rows.length > SHOW && React.createElement("button", {
-      className: "duo-link",
-      onClick: () => setSheet("night"),
-      style: {
-        justifySelf: "start",
-        minHeight: 44,
-        padding: 0,
-        border: "none",
-        background: "none",
-        cursor: "pointer",
-        font: "600 15px/1.33 var(--f-ui)",
-        color: "var(--acc-ink)"
-      }
-    }, "All ", rows.length, " saved sets")));
-  })();
   var sheetView = (() => {
     switch (sheet) {
       case "night":
@@ -2162,6 +2089,7 @@ function HomeScreen({
       case "tonight":
         return {
           title: "Sun & weather",
+          eyebrow: tonightEyebrow(),
           body: React.createElement(TonightCard, {
             state: state,
             setState: setState
@@ -2204,12 +2132,93 @@ function HomeScreen({
         return null;
     }
   })();
+  var bill = activeLineup().length;
+  var tba = typeof isScheduleTBA === "function" && isScheduleTBA(FESTIVAL_CONFIG.id);
+  var savedRows = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => (a.day ?? 99) - (b.day ?? 99) || (a.start ? toNightMin(a.start) : 9999) - (b.start ? toNightMin(b.start) : 9999));
+  var liveCount = liveStrip.filter(s => s.artist).length;
+  var stampText = countdown ? countdown.days > 0 ? `IN ${countdown.days} DAY${countdown.days === 1 ? "" : "S"}` : countdown.hours > 0 ? `IN ${countdown.hours} HR` : `IN ${countdown.mins} MIN` : "";
+  var steps = [{
+    id: "people",
+    title: ["Pick your", "people."],
+    aria: "Pick your people: open the lineup",
+    sub: isPostFestival ? savedIds.length ? `${savedIds.length} picked. See who you caught.` : "The artists you came for." : savedIds.length ? `${savedIds.length} picked. Find more.` : "Find the artists you came for.",
+    onClick: () => setState({
+      ...state,
+      tab: "lineup"
+    })
+  }, {
+    id: "night",
+    title: ["Follow", "your night."],
+    aria: isPostFestival ? "Follow your night: open your recap" : "Follow your night: open my night",
+    sub: isPostFestival ? "How your weekend went." : isLive ? "Now, next, and every stage." : savedIds.length ? "Your saved sets, in order." : "Save a set and it lands here.",
+    onClick: () => isPostFestival ? setState({
+      ...state,
+      tab: "recap"
+    }) : setSheet("night")
+  }, {
+    id: "playlist",
+    title: ["Build Your", "Playlist."],
+    aria: "Build Your Playlist: open Music",
+    sub: "Take the music with you.",
+    onClick: () => setState({
+      ...state,
+      tab: "spotify"
+    })
+  }, {
+    id: "gallery",
+    title: ["Create Your", "Gallery."],
+    aria: "Create Your Gallery: open Memories",
+    sub: "Keep your festival photos together.",
+    onClick: () => setState({
+      ...state,
+      tab: "memories"
+    })
+  }];
+  var utilityLinks = essentials.map(({
+    id,
+    label,
+    sub,
+    onClick
+  }) => ({
+    id,
+    label: label.toUpperCase(),
+    sub: sub ? sub.toUpperCase() : null,
+    onClick
+  }));
+  var claim = isLive ? React.createElement(NpClaim, {
+    eyebrow: `${liveCount} LIVE NOW / NO SETS SAVED`,
+    title: "ONE SET. YOUR WHOLE NIGHT.",
+    body: "Nothing saved yet. Pick an act that's on now, or the next one up.",
+    action: "FIND A SET NOW",
+    onAction: () => setState({
+      ...state,
+      tab: "lineup"
+    })
+  }) : React.createElement(NpClaim, {
+    eyebrow: `NO SETS SAVED / ${bill} ON THE BILL`,
+    title: "ONE SET. YOUR WHOLE NIGHT.",
+    body: tba ? "No sets saved yet. Start with one artist. Set times land here when they're published." : "No sets saved yet. Start with one artist. Then make the festival yours.",
+    action: "FIND YOUR FIRST SET",
+    onAction: () => setState({
+      ...state,
+      tab: "lineup"
+    })
+  });
+  var boardGap = {
+    display: "flex",
+    flexDirection: "column",
+    gap: 24,
+    padding: "24px 0"
+  };
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, React.createElement(ScrollBody, {
     ref: scrollRef,
+    className: "np",
+    "data-night-print": true,
     style: {
-      padding: "0 0 96px"
+      padding: "calc(var(--top-pad, 0px) + 4px) 0 0",
+      ...npSchemeVars()
     },
     onTouchStart: handlePullStart,
     onTouchMove: handlePullMove
@@ -2225,7 +2234,7 @@ function HomeScreen({
       height: 20,
       borderRadius: "50%",
       border: "2px solid var(--line)",
-      borderTopColor: "var(--signal)",
+      borderTopColor: "var(--np-ink)",
       animation: "spin 0.8s linear infinite"
     }
   })), React.createElement("div", {
@@ -2233,76 +2242,103 @@ function HomeScreen({
       maxWidth: 720,
       margin: "0 auto"
     }
-  }, React.createElement(DuoTodayHeader, {
-    status: heroStatus,
-    live: isLive,
-    deviceOffline: !online,
-    title: FESTIVAL_CONFIG.name,
-    sub: FESTIVAL_CONFIG.locationShort,
+  }, React.createElement(NpHead, {
+    online: online,
     offline: offline,
     onToggleOffline: () => setOffline(o => !o),
     unread: unread,
     onAlerts: () => setAlertsOpen(true),
     onSearch: () => window.plurskyOpenSearch?.()
-  }), React.createElement("div", {
+  }), isPostFestival ? React.createElement(NpStrip, {
+    status: "ENDED",
+    fold: "THAT'S A WRAP",
+    foldRight: FESTIVAL_CONFIG.dates
+  }) : isLive ? React.createElement(NpStrip, {
+    status: duoNightLabel().toUpperCase(),
+    fold: "YOUR NIGHT IS ON",
+    foldRight: FESTIVAL_CONFIG.dates,
+    sunrise: duoSunrise()
+  }) : React.createElement(NpPoster, {
+    countdown: countdown,
+    stampText: stampText,
+    fold: "YOUR NIGHT STARTS HERE",
+    foldRight: "↓"
+  }), isPostFestival && React.createElement("div", {
+    style: boardGap
+  }, React.createElement("div", {
     style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 28,
-      paddingTop: 20
-    }
-  }, isPostFestival ? React.createElement("div", {
-    style: {
-      padding: "0 20px"
+      padding: "0 18px"
     }
   }, React.createElement(PostFestivalRecap, {
     state: state,
     setState: setState
-  })) : React.createElement(DuoPlanCard, {
-    state: state,
-    setState: setState,
-    plan: tonight,
-    onOpenNight: () => setSheet("night")
-  }), isLive && NOW.night != null && React.createElement(DuoStageBoard, {
-    state: state,
-    setState: setState
-  }), notice, state.friendLineup?.length > 0 && React.createElement("div", {
+  })), notice, state.friendLineup?.length > 0 && React.createElement("div", {
     style: {
-      padding: "0 20px"
+      padding: "0 18px"
     }
   }, React.createElement(FriendLineupBanner, {
     state: state,
     setState: setState
-  })), savedRow, React.createElement("section", null, React.createElement(DuoSect, {
-    title: "Festival essentials",
+  }))), isLive && React.createElement("div", {
+    style: boardGap
+  }, savedIds.length > 0 ? React.createElement(DuoPlanCard, {
+    state: state,
+    setState: setState,
+    plan: tonight,
+    onOpenNight: () => setSheet("night")
+  }) : React.createElement("div", {
     style: {
-      padding: "0 20px",
-      minHeight: 44
+      margin: "-24px 0 0"
     }
-  }), React.createElement("div", {
-    "data-today-essentials": true,
+  }, claim), NOW.night != null && React.createElement(DuoStageBoard, {
+    state: state,
+    setState: setState
+  }), notice, state.friendLineup?.length > 0 && React.createElement("div", {
     style: {
-      padding: "0 20px",
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))",
-      gap: 8
+      padding: "0 18px"
     }
-  }, essentials.map(({
-    id,
-    ...e
-  }) => React.createElement(EssentialTile, {
-    key: id,
-    ...e
-  })))), !isPostFestival && window.HomeMemoriesStrip && React.createElement("div", {
+  }, React.createElement(FriendLineupBanner, {
+    state: state,
+    setState: setState
+  }))), !isPostFestival && !isLive && React.createElement(React.Fragment, null, (notice || state.friendLineup?.length > 0) && React.createElement("div", {
+    style: boardGap
+  }, notice, state.friendLineup?.length > 0 && React.createElement("div", {
     style: {
-      padding: "0 20px"
+      padding: "0 18px"
+    }
+  }, React.createElement(FriendLineupBanner, {
+    state: state,
+    setState: setState
+  }))), savedRows.length ? React.createElement(NpSaved, {
+    rows: savedRows,
+    state: state,
+    setState: setState,
+    onAll: () => setSheet("night")
+  }) : claim), React.createElement(NpJourney, {
+    steps: steps
+  }), !isPostFestival && window.HomeMemoriesStrip && React.createElement("div", {
+    style: {
+      padding: "8px 18px 24px"
     }
   }, React.createElement(window.HomeMemoriesStrip, {
     state,
     setState
-  })), typeof PastEditionsSection === "function" && React.createElement(PastEditionsSection, {
+  })), React.createElement(NpUtility, {
+    eyebrow: isPostFestival ? "AFTER THE NIGHT" : isLive ? "TONIGHT" : "BEFORE YOU GO",
+    links: utilityLinks
+  }), typeof PastEditionsSection === "function" && React.createElement("div", {
+    style: {
+      padding: "8px 0 32px"
+    },
+    "data-np-after": true
+  }, React.createElement(PastEditionsSection, {
     festivalId: FESTIVAL_CONFIG.id
-  })))), alertsOpen && React.createElement(AlertsDrawer, {
+  })))), React.createElement("div", {
+    className: "np",
+    style: {
+      display: "contents"
+    }
+  }, alertsOpen && React.createElement(AlertsDrawer, {
     alerts: alerts,
     onClose: () => {
       setAlertsOpen(false);
@@ -2352,8 +2388,9 @@ function HomeScreen({
     }
   }), sheetView && React.createElement(FieldSheet, {
     title: sheetView.title,
+    eyebrow: sheetView.eyebrow,
     onClose: () => setSheet(null)
-  }, sheetView.body));
+  }, sheetView.body)));
 }
 function HeadlinerHighlights({
   state,
@@ -2995,11 +3032,9 @@ function DuoPlanCard({
       display: "block",
       marginTop: 4
     }
-  }, stage.name.toUpperCase(), " · ", React.createElement("span", {
-    style: {
-      whiteSpace: "nowrap"
-    }
-  }, live ? `TO ${duoClock(set.end)}` : duoClock(set.start))))), live && React.createElement("span", {
+  }, React.createElement("span", {
+    className: "np-pair"
+  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(set.end)}` : duoClock(set.start)))))), live && React.createElement("span", {
     className: "duo-wide",
     style: {
       textAlign: "right",
@@ -3086,8 +3121,23 @@ function DuoStageBoard({
   setState
 }) {
   var rows = duoStageNowNext();
-  if (!rows.length) return null;
   var savedSet = new Set(state.saved || []);
+  var [allStages, setAllStages] = React.useState(false);
+  var lead = React.useMemo(() => {
+    var picked = rows.filter(r => r.on && savedSet.has(r.on.id) || r.next && savedSet.has(r.next.id));
+    for (var r of rows) {
+      if (picked.length >= 3) break;
+      if (!picked.includes(r) && r.on) picked.push(r);
+    }
+    for (var _r of rows) {
+      if (picked.length >= 3) break;
+      if (!picked.includes(_r)) picked.push(_r);
+    }
+    return new Set(picked);
+  }, [rows.length, state.saved]);
+  if (!rows.length) return null;
+  var folded = rows.length > 4 && !allStages;
+  var shown = folded ? rows.filter(r => lead.has(r)) : rows;
   var liveCount = rows.filter(r => r.on).length;
   var cell = (a, detail, spoken, tag) => a ? React.createElement("button", {
     className: "duo-press",
@@ -3161,7 +3211,7 @@ function DuoStageBoard({
     }
   }, React.createElement(DuoLive, null, "Now"), React.createElement("span", {
     className: "duo-label duo-ink3"
-  }, "Next")), rows.map(({
+  }, "Next")), shown.map(({
     stage,
     on,
     next
@@ -3181,102 +3231,38 @@ function DuoStageBoard({
     style: {
       marginTop: 10
     }
-  }, cell(on, on ? `TO ${duoClock(on.end)}` : "", on ? `until ${fmt12(on.end)}` : "", "Now"), cell(next, next ? duoClock(next.start) : "", next ? `next at ${fmt12(next.start)}` : "", "Next"))))));
-}
-function SavedRow({
-  a,
-  onOpen
-}) {
-  var dd = FESTIVAL_CONFIG.dayDates?.[a.day];
-  var day = dd?.short || `Day ${a.day}`;
-  var stage = (STAGES.find(s => s.id === a.stage) || {}).name;
-  return React.createElement("button", {
-    className: "duo-press",
-    onClick: onOpen,
-    "aria-label": `${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`,
+  }, cell(on, on ? `TO ${duoClock(on.end)}` : "", on ? `until ${fmt12(on.end)}` : "", "Now"), cell(next, next ? duoClock(next.start) : "", next ? `next at ${fmt12(next.start)}` : "", "Next")))), rows.length > 4 && React.createElement("button", {
+    className: "duo-link duo-hair",
+    "data-duo-stages-toggle": true,
+    "aria-expanded": !folded,
+    onClick: () => setAllStages(v => !v),
     style: {
+      width: "100%",
       display: "flex",
       alignItems: "center",
-      gap: 12,
-      minHeight: 56,
-      padding: "6px 0",
-      border: "none",
-      background: "none",
-      color: "var(--ink)",
-      textAlign: "left",
-      cursor: "pointer",
-      width: "100%"
-    }
-  }, React.createElement("span", {
-    className: "duo-data",
-    style: {
-      width: 72,
-      flexShrink: 0,
-      fontSize: 13,
-      color: "var(--ink-2)",
-      whiteSpace: "nowrap"
-    }
-  }, a.start ? fmt12(a.start) : "TBA"), React.createElement(DuoAvatar, {
-    name: a.name,
-    size: 36
-  }), React.createElement("span", {
-    style: {
-      flex: 1,
-      minWidth: 0,
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, React.createElement("span", {
-    className: "duo-name",
-    style: {
-      font: "650 15px/1.33 var(--f-ui)"
-    }
-  }, actDisplayName(a.name)), React.createElement("span", {
-    style: {
-      font: "400 13px/1.385 var(--f-ui)",
-      color: "var(--ink-2)"
-    }
-  }, [dd?.name || day, stage].filter(Boolean).join(" · "))));
-}
-function EssentialTile({
-  label,
-  sub,
-  icon,
-  onClick
-}) {
-  return React.createElement("button", {
-    className: "duo-press duo-card",
-    onClick: onClick,
-    style: {
-      minWidth: 0,
-      minHeight: 52,
-      display: "flex",
-      alignItems: "center",
-      gap: 10,
-      padding: "10px 12px",
-      color: "var(--ink)",
-      background: "var(--s2)",
+      justifyContent: "space-between",
+      gap: 8,
+      padding: "0 16px",
+      minHeight: 48,
       textAlign: "left"
     }
-  }, React.createElement("span", {
+  }, React.createElement("span", null, folded ? `All ${rows.length} stages` : "Fewer stages"), React.createElement("svg", {
     "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      display: "flex",
-      flexShrink: 0,
-      color: "var(--ink-2)"
+      transform: folded ? "none" : "rotate(180deg)",
+      transition: "transform .2s"
     }
-  }, icon), React.createElement("span", {
-    style: {
-      font: "600 15px/1.33 var(--f-ui)",
-      minWidth: 0
-    }
-  }, label, sub && React.createElement("span", {
-    className: "duo-data-s duo-acc",
-    style: {
-      display: "block",
-      marginTop: 2
-    }
-  }, sub)));
+  }, React.createElement("path", {
+    d: "M6 9l6 6 6-6"
+  })))));
 }
 function FieldNotice({
   eyebrow,
@@ -3797,102 +3783,59 @@ function AlertsDrawer({
   onOpenMap,
   onOpenLineup
 }) {
-  var iconFor = k => {
-    var c = {
-      reminder: "var(--flare)",
-      friend: "var(--ember)",
-      safety: "var(--horizon)",
-      conflict: "var(--ember)",
-      drop: "var(--success)"
-    }[k] || "var(--ink)";
-    return c;
-  };
-  return React.createElement("div", {
+  var inkFor = k => ({
+    reminder: "var(--sun)",
+    friend: "var(--acc)",
+    safety: "var(--alert)",
+    conflict: "var(--clash)",
+    drop: "var(--live)"
+  })[k] || "var(--ink)";
+  return React.createElement(FieldSheet, {
+    title: "Alerts",
+    eyebrow: "Live feed",
+    onClose: onClose
+  }, !alerts.length && React.createElement("div", {
     style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 9,
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, React.createElement("div", {
-    onClick: onClose,
-    style: {
-      position: "absolute",
-      inset: 0,
-      background: "rgba(var(--shade-rgb),0.35)"
-    }
-  }), React.createElement("div", {
-    style: {
-      marginTop: "auto",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      maxHeight: "78%",
-      display: "flex",
-      flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)",
-      position: "relative",
-      animation: "sheetUp 0.3s var(--ease-smooth)"
+      padding: "14px 0 10px"
     }
   }, React.createElement("div", {
     style: {
-      padding: "14px 18px 10px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      borderBottom: "1px solid var(--line)"
+      font: "700 20px/1.1 var(--f-ui)",
+      letterSpacing: "-0.02em"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+  }, "Nothing yet."), React.createElement("div", {
     style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      color: "var(--muted)"
+      fontSize: 13,
+      color: "var(--muted)",
+      marginTop: 6,
+      lineHeight: 1.4
     }
-  }, "LIVE FEED"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      lineHeight: 1,
-      marginTop: 2
-    }
-  }, "Alerts")), React.createElement("button", {
-    onClick: onClose,
-    style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2
-    }
-  }, "CLOSE")), React.createElement("div", {
-    style: {
-      overflowY: "auto",
-      padding: "6px 14px 18px"
-    }
-  }, alerts.map(a => {
+  }, "Clashes in your plan, friend pings and weather warnings land here.")), alerts.map(a => {
     var onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
-    return React.createElement("div", {
+    var Row = onClick ? "button" : "div";
+    return React.createElement(Row, {
       key: a.id,
-      onClick: onClick,
+      onClick: onClick || undefined,
       style: {
         display: "flex",
         gap: 12,
-        padding: "12px 6px",
+        width: "100%",
+        minHeight: 44,
+        padding: "12px 0",
         borderBottom: "1px solid var(--line)",
+        background: "none",
+        border: 0,
+        borderBottomWidth: 1,
+        color: "inherit",
+        font: "inherit",
+        textAlign: "left",
         cursor: onClick ? "pointer" : "default",
         opacity: a.unread ? 1 : 0.7
       }
     }, React.createElement("div", {
       style: {
-        width: 6,
-        borderRadius: 6,
-        background: iconFor(a.kind),
+        width: 4,
+        background: inkFor(a.kind),
         flexShrink: 0,
         alignSelf: "stretch",
         opacity: a.unread ? 1 : 0.4
@@ -3909,16 +3852,13 @@ function AlertsDrawer({
         gap: 8
       }
     }, React.createElement("div", {
-      className: "serif",
       style: {
-        fontSize: 16,
-        lineHeight: 1.15
+        font: "700 16px/1.15 var(--f-ui)",
+        letterSpacing: "-0.01em"
       }
     }, a.title), React.createElement("div", {
-      className: "mono",
+      className: "np-mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
         color: "var(--muted)",
         whiteSpace: "nowrap"
       }
@@ -3930,7 +3870,7 @@ function AlertsDrawer({
         lineHeight: 1.35
       }
     }, a.body)));
-  }))));
+  }));
 }
 function DontMissStrip({
   day,
@@ -4034,7 +3974,7 @@ var FT_SECTIONS = [{
   id: "gates",
   icon: "🚪",
   title: "Gates & entry",
-  items: ["Gates open 4 PM Friday-Sunday. Music runs 7 PM – 5:30 AM.", "Bring a valid government-issued photo ID. 18+ event.", "Wristband activates online before you arrive — don't show up with it un-paired.", "One re-entry per day, only between 4 PM and midnight.", "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty."]
+  items: ["Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.", "Bring a valid government-issued photo ID. 18+ event.", "Wristband activates online before you arrive — don't show up with it unpaired.", "One re-entry per day, only between 4 PM and midnight.", "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty."]
 }, {
   id: "lingo",
   icon: "🗣️",
@@ -4062,127 +4002,93 @@ function FirstTimerGuide({
   onOpenLineup
 }) {
   var [openIdx, setOpenIdx] = React.useState(0);
-  return React.createElement("div", {
+  var jump = primary => ({
+    flex: 1,
+    minHeight: 44,
+    padding: "0 12px",
+    cursor: "pointer",
+    background: primary ? "var(--ink)" : "var(--paper)",
+    color: primary ? "var(--paper)" : "var(--ink)",
+    border: primary ? "none" : "1px solid var(--line-2)",
+    borderRadius: "var(--rad-sm)",
+    font: "700 10px/1.2 var(--f-data)",
+    letterSpacing: "0.13em",
+    textTransform: "uppercase"
+  });
+  var footer = React.createElement("div", {
     style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 9,
       display: "flex",
-      flexDirection: "column"
+      gap: 8
     }
-  }, React.createElement("div", {
-    onClick: onClose,
-    style: {
-      position: "absolute",
-      inset: 0,
-      background: "rgba(var(--shade-rgb),0.4)"
-    }
-  }), React.createElement("div", {
-    style: {
-      marginTop: "auto",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      maxHeight: "85%",
-      display: "flex",
-      flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
-      position: "relative"
-    }
-  }, React.createElement("div", {
-    style: {
-      padding: "14px 18px 12px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      borderBottom: "1px solid var(--line)",
-      background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22
-    }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      color: "var(--ember-ink)",
-      fontWeight: 700
-    }
-  }, "FIRST TIME AT ", FESTIVAL_CONFIG.brand.toUpperCase()), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      lineHeight: 1,
-      marginTop: 2
-    }
-  }, "The basics")), React.createElement("button", {
-    onClick: onClose,
-    style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "CLOSE")), React.createElement("div", {
-    style: {
-      overflowY: "auto",
-      padding: "8px 14px 18px"
-    }
+  }, React.createElement("button", {
+    onClick: onOpenMap,
+    style: jump(true)
+  }, "Explore map"), React.createElement("button", {
+    onClick: onOpenLineup,
+    style: jump(false)
+  }, "Browse lineup"));
+  return React.createElement(FieldSheet, {
+    title: "The basics",
+    eyebrow: `First time at ${FESTIVAL_CONFIG.brand}`,
+    footer: footer,
+    onClose: onClose
   }, FT_SECTIONS.map((s, i) => {
     var isOpen = openIdx === i;
     return React.createElement("div", {
       key: s.id,
       style: {
-        marginTop: 8,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        borderRadius: 12,
-        overflow: "hidden"
+        borderBottom: "1px solid var(--line)"
       }
     }, React.createElement("button", {
       onClick: () => setOpenIdx(isOpen ? -1 : i),
+      "aria-expanded": isOpen,
       style: {
         width: "100%",
-        padding: "12px 14px",
+        minHeight: 56,
+        padding: "12px 0",
         display: "flex",
         alignItems: "center",
-        gap: 12,
-        background: isOpen ? "var(--paper-2)" : "transparent",
-        border: "none",
+        gap: 14,
+        background: "none",
+        border: 0,
+        color: "inherit",
+        textAlign: "left",
         cursor: "pointer",
-        textAlign: "left"
+        font: "inherit"
       }
     }, React.createElement("span", {
+      className: "np-idx",
       style: {
-        fontSize: 20
+        color: "var(--ink-3)"
       }
-    }, s.icon), React.createElement("span", {
-      className: "serif",
+    }, String(i + 1).padStart(2, "0")), React.createElement("span", {
       style: {
         flex: 1,
-        fontSize: 18,
-        lineHeight: 1
+        font: "700 18px/1.15 var(--f-ui)",
+        letterSpacing: "-0.02em"
       }
-    }, s.title), React.createElement("span", {
-      className: "mono",
+    }, s.title), React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
       style: {
-        fontSize: 10,
-        color: "var(--muted)",
-        fontWeight: 700,
-        transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-        transition: "transform 0.2s"
+        flexShrink: 0,
+        transform: isOpen ? "rotate(180deg)" : "none",
+        transition: "transform .2s"
       }
-    }, "›")), isOpen && React.createElement("ul", {
+    }, React.createElement("path", {
+      d: "M6 9l6 6 6-6"
+    }))), isOpen && React.createElement("ul", {
       style: {
         listStyle: "none",
         margin: 0,
-        padding: "4px 14px 14px 50px"
+        padding: "0 0 16px 38px"
       }
     }, s.items.map((it, k) => React.createElement("li", {
       key: k,
@@ -4194,53 +4100,18 @@ function FirstTimerGuide({
         color: "var(--ink)"
       }
     }, React.createElement("span", {
+      "aria-hidden": "true",
       style: {
         position: "absolute",
         left: -14,
-        top: 6,
+        top: 7,
         width: 5,
         height: 5,
         borderRadius: 5,
-        background: "var(--ember)"
+        background: "var(--acc)"
       }
-    }), it))));
-  }), React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 8,
-      marginTop: 14
-    }
-  }, React.createElement("button", {
-    onClick: onOpenMap,
-    style: {
-      flex: 1,
-      padding: "10px 12px",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 10,
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 700
-    }
-  }, "EXPLORE MAP"), React.createElement("button", {
-    onClick: onOpenLineup,
-    style: {
-      flex: 1,
-      padding: "10px 12px",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 700
-    }
-  }, "BROWSE LINEUP")))));
+    }), it.replace(/(\d)\s(AM|PM)\b/g, "$1\u00a0$2")))));
+  }));
 }
 function _buildShareUrl(savedIds) {
   var base = `${window.location.origin}${window.location.pathname}`;
@@ -4411,3 +4282,588 @@ Object.assign(window, {
   HomeScreen,
   FriendLineupBanner
 });
+var NP_CREAM = "#EEE9D9",
+  NP_BLACK = "#1A171A";
+function _npLum(hex) {
+  var h = hex.replace("#", "");
+  var n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
+  var c = [n >> 16 & 255, n >> 8 & 255, n & 255].map(v => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function _npContrast(a, b) {
+  var x = _npLum(a),
+    y = _npLum(b);
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+}
+function npAccent(cfg) {
+  var p = (cfg || FESTIVAL_CONFIG).print;
+  if (!p || !/^#[0-9a-f]{6}$/i.test(p.accent || "")) return null;
+  var onBlack = _npContrast(p.accent, NP_BLACK),
+    onCream = _npContrast(p.accent, NP_CREAM);
+  var ratio = Math.max(onBlack, onCream);
+  if (ratio < 3) return null;
+  var fg = onBlack >= onCream ? NP_BLACK : NP_CREAM;
+  var acc2 = /^#[0-9a-f]{6}$/i.test(p.accent2 || "") ? p.accent2 : null;
+  return {
+    acc: p.accent,
+    fg,
+    other: fg === NP_BLACK ? NP_CREAM : NP_BLACK,
+    ratio,
+    small: ratio >= 4.5,
+    acc2
+  };
+}
+function npSchemeVars(cfg) {
+  var sk = npAccent(cfg);
+  var a2 = sk && sk.acc2;
+  return {
+    "--np-acc2-on-black": a2 && _npContrast(a2, NP_BLACK) >= 4.5 ? a2 : NP_CREAM,
+    "--np-acc2-on-cream": a2 && _npContrast(a2, NP_CREAM) >= 4.5 ? a2 : NP_BLACK
+  };
+}
+function npWords(name) {
+  return duoFestivalTitle(name).split(/\s+/).filter(Boolean).map(w => ({
+    w,
+    roman: /^[IVX]{2,}$/.test(w)
+  }));
+}
+function npMeta(sk, extra) {
+  if (!sk) return {
+    className: "np-mono",
+    style: extra
+  };
+  return sk.small ? {
+    className: "np-mono",
+    style: {
+      color: sk.fg,
+      ...extra
+    }
+  } : {
+    className: "np-mono",
+    style: {
+      background: sk.fg,
+      color: sk.other,
+      padding: "3px 6px",
+      ...extra
+    }
+  };
+}
+function NpTool({
+  label,
+  pressed,
+  on,
+  onClick,
+  children
+}) {
+  return React.createElement("button", {
+    type: "button",
+    className: "np-tool",
+    onClick: onClick,
+    "aria-label": label,
+    "aria-pressed": pressed,
+    style: on ? {
+      textDecoration: "underline",
+      textUnderlineOffset: 6
+    } : undefined
+  }, children);
+}
+function NpHead({
+  online,
+  offline,
+  onToggleOffline,
+  unread,
+  onAlerts,
+  onSearch
+}) {
+  return React.createElement("div", {
+    className: "np-head",
+    "data-np-head": true
+  }, React.createElement("span", {
+    className: "np-mono-m",
+    style: {
+      fontWeight: 600
+    }
+  }, "PLURSKY®", !online ? React.createElement("b", {
+    style: {
+      fontWeight: 400,
+      marginLeft: 8
+    }
+  }, "· NO SIGNAL") : null), React.createElement("span", {
+    className: "np-tools"
+  }, onSearch && React.createElement(NpTool, {
+    label: "Search artists, stages, genres",
+    onClick: onSearch
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round"
+  }, React.createElement("path", {
+    d: "M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z M15.3 15.3 20 20"
+  }))), React.createElement(NpTool, {
+    label: "Offline mode",
+    pressed: offline,
+    on: offline,
+    onClick: onToggleOffline
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round"
+  }, offline ? React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M4 4 L20 20"
+  }), React.createElement("path", {
+    d: "M8.5 16 Q12 13 15.5 16"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "19.5",
+    r: "0.8",
+    fill: "currentColor"
+  })) : React.createElement(React.Fragment, null, React.createElement("path", {
+    d: "M2 8.5 Q12 -1 22 8.5"
+  }), React.createElement("path", {
+    d: "M5 12 Q12 5.5 19 12"
+  }), React.createElement("path", {
+    d: "M8.5 15.5 Q12 12.5 15.5 15.5"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "19.5",
+    r: "0.8",
+    fill: "currentColor"
+  })))), React.createElement(NpTool, {
+    label: unread ? `Alerts, ${unread} new` : "Alerts",
+    onClick: onAlerts
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"
+  }), React.createElement("path", {
+    d: "M10 19 Q12 21 14 19"
+  })), unread > 0 && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      top: 9,
+      right: 9,
+      width: 8,
+      height: 8,
+      borderRadius: 4,
+      background: "currentColor"
+    }
+  }))));
+}
+function NpTitle({
+  word,
+  className,
+  children
+}) {
+  var [open, setOpen] = React.useState(false);
+  var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  return React.createElement(React.Fragment, null, React.createElement("button", {
+    type: "button",
+    className: className,
+    "data-switch": canSwitch ? "on" : undefined,
+    onClick: canSwitch ? () => setOpen(true) : undefined,
+    disabled: !canSwitch,
+    "aria-label": canSwitch ? `${duoFestivalTitle(FESTIVAL_CONFIG.name)}, switch festival` : undefined
+  }, children), open && React.createElement(FestivalSwitcher, {
+    onClose: () => setOpen(false)
+  }));
+}
+function useRailFit(ref, venue, city) {
+  var [fit, setFit] = React.useState(null);
+  React.useLayoutEffect(() => {
+    var el = ref.current;
+    if (!el) return undefined;
+    var run = () => {
+      var tries = [[venue, 10], [venue, 9]].filter(t => t[0]);
+      var pick = null;
+      for (var [text, size] of tries) {
+        el.textContent = text;
+        el.style.fontSize = size + "px";
+        if (el.scrollHeight <= el.clientHeight + 1) {
+          pick = {
+            text,
+            size
+          };
+          break;
+        }
+      }
+      if (!pick) {
+        el.textContent = "";
+      }
+      setFit(prev => {
+        var next = pick || {
+          text: "",
+          size: 0
+        };
+        return prev && prev.text === next.text && prev.size === next.size ? prev : next;
+      });
+    };
+    run();
+    var ro = typeof ResizeObserver === "function" ? new ResizeObserver(run) : null;
+    if (ro) ro.observe(el.parentElement);
+    return () => {
+      if (ro) ro.disconnect();
+    };
+  }, [venue, city]);
+  return fit;
+}
+function npNoBreak(s) {
+  return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b).replace(/([A-Za-z]{3,})\s(\d)/g, "$1\u00a0$2");
+}
+function npBarcode(id) {
+  var x = 0,
+    hsh = 2166136261;
+  for (var ch of String(id || "plursky")) {
+    hsh ^= ch.charCodeAt(0);
+    hsh = Math.imul(hsh, 16777619) >>> 0;
+  }
+  var stops = [];
+  while (x < 88) {
+    hsh = Math.imul(hsh ^ hsh >>> 15, 2246822507) >>> 0;
+    var w = 1 + (hsh & 3),
+      g = 1 + (hsh >>> 2 & 3);
+    stops.push(`currentColor ${x}px ${x + w}px, transparent ${x + w}px ${x + w + g}px`);
+    x += w + g;
+  }
+  return `linear-gradient(90deg, ${stops.join(", ")})`;
+}
+function NpPoster({
+  countdown,
+  stampText,
+  fold,
+  foldRight
+}) {
+  var sk = npAccent();
+  var words = npWords(FESTIVAL_CONFIG.name);
+  var tone = sk ? {
+    background: sk.acc,
+    color: sk.fg
+  } : {};
+  var meta = npMeta(sk);
+  var railRef = React.useRef(null);
+  var city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
+  var rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
+  var place = rail && !rail.text ? FESTIVAL_CONFIG.locationShort || city : null;
+  return React.createElement("section", {
+    className: "np-poster",
+    "data-np-poster": true,
+    "data-np-accent": sk ? sk.acc : "none",
+    style: tone
+  }, React.createElement("div", {
+    className: "np-meta"
+  }, React.createElement("span", meta, "EDITION ", FESTIVAL_CONFIG.year || ""), React.createElement("span", npMeta(sk, {
+    whiteSpace: "nowrap"
+  }), countdown ? "PRE\u2011FESTIVAL" : "FESTIVAL")), React.createElement("div", {
+    className: "np-titlebox"
+  }, (FESTIVAL_CONFIG.locationShort || city) && React.createElement("div", {
+    ref: railRef,
+    className: "np-rot np-mono",
+    "aria-hidden": "true",
+    "data-np-rail": rail ? rail.text ? "on" : "off" : "measuring",
+    style: rail && !rail.text ? {
+      visibility: "hidden"
+    } : undefined
+  }), React.createElement(NpTitle, {
+    className: "np-title"
+  }, React.createElement("h1", {
+    className: "np-word",
+    "data-fit-words": true,
+    "data-fit-min": "32"
+  }, words.map((x, i) => React.createElement(React.Fragment, {
+    key: i
+  }, i ? " " : "", React.createElement("span", {
+    className: x.roman ? "np-roman" : undefined
+  }, x.w)))))), React.createElement("div", {
+    className: "np-foot"
+  }, React.createElement("div", null, React.createElement("div", npMeta(sk, {
+    display: "inline-block"
+  }), npNoBreak(FESTIVAL_CONFIG.dates)), place && React.createElement("div", {
+    className: "np-mono",
+    style: {
+      marginTop: 6,
+      ...(sk && !sk.small ? {
+        color: sk.fg
+      } : {})
+    }
+  }, place), React.createElement("div", {
+    className: "np-barcode",
+    "aria-hidden": "true",
+    style: {
+      background: npBarcode(FESTIVAL_CONFIG.id)
+    }
+  })), React.createElement("div", {
+    className: "np-stamp",
+    "data-np-stamp": true,
+    "aria-label": stampText.replace(/\s+/g, " ")
+  }, stampText)), React.createElement("div", {
+    className: "np-cut",
+    "data-np-cut": true
+  }, React.createElement("b", null, fold), React.createElement("span", null, foldRight)));
+}
+function NpStrip({
+  status,
+  fold,
+  foldRight,
+  sunrise
+}) {
+  var sk = npAccent();
+  var tone = sk ? {
+    background: sk.acc,
+    color: sk.fg
+  } : {};
+  var meta = npMeta(sk);
+  return React.createElement("section", {
+    className: "np-poster",
+    "data-np-strip": true,
+    "data-np-accent": sk ? sk.acc : "none",
+    style: {
+      ...tone,
+      paddingTop: 16
+    }
+  }, React.createElement("div", {
+    className: "np-meta"
+  }, React.createElement("span", meta, "EDITION ", FESTIVAL_CONFIG.year || ""), React.createElement("span", npMeta(sk, {
+    whiteSpace: "nowrap",
+    textAlign: "right"
+  }), status)), React.createElement(NpTitle, {
+    className: "np-title"
+  }, React.createElement("h1", {
+    className: "np-strip-word",
+    "data-fit-words": true,
+    "data-fit-min": "20",
+    style: {
+      margin: "14px 0 16px"
+    }
+  }, duoFestivalTitle(FESTIVAL_CONFIG.name))), React.createElement("div", {
+    className: "np-cut",
+    "data-np-cut": true
+  }, React.createElement("b", null, fold), sunrise ? React.createElement("span", {
+    className: "duo-sun",
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      color: "inherit"
+    }
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "14",
+    height: "14",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round"
+  }, React.createElement("path", {
+    d: "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 2.5v2 M12 19.5v2 M2.5 12h2 M19.5 12h2 M5.3 5.3l1.4 1.4 M17.3 17.3l1.4 1.4 M5.3 18.7l1.4-1.4 M17.3 6.7l1.4-1.4"
+  })), "SUNRISE ", sunrise) : React.createElement("span", null, foldRight)));
+}
+function NpClaim({
+  eyebrow,
+  title,
+  body,
+  action,
+  onAction
+}) {
+  return React.createElement("section", {
+    className: "np-block",
+    "data-np-claim": true
+  }, React.createElement("div", {
+    className: "np-mono",
+    style: {
+      marginBottom: 17
+    }
+  }, eyebrow), React.createElement("h2", {
+    className: "np-claim",
+    "data-fit-words": true,
+    "data-fit-min": "34"
+  }, title), React.createElement("p", {
+    className: "np-body"
+  }, body), React.createElement("button", {
+    type: "button",
+    className: "np-act",
+    onClick: onAction
+  }, action, React.createElement("span", {
+    "aria-hidden": "true"
+  }, "↗")));
+}
+function NpSaved({
+  rows,
+  state,
+  setState,
+  onAll
+}) {
+  var days = new Set(rows.map(a => a.day).filter(d => d != null));
+  var n = rows.length;
+  var SHOW = n <= 6 ? n : 4;
+  return React.createElement("section", {
+    className: "np-block",
+    "data-np-saved": true,
+    "data-today-saved": true
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 44,
+      marginBottom: 6
+    }
+  }, React.createElement("span", {
+    className: "np-mono"
+  }, "YOUR NIGHT SO FAR"), React.createElement(ShareLineupButton, {
+    state: state
+  })), React.createElement("h2", {
+    className: "np-claim",
+    "data-fit-words": true,
+    "data-fit-min": "34"
+  }, React.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, n, " SET", n === 1 ? "" : "S", "."), days.size > 0 && React.createElement("span", {
+    style: {
+      display: "block"
+    }
+  }, days.size, " NIGHT", days.size === 1 ? "" : "S", ".")), React.createElement("div", {
+    style: {
+      marginTop: 20
+    }
+  }, rows.slice(0, SHOW).map(a => {
+    var dd = FESTIVAL_CONFIG.dayDates?.[a.day];
+    var day = dd?.name || (a.day != null ? `Day ${a.day}` : "Day TBA");
+    var stage = (STAGES.find(s => s.id === a.stage) || {}).name;
+    return React.createElement("button", {
+      type: "button",
+      key: a.id,
+      className: "np-srow",
+      onClick: () => setState({
+        ...state,
+        artist: a.id
+      }),
+      "aria-label": `${a.name}, ${day}, ${a.start ? fmt12(a.start) : "time to be announced"}${stage ? `, ${stage}` : ""}`
+    }, React.createElement("span", {
+      className: "np-mono-m",
+      style: {
+        fontWeight: 500,
+        whiteSpace: "nowrap"
+      }
+    }, a.start ? fmt12(a.start) : "TBA"), React.createElement("span", {
+      style: {
+        minWidth: 0
+      }
+    }, React.createElement("span", {
+      className: "np-sname duo-name"
+    }, actDisplayName(a.name)), React.createElement("span", {
+      className: "np-ssub np-mono"
+    }, [day, stage].filter(Boolean).join(" · "))));
+  })), React.createElement("button", {
+    type: "button",
+    className: "np-act",
+    onClick: onAll
+  }, n > SHOW ? `ALL ${n} SAVED SETS` : "YOUR SAVED SETS", React.createElement("span", {
+    "aria-hidden": "true"
+  }, "↗")));
+}
+function NpJourney({
+  steps
+}) {
+  var sk = npAccent();
+  var row = (s, i) => React.createElement(React.Fragment, null, React.createElement("span", {
+    className: "np-idx",
+    "aria-hidden": "true"
+  }, "0", i + 1), React.createElement("span", {
+    style: {
+      minWidth: 0
+    }
+  }, React.createElement("h3", {
+    className: "np-jt duo-name"
+  }, s.title.map((t, k) => React.createElement("span", {
+    key: k,
+    style: {
+      display: "block"
+    }
+  }, t))), React.createElement("p", null, s.sub)), React.createElement("span", {
+    className: "np-arrow",
+    "aria-hidden": "true"
+  }, "↗"));
+  return React.createElement("section", {
+    className: "np-journey",
+    "data-np-journey": true,
+    "aria-label": "Your night, in four steps"
+  }, steps.map((s, i) => i === 2 ? React.createElement("button", {
+    type: "button",
+    key: s.id,
+    className: "np-j3",
+    "data-np-step": s.id,
+    onClick: s.onClick,
+    "aria-label": s.aria,
+    style: sk ? {
+      color: sk.fg
+    } : undefined
+  }, React.createElement("span", {
+    className: "np-j3-plate",
+    "aria-hidden": "true",
+    style: {
+      background: sk ? sk.acc : "var(--np-ink)",
+      ...(sk ? {} : {})
+    }
+  }), React.createElement("span", {
+    className: "np-j",
+    style: {
+      padding: "24px 8px",
+      ...(sk ? {} : {
+        color: "var(--np-paper)"
+      })
+    }
+  }, row(s, i))) : React.createElement("button", {
+    type: "button",
+    key: s.id,
+    className: "np-j",
+    "data-np-step": s.id,
+    onClick: s.onClick,
+    "aria-label": s.aria
+  }, row(s, i))));
+}
+function NpUtility({
+  eyebrow,
+  links
+}) {
+  return React.createElement("section", {
+    className: "np-util",
+    "data-np-util": true,
+    "aria-label": eyebrow
+  }, React.createElement("span", {
+    className: "np-mono"
+  }, eyebrow), React.createElement("div", {
+    className: "np-links",
+    "data-today-essentials": true
+  }, links.map(l => React.createElement("button", {
+    type: "button",
+    key: l.id,
+    className: "np-link",
+    "data-np-link": l.id,
+    onClick: l.onClick,
+    "aria-label": l.sub ? `${l.label}, ${l.sub}` : l.label
+  }, React.createElement("span", null, l.label, l.sub && React.createElement("b", null, l.sub)), React.createElement("span", {
+    "aria-hidden": "true"
+  }, "↗")))));
+}

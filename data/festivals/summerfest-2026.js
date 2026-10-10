@@ -678,6 +678,8 @@
     locationShort: "Henry Maier Festival Park",
     dates: "Jun 18–20, Jun 25–27 & Jul 2–4, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: null, source: { url: "https://www.summerfest.com/", observedAt: "2026-10-09", seenAs: null, confidence: "low" }, note: "Unreachable without a browser: curl returns HTTP 403 with a Cloudflare 'Just a moment...' challenge page on both www.summerfest.com and summerfest.com (two user agents), and WebFetch also returns 403, so no first-party HTML or CSS was sampled." },
     // gates day 1 (12:00 CDT) -> close of the final day (24:00 CDT)
     startMs: Date.UTC(2026, 5, 18, 17, 0, 0),
     endMs:   Date.UTC(2026, 6, 5, 5, 0, 0),

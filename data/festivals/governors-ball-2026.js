@@ -155,6 +155,8 @@
     locationShort: "Flushing Meadows",
     dates: "Jun 5–7, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#FF7D32", accent2: "#6400FF", source: { url: "https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc981/css/gov-ball-2026.shared.678c825d0.min.css", observedAt: "2026-10-09", seenAs: "--swatches--orange: #ff7d32, consumed by --button-color--primary: var(--swatches--orange) (hover #e5702c), which .button uses for background-color and border; the homepage renders 5 'button w-button' elements", confidence: "medium" }, note: "No theme-color meta; the site's own Webflow stylesheet defines the primary button colour as the orange swatch, while links default to violet #6400ff and the homepage announcement bar is inline #19e6ff." },
     // gates day 1 (11:30 EDT) -> close of the final day (22:00 EDT)
     startMs: Date.UTC(2026, 5, 5, 15, 30, 0),
     endMs:   Date.UTC(2026, 5, 8, 2, 0, 0),

@@ -163,9 +163,19 @@ function pickRelevantPeriod(periods) {
 // Tonight info card — sunset/sunrise, weather, last-shuttle warning.
 // Visible pre-festival (focused on opening day) and during-festival
 // (focused on tonight).
+// The night the sun times are for: the sheet's eyebrow. The forecast block says whose
+// forecast it is (the site's, now), so a 14-day countdown never sits under "tonight".
+function openingDateLabel() {
+  const d = FESTIVAL_CONFIG.dayDates?.[1];
+  if (!d) return null;
+  try { return new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); } catch { return null; }
+}
+function tonightEyebrow() {
+  if (Date.now() < FESTIVAL_START_MS) { const when = openingDateLabel(); return `Opening night${when ? ` · ${when}` : ""}`; }
+  return `Tonight · Day ${NOW.day}`;
+}
 function TonightCard({ state, setState }) {
   const { periods, fromCache, fetchedAt } = useNwsForecast();
-  const period = pickRelevantPeriod(periods);
   const hourly = useHourlyForecast();
   const cacheAgeLabel = (() => {
     if (!fromCache || !fetchedAt) return null;
@@ -178,6 +188,13 @@ function TonightCard({ state, setState }) {
   const sun = sunTimes[day] || sunTimes[1] || { rise: "07:00", set: "19:00" };
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
+  // Before the festival only a forecast that covers opening night counts: today's forecast
+  // at the site is not "opening night". NWS posts about a week out, so until then the sheet
+  // says when the forecast lands instead of printing a curve for the wrong day.
+  const openingMs = festivalNightDate(1, (sunTimes[1] || sun).set).getTime();
+  const covers = (p) => p && new Date(p.startTime).getTime() <= openingMs && new Date(p.endTime).getTime() > openingMs;
+  const period = isPreEvent ? ((periods || []).find(covers) || null) : pickRelevantPeriod(periods);
+  const hourlyShown = isPreEvent ? (hourly || []).filter(x => { const t = new Date(x.startTime).getTime(); return t >= openingMs - 3 * 3600000 && t < openingMs + 9 * 3600000; }) : hourly;
 
   // Next sunrise & sunset to display
   const sunsetMs = festivalNightDate(day, sun.set).getTime();
@@ -228,74 +245,50 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
-      <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
+      <div className="np-mono" style={{ color: "var(--ink-3)" }}>{label}</div>
+      <div style={{ font: "700 clamp(16px, 5.4vw, 22px)/1 var(--f-data)", letterSpacing: "-0.01em", color: accent || "var(--ink)", marginTop: 6, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{value}</div>
+      {sub && <div className="np-mono" style={{ color: "var(--ink-3)", marginTop: 6 }}>{sub}</div>}
     </div>
   );
 
-  return (
-    <div style={{
-      marginTop: 18,
-      background: "var(--night)",
-      borderRadius: 16,
-      padding: "14px 16px 16px",
-      color: "var(--ink)",
-      position: "relative",
-      overflow: "hidden",
-    }}>
-      {/* Aurora glow */}
-      <div style={{
-        position: "absolute", inset: 0,
-        background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
-        pointerEvents: "none",
-      }}/>
-      <div style={{ position: "relative" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-3)" }}>
-            {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
-          </div>
-          {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 5 }}>
-              NWS · {period.name.toUpperCase()}
-              {cacheAgeLabel && (
-                <span style={{
-                  background: "rgba(var(--ink-rgb),0.1)", border: "1px solid rgba(var(--ink-rgb),0.18)",
-                  borderRadius: 4, padding: "1px 5px", fontSize: 8, letterSpacing: 1,
-                }}>
-                  CACHED · {cacheAgeLabel}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
 
-        <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-          {sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)")}
+  return (
+    <div style={{ marginTop: 2 }}>
+      <div>
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", padding: "6px 0 16px", borderBottom: "1px solid var(--line)" }}>
+          {sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null)}
           {sunriseSet && card(
-            "SUNRISE",
-            sun.rise,
-            sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`,
-            "#fbbf24"
+            "Sunrise",
+            fmt12(sun.rise),
+            sunriseArtistId ? `${sunriseArtistId.name} · ${(STAGES || []).find(s => s.id === (FESTIVAL_CONFIG.mainStageId || "kinetic"))?.name || "main stage"}` : `in ${sunriseSet}`
           )}
           {period ? card(
-            "WEATHER",
+            "Weather",
             `${period.temperature}°${period.temperatureUnit}`,
-            `${period.windSpeed} ${period.windDirection}`,
-            "#a8d4ff"
-          ) : (
-            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
+            `${period.windSpeed} ${period.windDirection}`
+          ) : periods == null ? (
+            /* still loading; once loaded with nothing that covers the night, the slot is simply absent */
+            <div style={{ flex: 1, minWidth: 80 }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
               <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
               <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
             </div>
-          )}
+          ) : null}
         </div>
 
-        {/* Hourly temperature curve — shows the next 12 hours so you can
-            see whether tonight's headliner slot will be warmer/cooler */}
-        {hourly?.length > 0 && (() => {
-          const next12 = hourly.slice(0, 12);
+        {period && (
+          <div className="np-mono" style={{ color: "var(--ink-3)", padding: "12px 0 0" }}>
+            NWS · {period.name}{cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""}
+          </div>
+        )}
+        {isPreEvent && !period && (
+          <div className="np-mono" style={{ color: "var(--ink-3)", padding: "12px 0 4px" }}>
+            NWS forecast for {openingDateLabel() || "opening night"} lands a week out
+          </div>
+        )}
+        {/* Hourly temperature curve: twelve hours on the night (opening night before the festival). */}
+        {hourlyShown?.length > 0 && (() => {
+          const next12 = hourlyShown.slice(0, 12);
           const temps = next12.map(h => h.temperature);
           const min = Math.min(...temps), max = Math.max(...temps);
           const range = max - min || 1;
@@ -306,17 +299,13 @@ function TonightCard({ state, setState }) {
             return `${x},${y}`;
           }).join(" ");
           const firstHour = new Date(next12[0].startTime).getHours();
-          const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
+          const fmtH = (h) => h === 0 ? "12 AM" : h < 12 ? `${h} AM` : h === 12 ? "12 PM" : `${h - 12} PM`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
-            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
-                  NEXT 12H
-                </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-3)" }}>
-                  {min}° → {max}°
-                </span>
+            <div style={{ padding: "14px 0 4px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{isPreEvent ? "Opening night, by the hour" : "Next 12h"}</span>
+                <span className="np-mono" style={{ color: "var(--ink-3)", whiteSpace: "nowrap" }}>{min}° → {max}°</span>
               </div>
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
                 <polyline points={points} fill="none" stroke="var(--signal-ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -324,9 +313,9 @@ function TonightCard({ state, setState }) {
                   <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="var(--signal-ink)"/>
                 ))}
               </svg>
-              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(lastHour)}</span>
+              <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{fmtH(firstHour)}</span>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -336,17 +325,17 @@ function TonightCard({ state, setState }) {
           <button
             onClick={() => setState({ ...state, tab: "map" })}
             style={{
-              marginTop: 14, width: "100%",
-              background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
-              border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
-              color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
-              borderRadius: 10, padding: "10px 12px", cursor: "pointer",
+              marginTop: 14, width: "100%", minHeight: 44,
+              background: shuttleUrgent ? "var(--acc)" : "transparent",
+              border: shuttleUrgent ? "none" : "1px solid var(--line-2)",
+              color: shuttleUrgent ? "var(--on-acc)" : "var(--ink)",
+              borderRadius: "var(--rad-sm)", padding: "10px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
+              font: "700 10px/1.2 var(--f-data)", letterSpacing: "0.13em", textTransform: "uppercase",
               textAlign: "left",
             }}>
-            <span>🚌  LAST SHUTTLE TO STRIP</span>
-            <span style={{ color: shuttleUrgent ? "var(--ink)" : "var(--flare)" }}>
+            <span>Last shuttle to Strip</span>
+            <span style={{ color: shuttleUrgent ? "inherit" : "var(--sun)" }}>
               {shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED"}
             </span>
           </button>
@@ -824,7 +813,7 @@ function PostFestivalRecap({ state, setState }) {
                     <DuoAvatar name={a.name} size={40} />
                     <span style={{ flex: 1, minWidth: 0 }}>
                       <span className="duo-headline duo-name" style={{ display: "block" }}>{actDisplayName(a.name)}</span>
-                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{fmt12(a.start)}–{fmt12(a.end)}</span></span></span>
                     </span>
                   </button>
                 );
@@ -1564,14 +1553,6 @@ function HomeScreen({ state, setState }) {
   const savedIds = savedInLineup(state.saved);
   const online = useOnlineStatus();
   const isLive = !countdown && !isPostFestival;
-  // The board's Today header: one Michroma status line, the festival as the
-  // hero title, sunrise on a live night. No photo hero: photos sit on the
-  // rows they belong to, never as the page's focal point.
-  const heroStatus = isPostFestival ? `That's a wrap · ${FESTIVAL_CONFIG.dates}`
-    : countdown ? `${countdown.days > 0
-        ? `In ${countdown.days} day${countdown.days === 1 ? "" : "s"}`
-        : `In ${countdown.hours} hr ${countdown.mins} min`} · ${FESTIVAL_CONFIG.dates}`
-    : duoNightLabel();
 
   const ip = useInstallPrompt();
   let userName = "";
@@ -1580,7 +1561,9 @@ function HomeScreen({ state, setState }) {
   const showInstall = !showSetup && ip.canInstall;
   // Set reminders only mean something while a saved set is still ahead.
   const showNotif = !showSetup && !showInstall && !isPostFestival && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
-  const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+  // A weather alert means something while the festival is ahead or on; two
+  // weeks after the last set it is noise on the recap.
+  const showWeather = !showSetup && !showInstall && !showNotif && !isPostFestival && weatherAlert && !weatherAlertDismissed;
   const dismissNotif = () => {
     setNotifNudgeDismissed(true);
     try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
@@ -1630,40 +1613,12 @@ function HomeScreen({ state, setState }) {
       onClick: () => setAlertsOpen(true) },
   ].filter(Boolean);
 
-  const savedRow = (() => {
-    // Live, the plan card and the night sheet carry tonight's saved sets;
-    // the board's Today has no second copy of them as photo tiles.
-    if (isPostFestival || isLive) return null;
-    const rows = activeLineup(savedIds)
-      .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
-      .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
-    if (!rows.length) return null;
-    // The board's list rows, not 132px tiles in a sideways rail: time,
-    // face, the name in full, day and stage. The first five; the rest are
-    // one tap away in the plan sheet.
-    const SHOW = 5;
-    return (
-      <section data-today-saved>
-        <DuoSect title={isLive ? "Saved tonight" : "Your saved sets"}
-          right={<ShareLineupButton state={state} />} style={{ padding: "0 20px", minHeight: 44 }} />
-        <div style={{ padding: "0 20px", display: "grid", gap: 2 }}>
-          {rows.slice(0, SHOW).map(a => <SavedRow key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
-          {rows.length > SHOW && (
-            <button className="duo-link" onClick={() => setSheet("night")} style={{ justifySelf: "start", minHeight: 44, padding: 0, border: "none", background: "none", cursor: "pointer", font: "600 15px/1.33 var(--f-ui)", color: "var(--acc-ink)" }}>
-              All {rows.length} saved sets
-            </button>
-          )}
-        </div>
-      </section>
-    );
-  })();
-
   const sheetView = (() => {
     switch (sheet) {
       case "night": return isLive
         ? { title: "My night", body: <><LiveAcrossStrip strip={liveStrip} setState={setState} state={state} /><TonightsPlan plan={tonight} setState={setState} state={state} /></> }
         : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
-      case "tonight":    return { title: "Sun & weather", body: <TonightCard state={state} setState={setState} /> };
+      case "tonight":    return { title: "Sun & weather", eyebrow: tonightEyebrow(), body: <TonightCard state={state} setState={setState} /> };
       case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
       case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
       case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
@@ -1672,71 +1627,112 @@ function HomeScreen({ state, setState }) {
     }
   })();
 
+  // ── Night Print composition ──
+  // Before the festival the poster leads; on the night the plan and the
+  // stage board lead above a compressed edition strip; after it the recap
+  // leads. Every block is real data or absent.
+  const bill = activeLineup().length;
+  const tba = typeof isScheduleTBA === "function" && isScheduleTBA(FESTIVAL_CONFIG.id);
+  const savedRows = activeLineup(savedIds).filter(a => savedIds.includes(a.id))
+    .sort((a, b) => ((a.day ?? 99) - (b.day ?? 99)) || ((a.start ? toNightMin(a.start) : 9999) - (b.start ? toNightMin(b.start) : 9999)));
+  const liveCount = liveStrip.filter(s => s.artist).length;
+  const stampText = countdown
+    ? (countdown.days > 0 ? `IN ${countdown.days} DAY${countdown.days === 1 ? "" : "S"}` : countdown.hours > 0 ? `IN ${countdown.hours} HR` : `IN ${countdown.mins} MIN`)
+    : "";
+  const steps = [
+    { id: "people", title: ["Pick your", "people."], aria: "Pick your people: open the lineup",
+      sub: isPostFestival ? (savedIds.length ? `${savedIds.length} picked. See who you caught.` : "The artists you came for.") : savedIds.length ? `${savedIds.length} picked. Find more.` : "Find the artists you came for.",
+      onClick: () => setState({ ...state, tab: "lineup" }) },
+    { id: "night", title: ["Follow", "your night."], aria: isPostFestival ? "Follow your night: open your recap" : "Follow your night: open my night",
+      sub: isPostFestival ? "How your weekend went." : isLive ? "Now, next, and every stage." : savedIds.length ? "Your saved sets, in order." : "Save a set and it lands here.",
+      onClick: () => isPostFestival ? setState({ ...state, tab: "recap" }) : setSheet("night") },
+    { id: "playlist", title: ["Build Your", "Playlist."], aria: "Build Your Playlist: open Music",
+      sub: "Take the music with you.", onClick: () => setState({ ...state, tab: "spotify" }) },
+    { id: "gallery", title: ["Create Your", "Gallery."], aria: "Create Your Gallery: open Memories",
+      sub: "Keep your festival photos together.", onClick: () => setState({ ...state, tab: "memories" }) },
+  ];
+  const utilityLinks = essentials.map(({ id, label, sub, onClick }) => ({ id, label: label.toUpperCase(), sub: sub ? sub.toUpperCase() : null, onClick }));
+  const claim = isLive
+    ? <NpClaim eyebrow={`${liveCount} LIVE NOW / NO SETS SAVED`} title="ONE SET. YOUR WHOLE NIGHT." body="Nothing saved yet. Pick an act that's on now, or the next one up." action="FIND A SET NOW" onAction={() => setState({ ...state, tab: "lineup" })} />
+    : <NpClaim eyebrow={`NO SETS SAVED / ${bill} ON THE BILL`} title="ONE SET. YOUR WHOLE NIGHT."
+        body={tba ? "No sets saved yet. Start with one artist. Set times land here when they're published." : "No sets saved yet. Start with one artist. Then make the festival yours."}
+        action="FIND YOUR FIRST SET" onAction={() => setState({ ...state, tab: "lineup" })} />;
+  const boardGap = { display: "flex", flexDirection: "column", gap: 24, padding: "24px 0" };
+
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} style={{ padding: "0 0 96px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 0", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
             width: 20, height: 20, borderRadius: "50%",
-            border: "2px solid var(--line)", borderTopColor: "var(--signal)",
+            border: "2px solid var(--line)", borderTopColor: "var(--np-ink)",
             animation: "spin 0.8s linear infinite",
           }}/>
         </div>
       )}
-      {/* One reading column on a wide screen: the board is a phone layout,
-          and a scoreboard stretched to 1280px reads as two lonely columns. */}
+      {/* One composed print column on a wide screen, never a stretched
+          phone screenshot: the sheet keeps its gutters and its rules. */}
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
-      <DuoTodayHeader
-        status={heroStatus}
-        live={isLive}
-        deviceOffline={!online}
-        title={FESTIVAL_CONFIG.name}
-        sub={FESTIVAL_CONFIG.locationShort}
-        offline={offline}
-        onToggleOffline={() => setOffline(o => !o)}
-        unread={unread}
-        onAlerts={() => setAlertsOpen(true)}
-        onSearch={() => window.plurskyOpenSearch?.()}
-      />
+      <NpHead online={online} offline={offline} onToggleOffline={() => setOffline(o => !o)}
+        unread={unread} onAlerts={() => setAlertsOpen(true)} onSearch={() => window.plurskyOpenSearch?.()} />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 28, paddingTop: 20 }}>
-        {isPostFestival
-          ? <div style={{ padding: "0 20px" }}><PostFestivalRecap state={state} setState={setState} /></div>
-          : <DuoPlanCard state={state} setState={setState} plan={tonight} onOpenNight={() => setSheet("night")} />}
+      {isPostFestival
+        ? <NpStrip status="ENDED" fold="THAT'S A WRAP" foldRight={FESTIVAL_CONFIG.dates} />
+        : isLive
+          ? <NpStrip status={duoNightLabel().toUpperCase()} fold="YOUR NIGHT IS ON" foldRight={FESTIVAL_CONFIG.dates} sunrise={duoSunrise()} />
+          : <NpPoster countdown={countdown} stampText={stampText} fold="YOUR NIGHT STARTS HERE" foldRight="↓" />}
 
-        {isLive && NOW.night != null && <DuoStageBoard state={state} setState={setState} />}
+      {isPostFestival && (
+        <div style={boardGap}>
+          <div style={{ padding: "0 18px" }}><PostFestivalRecap state={state} setState={setState} /></div>
+          {notice}
+          {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+        </div>
+      )}
 
-        {notice}
+      {isLive && (
+        <div style={boardGap}>
+          {savedIds.length > 0
+            ? <DuoPlanCard state={state} setState={setState} plan={tonight} onOpenNight={() => setSheet("night")} />
+            : <div style={{ margin: "-24px 0 0" }}>{claim}</div>}
+          {NOW.night != null && <DuoStageBoard state={state} setState={setState} />}
+          {notice}
+          {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+        </div>
+      )}
 
-        {state.friendLineup?.length > 0 && (
-          <div style={{ padding: "0 20px" }}><FriendLineupBanner state={state} setState={setState} /></div>
-        )}
+      {!isPostFestival && !isLive && (
+        <>
+          {(notice || state.friendLineup?.length > 0) && (
+            <div style={boardGap}>
+              {notice}
+              {state.friendLineup?.length > 0 && <div style={{ padding: "0 18px" }}><FriendLineupBanner state={state} setState={setState} /></div>}
+            </div>
+          )}
+          {savedRows.length
+            ? <NpSaved rows={savedRows} state={state} setState={setState} onAll={() => setSheet("night")} />
+            : claim}
+        </>
+      )}
 
-        {savedRow}
+      <NpJourney steps={steps} />
 
-        <section>
-          <DuoSect title="Festival essentials" style={{ padding: "0 20px", minHeight: 44 }} />
-          {/* A wrapping grid, never a sideways rail: every essential is on
-              screen at once. */}
-          <div data-today-essentials style={{ padding: "0 20px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))", gap: 8 }}>
-            {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
-          </div>
-        </section>
+      {/* Recent memories: the rewatch loop's front door. Post-festival,
+          PostFestivalRecap above leads with its own memories. */}
+      {!isPostFestival && window.HomeMemoriesStrip && (
+        <div style={{ padding: "8px 18px 24px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
+      )}
 
-        {/* Recent memories: the rewatch loop's front door. Post-festival,
-            PostFestivalRecap above leads with its own memories. */}
-        {!isPostFestival && window.HomeMemoriesStrip && (
-          <div style={{ padding: "0 20px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
-        )}
+      <NpUtility eyebrow={isPostFestival ? "AFTER THE NIGHT" : isLive ? "TONIGHT" : "BEFORE YOU GO"} links={utilityLinks} />
 
-        {/* This festival's past editions (historical.jsx), newest first.
-            Read-only look-backs; nothing renders when there are none. */}
-        {typeof PastEditionsSection === "function" && <PastEditionsSection festivalId={FESTIVAL_CONFIG.id} />}
-      </div>
+      {/* This festival's past editions (historical.jsx), newest first.
+          Read-only look-backs; nothing renders when there are none. */}
+      {typeof PastEditionsSection === "function" && <div style={{ padding: "8px 0 32px" }} data-np-after><PastEditionsSection festivalId={FESTIVAL_CONFIG.id} /></div>}
       </div>
       </ScrollBody>
 
+      <div className="np" style={{ display: "contents" }}>
       {/* Alerts drawer */}
       {alertsOpen && (
         <AlertsDrawer alerts={alerts} onClose={() => {
@@ -1760,10 +1756,11 @@ function HomeScreen({ state, setState }) {
         />
       )}
       {sheetView && (
-        <FieldSheet title={sheetView.title} onClose={() => setSheet(null)}>
+        <FieldSheet title={sheetView.title} eyebrow={sheetView.eyebrow} onClose={() => setSheet(null)}>
           {sheetView.body}
         </FieldSheet>
       )}
+      </div>
     </Screen>
   );
 }
@@ -1953,6 +1950,9 @@ function duoFestivalTitle(name) {
   return y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
 }
 
+// Not rendered since Night Print (v411) replaced the board header on Today;
+// kept because #296's edition-skin band is written into it until that PR is
+// reconciled against the print (which carries the festival's colour itself).
 function DuoTodayHeader({ status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {
   const rise = live ? duoSunrise() : null;
   const tool = { ...fieldIconBtn, color: "var(--ink-2)", position: "relative" };
@@ -2063,7 +2063,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
             <DuoAvatar name={set.name} size={52} ring="on" />
             <span style={{ minWidth: 0, paddingTop: 3 }}>
               <span className="duo-name" style={{ display: "block", fontWeight: 700, fontSize: 18, lineHeight: 1.222, fontFamily: "var(--f-ui)" }}>{actDisplayName(set.name)}</span>
-              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span>
+              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span></span>
             </span>
           </span>
           {live && (
@@ -2106,8 +2106,20 @@ function duoStageNowNext() {
 
 function DuoStageBoard({ state, setState }) {
   const rows = duoStageNowNext();
-  if (!rows.length) return null;
   const savedSet = new Set(state.saved || []);
+  // Nine rows of Now / Next pushed the rest of the page a screen and a half down on
+  // festival night. The board opens on the stages that carry one of your sets (filled
+  // to three with stages that are live), and one row shows every stage in place.
+  const [allStages, setAllStages] = React.useState(false);
+  const lead = React.useMemo(() => {
+    const picked = rows.filter(r => (r.on && savedSet.has(r.on.id)) || (r.next && savedSet.has(r.next.id)));
+    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r) && r.on) picked.push(r); }
+    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r)) picked.push(r); }
+    return new Set(picked);
+  }, [rows.length, state.saved]);
+  if (!rows.length) return null;
+  const folded = rows.length > 4 && !allStages;
+  const shown = folded ? rows.filter(r => lead.has(r)) : rows;
   const liveCount = rows.filter(r => r.on).length;
   const cell = (a, detail, spoken, tag) => a ? (
     <button className="duo-press" onClick={() => setState({ ...state, artist: a.id })} aria-label={`${a.name}, ${spoken}`}
@@ -2126,7 +2138,7 @@ function DuoStageBoard({ state, setState }) {
         <div className="duo-sb-grid duo-sb-head" style={{ padding: "10px 16px 8px" }}>
           <DuoLive>Now</DuoLive><span className="duo-label duo-ink3">Next</span>
         </div>
-        {rows.map(({ stage, on, next }) => (
+        {shown.map(({ stage, on, next }) => (
           <div key={stage.id} className="duo-hair" style={{ padding: "12px 16px 14px" }}>
             <div className="duo-ink2" style={{ font: "600 13px/1.23 var(--f-ui)" }}>{stage.name}</div>
             <div className="duo-sb-grid" style={{ marginTop: 10 }}>
@@ -2135,44 +2147,15 @@ function DuoStageBoard({ state, setState }) {
             </div>
           </div>
         ))}
+        {rows.length > 4 && (
+          <button className="duo-link duo-hair" data-duo-stages-toggle aria-expanded={!folded} onClick={() => setAllStages(v => !v)}
+            style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "0 16px", minHeight: 48, textAlign: "left" }}>
+            <span>{folded ? `All ${rows.length} stages` : "Fewer stages"}</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: folded ? "none" : "rotate(180deg)", transition: "transform .2s" }}><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        )}
       </div>
     </section>
-  );
-}
-
-// Saved set tile: the artist's real photo when one is cached, else a plain
-// well with initials. Never a generated gradient. Name and time sit under it.
-// One saved set on Today before the festival: the board's list row.
-function SavedRow({ a, onOpen }) {
-  const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
-  const day = dd?.short || `Day ${a.day}`;
-  const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
-  return (
-    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
-      style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", background: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer", width: "100%" }}>
-      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
-      <DuoAvatar name={a.name} size={36} />
-      <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
-        <span className="duo-name" style={{ font: "650 15px/1.33 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
-        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{[dd?.name || day, stage].filter(Boolean).join(" · ")}</span>
-      </span>
-    </button>
-  );
-}
-
-function EssentialTile({ label, sub, icon, onClick }) {
-  return (
-    <button className="duo-press duo-card" onClick={onClick} style={{
-      minWidth: 0, minHeight: 52,
-      display: "flex", alignItems: "center", gap: 10,
-      padding: "10px 12px", color: "var(--ink)", background: "var(--s2)", textAlign: "left",
-    }}>
-      <span aria-hidden="true" style={{ display: "flex", flexShrink: 0, color: "var(--ink-2)" }}>{icon}</span>
-      <span style={{ font: "600 15px/1.33 var(--f-ui)", minWidth: 0 }}>
-        {label}
-        {sub && <span className="duo-data-s duo-acc" style={{ display: "block", marginTop: 2 }}>{sub}</span>}
-      </span>
-    </button>
   );
 }
 
@@ -2456,51 +2439,39 @@ function homeBtn(kind) {
 }
 
 function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
-  const iconFor = (k) => {
-    const c = { reminder: "var(--flare)", friend: "var(--ember)", safety: "var(--horizon)", conflict: "var(--ember)", drop: "var(--success)" }[k] || "var(--ink)";
-    return c;
-  };
+  // One ink per kind, from the print's own semantic tokens.
+  const inkFor = (k) => ({ reminder: "var(--sun)", friend: "var(--acc)", safety: "var(--alert)", conflict: "var(--clash)", drop: "var(--live)" }[k] || "var(--ink)");
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.35)" }}/>
-      <div style={{
-        marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        maxHeight: "78%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)", position: "relative",
-        animation: "sheetUp 0.3s var(--ease-smooth)",
-      }}>
-        <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
-          <div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--muted)" }}>LIVE FEED</div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>Alerts</div>
-          </div>
-          <button onClick={onClose} style={{ background: "transparent", border: "1px solid var(--line-2)", borderRadius: 999, padding: "6px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2 }}>CLOSE</button>
+    <FieldSheet title="Alerts" eyebrow="Live feed" onClose={onClose}>
+      {!alerts.length && (
+        <div style={{ padding: "14px 0 10px" }}>
+          <div style={{ font: "700 20px/1.1 var(--f-ui)", letterSpacing: "-0.02em" }}>Nothing yet.</div>
+          <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 6, lineHeight: 1.4 }}>Clashes in your plan, friend pings and weather warnings land here.</div>
         </div>
-        <div style={{ overflowY: "auto", padding: "6px 14px 18px" }}>
-          {alerts.map(a => {
-            const onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
-            return (
-              <div key={a.id} onClick={onClick} style={{
-                display: "flex", gap: 12, padding: "12px 6px",
-                borderBottom: "1px solid var(--line)",
-                cursor: onClick ? "pointer" : "default",
-                opacity: a.unread ? 1 : 0.7,
-              }}>
-                <div style={{ width: 6, borderRadius: 6, background: iconFor(a.kind), flexShrink: 0, alignSelf: "stretch", opacity: a.unread ? 1 : 0.4 }}/>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <div className="serif" style={{ fontSize: 16, lineHeight: 1.15 }}>{a.title}</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", whiteSpace: "nowrap" }}>{a.time}</div>
-                  </div>
-                  <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.35 }}>{a.body}</div>
-                </div>
+      )}
+      {alerts.map(a => {
+        const onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
+        const Row = onClick ? "button" : "div";
+        return (
+          <Row key={a.id} onClick={onClick || undefined} style={{
+            display: "flex", gap: 12, width: "100%", minHeight: 44, padding: "12px 0",
+            borderBottom: "1px solid var(--line)", background: "none", border: 0, borderBottomWidth: 1,
+            color: "inherit", font: "inherit", textAlign: "left",
+            cursor: onClick ? "pointer" : "default",
+            opacity: a.unread ? 1 : 0.7,
+          }}>
+            <div style={{ width: 4, background: inkFor(a.kind), flexShrink: 0, alignSelf: "stretch", opacity: a.unread ? 1 : 0.4 }}/>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
+                <div style={{ font: "700 16px/1.15 var(--f-ui)", letterSpacing: "-0.01em" }}>{a.title}</div>
+                <div className="np-mono" style={{ color: "var(--muted)", whiteSpace: "nowrap" }}>{a.time}</div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+              <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.35 }}>{a.body}</div>
+            </div>
+          </Row>
+        );
+      })}
+    </FieldSheet>
   );
 }
 
@@ -2569,9 +2540,9 @@ const FT_SECTIONS = [
     icon: "🚪",
     title: "Gates & entry",
     items: [
-      "Gates open 4 PM Friday-Sunday. Music runs 7 PM – 5:30 AM.",
+      "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
       "Bring a valid government-issued photo ID. 18+ event.",
-      "Wristband activates online before you arrive — don't show up with it un-paired.",
+      "Wristband activates online before you arrive — don't show up with it unpaired.",
       "One re-entry per day, only between 4 PM and midnight.",
       "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
     ],
@@ -2626,101 +2597,51 @@ const FT_SECTIONS = [
   },
 ];
 
+// Each section is a numbered row on a rule (the print's journey, not a card); the
+// first opens by default. The quick jumps are the sheet's footer, so a scrolled list
+// never cuts them and they always clear the tab bar.
 function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
-  const [openIdx, setOpenIdx] = React.useState(0); // first section open by default
-  return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
-      <div style={{
-        marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        maxHeight: "85%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)", position: "relative",
-      }}>
-        <div style={{
-          padding: "14px 18px 12px",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          borderBottom: "1px solid var(--line)",
-          background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-          borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        }}>
-          <div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
-              FIRST TIME AT {FESTIVAL_CONFIG.brand.toUpperCase()}
-            </div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>
-              The basics
-            </div>
-          </div>
-          <button onClick={onClose} style={{
-            background: "transparent", border: "1px solid var(--line-2)",
-            borderRadius: 999, padding: "6px 12px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>CLOSE</button>
-        </div>
-        <div style={{ overflowY: "auto", padding: "8px 14px 18px" }}>
-          {FT_SECTIONS.map((s, i) => {
-            const isOpen = openIdx === i;
-            return (
-              <div key={s.id} style={{
-                marginTop: 8, background: "var(--paper)",
-                border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden",
-              }}>
-                <button onClick={() => setOpenIdx(isOpen ? -1 : i)} style={{
-                  width: "100%", padding: "12px 14px",
-                  display: "flex", alignItems: "center", gap: 12,
-                  background: isOpen ? "var(--paper-2)" : "transparent",
-                  border: "none", cursor: "pointer", textAlign: "left",
-                }}>
-                  <span style={{ fontSize: 20 }}>{s.icon}</span>
-                  <span className="serif" style={{ flex: 1, fontSize: 18, lineHeight: 1 }}>{s.title}</span>
-                  <span className="mono" style={{
-                    fontSize: 10, color: "var(--muted)", fontWeight: 700,
-                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s",
-                  }}>›</span>
-                </button>
-                {isOpen && (
-                  <ul style={{
-                    listStyle: "none", margin: 0, padding: "4px 14px 14px 50px",
-                  }}>
-                    {s.items.map((it, k) => (
-                      <li key={k} style={{
-                        position: "relative", marginTop: 8,
-                        fontSize: 13, lineHeight: 1.4, color: "var(--ink)",
-                      }}>
-                        <span style={{
-                          position: "absolute", left: -14, top: 6,
-                          width: 5, height: 5, borderRadius: 5,
-                          background: "var(--ember)",
-                        }}/>
-                        {it}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            );
-          })}
-
-          {/* Quick-jump CTAs */}
-          <div style={{ display: "flex", gap: 8, marginTop: 14 }}>
-            <button onClick={onOpenMap} style={{
-              flex: 1, padding: "10px 12px",
-              background: "var(--ink)", color: "var(--paper)",
-              border: "none", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            }}>EXPLORE MAP</button>
-            <button onClick={onOpenLineup} style={{
-              flex: 1, padding: "10px 12px",
-              background: "var(--paper)", color: "var(--ink)",
-              border: "1px solid var(--line-2)", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            }}>BROWSE LINEUP</button>
-          </div>
-        </div>
-      </div>
+  const [openIdx, setOpenIdx] = React.useState(0);
+  const jump = (primary) => ({
+    flex: 1, minHeight: 44, padding: "0 12px", cursor: "pointer",
+    background: primary ? "var(--ink)" : "var(--paper)", color: primary ? "var(--paper)" : "var(--ink)",
+    border: primary ? "none" : "1px solid var(--line-2)", borderRadius: "var(--rad-sm)",
+    font: "700 10px/1.2 var(--f-data)", letterSpacing: "0.13em", textTransform: "uppercase",
+  });
+  const footer = (
+    <div style={{ display: "flex", gap: 8 }}>
+      <button onClick={onOpenMap} style={jump(true)}>Explore map</button>
+      <button onClick={onOpenLineup} style={jump(false)}>Browse lineup</button>
     </div>
+  );
+  return (
+    <FieldSheet title="The basics" eyebrow={`First time at ${FESTIVAL_CONFIG.brand}`} footer={footer} onClose={onClose}>
+      {FT_SECTIONS.map((s, i) => {
+        const isOpen = openIdx === i;
+        return (
+          <div key={s.id} style={{ borderBottom: "1px solid var(--line)" }}>
+            <button onClick={() => setOpenIdx(isOpen ? -1 : i)} aria-expanded={isOpen} style={{
+              width: "100%", minHeight: 56, padding: "12px 0", display: "flex", alignItems: "center", gap: 14,
+              background: "none", border: 0, color: "inherit", textAlign: "left", cursor: "pointer", font: "inherit",
+            }}>
+              <span className="np-idx" style={{ color: "var(--ink-3)" }}>{String(i + 1).padStart(2, "0")}</span>
+              <span style={{ flex: 1, font: "700 18px/1.15 var(--f-ui)", letterSpacing: "-0.02em" }}>{s.title}</span>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }}><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            {isOpen && (
+              <ul style={{ listStyle: "none", margin: 0, padding: "0 0 16px 38px" }}>
+                {s.items.map((it, k) => (
+                  <li key={k} style={{ position: "relative", marginTop: 8, fontSize: 13, lineHeight: 1.4, color: "var(--ink)" }}>
+                    <span aria-hidden="true" style={{ position: "absolute", left: -14, top: 7, width: 5, height: 5, borderRadius: 5, background: "var(--acc)" }}/>
+                    {it.replace(/(\d)\s(AM|PM)\b/g, "$1\u00a0$2")}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </FieldSheet>
   );
 }
 
@@ -2828,3 +2749,305 @@ function FriendLineupBanner({ state, setState }) {
 }
 
 Object.assign(window, { HomeScreen, FriendLineupBanner });
+// ── Night Print: Today as a ticket / poster (round 5, Oct 7 steering) ──
+// Cream and ink are the body; ONE festival accent (the config's `print`
+// ledger, a verified first-party source per festival) paints the poster
+// identity, the chosen action and the Step 3 playlist ticket. Each piece is
+// real data or absent: the stamp carries the real countdown, the claim block
+// the real act count, the rows the real saved sets. Type is the interface.
+const NP_CREAM = "#EEE9D9", NP_BLACK = "#1A171A";
+function _npLum(hex) {
+  const h = hex.replace("#", "");
+  const n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
+  const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function _npContrast(a, b) { const x = _npLum(a), y = _npLum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+// The festival's print accent, with the print constant that reads on it.
+// null = no verified accent (or one neither constant can read at 3:1): the
+// poster keeps the neutral ink/paper treatment and says nothing it cannot.
+// `small` says whether 10-12px metadata may sit directly on the accent
+// (4.5:1); otherwise that metadata goes on an ink chip.
+function npAccent(cfg) {
+  const p = (cfg || FESTIVAL_CONFIG).print;
+  if (!p || !/^#[0-9a-f]{6}$/i.test(p.accent || "")) return null;
+  const onBlack = _npContrast(p.accent, NP_BLACK), onCream = _npContrast(p.accent, NP_CREAM);
+  const ratio = Math.max(onBlack, onCream);
+  if (ratio < 3) return null;
+  const fg = onBlack >= onCream ? NP_BLACK : NP_CREAM;
+  const acc2 = /^#[0-9a-f]{6}$/i.test(p.accent2 || "") ? p.accent2 : null;
+  return { acc: p.accent, fg, other: fg === NP_BLACK ? NP_CREAM : NP_BLACK, ratio, small: ratio >= 4.5, acc2 };
+}
+// The scheme's second colour as the ink bands' small type (the fold's line,
+// the utility eyebrow): on the ink band in Light, on the cream band in Dark,
+// and only where it reads at 4.5:1; otherwise the band's own paper.
+function npSchemeVars(cfg) {
+  const sk = npAccent(cfg);
+  const a2 = sk && sk.acc2;
+  return {
+    "--np-acc2-on-black": a2 && _npContrast(a2, NP_BLACK) >= 4.5 ? a2 : NP_CREAM,
+    "--np-acc2-on-cream": a2 && _npContrast(a2, NP_CREAM) >= 4.5 ? a2 : NP_BLACK,
+  };
+}
+// The festival's name as poster words: the edition year drops (the meta line
+// carries it), and a word that is a Roman numeral (III Points) is set in the
+// serif, as the festival sets it. Never forced on another name.
+function npWords(name) {
+  return duoFestivalTitle(name).split(/\s+/).filter(Boolean)
+    .map(w => ({ w, roman: /^[IVX]{2,}$/.test(w) }));
+}
+// Small print on the accent: directly when the pair passes 4.5:1, else on an
+// ink chip so the metadata is never the one thing that fails.
+function npMeta(sk, extra) {
+  if (!sk) return { className: "np-mono", style: extra };
+  return sk.small
+    ? { className: "np-mono", style: { color: sk.fg, ...extra } }
+    : { className: "np-mono", style: { background: sk.fg, color: sk.other, padding: "3px 6px", ...extra } };
+}
+function NpTool({ label, pressed, on, onClick, children }) {
+  return (
+    <button type="button" className="np-tool" onClick={onClick} aria-label={label} aria-pressed={pressed}
+      style={on ? { textDecoration: "underline", textUnderlineOffset: 6 } : undefined}>{children}</button>
+  );
+}
+// The print head: wordmark left, the page's three tools right (search,
+// offline, alerts), each a 44px target.
+function NpHead({ online, offline, onToggleOffline, unread, onAlerts, onSearch }) {
+  return (
+    <div className="np-head" data-np-head>
+      <span className="np-mono-m" style={{ fontWeight: 600 }}>PLURSKY®{!online ? <b style={{ fontWeight: 400, marginLeft: 8 }}>· NO SIGNAL</b> : null}</span>
+      <span className="np-tools">
+        {onSearch && (
+          <NpTool label="Search artists, stages, genres" onClick={onSearch}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z M15.3 15.3 20 20"/></svg>
+          </NpTool>
+        )}
+        <NpTool label="Offline mode" pressed={offline} on={offline} onClick={onToggleOffline}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+            {offline
+              ? <><path d="M4 4 L20 20"/><path d="M8.5 16 Q12 13 15.5 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
+              : <><path d="M2 8.5 Q12 -1 22 8.5"/><path d="M5 12 Q12 5.5 19 12"/><path d="M8.5 15.5 Q12 12.5 15.5 15.5"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>}
+          </svg>
+        </NpTool>
+        <NpTool label={unread ? `Alerts, ${unread} new` : "Alerts"} onClick={onAlerts}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/><path d="M10 19 Q12 21 14 19"/></svg>
+          {unread > 0 && <span aria-hidden="true" style={{ position: "absolute", top: 9, right: 9, width: 8, height: 8, borderRadius: 4, background: "currentColor" }} />}
+        </NpTool>
+      </span>
+    </div>
+  );
+}
+// The festival's name is the switcher, as on the board: one block-width
+// button (so the word fit has a real box), the switcher sheet behind it.
+function NpTitle({ word, className, children }) {
+  const [open, setOpen] = React.useState(false);
+  const canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
+  return (
+    <>
+      <button type="button" className={className} data-switch={canSwitch ? "on" : undefined}
+        onClick={canSwitch ? () => setOpen(true) : undefined} disabled={!canSwitch}
+        aria-label={canSwitch ? `${duoFestivalTitle(FESTIVAL_CONFIG.name)}, switch festival` : undefined}>
+        {children}
+      </button>
+      {open && <FestivalSwitcher onClose={() => setOpen(false)} />}
+    </>
+  );
+}
+// Before the festival: the full poster. Identity (real name, location,
+// dates), the countdown stamp, a barcode as print decoration, then the fold.
+// The rail down the right edge prints the venue when it fits its box (at 10px, then
+// 9px); when it does not (a one-line name leaves a short box) there is no rail and the
+// venue prints under the dates. Never an ellipsis: a ticket does not trim its own venue.
+// The box follows the fitted title, so the pick re-runs on resize.
+function useRailFit(ref, venue, city) {
+  const [fit, setFit] = React.useState(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const run = () => {
+      const tries = [[venue, 10], [venue, 9]].filter(t => t[0]);
+      let pick = null;
+      for (const [text, size] of tries) {
+        el.textContent = text; el.style.fontSize = size + "px";
+        if (el.scrollHeight <= el.clientHeight + 1) { pick = { text, size }; break; }
+      }
+      if (!pick) { el.textContent = ""; }
+      setFit(prev => { const next = pick || { text: "", size: 0 }; return prev && prev.text === next.text && prev.size === next.size ? prev : next; });
+    };
+    run();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(run) : null;
+    if (ro) ro.observe(el.parentElement);
+    return () => { if (ro) ro.disconnect(); };
+  }, [venue, city]);
+  return fit;
+}
+// A date range never breaks inside itself: a word joiner on both sides of its dash.
+function npNoBreak(s) { return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b).replace(/([A-Za-z]{3,})\s(\d)/g, "$1\u00a0$2"); }
+// The barcode is seeded from the edition id, so each ticket prints its own bars.
+function npBarcode(id) {
+  let x = 0, hsh = 2166136261;
+  for (const ch of String(id || "plursky")) { hsh ^= ch.charCodeAt(0); hsh = Math.imul(hsh, 16777619) >>> 0; }
+  const stops = [];
+  while (x < 88) {
+    hsh = Math.imul(hsh ^ (hsh >>> 15), 2246822507) >>> 0;
+    const w = 1 + (hsh & 3), g = 1 + ((hsh >>> 2) & 3);
+    stops.push(`currentColor ${x}px ${x + w}px, transparent ${x + w}px ${x + w + g}px`); x += w + g;
+  }
+  return `linear-gradient(90deg, ${stops.join(", ")})`;
+}
+function NpPoster({ countdown, stampText, fold, foldRight }) {
+  const sk = npAccent();
+  const words = npWords(FESTIVAL_CONFIG.name);
+  const tone = sk ? { background: sk.acc, color: sk.fg } : {};
+  const meta = npMeta(sk);
+  const railRef = React.useRef(null);
+  const city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
+  const rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
+  const place = rail && !rail.text ? (FESTIVAL_CONFIG.locationShort || city) : null;
+  return (
+    <section className="np-poster" data-np-poster data-np-accent={sk ? sk.acc : "none"} style={tone}>
+      <div className="np-meta">
+        <span {...meta}>EDITION {FESTIVAL_CONFIG.year || ""}</span>
+        <span {...npMeta(sk, { whiteSpace: "nowrap" })}>{countdown ? "PRE\u2011FESTIVAL" : "FESTIVAL"}</span>
+      </div>
+      <div className="np-titlebox">
+        {(FESTIVAL_CONFIG.locationShort || city) && <div ref={railRef} className="np-rot np-mono" aria-hidden="true" data-np-rail={rail ? (rail.text ? "on" : "off") : "measuring"} style={rail && !rail.text ? { visibility: "hidden" } : undefined} />}
+        <NpTitle className="np-title">
+          <h1 className="np-word" data-fit-words data-fit-min="32">
+            {words.map((x, i) => <React.Fragment key={i}>{i ? " " : ""}<span className={x.roman ? "np-roman" : undefined}>{x.w}</span></React.Fragment>)}
+          </h1>
+        </NpTitle>
+      </div>
+      <div className="np-foot">
+        <div>
+          <div {...npMeta(sk, { display: "inline-block" })}>{npNoBreak(FESTIVAL_CONFIG.dates)}</div>
+          {place && <div className="np-mono" style={{ marginTop: 6, ...(sk && !sk.small ? { color: sk.fg } : {}) }}>{place}</div>}
+          <div className="np-barcode" aria-hidden="true" style={{ background: npBarcode(FESTIVAL_CONFIG.id) }} />
+        </div>
+        <div className="np-stamp" data-np-stamp aria-label={stampText.replace(/\s+/g, " ")}>{stampText}</div>
+      </div>
+      <div className="np-cut" data-np-cut><b>{fold}</b><span>{foldRight}</span></div>
+    </section>
+  );
+}
+// On the night and after: the poster compresses into an edition strip, so
+// the live plan and the stage board lead. Same accent, same fold.
+function NpStrip({ status, fold, foldRight, sunrise }) {
+  const sk = npAccent();
+  const tone = sk ? { background: sk.acc, color: sk.fg } : {};
+  const meta = npMeta(sk);
+  return (
+    <section className="np-poster" data-np-strip data-np-accent={sk ? sk.acc : "none"} style={{ ...tone, paddingTop: 16 }}>
+      <div className="np-meta">
+        <span {...meta}>EDITION {FESTIVAL_CONFIG.year || ""}</span>
+        <span {...npMeta(sk, { whiteSpace: "nowrap", textAlign: "right" })}>{status}</span>
+      </div>
+      <NpTitle className="np-title" >
+        <h1 className="np-strip-word" data-fit-words data-fit-min="20" style={{ margin: "14px 0 16px" }}>{duoFestivalTitle(FESTIVAL_CONFIG.name)}</h1>
+      </NpTitle>
+      <div className="np-cut" data-np-cut>
+        <b>{fold}</b>
+        {sunrise
+          ? <span className="duo-sun" style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "inherit" }}>
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 2.5v2 M12 19.5v2 M2.5 12h2 M19.5 12h2 M5.3 5.3l1.4 1.4 M17.3 17.3l1.4 1.4 M5.3 18.7l1.4-1.4 M17.3 6.7l1.4-1.4"/></svg>
+              SUNRISE {sunrise}
+            </span>
+          : <span>{foldRight}</span>}
+      </div>
+    </section>
+  );
+}
+// Nothing saved yet: the claim and the one action. The count is the real
+// bill; the line under it is honest about set times when they are pending.
+function NpClaim({ eyebrow, title, body, action, onAction }) {
+  return (
+    <section className="np-block" data-np-claim>
+      <div className="np-mono" style={{ marginBottom: 17 }}>{eyebrow}</div>
+      <h2 className="np-claim" data-fit-words data-fit-min="34">{title}</h2>
+      <p className="np-body">{body}</p>
+      <button type="button" className="np-act" onClick={onAction}>{action}<span aria-hidden="true">↗</span></button>
+    </section>
+  );
+}
+// Saved sets before the festival: the real rows, by day and time, the first
+// five and a path to all of them. Full name, day, stage, time; a tap opens
+// the act. Shares through the existing lineup share.
+function NpSaved({ rows, state, setState, onAll }) {
+  const days = new Set(rows.map(a => a.day).filter(d => d != null));
+  const n = rows.length;
+  // All of them up to six; from seven, four and the link. One row behind a link is worse than the row.
+  const SHOW = n <= 6 ? n : 4;
+  return (
+    <section className="np-block" data-np-saved data-today-saved>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, minHeight: 44, marginBottom: 6 }}>
+        <span className="np-mono">YOUR NIGHT SO FAR</span>
+        <ShareLineupButton state={state} />
+      </div>
+      <h2 className="np-claim" data-fit-words data-fit-min="34">
+        <span style={{ display: "block" }}>{n} SET{n === 1 ? "" : "S"}.</span>
+        {days.size > 0 && <span style={{ display: "block" }}>{days.size} NIGHT{days.size === 1 ? "" : "S"}.</span>}
+      </h2>
+      <div style={{ marginTop: 20 }}>
+        {rows.slice(0, SHOW).map(a => {
+          const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
+          const day = dd?.name || (a.day != null ? `Day ${a.day}` : "Day TBA");
+          const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
+          return (
+            <button type="button" key={a.id} className="np-srow" onClick={() => setState({ ...state, artist: a.id })}
+              aria-label={`${a.name}, ${day}, ${a.start ? fmt12(a.start) : "time to be announced"}${stage ? `, ${stage}` : ""}`}>
+              <span className="np-mono-m" style={{ fontWeight: 500, whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
+              <span style={{ minWidth: 0 }}>
+                <span className="np-sname duo-name">{actDisplayName(a.name)}</span>
+                <span className="np-ssub np-mono">{[day, stage].filter(Boolean).join(" · ")}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <button type="button" className="np-act" onClick={onAll}>{n > SHOW ? `ALL ${n} SAVED SETS` : "YOUR SAVED SETS"}<span aria-hidden="true">↗</span></button>
+    </section>
+  );
+}
+// The four-step journey. Step 3's accent ticket is the emphasis; its plate
+// tilts, its hit area does not.
+function NpJourney({ steps }) {
+  const sk = npAccent();
+  const row = (s, i) => (
+    <>
+      <span className="np-idx" aria-hidden="true">0{i + 1}</span>
+      <span style={{ minWidth: 0 }}>
+        <h3 className="np-jt duo-name">{s.title.map((t, k) => <span key={k} style={{ display: "block" }}>{t}</span>)}</h3>
+        <p>{s.sub}</p>
+      </span>
+      <span className="np-arrow" aria-hidden="true">↗</span>
+    </>
+  );
+  return (
+    <section className="np-journey" data-np-journey aria-label="Your night, in four steps">
+      {steps.map((s, i) => i === 2 ? (
+        <button type="button" key={s.id} className="np-j3" data-np-step={s.id} onClick={s.onClick} aria-label={s.aria}
+          style={sk ? { color: sk.fg } : undefined}>
+          <span className="np-j3-plate" aria-hidden="true" style={{ background: sk ? sk.acc : "var(--np-ink)", ...(sk ? {} : {}) }} />
+          <span className="np-j" style={{ padding: "24px 8px", ...(sk ? {} : { color: "var(--np-paper)" }) }}>{row(s, i)}</span>
+        </button>
+      ) : (
+        <button type="button" key={s.id} className="np-j" data-np-step={s.id} onClick={s.onClick} aria-label={s.aria}>{row(s, i)}</button>
+      ))}
+    </section>
+  );
+}
+// The utility strip: every essential as a type link, inverted. Nothing from
+// the essentials row is dropped; each is a 44px target with its full label.
+function NpUtility({ eyebrow, links }) {
+  return (
+    <section className="np-util" data-np-util aria-label={eyebrow}>
+      <span className="np-mono">{eyebrow}</span>
+      <div className="np-links" data-today-essentials>
+        {links.map(l => (
+          <button type="button" key={l.id} className="np-link" data-np-link={l.id} onClick={l.onClick} aria-label={l.sub ? `${l.label}, ${l.sub}` : l.label}>
+            <span>{l.label}{l.sub && <b>{l.sub}</b>}</span><span aria-hidden="true">↗</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}

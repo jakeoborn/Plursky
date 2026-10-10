@@ -356,6 +356,126 @@
   .duo-seg>button[aria-pressed=true],.duo-seg>button[aria-checked=true]{background:var(--s1);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 2px 6px -2px rgba(0,0,0,.25)}
   :where(.duo-btn,.duo-link,.duo-press,.duo-chip,.duo-tab,.duo-add,.duo-seg>button):focus-visible{outline:2px solid var(--acc-ink);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){.duo-live>i{animation:none}.duo-btn{transition:none}}
+  /* ── Night Print: Today as a ticket / poster (round 5, Oct 7 steering) ──
+     Two print constants, cream #EEE9D9 and ink #1A171A, the same in both
+     modes: Light prints ink on cream; Dark prints the same sheet inverted
+     (cream on ink), so neither mode is lost and dark stays the brand. One
+     festival accent comes from the config's `print` ledger (a verified
+     first-party source per festival); cream and ink remain the body. The
+     board's role tokens are re-scoped inside .np, so the plan card, the
+     stage board, notices, sheets and the memories strip print in these
+     colours without a fork. Secondary inks are solid (AA on both sheets).
+     Radii go square and elevation becomes a rule: print has no soft cards. */
+  .np{--np-cream:#EEE9D9;--np-black:#1A171A;
+    --np-paper:var(--np-cream);--np-ink:var(--np-black);--np-ink-2:#4A4648;--np-ink-3:#5E5A5B;
+    --np-line:rgba(26,23,26,.2);--np-line-2:rgba(26,23,26,.36);--np-well:rgba(26,23,26,.06);
+    --bg:var(--np-paper);--paper:var(--np-paper);--paper-2:var(--np-paper);--paper-3:var(--np-well);
+    --s1:var(--np-paper);--s2:var(--np-paper);--s3:var(--np-well);
+    --ink:var(--np-ink);--ink-2:var(--np-ink-2);--ink-3:var(--np-ink-3);--text-2:var(--np-ink-2);--text-3:var(--np-ink-3);--muted:var(--np-ink-2);
+    --line:var(--np-line);--line-2:var(--np-line-2);
+    --acc:var(--np-ink);--acc-ink:var(--np-ink);--on-acc:var(--np-paper);--signal:var(--np-ink);--signal-ink:var(--np-ink);--on-signal:var(--np-paper);
+    --acc-08:rgba(26,23,26,.05);--acc-14:rgba(26,23,26,.08);--acc-30:rgba(26,23,26,.2);--acc-55:rgba(26,23,26,.4);--acc-wash:#E1DCCC;--chip-bg:var(--np-paper);
+    --rad-xs:2px;--rad-sm:4px;--rad-md:4px;--rad-lg:4px;--signal-rgb:26,23,26;--f-display:var(--f-data);--beam:var(--np-ink);
+    --e1:0 0 0 1px var(--np-ink);--e2:0 0 0 1px var(--np-ink);--glow:0 0 0 2px var(--np-ink);
+    --scrim:rgba(26,23,26,.68);--chrome:var(--np-paper);
+    --np-band-acc:var(--np-acc2-on-black,var(--np-cream));
+    /* The board's Light live / clash / sunrise inks were set for #F4F3F8 and
+       white; on cream they fall under 4.5:1 at 11px (4.42, 4.28, 4.35), so
+       the print darkens each a step. Dark keeps the board's values. */
+    --success:#006644;--live:#006644;--alert:#B0123F;--clash:#B0123F;--warn:#9A3D00;--sun:#9A3D00;
+    background:var(--np-paper);color:var(--np-ink)}
+  .np-cut>b,.np-util>.np-mono{color:var(--np-band-acc)}
+  .np .duo-link{font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
+  /* stage and time as two tokens with a gap, so no separator ever ends a line */
+  .np-pair{display:flex;flex-wrap:wrap;gap:0 10px}
+  /* the neutral sheet draws its perforation in ink (cream in Dark), or it vanishes on paper */
+  .np-poster[data-np-accent="none"] .np-cut{border-top-color:var(--np-ink)}
+  :root[data-mode="dark"] .np{--np-band-acc:var(--np-acc2-on-cream,var(--np-black));--np-paper:var(--np-black);--np-ink:var(--np-cream);--np-ink-2:#C9C4B6;--np-ink-3:#B1AC9F;
+    --np-line:rgba(238,233,217,.22);--np-line-2:rgba(238,233,217,.38);--np-well:rgba(238,233,217,.07);
+    --acc-08:rgba(238,233,217,.05);--acc-14:rgba(238,233,217,.09);--acc-30:rgba(238,233,217,.22);--acc-55:rgba(238,233,217,.42);--acc-wash:#2E2B2A;--scrim:rgba(0,0,0,.65);--signal-rgb:238,233,217;
+    --success:#3DF5A0;--live:#3DF5A0;--alert:#FF4574;--clash:#FF4574;--warn:#FFC545;--sun:#FFC545}
+  /* Type at 390: the festival word 90/.75 900 -.095em, the claim 67/.85,
+     journey titles 44/.94; at 320 they are 74 / 56 / 36 (the clamps land
+     there). A word that still cannot fit its line steps down through the
+     fit observer (data-fit-words) rather than breaking inside itself. The
+     heavy print sans is the licensed system face at its black weight. */
+  .np-word{font-family:var(--f-ui);font-weight:900;font-size:clamp(74px,23vw,90px);line-height:.78;letter-spacing:-.075em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+  .np-word>span{display:block}
+  .np-word .np-roman{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.72em;line-height:.82;letter-spacing:-.06em;margin-bottom:.06em}
+  .np-strip-word{font-family:var(--f-ui);font-weight:900;font-size:clamp(28px,8.7vw,34px);line-height:1;letter-spacing:-.05em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+  .np-claim{font-family:var(--f-ui);font-weight:900;font-size:clamp(56px,17.2vw,67px);line-height:.85;letter-spacing:-.06em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+  .np-jt{font-family:var(--f-ui);font-weight:900;font-size:clamp(36px,11.3vw,44px);line-height:.94;letter-spacing:-.05em;margin:0;overflow-wrap:normal}
+  .np-mono{font:400 10px/1.4 var(--f-data);letter-spacing:.08em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+  .np-mono-m{font:400 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+  .np-idx{font:400 14px/1 var(--f-data);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+  .np-body{font:400 13px/1.5 var(--f-ui);margin:0}
+  .np-act{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;margin-top:14px;padding:15px 0 9px;background:none;border:0;border-bottom:2px solid currentColor;color:inherit;font:700 20px/1.2 var(--f-ui);letter-spacing:-.01em;text-align:left;text-transform:uppercase;cursor:pointer}
+  .np-act>span:last-child{font-size:22px;flex:none}
+  /* The poster: accent fill, 2px top rule, the location set vertically down
+     the right edge in its own 30px rail so the word never runs under it. */
+  .np-poster{position:relative;padding:22px 18px 0;border-top:2px solid var(--np-ink);overflow:hidden}
+  .np-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .np-meta>*{min-width:0}
+  /* The location runs down the right edge beside the title only (its box
+     is the title's margins plus the word), so it can never reach the stamp. */
+  .np-titlebox{position:relative;padding:40px 0 24px}
+  .np-rot{position:absolute;right:-10px;top:40px;bottom:24px;writing-mode:vertical-rl;overflow:hidden;white-space:nowrap;pointer-events:none}
+  .np-title{display:block;width:100%;min-height:44px;padding:0;margin:0;background:none;border:0;color:inherit;text-align:left;cursor:default;font:inherit}
+  .np-title[data-switch]{cursor:pointer}
+  .np-title>.np-word{padding-right:30px}
+  .np-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-bottom:22px}
+  .np-foot>div:first-child{min-width:0}
+  .np-barcode{height:24px;width:88px;margin-top:10px;background:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 4px,currentColor 4px 5px,transparent 5px 9px);opacity:.9}
+  /* The stamp: 105px / 2px / +12°, in the flow (never over text), 83px
+     narrow. It carries the real countdown, not a slogan. */
+  .np-stamp{flex:none;width:105px;height:105px;border:2px solid currentColor;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;transform:rotate(12deg);font:500 11px/1.35 var(--f-data);letter-spacing:.06em;text-transform:uppercase;padding:8px}
+  /* The ticket fold: a 3px dashed perforation whose gaps show the accent
+     above (background-clip keeps the band's ink out of the border box). */
+  .np-cut{margin:0 -18px;padding:22px 18px;background:var(--np-ink);background-clip:padding-box;color:var(--np-paper);border-top:3px dashed var(--np-paper);display:flex;justify-content:space-between;align-items:center;gap:12px;font:700 12px/1.3 var(--f-data);letter-spacing:.04em;text-transform:uppercase}
+  .np-cut>span{min-width:0}
+  /* The claim block and the saved list under the fold. */
+  .np-block{padding:29px 18px 31px;border-bottom:2px solid var(--np-ink)}
+  .np-block .np-body{margin-top:20px;max-width:288px}
+  .np-srow{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:baseline;width:100%;min-height:56px;padding:12px 0;border:0;border-bottom:1px solid var(--np-line-2);background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
+  .np-srow:last-of-type{border-bottom:0}
+  .np-srow .np-sname{display:block;font:700 17px/1.25 var(--f-ui);letter-spacing:-.02em}
+  .np-srow .np-ssub{display:block;margin-top:4px}
+  /* The journey: type as the interface. Rows are buttons; the index, the
+     title and the arrow sit on a 34 / 1fr / 22 grid with 1px ink rules. */
+  .np-journey{padding:0 18px;overflow:hidden}
+  .np-j{display:grid;grid-template-columns:34px 1fr 22px;gap:8px;align-items:start;width:100%;padding:24px 0;border:0;border-bottom:1px solid var(--np-ink);background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
+  .np-j:last-child{border-bottom:0}
+  .np-j .np-idx{padding-top:8px}
+  .np-j p{font:400 12px/1.5 var(--f-ui);margin:12px 0 0}
+  .np-j .np-arrow{font-size:27px;line-height:1;justify-self:end}
+  /* Step 3's tilted accent ticket: the plate rotates, the hit area does not.
+     The plate hangs 8px into each gutter and stays inside the journey's own
+     box (overflow hidden), so nothing reaches the page edge. */
+  .np-j3{position:relative;display:block;width:100%;margin:12px 0 0;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
+  /* The plate stays tappable: it is inside the button, so a tap on the visible ticket reaches it,
+     and the contrast gates see it as the backing (elementsFromPoint skips pointer-events:none). */
+  .np-j3>.np-j3-plate{position:absolute;inset:0 -8px;transform:rotate(-2deg)}
+  .np-j3>.np-j{position:relative;padding:24px 0;border-bottom:0;cursor:inherit}
+  /* The utility strip: the essentials as type links in an inverted band. */
+  .np-util{margin-top:8px;padding:23px 18px;background:var(--np-ink);color:var(--np-paper)}
+  .np-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:4px 16px;margin-top:12px}
+  .np-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0;background:none;border:0;border-bottom:1px solid rgba(238,233,217,.25);color:inherit;text-align:left;cursor:pointer;font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
+  :root[data-mode="dark"] .np-link{border-bottom-color:rgba(26,23,26,.3)}
+  @media (max-width:599px){.np-links>.np-link:nth-child(odd):last-child{grid-column:1/-1}}
+  /* at 320 the stage / time pair stacks, so every row keeps the same pitch */
+  @media (max-width:359px){.np .np-pair{flex-direction:column;gap:0}}
+  /* the saved rows' times sit on a column */
+  .np-srow>span:first-child{text-align:right}
+  /* the share control speaks the print's link vocabulary */
+  .np [data-share-lineup]{font:500 12px/1.4 var(--f-data)!important;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)!important}
+  .np-link b{font-weight:500;opacity:.78;margin-left:6px}
+  .np-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 18px;min-height:52px}
+  .np-tools{display:flex;align-items:center;flex:none}
+  .np-tool{width:44px;height:44px;display:grid;place-items:center;background:none;border:0;color:var(--np-ink);cursor:pointer;position:relative}
+  :where(.np-title[data-switch],.np-act,.np-srow,.np-j,.np-j3,.np-link,.np-tool):focus-visible{outline:2px solid currentColor;outline-offset:2px}
+  /* The stamp and the Step 3 tilt are static print, not motion: they stay under Reduce Motion. */
+  @media (max-width:350px){.np-title>.np-word{padding-right:24px}.np-rot{font-size:9px;right:-11px}}
+  @media (min-width:600px){.np-word{font-size:96px}.np-claim{font-size:72px}}
   /* Lineup list rows: on your plan = a faint accent wash; playing now = the
      lifted card. The wash and the lift never change the text colours. */
   .duo-lrow{display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 4px 7px 12px;margin:0 -12px;border-radius:var(--rad-sm)}
@@ -654,51 +774,51 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v408"></script>
+  <script src="build/ios-frame.js?v=v411"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v408"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v408"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v408"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v408"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v408"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v408"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v408"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v408"></script>
-  <script src="data/festivals/portola-2026.js?v=v408"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v408"></script>
-  <script src="data/festivals/arc-2026.js?v=v408"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v408"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v408"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v408"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v408"></script>
-  <script src="build/data.js?v=v408"></script>
-  <script src="build/supabase.js?v=v408"></script>
-  <script src="data/artist-photos.js?v=v408"></script>
-  <script src="build/chrome.js?v=v408"></script>
-  <script src="build/home.js?v=v408"></script>
-  <script src="build/map.js?v=v408"></script>
-  <script src="build/survey.js?v=v408"></script>
-  <script src="build/lineup.js?v=v408"></script>
-  <script src="build/artist.js?v=v408"></script>
-  <script src="build/photo-tag.js?v=v408"></script>
-  <script src="build/spotify-api.js?v=v408"></script>
-  <script src="build/recap-engine.js?v=v408"></script>
-  <script src="build/historical.js?v=v408"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v411"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v411"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v411"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v411"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v411"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v411"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v411"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v411"></script>
+  <script src="data/festivals/portola-2026.js?v=v411"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v411"></script>
+  <script src="data/festivals/arc-2026.js?v=v411"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v411"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v411"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v411"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v411"></script>
+  <script src="build/data.js?v=v411"></script>
+  <script src="build/supabase.js?v=v411"></script>
+  <script src="data/artist-photos.js?v=v411"></script>
+  <script src="build/chrome.js?v=v411"></script>
+  <script src="build/home.js?v=v411"></script>
+  <script src="build/map.js?v=v411"></script>
+  <script src="build/survey.js?v=v411"></script>
+  <script src="build/lineup.js?v=v411"></script>
+  <script src="build/artist.js?v=v411"></script>
+  <script src="build/photo-tag.js?v=v411"></script>
+  <script src="build/spotify-api.js?v=v411"></script>
+  <script src="build/recap-engine.js?v=v411"></script>
+  <script src="build/historical.js?v=v411"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v408"></script>
-  <script src="build/spotify.js?v=v408"></script>
-  <script src="build/app.js?v=v408"></script>
+  <script src="build/landing.js?v=v411"></script>
+  <script src="build/spotify.js?v=v411"></script>
+  <script src="build/app.js?v=v411"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v408';
+    const APP_VERSION = 'v411';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -719,11 +839,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v408' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v411' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v408', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v411', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

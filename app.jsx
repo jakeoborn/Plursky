@@ -873,7 +873,9 @@ function App() {
     <IOSDevice dark={statusBarStyle === "light"}>
       {/* Field Mode Home runs its hero under the safe area and carries its
           own live/offline status, so it skips the top inset and the strip. */}
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+      {/* On Today the frame carries the print scope, so the tab bar takes the sheet
+          (cream / ink, an ink rule and indicator) instead of the board's chrome. */}
+      <div className={state.tab === "home" && !state.artist ? "np" : undefined} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
         {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
             is festival-scoped chrome and stays off General Home. */}
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
@@ -1006,7 +1008,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v408",
+        version: "v411",
       }));
     } catch {}
   }
@@ -1037,7 +1039,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v408
+          Plursky · v411
         </div>
       </div>
     );

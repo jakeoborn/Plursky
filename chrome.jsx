@@ -633,13 +633,21 @@ function FieldMediaRow({ children }) {
 }
 
 // One bottom sheet: one grabber, one radius, a title and a 44pt close.
-function FieldSheet({ title, onClose, children }) {
-  useDeclareModal(true);
+// Escape closes the sheet that is open. One policy for every door: the
+// field sheet, the alerts drawer and the first-timer guide all call this.
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+
+// eyebrow: a label over the title. footer: pinned under the scrolling body (actions
+// that must stay whole and reachable, like the guide's quick jumps).
+function FieldSheet({ title, eyebrow, footer, onClose, children }) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return (
     <div onClick={onClose} style={{
       position: "fixed", inset: 0, zIndex: 80, background: "var(--scrim)",
@@ -654,14 +662,18 @@ function FieldSheet({ title, onClose, children }) {
           <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
-          <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
+          <div style={{ minWidth: 0 }}>
+            {eyebrow && <div className="duo-label duo-ink3" style={{ marginBottom: 3 }}>{eyebrow}</div>}
+            <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
+          </div>
           <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
         </div>
-        <div style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
           {children}
         </div>
+        {footer && <div style={{ flex: "none", padding: "10px 20px 16px", borderTop: "1px solid var(--line)" }}>{footer}</div>}
       </div>
     </div>
   );
@@ -2031,9 +2043,15 @@ function fitWords(el) {
   // it, and a read through the transition took the previous FITTED size as
   // the real one, so "Interplanetary Criminal" (14px) stepped 13 → 12 → 13 on
   // successive settles and a mode switch kept whichever it was on.
-  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
-  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
+  // ...and on every element INSIDE it: a child (a word on its own line, a
+  // b2b half) inherits the new font-size through its OWN transition, so with
+  // only the parent's off the child's text still measured at the old size
+  // and the fit ran to its floor (Summerfest's poster word printed at 32px
+  // where 53px fits, under Reduce Motion only).
+  const nodes = [el, ...el.querySelectorAll("*")];
+  const trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (const n of nodes) n.style.setProperty("transition", "none", "important");
+  const done = () => { nodes.forEach((n, i) => { if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]); else n.style.removeProperty("transition"); }); };
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
