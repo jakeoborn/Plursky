@@ -217,8 +217,6 @@
     --on-alert:#0B0816;--on-success:#0B0816;
     --alert:#FF4574; --warn:#FFC545; --success:#3DF5A0;
     --dune:#241F2C; --flare:#FFC545; --horizon:#B7A3FF; --night:#07060B; --dusk:#100E17; --sky:#ABA4BB;
-    /* a temperature as text on the --night card: 13:1 here, 6.5:1 on white in Light */
-    --weather-ink:#A8D4FF;
     --glass:16,14,23;
     --ink-rgb:243,240,250; --shade-rgb:0,0,0; --signal-rgb:148,116,255; --alert-rgb:255,69,116;
     --scrim:rgba(0,0,0,0.6); --chrome:rgba(7,6,11,0.72);
@@ -239,7 +237,6 @@
        board value is 4.11:1 on its own --s3 well, where the clash label sits. */
     --alert:#C4174F; --warn:#B84A00; --success:#007A53;
     --dune:#EAE8F1; --flare:#B84A00; --horizon:#4A2BFF; --night:#FFFFFF; --dusk:#EAE8F1; --sky:#565266;
-    --weather-ink:#1F5FA3;
     --glass:255,255,255;
     --ink-rgb:20,18,28; --shade-rgb:28,20,70; --signal-rgb:74,43,255; --alert-rgb:196,23,79;
     --scrim:rgba(20,18,28,0.45); --chrome:rgba(244,243,248,0.82);
@@ -378,7 +375,7 @@
     --line:var(--np-line);--line-2:var(--np-line-2);
     --acc:var(--np-ink);--acc-ink:var(--np-ink);--on-acc:var(--np-paper);--signal:var(--np-ink);--signal-ink:var(--np-ink);--on-signal:var(--np-paper);
     --acc-08:rgba(26,23,26,.05);--acc-14:rgba(26,23,26,.08);--acc-30:rgba(26,23,26,.2);--acc-55:rgba(26,23,26,.4);--acc-wash:#E1DCCC;--chip-bg:var(--np-paper);
-    --rad-xs:2px;--rad-sm:4px;--rad-md:4px;--rad-lg:4px;
+    --rad-xs:2px;--rad-sm:4px;--rad-md:4px;--rad-lg:4px;--signal-rgb:26,23,26;--f-display:var(--f-data);--beam:var(--np-ink);
     --e1:0 0 0 1px var(--np-ink);--e2:0 0 0 1px var(--np-ink);--glow:0 0 0 2px var(--np-ink);
     --scrim:rgba(26,23,26,.55);--chrome:var(--np-paper);
     --np-band-acc:var(--np-acc2-on-black,var(--np-cream));
@@ -388,9 +385,10 @@
     --success:#006644;--live:#006644;--alert:#B0123F;--clash:#B0123F;--warn:#9A3D00;--sun:#9A3D00;
     background:var(--np-paper);color:var(--np-ink)}
   .np-cut>b,.np-util>.np-mono{color:var(--np-band-acc)}
+  .np .duo-link{font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
   :root[data-mode="dark"] .np{--np-band-acc:var(--np-acc2-on-cream,var(--np-black));--np-paper:var(--np-black);--np-ink:var(--np-cream);--np-ink-2:#C9C4B6;--np-ink-3:#B1AC9F;
     --np-line:rgba(238,233,217,.22);--np-line-2:rgba(238,233,217,.38);--np-well:rgba(238,233,217,.07);
-    --acc-08:rgba(238,233,217,.05);--acc-14:rgba(238,233,217,.09);--acc-30:rgba(238,233,217,.22);--acc-55:rgba(238,233,217,.42);--acc-wash:#2E2B2A;--scrim:rgba(0,0,0,.65);
+    --acc-08:rgba(238,233,217,.05);--acc-14:rgba(238,233,217,.09);--acc-30:rgba(238,233,217,.22);--acc-55:rgba(238,233,217,.42);--acc-wash:#2E2B2A;--scrim:rgba(0,0,0,.65);--signal-rgb:238,233,217;
     --success:#3DF5A0;--live:#3DF5A0;--alert:#FF4574;--clash:#FF4574;--warn:#FFC545;--sun:#FFC545}
   /* Type at 390: the festival word 90/.75 900 -.095em, the claim 67/.85,
      journey titles 44/.94; at 320 they are 74 / 56 / 36 (the clamps land
@@ -417,7 +415,7 @@
   /* The location runs down the right edge beside the title only (its box
      is the title's margins plus the word), so it can never reach the stamp. */
   .np-titlebox{position:relative;padding:40px 0 24px}
-  .np-rot{position:absolute;right:-10px;top:0;bottom:24px;writing-mode:vertical-rl;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none}
+  .np-rot{position:absolute;right:-10px;top:0;bottom:24px;writing-mode:vertical-rl;overflow:hidden;white-space:nowrap;pointer-events:none}
   .np-title{display:block;width:100%;min-height:44px;padding:0;margin:0;background:none;border:0;color:inherit;text-align:left;cursor:default;font:inherit}
   .np-title[data-switch]{cursor:pointer}
   .np-title>.np-word{padding-right:30px}
@@ -459,6 +457,7 @@
   .np-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:4px 16px;margin-top:12px}
   .np-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0;background:none;border:0;border-bottom:1px solid rgba(238,233,217,.25);color:inherit;text-align:left;cursor:pointer;font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
   :root[data-mode="dark"] .np-link{border-bottom-color:rgba(26,23,26,.3)}
+  @media (max-width:599px){.np-links>.np-link:nth-child(odd):last-child{grid-column:1/-1}}
   .np-link b{font-weight:500;opacity:.78;margin-left:6px}
   .np-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 18px;min-height:52px}
   .np-tools{display:flex;align-items:center;flex:none}

@@ -253,8 +253,8 @@ function TonightCard({
   return React.createElement("div", {
     style: {
       marginTop: 18,
-      background: "var(--night)",
-      borderRadius: 16,
+      background: "var(--s3)",
+      borderRadius: "var(--rad-md)",
       padding: "14px 16px 16px",
       color: "var(--ink)",
       position: "relative",
@@ -310,7 +310,7 @@ function TonightCard({
       gap: 12,
       alignItems: "flex-start"
     }
-  }, sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)"), sunriseSet && card("SUNRISE", sun.rise, sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`, "var(--sun)"), period ? card("WEATHER", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`, "var(--weather-ink)") : React.createElement("div", {
+  }, sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null), sunriseSet && card("SUNRISE", sun.rise, sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`), period ? card("WEATHER", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`) : React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 80,
@@ -359,7 +359,7 @@ function TonightCard({
       style: {
         marginTop: 14,
         padding: "10px 12px",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         background: "rgba(var(--ink-rgb),0.05)",
         border: "1px solid rgba(var(--ink-rgb),0.1)"
       }
@@ -2244,7 +2244,7 @@ function HomeScreen({
     className: "np",
     "data-night-print": true,
     style: {
-      padding: "calc(var(--top-pad, 0px) + 4px) 0 96px",
+      padding: "calc(var(--top-pad, 0px) + 4px) 0 40px",
       ...npSchemeVars()
     },
     onTouchStart: handlePullStart,
@@ -3764,103 +3764,59 @@ function AlertsDrawer({
   onOpenMap,
   onOpenLineup
 }) {
-  useDeclareModal(true);
-  useEscapeToClose(onClose);
-  var iconFor = k => {
-    var c = {
-      reminder: "var(--flare)",
-      friend: "var(--ember)",
-      safety: "var(--horizon)",
-      conflict: "var(--ember)",
-      drop: "var(--success)"
-    }[k] || "var(--ink)";
-    return c;
-  };
-  return React.createElement("div", {
+  var inkFor = k => ({
+    reminder: "var(--sun)",
+    friend: "var(--acc)",
+    safety: "var(--alert)",
+    conflict: "var(--clash)",
+    drop: "var(--live)"
+  })[k] || "var(--ink)";
+  return React.createElement(FieldSheet, {
+    title: "Alerts",
+    eyebrow: "Live feed",
+    onClose: onClose
+  }, !alerts.length && React.createElement("div", {
     style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 9,
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, React.createElement("div", {
-    onClick: onClose,
-    style: {
-      position: "absolute",
-      inset: 0,
-      background: "rgba(var(--shade-rgb),0.35)"
-    }
-  }), React.createElement("div", {
-    role: "dialog",
-    "aria-modal": "true",
-    "aria-label": "Alerts",
-    style: {
-      marginTop: "auto",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      maxHeight: "78%",
-      display: "flex",
-      flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)",
-      position: "relative",
-      animation: "sheetUp 0.3s var(--ease-smooth)"
+      padding: "14px 0 10px"
     }
   }, React.createElement("div", {
     style: {
-      padding: "14px 18px 10px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      borderBottom: "1px solid var(--line)"
+      font: "700 20px/1.1 var(--f-ui)",
+      letterSpacing: "-0.02em"
     }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+  }, "Nothing yet."), React.createElement("div", {
     style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      color: "var(--muted)"
+      fontSize: 13,
+      color: "var(--muted)",
+      marginTop: 6,
+      lineHeight: 1.4
     }
-  }, "LIVE FEED"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      lineHeight: 1,
-      marginTop: 2
-    }
-  }, "Alerts")), React.createElement("button", {
-    onClick: onClose,
-    "aria-label": "Close alerts",
-    style: {
-      ...sheetCloseBtn
-    }
-  }, "CLOSE")), React.createElement("div", {
-    style: {
-      flex: 1,
-      minHeight: 0,
-      overflowY: "auto",
-      padding: "6px 14px calc(24px + env(safe-area-inset-bottom, 0px))"
-    }
-  }, alerts.map(a => {
+  }, "Clashes in your plan, friend pings and weather warnings land here.")), alerts.map(a => {
     var onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
-    return React.createElement("div", {
+    var Row = onClick ? "button" : "div";
+    return React.createElement(Row, {
       key: a.id,
-      onClick: onClick,
+      onClick: onClick || undefined,
       style: {
         display: "flex",
         gap: 12,
-        padding: "12px 6px",
+        width: "100%",
+        minHeight: 44,
+        padding: "12px 0",
         borderBottom: "1px solid var(--line)",
+        background: "none",
+        border: 0,
+        borderBottomWidth: 1,
+        color: "inherit",
+        font: "inherit",
+        textAlign: "left",
         cursor: onClick ? "pointer" : "default",
         opacity: a.unread ? 1 : 0.7
       }
     }, React.createElement("div", {
       style: {
-        width: 6,
-        borderRadius: 6,
-        background: iconFor(a.kind),
+        width: 4,
+        background: inkFor(a.kind),
         flexShrink: 0,
         alignSelf: "stretch",
         opacity: a.unread ? 1 : 0.4
@@ -3877,16 +3833,13 @@ function AlertsDrawer({
         gap: 8
       }
     }, React.createElement("div", {
-      className: "serif",
       style: {
-        fontSize: 16,
-        lineHeight: 1.15
+        font: "700 16px/1.15 var(--f-ui)",
+        letterSpacing: "-0.01em"
       }
     }, a.title), React.createElement("div", {
-      className: "mono",
+      className: "np-mono",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
         color: "var(--muted)",
         whiteSpace: "nowrap"
       }
@@ -3898,7 +3851,7 @@ function AlertsDrawer({
         lineHeight: 1.35
       }
     }, a.body)));
-  }))));
+  }));
 }
 function DontMissStrip({
   day,
@@ -4024,150 +3977,99 @@ var FT_SECTIONS = [{
   title: "Recommended Day 1",
   items: ["Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.", "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.", "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.", "Eat at midnight. Sleep is for after the sunrise set.", "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise."]
 }];
-var sheetCloseBtn = {
-  minHeight: 44,
-  minWidth: 44,
-  padding: "0 14px",
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  background: "transparent",
-  border: "1px solid var(--line-2)",
-  borderRadius: 999,
-  cursor: "pointer",
-  color: "inherit",
-  fontFamily: "Geist Mono, monospace",
-  fontSize: 9,
-  letterSpacing: 1.2,
-  fontWeight: 700
-};
 function FirstTimerGuide({
   onClose,
   onOpenMap,
   onOpenLineup
 }) {
   var [openIdx, setOpenIdx] = React.useState(0);
-  useDeclareModal(true);
-  useEscapeToClose(onClose);
-  return React.createElement("div", {
+  var jump = primary => ({
+    flex: 1,
+    minHeight: 44,
+    padding: "0 12px",
+    cursor: "pointer",
+    background: primary ? "var(--ink)" : "var(--paper)",
+    color: primary ? "var(--paper)" : "var(--ink)",
+    border: primary ? "none" : "1px solid var(--line-2)",
+    borderRadius: "var(--rad-sm)",
+    font: "700 10px/1.2 var(--f-data)",
+    letterSpacing: "0.13em",
+    textTransform: "uppercase"
+  });
+  var footer = React.createElement("div", {
     style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 9,
       display: "flex",
-      flexDirection: "column"
+      gap: 8
     }
-  }, React.createElement("div", {
-    onClick: onClose,
-    style: {
-      position: "absolute",
-      inset: 0,
-      background: "rgba(var(--shade-rgb),0.4)"
-    }
-  }), React.createElement("div", {
-    role: "dialog",
-    "aria-modal": "true",
-    "aria-label": "The basics",
-    style: {
-      marginTop: "auto",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      maxHeight: "85%",
-      display: "flex",
-      flexDirection: "column",
-      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
-      position: "relative"
-    }
-  }, React.createElement("div", {
-    style: {
-      padding: "14px 18px 12px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      borderBottom: "1px solid var(--line)",
-      background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22
-    }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.6,
-      color: "var(--ember-ink)",
-      fontWeight: 700
-    }
-  }, "FIRST TIME AT ", FESTIVAL_CONFIG.brand.toUpperCase()), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      lineHeight: 1,
-      marginTop: 2
-    }
-  }, "The basics")), React.createElement("button", {
-    onClick: onClose,
-    "aria-label": "Close the basics",
-    style: {
-      ...sheetCloseBtn
-    }
-  }, "CLOSE")), React.createElement("div", {
-    style: {
-      flex: 1,
-      minHeight: 0,
-      overflowY: "auto",
-      padding: "8px 14px calc(24px + env(safe-area-inset-bottom, 0px))"
-    }
+  }, React.createElement("button", {
+    onClick: onOpenMap,
+    style: jump(true)
+  }, "Explore map"), React.createElement("button", {
+    onClick: onOpenLineup,
+    style: jump(false)
+  }, "Browse lineup"));
+  return React.createElement(FieldSheet, {
+    title: "The basics",
+    eyebrow: `First time at ${FESTIVAL_CONFIG.brand}`,
+    footer: footer,
+    onClose: onClose
   }, FT_SECTIONS.map((s, i) => {
     var isOpen = openIdx === i;
     return React.createElement("div", {
       key: s.id,
       style: {
-        marginTop: 8,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        borderRadius: 12,
-        overflow: "hidden"
+        borderBottom: "1px solid var(--line)"
       }
     }, React.createElement("button", {
       onClick: () => setOpenIdx(isOpen ? -1 : i),
+      "aria-expanded": isOpen,
       style: {
         width: "100%",
-        padding: "12px 14px",
+        minHeight: 56,
+        padding: "12px 0",
         display: "flex",
         alignItems: "center",
-        gap: 12,
-        background: isOpen ? "var(--paper-2)" : "transparent",
-        border: "none",
+        gap: 14,
+        background: "none",
+        border: 0,
+        color: "inherit",
+        textAlign: "left",
         cursor: "pointer",
-        textAlign: "left"
+        font: "inherit"
       }
     }, React.createElement("span", {
+      className: "np-idx",
       style: {
-        fontSize: 20
+        color: "var(--ink-3)"
       }
-    }, s.icon), React.createElement("span", {
-      className: "serif",
+    }, String(i + 1).padStart(2, "0")), React.createElement("span", {
       style: {
         flex: 1,
-        fontSize: 18,
-        lineHeight: 1
+        font: "700 18px/1.15 var(--f-ui)",
+        letterSpacing: "-0.02em"
       }
-    }, s.title), React.createElement("span", {
-      className: "mono",
+    }, s.title), React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "16",
+      height: "16",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
       style: {
-        fontSize: 10,
-        color: "var(--muted)",
-        fontWeight: 700,
-        transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-        transition: "transform 0.2s"
+        flexShrink: 0,
+        transform: isOpen ? "rotate(90deg)" : "none",
+        transition: "transform .2s"
       }
-    }, "›")), isOpen && React.createElement("ul", {
+    }, React.createElement("path", {
+      d: "M9 6l6 6-6 6"
+    }))), isOpen && React.createElement("ul", {
       style: {
         listStyle: "none",
         margin: 0,
-        padding: "4px 14px 14px 50px"
+        padding: "0 0 16px 38px"
       }
     }, s.items.map((it, k) => React.createElement("li", {
       key: k,
@@ -4179,55 +4081,18 @@ function FirstTimerGuide({
         color: "var(--ink)"
       }
     }, React.createElement("span", {
+      "aria-hidden": "true",
       style: {
         position: "absolute",
         left: -14,
-        top: 6,
+        top: 7,
         width: 5,
         height: 5,
         borderRadius: 5,
-        background: "var(--ember)"
+        background: "var(--acc)"
       }
     }), it))));
-  }), React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 8,
-      marginTop: 14
-    }
-  }, React.createElement("button", {
-    onClick: onOpenMap,
-    style: {
-      flex: 1,
-      minHeight: 44,
-      padding: "0 12px",
-      background: "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 10,
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 700
-    }
-  }, "EXPLORE MAP"), React.createElement("button", {
-    onClick: onOpenLineup,
-    style: {
-      flex: 1,
-      minHeight: 44,
-      padding: "0 12px",
-      background: "var(--paper)",
-      color: "var(--ink)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 700
-    }
-  }, "BROWSE LINEUP")))));
+  }));
 }
 function _buildShareUrl(savedIds) {
   var base = `${window.location.origin}${window.location.pathname}`;
@@ -4602,6 +4467,65 @@ function NpTitle({
     onClose: () => setOpen(false)
   }));
 }
+function useRailFit(ref, venue, city) {
+  var [fit, setFit] = React.useState(null);
+  React.useLayoutEffect(() => {
+    var el = ref.current;
+    if (!el) return undefined;
+    var run = () => {
+      var tries = [[venue, 10], [venue, 9], [city, 10], [city, 9]].filter(t => t[0]);
+      var pick = null;
+      for (var [text, size] of tries) {
+        el.textContent = text;
+        el.style.fontSize = size + "px";
+        if (el.scrollHeight <= el.clientHeight + 1) {
+          pick = {
+            text,
+            size
+          };
+          break;
+        }
+      }
+      if (!pick) {
+        el.textContent = "";
+      }
+      setFit(prev => {
+        var next = pick || {
+          text: "",
+          size: 0
+        };
+        return prev && prev.text === next.text && prev.size === next.size ? prev : next;
+      });
+    };
+    run();
+    var ro = typeof ResizeObserver === "function" ? new ResizeObserver(run) : null;
+    if (ro) ro.observe(el.parentElement);
+    return () => {
+      if (ro) ro.disconnect();
+    };
+  }, [venue, city]);
+  return fit;
+}
+function npNoBreak(s) {
+  return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b);
+}
+function npBarcode(id) {
+  var x = 0,
+    hsh = 2166136261;
+  for (var ch of String(id || "plursky")) {
+    hsh ^= ch.charCodeAt(0);
+    hsh = Math.imul(hsh, 16777619) >>> 0;
+  }
+  var stops = [];
+  while (x < 88) {
+    hsh = Math.imul(hsh ^ hsh >>> 15, 2246822507) >>> 0;
+    var w = 1 + (hsh & 3),
+      g = 1 + (hsh >>> 2 & 3);
+    stops.push(`currentColor ${x}px ${x + w}px, transparent ${x + w}px ${x + w + g}px`);
+    x += w + g;
+  }
+  return `linear-gradient(90deg, ${stops.join(", ")})`;
+}
 function NpPoster({
   countdown,
   stampText,
@@ -4615,6 +4539,10 @@ function NpPoster({
     color: sk.fg
   } : {};
   var meta = npMeta(sk);
+  var railRef = React.useRef(null);
+  var city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
+  var rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
+  var place = rail && !rail.text ? city || FESTIVAL_CONFIG.locationShort : null;
   return React.createElement("section", {
     className: "np-poster",
     "data-np-poster": true,
@@ -4626,10 +4554,15 @@ function NpPoster({
     whiteSpace: "nowrap"
   }), countdown ? "PRE\u2011FESTIVAL" : "FESTIVAL")), React.createElement("div", {
     className: "np-titlebox"
-  }, FESTIVAL_CONFIG.locationShort && React.createElement("div", {
+  }, (FESTIVAL_CONFIG.locationShort || city) && React.createElement("div", {
+    ref: railRef,
     className: "np-rot np-mono",
-    "aria-hidden": "true"
-  }, FESTIVAL_CONFIG.locationShort), React.createElement(NpTitle, {
+    "aria-hidden": "true",
+    "data-np-rail": rail ? rail.text ? "on" : "off" : "measuring",
+    style: rail && !rail.text ? {
+      visibility: "hidden"
+    } : undefined
+  }), React.createElement(NpTitle, {
     className: "np-title"
   }, React.createElement("h1", {
     className: "np-word",
@@ -4643,9 +4576,20 @@ function NpPoster({
     className: "np-foot"
   }, React.createElement("div", null, React.createElement("div", npMeta(sk, {
     display: "inline-block"
-  }), FESTIVAL_CONFIG.dates), React.createElement("div", {
+  }), npNoBreak(FESTIVAL_CONFIG.dates)), place && React.createElement("div", {
+    className: "np-mono",
+    style: {
+      marginTop: 6,
+      ...(sk && !sk.small ? {
+        color: sk.fg
+      } : {})
+    }
+  }, place), React.createElement("div", {
     className: "np-barcode",
-    "aria-hidden": "true"
+    "aria-hidden": "true",
+    style: {
+      background: npBarcode(FESTIVAL_CONFIG.id)
+    }
   })), React.createElement("div", {
     className: "np-stamp",
     "data-np-stamp": true,

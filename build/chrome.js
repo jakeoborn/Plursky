@@ -768,6 +768,8 @@ function useEscapeToClose(onClose) {
 }
 function FieldSheet({
   title,
+  eyebrow,
+  footer,
   onClose,
   children
 }) {
@@ -819,13 +821,22 @@ function FieldSheet({
       justifyContent: "space-between",
       padding: "4px 8px 4px 20px"
     }
-  }, React.createElement("h2", {
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, eyebrow && React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 3
+    }
+  }, eyebrow), React.createElement("h2", {
     style: {
       margin: 0,
       font: "700 22px/1.25 var(--f-ui)",
       letterSpacing: "-0.02em"
     }
-  }, title), React.createElement("button", {
+  }, title)), React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     style: fieldIconBtn
@@ -841,11 +852,19 @@ function FieldSheet({
     d: "M6 6 L18 18 M18 6 L6 18"
   })))), React.createElement("div", {
     style: {
+      flex: 1,
+      minHeight: 0,
       overflowY: "auto",
       WebkitOverflowScrolling: "touch",
       padding: "4px 20px 24px"
     }
-  }, children)));
+  }, children), footer && React.createElement("div", {
+    style: {
+      flex: "none",
+      padding: "10px 20px 10px",
+      borderTop: "1px solid var(--line)"
+    }
+  }, footer)));
 }
 function _duoMembers(name) {
   return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);

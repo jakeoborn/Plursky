@@ -1317,6 +1317,7 @@ function App() {
   return React.createElement(IOSDevice, {
     dark: statusBarStyle === "light"
   }, React.createElement("div", {
+    className: state.tab === "home" && !state.artist ? "np" : undefined,
     style: {
       position: "absolute",
       inset: 0,

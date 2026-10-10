@@ -237,8 +237,8 @@ function TonightCard({ state, setState }) {
   return (
     <div style={{
       marginTop: 18,
-      background: "var(--night)",
-      borderRadius: 16,
+      background: "var(--s3)",
+      borderRadius: "var(--rad-md)",
       padding: "14px 16px 16px",
       color: "var(--ink)",
       position: "relative",
@@ -271,18 +271,16 @@ function TonightCard({ state, setState }) {
         </div>
 
         <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-          {sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)")}
+          {sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null)}
           {sunriseSet && card(
             "SUNRISE",
             sun.rise,
-            sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`,
-            "var(--sun)"
+            sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`
           )}
           {period ? card(
             "WEATHER",
             `${period.temperature}°${period.temperatureUnit}`,
-            `${period.windSpeed} ${period.windDirection}`,
-            "var(--weather-ink)"
+            `${period.windSpeed} ${period.windDirection}`
           ) : (
             <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
@@ -309,7 +307,7 @@ function TonightCard({ state, setState }) {
           const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
-            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
+            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: "var(--rad-sm)", background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
                 <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
                   NEXT 12H
@@ -1672,7 +1670,7 @@ function HomeScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 96px", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} className="np" data-night-print style={{ padding: "calc(var(--top-pad, 0px) + 4px) 0 40px", ...npSchemeVars() }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
         <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
@@ -2431,55 +2429,39 @@ function homeBtn(kind) {
 }
 
 function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
-  useDeclareModal(true);
-  useEscapeToClose(onClose);
-  const iconFor = (k) => {
-    const c = { reminder: "var(--flare)", friend: "var(--ember)", safety: "var(--horizon)", conflict: "var(--ember)", drop: "var(--success)" }[k] || "var(--ink)";
-    return c;
-  };
+  // One ink per kind, from the print's own semantic tokens.
+  const inkFor = (k) => ({ reminder: "var(--sun)", friend: "var(--acc)", safety: "var(--alert)", conflict: "var(--clash)", drop: "var(--live)" }[k] || "var(--ink)");
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.35)" }}/>
-      <div role="dialog" aria-modal="true" aria-label="Alerts" style={{
-        marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        maxHeight: "78%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)", position: "relative",
-        animation: "sheetUp 0.3s var(--ease-smooth)",
-      }}>
-        <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
-          <div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--muted)" }}>LIVE FEED</div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>Alerts</div>
-          </div>
-          <button onClick={onClose} aria-label="Close alerts" style={{ ...sheetCloseBtn }}>CLOSE</button>
+    <FieldSheet title="Alerts" eyebrow="Live feed" onClose={onClose}>
+      {!alerts.length && (
+        <div style={{ padding: "14px 0 10px" }}>
+          <div style={{ font: "700 20px/1.1 var(--f-ui)", letterSpacing: "-0.02em" }}>Nothing yet.</div>
+          <div style={{ fontSize: 13, color: "var(--muted)", marginTop: 6, lineHeight: 1.4 }}>Clashes in your plan, friend pings and weather warnings land here.</div>
         </div>
-        {/* flex:1 + minHeight:0 pins the list inside the sheet; the bottom padding is
-            the clearance above the tab bar (plus the home indicator where there is one). */}
-        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "6px 14px calc(24px + env(safe-area-inset-bottom, 0px))" }}>
-          {alerts.map(a => {
-            const onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
-            return (
-              <div key={a.id} onClick={onClick} style={{
-                display: "flex", gap: 12, padding: "12px 6px",
-                borderBottom: "1px solid var(--line)",
-                cursor: onClick ? "pointer" : "default",
-                opacity: a.unread ? 1 : 0.7,
-              }}>
-                <div style={{ width: 6, borderRadius: 6, background: iconFor(a.kind), flexShrink: 0, alignSelf: "stretch", opacity: a.unread ? 1 : 0.4 }}/>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <div className="serif" style={{ fontSize: 16, lineHeight: 1.15 }}>{a.title}</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", whiteSpace: "nowrap" }}>{a.time}</div>
-                  </div>
-                  <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.35 }}>{a.body}</div>
-                </div>
+      )}
+      {alerts.map(a => {
+        const onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
+        const Row = onClick ? "button" : "div";
+        return (
+          <Row key={a.id} onClick={onClick || undefined} style={{
+            display: "flex", gap: 12, width: "100%", minHeight: 44, padding: "12px 0",
+            borderBottom: "1px solid var(--line)", background: "none", border: 0, borderBottomWidth: 1,
+            color: "inherit", font: "inherit", textAlign: "left",
+            cursor: onClick ? "pointer" : "default",
+            opacity: a.unread ? 1 : 0.7,
+          }}>
+            <div style={{ width: 4, background: inkFor(a.kind), flexShrink: 0, alignSelf: "stretch", opacity: a.unread ? 1 : 0.4 }}/>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
+                <div style={{ font: "700 16px/1.15 var(--f-ui)", letterSpacing: "-0.01em" }}>{a.title}</div>
+                <div className="np-mono" style={{ color: "var(--muted)", whiteSpace: "nowrap" }}>{a.time}</div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+              <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.35 }}>{a.body}</div>
+            </div>
+          </Row>
+        );
+      })}
+    </FieldSheet>
   );
 }
 
@@ -2605,108 +2587,51 @@ const FT_SECTIONS = [
   },
 ];
 
-// Both drawers' CLOSE pill: 44px tall and wide at least (it measured 27px).
-const sheetCloseBtn = {
-  minHeight: 44, minWidth: 44, padding: "0 14px", display: "inline-flex", alignItems: "center", justifyContent: "center",
-  background: "transparent", border: "1px solid var(--line-2)", borderRadius: 999, cursor: "pointer",
-  color: "inherit", fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-};
-
+// Each section is a numbered row on a rule (the print's journey, not a card); the
+// first opens by default. The quick jumps are the sheet's footer, so a scrolled list
+// never cuts them and they always clear the tab bar.
 function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
-  const [openIdx, setOpenIdx] = React.useState(0); // first section open by default
-  useDeclareModal(true);
-  useEscapeToClose(onClose);
-  return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
-      <div role="dialog" aria-modal="true" aria-label="The basics" style={{
-        marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        maxHeight: "85%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)", position: "relative",
-      }}>
-        <div style={{
-          padding: "14px 18px 12px",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          borderBottom: "1px solid var(--line)",
-          background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-          borderTopLeftRadius: 22, borderTopRightRadius: 22,
-        }}>
-          <div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
-              FIRST TIME AT {FESTIVAL_CONFIG.brand.toUpperCase()}
-            </div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>
-              The basics
-            </div>
-          </div>
-          <button onClick={onClose} aria-label="Close the basics" style={{ ...sheetCloseBtn }}>CLOSE</button>
-        </div>
-        {/* As in AlertsDrawer: the sections scroll inside the sheet, and EXPLORE MAP /
-            BROWSE LINEUP end a clear 24px (+ home indicator) above the tab bar. */}
-        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 14px calc(24px + env(safe-area-inset-bottom, 0px))" }}>
-          {FT_SECTIONS.map((s, i) => {
-            const isOpen = openIdx === i;
-            return (
-              <div key={s.id} style={{
-                marginTop: 8, background: "var(--paper)",
-                border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden",
-              }}>
-                <button onClick={() => setOpenIdx(isOpen ? -1 : i)} style={{
-                  width: "100%", padding: "12px 14px",
-                  display: "flex", alignItems: "center", gap: 12,
-                  background: isOpen ? "var(--paper-2)" : "transparent",
-                  border: "none", cursor: "pointer", textAlign: "left",
-                }}>
-                  <span style={{ fontSize: 20 }}>{s.icon}</span>
-                  <span className="serif" style={{ flex: 1, fontSize: 18, lineHeight: 1 }}>{s.title}</span>
-                  <span className="mono" style={{
-                    fontSize: 10, color: "var(--muted)", fontWeight: 700,
-                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s",
-                  }}>›</span>
-                </button>
-                {isOpen && (
-                  <ul style={{
-                    listStyle: "none", margin: 0, padding: "4px 14px 14px 50px",
-                  }}>
-                    {s.items.map((it, k) => (
-                      <li key={k} style={{
-                        position: "relative", marginTop: 8,
-                        fontSize: 13, lineHeight: 1.4, color: "var(--ink)",
-                      }}>
-                        <span style={{
-                          position: "absolute", left: -14, top: 6,
-                          width: 5, height: 5, borderRadius: 5,
-                          background: "var(--ember)",
-                        }}/>
-                        {it}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            );
-          })}
-
-          {/* Quick-jump CTAs */}
-          <div style={{ display: "flex", gap: 8, marginTop: 14 }}>
-            <button onClick={onOpenMap} style={{
-              flex: 1, minHeight: 44, padding: "0 12px",
-              background: "var(--ink)", color: "var(--paper)",
-              border: "none", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            }}>EXPLORE MAP</button>
-            <button onClick={onOpenLineup} style={{
-              flex: 1, minHeight: 44, padding: "0 12px",
-              background: "var(--paper)", color: "var(--ink)",
-              border: "1px solid var(--line-2)", borderRadius: 10, cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            }}>BROWSE LINEUP</button>
-          </div>
-        </div>
-      </div>
+  const [openIdx, setOpenIdx] = React.useState(0);
+  const jump = (primary) => ({
+    flex: 1, minHeight: 44, padding: "0 12px", cursor: "pointer",
+    background: primary ? "var(--ink)" : "var(--paper)", color: primary ? "var(--paper)" : "var(--ink)",
+    border: primary ? "none" : "1px solid var(--line-2)", borderRadius: "var(--rad-sm)",
+    font: "700 10px/1.2 var(--f-data)", letterSpacing: "0.13em", textTransform: "uppercase",
+  });
+  const footer = (
+    <div style={{ display: "flex", gap: 8 }}>
+      <button onClick={onOpenMap} style={jump(true)}>Explore map</button>
+      <button onClick={onOpenLineup} style={jump(false)}>Browse lineup</button>
     </div>
+  );
+  return (
+    <FieldSheet title="The basics" eyebrow={`First time at ${FESTIVAL_CONFIG.brand}`} footer={footer} onClose={onClose}>
+      {FT_SECTIONS.map((s, i) => {
+        const isOpen = openIdx === i;
+        return (
+          <div key={s.id} style={{ borderBottom: "1px solid var(--line)" }}>
+            <button onClick={() => setOpenIdx(isOpen ? -1 : i)} aria-expanded={isOpen} style={{
+              width: "100%", minHeight: 56, padding: "12px 0", display: "flex", alignItems: "center", gap: 14,
+              background: "none", border: 0, color: "inherit", textAlign: "left", cursor: "pointer", font: "inherit",
+            }}>
+              <span className="np-idx" style={{ color: "var(--ink-3)" }}>{String(i + 1).padStart(2, "0")}</span>
+              <span style={{ flex: 1, font: "700 18px/1.15 var(--f-ui)", letterSpacing: "-0.02em" }}>{s.title}</span>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: isOpen ? "rotate(90deg)" : "none", transition: "transform .2s" }}><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+            {isOpen && (
+              <ul style={{ listStyle: "none", margin: 0, padding: "0 0 16px 38px" }}>
+                {s.items.map((it, k) => (
+                  <li key={k} style={{ position: "relative", marginTop: 8, fontSize: 13, lineHeight: 1.4, color: "var(--ink)" }}>
+                    <span aria-hidden="true" style={{ position: "absolute", left: -14, top: 7, width: 5, height: 5, borderRadius: 5, background: "var(--acc)" }}/>
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })}
+    </FieldSheet>
   );
 }
 
@@ -2920,11 +2845,54 @@ function NpTitle({ word, className, children }) {
 }
 // Before the festival: the full poster. Identity (real name, location,
 // dates), the countdown stamp, a barcode as print decoration, then the fold.
+// The rail down the right edge prints the venue when it fits its box (at 10px, then
+// 9px), else the city; when neither fits (a one-line name leaves a short box) there is
+// no rail and the city prints under the dates. Never an ellipsis: a ticket does not
+// trim its own venue. The box follows the fitted title, so the pick re-runs on resize.
+function useRailFit(ref, venue, city) {
+  const [fit, setFit] = React.useState(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const run = () => {
+      const tries = [[venue, 10], [venue, 9], [city, 10], [city, 9]].filter(t => t[0]);
+      let pick = null;
+      for (const [text, size] of tries) {
+        el.textContent = text; el.style.fontSize = size + "px";
+        if (el.scrollHeight <= el.clientHeight + 1) { pick = { text, size }; break; }
+      }
+      if (!pick) { el.textContent = ""; }
+      setFit(prev => { const next = pick || { text: "", size: 0 }; return prev && prev.text === next.text && prev.size === next.size ? prev : next; });
+    };
+    run();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(run) : null;
+    if (ro) ro.observe(el.parentElement);
+    return () => { if (ro) ro.disconnect(); };
+  }, [venue, city]);
+  return fit;
+}
+// A date range never breaks inside itself: a word joiner on both sides of its dash.
+function npNoBreak(s) { return String(s || "").replace(/(\d)\s*([\u2013\u2014-])\s*(\d)/g, (m, a, d, b) => a + "\u2060" + d + "\u2060" + b); }
+// The barcode is seeded from the edition id, so each ticket prints its own bars.
+function npBarcode(id) {
+  let x = 0, hsh = 2166136261;
+  for (const ch of String(id || "plursky")) { hsh ^= ch.charCodeAt(0); hsh = Math.imul(hsh, 16777619) >>> 0; }
+  const stops = [];
+  while (x < 88) {
+    hsh = Math.imul(hsh ^ (hsh >>> 15), 2246822507) >>> 0;
+    const w = 1 + (hsh & 3), g = 1 + ((hsh >>> 2) & 3);
+    stops.push(`currentColor ${x}px ${x + w}px, transparent ${x + w}px ${x + w + g}px`); x += w + g;
+  }
+  return `linear-gradient(90deg, ${stops.join(", ")})`;
+}
 function NpPoster({ countdown, stampText, fold, foldRight }) {
   const sk = npAccent();
   const words = npWords(FESTIVAL_CONFIG.name);
   const tone = sk ? { background: sk.acc, color: sk.fg } : {};
   const meta = npMeta(sk);
+  const railRef = React.useRef(null);
+  const city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
+  const rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
+  const place = rail && !rail.text ? (city || FESTIVAL_CONFIG.locationShort) : null;
   return (
     <section className="np-poster" data-np-poster data-np-accent={sk ? sk.acc : "none"} style={tone}>
       <div className="np-meta">
@@ -2932,7 +2900,7 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
         <span {...npMeta(sk, { whiteSpace: "nowrap" })}>{countdown ? "PRE\u2011FESTIVAL" : "FESTIVAL"}</span>
       </div>
       <div className="np-titlebox">
-        {FESTIVAL_CONFIG.locationShort && <div className="np-rot np-mono" aria-hidden="true">{FESTIVAL_CONFIG.locationShort}</div>}
+        {(FESTIVAL_CONFIG.locationShort || city) && <div ref={railRef} className="np-rot np-mono" aria-hidden="true" data-np-rail={rail ? (rail.text ? "on" : "off") : "measuring"} style={rail && !rail.text ? { visibility: "hidden" } : undefined} />}
         <NpTitle className="np-title">
           <h1 className="np-word" data-fit-words data-fit-min="32">
             {words.map((x, i) => <React.Fragment key={i}>{i ? " " : ""}<span className={x.roman ? "np-roman" : undefined}>{x.w}</span></React.Fragment>)}
@@ -2941,8 +2909,9 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
       </div>
       <div className="np-foot">
         <div>
-          <div {...npMeta(sk, { display: "inline-block" })}>{FESTIVAL_CONFIG.dates}</div>
-          <div className="np-barcode" aria-hidden="true" />
+          <div {...npMeta(sk, { display: "inline-block" })}>{npNoBreak(FESTIVAL_CONFIG.dates)}</div>
+          {place && <div className="np-mono" style={{ marginTop: 6, ...(sk && !sk.small ? { color: sk.fg } : {}) }}>{place}</div>}
+          <div className="np-barcode" aria-hidden="true" style={{ background: npBarcode(FESTIVAL_CONFIG.id) }} />
         </div>
         <div className="np-stamp" data-np-stamp aria-label={stampText.replace(/\s+/g, " ")}>{stampText}</div>
       </div>

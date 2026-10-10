@@ -86,7 +86,12 @@ try {
     const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === label);
     if (!dlg) return null;
     const bar = document.querySelector('button[aria-current="page"]')?.parentElement;
-    const tabTop = bar ? bar.getBoundingClientRect().top : window.innerHeight;
+    // A sheet that covers the bar (the field sheet, fixed over the frame) is bounded by the
+    // viewport; one that sits inside the screen is bounded by the bar's top edge.
+    const br = bar && bar.getBoundingClientRect();
+    const under = br && document.elementFromPoint(br.left + br.width / 2, br.top + br.height / 2);
+    const covered = !!(under && !bar.contains(under));
+    const tabTop = bar && !covered ? br.top : window.innerHeight;
     const btn = (b) => { const q = b.getBoundingClientRect(); return { text: b.textContent.trim().slice(0, 24), label: b.getAttribute('aria-label'), w: q.width, h: q.height, bottom: q.bottom }; };
     const buttons = [...dlg.querySelectorAll('button')].map(btn);
     const scroller = [...dlg.querySelectorAll('div')].find(d => /auto|scroll/.test(getComputedStyle(d).overflowY));
@@ -289,9 +294,9 @@ try {
             await page.keyboard.press('Escape'); await page.waitForTimeout(300);
             check(!(await drawerAudit(page, label)), `${tag}: ${label}: Escape did not close it`);
           };
-          await drawer('The basics', ['EXPLORE MAP', 'BROWSE LINEUP']);
+          await drawer('The basics', ['Explore map', 'Browse lineup']);
           lastStep = '[data-np-link=alerts]'; await page.click('[data-np-link=alerts]'); await page.waitForTimeout(400);
-          check(await page.evaluate(() => [...document.querySelectorAll('.serif')].some(e => e.textContent.trim() === 'Alerts' && parseFloat(getComputedStyle(e).fontSize) >= 20)), `${tag}: ALERTS did not open the alerts drawer`);
+          check((await dialogs(page)).includes('Alerts'), `${tag}: ALERTS did not open the alerts drawer`);
           lastStep = 'close alerts'; await drawer('Alerts', []);
           if (phase !== 'post') {
             lastStep = '[data-np-link=tonight]'; await page.click('[data-np-link=tonight]'); await page.waitForTimeout(600);
