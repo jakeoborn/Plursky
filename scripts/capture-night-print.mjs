@@ -41,8 +41,12 @@ try {
       const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: pick, deviceScaleFactor: 2 });
       await ctx.clock.install({ time: new Date(at) });
       // Outside hosts stay reachable: React and Babel come from a CDN.
-      await ctx.addInitScript(({ fid, pick, saved, extra }) => {
+      const forecast = { fetchedAt: Date.parse(at), data: [{ name: 'Tonight', startTime: new Date(Date.parse(at)).toISOString(), endTime: new Date(Date.parse(at) + 12 * 3600000).toISOString(), temperature: 71, temperatureUnit: 'F', windSpeed: '10 mph', windDirection: 'SW', shortForecast: 'Clear', detailedForecast: 'Clear' }] };
+      const hourly = { fetchedAt: Date.parse(at), data: Array.from({ length: 12 }, (_, i) => ({ startTime: new Date(Date.parse(at) + i * 3600000).toISOString(), temperature: 70 + i, temperatureUnit: 'F', shortForecast: 'Clear', windSpeed: '5 mph', probabilityOfPrecipitation: 0 })) };
+      await ctx.addInitScript(({ fid, pick, saved, extra, forecast, hourly }) => {
         if (sessionStorage.getItem('__seeded')) return; sessionStorage.setItem('__seeded', '1');
+        // The forecast from the app's own cache, so Sun & weather prints values offline.
+        localStorage.setItem(`forecast_${fid}`, JSON.stringify(forecast)); localStorage.setItem(`forecast_hourly_${fid}`, JSON.stringify(hourly));
         localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('setup_banner_dismissed', '1'); localStorage.setItem('notif_nudge_dismissed', '1');
         localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
@@ -50,7 +54,7 @@ try {
         localStorage.setItem('plursky.appearance', pick);
         for (const [k, v] of Object.entries(extra)) localStorage.setItem(k, v);
         if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} });
-      }, { fid, pick, saved, extra });
+      }, { fid, pick, saved, extra, forecast, hourly });
       const page = await ctx.newPage();
       const errors = [];
       page.on('pageerror', e => errors.push(String(e)));
@@ -66,6 +70,18 @@ try {
       await page.waitForTimeout(400);
       await page.screenshot({ path: file, fullPage: false });
       console.log(`${key} ${pick} ${width}: ${file} (${h}px)${errors.length ? ' PAGE ERRORS: ' + errors.join(' | ') : ''}  — ${note}`);
+      // The sheets, on the first fixture only: Basics, Alerts, Sun & weather, each settled
+      // at the device height so the tab bar relation shows (NP_SHEETS=0 skips them).
+      if (key === 'pre-empty' && process.env.NP_SHEETS !== '0' && !process.env.NP_BEFORE) {
+        await page.setViewportSize({ width, height: 852 }); await page.waitForTimeout(300);
+        for (const [sheet, sel] of [['basics', '[data-np-link=basics]'], ['alerts', '[data-np-link=alerts]'], ['tonight', '[data-np-link=tonight]']]) {
+          await page.click(sel); await page.waitForTimeout(900);
+          const sf = join(out, `${key}-${sheet}-${pick}-${width}.png`);
+          await page.screenshot({ path: sf, fullPage: false });
+          console.log(`${key} ${sheet} ${pick} ${width}: ${sf}`);
+          await page.keyboard.press('Escape'); await page.waitForTimeout(400);
+        }
+      }
       await ctx.close();
     }
   }

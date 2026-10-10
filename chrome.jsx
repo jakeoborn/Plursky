@@ -633,13 +633,19 @@ function FieldMediaRow({ children }) {
 }
 
 // One bottom sheet: one grabber, one radius, a title and a 44pt close.
-function FieldSheet({ title, onClose, children }) {
-  useDeclareModal(true);
+// Escape closes the sheet that is open. One policy for every door: the
+// field sheet, the alerts drawer and the first-timer guide all call this.
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+
+function FieldSheet({ title, onClose, children }) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return (
     <div onClick={onClose} style={{
       position: "fixed", inset: 0, zIndex: 80, background: "var(--scrim)",

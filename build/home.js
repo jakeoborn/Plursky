@@ -237,7 +237,7 @@ function TonightCard({
       fontFamily: "Geist Mono, monospace",
       fontSize: 18,
       fontWeight: 600,
-      color: accent || "var(--paper)",
+      color: accent || "var(--ink)",
       marginTop: 3,
       lineHeight: 1
     }
@@ -310,7 +310,7 @@ function TonightCard({
       gap: 12,
       alignItems: "flex-start"
     }
-  }, sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)"), sunriseSet && card("SUNRISE", sun.rise, sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`, "#fbbf24"), period ? card("WEATHER", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`, "#a8d4ff") : React.createElement("div", {
+  }, sunsetSet && card("SUNSET", sun.set, sunsetSet ? `IN ${sunsetSet}` : null, "var(--flare)"), sunriseSet && card("SUNRISE", sun.rise, sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`, "var(--sun)"), period ? card("WEATHER", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`, "var(--weather-ink)") : React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 80,
@@ -3764,6 +3764,8 @@ function AlertsDrawer({
   onOpenMap,
   onOpenLineup
 }) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   var iconFor = k => {
     var c = {
       reminder: "var(--flare)",
@@ -3790,6 +3792,9 @@ function AlertsDrawer({
       background: "rgba(var(--shade-rgb),0.35)"
     }
   }), React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Alerts",
     style: {
       marginTop: "auto",
       background: "var(--paper)",
@@ -3827,20 +3832,16 @@ function AlertsDrawer({
     }
   }, "Alerts")), React.createElement("button", {
     onClick: onClose,
+    "aria-label": "Close alerts",
     style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 10px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2
+      ...sheetCloseBtn
     }
   }, "CLOSE")), React.createElement("div", {
     style: {
+      flex: 1,
+      minHeight: 0,
       overflowY: "auto",
-      padding: "6px 14px 18px"
+      padding: "6px 14px calc(24px + env(safe-area-inset-bottom, 0px))"
     }
   }, alerts.map(a => {
     var onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
@@ -4023,12 +4024,31 @@ var FT_SECTIONS = [{
   title: "Recommended Day 1",
   items: ["Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.", "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.", "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.", "Eat at midnight. Sleep is for after the sunrise set.", "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise."]
 }];
+var sheetCloseBtn = {
+  minHeight: 44,
+  minWidth: 44,
+  padding: "0 14px",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "transparent",
+  border: "1px solid var(--line-2)",
+  borderRadius: 999,
+  cursor: "pointer",
+  color: "inherit",
+  fontFamily: "Geist Mono, monospace",
+  fontSize: 9,
+  letterSpacing: 1.2,
+  fontWeight: 700
+};
 function FirstTimerGuide({
   onClose,
   onOpenMap,
   onOpenLineup
 }) {
   var [openIdx, setOpenIdx] = React.useState(0);
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return React.createElement("div", {
     style: {
       position: "absolute",
@@ -4045,6 +4065,9 @@ function FirstTimerGuide({
       background: "rgba(var(--shade-rgb),0.4)"
     }
   }), React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "The basics",
     style: {
       marginTop: "auto",
       background: "var(--paper)",
@@ -4085,21 +4108,16 @@ function FirstTimerGuide({
     }
   }, "The basics")), React.createElement("button", {
     onClick: onClose,
+    "aria-label": "Close the basics",
     style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      ...sheetCloseBtn
     }
   }, "CLOSE")), React.createElement("div", {
     style: {
+      flex: 1,
+      minHeight: 0,
       overflowY: "auto",
-      padding: "8px 14px 18px"
+      padding: "8px 14px calc(24px + env(safe-area-inset-bottom, 0px))"
     }
   }, FT_SECTIONS.map((s, i) => {
     var isOpen = openIdx === i;
@@ -4181,7 +4199,8 @@ function FirstTimerGuide({
     onClick: onOpenMap,
     style: {
       flex: 1,
-      padding: "10px 12px",
+      minHeight: 44,
+      padding: "0 12px",
       background: "var(--ink)",
       color: "var(--paper)",
       border: "none",
@@ -4196,7 +4215,8 @@ function FirstTimerGuide({
     onClick: onOpenLineup,
     style: {
       flex: 1,
-      padding: "10px 12px",
+      minHeight: 44,
+      padding: "0 12px",
       background: "var(--paper)",
       color: "var(--ink)",
       border: "1px solid var(--line-2)",

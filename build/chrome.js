@@ -757,12 +757,7 @@ function FieldMediaRow({
     }
   }, children);
 }
-function FieldSheet({
-  title,
-  onClose,
-  children
-}) {
-  useDeclareModal(true);
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     var onKey = e => {
       if (e.key === "Escape") onClose();
@@ -770,6 +765,14 @@ function FieldSheet({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+function FieldSheet({
+  title,
+  onClose,
+  children
+}) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return React.createElement("div", {
     onClick: onClose,
     style: {

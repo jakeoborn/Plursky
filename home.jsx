@@ -229,7 +229,7 @@ function TonightCard({ state, setState }) {
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
-      <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
+      <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--ink)", marginTop: 3, lineHeight: 1 }}>{value}</div>
       {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
@@ -276,13 +276,13 @@ function TonightCard({ state, setState }) {
             "SUNRISE",
             sun.rise,
             sunriseArtistId ? `${sunriseArtistId.name.toUpperCase()} · KINETIC` : `IN ${sunriseSet}`,
-            "#fbbf24"
+            "var(--sun)"
           )}
           {period ? card(
             "WEATHER",
             `${period.temperature}°${period.temperatureUnit}`,
             `${period.windSpeed} ${period.windDirection}`,
-            "#a8d4ff"
+            "var(--weather-ink)"
           ) : (
             <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
@@ -2431,6 +2431,8 @@ function homeBtn(kind) {
 }
 
 function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   const iconFor = (k) => {
     const c = { reminder: "var(--flare)", friend: "var(--ember)", safety: "var(--horizon)", conflict: "var(--ember)", drop: "var(--success)" }[k] || "var(--ink)";
     return c;
@@ -2438,7 +2440,7 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.35)" }}/>
-      <div style={{
+      <div role="dialog" aria-modal="true" aria-label="Alerts" style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "78%", display: "flex", flexDirection: "column",
@@ -2450,9 +2452,11 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
             <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--muted)" }}>LIVE FEED</div>
             <div className="serif" style={{ fontSize: 24, lineHeight: 1, marginTop: 2 }}>Alerts</div>
           </div>
-          <button onClick={onClose} style={{ background: "transparent", border: "1px solid var(--line-2)", borderRadius: 999, padding: "6px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2 }}>CLOSE</button>
+          <button onClick={onClose} aria-label="Close alerts" style={{ ...sheetCloseBtn }}>CLOSE</button>
         </div>
-        <div style={{ overflowY: "auto", padding: "6px 14px 18px" }}>
+        {/* flex:1 + minHeight:0 pins the list inside the sheet; the bottom padding is
+            the clearance above the tab bar (plus the home indicator where there is one). */}
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "6px 14px calc(24px + env(safe-area-inset-bottom, 0px))" }}>
           {alerts.map(a => {
             const onClick = a.kind === "conflict" ? onOpenLineup : a.kind === "friend" ? onOpenMap : null;
             return (
@@ -2601,12 +2605,21 @@ const FT_SECTIONS = [
   },
 ];
 
+// Both drawers' CLOSE pill: 44px tall and wide at least (it measured 27px).
+const sheetCloseBtn = {
+  minHeight: 44, minWidth: 44, padding: "0 14px", display: "inline-flex", alignItems: "center", justifyContent: "center",
+  background: "transparent", border: "1px solid var(--line-2)", borderRadius: 999, cursor: "pointer",
+  color: "inherit", fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+};
+
 function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
   const [openIdx, setOpenIdx] = React.useState(0); // first section open by default
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
-      <div style={{
+      <div role="dialog" aria-modal="true" aria-label="The basics" style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "85%", display: "flex", flexDirection: "column",
@@ -2627,13 +2640,11 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
               The basics
             </div>
           </div>
-          <button onClick={onClose} style={{
-            background: "transparent", border: "1px solid var(--line-2)",
-            borderRadius: 999, padding: "6px 12px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>CLOSE</button>
+          <button onClick={onClose} aria-label="Close the basics" style={{ ...sheetCloseBtn }}>CLOSE</button>
         </div>
-        <div style={{ overflowY: "auto", padding: "8px 14px 18px" }}>
+        {/* As in AlertsDrawer: the sections scroll inside the sheet, and EXPLORE MAP /
+            BROWSE LINEUP end a clear 24px (+ home indicator) above the tab bar. */}
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 14px calc(24px + env(safe-area-inset-bottom, 0px))" }}>
           {FT_SECTIONS.map((s, i) => {
             const isOpen = openIdx === i;
             return (
@@ -2681,13 +2692,13 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
           {/* Quick-jump CTAs */}
           <div style={{ display: "flex", gap: 8, marginTop: 14 }}>
             <button onClick={onOpenMap} style={{
-              flex: 1, padding: "10px 12px",
+              flex: 1, minHeight: 44, padding: "0 12px",
               background: "var(--ink)", color: "var(--paper)",
               border: "none", borderRadius: 10, cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
             }}>EXPLORE MAP</button>
             <button onClick={onOpenLineup} style={{
-              flex: 1, padding: "10px 12px",
+              flex: 1, minHeight: 44, padding: "0 12px",
               background: "var(--paper)", color: "var(--ink)",
               border: "1px solid var(--line-2)", borderRadius: 10, cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,

@@ -57,8 +57,13 @@ try {
     // print is measured on fixture data alone.
     await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
     await ctx.clock.install({ time: new Date(at) });
-    await ctx.addInitScript(({ fid, pick, saved, extra }) => {
+    // A forecast in the app's own cache, dated at the pinned clock, so the Sun & weather
+    // sheet prints real values (the live fetch is refused) and their inks can be measured.
+    const forecast = { fetchedAt: Date.parse(at), data: [{ name: 'Tonight', startTime: new Date(Date.parse(at)).toISOString(), endTime: new Date(Date.parse(at) + 12 * 3600000).toISOString(), temperature: 71, temperatureUnit: 'F', windSpeed: '10 mph', windDirection: 'SW', shortForecast: 'Clear', detailedForecast: 'Clear' }] };
+    const hourly = { fetchedAt: Date.parse(at), data: Array.from({ length: 12 }, (_, i) => ({ startTime: new Date(Date.parse(at) + i * 3600000).toISOString(), temperature: 70 + i, temperatureUnit: 'F', shortForecast: 'Clear', windSpeed: '5 mph', probabilityOfPrecipitation: 0 })) };
+    await ctx.addInitScript(({ fid, pick, saved, extra, forecast, hourly }) => {
       if (sessionStorage.getItem('__seeded')) return; sessionStorage.setItem('__seeded', '1');
+      localStorage.setItem(`forecast_${fid}`, JSON.stringify(forecast)); localStorage.setItem(`forecast_hourly_${fid}`, JSON.stringify(hourly));
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
       localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('setup_banner_dismissed', '1'); localStorage.setItem('notif_nudge_dismissed', '1');
       localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
@@ -66,7 +71,7 @@ try {
       localStorage.setItem('plursky.appearance', pick);
       for (const [k, v] of Object.entries(extra)) localStorage.setItem(k, v);
       if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} });
-    }, { fid, pick, saved, extra });
+    }, { fid, pick, saved, extra, forecast, hourly });
     const page = await ctx.newPage();
     const errors = [];
     page.on('pageerror', e => errors.push(String(e.message || e)));
@@ -75,6 +80,35 @@ try {
     await page.clock.runFor(1500); await page.waitForTimeout(400);
     return { ctx, page, errors };
   };
+
+  // A drawer (the first-timer guide, the alerts drawer): measured by its dialog name.
+  const drawerAudit = (page, label) => page.evaluate((label) => {
+    const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === label);
+    if (!dlg) return null;
+    const bar = document.querySelector('button[aria-current="page"]')?.parentElement;
+    const tabTop = bar ? bar.getBoundingClientRect().top : window.innerHeight;
+    const btn = (b) => { const q = b.getBoundingClientRect(); return { text: b.textContent.trim().slice(0, 24), label: b.getAttribute('aria-label'), w: q.width, h: q.height, bottom: q.bottom }; };
+    const buttons = [...dlg.querySelectorAll('button')].map(btn);
+    const scroller = [...dlg.querySelectorAll('div')].find(d => /auto|scroll/.test(getComputedStyle(d).overflowY));
+    let scrolled = null;
+    if (scroller) { scroller.scrollTop = scroller.scrollHeight; scrolled = [...dlg.querySelectorAll('button')].map(btn); scroller.scrollTop = 0; }
+    // The sheet's own box is capped by its maxHeight; when the scroller has no flex floor the
+    // CONTENT box overflows past it, so the scroller's edge is the one that must clear the bar.
+    const content = scroller ? scroller.getBoundingClientRect().bottom : dlg.getBoundingClientRect().bottom;
+    return { tabTop, bottom: Math.max(dlg.getBoundingClientRect().bottom, content), buttons, scrolled };
+  }, label);
+  // The Sun & weather values: each number against the composited backing under it.
+  const sheetInks = (page) => page.evaluate(() => {
+    const parse = (s) => { const m = s.match(/[\d.]+/g); if (!m) return null; const [r, g, b, a = 1] = m.map(Number); return [r, g, b, a]; };
+    const lum = ([r, g, b]) => { const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+    const backing = (el) => { const r = el.getBoundingClientRect(); const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2); let out = [255, 255, 255]; const layers = []; for (const n of stack) { if (n === el || el.contains(n)) continue; const bg = parse(getComputedStyle(n).backgroundColor); if (bg && bg[3] > 0) { layers.push(bg); if (bg[3] >= 1) break; } } for (const l of layers.reverse()) { const a = l[3]; out = [0, 1, 2].map(i => l[i] * a + out[i] * (1 - a)); } return out; };
+    const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === 'Sun & weather');
+    if (!dlg) return null;
+    return [...dlg.querySelectorAll('div')].filter(d => !d.children.length && /^(\d+°[FC]|\d{2}:\d{2})$/.test(d.textContent.trim())).map(d => {
+      const fg = parse(getComputedStyle(d).color), bg = backing(d); const L1 = lum(fg), L2 = lum(bg);
+      return { text: d.textContent.trim(), fg: getComputedStyle(d).color, bg: bg.map(Math.round).join(','), ratio: +((Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05)).toFixed(2) };
+    });
+  });
 
   // Everything measured in one pass, in the page.
   const measure = (page) => page.evaluate(() => {
@@ -238,15 +272,35 @@ try {
           lastStep = '[data-np-link=basics]'; await page.click('[data-np-link=basics]'); await page.waitForTimeout(400);
           const guide = await page.evaluate(() => { const t = (window.FT_SECTIONS || [])[0]?.title; return !!t && document.body.innerText.includes(t); });
           check(guide, `${tag}: BASICS did not open the first-timer guide`);
-          // The guide closes from its scrim (no Escape handler, no named close button: a finding, not this gate's).
-          await page.mouse.click(8, 80); await page.waitForTimeout(300);
-          check(await page.evaluate(() => !document.body.innerText.includes((window.FT_SECTIONS || [])[0]?.title || "\u0000")), `${tag}: the first-timer guide did not close`);
+          // The drawers: a named dialog, every control 44px, the sheet ends above the tab bar, the
+          // quick-jump actions clear the bar once scrolled to, and Escape closes it (re-verdict fixes 2 and 3).
+          const drawer = async (label, actions) => {
+            const a = await drawerAudit(page, label);
+            check(!!a, `${tag}: no dialog named "${label}"`);
+            if (!a) return;
+            const small = a.buttons.filter(b => b.h < 44 || b.w < 44);
+            check(!small.length, `${tag}: ${label}: controls under 44px: ${small.map(b => `${b.text || b.label} ${Math.round(b.w)}×${Math.round(b.h)}`).join(', ')}`);
+            check(a.buttons.some(b => /^close/i.test(b.label || '')), `${tag}: ${label}: the close control has no accessible name`);
+            check(a.bottom <= a.tabTop + .5, `${tag}: ${label}: the sheet runs ${Math.round(a.bottom - a.tabTop)}px under the tab bar`);
+            for (const t of actions) {
+              const b = (a.scrolled || a.buttons).find(b => b.text === t);
+              check(!!b && b.bottom <= a.tabTop - 8, `${tag}: ${label}: ${t} ${b ? `ends ${Math.round(b.bottom - a.tabTop)}px past the tab bar once scrolled` : 'is missing'}`);
+            }
+            await page.keyboard.press('Escape'); await page.waitForTimeout(300);
+            check(!(await drawerAudit(page, label)), `${tag}: ${label}: Escape did not close it`);
+          };
+          await drawer('The basics', ['EXPLORE MAP', 'BROWSE LINEUP']);
           lastStep = '[data-np-link=alerts]'; await page.click('[data-np-link=alerts]'); await page.waitForTimeout(400);
           check(await page.evaluate(() => [...document.querySelectorAll('.serif')].some(e => e.textContent.trim() === 'Alerts' && parseFloat(getComputedStyle(e).fontSize) >= 20)), `${tag}: ALERTS did not open the alerts drawer`);
-          lastStep = 'close alerts'; await page.click('button:has-text("CLOSE")'); await page.waitForTimeout(300);
+          lastStep = 'close alerts'; await drawer('Alerts', []);
           if (phase !== 'post') {
-            lastStep = '[data-np-link=tonight]'; await page.click('[data-np-link=tonight]'); await page.waitForTimeout(400);
+            lastStep = '[data-np-link=tonight]'; await page.click('[data-np-link=tonight]'); await page.waitForTimeout(600);
             check((await dialogs(page)).includes('Sun & weather'), `${tag}: SUN & WEATHER did not open its sheet`);
+            // Re-verdict fix 1: the sunset / sunrise / temperature values read AA on the card in this mode.
+            const inks = await sheetInks(page);
+            check(!!inks && inks.length >= 2, `${tag}: Sun & weather printed ${inks ? inks.length : 'no'} value(s) (want the sun times and the temperature)`);
+            const low = (inks || []).filter(v => v.ratio < 4.5);
+            check(!low.length, `${tag}: Sun & weather values under AA: ${low.map(v => `${v.text} ${v.fg} on ${v.bg} = ${v.ratio}:1`).join('; ')}`);
             await page.keyboard.press('Escape'); await page.waitForTimeout(200);
           }
           lastStep = '.np-tool[aria-label="Offline mode"]'; await page.click('.np-tool[aria-label="Offline mode"]'); await page.waitForTimeout(300);
@@ -309,4 +363,4 @@ if (problems.length) {
   for (const p of problems) console.error('  ✗ ' + p);
   process.exit(1);
 }
-console.log(`  ✓ night print: ${checks} checks — every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, ledger covers the roster`);
+console.log(`  ✓ night print: ${checks} checks — every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, the drawers 44px / named / above the bar / Escape, the weather values AA, ledger covers the roster`);
