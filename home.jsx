@@ -2857,7 +2857,7 @@ function NpTitle({ word, className, children }) {
 // dates), the countdown stamp, a barcode as print decoration, then the fold.
 // The rail down the right edge prints the venue when it fits its box (at 10px, then
 // 9px); when it does not (a one-line name leaves a short box) there is no rail and the
-// city prints under the dates. Never an ellipsis: a ticket does not trim its own venue.
+// venue prints under the dates. Never an ellipsis: a ticket does not trim its own venue.
 // The box follows the fitted title, so the pick re-runs on resize.
 function useRailFit(ref, venue, city) {
   const [fit, setFit] = React.useState(null);
@@ -2902,7 +2902,7 @@ function NpPoster({ countdown, stampText, fold, foldRight }) {
   const railRef = React.useRef(null);
   const city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
   const rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
-  const place = rail && !rail.text ? (city || FESTIVAL_CONFIG.locationShort) : null;
+  const place = rail && !rail.text ? (FESTIVAL_CONFIG.locationShort || city) : null;
   return (
     <section className="np-poster" data-np-poster data-np-accent={sk ? sk.acc : "none"} style={tone}>
       <div className="np-meta">
@@ -3047,7 +3047,6 @@ function NpUtility({ eyebrow, links }) {
             <span>{l.label}{l.sub && <b>{l.sub}</b>}</span><span aria-hidden="true">↗</span>
           </button>
         ))}
-        {links.length % 2 === 1 && <span className="np-link" aria-hidden="true" />}
       </div>
     </section>
   );

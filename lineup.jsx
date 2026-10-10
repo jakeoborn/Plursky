@@ -2716,7 +2716,7 @@ function ShareLineupButton({ state }) {
   return (
     <div style={{ position: "relative" }}>
       {/* Field Mode: a quiet 44pt text action; the result reads in words. */}
-      <button onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
+      <button data-share-lineup onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
         display: "flex", alignItems: "center", gap: 6,
         minHeight: 44, padding: "0 4px", borderRadius: 14,
         background: "transparent", border: "none",

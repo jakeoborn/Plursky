@@ -3792,6 +3792,7 @@ function ShareLineupButton({
       position: "relative"
     }
   }, React.createElement("button", {
+    "data-share-lineup": true,
     onClick: () => setOpen(o => !o),
     disabled: busy,
     "aria-haspopup": "menu",

@@ -4561,7 +4561,7 @@ function NpPoster({
   var railRef = React.useRef(null);
   var city = (String(FESTIVAL_CONFIG.location || "").split(" · ").pop() || "").trim() || null;
   var rail = useRailFit(railRef, FESTIVAL_CONFIG.locationShort || null, city);
-  var place = rail && !rail.text ? city || FESTIVAL_CONFIG.locationShort : null;
+  var place = rail && !rail.text ? FESTIVAL_CONFIG.locationShort || city : null;
   return React.createElement("section", {
     className: "np-poster",
     "data-np-poster": true,
@@ -4865,8 +4865,5 @@ function NpUtility({
     "aria-label": l.sub ? `${l.label}, ${l.sub}` : l.label
   }, React.createElement("span", null, l.label, l.sub && React.createElement("b", null, l.sub)), React.createElement("span", {
     "aria-hidden": "true"
-  }, "↗"))), links.length % 2 === 1 && React.createElement("span", {
-    className: "np-link",
-    "aria-hidden": "true"
-  })));
+  }, "↗")))));
 }
