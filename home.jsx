@@ -266,13 +266,14 @@ function TonightCard({ state, setState }) {
             "Weather",
             `${period.temperature}°${period.temperatureUnit}`,
             `${period.windSpeed} ${period.windDirection}`
-          ) : (
+          ) : periods == null ? (
+            /* still loading; once loaded with nothing that covers the night, the slot is simply absent */
             <div style={{ flex: 1, minWidth: 80 }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
               <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
               <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
             </div>
-          )}
+          ) : null}
         </div>
 
         {period && (
@@ -282,7 +283,7 @@ function TonightCard({ state, setState }) {
         )}
         {isPreEvent && !period && (
           <div className="np-mono" style={{ color: "var(--ink-3)", padding: "12px 0 4px" }}>
-            Forecast for {openingDateLabel() || "opening night"} lands about a week out · NWS
+            NWS forecast for {openingDateLabel() || "opening night"} lands a week out
           </div>
         )}
         {/* Hourly temperature curve: twelve hours on the night (opening night before the festival). */}

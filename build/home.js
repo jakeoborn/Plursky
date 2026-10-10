@@ -283,7 +283,7 @@ function TonightCard({
       padding: "6px 0 16px",
       borderBottom: "1px solid var(--line)"
     }
-  }, sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null), sunriseSet && card("Sunrise", fmt12(sun.rise), sunriseArtistId ? `${sunriseArtistId.name} · ${(STAGES || []).find(s => s.id === (FESTIVAL_CONFIG.mainStageId || "kinetic"))?.name || "main stage"}` : `in ${sunriseSet}`), period ? card("Weather", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`) : React.createElement("div", {
+  }, sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null), sunriseSet && card("Sunrise", fmt12(sun.rise), sunriseArtistId ? `${sunriseArtistId.name} · ${(STAGES || []).find(s => s.id === (FESTIVAL_CONFIG.mainStageId || "kinetic"))?.name || "main stage"}` : `in ${sunriseSet}`), period ? card("Weather", `${period.temperature}°${period.temperatureUnit}`, `${period.windSpeed} ${period.windDirection}`) : periods == null ? React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 80
@@ -308,7 +308,7 @@ function TonightCard({
       width: "50%",
       height: 8
     }
-  }))), period && React.createElement("div", {
+  })) : null), period && React.createElement("div", {
     className: "np-mono",
     style: {
       color: "var(--ink-3)",
@@ -320,7 +320,7 @@ function TonightCard({
       color: "var(--ink-3)",
       padding: "12px 0 4px"
     }
-  }, "Forecast for ", openingDateLabel() || "opening night", " lands about a week out · NWS"), hourlyShown?.length > 0 && (() => {
+  }, "NWS forecast for ", openingDateLabel() || "opening night", " lands a week out"), hourlyShown?.length > 0 && (() => {
     var next12 = hourlyShown.slice(0, 12);
     var temps = next12.map(h => h.temperature);
     var min = Math.min(...temps),
