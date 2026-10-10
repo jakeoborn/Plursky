@@ -66,8 +66,12 @@ try {
       const file = join(out, `${key}-${pick}-${width}.png`);
       // The scroller is the page: capture it tall so the whole sheet shows.
       const h = await page.evaluate(() => { const el = document.querySelector('[data-night-print]') || [...document.querySelectorAll('#root *')].find(e => /auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight); return el ? el.scrollHeight : document.body.scrollHeight; });
-      await page.setViewportSize({ width, height: Math.min(Math.max(852, h + 90), 6000) });
+      // The frame is the sheet plus the bar, exactly: slack under the sheet would read as a tail.
+      const bar = await page.evaluate(() => Math.round(document.querySelector('button[aria-current="page"]')?.parentElement?.getBoundingClientRect().height || 0));
+      await page.setViewportSize({ width, height: Math.min(Math.max(852, h + bar), 6000) });
       await page.waitForTimeout(400);
+      const h2 = await page.evaluate(() => { const el = document.querySelector('[data-night-print]'); return el ? el.scrollHeight : 0; });
+      if (h2 && h2 !== h) { await page.setViewportSize({ width, height: Math.min(Math.max(852, h2 + bar), 6000) }); await page.waitForTimeout(300); }
       await page.screenshot({ path: file, fullPage: false });
       console.log(`${key} ${pick} ${width}: ${file} (${h}px)${errors.length ? ' PAGE ERRORS: ' + errors.join(' | ') : ''}  — ${note}`);
       // The sheets, on the first fixture only: Basics, Alerts, Sun & weather, each settled

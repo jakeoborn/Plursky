@@ -165,19 +165,17 @@ function pickRelevantPeriod(periods) {
 // (focused on tonight).
 // The night the sun times are for: the sheet's eyebrow. The forecast block says whose
 // forecast it is (the site's, now), so a 14-day countdown never sits under "tonight".
+function openingDateLabel() {
+  const d = FESTIVAL_CONFIG.dayDates?.[1];
+  if (!d) return null;
+  try { return new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); } catch { return null; }
+}
 function tonightEyebrow() {
-  const now = Date.now();
-  if (now < FESTIVAL_START_MS) {
-    const d = FESTIVAL_CONFIG.dayDates?.[1];
-    let when = null;
-    if (d) { try { when = new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }); } catch {} }
-    return `Opening night${when ? ` · ${when}` : ""}`;
-  }
+  if (Date.now() < FESTIVAL_START_MS) { const when = openingDateLabel(); return `Opening night${when ? ` · ${when}` : ""}`; }
   return `Tonight · Day ${NOW.day}`;
 }
 function TonightCard({ state, setState }) {
   const { periods, fromCache, fetchedAt } = useNwsForecast();
-  const period = pickRelevantPeriod(periods);
   const hourly = useHourlyForecast();
   const cacheAgeLabel = (() => {
     if (!fromCache || !fetchedAt) return null;
@@ -190,6 +188,13 @@ function TonightCard({ state, setState }) {
   const sun = sunTimes[day] || sunTimes[1] || { rise: "07:00", set: "19:00" };
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
+  // Before the festival only a forecast that covers opening night counts: today's forecast
+  // at the site is not "opening night". NWS posts about a week out, so until then the sheet
+  // says when the forecast lands instead of printing a curve for the wrong day.
+  const openingMs = festivalNightDate(1, (sunTimes[1] || sun).set).getTime();
+  const covers = (p) => p && new Date(p.startTime).getTime() <= openingMs && new Date(p.endTime).getTime() > openingMs;
+  const period = isPreEvent ? ((periods || []).find(covers) || null) : pickRelevantPeriod(periods);
+  const hourlyShown = isPreEvent ? (hourly || []).filter(x => { const t = new Date(x.startTime).getTime(); return t >= openingMs - 3 * 3600000 && t < openingMs + 9 * 3600000; }) : hourly;
 
   // Next sunrise & sunset to display
   const sunsetMs = festivalNightDate(day, sun.set).getTime();
@@ -241,7 +246,7 @@ function TonightCard({ state, setState }) {
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
       <div className="np-mono" style={{ color: "var(--ink-3)" }}>{label}</div>
-      <div style={{ font: "700 clamp(17px, 5.6vw, 22px)/1 var(--f-data)", letterSpacing: "-0.01em", color: accent || "var(--ink)", marginTop: 6, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{value}</div>
+      <div style={{ font: "700 clamp(16px, 5.4vw, 22px)/1 var(--f-data)", letterSpacing: "-0.01em", color: accent || "var(--ink)", marginTop: 6, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>{value}</div>
       {sub && <div className="np-mono" style={{ color: "var(--ink-3)", marginTop: 6 }}>{sub}</div>}
     </div>
   );
@@ -250,7 +255,7 @@ function TonightCard({ state, setState }) {
   return (
     <div style={{ marginTop: 2 }}>
       <div>
-        <div style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "6px 0 16px", borderBottom: "1px solid var(--line)" }}>
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start", padding: "6px 0 16px", borderBottom: "1px solid var(--line)" }}>
           {sunsetSet && card("Sunset", fmt12(sun.set), sunsetSet ? `in ${sunsetSet}` : null)}
           {sunriseSet && card(
             "Sunrise",
@@ -275,9 +280,14 @@ function TonightCard({ state, setState }) {
             NWS · {period.name}{cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""}
           </div>
         )}
-        {/* Hourly temperature curve: the next 12 hours from now at the site. */}
-        {hourly?.length > 0 && (() => {
-          const next12 = hourly.slice(0, 12);
+        {isPreEvent && !period && (
+          <div className="np-mono" style={{ color: "var(--ink-3)", padding: "12px 0 4px" }}>
+            Forecast for {openingDateLabel() || "opening night"} lands about a week out · NWS
+          </div>
+        )}
+        {/* Hourly temperature curve: twelve hours on the night (opening night before the festival). */}
+        {hourlyShown?.length > 0 && (() => {
+          const next12 = hourlyShown.slice(0, 12);
           const temps = next12.map(h => h.temperature);
           const min = Math.min(...temps), max = Math.max(...temps);
           const range = max - min || 1;
@@ -288,12 +298,12 @@ function TonightCard({ state, setState }) {
             return `${x},${y}`;
           }).join(" ");
           const firstHour = new Date(next12[0].startTime).getHours();
-          const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
+          const fmtH = (h) => h === 0 ? "12 AM" : h < 12 ? `${h} AM` : h === 12 ? "12 PM" : `${h - 12} PM`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
             <div style={{ padding: "14px 0 4px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, marginBottom: 8 }}>
-                <span className="np-mono" style={{ color: "var(--ink-3)" }}>Next 12h{isPreEvent ? " at the site" : ""}</span>
+                <span className="np-mono" style={{ color: "var(--ink-3)" }}>{isPreEvent ? "Opening night, by the hour" : "Next 12h"}</span>
                 <span className="np-mono" style={{ color: "var(--ink-3)", whiteSpace: "nowrap" }}>{min}° → {max}°</span>
               </div>
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
@@ -802,7 +812,7 @@ function PostFestivalRecap({ state, setState }) {
                     <DuoAvatar name={a.name} size={40} />
                     <span style={{ flex: 1, minWidth: 0 }}>
                       <span className="duo-headline duo-name" style={{ display: "block" }}>{actDisplayName(a.name)}</span>
-                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span></span>
+                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{fmt12(a.start)}–{fmt12(a.end)}</span></span></span>
                     </span>
                   </button>
                 );
@@ -2052,7 +2062,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
             <DuoAvatar name={set.name} size={52} ring="on" />
             <span style={{ minWidth: 0, paddingTop: 3 }}>
               <span className="duo-name" style={{ display: "block", fontWeight: 700, fontSize: 18, lineHeight: 1.222, fontFamily: "var(--f-ui)" }}>{actDisplayName(set.name)}</span>
-              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span>
+              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span></span>
             </span>
           </span>
           {live && (
@@ -2622,7 +2632,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
                 {s.items.map((it, k) => (
                   <li key={k} style={{ position: "relative", marginTop: 8, fontSize: 13, lineHeight: 1.4, color: "var(--ink)" }}>
                     <span aria-hidden="true" style={{ position: "absolute", left: -14, top: 7, width: 5, height: 5, borderRadius: 5, background: "var(--acc)" }}/>
-                    {it}
+                    {it.replace(/(\d)\s(AM|PM)\b/g, "$1\u00a0$2")}
                   </li>
                 ))}
               </ul>
@@ -2845,15 +2855,15 @@ function NpTitle({ word, className, children }) {
 // Before the festival: the full poster. Identity (real name, location,
 // dates), the countdown stamp, a barcode as print decoration, then the fold.
 // The rail down the right edge prints the venue when it fits its box (at 10px, then
-// 9px), else the city; when neither fits (a one-line name leaves a short box) there is
-// no rail and the city prints under the dates. Never an ellipsis: a ticket does not
-// trim its own venue. The box follows the fitted title, so the pick re-runs on resize.
+// 9px); when it does not (a one-line name leaves a short box) there is no rail and the
+// city prints under the dates. Never an ellipsis: a ticket does not trim its own venue.
+// The box follows the fitted title, so the pick re-runs on resize.
 function useRailFit(ref, venue, city) {
   const [fit, setFit] = React.useState(null);
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el) return undefined;
     const run = () => {
-      const tries = [[venue, 10], [venue, 9], [city, 10], [city, 9]].filter(t => t[0]);
+      const tries = [[venue, 10], [venue, 9]].filter(t => t[0]);
       let pick = null;
       for (const [text, size] of tries) {
         el.textContent = text; el.style.fontSize = size + "px";
@@ -2961,9 +2971,10 @@ function NpClaim({ eyebrow, title, body, action, onAction }) {
 // five and a path to all of them. Full name, day, stage, time; a tap opens
 // the act. Shares through the existing lineup share.
 function NpSaved({ rows, state, setState, onAll }) {
-  const SHOW = 5;
   const days = new Set(rows.map(a => a.day).filter(d => d != null));
   const n = rows.length;
+  // All of them up to six; from seven, four and the link. One row behind a link is worse than the row.
+  const SHOW = n <= 6 ? n : 4;
   return (
     <section className="np-block" data-np-saved data-today-saved>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, minHeight: 44, marginBottom: 6 }}>
@@ -3035,6 +3046,7 @@ function NpUtility({ eyebrow, links }) {
             <span>{l.label}{l.sub && <b>{l.sub}</b>}</span><span aria-hidden="true">↗</span>
           </button>
         ))}
+        {links.length % 2 === 1 && <span className="np-link" aria-hidden="true" />}
       </div>
     </section>
   );

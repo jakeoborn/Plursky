@@ -118,7 +118,7 @@ try {
       });
       check(r.cols >= 2 && !r.essOver, `${tag}: essentials are ${r.cols} column(s)${r.essOver ? ', and overflow' : ''}`);
       check(!r.pans.length, `${tag}: something on Today scrolls sideways: ${JSON.stringify(r.pans).slice(0, 160)}`);
-      check(r.rows === 5 && r.more, `${tag}: saved sets show ${r.rows} rows${r.more ? '' : ' and no "All N saved sets"'} (want 5 of 7 and the link)`);
+      check(r.rows === 4 && r.more, `${tag}: saved sets show ${r.rows} rows${r.more ? '' : ' and no "All N saved sets"'} (want 4 of 7 and the link; six or fewer print whole)`);
       check(!r.cut.length, `${tag}: a saved set's name is cut: ${JSON.stringify(r.cut)}`);
       check(!r.overflowX, `${tag}: Today scrolls sideways`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }

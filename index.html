@@ -386,6 +386,10 @@
     background:var(--np-paper);color:var(--np-ink)}
   .np-cut>b,.np-util>.np-mono{color:var(--np-band-acc)}
   .np .duo-link{font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
+  /* stage and time as two tokens with a gap, so no separator ever ends a line */
+  .np-pair{display:flex;flex-wrap:wrap;gap:0 10px}
+  /* the neutral sheet draws its perforation in ink (cream in Dark), or it vanishes on paper */
+  .np-poster[data-np-accent="none"] .np-cut{border-top-color:var(--np-ink)}
   :root[data-mode="dark"] .np{--np-band-acc:var(--np-acc2-on-cream,var(--np-black));--np-paper:var(--np-black);--np-ink:var(--np-cream);--np-ink-2:#C9C4B6;--np-ink-3:#B1AC9F;
     --np-line:rgba(238,233,217,.22);--np-line-2:rgba(238,233,217,.38);--np-well:rgba(238,233,217,.07);
     --acc-08:rgba(238,233,217,.05);--acc-14:rgba(238,233,217,.09);--acc-30:rgba(238,233,217,.22);--acc-55:rgba(238,233,217,.42);--acc-wash:#2E2B2A;--scrim:rgba(0,0,0,.65);--signal-rgb:238,233,217;
@@ -415,7 +419,7 @@
   /* The location runs down the right edge beside the title only (its box
      is the title's margins plus the word), so it can never reach the stamp. */
   .np-titlebox{position:relative;padding:40px 0 24px}
-  .np-rot{position:absolute;right:-10px;top:0;bottom:24px;writing-mode:vertical-rl;overflow:hidden;white-space:nowrap;pointer-events:none}
+  .np-rot{position:absolute;right:-10px;top:40px;bottom:24px;writing-mode:vertical-rl;overflow:hidden;white-space:nowrap;pointer-events:none}
   .np-title{display:block;width:100%;min-height:44px;padding:0;margin:0;background:none;border:0;color:inherit;text-align:left;cursor:default;font:inherit}
   .np-title[data-switch]{cursor:pointer}
   .np-title>.np-word{padding-right:30px}
@@ -457,7 +461,6 @@
   .np-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:4px 16px;margin-top:12px}
   .np-link{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:0;background:none;border:0;border-bottom:1px solid rgba(238,233,217,.25);color:inherit;text-align:left;cursor:pointer;font:500 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase}
   :root[data-mode="dark"] .np-link{border-bottom-color:rgba(26,23,26,.3)}
-  @media (max-width:599px){.np-links>.np-link:nth-child(odd):last-child{grid-column:1/-1}}
   .np-link b{font-weight:500;opacity:.78;margin-left:6px}
   .np-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 8px 6px 18px;min-height:52px}
   .np-tools{display:flex;align-items:center;flex:none}

@@ -167,20 +167,22 @@ function pickRelevantPeriod(periods) {
   if (future.length) return future[0];
   return periods[0];
 }
+function openingDateLabel() {
+  var d = FESTIVAL_CONFIG.dayDates?.[1];
+  if (!d) return null;
+  try {
+    return new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC"
+    });
+  } catch {
+    return null;
+  }
+}
 function tonightEyebrow() {
-  var now = Date.now();
-  if (now < FESTIVAL_START_MS) {
-    var d = FESTIVAL_CONFIG.dayDates?.[1];
-    var when = null;
-    if (d) {
-      try {
-        when = new Date(Date.UTC(d.y, d.m, d.d)).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          timeZone: "UTC"
-        });
-      } catch {}
-    }
+  if (Date.now() < FESTIVAL_START_MS) {
+    var when = openingDateLabel();
     return `Opening night${when ? ` · ${when}` : ""}`;
   }
   return `Tonight · Day ${NOW.day}`;
@@ -194,7 +196,6 @@ function TonightCard({
     fromCache,
     fetchedAt
   } = useNwsForecast();
-  var period = pickRelevantPeriod(periods);
   var hourly = useHourlyForecast();
   var cacheAgeLabel = (() => {
     if (!fromCache || !fetchedAt) return null;
@@ -210,6 +211,13 @@ function TonightCard({
   };
   var now = Date.now();
   var isPreEvent = now < FESTIVAL_START_MS;
+  var openingMs = festivalNightDate(1, (sunTimes[1] || sun).set).getTime();
+  var covers = p => p && new Date(p.startTime).getTime() <= openingMs && new Date(p.endTime).getTime() > openingMs;
+  var period = isPreEvent ? (periods || []).find(covers) || null : pickRelevantPeriod(periods);
+  var hourlyShown = isPreEvent ? (hourly || []).filter(x => {
+    var t = new Date(x.startTime).getTime();
+    return t >= openingMs - 3 * 3600000 && t < openingMs + 9 * 3600000;
+  }) : hourly;
   var sunsetMs = festivalNightDate(day, sun.set).getTime();
   var sunriseMs = festivalNightDate(day, sun.rise).getTime();
   var nextSun = sunTimes[day + 1] || sun;
@@ -249,7 +257,7 @@ function TonightCard({
     }
   }, label), React.createElement("div", {
     style: {
-      font: "700 clamp(17px, 5.6vw, 22px)/1 var(--f-data)",
+      font: "700 clamp(16px, 5.4vw, 22px)/1 var(--f-data)",
       letterSpacing: "-0.01em",
       color: accent || "var(--ink)",
       marginTop: 6,
@@ -270,7 +278,7 @@ function TonightCard({
   }, React.createElement("div", null, React.createElement("div", {
     style: {
       display: "flex",
-      gap: 12,
+      gap: 16,
       alignItems: "flex-start",
       padding: "6px 0 16px",
       borderBottom: "1px solid var(--line)"
@@ -306,8 +314,14 @@ function TonightCard({
       color: "var(--ink-3)",
       padding: "12px 0 0"
     }
-  }, "NWS · ", period.name, cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""), hourly?.length > 0 && (() => {
-    var next12 = hourly.slice(0, 12);
+  }, "NWS · ", period.name, cacheAgeLabel ? ` · cached ${cacheAgeLabel}` : ""), isPreEvent && !period && React.createElement("div", {
+    className: "np-mono",
+    style: {
+      color: "var(--ink-3)",
+      padding: "12px 0 4px"
+    }
+  }, "Forecast for ", openingDateLabel() || "opening night", " lands about a week out · NWS"), hourlyShown?.length > 0 && (() => {
+    var next12 = hourlyShown.slice(0, 12);
     var temps = next12.map(h => h.temperature);
     var min = Math.min(...temps),
       max = Math.max(...temps);
@@ -320,7 +334,7 @@ function TonightCard({
       return `${x},${y}`;
     }).join(" ");
     var firstHour = new Date(next12[0].startTime).getHours();
-    var fmtH = h => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
+    var fmtH = h => h === 0 ? "12 AM" : h < 12 ? `${h} AM` : h === 12 ? "12 PM" : `${h - 12} PM`;
     var lastHour = new Date(next12[next12.length - 1].startTime).getHours();
     return React.createElement("div", {
       style: {
@@ -339,7 +353,7 @@ function TonightCard({
       style: {
         color: "var(--ink-3)"
       }
-    }, "Next 12h", isPreEvent ? " at the site" : ""), React.createElement("span", {
+    }, isPreEvent ? "Opening night, by the hour" : "Next 12h"), React.createElement("span", {
       className: "np-mono",
       style: {
         color: "var(--ink-3)",
@@ -962,11 +976,9 @@ function PostFestivalRecap({
         display: "block",
         marginTop: 3
       }
-    }, stage.name.toUpperCase(), " · ", React.createElement("span", {
-      style: {
-        whiteSpace: "nowrap"
-      }
-    }, fmt12(a.start), "–", fmt12(a.end)))));
+    }, React.createElement("span", {
+      className: "np-pair"
+    }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, fmt12(a.start), "–", fmt12(a.end))))));
   })))), savedIds.length === 0 && React.createElement("div", {
     className: "duo-card",
     style: {
@@ -3020,11 +3032,9 @@ function DuoPlanCard({
       display: "block",
       marginTop: 4
     }
-  }, stage.name.toUpperCase(), " · ", React.createElement("span", {
-    style: {
-      whiteSpace: "nowrap"
-    }
-  }, live ? `TO ${duoClock(set.end)}` : duoClock(set.start))))), live && React.createElement("span", {
+  }, React.createElement("span", {
+    className: "np-pair"
+  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(set.end)}` : duoClock(set.start)))))), live && React.createElement("span", {
     className: "duo-wide",
     style: {
       textAlign: "right",
@@ -4100,7 +4110,7 @@ function FirstTimerGuide({
         borderRadius: 5,
         background: "var(--acc)"
       }
-    }), it))));
+    }), it.replace(/(\d)\s(AM|PM)\b/g, "$1\u00a0$2")))));
   }));
 }
 function _buildShareUrl(savedIds) {
@@ -4482,7 +4492,7 @@ function useRailFit(ref, venue, city) {
     var el = ref.current;
     if (!el) return undefined;
     var run = () => {
-      var tries = [[venue, 10], [venue, 9], [city, 10], [city, 9]].filter(t => t[0]);
+      var tries = [[venue, 10], [venue, 9]].filter(t => t[0]);
       var pick = null;
       for (var [text, size] of tries) {
         el.textContent = text;
@@ -4701,9 +4711,9 @@ function NpSaved({
   setState,
   onAll
 }) {
-  var SHOW = 5;
   var days = new Set(rows.map(a => a.day).filter(d => d != null));
   var n = rows.length;
+  var SHOW = n <= 6 ? n : 4;
   return React.createElement("section", {
     className: "np-block",
     "data-np-saved": true,
@@ -4855,5 +4865,8 @@ function NpUtility({
     "aria-label": l.sub ? `${l.label}, ${l.sub}` : l.label
   }, React.createElement("span", null, l.label, l.sub && React.createElement("b", null, l.sub)), React.createElement("span", {
     "aria-hidden": "true"
-  }, "↗")))));
+  }, "↗"))), links.length % 2 === 1 && React.createElement("span", {
+    className: "np-link",
+    "aria-hidden": "true"
+  })));
 }
