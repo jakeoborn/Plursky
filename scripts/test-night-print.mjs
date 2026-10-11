@@ -24,10 +24,12 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { serverReady } from './lib/server-ready.mjs';
+import { fontEvidence, faceEvidence } from './lib/print-evidence.mjs';
 import { existsSync } from 'node:fs';
 
 const ONLY = process.argv.slice(2);
 const problems = []; let checks = 0;
+let fontSamples = 0, portraits = 0, pairsSeen = 0; const initialsFaces = new Set();
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once('error', rej); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
 
@@ -44,7 +46,8 @@ const FIXTURES = [
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
 
 const PORT = await reservePort();
-const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.cwd(), stdio: 'ignore' });
+// NP_ROOT=dist audits the production app target (webDir=dist) instead of the source page.
+const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.env.NP_ROOT || process.cwd(), stdio: 'ignore' });
 let browser;
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
@@ -188,7 +191,7 @@ try {
       }
     }
     const word = np.querySelector('.np-word, .np-strip-word');
-    const steps = [...np.querySelectorAll('[data-np-step]')].map(b => ({ id: b.dataset.npStep, text: [...b.querySelectorAll('h3 > span, p')].map(e => e.textContent.trim()).join(' '), r: b.getBoundingClientRect() }));
+    const steps = [...np.querySelectorAll('[data-np-step]')].map(b => ({ id: b.dataset.npStep, aria: b.getAttribute('aria-label') || '', text: [...b.querySelectorAll('h3 > span, p')].map(e => e.textContent.trim()).join(' '), r: b.getBoundingClientRect() }));
     const links = [...np.querySelectorAll('[data-np-link]')].map(b => b.dataset.npLink);
     const poster = np.querySelector('[data-np-poster], [data-np-strip]');
     const toRgb = (hex) => { const n = parseInt(hex.slice(1), 16); return `rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})`; };
@@ -210,6 +213,30 @@ try {
   const h1s = (page) => page.evaluate(() => [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.replace(/\s+/g, ' ').trim()));
   const tab = (page) => page.evaluate(() => (document.querySelector('[aria-current=page]')?.innerText || '').trim());
   const dialogs = (page) => page.evaluate(() => [...document.querySelectorAll('[role=dialog]')].map(d => d.getAttribute('aria-label') || ''));
+  // The stage board as printed: its rows, its heading, its toggle.
+  const boardState = (page) => page.evaluate(() => {
+    const b = document.querySelector('[data-duo-stages]'); if (!b) return null;
+    const t = b.querySelector('[data-duo-stages-toggle]');
+    return { rows: b.querySelectorAll('.duo-card > div.duo-hair').length, heading: (b.querySelector('.duo-sect')?.textContent || '').trim(),
+      toggle: t ? t.textContent.trim() : null, expanded: t ? t.getAttribute('aria-expanded') : null };
+  });
+  // cycles × (expand, collapse): the rows come back every time and the heading states shown / total
+  // while folded (the fold is keyed by stage id, so a re-render or a saved-set change cannot empty it).
+  const foldAudit = async (page, cycles) => {
+    const bad = []; const s0 = await boardState(page);
+    if (!s0) return { bad: ['no stage board on a live fixture'] };
+    if (!s0.toggle) return { bad: [], total: s0.rows };
+    const total = parseInt((s0.toggle.match(/^All (\d+) stages$/) || [])[1], 10);
+    if (!total) return { bad: [`the toggle reads "${s0.toggle}" at the start`] };
+    const folded = (s, step) => { if (!(s.rows >= 3 && s.rows < total && s.heading === `${s.rows} of ${total} stages` && s.toggle === `All ${total} stages` && s.expanded === 'false')) bad.push(`${step}: folded shows ${s.rows} rows, heading "${s.heading}", toggle "${s.toggle}"`); };
+    const open = (s, step) => { if (!(s.rows === total && s.heading === 'Every stage' && s.toggle === 'Fewer stages' && s.expanded === 'true')) bad.push(`${step}: open shows ${s.rows} of ${total} rows, heading "${s.heading}", toggle "${s.toggle}"`); };
+    folded(s0, 'start');
+    for (let c = 1; c <= cycles; c++) {
+      await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150); open(await boardState(page), `cycle ${c} expand`);
+      await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150); folded(await boardState(page), `cycle ${c} collapse`);
+    }
+    return { bad, total };
+  };
 
   for (const [key, fid, at, saved, extra, widths, essentials, phase] of FIXTURES) {
     for (const pick of ['dark', 'light']) for (const width of widths) {
@@ -228,8 +255,30 @@ try {
         check(!r.covered.length, `${tag}: the stamp covers: ${r.covered.join(', ')}`);
         check(!r.broken.length, `${tag}: ${r.broken.slice(0, 4).join('; ')}`);
         check(r.steps.length === 4 && r.steps.map(s => s.id).join(',') === 'people,night,playlist,gallery', `${tag}: journey steps are ${r.steps.map(s => s.id).join(',')}`);
-        check(r.steps[2]?.text.includes('Build Your Playlist.') && r.steps[3]?.text.includes('Create Your Gallery.') && r.steps[0]?.text.includes('Pick your people.') && r.steps[1]?.text.includes('Follow your night.'),
+        check(r.steps[2]?.text.includes('Build your playlist.') && r.steps[3]?.text.includes('Create your gallery.') && r.steps[0]?.text.includes('Pick your people.') && r.steps[1]?.text.includes('Follow your night.'),
           `${tag}: journey phrases: ${r.steps.map(s => s.text.slice(0, 30)).join(' | ')}`);
+        check(/^Pick your people/.test(r.steps[0]?.aria || '') && /^Follow your night/.test(r.steps[1]?.aria || '') && /^Build your playlist/.test(r.steps[2]?.aria || '') && /^Create your gallery/.test(r.steps[3]?.aria || ''),
+          `${tag}: accessible step names: ${r.steps.map(s => s.aria.slice(0, 30)).join(' | ')}`);
+        // The selected faces render: Anton on the display words, Space Grotesk on everything else, read
+        // from the platform font Chrome rasterised each sample with (a computed stack would hide a fallback).
+        const fe = await fontEvidence(page);
+        check(fe.loaded.anton && fe.loaded.grotesk, `${tag}: selected faces not loaded: ${JSON.stringify(fe.loaded)}`);
+        const wrongFace = fe.samples.filter(s => !s.absent && !s.ok);
+        check(!wrongFace.length, `${tag}: rendered with the wrong face: ${wrongFace.map(s => `${s.sel.split(',')[0]} "${s.text}" → ${s.rendered || 'none'} (want ${s.want})`).join('; ').slice(0, 300)}`);
+        check(fe.samples.filter(s => !s.absent && s.want === 'Anton').length >= 1 && fe.samples.filter(s => !s.absent && s.want === 'Space Grotesk').length >= 2,
+          `${tag}: font samples absent: ${fe.samples.filter(s => s.absent).map(s => s.sel.split(',')[0]).join(', ')}`);
+        fontSamples += fe.samples.filter(s => !s.absent).length;
+        // Faces: an act with a reviewed ledger row prints that portrait (loaded, from the ledger asset); one
+        // without prints initials, never an invented image. Pairs: two whole faces and the whole name.
+        const ev = await faceEvidence(page);
+        const badFace = ev.faces.filter(f => f.ledger ? !(f.loaded && f.source === 'commons' && f.src && f.src.endsWith(f.ledger.asset.replace(/^\.\//, ''))) : f.source !== 'initials');
+        check(!badFace.length, `${tag}: faces: ${badFace.map(f => `${f.name}: ${f.ledger ? (f.loaded ? 'src ' + f.src : 'ledger row but no loaded portrait') : 'no ledger row but ' + f.source}`).join('; ').slice(0, 300)}`);
+        const badPair = ev.pairs.filter(p => !p.a || !p.b || p.overlap > 0 || p.offscreen || p.nameClipped || !/ b\db | with /i.test(p.nameText || ''));
+        check(!badPair.length, `${tag}: pairs: ${badPair.map(p => `${p.name}: ${!p.a || !p.b ? 'a face is missing' : p.overlap > 0 ? `faces overlap (${Math.round(p.overlap)}px²)` : p.offscreen ? 'off screen' : p.nameClipped ? 'name clipped' : `name reads "${p.nameText}"`}`).join('; ').slice(0, 300)}`);
+        portraits += ev.faces.filter(f => f.loaded).length; pairsSeen += ev.pairs.length;
+        for (const f of ev.faces) if (!f.loaded) initialsFaces.add(f.name);
+        // The stage board's fold, cycled three times on every live print.
+        if (phase === 'live') { const fold = await foldAudit(page, 3); check(!fold.bad.length, `${tag}: stage board fold: ${fold.bad.join('; ').slice(0, 300)}`); }
         check(r.links.join(',') === essentials.join(','), `${tag}: essentials are ${r.links.join(',')} (want ${essentials.join(',')})`);
         check(r.tilt && r.tilt !== 'none', `${tag}: Step 3's plate is not tilted (${r.tilt})`);
         check(r.journeyBox === 'hidden', `${tag}: the journey does not clip its overhang (${r.journeyBox})`);
@@ -244,10 +293,10 @@ try {
         // Routing, once per fixture (390 light): every step, the first-set action, the essentials, the tools.
         if (pick === 'light' && width === 390) {
           lastStep = '[data-np-step=playlist]'; await page.click('[data-np-step=playlist]'); await page.waitForTimeout(400);
-          check((await h1s(page)).includes('Music'), `${tag}: Build Your Playlist did not open Music: ${JSON.stringify(await h1s(page))}`);
+          check((await h1s(page)).includes('Music'), `${tag}: Build your playlist did not open Music: ${JSON.stringify(await h1s(page))}`);
           await tabTo(page);
           lastStep = '[data-np-step=gallery]'; await page.click('[data-np-step=gallery]'); await page.waitForTimeout(400);
-          check((await h1s(page)).includes('Memories'), `${tag}: Create Your Gallery did not open Memories: ${JSON.stringify(await h1s(page))}`);
+          check((await h1s(page)).includes('Memories'), `${tag}: Create your gallery did not open Memories: ${JSON.stringify(await h1s(page))}`);
           await tabTo(page);
           lastStep = '[data-np-step=people]'; await page.click('[data-np-step=people]'); await page.waitForTimeout(400);
           check((await tab(page)) === 'Lineup', `${tag}: Pick your people did not open the Lineup (tab "${await tab(page)}")`);
@@ -260,6 +309,17 @@ try {
             await page.keyboard.press('Escape'); await page.waitForTimeout(200);
           }
           if (phase === 'post') { await tabTo(page); }
+          if (phase === 'live') {
+            // Change the saved sets in the app (save the first unsaved act in the Lineup), come back: the board still cycles.
+            lastStep = 'lineup save'; await page.click('[data-np-step=people]'); await page.waitForTimeout(500);
+            const saveBtn = await page.$('button[aria-label^="Save "]');
+            check(!!saveBtn, `${tag}: no Save control in the Lineup to change the saved sets with`);
+            if (saveBtn) {
+              const who = await saveBtn.getAttribute('aria-label'); await saveBtn.click(); await page.waitForTimeout(300); await tabTo(page);
+              const fold2 = await foldAudit(page, 3);
+              check(!fold2.bad.length, `${tag}: stage board after "${who}": ${fold2.bad.join('; ').slice(0, 300)}`);
+            }
+          }
           if (await page.$('[data-np-claim] .np-act')) {
             lastStep = '[data-np-claim] .np-act'; await page.click('[data-np-claim] .np-act'); await page.waitForTimeout(400);
             check((await tab(page)) === 'Lineup', `${tag}: the first-set action did not open the Lineup`);
@@ -352,6 +412,7 @@ try {
     check(!bad.length, `ledger: ${bad.length} edition(s) without a sourced, dated print row: ${bad.map(b => b.id).join(', ')}`);
     check(!led.missingFromSets.length, `ledger: data sets not in the registry: ${led.missingFromSets.join(', ')}`);
     const gaps = led.rows.filter(r => r.ok && r.hex === null).map(r => r.id);
+    console.log(`  evidence: ${fontSamples} font samples rendered with the selected faces; ${portraits} portrait prints from the ledger; ${pairsSeen} b2b pairs whole; initials on ${initialsFaces.size} act(s): ${[...initialsFaces].join(', ') || 'none'}`);
     console.log(`  ledger: ${led.rows.length} editions, ${led.rows.filter(r => r.hex).length} with a first-party accent, ${gaps.length} neutral (${gaps.join(', ') || 'none'})`);
     await ctx.close();
   }
@@ -368,4 +429,4 @@ if (problems.length) {
   for (const p of problems) console.error('  ✗ ' + p);
   process.exit(1);
 }
-console.log(`  ✓ night print: ${checks} checks — every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, the drawers 44px / named / above the bar / Escape, the weather values AA, ledger covers the roster`);
+console.log(`  ✓ night print: ${checks} checks — every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, the drawers 44px / named / above the bar / Escape, the weather values AA, the selected faces rendered (platform fonts), portraits from the ledger, b2b pairs whole, the fold cycled, ledger covers the roster`);

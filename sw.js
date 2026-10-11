@@ -22,6 +22,11 @@ const LOCAL = [
   './fonts/michroma-latin-ext.woff2',
   './fonts/martian-mono-latin.woff2',
   './fonts/martian-mono-latin-ext.woff2',
+  // The print's faces (Today): Anton for display, Space Grotesk as the companion.
+  './fonts/anton-latin.woff2',
+  './fonts/anton-latin-ext.woff2',
+  './fonts/space-grotesk-latin.woff2',
+  './fonts/space-grotesk-latin-ext.woff2',
   // Wave-1 festival data modules. Must be cached alongside data.jsx and must
   // load before it — index.html enforces the order; this list only has to make
   // sure they are all present offline. A missing one drops that festival from

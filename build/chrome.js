@@ -876,16 +876,22 @@ function DuoFace({
   name,
   size,
   ring = "",
-  style
+  style,
+  className = ""
 }) {
   var photo = useArtistPhoto(name);
+  var rec = getArtistImage(name);
   return React.createElement("span", {
-    className: `duo-av ${ring}`,
+    className: `duo-av ${ring} ${className}`.trim(),
     "aria-hidden": "true",
+    "data-face": name,
+    "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
-      width: size,
-      height: size,
-      fontSize: Math.round(size * 0.32),
+      ...(size ? {
+        width: size,
+        height: size,
+        fontSize: Math.round(size * 0.32)
+      } : {}),
       ...style
     }
   }, photo ? React.createElement("img", {
@@ -904,30 +910,21 @@ function DuoAvatar({
     size: size,
     ring: ring
   });
-  var d = Math.round(size * 0.66);
   return React.createElement("span", {
     className: "duo-avp",
     "aria-hidden": "true",
+    "data-pair": name,
     style: {
-      width: size,
-      height: size
+      "--av": size + "px"
     }
   }, React.createElement(DuoFace, {
     name: ms[0],
-    size: d,
     ring: ring,
-    style: {
-      left: 0,
-      top: 0
-    }
+    className: "duo-avp-a"
   }), React.createElement(DuoFace, {
     name: ms[1],
-    size: d,
     ring: ring,
-    style: {
-      right: 0,
-      bottom: 0
-    }
+    className: "duo-avp-b"
   }));
 }
 function DuoLive({

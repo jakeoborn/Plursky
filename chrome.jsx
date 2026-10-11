@@ -695,23 +695,26 @@ function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
-function DuoFace({ name, size, ring = "", style }) {
+function DuoFace({ name, size, ring = "", style, className = "" }) {
   const photo = useArtistPhoto(name);
+  const rec = getArtistImage(name);
   return (
-    <span className={`duo-av ${ring}`} aria-hidden="true"
-      style={{ width: size, height: size, fontSize: Math.round(size * 0.32), ...style }}>
+    <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
+      data-photo-source={photo ? (rec?.source || "") : "initials"}
+      style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
       {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
     </span>
   );
 }
+// A pair's layout lives in CSS (.duo-avp / .duo-avp-a / .duo-avp-b with --av as the slot):
+// the board overlaps the two faces in one slot; the print sets them side by side, whole.
 function DuoAvatar({ name, size = 40, ring = "" }) {
   const ms = _duoMembers(name);
   if (ms.length < 2) return <DuoFace name={name} size={size} ring={ring} />;
-  const d = Math.round(size * 0.66);
   return (
-    <span className="duo-avp" aria-hidden="true" style={{ width: size, height: size }}>
-      <DuoFace name={ms[0]} size={d} ring={ring} style={{ left: 0, top: 0 }} />
-      <DuoFace name={ms[1]} size={d} ring={ring} style={{ right: 0, bottom: 0 }} />
+    <span className="duo-avp" aria-hidden="true" data-pair={name} style={{ "--av": size + "px" }}>
+      <DuoFace name={ms[0]} ring={ring} className="duo-avp-a" />
+      <DuoFace name={ms[1]} ring={ring} className="duo-avp-b" />
     </span>
   );
 }

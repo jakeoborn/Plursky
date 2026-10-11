@@ -1646,9 +1646,9 @@ function HomeScreen({ state, setState }) {
     { id: "night", title: ["Follow", "your night."], aria: isPostFestival ? "Follow your night: open your recap" : "Follow your night: open my night",
       sub: isPostFestival ? "How your weekend went." : isLive ? "Now, next, and every stage." : savedIds.length ? "Your saved sets, in order." : "Save a set and it lands here.",
       onClick: () => isPostFestival ? setState({ ...state, tab: "recap" }) : setSheet("night") },
-    { id: "playlist", title: ["Build Your", "Playlist."], aria: "Build Your Playlist: open Music",
+    { id: "playlist", title: ["Build your", "playlist."], aria: "Build your playlist: open Music",
       sub: "Take the music with you.", onClick: () => setState({ ...state, tab: "spotify" }) },
-    { id: "gallery", title: ["Create Your", "Gallery."], aria: "Create Your Gallery: open Memories",
+    { id: "gallery", title: ["Create your", "gallery."], aria: "Create your gallery: open Memories",
       sub: "Keep your festival photos together.", onClick: () => setState({ ...state, tab: "memories" }) },
   ];
   const utilityLinks = essentials.map(({ id, label, sub, onClick }) => ({ id, label: label.toUpperCase(), sub: sub ? sub.toUpperCase() : null, onClick }));
@@ -2111,15 +2111,12 @@ function DuoStageBoard({ state, setState }) {
   // festival night. The board opens on the stages that carry one of your sets (filled
   // to three with stages that are live), and one row shows every stage in place.
   const [allStages, setAllStages] = React.useState(false);
-  const lead = React.useMemo(() => {
-    const picked = rows.filter(r => (r.on && savedSet.has(r.on.id)) || (r.next && savedSet.has(r.next.id)));
-    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r) && r.on) picked.push(r); }
-    for (const r of rows) { if (picked.length >= 3) break; if (!picked.includes(r)) picked.push(r); }
-    return new Set(picked);
-  }, [rows.length, state.saved]);
+  const lead = new Set(rows.filter(r => (r.on && savedSet.has(r.on.id)) || (r.next && savedSet.has(r.next.id))).map(r => r.stage.id));
+  for (const r of rows) { if (lead.size >= 3) break; if (r.on) lead.add(r.stage.id); }
+  for (const r of rows) { if (lead.size >= 3) break; lead.add(r.stage.id); }
   if (!rows.length) return null;
   const folded = rows.length > 4 && !allStages;
-  const shown = folded ? rows.filter(r => lead.has(r)) : rows;
+  const shown = folded ? rows.filter(r => lead.has(r.stage.id)) : rows;
   const liveCount = rows.filter(r => r.on).length;
   const cell = (a, detail, spoken, tag) => a ? (
     <button className="duo-press" onClick={() => setState({ ...state, artist: a.id })} aria-label={`${a.name}, ${spoken}`}
@@ -2133,7 +2130,7 @@ function DuoStageBoard({ state, setState }) {
   ) : <span className="duo-body-s duo-ink3" style={{ fontWeight: 400, paddingTop: 8 }}><span className="duo-sb-tag">{tag} · </span>Stage closed</span>;
   return (
     <section style={{ padding: "0 20px" }} data-duo-stages>
-      <DuoSect title="Every stage" right={<span className="duo-data-s duo-ink3">{liveCount} LIVE</span>} />
+      <DuoSect title={folded ? `${shown.length} of ${rows.length} stages` : "Every stage"} right={<span className="duo-data-s duo-ink3">{liveCount} LIVE</span>} />
       <div className="duo-card" style={{ marginTop: 10, overflow: "hidden" }}>
         <div className="duo-sb-grid duo-sb-head" style={{ padding: "10px 16px 8px" }}>
           <DuoLive>Now</DuoLive><span className="duo-label duo-ink3">Next</span>

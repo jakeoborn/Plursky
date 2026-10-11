@@ -2157,8 +2157,8 @@ function HomeScreen({
     }) : setSheet("night")
   }, {
     id: "playlist",
-    title: ["Build Your", "Playlist."],
-    aria: "Build Your Playlist: open Music",
+    title: ["Build your", "playlist."],
+    aria: "Build your playlist: open Music",
     sub: "Take the music with you.",
     onClick: () => setState({
       ...state,
@@ -2166,8 +2166,8 @@ function HomeScreen({
     })
   }, {
     id: "gallery",
-    title: ["Create Your", "Gallery."],
-    aria: "Create Your Gallery: open Memories",
+    title: ["Create your", "gallery."],
+    aria: "Create your gallery: open Memories",
     sub: "Keep your festival photos together.",
     onClick: () => setState({
       ...state,
@@ -3123,21 +3123,18 @@ function DuoStageBoard({
   var rows = duoStageNowNext();
   var savedSet = new Set(state.saved || []);
   var [allStages, setAllStages] = React.useState(false);
-  var lead = React.useMemo(() => {
-    var picked = rows.filter(r => r.on && savedSet.has(r.on.id) || r.next && savedSet.has(r.next.id));
-    for (var r of rows) {
-      if (picked.length >= 3) break;
-      if (!picked.includes(r) && r.on) picked.push(r);
-    }
-    for (var _r of rows) {
-      if (picked.length >= 3) break;
-      if (!picked.includes(_r)) picked.push(_r);
-    }
-    return new Set(picked);
-  }, [rows.length, state.saved]);
+  var lead = new Set(rows.filter(r => r.on && savedSet.has(r.on.id) || r.next && savedSet.has(r.next.id)).map(r => r.stage.id));
+  for (var r of rows) {
+    if (lead.size >= 3) break;
+    if (r.on) lead.add(r.stage.id);
+  }
+  for (var _r of rows) {
+    if (lead.size >= 3) break;
+    lead.add(_r.stage.id);
+  }
   if (!rows.length) return null;
   var folded = rows.length > 4 && !allStages;
-  var shown = folded ? rows.filter(r => lead.has(r)) : rows;
+  var shown = folded ? rows.filter(r => lead.has(r.stage.id)) : rows;
   var liveCount = rows.filter(r => r.on).length;
   var cell = (a, detail, spoken, tag) => a ? React.createElement("button", {
     className: "duo-press",
@@ -3194,7 +3191,7 @@ function DuoStageBoard({
     },
     "data-duo-stages": true
   }, React.createElement(DuoSect, {
-    title: "Every stage",
+    title: folded ? `${shown.length} of ${rows.length} stages` : "Every stage",
     right: React.createElement("span", {
       className: "duo-data-s duo-ink3"
     }, liveCount, " LIVE")

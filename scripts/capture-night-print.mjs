@@ -9,12 +9,19 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { serverReady } from './lib/server-ready.mjs';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { execSync } from 'node:child_process';
+import { fontEvidence, faceEvidence } from './lib/print-evidence.mjs';
 import { join } from 'node:path';
 
 const out = process.argv[2]; const ONLY = process.argv.slice(3);
 if (!out) { console.error('usage: capture-night-print.mjs <outDir> [state...]'); process.exit(2); }
 mkdirSync(out, { recursive: true });
+// Every shot is matched to the exact commit of the tree it was built from, with the rendered fonts and
+// the faces' sources beside it (evidence.json): the review reads the production target, not the source page.
+const HEAD = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
+const DIRTY = execSync('git status --porcelain -- . ":!dist"', { encoding: 'utf8' }).trim() !== '';
+const evidence = [];
 export const STATES = [
   // key, festival, clock, saved ids, extra localStorage, note
   ['pre-empty',  'edc-lv-2026', '2026-05-01T18:00:00Z', [], {}, 'EDC LV, 14 days out, nothing saved'],
@@ -76,6 +83,8 @@ try {
         const h2 = await page.evaluate(() => { const el = document.querySelector('[data-night-print]'); return el ? el.scrollHeight : 0; });
         if (h2 && h2 !== h) { await page.setViewportSize({ width, height: Math.min(Math.max(852, h2 + bar), 6000) }); await page.waitForTimeout(300); }
         await page.screenshot({ path: file, fullPage: false });
+        { const fonts = await fontEvidence(page); const faces = await faceEvidence(page);
+          evidence.push({ shot: `${key}-${pick}-${width}.png`, festival: fid, clock: at, mode: pick, width, fonts, ...faces }); }
         console.log(`${key} ${pick} ${width}: ${file} (${h}px)${errors.length ? ' PAGE ERRORS: ' + errors.join(' | ') : ''}  — ${note}`);
         // The sheets, on the first fixture only: Basics, Alerts, Sun & weather, each settled
         // at the device height so the tab bar relation shows (NP_SHEETS=0 skips them).
@@ -100,4 +109,16 @@ try {
     }
   }
   if (failed.length) { console.error(`✗ ${failed.length} capture(s) failed twice: ${failed.join(', ')}`); process.exitCode = 1; }
+  const summary = {
+    head: HEAD, dirty: DIRTY, root: process.env.NP_ROOT || '.', capturedAt: new Date().toISOString(),
+    fonts: { anton: evidence.every(e => e.fonts.loaded.anton), spaceGrotesk: evidence.every(e => e.fonts.loaded.grotesk),
+      samples: evidence.reduce((n, e) => n + e.fonts.samples.filter(s => !s.absent).length, 0),
+      wrong: evidence.flatMap(e => e.fonts.samples.filter(s => !s.absent && !s.ok).map(s => `${e.shot} ${s.sel.split(',')[0]} → ${s.rendered}`)) },
+    portraits: [...new Map(evidence.flatMap(e => e.faces.filter(f => f.loaded).map(f => [f.name, f.ledger])))].map(([name, l]) => ({ name, ...l })),
+    initials: [...new Set(evidence.flatMap(e => e.faces.filter(f => !f.loaded).map(f => f.name)))],
+    pairs: [...new Set(evidence.flatMap(e => e.pairs.map(p => p.name)))],
+    shots: evidence,
+  };
+  writeFileSync(join(out, 'evidence.json'), JSON.stringify(summary, null, 2) + '\n');
+  console.log(`evidence.json: head ${HEAD.slice(0, 7)}${DIRTY ? ' (dirty tree)' : ''}, root ${summary.root}; Anton ${summary.fonts.anton}, Space Grotesk ${summary.fonts.spaceGrotesk}, ${summary.fonts.samples} samples, ${summary.fonts.wrong.length} wrong; portraits ${summary.portraits.map(p => p.name).join(', ') || 'none'}; initials ${summary.initials.join(', ') || 'none'}`);
 } finally { await browser?.close(); server.kill(); }

@@ -288,6 +288,10 @@
   @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   @font-face{font-family:Michroma;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/michroma-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
   @font-face{font-family:"Martian Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(./fonts/martian-mono-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:Anton;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/anton-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:Anton;font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/anton-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+  @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url(./fonts/space-grotesk-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url(./fonts/space-grotesk-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
   @font-face{font-family:"Martian Mono";font-style:normal;font-weight:300 600;font-display:swap;src:url(./fonts/martian-mono-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
   /* Type roles (board type scale). Michroma is for compact caps labels only,
      never a name or a sentence; Martian Mono is for times and counts, so a
@@ -319,8 +323,16 @@
   .duo-av>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
   .duo-av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
   .duo-av.cl{box-shadow:0 0 0 2px var(--clash)}
-  .duo-avp{position:relative;flex:none;display:block}
-  .duo-avp>.duo-av{position:absolute}
+  .duo-avp{position:relative;flex:none;display:block;width:var(--av);height:var(--av)}
+  .duo-avp>.duo-av{position:absolute;width:calc(var(--av)*.66);height:calc(var(--av)*.66);font-size:calc(var(--av)*.21)}
+  .duo-avp>.duo-avp-a{left:0;top:0}
+  .duo-avp>.duo-avp-b{right:0;bottom:0}
+  /* The print shows a b2b as two whole faces side by side (each .8 of the slot), never one behind the other. */
+  .np .duo-avp{display:flex;align-items:center;gap:3px;width:auto;height:var(--av)}
+  .np .duo-avp>.duo-av{position:static;width:calc(var(--av)*.8);height:calc(var(--av)*.8);font-size:calc(var(--av)*.26)}
+  .np .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 1.5px var(--line-2)}
+  .np .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
+  .np .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--clash)}
   .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 3.5px var(--line-2)}
   .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--acc)}
   .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--clash)}
@@ -375,7 +387,14 @@
     --line:var(--np-line);--line-2:var(--np-line-2);
     --acc:var(--np-ink);--acc-ink:var(--np-ink);--on-acc:var(--np-paper);--signal:var(--np-ink);--signal-ink:var(--np-ink);--on-signal:var(--np-paper);
     --acc-08:rgba(26,23,26,.05);--acc-14:rgba(26,23,26,.08);--acc-30:rgba(26,23,26,.2);--acc-55:rgba(26,23,26,.4);--acc-wash:#E1DCCC;--chip-bg:var(--np-paper);
-    --rad-xs:2px;--rad-sm:4px;--rad-md:4px;--rad-lg:4px;--signal-rgb:26,23,26;--f-display:var(--f-data);--beam:var(--np-ink);
+    --rad-xs:2px;--rad-sm:4px;--rad-md:4px;--rad-lg:4px;--signal-rgb:26,23,26;--beam:var(--np-ink);
+    /* The print's type system: Anton for the display words, Space Grotesk as the companion for
+       every other role (names, labels, data, body). Both are self-hosted (OFL) and precached. */
+    --np-display:Anton,Impact,"Arial Narrow Bold",sans-serif;
+    /* .theme-field button{font-family:var(--font-ui)} outranks the print classes, so the buttons take the companion through the same variable. */
+    --font-ui:"Space Grotesk",-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --f-ui:"Space Grotesk",-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
+    --f-data:"Space Grotesk",-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;--f-display:var(--f-data);
     --e1:0 0 0 1px var(--np-ink);--e2:0 0 0 1px var(--np-ink);--glow:0 0 0 2px var(--np-ink);
     --scrim:rgba(26,23,26,.68);--chrome:var(--np-paper);
     --np-band-acc:var(--np-acc2-on-black,var(--np-cream));
@@ -398,13 +417,13 @@
      journey titles 44/.94; at 320 they are 74 / 56 / 36 (the clamps land
      there). A word that still cannot fit its line steps down through the
      fit observer (data-fit-words) rather than breaking inside itself. The
-     heavy print sans is the licensed system face at its black weight. */
-  .np-word{font-family:var(--f-ui);font-weight:900;font-size:clamp(74px,23vw,90px);line-height:.78;letter-spacing:-.075em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+     display face is Anton (one weight); the companion is Space Grotesk. */
+  .np-word{font-family:var(--np-display);font-weight:400;font-size:clamp(82px,25.5vw,100px);line-height:.86;letter-spacing:.005em;text-transform:uppercase;margin:0;overflow-wrap:normal}
   .np-word>span{display:block}
   .np-word .np-roman{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.72em;line-height:.82;letter-spacing:-.06em;margin-bottom:.06em}
-  .np-strip-word{font-family:var(--f-ui);font-weight:900;font-size:clamp(28px,8.7vw,34px);line-height:1;letter-spacing:-.05em;text-transform:uppercase;margin:0;overflow-wrap:normal}
-  .np-claim{font-family:var(--f-ui);font-weight:900;font-size:clamp(56px,17.2vw,67px);line-height:.85;letter-spacing:-.06em;text-transform:uppercase;margin:0;overflow-wrap:normal}
-  .np-jt{font-family:var(--f-ui);font-weight:900;font-size:clamp(36px,11.3vw,44px);line-height:.94;letter-spacing:-.05em;margin:0;overflow-wrap:normal}
+  .np-strip-word{font-family:var(--np-display);font-weight:400;font-size:clamp(31px,9.7vw,38px);line-height:1;letter-spacing:.01em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+  .np-claim{font-family:var(--np-display);font-weight:400;font-size:clamp(62px,19.2vw,75px);line-height:.9;letter-spacing:.005em;text-transform:uppercase;margin:0;overflow-wrap:normal}
+  .np-jt{font-family:var(--np-display);font-weight:400;font-size:clamp(40px,12.6vw,49px);line-height:.98;letter-spacing:.005em;margin:0;overflow-wrap:normal}
   .np-mono{font:400 10px/1.4 var(--f-data);letter-spacing:.08em;text-transform:uppercase;font-variant-numeric:tabular-nums}
   .np-mono-m{font:400 12px/1.4 var(--f-data);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
   .np-idx{font:400 14px/1 var(--f-data);letter-spacing:.04em;font-variant-numeric:tabular-nums}
@@ -475,7 +494,7 @@
   :where(.np-title[data-switch],.np-act,.np-srow,.np-j,.np-j3,.np-link,.np-tool):focus-visible{outline:2px solid currentColor;outline-offset:2px}
   /* The stamp and the Step 3 tilt are static print, not motion: they stay under Reduce Motion. */
   @media (max-width:350px){.np-title>.np-word{padding-right:24px}.np-rot{font-size:9px;right:-11px}}
-  @media (min-width:600px){.np-word{font-size:96px}.np-claim{font-size:72px}}
+  @media (min-width:600px){.np-word{font-size:106px}.np-claim{font-size:80px}}
   /* Lineup list rows: on your plan = a faint accent wash; playing now = the
      lifted card. The wash and the lift never change the text colours. */
   .duo-lrow{display:flex;align-items:center;gap:12px;min-height:58px;padding:7px 4px 7px 12px;margin:0 -12px;border-radius:var(--rad-sm)}
