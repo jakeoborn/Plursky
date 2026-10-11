@@ -86,6 +86,18 @@ try {
         { const fonts = await fontEvidence(page); const faces = await faceEvidence(page);
           evidence.push({ shot: `${key}-${pick}-${width}.png`, festival: fid, clock: at, mode: pick, width, fonts, ...faces }); }
         console.log(`${key} ${pick} ${width}: ${file} (${h}px)${errors.length ? ' PAGE ERRORS: ' + errors.join(' | ') : ''}  — ${note}`);
+        // On the night, the board unfolded too (every stage, every pair, every portrait the ledger holds).
+        if (await page.$('[data-duo-stages-toggle][aria-expanded="false"]')) {
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(500);
+          const h3 = await page.evaluate(() => { const el = document.querySelector('[data-night-print]'); return el ? el.scrollHeight : 0; });
+          await page.setViewportSize({ width, height: Math.min(Math.max(852, h3 + bar), 6000) }); await page.waitForTimeout(400);
+          const af = join(out, `${key}-allstages-${pick}-${width}.png`);
+          await page.screenshot({ path: af, fullPage: false });
+          { const fonts = await fontEvidence(page); const faces = await faceEvidence(page);
+            evidence.push({ shot: `${key}-allstages-${pick}-${width}.png`, festival: fid, clock: at, mode: pick, width, fonts, ...faces }); }
+          console.log(`${key} allstages ${pick} ${width}: ${af} (${h3}px)`);
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(300);
+        }
         // The sheets, on the first fixture only: Basics, Alerts, Sun & weather, each settled
         // at the device height so the tab bar relation shows (NP_SHEETS=0 skips them).
         if (key === 'pre-empty' && process.env.NP_SHEETS !== '0' && !process.env.NP_BEFORE) {
