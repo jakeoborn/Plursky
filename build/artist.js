@@ -1574,7 +1574,7 @@ function ArtistScreen({
       border: "none",
       borderBottom: `2px solid ${activeB2B === i ? "var(--signal)" : "transparent"}`,
       cursor: "pointer",
-      font: "500 11px/1.273 var(--f-display)",
+      font: "500 11px/1.273 var(--f-ui)",
       letterSpacing: ".12em",
       minHeight: 44,
       color: activeB2B === i ? "var(--signal-ink)" : "var(--ink-3)",

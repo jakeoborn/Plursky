@@ -2646,7 +2646,13 @@ function duoClock(t) {
 }
 function duoFestivalTitle(name) {
   var y = FESTIVAL_CONFIG.year;
-  return y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
+  var base = y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
+  var parts = base.split(/(\b(?:VIII|VII|III|IX|IV|VI|II)\b)/g);
+  if (parts.length === 1) return base;
+  return parts.map((p, i) => /^(VIII|VII|III|IX|IV|VI|II)$/.test(p) ? React.createElement("span", {
+    key: i,
+    className: "roman"
+  }, p) : p);
 }
 function DuoTodayHeader({
   status,
