@@ -4464,8 +4464,8 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
     const t = typeof m.takenAt === "string" && m.takenAt.length >= 16 ? m.takenAt.slice(11, 16) : null;
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
-  // Board label: Michroma caps at the 11px floor (these were 8–10px Geist Mono).
-  const mono = { fontFamily: "var(--f-display)", letterSpacing: "0.14em", fontWeight: 400, textTransform: "uppercase", lineHeight: 1.27 };
+  // Board label: Space Grotesk caps at the 11px floor (these were 8–10px Geist Mono).
+  const mono = { fontFamily: "var(--f-ui)", letterSpacing: "0.14em", fontWeight: 400, textTransform: "uppercase", lineHeight: 1.27 };
 
   return (
     <div onClick={onClose} style={{

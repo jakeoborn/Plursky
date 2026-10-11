@@ -806,7 +806,7 @@ function PostFestivalRecap({ state, setState }) {
           nothing if there are no moments. */}
       {window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
 
-      {/* Saved sets recap grouped by day: one card, a Michroma day label,
+      {/* Saved sets recap grouped by day: one card, a Space Grotesk day label,
           faces on the rows (duo board). */}
       {byDay.length > 0 && (
         <div className="duo-card" data-duo-recap style={{ padding: "16px 16px 6px" }}>
@@ -1564,7 +1564,7 @@ function HomeScreen({ state, setState }) {
   const savedIds = savedInLineup(state.saved);
   const online = useOnlineStatus();
   const isLive = !countdown && !isPostFestival;
-  // The board's Today header: one Michroma status line, the festival as the
+  // The board's Today header: one Space Grotesk status line, the festival as the
   // hero title, sunrise on a live night. No photo hero: photos sit on the
   // rows they belong to, never as the page's focal point.
   const heroStatus = isPostFestival ? `That's a wrap · ${FESTIVAL_CONFIG.dates}`
@@ -1950,7 +1950,13 @@ function duoClock(t) {
 // already carries the year.
 function duoFestivalTitle(name) {
   const y = FESTIVAL_CONFIG.year;
-  return y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
+  const base = y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
+  // Roman numerals in the name keep the serif treatment (locked ruling:
+  // "Roman III stayed serif"); the rest renders Anton via .duo-hero.
+  const parts = base.split(/(\b(?:VIII|VII|III|IX|IV|VI|II)\b)/g);
+  if (parts.length === 1) return base;
+  return parts.map((p, i) => /^(VIII|VII|III|IX|IV|VI|II)$/.test(p)
+    ? <span key={i} className="roman">{p}</span> : p);
 }
 
 function DuoTodayHeader({ status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {

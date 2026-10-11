@@ -709,7 +709,7 @@ function DuoLive({ children = "Live", className = "duo-label" }) {
   return <span className={`${className} duo-live`}><i aria-hidden="true" />{children}</span>;
 }
 
-// The board's section eyebrow: Michroma caps, with an optional right slot.
+// The board's section eyebrow: Space Grotesk caps, with an optional right slot.
 function DuoSect({ title, right, style }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, minHeight: 24, ...style }}>

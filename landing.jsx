@@ -491,7 +491,7 @@ function GeneralLandingScreen({ state, setState }) {
     { label: "Past",          fests: browse.filter(f => phaseOf(f) === "ended") },
   ].filter(g => g.fests.length > 0);
 
-  // The board's section eyebrow (duo-sect): Michroma caps.
+  // The board's section eyebrow (duo-sect): Space Grotesk caps.
   const eyebrow = { margin: "20px 0 6px" };
   const card = (f) => (
     <_LandingFestivalCard
