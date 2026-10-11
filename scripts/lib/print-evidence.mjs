@@ -75,3 +75,63 @@ export const faceEvidence = (page) => page.evaluate(() => {
   });
   return { faces, pairs };
 });
+
+// Every act with a reviewed portrait, in every festival that lists it: the hero fixtures. Read from
+// the data sets, not a hand list, so a new ledger row is measured the moment it lands.
+export const ledgerActs = (page) => page.evaluate(() => {
+  const sets = typeof _DATA_SETS !== 'undefined' ? _DATA_SETS : {};
+  const led = window.PLURSKY_ARTIST_PHOTOS || {};
+  // A gated festival (EDC Orlando until its flip) refuses the artist deep link, so its hero is
+  // unreachable for a user too: the fixtures are the festivals that can be active.
+  const reg = window.FESTIVALS_REGISTRY || [];
+  const reachable = (fid) => { const e = reg.find(x => x && x.config && x.config.id === fid); return !!e && typeof festivalCanBeActive === 'function' && festivalCanBeActive(e); };
+  return Object.entries(sets).filter(([fid]) => reachable(fid)).flatMap(([fid, set]) => (set.artists || [])
+    .filter(a => a && a.name && led[String(a.name).trim().toLowerCase()])
+    .map(a => ({ fid, id: a.id, name: a.name, asset: led[String(a.name).trim().toLowerCase()].asset })));
+});
+
+// The labels on the full-bleed artist hero (data-artist-hero-label: back, day, genre, stage, name)
+// against what is really behind each one: the label's text is hidden, the viewport is shot, and the
+// mean colour under the label's box is the ground. Backings (the eyebrow pill, the day pill, the
+// back button) stay painted, so a label that only reads because of its backing is measured with it.
+// `cmp` is any page that can draw the shot on a canvas. Returns the hero kind (photo | gradient),
+// the background image the hero painted, and one row per label with its contrast ratio and floor.
+export async function heroEvidence(page, cmp) {
+  const meta = await page.evaluate(() => {
+    const hero = document.querySelector('[data-artist-hero]'); if (!hero) return null;
+    const boxes = [];
+    for (const el of hero.querySelectorAll('[data-artist-hero-label]')) {
+      const r = el.getBoundingClientRect(); if (r.width < 2 || r.height < 2) continue;
+      // getComputedStyle is live: read the colour BEFORE the text is hidden, or the ink measures transparent.
+      const cs = getComputedStyle(el); const color = cs.color, op = +cs.opacity, px = parseFloat(cs.fontSize), bold = parseInt(cs.fontWeight, 10) >= 700;
+      el.dataset.heroMedia = '1'; el.dataset.heroColor = el.style.color || ''; el.dataset.heroShadow = el.style.textShadow || '';
+      el.style.setProperty('color', 'transparent', 'important'); el.style.setProperty('text-shadow', 'none', 'important');
+      boxes.push({ label: el.dataset.artistHeroLabel, text: el.textContent.trim().slice(0, 30), x: r.left, y: r.top, w: r.width, h: r.height,
+        color, op, px, floor: (px >= 24 || (px >= 18.66 && bold)) ? 3 : 4.5 });
+    }
+    return { kind: hero.dataset.artistHero, bgImage: getComputedStyle(hero.firstElementChild).backgroundImage, boxes, vw: innerWidth };
+  });
+  if (!meta) return null;
+  const png = await page.screenshot({ animations: 'disabled' });
+  await page.evaluate(() => { for (const el of document.querySelectorAll('[data-hero-media]')) {
+    el.style.removeProperty('color'); el.style.removeProperty('text-shadow');
+    if (el.dataset.heroColor) el.style.color = el.dataset.heroColor; if (el.dataset.heroShadow) el.style.textShadow = el.dataset.heroShadow;
+    delete el.dataset.heroMedia; delete el.dataset.heroColor; delete el.dataset.heroShadow; } });
+  const labels = await cmp.evaluate(async ([b64, boxes, vw]) => {
+    const im = await new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = 'data:image/png;base64,' + b64; });
+    const k = document.createElement('canvas'); k.width = im.width; k.height = im.height; const g = k.getContext('2d'); g.drawImage(im, 0, 0);
+    const sx = im.width / vw;
+    const lum = (c) => c.map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }).reduce((t, v, j) => t + v * [0.2126, 0.7152, 0.0722][j], 0);
+    return boxes.map(b => {
+      const d = g.getImageData(Math.round(b.x * sx), Math.round(b.y * sx), Math.max(1, Math.round(b.w * sx)), Math.max(1, Math.round(b.h * sx))).data;
+      let R = 0, G = 0, B = 0, n = 0; for (let q = 0; q < d.length; q += 4) { R += d[q]; G += d[q + 1]; B += d[q + 2]; n++; }
+      const bg = [R / n, G / n, B / n];
+      const m = b.color.match(/rgba?\(([^)]+)\)/); const p = m ? m[1].split(/[\s,/]+/).filter(Boolean).map(Number) : [255, 255, 255];
+      const a = (p.length > 3 ? p[3] : 1) * b.op;
+      const fg = [0, 1, 2].map(j => p[j] * a + bg[j] * (1 - a));
+      const [x, y] = [lum(fg), lum(bg)].sort((u, v) => v - u);
+      return { label: b.label, text: b.text, px: b.px, floor: b.floor, ratio: +(((x + 0.05) / (y + 0.05)).toFixed(2)), bg: bg.map(Math.round) };
+    });
+  }, [png.toString('base64'), meta.boxes, meta.vw]);
+  return { kind: meta.kind, bgImage: meta.bgImage, labels };
+}

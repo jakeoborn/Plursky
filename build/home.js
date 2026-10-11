@@ -3,7 +3,7 @@ var FESTIVAL_END_MS = FESTIVAL_CONFIG.endMs;
 function festivalNightDate(day, hhmm) {
   if (!hhmm) return new Date(NaN);
   var [h, m] = hhmm.split(":").map(Number);
-  var dayMeta = FESTIVAL_CONFIG.dayDates[day];
+  var dayMeta = dayDateFor(day) || FESTIVAL_CONFIG.dayDates[day];
   if (!dayMeta) return new Date(NaN);
   var isOvernight = h < 12;
   var dayMs = dayMeta.midnightUtc + (isOvernight ? 86400000 : 0);
@@ -2666,7 +2666,7 @@ var _fieldEyebrow = {
 var _MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 function duoNightLabel() {
   var n = NOW.night ?? NOW.day;
-  var dd = FESTIVAL_CONFIG.dayDates?.[n];
+  var dd = n == null ? null : dayDateFor(n);
   var idx = festivalDayNums().indexOf(n);
   var night = idx >= 0 ? `Night ${idx + 1}` : dd?.name || `Day ${n}`;
   return dd ? `${night} · ${dd.short} ${_MON[dd.m]} ${dd.d}` : night;
@@ -3967,32 +3967,39 @@ function DontMissStrip({
     }, stage?.short || "", " · ", fmt12(a.start)));
   })));
 }
-var FT_SECTIONS = [{
-  id: "gates",
-  icon: "🚪",
-  title: "Gates & entry",
-  items: ["Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.", "Bring a valid government-issued photo ID. 18+ event.", "Wristband activates online before you arrive — don't show up with it unpaired.", "One re-entry per day, only between 4 PM and midnight.", "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty."]
-}, {
-  id: "lingo",
-  icon: "🗣️",
-  title: "Words you'll hear",
-  items: ["PLUR — Peace, Love, Unity, Respect. The unspoken code.", "Kandi — beaded bracelets. Trade them with strangers.", "Totem — tall flag/sign so your group can find you in the crowd.", "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.", "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.", "B2B — back-to-back DJ set; two artists trading on the decks."]
-}, {
-  id: "survive",
-  icon: "💧",
-  title: "Survive the desert",
-  items: ["Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).", "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.", "Earplugs. Your future self will thank you.", "Eat real food before headliners. The food halls in Daisy Lane stay open all night.", "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces."]
-}, {
-  id: "travel",
-  icon: "🚌",
-  title: "Getting there & back",
-  items: ["Shuttles run from Strip hotels all night. Last departure ~5:30 AM.", "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.", "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.", "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering."]
-}, {
-  id: "day1",
-  icon: "🌅",
-  title: "Recommended Day 1",
-  items: ["Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.", "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.", "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.", "Eat at midnight. Sleep is for after the sunrise set.", "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise."]
-}];
+function ftSections() {
+  var c = FESTIVAL_CONFIG;
+  if (Array.isArray(c.guide) && c.guide.length) return c.guide;
+  var hrs = c.hours;
+  var doors = hrs && hrs.open && hrs.close ? `${hrs.label || "Doors"} ${fmt12(hrs.open)} – ${fmt12(hrs.close)}${hrs.daily ? " daily" : ""}.` : null;
+  var where = [c.location || c.locationShort, c.dates].filter(Boolean).join(" · ");
+  return [{
+    id: "gates",
+    icon: "🚪",
+    title: "Before you go",
+    items: [where ? where + "." : null, doors, "Gates, bag policy and re-entry are on the official site. Check them the day before; they change.", "Bring a photo ID and a charged phone, and screenshot your ticket."].filter(Boolean)
+  }, {
+    id: "lingo",
+    icon: "🗣️",
+    title: "Words you'll hear",
+    items: ["Set times — when each act plays. The Lineup has every day.", "Headliner — the top-billed act, usually closing the main stage.", "Clash — two sets you want at the same time. Save both and Today shows which is on.", "Totem — a tall sign so your group can find you in the crowd."]
+  }, {
+    id: "survive",
+    icon: "💧",
+    title: "Look after yourself",
+    items: ["Drink water before you're thirsty.", "Earplugs. Your future self will thank you.", "Eat real food before the headliners.", "If you or a friend feels off, go to the nearest medical or info tent."]
+  }, {
+    id: "travel",
+    icon: "🚌",
+    title: "Getting there & back",
+    items: ["Phone signal drops in a crowd. Set a meeting point with your group BEFORE entering.", "Plan the way home before the last set; everyone leaves at once."]
+  }, {
+    id: "day1",
+    icon: "🌅",
+    title: "Recommended Day 1",
+    items: ["Arrive early and walk the grounds once to find your bearings.", "Anchor for one full set, then wander. Don't try to chase everything.", "Save sets in the Lineup and Today prints your night in order."]
+  }];
+}
 function FirstTimerGuide({
   onClose,
   onOpenMap,
@@ -4029,7 +4036,7 @@ function FirstTimerGuide({
     eyebrow: `First time at ${FESTIVAL_CONFIG.brand}`,
     footer: footer,
     onClose: onClose
-  }, FT_SECTIONS.map((s, i) => {
+  }, ftSections().map((s, i) => {
     var isOpen = openIdx === i;
     return React.createElement("div", {
       key: s.id,
@@ -4784,9 +4791,16 @@ function NpJourney({
   steps
 }) {
   var sk = npAccent();
+  var chip = i => i === 2 && sk && !sk.small ? {
+    background: sk.fg,
+    color: sk.other,
+    padding: "2px 6px",
+    display: "inline-block"
+  } : undefined;
   var row = (s, i) => React.createElement(React.Fragment, null, React.createElement("span", {
     className: "np-idx",
-    "aria-hidden": "true"
+    "aria-hidden": "true",
+    style: chip(i)
   }, "0", i + 1), React.createElement("span", {
     style: {
       minWidth: 0
@@ -4798,7 +4812,9 @@ function NpJourney({
     style: {
       display: "block"
     }
-  }, t))), React.createElement("p", null, s.sub)), React.createElement("span", {
+  }, t))), React.createElement("p", {
+    style: chip(i)
+  }, s.sub)), React.createElement("span", {
     className: "np-arrow",
     "aria-hidden": "true"
   }, "↗"));

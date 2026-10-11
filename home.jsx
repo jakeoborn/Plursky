@@ -7,11 +7,15 @@ const FESTIVAL_END_MS   = FESTIVAL_CONFIG.endMs;
 
 // Convert an HH:MM in "festival night" coords (>=18:00 today, <12:00 next
 // day) to absolute Date for the given festival day. Anchors to the day's
-// midnight in the festival's tz (stored in FESTIVAL_CONFIG.dayDates).
+// midnight in the festival's tz, for the SESSION's weekend (dayDateFor): the
+// config's dayDates describe Weekend 1 only, so reading them directly put
+// every ACL Weekend 2 sun time a week in the past and the Sun & weather sheet
+// printed no sunrise or sunset through Oct 9-11 (same class as the stamp's
+// "Sun Oct 4", f14/f15).
 function festivalNightDate(day, hhmm) {
   if (!hhmm) return new Date(NaN);
   const [h, m] = hhmm.split(":").map(Number);
-  const dayMeta = FESTIVAL_CONFIG.dayDates[day];
+  const dayMeta = dayDateFor(day) || FESTIVAL_CONFIG.dayDates[day];
   if (!dayMeta) return new Date(NaN);
   const isOvernight = h < 12; // 00:00–11:59 belongs to the *next* calendar day
   const dayMs = dayMeta.midnightUtc + (isOvernight ? 86400000 : 0);
@@ -1921,7 +1925,10 @@ const _MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 // "Night 2 · Sat May 16": which night of the festival it is, and its date.
 function duoNightLabel() {
   const n = NOW.night ?? NOW.day;
-  const dd = FESTIVAL_CONFIG.dayDates?.[n];
+  // dayDateFor follows the session's weekend on a two-weekend festival: ACL's
+  // dayDates describe Weekend 1 only, so reading them directly printed
+  // "Night 3 · Sun Oct 4" all through Weekend 2 (Sun Oct 11).
+  const dd = n == null ? null : dayDateFor(n);
   const idx = festivalDayNums().indexOf(n);
   const night = idx >= 0 ? `Night ${idx + 1}` : (dd?.name || `Day ${n}`);
   return dd ? `${night} · ${dd.short} ${_MON[dd.m]} ${dd.d}` : night;
@@ -2528,71 +2535,64 @@ function DontMissStrip({ day, state, setState }) {
 }
 
 // ── First-timer guide ──────────────────────────────────────────────
-// Concise sections covering the things a Plursky-newcomer needs before they
-// arrive at LVMS. Sourced from the official EDC Festival Guide (gates, bag
-// policy, sunrise sets) and harm-reduction guidance from DanceSafe.
-const FT_SECTIONS = [
-  {
-    id: "gates",
-    icon: "🚪",
-    title: "Gates & entry",
-    items: [
-      "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
-      "Bring a valid government-issued photo ID. 18+ event.",
-      "Wristband activates online before you arrive — don't show up with it unpaired.",
-      "One re-entry per day, only between 4 PM and midnight.",
-      "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
-    ],
-  },
-  {
-    id: "lingo",
-    icon: "🗣️",
-    title: "Words you'll hear",
-    items: [
-      "PLUR — Peace, Love, Unity, Respect. The unspoken code.",
-      "Kandi — beaded bracelets. Trade them with strangers.",
-      "Totem — tall flag/sign so your group can find you in the crowd.",
-      "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.",
-      "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.",
-      "B2B — back-to-back DJ set; two artists trading on the decks.",
-    ],
-  },
-  {
-    id: "survive",
-    icon: "💧",
-    title: "Survive the desert",
-    items: [
-      "Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).",
-      "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.",
-      "Earplugs. Your future self will thank you.",
-      "Eat real food before headliners. The food halls in Daisy Lane stay open all night.",
-      "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces.",
-    ],
-  },
-  {
-    id: "travel",
-    icon: "🚌",
-    title: "Getting there & back",
-    items: [
-      "Shuttles run from Strip hotels all night. Last departure ~5:30 AM.",
-      "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.",
-      "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.",
-      "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering.",
-    ],
-  },
-  {
-    id: "day1",
-    icon: "🌅",
-    title: "Recommended Day 1",
-    items: [
-      "Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.",
-      "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.",
-      "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.",
-      "Eat at midnight. Sleep is for after the sunrise set.",
-      "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise.",
-    ],
-  },
-];
+// The Basics sheet prints the festival's own guide (FESTIVAL_CONFIG.guide; EDC's
+// is sourced from the official EDC Festival Guide and DanceSafe). A festival
+// without one gets this neutral guide, built only from what its config holds:
+// location and dates always, doors only when the config carries sourced hours.
+// Nothing is invented for it: no hours, age policy, bag rule, weather or venue
+// lore. Until round 8 every festival printed EDC's sections, so ACL's Basics
+// read "Gates open 4 PM", "18+ event" and "Survive the desert".
+function ftSections() {
+  const c = FESTIVAL_CONFIG;
+  if (Array.isArray(c.guide) && c.guide.length) return c.guide;
+  const hrs = c.hours;
+  const doors = hrs && hrs.open && hrs.close ? `${hrs.label || "Doors"} ${fmt12(hrs.open)} – ${fmt12(hrs.close)}${hrs.daily ? " daily" : ""}.` : null;
+  const where = [c.location || c.locationShort, c.dates].filter(Boolean).join(" · ");
+  return [
+    {
+      id: "gates", icon: "🚪", title: "Before you go",
+      items: [
+        where ? where + "." : null,
+        doors,
+        "Gates, bag policy and re-entry are on the official site. Check them the day before; they change.",
+        "Bring a photo ID and a charged phone, and screenshot your ticket.",
+      ].filter(Boolean),
+    },
+    {
+      id: "lingo", icon: "🗣️", title: "Words you'll hear",
+      items: [
+        "Set times — when each act plays. The Lineup has every day.",
+        "Headliner — the top-billed act, usually closing the main stage.",
+        "Clash — two sets you want at the same time. Save both and Today shows which is on.",
+        "Totem — a tall sign so your group can find you in the crowd.",
+      ],
+    },
+    {
+      id: "survive", icon: "💧", title: "Look after yourself",
+      items: [
+        "Drink water before you're thirsty.",
+        "Earplugs. Your future self will thank you.",
+        "Eat real food before the headliners.",
+        "If you or a friend feels off, go to the nearest medical or info tent.",
+      ],
+    },
+    {
+      id: "travel", icon: "🚌", title: "Getting there & back",
+      items: [
+        "Phone signal drops in a crowd. Set a meeting point with your group BEFORE entering.",
+        "Plan the way home before the last set; everyone leaves at once.",
+      ],
+    },
+    {
+      id: "day1", icon: "🌅", title: "Recommended Day 1",
+      items: [
+        "Arrive early and walk the grounds once to find your bearings.",
+        "Anchor for one full set, then wander. Don't try to chase everything.",
+        "Save sets in the Lineup and Today prints your night in order.",
+      ],
+    },
+  ];
+}
 
 // Each section is a numbered row on a rule (the print's journey, not a card); the
 // first opens by default. The quick jumps are the sheet's footer, so a scrolled list
@@ -2613,7 +2613,7 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
   );
   return (
     <FieldSheet title="The basics" eyebrow={`First time at ${FESTIVAL_CONFIG.brand}`} footer={footer} onClose={onClose}>
-      {FT_SECTIONS.map((s, i) => {
+      {ftSections().map((s, i) => {
         const isOpen = openIdx === i;
         return (
           <div key={s.id} style={{ borderBottom: "1px solid var(--line)" }}>
@@ -3008,12 +3008,17 @@ function NpSaved({ rows, state, setState, onAll }) {
 // tilts, its hit area does not.
 function NpJourney({ steps }) {
   const sk = npAccent();
+  // Small type on the accent plate (step 3's index and subline) reads directly
+  // only when the accent carries its ink at 4.5:1 (sk.small); otherwise it sits
+  // on an ink chip, as npMeta does for the strip's metadata. The title is large
+  // type (3:1) and stays on the plate.
+  const chip = (i) => i === 2 && sk && !sk.small ? { background: sk.fg, color: sk.other, padding: "2px 6px", display: "inline-block" } : undefined;
   const row = (s, i) => (
     <>
-      <span className="np-idx" aria-hidden="true">0{i + 1}</span>
+      <span className="np-idx" aria-hidden="true" style={chip(i)}>0{i + 1}</span>
       <span style={{ minWidth: 0 }}>
         <h3 className="np-jt duo-name">{s.title.map((t, k) => <span key={k} style={{ display: "block" }}>{t}</span>)}</h3>
-        <p>{s.sub}</p>
+        <p style={chip(i)}>{s.sub}</p>
       </span>
       <span className="np-arrow" aria-hidden="true">↗</span>
     </>

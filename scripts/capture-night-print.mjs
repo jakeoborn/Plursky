@@ -11,7 +11,7 @@ import { createServer } from 'node:net';
 import { serverReady } from './lib/server-ready.mjs';
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
-import { fontEvidence, faceEvidence } from './lib/print-evidence.mjs';
+import { fontEvidence, faceEvidence, heroEvidence, ledgerActs } from './lib/print-evidence.mjs';
 import { join } from 'node:path';
 
 const out = process.argv[2]; const ONLY = process.argv.slice(3);
@@ -33,7 +33,10 @@ export const STATES = [
   ['decadence',  'decadence-colorado-2026', '2026-10-09T18:00:00Z', [], {}, 'Decadence Colorado: two long words, set times pending'],
   ['nocturnal',  'nocturnal-wonderland-2026', '2026-08-01T18:00:00Z', [], {}, 'Nocturnal Wonderland: the longest word'],
   ['neutral',    'summerfest-2026', '2026-06-01T18:00:00Z', [], {}, 'Summerfest: no verified accent, neutral print'],
+  ['acl-w2',     'acl-2026', '2026-10-12T01:30:00Z', [], {}, 'ACL Weekend 2, last night (Sun Oct 11, 8:30pm CDT): the stamp dated for Weekend 2, ACL\'s own Basics'],
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
+const HEROES = !ONLY.length || ONLY.includes('heroes');
+const heroes = [];
 
 const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once('error', rej); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
 const PORT = await reservePort();
@@ -129,8 +132,50 @@ try {
     portraits: [...new Map(evidence.flatMap(e => e.faces.filter(f => f.loaded).map(f => [f.name, f.ledger])))].map(([name, l]) => ({ name, ...l })),
     initials: [...new Set(evidence.flatMap(e => e.faces.filter(f => !f.loaded).map(f => f.name)))],
     pairs: [...new Set(evidence.flatMap(e => e.pairs.map(p => p.name)))],
+    // The artist heroes over the ledger portraits: every label's contrast against the pixels behind it,
+    // and the lowest ratio seen per label across every shot.
+    heroes: { shots: heroes.length, acts: [...new Set(heroes.map(h => h.act))], photo: heroes.filter(h => h.hero === 'photo').length,
+      labels: heroes.reduce((n, h) => n + h.labels.length, 0), belowAA: heroes.flatMap(h => h.labels.filter(l => l.ratio < l.floor).map(l => `${h.shot} ${l.label} ${l.ratio}:1`)),
+      minByLabel: Object.fromEntries(['back', 'day', 'genre', 'stage', 'name'].map(k => [k, Math.min(...heroes.flatMap(h => h.labels.filter(l => l.label === k).map(l => l.ratio)), Infinity)])),
+      rows: heroes },
     shots: evidence,
   };
   writeFileSync(join(out, 'evidence.json'), JSON.stringify(summary, null, 2) + '\n');
-  console.log(`evidence.json: head ${HEAD.slice(0, 7)}${DIRTY ? ' (dirty tree)' : ''}, root ${summary.root}; Anton ${summary.fonts.anton}, Space Grotesk ${summary.fonts.spaceGrotesk}, ${summary.fonts.samples} samples, ${summary.fonts.wrong.length} wrong; portraits ${summary.portraits.map(p => p.name).join(', ') || 'none'}; initials ${summary.initials.join(', ') || 'none'}`);
+  console.log(`evidence.json: head ${HEAD.slice(0, 7)}${DIRTY ? ' (dirty tree)' : ''}, root ${summary.root}; Anton ${summary.fonts.anton}, Space Grotesk ${summary.fonts.spaceGrotesk}, ${summary.fonts.samples} samples, ${summary.fonts.wrong.length} wrong; portraits ${summary.portraits.map(p => p.name).join(', ') || 'none'}; initials ${summary.initials.join(', ') || 'none'}; heroes ${summary.heroes.shots} shots, ${summary.heroes.labels} labels, ${summary.heroes.belowAA.length} below AA, min ${JSON.stringify(summary.heroes.minByLabel)}`);
+  if (HEROES) {
+    const cmp = await browser.newPage();
+    const seed = async (ctx, fid, pick) => ctx.addInitScript(({ fid, pick }) => {
+      if (sessionStorage.getItem('__seeded')) return; sessionStorage.setItem('__seeded', '1');
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
+      localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('setup_banner_dismissed', '1'); localStorage.setItem('notif_nudge_dismissed', '1');
+      localStorage.setItem('ping_code', 'ECHO'); localStorage.setItem('plursky_pid', 'night-print'); localStorage.setItem('plursky.appearance', pick);
+      if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} });
+    }, { fid, pick });
+    const probeCtx = await browser.newContext({ viewport: { width: 390, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+    await probeCtx.clock.install({ time: new Date('2026-05-01T18:00:00Z') }); await seed(probeCtx, 'edc-lv-2026', 'dark');
+    const probe = await probeCtx.newPage(); await probe.goto(`http://127.0.0.1:${PORT}/index.html?tab=home`, { waitUntil: 'load' });
+    await probe.waitForSelector('[data-night-print]', { timeout: 20000 });
+    const acts = await ledgerActs(probe); await probeCtx.close();
+    for (const a of acts) for (const pick of ['dark', 'light']) for (const width of [390, 320]) {
+      let ctx;
+      try {
+        ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: pick, deviceScaleFactor: 2 });
+        await ctx.clock.install({ time: new Date('2026-05-01T18:00:00Z') }); await seed(ctx, a.fid, pick);
+        const page = await ctx.newPage(); const errors = []; page.on('pageerror', e => errors.push(String(e)));
+        await page.goto(`http://127.0.0.1:${PORT}/index.html?tab=lineup&artist=${encodeURIComponent(a.id)}`, { waitUntil: 'load' });
+        await page.waitForSelector('[data-artist-hero]', { timeout: 20000 });
+        await page.waitForFunction(() => document.querySelector('[data-artist-hero]')?.dataset.artistHero === 'photo', null, { timeout: 15000 }).catch(() => {});
+        await page.waitForTimeout(800);
+        const slug = a.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const file = join(out, `hero-${slug}-${a.fid}-${pick}-${width}.png`);
+        const ev = await heroEvidence(page, cmp);
+        await page.screenshot({ path: file, fullPage: false });
+        heroes.push({ shot: `hero-${slug}-${a.fid}-${pick}-${width}.png`, act: a.name, id: a.id, festival: a.fid, mode: pick, width, hero: ev ? ev.kind : 'none', asset: a.asset, labels: ev ? ev.labels : [], errors });
+        const low = (ev ? ev.labels : []).filter(l => l.ratio < l.floor);
+        console.log(`hero ${a.name} ${a.fid} ${pick} ${width}: ${file} (${ev ? ev.kind : 'no hero'}; ${ev ? ev.labels.map(l => `${l.label} ${l.ratio}`).join(', ') : ''})${low.length ? ' BELOW AA: ' + low.map(l => l.label).join(',') : ''}${errors.length ? ' PAGE ERRORS: ' + errors.join(' | ') : ''}`);
+      } catch (err) { failed.push(`hero ${a.name} ${pick} ${width}: ${String(err.message || err).split('\n')[0]}`); console.log(`hero ${a.name} ${pick} ${width}: FAILED ${String(err.message || err).split('\n')[0]}`); }
+      await ctx?.close();
+    }
+    await cmp.close();
+  }
 } finally { await browser?.close(); server.kill(); }

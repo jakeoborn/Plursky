@@ -84,6 +84,73 @@ const FESTIVAL_CONFIG = {
   locationShort:"Las Vegas Motor Speedway",
   dates:        "May 15–17, 2026",
   year:         2026,
+  // The Basics sheet's guide: gates, lingo, the desert, shuttles and a first
+  // night, from the official EDC Festival Guide and DanceSafe. Festival data,
+  // not renderer copy: home.jsx printed this for EVERY festival until round 8
+  // (ACL's Basics read "Survive the desert" and "18+ event"). A festival with
+  // no `guide` gets the neutral one in home.jsx, built from its own config.
+  guide: [
+    {
+      id: "gates",
+      icon: "🚪",
+      title: "Gates & entry",
+      items: [
+        "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
+        "Bring a valid government-issued photo ID. 18+ event.",
+        "Wristband activates online before you arrive — don't show up with it unpaired.",
+        "One re-entry per day, only between 4 PM and midnight.",
+        "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
+      ],
+    },
+    {
+      id: "lingo",
+      icon: "🗣️",
+      title: "Words you'll hear",
+      items: [
+        "PLUR — Peace, Love, Unity, Respect. The unspoken code.",
+        "Kandi — beaded bracelets. Trade them with strangers.",
+        "Totem — tall flag/sign so your group can find you in the crowd.",
+        "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.",
+        "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.",
+        "B2B — back-to-back DJ set; two artists trading on the decks.",
+      ],
+    },
+    {
+      id: "survive",
+      icon: "💧",
+      title: "Survive the desert",
+      items: [
+        "Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).",
+        "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.",
+        "Earplugs. Your future self will thank you.",
+        "Eat real food before headliners. The food halls in Daisy Lane stay open all night.",
+        "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces.",
+      ],
+    },
+    {
+      id: "travel",
+      icon: "🚌",
+      title: "Getting there & back",
+      items: [
+        "Shuttles run from Strip hotels all night. Last departure ~5:30 AM.",
+        "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.",
+        "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.",
+        "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering.",
+      ],
+    },
+    {
+      id: "day1",
+      icon: "🌅",
+      title: "Recommended Day 1",
+      items: [
+        "Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.",
+        "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.",
+        "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.",
+        "Eat at midnight. Sleep is for after the sunrise set.",
+        "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise.",
+      ],
+    },
+  ],
   // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
   print: { accent: "#ED3895", source: { url: "https://lasvegas.edc.com/wp-content/assets/css/edc-las-vegas.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#ed3895 }`, `button { background-color:#ed3895 }`, `.button--outline` border/text; hover darkens to #db187c (10 uses, the most of any non-grey colour).", confidence: "high" }, note: "No <meta theme-color> (the only custom property is WordPress's admin default #007cba), so the first-party sheet's link + primary-button colour is the accent." },
   officialEvent: {

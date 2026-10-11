@@ -508,7 +508,8 @@ function SpiderWeb({
   })));
 }
 function ShareArtistButton({
-  artist
+  artist,
+  backed
 }) {
   var [copied, setCopied] = React.useState(false);
   var handleShare = () => {
@@ -532,7 +533,7 @@ function ShareArtistButton({
       width: 32,
       height: 32,
       borderRadius: 32,
-      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -1285,12 +1286,13 @@ function ArtistScreen({
   var spotifyHero = !!heroPhoto && heroSource === "spotify";
   var spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
   var spotifyArtistUrl = spotifyArtistId ? "https://open.spotify.com/artist/" + spotifyArtistId : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
-  var heroControls = React.createElement(React.Fragment, null, React.createElement("button", {
+  var heroControls = backed => React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
       ...state,
       artist: null
     }),
     "aria-label": "Back",
+    "data-artist-hero-label": "back",
     style: {
       position: "absolute",
       top: 14,
@@ -1299,7 +1301,7 @@ function ArtistScreen({
       width: 38,
       height: 38,
       borderRadius: 38,
-      background: "rgba(var(--ink-rgb),0.18)",
+      background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -1325,7 +1327,7 @@ function ArtistScreen({
       display: "inline-flex",
       alignItems: "center",
       gap: 5,
-      background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
+      background: playing ? "var(--ember)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -1375,26 +1377,36 @@ function ArtistScreen({
   })), "PREVIEW"), React.createElement(Pill, {
     tone: "outline",
     style: {
-      background: "rgba(var(--ink-rgb),0.15)",
+      background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       color: "var(--ink)",
       backdropFilter: "blur(8px)",
       borderColor: "rgba(var(--ink-rgb),0.3)"
     }
   }, React.createElement("span", {
-    "data-artist-day-pill": true
+    "data-artist-day-pill": true,
+    "data-artist-hero-label": "day"
   }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
-    artist: a
+    artist: a,
+    backed: backed
   })));
   var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
-  var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
+  var heroNameInner = backed => React.createElement(React.Fragment, null, React.createElement("div", {
+    "data-artist-hero-eyebrow": true,
     style: {
-      display: "flex",
+      display: backed ? "inline-flex" : "flex",
       alignItems: "center",
       gap: 8,
-      marginBottom: 12
+      marginBottom: 12,
+      ...(backed ? {
+        background: "rgba(var(--shade-rgb),0.85)",
+        backdropFilter: "blur(8px)",
+        borderRadius: 999,
+        padding: "4px 9px"
+      } : null)
     }
   }, heroGenre && React.createElement("div", {
     className: "mono",
+    "data-artist-hero-label": "genre",
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
@@ -1411,6 +1423,7 @@ function ArtistScreen({
     }
   }), stage && React.createElement("div", {
     className: "mono",
+    "data-artist-hero-label": "stage",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
@@ -1419,6 +1432,8 @@ function ArtistScreen({
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
     className: "serif",
+    "data-artist-hero-name": true,
+    "data-artist-hero-label": "name",
     style: {
       fontSize: isB2B ? 34 : 52,
       lineHeight: 0.88,
@@ -1442,7 +1457,7 @@ function ArtistScreen({
       background: "var(--paper)",
       padding: "64px 18px 16px"
     }
-  }, heroControls, React.createElement("figure", {
+  }, heroControls(false), React.createElement("figure", {
     style: {
       margin: 0,
       display: "flex",
@@ -1477,8 +1492,9 @@ function ArtistScreen({
     style: {
       marginTop: 6
     }
-  }, heroNameInner)) : React.createElement("div", {
+  }, heroNameInner(false))) : React.createElement("div", {
     className: "media-scope",
+    "data-artist-hero": heroPhoto ? "photo" : "gradient",
     style: {
       height: 300,
       position: "relative",
@@ -1530,7 +1546,7 @@ function ArtistScreen({
       zIndex: 2,
       background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
     }
-  }), heroControls, React.createElement("div", {
+  }), heroControls(true), React.createElement("div", {
     style: {
       position: "absolute",
       bottom: 16,
@@ -1538,7 +1554,7 @@ function ArtistScreen({
       right: 18,
       zIndex: 3
     }
-  }, heroNameInner)), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+  }, heroNameInner(true))), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
     "data-artist-photo-credit": "1",
     "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
     style: {

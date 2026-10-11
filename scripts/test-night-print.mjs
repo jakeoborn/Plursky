@@ -24,12 +24,12 @@ import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { serverReady } from './lib/server-ready.mjs';
-import { fontEvidence, faceEvidence } from './lib/print-evidence.mjs';
+import { fontEvidence, faceEvidence, heroEvidence, ledgerActs } from './lib/print-evidence.mjs';
 import { existsSync } from 'node:fs';
 
 const ONLY = process.argv.slice(2);
 const problems = []; let checks = 0;
-let fontSamples = 0, portraits = 0, pairsSeen = 0; const initialsFaces = new Set();
+let fontSamples = 0, portraits = 0, pairsSeen = 0, heroesSeen = 0, heroLabels = 0; const initialsFaces = new Set();
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
 const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once('error', rej); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
 
@@ -43,7 +43,11 @@ const FIXTURES = [
   ['iii-pre', 'iii-points-2026', '2026-10-09T18:00:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
   ['nocturnal', 'nocturnal-wonderland-2026', '2026-08-01T18:00:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
   ['neutral', 'summerfest-2026', '2026-06-01T18:00:00Z', [], {}, [390], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  // ACL on Weekend 2's last night (Sun Oct 11, 8:30pm CDT): the stamp must carry that date, not
+  // Weekend 1's Oct 4, and the Basics sheet must be ACL's, not EDC's desert copy.
+  ['acl-w2', 'acl-2026', '2026-10-12T01:30:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'lastnight', 'basics', 'alerts'], 'live'],   // the last night: no "upcoming"
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
+const HEROES = !ONLY.length || ONLY.includes('heroes');
 
 const PORT = await reservePort();
 // NP_ROOT=dist audits the production app target (webDir=dist) instead of the source page.
@@ -54,7 +58,7 @@ try {
   const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ fid, at, saved, extra, width, pick, motion = 'reduce' }) => {
+  const open = async ({ fid, at, saved, extra, width, pick, motion = 'reduce', query = 'tab=home', ready = '[data-night-print]' }) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick });
     // Only the app's own CDN scripts leave the box; every other outside call is refused, so the
     // print is measured on fixture data alone.
@@ -78,8 +82,8 @@ try {
     const page = await ctx.newPage();
     const errors = [];
     page.on('pageerror', e => errors.push(String(e.message || e)));
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?tab=home`, { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('[data-night-print]', { timeout: 60000 });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?${query}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector(ready, { timeout: 60000 });
     await page.clock.runFor(1500); await page.waitForTimeout(400);
     return { ctx, page, errors };
   };
@@ -287,6 +291,19 @@ try {
         }
         // The stage board's fold, cycled three times on every live print.
         if (phase === 'live') { const fold = await foldAudit(page, 3); check(!fold.bad.length, `${tag}: stage board fold: ${fold.bad.join('; ').slice(0, 300)}`); }
+        // The stamp's night and date, on the night: "NIGHT n · DAY MON d" for the night NOW resolves to, dated
+        // for the session's weekend. ACL's dayDates describe Weekend 1 only; through Weekend 2 the print said
+        // "NIGHT 3 · SUN OCT 4" (f14/f15) until the label went through dayDateFor.
+        if (phase === 'live') {
+          const st = await page.evaluate(() => {
+            const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const n = NOW.night; const d = n == null ? null : dayDateFor(n);
+            const text = document.querySelector('[data-np-strip] .np-meta span:last-child')?.textContent.trim() || '';
+            return { text, night: n, want: d ? `NIGHT ${festivalDayNums().indexOf(n) + 1} · ${d.short} ${MON[d.m]} ${d.d}`.toUpperCase() : null };
+          });
+          check(st.night != null && st.text === st.want, `${tag}: the stamp reads "${st.text}" (want "${st.want}", night ${st.night})`);
+          if (key === 'acl-w2') check(/SUN OCT 11$/.test(st.text) && !/OCT 4\b/.test(st.text), `${tag}: Weekend 2's stamp reads "${st.text}" (want Sun Oct 11, not Weekend 1's Oct 4)`);
+        }
         check(r.links.join(',') === essentials.join(','), `${tag}: essentials are ${r.links.join(',')} (want ${essentials.join(',')})`);
         check(r.tilt && r.tilt !== 'none', `${tag}: Step 3's plate is not tilted (${r.tilt})`);
         check(r.journeyBox === 'hidden', `${tag}: the journey does not clip its overhang (${r.journeyBox})`);
@@ -343,8 +360,20 @@ try {
           check(await page.evaluate(() => !document.querySelector('[data-night-print]')) && ((await tab(page)) === 'Map' || phase === 'post'), `${tag}: MAP did not open the map (tab "${await tab(page)}")`);
           await tabTo(page);
           lastStep = '[data-np-link=basics]'; await page.click('[data-np-link=basics]'); await page.waitForTimeout(400);
-          const guide = await page.evaluate(() => { const t = (window.FT_SECTIONS || [])[0]?.title; return !!t && document.body.innerText.includes(t); });
-          check(guide, `${tag}: BASICS did not open the first-timer guide`);
+          const guide = await page.evaluate(() => {
+            const secs = typeof ftSections === 'function' ? ftSections() : [];
+            const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === 'The basics');
+            return { open: !!secs[0]?.title && document.body.innerText.includes(secs[0].title), own: Array.isArray(FESTIVAL_CONFIG.guide) && FESTIVAL_CONFIG.guide.length > 0,
+              sheet: dlg ? dlg.innerText : '', titles: secs.map(s => s.title), empty: secs.filter(s => !(s.items || []).length).map(s => s.title),
+              all: secs.flatMap(s => s.items || []).join(' '), location: FESTIVAL_CONFIG.location || '' };
+          });
+          check(guide.open, `${tag}: BASICS did not open the first-timer guide`);
+          check(guide.titles.length >= 4 && !guide.empty.length, `${tag}: Basics has ${guide.titles.length} section(s)${guide.empty.length ? ', empty: ' + guide.empty.join(', ') : ''}`);
+          // EDC prints its own sourced guide; every other festival prints the neutral one from its config,
+          // never EDC's desert, 18+, 5:30 AM, Kinetic Field or Strip-shuttle lines (f16).
+          const edcOnly = /desert|18\+ event|5:30|Kinetic|Strip hotels|Daisy Lane|Cosmic Meadow|Ground Control/;
+          if (fid === 'edc-lv-2026') check(guide.own && /Gates open 4[\s\u00a0]PM/.test(guide.sheet), `${tag}: EDC's Basics lost its own guide (own ${guide.own}; sheet starts "${guide.sheet.slice(0, 60)}")`);
+          else check(!guide.own && !edcOnly.test(guide.all) && guide.sheet.includes(guide.location), `${tag}: Basics for ${fid} ${guide.own ? 'claims a guide the config does not source' : edcOnly.test(guide.all) ? 'prints EDC copy: ' + guide.all.match(edcOnly)[0] : 'does not name ' + guide.location}`);
           // The drawers: a named dialog, every control 44px, the sheet ends above the tab bar, the
           // quick-jump actions clear the bar once scrolled to, and Escape closes it (re-verdict fixes 2 and 3).
           const drawer = async (label, actions) => {
@@ -399,6 +428,38 @@ try {
     }
   }
 
+  // Every act with a reviewed portrait, in every festival that lists it, at 320 and 390 in both modes:
+  // the hero paints that portrait and every label on it (back, day pill, genre, stage, name) reads AA
+  // against the pixels really behind it. Round 7's full verify measured one hero (Charlotte de Witte,
+  // the appearance fixture) and missed the other acts at 2.4 to 4.1:1 (Instinct, round 8).
+  if (HEROES) {
+    const cmp = await browser.newPage();
+    const probe = await open({ fid: 'edc-lv-2026', at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width: 390, pick: 'dark' });
+    const acts = await ledgerActs(probe.page); await probe.ctx.close();
+    const names = [...new Set(acts.map(a => a.name))];
+    check(acts.length >= 12 && names.length >= 12, `heroes: ${acts.length} ledger act(s) across the festivals (${names.join(', ')}); the ledger holds 12 names`);
+    for (const a of acts) for (const pick of ['dark', 'light']) for (const width of [390, 320]) {
+      const tag = `hero ${a.name} (${a.fid}) ${pick} ${width}`;
+      let ctx;
+      try {
+        const o = await open({ fid: a.fid, at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width, pick, query: `tab=lineup&artist=${encodeURIComponent(a.id)}`, ready: '[data-artist-hero]' }); ctx = o.ctx;
+        await o.page.waitForFunction(() => { const h = document.querySelector('[data-artist-hero]'); return h && h.dataset.artistHero === 'photo'; }, null, { timeout: 15000 }).catch(() => {});
+        const ev = await heroEvidence(o.page, cmp);
+        check(!!ev && ev.kind === 'photo' && ev.bgImage.includes(a.asset.replace(/^\.\//, '')), `${tag}: the hero paints ${ev ? ev.kind + ' ' + ev.bgImage.slice(0, 80) : 'nothing'} (want the ledger asset ${a.asset})`);
+        if (ev) {
+          const have = new Set(ev.labels.map(l => l.label));
+          check(['back', 'day', 'name'].every(k => have.has(k)) && (have.has('genre') || have.has('stage')), `${tag}: labels measured: ${[...have].join(', ') || 'none'}`);
+          const low = ev.labels.filter(l => l.ratio < l.floor);
+          check(!low.length, `${tag}: below AA over the photo: ${low.map(l => `${l.label} "${l.text}" ${l.ratio}:1 on rgb(${l.bg.join(',')}) (floor ${l.floor})`).join('; ')}`);
+          heroLabels += ev.labels.length; heroesSeen++;
+        }
+        check(!o.errors.length, `${tag}: page errors: ${o.errors.join(' | ').slice(0, 200)}`);
+      } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+      await ctx?.close();
+    }
+    await cmp.close();
+  }
+
   // The ledger covers the roster: every registered edition has a print row with a source and a date.
   {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -428,7 +489,7 @@ try {
 
 function window_name(fid) {
   // The h1 the print must read as: the festival's name without its edition year, as the data spells it.
-  const names = { 'edc-lv-2026': 'EDC Las Vegas', 'iii-points-2026': 'III Points', 'nocturnal-wonderland-2026': 'Nocturnal Wonderland', 'summerfest-2026': 'Summerfest' };
+  const names = { 'edc-lv-2026': 'EDC Las Vegas', 'iii-points-2026': 'III Points', 'nocturnal-wonderland-2026': 'Nocturnal Wonderland', 'summerfest-2026': 'Summerfest', 'acl-2026': 'Austin City Limits' };
   return names[fid] || fid;
 }
 
@@ -437,4 +498,4 @@ if (problems.length) {
   for (const p of problems) console.error('  ✗ ' + p);
   process.exit(1);
 }
-console.log(`  ✓ night print: ${checks} checks — every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, the drawers 44px / named / above the bar / Escape, the weather values AA, the selected faces rendered (platform fonts), portraits from the ledger, b2b pairs whole, the fold cycled, ledger covers the roster`);
+console.log(`  ✓ night print: ${checks} checks — ${heroesSeen} artist heroes over ledger portraits, ${heroLabels} labels AA against their pixels; every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, the drawers 44px / named / above the bar / Escape, the weather values AA, the selected faces rendered (platform fonts), portraits from the ledger, b2b pairs whole, the fold cycled, ledger covers the roster`);
