@@ -100,8 +100,8 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "reviewedAt": "2026-10-04T12:02:38Z",
     "allowExport": false,
     "asset": "artist-photos/john-summit.webp",
-    "sha256": "ff922debf7e58e0bbd5bbfc33eba4951087c406ef3eee6891dcc49da7f5a0535",
-    "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
+    "sha256": "63a5878562ec882de76d7a91094cb7af5f292a3318c813e5334f49712e4150b2",
+    "changes": "Rotated to the file's EXIF orientation (6; the 2026-10-04 copy had shipped sideways), cropped to the face (1300px square of the 2419px original at 551,230), resized to 1024px and converted to WebP on 2026-10-11. Display may crop and overlay.",
     "url": "./artist-photos/john-summit.webp"
   },
   "laidback luke": {
