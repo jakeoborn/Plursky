@@ -270,13 +270,21 @@ try {
         fontSamples += fe.samples.filter(s => !s.absent).length;
         // Faces: an act with a reviewed ledger row prints that portrait (loaded, from the ledger asset); one
         // without prints initials, never an invented image. Pairs: two whole faces and the whole name.
-        const ev = await faceEvidence(page);
-        const badFace = ev.faces.filter(f => f.ledger ? !(f.loaded && f.source === 'commons' && f.src && f.src.endsWith(f.ledger.asset.replace(/^\.\//, ''))) : f.source !== 'initials');
-        check(!badFace.length, `${tag}: faces: ${badFace.map(f => `${f.name}: ${f.ledger ? (f.loaded ? 'src ' + f.src : 'ledger row but no loaded portrait') : 'no ledger row but ' + f.source}`).join('; ').slice(0, 300)}`);
-        const badPair = ev.pairs.filter(p => !p.a || !p.b || p.overlap > 0 || p.offscreen || p.nameClipped || !/ b\db | with |\s\+\d+$/i.test(p.nameText || '') /* a 3+ chain prints as "First +N" (actDisplayName) */);
-        check(!badPair.length, `${tag}: pairs: ${badPair.map(p => `${p.name}: ${!p.a || !p.b ? 'a face is missing' : p.overlap > 0 ? `faces overlap (${Math.round(p.overlap)}px²)` : p.offscreen ? 'off screen' : p.nameClipped ? 'name clipped' : `name reads "${p.nameText}"`}`).join('; ').slice(0, 300)}`);
-        portraits += ev.faces.filter(f => f.loaded).length; pairsSeen += ev.pairs.length;
-        for (const f of ev.faces) if (!f.loaded) initialsFaces.add(f.name);
+        const auditFaces = (ev, where) => {
+          const badFace = ev.faces.filter(f => !f.imgFits || (f.ledger ? !(f.loaded && f.source === 'commons' && f.src && f.src.endsWith(f.ledger.asset.replace(/^\.\//, ''))) : f.source !== 'initials'));
+          check(!badFace.length, `${tag}${where}: faces: ${badFace.map(f => `${f.name}: ${!f.imgFits ? `portrait spills its face (img ${f.imgRect.join('×')} vs face ${f.rect.join('×')})` : f.ledger ? (f.loaded ? 'src ' + f.src : 'ledger row but no loaded portrait') : 'no ledger row but ' + f.source}`).join('; ').slice(0, 300)}`);
+          const badPair = ev.pairs.filter(p => !p.a || !p.b || p.overlap > 0 || p.offscreen || p.nameClipped || !/ b\db | with |\s\+\d+$/i.test(p.nameText || '') /* a 3+ chain prints as "First +N" (actDisplayName) */);
+          check(!badPair.length, `${tag}${where}: pairs: ${badPair.map(p => `${p.name}: ${!p.a || !p.b ? 'a face is missing' : p.overlap > 0 ? `faces overlap (${Math.round(p.overlap)}px²)` : p.offscreen ? 'off screen' : p.nameClipped ? 'name clipped' : `name reads "${p.nameText}"`}`).join('; ').slice(0, 300)}`);
+          portraits += ev.faces.filter(f => f.loaded).length; pairsSeen += ev.pairs.length;
+          for (const f of ev.faces) if (!f.loaded) initialsFaces.add(f.name);
+        };
+        auditFaces(await faceEvidence(page), '');
+        // the same audit on the opened board: the fold hides every pair outside the lead stages
+        if (await page.$('[data-duo-stages-toggle]')) {
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150);
+          auditFaces(await faceEvidence(page), ' (every stage)');
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150);
+        }
         // The stage board's fold, cycled three times on every live print.
         if (phase === 'live') { const fold = await foldAudit(page, 3); check(!fold.bad.length, `${tag}: stage board fold: ${fold.bad.join('; ').slice(0, 300)}`); }
         check(r.links.join(',') === essentials.join(','), `${tag}: essentials are ${r.links.join(',')} (want ${essentials.join(',')})`);

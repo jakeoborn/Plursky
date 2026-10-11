@@ -56,7 +56,11 @@ export const faceEvidence = (page) => page.evaluate(() => {
   const vis = el => el.getClientRects().length > 0;
   const faces = [...np.querySelectorAll('.duo-av[data-face]')].filter(vis).map(el => {
     const img = el.querySelector('img'); const name = el.dataset.face; const row = ledger[name.trim().toLowerCase()] || null;
-    return { name, source: el.dataset.photoSource || '', src: img ? img.getAttribute('src') : null,
+    const r = el.getBoundingClientRect(); const ir = img && img.getBoundingClientRect();
+    const box = q => [Math.round(q.left), Math.round(q.top), Math.round(q.width), Math.round(q.height)];
+    return { name, source: el.dataset.photoSource || '', src: img ? img.getAttribute('src') : null, rect: box(r), imgRect: ir ? box(ir) : null,
+      // the portrait sits inside its face: same box within 1px (a face that loses its containing block lets the img spill over the pair)
+      imgFits: !ir || ['left', 'top', 'width', 'height'].every(k => Math.abs(ir[k] - r[k]) <= 1),
       loaded: !!img && img.complete && img.naturalWidth > 0, ledger: row ? { asset: row.url, author: row.author, license: row.license, sourceUrl: row.sourceUrl } : null };
   });
   const pairs = [...np.querySelectorAll('.duo-avp[data-pair]')].filter(vis).map(p => {

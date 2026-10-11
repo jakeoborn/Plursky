@@ -329,7 +329,7 @@
   .duo-avp>.duo-avp-b{right:0;bottom:0}
   /* The print shows a b2b as two whole faces side by side (each .8 of the slot), never one behind the other. */
   .np .duo-avp{display:flex;align-items:center;gap:3px;width:auto;height:var(--av)}
-  .np .duo-avp>.duo-av{position:static;width:calc(var(--av)*.8);height:calc(var(--av)*.8);font-size:calc(var(--av)*.26)}
+  .np .duo-avp>.duo-av{position:relative;width:calc(var(--av)*.8);height:calc(var(--av)*.8);font-size:calc(var(--av)*.26)}
   .np .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 1.5px var(--line-2)}
   .np .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--acc),0 0 14px var(--acc-30)}
   .np .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--clash)}
