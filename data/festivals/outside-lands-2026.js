@@ -266,6 +266,8 @@
     locationShort: "Golden Gate Park",
     dates: "Aug 7–9, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#F7C63D", accent2: "#FF9CD9", source: { url: "https://www.sfoutsidelands.com/css/tailwind.css?id=cc9f31449bb5e89532dac2b769634b60", observedAt: "2026-10-09", seenAs: "Tailwind theme colour 'themeGold' (.text-themeGold color: rgb(247 198 61); .bg-themeGold), used on 20 homepage elements, plus .text3d-gold and a #f7c63d hard-shadow utility in the stylesheet (19 occurrences)", confidence: "medium" }, note: "No official site is recorded in the data file so the well-known domain sfoutsidelands.com was used; no theme-color meta; the site's Tailwind palette is Navy #0a2f3f / Mist #fff9e9 neutrals with Gold the most-used accent, ahead of Bubblegum #ff9cd9 (17 uses, nav hover) and Sunset #f0633a (10 uses, link text)." },
     // gates day 1 (11:00 PDT) -> close of the final day (22:00 PDT)
     startMs: Date.UTC(2026, 7, 7, 18, 0, 0),
     endMs:   Date.UTC(2026, 7, 10, 5, 0, 0),

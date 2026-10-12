@@ -2644,6 +2644,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-np. Night Print: Today as a ticket / poster ──
+// Round 5 (Oct 7 steering). Every lifecycle state at 390 and 320 in both
+// modes: the festival's own accent (ledger-sourced) paints the identity,
+// every print text pair is AA for its size, nothing scrolls sideways, the
+// stamp covers no text, long names fit without breaking inside a word,
+// every control is a 44px target, the four steps route where they say, the
+// essentials all survive as type links, and the ledger covers the roster.
+{
+  console.log("▸ Night Print gate — Today's print in every state, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-night-print.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`night print failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
