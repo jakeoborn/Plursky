@@ -124,24 +124,6 @@ try {
     }
   }
   if (failed.length) { console.error(`✗ ${failed.length} capture(s) failed twice: ${failed.join(', ')}`); process.exitCode = 1; }
-  const summary = {
-    head: HEAD, dirty: DIRTY, root: process.env.NP_ROOT || '.', capturedAt: new Date().toISOString(),
-    fonts: { anton: evidence.every(e => e.fonts.loaded.anton), spaceGrotesk: evidence.every(e => e.fonts.loaded.grotesk),
-      samples: evidence.reduce((n, e) => n + e.fonts.samples.filter(s => !s.absent).length, 0),
-      wrong: evidence.flatMap(e => e.fonts.samples.filter(s => !s.absent && !s.ok).map(s => `${e.shot} ${s.sel.split(',')[0]} → ${s.rendered}`)) },
-    portraits: [...new Map(evidence.flatMap(e => e.faces.filter(f => f.loaded).map(f => [f.name, f.ledger])))].map(([name, l]) => ({ name, ...l })),
-    initials: [...new Set(evidence.flatMap(e => e.faces.filter(f => !f.loaded).map(f => f.name)))],
-    pairs: [...new Set(evidence.flatMap(e => e.pairs.map(p => p.name)))],
-    // The artist heroes over the ledger portraits: every label's contrast against the pixels behind it,
-    // and the lowest ratio seen per label across every shot.
-    heroes: { shots: heroes.length, acts: [...new Set(heroes.map(h => h.act))], photo: heroes.filter(h => h.hero === 'photo').length,
-      labels: heroes.reduce((n, h) => n + h.labels.length, 0), belowAA: heroes.flatMap(h => h.labels.filter(l => l.ratio < l.floor).map(l => `${h.shot} ${l.label} ${l.ratio}:1`)),
-      minByLabel: Object.fromEntries(['back', 'day', 'genre', 'stage', 'name'].map(k => [k, Math.min(...heroes.flatMap(h => h.labels.filter(l => l.label === k).map(l => l.ratio)), Infinity)])),
-      rows: heroes },
-    shots: evidence,
-  };
-  writeFileSync(join(out, 'evidence.json'), JSON.stringify(summary, null, 2) + '\n');
-  console.log(`evidence.json: head ${HEAD.slice(0, 7)}${DIRTY ? ' (dirty tree)' : ''}, root ${summary.root}; Anton ${summary.fonts.anton}, Space Grotesk ${summary.fonts.spaceGrotesk}, ${summary.fonts.samples} samples, ${summary.fonts.wrong.length} wrong; portraits ${summary.portraits.map(p => p.name).join(', ') || 'none'}; initials ${summary.initials.join(', ') || 'none'}; heroes ${summary.heroes.shots} shots, ${summary.heroes.labels} labels, ${summary.heroes.belowAA.length} below AA, min ${JSON.stringify(summary.heroes.minByLabel)}`);
   if (HEROES) {
     const cmp = await browser.newPage();
     const seed = async (ctx, fid, pick) => ctx.addInitScript(({ fid, pick }) => {
@@ -178,4 +160,23 @@ try {
     }
     await cmp.close();
   }
+  // The summary is built after the hero shots so evidence.json carries their rows (round 8 wrote heroes: 0).
+  const summary = {
+    head: HEAD, dirty: DIRTY, root: process.env.NP_ROOT || '.', capturedAt: new Date().toISOString(),
+    fonts: { anton: evidence.every(e => e.fonts.loaded.anton), spaceGrotesk: evidence.every(e => e.fonts.loaded.grotesk),
+      samples: evidence.reduce((n, e) => n + e.fonts.samples.filter(s => !s.absent).length, 0),
+      wrong: evidence.flatMap(e => e.fonts.samples.filter(s => !s.absent && !s.ok).map(s => `${e.shot} ${s.sel.split(',')[0]} → ${s.rendered}`)) },
+    portraits: [...new Map(evidence.flatMap(e => e.faces.filter(f => f.loaded).map(f => [f.name, f.ledger])))].map(([name, l]) => ({ name, ...l })),
+    initials: [...new Set(evidence.flatMap(e => e.faces.filter(f => !f.loaded).map(f => f.name)))],
+    pairs: [...new Set(evidence.flatMap(e => e.pairs.map(p => p.name)))],
+    // The artist heroes over the ledger portraits: every label's contrast against the pixels behind it,
+    // and the lowest ratio seen per label across every shot.
+    heroes: { shots: heroes.length, acts: [...new Set(heroes.map(h => h.act))], photo: heroes.filter(h => h.hero === 'photo').length,
+      labels: heroes.reduce((n, h) => n + h.labels.length, 0), belowAA: heroes.flatMap(h => h.labels.filter(l => l.ratio < l.floor).map(l => `${h.shot} ${l.label} ${l.ratio}:1`)),
+      minByLabel: Object.fromEntries(['back', 'day', 'genre', 'stage', 'name'].map(k => [k, Math.min(...heroes.flatMap(h => h.labels.filter(l => l.label === k).map(l => l.ratio)), Infinity)])),
+      rows: heroes },
+    shots: evidence,
+  };
+  writeFileSync(join(out, 'evidence.json'), JSON.stringify(summary, null, 2) + '\n');
+  console.log(`evidence.json: head ${HEAD.slice(0, 7)}${DIRTY ? ' (dirty tree)' : ''}, root ${summary.root}; Anton ${summary.fonts.anton}, Space Grotesk ${summary.fonts.spaceGrotesk}, ${summary.fonts.samples} samples, ${summary.fonts.wrong.length} wrong; portraits ${summary.portraits.map(p => p.name).join(', ') || 'none'}; initials ${summary.initials.join(', ') || 'none'}; heroes ${summary.heroes.shots} shots, ${summary.heroes.labels} labels, ${summary.heroes.belowAA.length} below AA, min ${JSON.stringify(summary.heroes.minByLabel)}`);
 } finally { await browser?.close(); server.kill(); }
