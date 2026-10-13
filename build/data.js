@@ -478,7 +478,7 @@ var FESTIVALS_REGISTRY = [{
       "tickets": {
         "url": "https://edcorlando.frontgatetickets.com/",
         "state": "on-sale",
-        "observedAt": "2026-09-26",
+        "observedAt": "2026-10-13",
         "edition": "2026",
         "evidence": "https://orlando.edc.com/tickets/"
       }
@@ -764,7 +764,7 @@ var FESTIVALS_REGISTRY = [{
       "tickets": {
         "url": "https://www.coachella.com/passes",
         "state": "sold-out",
-        "observedAt": "2026-09-26",
+        "observedAt": "2026-10-13",
         "edition": "2027"
       }
     },
@@ -797,7 +797,7 @@ var FESTIVALS_REGISTRY = [{
       "tickets": {
         "url": "https://edcmexico.frontgatetickets.com/",
         "state": "on-sale",
-        "observedAt": "2026-09-26",
+        "observedAt": "2026-10-13",
         "edition": "2027"
       }
     },
@@ -842,7 +842,7 @@ var FESTIVALS_REGISTRY = [{
       "tickets": {
         "url": "https://beyondsocal.frontgatetickets.com/",
         "state": "on-sale",
-        "observedAt": "2026-09-26",
+        "observedAt": "2026-10-13",
         "edition": "2027"
       }
     },
@@ -887,7 +887,7 @@ var FESTIVALS_REGISTRY = [{
       "tickets": {
         "url": "https://beyondpnw.frontgatetickets.com/",
         "state": "on-sale",
-        "observedAt": "2026-09-26",
+        "observedAt": "2026-10-13",
         "edition": "2027",
         "evidence": "https://pnw.beyondwonderland.com/"
       }

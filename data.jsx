@@ -613,7 +613,7 @@ const FESTIVALS_REGISTRY = [
       id:        "edc-orlando-2026",
       policies: { minimumAge: 18, camping: false },
       // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
-      essentialsSources: {"minimumAge": {"url": "https://orlando.edc.com/tickets/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://orlando.edc.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://edcorlando.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026", "evidence": "https://orlando.edc.com/tickets/"}},
+      essentialsSources: {"minimumAge": {"url": "https://orlando.edc.com/tickets/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://orlando.edc.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://edcorlando.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-10-13", "edition": "2026", "evidence": "https://orlando.edc.com/tickets/"}},
       // Where the lineup rows came from (the SOURCE note above), as data so the
       // public /f/ page can cite it. observedAt = the date it was read.
       lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
@@ -901,7 +901,7 @@ const FESTIVALS_REGISTRY = [
       id:        "coachella-2027",
       policies: { camping: true },
       // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
-      essentialsSources: {"camping": {"url": "https://www.coachella.com/passes", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://www.coachella.com/passes", "state": "sold-out", "observedAt": "2026-09-26", "edition": "2027"}},
+      essentialsSources: {"camping": {"url": "https://www.coachella.com/passes", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://www.coachella.com/passes", "state": "sold-out", "observedAt": "2026-10-13", "edition": "2027"}},
       // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
       officialEvent: { website: "https://www.coachella.com/", tickets: "https://www.coachella.com/passes", observedAt: "2026-09-24" },
       // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
@@ -935,7 +935,7 @@ const FESTIVALS_REGISTRY = [
     config: {
       id:        "edc-mexico-2027",
       // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
-      essentialsSources: {"tickets": {"url": "https://edcmexico.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027"}},
+      essentialsSources: {"tickets": {"url": "https://edcmexico.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-10-13", "edition": "2027"}},
       name:      "EDC Mexico 2027",
       shortName: "EDC Mexico",
       brand:     "EDC",
@@ -961,7 +961,7 @@ const FESTIVALS_REGISTRY = [
       id:        "beyond-wonderland-socal-2027",
       policies: { minimumAge: 18, camping: false },
       // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
-      essentialsSources: {"minimumAge": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondsocal.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027"}},
+      essentialsSources: {"minimumAge": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://socal.beyondwonderland.com/guide/hours-and-info/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondsocal.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-10-13", "edition": "2027"}},
       name:      "Beyond Wonderland SoCal 2027",
       shortName: "Beyond SoCal",
       brand:     "Beyond Wonderland",
@@ -989,7 +989,7 @@ const FESTIVALS_REGISTRY = [
       id:        "beyond-wonderland-gorge-2027",
       policies: { minimumAge: 18, camping: true },
       // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
-      essentialsSources: {"minimumAge": {"url": "https://beyondpnw.frontgatetickets.com/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://pnw.beyondwonderland.com/camping/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondpnw.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2027", "evidence": "https://pnw.beyondwonderland.com/"}},
+      essentialsSources: {"minimumAge": {"url": "https://beyondpnw.frontgatetickets.com/", "observedAt": "2026-09-26", "edition": "2027"}, "camping": {"url": "https://pnw.beyondwonderland.com/camping/", "observedAt": "2026-09-26", "edition": "2027"}, "tickets": {"url": "https://beyondpnw.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-10-13", "edition": "2027", "evidence": "https://pnw.beyondwonderland.com/"}},
       name:      "Beyond Wonderland at The Gorge 2027",
       shortName: "Beyond Gorge",
       brand:     "Beyond Wonderland",
