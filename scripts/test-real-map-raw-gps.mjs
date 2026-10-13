@@ -92,6 +92,12 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   // Broken gps falls back instead of drawing NaN.
   const bad = P._lngLatOf({ x: 50, y: 50, gps: { lat: NaN, lng: -80.2 } });
   check(Number.isFinite(bad.lat) && Number.isFinite(bad.lng), "a non-finite gps must fall back, never draw NaN");
+  // A gps from another phone (crew location, rally) is untrusted: finite but
+  // out of range would make MapLibre throw and take the map down.
+  for (const g of [{ lat: 1e308, lng: 0 }, { lat: 91, lng: -80.2 }, { lat: 25.8, lng: -181 }, { lat: "25.8", lng: -80.2 }, null]) {
+    const r = P._lngLatOf({ x: 50, y: 50, gps: g });
+    check(Math.abs(r.lat) <= 90 && Math.abs(r.lng) <= 180 && m(P, r, C) < 0.5, `gps ${JSON.stringify(g)} must be rejected and fall back to the grid path`);
+  }
   // Stage pins: none can render today, because none has a published position.
   check(P.placed.length === 0, `III Points has ${P.placed.length} placed stages; pins need sourced coordinates first`);
 }
@@ -108,6 +114,8 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
     const a = P._lngLatOf({ x: s.x, y: s.y }), b = P.mapToGps(s.x, s.y);
     check(a.lat === b.lat && a.lng === b.lng, `${s.id}: a grid point must still go through the affine`);
   }
+  const wild = P._lngLatOf({ x: 1e300, y: -1e300 });
+  check(Math.abs(wild.lat) <= 90 && Math.abs(wild.lng) <= 180, "an absurd grid point (e.g. from a rally) never projects out of range");
   const F = { lat: P.cfg.gps.lat + 0.001, lng: P.cfg.gps.lng - 0.001 };
   const d = P._lngLatOf({ x: 10, y: 10, live: true, gps: F });
   check(m(P, d, F) < 0.5, "a live fix is drawn at its raw position on an affine festival too");
@@ -145,8 +153,11 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   // stage marker was ever added (measured on III Points and ACL, main c0b8b3e).
   check(/if \(_top\.some\(\(id, i\) => _tail\[i\] !== id\)\) _top\.forEach/.test(body), "RealMap re-stacks its overlay layers only when they are out of order (no styledata loop)");
   check(!/\]\.forEach\(\(id\) => \{\s*try \{ if \(map\.getLayer\(id\)\) map\.moveLayer\(id\)/.test(body), "the unconditional moveLayer loop is gone");
+  check(/const \{ lat, lng \} = _lngLatOf\(f\);/.test(body), "crew friend markers go through the range-checked _lngLatOf");
+  check(/\.\.\.\(_validGps\(incomingRally\.gps\)/.test(src), "an accepted rally's gps is range-checked");
   check(/const routingLabel = !avatar\?\.live \? "ROUTE PREVIEW"/.test(src), "the meet sheet never says ROUTING LIVE for the demo avatar");
   const sb = readFileSync(join(ROOT, "supabase.jsx"), "utf8");
+  check(/Math\.abs\(gps\.lat\) <= 90 && Math\.abs\(gps\.lng\) <= 180/.test(sb), "sbBroadcastRally range-checks the pin's lat/lng");
   check(/function sbBroadcastRally\(\{ x, y, label, stageId, gps \}\)/.test(sb) && /\.\.\.\(g \? \{ gps: g \} : \{\}\)/.test(sb), "sbBroadcastRally sends the pin's lat/lng");
 }
 

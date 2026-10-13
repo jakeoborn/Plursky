@@ -4493,7 +4493,7 @@ function MapScreen({
       setMeetTarget({
         x: incomingRally.x,
         y: incomingRally.y,
-        ...(incomingRally.gps && Number.isFinite(incomingRally.gps.lat) && Number.isFinite(incomingRally.gps.lng) ? {
+        ...(_validGps(incomingRally.gps) ? {
           gps: {
             lat: incomingRally.gps.lat,
             lng: incomingRally.gps.lng
@@ -5974,13 +5974,20 @@ function OfflinePacksSheet({
     onClose: () => setPlusOpen(false)
   })), document.body);
 }
+function _validGps(g) {
+  return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng) && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
+}
 function _lngLatOf(p) {
   var g = p && p.gps;
-  if (g && Number.isFinite(g.lat) && Number.isFinite(g.lng)) return {
+  if (_validGps(g)) return {
     lat: g.lat,
     lng: g.lng
   };
-  return mapToGps(p.x, p.y);
+  var ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : {
+    lat: FESTIVAL_CONFIG.gps.lat,
+    lng: FESTIVAL_CONFIG.gps.lng
+  };
 }
 function mapToGps(x, y) {
   if (!MAP_AFFINE) return {
@@ -6992,8 +6999,10 @@ function RealMap({
     var seenIds = new Set();
     crewFriends.forEach(f => {
       seenIds.add(f.id);
-      var lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
-      var lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
+      var {
+        lat,
+        lng
+      } = _lngLatOf(f);
       if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
       var seen = formatLastSeen(f.ts);
       var initial = (f.name?.[0] || "?").toUpperCase();

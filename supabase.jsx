@@ -1177,7 +1177,7 @@ function sbBroadcastRally({ x, y, label, stageId, gps }) {
   if (!_presCh) return false;
   // gps: the pin's raw lat/lng when it was dropped on the real basemap. On a
   // festival with no affine, x/y alone would put every rally on the centroid.
-  const g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) ? { lat: gps.lat, lng: gps.lng } : null;
+  const g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? { lat: gps.lat, lng: gps.lng } : null;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
     x, y, label, stageId: stageId || null, ...(g ? { gps: g } : {}),

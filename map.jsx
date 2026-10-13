@@ -3132,7 +3132,7 @@ function MapScreen({ state, setState }) {
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, ...(incomingRally.gps && Number.isFinite(incomingRally.gps.lat) && Number.isFinite(incomingRally.gps.lng) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
+              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -4115,10 +4115,21 @@ function OfflinePacksSheet({ onClose }) {
 // so a festival with no registered art (III Points: mapMode "real", no
 // gpsAnchors) still shows the user where they are. The demo avatar has no
 // gps, so it keeps the grid path and is never presented as a real fix.
+//
+// A gps can arrive from another phone (a crew location, a rally), so it is
+// range-checked, not just finite: MapLibre throws on |lat| > 90 or |lng| > 180,
+// and one bad payload would take the whole map down for that crew.
+function _validGps(g) {
+  return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng)
+    && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
+}
 function _lngLatOf(p) {
   const g = p && p.gps;
-  if (g && Number.isFinite(g.lat) && Number.isFinite(g.lng)) return { lat: g.lat, lng: g.lng };
-  return mapToGps(p.x, p.y);
+  if (_validGps(g)) return { lat: g.lat, lng: g.lng };
+  // x/y can come from another phone too (a rally): an absurd grid point would
+  // project out of range on an affine festival. Fall back to the venue.
+  const ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : { lat: FESTIVAL_CONFIG.gps.lat, lng: FESTIVAL_CONFIG.gps.lng };
 }
 
 // Inverse of gpsToMap. Given a 100-space (x, y) inside the LVMS infield,
@@ -5235,8 +5246,7 @@ function RealMap({
 
     crewFriends.forEach(f => {
       seenIds.add(f.id);
-      const lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
-      const lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
+      const { lat, lng } = _lngLatOf(f);
       if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
       const seen = formatLastSeen(f.ts);
       const initial = (f.name?.[0] || "?").toUpperCase();

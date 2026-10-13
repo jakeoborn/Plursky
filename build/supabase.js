@@ -1284,7 +1284,7 @@ function sbBroadcastRally({
   gps
 }) {
   if (!_presCh) return false;
-  var g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) ? {
+  var g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? {
     lat: gps.lat,
     lng: gps.lng
   } : null;
