@@ -25,6 +25,7 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -2637,6 +2638,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`CRSSD saved orphan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Summerfest 2026 pulls su24, the wrong-stage copy of Stephan Jenkins (su45):
+// a saved su24 reads zero but stays stored and pushed, a moment tagged su24
+// lands in Needs Review, and re-adding the row brings both back.
+{
+  console.log("▸ Summerfest su24 removal — saved pick reads zero, stays stored; its moment goes to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-su24-removal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest su24 removal failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
