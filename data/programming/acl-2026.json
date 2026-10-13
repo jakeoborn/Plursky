@@ -1,0 +1,367 @@
+{
+  "festivalId": "acl-2026",
+  "schemaVersion": 1,
+  "status": "data-readiness-not-consumed",
+  "events": [
+    {
+      "eventKey": "2026-10-02-1500",
+      "date": "2026-10-02",
+      "weekend": "W1",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Cowboy Can Can",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-02-1700",
+      "date": "2026-10-02",
+      "weekend": "W1",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Steve Aoki with Mack",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-02-1830",
+      "date": "2026-10-02",
+      "weekend": "W1",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Special Guest Coming Soon",
+      "start": "18:30",
+      "end": "19:00",
+      "timezone": "America/Chicago",
+      "kind": "programming-unknown",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-03-1300",
+      "date": "2026-10-03",
+      "weekend": "W1",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Unfollow the Algorithm: Antoni Porowski",
+      "start": "13:00",
+      "end": "13:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-03-1500",
+      "date": "2026-10-03",
+      "weekend": "W1",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Suki Waterhouse with Mack",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-03-1700",
+      "date": "2026-10-03",
+      "weekend": "W1",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Drag Bingo by Extragrams",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-03-1830",
+      "date": "2026-10-03",
+      "weekend": "W1",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "9 to 5 Drag: A Dolly Tribute",
+      "start": "18:30",
+      "end": "19:00",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-04-1500",
+      "date": "2026-10-04",
+      "weekend": "W1",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Cannons with Tatiana",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-04-1700",
+      "date": "2026-10-04",
+      "weekend": "W1",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Supermush x Mike Posner",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-04-1830",
+      "date": "2026-10-04",
+      "weekend": "W1",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Special Guest Coming Soon",
+      "start": "18:30",
+      "end": "19:00",
+      "timezone": "America/Chicago",
+      "kind": "programming-unknown",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-09-1500",
+      "date": "2026-10-09",
+      "weekend": "W2",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "TGIF with Sunday Sessions",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-09-1700",
+      "date": "2026-10-09",
+      "weekend": "W2",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Party with DJ Bad Apple",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-09-1830",
+      "date": "2026-10-09",
+      "weekend": "W2",
+      "day": 1,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Party Pupils Presents Yacht House",
+      "start": "18:30",
+      "end": "19:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-10-1330",
+      "date": "2026-10-10",
+      "weekend": "W2",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Andy Langer x Aaron Franklin",
+      "start": "13:30",
+      "end": "14:00",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-10-1500",
+      "date": "2026-10-10",
+      "weekend": "W2",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Country Fried Line Dance",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-10-1700",
+      "date": "2026-10-10",
+      "weekend": "W2",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Special Guest Coming Soon",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "programming-unknown",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-10-1830",
+      "date": "2026-10-10",
+      "weekend": "W2",
+      "day": 2,
+      "venueLabel": "Bonus Tracks",
+      "billing": "9 to 5 Drag: A Dolly Tribute",
+      "start": "18:30",
+      "end": "19:00",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-11-1500",
+      "date": "2026-10-11",
+      "weekend": "W2",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "3rd & Longhorn",
+      "start": "15:00",
+      "end": "15:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-11-1700",
+      "date": "2026-10-11",
+      "weekend": "W2",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Drag Bingo by Extragrams",
+      "start": "17:00",
+      "end": "17:30",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    },
+    {
+      "eventKey": "2026-10-11-1830",
+      "date": "2026-10-11",
+      "weekend": "W2",
+      "day": 3,
+      "venueLabel": "Bonus Tracks",
+      "billing": "Party with DJ Bad Apple",
+      "start": "18:30",
+      "end": "19:00",
+      "timezone": "America/Chicago",
+      "kind": "named-programming",
+      "artistId": null,
+      "source": {
+        "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+        "observedAt": "2026-09-30",
+        "edition": "2026"
+      }
+    }
+  ]
+}

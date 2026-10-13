@@ -22,7 +22,7 @@ const ROOT = process.cwd();
 const SRC = readFileSync(join(ROOT, "data.jsx"), "utf8");
 const rows = [...SRC.matchAll(/_aclMk\("([^"]+)","([^"]+)","[^"]*","([^"]+)",(\d),"(\d\d:\d\d)","(\d\d:\d\d)"(?:,"(W[12])")?\)/g)]
   .map(m => ({ id: m[1], name: m[2], stage: m[3], day: +m[4], start: m[5], end: m[6], wk: m[7] || "both" }));
-if (rows.length !== 137) { console.log(`✗ parsed ${rows.length} ACL rows, want 137`); process.exit(1); }
+if (rows.length !== 136) { console.log(`✗ parsed ${rows.length} ACL rows, want 136`); process.exit(1); }
 console.log("rows parsed:", rows.length, "W1", rows.filter(r => r.wk === "W1").length, "W2", rows.filter(r => r.wk === "W2").length, "both", rows.filter(r => r.wk === "both").length);
 
 // W2 wall dates: Fri Oct 9, Sat Oct 10, Sun Oct 11, CDT = UTC-5.

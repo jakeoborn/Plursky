@@ -1,367 +1,640 @@
-// ═══════════════════════════════════════════════════════════════════════
-// III POINTS 2026 — Mana Wynwood · Miami, FL
-// Oct 16–17, 2026
-// ═══════════════════════════════════════════════════════════════════════
-// GATED SCAFFOLD. The LINEUP is real and complete; everything that places an
-// act in space or time is NOT PUBLISHED, and nothing here invents it.
-//
-// SOURCE lineup: iiipoints.com/lineup-2026/ (official), re-read 2026-09-25
-//   14:08 UTC (response Last-Modified 10:50:22 UTC, which equals its Date
-//   header: it dates the cached render, not an edit). 215 acts, parsed from
-//   the 215 <li> rows of the page's `ul.lineup__list`, 78 of them printing
-//   B2B (79 here: see drift 5 for the 1-800 row). First
-//   read 2026-08-29 at 218 rows / 80 B2B. B2B billing is preserved VERBATIM
-//   as one act, because that is how the set is sold and how the schedule
-//   will print it. Ids never change with billing, so saved acts survive.
-//
-// ── LINEUP DRIFT, recorded 2026-09-25 (newest official billing wins) ──
-// Three reads of the same page: ours 2026-08-29 (218), the Wayback Machine
-// capture 2026-09-02 01:51 UTC (216), and today (215).
-//   1. REMOVED, gone from today's page. Each is in REMOVED_FROM_LINEUP
-//      below, out of the lineup, with a one-line re-add:
-//        JENCARLOS · Mr. Brown · Mila Gama B2B X3BUTTERFLY  (on 09-02, gone today)
-//        Ultrathem (solo)                                   (already gone 09-02)
-//      The 09-02 read is the Internet Archive's capture (timestamp
-//      20260902015146); it is cited here only, never linked from a live
-//      module. Every record cites the official page as read today.
-//      Mila Gama and Ultrathem are still billed in other B2Bs
-//      ("Elias Garcia B2B Mila Gama", "Dr. Rubinstein B2B Ultrathem").
-//   2. ADDED: "GZA performing Liquid Swords" (on neither earlier read). The
-//      row's data-artist-name is "GZA"; the billing is what we show, and
-//      artist.jsx's _lookupName drops the "performing …" note for lookups.
-//   3. CASING: "SEL.6 B2B PLAYSHADO" now prints "SEL.6 B2B Playshado".
-//   4. Dude Skywalker is on 08-29 and today, but not in the 09-02 capture.
-//      Kept: today's page bills it.
-//   5. DISPLAY ≠ NAME, one row contradicts itself, NOT resolved by guessing:
-//      the row that used to print "1-800-Lolita B2B Xana" now prints
-//      "1-800-305", while its data-artist-name is still "1-800-Lolita&Xana"
-//      and its data-artist-id is the same pair (440360-440357) as 09-02.
-//      Kept as "1-800-Lolita B2B Xana": the row's own structured name, which
-//      names two artists the "1-800-305" text does not. Re-check at the flip.
-//      Two older display/name gaps are benign billing notes, also kept as
-//      printed: "Daizy" (name "Daizy (US)") and "res_ (live)" (name "res_").
-// SOURCE venue + dates + policies: iiipoints.com/guide/, accessed 2026-08-29
-//   — "Mana Wynwood, 2217 NW 5th Ave, Miami, FL 33127", "October 16+17, 2026",
-//   no re-entry, 21+ for alcohol, "asphalt and grass terrain".
-// SOURCE venue geometry: OpenStreetMap way 435880991 "Mana Wynwood Convention
-//   Center", fetched via Overpass 2026-08-29.
-// SOURCE sun times: api.sunrise-sunset.org at the OSM centroid, 2026-08-29.
-//
-// ⛔ DO NOT SOURCE ANYTHING FROM THIS SITE'S JSON-LD. The lineup page still
-// serves `"name": "III Points Music Festival 2021", "startDate": "2021-10-22",
-// "location": "DMANA WYNWOOD"` — five years stale. The human-readable guide
-// page is correct; the structured data is not. Same trap for
-// iiipoints.com/experience/stages/, which 404s but is still linked from the
-// site's own popup config.
-//
-// ── WHAT IS NOT PUBLISHED (verified 2026-08-29, do not fabricate) ──
-// STAGES, DAY SPLIT, and SET TIMES are all absent. The lineup is ONE flat
-// alphabetical list covering both days — there are no stage headings and no
-// Fri/Sat tabs. The guide FAQ states it directly: "Maps showing stage
-// locations, food, bathrooms, etc. WILL BE AVAILABLE PRIOR TO THE EVENT" and
-// "DURING THE DAYS LEADING UP TO THE FESTIVAL, set times will be posted."
-// So every artist below carries stage: null and start/end "". (Day is a
-// single TBA bucket rather than null — this comment used to claim
-// `day: null`, which the code has never done and which the config block
-// below explains at length. Corrected 2026-09-09 while reading it as the
-// precedent for Dreamstate SoCal, and believing it for a while first.)
-//
-// ── SPATIAL MODEL ──
-// There is none, deliberately, and that is the point. Every other festival in
-// this repo authors each stage's real lat/lng and DERIVES its 0-100 grid x/y
-// from that. Here there are no stages to author, so there is no grid, no
-// gpsAnchors, and no map art. Inventing a ground plate to fill the Map tab
-// would be exactly the defect PR #36 removed from EDC LV, where poster-space
-// coordinates had been laundered into world coordinates and left the main
-// stage sitting on a racetrack.
-//
-// `mapMode: "real"` is the answer instead: real street tiles centred on the
-// surveyed venue, the live blue dot, and the venue outline — all of it true,
-// none of it drawn by us. Wynwood is a street grid, so a real map is also
-// genuinely the better wayfinding tool here; at EDC the poster IS the
-// wayfinding artifact, which is why that one stays image-overlay.
-//
-// ── ANCHOR PROVENANCE (SPEC-add-festivals tiering) ──
-// venue.footprint is T1 VERIFIED — surveyed OSM geometry, not eyeballed.
-// gpsAnchors: NONE. Not T3, not provisional, ABSENT. A stage anchor cannot be
-// tiered before the stage exists.
-//
-// ⚠ venue.footprint is the CONVENTION CENTER BUILDING (184 × 149 m), not the
-// festival perimeter. The site is billed as "5 city blocks", but no surveyed
-// perimeter is published, so the building is what can be drawn honestly.
-// Widen it at the flip, from the official map — never by estimating.
-//
-// ── FLIP CHECKLIST (official map + set times, ~early Oct) ──
-//   1. STAGES with real lat/lng; derive x/y from them (never the reverse).
-//   2. day + start/end per act; drop the `provisional` flag.
-//   3. gpsAnchors re-measured to T1 against the official map.
-//   4. Widen venue.footprint to the real perimeter.
-//   5. amenities from the official map's legend.
-//   6. registry.available → true.
+// III Points 2026 - supplied set-time screenshot received October 5, 2026.
+// SOURCE: attendee-supplied III Points-branded screenshot. It prints Friday
+// October 16 and Saturday October 17, 13 stages and 231 intervals. SHA256:
+// 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
+// Public site at receipt: https://www.iiipoints.com/experience/ still carried
+// running order and only six 444 starts; /set-times/ returned 404. The official
+// site link below identifies the publisher, not a public full-clock receipt.
+// Transcription: docs/qa/reports/iii-points-2026-set-times/official.tsv.
+// All intervals read from the screenshot; a third-party structured schedule
+// served only as a cross-check. It omitted Homicide Jenny and incorrectly
+// ended Loukeman at 18:15; this source prints 19:00-19:30 and 17:15-18:05.
+// Prior lineup source: official list read September 30 (229 acts), joined
+// with July lineup-by-day graphic. Preserved archived reconciliation files
+// document that old snapshot; the current schedule supersedes those days.
+// The new grid bills Nettspend, solo Nick Leon, and Homicide Jenny. It does
+// not bill fakemink or Nick Leon B2B Safety Trance. These distinct acts get
+// distinct IDs. Existing IDs survive spelling, order and day corrections.
+// Dude Skywalker is now Friday; Jeremy Ismael is now Saturday. All 19 prior
+// DAY TBA billings have screenshot-grounded days. Villu is the grid's printed billing.
+// SPATIAL BOUNDARY: real street basemap, surveyed convention-center building
+// outline, no official perimeter/map inferred. Stage names are real but
+// positions are unknown: no stage x/y, lat/lng, GPS anchors or amenities.
 (function () {
   "use strict";
 
-  // No stages published — see the header. This is intentionally empty, and
-  // the app must stay correct with it empty.
-  //
-  // ⚠ This comment used to claim scripts/verify.mjs's mount probe boots this
-  // festival active and asserts that. It does not — the probe loads the real
-  // index.html with an empty localStorage, so it always boots whatever the
-  // resolver picks (acl-2026 today), and it cannot pick a gated festival at
-  // all: getActiveFestivalId requires `f.available`. Booting a gated
-  // festival needs a local flip; that is how this one and crssd-fall-2026
-  // were actually rendered. Do not trust the empty-STAGES path to a gate
-  // that is not there.
-  const STAGES = [];
+  // Official named stages with unknown positions. Schedule is not a map.
+  const STAGES = [
+  {
+    "id": "mind-melt",
+    "name": "MIND MELT",
+    "short": "MIND MELT",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "sec3",
+    "name": "SECTOR 3",
+    "short": "SECTOR 3",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "rc95",
+    "name": "RC95",
+    "short": "RC95",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "s3qu3nce",
+    "name": "S3QUENC3",
+    "short": "S3QUENC3",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "vertex",
+    "name": "VERTEX",
+    "short": "VERTEX",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "players-club",
+    "name": "PLAYERS CLUB",
+    "short": "PLAYERS CLUB",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "halo-88",
+    "name": "HALO 88",
+    "short": "HALO 88",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "grand-central",
+    "name": "GRAND CENTRAL",
+    "short": "GRAND CENTRAL",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "door-iv",
+    "name": "DOOR IV",
+    "short": "DOOR IV",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "iii-points-radio",
+    "name": "III POINTS RADIO",
+    "short": "III POINTS RADIO",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "isotropic",
+    "name": "ISOTROPIC",
+    "short": "ISOTROPIC",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "unforeseen",
+    "name": "UNFORESEEN",
+    "short": "UNFORESEEN",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "444",
+    "name": "444",
+    "short": "444",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  }
+];
 
   // No amenity map published.
   const AMENITIES = [];
 
-  // Every act is unplaced and untimed. `tier` drives lineup card weighting
-  // elsewhere; with no set times there is no basis to rank, so all acts sit
-  // at the same tier rather than being silently ordered by a guess.
-  // `provisional: true` marks the whole set for the flip session.
-  // The flip fills this block from the OFFICIAL schedule, after STAGES and
-  // real Fri/Sat dayDates come from the same source:
-  //   node scripts/fetch-insomniac-settimes.mjs https://www.iiipoints.com/lineup/set-times --days 2 --out sheet.tsv
-  //   node scripts/import-set-times.mjs iii-points-2026 sheet.tsv --days-from-sheet --source <official-url>
-  // id → [stageId, start, end, day]. Empty until then: every act unplaced.
+  // Verified intervals. Times before 08:00 belong to the preceding festival night.
   const SCHEDULE = {
     // SCHEDULE:BEGIN iii-points-2026
+    // Attendee-supplied III Points-branded screenshot grid received 2026-10-05; sha256 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
+    "iiip-ackdaddy": ["mind-melt", "16:00", "17:00", 1],
+    "iiip-vania-junco": ["mind-melt", "17:05", "17:35", 1],
+    "iiip-connan-mockasin": ["mind-melt", "18:00", "19:00", 1],
+    "iiip-men-i-trust": ["mind-melt", "19:25", "20:15", 1],
+    "iiip-parcels": ["mind-melt", "20:45", "22:00", 1],
+    "iiip-tokischa": ["mind-melt", "22:30", "23:15", 1],
+    "iiip-cloonee": ["mind-melt", "23:30", "01:00", 1],
+    "iiip-beltran-b2b-ben-sterling": ["mind-melt", "01:00", "02:30", 1],
+    "iiip-pawsa": ["mind-melt", "02:30", "04:00", 1],
+    "iiip-kumi": ["sec3", "16:00", "17:00", 1],
+    "iiip-cumbiamba": ["sec3", "17:05", "17:45", 1],
+    "iiip-amar": ["sec3", "18:10", "18:40", 1],
+    "iiip-ghostface-killah-presents": ["sec3", "19:00", "19:55", 1],
+    "iiip-bone-thugs-n-harmony": ["sec3", "20:15", "21:00", 1],
+    "iiip-lil-kim": ["sec3", "21:15", "22:00", 1],
+    "iiip-mind-enterprises": ["sec3", "22:20", "23:10", 1],
+    "iiip-purity-ring": ["sec3", "23:35", "00:25", 1],
+    "iiip-danny-brown": ["sec3", "00:45", "01:30", 1],
+    "iiip-jane-remover": ["sec3", "01:50", "02:35", 1],
+    "iiip-flying-lotus": ["sec3", "03:00", "04:00", 1],
+    "iiip-fiin": ["isotropic", "16:00", "17:15", 1],
+    "iiip-daizy": ["isotropic", "17:15", "18:30", 1],
+    "iiip-maher-daniel-b2b-mai-iache": ["isotropic", "18:30", "20:00", 1],
+    "iiip-malone-b2b-miluhska": ["isotropic", "20:00", "21:30", 1],
+    "iiip-miguelle-tons-b2b-saraga": ["isotropic", "21:30", "23:00", 1],
+    "iiip-brunello-b2b-rafael": ["isotropic", "23:00", "00:30", 1],
+    "iiip-ahmed-spins-b2b-omri": ["isotropic", "00:30", "02:00", 1],
+    "iiip-max-styler-b2b-vintage-cul": ["isotropic", "02:00", "04:00", 1],
+    "iiip-mason-norris-b2b-mia-vende": ["rc95", "16:00", "17:15", 1],
+    "iiip-proletar-b2b-zamurai": ["rc95", "17:15", "18:15", 1],
+    "iiip-v1fro": ["rc95", "18:15", "19:15", 1],
+    "iiip-1tbsp": ["rc95", "19:15", "20:15", 1],
+    "iiip-jigitz": ["rc95", "20:15", "21:15", 1],
+    "iiip-mary-droppinz": ["rc95", "21:15", "22:15", 1],
+    "iiip-ivy-lab": ["rc95", "22:15", "23:15", 1],
+    "iiip-hamdi": ["rc95", "23:15", "00:15", 1],
+    "iiip-levity-b2b-taiki-nulight": ["rc95", "00:15", "01:30", 1],
+    "iiip-odd-mob": ["rc95", "01:30", "02:45", 1],
+    "iiip-disco-lines": ["rc95", "02:45", "04:00", 1],
+    "iiip-heidi-lawden": ["444", "16:00", "20:00", 1],
+    "iiip-dj-harvey": ["444", "20:00", "00:00", 1],
+    "iiip-floating-points": ["444", "00:00", "04:00", 1],
+    "iiip-duun-b2b-sleepy-c": ["s3qu3nce", "16:00", "18:00", 1],
+    "iiip-r-v-calypso": ["s3qu3nce", "18:00", "19:15", 1],
+    "iiip-jump-source": ["s3qu3nce", "19:15", "20:45", 1],
+    "iiip-jacques-greene": ["s3qu3nce", "20:45", "22:00", 1],
+    "iiip-eli-escobar-b2b-jubilee": ["s3qu3nce", "22:00", "23:30", 1],
+    "iiip-danny-daze-b2b-dj-godfathe": ["s3qu3nce", "23:30", "01:00", 1],
+    "iiip-peach-b2b-shanti-celeste": ["s3qu3nce", "01:00", "02:30", 1],
+    "iiip-honey-dijon": ["s3qu3nce", "02:30", "04:00", 1],
+    "iiip-lylac": ["grand-central", "16:30", "17:00", 1],
+    "iiip-iiry": ["grand-central", "17:25", "17:55", 1],
+    "iiip-blind-fish": ["grand-central", "18:15", "19:00", 1],
+    "iiip-nicholas-g-padilla": ["grand-central", "19:15", "20:00", 1],
+    "iiip-rental-snakes": ["grand-central", "20:15", "21:00", 1],
+    "iiip-corridos-ketamina": ["grand-central", "21:15", "21:55", 1],
+    "iiip-patch": ["grand-central", "22:10", "22:55", 1],
+    "iiip-nate-sib": ["grand-central", "23:15", "00:00", 1],
+    "iiip-b0yg1rl": ["grand-central", "00:20", "00:50", 1],
+    "iiip-mgna-crrrta": ["grand-central", "01:10", "01:55", 1],
+    "iiip-zep": ["grand-central", "02:15", "03:00", 1],
+    "iiip-megusta-b2b-migs": ["vertex", "16:00", "17:30", 1],
+    "iiip-grace-arribas-b2b-marte": ["vertex", "17:30", "19:00", 1],
+    "iiip-rello": ["vertex", "19:00", "20:15", 1],
+    "iiip-dan-molinari": ["vertex", "20:15", "21:30", 1],
+    "iiip-raje-b2b-slugg": ["vertex", "21:30", "23:00", 1],
+    "iiip-roddy-lima": ["vertex", "23:00", "00:15", 1],
+    "iiip-discip": ["vertex", "00:15", "01:30", 1],
+    "iiip-ragie-ban": ["vertex", "01:30", "02:45", 1],
+    "iiip-invt": ["vertex", "02:45", "04:00", 1],
+    "iiip-feph-b2b-mr-tron": ["door-iv", "16:00", "18:00", 1],
+    "iiip-adam-at-the-door": ["door-iv", "18:00", "19:15", 1],
+    "iiip-uchi": ["door-iv", "19:15", "20:30", 1],
+    "iiip-lotusoph-b2b-julia-saturno": ["door-iv", "20:30", "22:00", 1],
+    "iiip-gio-elia-b2b-meghan-lee": ["door-iv", "22:00", "23:30", 1],
+    "iiip-bill-patrick-b2b-bort": ["door-iv", "23:30", "01:00", 1],
+    "iiip-oma-totem-b2b-true-vine": ["door-iv", "01:00", "02:45", 1],
+    "iiip-eco-sistema": ["door-iv", "02:45", "04:00", 1],
+    "iiip-aphex-twink-b2b-foreseer": ["halo-88", "16:00", "17:30", 1],
+    "iiip-dj-sabi-b2b-grue5ome": ["halo-88", "17:30", "19:00", 1],
+    "iiip-alejo": ["halo-88", "19:00", "20:00", 1],
+    "iiip-miguel-clark-b2b-naim-zarz": ["halo-88", "20:00", "21:15", 1],
+    "iiip-fiuza-b2b-madison-kay": ["halo-88", "21:15", "22:30", 1],
+    "iiip-elias-garcia-b2b-mila-gama": ["halo-88", "22:30", "00:00", 1],
+    "iiip-dr-rubinstein-b2b-ultrathe": ["halo-88", "00:00", "01:30", 1],
+    "iiip-joanna-kuchta-b2b-robyn-si": ["halo-88", "01:30", "03:00", 1],
+    "iiip-tech-g1rls": ["halo-88", "03:00", "04:00", 1],
+    "iiip-katie-ox-b2b-nat-siriani": ["unforeseen", "16:00", "18:00", 1],
+    "iiip-tiffy-vera-b2b-thunderpony": ["unforeseen", "18:00", "19:30", 1],
+    "iiip-aabel-b2b-siegel": ["unforeseen", "19:30", "21:00", 1],
+    "iiip-maccabi-b2b-pezlo-md": ["unforeseen", "21:00", "22:30", 1],
+    "iiip-moscoman": ["unforeseen", "22:30", "23:45", 1],
+    "iiip-eveava-b2b-jovigibs": ["unforeseen", "23:45", "01:15", 1],
+    "iiip-bakke": ["unforeseen", "01:15", "02:30", 1],
+    "iiip-lousy-lover-b2b-lucaz": ["unforeseen", "02:30", "04:00", 1],
+    "iiip-sportswax": ["iii-points-radio", "16:00", "18:00", 1],
+    "iiip-extra-andrew-b2b-mutant-pe": ["iii-points-radio", "18:00", "19:30", 1],
+    "iiip-nicole-gallamini-b2b-nikit": ["iii-points-radio", "19:30", "21:00", 1],
+    "iiip-rimaye-b2b-inbal": ["iii-points-radio", "21:00", "22:30", 1],
+    "iiip-will-renuart": ["iii-points-radio", "22:30", "23:45", 1],
+    "iiip-will-buck-b2b-taimur": ["iii-points-radio", "23:45", "01:15", 1],
+    "iiip-godisound": ["iii-points-radio", "01:15", "02:30", 1],
+    "iiip-alexx-in-chainss-b2b-solte": ["iii-points-radio", "02:30", "04:00", 1],
+    "iiip-scotty-sobek": ["players-club", "16:00", "17:30", 1],
+    "iiip-lauren-palma": ["players-club", "17:30", "18:45", 1],
+    "iiip-lagrimas-de-oro": ["players-club", "18:45", "20:00", 1],
+    "iiip-deep-cleansing": ["players-club", "20:00", "21:15", 1],
+    "iiip-baby-jesus-b2b-chaos": ["players-club", "21:15", "22:45", 1],
+    "iiip-puma": ["players-club", "22:45", "00:00", 1],
+    "iiip-cami-di-marzo": ["players-club", "00:00", "01:15", 1],
+    "iiip-dude-skywalker": ["players-club", "01:15", "02:45", 1],
+    "iiip-differ": ["players-club", "02:45", "04:00", 1],
+    "iiip-carter-jackson-brown": ["mind-melt", "16:00", "17:00", 2],
+    "iiip-loukeman": ["mind-melt", "17:15", "18:05", 2],
+    "iiip-ear": ["mind-melt", "18:20", "19:00", 2],
+    "iiip-nettspend": ["mind-melt", "19:25", "20:10", 2],
+    "iiip-blood-orange": ["mind-melt", "20:40", "21:50", 2],
+    "iiip-adam-port": ["mind-melt", "22:15", "23:30", 2],
+    "iiip-underworld": ["mind-melt", "00:00", "01:00", 2],
+    "iiip-four-tet": ["mind-melt", "01:30", "02:45", 2],
+    "iiip-kettama": ["mind-melt", "02:45", "04:00", 2],
+    "iiip-nikole": ["sec3", "16:15", "16:45", 2],
+    "iiip-doris-dana": ["sec3", "17:00", "17:30", 2],
+    "iiip-res-live": ["sec3", "17:45", "18:30", 2],
+    "iiip-ml-buch": ["sec3", "18:45", "19:30", 2],
+    "iiip-tricky": ["sec3", "19:55", "20:45", 2],
+    "iiip-rusowsky": ["sec3", "21:10", "21:55", 2],
+    "iiip-kelela": ["sec3", "22:20", "23:05", 2],
+    "iiip-horsegiirl": ["sec3", "23:30", "00:20", 2],
+    "iiip-bassvictim": ["sec3", "00:40", "01:25", 2],
+    "iiip-machine-girl": ["sec3", "01:45", "02:35", 2],
+    "iiip-sunn-o": ["sec3", "03:00", "04:00", 2],
+    "iiip-la-bb": ["isotropic", "16:00", "17:15", 2],
+    "iiip-godblessjai": ["isotropic", "17:15", "18:30", 2],
+    "iiip-silvie-loto-b2b-ms-mada": ["isotropic", "18:30", "20:00", 2],
+    "iiip-marsolo": ["isotropic", "20:00", "21:15", 2],
+    "iiip-omar": ["isotropic", "21:15", "22:30", 2],
+    "iiip-chasewest": ["isotropic", "22:30", "23:45", 2],
+    "iiip-sosa": ["isotropic", "23:45", "01:00", 2],
+    "iiip-max-dean-b2b-luke-dean": ["isotropic", "01:00", "02:30", 2],
+    "iiip-marco-carola-b2b-franky-ri": ["isotropic", "02:30", "04:00", 2],
+    "iiip-domnrob": ["rc95", "16:00", "17:00", 2],
+    "iiip-generous-b-b2b-hakuna": ["rc95", "17:00", "18:15", 2],
+    "iiip-cole-knight-b2b-dreya-v": ["rc95", "18:15", "19:30", 2],
+    "iiip-coffintexts-b2b-dj-fuckoff": ["rc95", "19:30", "20:45", 2],
+    "iiip-nick-leon": ["rc95", "20:45", "22:00", 2],
+    "iiip-ki-ki": ["rc95", "22:00", "23:15", 2],
+    "iiip-u-uk-uk1mat-u": ["rc95", "23:15", "00:30", 2],
+    "iiip-vtss": ["rc95", "00:30", "01:30", 2],
+    "iiip-999999999": ["rc95", "01:30", "02:45", 2],
+    "iiip-charlotte-de-witte": ["rc95", "02:45", "04:00", 2],
+    "iiip-willikens-ivkovic": ["444", "16:00", "20:00", 2],
+    "iiip-red-axes": ["444", "20:00", "00:00", 2],
+    "iiip-seth-troxler": ["444", "00:00", "04:00", 2],
+    "iiip-grant-sabadash-b2b-shir-mi": ["s3qu3nce", "16:00", "17:45", 2],
+    "iiip-natalia-roth-b2b-max-stern": ["s3qu3nce", "17:45", "19:15", 2],
+    "iiip-rebolledo": ["s3qu3nce", "19:15", "20:30", 2],
+    "iiip-whitesquare": ["s3qu3nce", "20:30", "21:45", 2],
+    "iiip-roman-flugel": ["s3qu3nce", "21:45", "23:00", 2],
+    "iiip-daphni": ["s3qu3nce", "23:00", "00:15", 2],
+    "iiip-interplanetary-criminal": ["s3qu3nce", "00:15", "01:30", 2],
+    "iiip-haai": ["s3qu3nce", "01:30", "02:45", 2],
+    "iiip-tiga": ["s3qu3nce", "02:45", "04:00", 2],
+    "iiip-huracan": ["grand-central", "16:15", "16:45", 2],
+    "iiip-vvilhelm": ["grand-central", "17:10", "17:40", 2],
+    "iiip-camp-blu": ["grand-central", "18:05", "18:35", 2],
+    "iiip-homicide-jenny": ["grand-central", "19:00", "19:30", 2],
+    "iiip-ladyboy": ["grand-central", "19:55", "20:25", 2],
+    "iiip-emily-afre": ["grand-central", "20:50", "21:20", 2],
+    "iiip-fine": ["grand-central", "21:45", "22:30", 2],
+    "iiip-chanel-beads": ["grand-central", "22:55", "23:40", 2],
+    "iiip-velora": ["grand-central", "00:05", "00:35", 2],
+    "iiip-yhwh-nailgun": ["grand-central", "01:00", "01:45", 2],
+    "iiip-crespi-drum-syndicate-live": ["grand-central", "02:00", "03:00", 2],
+    "iiip-allnightkev-b2b-lo-g": ["vertex", "16:00", "17:30", 2],
+    "iiip-alezsandro-b2b-dalva": ["vertex", "17:30", "19:00", 2],
+    "iiip-idriss-d-b2b-danyelino": ["vertex", "19:00", "20:30", 2],
+    "iiip-joss-dean": ["vertex", "20:30", "21:45", 2],
+    "iiip-kinahau": ["vertex", "21:45", "23:00", 2],
+    "iiip-dean-turnley": ["vertex", "23:00", "00:15", 2],
+    "iiip-sam-alfred": ["vertex", "00:15", "01:30", 2],
+    "iiip-mph": ["vertex", "01:30", "02:45", 2],
+    "iiip-2up": ["vertex", "02:45", "04:00", 2],
+    "iiip-vsyana": ["door-iv", "16:00", "17:15", 2],
+    "iiip-serafitz-b2b-sol-discos": ["door-iv", "17:15", "18:45", 2],
+    "iiip-dj-ray-b2b-ez-dee": ["door-iv", "18:45", "20:15", 2],
+    "iiip-artime-b2b-mystic-bill": ["door-iv", "20:15", "21:45", 2],
+    "iiip-david-vunk": ["door-iv", "21:45", "23:45", 2],
+    "iiip-terence-tabeau": ["door-iv", "23:45", "01:00", 2],
+    "iiip-dj-three-b2b-sister-system": ["door-iv", "01:00", "02:30", 2],
+    "iiip-ashley-venom-b2b-souls-dep": ["door-iv", "02:30", "04:00", 2],
+    "iiip-khami": ["halo-88", "16:00", "17:00", 2],
+    "iiip-d-luxe-b2b-dennis-baker": ["halo-88", "17:00", "18:00", 2],
+    "iiip-bricolage-b2b-day-dem": ["halo-88", "18:00", "19:15", 2],
+    "iiip-lupreme-b2b-santo": ["halo-88", "19:15", "20:30", 2],
+    "iiip-bonita-applebumz-b2b-toni-": ["halo-88", "20:30", "21:45", 2],
+    "iiip-sel-6-b2b-playshado": ["halo-88", "21:45", "23:00", 2],
+    "iiip-mr-bitch": ["halo-88", "23:00", "00:00", 2],
+    "iiip-pressure-point-b2b-berrakk": ["halo-88", "00:00", "01:15", 2],
+    "iiip-faith-leazae": ["halo-88", "01:15", "01:45", 2],
+    "iiip-lady-narcisse-b2b-racci": ["halo-88", "01:45", "03:00", 2],
+    "iiip-duality-b2b-gumthewrapper": ["halo-88", "03:00", "04:00", 2],
+    "iiip-p1no-b2b-trippie-hippie": ["unforeseen", "16:00", "17:30", 2],
+    "iiip-bozito-b2b-gabo-escalona": ["unforeseen", "17:30", "18:45", 2],
+    "iiip-spice-crime-b2b-violeta": ["unforeseen", "18:45", "20:00", 2],
+    "iiip-ale-acosta-b2b-hazon": ["unforeseen", "20:00", "21:15", 2],
+    "iiip-jinn-pr": ["unforeseen", "21:15", "22:15", 2],
+    "iiip-619": ["unforeseen", "22:15", "23:30", 2],
+    "iiip-1-800-lolita-b2b-xana": ["unforeseen", "23:30", "00:45", 2],
+    "iiip-saturnsarii-b2b-suz": ["unforeseen", "00:45", "02:15", 2],
+    "iiip-liquid-dinosaurs": ["unforeseen", "02:15", "02:45", 2],
+    "iiip-kujo-b2b-rara": ["unforeseen", "02:45", "04:00", 2],
+    "iiip-nxtel": ["iii-points-radio", "16:00", "17:00", 2],
+    "iiip-shinobi": ["iii-points-radio", "17:00", "18:00", 2],
+    "iiip-jinks-b2b-romulo-del-casti": ["iii-points-radio", "18:00", "19:30", 2],
+    "iiip-milo-ziro-b2b-xilla": ["iii-points-radio", "19:30", "21:00", 2],
+    "iiip-marie-qrie-b2b-viva-vidal": ["iii-points-radio", "21:00", "22:30", 2],
+    "iiip-rude-boy-b2b-sdrv": ["iii-points-radio", "22:30", "00:00", 2],
+    "iiip-phiphi-b2b-winter-wrong": ["iii-points-radio", "00:00", "01:30", 2],
+    "iiip-lizzie-mcguire": ["iii-points-radio", "01:30", "02:30", 2],
+    "iiip-mango-b2b-mister-lo": ["iii-points-radio", "02:30", "04:00", 2],
+    "iiip-dj-ahamed": ["players-club", "16:00", "17:30", 2],
+    "iiip-jbz": ["players-club", "17:30", "18:30", 2],
+    "iiip-santiago-villu": ["players-club", "18:30", "19:45", 2],
+    "iiip-canela": ["players-club", "19:45", "20:45", 2],
+    "iiip-ellynora": ["players-club", "20:45", "22:00", 2],
+    "iiip-saint-romero": ["players-club", "22:00", "23:00", 2],
+    "iiip-jeremy-ismael": ["players-club", "23:00", "00:15", 2],
+    "iiip-jason-rault": ["players-club", "00:15", "01:30", 2],
+    "iiip-nii-tei": ["players-club", "01:30", "02:45", 2],
+    "iiip-monoky": ["players-club", "02:45", "04:00", 2],
     // SCHEDULE:END
   };
   const scheduled = act => {
     const s = SCHEDULE[act.id];
     if (!s) return act;
-    const { provisional, ...rest } = act;
+    const { provisional, unscheduled, ...rest } = act;
     return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing III Points 2026." };
   };
 
-  const mk = (id, name) => scheduled({
+  const mk = (id, name, day) => scheduled({
     id, name, genre: "—", country: "—",
-    stage: null, day: 1, start: "", end: "", tier: 2,
+    stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
-    bio: "Playing III Points 2026. Stage, day and set time are not published " +
-         "yet — the official schedule drops in the days before the festival.",
+    bio: `Playing III Points 2026 on ${day === 1 ? "Friday, October 16" : "Saturday, October 17"}. ` +
+         "See the supplied set-time grid for this edition.",
     provisional: true,
   });
 
+  // Historical unscheduled billings. The supplied timetable now supplies their slots.
+  const mkUnscheduled = (id, name, why) => scheduled({
+    id, name, genre: "—", country: "—", stage: null, day: null,
+    start: "", end: "", tier: 2,
+    img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
+    bio: "On the official III Points 2026 lineup. Its day, stage and set time are not published: " +
+         (why || "the official lineup-by-day graphic does not list it."),
+    provisional: true, unscheduled: true,
+  });
+
+  // Historical lineup identities, mapped to the current screenshot timetable.
+  // Array groups below are historical; the schedule determines current days.
   const ARTISTS = [
-    mk("iiip-1-800-lolita-b2b-xana",        "1-800-Lolita B2B Xana"),
-    mk("iiip-2up",                          "2UP!"),
-    mk("iiip-619",                          "619!"),
-    mk("iiip-999999999",                    "999999999"),
-    mk("iiip-aabel-b2b-siegel",             "Aabel B2B Siegel"),
-    mk("iiip-ackdaddy",                     "Ackdaddy"),
-    mk("iiip-adam-at-the-door",             "Adam At The Door"),
-    mk("iiip-adam-port",                    "Adam Port"),
-    mk("iiip-ahmed-spins-b2b-omri",         "Ahmed Spins B2B OMRI."),
-    mk("iiip-ale-acosta-b2b-hazon",         "Ale Acosta B2B Hazón"),
-    mk("iiip-alejo",                        "ALEJO"),
-    mk("iiip-alexx-in-chainss-b2b-solte",   "Alexx in Chainss B2B Soltek"),
-    mk("iiip-alezsandro-b2b-dalva",         "Alezsandro B2B Dalva"),
-    mk("iiip-allnightkev-b2b-lo-g",         "Allnightkev B2B Lo-G"),
-    mk("iiip-aphex-twink-b2b-foreseer",     "Aphex Twink B2B FORESEER"),
-    mk("iiip-artime-b2b-mystic-bill",       "Artime B2B Mystic Bill"),
-    mk("iiip-ashley-venom-b2b-souls-dep",   "Ashley Venom B2B Souls Departed"),
-    mk("iiip-b0yg1rl",                      "B0YG1RL"),
-    mk("iiip-baby-jesus-b2b-chaos",         "Baby Jesus B2B CHAOS!"),
-    mk("iiip-bakke",                        "Bakke"),
-    mk("iiip-bassvictim",                   "Bassvictim"),
-    mk("iiip-beltran-b2b-ben-sterling",     "Beltran B2B Ben Sterling"),
-    mk("iiip-bill-patrick-b2b-bort",        "Bill Patrick B2B Bort"),
-    mk("iiip-blood-orange",                 "Blood Orange"),
-    mk("iiip-bone-thugs-n-harmony",         "Bone Thugs-N-Harmony"),
-    mk("iiip-bonita-applebumz-b2b-toni-",   "Bonita Applebumz B2B Toni Shardai"),
-    mk("iiip-bozito-b2b-gabo-escalona",     "Bozito B2B Gabo Escalona"),
-    mk("iiip-bricolage-b2b-day-dem",        "Bricolage B2B DAY/DEM"),
-    mk("iiip-brunello-b2b-rafael",          "Brunello B2B Rafael"),
-    mk("iiip-cami-di-marzo",                "Cami di Marzo"),
-    mk("iiip-camp-blu",                     "Camp Blu"),
-    mk("iiip-carter-jackson-brown",         "Carter Jackson-Brown"),
-    mk("iiip-chanel-beads",                 "Chanel Beads"),
-    mk("iiip-charlotte-de-witte",           "Charlotte de Witte"),
-    mk("iiip-chasewest",                    "ChaseWest"),
-    mk("iiip-cloonee",                      "Cloonee"),
-    mk("iiip-coffintexts-b2b-dj-fuckoff",   "Coffintexts B2B DJ Fuckoff"),
-    mk("iiip-cole-knight-b2b-dreya-v",      "Cole Knight B2B DREYA V"),
-    mk("iiip-connan-mockasin",              "Connan Mockasin"),
-    mk("iiip-corridos-ketamina",            "Corridos Ketamina"),
-    mk("iiip-d-luxe-b2b-dennis-baker",      "D.Luxe B2B Dennis Baker"),
-    mk("iiip-daizy",                        "Daizy"),
-    mk("iiip-dan-molinari",                 "Dan Molinari"),
-    mk("iiip-danny-brown",                  "Danny Brown"),
-    mk("iiip-danny-daze-b2b-dj-godfathe",   "Danny Daze B2B DJ Godfather"),
-    mk("iiip-daphni",                       "Daphni"),
-    mk("iiip-david-vunk",                   "David Vunk"),
-    mk("iiip-dean-turnley",                 "Dean Turnley"),
-    mk("iiip-deep-cleansing",               "Deep Cleansing"),
-    mk("iiip-differ",                       "Differ"),
-    mk("iiip-discip",                       "Discip"),
-    mk("iiip-disco-lines",                  "Disco Lines"),
-    mk("iiip-dj-harvey",                    "DJ Harvey"),
-    mk("iiip-dj-ray-b2b-ez-dee",            "DJ Ray B2B EZ Dee"),
-    mk("iiip-dj-sabi-b2b-grue5ome",         "DJ Sabi B2B GRUE5OME"),
-    mk("iiip-dj-three-b2b-sister-system",   "DJ Three B2B Sister System"),
-    mk("iiip-domnrob",                      "DomnRob"),
-    mk("iiip-doris-dana",                   "doris dana"),
-    mk("iiip-dr-rubinstein-b2b-ultrathe",   "Dr. Rubinstein B2B Ultrathem"),
-    mk("iiip-duality-b2b-gumthewrapper",    "Duality B2B GumtheWrapper"),
-    mk("iiip-dude-skywalker",               "Dude Skywalker"),
-    mk("iiip-duun-b2b-sleepy-c",            "duun B2B Sleepy C"),
-    mk("iiip-ear",                          "ear"),
-    mk("iiip-eco-sistema",                  "eco-sistema"),
-    mk("iiip-eli-escobar-b2b-jubilee",      "Eli Escobar B2B Jubilee"),
-    mk("iiip-elias-garcia-b2b-mila-gama",   "Elias Garcia B2B Mila Gama"),
-    mk("iiip-ellynora",                     "Ellynora"),
-    mk("iiip-eveava-b2b-jovigibs",          "eveava B2B Jovigibs"),
-    mk("iiip-extra-andrew-b2b-mutant-pe",   "Extra Andrew B2B Mutant Pete"),
-    mk("iiip-faith-leazae",                 "Faith Leazae"),
-    mk("iiip-fakemink",                     "fakemink"),
-    mk("iiip-feph-b2b-mr-tron",             "Feph B2B Mr. Tron"),
-    mk("iiip-fiin",                         "Fiin"),
-    mk("iiip-fine",                         "Fine"),
-    mk("iiip-fiuza-b2b-madison-kay",        "FIUZA B2B Madison Kay"),
-    mk("iiip-floating-points",              "Floating Points"),
-    mk("iiip-flying-lotus",                 "Flying Lotus"),
-    mk("iiip-four-tet",                     "Four Tet"),
-    mk("iiip-generous-b-b2b-hakuna",        "Generous B B2B Hakuna"),
-    mk("iiip-gio-elia-b2b-meghan-lee",      "Gio Elia B2B Meghan Lee"),
-    mk("iiip-godisound",                    "Godisound"),
-    mk("iiip-grace-arribas-b2b-marte",      "Grace Arribas B2B MARTE"),
-    mk("iiip-grant-sabadash-b2b-shir-mi",   "Grant Sabadash B2B Shir Miya"),
-    mk("iiip-gza",                          "GZA performing Liquid Swords"),
-    mk("iiip-haai",                         "HAAi"),
-    mk("iiip-hamdi",                        "Hamdi"),
-    mk("iiip-heidi-lawden",                 "Heidi Lawden"),
-    mk("iiip-honey-dijon",                  "Honey Dijon"),
-    mk("iiip-horsegiirl",                   "horsegiirL"),
-    mk("iiip-idriss-d-b2b-danyelino",       "Idriss D B2B Danyelino"),
-    mk("iiip-interplanetary-criminal",      "Interplanetary Criminal"),
-    mk("iiip-invt",                         "INVT"),
-    mk("iiip-ivy-lab",                      "Ivy Lab"),
-    mk("iiip-jacques-greene",               "Jacques Greene"),
-    mk("iiip-jane-remover",                 "Jane Remover"),
-    mk("iiip-jason-rault",                  "Jason Rault"),
-    mk("iiip-jbz",                          "JBZ"),
-    mk("iiip-jeremy-ismael",                "Jeremy Ismael"),
-    mk("iiip-jigitz",                       "Jigitz"),
-    mk("iiip-jinks-b2b-romulo-del-casti",   "Jinks B2B Romulo Del Castillo"),
-    mk("iiip-jinn-pr",                      "JINN_PR"),
-    mk("iiip-joanna-kuchta-b2b-robyn-si",   "Joanna Kuchta B2B Robyn Sin Love"),
-    mk("iiip-joss-dean",                    "Joss Dean"),
-    mk("iiip-u-uk-uk1mat-u",                "¥ØU$UK€ ¥UK1MAT$U"),
-    mk("iiip-jump-source",                  "Jump Source"),
-    mk("iiip-katie-ox-b2b-nat-siriani",     "Katie Ox B2B Nat Siriani"),
-    mk("iiip-kelela",                       "Kelela"),
-    mk("iiip-kettama",                      "KETTAMA"),
-    mk("iiip-khami",                        "Khami"),
-    mk("iiip-ki-ki",                        "KI/KI"),
-    mk("iiip-kinahau",                      "KinAhau"),
-    mk("iiip-kujo-b2b-rara",                "Kujo B2B RARA"),
-    mk("iiip-kumi",                         "Kumi"),
-    mk("iiip-la-bb",                        "La BB"),
-    mk("iiip-lady-narcisse-b2b-racci",      "Lady Narcisse B2B Racci"),
-    mk("iiip-ladyboy",                      "LADYBOY"),
-    mk("iiip-lagrimas-de-oro",              "Lagrimas de Oro"),
-    mk("iiip-lauren-palma",                 "Lauren Palma"),
-    mk("iiip-levity-b2b-taiki-nulight",     "Levity B2B Taiki Nulight"),
-    mk("iiip-lil-kim",                      "Lil' Kim"),
-    mk("iiip-liquid-dinosaurs",             "Liquid Dinosaurs"),
-    mk("iiip-lizzie-mcguire",               "Lizzie_mcguire"),
-    mk("iiip-lotusoph-b2b-julia-saturno",   "Lotusoph B2B Julia Saturno"),
-    mk("iiip-loukeman",                     "Loukeman"),
-    mk("iiip-lousy-lover-b2b-lucaz",        "Lousy Lover B2B Lucaz"),
-    mk("iiip-lupreme-b2b-santo",            "Lupreme B2B SANTO"),
-    mk("iiip-maccabi-b2b-pezlo-md",         "Maccabi B2B Pezlo MD"),
-    mk("iiip-machine-girl",                 "Machine Girl"),
-    mk("iiip-maher-daniel-b2b-mai-iache",   "Maher Daniel B2B Mai Iachetti"),
-    mk("iiip-malone-b2b-miluhska",          "Malóne B2B Miluhska"),
-    mk("iiip-mango-b2b-mister-lo",          "Mango B2B Mister Lo"),
-    mk("iiip-marco-carola-b2b-franky-ri",   "Marco Carola B2B Franky Rizardo"),
-    mk("iiip-marie-qrie-b2b-viva-vidal",    "Marie Qrie B2B Viva Vidal"),
-    mk("iiip-marsolo",                      "Marsolo"),
-    mk("iiip-mary-droppinz",                "Mary Droppinz"),
-    mk("iiip-mason-norris-b2b-mia-vende",   "Mason Norris B2B Mia Vendetta"),
-    mk("iiip-max-dean-b2b-luke-dean",       "Max Dean B2B Luke Dean"),
-    mk("iiip-max-styler-b2b-vintage-cul",   "Max Styler B2B Vintage Culture"),
-    mk("iiip-megusta-b2b-migs",             "Megusta B2B MIGS"),
-    mk("iiip-men-i-trust",                  "Men I Trust"),
-    mk("iiip-mgna-crrrta",                  "MGNA Crrrta"),
-    mk("iiip-miguel-clark-b2b-naim-zarz",   "Miguel Clark B2B Naim Zarzour"),
-    mk("iiip-miguelle-tons-b2b-saraga",     "Miguelle & Tons B2B Saraga"),
-    mk("iiip-milo-ziro-b2b-xilla",          "Milo Ziro B2B Xilla"),
-    mk("iiip-mind-enterprises",             "Mind Enterprises"),
-    mk("iiip-ml-buch",                      "ML Buch"),
-    mk("iiip-monoky",                       "Monoky"),
-    mk("iiip-moscoman",                     "Moscoman"),
-    mk("iiip-mph",                          "MPH"),
-    mk("iiip-mr-bitch",                     "Mr. Bitch"),
-    mk("iiip-natalia-roth-b2b-max-stern",   "Natalia Roth B2B Max Stern"),
-    mk("iiip-nate-sib",                     "nate sib"),
-    mk("iiip-nicholas-g-padilla",           "Nicholas G. Padilla"),
-    mk("iiip-nick-leon-b2b-safety-tranc",   "Nick León B2B Safety Trance"),
-    mk("iiip-nicole-gallamini-b2b-nikit",   "Nicole Gallamini B2B Nikita Green"),
-    mk("iiip-nii-tei",                      "Nii Tei"),
-    mk("iiip-odd-mob",                      "Odd Mob"),
-    mk("iiip-oma-totem-b2b-true-vine",      "oma totem B2B True Vine"),
-    mk("iiip-omar",                         "Omar+"),
-    mk("iiip-p1no-b2b-trippie-hippie",      "P1no B2B Trippie Hippie"),
-    mk("iiip-parcels",                      "Parcels"),
-    mk("iiip-patch",                        "Patch+"),
-    mk("iiip-pawsa",                        "PAWSA"),
-    mk("iiip-peach-b2b-shanti-celeste",     "Peach B2B Shanti Celeste"),
-    mk("iiip-phiphi-b2b-winter-wrong",      "phiphi B2B Winter Wrong"),
-    mk("iiip-pressure-point-b2b-berrakk",   "Pressure Point B2B Berrakka"),
-    mk("iiip-proletar-b2b-zamurai",         "Proletar B2B Zamurai"),
-    mk("iiip-puma",                         "Puma"),
-    mk("iiip-purity-ring",                  "Purity Ring"),
-    mk("iiip-r-v-calypso",                  "R/V Calypso"),
-    mk("iiip-ragie-ban",                    "Ragie Ban"),
-    mk("iiip-raje-b2b-slugg",               "RAJE B2B Slugg"),
-    mk("iiip-rebolledo",                    "Rebolledo"),
-    mk("iiip-red-axes",                     "Red Axes"),
-    mk("iiip-rello",                        "Rello"),
-    mk("iiip-rental-snakes",                "Rental Snakes"),
-    mk("iiip-res-live",                     "res_ (live)"),
-    mk("iiip-rimaye-b2b-inbal",             "Rimaye B2B Inbal"),
-    mk("iiip-roddy-lima",                   "Roddy Lima"),
-    mk("iiip-roman-flugel",                 "Roman Flügel"),
-    mk("iiip-rude-boy-b2b-sdrv",            "Rude Boy B2B SDRV"),
-    mk("iiip-rusowsky",                     "rusowsky"),
-    mk("iiip-saint-romero",                 "Saint & Romero"),
-    mk("iiip-sam-alfred",                   "Sam Alfred"),
-    mk("iiip-santiago-villu",               "Santiago Villu"),
-    mk("iiip-saturnsarii-b2b-suz",          "SATURNSARii B2B SUZ"),
-    mk("iiip-sel-6-b2b-playshado",          "SEL.6 B2B Playshado"),
-    mk("iiip-serafitz-b2b-sol-discos",      "serafitz B2B SOL Discos"),
-    mk("iiip-seth-troxler",                 "Seth Troxler"),
-    mk("iiip-shinobi",                      "Shinobi"),
-    mk("iiip-silvie-loto-b2b-ms-mada",      "Silvie Loto B2B Ms. Mada"),
-    mk("iiip-sosa",                         "Sosa"),
-    mk("iiip-spice-crime-b2b-violeta",      "Spice Crime B2B Violeta"),
-    mk("iiip-sportswax",                    "Sportswax"),
-    mk("iiip-sunn-o",                       "Sunn O)))"),
-    mk("iiip-tech-g1rls",                   "Tech G1rls"),
-    mk("iiip-terence-tabeau",               "Terence Tabeau"),
-    mk("iiip-tiffy-vera-b2b-thunderpony",   "Tiffy Vera B2B Thunderpony"),
-    mk("iiip-tiga",                         "Tiga"),
-    mk("iiip-tokischa",                     "Tokischa"),
-    mk("iiip-tricky",                       "Tricky"),
-    mk("iiip-uchi",                         "Uchi"),
-    mk("iiip-underworld",                   "Underworld"),
-    mk("iiip-v1fro",                        "V1FRO"),
-    mk("iiip-vania-junco",                  "Vania Junco"),
-    mk("iiip-velora",                       "Velora"),
-    mk("iiip-vsyana",                       "vsyana"),
-    mk("iiip-vtss",                         "VTSS"),
-    mk("iiip-vvilhelm",                     "VVilhelm"),
-    mk("iiip-whitesquare",                  "Whitesquare"),
-    mk("iiip-will-buck-b2b-taimur",         "Will Buck B2B Taimur"),
-    mk("iiip-will-renuart",                 "Will Renuart"),
-    mk("iiip-willikens-ivkovic",            "Willikens & Ivkovic"),
-    mk("iiip-yhwh-nailgun",                 "YHWH Nailgun"),
-    mk("iiip-zep",                          "ZEP"),  ];
+    mk("iiip-nettspend", "Nettspend", 2),
+    mk("iiip-nick-leon", "Nick León", 2),
+    mk("iiip-homicide-jenny", "Homicide Jenny", 2),
+    mk("iiip-nxtel", "nxtel", 2),
+    // ─────────── Historical Friday group ───────────
+    mk("iiip-1tbsp",                         "1tbsp", 1),
+    mk("iiip-aabel-b2b-siegel",              "Aabel B2B Siegel", 1),
+    mk("iiip-ackdaddy",                      "Ackdaddy", 1),
+    mk("iiip-adam-at-the-door",              "Adam At The Door", 1),
+    mk("iiip-ahmed-spins-b2b-omri",          "Ahmed Spins B2B OMRI.", 1),
+    mk("iiip-alejo",                         "ALEJO", 1),
+    mk("iiip-alexx-in-chainss-b2b-solte",    "Alexx in Chainss B2B Soltek", 1),
+    mk("iiip-aphex-twink-b2b-foreseer",      "Aphex Twink B2B FORESEER", 1),
+    mk("iiip-b0yg1rl",                       "B0YG1RL", 1),
+    mk("iiip-baby-jesus-b2b-chaos",          "Baby Jesus B2B CHAOS!", 1),
+    mk("iiip-bakke",                         "Bakke", 1),
+    mk("iiip-beltran-b2b-ben-sterling",      "Beltran B2B Ben Sterling", 1),
+    mk("iiip-bill-patrick-b2b-bort",         "Bill Patrick B2B Bort", 1),
+    mk("iiip-bone-thugs-n-harmony",          "Bone Thugs-N-Harmony", 1),
+    mk("iiip-brunello-b2b-rafael",           "Brunello B2B Rafael", 1),
+    mk("iiip-cami-di-marzo",                 "Cami di Marzo", 1),
+    mk("iiip-cloonee",                       "Cloonee", 1),
+    mk("iiip-connan-mockasin",               "Connan Mockasin", 1),
+    mk("iiip-corridos-ketamina",             "Corridos Ketamina", 1),
+    mk("iiip-daizy",                         "Daizy", 1),
+    mk("iiip-dan-molinari",                  "Dan Molinari", 1),
+    mk("iiip-danny-brown",                   "Danny Brown", 1),
+    mk("iiip-danny-daze-b2b-dj-godfathe",    "Danny Daze B2B DJ Godfather", 1),
+    mk("iiip-deep-cleansing",                "Deep Cleansing", 1),
+    mk("iiip-differ",                        "Differ", 1),
+    mk("iiip-discip",                        "Discip", 1),
+    mk("iiip-disco-lines",                   "Disco Lines", 1),
+    mk("iiip-dj-harvey",                     "DJ Harvey", 1),
+    mk("iiip-dj-sabi-b2b-grue5ome",          "DJ Sabi B2B GRUE5OME", 1),
+    mk("iiip-dr-rubinstein-b2b-ultrathe",    "Dr. Rubinstein B2B Ultrathem", 1),
+    mk("iiip-duun-b2b-sleepy-c",             "duun B2B Sleepy C", 1),
+    mk("iiip-eco-sistema",                   "eco-sistema", 1),
+    mk("iiip-eli-escobar-b2b-jubilee",       "Eli Escobar B2B Jubilee", 1),
+    mk("iiip-elias-garcia-b2b-mila-gama",    "Elias Garcia B2B Mila Gama", 1),
+    mk("iiip-eveava-b2b-jovigibs",           "eveava B2B Jovigibs", 1),
+    mk("iiip-extra-andrew-b2b-mutant-pe",    "Extra Andrew B2B Mutant Pete", 1),
+    mk("iiip-feph-b2b-mr-tron",              "Feph B2B Mr. Tron", 1),
+    mk("iiip-fiin",                          "Fiin", 1),
+    mk("iiip-floating-points",               "Floating Points", 1),
+    mk("iiip-flying-lotus",                  "Flying Lotus", 1),
+    mk("iiip-gio-elia-b2b-meghan-lee",       "Gio Elia B2B Meghan Lee", 1),
+    mk("iiip-godisound",                     "Godisound", 1),
+    mk("iiip-grace-arribas-b2b-marte",       "Grace Arribas B2B MARTE", 1),
+    mk("iiip-hamdi",                         "Hamdi", 1),
+    mk("iiip-heidi-lawden",                  "Heidi Lawden", 1),
+    mk("iiip-honey-dijon",                   "Honey Dijon", 1),
+    mk("iiip-rimaye-b2b-inbal",              "Inbal B2B Rimaye", 1),
+    mk("iiip-invt",                          "INVT", 1),
+    mk("iiip-ivy-lab",                       "Ivy Lab", 1),
+    mk("iiip-jacques-greene",                "Jacques Greene", 1),
+    mk("iiip-jane-remover",                  "Jane Remover", 1),
+    mk("iiip-jeremy-ismael",                 "Jeremy Ismael", 2),
+    mk("iiip-jigitz",                        "Jigitz", 1),
+    mk("iiip-joanna-kuchta-b2b-robyn-si",    "Joanna Kuchta B2B Robyn Sin Love", 1),
+    mk("iiip-lotusoph-b2b-julia-saturno",    "Julia Saturno B2B Lotusoph", 1),
+    mk("iiip-jump-source",                   "Jump Source (Live)", 1),
+    mk("iiip-katie-ox-b2b-nat-siriani",      "Katie Ox B2B Nat Siriani", 1),
+    mk("iiip-kumi",                          "Kumi", 1),
+    mk("iiip-lagrimas-de-oro",               "Lagrimas de Oro", 1),
+    mk("iiip-lauren-palma",                  "Lauren Palma", 1),
+    mk("iiip-levity-b2b-taiki-nulight",      "Levity B2B Taiki Nulight", 1),
+    mk("iiip-lil-kim",                       "Lil' Kim", 1),
+    mk("iiip-lousy-lover-b2b-lucaz",         "Lousy Lover B2B Lucaz", 1),
+    mk("iiip-maccabi-b2b-pezlo-md",          "Maccabi B2B Pezlo MD", 1),
+    mk("iiip-maher-daniel-b2b-mai-iache",    "Maher Daniel B2B Mai Iachetti", 1),
+    mk("iiip-malone-b2b-miluhska",           "Malóne B2B Miluhska", 1),
+    mk("iiip-mary-droppinz",                 "Mary Droppinz", 1),
+    mk("iiip-mason-norris-b2b-mia-vende",    "Mason Norris B2B Mia Vendetta", 1),
+    mk("iiip-megusta-b2b-migs",              "Megusta B2B MIGS", 1),
+    mk("iiip-men-i-trust",                   "Men I Trust", 1),
+    mk("iiip-mgna-crrrta",                   "MGNA Crrrta", 1),
+    mk("iiip-miguel-clark-b2b-naim-zarz",    "Miguel Clark B2B Naim Zarzour", 1),
+    mk("iiip-miguelle-tons-b2b-saraga",      "Miguelle & Tons B2B Saraga", 1),
+    mk("iiip-mind-enterprises",              "Mind Enterprises", 1),
+    mk("iiip-moscoman",                      "Moscoman", 1),
+    mk("iiip-nate-sib",                      "nate sib", 1),
+    mk("iiip-nicholas-g-padilla",            "Nicholas G. Padilla", 1),
+    mk("iiip-nicole-gallamini-b2b-nikit",    "Nicole Gallamini B2B Nikita Green", 1),
+    mk("iiip-odd-mob",                       "Odd Mob", 1),
+    mk("iiip-oma-totem-b2b-true-vine",       "oma totem B2B True Vine", 1),
+    mk("iiip-parcels",                       "Parcels", 1),
+    mk("iiip-patch",                         "Patch+", 1),
+    mk("iiip-pawsa",                         "PAWSA", 1),
+    mk("iiip-proletar-b2b-zamurai",          "Proletar B2B Zamurai", 1),
+    mk("iiip-puma",                          "Puma", 1),
+    mk("iiip-purity-ring",                   "Purity Ring", 1),
+    mk("iiip-r-v-calypso",                   "R/V Calypso", 1),
+    mk("iiip-ragie-ban",                     "Ragie Ban", 1),
+    mk("iiip-rello",                         "Rello", 1),
+    mk("iiip-rental-snakes",                 "Rental Snakes (Live)", 1),
+    mk("iiip-roddy-lima",                    "Roddy Lima", 1),
+    mk("iiip-peach-b2b-shanti-celeste",      "Shanti Celeste B2B Peach", 1),
+    mk("iiip-raje-b2b-slugg",                "Slugg B2B RAJE", 1),
+    mk("iiip-sportswax",                     "Sportswax", 1),
+    mk("iiip-will-buck-b2b-taimur",          "Taimur B2B Will Buck", 1),
+    mk("iiip-tech-g1rls",                    "Tech G1rls", 1),
+    mk("iiip-tiffy-vera-b2b-thunderpony",    "Thunderpony B2B Tiffy Vera", 1),
+    mk("iiip-tokischa",                      "Tokischa", 1),
+    mk("iiip-uchi",                          "Uchi", 1),
+    mk("iiip-v1fro",                         "V1FRO", 1),
+    mk("iiip-vania-junco",                   "Vania Junco", 1),
+    mk("iiip-max-styler-b2b-vintage-cul",    "Vintage Culture B2B Max Styler", 1),
+    mk("iiip-will-renuart",                  "Will Renuart", 1),
+    mk("iiip-zep",                           "ZEP", 1),
+    // ─────────── Saturday, October 17 (106 acts) ───────────
+    mk("iiip-1-800-lolita-b2b-xana",         "1-800-305", 2),
+    mk("iiip-2up",                           "2UP!", 2),
+    mk("iiip-619",                           "619!", 2),
+    mk("iiip-999999999",                     "999999999", 2),
+    mk("iiip-adam-port",                     "Adam Port", 2),
+    mk("iiip-ale-acosta-b2b-hazon",          "Ale Acosta B2B Hazón", 2),
+    mk("iiip-alezsandro-b2b-dalva",          "Alezsandro B2B Dalva", 2),
+    mk("iiip-allnightkev-b2b-lo-g",          "Allnightkev B2B Lo-G", 2),
+    mk("iiip-ashley-venom-b2b-souls-dep",    "Ashley Venom B2B Souls Departed", 2),
+    mk("iiip-bassvictim",                    "Bassvictim", 2),
+    mk("iiip-pressure-point-b2b-berrakk",    "Berrakka B2B Pressure Point", 2),
+    mk("iiip-blood-orange",                  "Blood Orange", 2),
+    mk("iiip-bonita-applebumz-b2b-toni-",    "Bonita Applebumz B2B Toni Shardai", 2),
+    mk("iiip-bozito-b2b-gabo-escalona",      "Bozito B2B Gabo Escalona", 2),
+    mk("iiip-camp-blu",                      "Camp Blu", 2),
+    mk("iiip-carter-jackson-brown",          "Carter Jackson-Brown", 2),
+    mk("iiip-chanel-beads",                  "Chanel Beads", 2),
+    mk("iiip-charlotte-de-witte",            "Charlotte de Witte", 2),
+    mk("iiip-chasewest",                     "ChaseWest", 2),
+    mk("iiip-coffintexts-b2b-dj-fuckoff",    "Coffintexts B2B DJ Fuckoff", 2),
+    mk("iiip-cole-knight-b2b-dreya-v",       "Cole Knight B2B DREYA V", 2),
+    mk("iiip-daphni",                        "Daphni", 2),
+    mk("iiip-david-vunk",                    "David Vunk", 2),
+    mk("iiip-dean-turnley",                  "Dean Turnley", 2),
+    mk("iiip-d-luxe-b2b-dennis-baker",       "Dennis Baker B2B D.Luxe", 2),
+    mk("iiip-dj-ray-b2b-ez-dee",             "DJ Ray B2B EZ Dee", 2),
+    mk("iiip-dj-three-b2b-sister-system",    "DJ Three B2B Sister System", 2),
+    mk("iiip-domnrob",                       "DomnRob", 2),
+    mk("iiip-doris-dana",                    "doris dana (Live)", 2),
+    mk("iiip-duality-b2b-gumthewrapper",     "Duality B2B GumtheWrapper", 2),
+    mk("iiip-dude-skywalker",                "Dude Skywalker", 1),
+    mk("iiip-ear",                           "ear", 2),
+    mk("iiip-ellynora",                      "Ellynora", 2),
+    mk("iiip-faith-leazae",                  "Faith Leazae", 2),
+    mk("iiip-fine",                          "Fine", 2),
+    mk("iiip-four-tet",                      "Four Tet", 2),
+    mk("iiip-generous-b-b2b-hakuna",         "Generous B B2B Hakuna", 2),
+    mk("iiip-haai",                          "HAAi", 2),
+    mk("iiip-horsegiirl",                    "horsegiirL", 2),
+    mk("iiip-idriss-d-b2b-danyelino",        "Idriss D B2B Danyelino", 2),
+    mk("iiip-interplanetary-criminal",       "Interplanetary Criminal", 2),
+    mk("iiip-jason-rault",                   "Jason Rault", 2),
+    mk("iiip-jbz",                           "JBZ", 2),
+    mk("iiip-jinn-pr",                       "JINN_PR", 2),
+    mk("iiip-joss-dean",                     "Joss Dean", 2),
+    mk("iiip-kelela",                        "Kelela", 2),
+    mk("iiip-kettama",                       "KETTAMA", 2),
+    mk("iiip-khami",                         "Khami", 2),
+    mk("iiip-ki-ki",                         "KI/KI", 2),
+    mk("iiip-kinahau",                       "KinAhau", 2),
+    mk("iiip-kujo-b2b-rara",                 "Kujo B2B RARA", 2),
+    mk("iiip-la-bb",                         "La BB", 2),
+    mk("iiip-lady-narcisse-b2b-racci",       "Lady Narcisse B2B Racci", 2),
+    mk("iiip-ladyboy",                       "LADYBOY", 2),
+    mk("iiip-liquid-dinosaurs",              "Liquid Dinosaurs", 2),
+    mk("iiip-lizzie-mcguire",                "Lizzie_mcguire", 2),
+    mk("iiip-loukeman",                      "Loukeman", 2),
+    mk("iiip-lupreme-b2b-santo",             "Lupreme B2B SANTO", 2),
+    mk("iiip-machine-girl",                  "Machine Girl", 2),
+    mk("iiip-mango-b2b-mister-lo",           "Mango B2B Mister Lo", 2),
+    mk("iiip-marco-carola-b2b-franky-ri",    "Marco Carola B2B Franky Rizardo", 2),
+    mk("iiip-marie-qrie-b2b-viva-vidal",     "Marie Qrie B2B Viva Vidal", 2),
+    mk("iiip-marsolo",                       "Marsolo", 2),
+    mk("iiip-max-dean-b2b-luke-dean",        "Max Dean B2B Luke Dean", 2),
+    mk("iiip-milo-ziro-b2b-xilla",           "Milo Ziro B2B Xilla", 2),
+    mk("iiip-ml-buch",                       "ML Buch", 2),
+    mk("iiip-monoky",                        "Monoky", 2),
+    mk("iiip-mph",                           "MPH", 2),
+    mk("iiip-mr-bitch",                      "Mr. Bitch", 2),
+    mk("iiip-artime-b2b-mystic-bill",        "Mystic Bill B2B Artime", 2),
+    mk("iiip-natalia-roth-b2b-max-stern",    "Natalia Roth B2B Max Stern", 2),
+    mk("iiip-nii-tei",                       "Nii Tei", 2),
+    mk("iiip-omar",                          "Omar+", 2),
+    mk("iiip-phiphi-b2b-winter-wrong",       "phiphi B2B Winter Wrong", 2),
+    mk("iiip-rebolledo",                     "Rebolledo", 2),
+    mk("iiip-red-axes",                      "Red Axes", 2),
+    mk("iiip-res-live",                      "res_ (Live)", 2),
+    mk("iiip-roman-flugel",                  "Roman Flügel", 2),
+    mk("iiip-jinks-b2b-romulo-del-casti",    "Jinks B2B Romulo Del Castillo", 2),
+    mk("iiip-rude-boy-b2b-sdrv",             "Rude Boy B2B SDRV", 2),
+    mk("iiip-rusowsky",                      "rusowsky", 2),
+    mk("iiip-saint-romero",                  "Saint & Romero (Hybrid)", 2),
+    mk("iiip-sam-alfred",                    "Sam Alfred", 2),
+    mk("iiip-santiago-villu",                "Villu", 2),
+    mk("iiip-saturnsarii-b2b-suz",           "SATURNSARii B2B SUZ", 2),
+    mk("iiip-seth-troxler",                  "Seth Troxler", 2),
+    mk("iiip-shinobi",                       "Shinobi", 2),
+    mk("iiip-grant-sabadash-b2b-shir-mi",    "Grant Sabadash B2B Shir Miya", 2),
+    mk("iiip-silvie-loto-b2b-ms-mada",       "Silvie Loto B2B Ms. Mada", 2),
+    mk("iiip-sosa",                          "Sosa", 2),
+    mk("iiip-spice-crime-b2b-violeta",       "Spice Crime B2B Violeta", 2),
+    mk("iiip-sunn-o",                        "Sunn O)))", 2),
+    mk("iiip-terence-tabeau",                "Terence Tabeau", 2),
+    mk("iiip-tiga",                          "Tiga", 2),
+    mk("iiip-tricky",                        "Tricky", 2),
+    mk("iiip-underworld",                    "Underworld", 2),
+    mk("iiip-velora",                        "Velora", 2),
+    mk("iiip-vsyana",                        "vsyana", 2),
+    mk("iiip-vtss",                          "VTSS", 2),
+    mk("iiip-vvilhelm",                      "VVilhelm", 2),
+    mk("iiip-whitesquare",                   "Whitesquare", 2),
+    mk("iiip-willikens-ivkovic",             "Willikens & Ivkovic", 2),
+    mk("iiip-yhwh-nailgun",                  "YHWH Nailgun", 2),
+    mk("iiip-u-uk-uk1mat-u",                 "¥ØU$UK€ ¥UK1MAT$U", 2),
+    // ─────────── DAY TBA: on the lineup, no day for the billed set (19 acts) ───────────
+    mkUnscheduled("iiip-bricolage-b2b-day-dem", "Bricolage B2B DAY/DEM", "the lineup-by-day graphic bills DAY/DEM alone on Saturday, not this set."),
+    mkUnscheduled("iiip-sel-6-b2b-playshado", "Playshado B2B SEL.6", "the lineup-by-day graphic bills SEL.6 alone on Saturday, not this set."),
+    mkUnscheduled("iiip-fiuza-b2b-madison-kay", "FIUZA B2B Madison Kay", "the lineup-by-day graphic bills FIUZA alone on Friday, not this set."),
+    mkUnscheduled("iiip-amar",               "amar"),
+    mkUnscheduled("iiip-blind-fish",         "Blind Fish"),
+    mkUnscheduled("iiip-canela",             "Canela"),
+    mkUnscheduled("iiip-crespi-drum-syndicate-live", "Crespi Drum Syndicate (Live)"),
+    mkUnscheduled("iiip-cumbiamba",          "Cumbiamba"),
+    mkUnscheduled("iiip-dj-ahamed",          "DJ Ahamed"),
+    mkUnscheduled("iiip-emily-afre",         "Emily Afre"),
+    mkUnscheduled("iiip-ghostface-killah-presents", "Ghostface Killah presents Supreme Clientele"),
+    mkUnscheduled("iiip-godblessjai",        "GodBlessJai"),
+    mkUnscheduled("iiip-huracan",            "Huracán"),
+    mkUnscheduled("iiip-iiry",               "iiry?"),
+    mkUnscheduled("iiip-lylac",              "Lylac"),
+    mkUnscheduled("iiip-nikole",             "Nikole"),
+    mkUnscheduled("iiip-p1no-b2b-trippie-hippie", "P1no B2B Trippie Hippie"),
+    mkUnscheduled("iiip-scotty-sobek",       "Scotty Sobek"),
+    mkUnscheduled("iiip-serafitz-b2b-sol-discos", "serafitz B2B SOL Discos"),
+  ];
 
   // Acts the official lineup page billed and then dropped (LINEUP DRIFT 1 in
   // the header). Kept OUT of ARTISTS, so no screen, count or search sees
@@ -369,11 +642,32 @@
   // which brings any saved pick back with it.
   const LINEUP = "https://www.iiipoints.com/lineup-2026/";
   const REMOVED_FROM_LINEUP = [
+    { id: "iiip-fakemink", name: "fakemink", lastSeen: "2026-09-30", removedFrom: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", evidence: "Not billed on attendee-supplied III Points-branded screenshot set-time grid" } },
+    { id: "iiip-nick-leon-b2b-safety-tranc", name: "Nick Leon B2B Safety Trance", lastSeen: "2026-09-30", removedFrom: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", evidence: "Grid bills Nick Leon solo, not this B2B" } },
     { id: "iiip-jencarlos", name: "JENCARLOS", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mr-brown", name: "Mr. Brown", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mila-gama-b2b-x3butterfly", name: "Mila Gama B2B X3BUTTERFLY", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-ultrathem", name: "Ultrathem", lastSeen: "2026-08-29", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
-  ].map(r => ({ ...r, reAdd: `mk("${r.id}", "${r.name}")` }));
+    { id: "iiip-gza", name: "GZA performing Liquid Swords", lastSeen: "2026-09-25", removedFrom: { url: LINEUP, observedAt: "2026-09-30" } },
+  ].map(r => ({ ...r, reAdd: `mk("${r.id}", "${r.name}", <day>)` }));
+
+  // On the official lineup-by-day graphic, NOT on today's official list, so
+  // NOT in the lineup. The day is recorded so a re-bill is one line.
+  const DAY_GRAPHIC = "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg";
+  const GRAPHIC_ONLY = [
+    { billing: "Underscores", day: 1, note: "on no list read (08-29, 09-02, 09-25, 09-30)" },
+    { billing: "GZA performing Liquid Swords", day: 1, note: "billed 09-25, removed by 09-30; see REMOVED_FROM_LINEUP" },
+    { billing: "Mr. Brown", day: 1, note: "removed from the list by 09-25" },
+    { billing: "Jencarlos", day: 2, note: "removed from the list by 09-25" },
+  ].map(r => ({ ...r, graphic: { url: DAY_GRAPHIC, observedAt: "2026-09-30" } }));
+
+  // On the graphic as ONE member of a set the list bills as a B2B. The
+  // member's day is recorded; the set itself stays DAY TBA (see the header).
+  const GRAPHIC_MEMBER_ONLY = [
+    { billing: "FIUZA",   day: 1, act: "iiip-fiuza-b2b-madison-kay" },
+    { billing: "SEL.6",   day: 2, act: "iiip-sel-6-b2b-playshado" },
+    { billing: "DAY/DEM", day: 2, act: "iiip-bricolage-b2b-day-dem" },
+  ].map(r => ({ ...r, graphic: { url: DAY_GRAPHIC, observedAt: "2026-09-30" } }));
 
   const CONFIG = {
     id:        "iii-points-2026",
@@ -382,7 +676,8 @@
     essentialsSources: {"camping": {"url": "https://www.iiipoints.com/guide/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://iiipoints.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-09-26", "edition": "2026"}},
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-25", official: true },
+    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
+    lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",
     brand:     "III Points",
@@ -400,30 +695,18 @@
     tz:      "America/New_York",
     tzAbbr:  "EDT",
     utcOffsetHours: -4,
-    // ⚠️ ONE bucket for a TWO-day festival, on purpose.
-    //
-    // The day split is not published (see header). Three options, and only
-    // one is honest AND usable:
-    //   - day: null on every act → the lineup screen renders EMPTY, because
-    //     the whole app filters `a.day === activeDay` in 48 places. 218 acts
-    //     shipped and none reachable. Measured, not guessed.
-    //   - each act on BOTH days → claims every act plays twice. False.
-    //   - ONE bucket labelled TBA → every act browsable and saveable now,
-    //     and the label states exactly what is unknown.
-    //
-    // Rewriting those 48 comparison sites to treat null as "any day" is the
-    // structurally nicer fix, but it touches six files for one gated
-    // festival. Revisit it if a second TBA festival ever needs it; until
-    // then this is module-local and reverses cleanly at the flip, where this
-    // becomes the real Fri/Sat pair and each act gets its true day.
+    // Two real days, from the official lineup-by-day graphic (see header).
+    // Until 2026-09-30 this was ONE "Oct 16–17" bucket labelled TBA,
+    // because no split had been read and a null day hides an act from every
+    // day tab. 19 billed acts still have no day; they are `unscheduled`.
     dayDates: {
-      1: { y: 2026, m: 9, d: 16, name: "Oct 16–17", short: "TBA", midnightUtc: Date.UTC(2026, 9, 16, 4, 0, 0) },
+      1: { y: 2026, m: 9, d: 16, name: "Friday",   short: "FRI", midnightUtc: Date.UTC(2026, 9, 16, 4, 0, 0) },
+      2: { y: 2026, m: 9, d: 17, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2026, 9, 17, 4, 0, 0) },
     },
-    // api.sunrise-sunset.org at 25.79852,-80.20225, converted to EDT.
-    // Oct 16 and 17 differ by one minute at sunset; the single bucket takes
-    // day 1's, which is correct to within that minute for either date.
+    // api.sunrise-sunset.org at 25.79852,-80.20225, per day, converted to EDT.
     sunTimes: {
       1: { rise: "07:19", set: "18:53" },
+      2: { rise: "07:19", set: "18:52" },
     },
     // Surveyed OSM centroid of the convention center, NOT a Nominatim
     // address geocode — the two differ by 80 m here, and the geocode is the
@@ -455,7 +738,7 @@
       ],
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
-    mainStageId: null,
+    mainStageId: "mind-melt",
     // ── THE MAP ──
     // No mapImage, no mapStyle: "image-overlay", no gpsAnchors. This festival
     // opens straight into the real basemap. See the header for why that is
@@ -473,7 +756,9 @@
   window.PLURSKY_FESTIVALS["iii-points-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     removedFromLineup: REMOVED_FROM_LINEUP,
-    // GATED: set times, stages and the official map are all unpublished.
-    registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🔺", region: "North America" },
+    graphicOnly: GRAPHIC_ONLY,
+    graphicMemberOnly: GRAPHIC_MEMBER_ONLY,
+    // Set times published; spatial map remains pending.
+    registry: { available: true, scheduleTBA: false, accent: "#22d3ee", emoji: "🔺", region: "North America" },
   };
 })();
