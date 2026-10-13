@@ -679,6 +679,17 @@
     // public /f/ page can cite it. observedAt = the date it was read.
     scheduleSource: { url: "https://www.instagram.com/p/DeHtxkalDzN/", observedAt: "2026-10-07", official: true, evidence: "Official III Points Instagram set-time grid (4 slides); all 231 intervals match the 2026-10-05 screenshot transcription", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9", officialSlidesSha256: ["5bd7b7fd0239a710ab6ae6277db1b42fa57f78eef8a9c851ecc695606f846db7", "50f5f225095478a1809558f8f9e6d6f078dd909007c29a2488319b354e206ae4", "a13e5950252ddb9adf3e397f7b5efb6f203c299090bd75c72d7e02477e15fa15", "a34a3d5eb7d461a00c87502d0c061000d9e1677bdfbc4b36472c486cd0e54d92"] },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
+    // Edition skin: the Today header band only, in both modes, carrying the
+    // look of III Points' own 2026 posts (the set-time grid and "Choose Your
+    // Trip"). Colours sampled from the official grid slides on 2026-10-07;
+    // no artwork is reproduced. Everything below the band stays on the board.
+    editionSkin: {
+      source: "https://www.instagram.com/p/DeHtxkalDzN/",
+      band: "linear-gradient(165deg, #B8ACFD 0%, #C9C0FD 38%, #FE8DA9 100%)",
+      ink: "#0B0B0F", ink2: "rgba(11,11,15,0.78)", ink3: "rgba(11,11,15,0.66)",
+      chip: "#A6D23F", chipInk: "#0B0B0F",
+      wire: "rgba(11,11,15,0.22)",
+    },
     name:      "III Points 2026",
     shortName: "III Points",
     brand:     "III Points",

@@ -91,6 +91,7 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'dayDates',            // schedule day headings AND every <time datetime="...">
   'setTimesProvisional', // the "not published yet" note under the lineup
   'scheduleSource',      // the official-vs-community source note
+  'editionSkin',         // the title block's edition colours (header.edition)
   // Both gate the "find stages on a live map" clause in the product note.
   // map.jsx picks the real map on mapImage and otherwise falls back to the SVG
   // TopDownMap, so a festival gaining or losing map art changes what the page
@@ -173,6 +174,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
       s.x != null && s.y != null]),
     acts: scheduleActs(ds.artists),
     source: cfg.scheduleSource || null,
+    editionSkin: cfg.editionSkin || null,
     mapSource: cfg.mapSource || null,
     hours: cfg.hours || null,
     year: cfg.year ?? null,
