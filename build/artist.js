@@ -1314,10 +1314,12 @@ function ArtistScreen({
       position: "absolute",
       top: 14,
       right: 14,
+      left: 60,
       zIndex: 10,
       display: "flex",
       gap: 6,
-      alignItems: "center"
+      alignItems: "center",
+      justifyContent: "flex-end"
     }
   }, connected && preview !== "none" && React.createElement("button", {
     onClick: handlePreview,
@@ -1378,7 +1380,10 @@ function ArtistScreen({
       background: "rgba(var(--ink-rgb),0.15)",
       color: "var(--ink)",
       backdropFilter: "blur(8px)",
-      borderColor: "rgba(var(--ink-rgb),0.3)"
+      borderColor: "rgba(var(--ink-rgb),0.3)",
+      whiteSpace: "normal",
+      minWidth: 0,
+      textAlign: "right"
     }
   }, React.createElement("span", {
     "data-artist-day-pill": true

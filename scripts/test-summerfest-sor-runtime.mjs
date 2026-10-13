@@ -49,8 +49,8 @@ try {
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
-  const open = async ({ saved = [], query = "tab=lineup&day=4", view = "list", at = "2026-10-13T15:00:00Z", legacy = false, moments = null } = {}) => {
-    const bctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+  const open = async ({ saved = [], query = "tab=lineup&day=4", view = "list", at = "2026-10-13T15:00:00Z", legacy = false, moments = null, width = 390 } = {}) => {
+    const bctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: "block" });
     await bctx.clock.install({ time: new Date(at) });
     if (legacy) {
       await bctx.route(new RegExp(`/data/festivals/${FID}\\.js`), r => r.fulfill({ status: 200, contentType: "application/javascript", body: LEGACY_MOD }));
@@ -145,6 +145,18 @@ try {
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
     check(!LEGACY.test(t.body), "L. artist: no legacy time anywhere on the page");
+    await bctx.close();
+  }
+
+  {
+    // At 320 the long pill must wrap clear of the back button, not slide under it.
+    const { bctx, page } = await open({ query: "artist=su179", width: 320 });
+    const r = await page.evaluate(() => {
+      const back = document.querySelector('button[aria-label="Back"]')?.getBoundingClientRect();
+      const pill = document.querySelector("[data-artist-day-pill]")?.parentElement.getBoundingClientRect();
+      return back && pill ? { backRight: back.right, pillLeft: pill.left, pillRight: pill.right, vw: innerWidth } : null;
+    });
+    check(r && r.pillLeft >= r.backRight && r.pillRight <= r.vw, `L. artist 320: the day pill clears the back button and the edge (${JSON.stringify(r)})`);
     await bctx.close();
   }
 
