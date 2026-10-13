@@ -164,7 +164,12 @@ function statusOf(cfg, today) {
 function scheduleGrid(entry, dates, blocks) {
   const cfg = entry.config;
   const stages = DS[cfg.id]?.stages || [];
-  const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
+  const all = scheduleActs(DS[cfg.id]?.artists);
+  const acts = all.filter(a => a.start && a.start !== '');
+  // A billing whose set times the sources dispute (timeStatus "unconfirmed",
+  // from the module's timeEvidence) is not silently dropped from its day: it
+  // is named on its own line, with no time.
+  const unconfirmed = all.filter(a => a.timeStatus === 'unconfirmed');
   if (!acts.length) return '';
   const stageIx = (sid) => { const i = stages.findIndex(t => t.id === sid); return i === -1 ? stages.length : i; };
   const stageName = (sid) => stages.find(t => t.id === sid)?.name
@@ -186,7 +191,13 @@ function scheduleGrid(entry, dates, blocks) {
         return `    <${hStage}>${esc(stageName(st))}</${hStage}>\n    <ul class="sets">\n` +
           sets.map(a => `      <li id="${setId(b, a)}"><time${ymd ? ` datetime="${ymd}T${esc(a.start)}"` : ''}>${esc(a.start)}${a.end ? ' – ' + esc(a.end) : ''}</time> <span>${esc(a.name)}</span></li>`).join('\n') +
           `\n    </ul>`;
-      }).join('\n');
+      }).join('\n') + (() => {
+        const un = unconfirmed.filter(a => a.day === d && inBlock(blocks, b)(a))
+          .sort((x, y) => stageIx(x.stage) - stageIx(y.stage) || String(x.id).localeCompare(String(y.id)));
+        return un.length
+          ? `\n    <p class="sets-unconfirmed">Times unconfirmed: ${un.map(a => `${esc(a.name)} (${esc(stageName(a.stage))})`).join('; ')}</p>`
+          : '';
+      })();
     }).join('\n');
   }).filter(Boolean).join('\n');
   const src = cfg.scheduleSource;
@@ -308,7 +319,7 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     multi ? `Weekend ${b.n}` : '',
     daySplit && dd[a.day] ? esc(dayLabel(dd, a.day, dates, b.shift, true).label) : '',
     real.has(a.stage) ? esc(real.get(a.stage).name) : '',
-    a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : '',
+    a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : a.timeEvidence && a.timeEvidence.status === 'unresolved' ? 'set times unconfirmed' : '',
   ].filter(Boolean).join(' · ')).filter(Boolean);
   const rows = names.map(n => {
     const s = artists.filter(a => a.name === n).flatMap(slots);

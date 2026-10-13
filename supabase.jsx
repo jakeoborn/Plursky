@@ -2823,7 +2823,10 @@ function CrewCard({ state }) {
                 const picks = ids
                   .map(id => ARTISTS.find(a => a.id === id))
                   .filter(Boolean)
-                  .sort((a, b) => (a.day || 0) - (b.day || 0) || (a.start || "").localeCompare(b.start || ""));
+                  // Timed sets keep their order; untimed ones go after them via the
+                  // shared rule (an empty start used to sort FIRST in the day).
+                  .sort((a, b) => (a.day || 0) - (b.day || 0)
+                    || (window.setTimingMin?.(a) && window.setTimingMin?.(b) ? (a.start || "").localeCompare(b.start || "") : window.compareSetsByTime(a, b, STAGES)));
                 return (
                   <div key={pid} style={{
                     background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", overflow: "hidden",
@@ -2868,7 +2871,7 @@ function CrewCard({ state }) {
                                 <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, fontWeight: 800, color: "var(--horizon)", background: "rgba(var(--signal-rgb),0.12)", padding: "1px 5px", borderRadius: 999 }}>BOTH</span>
                               )}
                               <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink-2)", flexShrink: 0 }}>
-                                {(st?.short || "").toUpperCase()} · {window.fmt12 ? window.fmt12(a.start) : a.start}
+                                {(st?.short || "").toUpperCase()} · {window.setTimeLabel ? window.setTimeLabel(a) : window.fmt12 ? window.fmt12(a.start) : a.start}
                               </span>
                             </div>
                           );

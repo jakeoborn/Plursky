@@ -3603,7 +3603,7 @@ function CrewCard({
     var isOpen = expandedPid === pid;
     var ARTISTS = window.ARTISTS || [];
     var STAGES = window.STAGES || [];
-    var picks = ids.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => (a.day || 0) - (b.day || 0) || (a.start || "").localeCompare(b.start || ""));
+    var picks = ids.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => (a.day || 0) - (b.day || 0) || (window.setTimingMin?.(a) && window.setTimingMin?.(b) ? (a.start || "").localeCompare(b.start || "") : window.compareSetsByTime(a, b, STAGES)));
     return React.createElement("div", {
       key: pid,
       style: {
@@ -3737,7 +3737,7 @@ function CrewCard({
           color: "var(--ink-2)",
           flexShrink: 0
         }
-      }, (st?.short || "").toUpperCase(), " · ", window.fmt12 ? window.fmt12(a.start) : a.start));
+      }, (st?.short || "").toUpperCase(), " · ", window.setTimeLabel ? window.setTimeLabel(a) : window.fmt12 ? window.fmt12(a.start) : a.start));
     })));
   })), others.length > 0 && (() => {
     var _crewShare = async fmt => {

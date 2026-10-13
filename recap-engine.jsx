@@ -291,7 +291,8 @@ function _drawHeroCard(artist, source) {
   // then festival and year in the 11pt status style.
   ctx.textAlign = "left";
   const maxW = W - PAD * 2;
-  const meta = [CFG.dayDates?.[artist.day]?.name, stage?.name, typeof fmt12 === "function" ? fmt12(artist.start) : artist.start]
+  const meta = [CFG.dayDates?.[artist.day]?.name, stage?.name,
+    typeof setTimeLabel === "function" ? setTimeLabel(artist) : typeof fmt12 === "function" ? fmt12(artist.start) : artist.start]
     .filter(Boolean).join(" · ");
   ctx.font = `500 44px ${_HERO_FONT}`;
   const metaLines = _heroWrap(ctx, meta, maxW);
@@ -829,7 +830,8 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     if (stage) {
       ctx.fillStyle = stage.color || "rgba(255,255,255,0.7)";
       ctx.font = "700 14px 'Geist Mono', monospace";
-      ctx.fillText(`${stage.name?.toUpperCase()} · ${artist.start || ""}`, 60, H - safe - (song ? 50 : 80));
+      const when = window.setTimesUnconfirmed?.(artist) ? window.SET_TIMES_UNCONFIRMED.toUpperCase() : (artist.start || "");
+      ctx.fillText(`${stage.name?.toUpperCase()} · ${when}`, 60, H - safe - (song ? 50 : 80));
     }
   }
 
@@ -1495,7 +1497,7 @@ async function _shareArtistCollage(artist, moments, format) {
   const dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
   return _shareCollage({
     title:    artist.name,
-    subtitle: `${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${artist.start}–${artist.end}`,
+    subtitle: `${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${window.setTimesUnconfirmed?.(artist) ? window.SET_TIMES_UNCONFIRMED.toUpperCase() : `${artist.start}–${artist.end}`}`,
     accent:   stage.color || "#1a120d",
     moments,
     filenameSlug: artist.name,
