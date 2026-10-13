@@ -1382,7 +1382,7 @@ function ArtistScreen({
     }
   }, React.createElement("span", {
     "data-artist-day-pill": true
-  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
+  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a
   })));
   var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
@@ -1642,7 +1642,7 @@ function ArtistScreen({
       style: {
         marginTop: 6
       }
-    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED") : React.createElement("div", {
+    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED") : React.createElement("div", {
       className: "duo-clock",
       style: {
         fontSize: "clamp(20px, 7vw, 28px)",

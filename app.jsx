@@ -416,7 +416,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
-                          {st?.short} · DAY {a.day} · {fmt12(a.start)}
+                          {st?.short} · DAY {a.day} · {setTimeLabel(a)}
                         </div>
                       </div>
                       <span style={{ fontSize: 10, color: "var(--ember-ink)" }}>★</span>
@@ -465,7 +465,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-2)", fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
-                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : <>{fmt12(a.start)}–{fmt12(a.end)}</>}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>{a.genre}</span>
                     </div>
@@ -1006,7 +1006,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v414",
+        version: "v415",
       }));
     } catch {}
   }
@@ -1037,7 +1037,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v414
+          Plursky · v415
         </div>
       </div>
     );

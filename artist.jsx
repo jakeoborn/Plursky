@@ -1175,7 +1175,7 @@ function ArtistScreen({ state, setState }) {
               "DAY TBA · —" reads as a time that exists. One text node, so the
               gate can assert the exact string. */}
           <span data-artist-day-pill>
-            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
           </span>
         </Pill>
         <ShareArtistButton artist={a} />
@@ -1370,7 +1370,7 @@ function ArtistScreen({ state, setState }) {
               </div>
               <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
               {a.day == null || !a.start
-                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED"}</div>
                 : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
               {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
               {saveCount != null && saveCount >= 2 && (
