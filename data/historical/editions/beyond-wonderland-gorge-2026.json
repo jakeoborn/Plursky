@@ -1,0 +1,954 @@
+{
+ "id": "beyond-wonderland-gorge-2026",
+ "festivalId": "beyond-wonderland-gorge",
+ "name": "Beyond Wonderland at The Gorge 2026",
+ "year": 2026,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 12,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2026-06-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2026-06-28",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "name": "Queen's Valley"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "name": "Mad Hatter's Castle"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "name": "Caterpillar's Garden"
+  }
+ ],
+ "artists": [
+  {
+   "id": "beyond-wonderland-gorge-2026:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:wooli",
+   "name": "Wooli",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:sub-focus",
+   "name": "Sub Focus",
+   "key": "sub-focus",
+   "performers": [
+    "sub-focus"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:angrybaby",
+   "name": "Angrybaby",
+   "key": "angrybaby",
+   "performers": [
+    "angrybaby"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:atura",
+   "name": "Atura",
+   "key": "atura",
+   "performers": [
+    "atura"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:kid-calvin",
+   "name": "KiD CALViN",
+   "key": "kid-calvin",
+   "performers": [
+    "kid-calvin"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:riot-ten-b2b-infekt",
+   "name": "Riot Ten B2B INFEKT",
+   "key": "riot-ten-b2b-infekt",
+   "performers": [
+    "riot-ten",
+    "infekt"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:wilkinson",
+   "name": "Wilkinson",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:kompany",
+   "name": "Kompany",
+   "key": "kompany",
+   "performers": [
+    "kompany"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:tvboo",
+   "name": "TVBOO",
+   "key": "tvboo",
+   "performers": [
+    "tvboo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:reaper",
+   "name": "Reaper",
+   "key": "reaper",
+   "performers": [
+    "reaper"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:grabbitz",
+   "name": "Grabbitz",
+   "key": "grabbitz",
+   "performers": [
+    "grabbitz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:mad-dubz",
+   "name": "Mad Dubz",
+   "key": "mad-dubz",
+   "performers": [
+    "mad-dubz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:bella-renee",
+   "name": "Bella Renee",
+   "key": "bella-renee",
+   "performers": [
+    "bella-renee"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:kaiyo",
+   "name": "Kaiyo",
+   "key": "kaiyo",
+   "performers": [
+    "kaiyo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:omnom",
+   "name": "OMNOM",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:girl-math",
+   "name": "Girl Math",
+   "key": "girl-math",
+   "performers": [
+    "girl-math"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:kaleena-zanders",
+   "name": "Kaleena Zanders",
+   "key": "kaleena-zanders",
+   "performers": [
+    "kaleena-zanders"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:fallon",
+   "name": "Fallon",
+   "key": "fallon",
+   "performers": [
+    "fallon"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:amp",
+   "name": "AMP",
+   "key": "amp",
+   "performers": [
+    "amp"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:jaogaz",
+   "name": "Jaogaz",
+   "key": "jaogaz",
+   "performers": [
+    "jaogaz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:odd-mob",
+   "name": "Odd Mob",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:blanke",
+   "name": "Blanke",
+   "key": "blanke",
+   "performers": [
+    "blanke"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:justin-jay",
+   "name": "Justin Jay",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:nash-rly",
+   "name": "Nash Rly",
+   "key": "nash-rly",
+   "performers": [
+    "nash-rly"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:hedex",
+   "name": "Hedex",
+   "key": "hedex",
+   "performers": [
+    "hedex"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:getter",
+   "name": "Getter",
+   "key": "getter",
+   "performers": [
+    "getter"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:eliminate",
+   "name": "Eliminate",
+   "key": "eliminate",
+   "performers": [
+    "eliminate"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:1991",
+   "name": "1991",
+   "key": "1991",
+   "performers": [
+    "1991"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:hvdes",
+   "name": "HVDES",
+   "key": "hvdes",
+   "performers": [
+    "hvdes"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:don-jamal",
+   "name": "Don Jamal",
+   "key": "don-jamal",
+   "performers": [
+    "don-jamal"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:keeb",
+   "name": "Keeb",
+   "key": "keeb",
+   "performers": [
+    "keeb"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:swimming-paul",
+   "name": "Swimming Paul",
+   "key": "swimming-paul",
+   "performers": [
+    "swimming-paul"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:ayybo",
+   "name": "AYYBO",
+   "key": "ayybo",
+   "performers": [
+    "ayybo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:azzecca",
+   "name": "Azzecca",
+   "key": "azzecca",
+   "performers": [
+    "azzecca"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:marco-strous",
+   "name": "Marco Strous",
+   "key": "marco-strous",
+   "performers": [
+    "marco-strous"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:ruze",
+   "name": "RUZE",
+   "key": "ruze",
+   "performers": [
+    "ruze"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:slugg",
+   "name": "Slugg",
+   "key": "slugg",
+   "performers": [
+    "slugg"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:sloane-motion",
+   "name": "Sloane Motion",
+   "key": "sloane-motion",
+   "performers": [
+    "sloane-motion"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:0030:kaskade",
+   "artistId": "beyond-wonderland-gorge-2026:kaskade",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:2330:seven-lions",
+   "artistId": "beyond-wonderland-gorge-2026:seven-lions",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:2230:wooli",
+   "artistId": "beyond-wonderland-gorge-2026:wooli",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:2130:sub-focus",
+   "artistId": "beyond-wonderland-gorge-2026:sub-focus",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:2030:armnhmr",
+   "artistId": "beyond-wonderland-gorge-2026:armnhmr",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:1930:jstjr",
+   "artistId": "beyond-wonderland-gorge-2026:jstjr",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:1830:angrybaby",
+   "artistId": "beyond-wonderland-gorge-2026:angrybaby",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:1730:atura",
+   "artistId": "beyond-wonderland-gorge-2026:atura",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:queen-s-valley:1600:kid-calvin",
+   "artistId": "beyond-wonderland-gorge-2026:kid-calvin",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:0030:apashe",
+   "artistId": "beyond-wonderland-gorge-2026:apashe",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2330:riot-ten-b2b-infekt",
+   "artistId": "beyond-wonderland-gorge-2026:riot-ten-b2b-infekt",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2230:wilkinson",
+   "artistId": "beyond-wonderland-gorge-2026:wilkinson",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2130:kompany",
+   "artistId": "beyond-wonderland-gorge-2026:kompany",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2030:tvboo",
+   "artistId": "beyond-wonderland-gorge-2026:tvboo",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1930:reaper",
+   "artistId": "beyond-wonderland-gorge-2026:reaper",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1830:grabbitz",
+   "artistId": "beyond-wonderland-gorge-2026:grabbitz",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1730:mad-dubz",
+   "artistId": "beyond-wonderland-gorge-2026:mad-dubz",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1630:bella-renee",
+   "artistId": "beyond-wonderland-gorge-2026:bella-renee",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1500:kaiyo",
+   "artistId": "beyond-wonderland-gorge-2026:kaiyo",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "15:00",
+   "end": "16:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:0030:sidepiece",
+   "artistId": "beyond-wonderland-gorge-2026:sidepiece",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2330:matroda",
+   "artistId": "beyond-wonderland-gorge-2026:matroda",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2230:noizu",
+   "artistId": "beyond-wonderland-gorge-2026:noizu",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2130:omnom",
+   "artistId": "beyond-wonderland-gorge-2026:omnom",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2030:girl-math",
+   "artistId": "beyond-wonderland-gorge-2026:girl-math",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1930:kaleena-zanders",
+   "artistId": "beyond-wonderland-gorge-2026:kaleena-zanders",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1830:fallon",
+   "artistId": "beyond-wonderland-gorge-2026:fallon",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1730:amp",
+   "artistId": "beyond-wonderland-gorge-2026:amp",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1600:jaogaz",
+   "artistId": "beyond-wonderland-gorge-2026:jaogaz",
+   "day": 1,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:0030:fisher",
+   "artistId": "beyond-wonderland-gorge-2026:fisher",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:2325:zeds-dead",
+   "artistId": "beyond-wonderland-gorge-2026:zeds-dead",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:2205:black-tiger-sex-machine",
+   "artistId": "beyond-wonderland-gorge-2026:black-tiger-sex-machine",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "22:05",
+   "end": "23:15"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:2105:dabin",
+   "artistId": "beyond-wonderland-gorge-2026:dabin",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "21:05",
+   "end": "22:05"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:2000:odd-mob",
+   "artistId": "beyond-wonderland-gorge-2026:odd-mob",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:1900:blanke",
+   "artistId": "beyond-wonderland-gorge-2026:blanke",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:1800:justin-jay",
+   "artistId": "beyond-wonderland-gorge-2026:justin-jay",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:1700:bolo",
+   "artistId": "beyond-wonderland-gorge-2026:bolo",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:queen-s-valley:1600:nash-rly",
+   "artistId": "beyond-wonderland-gorge-2026:nash-rly",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:queen-s-valley",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:0030:liquid-stranger",
+   "artistId": "beyond-wonderland-gorge-2026:liquid-stranger",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2325:dr-fresch",
+   "artistId": "beyond-wonderland-gorge-2026:dr-fresch",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2225:hedex",
+   "artistId": "beyond-wonderland-gorge-2026:hedex",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "22:25",
+   "end": "23:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2125:getter",
+   "artistId": "beyond-wonderland-gorge-2026:getter",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "21:25",
+   "end": "22:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2025:ydg",
+   "artistId": "beyond-wonderland-gorge-2026:ydg",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "20:25",
+   "end": "21:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1925:eliminate",
+   "artistId": "beyond-wonderland-gorge-2026:eliminate",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "19:25",
+   "end": "20:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1825:1991",
+   "artistId": "beyond-wonderland-gorge-2026:1991",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "18:25",
+   "end": "19:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1725:hvdes",
+   "artistId": "beyond-wonderland-gorge-2026:hvdes",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "17:25",
+   "end": "18:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1625:don-jamal",
+   "artistId": "beyond-wonderland-gorge-2026:don-jamal",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "16:25",
+   "end": "17:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1500:keeb",
+   "artistId": "beyond-wonderland-gorge-2026:keeb",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:mad-hatter-s-castle",
+   "start": "15:00",
+   "end": "16:25"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:0015:999999999",
+   "artistId": "beyond-wonderland-gorge-2026:999999999",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "00:15",
+   "end": "01:30"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:2315:swimming-paul",
+   "artistId": "beyond-wonderland-gorge-2026:swimming-paul",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:2200:ayybo",
+   "artistId": "beyond-wonderland-gorge-2026:ayybo",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:2045:green-velvet",
+   "artistId": "beyond-wonderland-gorge-2026:green-velvet",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1945:azzecca",
+   "artistId": "beyond-wonderland-gorge-2026:azzecca",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1845:marco-strous",
+   "artistId": "beyond-wonderland-gorge-2026:marco-strous",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1745:ruze",
+   "artistId": "beyond-wonderland-gorge-2026:ruze",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1645:slugg",
+   "artistId": "beyond-wonderland-gorge-2026:slugg",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:1600:sloane-motion",
+   "artistId": "beyond-wonderland-gorge-2026:sloane-motion",
+   "day": 2,
+   "stageId": "beyond-wonderland-gorge-2026:caterpillar-s-garden",
+   "start": "16:00",
+   "end": "16:45"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "structured_html",
+  "official": "https://pnw.beyondwonderland.com/lineup/set-times",
+  "captures": [
+   {
+    "day": 1,
+    "archivedUrl": "https://web.archive.org/web/20260627044832/https://pnw.beyondwonderland.com/lineup/set-times/day-1/",
+    "captureTimestamp": "20260627044832",
+    "sha256": "20ff53b6b1be7b07576be9b23d33831d83f30bdc0755bdab2619e88e61dd0def"
+   },
+   {
+    "day": 2,
+    "archivedUrl": "https://web.archive.org/web/20260627044829/https://pnw.beyondwonderland.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20260627044829",
+    "sha256": "d40794739b35cbf1b81701c57c3fd324886726e28935828d6f93ae9b3b525f9d"
+   }
+  ]
+ }
+}
