@@ -30,10 +30,18 @@ function _artistMs(artist, hhmm) {
   return _wallMs(artistDayDate(artist), hhmm, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
 
+function _noteLeftOutOfCalendar(n) {
+  try { window.plurskyToast?.(`${n} saved set${n === 1 ? "" : "s"} left out: set times unconfirmed`, { duration: 4000 }); } catch {}
+}
+
 async function exportSavedSetsICS(savedIds) {
   const artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id))
-    .sort((a, b) => (a.day - b.day) || (a.start < b.start ? -1 : 1));
+    .sort((a, b) => (a.day - b.day) || compareSetsByTime(a, b, STAGES));
   if (!artists.length) return;
+  // A set with no confirmed time is left out, never given a guessed slot, and
+  // the person is told how many (setTimesUnconfirmed — the sources disagree).
+  const leftUnconfirmed = artists.filter(setTimesUnconfirmed).length;
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
 
   const lines = ["BEGIN:VCALENDAR", "VERSION:2.0",
     `PRODID:-//Plursky//${FESTIVAL_CONFIG.name}//EN`,
@@ -99,10 +107,10 @@ function _nightShareText(ids) {
   const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
     const dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id))
-      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+      .sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!dayArtists.length) return [];
     return [`${d.short} · ${d.name.toUpperCase()}`,
-      ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+      ...dayArtists.map(a => setTimesUnconfirmed(a) ? `  ${a.name} (${SET_TIMES_UNCONFIRMED.toLowerCase()})` : `  ${fmt12(a.start)}  ${a.name}`), ""];
   });
   return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
 }
@@ -138,7 +146,7 @@ function NightWizard({ state, setState, onClose }) {
 
   const sorted = activeLineup(localIds)
     .filter(a => a.day === activeDay && local.has(a.id))
-    .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    .sort((a, b) => compareSetsByTime(a, b, STAGES));
 
   const conflictIds = new Set();
   for (let i = 0; i < sorted.length; i++)
@@ -149,8 +157,11 @@ function NightWizard({ state, setState, onClose }) {
   const items = [];
   for (let i = 0; i < sorted.length; i++) {
     items.push({ type: "set", artist: sorted[i] });
-    if (i < sorted.length - 1) {
-      const gS = toNightMin(sorted[i].end), gE = toNightMin(sorted[i + 1].start);
+    // A gap needs two real times around it: an untimed set sorts last and
+    // has none, so no free-time claim is made next to it.
+    const t0 = setTimingMin(sorted[i]), t1 = i < sorted.length - 1 ? setTimingMin(sorted[i + 1]) : null;
+    if (t0 && t1 && t0.end != null) {
+      const gS = t0.end, gE = t1.start;
       if (gE > gS + 5) {
         const gapMin = gE - gS;
         const fits = activeLineup(localIds).filter(a =>
@@ -171,7 +182,9 @@ function NightWizard({ state, setState, onClose }) {
   };
 
   const autoFill = () => {
-    const candidates = activeLineup(localIds).filter(a => a.day === activeDay)
+    // Auto-fill plans around real times only; a set whose times are
+    // unconfirmed can still be added by hand, it is just never planned for you.
+    const candidates = activeLineup(localIds).filter(a => a.day === activeDay && !setTimesUnconfirmed(a))
       .sort((a, b) => (b.tier - a.tier) || (toNightMin(a.start) - toNightMin(b.start)));
     const picked = [];
     for (const a of candidates) {
@@ -294,7 +307,7 @@ function NightWizard({ state, setState, onClose }) {
                   <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 8, alignItems: "flex-start" }}>
                     {/* Time */}
                     <div className="duo-data-s duo-ink3" style={{ width: 52, flexShrink: 0, textAlign: "right", paddingTop: 14 }}>
-                      {fmt12(a.start)}
+                      {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
                     </div>
                     {/* Block: on your plan = the accent wash; a clash takes the
                         clash edge. The name is whole: it wraps, never "…". */}
@@ -310,7 +323,7 @@ function NightWizard({ state, setState, onClose }) {
                         <div className="duo-headline duo-name" style={{ fontSize: 15 }}>{actDisplayName(a.name)}</div>
                         <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>
                           {clash && <span style={{ color: "var(--clash)", fontWeight: 650 }}>Clash · </span>}
-                          {stage.name} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span>
+                          {stage.name} · <span style={{ whiteSpace: "nowrap" }}>{setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : <>{fmt12(a.start)}–{fmt12(a.end)}</>}</span>
                         </div>
                       </div>
                       <button onClick={() => drop(a.id)} className="duo-chip" aria-label={`Drop ${a.name}`}><span>Drop</span></button>
@@ -899,7 +912,7 @@ function LineupScreen({ state, setState }) {
           const bi = STAGES.findIndex(s => s.id === b.stage);
           if (ai !== bi) return ai - bi;
         }
-        return toNightMin(a.start) - toNightMin(b.start);
+        return compareSetsByTime(a, b, STAGES);
       });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
 
@@ -1444,7 +1457,7 @@ function LineupScreen({ state, setState }) {
                 style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
                 <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
                   style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
-                  {fmt12(a.start)}
+                  {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
                 </div>
                 <DuoAvatar name={a.name} size={42} ring={ring} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
@@ -1462,6 +1475,11 @@ function LineupScreen({ state, setState }) {
                     {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
+                  {/* The time column is 72px and cannot hold the words, so the
+                      status is its own line under the name: text, not a dash. */}
+                  {setTimesUnconfirmed(a) && (
+                    <span data-set-time-status style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{SET_TIMES_UNCONFIRMED}</span>
+                  )}
                   {/* A clash names the other side (lane ruling 2026-09-26), so
                       choosing between them means something. It wraps: a name
                       is never truncated. */}
@@ -1836,8 +1854,8 @@ function _minToTop(m) {
 function SavedSidebar({ day, state, setState }) {
   const saved = state.saved
     .map(id => ARTISTS.find(a => a.id === id))
-    .filter(a => a && a.day === day)
-    .sort((a, b) => a.start.localeCompare(b.start));
+    .filter(a => a && a.day === day && setTimingMin(a))
+    .sort((a, b) => compareSetsByTime(a, b, STAGES));
 
   const unsave = (id, e) => {
     e.stopPropagation();
@@ -2137,8 +2155,14 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
 
   // A stage with no sets today gets no column — an empty lane is dead width on
   // a screen that has none to spare.
+  // Only a set with a real start AND end gets a block on the time scale. One
+  // without (unconfirmed, or TBA) used to land at top: NaN; it is listed in a
+  // group under the grid instead — browseable and saveable, never drawn at a
+  // length nobody published.
+  const placed = allDayArtists.filter(a => { const t = setTimingMin(a); return t && t.end != null; });
+  const unplaced = allDayArtists.filter(a => !placed.includes(a)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   const cols = STAGES
-    .map(s => ({ stage: s, artists: allDayArtists.filter(a => a.stage === s.id) }))
+    .map(s => ({ stage: s, artists: placed.filter(a => a.stage === s.id) }))
     .filter(c => c.artists.length > 0);
 
   // The user's next saved set today — the one piece of guidance no generic
@@ -2375,13 +2399,54 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
             })}
 
           </div>
-          </>) : (
+          </>) : !unplaced.length && (
             <div className="mono" style={{ position: "sticky", left: 0, width: boxW, padding: "28px 16px", textAlign: "center", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
               NO SETS ON THIS DAY
             </div>
           )}
+          {unplaced.length > 0 && (
+            <GridUnplacedGroup width={boxW} sets={unplaced} state={state} setState={setState} />
+          )}
         </div>
       </div>
+    </div>
+  );
+}
+
+// The day's sets that have no place on the time scale, in the stage order the
+// grid uses. Unconfirmed ones and plain TBA ones are separate groups: "the
+// sources disagree" and "not announced yet" are different statements.
+function GridUnplacedGroup({ width, sets, state, setState }) {
+  const groups = [
+    { key: "unconfirmed", title: "Times unconfirmed", sets: sets.filter(setTimesUnconfirmed) },
+    { key: "tba", title: "Times TBA", sets: sets.filter(a => !setTimesUnconfirmed(a)) },
+  ].filter(g => g.sets.length);
+  return (
+    <div data-grid-unplaced style={{ position: "sticky", left: 0, width, padding: "12px 16px 20px", boxSizing: "border-box" }}>
+      {groups.map(g => (
+        <section key={g.key} data-grid-unplaced-group={g.key} aria-label={g.title} style={{ marginTop: 8 }}>
+          <h3 style={{ margin: "0 0 4px", font: "650 15px/20px var(--f-ui)", color: "var(--ink)" }}>{g.title}</h3>
+          {g.sets.map(a => {
+            const st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+            const saved = state.saved.includes(a.id);
+            return (
+              <div key={a.id} data-grid-unplaced-set={a.id} style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 52, borderTop: "1px solid var(--line)" }}>
+                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                  flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
+                  color: "var(--ink)", textAlign: "left", cursor: "pointer", display: "flex", flexDirection: "column", justifyContent: "center",
+                }}>
+                  <span className="duo-headline" style={{ fontSize: 15, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</span>
+                  <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", overflowWrap: "anywhere" }}>
+                    {st.name}{setTimesUnconfirmed(a) ? ` · ${SET_TIMES_UNCONFIRMED}` : ""}
+                  </span>
+                </button>
+                <button onClick={() => toggleSave(state, setState, a.id)} className="duo-chip" aria-pressed={saved}
+                  aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`}><span>{saved ? "Saved" : "Save"}</span></button>
+              </div>
+            );
+          })}
+        </section>
+      ))}
     </div>
   );
 }
@@ -2496,15 +2561,21 @@ async function exportLineupICS(state) {
   const saved = state.saved
     .map(id => ARTISTS.find(a => a.id === id))
     .filter(Boolean)
-    .sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+    .sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return { ok: false, reason: "empty" };
+  // Only sets with a real start and end become events; an unconfirmed one is
+  // counted and named in the toast, never written with a guessed time.
+  const leftUnconfirmed = saved.filter(setTimesUnconfirmed).length;
+  const timed = saved.filter(a => { const t = setTimingMin(a); return t && t.end != null; });
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
+  if (!timed.length) return { ok: false, reason: "no_times", leftUnconfirmed };
 
   const tz = FESTIVAL_CONFIG.tz;
   const fid = FESTIVAL_CONFIG.id;
   const fname = FESTIVAL_CONFIG.shortName;
   const venue = FESTIVAL_CONFIG.locationShort;
   const dtstamp = _icsLocal(new Date());
-  const events = saved.map(a => {
+  const events = timed.map(a => {
     const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
     const start = _icsLocal(_setTimeToLocalDate(a.day, a.start));
     const end   = _icsLocal(_setTimeToLocalDate(a.day, a.end));
@@ -2549,7 +2620,7 @@ async function exportLineupICS(state) {
   // iOS Calendar and most apps still recognise .ics by filename extension.
   const shareFile = new File([blob], fileName, { type: "text/plain" });
   if (navigator.canShare?.({ files: [shareFile] }) && navigator.share) {
-    try { await navigator.share({ files: [shareFile], title: `My ${fname}` }); return { ok: true, mode: "share", count: saved.length }; }
+    try { await navigator.share({ files: [shareFile], title: `My ${fname}` }); return { ok: true, mode: "share", count: timed.length, leftUnconfirmed }; }
     catch (e) { if (e.name === "AbortError") return { ok: true, mode: "abort" }; }
   }
   // iOS PWA: link.download is blocked; open a data: URL instead which Safari
@@ -2557,7 +2628,7 @@ async function exportLineupICS(state) {
   if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
     const dataUrl = `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
     window.open(dataUrl, "_blank");
-    return { ok: true, mode: "download", count: saved.length };
+    return { ok: true, mode: "download", count: timed.length, leftUnconfirmed };
   }
   // Desktop / Android: anchor download
   const url = URL.createObjectURL(blob);
@@ -2565,7 +2636,7 @@ async function exportLineupICS(state) {
   link.href = url; link.download = fileName;
   document.body.appendChild(link); link.click(); document.body.removeChild(link);
   setTimeout(() => URL.revokeObjectURL(url), 1500);
-  return { ok: true, mode: "download", count: saved.length };
+  return { ok: true, mode: "download", count: timed.length, leftUnconfirmed };
 }
 
 // ── Printable lineup PDF (browser native) ──
@@ -2575,13 +2646,14 @@ function printLineupPDF(state) {
   const saved = state.saved
     .map(id => ARTISTS.find(a => a.id === id))
     .filter(Boolean)
-    .sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+    .sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return { ok: false, reason: "empty" };
 
   const dayLabel = Object.fromEntries(DAYS.map(d => [d.n, `${d.label} · ${d.date.toUpperCase()}`]));
   const stages = [...new Set(saved.map(a => a.stage))].length;
-  const grouped = { 1: [], 2: [], 3: [] };
-  saved.forEach(a => grouped[a.day].push(a));
+  // Any number of days (Summerfest runs nine): a fixed 1-3 table threw on day 4.
+  const grouped = {};
+  saved.forEach(a => (grouped[a.day] = grouped[a.day] || []).push(a));
 
   const dayBlock = (day, list) => list.length === 0 ? "" : `
     <section class="day">
@@ -2591,7 +2663,7 @@ function printLineupPDF(state) {
         ${list.map(a => {
           const st = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
           return `<tr>
-            <td class="time">${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span></td>
+            <td class="time">${setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : `${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span>`}</td>
             <td>
               <div class="name">${a.name.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</div>
               <div class="genre">${a.genre}</div>
@@ -2650,9 +2722,7 @@ function printLineupPDF(state) {
       ${FESTIVAL_CONFIG.dates.toUpperCase()} · ${FESTIVAL_CONFIG.year}
     </div>
   </div>
-  ${dayBlock(1, grouped[1])}
-  ${dayBlock(2, grouped[2])}
-  ${dayBlock(3, grouped[3])}
+  ${Object.keys(grouped).map(Number).sort((x, y) => x - y).map(d => dayBlock(d, grouped[d])).join("")}
   <footer>
     <span>plursky.com</span>
     <em>Three nights under the electric sky</em>
@@ -2675,12 +2745,13 @@ async function copyScheduleText(state) {
   const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
     const artists = activeLineup().filter(a => a.day === day && ids.includes(a.id))
-      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+      .sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!artists.length) return [];
     return [
       `${d.short} · ${d.name.toUpperCase()}`,
       ...artists.map(a => {
         const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
+        if (setTimesUnconfirmed(a)) return `  ${a.name}  @  ${stage ? stage.name : a.stage}  (${SET_TIMES_UNCONFIRMED.toLowerCase()})`;
         return `  ${fmt12(a.start)}  ${a.name}  @  ${stage ? stage.name : a.stage}`;
       }),
       "",
@@ -2836,7 +2907,7 @@ async function shareLineupImage(state) {
   const saved = state.saved
     .map(id => ARTISTS.find(a => a.id === id))
     .filter(Boolean)
-    .sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+    .sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
 
   if (saved.length === 0) return { ok: false, reason: "empty" };
 
@@ -2911,13 +2982,16 @@ async function shareLineupImage(state) {
     ctx.fillStyle = stage.color;
     ctx.fillRect(80, y, 6, 78);
 
-    // Time
-    ctx.fillStyle = "#1a120d";
-    ctx.font = '500 28px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.start), 110, y + 32);
-    ctx.fillStyle = "rgba(26,18,13,0.45)";
-    ctx.font = '400 20px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.end), 110, y + 60);
+    // Time — an unconfirmed set draws none; its stage line says so instead.
+    const unconfirmed = setTimesUnconfirmed(a);
+    if (!unconfirmed) {
+      ctx.fillStyle = "#1a120d";
+      ctx.font = '500 28px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.start), 110, y + 32);
+      ctx.fillStyle = "rgba(26,18,13,0.45)";
+      ctx.font = '400 20px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.end), 110, y + 60);
+    }
 
     // Name + stage
     ctx.fillStyle = "#1a120d";
@@ -2931,7 +3005,7 @@ async function shareLineupImage(state) {
 
     ctx.fillStyle = stage.color;
     ctx.font = '600 18px "Geist Mono", monospace';
-    ctx.fillText(stage.name.toUpperCase() + " · " + a.genre.toUpperCase(), 250, y + 64);
+    ctx.fillText(stage.name.toUpperCase() + " · " + (unconfirmed ? SET_TIMES_UNCONFIRMED : a.genre).toUpperCase(), 250, y + 64);
 
     y += 92;
     if (y > H - 180) break; // safety: don't overflow story height

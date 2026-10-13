@@ -821,9 +821,11 @@ function savedStarsByStage(savedIds) {
   savedIds.forEach(id => {
     var a = lineup.find(x => x.id === id);
     if (!a || a.day !== night) return;
-    var startMin = toNightMin(a.start),
-      endMin = toNightMin(a.end);
-    if (endMin <= nowMin) return;
+    var t = setTimingMin(a);
+    if (!t) return;
+    var startMin = t.start,
+      endMin = t.end;
+    if (endMin != null && endMin <= nowMin) return;
     var minsUntil = startMin - nowMin;
     var cur = out[a.stage];
     if (!cur || minsUntil < cur.minsUntil) out[a.stage] = {
@@ -2111,6 +2113,7 @@ function writeNotifyEnabled(v) {
 function _setStartRealMs(artist) {
   var meta = FESTIVAL_CONFIG.dayDates?.[artist.day];
   if (!meta) return null;
+  if (setTimeStatus(artist) !== "confirmed") return null;
   var [h, m] = artist.start.split(":").map(Number);
   var d = new Date(meta.y, meta.m, meta.d, h, m, 0, 0);
   if (h < 8) d.setDate(d.getDate() + 1);
@@ -3928,7 +3931,7 @@ function MapScreen({
         style: {
           fontWeight: 400
         }
-      }, [st?.name, a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · "))));
+      }, [st?.name, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · "))));
     }), stageMatches.length === 0 && artistMatches.length === 0 && React.createElement("div", {
       style: {
         padding: "18px 14px",
@@ -9407,7 +9410,7 @@ function StageLineupSheet({
     var h = parseInt(t.split(":")[0]);
     return h < 8 ? h + 24 : h;
   };
-  var sets = activeLineup().filter(a => a.stage === stage.id && a.day === day).sort((a, b) => toSlot(a.start) - toSlot(b.start));
+  var sets = activeLineup().filter(a => a.stage === stage.id && a.day === day).sort((a, b) => setTimingMin(a) && setTimingMin(b) ? toSlot(a.start) - toSlot(b.start) : compareSetsByTime(a, b, STAGES));
   var totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   var heroInk = _inkOn(stage.color);
   React.useEffect(() => {
@@ -9783,7 +9786,7 @@ function StageLineupSheet({
         width: 72,
         flexShrink: 0
       }
-    }, React.createElement("div", {
+    }, !setTimesUnconfirmed(s) && React.createElement(React.Fragment, null, React.createElement("div", {
       className: "duo-data",
       style: {
         fontSize: 13,
@@ -9791,7 +9794,7 @@ function StageLineupSheet({
       }
     }, fmt12(s.start)), React.createElement("div", {
       className: "duo-data-s duo-ink2"
-    }, fmt12(s.end))), React.createElement(DuoAvatar, {
+    }, fmt12(s.end)))), React.createElement(DuoAvatar, {
       name: s.name,
       size: 42,
       ring: live || isSaved ? "on" : ""
@@ -9814,7 +9817,13 @@ function StageLineupSheet({
       style: {
         color: "var(--live)"
       }
-    }, "Live · ") : null, s.genre)), React.createElement("button", {
+    }, "Live · ") : null, s.genre), setTimesUnconfirmed(s) && React.createElement("div", {
+      "data-set-time-status": true,
+      className: "duo-body-s duo-ink2",
+      style: {
+        fontWeight: 400
+      }
+    }, SET_TIMES_UNCONFIRMED)), React.createElement("button", {
       onClick: toggleSaveSet,
       "aria-pressed": !!isSaved,
       "aria-label": isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`,
