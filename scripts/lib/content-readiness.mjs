@@ -47,12 +47,22 @@ function bioShape(bio, name) {
   return s.replace(/\d+/g, '#').replace(/\s+/g, ' ').trim().slice(0, 48);
 }
 
-function bioEvidence(a, shapeCounts) {
+// A schedule line ("<acts> — played ARC Music Festival 2026 on the area909
+// stage.") is generated too, even when its shape is unique: it names the
+// edition itself and says the act plays it. Prose written about an artist
+// does neither.
+function isScheduleLine(bio, config) {
+  if (!/\bplay(?:s|ing|ed)\b/i.test(bio)) return false;
+  const name = config && config.name;
+  return !!name && bio.toLowerCase().includes(String(name).toLowerCase());
+}
+
+function bioEvidence(a, shapeCounts, config) {
   const bio = String(a.bio || '').trim();
   if (!bio) return 'none';
   const profiles = Array.isArray(a.officialArtistProfiles) ? a.officialArtistProfiles : [];
   if (profiles.some(p => p && p.bio && String(p.bio).trim() === bio)) return 'official_profile';
-  if ((shapeCounts.get(bioShape(bio, a.name)) || 0) >= 3) return 'template';
+  if ((shapeCounts.get(bioShape(bio, a.name)) || 0) >= 3 || isScheduleLine(bio, config)) return 'template';
   return 'unsourced_prose';
 }
 
@@ -134,7 +144,7 @@ export function buildItems(editionId, data, { showcases = [] } = {}) {
       scheduleSource: src ? src.url : null,
       scheduleObservedAt: src ? src.observedAt : null,
       scheduleOfficial: !!(src && src.official),
-      bioEvidence: bioEvidence(a, shapeCounts),
+      bioEvidence: bioEvidence(a, shapeCounts, config),
       genreEvidence: genreEvidence(a, genreCounts, n),
       profileLinks: profileLinks(a),
     };

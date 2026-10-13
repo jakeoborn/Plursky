@@ -40,6 +40,9 @@ check(item(base()).bioEvidence === 'template', 'a shape shared by ≥3 billings 
 const prose = { bio: 'Belgian techno queen, mainstage rarity.' };
 check(item(base(prose)).bioEvidence === 'unsourced_prose', 'one-off prose with no profile is unsourced');
 check(item(base(prose)).choice === 'needs_source', 'unsourced prose is never ready for review');
+const fxCfg = { ...OFFICIAL, name: 'Fixture Fest 2026' };
+check(item(base({ bio: 'Ann, Bo, Cy — played Fixture Fest 2026 on the tent stage.' }, fxCfg)).bioEvidence === 'template', 'a one-off schedule line naming the edition is generated, not prose');
+check(item(base({ bio: 'Fixture Fest 2026 regular with a modular rig.' }, fxCfg)).bioEvidence === 'unsourced_prose', 'naming the festival without "plays" is still prose');
 check(item(base(prose)).semanticEligible === true, 'prose is the only thing a semantic read could use');
 check(item(base()).semanticEligible === false, 'a template bio is not semantic-eligible');
 check(item(base()).genreEvidence === 'placeholder', '"—" genre is a placeholder');
@@ -100,6 +103,8 @@ const sor = items.filter(i => i.edition === 'summerfest-2026' && i.name === 'Sch
 check(sor.filter(i => i.day === 5).length === 5 && sor.filter(i => i.day === 5).every(i => i.choice !== 'conflict'), 'positive control: June 26 School of Rock rows are a sourced showcase, not conflicts');
 check(sor.filter(i => i.day === 4).length === 5 && sor.filter(i => i.day === 4).every(i => i.choice === 'conflict' && /does not cover/.test(i.reasons[0])), 'June 25 School of Rock stays flagged: the release prints June 26-27');
 check(showcases.every(s => /^https:\/\//.test(s.source) && s.publishedAt && s.observedAt && s.statement), 'every showcase entry carries a dated https source and its statement');
+const realProse = items.filter(i => i.bioEvidence === 'unsourced_prose').map(i => `${i.edition}:${i.billingId}`).sort();
+check(JSON.stringify(realProse) === JSON.stringify(['edc-lv-2026:b7', 'edc-lv-2026:c15', 'edc-lv-2026:c6', 'edc-lv-2026:k18', 'edc-lv-2026:k25', 'edc-lv-2026:k27', 'edc-lv-2026:k9', 'edc-lv-2026:q22']), `positive control: unsourced prose is exactly the eight EDC LV bios (${realProse.join(',')})`);
 check(items.filter(i => i.edition === 'nocturnal-wonderland-2026' && i.bioEvidence === 'official_profile').length >= 60, 'positive control: Nocturnal official profiles are read');
 const again = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id], { showcases }));
 check(JSON.stringify(again) === JSON.stringify(items), 'deterministic: a second run is identical');
