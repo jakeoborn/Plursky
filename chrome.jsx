@@ -230,11 +230,14 @@ function useModalOpen() {
 // ── Stagger-fade entrance for scrollable cards ───────────────
 // Returns a ref to attach to a container. Children with
 // [data-animate] get an intersection-triggered fade-in.
-function useStaggerFade(depKey) {
+function useStaggerFade(depKey, skip = false) {
   const ref = React.useRef(null);
   React.useEffect(() => {
     const el = ref.current;
-    if (!el || !window.IntersectionObserver) return;
+    // skip: a list that opens somewhere other than its top (Lineup at the
+    // current hour) shows its rows as they are; sliding rows in under a jump
+    // reads as the list moving twice.
+    if (!el || skip || !window.IntersectionObserver) return;
     const targets = el.querySelectorAll("[data-animate]");
     if (!targets.length) return;
     targets.forEach(t => { t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
@@ -314,9 +317,22 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 
+// Reviewed self-hosted artwork wins over temporary platform images. The build
+// validates source, license, attribution and asset hash; localStorage cannot
+// promote an arbitrary URL to permanent artwork.
+function getPermanentArtistImage(name) {
+  const rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  if (!rec || !["commons", "press-kit"].includes(rec.source) ||
+      !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") ||
+      !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
+  return rec;
+}
+
 // The entry to SHOW for an artist, or null (missing, expired, or unknown).
 function getArtistImage(name, now = Date.now()) {
   if (!name) return null;
+  const permanent = getPermanentArtistImage(name);
+  if (permanent) return permanent;
   const rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
   return _artistImageShowable(rec, now) ? rec : null;
 }
@@ -324,7 +340,7 @@ function getArtistImage(name, now = Date.now()) {
 // The entry a share/recap EXPORT may draw: never Spotify, never unknown.
 function getShareableArtistImage(name) {
   const rec = getArtistImage(name);
-  return rec && rec.source !== "spotify" ? rec : null;
+  return rec && rec.source !== "spotify" && rec.allowExport === true ? rec : null;
 }
 
 // Drops expired Spotify entries and unknown legacy ones. Runs on every write
@@ -1488,6 +1504,10 @@ function FestivalSwitcher({ onClose }) {
   const activeId = FESTIVAL_CONFIG.id;
   const [plusOpen, setPlusOpen] = React.useState(false);
   const [pastOpen, setPastOpen] = React.useState(false);
+  // Past editions (historical.jsx): a gated entry whose earlier edition is in
+  // the library opens that look-back instead of sitting disabled. It never
+  // switches festival and never flips the entry.
+  const pastIndex = usePastEditionIndex();
   const [viewMode, setViewMode] = React.useState(() => {
     try { return localStorage.getItem("plursky_switcher_view_v1") || "grid"; } catch { return "grid"; }
   });
@@ -1542,20 +1562,24 @@ function FestivalSwitcher({ onClose }) {
   const chevron = <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6 L15 12 L9 18"/></svg>;
   const row = (f) => {
     const isActive = f.config.id === activeId;
-    const locked = !f.available && !f.previewOnly && !isActive;
+    const lookBack = !f.available && !f.previewOnly && !isActive ? pastEditionsOf(pastIndex, f.config.id)[0] : null;
+    const locked = !f.available && !f.previewOnly && !isActive && !lookBack;
     const st = _festivalPlanStatus(f.config.id);
     const parts = [];
     if (st.saved) parts.push(<span key="s">{st.saved} saved</span>);
     if (st.conflicts) parts.push(<span key="c" style={{ color: "var(--clash)", fontWeight: 600 }}>{st.conflicts} {st.conflicts === 1 ? "clash" : "clashes"}</span>);
     if (isActive) parts.push(<span key="a" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Active</span>);
     else if (phase(f) === "ended") parts.push(<span key="e">Ended</span>);
-    else if (!f.available) parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+    else if (!f.available) {
+      parts.push(<span key="l">{f.previewOnly ? "Early access" : "Soon"}</span>);
+      if (lookBack) parts.push(<span key="lb" style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Look back: {lookBack.year}</span>);
+    }
     // Open, lineup in, schedule still to come — say so BEFORE the switch, so
     // nobody taps in expecting a timetable and finds a list of dashes.
     else if (f.scheduleTBA) parts.push(<span key="tba">Set times TBA</span>);
     else if (st.saved && !st.conflicts) parts.push(<span key="r" style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Ready</span>);
     return (
-      <button key={f.config.id} onClick={() => onPick(f.config.id, f)} disabled={locked}
+      <button key={f.config.id} onClick={() => lookBack ? (onClose(), openPastEdition(lookBack.id)) : onPick(f.config.id, f)} disabled={locked}
         aria-current={isActive ? "true" : undefined}
         style={{ ...rowStyle(locked), cursor: locked ? "default" : "pointer" }}>
         <FestivalThumb entry={f} editorial={viewMode === "grid"} />

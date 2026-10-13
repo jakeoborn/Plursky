@@ -39,6 +39,9 @@ try {
   // Opens the map with `mapArtYear` forced to `artYear` (undefined = absent).
   const open = async (width, artYear) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height: 700 } });
+    // ACL's tab bar has a Map only while the festival runs: pin Date (not
+    // timers) to a live Weekend 2 evening so this does not rot with the calendar.
+    await ctx.clock.setFixedTime(new Date("2026-10-10T20:00:00-05:00"));
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
@@ -52,26 +55,22 @@ try {
       return window.FESTIVAL_CONFIG.year;
     }, artYear);
     // The map mounts after the field is set, so its label is computed from it.
-    await page.evaluate(() => [...document.querySelectorAll("button")].find(b => b.innerText.trim() === "Map")?.click());
+    await page.evaluate(() => window.setTab ? window.setTab("map") : [...document.querySelectorAll("button")].find(b => /^map$/i.test(b.innerText.trim()) || b.getAttribute("aria-label") === "Map")?.click());
     await page.waitForSelector("[data-map-posture]", { timeout: 30000 });
     await page.waitForTimeout(1200);
     const s = await page.evaluate(() => {
-      const box = document.querySelector("[data-map-posture]"), span = box.querySelector("span");
-      // The label sits in the map's left column (with the GPS-denied pill), so
-      // the map itself is the column's parent.
-      const mapEl = box.closest("[data-map-left-col]").parentElement;
-      const r = span.getBoundingClientRect(), host = mapEl.getBoundingClientRect();
-      const rect = e => { const q = e.getBoundingClientRect(); return { left: q.left, right: q.right, top: q.top, bottom: q.bottom }; };
-      // The control column: every button in the top-right of the map.
-      const controls = [...mapEl.querySelectorAll("button")].map(rect)
-        .filter(q => q.right > q.left && q.left > host.left + host.width / 2 && q.top < host.top + 260);
-      const gps = [...mapEl.querySelectorAll("span")].find(e => /GPS denied/i.test(e.textContent));
+      // Main's board header: back · title · posture label, on solid ground
+      // above the map (no floating left column, no GPS pill any more).
+      const span = document.querySelector("[data-map-posture]"), head = span.closest("[data-map-header]");
+      const r = span.getBoundingClientRect(), host = head.getBoundingClientRect();
+      const title = head.querySelector("h1").getBoundingClientRect();
+      const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
       return {
         text: span.textContent.trim(), left: r.left, right: r.right, top: r.top, bottom: r.bottom,
         clipped: span.scrollWidth > span.clientWidth + 1 || span.scrollHeight > span.clientHeight + 1,
-        controlLeft: controls.length ? Math.min(...controls.map(q => q.left)) : null, controls: controls.length,
-        gpsTop: gps ? gps.parentElement.getBoundingClientRect().top : null,
+        overTitle: overlaps(r, title),
         hostLeft: host.left, hostRight: host.right, vw: window.innerWidth,
+        pageOverflow: document.documentElement.scrollWidth > window.innerWidth,
       };
     });
     await ctx.close();
@@ -90,12 +89,10 @@ try {
     check(s.errors.length === 0, `${width}px: the map throws nothing (${JSON.stringify(s.errors)})`);
     check(s.text === LABEL, `${width}px: last year's art reads "${LABEL}" (got "${s.text}")`);
     check(!s.clipped, `${width}px: none of the label is clipped`);
-    check(s.controls >= 2 && s.controlLeft != null, `${width}px: the control column was found (${s.controls} buttons)`);
-    check(s.controlLeft != null && s.right <= s.controlLeft - 4, `${width}px: the label ends left of the control column (label right ${s.right.toFixed(1)}, controls from ${s.controlLeft})`);
-    check(s.left >= s.hostLeft && s.right <= s.hostRight, `${width}px: the label is inside the map (left ${s.left}, right ${s.right.toFixed(1)}, map ${s.hostLeft}-${s.hostRight})`);
-    // Headless Chromium denies geolocation, so the pill is on screen here.
-    check(s.gpsTop != null, `${width}px: the GPS-denied pill is on screen to be measured against`);
-    check(s.gpsTop != null && s.bottom <= s.gpsTop - 2, `${width}px: the label ends above the GPS-denied pill (label bottom ${s.bottom.toFixed(1)}, pill top ${s.gpsTop})`);
+    check(!s.overTitle, `${width}px: the label does not overlap the "Map" title`);
+    check(s.left >= s.hostLeft && s.right <= s.hostRight, `${width}px: the label is inside the header (left ${s.left}, right ${s.right.toFixed(1)}, header ${s.hostLeft}-${s.hostRight})`);
+    check(s.right <= s.vw, `${width}px: the label ends on screen (right ${s.right.toFixed(1)}, viewport ${s.vw})`);
+    check(!s.pageOverflow, `${width}px: no horizontal page scroll`);
   }
   await browser.close();
 } finally {

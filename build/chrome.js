@@ -302,11 +302,11 @@ function useModalOpen() {
   }, []);
   return n > 0;
 }
-function useStaggerFade(depKey) {
+function useStaggerFade(depKey, skip = false) {
   var ref = React.useRef(null);
   React.useEffect(() => {
     var el = ref.current;
-    if (!el || !window.IntersectionObserver) return;
+    if (!el || skip || !window.IntersectionObserver) return;
     var targets = el.querySelectorAll("[data-animate]");
     if (!targets.length) return;
     targets.forEach(t => {
@@ -375,14 +375,21 @@ function _artistImageShowable(rec, now = Date.now()) {
   }
   return false;
 }
+function getPermanentArtistImage(name) {
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
+  return rec;
+}
 function getArtistImage(name, now = Date.now()) {
   if (!name) return null;
+  var permanent = getPermanentArtistImage(name);
+  if (permanent) return permanent;
   var rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
   return _artistImageShowable(rec, now) ? rec : null;
 }
 function getShareableArtistImage(name) {
   var rec = getArtistImage(name);
-  return rec && rec.source !== "spotify" ? rec : null;
+  return rec && rec.source !== "spotify" && rec.allowExport === true ? rec : null;
 }
 function _pruneArtistImageStore(store, now = Date.now()) {
   var changed = false;
@@ -1797,6 +1804,7 @@ function FestivalSwitcher({
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
   var [pastOpen, setPastOpen] = React.useState(false);
+  var pastIndex = usePastEditionIndex();
   var [viewMode, setViewMode] = React.useState(() => {
     try {
       return localStorage.getItem("plursky_switcher_view_v1") || "grid";
@@ -1902,7 +1910,8 @@ function FestivalSwitcher({
   }));
   var row = f => {
     var isActive = f.config.id === activeId;
-    var locked = !f.available && !f.previewOnly && !isActive;
+    var lookBack = !f.available && !f.previewOnly && !isActive ? pastEditionsOf(pastIndex, f.config.id)[0] : null;
+    var locked = !f.available && !f.previewOnly && !isActive && !lookBack;
     var st = _festivalPlanStatus(f.config.id);
     var parts = [];
     if (st.saved) parts.push(React.createElement("span", {
@@ -1923,9 +1932,18 @@ function FestivalSwitcher({
       }
     }, "Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
       key: "e"
-    }, "Ended"));else if (!f.available) parts.push(React.createElement("span", {
-      key: "l"
-    }, f.previewOnly ? "Early access" : "Soon"));else if (f.scheduleTBA) parts.push(React.createElement("span", {
+    }, "Ended"));else if (!f.available) {
+      parts.push(React.createElement("span", {
+        key: "l"
+      }, f.previewOnly ? "Early access" : "Soon"));
+      if (lookBack) parts.push(React.createElement("span", {
+        key: "lb",
+        style: {
+          color: "var(--signal-ink)",
+          fontWeight: 600
+        }
+      }, "Look back: ", lookBack.year));
+    } else if (f.scheduleTBA) parts.push(React.createElement("span", {
       key: "tba"
     }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
       key: "r",
@@ -1936,7 +1954,7 @@ function FestivalSwitcher({
     }, "Ready"));
     return React.createElement("button", {
       key: f.config.id,
-      onClick: () => onPick(f.config.id, f),
+      onClick: () => lookBack ? (onClose(), openPastEdition(lookBack.id)) : onPick(f.config.id, f),
       disabled: locked,
       "aria-current": isActive ? "true" : undefined,
       style: {

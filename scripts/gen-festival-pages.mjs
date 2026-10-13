@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -203,6 +203,41 @@ ${body}
   </section>`;
 }
 
+// Only a page that renders the section carries its styles, so the other
+// festival pages (and their sitemap lastmod) do not move.
+const STAGE_PROGRAMMING_CSS = `  details.program-stage { margin:10px 0; border:1px solid var(--line); border-radius:10px; padding:0 14px; }
+  details.program-stage summary { cursor:pointer; font-weight:650; min-height:44px; padding:12px 0; overflow-wrap:anywhere; }
+  details.program-stage ol { padding-left:24px; }
+  details.program-stage li { padding:6px 0; overflow-wrap:anywhere; }
+  details.program-stage time { font-variant-numeric:tabular-nums; font-weight:650; }
+`;
+
+// Official stage/day running order is not a full clock-time schedule.
+function stageProgrammingSection(entry) {
+  const data = stageProgrammingFor(entry.config.id);
+  if (!data) return '';
+  const localClock = hm => { const [h,m] = hm.split(':').map(Number); return `${h % 12 || 12}:${String(m).padStart(2,'0')} ${h < 12 ? 'AM' : 'PM'}`; };
+  return `
+  <section aria-labelledby="stage-programming-h" class="stage-programming">
+    <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
+    <p class="note">Set times from the III Points-branded grids supplied on October 5. Both days, 13 stages and 231 intervals. The source is the supplied screenshot, not a clock-time page on the official website.</p>
+    <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
+    <p class="note"><a href="${esc(data.source.url)}">III Points official site</a> · source: attendee-supplied III Points-branded set-time grid · checked ${esc(data.source.observedAt)}</p>
+${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
+` + data.stages.map(stage => {
+    const block = stage.days.find(d => d.day === day);
+    if (!block) return '';
+    const timed = block.rows.some(r => r.start);
+    return `    <details class="program-stage"${stage.id === '444' ? ' open' : ''}>
+      <summary>${esc(stage.name)} · ${timed ? 'Set times' : 'Running order'} · ${block.rows.length} sets</summary>
+      <ol>
+` + block.rows.map(row => `        <li>${row.start ? `<time>${esc(localClock(row.start))}${row.end ? ' - '+esc(localClock(row.end)) : ''}</time> · ` : ''}${esc(row.name)}</li>`).join('\n') + `
+      </ol>
+    </details>`;
+  }).join('\n')).join('\n')}
+  </section>`;
+}
+
 // ── Map ──────────────────────────────────────────────────────────────
 // Two things may appear, and nothing else: a plate Plursky generated (an SVG
 // drawn from our own coordinates, captioned with its OWN <desc>, so its limits
@@ -366,16 +401,50 @@ ${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href
 
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
+// Each link opens that edition in Plursky (?tab=past&edition=<id>).
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function ymdLabel(a, b) {
+  if (!a) return '';
+  const [ya, ma, da] = a.split('-').map(Number), [yb, mb, db] = (b || a).split('-').map(Number);
+  if (a === (b || a)) return `${MON[ma - 1]} ${da}, ${ya}`;
+  if (ya === yb && ma === mb) return `${MON[ma - 1]} ${da}–${db}, ${ya}`;
+  return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
+}
+const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+function editionSummary(e) {
+  return e.lineupOnly
+    ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+}
+
+// A festival not open in Plursky yet (a gated entry, usually next year's)
+// leads with its newest past edition instead of an empty page: clearly a
+// past edition, with its own dates and the date its source was archived, and
+// kept apart from everything this page says about the upcoming edition.
+function lookBackSection(entry, editions) {
+  if (entry.available || !editions.length) return '';
+  const e = editions[0];
+  return `
+  <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
+    <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
+    <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
+    <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
+  </section>`;
+}
+
 function pastSection(entry, editions) {
-  if (!editions.length) return '';
+  const rest = entry.available ? editions : editions.slice(1);
+  if (!rest.length) return '';
   const cfg = entry.config;
   return `
   <section aria-labelledby="past-h">
-    <h2 id="past-h">Past editions of ${esc(cfg.brand || cfg.name)}</h2>
+    <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a> — ${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
     </ul>
-    <p class="note">Each link opens Past Festivals in Plursky.</p>
+    <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
 }
 
@@ -412,7 +481,9 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // The schedule answer is gated on the SAME `hasTimes` the page renders from,
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
-  if (hasTimes) {
+  if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+  } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
@@ -683,7 +754,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
-  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
+${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
   details.more { margin:4px 0 0; }
@@ -730,10 +801,10 @@ ${JSON.stringify(crumbLd, null, 2)}
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
-  <p>${esc(cfg.tagline || '')}</p>
+  <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
-${scheduleGrid(entry, dates, blocks)}
+${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
 ${planSection(entry, amenities)}
@@ -748,7 +819,7 @@ ${pastSection(entry, editions)}
     <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 

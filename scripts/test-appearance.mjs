@@ -253,6 +253,7 @@ try {
     // A code that is also an ordinary UI word is not a stage reference:
     // BIO is Bionic Jungle's code AND the artist page's Bio tab.
     const WORDS = new Set(['BIO']);
+    const fullNames = (window.STAGES || []).map(s => s.name).filter(Boolean).sort((a, b) => b.length - a.length);
     const codes = new Set((window.STAGES || []).map(s => s.code).filter(c => c && !WORDS.has(c) && !(window.STAGES || []).some(s => s.name === c)));
     const isName = (t) => { const l = t.toLowerCase(); return lower.some(n => l.includes(n)); };
     for (const el of document.querySelectorAll('body *')) {
@@ -286,7 +287,9 @@ try {
       const cut = t.match(/([^·•|]{3,}?)…/);
       if (cut) { const pre = cut[1].trim().replace(/^[★•·\s]+/, '').toLowerCase(); if (pre.length >= 3 && lower.some(n => n.startsWith(pre) && n !== pre)) out.push(`artist name cut with "…": "${t.slice(0, 40)}"`); }
       if ((t.match(/\bb\d+b\b/gi) || []).length >= 2) out.push(`3+ artist chain shown in full (use the first artist + N): "${t.slice(0, 40)}"`);
-      for (const n of own) for (const w of n.textContent.split(/[^A-Za-z0-9]+/)) if (w && codes.has(w)) out.push(`stage shown as its code "${w}": "${t.slice(0, 40)}"`);
+      // A full stage name can contain its own code ("BMI Stage"): strip full
+      // names first, so only a code standing in for a name is flagged.
+      for (const n of own) for (const w of fullNames.reduce((x, f) => x.split(f).join(' '), n.textContent).split(/[^A-Za-z0-9]+/)) if (w && codes.has(w)) out.push(`stage shown as its code "${w}": "${t.slice(0, 40)}"`);
     }
     return out;
   });
@@ -313,7 +316,21 @@ try {
     const sc = [...document.querySelectorAll('*')].filter(e => { const s = getComputedStyle(e); return /(auto|scroll)/.test(s.overflowY) && e.scrollHeight > e.clientHeight + 40 && e.clientHeight > 200; }).sort((x, y) => y.clientWidth * y.clientHeight - x.clientWidth * x.clientHeight)[0];
     if (!sc) return 1; sc.setAttribute('data-appearance-scroller', ''); return Math.min(12, Math.ceil(sc.scrollHeight / (sc.clientHeight * 0.8)));
   });
-  const scrollTo = async (page, i) => { await page.evaluate(i => { const sc = document.querySelector('[data-appearance-scroller]'); if (sc) sc.scrollTop = i * sc.clientHeight * 0.8; }, i); await page.clock.runFor(300); await page.waitForTimeout(80); };
+  // One programmatic jump is one scroll event, and a header that folds on
+  // scroll (Lineup's filters) ignores an event that lands while the list is
+  // resizing. Whether the jump counted then depended on layout timing, and on
+  // CI the toggled load folded where the fresh one had not: the whole list sat
+  // ~300 px apart and read as a colour leak (#224, a7c1745, lineup-wide). So
+  // after the jump, wait out the fold's 280 ms lock and nudge 6 px down: a
+  // real downward move both loads see the same way.
+  const scrollTo = async (page, i) => {
+    await page.evaluate(i => { const sc = document.querySelector('[data-appearance-scroller]'); if (sc) sc.scrollTop = i * sc.clientHeight * 0.8; }, i);
+    await page.clock.runFor(300); await page.waitForTimeout(80);
+    if (i) { await page.evaluate(() => { const sc = document.querySelector('[data-appearance-scroller]'); if (sc) sc.scrollTop += 6; }); await page.clock.runFor(300); await page.waitForTimeout(80); }
+  };
+  // Header fold state, where a screen has one: compared between the loads so a
+  // fold race fails by name instead of as a pixel diff.
+  const foldOf = (page) => page.evaluate(() => document.querySelector('[data-lineup-filters]')?.dataset.collapsed ?? '-');
   // Text ON a photo, artwork or gradient: its background is pixels, not a
   // colour, so measure the pixels. Hide the text, screenshot, and take the
   // mean colour under each text box; the text must meet AA against it.
@@ -405,7 +422,7 @@ try {
       // Audit the whole screen, not the first viewport: step the main
       // scroller, and keep a settled screenshot of every screenful for the
       // leak check below (a leak below the fold is still a leak).
-      const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [], freshRects = [];
+      const a = { fails: [], media: 0, measured: 0 }, seen = new Set(), fresh = [], freshRects = [], freshFold = [];
       const fits = new Map();
       onMediaInk[`${key}/${mode}`] = new Map();
       await shot(A.page);   // settle first: a skeleton still loading is not a leak
@@ -414,6 +431,7 @@ try {
       for (let i = 0; i < steps; i++) {
         if (i) await scrollTo(A.page, i);
         fresh.push(await shot(A.page));
+        freshFold[i] = await foldOf(A.page);
         await readFits(A.page, fits); fitStats.recorded = Math.max(fitStats.recorded, fits.size);
         if (process.env.APPEARANCE_EVIDENCE) freshRects[i] = await rects(A.page);
         const r = await audit(A.page);
@@ -444,6 +462,7 @@ try {
         if (i) await scrollTo(B.page, i);
         const fp = await pinFits(B.page, fits); fitStats.pinned += fp.pinned; fitStats.moved += fp.moved;
         const toggled = await shot(B.page);
+        { const tf = await foldOf(B.page); check(tf === freshFold[i], `[${key}] toggled ${other}→${mode}: the header is ${tf === '1' ? 'folded' : 'open'} on screenful ${i + 1} where the fresh load has it ${freshFold[i] === '1' ? 'folded' : 'open'} (a scroll race, not a colour)`); }
         const { n, nt, box } = await diffPx(toggled, fresh[i]);
         if ((n >= 150 || nt >= 20) && process.env.APPEARANCE_EVIDENCE) {
           const dir = process.env.APPEARANCE_EVIDENCE, tag = `${key}-${other}-to-${mode}-${i + 1}`;
