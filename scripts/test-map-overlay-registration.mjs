@@ -30,6 +30,11 @@ const reservePort = () => new Promise((resolve, reject) => { const s = createSer
 const PORT = await reservePort();
 const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
 const FID = "acl-2026", TOL = 1.5;
+// The map is a during-festival tab: once a festival's endMs passes, the bar
+// swaps Map for Memories (chrome.jsx), so on the real clock this gate stopped
+// finding a Map button the night ACL 2026 ended. Pin the page clock inside
+// ACL Weekend 2 (Sat Oct 10, 6 pm CDT) so it measures the map it was written for.
+const AT = "2026-10-10T23:00:00Z";
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
@@ -38,6 +43,7 @@ try {
   const measure = async (width, height, { pills = false, geo = null } = {}) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height },
       ...(geo ? { geolocation: { latitude: geo[0], longitude: geo[1], accuracy: 8 }, permissions: ["geolocation"] } : {}) });
+    await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
@@ -115,6 +121,7 @@ try {
   // positions come from the image, not from the layout.
   {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 }, hasTouch: true, reducedMotion: "reduce" });
+    await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
