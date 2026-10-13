@@ -121,16 +121,16 @@ First-party, per edition (`essentialsSources`); unknown stays unknown and never 
 | CRSSD Fest Fall 2026 | `crssd-fall-2026` | Entry 21+ | unknown | on-sale (checked 2026-09-26) |
 | Portola 2026 | `portola-2026` | Entry 21+ | unknown | on-sale (checked 2026-09-26) |
 | Austin City Limits 2026 | `acl-2026` | All ages | no | on-sale (checked 2026-09-26) |
-| III Points 2026 | `iii-points-2026` | unknown | no | on-sale (checked 2026-09-26) |
-| Escape Halloween 2026 | `escape-halloween-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
-| EDC Orlando 2026 | `edc-orlando-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
-| Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Entry 18+ | no | on-sale (checked 2026-09-26) |
+| III Points 2026 | `iii-points-2026` | unknown | no | on-sale (checked 2026-10-13) |
+| Escape Halloween 2026 | `escape-halloween-2026` | Entry 18+ | no | on-sale (checked 2026-10-13) |
+| EDC Orlando 2026 | `edc-orlando-2026` | Entry 18+ | no | on-sale (checked 2026-10-13) |
+| Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Entry 18+ | no | on-sale (checked 2026-10-13) |
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Entry 18+ | unknown | on-sale (checked 2026-09-26) |
-| Countdown NYE 2026 | `countdown-nye-2026` | Entry 18+ | unknown | on-sale (checked 2026-09-26) |
-| Beyond Wonderland at The Gorge 2027 | `beyond-wonderland-gorge-2027` | Entry 18+ | yes | on-sale (checked 2026-09-26) |
-| Beyond Wonderland SoCal 2027 | `beyond-wonderland-socal-2027` | Entry 18+ | no | on-sale (checked 2026-09-26) |
-| Coachella 2027 | `coachella-2027` | unknown | yes | sold-out (checked 2026-09-26) |
-| EDC Mexico 2027 | `edc-mexico-2027` | unknown | unknown | on-sale (checked 2026-09-26) |
+| Countdown NYE 2026 | `countdown-nye-2026` | Entry 18+ | unknown | on-sale (checked 2026-10-13) |
+| Beyond Wonderland at The Gorge 2027 | `beyond-wonderland-gorge-2027` | Entry 18+ | yes | on-sale (checked 2026-10-13) |
+| Beyond Wonderland SoCal 2027 | `beyond-wonderland-socal-2027` | Entry 18+ | no | on-sale (checked 2026-10-13) |
+| Coachella 2027 | `coachella-2027` | unknown | yes | sold-out (checked 2026-10-13) |
+| EDC Mexico 2027 | `edc-mexico-2027` | unknown | unknown | on-sale (checked 2026-10-13) |
 | Electric Forest 2027 | `electric-forest-2027` | unknown | unknown | unknown |
 | Tomorrowland 2027 | `tomorrowland-2027` | Entry 18+ | unknown | unknown |
 <!-- festival-status:end -->
