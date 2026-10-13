@@ -750,8 +750,14 @@ function savedStarsByStage(savedIds) {
   savedIds.forEach(id => {
     const a = lineup.find(x => x.id === id);
     if (!a || a.day !== night) return;
-    const startMin = toNightMin(a.start), endMin = toNightMin(a.end);
-    if (endMin <= nowMin) return; // already over
+    // Only a set with a real start competes for the star. An untimed one
+    // (unconfirmed or TBA) has no "minutes until": as NaN it never lost a
+    // comparison, so a saved untimed set reached first blocked every later
+    // timed set on that stage, whichever order they were saved in.
+    const t = setTimingMin(a);
+    if (!t) return;
+    const startMin = t.start, endMin = t.end;
+    if (endMin != null && endMin <= nowMin) return; // already over
     const minsUntil = startMin - nowMin;
     const cur = out[a.stage];
     if (!cur || minsUntil < cur.minsUntil) out[a.stage] = { artist: a, minsUntil, isLive: isSetLive(a) };
@@ -1579,6 +1585,8 @@ function _setStartRealMs(artist) {
   // Use FESTIVAL_CONFIG.dayDates to map (day, "HH:MM") → real local Date.
   const meta = FESTIVAL_CONFIG.dayDates?.[artist.day];
   if (!meta) return null;
+  // No reminder without a confirmed time (it used to fall out as NaN by luck).
+  if (setTimeStatus(artist) !== "confirmed") return null;
   const [h, m] = artist.start.split(":").map(Number);
   const d = new Date(meta.y, meta.m, meta.d, h, m, 0, 0);
   // Sets before 08:00 are early-morning of the *next* calendar day
@@ -2840,7 +2848,7 @@ function MapScreen({ state, setState }) {
                           <span style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, gap: 1 }}>
                             <span className="duo-headline duo-name" style={{ fontSize: 15, fontWeight: 700 }}>{actDisplayName(a.name)}</span>
                             <span className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
-                              {[st?.name, a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · ")}
+                              {[st?.name, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · ")}
                             </span>
                           </span>
                         </button>
@@ -6755,7 +6763,9 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
   const toSlot = t => { const h = parseInt(t.split(":")[0]); return h < 8 ? h + 24 : h; };
   const sets = activeLineup()
     .filter(a => a.stage === stage.id && a.day === day)
-    .sort((a, b) => toSlot(a.start) - toSlot(b.start));
+    // Timed sets keep their order; an untimed one (NaN here before) goes
+    // after them, deterministically, via the shared rule.
+    .sort((a, b) => setTimingMin(a) && setTimingMin(b) ? toSlot(a.start) - toSlot(b.start) : compareSetsByTime(a, b, STAGES));
   const totalAcrossDays = activeLineup().filter(a => a.stage === stage.id).length;
   const heroInk = _inkOn(stage.color);
   // Esc closes the place card (keyboard / a11y parity with the × button).
@@ -6947,8 +6957,10 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
               className={"duo-lrow" + (live ? " live" : isSaved ? " plan" : "")}
               style={{ cursor: "pointer", margin: 0, paddingLeft: 8 }}>
               <div style={{ width: 72, flexShrink: 0 }}>
-                <div className="duo-data" style={{ fontSize: 13, color: "var(--ink)" }}>{fmt12(s.start)}</div>
-                <div className="duo-data-s duo-ink2">{fmt12(s.end)}</div>
+                {!setTimesUnconfirmed(s) && <>
+                  <div className="duo-data" style={{ fontSize: 13, color: "var(--ink)" }}>{fmt12(s.start)}</div>
+                  <div className="duo-data-s duo-ink2">{fmt12(s.end)}</div>
+                </>}
               </div>
               <DuoAvatar name={s.name} size={42} ring={live || isSaved ? "on" : ""} />
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -6956,6 +6968,7 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
                 <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
                   {live ? <span style={{ color: "var(--live)" }}>Live · </span> : null}{s.genre}
                 </div>
+                {setTimesUnconfirmed(s) && <div data-set-time-status className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>{SET_TIMES_UNCONFIRMED}</div>}
               </div>
               <button onClick={toggleSaveSet} aria-pressed={!!isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} className="duo-add">
                 <span>{isSaved
