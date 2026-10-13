@@ -344,6 +344,12 @@
     // LAST YEAR'S map, per the founder ruling. See the header before
     // touching any of this.
     mapImage: "escape-2025-map.webp",
+    // The edition the shipped art was drawn for: the 2025 map
+    // (esc_2025_de_festival_map_1080x1350_r03.webp, see the header). It is not
+    // `year`, so the map screen says "2025 MAP · OFFICIAL 2026 MAP PENDING"
+    // instead of leaving last year's layout unlabelled. Drop it at the flip,
+    // with the art.
+    mapArtYear: 2025,
 
     // The festival's OWN map page, linked (never embedded) by the /f/ page:
     // official publication is provenance, not reuse rights. mapYear is the

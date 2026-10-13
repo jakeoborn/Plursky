@@ -501,6 +501,9 @@ function _solveMapAffine(cfg, stages) {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 function _gpsFromAffine(affine, cfg, x, y) {
   if (!affine) return null;
@@ -2586,7 +2589,7 @@ function MapScreen({
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var [mapCat, setMapCat] = React.useState("stages");
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapPostureLabel = _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · OFFICIAL ${FESTIVAL_CONFIG.year} MAP PENDING` : REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
@@ -3052,7 +3055,13 @@ function MapScreen({
     }
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
-    className: "duo-code"
+    className: "duo-code",
+    style: {
+      whiteSpace: "normal",
+      lineHeight: 1.35,
+      maxWidth: "100%",
+      boxSizing: "border-box"
+    }
   }, mapPostureLabel), (() => {
     var has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
     var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];

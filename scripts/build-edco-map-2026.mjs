@@ -8,9 +8,10 @@
 //
 // ⚠ NOT PINNED YET. The official 2026 map is not published (checked
 // 2026-09-30: orlando.edc.com's guide and stages pages carry no map image), so
-// every field the map decides is null and the app still ships the generated
-// placeholder `edco-tinker-2026.jpg`. While unpinned, --check passes and says
-// so, and a build refuses to run.
+// every field the map decides is null and the app ships the INTERIM plate: the
+// official 2025 map (scripts/build-edco-map-2025.mjs), labelled in the app as
+// the 2025 map with the official 2026 map pending. While unpinned, --check
+// passes and says so, and a build refuses to run.
 //
 // The flip session fills this in, in order:
 //   1. Save the official map UNEDITED at `source`. Record its URL and date here.
@@ -32,8 +33,8 @@ import { imageSize, sha256 } from "./build-acl-map-2026.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const EDCO_MAP_2026 = {
   festivalId: "edc-orlando-2026",
-  // What ships until the official map is pinned.
-  placeholder: "edco-tinker-2026.jpg",
+  // What ships until the official 2026 map is pinned: the 2025 plate.
+  placeholder: "edco-tinker-2025.webp",
   source: "map-sources/edco-map-2026-source.png",
   sourceUrl: null,
   sourceObservedAt: null,
@@ -63,8 +64,8 @@ export function checkEdcoMap(M, { root = ROOT, mapImage } = {}) {
     if (Object.keys(M.measured.stages).length || Object.keys(M.measured.amenities).length)
       return { ok: false, msg: "measured rows exist with no pinned source to measure them on" };
     if (mapImage !== undefined && mapImage !== M.placeholder)
-      return { ok: false, msg: `config.mapImage is ${mapImage}, but no official map is pinned — only the placeholder ${M.placeholder} may ship` };
-    return { ok: true, pinned: false, msg: `no official 2026 map pinned — placeholder ${M.placeholder} still ships` };
+      return { ok: false, msg: `config.mapImage is ${mapImage}, but no official 2026 map is pinned — only the 2025 plate ${M.placeholder} may ship` };
+    return { ok: true, pinned: false, msg: `no official 2026 map pinned — the 2025 plate ${M.placeholder} still ships` };
   }
   const missing = PIN_FIELDS.filter(k => M[k] == null);
   if (missing.length) return { ok: false, msg: `half-pinned: ${missing.join(", ")} still null` };
@@ -77,6 +78,28 @@ export function checkEdcoMap(M, { root = ROOT, mapImage } = {}) {
   if (dims(out) !== M.derivativeSize.join("x")) return { ok: false, msg: `${M.derivative} is ${dims(out)}, expected ${M.derivativeSize.join("x")}` };
   if (sha256(out) !== M.derivativeSha256) return { ok: false, msg: `${M.derivative} is not the plate these coordinates were measured on (sha256 differs) — rebuild or re-measure` };
   return { ok: true, pinned: true, built: true, msg: `${M.source} ${M.sourceSize.join("x")} · ${M.derivative} ${M.derivativeSize.join("x")}` };
+}
+
+// Crop the map art out of the unedited source and pad it to a square. No
+// scaling: every derivative pixel is a source pixel shifted by
+// (-crop.x + pad.left, -crop.y + pad.top). Needs macOS (sips + cwebp); the
+// committed webp is what ships.
+export function buildPlate(M, root = ROOT) {
+  const src = join(root, M.source), out = join(root, M.derivative);
+  const dims = f => (imageSize(readFileSync(f)) || [0, 0]).join("x");
+  const { x, y, w, h } = M.crop;
+  const W = w + M.pad.left + M.pad.right, H = h + M.pad.top + M.pad.bottom;
+  if (W !== H) throw new Error(`crop ${w}x${h} plus pad gives ${W}x${H}; the plate must be square`);
+  const tmp = mkdtempSync(join(tmpdir(), "edco-map-"));
+  try {
+    const cropped = join(tmp, "crop.png"), padded = join(tmp, "pad.png");
+    execFileSync("sips", ["--cropOffset", String(y), String(x), "-c", String(h), String(w), src, "--out", cropped], { stdio: "ignore" });
+    if (dims(cropped) !== `${w}x${h}`) throw new Error(`crop produced ${dims(cropped)}`);
+    execFileSync("sips", ["--padToHeightWidth", String(H), String(W), "--padColor", M.pad.color, cropped, "--out", padded], { stdio: "ignore" });
+    if (dims(padded) !== `${W}x${H}`) throw new Error(`pad produced ${dims(padded)}`);
+    execFileSync("cwebp", [...M.cwebp, padded, "-o", out], { stdio: "ignore" });
+    return `✓ ${M.derivative} ${dims(out)} sha256 ${sha256(out)}`;
+  } finally { rmSync(tmp, { recursive: true, force: true }); }
 }
 
 const isMain = import.meta.url === `file://${process.argv[1]}`;
@@ -92,20 +115,5 @@ if (isMain) {
   if (!state.pinned) fail(`${state.msg}. Nothing to build: pin the official map first (steps 1-3 in this file).`);
   if (!state.ok && !/derivative|plate/.test(state.msg)) fail(state.msg);
 
-  // Building needs macOS (sips + cwebp); the committed webp is what ships.
-  const src = join(ROOT, M.source), out = join(ROOT, M.derivative);
-  const dims = f => (imageSize(readFileSync(f)) || [0, 0]).join("x");
-  const { x, y, w, h } = M.crop;
-  const W = w + M.pad.left + M.pad.right, H = h + M.pad.top + M.pad.bottom;
-  if (W !== H) fail(`crop ${w}x${h} plus pad gives ${W}x${H}; the plate must be square`);
-  const tmp = mkdtempSync(join(tmpdir(), "edco-map-"));
-  try {
-    const cropped = join(tmp, "crop.png"), padded = join(tmp, "pad.png");
-    execFileSync("sips", ["--cropOffset", String(y), String(x), "-c", String(h), String(w), src, "--out", cropped], { stdio: "ignore" });
-    if (dims(cropped) !== `${w}x${h}`) fail(`crop produced ${dims(cropped)}`);
-    execFileSync("sips", ["--padToHeightWidth", String(H), String(W), "--padColor", M.pad.color, cropped, "--out", padded], { stdio: "ignore" });
-    if (dims(padded) !== `${W}x${H}`) fail(`pad produced ${dims(padded)}`);
-    execFileSync("cwebp", [...M.cwebp, padded, "-o", out], { stdio: "ignore" });
-    console.log(`✓ ${M.derivative} ${dims(out)} sha256 ${sha256(out)}\n  set derivativeSize + derivativeSha256 to these, then measure on this plate.`);
-  } finally { rmSync(tmp, { recursive: true, force: true }); }
+  console.log(buildPlate(M));
 }
