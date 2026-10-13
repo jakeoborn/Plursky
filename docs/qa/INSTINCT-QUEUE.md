@@ -87,7 +87,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Ultra Miami 2026 | `ultra-miami-2026` | Mar 27–29, 2026 | 166 | 166 | 0 | 7 | live |
 | EDC Las Vegas 2026 | `edc-lv-2026` | May 15–17, 2026 | 241 | 241 | 0 | 9 | live |
 | Governors Ball 2026 | `governors-ball-2026` | Jun 5–7, 2026 | 58 | 58 | 0 | 3 | live |
-| Summerfest 2026 | `summerfest-2026` | Jun 18–20, Jun 25–27 & Jul 2–4, 2026 | 447 | 447 | 0 | 10 | live |
+| Summerfest 2026 | `summerfest-2026` | Jun 18–20, Jun 25–27 & Jul 2–4, 2026 | 446 | 446 | 0 | 10 | live |
 | Lollapalooza 2026 | `lollapalooza-2026` | Jul 30 – Aug 2, 2026 | 195 | 195 | 0 | 9 | live |
 | HARD Summer 2026 | `hard-summer-2026` | Aug 1–2, 2026 | 91 | 91 | 0 | 7 | live |
 | Outside Lands 2026 | `outside-lands-2026` | Aug 7–9, 2026 | 139 | 139 | 0 | 7 | live |
@@ -97,7 +97,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | CRSSD Fest Fall 2026 | `crssd-fall-2026` | Sep 26–27, 2026 | 53 | 53 | 0 | 3 | live |
 | Portola 2026 | `portola-2026` | Sep 26–27, 2026 | 64 | 64 | 0 | 5 | live |
 | Austin City Limits 2026 | `acl-2026` | Oct 2–4 & 9–11, 2026 | 136 | 136 | 0 | 7 | live |
-| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 229 | 0 | 229 | 0 | live |
+| III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 231 | 231 | 0 | 13 | live |
 | Escape Halloween 2026 | `escape-halloween-2026` | Oct 30–31, 2026 | 103 | 0 | 103 | 5 | live |
 | Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 0 | live |
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Dec 30–31, 2026 | 23 | 0 | 23 | 0 | live |
