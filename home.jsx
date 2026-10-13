@@ -228,9 +228,9 @@ function TonightCard({ state, setState }) {
 
   const card = (label, value, sub, accent) => (
     <div style={{ flex: 1, minWidth: 0 }}>
-      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>{label}</div>
+      <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>{label}</div>
       <div style={{ fontFamily: "Geist Mono, monospace", fontSize: 18, fontWeight: 600, color: accent || "var(--paper)", marginTop: 3, lineHeight: 1 }}>{value}</div>
-      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "rgba(247,237,224,0.6)", marginTop: 4 }}>{sub}</div>}
+      {sub && <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--text-3)", marginTop: 4 }}>{sub}</div>}
     </div>
   );
 
@@ -240,27 +240,27 @@ function TonightCard({ state, setState }) {
       background: "var(--night)",
       borderRadius: 16,
       padding: "14px 16px 16px",
-      color: "var(--paper)",
+      color: "var(--ink)",
       position: "relative",
       overflow: "hidden",
     }}>
       {/* Aurora glow */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(120% 60% at 80% 0%, rgba(245,154,54,0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(167,139,250,0.18), transparent 60%)",
+        background: "radial-gradient(120% 60% at 80% 0%, rgba(var(--signal-rgb),0.18), transparent 55%), radial-gradient(80% 50% at 10% 110%, rgba(var(--signal-rgb),0.18), transparent 60%)",
         pointerEvents: "none",
       }}/>
       <div style={{ position: "relative" }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "rgba(247,237,224,0.6)" }}>
+          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--text-3)" }}>
             {isPreEvent ? "OPENING NIGHT" : `TONIGHT · DAY ${day}`}
           </div>
           {period && (
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.5)", display: "flex", alignItems: "center", gap: 5 }}>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", display: "flex", alignItems: "center", gap: 5 }}>
               NWS · {period.name.toUpperCase()}
               {cacheAgeLabel && (
                 <span style={{
-                  background: "rgba(247,237,224,0.1)", border: "1px solid rgba(247,237,224,0.18)",
+                  background: "rgba(var(--ink-rgb),0.1)", border: "1px solid rgba(var(--ink-rgb),0.18)",
                   borderRadius: 4, padding: "1px 5px", fontSize: 8, letterSpacing: 1,
                 }}>
                   CACHED · {cacheAgeLabel}
@@ -284,7 +284,7 @@ function TonightCard({ state, setState }) {
             `${period.windSpeed} ${period.windDirection}`,
             "#a8d4ff"
           ) : (
-            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.1)" }}>
+            <div style={{ flex: 1, minWidth: 80, padding: "8px 10px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div className="skel-dark" style={{ width: "60%", height: 8, marginBottom: 6 }}/>
               <div className="skel-dark" style={{ width: "80%", height: 14, marginBottom: 4 }}/>
               <div className="skel-dark" style={{ width: "50%", height: 8 }}/>
@@ -309,24 +309,24 @@ function TonightCard({ state, setState }) {
           const fmtH = (h) => h === 0 ? "12a" : h < 12 ? `${h}a` : h === 12 ? "12p" : `${h - 12}p`;
           const lastHour = new Date(next12[next12.length - 1].startTime).getHours();
           return (
-            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(247,237,224,0.05)", border: "1px solid rgba(247,237,224,0.1)" }}>
+            <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 10, background: "rgba(var(--ink-rgb),0.05)", border: "1px solid rgba(var(--ink-rgb),0.1)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "rgba(247,237,224,0.55)", fontWeight: 600 }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600 }}>
                   NEXT 12H
                 </span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "rgba(247,237,224,0.5)" }}>
+                <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-3)" }}>
                   {min}° → {max}°
                 </span>
               </div>
               <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: "100%", height: H, display: "block" }}>
-                <polyline points={points} fill="none" stroke="#a8d4ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points={points} fill="none" stroke="var(--signal-ink)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 {next12.map((h, i) => i % 3 === 0 && (
-                  <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="#a8d4ff"/>
+                  <circle key={i} cx={(i / (next12.length - 1)) * W} cy={H - ((h.temperature - min) / range) * (H - 8) - 4} r="1.5" fill="var(--signal-ink)"/>
                 ))}
               </svg>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 4 }}>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(firstHour)}</span>
-                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>{fmtH(lastHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(firstHour)}</span>
+                <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>{fmtH(lastHour)}</span>
               </div>
             </div>
           );
@@ -337,16 +337,16 @@ function TonightCard({ state, setState }) {
             onClick={() => setState({ ...state, tab: "map" })}
             style={{
               marginTop: 14, width: "100%",
-              background: shuttleUrgent ? "var(--ember)" : "rgba(247,237,224,0.08)",
-              border: shuttleUrgent ? "none" : "1px solid rgba(247,237,224,0.2)",
-              color: "var(--paper)",
+              background: shuttleUrgent ? "var(--ember)" : "rgba(var(--ink-rgb),0.08)",
+              border: shuttleUrgent ? "none" : "1px solid rgba(var(--ink-rgb),0.2)",
+              color: shuttleUrgent ? "var(--on-signal)" : "var(--ink)",
               borderRadius: 10, padding: "10px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               textAlign: "left",
             }}>
             <span>🚌  LAST SHUTTLE TO STRIP</span>
-            <span style={{ color: shuttleUrgent ? "#fff" : "var(--flare)" }}>
+            <span style={{ color: shuttleUrgent ? "var(--ink)" : "var(--flare)" }}>
               {shuttleMins > 0 ? `${shuttleMins} MIN` : "DEPARTED"}
             </span>
           </button>
@@ -357,14 +357,14 @@ function TonightCard({ state, setState }) {
             onClick={() => setState({ ...state, tab: "home", artist: sunriseArtistId.id })}
             style={{
               marginTop: 14, width: "100%",
-              background: "rgba(247,237,224,0.06)", border: "1px solid rgba(247,237,224,0.18)",
-              color: "var(--paper)", borderRadius: 10, padding: "9px 12px", cursor: "pointer",
+              background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.18)",
+              color: "var(--ink)", borderRadius: 10, padding: "9px 12px", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
               textAlign: "left",
             }}>
             <span>🌅  SUNRISE SET · {sunriseArtistId.name.toUpperCase()}</span>
-            <span style={{ color: "#fbbf24" }}>{sunriseSet}</span>
+            <span style={{ color: "var(--signal-ink)" }}>{sunriseSet}</span>
           </button>
         )}
       </div>
@@ -560,14 +560,14 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
 
       {_SKY_STARS.map(([sf, sy], i) => (
         <circle key={i} cx={(sf * W).toFixed(1)} cy={sy} r={i % 3 === 0 ? 1.1 : 0.8}
-                fill="#fff" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
+                fill="var(--ink)" opacity={starOpacity * (i % 2 ? 0.7 : 1)}
                 style={{ transition: ease }} />
       ))}
 
       {/* The day's full sun path + where the sun will be at gates. */}
       {gates != null && (
         <>
-          <path d={path} fill="none" stroke="#fff" strokeOpacity="0.13"
+          <path d={path} fill="none" stroke="var(--ink)" strokeOpacity="0.13"
                 strokeWidth="1" strokeDasharray="2 5" />
           <circle cx={arcX(gates)} cy={arcY(gates)} r="9" fill="none"
                   stroke={sky} strokeOpacity="0.5" strokeWidth="1"
@@ -606,7 +606,7 @@ function FestivalSkyBand({ accent, progress, preDawn }) {
         <g style={{ transition: ease }} transform={`translate(${px.toFixed(1)},${py.toFixed(1)})`}>
           <circle r={preDawn ? 26 : 18} fill={`url(#${idSun})`}
                   opacity={preDawn ? 0.7 : 0.25 + 0.55 * progress} />
-          {!preDawn && <circle r="6.5" fill="#fff3d6" opacity={0.55 + 0.45 * progress} />}
+          {!preDawn && <circle r="6.5" fill="var(--ink)" opacity={0.55 + 0.45 * progress} />}
         </g>
       )}
     </svg>
@@ -626,8 +626,14 @@ function useTick(intervalMs) {
 }
 
 // Walk-time lookup keyed by alphabetically-sorted stage-id pair.
-// Midpoints of the lo/hi bands from map.jsx WALK_PAIRS. Fallback for
-// any unlisted pair: ~0.4 min per SVG unit.
+// Midpoints of the lo/hi bands from map.jsx WALK_PAIRS.
+//
+// ⛔ These are EDC LAS VEGAS measurements and they describe no other festival.
+// The keys are BARE stage ids, and four of them — kinetic, circuit, neon,
+// stereo — are also EDC Orlando stage names, so this table will happily
+// answer for a festival it has never seen. stageWalkMinutes() below checks
+// WHICH festival is asking. There is no fallback for an unlisted pair; the
+// old "~0.4 min per SVG unit" fallthrough was the fabrication #203 removed.
 const _WALK_MIN = {
   "basspod,bionic":  13, "basspod,circuit": 8,  "basspod,cosmic":  11,
   "basspod,kinetic": 8,  "basspod,neon":    12, "basspod,quantum": 12,
@@ -642,13 +648,47 @@ const _WALK_MIN = {
   "neon,quantum":    9,  "neon,stereo":     12, "neon,waste":      15,
   "quantum,stereo":  9,  "quantum,waste":   16, "stereo,waste":    9,
 };
-function stageWalkMinutes(fromId, toId) {
+// Minutes between two stages, or null when nobody has measured it.
+//
+// The table above is hand-measured EDC LV geometry. This used to fall through
+// to `hypot(x, y) * 0.4` on the STAGE GRID for any pair it did not hold —
+// which is 12 of the 13 festivals that have stages. Those x/y are ART:
+// data.jsx says it outright, "the poster is art, not a survey", and #97
+// forbids deriving world coordinates from poster coordinates. ACL therefore
+// printed "amex → beatbox = 29 min", plus a LEAVE BY time computed from it,
+// to someone standing in Zilker Park.
+//
+// The map layer already refuses this: computeWalkRange stamps
+// `known: readoutHonest(avatar)` and walkMinsLabel returns null when the grid
+// is unsourced. This function was exactly the "fourth walk readout that
+// formats lo/hi itself" the distance-readout gate warns about — same claim,
+// different door, no check.
+//
+// So: 0 for the same stage (true whatever the geometry), the measured number
+// when EDC Las Vegas is the festival asking, and null otherwise — a number
+// existing in the table is NOT the same as it describing your festival.
+// null means WE DO NOT KNOW, and every
+// call site renders the transition without a number instead of inventing one.
+// A festival earns its readouts back when its geometry is verified against an
+// official patron map — blind is the honest state until then.
+function stageWalkMinutes(fromId, toId, festivalId) {
   if (fromId === toId) return 0;
+  // WHICH festival is asking decides whether the table may be read at all.
+  // festivalId is an explicit parameter rather than just FESTIVAL_CONFIG.id
+  // because a gated festival can never be the active one, so a check that
+  // could only ask through the active-festival switch would be structurally
+  // blind to EDC Orlando — the one festival whose ids actually collide.
+  const fid = festivalId ||
+    (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG ? FESTIVAL_CONFIG.id : null);
+  if (fid !== WALK_TABLE_FESTIVAL_ID) return null;
+  // Identity is NOT evidence. The table being hand-measured says somebody
+  // walked it; it does not say the geometry was ever checked against an
+  // official patron map, and EDC LV's own registration is unsourced today.
+  // So the same predicate that governs every map readout governs this one —
+  // one semantic, asked per festival, never about the avatar.
+  if (typeof geometryVerifiedFor !== "function" || !geometryVerifiedFor(fid)) return null;
   const key = fromId < toId ? `${fromId},${toId}` : `${toId},${fromId}`;
-  if (_WALK_MIN[key] != null) return _WALK_MIN[key];
-  const a = STAGES.find(s => s.id === fromId), b = STAGES.find(s => s.id === toId);
-  if (!a || !b) return 0;
-  return Math.max(2, Math.round(Math.hypot(a.x - b.x, a.y - b.y) * 0.4));
+  return _WALK_MIN[key] != null ? _WALK_MIN[key] : null;
 }
 
 // What's playing at every stage right now. Live comes from real dates
@@ -661,7 +701,7 @@ function liveAcrossStages() {
     const live = activeLineup().find(a => a.stage === s.id && isSetLive(a));
     // When stage is dark, find the next artist starting on this stage tonight
     const upcoming = !live && night != null ? activeLineup()
-      .filter(a => a.stage === s.id && a.day === night && toNightMin(a.start) > now)
+      .filter(a => a.stage === s.id && a.day === night && a.start && toNightMin(a.start) > now)
       .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null
       : null;
     const minsUntil = upcoming ? toNightMin(upcoming.start) - now : null;
@@ -678,10 +718,11 @@ function buildTonightsPlan(state) {
   const night = NOW.night;
   if (night == null) return [];
   const nowMin = toNightMin(NOW.time);
-  const lineup = activeLineup(state.saved);
-  const sets = state.saved
+  const saved = savedInLineup(state.saved);
+  const lineup = activeLineup(saved);
+  const sets = saved
     .map(id => lineup.find(a => a.id === id))
-    .filter(a => a && a.day === night)
+    .filter(a => a && a.day === night && a.start)
     .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
 
   return sets.map((a, i) => {
@@ -692,10 +733,14 @@ function buildTonightsPlan(state) {
     const minsUntil = startMin - nowMin;
     const isLive    = isSetLive(a);
     const isPast    = nowMin >= endMin;
-    const leaveBy   = walk > 0 ? startMin - walk : null;
+    // walk is null when the pair is unmeasured. A LEAVE BY time and a "tight"
+    // warning are both distance claims, so neither may be inferred from an
+    // unknown — an explicit null test, not `null > 0` happening to be false.
+    const known     = walk != null && walk > 0;
+    const leaveBy   = known ? startMin - walk : null;
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
     const prevEnd   = prev ? toNightMin(prev.end) : null;
-    const tight     = prev && walk > 0 && (startMin - prevEnd) < walk;
+    const tight     = !!prev && known && (startMin - prevEnd) < walk;
     const conflict  = prev && overlaps(prev, a);
     return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict };
   });
@@ -742,7 +787,7 @@ function computeAlerts(savedIds, day, timeStr) {
 }
 
 function PostFestivalRecap({ state, setState }) {
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
@@ -754,49 +799,33 @@ function PostFestivalRecap({ state, setState }) {
   })).filter(d => d.artists.length);
 
   return (
-    <div style={{ padding: "0 0 24px" }}>
+    <div style={{ display: "grid", gap: 16 }}>
       {/* No duplicate hero here — the HomeScreen header already says
           "<fest> — that's a wrap" + the recap CTA. Lead with the real payoff:
           your Memories (photos/videos + one-tap recap). The strip renders
           nothing if there are no moments. */}
       {window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
 
-      {/* Saved sets recap grouped by day */}
+      {/* Saved sets recap grouped by day: one card, a Michroma day label,
+          faces on the rows (duo board). */}
       {byDay.length > 0 && (
-        <div style={{
-          background: "var(--paper-2)", border: "1px solid var(--line)",
-          borderRadius: 18, padding: "16px 16px 8px", marginBottom: 14,
-        }}>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 14 }}>
-            YOUR SAVED SETS
-          </div>
+        <div className="duo-card" data-duo-recap style={{ padding: "16px 16px 6px" }}>
+          <DuoSect title="Your saved sets" right={<span className="duo-data-s duo-ink3">{savedIds.length} SETS</span>} />
           {byDay.map(({ day, meta, artists }) => (
-            <div key={day} style={{ marginBottom: 14 }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)",
-                fontWeight: 700, marginBottom: 8,
-              }}>
-                {meta.short} · {meta.name.toUpperCase()}
-              </div>
-              {artists.map(a => {
-                const stage = STAGES.find(s => s.id === a.stage);
+            <div key={day} style={{ marginTop: 14 }}>
+              <div className="duo-label duo-acc" style={{ marginBottom: 4 }}>{meta.name} · {_MON[meta.m]} {meta.d}</div>
+              {artists.map((a, i) => {
+                const stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
                 return (
-                  <button key={a.id}
+                  <button key={a.id} className={`duo-press${i ? " duo-hair" : ""}`}
                     onClick={() => setState({ ...state, tab: "home", artist: a.id })}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 10, width: "100%",
-                      background: "transparent", border: "none", borderBottom: "1px solid var(--line-2)",
-                      padding: "8px 0", cursor: "pointer", textAlign: "left",
-                    }}>
-                    <ArtistSwatch artist={a} size={36} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>
-                        {a.name}
-                      </div>
-                      <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
-                        {stage ? stage.short : ""} · {fmt12(a.start)}–{fmt12(a.end)}
-                      </div>
-                    </div>
+                    aria-label={`${a.name}, ${stage.name}, ${fmt12(a.start)} to ${fmt12(a.end)}`}
+                    style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", minHeight: 44 }}>
+                    <DuoAvatar name={a.name} size={40} />
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <span className="duo-headline duo-name" style={{ display: "block" }}>{actDisplayName(a.name)}</span>
+                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · {fmt12(a.start)}–{fmt12(a.end)}</span>
+                    </span>
                   </button>
                 );
               })}
@@ -806,13 +835,9 @@ function PostFestivalRecap({ state, setState }) {
       )}
 
       {savedIds.length === 0 && (
-        <div style={{
-          background: "var(--paper-2)", border: "1px solid var(--line)",
-          borderRadius: 18, padding: 20, textAlign: "center", marginBottom: 14,
-        }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>
-            NO SAVED SETS — NEXT YEAR, START PLANNING EARLY
-          </div>
+        <div className="duo-card" style={{ padding: 16 }}>
+          <DuoSect title="Your saved sets" />
+          <p className="duo-body duo-ink2" style={{ margin: "10px 0 0" }}>No saved sets this time. Next year, start planning early.</p>
         </div>
       )}
     </div>
@@ -847,7 +872,7 @@ function DayStrip({ value, onChange, hasYesterday, hasUpcoming }) {
             style={{
               flex: 1, padding: "8px 6px",
               background: active ? "var(--ember)" : "transparent",
-              color: active ? "#fff" : (t.enabled ? "var(--muted)" : "rgba(26,18,13,0.25)"),
+              color: active ? "var(--on-ember)" : (t.enabled ? "var(--muted)" : "var(--text-3)"),
               border: "none", borderRadius: 999,
               cursor: t.enabled ? "pointer" : "default",
               fontFamily: "Geist Mono, monospace",
@@ -877,7 +902,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   const isPostEvent = now > FESTIVAL_END_MS;
   const day = NOW.day;
   const dayMeta = FESTIVAL_CONFIG.dayDates[day];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // The currently-live artist (anywhere on grounds), preferring mainstage.
   const live = (() => {
@@ -960,9 +985,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
       // #f0e6d8, which turned this card cream while its text stayed
       // hardcoded #fff — unreadable, and only during the festival's own
       // 20:00–04:00 window, which is when this card matters most.
-      background: "linear-gradient(160deg, #1a120d 0%, #2a1a1f 60%, #1a120d 100%)",
+      background: "linear-gradient(160deg, var(--paper) 0%, var(--paper) 60%, var(--paper) 100%)",
       borderRadius: 16, padding: 0, marginBottom: 18,
-      color: "#fff", position: "relative", overflow: "hidden",
+      color: "var(--ink)", position: "relative", overflow: "hidden",
       border: `1px solid ${accent}55`,
     }}>
       {/* Accent stripe along the top edge — F1 brand-bar feel */}
@@ -1000,7 +1025,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 : `TONIGHT · ${dayMeta?.name?.toUpperCase() || "DAY " + day}`}
           </div>
           <div className="mono" style={{
-            fontSize: 9, letterSpacing: 1.4, color: "rgba(255,255,255,0.55)", fontWeight: 600,
+            fontSize: 9, letterSpacing: 1.4, color: "var(--text-3)", fontWeight: 600,
           }}>
             {phase === "pre"
               ? FESTIVAL_CONFIG.dates.toUpperCase()
@@ -1027,7 +1052,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 6, fontWeight: 600 }}>
               {FESTIVAL_CONFIG.dayDates[1]?.short} · <span className="serif" style={{ fontStyle: "italic", fontWeight: 400, color: accent }}>{FESTIVAL_CONFIG.brand}</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: spotlight ? 16 : 0 }}>
               {preCd && preCd.days === 0
                 ? `gates in ${preCd.hours}h ${preCd.mins}m${preDawn ? " — sleep." : "."}`
                 : `${FESTIVAL_CONFIG.locationShort} · gates open ${FESTIVAL_CONFIG.dayDates[1]?.name || "Friday"}.`}
@@ -1038,9 +1063,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 <button onClick={() => setState({ ...state, artist: spotlight.id })} style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
                   padding: "10px 12px", borderRadius: 12,
-                  background: `rgba(255,255,255,0.06)`,
+                  background: `rgba(var(--ink-rgb),0.06)`,
                   border: `1px solid ${sStage?.color || accent}33`,
-                  cursor: "pointer", textAlign: "left", color: "#fff",
+                  cursor: "pointer", textAlign: "left", color: "var(--ink)",
                 }}>
                   <ArtistSwatch artist={spotlight} size={44} />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -1053,13 +1078,13 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                       whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     }}>{spotlight.name}</div>
                     <div className="mono" style={{
-                      fontSize: 9, letterSpacing: 0.8, color: "rgba(255,255,255,0.55)", marginTop: 3,
+                      fontSize: 9, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 3,
                     }}>
                       {sStage?.name?.toUpperCase() || ""} · DAY {spotlight.day} · {fmt12(spotlight.start)}
                     </div>
                   </div>
                   <div style={{
-                    color: "rgba(255,255,255,0.4)", fontSize: 16, flexShrink: 0,
+                    color: "var(--text-3)", fontSize: 16, flexShrink: 0,
                   }}>→</div>
                 </button>
               );
@@ -1076,14 +1101,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 boxShadow: `0 0 0 4px ${accent}33`,
                 animation: "pulse 1.6s ease-in-out infinite",
               }}/>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(255,255,255,0.75)", fontWeight: 600 }}>
+              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-2)", fontWeight: 600 }}>
                 NOW · {featured.genre.toUpperCase()}
               </span>
             </div>
             <div className="serif" style={{ fontSize: 34, lineHeight: 0.95, letterSpacing: -0.4, marginBottom: 6 }}>
               {featured.name}
             </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "rgba(255,255,255,0.7)", marginBottom: 14 }}>
+            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", marginBottom: 14 }}>
               {fmt12(featured.start)} – {fmt12(featured.end)}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
@@ -1105,14 +1130,14 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div style={{
               display: "flex", alignItems: "baseline", gap: 10, marginBottom: 14,
               padding: "8px 12px", borderRadius: 10,
-              background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)",
+              background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.12)",
             }}>
               <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 800 }}>
                 DOORS IN
               </div>
               <div style={{
                 fontFamily: "Geist Mono, monospace", fontSize: 20, fontWeight: 600,
-                color: "#fff", letterSpacing: 0.5, fontVariantNumeric: "tabular-nums",
+                color: "var(--ink)", letterSpacing: 0.5, fontVariantNumeric: "tabular-nums",
                 marginLeft: "auto",
               }}>
                 {doorsLabel || "SOON"}
@@ -1123,9 +1148,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 onClick={() => setState({ ...state, tab: "home", artist: featured.id })}
                 style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)",
+                  background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.14)",
                   borderRadius: 12, padding: "10px 12px", cursor: "pointer",
-                  textAlign: "left", color: "#fff",
+                  textAlign: "left", color: "var(--ink)",
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -1135,7 +1160,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1150,7 +1175,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
             <div className="serif" style={{ fontSize: 28, lineHeight: 0.96, letterSpacing: -0.4, marginBottom: 6 }}>
               Stage <span style={{ fontStyle: "italic", color: accent }}>changeover</span>
             </div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", lineHeight: 1.4, marginBottom: 12 }}>
+            <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.4, marginBottom: 12 }}>
               Decks are quiet between sets — your next pick is queued below.
             </div>
             {featured && (
@@ -1158,9 +1183,9 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 onClick={() => setState({ ...state, tab: "home", artist: featured.id })}
                 style={{
                   display: "flex", alignItems: "center", gap: 12, width: "100%",
-                  background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)",
+                  background: "rgba(var(--ink-rgb),0.06)", border: "1px solid rgba(var(--ink-rgb),0.14)",
                   borderRadius: 12, padding: "10px 12px", cursor: "pointer",
-                  textAlign: "left", color: "#fff",
+                  textAlign: "left", color: "var(--ink)",
                 }}>
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -1170,7 +1195,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(255,255,255,0.6)", marginTop: 2 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-3)", marginTop: 2 }}>
                     {stage?.short || ""} · {fmt12(featured.start)}
                   </div>
                 </div>
@@ -1193,7 +1218,7 @@ function LastNightRecap({ state, setState }) {
   const prevDay = day - 1;
   if (prevDay < 1 || prevDay > 3) return null;
   const meta = FESTIVAL_CONFIG.dayDates[prevDay];
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Score = tier (1-3) weighted by set duration in minutes
   const score = a => {
@@ -1244,10 +1269,10 @@ function LastNightRecap({ state, setState }) {
         </div>
         <div style={{
           height: heights[place],
-          background: stage?.color || "var(--paper-2)",
+          background: place === 1 ? "var(--signal)" : "var(--paper-3)",
           borderRadius: 10,
           padding: "8px 10px",
-          color: "#fff",
+          color: "var(--ink)",
           display: "flex", flexDirection: "column", justifyContent: "flex-end",
         }}>
           <div className="serif" style={{
@@ -1257,7 +1282,7 @@ function LastNightRecap({ state, setState }) {
             {artist.name}
           </div>
           <div className="mono" style={{
-            fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.85)", marginTop: 2,
+            fontSize: 8, letterSpacing: 1, color: "var(--text-2)", marginTop: 2,
           }}>
             {stage?.short || ""} · {fmt12(artist.start)}
           </div>
@@ -1330,7 +1355,7 @@ function LastNightRecap({ state, setState }) {
 function UpcomingTeaser({ state, setState }) {
   const now = Date.now();
   const isPreEvent = now < FESTIVAL_START_MS;
-  const savedIds = state.saved || [];
+  const savedIds = savedInLineup(state.saved);
 
   // Which days to surface
   const upcomingDays = (() => {
@@ -1421,7 +1446,7 @@ function UpcomingTeaser({ state, setState }) {
                       padding: "8px 0", cursor: "pointer", textAlign: "left",
                     }}>
                     <div style={{
-                      width: 3, alignSelf: "stretch", background: stage?.color,
+                      width: 3, alignSelf: "stretch", background: "var(--line-2)",
                       borderRadius: 3, minHeight: 30,
                     }}/>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -1430,7 +1455,7 @@ function UpcomingTeaser({ state, setState }) {
                           {a.name}
                         </div>
                         {isSaved && (
-                          <svg width="10" height="10" viewBox="0 0 24 24" fill={stage?.color} stroke="none">
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--signal-ink)" stroke="none">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                           </svg>
                         )}
@@ -1469,10 +1494,10 @@ function HomeScreen({ state, setState }) {
   // they later un-save everything.
   React.useEffect(() => {
     if (setupBannerDismissed) return;
-    if ((state.saved?.length || 0) === 0) return;
+    if (savedInLineup(state.saved).length === 0) return;
     try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
     setSetupBannerDismissed(true);
-  }, [state.saved?.length, setupBannerDismissed]);
+  }, [state.saved?.join(","), setupBannerDismissed]);
   const { perm: notifPerm, enable: enableNotifs } = useNotifications();
   const weatherAlert = useWeatherAlert();
   // Pre-event newcomers haven't seen the first-timer guide yet — show a
@@ -1486,49 +1511,9 @@ function HomeScreen({ state, setState }) {
 
   // Re-render every minute so the pre-event countdown stays accurate
   useTick(60000);
-  const countdown = preEventCountdown(state.saved);
+  const liveSaved = savedInLineup(state.saved);
+  const countdown = preEventCountdown(liveSaved);
   const isPostFestival = Date.now() > FESTIVAL_END_MS;
-
-  // Offline prep: prefetch photos for any saved sets we haven't cached yet,
-  // so the schedule + artist screens render with hero images even when the
-  // festival's LTE is saturated. TheAudioDB, no auth — Deezer used to do this
-  // but api.deezer.com sends no access-control-allow-origin, so every one of
-  // these requests was blocked by the browser and the prefetch cached nothing
-  // (v254). SEQUENTIAL, not a forEach fan-out: TADB's free key is rate
-  // limited, and twelve parallel requests get throttled into failures that
-  // look exactly like "no photo exists".
-  React.useEffect(() => {
-    const saved = state.saved || [];
-    if (!saved.length || !navigator.onLine) return;
-    if (typeof fetchAudioDB !== "function") return;
-    let cached = {};
-    try { cached = JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch {}
-    const missing = saved
-      .map(id => ARTISTS.find(a => a.id === id))
-      .filter(a => a && !cached[a.name.toLowerCase()])
-      .slice(0, 12); // throttle: 12 per session, rest fill in on revisit
-    if (!missing.length) return;
-    let live = true;
-    (async () => {
-      for (const a of missing) {
-        if (!live) return;
-        let img = null;
-        try { img = (await fetchAudioDB(a.name, a.genre))?.image || null; } catch {}
-        if (!live) return;
-        if (img) {
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            if (!imgs[a.name.toLowerCase()]) {
-              imgs[a.name.toLowerCase()] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            }
-          } catch {}
-        }
-        await new Promise(r => setTimeout(r, 400));
-      }
-    })();
-    return () => { live = false; };
-  }, [state.saved?.length]);
 
   const current = ARTISTS.find(a => a.id === NOW.currentArtistId) || null;
   const next    = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
@@ -1543,8 +1528,8 @@ function HomeScreen({ state, setState }) {
   const liveStrip = liveAcrossStages();
 
   // Computed alerts from saved sets — replaces static demo ALERTS during festival
-  const _dynAlerts = !countdown && state.saved?.length
-    ? computeAlerts(state.saved, NOW.night, NOW.time)
+  const _dynAlerts = !countdown && liveSaved.length
+    ? computeAlerts(liveSaved, NOW.night, NOW.time)
     : [];
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
   const unread = alerts.filter(a => a.unread).length;
@@ -1571,441 +1556,221 @@ function HomeScreen({ state, setState }) {
     }
   };
 
+  // ── Field Mode Home ──
+  // Answers "what matters now?" in one glance: a real-media hero, one
+  // Now/Next row, one primary action, then flat rows. Every section the old
+  // Home carried is still one tap away, in the essentials row or a sheet.
+  const [sheet, setSheet] = React.useState(null);
+  const savedIds = savedInLineup(state.saved);
+  const online = useOnlineStatus();
+  const isLive = !countdown && !isPostFestival;
+  // The board's Today header: one Michroma status line, the festival as the
+  // hero title, sunrise on a live night. No photo hero: photos sit on the
+  // rows they belong to, never as the page's focal point.
+  const heroStatus = isPostFestival ? `That's a wrap · ${FESTIVAL_CONFIG.dates}`
+    : countdown ? `${countdown.days > 0
+        ? `In ${countdown.days} day${countdown.days === 1 ? "" : "s"}`
+        : `In ${countdown.hours} hr ${countdown.mins} min`} · ${FESTIVAL_CONFIG.dates}`
+    : duoNightLabel();
+
+  const ip = useInstallPrompt();
+  let userName = "";
+  try { userName = localStorage.getItem("user_name") || ""; } catch {}
+  const showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
+  const showInstall = !showSetup && ip.canInstall;
+  // Set reminders only mean something while a saved set is still ahead.
+  const showNotif = !showSetup && !showInstall && !isPostFestival && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
+  const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
+  const dismissNotif = () => {
+    setNotifNudgeDismissed(true);
+    try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
+  };
+  // At most one notice at a time: offline > setup > install > reminders > weather.
+  const notice = offline ? (
+    <FieldNotice eyebrow="Offline mode" text="Lineup and map stay available on this phone." />
+  ) : showSetup ? (
+    <FieldNotice text="Personalize Plursky — name, Spotify, reminders."
+      action="Set up" onAction={() => window.plurskyOpenPersonalize?.()}
+      onDismiss={() => {
+        try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
+        setSetupBannerDismissed(true);
+      }} />
+  ) : showInstall ? (
+    <div style={{ padding: "0 20px" }}><InstallBanner /></div>
+  ) : showNotif ? (
+    <FieldNotice text="Get notified 15 min before each saved set."
+      action="Enable" onAction={async () => { await enableNotifs(); dismissNotif(); }}
+      onDismiss={dismissNotif} />
+  ) : showWeather ? (
+    <FieldNotice eyebrow="NWS weather alert" warn text={weatherAlert.shortForecast}
+      action="Details" onAction={() => setSheet("tonight")}
+      onDismiss={() => setWeatherAlertDismissed(true)} />
+  ) : null;
+
+  const icon = (d) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={d}/></svg>
+  );
+  const essentials = [
+    { id: "map", label: "Map", icon: icon("M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"),
+      onClick: () => setState({ ...state, tab: "map" }) },
+    !isPostFestival && { id: "tonight", label: "Sun & weather", icon: icon("M12 3 V5 M12 19 V21 M3 12 H5 M19 12 H21 M5.6 5.6 L7 7 M17 17 L18.4 18.4 M5.6 18.4 L7 17 M17 7 L18.4 5.6 M12 8 A4 4 0 1 0 12 16 A4 4 0 1 0 12 8"),
+      onClick: () => setSheet("tonight") },
+    !isPostFestival && { id: "dontmiss", label: "Don't miss", icon: icon("M12 3 L14.6 8.6 L20.5 9.3 L16.1 13.4 L17.3 19.3 L12 16.3 L6.7 19.3 L7.9 13.4 L3.5 9.3 L9.4 8.6 Z"),
+      onClick: () => setSheet("dontmiss") },
+    countdown && { id: "headliners", label: "Headliners", icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
+      onClick: () => setSheet("headliners") },
+    isLive && NOW.day > 1 && { id: "lastnight", label: "Last night", icon: icon("M3 12 A9 9 0 1 0 6 5.3 M3 4 V9 H8 M12 7 V12 L15 14"),
+      onClick: () => setSheet("lastnight") },
+    isLive && NOW.day < 3 && { id: "upcoming", label: "Coming up", icon: icon("M4 6 H20 V20 H4 Z M4 10 H20 M8 3 V7 M16 3 V7"),
+      onClick: () => setSheet("upcoming") },
+    { id: "basics", label: "Basics", icon: icon("M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 11 V16 M12 8 V8.5"),
+      onClick: () => setFirstTimerOpen(true) },
+    { id: "alerts", label: "Alerts", sub: unread ? `${unread} new` : null, icon: icon("M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z M10 19 Q12 21 14 19"),
+      onClick: () => setAlertsOpen(true) },
+  ].filter(Boolean);
+
+  const savedRow = (() => {
+    // Live, the plan card and the night sheet carry tonight's saved sets;
+    // the board's Today has no second copy of them as photo tiles.
+    if (isPostFestival || isLive) return null;
+    const rows = activeLineup(savedIds)
+      .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
+      .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
+    if (!rows.length) return null;
+    // The board's list rows, not 132px tiles in a sideways rail: time,
+    // face, the name in full, day and stage. The first five; the rest are
+    // one tap away in the plan sheet.
+    const SHOW = 5;
+    return (
+      <section data-today-saved>
+        <DuoSect title={isLive ? "Saved tonight" : "Your saved sets"}
+          right={<ShareLineupButton state={state} />} style={{ padding: "0 20px", minHeight: 44 }} />
+        <div style={{ padding: "0 20px", display: "grid", gap: 2 }}>
+          {rows.slice(0, SHOW).map(a => <SavedRow key={a.id} a={a} onOpen={() => setState({ ...state, artist: a.id })} />)}
+          {rows.length > SHOW && (
+            <button className="duo-link" onClick={() => setSheet("night")} style={{ justifySelf: "start", minHeight: 44, padding: 0, border: "none", background: "none", cursor: "pointer", font: "600 15px/1.33 var(--f-ui)", color: "var(--acc-ink)" }}>
+              All {rows.length} saved sets
+            </button>
+          )}
+        </div>
+      </section>
+    );
+  })();
+
+  const sheetView = (() => {
+    switch (sheet) {
+      case "night": return isLive
+        ? { title: "My night", body: <><LiveAcrossStrip strip={liveStrip} setState={setState} state={state} /><TonightsPlan plan={tonight} setState={setState} state={state} /></> }
+        : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
+      case "tonight":    return { title: "Sun & weather", body: <TonightCard state={state} setState={setState} /> };
+      case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
+      case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
+      case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
+      case "upcoming":   return { title: "Coming up",     body: <UpcomingTeaser state={state} setState={setState} /> };
+      default: return null;
+    }
+  })();
+
   return (
     <Screen bg="var(--paper)">
-      <ScrollBody ref={scrollRef} onScroll={handleHomeScroll} style={{ padding: "0 0 70px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
+      <ScrollBody ref={scrollRef} style={{ padding: "0 0 96px" }} onTouchStart={handlePullStart} onTouchMove={handlePullMove}>
       {pullRefresh && (
-        <div style={{
-          display: "flex", justifyContent: "center", padding: "12px 0",
-        }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "12px 0" }}>
           <div style={{
             width: 20, height: 20, borderRadius: "50%",
-            border: "2px solid var(--line)", borderTopColor: "var(--ember)",
+            border: "2px solid var(--line)", borderTopColor: "var(--signal)",
             animation: "spin 0.8s linear infinite",
           }}/>
         </div>
       )}
-      {/* Masthead — scrolls with content (was previously pinned, now flows
-          naturally so the home tab stops feeling like a fixed-header app) */}
-      <div style={{
-        padding: "8px 20px 14px",
-        background: "linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%)",
-        borderBottom: "1px solid var(--line)",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <Wordmark size={16} />
-            <FestivalChip compact />
-          </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <button onClick={() => setOffline(o => !o)} title="Offline mode" style={{
-              display: "flex", alignItems: "center", gap: 4,
-              background: offline ? "var(--ink)" : "transparent",
-              color: offline ? "var(--paper)" : "var(--muted)",
-              border: offline ? "none" : "1px solid var(--line-2)",
-              borderRadius: 999, padding: "3px 8px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-              cursor: "pointer",
-            }}>
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                {offline
-                  ? <><path d="M4 4 L20 20"/><path d="M2 8 Q6 4 10 4.5 M22 8 Q18 4 14 4.5"/><path d="M6 12 Q12 7 18 12" opacity="0.5"/></>
-                  : <><path d="M2 8 Q12 -2 22 8"/><path d="M5 12 Q12 5 19 12"/><path d="M8 16 Q12 12 16 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
-                }
-              </svg>
-              {offline ? "OFF" : (!countdown && !isPostFestival ? "LIVE" : "ON")}
-            </button>
-            <button onClick={() => setAlertsOpen(true)} aria-label="Alerts" style={{
-              position: "relative", background: "transparent", border: "none",
-              padding: 4, cursor: "pointer", color: "var(--ink)",
-            }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/>
-                <path d="M10 19 Q12 21 14 19"/>
-              </svg>
-              {unread > 0 && (
-                <span style={{
-                  position: "absolute", top: 2, right: 2,
-                  width: 8, height: 8, borderRadius: 8,
-                  background: "var(--ember)", border: "1.5px solid var(--paper)",
-                }}/>
-              )}
-            </button>
-            {!countdown && !isPostFestival && (
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-                DAY {NOW.day} · {NOW.time}
-              </div>
-            )}
-          </div>
-        </div>
-        {countdown ? (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {(() => {
-                const words = (FESTIVAL_CONFIG.tagline || "Under the electric sky").split(/\s/);
-                const last = words.pop();
-                return <>{words.join(" ")} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{last}</span> in</>;
-              })()}
-            </div>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 14, marginTop: 10 }}>
-              <CountdownPart n={countdown.days}  label="DAYS" />
-              <CountdownPart n={countdown.hours} label="HRS" />
-              <CountdownPart n={countdown.mins}  label="MIN" />
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 8 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-          </>
-        ) : isPostFestival ? (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.brand} <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.year}</span> — that's a wrap.
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6, marginBottom: 14 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-            {/* v151: post-festival recap hero CTA — the Home tab was a dead
-                slate after the festival ended. Now it teases the Recap
-                with the attended-set count, so a user opening the app
-                Tuesday morning has somewhere to go that isn't "ME tab,
-                scroll down". */}
-            {(() => {
-              const attendedCount = (typeof window.getAttendedCount === "function" ? window.getAttendedCount() : 0);
-              if (attendedCount === 0) return null;
-              return (
-                <button
-                  onClick={() => setState(s => ({ ...s, tab: "recap" }))}
-                  style={{
-                    display: "flex", alignItems: "center", gap: 12,
-                    width: "100%", marginTop: 6, padding: "13px 14px",
-                    background: "linear-gradient(135deg, var(--ink) 0%, var(--horizon) 90%, var(--ember) 130%)",
-                    border: "none", borderRadius: 16,
-                    color: "var(--paper)", cursor: "pointer", textAlign: "left",
-                    boxShadow: "0 4px 18px rgba(123,61,154,0.28)",
-                  }}>
-                  <span style={{ fontSize: 24, lineHeight: 1, flexShrink: 0 }}>✦</span>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>
-                      Your <span style={{ fontStyle: "italic", color: "var(--flare)" }}>weekend</span>, recapped
-                    </div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "rgba(247,237,224,0.7)", marginTop: 4, fontWeight: 700 }}>
-                      {attendedCount} SET{attendedCount === 1 ? "" : "S"} CAUGHT · TAP TO SEE THE FULL RECAP
-                    </div>
-                  </div>
-                  <span style={{ fontSize: 18, opacity: 0.75 }}>→</span>
-                </button>
-              );
-            })()}
-          </>
-        ) : (
-          <>
-            <div className="serif" style={{ fontSize: 36, lineHeight: 0.95, letterSpacing: -0.5 }}>
-              {FESTIVAL_CONFIG.dayDates[NOW.day]?.name || "Day " + NOW.day} at <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>{FESTIVAL_CONFIG.brand}</span>
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--muted)", marginTop: 6 }}>
-              {FESTIVAL_CONFIG.locationShort.toUpperCase()} · {FESTIVAL_CONFIG.dates.toUpperCase()}
-            </div>
-          </>
+      {/* One reading column on a wide screen: the board is a phone layout,
+          and a scoreboard stretched to 1280px reads as two lonely columns. */}
+      <div style={{ maxWidth: 720, margin: "0 auto" }}>
+      <DuoTodayHeader
+        status={heroStatus}
+        live={isLive}
+        deviceOffline={!online}
+        title={FESTIVAL_CONFIG.name}
+        sub={FESTIVAL_CONFIG.locationShort}
+        offline={offline}
+        onToggleOffline={() => setOffline(o => !o)}
+        unread={unread}
+        onAlerts={() => setAlertsOpen(true)}
+        onSearch={() => window.plurskyOpenSearch?.()}
+      />
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 28, paddingTop: 20 }}>
+        {isPostFestival
+          ? <div style={{ padding: "0 20px" }}><PostFestivalRecap state={state} setState={setState} /></div>
+          : <DuoPlanCard state={state} setState={setState} plan={tonight} onOpenNight={() => setSheet("night")} />}
+
+        {isLive && NOW.night != null && <DuoStageBoard state={state} setState={setState} />}
+
+        {notice}
+
+        {state.friendLineup?.length > 0 && (
+          <div style={{ padding: "0 20px" }}><FriendLineupBanner state={state} setState={setState} /></div>
         )}
+
+        {savedRow}
+
+        <section>
+          <DuoSect title="Festival essentials" style={{ padding: "0 20px", minHeight: 44 }} />
+          {/* A wrapping grid, never a sideways rail: every essential is on
+              screen at once. */}
+          <div data-today-essentials style={{ padding: "0 20px", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))", gap: 8 }}>
+            {essentials.map(({ id, ...e }) => <EssentialTile key={id} {...e} />)}
+          </div>
+        </section>
+
+        {/* Recent memories: the rewatch loop's front door. Post-festival,
+            PostFestivalRecap above leads with its own memories. */}
+        {!isPostFestival && window.HomeMemoriesStrip && (
+          <div style={{ padding: "0 20px" }}>{React.createElement(window.HomeMemoriesStrip, { state, setState })}</div>
+        )}
+
+        {/* This festival's past editions (historical.jsx), newest first.
+            Read-only look-backs; nothing renders when there are none. */}
+        {typeof PastEditionsSection === "function" && <PastEditionsSection festivalId={FESTIVAL_CONFIG.id} />}
       </div>
+      </div>
+      </ScrollBody>
 
-      {/* Banner queue: at most one of {install, notif, weather} renders at a
-          time. Priority order = install > notif > weather. The install prompt
-          is the most actionable (and only shows when canInstall=true), so it
-          wins. Without this gate, three nudges could stack on first launch. */}
-      {(() => {
-        const ip = useInstallPrompt();
-        // Setup nudge — replaces the old blocking onboarding modal. Shows
-        // when the user hasn't picked a name AND hasn't connected Spotify
-        // (signal that they're truly new), and is dismissable.
-        let userName = "";
-        try { userName = localStorage.getItem("user_name") || ""; } catch {}
-        const showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
-        const showInstall = !showSetup && ip.canInstall;
-        const showNotif   = !showSetup && !showInstall && state.saved.length > 0 && notifPerm === "default" && !notifNudgeDismissed;
-        const showWeather = !showSetup && !showInstall && !showNotif && weatherAlert && !weatherAlertDismissed;
-        if (showSetup) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "center", gap: 10,
-              background: "linear-gradient(135deg, rgba(232,93,46,0.12), rgba(123,61,154,0.10))",
-              border: "1px solid rgba(232,93,46,0.4)",
-              borderRadius: 14, padding: "12px 12px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>✦</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                Personalize Plursky — name, Spotify, reminders.
-              </div>
-              <button onClick={() => window.plurskyOpenOnboarding?.()} style={{
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                flexShrink: 0,
-              }}>SET UP</button>
-              <button onClick={() => {
-                try { localStorage.setItem("setup_banner_dismissed", "1"); } catch {}
-                setSetupBannerDismissed(true);
-              }} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        if (showInstall) return <InstallBanner />;
-        if (showNotif) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "center", gap: 10,
-              background: "rgba(123,61,154,0.1)", border: "1px solid rgba(123,61,154,0.35)",
-              borderRadius: 14, padding: "12px 12px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>🔔</span>
-              <div style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                Get notified 15 min before each saved set
-              </div>
-              <button onClick={async () => {
-                await enableNotifs();
-                setNotifNudgeDismissed(true);
-                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-              }} style={{
-                background: "var(--horizon)", color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                flexShrink: 0,
-              }}>ENABLE</button>
-              <button onClick={() => {
-                setNotifNudgeDismissed(true);
-                try { localStorage.setItem("notif_nudge_dismissed", "1"); } catch {}
-              }} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", color: "var(--muted)",
-                fontSize: 18, cursor: "pointer", flexShrink: 0, lineHeight: 1,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        if (showWeather) return (
-          <div style={{ padding: "8px 16px 0" }}>
-            <div style={{
-              display: "flex", alignItems: "flex-start", gap: 10,
-              background: "rgba(251,191,36,0.12)", border: "1px solid rgba(251,191,36,0.4)",
-              borderRadius: 14, padding: "12px 14px",
-            }}>
-              <span style={{ fontSize: 18, flexShrink: 0 }}>⚠️</span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "#fbbf24", fontWeight: 700, marginBottom: 3 }}>
-                  NWS WEATHER ALERT
-                </div>
-                <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.4 }}>
-                  {weatherAlert.shortForecast} — check the weather card below for details.
-                </div>
-              </div>
-              <button onClick={() => setWeatherAlertDismissed(true)} aria-label="Dismiss" style={{
-                background: "transparent", border: "none", cursor: "pointer",
-                color: "var(--muted)", fontSize: 18, lineHeight: 1, padding: "0 2px", flexShrink: 0,
-              }}>×</button>
-            </div>
-          </div>
-        );
-        return null;
-      })()}
-
-      {/* First-timer guide is still available, but tucked behind a small
-          link rather than a hero CTA — the app's default voice is for vets,
-          not newcomers. The link sits next to the countdown so it's
-          discoverable without dominating the screen. */}
-      {countdown && !ftDismissed && (
-        <div style={{ padding: "10px 20px 0" }}>
-          <button onClick={() => setFirstTimerOpen(true)} style={{
-            background: "transparent", border: "1px solid var(--line-2)",
-            borderRadius: 999, padding: "5px 10px",
-            color: "var(--muted)", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 600,
-          }}>
-            FIRST {FESTIVAL_CONFIG.brand || "TIME"}? READ THE BASICS →
-          </button>
-        </div>
-      )}
-
-      {/* Day-strip segmented control — hidden pre-festival (meaningless months
-          out) AND post-festival (no "today" once it's wrapped — that toggle
-          was the main "doesn't make sense" offender). */}
-      {!countdown && !isPostFestival && (
-      <div style={{ padding: "10px 16px 4px" }}>
-        <DayStrip
-          value={homeSubTab}
-          onChange={setHomeSubTab}
-          hasYesterday={NOW.day > 1}
-          hasUpcoming={NOW.day < 3}
+      {/* Alerts drawer */}
+      {alertsOpen && (
+        <AlertsDrawer alerts={alerts} onClose={() => {
+          setAlertsOpen(false);
+          setState({ ...state, alerts: alerts.map(a => ({ ...a, unread: false })) });
+        }} onOpenMap={() => { setAlertsOpen(false); setState({ ...state, tab: "map" }); }}
+          onOpenLineup={() => { setAlertsOpen(false); setState({ ...state, tab: "lineup" }); }}
         />
-      </div>
       )}
 
-      <div ref={useStaggerFade()} style={{ padding: "16px 16px 24px" }}>
-        {/* ── YESTERDAY tab ───────────────────────────────────── */}
-        {homeSubTab === "yesterday" && (
-          <LastNightRecap state={state} setState={setState} />
-        )}
+      {/* First-timer guide drawer — bundles gate hours, bag policy, lingo,
+          survival tips, and a recommended day-1 plan in one scrollable sheet. */}
+      {firstTimerOpen && (
+        <FirstTimerGuide onClose={() => {
+          setFirstTimerOpen(false);
+          setFtDismissed(true);
+          try { localStorage.setItem("ft_guide_seen", "1"); } catch {}
+        }}
+        onOpenMap={() => { setFirstTimerOpen(false); setState({ ...state, tab: "map" }); }}
+        onOpenLineup={() => { setFirstTimerOpen(false); setState({ ...state, tab: "lineup" }); }}
+        />
+      )}
+      {sheetView && (
+        <FieldSheet title={sheetView.title} onClose={() => setSheet(null)}>
+          {sheetView.body}
+        </FieldSheet>
+      )}
+    </Screen>
+  );
+}
 
-        {/* ── UPCOMING tab ────────────────────────────────────── */}
-        {homeSubTab === "upcoming" && (
-          <UpcomingTeaser state={state} setState={setState} />
-        )}
-
-        {/* ── TODAY tab ───────────────────────────────────────── */}
-        {/* Post-festival forces this branch (the day-strip is hidden, so
-            homeSubTab could otherwise be stuck on yesterday/upcoming). */}
-        {(homeSubTab === "today" || isPostFestival) && <>
-
-        {/* Post-festival recap — on TODAY when the festival has wrapped. */}
-        {isPostFestival && <PostFestivalRecap state={state} setState={setState} />}
-
-        {/* F1-style hero card — pre/during phases (post handled above). */}
-        {!isPostFestival && <div data-animate><F1TonightHero state={state} setState={setState} parallax={heroParallax} /></div>}
-
-        {/* Live festival sections — hidden pre-event and post-festival */}
-        {!countdown && !isPostFestival && (
-          <>
-            {/* NOW PLAYING hero card — hidden during stage changeovers */}
-            {current && <div style={{
-              background: currentPhoto ? "#000" : current.img,
-              borderRadius: 22,
-              padding: 18,
-              color: "#fff",
-              position: "relative",
-              overflow: "hidden",
-              marginBottom: 14,
-            }}>
-              {/* Real artist photo as background */}
-              {currentPhoto && (
-                <div style={{
-                  position: "absolute", inset: 0,
-                  backgroundImage: `url(${currentPhoto})`,
-                  backgroundSize: "cover", backgroundPosition: "center 15%",
-                  opacity: 0.55,
-                }}/>
-              )}
-              {/* Grain / vignette */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: currentPhoto
-                  ? "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%)"
-                  : "radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,0.18), transparent 60%), linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%)",
-                pointerEvents: "none",
-              }} />
-              <div style={{ position: "relative" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 14 }}>
-                  <span style={{
-                    width: 7, height: 7, borderRadius: 7, background: "#fff",
-                    boxShadow: "0 0 0 4px rgba(255,255,255,0.25)",
-                    animation: "pulse 1.6s ease-in-out infinite",
-                  }} />
-                  <span className="mono" style={{ fontSize: 10, letterSpacing: 2, fontWeight: 600 }}>
-                    NOW PLAYING · {stageOf(current.stage)?.name?.toUpperCase() || ""}
-                  </span>
-                </div>
-
-                <div className="serif" style={{ fontSize: 34, lineHeight: 0.96, letterSpacing: -0.5, marginBottom: 4 }}>
-                  {current.name}
-                </div>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, opacity: 0.85, marginBottom: 22 }}>
-                  {current.genre.toUpperCase()} · {fmt12(current.start)}–{fmt12(current.end)}
-                </div>
-
-                {/* Progress */}
-                <div style={{ height: 3, background: "rgba(255,255,255,0.25)", borderRadius: 3, overflow: "hidden" }}>
-                  <div style={{ width: `${progress * 100}%`, height: "100%", background: "#fff" }} />
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, opacity: 0.8 }}>
-                    {NOW.elapsedMin} MIN IN
-                  </span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, opacity: 0.8 }}>
-                    {minsLeft} MIN LEFT
-                  </span>
-                </div>
-
-                {/* Actions */}
-                <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
-                  <button onClick={() => setState({ ...state, tab: "map", focusStage: current.stage })}
-                    style={homeBtn("solid")}>
-                    Navigate to stage
-                  </button>
-                  <button onClick={() => setState({ ...state, tab: "home", artist: current.id })}
-                    style={homeBtn("ghost")}>
-                    Details
-                  </button>
-                  {(() => {
-                    const isSaved = (state.saved || []).includes(current.id);
-                    return (
-                      <button
-                        onClick={() => {
-                          try { navigator.vibrate([30]); } catch {}
-                          const saved = state.saved || [];
-                          setState({ ...state, saved: isSaved
-                            ? saved.filter(id => id !== current.id)
-                            : [...saved, current.id] });
-                        }}
-                        title={isSaved ? "Unsave set" : "Save set"}
-                        aria-label={isSaved ? "Unsave set" : "Save set"}
-                        aria-pressed={isSaved}
-                        style={{
-                          marginLeft: "auto", background: "transparent",
-                          border: "1.5px solid rgba(255,255,255,0.4)",
-                          borderRadius: 999, width: 36, height: 36,
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          cursor: "pointer", color: isSaved ? "#fff" : "rgba(255,255,255,0.6)",
-                          flexShrink: 0,
-                        }}>
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill={isSaved ? "#fff" : "none"} stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-                        </svg>
-                      </button>
-                    );
-                  })()}
-                </div>
-              </div>
-            </div>}
-
-            {/* UP NEXT strip */}
-            {next && <div style={{
-              background: "var(--paper-2)",
-              border: "1px solid var(--line)",
-              borderRadius: 16,
-              padding: 14,
-              marginBottom: 18,
-              display: "flex", alignItems: "center", gap: 12,
-            }}>
-              <ArtistSwatch artist={next} size={48} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--muted)" }}>
-                  UP NEXT · {upNextMin > 0 ? `IN ${upNextMin} MIN` : "STARTING"}
-                </div>
-                <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
-                  {next.name}
-                </div>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                  {stageOf(next.stage)?.name?.toUpperCase() || ""} · {fmt12(next.start)}
-                </div>
-              </div>
-              <button onClick={() => setState({ ...state, tab: "home", artist: next.id })} style={{
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                borderRadius: 999, padding: "8px 12px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
-              }}>OPEN</button>
-            </div>}
-
-            {/* LIVE ACROSS STAGES — what's on right now at every stage */}
-            <LiveAcrossStrip strip={liveStrip} setState={setState} state={state} />
-
-            {/* TONIGHT'S PLAN — chronological saved sets with walking ETAs + leave-by */}
-            <TonightsPlan plan={tonight} setState={setState} state={state} />
-          </>
-        )}
-
-        {/* Pre-festival hype: headliner countdown cards rotating by day.
-            Shows top-tier artists grouped by night with days-until countdown. */}
-        {countdown && (() => {
+// Pre-festival headliners by night (moved verbatim out of the old Home body;
+// Field Home opens it from the essentials row).
+function HeadlinerHighlights({ state, setState }) {
           const headliners = ARTISTS.filter(a => a.tier >= 2)
             .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
             .slice(0, 9);
@@ -2072,209 +1837,369 @@ function HomeScreen({ state, setState }) {
               </div>
             </div>
           );
-        })()}
+}
 
-        {/* Your Memories strip — the rewatch loop's front door, shown DURING
-            the festival. Post-festival, PostFestivalRecap (rendered above)
-            leads with its own memories strip, so gate this one off then to
-            avoid the duplicate recap + memories cards on the Today screen. */}
-        {!isPostFestival && window.HomeMemoriesStrip && React.createElement(window.HomeMemoriesStrip, { state, setState })}
+// Saved sets by day as flat, time-led rows with walk gaps. A clash is a small
+// warning with its word, never a neon card. Opened as "My saved sets".
+function SavedByDay({ state, setState }) {
+  const savedIds = savedInLineup(state.saved);
+  const byDay = festivalDayNums().map(day => ({
+    day, meta: FESTIVAL_CONFIG.dayDates[day],
+    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
+      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
+  })).filter(d => d.artists.length);
+  if (!byDay.length) return (
+    <div>
+      <p style={{ margin: "0 0 16px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>No saved sets yet.</p>
+      <FieldButton onClick={() => setState({ ...state, tab: "lineup" })}>Browse lineup</FieldButton>
+    </div>
+  );
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 44 }}>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+          {savedIds.length} saved {savedIds.length === 1 ? "set" : "sets"}
+        </span>
+        <ShareLineupButton state={state} />
+      </div>
+      {byDay.map(({ day, meta, artists }) => (
+        <section key={day} style={{ marginTop: 24 }}>
+          <h3 style={{ ..._fieldEyebrow, margin: "0 0 4px", color: "var(--text-2)" }}>{meta?.name || `Day ${day}`}</h3>
+          {artists.map((a, i) => {
+            const prev = artists[i - 1];
+            const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
+            const tight = !!prev && walk != null && walk > 0 && (toNightMin(a.start) - toNightMin(prev.end)) < walk;
+            const conflict = prev && overlaps(prev, a);
+            const stage = STAGES.find(s => s.id === a.stage);
+            const prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
+            return (
+              <div key={a.id}>
+                {/* The stage change is still worth showing when the walk is
+                    unmeasured (walk === null) — you are moving, and by how far
+                    is the only part nobody can honestly state. walk === 0 is a
+                    same-stage back-to-back, which needs no row at all. */}
+                {prev && walk !== 0 && (
+                  <div style={{ padding: "4px 0 4px 88px", fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-3)" }}>
+                    {tight ? "Tight · " : ""}{walk != null ? `${walk} min walk · ` : ""}{prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`}
+                  </div>
+                )}
+                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                  width: "100%", minHeight: 64, padding: "12px 0",
+                  display: "flex", alignItems: "flex-start", gap: 12,
+                  background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                  color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                }}>
+                  <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                    <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
+                    <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</div>
+                    {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
+                    {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {actDisplayName(prev.name)} · {fmt12(prev.start)} · {(STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"}</div>}
+                  </div>
+                </button>
+              </div>
+            );
+          })}
+        </section>
+      ))}
+    </div>
+  );
+}
 
-        {/* Tonight: sunrise/sunset · weather · last-shuttle countdown */}
-        <div data-animate>{!isPostFestival && <TonightCard state={state} setState={setState} />}</div>
+const _fieldEyebrow = {
+  fontSize: 11, lineHeight: "14px", fontWeight: 600,
+  letterSpacing: "0.04em", textTransform: "uppercase",
+  display: "flex", alignItems: "center", gap: 6,
+};
 
-        {/* Don't-miss strip — auto-detected legendary moments (sunrise sets
-            + B2B collabs) for the relevant day. Vets came for THESE, so they
-            sit prominently between the night card and the artist gossip. */}
-        <div data-animate>{!isPostFestival && <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} />}</div>
+// ── Today, on the duo board (design/system-exploration @ 6524ccb) ──
+// Apple Sports' scoreboard under Apple Invites' header: the status line, the
+// festival, then your plan as the one lifted card, then every stage's Now and
+// Next. Each piece is real data or absent; nothing is drawn for show.
 
-        {/* Friend's shared lineup — appears when ?lineup= deep link was opened. */}
-        {state.friendLineup?.length > 0 && (
-          <FriendLineupBanner state={state} setState={setState} />
-        )}
+const _MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        {/* Reminders card — surfaces 15-min push opt-in on home when user has
-            saved sets so it's discoverable, not buried on the Music tab. */}
-        {state.saved?.length > 0 && typeof NotificationsCard === "function" && (
-          <div style={{ marginTop: 18 }}>
-            <NotificationsCard state={state} />
+// "Night 2 · Sat May 16": which night of the festival it is, and its date.
+function duoNightLabel() {
+  const n = NOW.night ?? NOW.day;
+  const dd = FESTIVAL_CONFIG.dayDates?.[n];
+  const idx = festivalDayNums().indexOf(n);
+  const night = idx >= 0 ? `Night ${idx + 1}` : (dd?.name || `Day ${n}`);
+  return dd ? `${night} · ${dd.short} ${_MON[dd.m]} ${dd.d}` : night;
+}
+
+// Sunrise that ends tonight: the next festival day's sunrise when there is
+// one, else tonight's own. Only shown when the config carries sun data.
+function duoSunrise() {
+  const n = NOW.night;
+  const st = FESTIVAL_CONFIG.sunTimes;
+  if (n == null || !st) return null;
+  const rise = (st[n + 1] || st[n] || {}).rise;
+  return rise ? fmt12(rise).replace(/\s?AM$/, "") : null;
+}
+
+// A set time inside tonight's scoreboard, as the board prints it: "1:42",
+// no AM/PM, because the night heading already says which night it is.
+function duoClock(t) {
+  return fmt12(t).replace(/\s?(AM|PM)$/, "");
+}
+
+// The hero title drops a trailing edition year; the festival chip above it
+// already carries the year.
+function duoFestivalTitle(name) {
+  const y = FESTIVAL_CONFIG.year;
+  return y ? String(name).replace(new RegExp(`\\s+${y}$`), "") : name;
+}
+
+function DuoTodayHeader({ status, live, deviceOffline, title, sub, offline, onToggleOffline, unread, onAlerts, onSearch }) {
+  const rise = live ? duoSunrise() : null;
+  const tool = { ...fieldIconBtn, color: "var(--ink-2)", position: "relative" };
+  return (
+    <header style={{ paddingTop: "calc(var(--top-pad, 0px) + 14px)" }}>
+      <div style={{ padding: "0 20px" }}>
+        {/* The board's first line: which night, and when the sun comes up. */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", minHeight: 20 }}>
+          <span className="duo-label duo-ink3">{status}{deviceOffline ? " · No signal" : ""}</span>
+          {rise && (
+            <span className="duo-sun" style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 2.5v2 M12 19.5v2 M2.5 12h2 M19.5 12h2 M5.3 5.3l1.4 1.4 M17.3 17.3l1.4 1.4 M5.3 18.7l1.4-1.4 M17.3 6.7l1.4-1.4"/></svg>
+              <span className="duo-data-s">SUNRISE {rise}</span>
+            </span>
+          )}
+        </div>
+        {/* The festival's name is the switcher: tap it to change festival. */}
+        <div style={{ marginTop: 8 }}>
+          <FestivalChip title={<h1 className="duo-hero duo-name" style={{ margin: 0, fontSize: "clamp(34px, 11.2vw, 44px)" }}>{duoFestivalTitle(title)}</h1>} />
+        </div>
+      </div>
+      {/* Where it is, with the page's three tools set quietly beside it. */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "2px 8px 0 20px" }}>
+        <span className="duo-body-s duo-ink2" style={{ fontWeight: 400, minWidth: 0 }}>{sub}</span>
+        <span style={{ display: "flex", alignItems: "center", flex: "none" }}>
+          {onSearch && (
+            <button onClick={onSearch} aria-label="Search artists, stages, genres" style={tool}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z M15.3 15.3 20 20"/></svg>
+            </button>
+          )}
+          <button onClick={onToggleOffline} aria-label="Offline mode" aria-pressed={offline} style={{ ...tool, color: offline ? "var(--acc-ink)" : "var(--ink-2)" }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              {offline
+                ? <><path d="M4 4 L20 20"/><path d="M8.5 16 Q12 13 15.5 16"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>
+                : <><path d="M2 8.5 Q12 -1 22 8.5"/><path d="M5 12 Q12 5.5 19 12"/><path d="M8.5 15.5 Q12 12.5 15.5 15.5"/><circle cx="12" cy="19.5" r="0.8" fill="currentColor"/></>}
+            </svg>
+          </button>
+          <button onClick={onAlerts} aria-label={unread ? `Alerts, ${unread} new` : "Alerts"} style={tool}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 9 C6 5.5 8.5 3 12 3 C15.5 3 18 5.5 18 9 L18 13 L20 16 L4 16 L6 13 Z"/><path d="M10 19 Q12 21 14 19"/>
+            </svg>
+            {unread > 0 && <span aria-hidden="true" style={{ position: "absolute", top: 10, right: 10, width: 8, height: 8, borderRadius: 4, background: "var(--acc)", boxShadow: "0 0 0 1.5px var(--bg)" }} />}
+          </button>
+        </span>
+      </div>
+    </header>
+  );
+}
+
+// Your plan: the saved set that is live, else the next one, as the one
+// lifted card on the screen. A clash among the sets still ahead tonight sits
+// inside it, and "Choose" opens the night sheet whose resolver settles it.
+function DuoPlanCard({ state, setState, plan, onOpenNight }) {
+  const savedIds = savedInLineup(state.saved);
+  const saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
+  const now = Date.now();
+  const live = saved.find(a => isSetLive(a)) || null;
+  const next = live ? null : (saved
+    .map(a => ({ a, t: festivalNightDate(a.day, a.start).getTime() }))
+    .filter(x => x.t > now)
+    .sort((x, y) => x.t - y.t)[0] || {}).a || null;
+  const set = live || next;
+  const open = (id) => setState({ ...state, artist: id });
+  if (!set) {
+    return (
+      <section style={{ padding: "0 20px" }}>
+        <div className="duo-card" style={{ padding: 16 }}>
+          <DuoSect title="Your plan" />
+          <p className="duo-body duo-ink2" style={{ margin: "10px 0 14px" }}>
+            {saved.length ? "Your saved sets are all done." : "Save a few sets and your night shows up here."}
+          </p>
+          <button className="duo-btn pri" style={{ width: "100%" }} onClick={() => setState({ ...state, tab: "lineup" })}>Browse lineup</button>
+        </div>
+      </section>
+    );
+  }
+  const stage = STAGES.find(s => s.id === set.stage) || UNPLACED_STAGE;
+  const startMs = festivalNightDate(set.day, set.start).getTime();
+  const endMs = startMs + Math.max(1, toNightMin(set.end) - toNightMin(set.start)) * 60000;
+  const minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+  const pct = live ? Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100))) : 0;
+  const minsUntil = Math.round((startMs - now) / 60000);
+  const until = minsUntil < 60 ? `In ${Math.max(1, minsUntil)} min`
+    : minsUntil < 12 * 60 ? `In ${Math.floor(minsUntil / 60)} hr ${minsUntil % 60} min`
+    : (FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`);
+  const clash = (plan || []).find(p => p.conflict && !p.isPast && p.prev) || null;
+  const side = (a) => {
+    const st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+    return (
+      <button key={a.id} className="duo-press" onClick={() => open(a.id)} aria-label={`${a.name}, ${fmt12(a.start)}, ${st.name}`}
+        style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 44 }}>
+        <DuoAvatar name={a.name} size={30} ring="cl" />
+        <span style={{ minWidth: 0 }}>
+          <span className="duo-name" style={{ display: "block", fontWeight: 600, fontSize: 14, lineHeight: 1.29, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+          <span className="duo-data-s duo-ink2" style={{ display: "block", marginTop: 2 }}>{duoClock(a.start)} · {st.name.toUpperCase()}</span>
+        </span>
+      </button>
+    );
+  };
+  return (
+    <section style={{ padding: "0 20px" }}>
+      <div className="duo-card duo-lift" data-duo-plan style={{ padding: "14px 16px" }}>
+        <DuoSect title={<button className="duo-press" onClick={onOpenNight} aria-label="Your plan, open my night" style={{ display: "inline-flex", alignItems: "center", gap: 6, width: "auto", minHeight: 32, color: "inherit", font: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}>Your plan<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>}
+          right={live ? <DuoLive /> : <span className="duo-label duo-ink3">Next · {until}</span>} />
+        <button className="duo-press" onClick={() => open(set.id)} aria-label={`${set.name}, ${stage.name}, ${live ? `live until ${fmt12(set.end)}` : `${until}, ${fmt12(set.start)}`}`}
+          style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 14, marginTop: 12 }}>
+          <span style={{ display: "flex", alignItems: "flex-start", gap: 12, minWidth: 0 }}>
+            <DuoAvatar name={set.name} size={52} ring="on" />
+            <span style={{ minWidth: 0, paddingTop: 3 }}>
+              <span className="duo-name" style={{ display: "block", fontWeight: 700, fontSize: 18, lineHeight: 1.222, fontFamily: "var(--f-ui)" }}>{actDisplayName(set.name)}</span>
+              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}>{stage.name.toUpperCase()} · <span style={{ whiteSpace: "nowrap" }}>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span>
+            </span>
+          </span>
+          {live && (
+            <span className="duo-wide" style={{ textAlign: "right", flex: "none" }}>
+              <span className="duo-clock" style={{ display: "block" }}>{minsLeft}</span>
+              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>MIN LEFT</span>
+            </span>
+          )}
+        </button>
+        {live && <div className="duo-narrow duo-data-s duo-ink3" style={{ marginTop: 10, textAlign: "right" }}>{minsLeft} MIN LEFT</div>}
+        {live && <div className="duo-track" style={{ marginTop: 12 }} role="progressbar" aria-label="Set progress" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}><b style={{ width: `${pct}%` }} /></div>}
+        {clash && (
+          <div className="duo-well" style={{ marginTop: 14, padding: 12 }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+              <span className="duo-label duo-clash">Clash<span className="duo-wide" style={{ display: "inline" }}> · pick one</span></span>
+              <button className="duo-link" onClick={onOpenNight}>Choose</button>
+            </div>
+            <div style={{ display: "grid", gap: 4, marginTop: 4 }}>{side(clash.prev)}{side(clash.artist)}</div>
           </div>
         )}
-
-        {/* Pre-festival lineup preview — visible only during countdown */}
-        {countdown && (() => {
-          const savedIds = state.saved || [];
-          const byDay = festivalDayNums().map(day => ({
-            day,
-            meta: FESTIVAL_CONFIG.dayDates[day],
-            artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
-              .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
-          })).filter(d => d.artists.length);
-          if (!byDay.length) return (
-            <button onClick={() => setState({ ...state, tab: "lineup" })} style={{
-              width: "100%", background: "var(--paper-2)", border: "1px dashed var(--line)",
-              borderRadius: 18, padding: "28px 20px", marginTop: 18, textAlign: "center",
-              cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-            }}>
-              <div style={{ fontSize: 28, opacity: 0.4 }}>+</div>
-              <div className="serif" style={{ fontSize: 18, color: "var(--ink)", fontStyle: "italic" }}>
-                Build your lineup
-              </div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
-                TAP TO BROWSE {ARTISTS.length} ARTISTS
-              </div>
-            </button>
-          );
-          return (
-            <div style={{ marginTop: 22 }}>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-                <div className="serif" style={{ fontSize: 22 }}>
-                  Your <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
-                    {savedIds.length} SETS
-                  </span>
-                  <ShareLineupButton savedIds={savedIds} />
-                </div>
-              </div>
-              <div style={{
-                background: "var(--paper-2)", border: "1px solid var(--line)",
-                borderRadius: 18, padding: "14px 16px 6px",
-              }}>
-                {byDay.map(({ day, meta, artists }) => {
-                  // Pre-compute conflicts + transitions so each row knows its
-                  // relationship to the previous saved set. Mirrors the live
-                  // PlanRow logic but for the pre-festival preview.
-                  const rows = artists.map((a, i) => {
-                    const prev = artists[i - 1];
-                    const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-                    const prevEnd = prev ? toNightMin(prev.end) : null;
-                    const startMin = toNightMin(a.start);
-                    const tight = prev && walk > 0 && (startMin - prevEnd) < walk;
-                    const conflict = prev && overlaps(prev, a);
-                    return { a, prev, walk, tight, conflict };
-                  });
-                  const conflictCount = rows.filter(r => r.conflict).length;
-                  return (
-                  <div key={day} style={{ marginBottom: 10 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-                      <div className="mono" style={{
-                        fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)",
-                        fontWeight: 700,
-                      }}>
-                        {meta.short} · {meta.name.toUpperCase()}
-                      </div>
-                      {conflictCount > 0 && (
-                        <span className="mono" style={{
-                          fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
-                          padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-                          border: "1px solid var(--ember)",
-                        }}>{conflictCount} CLASH</span>
-                      )}
-                    </div>
-                    {rows.map(({ a, prev, walk, tight, conflict }) => {
-                      const stage = STAGES.find(s => s.id === a.stage);
-                      return (
-                        <div key={a.id}>
-                          {prev && walk > 0 && (
-                            <div style={{
-                              display: "flex", alignItems: "center", gap: 8,
-                              padding: "2px 0 2px 46px",
-                            }}>
-                              <div style={{ width: 1, height: 14, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
-                              <span className="mono" style={{
-                                fontSize: 8, letterSpacing: 1.1,
-                                color: tight ? "var(--ember-ink)" : "var(--muted)",
-                                fontWeight: tight ? 700 : 500,
-                              }}>
-                                {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short} → ${stage?.short}`}
-                              </span>
-                            </div>
-                          )}
-                          <button
-                            onClick={() => setState({ ...state, artist: a.id })}
-                            style={{
-                              display: "flex", alignItems: "center", gap: 10, width: "100%",
-                              background: conflict ? "rgba(232,93,46,0.06)" : "transparent",
-                              border: "none", borderBottom: "1px solid var(--line-2)",
-                              padding: "8px 6px", cursor: "pointer", textAlign: "left",
-                            }}>
-                            <ArtistSwatch artist={a} size={36} />
-                            <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                                <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>
-                                  {a.name}
-                                </div>
-                                {conflict && (
-                                  <span className="mono" style={{
-                                    fontSize: 8, letterSpacing: 1.2, color: "var(--ember-ink)",
-                                    padding: "1px 4px", borderRadius: 3, fontWeight: 700,
-                                    border: "1px solid var(--ember)",
-                                  }}>CLASH</span>
-                                )}
-                              </div>
-                              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
-                                {stage ? stage.short : ""} · {fmt12(a.start)}–{fmt12(a.end)}
-                              </div>
-                            </div>
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })()}
-
-        </>}{/* end TODAY tab */}
       </div>
-      </ScrollBody>
+    </section>
+  );
+}
 
-      {/* Offline banner */}
-      {offline && (
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0,
-          background: "var(--ink)", color: "var(--paper)",
-          padding: "6px 20px",
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-          zIndex: 8,
-        }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M4 4 L20 20"/><circle cx="12" cy="18" r="1" fill="currentColor"/>
-          </svg>
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, fontWeight: 600 }}>
-            OFFLINE · LAST SYNC 10:41 PM · LINEUP & MAP AVAILABLE
-          </span>
+// Every stage, Now and Next, the way a scoreboard lists games: the stage,
+// then who is on and who follows, face first. Tapping a name opens the act.
+function duoStageNowNext() {
+  const night = NOW.night;
+  const nowMin = toNightMin(NOW.time);
+  const lineup = activeLineup();
+  return STAGES.map(stage => {
+    const on = lineup.find(a => a.stage === stage.id && isSetLive(a)) || null;
+    const next = night == null ? null : lineup
+      .filter(a => a.stage === stage.id && a.day === night && a.start && toNightMin(a.start) > nowMin && a !== on)
+      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start))[0] || null;
+    return { stage, on, next };
+  }).filter(r => r.on || r.next);
+}
+
+function DuoStageBoard({ state, setState }) {
+  const rows = duoStageNowNext();
+  if (!rows.length) return null;
+  const savedSet = new Set(state.saved || []);
+  const liveCount = rows.filter(r => r.on).length;
+  const cell = (a, detail, spoken, tag) => a ? (
+    <button className="duo-press" onClick={() => setState({ ...state, artist: a.id })} aria-label={`${a.name}, ${spoken}`}
+      style={{ display: "flex", alignItems: "flex-start", gap: 10, minWidth: 0, minHeight: 44 }}>
+      <DuoAvatar name={a.name} size={36} ring={savedSet.has(a.id) ? "on" : ""} />
+      <span style={{ minWidth: 0, paddingTop: 1 }}>
+        <span className="duo-name" style={{ display: "block", fontWeight: 600, fontSize: 14, lineHeight: 1.29, fontFamily: "var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+        <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}><span className="duo-sb-tag">{tag.toUpperCase()} · </span>{detail}</span>
+      </span>
+    </button>
+  ) : <span className="duo-body-s duo-ink3" style={{ fontWeight: 400, paddingTop: 8 }}><span className="duo-sb-tag">{tag} · </span>Stage closed</span>;
+  return (
+    <section style={{ padding: "0 20px" }} data-duo-stages>
+      <DuoSect title="Every stage" right={<span className="duo-data-s duo-ink3">{liveCount} LIVE</span>} />
+      <div className="duo-card" style={{ marginTop: 10, overflow: "hidden" }}>
+        <div className="duo-sb-grid duo-sb-head" style={{ padding: "10px 16px 8px" }}>
+          <DuoLive>Now</DuoLive><span className="duo-label duo-ink3">Next</span>
         </div>
-      )}
+        {rows.map(({ stage, on, next }) => (
+          <div key={stage.id} className="duo-hair" style={{ padding: "12px 16px 14px" }}>
+            <div className="duo-ink2" style={{ font: "600 13px/1.23 var(--f-ui)" }}>{stage.name}</div>
+            <div className="duo-sb-grid" style={{ marginTop: 10 }}>
+              {cell(on, on ? `TO ${duoClock(on.end)}` : "", on ? `until ${fmt12(on.end)}` : "", "Now")}
+              {cell(next, next ? duoClock(next.start) : "", next ? `next at ${fmt12(next.start)}` : "", "Next")}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-      {/* Alerts drawer */}
-      {alertsOpen && (
-        <AlertsDrawer alerts={alerts} onClose={() => {
-          setAlertsOpen(false);
-          setState({ ...state, alerts: alerts.map(a => ({ ...a, unread: false })) });
-        }} onOpenMap={() => { setAlertsOpen(false); setState({ ...state, tab: "map" }); }}
-          onOpenLineup={() => { setAlertsOpen(false); setState({ ...state, tab: "lineup" }); }}
-        />
-      )}
+// Saved set tile: the artist's real photo when one is cached, else a plain
+// well with initials. Never a generated gradient. Name and time sit under it.
+// One saved set on Today before the festival: the board's list row.
+function SavedRow({ a, onOpen }) {
+  const dd = FESTIVAL_CONFIG.dayDates?.[a.day];
+  const day = dd?.short || `Day ${a.day}`;
+  const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
+  return (
+    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
+      style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", background: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer", width: "100%" }}>
+      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
+      <DuoAvatar name={a.name} size={36} />
+      <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+        <span className="duo-name" style={{ font: "650 15px/1.33 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
+        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{[dd?.name || day, stage].filter(Boolean).join(" · ")}</span>
+      </span>
+    </button>
+  );
+}
 
-      {/* First-timer guide drawer — bundles gate hours, bag policy, lingo,
-          survival tips, and a recommended day-1 plan in one scrollable sheet. */}
-      {firstTimerOpen && (
-        <FirstTimerGuide onClose={() => {
-          setFirstTimerOpen(false);
-          setFtDismissed(true);
-          try { localStorage.setItem("ft_guide_seen", "1"); } catch {}
-        }}
-        onOpenMap={() => { setFirstTimerOpen(false); setState({ ...state, tab: "map" }); }}
-        onOpenLineup={() => { setFirstTimerOpen(false); setState({ ...state, tab: "lineup" }); }}
-        />
+function EssentialTile({ label, sub, icon, onClick }) {
+  return (
+    <button className="duo-press duo-card" onClick={onClick} style={{
+      minWidth: 0, minHeight: 52,
+      display: "flex", alignItems: "center", gap: 10,
+      padding: "10px 12px", color: "var(--ink)", background: "var(--s2)", textAlign: "left",
+    }}>
+      <span aria-hidden="true" style={{ display: "flex", flexShrink: 0, color: "var(--ink-2)" }}>{icon}</span>
+      <span style={{ font: "600 15px/1.33 var(--f-ui)", minWidth: 0 }}>
+        {label}
+        {sub && <span className="duo-data-s duo-acc" style={{ display: "block", marginTop: 2 }}>{sub}</span>}
+      </span>
+    </button>
+  );
+}
+
+// One notice card. A warning carries its label in text and a glyph, set in
+// the sunrise/caution colour, never colour alone.
+function FieldNotice({ eyebrow, text, action, onAction, onDismiss, warn }) {
+  return (
+    <div role="status" className="duo-card" style={{
+      margin: "0 20px", display: "flex", alignItems: "center", gap: 4,
+      padding: "10px 4px 10px 16px",
+    }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {eyebrow && (
+          <div className={`duo-label ${warn ? "duo-sun" : "duo-ink3"}`} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+            {warn && <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.5 L21.5 20 H2.5 Z"/><path d="M12 10 V14"/><path d="M12 17 V17.2"/></svg>}
+            {eyebrow}
+          </div>
+        )}
+        <div className="duo-body" style={{ fontSize: 15 }}>{text}</div>
+      </div>
+      {action && <button className="duo-link" onClick={onAction} style={{ padding: "0 12px", fontSize: 15 }}>{action}</button>}
+      {onDismiss && (
+        <button onClick={onDismiss} aria-label="Dismiss" style={{ ...fieldIconBtn, color: "var(--ink-3)" }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+        </button>
       )}
-    </Screen>
+    </div>
   );
 }
 
@@ -2307,10 +2232,10 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 flexShrink: 0, width: 136, textAlign: "left",
                 padding: "9px 11px", borderRadius: 13,
                 background: isSaved
-                  ? `${stage.color}18`
+                  ? "rgba(var(--signal-rgb),0.12)"
                   : artist ? "var(--paper-2)" : "transparent",
-                border: `1px solid ${isSaved ? stage.color + "55" : artist ? "var(--line)" : "var(--line-2)"}`,
-                borderLeft: `3px solid ${stage.color}`,
+                border: `1px solid ${isSaved ? "rgba(var(--signal-rgb),0.4)" : artist ? "var(--line)" : "var(--line-2)"}`,
+                borderLeft: `3px solid ${isSaved ? "var(--signal)" : "var(--line-2)"}`,
                 cursor: "pointer",
                 opacity: (artist || upcoming) ? 1 : 0.45,
               }}>
@@ -2320,18 +2245,18 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
                   {artist && (
                     <span style={{
-                      width: 6, height: 6, borderRadius: 6, background: stage.color,
-                      boxShadow: `0 0 0 3px ${stage.color}33`,
+                      width: 6, height: 6, borderRadius: 6, background: "var(--signal)",
+                      boxShadow: "0 0 0 3px rgba(var(--signal-rgb),0.2)",
                       animation: "pulse 1.6s ease-in-out infinite",
                       flexShrink: 0,
                     }}/>
                   )}
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
+                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--text-2)", fontWeight: 700 }}>
                     {stage.short}
                   </span>
                 </div>
                 {isSaved && (
-                  <svg width="9" height="9" viewBox="0 0 24 24" fill={stage.color} stroke="none">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--signal-ink)" stroke="none">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                   </svg>
                 )}
@@ -2355,7 +2280,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
                 <>
                   <div style={{
                     fontSize: 10, lineHeight: 1.15, marginTop: 4,
-                    color: nextSaved ? stage.color : "var(--muted)",
+                    color: nextSaved ? "var(--signal-ink)" : "var(--muted)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                     fontStyle: "italic",
                   }}>
@@ -2390,48 +2315,31 @@ function TonightsPlan({ plan, state, setState }) {
   return (
     <>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-        <div className="serif" style={{ fontSize: 24, letterSpacing: -0.3 }}>
-          Tonight's <span style={{ fontStyle: "italic" }}>plan</span>
-        </div>
-        <button onClick={() => setState({ ...state, tab: "lineup" })} className="mono" style={{
-          background: "none", border: "none", fontSize: 10, letterSpacing: 1.2,
-          color: "var(--muted)", cursor: "pointer", textTransform: "uppercase",
-        }}>All →</button>
+        <h3 className="duo-sect">Tonight's plan</h3>
+        <button onClick={() => setState({ ...state, tab: "lineup" })} className="duo-link">All →</button>
       </div>
 
       {plan.length === 0 ? (
-        <div style={{
-          border: "1px dashed var(--line-2)", borderRadius: 14, padding: "20px 16px",
-          textAlign: "center",
-        }}>
-          <div className="serif" style={{ fontSize: 18, color: "var(--muted)", fontStyle: "italic" }}>
-            No sets saved for tonight
-          </div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 6 }}>
-            TAP + ON ANY ARTIST TO ADD
+        <div className="duo-well" style={{ padding: "20px 16px", textAlign: "center" }}>
+          <div className="duo-headline">No sets saved for tonight</div>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 4, fontWeight: 400 }}>
+            Tap + on any set in the Lineup to add it.
           </div>
         </div>
       ) : (
         <>
           {tightCount > 0 && (
-            <div style={{
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              padding: "6px 10px", marginBottom: 10,
-              background: "rgba(232,93,46,0.07)", borderRadius: 8,
-              border: "1px solid rgba(232,93,46,0.2)",
+            <div className="duo-card" style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+              padding: "6px 6px 6px 14px", marginBottom: 10, minHeight: 52,
             }}>
-              <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--ember-ink)" }}>
-                ⚠ {tightCount} TIGHT TRANSITION{tightCount > 1 ? "S" : ""} · CHECK LEAVE-BY TIMES
+              <span className="duo-body-s" style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, fontWeight: 400 }}>
+                <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--clash)", flexShrink: 0 }} />
+                {tightCount} tight transition{tightCount > 1 ? "s" : ""} · check leave-by times
               </span>
               {conflicts.length > 0 && (
-                <button onClick={() => setResolverOpen(r => !r)} style={{
-                  background: resolverOpen ? "transparent" : "var(--ember)",
-                  color: resolverOpen ? "var(--ember-ink)" : "#fff",
-                  border: resolverOpen ? "1px solid var(--ember)" : "none",
-                  borderRadius: 6, padding: "4px 10px", cursor: "pointer",
-                  fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                }}>
-                  {resolverOpen ? "CLOSE ×" : "RESOLVE →"}
+                <button onClick={() => setResolverOpen(r => !r)} aria-expanded={resolverOpen} className="duo-chip">
+                  <span>{resolverOpen ? "Close" : "Resolve"}</span>
                 </button>
               )}
             </div>
@@ -2470,66 +2378,43 @@ function PlanRow({ entry, state, setState }) {
   return (
     <div>
       {/* Walking transition pill from previous set */}
-      {prev && walk > 0 && (
+      {prev && walk !== 0 && (
         <div style={{
           display: "flex", alignItems: "center", gap: 8,
           padding: "4px 0 4px 56px", marginBottom: 2,
         }}>
-          <div style={{ width: 1, height: 18, background: tight ? "var(--ember)" : "var(--line-2)" }}/>
-          <span className="mono" style={{
-            fontSize: 9, letterSpacing: 1.2,
-            color: tight ? "var(--ember-ink)" : "var(--muted)",
-            fontWeight: tight ? 700 : 500,
+          <div style={{ width: 1.5, height: 18, background: tight ? "var(--clash)" : "var(--line-2)" }}/>
+          <span className="duo-data-s" style={{
+            color: tight ? "var(--clash)" : "var(--ink-2)",
           }}>
-            {walk} MIN WALK · {prev.stage === a.stage ? "SAME STAGE" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
-            {leaveByLabel && ` · LEAVE BY ${leaveByLabel}`}
+            {/* No minutes and no LEAVE BY on an unmeasured pair: leaveByLabel
+                is already null there, because leaveBy is. */}
+            {walk != null ? `${walk} min walk · ` : ""}{prev.stage === a.stage ? "Same stage" : `${STAGES.find(s=>s.id===prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`}
+            {leaveByLabel && ` · leave by ${leaveByLabel}`}
           </span>
         </div>
       )}
 
-      {/* The set row */}
+      {/* The set row: the board's list row. A past set reads quieter by
+          colour (opacity took its labels under AA); live = the lifted card;
+          a clash = the clash ring and the word. */}
       <div onClick={() => setState({ ...state, tab: "home", artist: a.id })}
-        style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: "12px 4px",
-          borderBottom: "1px solid var(--line)",
-          cursor: "pointer",
-          opacity: isPast ? 0.45 : 1,
-          background: conflict ? "rgba(232,93,46,0.04)" : "transparent",
-        }}>
-        <div style={{ width: 44 }}>
-          <div className="mono" style={{
-            fontSize: 10, letterSpacing: 1,
-            color: isLive ? (stage?.color || "#8a8580") : "var(--ink)",
-            fontWeight: isLive ? 700 : 500,
-          }}>{fmt12(a.start)}</div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>
-            {isLive ? "LIVE" : isPast ? "DONE" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
+        className={"duo-lrow" + (isLive ? " live" : "")}
+        style={{ cursor: "pointer", margin: 0, paddingLeft: 4 }}>
+        <div style={{ width: 72, flexShrink: 0 }}>
+          <div className="duo-data" style={{ fontSize: 13, color: isPast ? "var(--ink-3)" : "var(--ink)" }}>{fmt12(a.start)}</div>
+          <div className="duo-data-s" style={{ color: isLive ? "var(--live)" : "var(--ink-2)", marginTop: 1 }}>
+            {isLive ? "Live" : isPast ? "Done" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
           </div>
         </div>
-        <div style={{ width: 3, alignSelf: "stretch", background: stage.color, borderRadius: 3 }}/>
+        <DuoAvatar name={a.name} size={42} ring={conflict ? "cl" : isLive ? "on" : ""} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.1, textDecoration: isPast ? "line-through" : "none" }}>{a.name}</div>
-            {isLive && (
-              <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "#fff", background: stage.color,
-                padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-              }}>LIVE</span>
-            )}
-            {conflict && (
-              <span className="mono" style={{
-                fontSize: 8, letterSpacing: 1.3, color: "var(--ember-ink)",
-                padding: "1px 5px", borderRadius: 3, fontWeight: 700,
-                border: "1px solid var(--ember)",
-              }}>CLASH</span>
-            )}
-          </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>
-            {stage.name.toUpperCase()} · {a.genre.toUpperCase()}
+          <div className="duo-headline duo-name" style={{ fontWeight: 700, color: isPast ? "var(--ink-2)" : "var(--ink)" }}>{actDisplayName(a.name)}</div>
+          <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+            {stage.name}{conflict ? <span style={{ color: "var(--clash)" }}> · clash</span> : ""}
           </div>
         </div>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="1.6" strokeLinecap="round">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
           <path d="M9 6 L15 12 L9 18" />
         </svg>
       </div>
@@ -2565,8 +2450,8 @@ function homeBtn(kind) {
     fontSize: 10, letterSpacing: 1.2, fontWeight: 500,
     textTransform: "uppercase",
   };
-  if (kind === "solid")  return { ...base, background: "#fff", color: "var(--ink)" };
-  if (kind === "ghost")  return { ...base, background: "rgba(255,255,255,0.15)", color: "#fff", backdropFilter: "blur(6px)" };
+  if (kind === "solid")  return { ...base, background: "var(--ink)", color: "var(--paper)" };
+  if (kind === "ghost")  return { ...base, background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(6px)" };
   return base;
 }
 
@@ -2577,12 +2462,12 @@ function AlertsDrawer({ alerts, onClose, onOpenMap, onOpenLineup }) {
   };
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }}/>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.35)" }}/>
       <div style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "78%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.35)", position: "relative",
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.35)", position: "relative",
         animation: "sheetUp 0.3s var(--ease-smooth)",
       }}>
         <div style={{ padding: "14px 18px 10px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--line)" }}>
@@ -2636,7 +2521,7 @@ function DontMissStrip({ day, state, setState }) {
     <div style={{ marginTop: 22 }}>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
         <div className="serif" style={{ fontSize: 22 }}>
-          Don't <span style={{ fontStyle: "italic", color: "#fbbf24" }}>miss</span>
+          Don't <span style={{ fontStyle: "italic", color: "var(--signal-ink)" }}>miss</span>
         </div>
         <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
           {dayMeta?.name?.toUpperCase() || `DAY ${day}`} · LEGENDARY
@@ -2652,11 +2537,11 @@ function DontMissStrip({ day, state, setState }) {
           return (
             <button key={a.id} onClick={() => setState({ ...state, tab: "home", artist: a.id })} style={{
               flexShrink: 0, width: 168, padding: "10px 11px", textAlign: "left",
-              borderRadius: 14, border: "1px solid rgba(251,191,36,0.45)",
-              background: "linear-gradient(135deg, rgba(251,191,36,0.10) 0%, rgba(232,93,46,0.06) 100%)",
+              borderRadius: 14, border: "1px solid rgba(var(--signal-rgb),0.45)",
+              background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.10) 0%, rgba(var(--signal-rgb),0.06) 100%)",
               cursor: "pointer",
             }}>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "#b8651b", fontWeight: 800 }}>
+              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--signal-ink)", fontWeight: 800 }}>
                 {isSunrise ? "🌅 SUNRISE SET" : "★ B2B COLLAB"}
               </div>
               <div className="serif" style={{
@@ -2745,12 +2630,12 @@ function FirstTimerGuide({ onClose, onOpenMap, onOpenLineup }) {
   const [openIdx, setOpenIdx] = React.useState(0); // first section open by default
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 9, display: "flex", flexDirection: "column" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}/>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
       <div style={{
         marginTop: "auto", background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         maxHeight: "85%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.4)", position: "relative",
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)", position: "relative",
       }}>
         <div style={{
           padding: "14px 18px 12px",
@@ -2850,47 +2735,9 @@ function _buildShareUrl(savedIds) {
   return `${base}?lineup=${savedIds.join(",")}`;
 }
 
-function ShareLineupButton({ savedIds }) {
-  const [flash, setFlash] = React.useState(null); // 'shared' | 'copied'
-  if (!savedIds?.length) return null;
-
-  const onShare = async () => {
-    const url = _buildShareUrl(savedIds);
-    const text = `My ${FESTIVAL_CONFIG.brand} lineup — ${savedIds.length} sets saved on Plursky`;
-    // navigator.share lights up the OS share sheet on iOS/Android — clipboard
-    // is the desktop / unsupported-browser fallback.
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: `My ${FESTIVAL_CONFIG.brand} lineup`, text, url });
-        setFlash("shared"); setTimeout(() => setFlash(null), 1800);
-        return;
-      } catch (e) {
-        if (e?.name === "AbortError") return; // user cancelled the share sheet
-      }
-    }
-    try {
-      await navigator.clipboard.writeText(url);
-      setFlash("copied"); setTimeout(() => setFlash(null), 1800);
-    } catch {
-      prompt("Copy your lineup link:", url);
-    }
-  };
-
-  return (
-    <button onClick={onShare} className="mono" style={{
-      background: flash ? "var(--success)" : "var(--ink)",
-      color: "var(--paper)", border: "none", borderRadius: 999,
-      padding: "5px 10px", cursor: "pointer",
-      fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-      transition: "background 0.2s",
-    }}>
-      {flash === "shared" ? "✓ SHARED" : flash === "copied" ? "✓ COPIED" : "↗ SHARE"}
-    </button>
-  );
-}
 
 function FriendLineupBanner({ state, setState }) {
-  const friendIds = state.friendLineup || [];
+  const friendIds = savedInLineup(state.friendLineup);
   const savedSet = new Set(state.saved || []);
   const overlap = friendIds.filter(id => savedSet.has(id));
   const fresh = friendIds.filter(id => !savedSet.has(id));
@@ -2911,50 +2758,36 @@ function FriendLineupBanner({ state, setState }) {
   };
 
   return (
-    <div style={{
-      marginTop: 18, padding: "16px 16px 14px",
-      borderRadius: 18,
-      background: "linear-gradient(135deg, rgba(123,61,154,0.12), rgba(232,93,46,0.08))",
-      border: "1px solid rgba(123,61,154,0.3)",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)", fontWeight: 700 }}>
-          SHARED WITH YOU{state.friendName ? ` · ${state.friendName.toUpperCase()}` : ""}
+    <div className="duo-card" style={{ marginTop: 18, padding: "14px 16px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <span className="duo-label duo-acc" style={{ minWidth: 0, overflowWrap: "anywhere" }}>
+          Shared with you{state.friendName ? ` · ${state.friendName}` : ""}
         </span>
         <button onClick={dismiss} aria-label="Dismiss" style={{
-          background: "transparent", border: "none", color: "var(--muted)",
-          cursor: "pointer", fontSize: 14, padding: 0, lineHeight: 1,
+          background: "transparent", border: "none", color: "var(--ink-2)",
+          cursor: "pointer", fontSize: 20, minWidth: 44, minHeight: 44, marginRight: -12, lineHeight: 1, flexShrink: 0,
         }}>×</button>
       </div>
-      <div className="serif" style={{ fontSize: 22, lineHeight: 1.1, marginBottom: 4 }}>
-        {state.friendName ? state.friendName : "Your friend"}'s <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span>
+      <div className="duo-headline" style={{ fontSize: 20, marginBottom: 2 }}>
+        {state.friendName ? state.friendName : "Your friend"}’s lineup
       </div>
-      <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.75, lineHeight: 1.5, marginBottom: 12 }}>
+      <div className="duo-data-s duo-ink2" style={{ marginBottom: 6 }}>
         {friendIds.length} sets saved · {overlap.length} match yours
         {fresh.length > 0 && ` · ${fresh.length} new to you`}
       </div>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-        <button onClick={() => setExpanded(e => !e)} className="mono" style={{
-          background: "var(--ink)", color: "var(--paper)", border: "none",
-          borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-        }}>{expanded ? "HIDE SETS" : "VIEW SETS"}</button>
+        <button onClick={() => setExpanded(e => !e)} aria-expanded={expanded} className="duo-chip">
+          <span>{expanded ? "Hide sets" : "View sets"}</span>
+        </button>
         {fresh.length > 0 && (
-          <button onClick={addOverlap} className="mono" style={{
-            background: "var(--ember)", color: "#fff", border: "none",
-            borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>+ ADD {fresh.length} NEW</button>
+          <button onClick={addOverlap} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 14 }}>
+            + Add {fresh.length} new
+          </button>
         )}
-        <button onClick={addAll} className="mono" style={{
-          background: "transparent", color: "var(--ink)",
-          border: "1px solid var(--line-2)",
-          borderRadius: 999, padding: "8px 14px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-        }}>+ ADD ALL</button>
+        <button onClick={addAll} className="duo-chip"><span>+ Add all</span></button>
       </div>
       {expanded && (
-        <div style={{ marginTop: 12, paddingTop: 10, borderTop: "1px solid var(--line)" }}>
+        <div style={{ marginTop: 10 }}>
           {festivalDayNums().map(day => {
             const dayArtists = friendIds
               .map(id => ARTISTS.find(a => a.id === id))
@@ -2963,43 +2796,25 @@ function FriendLineupBanner({ state, setState }) {
             if (!dayArtists.length) return null;
             const meta = FESTIVAL_CONFIG.dayDates[day];
             return (
-              <div key={day} style={{ marginBottom: 10 }}>
-                <div className="mono" style={{
-                  fontSize: 9, letterSpacing: 1.6, color: "var(--horizon)",
-                  fontWeight: 700, marginBottom: 6,
-                }}>
-                  {meta.short} · {meta.name.toUpperCase()}
-                </div>
+              <div key={day} style={{ marginBottom: 8 }}>
+                <h3 className="duo-sect" style={{ margin: "10px 0 2px" }}>{meta.name}</h3>
                 {dayArtists.map(a => {
                   const stage = STAGES.find(s => s.id === a.stage);
                   const isOverlap = savedSet.has(a.id);
+                  // The board row: time, face (ringed when it is also on your
+                  // plan), name over stage. A match is said in words too.
                   return (
                     <button key={a.id} onClick={() => setState({ ...state, artist: a.id })}
-                      style={{
-                        display: "flex", alignItems: "center", gap: 8, width: "100%",
-                        background: "transparent", border: "none",
-                        borderBottom: "1px solid var(--line-2)",
-                        padding: "6px 0", cursor: "pointer", textAlign: "left",
-                      }}>
-                      <span style={{
-                        width: 8, height: 8, borderRadius: 999,
-                        background: isOverlap ? "var(--success)" : stage?.color || "var(--muted)",
-                        flexShrink: 0,
-                      }}/>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div className="serif" style={{ fontSize: 14, lineHeight: 1.15, color: "var(--ink)" }}>
-                          {a.name}
-                        </div>
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", marginTop: 1 }}>
-                          {stage?.short} · {fmt12(a.start)}
-                        </div>
-                      </div>
-                      {isOverlap && (
-                        <span className="mono" style={{
-                          fontSize: 8, letterSpacing: 1, color: "var(--success)",
-                          fontWeight: 700,
-                        }}>MATCH</span>
-                      )}
+                      className={"duo-lrow duo-press" + (isOverlap ? " plan" : "")}
+                      style={{ display: "flex", width: "auto", color: "var(--ink)", textAlign: "left" }}>
+                      <span className="duo-data duo-ink2" style={{ width: 72, flexShrink: 0, fontSize: 13 }}>{fmt12(a.start)}</span>
+                      <DuoAvatar name={a.name} size={42} ring={isOverlap ? "on" : ""} />
+                      <span style={{ flex: 1, minWidth: 0 }}>
+                        <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                        <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>
+                          {stage?.name}{isOverlap ? " · on your plan too" : ""}
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
@@ -3012,4 +2827,4 @@ function FriendLineupBanner({ state, setState }) {
   );
 }
 
-Object.assign(window, { HomeScreen, FriendLineupBanner, ShareLineupButton });
+Object.assign(window, { HomeScreen, FriendLineupBanner });

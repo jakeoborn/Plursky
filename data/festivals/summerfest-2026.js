@@ -145,7 +145,13 @@
     mk("su22",   "Tash Sultana",                                      "Rock",                "miller",        1, "22:30", "00:00"),
     // Aurora Pavilion
     mk("su23",   "MKE Live Groove: Summerfest Edition",               "Youth Showcase",      "aurora",        1, "12:00", "13:50"),
-    mk("su24",   "Stephan Jenkins of Third Eye Blind",                "Rock",                "aurora",        1, "14:00", "15:05"),
+    // su24 (Stephan Jenkins of Third Eye Blind, Aurora 14:00) is pulled: the
+    // same act at the same time as su45 on the AmFam House, which the stage
+    // sponsor's own 2026 House schedule bills (June 18, 2 PM). Radio Milwaukee
+    // (06-18) and Milwaukee Record both list him at the House only. The final
+    // June 18 graphic is not retained, so nothing else on Aurora is changed.
+    // Ruling 2026-10-12: out until a dated first-party source bills him here.
+    // Re-add: mk("su24", "Stephan Jenkins of Third Eye Blind", "Rock", "aurora", 1, "14:00", "15:05")
     mk("su25",   "Summerfest Opening Ceremonies",                     "Youth Showcase",      "aurora",        1, "18:00", "18:45"),
     mk("su26",   "Alejandro Escovedo",                                "Rock",                "aurora",        1, "19:00", "20:05"),
     mk("su27",   "DJ B-Lee",                                          "—",                   "aurora",        1, "21:00", "22:30"),
@@ -665,6 +671,9 @@
 
   const CONFIG = {
     id: "summerfest-2026",
+    // The festival's OWN map page, linked (never embedded) by the /f/ page. The page links
+    // the "2026 Summerfest Grounds Map"; link the page, never the image.
+    mapSource: { url: "https://www.summerfest.com/about/", observedAt: "2026-09-24", mapYear: 2026 },
     // From the SOURCE note above: summerfest.com/lineup daily schedule graphics, accessed 2026-08-28. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://summerfest.com/lineup", observedAt: "2026-08-28", official: true },
     name: "Summerfest 2026",

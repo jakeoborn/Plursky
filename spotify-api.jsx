@@ -869,6 +869,36 @@ async function _createPlurskyPlaylist(token, profileId) {
   }
 }
 
+// Playlist visibility on Spotify. Private unless the user switched "Public
+// playlist" on; every build re-applies it, so switching off also takes an
+// already-public "Plursky" playlist back to private.
+function _playlistPublicPref() {
+  try { return localStorage.getItem("plursky_playlist_public") === "1"; } catch { return false; }
+}
+function _setPlaylistPublicPref(on) {
+  try { localStorage.setItem("plursky_playlist_public", on ? "1" : "0"); } catch {}
+}
+// The switch applies at once to the playlist the last build wrote to, so the
+// user never has to rebuild just to change who can see it.
+// Returns { ok, status } | { ok: false, reason }
+async function _applyPlaylistVisibility(isPublic) {
+  let id = null;
+  try { id = localStorage.getItem("plursky_target_playlist_id"); } catch {}
+  if (!id) return { ok: false, reason: "no_playlist" };
+  const token = await getValidToken();
+  if (!token) return { ok: false, reason: "not_connected" };
+  try {
+    const r = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+      method: "PUT",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify({ public: !!isPublic }),
+    });
+    return { ok: r.ok, status: r.status };
+  } catch {
+    return { ok: false, reason: "fetch_failed" };
+  }
+}
+
 // #12 Build my playlist — push the user's saved sets (any festival) into their
 // "Plursky" Spotify playlist (created manually, see _findPlurskyPlaylist).
 // Skips artists Spotify can't find.
@@ -1070,15 +1100,18 @@ async function createSetsPlaylist(state, opts = {}) {
     const n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
-  if (dayLabels.length > 0) {
-    await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
-      method: "PUT",
-      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
-      body: JSON.stringify({
+  //    Visibility rides the same PUT on every build (_playlistPublicPref).
+  const isPublic = _playlistPublicPref();
+  const detailsRes = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
+    method: "PUT",
+    headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      public: isPublic,
+      ...(dayLabels.length > 0 ? {
         description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`,
-      }),
-    }).catch(() => {});
-  }
+      } : {}),
+    }),
+  }).catch(() => null);
 
   return {
     ok:    true,
@@ -1092,6 +1125,8 @@ async function createSetsPlaylist(state, opts = {}) {
     entries: entries.map((e, i) => ({ id: e.artist.id, name: e.artist.name, role: e.role, tracks: urisByEntry[i].length })),
     url:   playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
     id:    playlist.id,
+    // null when Spotify refused the details write: visibility unknown.
+    public: detailsRes?.ok ? isPublic : null,
   };
 }
 // Pre-rename name, kept so nothing outside this file breaks.
@@ -1254,14 +1289,7 @@ async function fetchSpotifyTopArtists(onProgress) {
     const top = Array.from(byId.values()).sort((a, b) => b._score - a._score);
 
     // Persist artist images keyed by lowercase name for ArtistScreen hero
-    try {
-      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      top.forEach(a => {
-        const url = a.images?.[0]?.url;
-        if (url && a.name) imgs[a.name.toLowerCase()] = url;
-      });
-      localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-    } catch {}
+    putArtistImages(top.map(a => ({ name: a.name, url: a.images?.[0]?.url, source: "spotify", spotifyId: a.id })));
 
     // Also pull recently-played + Liked Songs so artists you've played even
     // once (but aren't in your top 50) get matched against the lineup.
@@ -1439,21 +1467,20 @@ async function fetchSpotifyTopArtists(onProgress) {
 }
 
 // Search Spotify for a 30-sec preview URL for a given artist name.
-// Spotify deprecated `preview_url` for new apps in late 2024 — most tracks
-// now return null. Falls back to iTunes Search (free, no auth, CORS-OK)
-// which still serves 30s previews for ~95% of mainstream artists.
+// Spotify deprecated `preview_url` for new apps in late 2024, so many tracks
+// return null; then there is no preview (the artist screen says NO PREVIEW
+// AVAILABLE). There is deliberately no iTunes fallback: its previews may only
+// promote store content next to a store badge. See _previewPlayable (chrome.jsx).
 async function fetchPreviewUrl(artistName) {
   artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;  // artist.jsx
   const cacheKey = "preview_urls_v1";
-  try {
-    const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
-    const entry = cached[artistName.toLowerCase()];
-    if (entry) return entry;
-  } catch {}
+  const cached = _prunePreviewCache()[artistName.toLowerCase()];  // Spotify entries only
+  if (cached) return cached;
 
   const _cachePreview = (result) => {
+    if (!_previewPlayable(result)) return null;
     try {
-      const cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+      const cached = _prunePreviewCache();
       cached[artistName.toLowerCase()] = result;
       localStorage.setItem(cacheKey, JSON.stringify(cached));
     } catch {}
@@ -1482,20 +1509,7 @@ async function fetchPreviewUrl(artistName) {
     } catch {}
   }
 
-  // iTunes fallback — works without auth, returns 30s m4a previews
-  try {
-    const q = encodeURIComponent(artistName);
-    const res = await fetch(`https://itunes.apple.com/search?term=${q}&entity=song&limit=10`);
-    if (!res.ok) return null;
-    const data = await res.json();
-    const results = data.results || [];
-    const first = results.find(t =>
-      t.previewUrl && t.artistName?.toLowerCase().includes(firstWord)
-    ) || results.find(t => t.previewUrl);
-    return first ? _cachePreview({ url: first.previewUrl, name: first.trackName, source: "itunes" }) : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 // Match Spotify artist names against the EDC lineup.

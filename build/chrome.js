@@ -47,21 +47,22 @@ function TopBar({
       justifyContent: "space-between",
       gap: 12
     }
-  }, React.createElement("div", null, sub && React.createElement("div", {
-    className: "mono",
+  }, React.createElement("div", {
     style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      textTransform: "uppercase",
-      color: "var(--muted)",
-      marginBottom: 4
+      minWidth: 0,
+      overflowWrap: "anywhere"
     }
-  }, sub), React.createElement("div", {
-    className: "serif",
+  }, sub && React.createElement("div", {
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 34,
-      lineHeight: 0.95,
-      letterSpacing: -0.5
+      marginBottom: 6
+    }
+  }, sub), React.createElement("h1", {
+    className: "duo-title",
+    "data-fit-words": true,
+    "data-fit-min": "20",
+    style: {
+      margin: 0
     }
   }, title)), right);
 }
@@ -109,33 +110,15 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
-  var [_tick, _setTick] = React.useState(0);
-  React.useEffect(() => {
-    var id = setInterval(() => _setTick(t => t + 1), 30000);
-    return () => clearInterval(id);
-  }, []);
-  var _liveMainColor = React.useMemo(() => {
-    try {
-      var stages = window.STAGES || [];
-      var artists = typeof activeLineup === "function" ? activeLineup() : window.ARTISTS || [];
-      var main = window.FESTIVAL_CONFIG?.mainStageId;
-      if (!main || typeof window.isSetLive !== "function") return null;
-      var live = artists.find(a => a.stage === main && window.isSetLive(a));
-      if (!live) return null;
-      return stages.find(s => s.id === main)?.color || null;
-    } catch {
-      return null;
-    }
-  }, [_tick]);
   return React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      borderTop: _liveMainColor ? `2px solid ${_liveMainColor}` : "1px solid var(--line)",
-      boxShadow: _liveMainColor ? `0 -2px 12px ${_liveMainColor}22` : undefined,
-      padding: "6px 10px 10px",
+      background: "var(--chrome)",
+      backdropFilter: "blur(20px) saturate(160%)",
+      WebkitBackdropFilter: "blur(20px) saturate(160%)",
+      borderTop: "1px solid var(--line)",
+      padding: "0 10px 10px",
       display: "flex",
-      justifyContent: "space-around",
-      transition: "border-color 1s ease, box-shadow 1s ease"
+      justifyContent: "space-around"
     }
   }, tabs.map(t => {
     var Icon = t.icon;
@@ -148,40 +131,48 @@ function TabBar({
       },
       "aria-current": on ? "page" : undefined,
       style: {
+        position: "relative",
         background: "transparent",
         border: "none",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 2,
-        padding: "4px 12px",
-        color: on ? "var(--ink)" : "var(--muted)",
-        minWidth: 54,
-        transition: "color 0.15s ease",
-        position: "relative"
+        justifyContent: "center",
+        gap: 5,
+        padding: "10px 4px 4px",
+        color: on ? "var(--ink)" : "var(--ink-3)",
+        flex: "1 1 0",
+        minWidth: 0,
+        minHeight: 53,
+        transition: "color var(--t-tap) var(--ease-decay)"
       }
-    }, on && React.createElement("div", {
+    }, on && React.createElement("span", {
+      "aria-hidden": "true",
       style: {
         position: "absolute",
-        top: -6,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: 20,
-        height: 2.5,
+        top: -1,
+        left: "28%",
+        right: "28%",
+        height: 2,
         borderRadius: 2,
-        background: "var(--ember)"
+        background: "var(--acc)",
+        boxShadow: "0 0 12px var(--acc-55)"
       }
     }), React.createElement(Icon, {
       on: on
     }), React.createElement("span", {
-      className: "mono",
+      "data-fit-words": true,
+      "data-fit-group": "tab",
+      "data-fit-min": "9",
       style: {
-        fontSize: 9,
-        letterSpacing: 1,
-        textTransform: "uppercase",
-        fontWeight: on ? 700 : 400,
-        transition: "font-weight 0.15s, color 0.15s"
+        display: "block",
+        width: "100%",
+        fontSize: 11,
+        lineHeight: 1.17,
+        letterSpacing: ".01em",
+        fontWeight: 500,
+        textAlign: "center"
       }
     }, t.label));
   }));
@@ -189,66 +180,36 @@ function TabBar({
 var stroke = on => ({
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: on ? 1.8 : 1.4,
+  strokeWidth: 1.6,
   strokeLinecap: "round",
   strokeLinejoin: "round"
 });
-function HomeIcon({
+var _tabIcon = d => function TabIcon({
   on
 }) {
   return React.createElement("svg", {
-    width: "22",
-    height: "22",
+    width: "24",
+    height: "24",
     viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("circle", {
-    cx: "12",
-    cy: "12",
-    r: "3.2"
-  }), React.createElement("path", {
-    d: "M12 2.5 L12 5.5 M12 18.5 L12 21.5 M2.5 12 L5.5 12 M18.5 12 L21.5 12"
-  }), React.createElement("path", {
-    d: "M5.5 5.5 L7.5 7.5 M16.5 16.5 L18.5 18.5 M5.5 18.5 L7.5 16.5 M16.5 7.5 L18.5 5.5",
-    opacity: "0.55"
-  }));
-}
-function MapIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
     style: stroke(on)
   }, React.createElement("path", {
-    d: "M3 6 L9 4 L15 6 L21 4 L21 18 L15 20 L9 18 L3 20 Z"
-  }), React.createElement("path", {
-    d: "M9 4 L9 18 M15 6 L15 20"
+    d: d
   }));
-}
-function LineupIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("path", {
-    d: "M4 6 L20 6 M4 12 L20 12 M4 18 L14 18"
-  }), React.createElement("circle", {
-    cx: "18",
-    cy: "18",
-    r: "2"
-  }));
-}
+};
+var HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9 M9 20h6");
+var LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
+var MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
+var MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+var MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({
   on
 }) {
   return React.createElement("svg", {
-    width: "22",
-    height: "22",
+    width: "24",
+    height: "24",
     viewBox: "0 0 24 24",
+    "aria-hidden": "true",
     style: stroke(on)
   }, React.createElement("circle", {
     cx: "7",
@@ -260,44 +221,6 @@ function MusicIcon({
     r: "2.5"
   }), React.createElement("path", {
     d: "M9.5 17 L9.5 5 L19.5 3 L19.5 15"
-  }));
-}
-function MemoriesIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("rect", {
-    x: "3",
-    y: "5",
-    width: "18",
-    height: "14",
-    rx: "2.5"
-  }), React.createElement("circle", {
-    cx: "8.5",
-    cy: "10",
-    r: "1.6"
-  }), React.createElement("path", {
-    d: "M3 16 L9 11 L13 14.5 L17 11 L21 14.5"
-  }));
-}
-function MeIcon({
-  on
-}) {
-  return React.createElement("svg", {
-    width: "22",
-    height: "22",
-    viewBox: "0 0 24 24",
-    style: stroke(on)
-  }, React.createElement("circle", {
-    cx: "12",
-    cy: "9",
-    r: "3.5"
-  }), React.createElement("path", {
-    d: "M5 20 C 5 16, 8.5 14, 12 14 C 15.5 14, 19 16, 19 20"
   }));
 }
 function Pill({
@@ -379,11 +302,11 @@ function useModalOpen() {
   }, []);
   return n > 0;
 }
-function useStaggerFade(depKey) {
+function useStaggerFade(depKey, skip = false) {
   var ref = React.useRef(null);
   React.useEffect(() => {
     var el = ref.current;
-    if (!el || !window.IntersectionObserver) return;
+    if (!el || skip || !window.IntersectionObserver) return;
     var targets = el.querySelectorAll("[data-animate]");
     if (!targets.length) return;
     targets.forEach(t => {
@@ -418,6 +341,193 @@ function useStaggerFade(depKey) {
   }, [depKey]);
   return ref;
 }
+var ARTIST_IMAGES_KEY = "artist_images_v1";
+var SPOTIFY_IMAGE_TTL_MS = 24 * 60 * 60 * 1000;
+var _ARTIST_IMAGE_SOURCES = ["spotify"];
+function _readArtistImageStore() {
+  try {
+    var o = JSON.parse(localStorage.getItem(ARTIST_IMAGES_KEY) || "{}");
+    return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+  } catch {
+    return {};
+  }
+}
+function _artistImageRecord(v) {
+  if (typeof v === "string") return v ? {
+    url: v,
+    source: "unknown",
+    fetchedAt: null,
+    spotifyId: null
+  } : null;
+  if (!v || typeof v !== "object" || typeof v.url !== "string" || !v.url) return null;
+  return {
+    url: v.url,
+    source: _ARTIST_IMAGE_SOURCES.includes(v.source) ? v.source : "unknown",
+    fetchedAt: Number.isFinite(v.fetchedAt) ? v.fetchedAt : null,
+    spotifyId: typeof v.spotifyId === "string" && v.spotifyId ? v.spotifyId : null
+  };
+}
+function _artistImageShowable(rec, now = Date.now()) {
+  if (!rec) return false;
+  if (rec.source === "spotify") {
+    var age = now - rec.fetchedAt;
+    return rec.fetchedAt != null && age >= 0 && age < SPOTIFY_IMAGE_TTL_MS;
+  }
+  return false;
+}
+function getPermanentArtistImage(name) {
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
+  return rec;
+}
+function getArtistImage(name, now = Date.now()) {
+  if (!name) return null;
+  var permanent = getPermanentArtistImage(name);
+  if (permanent) return permanent;
+  var rec = _artistImageRecord(_readArtistImageStore()[String(name).toLowerCase()]);
+  return _artistImageShowable(rec, now) ? rec : null;
+}
+function getShareableArtistImage(name) {
+  var rec = getArtistImage(name);
+  return rec && rec.source !== "spotify" && rec.allowExport === true ? rec : null;
+}
+function _pruneArtistImageStore(store, now = Date.now()) {
+  var changed = false;
+  for (var k of Object.keys(store)) {
+    if (!_artistImageShowable(_artistImageRecord(store[k]), now)) {
+      delete store[k];
+      changed = true;
+    }
+  }
+  return changed;
+}
+function putArtistImages(entries, {
+  ifAbsent = false
+} = {}) {
+  try {
+    var store = _readArtistImageStore();
+    var changed = _pruneArtistImageStore(store);
+    var now = Date.now();
+    for (var e of entries || []) {
+      if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
+      if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
+      var ln = String(e.name).toLowerCase();
+      if (ifAbsent && store[ln]) continue;
+      store[ln] = {
+        url: e.url,
+        source: e.source,
+        fetchedAt: now
+      };
+      if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      changed = true;
+    }
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+  } catch {}
+  _scheduleArtistImageExpiry();
+}
+function putArtistImage(name, url, source, opts = {}) {
+  putArtistImages([{
+    name,
+    url,
+    source,
+    spotifyId: opts.spotifyId
+  }], opts);
+}
+var ARTIST_IMAGES_EXPIRED = "plursky:artist-images-expired";
+var _artistImageTimer = null;
+function _expireArtistImagesNow(now = Date.now()) {
+  var changed = false;
+  try {
+    var s = _readArtistImageStore();
+    changed = _pruneArtistImageStore(s, now);
+    if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(s));
+  } catch {}
+  if (changed) try {
+    window.dispatchEvent(new Event(ARTIST_IMAGES_EXPIRED));
+  } catch {}
+  _scheduleArtistImageExpiry(now);
+  return changed;
+}
+function _scheduleArtistImageExpiry(now = Date.now()) {
+  try {
+    clearTimeout(_artistImageTimer);
+  } catch {}
+  _artistImageTimer = null;
+  var next = Infinity;
+  try {
+    for (var v of Object.values(_readArtistImageStore())) {
+      var rec = _artistImageRecord(v);
+      if (rec && rec.source === "spotify" && rec.fetchedAt != null) next = Math.min(next, rec.fetchedAt + SPOTIFY_IMAGE_TTL_MS);
+    }
+  } catch {}
+  if (next === Infinity) return;
+  _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
+}
+function useArtistImageExpiry() {
+  var [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    var on = () => setN(x => x + 1);
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
+  }, []);
+  return n;
+}
+try {
+  _expireArtistImagesNow();
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") _expireArtistImagesNow();
+  });
+} catch {}
+try {
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var k = localStorage.key(i);
+    if (k && /^tadb_.+_v\d+$/.test(k)) localStorage.removeItem(k);
+  }
+} catch {}
+function _previewPlayable(e) {
+  return !!e && e.source === "spotify" && typeof e.url === "string" && /^https:\/\//.test(e.url);
+}
+function _prunePreviewCache() {
+  try {
+    var raw = localStorage.getItem("preview_urls_v1");
+    if (!raw) return {};
+    var all = JSON.parse(raw) || {};
+    var kept = {};
+    for (var _k of Object.keys(all)) if (_previewPlayable(all[_k])) kept[_k] = all[_k];
+    if (Object.keys(kept).length !== Object.keys(all).length) localStorage.setItem("preview_urls_v1", JSON.stringify(kept));
+    return kept;
+  } catch {
+    try {
+      localStorage.removeItem("preview_urls_v1");
+    } catch {}
+    return {};
+  }
+}
+_prunePreviewCache();
+function SpotifyFullLogo({
+  height = 21,
+  title = "Spotify"
+}) {
+  return React.createElement("svg", {
+    viewBox: "0 0 823.46 225.25",
+    height: height,
+    width: Math.round(height * 823.46 / 225.25),
+    role: "img",
+    "aria-label": title,
+    style: {
+      display: "block",
+      fill: "currentColor"
+    }
+  }, React.createElement("path", {
+    d: "m125.52,3.31C65.14.91,14.26,47.91,11.86,108.29c-2.4,60.38,44.61,111.26,104.98,113.66,60.38,2.4,111.26-44.6,113.66-104.98C232.89,56.59,185.89,5.7,125.52,3.31Zm46.18,160.28c-1.36,2.4-4.01,3.6-6.59,3.24-.79-.11-1.58-.37-2.32-.79-14.46-8.23-30.22-13.59-46.84-15.93-16.62-2.34-33.25-1.53-49.42,2.4-3.51.85-7.04-1.3-7.89-4.81-.85-3.51,1.3-7.04,4.81-7.89,17.78-4.32,36.06-5.21,54.32-2.64,18.26,2.57,35.58,8.46,51.49,17.51,3.13,1.79,4.23,5.77,2.45,8.91Zm14.38-28.72c-2.23,4.12-7.39,5.66-11.51,3.43-16.92-9.15-35.24-15.16-54.45-17.86-19.21-2.7-38.47-1.97-57.26,2.16-1.02.22-2.03.26-3.01.12-3.41-.48-6.33-3.02-7.11-6.59-1.01-4.58,1.89-9.11,6.47-10.12,20.77-4.57,42.06-5.38,63.28-2.4,21.21,2.98,41.46,9.62,60.16,19.74,4.13,2.23,5.66,7.38,3.43,11.51Zm15.94-32.38c-2.1,4.04-6.47,6.13-10.73,5.53-1.15-.16-2.28-.52-3.37-1.08-19.7-10.25-40.92-17.02-63.07-20.13-22.15-3.11-44.42-2.45-66.18,1.97-5.66,1.15-11.17-2.51-12.32-8.16-1.15-5.66,2.51-11.17,8.16-12.32,24.1-4.89,48.74-5.62,73.25-2.18,24.51,3.44,47.99,10.94,69.81,22.29,5.12,2.66,7.11,8.97,4.45,14.09Z"
+  }), React.createElement("path", {
+    d: "m318.54,169.81c-18.87,0-35.07-6.53-41.84-13.95-.64-.73-.73-1.13-.73-2.02v-22.09c0-1.05.89-1.45,1.61-.56,8.14,10.16,25.48,18.46,39.67,18.46,11.29,0,18.87-3.06,18.87-13.06,0-5.97-2.82-9.84-18.22-14.19l-8.87-2.5c-20.56-5.8-33.06-12.66-33.06-32.33,0-17.41,16.12-32.73,43.05-32.73,13.22,0,26.36,4.11,33.94,9.76.64.48.89.97.89,1.85v20.08c0,1.37-1.13,1.77-2.18.89-6.13-5.08-17.98-11.93-32.01-11.93s-20.64,6.29-20.64,12.09c0,6.13,4.27,7.82,19.51,12.34l7.58,2.26c23.46,7.01,33.06,16.85,33.06,33.14,0,20.96-17.41,34.51-40.63,34.51Zm164.39-42.09c0-12.82,8.87-22.33,21.37-22.33s21.28,9.51,21.28,22.33-8.87,22.33-21.28,22.33-21.37-9.51-21.37-22.33Zm21.28,42.09c26.04,0,44.18-18.62,44.18-42.09s-18.14-42.09-44.18-42.09-44.1,18.46-44.1,42.09,17.98,42.09,44.1,42.09Zm157.22-89.01v6.77h-13.71c-.73,0-1.13.4-1.13,1.13v16.12c0,.73.4,1.13,1.13,1.13h13.71v60.79c0,.73.4,1.13,1.13,1.13h20.64c.73,0,1.13-.4,1.13-1.13v-60.79h17.66l25.64,55.71-13.79,30.31c-.4.89.08,1.29.89,1.29h22.01c.73,0,1.05-.16,1.37-.89l45.55-103.52c.32-.73-.08-1.29-.89-1.29h-20.64c-.73,0-1.05.16-1.37.89l-20.8,49.99-20.88-49.99c-.32-.73-.64-.89-1.37-.89h-33.38v-5.32c0-8.71,5.89-12.74,13.46-12.74,4.51,0,9.43,2.34,12.9,4.43.81.48,1.37-.08,1.05-.81l-7.26-17.33c-.24-.56-.56-.89-1.13-1.21-3.55-1.85-9.35-3.47-15-3.47-17.09,0-26.93,13.06-26.93,29.67Zm-243,88.52c20.64,0,35.47-17.82,35.47-41.76s-15-41.44-35.64-41.44c-15.32,0-24.19,9.35-29.35,18.7v-16.12c0-.73-.4-1.13-1.13-1.13h-20.24c-.73,0-1.13.4-1.13,1.13v103.44c0,.73.4,1.13,1.13,1.13h20.24c.73,0,1.13-.4,1.13-1.13v-41.36c5.16,9.35,13.87,18.54,29.51,18.54Zm172.21-.32c6.77,0,13.3-1.77,17.17-4.03.56-.32.64-.64.64-1.21v-15.32c0-.81-.4-1.05-1.13-.64-2.34,1.29-5.4,2.34-9.59,2.34-6.61,0-10.8-3.87-10.8-12.42v-31.77h20.16c.73,0,1.13-.4,1.13-1.13v-16.12c0-.73-.4-1.13-1.13-1.13h-20.16v-21.04c0-.89-.56-1.37-1.37-.73l-36.04,28.38c-.48.4-.64.81-.64,1.45v9.19c0,.73.4,1.13,1.13,1.13h14.03v35.15c0,19.03,10.96,27.9,26.61,27.9Zm23.3-105.29c0,7.26,5.64,12.74,13.38,12.74s13.54-5.48,13.54-12.74-5.64-12.74-13.54-12.74-13.38,5.48-13.38,12.74Zm3.14,104.17h20.64c.73,0,1.13-.4,1.13-1.13v-78.04c0-.73-.4-1.13-1.13-1.13h-20.64c-.73,0-1.13.4-1.13,1.13v78.04c0,.73.4,1.13,1.13,1.13Zm-228.65-40.47c3.71-12.42,12.25-21.93,23.86-21.93s18.7,8.38,18.7,22.09-7.66,22.25-18.7,22.25-20.16-10.64-23.86-22.41Z"
+  }), React.createElement("path", {
+    d: "m810.1,92.31c-1.06-1.83-2.53-3.26-4.41-4.3-1.88-1.03-3.98-1.55-6.32-1.55s-4.44.52-6.32,1.55c-1.88,1.04-3.35,2.47-4.41,4.3-1.06,1.83-1.59,3.9-1.59,6.21s.53,4.34,1.59,6.17c1.06,1.83,2.53,3.26,4.41,4.3,1.88,1.04,3.98,1.55,6.32,1.55s4.44-.52,6.32-1.55,3.35-2.47,4.41-4.3c1.06-1.83,1.59-3.88,1.59-6.17s-.53-4.38-1.59-6.21Zm-1.93,11.36c-.86,1.52-2.06,2.7-3.59,3.56-1.53.85-3.27,1.28-5.2,1.28s-3.72-.43-5.25-1.28c-1.53-.85-2.72-2.04-3.57-3.56-.85-1.51-1.27-3.23-1.27-5.15s.42-3.63,1.27-5.13c.85-1.5,2.04-2.68,3.57-3.53,1.53-.85,3.28-1.28,5.25-1.28s3.67.43,5.2,1.28c1.53.85,2.73,2.04,3.59,3.56.86,1.52,1.29,3.23,1.29,5.15s-.43,3.59-1.29,5.11Z"
+  }), React.createElement("path", {
+    d: "m803.56,98.29c.82-.6,1.23-1.4,1.23-2.39s-.4-1.83-1.2-2.43c-.8-.6-1.96-.9-3.48-.9h-5.36v11.2h2.59v-4.45h1.41l3.41,4.45h3.18l-3.73-4.72c.79-.15,1.46-.4,1.96-.77Zm-3.86-.99h-2.36v-2.74h2.45c.73,0,1.29.11,1.68.34.39.23.59.58.59,1.06,0,.45-.21.79-.61,1.01-.41.23-.99.34-1.75.34Z"
+  }));
+}
 var _photoQueue = [];
 var _photoActive = false;
 function _drainPhotoQueue() {
@@ -444,13 +554,9 @@ function _drainPhotoQueue() {
     var items = d?.artists?.items || [];
     var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
     var img = match?.images?.[0]?.url || null;
-    if (img) {
-      try {
-        var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-        imgs[ln] = img;
-        localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-      } catch {}
-    }
+    if (img) putArtistImage(name, img, "spotify", {
+      spotifyId: match.id
+    });
     resolve(img);
   }).catch(() => resolve(null)).finally(() => {
     _photoActive = false;
@@ -466,29 +572,14 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function _fetchItunesPhoto(name) {
-  return fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(name)}&entity=musicArtist&limit=1`).then(r => r.json()).then(d => {
-    var art = d.results?.[0];
-    if (!art?.artistName) return null;
-    if (art.artistName.toLowerCase() !== name.toLowerCase()) return null;
-    var url = (art.artworkUrl100 || "").replace("100x100", "600x600");
-    if (!url) return null;
-    try {
-      var cache = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      cache[name.toLowerCase()] = url;
-      localStorage.setItem("artist_images_v1", JSON.stringify(cache));
-    } catch {}
-    return url;
-  }).catch(() => null);
-}
 function useArtistPhoto(name) {
   var [photo, setPhoto] = React.useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem("artist_images_v1") || "{}")[name.toLowerCase()] || null;
-    } catch {
-      return null;
-    }
+    return getArtistImage(name)?.url || null;
   });
+  var expiry = useArtistImageExpiry();
+  React.useEffect(() => {
+    if (expiry) setPhoto(getArtistImage(name)?.url || null);
+  }, [expiry]);
   React.useEffect(() => {
     if (photo) return;
     var live = true;
@@ -496,24 +587,13 @@ function useArtistPhoto(name) {
     var expires = localStorage.getItem("spotify_expires");
     if (token && expires && Date.now() < parseInt(expires)) {
       _queuePhoto(name).then(img => {
-        if (!live) return;
-        if (img) {
-          setPhoto(img);
-          return;
-        }
-        _fetchItunesPhoto(name).then(url => {
-          if (live && url) setPhoto(url);
-        });
-      });
-    } else {
-      _fetchItunesPhoto(name).then(url => {
-        if (live && url) setPhoto(url);
+        if (live && img) setPhoto(img);
       });
     }
     return () => {
       live = false;
     };
-  }, [name.toLowerCase()]);
+  }, [name.toLowerCase(), photo]);
   return photo;
 }
 function ArtistSwatch({
@@ -521,21 +601,21 @@ function ArtistSwatch({
   size = 44
 }) {
   var photo = useArtistPhoto(artist.name);
-  var initials = artist.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+  var initials = artist.name.split(/\s+/).map(w => (w.match(/[A-Za-z0-9]/) || [""])[0]).filter(Boolean).slice(0, 2).join("").toUpperCase();
   return React.createElement("div", {
     style: {
       width: size,
       height: size,
       borderRadius: size,
-      background: artist.img,
-      color: "#fff",
+      background: "var(--paper-3)",
+      color: "var(--text-2)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontFamily: "Instrument Serif, serif",
-      fontSize: size * 0.42,
+      fontSize: Math.max(12, size * 0.36),
+      fontWeight: 600,
       flexShrink: 0,
-      boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.2)",
+      boxShadow: "inset 0 0 0 1px var(--line)",
       overflow: "hidden",
       position: "relative"
     }
@@ -581,6 +661,280 @@ function Wordmark({
       fontWeight: 500
     }
   }, "PLURSKY"));
+}
+var fieldIconBtn = {
+  width: 44,
+  height: 44,
+  flexShrink: 0,
+  padding: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: "transparent",
+  border: "none",
+  borderRadius: 14,
+  color: "var(--ink)",
+  cursor: "pointer"
+};
+function FieldButton({
+  children,
+  onClick,
+  kind = "primary",
+  style,
+  ...rest
+}) {
+  var primary = kind === "primary";
+  return React.createElement("button", {
+    onClick: onClick,
+    ...rest,
+    style: {
+      width: "100%",
+      minHeight: 52,
+      padding: "0 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 8,
+      background: primary ? "var(--acc)" : "transparent",
+      color: primary ? "var(--on-acc)" : "var(--ink)",
+      border: primary ? "none" : "1px solid var(--line-2)",
+      borderRadius: "var(--rad-sm)",
+      cursor: rest.disabled ? "default" : "pointer",
+      boxShadow: primary && !rest.disabled ? "0 10px 28px -12px var(--acc-55)" : "none",
+      font: "650 17px/1.3 var(--f-ui)",
+      letterSpacing: "-0.01em",
+      opacity: rest.disabled ? 0.45 : 1,
+      ...style
+    }
+  }, children);
+}
+function FieldSectionHeader({
+  title,
+  action,
+  onAction
+}) {
+  return React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "0 20px",
+      minHeight: 44
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 22,
+      lineHeight: "28px",
+      fontWeight: 700,
+      letterSpacing: "-0.01em"
+    }
+  }, title), action && (typeof action === "string" ? React.createElement("button", {
+    onClick: onAction,
+    style: {
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 4px",
+      color: "var(--text-2)",
+      fontSize: 15,
+      fontWeight: 500
+    }
+  }, action) : action));
+}
+function FieldMediaRow({
+  children
+}) {
+  return React.createElement("div", {
+    className: "no-scrollbar",
+    style: {
+      display: "flex",
+      gap: 12,
+      overflowX: "auto",
+      scrollbarWidth: "none",
+      padding: "4px 20px 0",
+      scrollPaddingInline: 20,
+      scrollSnapType: "x proximity"
+    }
+  }, children);
+}
+function FieldSheet({
+  title,
+  onClose,
+  children
+}) {
+  useDeclareModal(true);
+  React.useEffect(() => {
+    var onKey = e => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+  return React.createElement("div", {
+    onClick: onClose,
+    style: {
+      position: "fixed",
+      inset: 0,
+      zIndex: 80,
+      background: "var(--scrim)",
+      display: "flex",
+      alignItems: "flex-end"
+    }
+  }, React.createElement("div", {
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": title,
+    onClick: e => e.stopPropagation(),
+    style: {
+      width: "100%",
+      maxHeight: "88%",
+      display: "flex",
+      flexDirection: "column",
+      background: "var(--s1)",
+      borderRadius: "var(--rad-lg) var(--rad-lg) 0 0",
+      boxShadow: "var(--e2)",
+      paddingBottom: "env(safe-area-inset-bottom, 0px)"
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      paddingTop: 8
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 36,
+      height: 5,
+      borderRadius: 3,
+      background: "var(--line-2)"
+    }
+  })), React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "4px 8px 4px 20px"
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      font: "700 22px/1.25 var(--f-ui)",
+      letterSpacing: "-0.02em"
+    }
+  }, title), React.createElement("button", {
+    onClick: onClose,
+    "aria-label": "Close",
+    style: fieldIconBtn
+  }, React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, React.createElement("path", {
+    d: "M6 6 L18 18 M18 6 L6 18"
+  })))), React.createElement("div", {
+    style: {
+      overflowY: "auto",
+      WebkitOverflowScrolling: "touch",
+      padding: "4px 20px 24px"
+    }
+  }, children)));
+}
+function _duoMembers(name) {
+  return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
+}
+function _duoInitials(name) {
+  return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
+}
+function DuoFace({
+  name,
+  size,
+  ring = "",
+  style
+}) {
+  var photo = useArtistPhoto(name);
+  return React.createElement("span", {
+    className: `duo-av ${ring}`,
+    "aria-hidden": "true",
+    style: {
+      width: size,
+      height: size,
+      fontSize: Math.round(size * 0.32),
+      ...style
+    }
+  }, photo ? React.createElement("img", {
+    src: photo,
+    alt: ""
+  }) : _duoInitials(name));
+}
+function DuoAvatar({
+  name,
+  size = 40,
+  ring = ""
+}) {
+  var ms = _duoMembers(name);
+  if (ms.length < 2) return React.createElement(DuoFace, {
+    name: name,
+    size: size,
+    ring: ring
+  });
+  var d = Math.round(size * 0.66);
+  return React.createElement("span", {
+    className: "duo-avp",
+    "aria-hidden": "true",
+    style: {
+      width: size,
+      height: size
+    }
+  }, React.createElement(DuoFace, {
+    name: ms[0],
+    size: d,
+    ring: ring,
+    style: {
+      left: 0,
+      top: 0
+    }
+  }), React.createElement(DuoFace, {
+    name: ms[1],
+    size: d,
+    ring: ring,
+    style: {
+      right: 0,
+      bottom: 0
+    }
+  }));
+}
+function DuoLive({
+  children = "Live",
+  className = "duo-label"
+}) {
+  return React.createElement("span", {
+    className: `${className} duo-live`
+  }, React.createElement("i", {
+    "aria-hidden": "true"
+  }), children);
+}
+function DuoSect({
+  title,
+  right,
+  style
+}) {
+  return React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 12,
+      minHeight: 24,
+      ...style
+    }
+  }, React.createElement("h2", {
+    className: "duo-sect"
+  }, title), right);
 }
 function useInstallPrompt() {
   var [deferred, setDeferred] = React.useState(null);
@@ -632,15 +986,14 @@ function InstallBanner() {
   var ip = useInstallPrompt();
   if (!ip.canInstall) return null;
   return React.createElement("div", {
+    className: "duo-card",
     style: {
       margin: "8px 16px 0",
-      padding: "10px 12px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--paper)",
+      padding: "8px 4px 8px 12px",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
-      gap: 11
+      gap: 12
     }
   }, React.createElement("img", {
     src: "./apple-touch-icon.png",
@@ -658,19 +1011,12 @@ function InstallBanner() {
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Install Plursky"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--flare)",
-      fontWeight: 700
-    }
-  }, "INSTALL PLURSKY"), React.createElement("div", {
-    style: {
-      fontSize: 12,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "rgba(247,237,224,0.85)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, ip.isIOS ? React.createElement(React.Fragment, null, "Tap ", React.createElement("span", {
     style: {
@@ -683,7 +1029,7 @@ function InstallBanner() {
     height: "13",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--paper)",
+    stroke: "var(--ink)",
     strokeWidth: "1.8",
     strokeLinecap: "round",
     strokeLinejoin: "round"
@@ -699,34 +1045,29 @@ function InstallBanner() {
     rx: "1.5"
   }))), " then ", React.createElement("strong", {
     style: {
-      color: "var(--paper)"
+      color: "var(--ink)"
     }
   }, "Add to Home Screen"), " for offline + full-screen.") : React.createElement(React.Fragment, null, "Add to home screen for offline lineup + full-screen map."))), !ip.isIOS && React.createElement("button", {
     onClick: ip.install,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "#fff",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      minHeight: 40,
+      padding: "0 14px",
+      fontSize: 14,
       flexShrink: 0
     }
-  }, "INSTALL"), React.createElement("button", {
+  }, "Install"), React.createElement("button", {
     onClick: ip.dismiss,
     "aria-label": "Dismiss",
     style: {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(247,237,224,0.55)",
-      padding: 4,
+      color: "var(--ink-2)",
+      minWidth: 44,
+      minHeight: 44,
       flexShrink: 0,
-      fontSize: 18,
+      fontSize: 20,
       lineHeight: 1
     }
   }, "×"));
@@ -738,7 +1079,7 @@ function _capLocalNotifications() {
 }
 function _notifIdForArtist(id) {
   var h = 0;
-  for (var i = 0; i < id.length; i++) h = h * 31 + id.charCodeAt(i) | 0;
+  for (var _i = 0; _i < id.length; _i++) h = h * 31 + id.charCodeAt(_i) | 0;
   return Math.abs(h) % 1_999_999_999 + 1;
 }
 var _TEST_NOTIF_ID = 9_999_001;
@@ -1120,37 +1461,36 @@ function NotificationsCard({
   if (!supported) {
     return React.createElement("div", {
       style: {
-        padding: "12px 14px",
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
+        padding: "14px 16px",
+        borderRadius: "var(--rad-md)",
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
         marginBottom: 12
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
-        fontWeight: 700
+        color: "var(--ink-3)"
       }
     }, "NOTIFICATIONS · UNSUPPORTED"), React.createElement("div", {
       style: {
-        fontSize: 12,
-        color: "var(--muted)",
+        fontSize: 14,
+        color: "var(--ink-2)",
         marginTop: 4,
-        lineHeight: 1.4
+        lineHeight: 1.43
       }
     }, window.Capacitor?.isNativePlatform?.() ? "Notifications aren't wired in this build yet — set-time reminders will land in a future update." : "Your browser doesn't support web notifications. Install Plursky to your home screen for the full experience."));
   }
   var label = perm === "granted" ? "ENABLED" : perm === "denied" ? "BLOCKED" : "OFF";
-  var labelColor = perm === "granted" ? "var(--success)" : perm === "denied" ? "#f87171" : "var(--muted)";
+  var labelColor = perm === "granted" ? "var(--acc-ink)" : perm === "denied" ? "var(--alert)" : "var(--ink-2)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -1161,33 +1501,25 @@ function NotificationsCard({
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "REMINDERS"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: labelColor,
-      fontWeight: 700
+      color: labelColor
     }
   }, flash === "enabled" ? "✓ ENABLED" : flash === "tested" ? "✓ TEST SENT" : label)), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, leadMin, "-min head-up before each set"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: perm === "denied" ? 8 : 12
     }
   }, perm === "granted" ? scheduled > 0 ? `${scheduled} reminder${scheduled === 1 ? "" : "s"} set · alerts fire even when Plursky is in the background.` : "No sets starting in the next 24 hours — reminders will activate automatically during the festival." : perm === "denied" ? window.Capacitor?.isNativePlatform?.() ? "Notifications are blocked in iOS Settings." : "Notifications are blocked for this site." : `Get a notification ${leadMin} minutes before each saved set so you don't miss a thing.`), React.createElement("div", {
@@ -1199,12 +1531,9 @@ function NotificationsCard({
       flexWrap: "wrap"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "LEAD TIME"), React.createElement("div", {
     style: {
@@ -1221,8 +1550,9 @@ function NotificationsCard({
         padding: "4px 9px",
         borderRadius: 999,
         cursor: "pointer",
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontSize: 10,
         letterSpacing: 1.1,
@@ -1231,19 +1561,16 @@ function NotificationsCard({
     }, m, "M");
   }))), perm === "denied" && React.createElement("div", {
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
       padding: "10px 12px",
       marginBottom: 12
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700,
+      color: "var(--ink-3)",
       marginBottom: 6
     }
   }, "HOW TO RE-ENABLE"), window.Capacitor?.isNativePlatform?.() ? React.createElement("div", {
@@ -1274,7 +1601,7 @@ function NotificationsCard({
     onClick: onEnable,
     style: {
       background: "var(--ember)",
-      color: "#fff",
+      color: "var(--on-ember)",
       border: "none",
       borderRadius: 999,
       padding: "8px 14px",
@@ -1302,37 +1629,92 @@ function NotificationsCard({
 }
 function FestivalChip({
   compact = false,
-  accent = "var(--ink)"
+  accent = "var(--ink)",
+  title = null
 }) {
   var [open, setOpen] = React.useState(false);
   var canSwitch = FESTIVALS_REGISTRY.filter(f => f.available).length > 1;
-  var entry = FESTIVALS_REGISTRY.find(f => f.config.id === FESTIVAL_CONFIG.id);
+  if (title) return React.createElement(React.Fragment, null, React.createElement("button", {
+    type: "button",
+    className: "duo-press",
+    onClick: canSwitch ? () => setOpen(true) : undefined,
+    disabled: !canSwitch,
+    "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
+    style: {
+      display: "inline-flex",
+      alignItems: "flex-end",
+      gap: 8,
+      width: "auto",
+      maxWidth: "100%",
+      color: "var(--ink)",
+      cursor: canSwitch ? "pointer" : "default"
+    }
+  }, title, canSwitch && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      flex: "none",
+      marginBottom: "0.32em",
+      width: 28,
+      height: 28,
+      borderRadius: 14,
+      display: "grid",
+      placeItems: "center",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      color: "var(--ink-2)"
+    }
+  }, React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 12 12",
+    fill: "none"
+  }, React.createElement("path", {
+    d: "M3 4.5 L6 7.5 L9 4.5",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  })))), open && React.createElement(FestivalSwitcher, {
+    onClose: () => setOpen(false)
+  }));
   return React.createElement(React.Fragment, null, React.createElement("div", {
     onClick: canSwitch ? () => setOpen(true) : undefined,
+    role: canSwitch ? "button" : undefined,
+    tabIndex: canSwitch ? 0 : undefined,
+    "aria-label": canSwitch ? `${FESTIVAL_CONFIG.shortName.toUpperCase()}, switch festival` : undefined,
+    onKeyDown: canSwitch ? e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        setOpen(true);
+      }
+    } : undefined,
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 5,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      minHeight: 44,
       color: accent,
-      borderRadius: 999,
-      padding: compact ? "3px 8px 3px 7px" : "4px 10px 4px 8px",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: compact ? 9 : 9.5,
-      letterSpacing: 1.2,
-      fontWeight: 700,
       cursor: canSwitch ? "pointer" : "default",
       whiteSpace: "nowrap",
       userSelect: "none"
     }
   }, React.createElement("span", {
     style: {
-      fontSize: compact ? 11 : 12
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      height: 32,
+      padding: "0 12px",
+      borderRadius: 18,
+      background: "var(--chrome)",
+      border: "1px solid var(--line)",
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em"
     }
-  }, entry?.emoji || "🎪"), React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
-    width: compact ? 8 : 9,
-    height: compact ? 8 : 9,
+  }, React.createElement("span", null, FESTIVAL_CONFIG.shortName.toUpperCase()), canSwitch && React.createElement("svg", {
+    width: "10",
+    height: "10",
     viewBox: "0 0 12 12",
     fill: "none"
   }, React.createElement("path", {
@@ -1341,15 +1723,101 @@ function FestivalChip({
     strokeWidth: "1.6",
     strokeLinecap: "round",
     strokeLinejoin: "round"
-  }))), open && React.createElement(FestivalSwitcher, {
+  })))), open && React.createElement(FestivalSwitcher, {
     onClose: () => setOpen(false)
   }));
+}
+var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
+function _festivalArt(cfg) {
+  var img = cfg && cfg.mapImage;
+  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+}
+var _FESTIVAL_EDITORIAL_ART = Object.freeze({
+  "acl-2026": "festival-art/acl-2026.webp",
+  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
+  "portola-2026": "festival-art/portola-2026.webp",
+  "iii-points-2026": "festival-art/iii-points-2026.webp",
+  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
+  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
+});
+function FestivalThumb({
+  entry,
+  size = 56,
+  editorial = false
+}) {
+  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
+  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
+  var brand = String(entry?.config?.brand || "").trim();
+  var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  return React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      width: size,
+      height: size,
+      borderRadius: "var(--rad-sm)",
+      overflow: "hidden",
+      flexShrink: 0,
+      background: "var(--s3)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "var(--f-display)",
+      fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
+      fontWeight: 400,
+      letterSpacing: "0.12em",
+      color: "var(--ink-2)",
+      lineHeight: 1
+    }
+  }, art ? React.createElement("img", {
+    src: `./${art}`,
+    alt: "",
+    style: {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover"
+    }
+  }) : mark);
+}
+function _festivalPlanStatus(id) {
+  var ids = [];
+  try {
+    ids = JSON.parse(localStorage.getItem(`${id}_saved_v1`) || "[]");
+  } catch {}
+  if (!Array.isArray(ids) || !ids.length) return {
+    saved: 0,
+    conflicts: 0
+  };
+  var set = new Set(ids);
+  var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
+  var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
+  var conflicts = 0;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
+  return {
+    saved: arts.length,
+    conflicts
+  };
 }
 function FestivalSwitcher({
   onClose
 }) {
   var activeId = FESTIVAL_CONFIG.id;
   var [plusOpen, setPlusOpen] = React.useState(false);
+  var [pastOpen, setPastOpen] = React.useState(false);
+  var pastIndex = usePastEditionIndex();
+  var [viewMode, setViewMode] = React.useState(() => {
+    try {
+      return localStorage.getItem("plursky_switcher_view_v1") || "grid";
+    } catch {
+      return "grid";
+    }
+  });
+  var chooseView = mode => {
+    setViewMode(mode);
+    try {
+      localStorage.setItem("plursky_switcher_view_v1", mode);
+    } catch {}
+  };
   var onPick = (id, entry) => {
     if (id === activeId) {
       onClose();
@@ -1359,7 +1827,7 @@ function FestivalSwitcher({
       setActiveFestivalAndReload(id);
       return;
     }
-    if (entry.previewOnly && window._isPlusSub?.()) {
+    if (entry.previewOnly && festivalCanBeActive(entry)) {
       setActiveFestivalAndReload(id);
       return;
     }
@@ -1369,176 +1837,334 @@ function FestivalSwitcher({
     }
     onClose();
   };
-  var byRegion = {};
-  FESTIVALS_REGISTRY.forEach(f => {
-    (byRegion[f.region] = byRegion[f.region] || []).push(f);
-  });
-  return React.createElement("div", {
-    onClick: onClose,
-    style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 60,
-      background: "rgba(13,8,4,0.55)",
-      backdropFilter: "blur(6px)",
-      display: "flex",
-      alignItems: "flex-end",
-      animation: "fadeIn .2s"
-    }
-  }, plusOpen && React.createElement(PlusSheet, {
+  if (plusOpen) return React.createElement(PlusSheet, {
     feature: "early festival access",
     onClose: () => setPlusOpen(false)
-  }), React.createElement("div", {
-    onClick: e => e.stopPropagation(),
-    style: {
-      background: "var(--paper)",
-      color: "var(--ink)",
-      borderTopLeftRadius: 22,
-      borderTopRightRadius: 22,
-      width: "100%",
-      padding: "14px 20px 24px",
-      boxShadow: "0 -10px 40px rgba(0,0,0,0.4)",
-      maxHeight: "85%",
-      overflowY: "auto"
+  });
+  var now = Date.now();
+  var ordered = _sortFestivalsForSwitcher(FESTIVALS_REGISTRY, now);
+  var phase = f => _festivalPhase(f, now);
+  var live = ordered.filter(f => phase(f) === "live");
+  var tba = ordered.filter(f => phase(f) === "tba");
+  var past = ordered.filter(f => phase(f) === "ended");
+  var months = [];
+  ordered.filter(f => phase(f) === "upcoming").forEach(f => {
+    var ev = _festivalEventDates(f.config);
+    var ymd = ev ? ev.start : f.config.startMs ? new Date(f.config.startMs).toISOString().slice(0, 10) : null;
+    var label = "Upcoming";
+    if (ymd) {
+      try {
+        label = new Date(Date.UTC(+ymd.slice(0, 4), +ymd.slice(5, 7) - 1, 15)).toLocaleDateString(undefined, {
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC"
+        });
+      } catch {}
     }
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "center",
-      marginBottom: 12
+    var g = months.find(x => x.label === label);
+    if (!g) {
+      g = {
+        label,
+        fests: []
+      };
+      months.push(g);
     }
-  }, React.createElement("div", {
-    style: {
-      width: 36,
-      height: 4,
-      borderRadius: 4,
-      background: "var(--line-2)"
-    }
-  })), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.6,
-      color: "var(--muted)",
-      marginBottom: 4
-    }
-  }, "PICK A FESTIVAL"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      lineHeight: 1.05,
-      marginBottom: 18
-    }
-  }, "Where are you raving?"), Object.entries(byRegion).map(([region, fests]) => React.createElement("div", {
-    key: region,
-    style: {
-      marginBottom: 18
-    }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      marginBottom: 8,
-      fontWeight: 600
-    }
-  }, region.toUpperCase()), React.createElement("div", {
-    style: {
-      display: "grid",
-      gap: 8
-    }
-  }, fests.map(f => {
+    g.fests.push(f);
+  });
+  var archive = [];
+  try {
+    var raw = JSON.parse(localStorage.getItem("plursky_festival_archive_v1") || "{}");
+    archive = (Array.isArray(raw) ? raw : Object.values(raw || {})).filter(a => a && typeof a === "object");
+  } catch {}
+  var caught = archive.reduce((n, a) => n + (a.totalAttended || 0), 0);
+  var eyebrow = {
+    margin: "0 0 4px"
+  };
+  var rowStyle = dim => ({
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    minHeight: 72,
+    padding: "8px 0",
+    background: "transparent",
+    border: "none",
+    borderBottom: "1px solid var(--line)",
+    color: "var(--ink)",
+    textAlign: "left",
+    fontFamily: "inherit",
+    opacity: dim ? 0.55 : 1
+  });
+  var chevron = React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M9 6 L15 12 L9 18"
+  }));
+  var row = f => {
     var isActive = f.config.id === activeId;
-    var dimmed = !f.available;
+    var lookBack = !f.available && !f.previewOnly && !isActive ? pastEditionsOf(pastIndex, f.config.id)[0] : null;
+    var locked = !f.available && !f.previewOnly && !isActive && !lookBack;
+    var st = _festivalPlanStatus(f.config.id);
+    var parts = [];
+    if (st.saved) parts.push(React.createElement("span", {
+      key: "s"
+    }, st.saved, " saved"));
+    if (st.conflicts) parts.push(React.createElement("span", {
+      key: "c",
+      style: {
+        color: "var(--clash)",
+        fontWeight: 600
+      }
+    }, st.conflicts, " ", st.conflicts === 1 ? "clash" : "clashes"));
+    if (isActive) parts.push(React.createElement("span", {
+      key: "a",
+      style: {
+        color: "var(--acc-ink)",
+        fontWeight: 650
+      }
+    }, "Active"));else if (phase(f) === "ended") parts.push(React.createElement("span", {
+      key: "e"
+    }, "Ended"));else if (!f.available) {
+      parts.push(React.createElement("span", {
+        key: "l"
+      }, f.previewOnly ? "Early access" : "Soon"));
+      if (lookBack) parts.push(React.createElement("span", {
+        key: "lb",
+        style: {
+          color: "var(--signal-ink)",
+          fontWeight: 600
+        }
+      }, "Look back: ", lookBack.year));
+    } else if (f.scheduleTBA) parts.push(React.createElement("span", {
+      key: "tba"
+    }, "Set times TBA"));else if (st.saved && !st.conflicts) parts.push(React.createElement("span", {
+      key: "r",
+      style: {
+        color: "var(--acc-ink)",
+        fontWeight: 650
+      }
+    }, "Ready"));
     return React.createElement("button", {
       key: f.config.id,
-      onClick: () => onPick(f.config.id, f),
-      disabled: !f.available && !f.previewOnly && !isActive,
+      onClick: () => lookBack ? (onClose(), openPastEdition(lookBack.id)) : onPick(f.config.id, f),
+      disabled: locked,
+      "aria-current": isActive ? "true" : undefined,
       style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        padding: "12px 14px",
-        borderRadius: 14,
-        background: isActive ? f.accent : "var(--paper-2)",
-        color: isActive ? "#fff" : "var(--ink)",
-        border: `1px solid ${isActive ? f.accent : "var(--line-2)"}`,
-        cursor: f.available ? "pointer" : "default",
-        opacity: dimmed && !isActive ? 0.55 : 1,
-        textAlign: "left",
-        fontFamily: "inherit",
-        transition: "transform .12s"
+        ...rowStyle(locked),
+        cursor: locked ? "default" : "pointer"
       }
-    }, React.createElement("span", {
-      style: {
-        fontSize: 22
-      }
-    }, f.emoji), React.createElement("div", {
+    }, React.createElement(FestivalThumb, {
+      entry: f,
+      editorial: viewMode === "grid"
+    }), React.createElement("div", {
       style: {
         flex: 1,
         minWidth: 0
       }
     }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 18,
-        lineHeight: 1.05,
-        fontWeight: 400
-      }
+      className: "duo-headline"
     }, f.config.name), React.createElement("div", {
-      className: "mono",
       style: {
-        fontSize: 10,
-        letterSpacing: 1,
-        marginTop: 3,
-        opacity: 0.85
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
-    }, f.config.location.toUpperCase(), " · ", f.config.dates.toUpperCase())), isActive && React.createElement("div", {
-      className: "mono",
+    }, f.config.location, " · ", React.createElement("span", {
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        padding: "3px 7px",
-        borderRadius: 999,
-        background: "rgba(255,255,255,0.25)"
+        overflowWrap: "normal"
       }
-    }, "ACTIVE"), !isActive && !f.available && f.previewOnly && React.createElement("div", {
-      className: "mono",
+    }, f.config.dates)), parts.length > 0 && React.createElement("div", {
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        padding: "3px 7px",
-        borderRadius: 999,
-        background: "#6D28D9",
-        color: "#fff"
+        marginTop: 2,
+        font: "500 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
-    }, "EARLY ACCESS"), !isActive && !f.available && !f.previewOnly && React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        padding: "3px 7px",
-        borderRadius: 999,
-        background: "var(--paper)",
-        color: "var(--muted)",
-        border: "1px solid var(--line-2)"
-      }
-    }, "SOON"));
-  })))), React.createElement("div", {
-    className: "mono",
+    }, parts.map((x, i) => React.createElement(React.Fragment, {
+      key: i
+    }, i ? " · " : "", x)))), !locked && chevron);
+  };
+  var group = (label, kids) => React.createElement("section", {
+    key: label,
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 6,
-      textAlign: "center",
-      lineHeight: 1.5
+      marginTop: 16
     }
-  }, "More festivals coming through 2026.", React.createElement("br", null), "Switching reloads the app with the new festival's data.")));
+  }, React.createElement("h3", {
+    className: "duo-sect",
+    style: eyebrow
+  }, label), kids);
+  return React.createElement(FieldSheet, {
+    title: "Choose your sky.",
+    onClose: onClose
+  }, React.createElement("p", {
+    style: {
+      margin: "-4px 0 14px",
+      color: "var(--ink-2)",
+      font: "400 15px/1.4 var(--f-ui)"
+    }
+  }, "Live, next and remembered."), React.createElement("div", {
+    role: "group",
+    "aria-label": "Festival view",
+    className: "duo-seg",
+    style: {
+      marginBottom: 12,
+      background: "var(--s2)"
+    }
+  }, ["grid", "list"].map(mode => React.createElement("button", {
+    key: mode,
+    onClick: () => chooseView(mode),
+    "aria-pressed": viewMode === mode,
+    style: {
+      textTransform: "capitalize"
+    }
+  }, mode))), React.createElement("div", {
+    className: viewMode === "grid" ? "midnight-festival-grid" : undefined
+  }, live.map(row), months.flatMap(g => g.fests.map(row)), tba.map(row)), viewMode === "list" && React.createElement("div", {
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginTop: 8
+    }
+  }, "ORDERED BY FESTIVAL DATE"), (past.length > 0 || archive.length > 0) && group("Past", React.createElement(React.Fragment, null, React.createElement("button", {
+    onClick: () => setPastOpen(o => !o),
+    "aria-expanded": pastOpen,
+    style: {
+      ...rowStyle(false),
+      cursor: "pointer"
+    }
+  }, React.createElement(FestivalThumb, {
+    entry: past[0] || null
+  }), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600
+    }
+  }, "Memories"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, Math.max(past.length, archive.length), " past ", Math.max(past.length, archive.length) === 1 ? "festival" : "festivals", caught ? ` · ${caught} sets caught` : "")), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      transform: pastOpen ? "rotate(90deg)" : "none",
+      transition: "transform 180ms ease"
+    }
+  }, React.createElement("path", {
+    d: "M9 6 L15 12 L9 18"
+  }))), pastOpen && React.createElement(React.Fragment, null, past.map(row), React.createElement("button", {
+    onClick: () => {
+      onClose();
+      (window._pushNav || (() => {}))({
+        tab: "recap",
+        artist: null
+      });
+    },
+    style: {
+      ...fieldIconBtn,
+      width: "auto",
+      padding: "0 4px",
+      color: "var(--text-2)",
+      fontSize: 15,
+      fontWeight: 500
+    }
+  }, "Open recap")))), React.createElement("button", {
+    onClick: () => {
+      onClose();
+      (window._pushNav || (() => {}))({
+        tab: "past",
+        pastEdition: null,
+        artist: null
+      });
+    },
+    style: {
+      ...rowStyle(false),
+      cursor: "pointer",
+      marginTop: 8
+    }
+  }, React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      width: 44,
+      height: 44,
+      flexShrink: 0,
+      borderRadius: 12,
+      background: "var(--paper-3)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, React.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--text-2)",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("rect", {
+    x: "4",
+    y: "5",
+    width: "16",
+    height: "15",
+    rx: "2"
+  }), React.createElement("path", {
+    d: "M4 10 H20 M8 3 V7 M16 3 V7"
+  }))), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 600
+    }
+  }, "Past festivals"), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Official lineups and set times, archived")), chevron), React.createElement("p", {
+    style: {
+      margin: "16px 0",
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Switching reloads the app with that festival's lineup and map."), React.createElement(FieldButton, {
+    onClick: () => {
+      onClose();
+      (window._pushNav || (() => {}))({
+        tab: "lineup",
+        artist: null
+      });
+    }
+  }, "Build plan"));
 }
 var BATTERY_SAVER_KEY = "battery_saver_mode";
 var _BS = window._BS = window._BS || {
@@ -1701,38 +2327,27 @@ function BatterySaverToast() {
       right: 16,
       top: 60,
       zIndex: 80,
-      padding: "10px 14px",
-      borderRadius: 14,
-      background: "var(--ink)",
-      color: "var(--paper)",
+      padding: "8px 4px 8px 16px",
+      borderRadius: "var(--rad-md)",
+      background: "var(--s1)",
+      color: "var(--ink)",
       display: "flex",
       alignItems: "center",
       gap: 10,
-      boxShadow: "0 8px 24px rgba(0,0,0,0.35)"
+      boxShadow: "var(--e2)"
     }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 16
-    }
-  }, "🔋"), React.createElement("div", {
+  }, React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-acc"
+  }, "Battery saver on"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--flare)",
-      fontWeight: 700
-    }
-  }, "BATTERY SAVER ON"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.35,
-      marginTop: 2,
-      color: "rgba(247,237,224,0.85)"
+      marginTop: 3,
+      fontWeight: 400
     }
   }, reason)), React.createElement("button", {
     onClick: () => setDismissed(true),
@@ -1741,10 +2356,11 @@ function BatterySaverToast() {
       background: "transparent",
       border: "none",
       cursor: "pointer",
-      color: "rgba(247,237,224,0.6)",
-      fontSize: 18,
+      color: "var(--ink-2)",
+      fontSize: 20,
       lineHeight: 1,
-      padding: 4
+      minWidth: 44,
+      minHeight: 44
     }
   }, "×"));
 }
@@ -1757,22 +2373,23 @@ function BatterySaverCard() {
   } = useBatterySaver();
   var segs = [{
     id: "off",
-    label: "OFF"
+    label: "Off"
   }, {
     id: "auto",
-    label: "AUTO"
+    label: "Auto"
   }, {
     id: "on",
-    label: "ON"
+    label: "On"
   }];
   var battPct = battery ? Math.round(battery.level * 100) : null;
-  var battColor = battPct == null ? "var(--muted)" : battPct > 50 ? "var(--success)" : battPct > 20 ? "var(--flare)" : "#f87171";
+  var battColor = battPct == null ? "var(--ink-2)" : battPct > 50 ? "var(--acc-ink)" : battPct > 20 ? "var(--flare)" : "var(--alert)";
   return React.createElement("div", {
     style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      padding: 16,
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       marginBottom: 12
     }
   }, React.createElement("div", {
@@ -1783,33 +2400,25 @@ function BatterySaverCard() {
       marginBottom: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      color: "var(--ink-3)"
     }
   }, "BATTERY SAVER"), React.createElement("span", {
-    className: "mono",
+    className: "duo-label",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: active ? "var(--success)" : "var(--muted)",
-      fontWeight: 700
+      color: active ? "var(--acc-ink)" : "var(--ink-2)"
     }
   }, active ? "✓ ACTIVE" : "STANDBY")), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1.1,
       marginBottom: 4
     }
   }, "Stretch the phone past sunrise"), React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: 12
     }
   }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in at 2 AM or when battery drops under 25%."), React.createElement("div", {
@@ -1817,10 +2426,9 @@ function BatterySaverCard() {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
       gap: 4,
-      background: "var(--paper-2)",
+      background: "var(--s3)",
       borderRadius: 999,
-      padding: 3,
-      border: "1px solid var(--line)"
+      padding: 3
     }
   }, segs.map(s => {
     var on = mode === s.id;
@@ -1828,15 +2436,16 @@ function BatterySaverCard() {
       key: s.id,
       onClick: () => setMode(s.id),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
+        background: on ? "var(--s1)" : "transparent",
+        boxShadow: on ? "var(--e1)" : "none",
+        color: on ? "var(--ink)" : "var(--ink-2)",
         border: "none",
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
+        padding: "0 10px",
+        minHeight: 36,
+        fontFamily: "var(--f-ui)",
+        fontSize: 14,
+        fontWeight: 650,
         cursor: "pointer"
       }
     }, s.label);
@@ -1885,154 +2494,300 @@ function BatterySaverCard() {
     }
   }, battPct, "% ", battery.charging ? "· CHARGING" : "")));
 }
-var THEME_PREF_KEY = "theme_pref";
-var _TH = window._TH = window._TH || {
-  mode: (() => {
-    try {
-      return localStorage.getItem(THEME_PREF_KEY) || "auto";
-    } catch {
-      return "auto";
-    }
-  })(),
-  listeners: new Set()
-};
-function resolveThemeClass(mode) {
-  if (mode === "light") return "";
-  if (mode === "dark") return "theme-night";
-  var cfg = typeof window !== "undefined" && window.FESTIVAL_CONFIG || null;
-  if (!cfg || typeof cfg.startMs !== "number" || typeof cfg.endMs !== "number") return "";
-  var now = Date.now();
-  if (now < cfg.startMs || now > cfg.endMs) return "";
-  var h = new Date().getHours();
-  return h >= 20 || h < 4 ? "theme-night" : h >= 4 && h < 7 ? "theme-dawn" : h >= 17 && h < 20 ? "theme-sunset" : "";
+function _syncNativeAppearance(mode, choice) {
+  var style = choice === "dark" || choice === "light" ? mode : "system";
+  try {
+    window.Capacitor?.Plugins?.Appearance?.setStyle?.({
+      style
+    });
+  } catch {}
 }
-function applyThemeClass() {
-  var next = resolveThemeClass(_TH.mode);
-  if (document.documentElement.className !== next) {
-    document.documentElement.className = next;
+if (!window._appearanceNativeInited && window.PlurskyAppearance) {
+  window._appearanceNativeInited = true;
+  _syncNativeAppearance(window.PlurskyAppearance.mode(), window.PlurskyAppearance.choice());
+  window.PlurskyAppearance.onChange((m, c) => _syncNativeAppearance(m, c));
+}
+function fitName(el, force) {
+  var key = el.textContent + "|" + el.clientWidth;
+  if (!force && el.dataset.fitKey === key) return;
+  var base = parseFloat(el.dataset.fitBase || getComputedStyle(el).fontSize);
+  if (!el.dataset.fitBase) el.dataset.fitBase = String(base);
+  var min = parseFloat(el.dataset.fitMin || "14");
+  el.style.whiteSpace = "nowrap";
+  el.style.fontSize = base + "px";
+  var rg = document.createRange();
+  rg.selectNodeContents(el);
+  var over = () => rg.getBoundingClientRect().width > el.getBoundingClientRect().width + 0.5;
+  var size = base;
+  while (over() && size > min) {
+    size -= 1;
+    el.style.fontSize = size + "px";
   }
-  return next;
+  if (over()) el.style.whiteSpace = "normal";
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth;
 }
-function setThemeMode(mode) {
-  if (!["auto", "light", "dark"].includes(mode)) return;
-  _TH.mode = mode;
-  try {
-    localStorage.setItem(THEME_PREF_KEY, mode);
-  } catch {}
-  applyThemeClass();
-  _TH.listeners.forEach(fn => {
-    try {
-      fn(mode);
-    } catch {}
+function fitNames(root, force) {
+  if (!root) return;
+  for (var el of root.querySelectorAll("[data-fit-name]")) fitName(el, force);
+}
+function useFitNames(root) {
+  var el = () => typeof root === "function" ? root() : root && root.current;
+  var ro = React.useRef(null);
+  var probe = React.useRef(null);
+  React.useLayoutEffect(() => {
+    var r = el();
+    fitNames(r);
+    if (!r || typeof ResizeObserver === "undefined") return;
+    if (!ro.current) ro.current = new ResizeObserver(entries => {
+      for (var {
+        target
+      } of entries) {
+        if (!target.isConnected) continue;
+        if (target === probe.current) fitNames(el(), true);else fitName(target);
+      }
+    });
+    for (var n of r.querySelectorAll("[data-fit-name]")) ro.current.observe(n);
+    if (!probe.current || !r.contains(probe.current)) {
+      var p = document.createElement("span");
+      p.setAttribute("aria-hidden", "true");
+      p.textContent = "Eptic b2b Space Laces";
+      p.style.cssText = "position:absolute;left:0;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-size:17px;font-weight:700";
+      r.appendChild(p);
+      probe.current = p;
+      ro.current.observe(p);
+    }
   });
-}
-if (!window._thInited) {
-  window._thInited = true;
-  try {
-    applyThemeClass();
-  } catch {}
-}
-function useThemeMode() {
-  var [, force] = React.useReducer(x => x + 1, 0);
-  React.useEffect(() => {
-    _TH.listeners.add(force);
-    return () => _TH.listeners.delete(force);
+  React.useEffect(() => () => {
+    ro.current && ro.current.disconnect();
+    if (probe.current) probe.current.remove();
   }, []);
+}
+var _FIT_WORDS = "[data-fit-words], .duo-name";
+function _fitSize(el, px) {
+  if (el.dataset.fitOrig == null) el.dataset.fitOrig = (el.style.getPropertyValue("font-size") || "") + "|" + el.style.getPropertyPriority("font-size");
+  if (px == null) {
+    var [v, pr] = el.dataset.fitOrig.split("|");
+    if (v) el.style.setProperty("font-size", v, pr);else el.style.removeProperty("font-size");
+    delete el.dataset.fitOrig;
+    delete el.dataset.fitSet;
+    return;
+  }
+  el.style.setProperty("font-size", px + "px", "important");
+  el.dataset.fitSet = String(px);
+}
+function fitWords(el) {
+  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
+  el.style.setProperty("transition", "none", "important");
+  var done = () => {
+    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+  };
+  var cs = getComputedStyle(el);
+  var cur = parseFloat(cs.fontSize);
+  if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
+  var base = parseFloat(el.dataset.fitBase);
+  var key = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  if (el.dataset.fitKey === key) {
+    done();
+    return;
+  }
+  var words = [];
+  var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (tw.nextNode()) {
+    var n = tw.currentNode;
+    var re = /[^\s\-‐-—\/·]+/g;
+    var m = void 0;
+    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+  }
+  var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+  var broken = () => {
+    var box = el.getBoundingClientRect().width - pad + 0.5;
+    return words.some(([n, a, b]) => {
+      var rg = document.createRange();
+      rg.setStart(n, a);
+      rg.setEnd(n, b);
+      var rs = rg.getClientRects();
+      return rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1 || rg.getBoundingClientRect().width > box;
+    });
+  };
+  var set = px => _fitSize(el, px);
+  var size = cur;
+  if (size < base) {
+    size = base;
+    set(size);
+  }
+  var min = parseFloat(el.dataset.fitMin || "11");
+  if (broken()) {
+    el.style.overflowWrap = "normal";
+    var w0 = el.getBoundingClientRect().width;
+    if (size > min) {
+      set(size - 1);
+      var took = Math.abs(parseFloat(getComputedStyle(el).fontSize) - (size - 1)) < 0.1;
+      if (!took || el.getBoundingClientRect().width < w0 - 0.5) {
+        _fitSize(el, null);
+        el.style.overflowWrap = "";
+        el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+        done();
+        return;
+      }
+      size -= 1;
+    }
+    while (broken() && size > min) {
+      size -= 1;
+      set(size);
+    }
+    if (broken()) el.style.overflowWrap = "anywhere";
+  }
+  el.dataset.fitKey = el.textContent + "|" + el.clientWidth + "|" + base + "|" + getComputedStyle(el).fontFamily;
+  done();
+}
+function fitWordGroups(r) {
+  var groups = {};
+  for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
+  for (var g of Object.values(groups)) {
+    var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
+    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
+  }
+}
+if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
+  window._fitWordsInited = true;
+  var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(entries => {
+    for (var {
+      target
+    } of entries) if (target.isConnected) fitWords(target);
+    fitWordGroups(document);
+  }) : null;
+  var fitIn = (node, all) => {
+    var list = node.matches && node.matches(_FIT_WORDS) ? [node] : [];
+    if (node.querySelectorAll) list.push(...node.querySelectorAll(_FIT_WORDS));
+    for (var n of list) {
+      if (all) n.dataset.fitKey = "";
+      fitWords(n);
+      ro && ro.observe(n);
+    }
+  };
+  var settle = () => {
+    var all = [...document.body.querySelectorAll(_FIT_WORDS)];
+    for (var n of all) {
+      n.dataset.fitKey = "";
+      if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
+      if (n.style.overflowWrap) n.style.overflowWrap = "";
+    }
+    for (var _n2 of all) {
+      fitWords(_n2);
+      ro && ro.observe(_n2);
+    }
+    fitWordGroups(document);
+  };
+  var settleTimer = null;
+  var settleSoon = () => {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(settle, 200);
+  };
+  var start = () => {
+    fitIn(document.body);
+    fitWordGroups(document);
+    settleSoon();
+    new MutationObserver(records => {
+      var touched = new Set();
+      for (var r of records) {
+        for (var n of r.addedNodes) if (n.nodeType === 1) touched.add(n);
+        var host = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+        var fit = host && host.closest && host.closest(_FIT_WORDS);
+        if (fit) touched.add(fit);
+      }
+      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      if (touched.size) {
+        fitWordGroups(document);
+        settleSoon();
+      }
+    }).observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+    try {
+      if (document.fonts) {
+        document.fonts.addEventListener("loadingdone", settle);
+        document.fonts.ready.then(settle);
+      }
+    } catch {}
+    try {
+      window.PlurskyAppearance && window.PlurskyAppearance.onChange(() => {
+        settle();
+        settleSoon();
+      });
+    } catch {}
+  };
+  if (document.body) start();else document.addEventListener("DOMContentLoaded", start);
+}
+function useAppearance() {
+  var A = window.PlurskyAppearance;
+  var [, force] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => A ? A.onChange(force) : undefined, []);
   return {
-    mode: _TH.mode,
-    setMode: setThemeMode
+    choice: A ? A.choice() : "system",
+    mode: A ? A.mode() : "dark",
+    set: c => A && A.set(c)
   };
 }
-function ThemeCard() {
+function AppearanceRow() {
   var {
-    mode,
-    setMode
-  } = useThemeMode();
-  var segs = [{
-    id: "auto",
-    label: "AUTO"
-  }, {
-    id: "light",
-    label: "LIGHT"
-  }, {
-    id: "dark",
-    label: "DARK"
-  }];
-  var activeClass = resolveThemeClass(mode);
-  var nowLabel = activeClass === "theme-night" ? "NIGHT" : activeClass === "theme-dawn" ? "DAWN" : activeClass === "theme-sunset" ? "SUNSET" : "LIGHT";
+    choice,
+    set
+  } = useAppearance();
+  var opts = [["system", "System"], ["dark", "Dark"], ["light", "Light"]];
   return React.createElement("div", {
-    style: {
-      padding: 14,
-      borderRadius: 14,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
-      marginBottom: 12
-    }
-  }, React.createElement("div", {
+    "data-appearance-row": true,
     style: {
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      marginBottom: 6
+      gap: 12,
+      flexWrap: "wrap",
+      padding: "8px 8px 8px 16px",
+      borderRadius: "var(--rad-md)",
+      marginBottom: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none"
     }
   }, React.createElement("div", {
-    className: "mono",
     style: {
-      fontSize: 10,
-      letterSpacing: 1.5,
-      color: "var(--muted)",
-      fontWeight: 700
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ink)"
     }
-  }, "THEME"), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      fontWeight: 700
-    }
-  }, nowLabel)), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1.1,
-      marginBottom: 4
-    }
-  }, "Paper by day, stars by night"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
-      marginBottom: 12
-    }
-  }, "Auto follows the sky during the festival. Pin light or dark anytime."), React.createElement("div", {
+  }, "Appearance"), React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "Appearance",
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 4,
-      background: "var(--paper-2)",
-      borderRadius: 999,
       padding: 3,
-      border: "1px solid var(--line)"
+      borderRadius: 999,
+      background: "var(--paper-3)",
+      flex: "1 1 196px",
+      maxWidth: 222
     }
-  }, segs.map(s => {
-    var on = mode === s.id;
+  }, opts.map(([v, l]) => {
+    var on = choice === v;
     return React.createElement("button", {
-      key: s.id,
-      onClick: () => setMode(s.id),
+      key: v,
+      role: "radio",
+      "aria-checked": on,
+      "data-appearance": v,
+      onClick: () => set(v),
       style: {
-        background: on ? "var(--ink)" : "transparent",
-        color: on ? "var(--paper)" : "var(--ink)",
-        border: "none",
+        minHeight: 38,
+        border: 0,
         borderRadius: 999,
-        padding: "7px 10px",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 10,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer"
+        cursor: "pointer",
+        font: "600 14px/1 var(--font-ui)",
+        background: on ? "var(--paper)" : "transparent",
+        color: on ? "var(--ink)" : "var(--text-2)",
+        boxShadow: on ? "0 0 0 1px var(--line-2), 0 2px 6px -2px rgba(var(--shade-rgb),0.25)" : "none"
       }
-    }, s.label);
+    }, l);
   })));
 }
 function _useTickMs(intervalMs) {
@@ -2067,83 +2822,84 @@ function StatusStrip() {
   var day = _STATUS_DAYS[now.getDay()];
   var hh = String(now.getHours()).padStart(2, "0");
   var mm = String(now.getMinutes()).padStart(2, "0");
-  return React.createElement("div", {
-    className: "mono",
-    style: {
-      flexShrink: 0,
-      height: 22,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "0 16px",
-      background: "var(--paper-2)",
-      borderBottom: "1px solid var(--line)",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 600,
-      color: "var(--muted)"
-    }
-  }, React.createElement("span", null, day, " · ", hh, ":", mm), React.createElement("span", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10
-    }
-  }, bsActive && React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 4,
-      color: "var(--flare)"
-    }
-  }, React.createElement("svg", {
-    width: "9",
-    height: "12",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, React.createElement("rect", {
-    x: "6",
-    y: "4",
-    width: "12",
-    height: "17",
-    rx: "1.5"
-  }), React.createElement("path", {
-    d: "M10 1 L14 1"
-  }), React.createElement("path", {
-    d: "M11 9 L13 9 L11 13 L14 13 L10 18"
-  })), "SAVER"), !online && React.createElement("span", {
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 4,
-      color: "#c14a37"
-    }
-  }, React.createElement("svg", {
-    width: "11",
-    height: "11",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, React.createElement("path", {
-    d: "M4 4 L20 20"
-  }), React.createElement("path", {
-    d: "M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"
-  }), React.createElement("path", {
-    d: "M6 13 Q12 8 18 13",
-    opacity: "0.55"
-  }), React.createElement("circle", {
-    cx: "12",
-    cy: "19",
-    r: "0.9",
-    fill: "currentColor"
-  })), "OFFLINE")));
+  return (React.createElement("div", {
+      style: {
+        flexShrink: 0,
+        minHeight: 24,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 20px",
+        background: "var(--paper)",
+        borderBottom: "1px solid var(--line)",
+        fontSize: 12,
+        lineHeight: 1.33,
+        fontWeight: 500,
+        fontVariantNumeric: "tabular-nums",
+        color: "var(--text-2)"
+      }
+    }, React.createElement("span", null, day, " · ", hh, ":", mm), React.createElement("span", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, bsActive && React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--flare)"
+      }
+    }, React.createElement("svg", {
+      width: "9",
+      height: "12",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("rect", {
+      x: "6",
+      y: "4",
+      width: "12",
+      height: "17",
+      rx: "1.5"
+    }), React.createElement("path", {
+      d: "M10 1 L14 1"
+    }), React.createElement("path", {
+      d: "M11 9 L13 9 L11 13 L14 13 L10 18"
+    })), "SAVER"), !online && React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--alert)"
+      }
+    }, React.createElement("svg", {
+      width: "11",
+      height: "11",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("path", {
+      d: "M4 4 L20 20"
+    }), React.createElement("path", {
+      d: "M2 9 Q6 5 10 5.4 M22 9 Q18 5 14 5.4"
+    }), React.createElement("path", {
+      d: "M6 13 Q12 8 18 13",
+      opacity: "0.55"
+    }), React.createElement("circle", {
+      cx: "12",
+      cy: "19",
+      r: "0.9",
+      fill: "currentColor"
+    })), "OFFLINE")))
+  );
 }
 function plurskyHaptic(style = "LIGHT") {
   try {
@@ -2184,6 +2940,13 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
+  useArtistImageExpiry,
+  getArtistImage,
+  getShareableArtistImage,
+  putArtistImage,
+  putArtistImages,
+  SpotifyFullLogo,
+  SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt,
   InstallBanner,
   useNotifications,
@@ -2204,11 +2967,11 @@ Object.assign(window, {
   BatterySaverCard,
   BatterySaverToast,
   setBatterySaverMode,
-  useThemeMode,
-  ThemeCard,
-  setThemeMode,
-  resolveThemeClass,
-  applyThemeClass,
+  useAppearance,
+  AppearanceRow,
+  fitNames,
+  useFitNames,
+  fitWords,
   useOnlineStatus,
   StatusStrip,
   plurskyHaptic

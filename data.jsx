@@ -267,6 +267,11 @@ const FESTIVAL_CONFIG = {
   // ── Defaults ──
   mainStageId: "kinetic",
   mapImage: "edc-map-2026.jpg",
+
+  // The festival's OWN map page, linked (never embedded) by the /f/ page:
+  // official publication is provenance, not reuse rights. mapYear is the
+  // year printed on the map the page showed when checked — the page is already titled 2027 but still shows the 2026 map.
+  mapSource: { url: "https://lasvegas.edc.com/festival-map/", observedAt: "2026-09-24", mapYear: 2026 },
   mapStyle: "image-overlay",
   // The poster prints all nine stage names in display type (verified against
   // the asset, 2026-08-27), so Plursky must not echo them a few pixels away.
@@ -371,6 +376,10 @@ const FESTIVALS_REGISTRY = [
     // dates when announced; do NOT infer them from 2026's.
     config: {
       id:        "electric-forest-2027",
+      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
+      officialEvent: { website: "https://www.electricforestfestival.com/", observedAt: "2026-09-24" },
+      // The festival's OWN map page (2026 map; no 2027 map yet), linked never embedded.
+      mapSource: { url: "https://www.electricforestfestival.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
       name:      "Electric Forest 2027",
       shortName: "Forest 2027",
       brand:     "Electric Forest",
@@ -585,7 +594,7 @@ const FESTIVALS_REGISTRY = [
     // the June preview stub, which carried "Nov 13–15, 2026" — the
     // official dates per the Insomniac press release (2026-06-23) and
     // orlando.edc.com are NOV 6–8, 2026. Day-by-day lineup is REAL
-    // (109 acts, official site day filters); set times, per-artist stage
+    // (108 acts, official site day filters); set times, per-artist stage
     // assignments, and the official 2026 map are NOT published yet
     // (checked 2026-08-22; Insomniac drops them in the EDC app ~1-2
     // weeks out). Flip `available: true` ONLY after the flip session
@@ -599,6 +608,9 @@ const FESTIVALS_REGISTRY = [
     // stages the 2026 layout actually moves.
     config: {
       id:        "edc-orlando-2026",
+      // Where the lineup rows came from (the SOURCE note above), as data so the
+      // public /f/ page can cite it. observedAt = the date it was read.
+      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
@@ -656,13 +668,17 @@ const FESTIVALS_REGISTRY = [
       // promote any of these to "osm"/"crowd" without a real measurement.
       //
       // neon/stereo/bacardi were SNAPPED to the festival polygon where the
-      // raw fit landed outside the fence; each snap is inside the art's own
-      // residual envelope. Raw pre-snap fits, for the record:
+      // raw fit landed outside the fence. The snap distances below are
+      // calculated from the two recorded coordinate sets (raw fit to shipped
+      // anchor). Corrected 2026-09-30: this comment used to say ~85 m, ~85 m
+      // and ~40 m, and that each snap was inside the art's own 22–96 m
+      // residual envelope. neon and stereo are NOT inside it. Raw pre-snap
+      // fits, for the record:
       //   kinetic 28.537000,-81.400398 (unsnapped)
       //   circuit 28.539991,-81.402186 (unsnapped)
-      //   neon    28.539542,-81.397451 → snapped ~85 m W into the practice field
-      //   stereo  28.536498,-81.403728 → snapped ~85 m NE, east of Tampa
-      //   bacardi 28.535902,-81.402559 → snapped ~40 m N of SR-408
+      //   neon    28.539542,-81.397451 → snapped 118.9 m SW into the practice field
+      //   stereo  28.536498,-81.403728 → snapped 108.1 m NE, east of Tampa
+      //   bacardi 28.535902,-81.402559 → snapped 78.9 m N of SR-408
       //
       // ⚠ The old note claiming `stereo` was "56.9 grid units off the
       // kinetic/circuit/neon affine" and `bacardi` 13.0 is GONE, not merely
@@ -689,6 +705,18 @@ const FESTIVALS_REGISTRY = [
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
       setTimesProvisional: true,
     },
+    // STAYS GATED, and not for schedule reasons. The 2026-09-15 call opens a
+    // festival whose set times are unpublished, and EDC Orlando qualifies on
+    // that axis — but opening it makes it LIVE, and a live festival has to
+    // clear the map-registration gate. EDCO has no sourced registration by
+    // design: no OSM polygon matches the fence, so it carries no footprint and
+    // waits on the official 2026 map (the same map the hourly watch probes).
+    // Verify says it plainly: "unsourced, blind with no waiver".
+    //
+    // A waiver here would be a judgement about map accuracy with no evidence
+    // behind it, which is the founder's call and not a drive-by in this PR.
+    // Flip this to `available: true, scheduleTBA: true` the day the official
+    // map lands — the schedule side is already ready for it.
     available: false,
     accent:    "#22c55e",
     emoji:     "🌴",
@@ -708,6 +736,10 @@ const FESTIVALS_REGISTRY = [
     // 23–25 either — that is our arithmetic, not an announcement.
     config: {
       id:        "tomorrowland-2027",
+      // The Belgium edition's own site, linked from tomorrowland.com (whose
+      // 2027 news is Tomorrowland Brasil); client-rendered, so its text could
+      // not be read automatically. Checked reachable 2026-09-24.
+      officialEvent: { website: "https://belgium.tomorrowland.com/", observedAt: "2026-09-24" },
       name:      "Tomorrowland 2027",
       shortName: "Tomorrowland",
       brand:     "Tomorrowland",
@@ -725,8 +757,8 @@ const FESTIVALS_REGISTRY = [
     config: {
       id:        "acl-2026",
       // The ACL_ARTISTS header: official posters on aclfestival.com/schedule,
-      // transcribed Sep 3–4 2026.
-      scheduleSource: { url: "https://aclfestival.com/schedule", observedAt: "2026-09-04", official: true },
+      // refreshed September 30 2026.
+      scheduleSource: { url: "https://www.aclfestival.com/schedule", observedAt: "2026-09-30", official: true },
       name:      "Austin City Limits 2026",
       shortName: "ACL 2026",
       brand:     "ACL",
@@ -782,11 +814,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
         { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
         { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
-        // Derived through the NEW basis. Low confidence — unmeasurable in the
-        // capture (tree cover + teardown), so this is arithmetic, not survey.
-        { stageId: "bmi",     lat: 30.266404, lng: -97.767698, src: "derived" },
         //
-        // ⛔ NOT ANCHORED, deliberately — three reasons:
+        // ⛔ NOT ANCHORED, deliberately — four reasons:
+        //
+        // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
+        // tree cover and teardown hid it in the capture, so it was derived
+        // arithmetic (30.266404, -97.767698) through the basis above, fixed
+        // against the 2025 art. Re-measured against the 2026 plate by
+        // scripts/anchor-residuals.mjs, it sits 57 m from where the new fit
+        // draws BMI. resolvedStageAnchors() hands every gpsAnchor to the photo
+        // tagger, so a known-bad anchor tags photos to the wrong stage.
+        // Re-add only from a satellite or ground measurement.
         //
         // `titos` + `beatbox`: deleted 2026-09-05. The poster's NE and S edges
         // are distorted enough that new-affine derivations put them in water
@@ -794,13 +832,16 @@ const FESTIVALS_REGISTRY = [
         // declines to geo-match a stage it cannot place, which is the correct
         // failure mode.
         //
-        // `snapchat`: new for 2026 (15 sets), real position unknown until the
-        // official patron map publishes. It replaced the 2024 Lady Bird stage
-        // in the lineup, so the tempting move is to inherit Lady Bird's coords
-        // — don't. A new sponsor stage is not necessarily the old stage's
-        // footprint, and a guessed anchor mis-tags photos silently.
+        // `snapchat`: new for 2026 (15 sets). The official 2026 patron map
+        // (2026-09-22) now places it on the ART, in the middle of the park by
+        // The Grove, and ACL_STAGES x/y is measured there. That is still not
+        // a world position: the poster is not a survey, so no anchor is read
+        // or projected off it. It also must not inherit Lady Bird's old
+        // coords. A guessed anchor mis-tags photos silently.
         //
-        // `ladybird` / `bonus`: not stages in the 2026 app at all. They showed
+        // `ladybird` / `bonus`: not stages in the current app model. Bonus
+        // Tracks now has September 30 programming in its separate readiness
+        // collection, without a surveyed GPS anchor. They showed
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
@@ -816,11 +857,23 @@ const FESTIVALS_REGISTRY = [
       // stage (size 1.7, "headliners close here every night") and the 2026
       // grid agrees — Charli XCX, Rüfüs Du Sol and Twenty One Pilots close it.
       mainStageId: "amex",
-      // acl-park.webp = the official ACL patron map, processed for the app:
-      // legend panel + title chrome removed, padded to a square so the whole
-      // park always shows (no side-crop of T-Mobile/AMEX) and stage coords
-      // map directly. See scripts note / map.jsx image-overlay branch.
-      mapImage: "acl-park.webp",
+      // acl-park-2026.webp = the official ACL 2026 patron map
+      // (ACL26_Patron.Map_Horizontal_09.21.png, sha256 83a95f15…), legend
+      // panel cropped off and padded to a square, never scaled or stretched,
+      // so the whole park shows (T-Mobile to AMEX) and stage x/y map
+      // directly. Built by scripts/build-acl-map-2026.mjs from the unedited
+      // source in map-sources/.
+      mapImage: "acl-park-2026.webp",
+
+      // The festival's OWN map page, linked (never embedded) by the /f/ page:
+      // official publication is provenance, not reuse rights. mapYear is the
+      // year of the map the page showed when checked. 2026, read 2026-09-25 through the help centre's JSON API
+      // (/api/v2/help_center/en-us/articles/4405399774484.json; the HTML page answers automated reads with a
+      // Cloudflare 403): the article, edited 2026-09-23T16:31Z, is headed "2026 Festival Map" and embeds one
+      // image, ACL26_Patron.Map_Horizontal_09.22.png (attachment 53859674183572, Last-Modified 2026-09-23
+      // 16:31:03Z). The image itself prints no year; it prints "25 YEARS", which is 2026 (first festival 2002).
+      // Link only: the in-app ACL map stays blind under the registration waiver until 2026-10-19.
+      mapSource: { url: "https://support.aclfestival.com/hc/en-us/articles/4405399774484-Festival-Map", observedAt: "2026-09-25", mapYear: 2026 },
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/30.26,-97.77",
@@ -833,6 +886,11 @@ const FESTIVALS_REGISTRY = [
   {
     config: {
       id:        "coachella-2027",
+      // Official site, checked reachable 2026-09-24. No 2027 lineup yet.
+      officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-09-24" },
+      // The festival's OWN maps page ("Coachella 2026 Venue map" + directions,
+      // parking, camping). Link the page; never hotlink or re-host the images.
+      mapSource: { url: "https://www.coachella.com/maps", observedAt: "2026-09-24", mapYear: 2026 },
       name:      "Coachella 2027",
       shortName: "Coachella",
       brand:     "Coachella",
@@ -876,30 +934,6 @@ const FESTIVALS_REGISTRY = [
     accent:    "#f43f5e",
     emoji:     "🌼",
     region:    "Latin America",
-  },
-  {
-    // SOURCE countdownnye.com: "December 31 + January 1, 2027", "5 stages";
-    // lineup reads "Loading: 2026's lineup". /hours-and-info/: "NOS Events
-    // Center, 689 S E St., San Bernardino, CA 92408", 4:00pm – 2:00am, 18+.
-    // ⚠ That page still says "Thursday, December 31, 2025" — a stale year:
-    // Dec 31 is a Thursday in 2026, not 2025. The homepage year is used.
-    // The span crosses a year, so `dates` names both years.
-    config: {
-      id:        "countdown-nye-2026",
-      name:      "Countdown NYE 2026",
-      shortName: "Countdown",
-      brand:     "Countdown",
-      tagline:   "Five stages into the new year",
-      location:  "NOS Events Center · San Bernardino, CA",
-      locationShort: "NOS Events Center",
-      dates:     "Dec 31, 2026 – Jan 1, 2027",
-      year:      2026,
-      officialEvent: { id: 554480, url: "https://countdownnye.com/", website: "https://countdownnye.com/", tickets: "https://countdownnye.frontgatetickets.com/", observedAt: "2026-09-10" },
-    },
-    available: false,
-    accent:    "#60a5fa",
-    emoji:     "🎆",
-    region:    "North America",
   },
   {
     // SOURCE socal.beyondwonderland.com: "March 26+27, 2027". /hours-and-info/:
@@ -976,7 +1010,14 @@ const _FESTIVAL_STALE_MS = 7 * 24 * 60 * 60 * 1000;
 // are skipped rather than sorted as 0 — treating a missing date as the epoch
 // would rank an unannounced festival ahead of every real one.
 function _resolveDefaultFestivalId(now) {
-  const avail = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  const open = FESTIVALS_REGISTRY.filter(f => f && f.available && f.config && f.config.id);
+  // A festival whose set times are not published yet is OPENABLE (founder
+  // call 2026-09-15: show the lineup, don't hold the festival back) but must
+  // never WIN the default. Dropping a first-time user onto a lineup with no
+  // times, ahead of a festival that has a real schedule, would make the app
+  // worse for a change that was only ever about access. Prefer a published
+  // schedule; fall back to the pending ones only if that is all there is.
+  const avail = open.some(f => !f.scheduleTBA) ? open.filter(f => !f.scheduleTBA) : open;
   if (!avail.length) return FESTIVALS_REGISTRY[0].config.id;
   const dated = avail.filter(f =>
     typeof f.config.startMs === "number" && typeof f.config.endMs === "number");
@@ -999,11 +1040,140 @@ function _resolveDefaultFestivalId(now) {
   return dated.slice().sort((a, b) => b.config.endMs - a.config.endMs)[0].config.id;
 }
 
+// The registry's VISIBLE `dates` string → { start, end } as "YYYY-MM-DD", or
+// null. One parser for the /f/ pages (gen-festival-pages.mjs, which explains
+// why pages read `dates` and not startMs/endMs) and the festival switcher.
+// Handles "Sep 18–20, 2026" and "Oct 2–4 & 9–11, 2026". A span that crosses a
+// month or a year names both ends in full ("Dec 31, 2026 – Jan 1, 2027",
+// Countdown NYE); without that branch it parsed as NO DATES (#109). Anything
+// else falls back to dayDates.
+function _festivalEventDates(cfg) {
+  const MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+  const ymd = (mon, d, y) => `${y}-${String(MONTHS[mon]).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+  const m = /^([A-Z][a-z]{2}) (\d+)[–-](\d+)(?: & (\d+)[–-](\d+))?, (\d{4})$/.exec(cfg.dates || "");
+  if (m) return { start: ymd(m[1], m[2], m[6]), end: ymd(m[1], m[5] || m[3], m[6]) };
+  const x = /^([A-Z][a-z]{2}) (\d+), (\d{4}) [–-] ([A-Z][a-z]{2}) (\d+), (\d{4})$/.exec(cfg.dates || "");
+  if (x && MONTHS[x[1]] && MONTHS[x[4]]) return { start: ymd(x[1], x[2], x[3]), end: ymd(x[4], x[5], x[6]) };
+  const dd = cfg.dayDates && Object.values(cfg.dayDates);
+  if (dd && dd.length) {
+    const f = (d) => `${d.y}-${String(d.m + 1).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    return { start: f(dd[0]), end: f(dd[dd.length - 1]) };
+  }
+  return null;
+}
+
+// A festival's window for ordering: its real startMs/endMs when it has both,
+// else whole UTC days from its printed `dates` (a 2027 stub announces dates
+// long before gate times exist). null = dates TBA, never sorted as epoch 0.
+function _festivalWindow(c) {
+  if (!c) return null;
+  if (typeof c.startMs === "number" && typeof c.endMs === "number") return { startMs: c.startMs, endMs: c.endMs };
+  const ev = _festivalEventDates(c);
+  if (!ev) return null;
+  const day = s => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  return { startMs: day(ev.start), endMs: day(ev.end) + 86400000 - 1 };
+}
+
+// Festival switcher order (Jake 2026-09-13): live first, then upcoming
+// (soonest first), then dates TBA (registry order), then ended last (most
+// recently ended first).
+// The local midnights a festival actually runs on: its dayDates, plus a copy
+// of them per later weekend when weekendStartMs says the days repeat (ACL's
+// dayDates describe weekend one only). Sorted; [] without dayDates.
+function _festivalEventDays(c) {
+  const base = (c && c.dayDates ? Object.values(c.dayDates) : [])
+    .map(d => (typeof d.midnightUtc === "number" ? d.midnightUtc : Date.UTC(d.y, d.m, d.d)))
+    .filter(x => typeof x === "number" && !isNaN(x));
+  const out = new Set(base);
+  for (const { shift } of festivalWeekendShifts(c)) if (shift > 0) base.forEach(x => out.add(x + shift));
+  return [...out].sort((a, b) => a - b);
+}
+// Each weekend a festival runs and how far its days sit from the dayDates
+// (which describe weekend one). A single-weekend festival gets one entry,
+// { weekend: null, shift: 0 }, so callers walk the same loop either way.
+function festivalWeekendShifts(c) {
+  const wk = c && c.weekendStartMs;
+  if (!wk || typeof wk.W1 !== "number") return [{ weekend: null, shift: 0 }];
+  return Object.keys(wk).filter(k => typeof wk[k] === "number" && wk[k] - wk.W1 >= 0)
+    .map(k => ({ weekend: k, shift: wk[k] - wk.W1 })).sort((a, b) => a.shift - b.shift);
+}
+// Does this act play on `weekend`? The one rule for every weekend filter: the
+// active lineup, the retag picker and photo tagging. Untagged and "both" acts
+// play every weekend; no weekend (a single-weekend festival) keeps them all.
+function actPlaysWeekend(a, weekend) {
+  return !weekend || !a.weekend || a.weekend === "both" || a.weekend === weekend;
+}
+
+function _festivalPhase(f, now) {
+  const c = f && f.config, w = _festivalWindow(c);
+  if (!w) return "tba";
+  if (now > w.endMs) return "ended";
+  if (now < w.startMs) return "upcoming";
+  // Only an entry with real gate times can be live. A dates-only stub
+  // (Coachella 2027: "Apr 9–18", two weekends, no dayDates) is unbuilt, and
+  // its printed span can't say which days it runs (Codex's third P2 on #183).
+  if (!(typeof c.startMs === "number" && typeof c.endMs === "number")) return "upcoming";
+  // Inside the startMs..endMs envelope, a festival that runs in blocks (ACL's
+  // two weekends, Summerfest's three Thu–Sat runs) is live only on its event
+  // days; the gap between blocks is upcoming (two Codex P2s on #183). A day
+  // counts until 06:00 the next morning, for sets past midnight.
+  const days = _festivalEventDays(c), H = 3600000;
+  for (let i = 1; i < days.length; i++) {
+    if (days[i] - days[i - 1] > 36 * H && now >= days[i - 1] + 30 * H && now < days[i]) return "upcoming";
+  }
+  return "live";
+}
+
+// Within a phase, order by the PRINTED date the row shows, not the window:
+// Decadence's doors (Dec 30 17:00 MST) are Dec 31 00:00Z, the same instant as
+// Countdown NYE's printed-only Dec 31, so an instant-only key listed Dec 31
+// above Dec 30. The real instant only breaks a same-day tie.
+function _sortFestivalsForSwitcher(list, now) {
+  const rank = { live: 0, upcoming: 1, tba: 2, ended: 3 };
+  const iso = ms => new Date(ms).toISOString().slice(0, 10);
+  const cmp = (x, y) => (x < y ? -1 : x > y ? 1 : 0);
+  return list
+    .map((f, i) => {
+      const c = f && f.config, w = _festivalWindow(c), ev = c && _festivalEventDates(c);
+      return { f, i, p: _festivalPhase(f, now), w,
+        s: ev ? ev.start : w && iso(w.startMs), e: ev ? ev.end : w && iso(w.endMs) };
+    })
+    .sort((a, b) => rank[a.p] - rank[b.p]
+      || (a.p === "ended" ? cmp(b.e, a.e) || b.w.endMs - a.w.endMs
+        : a.p === "tba"   ? 0
+        : cmp(a.s, b.s) || a.w.startMs - b.w.startMs)
+      || a.i - b.i)
+    .map(x => x.f);
+}
+
+// Can this festival BE the active one? The same answer every door gives:
+// open festivals for everyone, early-access (previewOnly) ones for Plus.
+// The resolver used to accept `available` only, so the switcher, the landing
+// and ?f= all let a subscriber pick an early-access festival, wrote the id,
+// reloaded — and this resolver threw the pick away and opened the previous
+// festival instead. It also needs a data set: an id with nothing to load
+// would resolve and then silently render EDC.
+//
+// spotify.jsx (which owns _isPlusSub) loads AFTER this file and the resolver
+// runs at eval time, so the bare name is not defined yet on boot; read the
+// same key it reads. At runtime the function wins, so a test (or a later
+// entitlement source) that replaces it is honoured.
+function _plusActiveForResolver() {
+  try {
+    if (typeof _isPlusSub === "function") return !!_isPlusSub();
+    return localStorage.getItem("plursky_plus_active") === "1";
+  } catch { return false; }
+}
+function festivalCanBeActive(entry) {
+  if (!entry || !entry.config) return false;
+  if (typeof _DATA_SETS !== "undefined" && !_DATA_SETS[entry.config.id]) return false;
+  return !!entry.available || (!!entry.previewOnly && _plusActiveForResolver());
+}
 function getActiveFestivalId() {
   const now = Date.now();
   try {
     const stored = localStorage.getItem("active_festival_id");
-    const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && f.available);
+    const entry = stored && FESTIVALS_REGISTRY.find(f => f.config.id === stored && festivalCanBeActive(f));
     if (entry) {
       const end = entry.config.endMs;
       // An EXPLICIT pick outranks staleness, forever. Without this the switcher
@@ -1139,7 +1309,18 @@ const AMENITIES = [
   { id: "f1",  type: "food",   label: "General Store — Downtown", x: 42.4, y: 65.5 },
 ];
 
-const AVATAR_START = { x: 50, y: 52 };
+// The off-site demo "YOU" marker starts in a corner of the box it wanders in
+// (map.jsx clamps it to 12-88), never on a pin: founder ruling 2026-09-23,
+// after the old fleet-wide {x: 50, y: 52} landed on ACL 2026's Snapchat tent.
+// The first corner with no stage or amenity within AVATAR_CLEARANCE wins; if
+// every corner is crowded, the one farthest from any pin.
+const AVATAR_CLEARANCE = 10;
+function avatarStartFor(ds) {
+  const pins = [...(ds?.stages || []), ...(ds?.amenities || [])].filter(p => Number.isFinite(p.x) && Number.isFinite(p.y));
+  const corners = [{ x: 12, y: 88 }, { x: 88, y: 88 }, { x: 12, y: 12 }, { x: 88, y: 12 }];
+  const room = c => pins.length ? Math.min(...pins.map(p => Math.hypot(p.x - c.x, p.y - c.y))) : Infinity;
+  return corners.find(c => room(c) >= AVATAR_CLEARANCE) || corners.reduce((a, b) => room(b) > room(a) ? b : a);
+}
 
 const FRIENDS = [];
 
@@ -1166,6 +1347,18 @@ const mk = (id, name, genre, stage, day, start, end, bio) => {
     bio: bio || `Playing ${FESTIVAL_CONFIG?.name || "EDC Las Vegas 2026"}.`
   };
 };
+
+// How an act is NAMED in a row, a block, a pill or a card (lane ruling
+// 2026-09-26). An artist name is never truncated: no ellipsis, no clamp, no
+// character cut. The one shortening allowed is for a chain of 3+ artists,
+// which would break any row: the first artist + "+N" ("Audiofreq b3b Code
+// Black b3b Toneshifterz" → "Audiofreq +2"). A b2b stays in full. The artist
+// page and anything that IS the act's own title keep the full name.
+function actDisplayName(name) {
+  const n = String(name || "");
+  const members = n.split(/\s+b\d+b\s+/i);
+  return members.length > 2 ? `${members[0]} +${members.length - 1}` : n;
+}
 
 // 24h "HH:MM" → 12h "H:MM AM/PM" for display. Sort/diff logic still uses raw a.start.
 function fmt12(t) {
@@ -1197,7 +1390,7 @@ const ARTISTS = [
   mk("k6",  "The Chainsmokers",        "Electro Pop",            "kinetic", 1, "00:32", "01:42"),
   mk("k7",  "FISHER",                  "Tech House",             "kinetic", 1, "01:47", "02:57"),
   mk("k8",  "Porter Robinson (DJ Set)","Electronic",             "kinetic", 1, "03:01", "04:11"),
-  mk("k9",  "Charlotte de Witte",      "Techno",                 "kinetic", 1, "04:14", "05:29", "Belgian techno queen, mainstage rarity."),
+  mk("k9",  "Charlotte de Witte",      "Techno",                 "kinetic", 1, "04:14", "05:29", "Techno DJ and producer who started KNTXT as a club night at Fuse in Brussels in 2015."),
   // SAT
   mk("k10", "AR/CO",                   "Live Electronic",        "kinetic", 2, "19:00", "20:00"),
   mk("k11", "Hayla",                   "DnB Vocalist",           "kinetic", 2, "20:00", "21:00"),
@@ -1207,7 +1400,7 @@ const ARTISTS = [
   mk("k15", "John Summit",             "Tech House",             "kinetic", 2, "00:32", "01:42"),
   mk("k16", "Subtronics",              "Dubstep",                "kinetic", 2, "01:47", "02:57"),
   mk("k17", "Kaskade",                 "Progressive House",      "kinetic", 2, "03:01", "04:11"),
-  mk("k18", "Above & Beyond (Sunrise Set)","Trance",             "kinetic", 2, "04:14", "05:29", "Group therapy under the desert dawn."),
+  mk("k18", "Above & Beyond (Sunrise Set)","Trance",             "kinetic", 2, "04:14", "05:29", "Jono, Tony and Paavo: the trio behind Anjunabeats and the weekly Group Therapy radio show."),
   // SUN
   mk("k19", "Trace",                   "DnB",                    "kinetic", 3, "19:00", "20:00"),
   mk("k20", "Ship Wrek",               "Bass",                   "kinetic", 3, "20:00", "21:00"),
@@ -1215,9 +1408,9 @@ const ARTISTS = [
   mk("k22", "Funk Tribu",              "Hard Techno",            "kinetic", 3, "22:07", "23:15"),
   mk("k23", "GRiZ b2b Wooli",          "Bass / Funk",            "kinetic", 3, "23:19", "00:29"),
   mk("k24", "Zedd",                    "Electro House",          "kinetic", 3, "00:32", "01:42"),
-  mk("k25", "Martin Garrix",           "Big Room / Progressive", "kinetic", 3, "01:47", "02:57", "Dutch headliner. Animals-era anthems to melodic trance."),
+  mk("k25", "Martin Garrix",           "Big Room / Progressive", "kinetic", 3, "01:47", "02:57", "DJ and producer whose 2013 single \"Animals\" launched him to mainstream prominence."),
   mk("k26", "Cloonee",                 "Tech House",             "kinetic", 3, "03:01", "04:11"),
-  mk("k27", "Armin van Buuren (Sunrise Set)","Trance",           "kinetic", 3, "04:14", "05:29", "ASOT captain. Sunrise trance ceremony."),
+  mk("k27", "Armin van Buuren (Sunrise Set)","Trance",           "kinetic", 3, "04:14", "05:29", "Dutch DJ and producer who hosts the weekly A State of Trance show."),
 
   // ─────────────────────────── CIRCUIT GROUNDS ─────────────────────────
   // FRI
@@ -1281,7 +1474,7 @@ const ARTISTS = [
   mk("c3",  "Roddy Lima",              "House",                  "cosmic",  1, "19:55", "20:55"),
   mk("c4",  "Westend",                 "Tech House",             "cosmic",  1, "20:55", "21:55"),
   mk("c5",  "Walker & Royce b2b VNSSA","Tech House",             "cosmic",  1, "21:55", "22:55"),
-  mk("c6",  "Underworld",              "Electronica",            "cosmic",  1, "23:10", "00:10", "Born Slippy. Two decks, a mic, a legacy."),
+  mk("c6",  "Underworld",              "Electronica",            "cosmic",  1, "23:10", "00:10", "Electronic duo of Rick Smith and Karl Hyde."),
   mk("c7",  "MEDUZA",                  "House",                  "cosmic",  1, "00:25", "01:45"),
   mk("c8",  "Notion",                  "Bass",                   "cosmic",  1, "01:47", "02:47"),
   mk("c9",  "MPH",                     "Bass House",             "cosmic",  1, "02:47", "04:02"),
@@ -1291,7 +1484,7 @@ const ARTISTS = [
   mk("c12", "Hannah Laing",            "Hard House / Techno",    "cosmic",  2, "20:15", "21:25"),
   mk("c13", "Snow Strippers",          "Hyperpop / Electronic",  "cosmic",  2, "21:25", "22:15"),
   mk("c14", "VTSS (In The Round)",     "Techno",                 "cosmic",  2, "22:15", "23:30"),
-  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "Firestarters. Legendary live set."),
+  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "The act behind \"Firestarter\"."),
   mk("c16", "BUNT. (In The Round)",    "Folktronica",            "cosmic",  2, "00:40", "02:10"),
   mk("c17", "Interplanetary Criminal", "UK Bass",                "cosmic",  2, "02:10", "03:30"),
   mk("c18", "Malugi",                  "Techno",                 "cosmic",  2, "03:30", "04:30"),
@@ -1315,7 +1508,7 @@ const ARTISTS = [
   mk("b4",  "Massimiliano Pagliara",   "House",                  "bionic",  1, "21:30", "23:00"),
   mk("b5",  "Paramida",                "Disco / House",          "bionic",  1, "23:00", "00:30"),
   mk("b6",  "Salute b2b Chloé Caillet","UK Garage",              "bionic",  1, "00:30", "02:30"),
-  mk("b7",  "Robert Hood",             "Detroit Techno",         "bionic",  1, "02:30", "04:00", "Detroit techno originator."),
+  mk("b7",  "Robert Hood",             "Detroit Techno",         "bionic",  1, "02:30", "04:00", "Detroit techno producer and a founding member of Underground Resistance."),
   mk("b8",  "Avalon Emerson",          "Electro / House",        "bionic",  1, "04:00", "05:30"),
   // SAT
   mk("b9",  "Spray",                   "House",                  "bionic",  2, "20:00", "21:00"),
@@ -1359,7 +1552,7 @@ const ARTISTS = [
   mk("q20", "Thomas Schumacher",       "Techno",                 "quantum", 2, "04:30", "05:30"),
   // SUN
   mk("q21", "Warung",                  "Melodic House",          "quantum", 3, "19:00", "20:00"),
-  mk("q22", "Shingo Nakamura",         "Progressive",            "quantum", 3, "20:00", "21:00", "Melodic progressive. Sunset specialist."),
+  mk("q22", "Shingo Nakamura",         "Progressive",            "quantum", 3, "20:00", "21:00", "Tokyo-based producer known for melodic house and progressive house."),
   mk("q23", "Rebūke",                  "Techno",                 "quantum", 3, "21:00", "22:00"),
   mk("q24", "Cristoph",                "Progressive House",      "quantum", 3, "22:00", "23:00"),
   mk("q25", "Eli & Fur",               "Melodic House",          "quantum", 3, "23:00", "00:00"),
@@ -1522,13 +1715,13 @@ function resolvedStageAnchor(cfg, stageId) {
 // while every other surface rendered W1. Two halves of the app disagreeing.
 //
 // Founder ruling 2026-09-08 — clock first, saved-acts as the pre-event
-// fallback:
-//   · Once W2 has begun the clock decides. It cannot be wrong while you are
-//     standing in Zilker Park.
-//   · Before then the clock has nothing to say, so fall back to the same
-//     saved-acts majority preEventCountdown already uses. That also covers
-//     the gap week between the two weekends, where the clock is silent but a
-//     W2 attendee has usually already saved a W2-heavy lineup.
+// fallback — with its gap-week clause replaced by the 2026-09-29 ruling:
+//   · Once W1 has wrapped the clock decides: the gap week and all of W2 are
+//     W2. The clock cannot be wrong while you are standing in Zilker Park,
+//     and after W1's last night there is no W1 left to show.
+//   · Before then (pre-event and during W1) fall back to the same saved-acts
+//     majority preEventCountdown already uses, so W1 is covered by what the
+//     user saved.
 //   · Anything else is W1, which is the historical behaviour.
 // No new UI and no copy, by design.
 //
@@ -1556,13 +1749,35 @@ function _weekendMajorityIsW2(saved) {
 // NOW recompute — 137 ACL acts against every saved id, a thousand times over.
 // Reading the string is cheap; parsing and scanning it is not.
 let _wkMemo = null;                                    // { fid, raw, shift }
+// When W2 "has begun" for the ruling above: its first festival DAY opens, at
+// 08:00 local on its date (the night window _nightWindowFlags uses), not at
+// weekendStartMs.W2, which is the first set. Between the two, W2 Friday
+// morning resolved to W1: Oct 2-4 dates, no next set, no night, on the day
+// itself. Falls back to W2 when there are no day dates to read.
+function _w2BeganMs(cfg, w, shift) {
+  const nums = Object.keys((cfg && cfg.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  const d1 = nums.length ? cfg.dayDates[nums[0]] : null;
+  if (!d1 || typeof d1.midnightUtc !== "number") return w.W2;
+  return Math.min(w.W2, d1.midnightUtc + shift + 8 * 3600000);
+}
+// When W1 has wrapped (ruling 2026-09-29): its last festival night closes at
+// 08:00 local the morning after its last day (the same night window), so a
+// Sunday-night after-party still reads W1. Never later than W2 beginning.
+// Falls back to _w2BeganMs when there are no day dates to read.
+function _w1WrappedMs(cfg, w, shift) {
+  const began = _w2BeganMs(cfg, w, shift);
+  const nums = Object.keys((cfg && cfg.dayDates) || {}).map(Number).sort((a, b) => a - b);
+  const last = nums.length ? cfg.dayDates[nums[nums.length - 1]] : null;
+  if (!last || typeof last.midnightUtc !== "number") return began;
+  return Math.min(began, last.midnightUtc + 32 * 3600000);
+}
 function _weekendShiftMs(cfg, nowMs, savedIds) {
   const w = cfg && cfg.weekendStartMs;
   if (!w || typeof w.W1 !== "number" || typeof w.W2 !== "number") return 0;
   const shift = w.W2 - w.W1;
   if (!(shift > 0)) return 0;
   const now = typeof nowMs === "number" ? nowMs : Date.now();
-  if (now >= w.W2) return shift;                       // clock wins outright
+  if (now >= _w1WrappedMs(cfg, w, shift)) return shift; // clock wins outright
   try {                                                // else: what did they save?
     if (Array.isArray(savedIds)) return _weekendMajorityIsW2(savedIds) ? shift : 0;
     const raw = localStorage.getItem(`${cfg.id}_saved_v1`) || "[]";
@@ -1594,8 +1809,9 @@ function activeWeekend(cfg, nowMs, savedIds) {
 // ARTISTS itself stays whole, deliberately. 76 further reads look an artist
 // up BY ID — a saved id, an attended id, moment.artistId — to put a name on
 // a memory or a recap card. The resolver above is clock-first by founder
-// ruling, so from Oct 9 onward it answers "W2" for good; filtering the global
-// would leave a Weekend 1 attendee's memories permanently nameless. Identity
+// ruling, so from W1's wrap (Oct 5, 08:00) it answers "W2" for good;
+// filtering the global would leave a Weekend 1 attendee's memories
+// permanently nameless. Identity
 // reads the whole lineup. The SCHEDULE reads this.
 //
 // Single-weekend festivals get the SAME ARRAY BACK — identical reference, not
@@ -1605,7 +1821,7 @@ function lineupFor(weekend) {
   const all = (typeof window !== "undefined" && window.ARTISTS) || ARTISTS || [];
   if (!weekend || weekend === "all") return all;
   if (_lineupMemo && _lineupMemo.src === all && _lineupMemo.wk === weekend) return _lineupMemo.list;
-  const list = all.filter(a => !a.weekend || a.weekend === "both" || a.weekend === weekend);
+  const list = all.filter(a => actPlaysWeekend(a, weekend));
   _lineupMemo = { src: all, wk: weekend, list };
   return list;
 }
@@ -1619,11 +1835,28 @@ function activeLineup(savedIds) {
   return lineupFor(activeWeekend(null, undefined, savedIds));
 }
 
+// ── SAVED SETS THE LINEUP STILL CARRIES — one view for every saved-set surface ──
+//
+// A saved id outlives its act: an official lineup can drop a set after
+// someone saved it (CRSSD Fall 2026 lost Skepta Más Tiempo between two
+// official renderings). Storage and the cloud row keep EVERY id, orphans
+// included, until an explicit data-retention decision: an act that comes back
+// comes back saved, and a sign-in union merges what each side holds. What the
+// user SEES and COUNTS is this view: ids the active festival's whole lineup
+// (both weekends, identity, not schedule) still carries, in saved order.
+// Counts, empty states, Search, Saved by day, sharing and crew broadcasts
+// read it; toggles, storage and cloud sync write the raw list.
+function savedInLineup(savedIds) {
+  if (!Array.isArray(savedIds) || !savedIds.length) return [];
+  const known = new Set(lineupFor("all").map(a => a.id));
+  return savedIds.filter(id => known.has(id));
+}
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
-// is clock-first, so from Oct 9 it answers W2 for good, and a Weekend 1 photo
-// retagged after that was offered Weekend 2's acts only (round 5). takenAt is
-// a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
+// is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a
+// Weekend 1 photo retagged after that was offered Weekend 2's acts only
+// (round 5). takenAt is a wall-clock "YYYY-MM-DD HH:MM[:SS]"; the cut is the midpoint between the two
 // weekend starts, days from either, so a few hours of zone slack cannot flip
 // it. Null for a single-weekend festival or an unreadable date.
 function momentWeekend(takenAt, cfg) {
@@ -2081,44 +2314,56 @@ const ESSENTIALS = [
 // ─────────────────────────────────────────────────────────────
 // ACL 2026 — Austin City Limits at Zilker Park
 // ─────────────────────────────────────────────────────────────
-// Stage x/y calibrated to the ACL 2025 Zilker Park map (north-up,
-// 0–100 grid). Compass: N=up, Lady Bird Lake = top-right,
-// Barton Springs Rd = bottom, Andrew Zilker Rd = left edge.
-// Positions calibrated against the official ACL 2025 patron map (acl-map-2025.webp).
+// Stage x/y are measured on acl-park-2026.webp, the square derivative of the
+// official ACL 2026 patron map (ACL26_Patron.Map_Horizontal_09.21.png, 2305 x
+// 1441, sha256 83a95f15…, support.aclfestival.com article 4405399774484,
+// updated 2026-09-22). x = 100·px/1765, y = 100·py/1765, at the centre of each
+// stage STRUCTURE (not its label). The pixel table and the crop/pad that make
+// the derivative live in scripts/build-acl-map-2026.mjs, and verify gate
+// test-acl-map-2026.mjs fails if a value here drifts from it.
+// North-up: Lady Bird Lake top-right, Barton Springs Rd bottom, Andrew Zilker
+// Rd left. These answer "where is it on the map ART" only. The poster is not
+// a survey, so none of them is a GPS anchor (see gpsAnchors in the registry).
 const ACL_STAGES = [
-  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 92, y: 49, size: 1.7, desc: "East side · headliners",        vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
+  { id: "amex",    name: "American Express",  short: "AMEX", color: "#ec4899", x: 87.6, y: 49.9, size: 1.7, desc: "East side · headliners",        vibe: "Main Event",       vibeNote: "The big stage. Headliners close here every night.",             peak: "17:00–22:00" },
   // NEW for 2026 (Live Nation sponsor stage, 15 sets on the official grid).
-  // ⚠ POSITION IS PROVISIONAL. The official 2026 patron map is not published
-  //   (support.aclfestival.com still says "2026 information is not yet
-  //   available"), so x/y here is a PLACEHOLDER, not a survey. It is stated in
-  //   `desc` so the map never silently lies to someone walking to it, and the
-  //   stage deliberately has NO gpsAnchor. Re-derive x/y AND add the anchor
-  //   through the amex/miller/beatbox affine the moment the map drops.
-  { id: "snapchat",name: "Snapchat Stage",    short: "SNAPCHAT",color: "#facc15", x: 66, y: 42, size: 1.2, desc: "Location TBA · check the on-site map", vibe: "New for 2026", vibeNote: "New sponsor stage. Placement confirms when ACL publishes the 2026 map.", peak: "14:00–21:00" },
-  // x/y CORRECTED 2026-09-05 from (80,31), which put the pin ~132 m north-east
-  // of the stage — out in Lady Bird Lake. Measured off acl-park.webp (the image
-  // the app actually renders) and cross-checked against acl-map-2025.webp
-  // through the crop/scale between them; the two agree to ~0.4 grid units.
-  // (68,37) is the stage PLATFORM, matching how amex/miller/bmi/beatbox sit on
-  // their structures rather than their labels.
-  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 68, y: 37, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
-  { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31, y: 24, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
-  { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 8, y: 34, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
-  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 25, y: 54, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
-  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 22, y: 72, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
+  // Placed from the official 2026 patron map: the dark tent labelled SNAPCHAT
+  // in the middle of the park, beside The Grove. That fixes where it is on the
+  // map art ONLY. It still has no gpsAnchor, and must not get one from this
+  // poster: a world position needs a survey, not artwork.
+  { id: "snapchat",name: "Snapchat Stage",    short: "SNAPCHAT",color: "#facc15", x: 51.4, y: 52.7, size: 1.2, desc: "Center · by The Grove", vibe: "New for 2026", vibeNote: "New sponsor stage in the middle of the park, next to The Grove.", peak: "14:00–21:00" },
+  { id: "titos",   name: "Tito's Stage",      short: "TITO'S",color: "#f97316", x: 67.3, y: 36.3, size: 1.2, desc: "North-east · mid-large stage",  vibe: "Texas Heat",        vibeNote: "Austin locals + rising stars. Vodka optional.",                 peak: "13:00–19:00" },
+  { id: "miller",  name: "Miller Lite Stage", short: "MILLER",color: "#38bdf8", x: 31.4, y: 25.8, size: 1.0, desc: "North · by Lady Bird Lake",     vibe: "Chill Vibes",       vibeNote: "Shade, cold beer, great sound. Closest to the lake.",           peak: "13:00–19:00" },
+  { id: "tmobile", name: "T-Mobile Stage",    short: "T-MOBILE",color: "#a855f7", x: 14.5, y: 38.8, size: 1.6, desc: "West side · co-headliners",   vibe: "The Other Main",   vibeNote: "Second headline stage — Skrillex, Lorde and The xx close here.", peak: "16:00–22:00" },
+  { id: "bmi",     name: "BMI Stage",         short: "BMI",  color: "#fbbf24", x: 29.2, y: 56.7, size: 0.9, desc: "Center-left · songwriter stage", vibe: "Songwriter's Corner",vibeNote: "Stripped-down, intimate. Singer-songwriter heaven.",           peak: "12:00–18:00" },
+  { id: "beatbox", name: "BEATBOX",           short: "BBX",  color: "#1e40af", x: 27.8, y: 72.9, size: 0.75,desc: "South-west · electronic stage",  vibe: "Bass Haven",        vibeNote: "DJs, producers, electronic acts. Near west entrance.",          peak: "14:00–21:00" },
 ];
 
+const ACL_GRID_SOURCES_0930 = {
+  "W1": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp"
+  },
+  "W2": {
+    "1": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp",
+    "2": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+    "3": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp"
+  }
+};
 const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
   const h = parseInt(start.split(':')[0]);
   const tier = h >= 19 ? 3 : h >= 16 ? 2 : 1;
   return { id, name, genre, country: "—", stage, day, start, end, tier, weekend: wk || "both",
+    scheduleSources: (wk ? [wk] : ["W1", "W2"]).map(w => ({ url: ACL_GRID_SOURCES_0930[w][day], observedAt: "2026-09-30", edition: "2026", weekend: w })),
+    endSource: (["tmobile", "amex"].includes(stage) && parseInt(start) >= 20) ? "existing-22:00-closing-policy; grid-prints-start-only" : "printed-grid",
     img: `linear-gradient(135deg, ${ACL_STAGES.find(s=>s.id===stage)?.color || "#e85d2e"}, #1a0a28)`,
     bio: `Playing ACL 2026.${wk ? ` Weekend ${wk} only.` : ""}` };
 };
 
 // ── ACL 2026 lineup — OFFICIAL per-day schedule grid ────────────────
 // Transcribed from the official posters on aclfestival.com/schedule
-// (CDN assets ACL26-Schedule-Wk1/Wk2-...-20260826-Draft3), Sep 3-4 2026;
+// (CDN assets ACL26-Schedule-Wk1/Wk2-...-9.30), September 30 2026;
 // corroborated by CultureMap (Aug 17) and TEENS Media (Aug 18). This
 // REPLACES the previous 2025-estimated grid.
 //
@@ -2131,11 +2376,12 @@ const _aclMk = (id, name, genre, stage, day, start, end, wk) => {
 //  · "Silent Disco" (Tito's, 20:00-22:00 nightly) is a real poster slot.
 //  · Kiddie Limits / side-stage strip excluded — not in the app stage model.
 //
-// 137 entries across 7 programmed stages — which is now every stage the app
-// defines for ACL. Lady Bird and Bonus Tracks are physically in the park and
-// on the 2025 map the app renders, but carry ZERO 2026 programming, so their
-// defs were dropped in v254 rather than ship two filter chips that select
-// nothing. See the gpsAnchors note above before restoring them.
+// 136 music entries across 7 programmed stages — which is now every stage the app
+// defines for ACL music. The official September 30 grids now publish Bonus
+// Tracks programming, recorded separately in data/programming/acl-2026.json
+// (20 events, including three unnamed placeholders). That collection is data
+// readiness only: no app consumer, stage coordinates or GPS anchor is added.
+// Lady Bird remains an entrance/box office, not a programmed stage.
 const ACL_ARTISTS = [
   // ── FRIDAY (day 1) ──
   // T-Mobile
@@ -2193,7 +2439,7 @@ const ACL_ARTISTS = [
   _aclMk("af46","Faouzia","—","amex",1,"14:45","15:30","W2"),
   _aclMk("af47","Amyl And The Sniffers","—","amex",1,"16:30","17:30"),
   _aclMk("af48","Labrinth","—","amex",1,"18:30","19:30"),
-  _aclMk("af49","Charli XCX","Pop","amex",1,"20:40","22:00"),
+  _aclMk("af49","Charli XCX","Pop","amex",1,"20:35","22:00"),
   // ── SATURDAY (day 2) ──
   // T-Mobile
   _aclMk("as01","Night Tapes","—","tmobile",2,"13:00","13:45"),
@@ -2205,7 +2451,7 @@ const ACL_ARTISTS = [
   _aclMk("as06","Temper City","—","miller",2,"13:45","14:30"),
   _aclMk("as07","Arcy Drive","—","miller",2,"15:15","16:15","W1"),
   _aclMk("as08","Laszewo","—","miller",2,"15:15","16:15","W2"),
-  _aclMk("as09","Snow Strippers","Electronic","miller",2,"17:15","18:15"),
+  _aclMk("as09","Snow Strippers","Electronic","beatbox",2,"19:30","20:10"),
   _aclMk("as10","Levity","Electronic","miller",2,"19:15","20:15"),
   // BMI
   _aclMk("as11","Fightmaster","—","bmi",2,"12:45","13:15","W1"),
@@ -2217,18 +2463,16 @@ const ACL_ARTISTS = [
   _aclMk("as17","Fai Laci","—","bmi",2,"17:15","18:15","W1"),
   _aclMk("as18","Chloe Qisha","—","bmi",2,"17:15","18:15","W2"),
   // Beatbox
-  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"14:00","14:45","W1"),
-  _aclMk("as20","LLUVII","—","beatbox",2,"14:00","14:45","W2"),
-  _aclMk("as21","Ryan Beatty","—","beatbox",2,"15:30","16:30","W1"),
-  _aclMk("as22","Arcy Drive","—","beatbox",2,"15:30","16:30","W2"),
-  _aclMk("as23","Palace","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as19","Cure For Paranoia","—","beatbox",2,"15:00","16:15","W1"),
+  _aclMk("as20","LLUVII","—","beatbox",2,"15:30","16:15","W2"),
+  _aclMk("as21","Ryan Beatty","—","beatbox",2,"17:30","18:30","W1"),
+  _aclMk("as22","Arcy Drive","—","miller",2,"17:15","18:15","W2"),
+  _aclMk("as23","Palace","—","miller",2,"17:15","18:15","W1"),
   _aclMk("as24","Ryan Beatty","—","beatbox",2,"17:30","18:30","W2"),
-  _aclMk("as25","Fakemink","—","beatbox",2,"19:30","20:30"),
   // Tito's
   _aclMk("as26","Left Lucid","—","titos",2,"12:45","13:30","W1"),
   _aclMk("as27","Montclair","—","titos",2,"12:45","13:30","W2"),
-  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45","W1"),
-  _aclMk("as29","Nat Myers","—","titos",2,"14:00","14:45","W2"),
+  _aclMk("as28","DJ Cassandra","—","titos",2,"14:00","14:45"),
   _aclMk("as30","Don West","—","titos",2,"15:15","16:00"),
   _aclMk("as31","Rodrigo Y Gabriela","—","titos",2,"16:30","17:30"),
   _aclMk("as32","Yousuke Yukimatsu","Electronic","titos",2,"18:30","19:30"),
@@ -2251,26 +2495,27 @@ const ACL_ARTISTS = [
   _aclMk("au02","Thomas Day","—","tmobile",3,"13:15","14:00","W2"),
   _aclMk("au03","Stella Lefty","—","tmobile",3,"14:45","15:30","W1"),
   _aclMk("au04","Charlotte Lawrence","—","tmobile",3,"14:45","15:30","W2"),
-  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:30"),
-  _aclMk("au06","Geese","—","tmobile",3,"18:30","19:30"),
-  _aclMk("au07","The xx","—","tmobile",3,"20:30","22:00"),
+  _aclMk("au05","Audrey Hobert","—","tmobile",3,"16:30","17:20"),
+  _aclMk("au06","Geese","—","tmobile",3,"18:20","19:20"),
+  _aclMk("au07","The xx","—","tmobile",3,"20:35","22:00"),
   // Miller Lite
   _aclMk("au08","Jess Williamson","—","miller",3,"14:00","14:45","W1"),
   _aclMk("au09","Joshua Jensen","—","miller",3,"14:00","14:45","W2"),
   _aclMk("au10","Claire Rosinkranz","—","miller",3,"15:30","16:30"),
-  _aclMk("au11","Saint Motel","—","miller",3,"17:30","18:30"),
-  _aclMk("au12","Parcels","—","miller",3,"19:30","20:30"),
+  _aclMk("au11","Saint Motel","—","miller",3,"17:20","18:20"),
+  _aclMk("au12","Parcels","—","miller",3,"19:20","20:35"),
   // BMI
-  _aclMk("au13","Rubio","—","bmi",3,"12:45","13:15","W1"),
+  _aclMk("au-vinny-w1","Vinny","—","bmi",3,"12:45","13:15","W1"),
   _aclMk("au14","Marzz","—","bmi",3,"12:45","13:15","W2"),
   _aclMk("au15","Aaron Rowe","—","bmi",3,"14:00","14:45","W1"),
-  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:00","14:45","W2"),
+  _aclMk("au16","Chelsea Jordan","—","bmi",3,"14:15","14:45","W2"),
   _aclMk("au17","Fancy Hagood","—","bmi",3,"15:30","16:15","W1"),
   _aclMk("au18","Vwillz","—","bmi",3,"15:30","16:15","W2"),
   _aclMk("au19","Lauren Sanderson","—","bmi",3,"17:30","18:30","W1"),
-  _aclMk("au20","Sasha Keable","—","bmi",3,"18:00","18:30","W2"),
   // Beatbox
-  _aclMk("au21","Britton","—","beatbox",3,"14:00","14:45","W1"),
+  _aclMk("au-jason-scott-w2","Jason Scott & The High Heat","—","bmi",3,"18:00","18:30","W2"),
+  _aclMk("au21","Britton","—","snapchat",3,"15:30","16:30","W1"),
+  _aclMk("au-flight-by-nothing-w1","Flight By Nothing","—","beatbox",3,"14:00","14:45","W1"),
   _aclMk("au22","Kevin Atwater","—","beatbox",3,"14:00","14:45","W2"),
   _aclMk("au23","Underscores","—","beatbox",3,"15:30","16:30","W1"),
   _aclMk("au24","Bad Nerves","—","beatbox",3,"15:30","16:30","W2"),
@@ -2279,7 +2524,7 @@ const ACL_ARTISTS = [
   // Tito's
   _aclMk("au27","The Moriah Sisters","—","titos",3,"12:45","13:30","W1"),
   _aclMk("au28","Huston-Tillotson University Jazz Collective","—","titos",3,"12:45","13:30","W2"),
-  _aclMk("au29","Paloma Morphy","—","titos",3,"14:00","14:45"),
+  _aclMk("au-girlsweetvoiced","girlsweetvoiced","—","titos",3,"14:00","14:45"),
   _aclMk("au30","Calder Allen","—","titos",3,"15:15","16:00"),
   _aclMk("au31","Rio Kosta","—","titos",3,"16:30","17:30"),
   _aclMk("au32","Fcukers","—","titos",3,"18:30","19:30"),
@@ -2300,15 +2545,138 @@ const ACL_ARTISTS = [
   _aclMk("au45","Twenty One Pilots","—","amex",3,"20:30","22:00"),
 ];
 
+const ACL_REMOVED_FROM_LINEUP = [
+  {
+    "id": "as25",
+    "name": "Fakemink",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as25",
+      "name": "Fakemink",
+      "genre": "—",
+      "stage": "beatbox",
+      "day": "2",
+      "start": "19:30",
+      "end": "20:30",
+      "weekend": null
+    }
+  },
+  {
+    "id": "as29",
+    "name": "Nat Myers",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "as29",
+      "name": "Nat Myers",
+      "genre": "—",
+      "stage": "titos",
+      "day": "2",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au13",
+    "name": "Rubio",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au13",
+      "name": "Rubio",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "12:45",
+      "end": "13:15",
+      "weekend": "W1"
+    }
+  },
+  {
+    "id": "au20",
+    "name": "Sasha Keable",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au20",
+      "name": "Sasha Keable",
+      "genre": "—",
+      "stage": "bmi",
+      "day": "3",
+      "start": "18:00",
+      "end": "18:30",
+      "weekend": "W2"
+    }
+  },
+  {
+    "id": "au29",
+    "name": "Paloma Morphy",
+    "lastSeen": "2026-09-04",
+    "removedFrom": {
+      "url": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp",
+      "observedAt": "2026-09-30"
+    },
+    "previousSlot": {
+      "id": "au29",
+      "name": "Paloma Morphy",
+      "genre": "—",
+      "stage": "titos",
+      "day": "3",
+      "start": "14:00",
+      "end": "14:45",
+      "weekend": null
+    }
+  }
+];
+
+// Amenities measured on acl-park-2026.webp like the stages: each pin sits on
+// the one 2026 map symbol it names, at the symbol's centre. ACL Eats and ACL
+// Eats South are the legend's numbered food courts (1) and (2), so each maps
+// to exactly one marker.
+//
+// The eight pins this list used to carry were round numbers that matched no
+// symbol on the 2025 or 2026 map; they are gone. Founder ruling 2026-09-23:
+// pin EVERY printed hydration, restroom and medical badge, measured like the
+// stages; leave guest services ("i") and anything ambiguous off until it is
+// verified against the printed map.
 const ACL_AMENITIES = [
-  { id: "aa1", type: "water",  label: "Hydration",      x: 35, y: 40 },
-  { id: "aa2", type: "water",  label: "Hydration",      x: 65, y: 55 },
-  { id: "aa3", type: "food",   label: "ACL Eats",       x: 50, y: 35 },
-  { id: "aa4", type: "food",   label: "ACL Eats South",  x: 45, y: 65 },
-  { id: "aa5", type: "med",    label: "Medical",        x: 55, y: 60 },
-  { id: "aa6", type: "toilet", label: "Restrooms",      x: 30, y: 30 },
-  { id: "aa7", type: "toilet", label: "Restrooms",      x: 70, y: 45 },
-  { id: "aa8", type: "info",   label: "Guest Services",  x: 20, y: 35 },
+  { id: "aa3", type: "food",   label: "ACL Eats",       x: 56.8, y: 28.3 },
+  { id: "aa4", type: "food",   label: "ACL Eats South", x: 43.7, y: 73.0 },
+  // Every hydration, restroom and medical badge printed on the 2026 map,
+  // measured on the glyph (scripts/build-acl-map-2026.mjs). No guest services.
+  { id: "ah1", type: "water",  label: "Hydration", x: 23.3, y: 27.0 },
+  { id: "ah2", type: "water",  label: "Hydration", x: 15.1, y: 33.0 },
+  { id: "ah3", type: "water",  label: "Hydration", x: 53.2, y: 25.3 },
+  { id: "ah4", type: "water",  label: "Hydration", x: 71.1, y: 40.2 },
+  { id: "ah5", type: "water",  label: "Hydration", x: 33.4, y: 58.5 },
+  { id: "ah6", type: "water",  label: "Hydration", x: 59.3, y: 43.3 },
+  { id: "ah7", type: "water",  label: "Hydration", x: 68.7, y: 54.3 },
+  { id: "ah8", type: "water",  label: "Hydration", x: 39.8, y: 75.7 },
+  { id: "ar1", type: "toilet", label: "Restrooms", x: 16.3, y: 33.0 },
+  { id: "ar2", type: "toilet", label: "Restrooms", x: 63.6, y: 32.4 },
+  { id: "ar3", type: "toilet", label: "Restrooms", x: 14.7, y: 48.6 },
+  { id: "ar4", type: "toilet", label: "Restrooms", x: 82.7, y: 42.6 },
+  { id: "ar5", type: "toilet", label: "Restrooms", x: 82.6, y: 55.3 },
+  { id: "ar6", type: "toilet", label: "Restrooms", x: 76.7, y: 57.8 },
+  { id: "ar7", type: "toilet", label: "Restrooms", x: 49.0, y: 73.1 },
+  { id: "am1", type: "med",    label: "Medical",   x: 20.3, y: 37.7 },
+  { id: "am2", type: "med",    label: "Medical",   x: 26.2, y: 69.1 },
+  { id: "am3", type: "med",    label: "Medical",   x: 48.3, y: 50.3 },
+  { id: "am4", type: "med",    label: "Medical",   x: 91.0, y: 46.0 },
 ];
 
 // ── Multi-festival data switching ──────────────────────────────────
@@ -2325,7 +2693,7 @@ const ACL_AMENITIES = [
 
 // ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
 // Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
-// filters, 109 acts; audited vs Insomniac press release 2026-06-23).
+// filters, 108 acts; audited vs Insomniac press release 2026-06-23).
 // Set times + per-artist stage assignments + official 2026 map are NOT
 // published — every artist sits on stage "tba" with placeholder
 // 12:00-13:00 times until the flip session. Stage names verified from
@@ -2356,17 +2724,29 @@ const EDCO_STAGES = [
   { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 
+// The flip fills this block from the OFFICIAL schedule:
+//   node scripts/fetch-insomniac-settimes.mjs https://orlando.edc.com/lineup/set-times --days 3 --out sheet.tsv
+//   node scripts/import-set-times.mjs edc-orlando-2026 sheet.tsv --source <official-url>
+// id → [stageId, start, end]. Empty until then: every act stays on "tba".
+const EDCO_SCHEDULE = {
+  // SCHEDULE:BEGIN edc-orlando-2026
+  // SCHEDULE:END
+};
 const _edcoMk = (id, name, genre, day) => {
   // ⚠ NO SET TIMES ON PURPOSE — see _llMk. Every act used to carry the same
   // placeholder "12:00"-"13:00", which is honest in intent but still renders
   // as a schedule. Blank is the form the UI already understands.
-  return { id, name, genre, country: "—", stage: "tba", day, start: "", end: "", tier: 1,
+  // EDCO_SCHEDULE above is the only way a time gets in.
+  const s = EDCO_SCHEDULE[id];
+  return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+    bio: s ? "Playing EDC Orlando 2026."
+           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
-// 2026-08-22: Fri 36 / Sat 36 / Sun 37 = 109 acts). id prefix:
+// 2026-08-22; re-diffed 2026-09-13 against the page's day <li> elements:
+// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name). id prefix:
 // ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
 // for the press-release groupings, default "Electronic" otherwise.
 const EDCO_ARTISTS = [
@@ -3098,6 +3478,7 @@ const _WAVE1_IDS = [
   "hard-summer-2026", "arc-2026", "escape-halloween-2026",
   "dreamstate-socal-2026",
   "decadence-colorado-2026",
+  "countdown-nye-2026",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
@@ -3110,9 +3491,38 @@ for (const _id of _WAVE1_IDS) {
 }
 
 const _regConfig = (id) => FESTIVALS_REGISTRY.find(f => f.config.id === id).config;
+
+// The registry entry for a festival, and the one question the UI asks of it:
+// is this festival open with its set times still unpublished? `scheduleTBA`
+// lives on the REGISTRY entry, not on FESTIVAL_CONFIG, so every screen that
+// wants it would otherwise repeat the same .find() — which is how app.jsx,
+// data.jsx and spotify.jsx each grew their own copy.
+const _regEntry = (id) => FESTIVALS_REGISTRY.find(f => f && f.config && f.config.id === id) || null;
+function isScheduleTBA(id) {
+  const e = _regEntry(id || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : null));
+  return !!(e && e.available && e.scheduleTBA);
+}
+// The ONE festival whose stage-to-stage walk minutes are hand-measured
+// (map.jsx WALK_PAIRS, home.jsx _WALK_MIN). Both tables are keyed by BARE
+// stage id — "kinetic", "circuit", "neon", "stereo" — and EDC Orlando reuses
+// four of exactly those ids for stages 2,000 miles away, so an unguarded
+// lookup hands Las Vegas Motor Speedway minutes to a phone in Tinker Field.
+//
+// It lives here, on the lookup, and not in a live-festival check, because
+// getActiveFestivalId() requires festivalCanBeActive (open, or early access
+// for Plus): a GATED festival can never become the active one, so nothing
+// that reasons about the active festival can see this. EDC Orlando is gated today and un-gates at the Nov 6-8 flip.
+//
+// A festival earns a table by measuring its own geometry against an official
+// patron map — #97. That fleet-wide bar is a trust policy, not a founder
+// ruling: the founder ruling behind it is ACL-specific (no distance claims
+// until ACL's geometry is verified), and applying the same bar to every
+// festival is ours. Don't re-attribute it.
+const WALK_TABLE_FESTIVAL_ID = "edc-lv-2026";
+
 const _DATA_SETS = {
   "edc-lv-2026":          { stages: STAGES,     artists: ARTISTS,     amenities: AMENITIES,     config: FESTIVAL_CONFIG },
-  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, config: _regConfig("acl-2026") },
+  "acl-2026":             { stages: ACL_STAGES, artists: ACL_ARTISTS, amenities: ACL_AMENITIES, removedFromLineup: ACL_REMOVED_FROM_LINEUP, config: _regConfig("acl-2026") },
   "lost-lands-2026":      { stages: LL_STAGES,  artists: LL_ARTISTS,  amenities: LL_AMENITIES,  config: _regConfig("lost-lands-2026") },
   "edc-orlando-2026":     { stages: EDCO_STAGES, artists: EDCO_ARTISTS, amenities: EDCO_AMENITIES, config: _regConfig("edc-orlando-2026") },
 };
@@ -3122,17 +3532,28 @@ for (const _id of _WAVE1_IDS) {
 }
 // Confirmed schedule updates, BEFORE anything reads a lineup (see scheduleReview).
 _applyScheduleOverlays(_DATA_SETS);
+// Stages are shown by their FULL name everywhere (lane ruling 2026-09-26: a
+// code like KIN or QNT means nothing to a first-time user). Every display
+// site reads `stage.short`, so it is normalised once, here, for every
+// festival: `short` becomes the name, and the old code survives as `code`
+// for the machine uses (the ?stage= deep link). A new call site that reads
+// `.short` gets the full name for free.
+for (const _ds of Object.values(_DATA_SETS)) {
+  for (const _s of _ds.stages || []) {
+    if (_s && _s.code === undefined) { _s.code = _s.short; _s.short = _s.name || _s.short; }
+  }
+}
 const _activeId = getActiveFestivalId();
 const _active = _DATA_SETS[_activeId] || _DATA_SETS["edc-lv-2026"];
 
 Object.assign(window, {
   FESTIVAL: _active.config, FESTIVAL_CONFIG: _active.config,
-  STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START, FRIENDS, ARTISTS: _active.artists,
+  STAGES: _active.stages, AMENITIES: _active.amenities, AVATAR_START: avatarStartFor(_active), avatarStartFor, FRIENDS, ARTISTS: _active.artists,
   NOW, ALERTS, ESSENTIALS, fmt12,
-  FESTIVALS_REGISTRY, getActiveFestivalId, setActiveFestivalAndReload,
+  FESTIVALS_REGISTRY, getActiveFestivalId, festivalCanBeActive, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
-  _DATA_SETS,
+  _DATA_SETS, WALK_TABLE_FESTIVAL_ID,
 });
 // DAYS must follow the ACTIVE festival (Forest runs 4 days Thu–Sun; EDC/ACL
 // run 3 Fri–Sun). The top-level const was derived from the EDC config at eval

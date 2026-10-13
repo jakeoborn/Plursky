@@ -273,7 +273,7 @@ async function _parseExifMeta(file) {
 // mvhd time is UTC; we convert to festival-LOCAL wall-clock to match how EXIF
 // DateTimeOriginal is treated downstream (see _photoEpochUtc).
 async function _parseVideoMeta(file) {
-  const out = { date: null, lat: null, lng: null, timestampSource: null, locationSource: null, rawUtcMs: null };
+  const out = { date: null, lat: null, lng: null, acc: null, timestampSource: null, locationSource: null, rawUtcMs: null };
   if (!file) return out;
   try {
     const size = file.size;
@@ -309,7 +309,25 @@ async function _parseVideoMeta(file) {
       }
       return s;
     };
-    const visit = (start, end, depth) => {
+    // One `meta` container's QuickTime items, resolved once its walk is done.
+    // Scoped per container because a track-level `meta` (lens, focal length)
+    // numbers its own keys from 1 too.
+    const applyMdta = ({ keys, vals }) => {
+      for (const i of Object.keys(vals)) {
+        const name = keys[i], v = vals[i];
+        if (out.lat == null && name === "com.apple.quicktime.location.ISO6709") {
+          const p = parseIso6709(v);
+          if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = "video-mdta"; }
+        } else if (name === "com.apple.quicktime.location.accuracy.horizontal") {
+          // The claimed error radius, in metres. The tagger blinds a fix
+          // coarser than 200 m for stage decisions; a clip filmed on a 1.3 km
+          // fix must not pick a stage by it.
+          const a = parseFloat(v);
+          if (isFinite(a) && a >= 0) out.acc = a;
+        }
+      }
+    };
+    const visit = (start, end, depth, parentType, scope) => {
       if (depth > 6) return;
       let pos = start;
       while (pos + 8 <= end && pos + 8 <= n) {
@@ -340,8 +358,35 @@ async function _parseVideoMeta(file) {
           const p = parseIso6709(readAscii(payload, boxEnd - payload));
           if (p) { out.lat = p.lat; out.lng = p.lng; out.locationSource = "video-xyz"; }
         }
+        // Current iPhones write NO ©xyz. Location and its accuracy live in
+        // QuickTime metadata: `keys` names each item ("mdta" namespace) and
+        // `ilst` holds the values, each child typed by its 1-based key index.
+        // Without this every modern iPhone clip imported with no GPS at all,
+        // so stage matching fell back to time alone and flagged every clip
+        // ambiguous across the whole night's lineup.
+        if (scope && type === "keys" && boxEnd - payload >= 8) {
+          const count = moov.getUint32(payload + 4);
+          let k = payload + 8;
+          for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
+            const ks = moov.getUint32(k);
+            if (ks < 8) break;
+            scope.keys[i] = readAscii(k + 8, ks - 8);
+            k += ks;
+          }
+        }
+        if (scope && parentType === "ilst" && boxEnd - payload >= 16 && typeAt(moov, payload + 4) === "data") {
+          const ds = moov.getUint32(payload);
+          scope.vals[moov.getUint32(pos + 4)] = readAscii(payload + 16, Math.min(ds, boxEnd - payload) - 16);
+        }
         if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(type)) {
-          visit(type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);
+          // ISO `meta` is a full box (4 bytes of version/flags before its
+          // children); QuickTime's moov-level `meta` is not, and starts
+          // straight at its `hdlr`. Skipping 4 there misaligned the walk and
+          // `keys`/`ilst` were never reached.
+          const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && typeAt(moov, payload + 4) === "hdlr");
+          const inner = type === "meta" ? { keys: {}, vals: {} } : scope;
+          visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
+          if (type === "meta") applyMdta(inner);
         }
         pos += boxSize;
       }
@@ -398,22 +443,34 @@ function _wallClockFromUtc(utcMs, cfg) {
 // decide — so for videos the question is asked in UTC, where it has one
 // answer, instead of in a wall clock that silently assumed a timezone.
 function _photoFestivalNight(date, cfgIn, utcMs) {
+  const r = _photoFestivalNightWeekend(date, cfgIn, utcMs);
+  return r ? r.night : null;
+}
+// The night AND the weekend. dayDates describe weekend one only, so on a
+// two-weekend festival (weekendStartMs, ACL) each later weekend is the same
+// days shifted; a weekend-2 photo was outside every window and got no night
+// and no set (lane ruling 2026-09-23). Single-weekend festivals walk one
+// weekend with shift 0 and weekend null, exactly as before.
+function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   const cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
   if (utcMs == null && !date) return null;
   const photoMs = utcMs != null ? utcMs : _photoEpochUtc(date, cfg);
-  for (const n of Object.keys(cfg.dayDates).map(Number)) {
-    const dm = cfg.dayDates[n];
-    if (!dm) continue;
-    // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
-    // overnight shape) — but daytime festivals (ACL, Electric Forest) run
-    // sets from ~noon, so every afternoon photo fell outside the window
-    // and the attended/saved set-time match never ran. 11:00 still can't
-    // overlap the previous night's +30h end (06:00 < 11:00), so post-
-    // midnight photos keep bucketing to the night they belong to.
-    const startMs = dm.midnightUtc + 11 * 3600000;     // 11:00 local, day N
-    const endMs   = dm.midnightUtc + 30 * 3600000;     // 06:00 local, day N+1
-    if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number)) {
+      const dm = cfg.dayDates[n];
+      if (!dm) continue;
+      const midnight = dm.midnightUtc + shift;
+      // 11:00 local of day N → 06:00 local day N+1. Was 19:00→06:00 (EDC's
+      // overnight shape) — but daytime festivals (ACL, Electric Forest) run
+      // sets from ~noon, so every afternoon photo fell outside the window
+      // and the attended/saved set-time match never ran. 11:00 still can't
+      // overlap the previous night's +30h end (06:00 < 11:00), so post-
+      // midnight photos keep bucketing to the night they belong to.
+      const startMs = midnight + 11 * 3600000;     // 11:00 local, day N
+      const endMs   = midnight + 30 * 3600000;     // 06:00 local, day N+1
+      if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return { night: n, weekend, shift };
+    }
   }
   return null;
 }
@@ -538,23 +595,65 @@ function _resolveFestivalForPhoto(meta) {
   }
   return { ...win.ds, night: win.night, siteMeters: win.meters, resolvedBy };
 }
-// "Does ANY festival we know about claim this timestamp?" Used by the
-// trust gates in spotify.jsx that previously asked only the active one and
-// so discarded a real capture time for a photo from a different festival.
-function _anyFestivalNight(date, utcMs) {
-  if (!date && utcMs == null) return null;
-  for (const ds of _allDataSets()) {
-    const night = _photoFestivalNight(date, ds.config, utcMs);
-    if (night != null) return { festivalId: ds.id, night };
+// "Does ANY festival we know of claim this timestamp?" Used by the trust gates
+// in spotify.jsx that previously asked only the active festival and so
+// discarded a real capture time for a photo from a different one.
+//
+// This is a TRUST question, not an ATTRIBUTION question, and that distinction
+// is the whole reason it exists apart from _resolveFestivalForPhoto. The
+// callers ask it to decide whether a timestamp is a genuine capture time or
+// junk written by a re-encode. Nothing about that depends on WHICH festival, or
+// on which night — so it answers with a boolean and nothing else.
+//
+// It used to return {festivalId, night} from the FIRST claimant. Both fields
+// were an ordering accident: 10 of the 53 night windows are claimed by two
+// festivals running the same weekend (lost-lands/nocturnal,
+// lollapalooza/hard-summer, crssd/portola), and on those "first wins" reports
+// _DATA_SETS declaration order as a fact. No caller ever read them — one tests
+// `!= null`, the other takes `.night` and only compares that to null — so the
+// wrong answer was latent, waiting for the first caller to believe it. A
+// boolean does not guard that path, it removes it: there is no id left to read.
+//
+// It walks _DATA_SETS DIRECTLY rather than _allDataSets(), which filters to
+// registry-`available`. That filter is correct for _resolveFestivalForPhoto,
+// which attributes — stamping a moment with a gated id strands it, because
+// getActiveFestivalId() also requires `available`. It is wrong here, because
+// availability is a UI concern and says nothing about whether a timestamp is
+// real. edc-orlando-2026 is gated today and is the only gated festival carrying
+// a data module, so a genuine EDC Orlando capture time was being rejected as
+// junk and the clip imported as no-date — a real capture time destroyed by a
+// filter that exists to protect attribution.
+function _someFestivalClaimsCaptureTime(date, utcMs) {
+  if (!date && utcMs == null) return false;
+  const sets = window._DATA_SETS;
+  if (!sets) return _photoFestivalNight(date, null, utcMs) != null;
+  for (const id of Object.keys(sets)) {
+    const cfg = sets[id]?.config;
+    if (!cfg?.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, utcMs) != null) return true;
   }
-  return null;
+  return false;
 }
+
+// Festivals whose amenity label ("near 💧 Hydration") must come from VERIFIED
+// geometry. The label places an art pin in the world, the same class of claim
+// geometryVerifiedFor() already withholds for distances, so ACL (founder
+// ruling 2026-09-23) gets no label until its map registers. The rest of the
+// fleet, EDC first, is #223, which either widens this to every festival or
+// deletes the label. Until then only the listed ids are gated.
+const _AMENITY_LABEL_NEEDS_GEOMETRY = new Set(["acl-2026"]);
 
 function _matchNearestLocation(lat, lng, ds) {
   const set = ds || _activeDataSet();
   const amenities = set.amenities || [];
   if (!amenities.length) return null;
   const cfg = set.config || {};
+  const fid = set.id || cfg.id;
+  if (_AMENITY_LABEL_NEEDS_GEOMETRY.has(fid)) {
+    // Fail closed: no predicate loaded means no verified geometry.
+    const verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
+    if (!verified) return null;
+  }
   // map.jsx's MAP_AFFINE is solved ONCE at eval time from the ACTIVE
   // festival's anchors + stages, so mapToGps is hard-bound to that festival.
   // Using it for a photo we resolved to a DIFFERENT festival would place
@@ -609,13 +708,24 @@ function _matchNearestLocation(lat, lng, ds) {
 // same-minute video put the user 700 m away. The threshold is deliberately
 // generous; the point is to reject garbage, not to demand a perfect fix.
 const _GPS_STAGE_MAX_ACC_M = 200;
+// "Far from every anchor" only means "between sets" when every stage playing
+// that night HAS an anchor (lane ruling 2026-09-23). With one stage
+// unanchored, a photo taken in its crowd is also far from every anchor, and
+// calling it off_stage would throw away the time match that should tag it.
+// So a festival with partial anchors skips the negative inference and falls
+// through to the time matcher; no geometry is invented for the missing stage.
+// An act with no stage counts as unanchored.
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  const anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
+
 function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, attendedIds, ds) {
   if (!date && rawUtcMs == null) return { artistId: null, night: null, festivalId: null, reason: "no_date" };
   // First: WHICH festival, and which of its nights, does this photo's
   // timestamp (+ GPS, as a tiebreak) place it in?
   const set = ds || _resolveFestivalForPhoto({ date, lat, lng, rawUtcMs });
   const cfg = set.config || {};
-  const artists = set.artists || [];
   const festivalId = set.id || null;
   const resolvedBy = set.resolvedBy || "explicit";
   // NOW the festival is known, so a video's wall clock can finally be derived
@@ -630,8 +740,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const sLng = gpsUsableForStage ? lng : null;
   const gpsRejected = !gpsUsableForStage && lat != null;
   const localDate = (rawUtcMs != null) ? _wallClockFromUtc(rawUtcMs, cfg) : date;
-  const night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const nw = _photoFestivalNightWeekend(localDate, cfg, rawUtcMs);
+  if (!nw) return { localDate, gpsRejected, artistId: null, night: null, festivalId, resolvedBy, reason: "outside_festival_window" };
+  const night = nw.night;
+  // Only the acts playing the photo's weekend: every match below (saved and
+  // attended, the time matcher, the changeover rescue, GPS separation) reads
+  // this list, so a weekend-1 photo can never land on a weekend-2-only act.
+  const artists = (set.artists || []).filter(a => actPlaysWeekend(a, nw.weekend));
 
   // NOTE: the GPS "off-stage" gate used to run HERE, before the attended/
   // saved set-time match — which was a bug. A photo taken from the middle/
@@ -655,12 +770,13 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const setWindow = (a) => {
     const dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
+    const midnight = dm.midnightUtc + nw.shift;   // the act's day on the photo's weekend
     const [sh, sm] = a.start.split(":").map(Number);
     const [eh, em] = a.end.split(":").map(Number);
     return {
       localDate, gpsRejected,
-      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs:   dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
+      startMs: midnight + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs:   midnight + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000,
     };
   };
   // SMARTEST SIGNAL: you film the sets you planned to see / actually saw.
@@ -712,7 +828,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // crowd actually stands, eight tight-fix photos taken AT the main stage
     // were 218-317 m from every anchor and got dumped here as "between sets".
     const anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       let nearest = null, minMeters = Infinity;
       for (const a of anchors) {
         const m = _haversineMeters(sLat, sLng, a.lat, a.lng);

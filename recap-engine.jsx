@@ -197,6 +197,148 @@ async function _shareCanvasAsImage(canvas, { filename, title }) {
   return true;
 }
 
+// ── HERO CARD (Field Mode) ─────────────────────────────────────────
+// One collectible card per set caught, 1080×1350 (4:5). The on-screen preview
+// IS this PNG (HeroCards shows the rendered blob), so the exported file matches
+// the preview pixel for pixel. Real media only: the user's own best frame of
+// the artist, else the artist's real photo, else a plain card. One bottom
+// scrim, one quiet Plursky mark; no frame, serial number, fog or glow.
+const HERO_CARD_W = 1080, HERO_CARD_H = 1350;
+const _HERO_FONT = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif';
+
+async function _heroCardSource(artist) {
+  try {
+    const all = _activeMoments(_readMoments());
+    const ms = [];
+    Object.values(all || {}).forEach(arr => { if (Array.isArray(arr)) ms.push(...arr); });
+    const score = typeof _heroScore === "function" ? _heroScore : () => 0;
+    const mine = ms.filter(m => m && m.artistId === artist.id && m.photoId)
+      .sort((a, b) => ((a.kind === "video") - (b.kind === "video")) || (score(b) - score(a)));
+    for (const m of mine.slice(0, 3)) {
+      const blob = await _getPhoto(m.photoId).catch(() => null);
+      if (!blob) continue;
+      if (m.kind === "video") {
+        const frame = await _frameFromVideoBlob(blob);
+        if (frame) return { src: frame, revoke: null };
+        continue;
+      }
+      try { const { img, revoke } = await _imgFromBlob(blob); return { src: img, revoke }; } catch {}
+    }
+  } catch {}
+  // A share card is a public export, so a Spotify image never lands in one
+  // (Spotify Developer Terms IV.3.2 and the attribution rules), and an unknown
+  // legacy entry counts as Spotify. Only a non-Spotify source may qualify, and
+  // the cache holds none now (TheAudioDB and iTunes are not sources), so the
+  // card goes without a cached artist image.
+  try {
+    const url = getShareableArtistImage(artist.name || "")?.url;
+    if (url) {
+      const img = await new Promise((res, rej) => {
+        const im = new Image(); im.crossOrigin = "anonymous";
+        im.onload = () => res(im); im.onerror = rej; im.src = url;
+      });
+      return { src: img, revoke: null };
+    }
+  } catch {}
+  return null;
+}
+
+// Word-wraps to the width; a single word wider than the card breaks by
+// character. Nothing is ever clipped or ellipsised.
+function _heroWrap(ctx, text, maxW) {
+  const lines = []; let line = "";
+  for (const w of String(text || "").split(/\s+/).filter(Boolean)) {
+    const next = line ? line + " " + w : w;
+    if (!line || ctx.measureText(next).width <= maxW) line = next;
+    else { lines.push(line); line = w; }
+  }
+  if (line) lines.push(line);
+  return lines.flatMap(l => {
+    if (ctx.measureText(l).width <= maxW) return [l];
+    const out = []; let cur = "";
+    for (const ch of l) {
+      if (cur && ctx.measureText(cur + ch).width > maxW) { out.push(cur); cur = ch; } else cur += ch;
+    }
+    if (cur) out.push(cur);
+    return out;
+  });
+}
+
+function _drawHeroCard(artist, source) {
+  const W = HERO_CARD_W, H = HERO_CARD_H, PAD = 72;
+  const CFG = window.FESTIVAL_CONFIG || {};
+  const stage = (window.STAGES || []).find(s => s.id === artist.stage);
+  const c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = "#141414";
+  ctx.fillRect(0, 0, W, H);
+  if (source) {
+    _drawCover(ctx, source, 0, 0, W, H);
+    const g = ctx.createLinearGradient(0, H * 0.4, 0, H);
+    g.addColorStop(0, "rgba(8,8,8,0)");
+    g.addColorStop(1, "rgba(8,8,8,0.88)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+  }
+  ctx.textBaseline = "alphabetic";
+  // The one quiet mark, small and fixed.
+  ctx.textAlign = "right";
+  ctx.font = `600 34px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  ctx.fillText("Plursky", W - PAD, PAD + 26);
+  // Bottom-up: day · stage · time, the artist (up to the space it needs),
+  // then festival and year in the 11pt status style.
+  ctx.textAlign = "left";
+  const maxW = W - PAD * 2;
+  const meta = [CFG.dayDates?.[artist.day]?.name, stage?.name, typeof fmt12 === "function" ? fmt12(artist.start) : artist.start]
+    .filter(Boolean).join(" · ");
+  ctx.font = `500 44px ${_HERO_FONT}`;
+  const metaLines = _heroWrap(ctx, meta, maxW);
+  ctx.font = `700 92px ${_HERO_FONT}`;
+  const nameLines = _heroWrap(ctx, artist.name, maxW);
+  let y = H - PAD;
+  ctx.font = `500 44px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  for (let k = metaLines.length - 1; k >= 0; k--) { ctx.fillText(metaLines[k], PAD, y); y -= 56; }
+  y -= 12;
+  ctx.font = `700 92px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.96)";
+  for (let k = nameLines.length - 1; k >= 0; k--) { ctx.fillText(nameLines[k], PAD, y); y -= 102; }
+  y -= 4;
+  ctx.font = `600 34px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  ctx.fillText(`${CFG.shortName || CFG.name || ""}${CFG.year ? " · " + CFG.year : ""}`.toUpperCase(), PAD, y);
+  return c;
+}
+
+async function _renderHeroCard(artist) {
+  const source = await _heroCardSource(artist);
+  let canvas = _drawHeroCard(artist, source && source.src);
+  if (source) {
+    // A cross-origin photo without CORS taints the canvas and could never be
+    // shared; fall back to the plain card rather than preview what can't export.
+    try { canvas.getContext("2d").getImageData(0, 0, 1, 1); }
+    catch { canvas = _drawHeroCard(artist, null); }
+    try { source.revoke?.(); } catch {}
+  }
+  return canvas;
+}
+
+// "Save": no save-to-Photos plugin ships in the app, so on iOS the share
+// sheet (which offers Save Image) is the save path; the web downloads the PNG.
+async function _saveCanvasImage(canvas, { filename, title }) {
+  if (window.Capacitor?.isNativePlatform?.()) return _shareCanvasAsImage(canvas, { filename, title });
+  const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+  if (!blob) return false;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
+
 // ── FESTIVAL YEAR CARD (v226 · integrations #6) ─────────────────────
 // Spotify-Wrapped-style ANNUAL share card: aggregates every festival
 // attended this year (archive snapshots + the live festival) into one
@@ -360,13 +502,16 @@ async function _resolveMomentSong(m) {
   if (m?.confirmedSong && m?.confirmedTitle) return { title: m.confirmedTitle, confidence: "exact" };
   // "live-shazam" is a Live Set Check-in's native ShazamKit match: as exact as "shazam".
   if (m?.songCapture?.song) return { title: m.songCapture.song, confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated" };
-  const artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
+  // The moment's OWN festival: a past weekend's recap must not read the active
+  // lineup or the active festival's tracklists.
+  const fest = typeof _momentFestival === "function" ? _momentFestival(m) : { fid: null, artists: window.ARTISTS || [] };
+  const artist = m?.artistId ? fest.artists.find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
   if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;
   try {
-    const data = await _getTracklistForArtist(artist.name);
+    const data = await _getTracklistForArtist(artist.name, fest.fid);
     if (!data) return null;
-    const r = _matchSongAtTime(artist, data, m.takenAt);
+    const r = _matchSongAtTime(artist, data, m.takenAt, fest.fid);
     if (r?.song) return { title: r.song, confidence: r.confidence || "estimated" };
   } catch {}
   return null;
@@ -678,7 +823,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
       if (song.confidence !== "exact") {
         ctx.fillStyle = "rgba(255,255,255,0.45)";
         ctx.font = "700 12px 'Geist Mono', monospace";
-        ctx.fillText("SETLIST ESTIMATE", 60, H - safe - 88);
+        ctx.fillText(song.confidence === "likely" ? "LIKELY · TRACKLIST" : "SETLIST ESTIMATE", 60, H - safe - 88);
       }
     }
     if (stage) {
@@ -1366,7 +1511,7 @@ async function _shareStageCollage(stage, momentsAcrossArtists, format) {
     subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
     accent:   stage.color || "#1a120d",
     moments:  momentsAcrossArtists,
-    filenameSlug: `stage-${stage.short || stage.id}`,
+    filenameSlug: `stage-${stage.id}`,
     shareTitle:   `My ${stage.name} at ${CFG.shortName || "the festival"}`,
     format,
   });
@@ -1743,9 +1888,13 @@ async function _renderFilmStrip(moments) {
 
     const artist = moment?.artistId ? (window.ARTISTS || []).find(a => a.id === moment.artistId) : null;
     if (artist) {
+      // The name in full, never cut: it wraps to the frame's width and the
+      // lines stack upward from the frame edge (a fixed 18-character slice
+      // printed "CHRIS LAKE B2B DIS"; same class as #247's chip names).
       ctx.fillStyle = "rgba(247,237,224,0.6)";
       ctx.font = "700 8px 'Geist Mono', monospace";
-      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+      const lines = _heroWrap(ctx, artist.name.toUpperCase(), frameW);
+      lines.forEach((line, li) => ctx.fillText(line, x + frameW / 2, y - 10 - (lines.length - 1 - li) * 10));
     }
   });
 
@@ -1804,8 +1953,9 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W/2, 160);
 
-  const mySaved = myState.saved || [];
-  const theirSaved = otherArtistIds || [];
+  const mySaved = savedInLineup(myState.saved);
+  // Both sides: a crew member on an older build can still broadcast an orphan.
+  const theirSaved = savedInLineup(otherArtistIds);
   const overlap = mySaved.filter(id => theirSaved.includes(id));
   const myOnly = mySaved.filter(id => !theirSaved.includes(id));
   const theirOnly = theirSaved.filter(id => !mySaved.includes(id));

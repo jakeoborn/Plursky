@@ -141,7 +141,7 @@ function IOSGlassPill({
       borderRadius: 9999,
       backdropFilter: 'blur(12px) saturate(180%)',
       WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-      background: dark ? 'rgba(120,120,128,0.28)' : 'rgba(255,255,255,0.5)'
+      background: dark ? 'rgba(var(--ink-rgb),0.17)' : 'rgba(var(--ink-rgb),0.5)'
     }
   }), React.createElement("div", {
     style: {
@@ -149,7 +149,7 @@ function IOSGlassPill({
       inset: 0,
       borderRadius: 9999,
       boxShadow: dark ? 'inset 1.5px 1.5px 1px rgba(255,255,255,0.15), inset -1px -1px 1px rgba(255,255,255,0.08)' : 'inset 1.5px 1.5px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(255,255,255,0.4)',
-      border: dark ? '0.5px solid rgba(255,255,255,0.15)' : '0.5px solid rgba(0,0,0,0.06)'
+      border: dark ? '0.5px solid rgba(var(--ink-rgb),0.15)' : '0.5px solid rgba(var(--shade-rgb),0.06)'
     }
   }), React.createElement("div", {
     style: {
@@ -342,7 +342,7 @@ function IOSDevice({
       position: 'fixed',
       inset: 0,
       overflow: 'hidden',
-      background: dark ? '#000' : '#f7ede0',
+      background: dark ? 'var(--paper)' : 'var(--paper)',
       fontFamily: '-apple-system, system-ui, sans-serif',
       WebkitFontSmoothing: 'antialiased'
     }
@@ -386,7 +386,7 @@ function IOSKeyboard({
     }, React.createElement("path", {
       d: "M18 1v6H4m0 0l4-4M4 7l4 4",
       fill: "none",
-      stroke: "#fff",
+      stroke: "var(--ink)",
       strokeWidth: "1.8",
       strokeLinecap: "round",
       strokeLinejoin: "round"
@@ -406,15 +406,15 @@ function IOSKeyboard({
       flex: flex ? 1 : undefined,
       width: w,
       minWidth: 0,
-      background: ret ? '#08f' : keyBg,
-      boxShadow: '0 1px 0 rgba(0,0,0,0.075)',
+      background: ret ? 'var(--signal)' : keyBg,
+      boxShadow: '0 1px 0 rgba(var(--shade-rgb),0.075)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       fontFamily: '-apple-system, "SF Compact", system-ui',
       fontSize: fs,
       fontWeight: 458,
-      color: ret ? '#fff' : glyph
+      color: ret ? 'var(--ink)' : glyph
     }
   }, content);
   var row = (keys, pad = 0) => React.createElement("div", {
@@ -447,7 +447,7 @@ function IOSKeyboard({
       borderRadius: 27,
       backdropFilter: 'blur(12px) saturate(180%)',
       WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-      background: dark ? 'rgba(120,120,128,0.14)' : 'rgba(255,255,255,0.25)'
+      background: dark ? 'rgba(var(--ink-rgb),0.08)' : 'rgba(var(--ink-rgb),0.25)'
     }
   }), React.createElement("div", {
     style: {
@@ -455,7 +455,7 @@ function IOSKeyboard({
       inset: 0,
       borderRadius: 27,
       boxShadow: dark ? 'inset 1.5px 1.5px 1px rgba(255,255,255,0.15)' : 'inset 1.5px 1.5px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(255,255,255,0.4)',
-      border: dark ? '0.5px solid rgba(255,255,255,0.15)' : '0.5px solid rgba(0,0,0,0.06)',
+      border: dark ? '0.5px solid rgba(var(--ink-rgb),0.15)' : '0.5px solid rgba(var(--shade-rgb),0.06)',
       pointerEvents: 'none'
     }
   }), React.createElement("div", {
@@ -474,7 +474,7 @@ function IOSKeyboard({
     style: {
       width: 1,
       height: 25,
-      background: '#ccc',
+      background: 'var(--ink)',
       opacity: 0.3
     }
   }), React.createElement("div", {

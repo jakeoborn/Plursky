@@ -166,7 +166,23 @@
   // elsewhere; with no set times there is no basis to rank, so all acts sit
   // at the same tier rather than being silently ordered by a guess.
   // `provisional: true` marks the whole set for the flip session.
-  const mk = (id, name) => ({
+  // The flip fills this block from the OFFICIAL schedule, after STAGES and
+  // real Fri/Sat dayDates come from the same source:
+  //   node scripts/fetch-insomniac-settimes.mjs https://socal.dreamstateusa.com/lineup/set-times --days 2 --out sheet.tsv
+  //   node scripts/import-set-times.mjs dreamstate-socal-2026 sheet.tsv --days-from-sheet --source <official-url>
+  // id → [stageId, start, end, day]. Empty until then: every act unplaced.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN dreamstate-socal-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing Dreamstate SoCal 2026." };
+  };
+
+  const mk = (id, name) => scheduled({
     id, name, genre: "—", country: "—",
     stage: null, day: 1, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #6366f1, #0b0620)",
@@ -251,6 +267,15 @@
 
   const CONFIG = {
     id:        "dreamstate-socal-2026",
+    // Hours as the festival's OWN page prints them (24h wall clock, local):
+    // label is the page's word for the window ("Gates", "Festival", "Event").
+    // No published value means no field — never inferred from an older year.
+    // `dated` quotes the page's dated block verbatim; editionHours() prints the
+    // hours only when that block is for this edition.
+    hours: { label: "Event", open: "16:00", close: "01:00", url: "https://socal.dreamstateusa.com/guide/hours-and-info/", dated: "Friday, November 20 + Saturday, November 21, 2026", observedAt: "2026-09-24" },
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://socal.dreamstateusa.com/lineup/", observedAt: "2026-09-09", official: true },
     name:      "Dreamstate SoCal 2026",
     shortName: "Dreamstate SoCal",
     brand:     "Dreamstate",
@@ -330,7 +355,7 @@
     // GATED: the day split, the set times, every act's stage assignment and
     // the official map are all unpublished, and so are the 2026 stage names
     // (STAGES is empty; see the leads block).
-    registry: { available: false, accent: "#6366f1", emoji: "🌀", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#6366f1", emoji: "🌀", region: "North America" },
   };
 })();
 

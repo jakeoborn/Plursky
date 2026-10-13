@@ -1,0 +1,189 @@
+weekend	day	id	billing	stage	start	end	endSource	observedAt	source
+W2	1	af02	Happy Landing	tmobile	13:00	13:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af04	Bella Kay	tmobile	14:30	15:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af05	Jesse Welles	tmobile	16:15	17:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af06	Turnstile	tmobile	18:15	19:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af08	Kings of Leon	tmobile	20:15	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af10	Radio Free Alice	miller	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af12	Sienna Spiro	miller	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af14	Paris Paloma	miller	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af15	Leon Thomas	miller	19:15	20:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af17	Leon Knight	bmi	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af19	Girlfriend	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af21	Joe Jordan	bmi	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af23	S.G. Goodman	beatbox	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af25	World Famous Pets	beatbox	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af26	Rusowsky	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af28	Live	beatbox	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af30	Almost Heaven	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af32	Cassandra Coleman	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af33	Bo Staloch	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af35	Natasha Bedingfield	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af36	Steve Aoki	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af37	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af39	Dallas Wax	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af40	LP	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af41	BUNT.	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af42	The Chainsmokers	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af44	Brigitte Calls Me Baby	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af46	Faouzia	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af47	Amyl And The Sniffers	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af48	Labrinth	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	1	af49	Charli XCX	amex	20:35	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fead03949087f72e4c5_ACL26-Schedule-Wk2-Fri-9.30.webp
+W2	2	as01	Night Tapes	tmobile	13:00	13:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as02	Balu Brigada	tmobile	14:30	15:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as03	Suki Waterhouse	tmobile	16:15	17:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as04	Bleachers	tmobile	18:15	19:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as05	Lorde	tmobile	20:15	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as06	Temper City	miller	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as08	Laszewo	miller	15:15	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as09	Snow Strippers	beatbox	19:30	20:10	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as10	Levity	miller	19:15	20:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as12	Macy Todd	bmi	12:45	13:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as14	Damaris Bojor	bmi	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as16	Common People	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as18	Chloe Qisha	bmi	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as20	LLUVII	beatbox	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as22	Arcy Drive	miller	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as24	Ryan Beatty	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as27	Montclair	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as28	DJ Cassandra	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as30	Don West	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as31	Rodrigo Y Gabriela	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as32	Yousuke Yukimatsu	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as33	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as35	Gabriel Jacoby	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as36	Skye Newman	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as37	It's Murph	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as38	Lykke Li	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as39	Annie DiRusso	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as40	Finn Wolfhard	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as41	Young Miko	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as42	Lola Young	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	2	as43	Rüfüs Du Sol	amex	20:30	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6ff66f4136d6159bf16d_ACL26-Schedule-Wk2-Sat-9.30.webp
+W2	3	au02	Thomas Day	tmobile	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au04	Charlotte Lawrence	tmobile	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au05	Audrey Hobert	tmobile	16:30	17:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au06	Geese	tmobile	18:20	19:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au07	The xx	tmobile	20:35	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au09	Joshua Jensen	miller	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au10	Claire Rosinkranz	miller	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au11	Saint Motel	miller	17:20	18:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au12	Parcels	miller	19:20	20:35	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au14	Marzz	bmi	12:45	13:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au16	Chelsea Jordan	bmi	14:15	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au18	Vwillz	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au-jason-scott-w2	Jason Scott & The High Heat	bmi	18:00	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au22	Kevin Atwater	beatbox	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au24	Bad Nerves	beatbox	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au25	Noga Erez	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au26	Blood Orange	beatbox	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au28	Huston-Tillotson University Jazz Collective	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au-girlsweetvoiced	girlsweetvoiced	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au30	Calder Allen	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au31	Rio Kosta	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au32	Fcukers	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au33	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au34	Sunday (1994)	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au35	Grace Ives	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au37	Houndmouth	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au38	The War On Drugs	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au40	Rum Jungle	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au42	Ethan Regan	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au43	Max McNown	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au44	Sofi Tukker	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W2	3	au45	Twenty One Pilots	amex	20:30	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd70001d1b92085a8eedfa_ACL26-Schedule-Wk2-Sun-9.30.webp
+W1	1	af01	Asleep At The Wheel	tmobile	13:00	13:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af03	New Constellations	tmobile	14:30	15:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af05	Jesse Welles	tmobile	16:15	17:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af06	Turnstile	tmobile	18:15	19:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af07	Skrillex	tmobile	20:15	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af09	Faouzia	miller	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af11	Paris Paloma	miller	15:15	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af13	Brandon Flowers	miller	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af15	Leon Thomas	miller	19:15	20:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af16	Elle Coves	bmi	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af18	Izzy Escobar	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af20	Grocery Bag	bmi	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af22	Night Traveler	beatbox	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af24	Marlon Funaki	beatbox	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af26	Rusowsky	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af27	Molly Santana	beatbox	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af29	The 4411	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af31	Solomon Hicks	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af33	Bo Staloch	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af34	Rebecca Black	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af36	Steve Aoki	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af37	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af38	Elijah Delgado	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af40	LP	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af41	BUNT.	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af42	The Chainsmokers	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af43	Hunx And His Punx	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af45	CMAT	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af47	Amyl And The Sniffers	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af48	Labrinth	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	1	af49	Charli XCX	amex	20:35	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fcc6ad76655bebdac03_ACL26-Schedule-Wk1-Fri-9.30.webp
+W1	2	as01	Night Tapes	tmobile	13:00	13:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as02	Balu Brigada	tmobile	14:30	15:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as03	Suki Waterhouse	tmobile	16:15	17:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as04	Bleachers	tmobile	18:15	19:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as05	Lorde	tmobile	20:15	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as06	Temper City	miller	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as07	Arcy Drive	miller	15:15	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as09	Snow Strippers	beatbox	19:30	20:10	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as10	Levity	miller	19:15	20:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as11	Fightmaster	bmi	12:45	13:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as13	Emma Ogier	bmi	13:45	14:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as15	Coleman Jennings	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as17	Fai Laci	bmi	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as19	Cure For Paranoia	beatbox	15:00	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as21	Ryan Beatty	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as23	Palace	miller	17:15	18:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as26	Left Lucid	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as28	DJ Cassandra	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as30	Don West	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as31	Rodrigo Y Gabriela	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as32	Yousuke Yukimatsu	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as33	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as34	Rochelle Jordan	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as36	Skye Newman	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as37	It's Murph	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as38	Lykke Li	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as39	Annie DiRusso	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as40	Finn Wolfhard	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as41	Young Miko	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as42	Lola Young	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	2	as43	Rüfüs Du Sol	amex	20:30	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fd9623ef973aebf98f1_ACL26-Schedule-Wk1-Sat-9.30.webp
+W1	3	au01	Solya	tmobile	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au03	Stella Lefty	tmobile	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au05	Audrey Hobert	tmobile	16:30	17:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au06	Geese	tmobile	18:20	19:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au07	The xx	tmobile	20:35	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au08	Jess Williamson	miller	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au10	Claire Rosinkranz	miller	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au11	Saint Motel	miller	17:20	18:20	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au12	Parcels	miller	19:20	20:35	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au-vinny-w1	Vinny	bmi	12:45	13:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au15	Aaron Rowe	bmi	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au17	Fancy Hagood	bmi	15:30	16:15	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au19	Lauren Sanderson	bmi	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au21	Britton	snapchat	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au-flight-by-nothing-w1	Flight By Nothing	beatbox	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au23	Underscores	beatbox	15:30	16:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au25	Noga Erez	beatbox	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au26	Blood Orange	beatbox	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au27	The Moriah Sisters	titos	12:45	13:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au-girlsweetvoiced	girlsweetvoiced	titos	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au30	Calder Allen	titos	15:15	16:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au31	Rio Kosta	titos	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au32	Fcukers	titos	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au33	Silent Disco	titos	20:00	22:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au34	Sunday (1994)	snapchat	14:00	14:45	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au36	Cannons	snapchat	17:30	18:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au38	The War On Drugs	snapchat	19:30	20:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au39	Villanelle	amex	13:15	14:00	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au41	Dexter And The Moonrocks	amex	14:45	15:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au43	Max McNown	amex	16:30	17:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au44	Sofi Tukker	amex	18:30	19:30	printed-grid	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp
+W1	3	au45	Twenty One Pilots	amex	20:30	22:00	existing-22:00-closing-policy; grid-prints-start-only	2026-09-30	https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/6abd6fe2a62fc3440b25e577_ACL26-Schedule-Wk1-Sun-9.30.webp

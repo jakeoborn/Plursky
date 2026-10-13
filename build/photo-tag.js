@@ -245,6 +245,7 @@ async function _parseVideoMeta(file) {
     date: null,
     lat: null,
     lng: null,
+    acc: null,
     timestampSource: null,
     locationSource: null,
     rawUtcMs: null
@@ -292,7 +293,27 @@ async function _parseVideoMeta(file) {
       }
       return s;
     };
-    var visit = (start, end, depth) => {
+    var applyMdta = ({
+      keys,
+      vals
+    }) => {
+      for (var i of Object.keys(vals)) {
+        var name = keys[i],
+          v = vals[i];
+        if (out.lat == null && name === "com.apple.quicktime.location.ISO6709") {
+          var p = parseIso6709(v);
+          if (p) {
+            out.lat = p.lat;
+            out.lng = p.lng;
+            out.locationSource = "video-mdta";
+          }
+        } else if (name === "com.apple.quicktime.location.accuracy.horizontal") {
+          var a = parseFloat(v);
+          if (isFinite(a) && a >= 0) out.acc = a;
+        }
+      }
+    };
+    var visit = (start, end, depth, parentType, scope) => {
       if (depth > 6) return;
       var pos = start;
       while (pos + 8 <= end && pos + 8 <= n) {
@@ -333,8 +354,28 @@ async function _parseVideoMeta(file) {
             out.locationSource = "video-xyz";
           }
         }
+        if (scope && _type === "keys" && boxEnd - payload >= 8) {
+          var count = moov.getUint32(payload + 4);
+          var k = payload + 8;
+          for (var i = 1; i <= count && k + 8 <= boxEnd; i++) {
+            var ks = moov.getUint32(k);
+            if (ks < 8) break;
+            scope.keys[i] = readAscii(k + 8, ks - 8);
+            k += ks;
+          }
+        }
+        if (scope && parentType === "ilst" && boxEnd - payload >= 16 && typeAt(moov, payload + 4) === "data") {
+          var ds = moov.getUint32(payload);
+          scope.vals[moov.getUint32(pos + 4)] = readAscii(payload + 16, Math.min(ds, boxEnd - payload) - 16);
+        }
         if (["trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "moov"].includes(_type)) {
-          visit(_type === "meta" ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1);
+          var isoMeta = _type === "meta" && !(payload + 8 <= boxEnd && typeAt(moov, payload + 4) === "hdlr");
+          var inner = _type === "meta" ? {
+            keys: {},
+            vals: {}
+          } : scope;
+          visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, _type, inner);
+          if (_type === "meta") applyMdta(inner);
         }
         pos += _boxSize;
       }
@@ -364,16 +405,30 @@ function _wallClockFromUtc(utcMs, cfg) {
   };
 }
 function _photoFestivalNight(date, cfgIn, utcMs) {
+  var r = _photoFestivalNightWeekend(date, cfgIn, utcMs);
+  return r ? r.night : null;
+}
+function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   var cfg = cfgIn || window.FESTIVAL_CONFIG;
   if (!cfg?.dayDates) return null;
   if (utcMs == null && !date) return null;
   var photoMs = utcMs != null ? utcMs : _photoEpochUtc(date, cfg);
-  for (var n of Object.keys(cfg.dayDates).map(Number)) {
-    var dm = cfg.dayDates[n];
-    if (!dm) continue;
-    var startMs = dm.midnightUtc + 11 * 3600000;
-    var endMs = dm.midnightUtc + 30 * 3600000;
-    if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return n;
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number)) {
+      var dm = cfg.dayDates[n];
+      if (!dm) continue;
+      var midnight = dm.midnightUtc + shift;
+      var startMs = midnight + 11 * 3600000;
+      var endMs = midnight + 30 * 3600000;
+      if (photoMs >= startMs - 30 * 60000 && photoMs <= endMs + 30 * 60000) return {
+        night: n,
+        weekend,
+        shift
+      };
+    }
   }
   return null;
 }
@@ -462,22 +517,28 @@ function _resolveFestivalForPhoto(meta) {
     resolvedBy
   };
 }
-function _anyFestivalNight(date, utcMs) {
-  if (!date && utcMs == null) return null;
-  for (var ds of _allDataSets()) {
-    var night = _photoFestivalNight(date, ds.config, utcMs);
-    if (night != null) return {
-      festivalId: ds.id,
-      night
-    };
+function _someFestivalClaimsCaptureTime(date, utcMs) {
+  if (!date && utcMs == null) return false;
+  var sets = window._DATA_SETS;
+  if (!sets) return _photoFestivalNight(date, null, utcMs) != null;
+  for (var id of Object.keys(sets)) {
+    var cfg = sets[id]?.config;
+    if (!cfg?.dayDates) continue;
+    if (_photoFestivalNight(date, cfg, utcMs) != null) return true;
   }
-  return null;
+  return false;
 }
+var _AMENITY_LABEL_NEEDS_GEOMETRY = new Set(["acl-2026"]);
 function _matchNearestLocation(lat, lng, ds) {
   var set = ds || _activeDataSet();
   var amenities = set.amenities || [];
   if (!amenities.length) return null;
   var cfg = set.config || {};
+  var fid = set.id || cfg.id;
+  if (_AMENITY_LABEL_NEEDS_GEOMETRY.has(fid)) {
+    var verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
+    if (!verified) return null;
+  }
   var isActive = !set.id || set.id === window.FESTIVAL_CONFIG?.id;
   var mapToGps = isActive ? window.mapToGps : null;
   var hasAffine = !!(isActive && cfg.gpsAnchors?.length >= 3);
@@ -522,6 +583,10 @@ function _matchNearestLocation(lat, lng, ds) {
   };
 }
 var _GPS_STAGE_MAX_ACC_M = 200;
+function _allProgrammedStagesAnchored(artists, night, anchors) {
+  var anchored = new Set(anchors.map(a => a.stageId));
+  return (artists || []).every(a => a.day !== night || anchored.has(a.stage));
+}
 function _matchArtistForPhoto({
   date,
   lat,
@@ -542,7 +607,6 @@ function _matchArtistForPhoto({
     rawUtcMs
   });
   var cfg = set.config || {};
-  var artists = set.artists || [];
   var festivalId = set.id || null;
   var resolvedBy = set.resolvedBy || "explicit";
   var gpsUsableForStage = acc == null || acc <= _GPS_STAGE_MAX_ACC_M;
@@ -550,8 +614,8 @@ function _matchArtistForPhoto({
   var sLng = gpsUsableForStage ? lng : null;
   var gpsRejected = !gpsUsableForStage && lat != null;
   var localDate = rawUtcMs != null ? _wallClockFromUtc(rawUtcMs, cfg) : date;
-  var night = _photoFestivalNight(localDate, cfg, rawUtcMs);
-  if (!night) return {
+  var nw = _photoFestivalNightWeekend(localDate, cfg, rawUtcMs);
+  if (!nw) return {
     localDate,
     gpsRejected,
     artistId: null,
@@ -560,17 +624,20 @@ function _matchArtistForPhoto({
     resolvedBy,
     reason: "outside_festival_window"
   };
+  var night = nw.night;
+  var artists = (set.artists || []).filter(a => actPlaysWeekend(a, nw.weekend));
   var photoMs = _photoEpochUtc(date, cfg);
   var setWindow = a => {
     var dm = cfg.dayDates?.[a.day];
     if (!dm) return null;
+    var midnight = dm.midnightUtc + nw.shift;
     var [sh, sm] = a.start.split(":").map(Number);
     var [eh, em] = a.end.split(":").map(Number);
     return {
       localDate,
       gpsRejected,
-      startMs: dm.midnightUtc + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
-      endMs: dm.midnightUtc + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000
+      startMs: midnight + ((sh < 8 ? sh + 24 : sh) * 60 + sm) * 60000,
+      endMs: midnight + ((eh < 8 ? eh + 24 : eh) * 60 + em) * 60000
     };
   };
   var attendedSet = new Set(attendedIds || []);
@@ -603,7 +670,7 @@ function _matchArtistForPhoto({
   }
   if (sLat != null && sLng != null) {
     var anchors = resolvedStageAnchors(cfg);
-    if (anchors.length > 0) {
+    if (anchors.length > 0 && _allProgrammedStagesAnchored(artists, night, anchors)) {
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {

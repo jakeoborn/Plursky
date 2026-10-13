@@ -1,0 +1,169 @@
+{
+ "id": "acl-2025",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-10-03",
+   "sha256": "b9dd1e8a7c397ce600d41cad6c6e8446d125c3fabe773a5ab8cbd6b1b564aad5",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68decc97481da2eed6a4f073_ACL25-Schedule-W1-Fri_edit.10.2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251007031437/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68decc97481da2eed6a4f073_ACL25-Schedule-W1-Fri_edit.10.2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.368Z",
+   "rowsConfirmed": 36,
+   "note": "Header read off the graphic: WEEKEND ONE FRIDAY, OCTOBER 03 (AUSTIN CITY LIMITS MUSIC FESTIVAL 2025, OCTOBER 03-05 + OCTOBER 10-12). Stage printed LADYBIRD on this graphic, LADY BIRD on others; one stage, canonical LADY BIRD. Footer strip stage: AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 33,
+   "corrections": [
+    "GOOD NEIGHBOURS: artist \"GOOD kg NEIGHBOURS\" → \"GOOD NEIGHBOURS\"",
+    "ROLE MODEL: artist \"ROLE* MODEL\" → \"ROLE MODEL\"",
+    "MAREN MORRIS: artist \"MAREN® MORRIS\" → \"MAREN MORRIS\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 13:30-14:00 GO BANANA GO! & FLULA BORG",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 Q BROTHERS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2025-10-04",
+   "sha256": "f895b6ecaf18cfa93d84982b42d646f818398a609907d399825d1163a8c53cb7",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68decca10250c33b0e8b576a_ACL25-Schedule-W1-Sat_edit.10.2.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251007031400/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68decca10250c33b0e8b576a_ACL25-Schedule-W1-Sat_edit.10.2.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.377Z",
+   "rowsConfirmed": 38,
+   "note": "Header read off the graphic: WEEKEND ONE SATURDAY, OCTOBER 04. Stage printed LADYBIRD; canonical LADY BIRD.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 34,
+   "corrections": [
+    "THE BACKSEAT LOVERS: artist \"THE b9 BACKSEAT LOVERS\" → \"THE BACKSEAT LOVERS\"",
+    "OCEAN ALLEY: artist \"OCEAN*9 ALLEY\" → \"OCEAN ALLEY\"",
+    "LATIN MAFIA: artist \"LATIN *g MAFIA\" → \"LATIN MAFIA\"",
+    "JAPANESE BREAKFAST: artist \"JAPANESE* BREAKFAST\" → \"JAPANESE BREAKFAST\"",
+    "OLIVIA DEAN: artist \"OLIVIA* DEAN\" → \"OLIVIA DEAN\"",
+    "DOECHII: artist \"16g DOECHII\" → \"DOECHII\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 12:15-12:45 BARTON HILLS CHOIR",
+    "AUSTIN KIDDIE LIMITS 13:15-13:45 LUCKY DIAZ AND THE FAMILY JAM BAND",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 GO BANANA GO! & FLULA BORG",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 IMAGINATION MOVERS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2025-10-05",
+   "sha256": "d063cd5424c7c5d6a7d737ab99907ecb98217f356a029ba97e5bc9afa5c4f308",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68e2bfc12a90de8c2047beff_ACL25-Schedule-W1-Sun_edit.10.5.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260207161052/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68e2bfc12a90de8c2047beff_ACL25-Schedule-W1-Sun_edit.10.5.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.378Z",
+   "rowsConfirmed": 37,
+   "note": "Header read off the graphic: WEEKEND ONE SUNDAY, OCTOBER 05. OCR merged BMI's CHUWI and ZINADELPHIA blocks; separated from pixels.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 33,
+   "corrections": [
+    "DISCO LINES: artist \"DISCO®9 LINES\" → \"DISCO LINES\"",
+    "ZINADELPHIA: artist \"CHUWI ZINADELPHIA\" → \"ZINADELPHIA\"",
+    "WILD RIVERS: artist \"WILD *9 RIVERS\" → \"WILD RIVERS\"",
+    "LP GIOBBI X SUPERMUSH: artist \"LP GIOBBI XSUPERMUSH\" → \"LP GIOBBI X SUPERMUSH\"",
+    "GIGI PEREZ: artist \"GIGI k9 PEREZ\" → \"GIGI PEREZ\""
+   ],
+   "ocrMissed": [
+    "BMI 15:15-16:15 CHUWI",
+    "AUSTIN KIDDIE LIMITS 13:15-13:45 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 IMAGINATION MOVERS",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 LUCKY DIAZ AND THE FAMILY JAM BAND"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2025-10-10",
+   "sha256": "d1cc30c4be2618683a445c7c1777f52b47d1d95cf180e3ff4772e7325baa980f",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68e7ce03d7268ca08b3fe232_ACL25-Schedule-W2-Fri-10.08.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260131220434/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68e7ce03d7268ca08b3fe232_ACL25-Schedule-W2-Fri-10.08.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.379Z",
+   "rowsConfirmed": 35,
+   "note": "Header read off the graphic: WEEKEND TWO FRIDAY, OCTOBER 10",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 32,
+   "corrections": [
+    "ROLE MODEL: artist \"ROLE «9 MODEL\" → \"ROLE MODEL\"",
+    "FARMER'S WIFE: artist \"VODKA FARMER'S WIFE\" → \"FARMER'S WIFE\"; stage \"TITO'S HANDMADE\" → \"TITO'S HANDMADE VODKA\"",
+    "AMBLE: stage \"TITO'S HANDMADE\" → \"TITO'S HANDMADE VODKA\"",
+    "VINCENT LIMA: artist \"VINCENT LIMAR\" → \"VINCENT LIMA\"; stage \"TITO'S HANDMADE\" → \"TITO'S HANDMADE VODKA\"",
+    "CONFIDENCE MAN: stage \"TITO'S HANDMADE\" → \"TITO'S HANDMADE VODKA\"",
+    "SILENT DISCO: stage \"TITO'S HANDMADE\" → \"TITO'S HANDMADE VODKA\"",
+    "JOHNNY STIMSON: stage \"AMERIGAN EXPRESS\" → \"AMERICAN EXPRESS\"",
+    "TANNER USREY: stage \"AMERIGAN EXPRESS\" → \"AMERICAN EXPRESS\"",
+    "DYLAN GOSSETT: stage \"AMERIGAN EXPRESS\" → \"AMERICAN EXPRESS\"",
+    "CAGE THE ELEPHANT: stage \"AMERIGAN EXPRESS\" → \"AMERICAN EXPRESS\"",
+    "LUKE COMBS: stage \"AMERIGAN EXPRESS\" → \"AMERICAN EXPRESS\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 13:30-14:00 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 JOANIE LEEDS",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 Q BROTHERS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 5,
+   "date": "2025-10-11",
+   "sha256": "231c4d9762a92722d3deadd1c2bad073691ab25ed6149c4dc7dc630e87ae819c",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68eab58cbfce6d60eb55d641_ACL25-Schedule-W2-Sat_-Edit10.11a.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260203144657/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68eab58cbfce6d60eb55d641_ACL25-Schedule-W2-Sat_-Edit10.11a.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.380Z",
+   "rowsConfirmed": 38,
+   "note": "Header read off the graphic: WEEKEND TWO SATURDAY, OCTOBER 11",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 34,
+   "corrections": [
+    "ZEDS DEAD: artist \"ZEDS*9 DEAD\" → \"ZEDS DEAD\"",
+    "FUJII KAZE: artist \"FUJII KAZER\" → \"FUJII KAZE\"",
+    "TED HAMMIG & THE CAMPAIGN: artist \"VODKA TED HAMMIG & THE CAMPAIGN\" → \"TED HAMMIG & THE CAMPAIGN\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 12:15-12:45 BARTON HILLS CHOIR",
+    "AUSTIN KIDDIE LIMITS 13:15-13:45 STRAWBITTY YOPS",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 JOANIE LEEDS",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 DIVI ROXX KIDS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 6,
+   "date": "2025-10-12",
+   "sha256": "60d0f8a63d99044cc10182456d0bad4e098d057f9129f5f81dff52395dda8a80",
+   "originalUrl": "https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68eb12c7e440b8cbb8b9b3da_ACL25-Schedule-W2-Sun_-Edit10.11%20(2).png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260203162821/https://cdn.prod.website-files.com/67456b422d0e4219d58ef713/68eb12c7e440b8cbb8b9b3da_ACL25-Schedule-W2-Sun_-Edit10.11%20(2).png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:35:27.380Z",
+   "rowsConfirmed": 38,
+   "note": "Header read off the graphic: WEEKEND TWO SUNDAY, OCTOBER 12",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 34,
+   "corrections": [
+    "FEID: artist \"fogg FEID\" → \"FEID\"",
+    "CA7RIEL & PACO AMOROSO: artist \"CAZRIEL & PACO AMOROSO\" → \"CA7RIEL & PACO AMOROSO\"",
+    "GREGORY ALAN ISAKOV: artist \"GREGORY** ALAN ISAKOV\" → \"GREGORY ALAN ISAKOV\"",
+    "THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE: artist \"VODKA THE HUSTON- TILLOTSON UNIVERSITY JAZZ COLLECTIVE\" → \"THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE\"",
+    "HEY, NOTHING: artist \"HEY. NOTHING\" → \"HEY, NOTHING\"",
+    "GIGI PEREZ: artist \"GIGIR PEREZ\" → \"GIGI PEREZ\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 13:15-13:45 DIVI ROXX KIDS",
+    "AUSTIN KIDDIE LIMITS 15:00-15:30 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 16:00-16:30 GINA CHAVEZ",
+    "AUSTIN KIDDIE LIMITS 17:00-17:30 KOO KOO"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

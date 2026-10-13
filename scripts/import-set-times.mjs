@@ -10,7 +10,10 @@
 // nothing is written.
 //
 //   node scripts/import-set-times.mjs <festival-id> <sheet.tsv> --source <official-url>
-//        [--check] [--file data.jsx] [--stage "Printed Stage Name=stageId"]...
+//        [--check] [--days-from-sheet] [--file data.jsx] [--stage "Printed Stage Name=stageId"]...
+//
+// For Insomniac-platform sites, scripts/fetch-insomniac-settimes.mjs writes
+// the sheet straight from the official /lineup/set-times/day-N/ pages.
 //
 // Sheet: TSV or CSV, header row naming these columns (any order, any case):
 //   day     1..N, or the day's label/name as the config has it ("FRI", "Friday")
@@ -28,7 +31,7 @@
 // Acts the sheet does not mention keep stage null and blank times. TBA is a
 // real answer: they are listed, not failed. --check validates and writes nothing.
 
-import { readFileSync, writeFileSync, readdirSync, renameSync, statSync, chmodSync, unlinkSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, renameSync, statSync, chmodSync, unlinkSync, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
@@ -40,7 +43,13 @@ const flag  = k => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : nu
 const flags = k => argv.flatMap((a, i) => a === k ? [argv[i + 1]] : []);
 const [fid, sheetPath] = argv.filter((a, i) => !a.startsWith("--") && !VALUED.includes(argv[i - 1]));
 const CHECK  = argv.includes("--check");
-const target = path.resolve(root, flag("--file") || "data.jsx");
+// A lineup that publishes no per-act day (CRSSD, III Points and Dreamstate
+// park every act in one TBA bucket) takes each act's day from the sheet.
+const DAYS_FROM_SHEET = argv.includes("--days-from-sheet");
+// A festival module (data/festivals/<id>.js) carries its own SCHEDULE block;
+// everything else lives in data.jsx. --file overrides either.
+const moduleFile = path.join("data", "festivals", `${fid}.js`);
+const target = path.resolve(root, flag("--file") || (fid && existsSync(path.join(root, moduleFile)) ? moduleFile : "data.jsx"));
 const source = flag("--source");
 const die = (msg, code = 1) => { console.error(`✗ ${msg}`); process.exit(code); };
 if (!fid || !sheetPath)
@@ -125,37 +134,61 @@ for (const spec of flags("--stage")) {
   if (!ds.stages.some(s => s.id === v)) die(`--stage "${spec}": ${fid} has no stage id "${v}"`, 2);
   stageOf.set(stageKey(k), v);
 }
-const actOf = new Map(), errors = [];
+// Stages come from the official schedule too. A gated festival whose stages
+// were never published (III Points, Dreamstate, Decadence) gets them first,
+// by hand from the same source, or every row would fail below.
+if (!ds.stages.length)
+  die(`${fid} has no stages yet: add the official stages to its STAGES (names as the schedule prints them; no x/y without a measured position), then import`, 2);
+const lineupDays = [...new Set(ds.artists.map(a => a.day))];
+if (DAYS_FROM_SHEET && lineupDays.filter(d => d != null).length > 1)
+  die(`--days-from-sheet is for a lineup with no per-act day, but ${fid}'s acts already sit on days ${lineupDays.join("/")}`, 2);
+
+const actOf = new Map(), byName = new Map(), errors = [];
 for (const a of ds.artists) {
   const k = `${a.day}|${norm(a.name)}`;
   if (actOf.has(k)) errors.push(`lineup: "${a.name}" and "${actOf.get(k).name}" normalise to the same key on day ${a.day}`);
   actOf.set(k, a);
+  const n = norm(a.name);
+  byName.set(n, byName.has(n) ? null : a);           // null: the name is on more than one act
 }
 
 // ── Validate every row ────────────────────────────────────────────────────
-const sched = new Map();                              // id → { stage, start, end, name, day }
+// An act's lineup day is part of its key only when the lineup knows it. With
+// --days-from-sheet, or for an act whose day is null (Escape's lineup-card
+// acts), the name alone matches and the sheet's day is written with the row.
+const sched = new Map();                              // id → { stage, start, end, name, day, writeDay }
 for (const r of rows) {
   const at = `row ${r.ln} "${r.artist}"`;
   const day = dayOf.get(String(r.day).trim()) ?? dayOf.get(norm(r.day));
   const stage = stageOf.get(stageKey(r.stage));
   const start = hhmm(r.start), end = hhmm(r.end);
   if (!r.artist) { errors.push(`row ${r.ln}: no artist`); continue; }
-  if (!day) errors.push(`${at}: day "${r.day}" is not one of ${[...new Set(dayOf.values())].join("/")} or their labels`);
+  if (!day) errors.push(`${at}: day "${r.day}" is not one of ${[...new Set(dayOf.values())].join("/")} or their labels` +
+    (DAYS_FROM_SHEET ? " — give the config its real dayDates first" : ""));
   if (!stage) errors.push(`${at}: stage "${r.stage}" matches none of ${ds.stages.map(s => s.id).join(", ")} — add --stage "${r.stage}=<id>"`);
   if (!start || !end) errors.push(`${at}: unreadable time "${r.start}" – "${r.end}"`);
   else if (nightMin(end) <= nightMin(start)) errors.push(`${at}: ends ${end} at or before it starts ${start}`);
   if (!day) continue;
-  const act = actOf.get(`${day}|${norm(r.artist)}`);
+  let act = DAYS_FROM_SHEET ? null : actOf.get(`${day}|${norm(r.artist)}`), writeDay = false;
+  if (!act) {
+    const cand = byName.get(norm(r.artist));
+    if (cand && (DAYS_FROM_SHEET || cand.day == null)) { act = cand; writeDay = true; }
+    else if (cand === null && DAYS_FROM_SHEET) { errors.push(`${at}: more than one lineup act has this name, so the sheet's day cannot pick one`); continue; }
+  }
   if (!act) {
     const elsewhere = ds.artists.filter(a => norm(a.name) === norm(r.artist)).map(a => a.day);
-    if (elsewhere.length) { errors.push(`${at}: the lineup has this act on day ${elsewhere.join("/")}, not day ${day}`); continue; }
-    const near = ds.artists.filter(a => a.day === day)
+    if (elsewhere.length) {
+      errors.push(`${at}: the lineup has this act on day ${elsewhere.join("/")}, not day ${day}` +
+        (lineupDays.length === 1 ? " — this lineup has no per-act days; pass --days-from-sheet" : ""));
+      continue;
+    }
+    const near = ds.artists.filter(a => DAYS_FROM_SHEET || a.day === day || a.day == null)
       .map(a => [a.name, lev(norm(a.name), norm(r.artist))]).filter(([, d]) => d <= 3).sort((x, y) => x[1] - y[1]).slice(0, 3);
     errors.push(`${at}: not in the day-${day} lineup${near.length ? ` — did you mean ${near.map(n => `"${n[0]}"`).join(" or ")}?` : ""}`);
     continue;
   }
   if (sched.has(act.id)) { errors.push(`${at}: a second row for the same act`); continue; }
-  if (stage && start && end) sched.set(act.id, { stage, start, end, name: act.name, day });
+  if (stage && start && end) sched.set(act.id, { stage, start, end, name: act.name, day, writeDay });
 }
 
 // No two sets on one stage at once. Back-to-back (end == next start) is fine.
@@ -182,7 +215,7 @@ const m = re.exec(src);
 if (!m) die(`${path.relative(root, target)} has no "// SCHEDULE:BEGIN ${fid}" … "// SCHEDULE:END" block`, 2);
 const ind = m[1], order = new Map(ds.stages.map((s, i) => [s.id, i]));
 const lines = [...sched].sort(([, a], [, b]) => (a.day - b.day) || (order.get(a.stage) - order.get(b.stage)) || (nightMin(a.start) - nightMin(b.start)))
-  .map(([id, s]) => `${ind}${JSON.stringify(id)}: [${JSON.stringify(s.stage)}, "${s.start}", "${s.end}"],  // ${s.name.replace(/[\r\n]/g, " ")}`);
+  .map(([id, s]) => `${ind}${JSON.stringify(id)}: [${JSON.stringify(s.stage)}, "${s.start}", "${s.end}"${s.writeDay ? `, ${s.day}` : ""}],  // ${s.name.replace(/[\r\n]/g, " ")}`);
 const block = [`${ind}// SCHEDULE:BEGIN ${fid}`,
   `${ind}// source: ${source} · imported ${new Date().toISOString().slice(0, 10)} · ${sched.size} of ${ds.artists.length} acts`,
   ...lines, `${m[2]}// SCHEDULE:END`].join("\n");

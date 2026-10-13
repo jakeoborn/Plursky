@@ -222,7 +222,7 @@ function SurveyPanel({
       position: "absolute",
       inset: 0,
       zIndex: 40,
-      background: "rgba(26,18,13,0.55)",
+      background: "rgba(var(--shade-rgb),0.55)",
       display: "flex",
       alignItems: "flex-end"
     }
@@ -243,7 +243,7 @@ function SurveyPanel({
       borderTopLeftRadius: 22,
       borderTopRightRadius: 22,
       padding: "14px 16px calc(16px + env(safe-area-inset-bottom, 0px))",
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)"
+      boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)"
     }
   }, React.createElement("div", {
     style: {
@@ -277,9 +277,9 @@ function SurveyPanel({
     }
   }, "Where people ", React.createElement("em", null, "stand"), " to watch a stage — this fixes photo tagging. It is not a map measurement and never goes into gpsAnchors."), rec.error && React.createElement("div", {
     style: {
-      background: "rgba(193,74,74,0.10)",
-      border: "1px solid rgba(193,74,74,0.35)",
-      color: "#c14a4a",
+      background: "rgba(var(--alert-rgb),0.10)",
+      border: "1px solid rgba(var(--alert-rgb),0.35)",
+      color: "var(--alert)",
       borderRadius: 10,
       padding: "9px 11px",
       marginBottom: 10,
@@ -388,8 +388,8 @@ function SurveyPanel({
   }, "● START RECORDING")), pending.map(r => React.createElement("div", {
     key: r.stageId,
     style: {
-      background: "rgba(245,154,54,0.10)",
-      border: "1px solid rgba(245,154,54,0.4)",
+      background: "rgba(var(--signal-rgb),0.10)",
+      border: "1px solid rgba(var(--signal-rgb),0.4)",
       borderRadius: 12,
       padding: "10px 12px",
       marginBottom: 8

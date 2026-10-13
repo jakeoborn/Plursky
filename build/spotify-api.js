@@ -880,6 +880,54 @@ async function _createPlurskyPlaylist(token, profileId) {
     };
   }
 }
+function _playlistPublicPref() {
+  try {
+    return localStorage.getItem("plursky_playlist_public") === "1";
+  } catch {
+    return false;
+  }
+}
+function _setPlaylistPublicPref(on) {
+  try {
+    localStorage.setItem("plursky_playlist_public", on ? "1" : "0");
+  } catch {}
+}
+async function _applyPlaylistVisibility(isPublic) {
+  var id = null;
+  try {
+    id = localStorage.getItem("plursky_target_playlist_id");
+  } catch {}
+  if (!id) return {
+    ok: false,
+    reason: "no_playlist"
+  };
+  var token = await getValidToken();
+  if (!token) return {
+    ok: false,
+    reason: "not_connected"
+  };
+  try {
+    var r = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        public: !!isPublic
+      })
+    });
+    return {
+      ok: r.ok,
+      status: r.status
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "fetch_failed"
+    };
+  }
+}
 async function createSetsPlaylist(state, opts = {}) {
   var source = opts.source === "attended" ? "attended" : "saved";
   var token = await getValidToken();
@@ -1116,18 +1164,20 @@ async function createSetsPlaylist(state, opts = {}) {
     var n = entries.reduce((s, e, i) => s + (e.artist.day === d ? urisByEntry[i].length : 0), 0);
     return n > 0 ? `${FESTIVAL_CONFIG.dayDates[d].short} ${n}` : null;
   }).filter(Boolean);
-  if (dayLabels.length > 0) {
-    await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+  var isPublic = _playlistPublicPref();
+  var detailsRes = await fetch(`https://api.spotify.com/v1/playlists/${playlist.id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      public: isPublic,
+      ...(dayLabels.length > 0 ? {
         description: `${seedCount} sets${pickCount ? ` + ${pickCount} picks` : ""} · ${dayLabels.join(" · ")} tracks · headliners 5 songs · built with Plursky · ${dateStr}`
-      })
-    }).catch(() => {});
-  }
+      } : {})
+    })
+  }).catch(() => null);
   return {
     ok: true,
     added: addedCount,
@@ -1143,7 +1193,8 @@ async function createSetsPlaylist(state, opts = {}) {
       tracks: urisByEntry[i].length
     })),
     url: playlist.external_urls?.spotify || `https://open.spotify.com/playlist/${playlist.id}`,
-    id: playlist.id
+    id: playlist.id,
+    public: detailsRes?.ok ? isPublic : null
   };
 }
 var createEdcPlaylist = createSetsPlaylist;
@@ -1351,14 +1402,12 @@ async function fetchSpotifyTopArtists(onProgress) {
       });
     });
     var top = Array.from(byId.values()).sort((a, b) => b._score - a._score);
-    try {
-      var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      top.forEach(a => {
-        var url = a.images?.[0]?.url;
-        if (url && a.name) imgs[a.name.toLowerCase()] = url;
-      });
-      localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-    } catch {}
+    putArtistImages(top.map(a => ({
+      name: a.name,
+      url: a.images?.[0]?.url,
+      source: "spotify",
+      spotifyId: a.id
+    })));
     var seen = new Set(top.map(a => a.id));
     var extras = [];
     var pull = async (url, sourceTag, baseScore) => {
@@ -1532,14 +1581,12 @@ async function fetchSpotifyTopArtists(onProgress) {
 async function fetchPreviewUrl(artistName) {
   artistName = typeof _lookupName === "function" ? _lookupName(artistName) : artistName;
   var cacheKey = "preview_urls_v1";
-  try {
-    var cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
-    var entry = cached[artistName.toLowerCase()];
-    if (entry) return entry;
-  } catch {}
+  var cached = _prunePreviewCache()[artistName.toLowerCase()];
+  if (cached) return cached;
   var _cachePreview = result => {
+    if (!_previewPlayable(result)) return null;
     try {
-      var _cached = JSON.parse(localStorage.getItem(cacheKey) || "{}");
+      var _cached = _prunePreviewCache();
       _cached[artistName.toLowerCase()] = result;
       localStorage.setItem(cacheKey, JSON.stringify(_cached));
     } catch {}
@@ -1567,21 +1614,7 @@ async function fetchPreviewUrl(artistName) {
       }
     } catch {}
   }
-  try {
-    var _q = encodeURIComponent(artistName);
-    var _res = await fetch(`https://itunes.apple.com/search?term=${_q}&entity=song&limit=10`);
-    if (!_res.ok) return null;
-    var _data = await _res.json();
-    var results = _data.results || [];
-    var _first = results.find(t => t.previewUrl && t.artistName?.toLowerCase().includes(firstWord)) || results.find(t => t.previewUrl);
-    return _first ? _cachePreview({
-      url: _first.previewUrl,
-      name: _first.trackName,
-      source: "itunes"
-    }) : null;
-  } catch {
-    return null;
-  }
+  return null;
 }
 function matchLineupArtists(spotifyArtists) {
   if (!spotifyArtists?.length) return [];

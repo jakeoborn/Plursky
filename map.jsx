@@ -21,6 +21,17 @@ const QUICK_REPLIES = [
 // chip row offers a relevant suggestion instead of a generic OMW. v1 is
 // rule-based; a future iteration can call the Anthropic API to draft a
 // real personalized message when online.
+// Black or white ink for text on an arbitrary hex fill (a stage colour),
+// whichever clears WCAG AA. Stage colours are map-only and not mode tokens.
+function _inkOnHex(hex) {
+  let m = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(String(hex || "").trim());
+  if (!m) return "var(--ink)";
+  const h6 = m[1].length === 3 ? m[1].split("").map(c => c + c).join("") : m[1];
+  const n = parseInt(h6, 16), ch = [n >> 16, (n >> 8) & 255, n & 255].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  const L = 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  return (L + 0.05) / 0.05 >= 1.05 / (L + 0.05) ? "#14121C" : "#FFFFFF";
+}
+
 function buildSmartReplies({ myStage, friendStage, nextSavedSet }) {
   const out = [];
   if (myStage) {
@@ -43,13 +54,13 @@ function buildSmartReplies({ myStage, friendStage, nextSavedSet }) {
     const stageName = stage ? stage.name : "the stage";
     if (nextSavedSet.isLive) {
       out.push({
-        tag: `${a.name.toUpperCase().slice(0, 8)} LIVE`,
+        tag: `${a.name.toUpperCase()} LIVE`,
         text: `🎧 ${a.name} is LIVE at ${stageName} — get over here`,
         smart: true,
       });
     } else if (nextSavedSet.minsUntil > 0 && nextSavedSet.minsUntil <= 90) {
       out.push({
-        tag: `${a.name.toUpperCase().slice(0, 8)} ${nextSavedSet.minsUntil}M`,
+        tag: `${a.name.toUpperCase()} ${nextSavedSet.minsUntil}M`,
         text: `${a.name} in ${nextSavedSet.minsUntil}m at ${stageName} — meet there?`,
         smart: true,
       });
@@ -199,7 +210,7 @@ function WellnessPill() {
         color: "var(--ink)",
         fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 0.8, fontWeight: 600,
         cursor: "pointer",
-        boxShadow: hyd < 40 ? "0 0 0 4px rgba(193,74,74,0.16)" : "0 2px 8px rgba(26,18,13,0.06)",
+        boxShadow: hyd < 40 ? "0 0 0 4px rgba(var(--alert-rgb),0.16)" : "0 2px 8px rgba(var(--shade-rgb),0.06)",
       }}>
         <span style={{ fontSize: 12 }}>💧</span>
         <span style={{ color: hyd > 70 ? "var(--ink)" : hyd > 40 ? "var(--warn)" : "var(--alert)", fontWeight: 700 }}>{hyd}%</span>
@@ -209,12 +220,12 @@ function WellnessPill() {
 
       {open && (
         <div style={{ position: "absolute", inset: 0, zIndex: 6 }}>
-          <div onClick={() => setOpen(false)} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }}/>
+          <div onClick={() => setOpen(false)} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.4)" }}/>
           <div style={{
             position: "absolute", left: 14, right: 14, top: 100,
             background: "var(--paper)", color: "var(--ink)",
             borderRadius: 16, padding: 16,
-            boxShadow: "0 14px 40px rgba(0,0,0,0.4)",
+            boxShadow: "0 14px 40px rgba(var(--shade-rgb),0.4)",
           }}>
             <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6 }}>
               WELLNESS · DESERT DEFAULTS
@@ -237,7 +248,7 @@ function WellnessPill() {
               </div>
               <button onClick={drank} style={{
                 marginTop: 8, width: "100%",
-                background: "#38bdf8", color: "#fff", border: "none",
+                background: "var(--signal)", color: "var(--on-signal)", border: "none",
                 borderRadius: 10, padding: "10px 12px",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                 cursor: "pointer",
@@ -285,10 +296,16 @@ const FESTIVAL_LNG       = FESTIVAL_CONFIG.gps.lng;
 const ON_SITE_RADIUS_MI  = FESTIVAL_CONFIG.gps.onSiteRadiusMi;
 
 // 3-point Cramer affine: [mapX, mapY] = M · [lat, lng, 1]
-function _solveMapAffine() {
-  if (!FESTIVAL_CONFIG.gpsAnchors || FESTIVAL_CONFIG.gpsAnchors.length < 3) return null;
-  const find = (id) => STAGES.find(s => s.id === id);
-  const [a0, a1, a2] = FESTIVAL_CONFIG.gpsAnchors;
+// Takes a config + stages so the SAME solver can answer for a festival that
+// is not the active one. geometryVerifiedFor() needs that: a gated festival
+// can never be made active, so a predicate that could only ever see the
+// active festival would be structurally blind to exactly the cases we gate.
+function _solveMapAffine(cfg, stages) {
+  cfg = cfg || FESTIVAL_CONFIG;
+  stages = stages || STAGES;
+  if (!cfg.gpsAnchors || cfg.gpsAnchors.length < 3) return null;
+  const find = (id) => stages.find(s => s.id === id);
+  const [a0, a1, a2] = cfg.gpsAnchors;
   if (!find(a0.stageId) || !find(a1.stageId) || !find(a2.stageId)) return null;
   const A = { lat: a0.lat, lng: a0.lng, mx: find(a0.stageId).x, my: find(a0.stageId).y };
   const B = { lat: a1.lat, lng: a1.lng, mx: find(a1.stageId).x, my: find(a1.stageId).y };
@@ -350,43 +367,107 @@ const MAP_REGISTRATION_TOL_M = 25;
 const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
   .filter(s => typeof s.x === "number" && typeof s.y === "number");
 
-const MAP_REGISTRATION_SOURCED = (() => {
-  const anchors = FESTIVAL_CONFIG.gpsAnchors || [];
+// mapToGps() reads the module-level MAP_AFFINE, i.e. the ACTIVE festival's.
+// This twin takes the affine, so the predicate below can corroborate a
+// festival that is not active.
+function _gpsFromAffine(affine, cfg, x, y) {
+  if (!affine) return null;
+  const A = affine.x, B = affine.y;
+  const det = A[0]*B[1] - A[1]*B[0];
+  if (!det) return null;
+  return {
+    lat: ( B[1]*(x - A[2]) - A[1]*(y - B[2])) / det,
+    lng: (-B[0]*(x - A[2]) + A[0]*(y - B[2])) / det,
+  };
+}
+
+// ⛔ THE ONE PREDICATE. Every numeric distance claim in the app — map metres,
+// walk minutes, leave-by times, tight-transition warnings, route ETAs, on the
+// map screen AND on the home plan — asks this and nothing else.
+//
+// It is asked about a FESTIVAL, never about the avatar. The previous version
+// was `!avatar || !avatar.live || SOURCED`, which handed full numbers to any
+// non-live ("demo") position. That exemption was wrong, not merely lenient: a
+// planning view has no GPS by definition, so the demo branch was the branch a
+// real attendee actually reads when they build their night days before the
+// gates open. The rule: readouts are OFF until that festival's geometry is
+// verified against official patron-map or ground evidence, in EVERY state.
+// No demo exception. This fleet-wide form is a trust policy, not a founder
+// ruling — the founder ruling it implements is the ACL-specific constraint
+// (no distance claims until ACL's geometry is verified); the widening to
+// every festival and every avatar state is ours. Don't re-attribute it.
+//
+// _geomVerifiedMemo is also the seam the verify gate uses to prove the
+// positive direction: a gate that can only ever assert SILENCE would pass just
+// as happily if the whole feature had been deleted, so the gate flips one entry
+// and proves the minutes COME BACK when geometry clears.
+//
+// ⚠ An earlier revision of this comment justified that flip with "no verified
+// festival in the fleet today". Measured false on 2026-09-17:
+// geometryVerifiedFor() is TRUE for summerfest-2026, lollapalooza-2026 and
+// outside-lands-2026. The flip is still necessary, but for a narrower reason
+// than the one written here — those three carry NO measured walk table (0 of
+// 45, 36 and 21 pairs), and the single festival that HAS one (edc-lv-2026,
+// 36/36) is blind. Verified geometry and a measured table are separate
+// properties, and today no festival has both. The premise was corrected in
+// place rather than deleted: an unmeasured claim sitting in a comment is
+// exactly what stops the next reader measuring.
+const _geomVerifiedMemo = {};
+function geometryVerifiedFor(festivalId, cfgIn, stagesIn) {
+  const key = festivalId || (cfgIn && cfgIn.id) || "";
+  if (!cfgIn && key in _geomVerifiedMemo) return _geomVerifiedMemo[key];
+
+  let cfg = cfgIn, stages = stagesIn;
+  if (!cfg) {
+    const ds = (typeof _DATA_SETS !== "undefined" && _DATA_SETS) ? _DATA_SETS[key] : null;
+    if (ds) { cfg = ds.config; stages = ds.stages; }
+    else if (typeof FESTIVAL_CONFIG !== "undefined" && key === FESTIVAL_CONFIG.id) {
+      cfg = FESTIVAL_CONFIG; stages = STAGES;
+    }
+  }
+  if (!cfg || !stages) { if (!cfgIn) _geomVerifiedMemo[key] = false; return false; }
+
+  const anchors = cfg.gpsAnchors || [];
   const basis = anchors.slice(0, 3);
   const isEvidence = a => a.src === "osm" || a.src === "crowd";
+  let out = false;
 
   // (1) PROVENANCE — the basis has to be built on a measurement.
-  if (basis.length !== 3 || !basis.some(isEvidence)) return false;
-  if (!MAP_AFFINE) return false;
+  const affine = _solveMapAffine(cfg, stages);
+  if (basis.length === 3 && basis.some(isEvidence) && affine) {
+    // (2) CORROBORATION — provenance alone was never enough, and shipping it
+    // alone was a real hole (see docs/reports/2026-09-06-anchor-resurvey-
+    // reconciliation.md). It says the anchors are real; it says nothing about
+    // whether the ART they register onto is an affine projection of the
+    // ground. _solveMapAffine() fits the first three anchors EXACTLY, so the
+    // basis can never disagree with itself — a poster whose local scale
+    // wanders (ACL's runs 5.8-11.3 m/unit) yields a transform that looks
+    // perfect at the three basis stages and puts the others in a lake.
+    //
+    // So: at least one SOURCED anchor outside the basis has to land near
+    // where the affine actually draws its stage. That is the only part of
+    // this that can fail, and it is the part that catches distorted art.
+    out = anchors.slice(3).some(a => {
+      if (!isEvidence(a)) return false;
+      const s = stages.find(x => x.id === a.stageId);
+      if (!s) return false;
+      const g = _gpsFromAffine(affine, cfg, s.x, s.y);
+      if (!g) return false;
+      return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
+    });
+  }
+  if (!cfgIn) _geomVerifiedMemo[key] = out;
+  return out;
+}
 
-  // (2) CORROBORATION — provenance alone was never enough, and shipping it
-  // alone was a real hole (see docs/reports/2026-09-06-anchor-resurvey-
-  // reconciliation.md). It says the anchors are real; it says nothing about
-  // whether the ART they register onto is an affine projection of the ground.
-  // _solveMapAffine() fits the first three anchors EXACTLY, so the basis can
-  // never disagree with itself — a poster whose local scale wanders (ACL's
-  // runs 5.8-11.3 m/unit) yields a transform that looks perfect at the three
-  // basis stages and puts the others in a lake.
-  //
-  // So: at least one SOURCED anchor outside the basis has to land near where
-  // the affine actually draws its stage. That is the only part of this that
-  // can fail, and it is the part that catches distorted art.
-  return anchors.slice(3).some(a => {
-    if (!isEvidence(a)) return false;
-    const s = STAGES.find(x => x.id === a.stageId);
-    if (!s) return false;
-    const g = mapToGps(s.x, s.y);
-    if (!g) return false;
-    return distMiles(a.lat, a.lng, g.lat, g.lng) * 1609.34 <= MAP_REGISTRATION_TOL_M;
-  });
-})();
+const MAP_REGISTRATION_SOURCED = geometryVerifiedFor(
+  FESTIVAL_CONFIG.id, FESTIVAL_CONFIG, STAGES);
 
-// A grid-space distance is only honest when BOTH hold: the position it starts
-// from is real, and the grid it is measured on registers to the world.
-// `avatar.live` is stamped on at the one place a real GPS fix becomes an
-// avatar, so the flag travels with the position instead of being re-derived.
+// Kept as a function because every call site passes an avatar, but the avatar
+// no longer decides anything — see the contract above.
 function readoutHonest(avatar) {
-  return !avatar || !avatar.live || MAP_REGISTRATION_SOURCED;
+  return geometryVerifiedFor(
+    typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 
 function gpsToMap(lat, lng) {
@@ -455,14 +536,14 @@ function upcomingMeetups() {
 // fresh = the data is trustworthy ("they ARE there"); stale = trust but verify;
 // cold = treat as a hint, not a fact. Designed for 4AM-tired eyes.
 function formatLastSeen(ts) {
-  if (!ts) return { label: "", freshness: "cold", color: "rgba(255,255,255,0.45)" };
+  if (!ts) return { label: "", freshness: "cold", color: "var(--text-3)" };
   const mins = Math.max(0, Math.round((Date.now() - ts) / 60000));
-  if (mins < 1)  return { label: "NOW",            freshness: "fresh", color: "#2d7a55" };  // var(--success)
-  if (mins < 5)  return { label: `${mins}m`,       freshness: "fresh", color: "#2d7a55" };
-  if (mins < 15) return { label: `${mins}m`,       freshness: "stale", color: "#f59a36" };  // var(--flare)
-  if (mins < 60) return { label: `${mins}m`,       freshness: "cold",  color: "rgba(255,255,255,0.55)" };
+  if (mins < 1)  return { label: "NOW",            freshness: "fresh", color: "var(--signal-ink)" };  // var(--success)
+  if (mins < 5)  return { label: `${mins}m`,       freshness: "fresh", color: "var(--signal-ink)" };
+  if (mins < 15) return { label: `${mins}m`,       freshness: "stale", color: "var(--signal-ink)" };  // var(--flare)
+  if (mins < 60) return { label: `${mins}m`,       freshness: "cold",  color: "var(--text-3)" };
   const hrs = Math.floor(mins / 60);
-  return     { label: `${hrs}h+`,                  freshness: "cold",  color: "rgba(255,255,255,0.45)" };
+  return     { label: `${hrs}h+`,                  freshness: "cold",  color: "var(--text-3)" };
 }
 
 // Watch the user's real position. Returns { pos, status, lastUpdate }.
@@ -515,7 +596,10 @@ function useGeolocation(enabled) {
 // pinch-points. The 1-3 AM crowd window adds ~50-60% as people leak between
 // mainstage drops. Avatar→stage falls back to a piecewise distance curve
 // when the avatar isn't anchored to a known stage.
-// All 36 stage pairs; keys alphabetically sorted so _pairKey always hits.
+// All 36 EDC LAS VEGAS stage pairs; keys alphabetically sorted so _pairKey
+// hits. ⛔ Bare stage ids: EDC Orlando reuses kinetic/circuit/neon/stereo, so
+// every read of this table must first check FESTIVAL_CONFIG.id against
+// WALK_TABLE_FESTIVAL_ID. "_pairKey always hits" was never true off EDC LV.
 const WALK_PAIRS = {
   "basspod,bionic":  [10, 16],
   "basspod,circuit": [ 6, 10],
@@ -586,7 +670,11 @@ function computeWalkRange(avatar, targetStage, dist, nowTime) {
   const fromStage = _nearestStageId(avatarX, avatarY);
   if (fromStage && targetStage && fromStage !== targetStage.id) {
     const k = _pairKey(fromStage, targetStage.id);
-    if (WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
+    // EDC Las Vegas measurements, keyed by bare stage id — and four of those
+    // ids are also EDC Orlando stages. readoutHonest() below would NOT catch
+    // that on a festival whose registration is sourced, so the festival has
+    // to match before the table may be read.
+    if (FESTIVAL_CONFIG.id === WALK_TABLE_FESTIVAL_ID && WALK_PAIRS[k]) [lo, hi] = WALK_PAIRS[k];
   }
   if (lo == null) [lo, hi] = _distToBand(dist);
 
@@ -781,7 +869,7 @@ function PingSheet({ onClose, onDropPin, friends }) {
 
   return (
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      position: "fixed", inset: 0, background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div onClick={e => e.stopPropagation()} style={{
@@ -789,7 +877,7 @@ function PingSheet({ onClose, onDropPin, friends }) {
         background: "var(--paper)", color: "var(--ink)",
         borderRadius: "16px 16px 0 0",
         padding: "16px 18px 22px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>PING CODES</span>
@@ -814,14 +902,14 @@ function PingSheet({ onClose, onDropPin, friends }) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
             <button onClick={shareCode} style={{
-              background: "var(--ember)", color: "#fff", border: "none",
+              background: "var(--ember)", color: "var(--on-ember)", border: "none",
               borderRadius: 8, padding: "7px 14px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
             }}>SHARE</button>
             <button onClick={copyCode} style={{
-              background: "transparent", color: "var(--paper)",
-              border: "1px solid rgba(247,237,224,0.35)",
+              background: "transparent", color: "var(--ink)",
+              border: "1px solid rgba(var(--ink-rgb),0.35)",
               borderRadius: 8, padding: "7px 14px",
               fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
               cursor: "pointer",
@@ -902,7 +990,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
 
   return (
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      position: "fixed", inset: 0, background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div onClick={e => e.stopPropagation()} style={{
@@ -910,7 +998,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
         background: "var(--paper)", color: "var(--ink)",
         borderRadius: "16px 16px 0 0",
         padding: "16px 18px 28px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
           <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>WHERE ARE YOU?</span>
@@ -927,12 +1015,12 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
               <button key={s.id} onClick={() => setSelected(s.id)} style={{
                 padding: "8px 6px", borderRadius: 10,
                 background: on ? s.color : "var(--paper-2)",
-                color: on ? "#fff" : "var(--ink)",
+                color: on ? _inkOnHex(s.color) : "var(--ink)",
                 border: on ? "none" : "1px solid var(--line-2)",
                 cursor: "pointer",
                 display: "flex", flexDirection: "column", alignItems: "center", gap: 4,
               }}>
-                <span style={{ width: 8, height: 8, borderRadius: 8, background: on ? "rgba(255,255,255,0.7)" : s.color }} />
+                <span style={{ width: 8, height: 8, borderRadius: 8, background: on ? "rgba(var(--ink-rgb),0.7)" : s.color }} />
                 <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, fontWeight: on ? 700 : 500, textAlign: "center", lineHeight: 1.2 }}>{s.short}</span>
               </button>
             );
@@ -960,7 +1048,7 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
           <button onClick={shareLink} disabled={!stage} style={{
             flex: 1, padding: "10px 12px", borderRadius: 999,
             background: stage ? "var(--ember)" : "var(--paper-2)",
-            color: stage ? "#fff" : "var(--muted)",
+            color: stage ? "var(--ink)" : "var(--muted)",
             border: "none", cursor: stage ? "pointer" : "default",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
           }}>SHARE LINK ↗</button>
@@ -1094,7 +1182,7 @@ function ShareLocationSheet({
 
   return (
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      position: "fixed", inset: 0, background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div onClick={e => e.stopPropagation()} style={{
@@ -1102,7 +1190,7 @@ function ShareLocationSheet({
         background: "var(--paper)", color: "var(--ink)",
         borderRadius: "16px 16px 0 0",
         padding: "16px 18px 28px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
         maxHeight: "90vh", overflowY: "auto",
       }}>
         {/* Header */}
@@ -1128,7 +1216,7 @@ function ShareLocationSheet({
         {/* Big status pill — visual anchor */}
         <div style={{
           background: active ? "var(--ember)" : "var(--paper-2)",
-          color: active ? "#fff" : "var(--ink)",
+          color: active ? "var(--ink)" : "var(--ink)",
           border: active ? "none" : "1px solid var(--line-2)",
           borderRadius: 14, padding: "14px 16px",
           display: "flex", alignItems: "center", gap: 10,
@@ -1136,7 +1224,7 @@ function ShareLocationSheet({
         }}>
           <span style={{
             width: 12, height: 12, borderRadius: 12,
-            background: active ? "rgba(255,255,255,0.92)" : "var(--line-2)",
+            background: active ? "rgba(var(--ink-rgb),0.92)" : "var(--line-2)",
             animation: active ? "pulse 1.6s infinite" : "none",
           }}/>
           <span className="serif" style={{ fontSize: 18, flex: 1 }}>
@@ -1206,7 +1294,7 @@ function ShareLocationSheet({
         {includeGps && isDenied && (
           <div style={{
             padding: "8px 11px", borderRadius: 999,
-            background: "rgba(193,74,74,0.10)", border: "1px solid rgba(193,74,74,0.35)",
+            background: "rgba(var(--alert-rgb),0.10)", border: "1px solid rgba(var(--alert-rgb),0.35)",
             marginBottom: 12,
           }}>
             <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--alert)", fontWeight: 700 }}>
@@ -1331,7 +1419,7 @@ function MeetupsSheet({ onClose }) {
 
   return (
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
+      position: "fixed", inset: 0, background: "rgba(var(--shade-rgb),0.55)",
       zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div onClick={e => e.stopPropagation()} style={{
@@ -1339,7 +1427,7 @@ function MeetupsSheet({ onClose }) {
         background: "var(--paper)", color: "var(--ink)",
         borderRadius: "16px 16px 0 0",
         padding: "16px 18px 28px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
+        boxShadow: "0 -8px 32px rgba(var(--shade-rgb),0.35)",
         maxHeight: "90vh", overflowY: "auto",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
@@ -1404,7 +1492,7 @@ function MeetupsSheet({ onClose }) {
         {!creating ? (
           <button onClick={() => setCreating(true)} style={{
             width: "100%", padding: "12px 16px", borderRadius: 999,
-            background: "var(--ember)", color: "#fff", border: "none",
+            background: "var(--ember)", color: "var(--on-ember)", border: "none",
             cursor: "pointer", fontFamily: "Geist Mono, monospace",
             fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
           }}>+ NEW MEETUP</button>
@@ -1424,7 +1512,7 @@ function MeetupsSheet({ onClose }) {
                   <button key={s.id} onClick={() => setStageId(s.id)} style={{
                     padding: "6px 4px", borderRadius: 8,
                     background: on ? s.color : "var(--paper-2)",
-                    color: on ? "#fff" : "var(--ink)",
+                    color: on ? _inkOnHex(s.color) : "var(--ink)",
                     border: on ? "none" : "1px solid var(--line-2)",
                     fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                     fontWeight: on ? 700 : 500, cursor: "pointer",
@@ -1455,7 +1543,7 @@ function MeetupsSheet({ onClose }) {
               }}>CANCEL</button>
               <button onClick={handleSave} style={{
                 flex: 1, padding: "10px 12px", borderRadius: 999,
-                background: "var(--ember)", color: "#fff", border: "none", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", border: "none", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
               }}>SAVE</button>
             </div>
@@ -1559,7 +1647,7 @@ function NotifyPill({ enabled, onChange }) {
     <button onClick={onClick} disabled={!supported || denied} title="Set reminders 15 min before saved sets" style={{
       display: "flex", alignItems: "center", gap: 4,
       background: enabled ? "var(--ember)" : "var(--paper)",
-      color: enabled ? "#fff" : "var(--muted)",
+      color: enabled ? "var(--ink)" : "var(--muted)",
       border: enabled ? "none" : "1px solid var(--line-2)",
       borderRadius: 999, padding: "3px 8px",
       fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -1651,8 +1739,8 @@ function WeatherStrip() {
     <div style={{
       width: "100%", display: "flex", alignItems: "center", gap: 8,
       padding: "5px 11px", marginTop: 6, borderRadius: 999,
-      background: isAlert ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
-      border: `1px solid ${isAlert ? "rgba(232,93,46,0.45)" : "var(--line)"}`,
+      background: isAlert ? "rgba(var(--signal-rgb),0.10)" : "var(--paper-2)",
+      border: `1px solid ${isAlert ? "rgba(var(--signal-rgb),0.45)" : "var(--line)"}`,
     }}>
       <span style={{ fontSize: 14, lineHeight: 1, flexShrink: 0 }}>{emoji}</span>
       <span className="mono" style={{
@@ -1692,10 +1780,10 @@ function SunriseStrip({ avatar, onSelect }) {
     <button onClick={() => onSelect(kin.id)} style={{
       width: "100%", display: "flex", alignItems: "center", gap: 8,
       padding: "5px 11px", marginTop: 6,
-      background: "linear-gradient(90deg, #f59a36 0%, #e85d2e 60%, #a78bfa 100%)",
-      color: "#fff", border: "none", borderRadius: 999,
+      background: "linear-gradient(90deg, var(--signal) 0%, var(--signal) 60%, var(--signal) 100%)",
+      color: "var(--on-signal)", border: "none", borderRadius: 999,
       cursor: "pointer", textAlign: "left",
-      boxShadow: "0 3px 10px rgba(245,154,54,0.30)",
+      boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.30)",
     }}>
       <span style={{ fontSize: 14, lineHeight: 1, flexShrink: 0 }}>🌅</span>
       <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800, opacity: 0.92, flexShrink: 0 }}>SUNRISE</span>
@@ -1733,10 +1821,10 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
       width: "100%", display: "flex", alignItems: "center", gap: 9,
       padding: "6px 10px", marginTop: 6,
       background: next.isLive ? "var(--ember)" : "var(--ink)",
-      color: next.isLive ? "#fff" : "var(--paper)",
+      color: next.isLive ? "var(--ink)" : "var(--paper)",
       border: "none", borderRadius: 12,
       cursor: "pointer", textAlign: "left",
-      boxShadow: next.isLive ? "0 3px 10px rgba(232,93,46,0.30)" : "0 2px 6px rgba(26,18,13,0.15)",
+      boxShadow: next.isLive ? "0 3px 10px rgba(var(--signal-rgb),0.30)" : "0 2px 6px rgba(var(--shade-rgb),0.15)",
     }}>
       <div style={{ width: 5, alignSelf: "stretch", borderRadius: 3, background: stage.color }}/>
       <div style={{ flex: 1, minWidth: 0 }}>
@@ -1760,7 +1848,7 @@ function NextSetStrip({ savedIds, avatar, onSelect }) {
         <div className="mono" style={{
           fontSize: 9, letterSpacing: 0.9, fontWeight: 600,
           opacity: willBeLate ? 1 : 0.7,
-          color: willBeLate ? "#fbbf24" : "inherit",
+          color: willBeLate ? "var(--signal-ink)" : "inherit",
           marginTop: 1,
         }}>{walkLabel ? `${walkLabel}M` : "\u2014"}{willBeLate ? " \u26a0" : ""}</div>
       </div>
@@ -1840,6 +1928,11 @@ function MapScreen({ state, setState }) {
   // which the baked-in raster legend can never do.
   const [amenityKey, setAmenityKey] = React.useState(false);
   const [amenityFilter, setAmenityFilter] = React.useState(null);
+  // The board's category chips (Jake, 2026-10-06): Stages / Water / Medical /
+  // Crew, one at a time. Water and Medical show only that amenity type and
+  // exist only where the festival's map carries it, on the drawn map (the
+  // real map draws no amenities). Crew shows real presence, never a sample.
+  const [mapCat, setMapCat] = React.useState("stages");
   // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
   // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
   // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
@@ -2014,7 +2107,11 @@ function MapScreen({ state, setState }) {
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
   // 4× fewer renders).
+  // Reduce Motion: random wander stops for everyone (you and every friend);
+  // only walks the user asked for still move (you toward a picked stage or
+  // meet point, meetup friends toward the meet point).
   const { active: bsActive } = useBatterySaver();
+  const reduceMotion = React.useMemo(() => { try { return !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches; } catch { return false; } }, []);
   React.useEffect(() => {
     if (!useDemo) return;
     const id = setInterval(() => {
@@ -2029,6 +2126,7 @@ function MapScreen({ state, setState }) {
           if (d < 1.2) return a;
           return { x: a.x + (dx/d) * 0.35, y: a.y + (dy/d) * 0.35 };
         }
+        if (reduceMotion) return a;
         return {
           x: Math.max(12, Math.min(88, a.x + (Math.random() - 0.5) * 0.2)),
           y: Math.max(12, Math.min(88, a.y + (Math.random() - 0.5) * 0.2)),
@@ -2041,6 +2139,7 @@ function MapScreen({ state, setState }) {
           if (d < 1.2) return f;
           return { ...f, x: f.x + (dx/d) * 0.32, y: f.y + (dy/d) * 0.32 };
         }
+        if (reduceMotion) return f;
         return {
           ...f,
           x: Math.max(12, Math.min(88, f.x + (Math.random() - 0.5) * 0.25)),
@@ -2049,7 +2148,7 @@ function MapScreen({ state, setState }) {
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive]);
+  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
 
   // Heading derivation when real GPS is on-site and walking toward a goal
   React.useEffect(() => {
@@ -2091,7 +2190,7 @@ function MapScreen({ state, setState }) {
         }
         return {
           id, name: e.name || "?",
-          color: e.color || "#888",
+          color: e.color || "var(--text-2)",
           x, y, gps: e.gps || null,
           stageId: e.stageId, ts: e.ts,
         };
@@ -2270,7 +2369,7 @@ function MapScreen({ state, setState }) {
   const gpsLabel = !gpsLive ? "OFF"
     : gpsStatus === "live"        ? (isLiveOnSite ? "LIVE" : "OFF-SITE")
     : gpsStatus === "locating"    ? "FINDING…"
-    : gpsStatus === "denied"      ? "DENIED"
+    : gpsStatus === "denied"      ? "OFF"
     : gpsStatus === "unavailable" ? "N/A"
     : "DEMO";
   const gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
@@ -2279,34 +2378,50 @@ function MapScreen({ state, setState }) {
 
   return (
     <Screen bg="var(--paper)" ink="var(--ink)">
+      {/* The board's header: the title, where this map comes from (the same
+          posture label as before) and, when location is denied, one line
+          that says so. On solid ground, never floating on the artwork. */}
+      <div data-map-header style={{ flexShrink: 0, padding: "8px 16px 10px 20px", display: "flex", alignItems: "center", flexWrap: "wrap", columnGap: 10, rowGap: 2, background: "var(--paper)" }}>
+        {state._navStack?.length > 0 && (
+          <button onClick={() => window._popNav?.()} aria-label="Back" style={{ ...fieldIconBtn, marginLeft: -12 }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg>
+          </button>
+        )}
+        <h1 className="duo-title" style={{ margin: 0, flex: 1, minWidth: 0 }}>Map</h1>
+        <span data-map-posture className="duo-code">{mapPostureLabel}</span>
+        {(() => {
+          const has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+          const cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
+          const cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
+          return (
+            <div data-map-chips role="radiogroup" aria-label="Show on the map" style={{ flexBasis: "100%", display: "flex", flexWrap: "wrap", gap: 8, paddingTop: 8 }}>
+              {cats.map(([id, label]) => (
+                <button key={id} role="radio" aria-checked={cat === id} data-map-cat={id} className="duo-chip"
+                  onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} setMapCat(id); }}>
+                  <span>{label}</span>
+                </button>
+              ))}
+              {cat === "crew" && (
+                <div data-map-crew-line style={{ flexBasis: "100%", display: "flex", alignItems: "center", gap: 10, font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
+                  <span style={{ flex: 1, minWidth: 0 }}>
+                    {crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"}
+                  </span>
+                  <button className="duo-chip" onClick={() => setShareOpen(true)}><span>Share with crew</span></button>
+                </div>
+              )}
+            </div>
+          );
+        })()}
+        {gpsLive && gpsStatus === "denied" && (
+          <div data-map-gps-denied style={{ flexBasis: "100%", font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
+            Location off · allow it to see yourself on the map
+          </div>
+        )}
+      </div>
       {/* MAP + PEEK WINDOW — full bleed; chrome floats over the map
           (Apple Maps / Snap Map pattern). */}
       <div style={{ flex: 1, position: "relative", overflow: "hidden", background: "var(--paper-2)" }}>
         <WellnessPill />
-
-        <div style={{
-          position: "absolute", top: 68, left: 10, zIndex: 4,
-          padding: "5px 9px", borderRadius: 999,
-          background: "rgba(var(--glass),0.92)", color: "var(--ink)",
-          border: "1px solid var(--line-2)", backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)", boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
-          pointerEvents: "none",
-        }}>
-          <span className="mono" style={{ fontSize: 8, letterSpacing: 1.05, fontWeight: 800 }}>
-            {mapPostureLabel}
-          </span>
-        </div>
-
-        {state._navStack?.length > 0 && (
-          <button onClick={() => window._popNav?.()} aria-label="Back" style={{
-            position: "absolute", top: 12, left: 10, zIndex: 5,
-            width: 38, height: 38, borderRadius: 12,
-            background: "rgba(var(--glass),0.92)", backdropFilter: "blur(10px)",
-            border: "1px solid var(--line-2)", color: "var(--ink)",
-            cursor: "pointer", fontSize: 16,
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>←</button>
-        )}
 
         {/* ── Top-right icon column — GPS toggle + Layers menu. Glass
             background so it reads over any map style. */}
@@ -2315,39 +2430,37 @@ function MapScreen({ state, setState }) {
           display: "flex", flexDirection: "column", gap: 6,
         }}>
           <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
-            minWidth: 46, padding: "6px 8px", borderRadius: 14,
-            background: gpsActive ? "var(--ember)" : "rgba(var(--glass),0.92)",
-            color: gpsActive ? "#fff" : (gpsStatus === "denied" ? "var(--alert)" : "var(--ink)"),
+            minWidth: 46, minHeight: 44, padding: "6px 8px", borderRadius: "var(--rad-sm)",
+            background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
+            color: gpsActive ? "var(--on-acc)" : "var(--ink)", // denial is said by the banner; the chip stays quiet
             border: gpsActive ? "none" : "1px solid var(--line-2)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             cursor: "pointer",
             display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+            boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
           }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"/>
               <circle cx="12" cy="12" r="6"/>
               {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
             </svg>
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 0.8, fontWeight: 800, lineHeight: 1,
-            }}>{gpsLabel}</span>
+            <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
           </button>
           {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
             display: "flex", flexDirection: "column",
             background: "rgba(var(--glass),0.92)",
             border: "1px solid var(--line-2)",
-            borderRadius: 14, overflow: "hidden",
+            borderRadius: "var(--rad-sm)", overflow: "hidden",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+            boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
           }}>
             <button onClick={() => setMenuOpen(o => !o)} aria-label="Map layers" aria-pressed={menuOpen} style={{
               width: 46, height: 36, padding: 0,
-              background: menuOpen ? "var(--ink)" : "transparent",
-              color: menuOpen ? "var(--paper)" : "var(--ink)",
+              background: menuOpen ? "var(--acc)" : "transparent",
+              color: menuOpen ? "var(--on-acc)" : "var(--ink)",
               border: "none",
               borderBottom: "1px solid var(--line)",
               cursor: "pointer",
@@ -2366,8 +2479,8 @@ function MapScreen({ state, setState }) {
               cursor: mapZoom >= MAP_ZOOM_MAX ? "default" : "pointer",
               opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 18, fontWeight: 600, lineHeight: 1,
+              color: "var(--ink)", fontFamily: "var(--f-ui)",
+              fontSize: 20, fontWeight: 500, lineHeight: 1,
             }}>+</button>
             <button onClick={zoomOut} disabled={mapZoom <= MAP_ZOOM_MIN} aria-label="Zoom out" style={{
               width: 46, height: 36, padding: 0,
@@ -2375,18 +2488,17 @@ function MapScreen({ state, setState }) {
               cursor: mapZoom <= MAP_ZOOM_MIN ? "default" : "pointer",
               opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--ink)", fontFamily: "Geist Mono, monospace",
-              fontSize: 20, fontWeight: 600, lineHeight: 1,
+              color: "var(--ink)", fontFamily: "var(--f-ui)",
+              fontSize: 22, fontWeight: 500, lineHeight: 1,
             }}>−</button>
             {(mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && (
               <button onClick={zoomReset} aria-label="Reset zoom" style={{
-                width: 46, padding: "5px 0",
-                background: "var(--ink)", color: "var(--paper)",
+                width: 46, minHeight: 32, padding: 0,
+                background: "var(--s3)", color: "var(--acc-ink)",
                 border: "none", borderTop: "1px solid var(--line)",
                 cursor: "pointer",
-                fontFamily: "Geist Mono, monospace",
-                fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
-              }}>RESET</button>
+                font: "650 12px/1 var(--f-ui)",
+              }}>Reset</button>
             )}
           </div>
         </div>
@@ -2395,14 +2507,14 @@ function MapScreen({ state, setState }) {
         {menuOpen && (
           <>
             <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 5 }}/>
-            <div style={{
+            <div role="group" aria-label="Map layers" style={{
               position: "absolute", top: 90, right: 10, zIndex: 6,
-              background: "var(--paper)", border: "1px solid var(--line-2)",
-              borderRadius: 12, padding: 5, minWidth: 220,
-              boxShadow: "0 10px 28px rgba(26,18,13,0.20)",
+              background: "var(--s1)", border: "none",
+              borderRadius: "var(--rad-md)", padding: 6, minWidth: 232,
+              boxShadow: "var(--e2)",
             }}>
               {[
-                { id: "notify", label: "🔔  Reminders",
+                { id: "notify", label: "Reminders",
                   active: notifyEnabled,
                   onToggle: async () => {
                     if (typeof Notification === "undefined") return;
@@ -2416,15 +2528,15 @@ function MapScreen({ state, setState }) {
                     writeNotifyEnabled(true); setNotifyEnabled(true);
                   },
                 },
-                { id: "compass", label: "⌖  Compass mode",
+                { id: "compass", label: "Compass mode",
                   active: compass && compassStatus === "live",
                   onToggle: () => { if (compass) { setCompass(false); setCompassStatus("off"); } else enableCompass(); },
                 },
-                { id: "crowd",  label: "🔥  Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
-                { id: "amenity", label: "🚻  Amenity key", active: amenityKey,
+                { id: "crowd",  label: "Crowd heatmap",   active: showHeat,   onToggle: () => setShowHeat(s => !s) },
+                { id: "amenity", label: "Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
-                { id: "labels", label: "🏷  Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "🗺  Real map (BETA)",  active: useRealMap,
+                { id: "labels", label: "Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
+                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map (beta)",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
                     try {
@@ -2436,33 +2548,36 @@ function MapScreen({ state, setState }) {
                   },
                 }]),
               ].map(item => (
-                <div key={item.id} role="button" onClick={item.onToggle} style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "8px 10px", borderRadius: 8, cursor: "pointer",
+                <div key={item.id} role="button" aria-pressed={!!item.active} tabIndex={0} onClick={item.onToggle}
+                  onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); item.onToggle(); } }} style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+                  minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                 }}>
-                  <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>{item.label}</span>
-                  <span style={{
-                    width: 30, height: 18, borderRadius: 18,
-                    background: item.active ? "var(--ember)" : "var(--line-2)",
+                  <span className="duo-body-s" style={{ fontSize: 15, color: "var(--ink)", fontWeight: 500 }}>{item.label}</span>
+                  {/* The board switch: accent track when on, a light knob. */}
+                  <span aria-hidden="true" style={{
+                    width: 40, height: 24, borderRadius: 24,
+                    background: item.active ? "var(--acc)" : "var(--s3)",
+                    boxShadow: item.active ? "none" : "inset 0 0 0 1.5px var(--line-2)",
                     position: "relative", flexShrink: 0, transition: "background 0.15s",
                   }}>
                     <span style={{
-                      position: "absolute", top: 2, left: item.active ? 14 : 2,
-                      width: 14, height: 14, borderRadius: 14,
-                      background: "#fff", transition: "left 0.18s",
+                      position: "absolute", top: 3, left: item.active ? 19 : 3,
+                      width: 18, height: 18, borderRadius: 18,
+                      background: item.active ? "var(--on-acc)" : "var(--ink-2)", transition: "left 0.18s",
                     }}/>
                   </span>
                 </div>
               ))}
               <button onClick={() => { setMenuOpen(false); setPacksOpen(true); }} style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%",
-                padding: "8px 10px", borderRadius: 8, cursor: "pointer",
+                minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                 background: "transparent", border: "none", borderTop: "1px solid var(--line)",
-                marginTop: 3, textAlign: "left",
+                marginTop: 4, textAlign: "left",
               }}>
-                <span style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>⬇  Offline map</span>
-                <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700, color: "var(--ember-ink)" }}>
-                  {_packMirror()[FESTIVAL_CONFIG.id] ? "SAVED" : "›"}
+                <span className="duo-body-s" style={{ fontSize: 15, color: "var(--ink)", fontWeight: 500 }}>Offline map</span>
+                <span className="duo-body-s" style={{ fontWeight: 650, color: "var(--acc-ink)" }}>
+                  {_packMirror()[FESTIVAL_CONFIG.id] ? "Saved" : "›"}
                 </span>
               </button>
             </div>
@@ -2470,39 +2585,16 @@ function MapScreen({ state, setState }) {
         )}
         {packsOpen && <OfflinePacksSheet onClose={() => setPacksOpen(false)} />}
 
-        {/* GPS denied toast — small floating pill, top-center */}
-        {gpsLive && gpsStatus === "denied" && (
-          <div style={{
-            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
-            zIndex: 4,
-            padding: "4px 10px", borderRadius: 999,
-            background: "rgba(193,74,74,0.95)", color: "#fff",
-            backdropFilter: "blur(8px)",
-            maxWidth: "calc(100% - 120px)",
-          }} title="Location permission is denied — enable it for this site to place yourself on the map">
-            {/* One line, always. The long form wrapped to two lines at phone
-                width and sat across the top of the artwork for the whole
-                festival; the GPS chip in the corner already reads DENIED. */}
-            <span className="mono" style={{
-              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-              display: "block",
-            }}>
-              GPS DENIED · ENABLE LOCATION
-            </span>
-          </div>
-        )}
-
         {/* Amenity key — legible replacement for the poster's baked-in legend.
             Tap a row to isolate that type on the map; tap again to clear. */}
         {amenityKey && !meetMode && (
-          <div style={{
+          <div role="group" aria-label="Amenity key" style={{
             position: "absolute", left: 10, top: 90, zIndex: 6,
             background: "rgba(var(--glass),0.94)",
-            border: "1px solid var(--line-2)", borderRadius: 12,
-            padding: 4, minWidth: 124,
+            border: "none", borderRadius: "var(--rad-md)",
+            padding: 4, minWidth: 140,
             backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-            boxShadow: "0 6px 20px rgba(26,18,13,0.22)",
+            boxShadow: "var(--e2)",
           }}>
             {AMENITY_KEY.map(a => {
               const on = amenityFilter === a.type;
@@ -2518,23 +2610,24 @@ function MapScreen({ state, setState }) {
                   onClick={() => setAmenityFilter(f => f === a.type ? null : a.type)}
                   onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setAmenityFilter(f => f === a.type ? null : a.type); } }}
                   style={{
-                    display: "flex", alignItems: "center", gap: 7,
-                    padding: "5px 7px", borderRadius: 8, cursor: "pointer",
+                    // 44pt rows (they were 24). A filtered-out row reads quieter
+                    // by colour, not opacity, so its label stays above AA.
+                    display: "flex", alignItems: "center", gap: 9,
+                    minHeight: 44, padding: "0 10px", borderRadius: "var(--rad-sm)", cursor: "pointer",
                     background: on ? "var(--ink)" : "transparent",
-                    opacity: amenityFilter && !on ? 0.42 : 1,
-                    transition: "background 0.12s, opacity 0.12s",
+                    transition: "background 0.12s",
                   }}>
                   <span style={{
                     width: 13, height: 13, borderRadius: 13, flexShrink: 0,
-                    background: a.color, border: "1.5px solid #fff",
-                    boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
+                    background: a.color, border: "1.5px solid var(--ink)",
+                    boxShadow: "0 1px 3px rgba(var(--shade-rgb),0.3)",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: "Geist Mono, monospace", fontSize: 8,
-                    fontWeight: 900, color: "#fff", lineHeight: 1,
+                    fontFamily: "var(--f-ui)", fontSize: 8,
+                    fontWeight: 800, color: a.ink, lineHeight: 1,
                   }}>{a.letter}</span>
-                  <span style={{
-                    fontSize: 11, fontWeight: 600, flex: 1,
-                    color: on ? "var(--paper)" : "var(--ink)",
+                  <span className="duo-body-s" style={{
+                    fontSize: 14, flex: 1,
+                    color: on ? "var(--bg)" : amenityFilter ? "var(--ink-2)" : "var(--ink)",
                   }}>{a.label}</span>
                 </div>
               );
@@ -2550,10 +2643,10 @@ function MapScreen({ state, setState }) {
             position: "absolute", top: 46, left: "50%", transform: "translateX(-50%)",
             zIndex: 6, display: "flex", alignItems: "center", gap: 7,
             padding: "5px 12px", borderRadius: 999, cursor: "pointer", border: "none",
-            background: "rgba(45,122,85,0.96)", color: "#fff",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.35)", backdropFilter: "blur(8px)",
+            background: "rgba(var(--signal-rgb),0.96)", color: "var(--ink)",
+            boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.35)", backdropFilter: "blur(8px)",
           }}>
-            <span style={{ width: 7, height: 7, borderRadius: 7, background: "#fff", animation: "pulse 1.6s infinite" }}/>
+            <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.6s infinite" }}/>
             <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING · TAP TO STOP</span>
           </button>
         )}
@@ -2564,9 +2657,9 @@ function MapScreen({ state, setState }) {
             position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
             zIndex: 4,
             padding: "5px 12px", borderRadius: 999,
-            background: "rgba(245,154,54,0.95)", color: "#fff",
+            background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
             backdropFilter: "blur(8px)",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+            boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.15)",
           }} title={`${liveAvatar.mi.toFixed(1)} mi from venue · showing demo`}>
             <span className="mono" style={{ fontSize: 10, letterSpacing: 1, fontWeight: 700 }}>
               {liveAvatar.mi >= 1 ? `${liveAvatar.mi.toFixed(0)} MI AWAY` : "OUTSIDE VENUE"} · DEMO
@@ -2589,7 +2682,7 @@ function MapScreen({ state, setState }) {
           const hasPlaceCard = !!(stage || (meetMode && meetTarget));
           const sheetMode = hasPlaceCard ? "place-card" : search.trim().length > 0 ? "full" : searchSheetExpanded ? "half" : "collapsed";
           const isShort = typeof window !== "undefined" && window.innerHeight < 700;
-          const sheetMaxH = sheetMode === "full" ? (isShort ? "44vh" : "48vh") : sheetMode === "half" ? (isShort ? 260 : 320) : 82;
+          const sheetMaxH = sheetMode === "full" ? (isShort ? "44vh" : "48vh") : sheetMode === "half" ? (isShort ? 260 : 320) : 116;
 
           if (sheetMode === "place-card") return null;
 
@@ -2597,10 +2690,12 @@ function MapScreen({ state, setState }) {
             <div style={{
               position: "absolute", left: 8, right: 8, bottom: 10,
               zIndex: 5,
-              background: "var(--paper)",
-              border: "1px solid var(--line-2)",
-              borderRadius: 16,
-              boxShadow: "0 -6px 24px rgba(0,0,0,0.18)",
+              // The board's map sheet: the page ground, frosted, lifted.
+              background: "rgba(var(--glass),0.94)",
+              backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid var(--line)",
+              borderRadius: "var(--rad-md)",
+              boxShadow: "var(--e2)",
               maxHeight: sheetMaxH,
               overflow: "hidden",
               display: "flex", flexDirection: "column",
@@ -2619,11 +2714,10 @@ function MapScreen({ state, setState }) {
               <div style={{ padding: "0 8px 6px", flexShrink: 0 }}>
                 <div style={{
                   display: "flex", alignItems: "center", gap: 7,
-                  background: "var(--paper-2)",
-                  borderRadius: 999, padding: "7px 11px",
-                  border: "1px solid var(--line)",
+                  background: "var(--s2)", boxShadow: "var(--e1)",
+                  borderRadius: "var(--rad-sm)", padding: "0 12px", minHeight: 44,
                 }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" style={{ flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" style={{ flexShrink: 0 }}>
                     <circle cx="11" cy="11" r="7"/><path d="M20 20 L16 16"/>
                   </svg>
                   <input
@@ -2634,7 +2728,7 @@ function MapScreen({ state, setState }) {
                     onChange={(e) => setSearch(e.target.value)}
                     style={{
                       flex: 1, minWidth: 0, background: "transparent", border: "none", outline: "none",
-                      color: "var(--ink)", fontFamily: "Geist, sans-serif", fontSize: 13,
+                      color: "var(--ink)", font: "400 16px/1.2 var(--f-ui)",
                     }}
                   />
                   {search && (
@@ -2651,23 +2745,20 @@ function MapScreen({ state, setState }) {
 
               {/* Collapsed: friend avatar dots + MEET UP inline */}
               {sheetMode === "collapsed" && (
-                <div style={{ padding: "0 10px 8px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+                <div style={{ padding: "0 10px 4px", display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
                   <button onClick={() => {
                     if (meetMode) { clearMeet(); }
                     else { setMeetMode(true); }
-                  }} style={{
-                    background: meetMode ? "var(--ember)" : "var(--ink)",
-                    color: "#fff", border: "none", borderRadius: 999, padding: "4px 10px",
-                    fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                    cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
-                  }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                  }} className="duo-chip" aria-pressed={meetMode}><span>
+                    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{meetMode ? <path d="M6 6 L18 18 M18 6 L6 18"/> : <><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"/></>}</svg>
+                    {meetMode ? "Cancel" : "Meet up"}</span></button>
                   <div className="no-scrollbar" style={{ display: "flex", gap: 3, flex: 1, overflowX: "auto", scrollbarWidth: "none" }}>
                     {friends.map(f => {
                       const unread = unreadCount(f.id);
                       return (
                         <button key={f.id} onClick={() => setChatFriend(f)} aria-label={`Chat with ${f.name}`} style={{
                           position: "relative", flexShrink: 0, width: 22, height: 22,
-                          borderRadius: 22, background: f.avatarTone, border: "1.5px solid #fff",
+                          borderRadius: 22, background: f.avatarTone, border: "1.5px solid var(--ink)",
                           padding: 0, cursor: "pointer",
                         }}>
                           {unread > 0 && <span style={{
@@ -2704,49 +2795,47 @@ function MapScreen({ state, setState }) {
                 <div style={{ overflowY: "auto", padding: "0 8px 10px", flex: 1 }}>
                   <div style={{ background: "var(--paper-2)", borderRadius: 10 }}>
                     {stageMatches.length > 0 && (
-                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>STAGES</div>
+                      <h3 className="duo-sect" style={{ padding: "10px 12px 4px" }}>Stages</h3>
                     )}
                     {stageMatches.map((s) => (
                       <button key={`stage-${s.id}`} onClick={() => { setSelectedStage(s.id); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                        width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
+                        width: "100%", display: "flex", alignItems: "center", gap: 10, padding: "0 12px", minHeight: 48,
                         background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                        borderRadius: 10,
+                        borderRadius: "var(--rad-sm)",
                       }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 8, background: s.color, boxShadow: `0 0 6px ${s.color}` }}/>
-                        <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, flex: 1 }}>{s.name}</span>
-                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--ember-ink)", fontSize: 12 }}>♥</span>}
+                        <span style={{ width: 10, height: 10, borderRadius: 10, background: s.color, flexShrink: 0 }}/>
+                        <span className="duo-headline" style={{ fontSize: 15, flex: 1 }}>{s.name}</span>
+                        {savedStages.has(s.id) && <span aria-label="Saved" style={{ color: "var(--acc-ink)", fontSize: 13 }}>♥</span>}
                       </button>
                     ))}
                     {artistMatches.length > 0 && (
-                      <div className="mono" style={{ padding: "8px 12px 4px", fontSize: 9, letterSpacing: 1.4, color: "var(--muted)" }}>ARTISTS</div>
+                      <h3 className="duo-sect" style={{ padding: "10px 12px 4px" }}>Artists</h3>
                     )}
                     {artistMatches.map((a) => {
                       const st = STAGES.find(s => s.id === a.stage);
                       const isSaved = state.saved.includes(a.id);
-                      const when = a.start ? `${a.start}${a.day ? ` · D${a.day}` : ""}` : "";
                       return (
                         <button key={`artist-${a.id}`} onClick={() => { setSelectedStage(a.stage); setSearch(""); setSearchSheetExpanded(false); }} style={{
-                          width: "100%", display: "flex", alignItems: "center", gap: 8, padding: "10px 12px",
-                          background: "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
-                          borderRadius: 10,
+                          width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "6px 12px", minHeight: 56,
+                          background: isSaved ? "var(--acc-08)" : "transparent", border: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                          borderRadius: "var(--rad-sm)",
                         }}>
-                          <span style={{ width: 8, height: 8, borderRadius: 8, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
+                          <DuoAvatar name={a.name} size={38} ring={isSaved ? "on" : ""} />
+                          {/* Names in full (they wrap), and a 12-hour time
+                              with the day's name instead of "00:32 · D2". */}
                           <span style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, gap: 1 }}>
-                            <span style={{ fontFamily: "Geist, sans-serif", fontSize: 13, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                              {isSaved && <span style={{ color: "var(--ember-ink)", marginRight: 4 }}>★</span>}{a.name}
+                            <span className="duo-headline duo-name" style={{ fontSize: 15, fontWeight: 700 }}>{actDisplayName(a.name)}</span>
+                            <span className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+                              {[st?.name, a.start ? fmt12(a.start) : null, FESTIVAL_CONFIG.dayDates?.[a.day]?.name].filter(Boolean).join(" · ")}
                             </span>
-                            {when && <span className="mono" style={{ fontSize: 9, letterSpacing: 0.5, color: "var(--muted)" }}>{when}</span>}
-                          </span>
-                          <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", flexShrink: 0 }}>
-                            → {st?.short || st?.name || ""}
                           </span>
                         </button>
                       );
                     })}
                     {stageMatches.length === 0 && artistMatches.length === 0 && (
                       <div style={{ padding: "18px 14px", textAlign: "center" }}>
-                        <div style={{ fontSize: 13, color: "var(--ink)", marginBottom: 4 }}>No matches for "{search}"</div>
-                        <div style={{ fontSize: 11, color: "var(--muted)" }}>Try an artist name, a stage, or a genre.</div>
+                        <div className="duo-headline" style={{ fontSize: 15, marginBottom: 4 }}>No matches for “{search}”</div>
+                        <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>Try an artist name, a stage, or a genre.</div>
                       </div>
                     )}
                   </div>
@@ -2775,11 +2864,11 @@ function MapScreen({ state, setState }) {
                   <div style={{ padding: "0 10px 6px" }}>
                     <div className="no-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
                       {[
-                        { type: "water",  label: "Water",  emoji: "💧", color: "#38bdf8" },
-                        { type: "med",    label: "Medic",  emoji: "✚",  color: "#f87171" },
-                        { type: "toilet", label: "Toilet", emoji: "🚻", color: "#94a3b8" },
-                        { type: "charge", label: "Charge", emoji: "⚡", color: "#facc15" },
-                        { type: "locker", label: "Locker", emoji: "🔒", color: "#a78bfa" },
+                        { type: "water",  label: "Water",  emoji: "💧", color: "var(--signal-ink)" },
+                        { type: "med",    label: "Medic",  emoji: "✚",  color: "var(--alert)" },
+                        { type: "toilet", label: "Toilet", emoji: "🚻", color: "var(--signal-ink)" },
+                        { type: "charge", label: "Charge", emoji: "⚡", color: "var(--signal-ink)" },
+                        { type: "locker", label: "Locker", emoji: "🔒", color: "var(--signal-ink)" },
                       ].map(c => (
                         <button key={c.type} onClick={() => {
                           const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
@@ -2835,12 +2924,9 @@ function MapScreen({ state, setState }) {
                     <button onClick={() => {
                       if (meetMode) { clearMeet(); }
                       else { setMeetMode(true); }
-                    }} style={{
-                      background: meetMode ? "var(--ember)" : "var(--ink)",
-                      color: "#fff", border: "none", borderRadius: 999, padding: "6px 11px",
-                      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-                      cursor: "pointer", whiteSpace: "nowrap", flexShrink: 0,
-                    }}>{meetMode ? "× CANCEL" : "MEET UP"}</button>
+                    }} className="duo-chip" aria-pressed={meetMode}><span>
+                      <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{meetMode ? <path d="M6 6 L18 18 M18 6 L6 18"/> : <><circle cx="9" cy="8" r="3.2"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.3c2.6-.4 4.9 1.2 5.6 4.2"/></>}</svg>
+                      {meetMode ? "Cancel" : "Meet up"}</span></button>
                     <button onClick={() => setMoreOpen(o => !o)} aria-label="More options" aria-pressed={moreOpen} style={{
                       background: moreOpen ? "var(--ink)" : "var(--paper-2)",
                       color: moreOpen ? "var(--paper)" : "var(--ink)",
@@ -2860,17 +2946,17 @@ function MapScreen({ state, setState }) {
                               padding: "3px 8px 3px 3px", borderRadius: 999,
                               background: active ? f.color : "var(--paper-2)",
                               border: `1px solid ${active ? f.color : "var(--line-2)"}`,
-                              color: active ? "#fff" : "var(--ink)",
+                              color: active ? "var(--ink)" : "var(--ink)",
                               cursor: "pointer",
                               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 0.4, fontWeight: 600,
                             }}>
-                            <span style={{ width: 14, height: 14, borderRadius: 14, background: f.avatarTone, border: "1.2px solid #fff", flexShrink: 0 }}/>
+                            <span style={{ width: 14, height: 14, borderRadius: 14, background: f.avatarTone, border: "1.2px solid var(--ink)", flexShrink: 0 }}/>
                             {f.name.toUpperCase()}·{d}M
                             {unreadCount(f.id) > 0 && !meetMode && (
                               <span style={{
                                 position: "absolute", top: -3, right: -3,
                                 minWidth: 14, height: 14, padding: "0 4px",
-                                background: "var(--ember)", color: "#fff",
+                                background: "var(--ember)", color: "var(--on-ember)",
                                 borderRadius: 14, fontSize: 8, fontWeight: 700,
                                 display: "flex", alignItems: "center", justifyContent: "center",
                                 border: "1.5px solid var(--paper)",
@@ -2933,7 +3019,8 @@ function MapScreen({ state, setState }) {
           <TopDownMap
             avatar={avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
             saved={state.saved} showLabels={showLabels} showHeat={showHeat}
-            showAmenities={searchSheetExpanded || amenityKey} amenityFilter={amenityKey ? amenityFilter : null}
+            showAmenities={searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med"}
+            amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
@@ -2948,7 +3035,7 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
             zIndex: 4, padding: "4px 10px", borderRadius: 999,
-            background: "rgba(245,154,54,0.95)", color: "#fff",
+            background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
             backdropFilter: "blur(8px)", maxWidth: "88%", textAlign: "center",
           }}>
             <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
@@ -2966,19 +3053,19 @@ function MapScreen({ state, setState }) {
         {meetMode && (
           <div style={{
             position: "absolute", top: 0, left: 0, right: 0,
-            background: meetTarget ? "var(--ember)" : "rgba(26,18,13,0.92)",
-            color: "#fff",
+            background: meetTarget ? "var(--ember)" : "rgba(var(--shade-rgb),0.92)",
+            color: "var(--ink)",
             padding: "10px 14px",
             paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-            boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+            boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
             zIndex: 8, display: "flex", alignItems: "center", gap: 10,
             animation: "springIn 0.3s ease-out",
           }}>
             <span style={{ flex: 1, display: "flex", alignItems: "center", gap: 7 }}>
               {meetTarget ? (
                 <>
-                  <span style={{ width: 7, height: 7, borderRadius: 7, background: "#fff", animation: "pulse 1.4s infinite" }}/>
+                  <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.4s infinite" }}/>
                   {meetTarget.isAmenity
                     ? `→ ${meetTarget.label.toUpperCase()}`
                     : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`}
@@ -2993,16 +3080,16 @@ function MapScreen({ state, setState }) {
                 });
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
-                background: rallySent ? "rgba(255,255,255,0.25)" : "#fff",
-                color: rallySent ? "#fff" : "var(--ember-ink)",
+                background: rallySent ? "rgba(var(--ink-rgb),0.25)" : "var(--ink)",
+                color: rallySent ? "var(--ink)" : "var(--ember-ink)",
                 border: "none", borderRadius: 999, padding: "5px 12px",
                 cursor: rallySent ? "default" : "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
               }}>{rallySent ? "✓ CREW PINGED" : "📣 RALLY CREW"}</button>
             )}
             <button onClick={clearMeet} style={{
-              background: "rgba(255,255,255,0.2)", border: "none", borderRadius: 999,
-              padding: "5px 12px", color: "#fff", cursor: "pointer",
+              background: "rgba(var(--ink-rgb),0.2)", border: "none", borderRadius: 999,
+              padding: "5px 12px", color: "var(--ink)", cursor: "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             }}>× CANCEL</button>
           </div>
@@ -3012,10 +3099,10 @@ function MapScreen({ state, setState }) {
         {incomingRally && (
           <div style={{
             position: "absolute", top: 0, left: 0, right: 0, zIndex: 9,
-            background: "linear-gradient(135deg, #7b3d9a, var(--ember))",
-            color: "#fff", padding: "10px 14px",
+            background: "linear-gradient(135deg, var(--signal), var(--ember))",
+            color: "var(--on-signal)", padding: "10px 14px",
             paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+            boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.4)",
             display: "flex", alignItems: "center", gap: 10,
             animation: "springIn 0.3s ease-out",
           }}>
@@ -3034,11 +3121,11 @@ function MapScreen({ state, setState }) {
               setMeetTarget({ x: incomingRally.x, y: incomingRally.y, label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
-              background: "#fff", color: "var(--ember)", border: "none", borderRadius: 999,
+              background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
               padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
             }}>HEAD OVER</button>
             <button onClick={() => { dismissedRallyRef.current.add(incomingRally.rallyId); setIncomingRally(null); }} aria-label="Dismiss" style={{
-              background: "rgba(0,0,0,0.2)", color: "#fff", border: "none", borderRadius: 999,
+              background: "rgba(var(--shade-rgb),0.2)", color: "var(--on-signal)", border: "none", borderRadius: 999,
               width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
             }}>✕</button>
           </div>
@@ -3057,18 +3144,18 @@ function MapScreen({ state, setState }) {
           return (
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0, zIndex: 8,
-              background: "linear-gradient(135deg, #2d7a55, #1a120d)", color: "#fff",
+              background: "var(--signal)", color: "var(--on-signal)",
               padding: "10px 14px", paddingTop: "calc(10px + env(safe-area-inset-top, 0px))",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+              boxShadow: "0 4px 16px rgba(var(--shade-rgb),0.35)",
               display: "flex", alignItems: "center", gap: 10, animation: "springIn 0.3s ease-out",
             }}>
               <span style={{ display: "flex", flexShrink: 0 }}>
                 {crewCluster.members.slice(0, 3).map((m, i) => (
                   <span key={m.id} style={{
-                    width: 22, height: 22, borderRadius: 22, background: m.color || "#888",
-                    border: "2px solid #1a120d", marginLeft: i ? -7 : 0,
+                    width: 22, height: 22, borderRadius: 22, background: m.color || "var(--paper-3)",
+                    border: "2px solid var(--paper)", marginLeft: i ? -7 : 0,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 9, fontWeight: 800, color: "#fff", fontFamily: "Geist Mono, monospace",
+                    fontSize: 9, fontWeight: 800, color: "var(--ink)", fontFamily: "Geist Mono, monospace",
                   }}>{(m.name || "?")[0].toUpperCase()}</span>
                 ))}
               </span>
@@ -3079,11 +3166,11 @@ function MapScreen({ state, setState }) {
                 </span>
               </span>
               <button onClick={headOver} className="mono" style={{
-                background: "#fff", color: "#2d7a55", border: "none", borderRadius: 999,
+                background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
                 padding: "6px 13px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0,
               }}>HEAD OVER</button>
               <button onClick={() => setClusterDismissed(sig)} aria-label="Dismiss" style={{
-                background: "rgba(0,0,0,0.2)", color: "#fff", border: "none", borderRadius: 999,
+                background: "rgba(var(--shade-rgb),0.2)", color: "var(--on-signal)", border: "none", borderRadius: 999,
                 width: 26, height: 26, cursor: "pointer", fontSize: 12, flexShrink: 0,
               }}>✕</button>
             </div>
@@ -3129,7 +3216,7 @@ function MapScreen({ state, setState }) {
               bottom: stage || meetMode ? 184 : 96, zIndex: 7,
               background: "var(--paper)", border: "1px solid var(--line-2)",
               borderRadius: 14, padding: 5,
-              boxShadow: "0 10px 28px rgba(26,18,13,0.20)",
+              boxShadow: "0 10px 28px rgba(var(--shade-rgb),0.20)",
             }}>
               <button onClick={() => { setPingOpen(true); setMoreOpen(false); }} style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 10,
@@ -3143,7 +3230,7 @@ function MapScreen({ state, setState }) {
               <button onClick={() => { setShareOpen(true); setMoreOpen(false); }} style={{
                 width: "100%", display: "flex", alignItems: "center", gap: 10,
                 padding: "9px 11px",
-                background: isSharing ? "rgba(45,122,85,0.10)" : "transparent",
+                background: isSharing ? "rgba(var(--signal-rgb),0.10)" : "transparent",
                 border: "none", borderRadius: 8, cursor: "pointer",
                 color: "var(--ink)", textAlign: "left",
               }}>
@@ -3922,7 +4009,7 @@ function OfflinePacksSheet({ onClose }) {
 
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)",
+      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(var(--shade-rgb),0.45)",
       display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div role="dialog" aria-modal="true" aria-label="Offline map" onClick={e => e.stopPropagation()} style={{
@@ -4290,14 +4377,14 @@ function RealMap({
       // charging, square locker. Heights are intentionally small so
       // amenities never compete visually with stages.
       const AMENITY_DESIGN = {
-        water:  { color: "#38bdf8", height: 14, radius: 5, sides:  8 },
-        food:   { color: "#fb923c", height: 16, radius: 6, sides:  4, rot: 45 },
-        med:    { color: "#ef4444", height: 18, radius: 6, sides:  4 },
-        toilet: { color: "#64748b", height: 12, radius: 5, sides:  6 },
-        art:    { color: "#f59a36", height: 22, radius: 7, sides: 12, altInner: 0.5 },
-        info:   { color: "#16a34a", height: 14, radius: 5, sides: 24 },
-        charge: { color: "#facc15", height: 16, radius: 5, sides:  4, rot: 22.5 },
-        locker: { color: "#a78bfa", height: 13, radius: 5, sides:  4 },
+        water:  { color: "var(--signal-ink)", height: 14, radius: 5, sides:  8 },
+        food:   { color: "var(--signal-ink)", height: 16, radius: 6, sides:  4, rot: 45 },
+        med:    { color: "var(--alert)", height: 18, radius: 6, sides:  4 },
+        toilet: { color: "var(--signal-ink)", height: 12, radius: 5, sides:  6 },
+        art:    { color: "var(--signal-ink)", height: 22, radius: 7, sides: 12, altInner: 0.5 },
+        info:   { color: "var(--signal-ink)", height: 14, radius: 5, sides: 24 },
+        charge: { color: "var(--signal-ink)", height: 16, radius: 5, sides:  4, rot: 22.5 },
+        locker: { color: "var(--signal-ink)", height: 13, radius: 5, sides:  4 },
       };
       const amenitiesExtrusionData = () => ({
         type: "FeatureCollection",
@@ -4421,7 +4508,7 @@ function RealMap({
         const inset = 0.0008;
         return {
           type: "Feature",
-          properties: { color: "#3a2a55", height: 22 },
+          properties: { color: "var(--signal-ink)", height: 22 },
           geometry: {
             type: "Polygon",
             coordinates: [
@@ -5335,7 +5422,7 @@ function RealMap({
   return (
     <div style={{
       position: "absolute", inset: 0, overflow: "hidden",
-      background: "#060412",
+      background: "var(--paper)",
     }}>
       <div ref={containerRef} style={{ position: "absolute", inset: 0 }}/>
 
@@ -5344,18 +5431,17 @@ function RealMap({
       {/* Style toggle — always visible (was gated on `loaded`, which never
           flipped true for some users → toggle was hidden). */}
       {packMode ? (
-        <div role="status" className="mono" style={{
+        <div role="status" className="duo-code" style={{
           position: "absolute", top: 108, right: 10, zIndex: 4,
-          background: "rgba(6,4,18,0.78)", color: "#fff",
-          border: "1px solid rgba(255,255,255,0.18)", borderRadius: 999,
-          padding: "6px 11px", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
+          background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
+          borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
         }}>OFFLINE · SAVED STREET MAP</div>
       ) : (
       <div style={{
         position: "absolute", top: 108, right: 10, zIndex: 4,
-        display: "flex", background: "rgba(6,4,18,0.78)",
-        border: "1px solid rgba(255,255,255,0.18)",
+        display: "flex", background: "rgba(var(--shade-rgb),0.78)",
+        border: "1px solid rgba(var(--ink-rgb),0.18)",
         borderRadius: 999, padding: 3, gap: 2,
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
@@ -5365,7 +5451,7 @@ function RealMap({
           return (
             <button key={k} onClick={() => pickStyle(k)} style={{
               background: on ? "var(--ember)" : "transparent",
-              color: "#fff", border: "none",
+              color: "var(--ink)", border: "none",
               padding: "5px 11px", borderRadius: 999,
               fontFamily: "'Geist Mono',monospace", fontSize: 9,
               letterSpacing: 1.3, fontWeight: 700,
@@ -5384,12 +5470,12 @@ function RealMap({
         <div style={{
           position: "absolute", inset: 0,
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-          color: "#f87171",
+          color: "var(--alert)",
           fontFamily: "'Geist Mono',monospace", fontSize: 10, letterSpacing: 1.3,
           gap: 6, padding: 20, textAlign: "center",
         }}>
           <div>MAP ERROR</div>
-          <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 9, maxWidth: 240 }}>{err}</div>
+          <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>{err}</div>
           {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
               map EXISTS. On a mapMode:"real" festival there is no art and no
               stage grid, so that button drops the user onto a blank plate —
@@ -5399,30 +5485,30 @@ function RealMap({
               and you are trying to get there. */}
           {FESTIVAL_CONFIG.mapMode === "real" ? (
             <>
-              <div style={{ color: "rgba(255,255,255,0.75)", fontSize: 10, marginTop: 10, letterSpacing: 1.1 }}>
+              <div style={{ color: "var(--text-2)", fontSize: 10, marginTop: 10, letterSpacing: 1.1 }}>
                 {FESTIVAL_CONFIG.venue?.name || FESTIVAL_CONFIG.locationShort}
               </div>
-              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 9, maxWidth: 240 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
                 {FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location}
               </div>
-              <div style={{ color: "rgba(255,255,255,0.4)", fontSize: 8, marginTop: 6, maxWidth: 250 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 8, marginTop: 6, maxWidth: 250 }}>
                 The official festival map publishes before doors. Until then this
                 screen needs a connection.
               </div>
               <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; }} style={{
                 marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
-                background: "var(--ember)", color: "#fff", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
               }}>RETRY</button>
             </>
           ) : (
             <>
-              <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 8, marginTop: 4 }}>
+              <div style={{ color: "var(--text-3)", fontSize: 8, marginTop: 4 }}>
                 Tip: the festival map below works offline — one tap switches and remembers.
               </div>
               <button onClick={() => _fatal("Switched to festival map")} style={{
                 marginTop: 8, padding: "7px 16px", borderRadius: 999, border: "none",
-                background: "var(--ember)", color: "#fff", cursor: "pointer",
+                background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
               }}>USE FESTIVAL MAP</button>
             </>
@@ -5468,15 +5554,16 @@ function _crowdDensity(stageId, nowMin) {
 // coloured dot — which is what shipped before: the map drew eight colours and
 // the only key was the one printed inside the poster raster, ~3px tall at
 // phone size and effectively invisible. Ordered by what you need at 3am.
+// `ink` is the letter's colour on that fill, AA in both modes.
 const AMENITY_KEY = [
-  { type: "med",    color: "#ef4444", letter: "+", label: "First aid" },
-  { type: "water",  color: "#38bdf8", letter: "",  label: "Water" },
-  { type: "toilet", color: "#64748b", letter: "",  label: "Restrooms" },
-  { type: "food",   color: "#fb923c", letter: "",  label: "Food" },
-  { type: "charge", color: "#facc15", letter: "⚡", label: "Charging" },
-  { type: "locker", color: "#a78bfa", letter: "L", label: "Lockers" },
-  { type: "info",   color: "#16a34a", letter: "i", label: "Info / lost" },
-  { type: "art",    color: "#f59a36", letter: "",  label: "Art" },
+  { type: "med",    color: "var(--alert)", ink: "var(--on-alert)", letter: "+", label: "First aid" },
+  { type: "water",  color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Water" },
+  { type: "toilet", color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Restrooms" },
+  { type: "food",   color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Food" },
+  { type: "charge", color: "var(--signal-ink)", ink: "var(--paper)", letter: "⚡", label: "Charging" },
+  { type: "locker", color: "var(--signal-ink)", ink: "var(--paper)", letter: "L", label: "Lockers" },
+  { type: "info",   color: "var(--signal-ink)", ink: "var(--paper)", letter: "i", label: "Info / lost" },
+  { type: "art",    color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Art" },
 ];
 const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
 
@@ -5521,7 +5608,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // Push label OUT from stage in the direction farthest from the Daisy Lane
   // plaza centre (50,50), so labels never collide with the central rectangle.
   // Artist names are long enough to collide on a phone; stage names were not.
-  const _pillName = (n) => (n && n.length > 14 ? n.slice(0, 13).trimEnd() + "…" : n || "").toUpperCase();
+  const _pillName = (n) => actDisplayName(n).toUpperCase();   // never cut: see actDisplayName
 
   const anchorFor = (s) => {
     const cx = 50, cy = 50;
@@ -5630,10 +5717,31 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // Map-space y (0–100) → percentage of the container, matching the SVG exactly.
   const mapY = (y) => ((Number(y) + yOff) / VB_H) * 100;
 
+  // The anchor rules above place a pill from its stage's map position, which
+  // cannot know the pill's width, pan or zoom, so a side-anchored pill could
+  // still run past the edge ("★ LUCIANO · NOW" at 203–346px on a 320px map).
+  // Measure after layout and slide each pill back inside the map's box. The
+  // nudge sits after the counter-rotation, so it is screen-horizontal; divide
+  // by the zoom so it moves the rendered pill by exactly the overshoot.
+  React.useLayoutEffect(() => {
+    const box = boxRef.current; if (!box) return;
+    const br = box.getBoundingClientRect(), pad = 6;
+    for (const p of box.querySelectorAll("[data-stage-pill]")) {
+      // The pill transitions `all`: measured mid-transition, a reset reads the
+      // old nudged box and the nudge flips off on the next render. Suspend it.
+      const t = p.style.transition; p.style.transition = "none";
+      p.style.setProperty("--pill-nudge", "0px");
+      const r = p.getBoundingClientRect(), k = (p.offsetWidth && r.width / p.offsetWidth) || 1;
+      const dx = r.left < br.left + pad ? br.left + pad - r.left : r.right > br.right - pad ? br.right - pad - r.right : 0;
+      if (dx) p.style.setProperty("--pill-nudge", `${dx / k}px`);
+      void p.offsetWidth; p.style.transition = t;
+    }
+  });
+
   return (
     <div ref={boxRef} style={{
       position: "absolute", inset: 0, overflow: "hidden",
-      background: "#060412",
+      background: "var(--paper)",
       touchAction: "none",
     }}
       onTouchStart={onTouchStart}
@@ -5746,7 +5854,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                 square asset (legend/title removed, dark letterbox baked in).
                 Render crisp + full-bleed; just a soft vignette and a bottom
                 scrim so the place card stays legible over it. */}
-            <rect x="0" y="0" width="100" height="100" fill="#0a0f0b"/>
+            <rect x="0" y="0" width="100" height="100" fill="var(--paper)"/>
             <image href={FESTIVAL_CONFIG.mapImage} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
             <rect x="0" y="0" width="100" height="100" fill="url(#mapVignette)"/>
             <rect x="0" y="0" width="100" height="100" fill="url(#parkScrim)"/>
@@ -5766,7 +5874,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         {/* Starfield — pre-computed positions, no re-render flicker */}
         <g filter="url(#starbloom)">
           {stars.map((st, i) => (
-            <circle key={i} cx={st.x} cy={st.y} r={st.r} fill="#fff" opacity={st.op}/>
+            <circle key={i} cx={st.x} cy={st.y} r={st.r} fill="var(--ink)" opacity={st.op}/>
           ))}
         </g>
 
@@ -5841,8 +5949,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         ].map(g => (
           <g key={g.id}>
             <circle cx={g.x} cy={g.y} r="2.8" fill="rgba(34,197,94,0.22)"/>
-            <circle cx={g.x} cy={g.y} r="1.5" fill="#22c55e" stroke="rgba(255,255,255,0.95)" strokeWidth="0.35"/>
-            <circle cx={g.x} cy={g.y} r="0.5" fill="#fff"/>
+            <circle cx={g.x} cy={g.y} r="1.5" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.35"/>
+            <circle cx={g.x} cy={g.y} r="0.5" fill="var(--ink)"/>
           </g>
         ))}
         </>)}
@@ -5852,13 +5960,13 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         {!meetMode && showAmenities && (typeof AMENITIES !== "undefined" ? AMENITIES : [])
           .filter(a => !amenityFilter || a.type === amenityFilter)
           .map(a => {
-          const cfg = AMENITY_STYLE[a.type] || { color: "#000", letter: "" };
+          const cfg = AMENITY_STYLE[a.type] || { color: "var(--paper)", letter: "" };
           return (
-            <g key={a.id}>
-              <circle cx={a.x} cy={a.y} r="1.4" fill={cfg.color} opacity="0.92" stroke="#fff" strokeWidth="0.22"/>
+            <g key={a.id} data-amenity={a.type}>
+              <circle cx={a.x} cy={a.y} r="1.4" fill={cfg.color} opacity="0.92" stroke="var(--ink)" strokeWidth="0.22"/>
               {cfg.letter && (
                 <text x={a.x} y={a.y + 0.65} textAnchor="middle" fontSize="1.8"
-                  fill="#fff" fontFamily="Geist Mono, monospace" fontWeight="900">
+                  fill={cfg.ink} fontFamily="Geist Mono, monospace" fontWeight="900">
                   {cfg.letter}
                 </text>
               )}
@@ -5919,8 +6027,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               {isPark ? (
                 <g>
                   <circle cx={s.x} cy={s.y} r={pinR + 0.5} fill="rgba(10,15,11,0.5)"/>
-                  <circle cx={s.x} cy={s.y} r={pinR} fill={s.color} stroke="#fff" strokeWidth={on ? 0.7 : 0.5}/>
-                  <circle cx={s.x} cy={s.y} r={pinR * 0.34} fill="#fff"/>
+                  <circle cx={s.x} cy={s.y} r={pinR} fill={s.color} stroke="var(--ink)" strokeWidth={on ? 0.7 : 0.5}/>
+                  <circle cx={s.x} cy={s.y} r={pinR * 0.34} fill="var(--ink)"/>
                 </g>
               ) : (
                 <StageIcon id={s.id} cx={s.x} cy={s.y} r={r} on={on} color={s.color}/>
@@ -5928,8 +6036,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               {/* Gold ★ pin if the user has an upcoming saved set on this stage */}
               {savedHere && (
                 <g transform={`translate(${s.x + r * 0.85}, ${s.y - r * 0.85})`}>
-                  <circle r="1.9" fill="rgba(13,8,4,0.85)" stroke="#fbbf24" strokeWidth="0.25"/>
-                  <text y="0.85" textAnchor="middle" fontSize="2.4" fontWeight="900" fill="#fbbf24"
+                  <circle r="1.9" fill="rgba(13,8,4,0.85)" stroke="var(--signal-ink)" strokeWidth="0.25"/>
+                  <text y="0.85" textAnchor="middle" fontSize="2.4" fontWeight="900" fill="var(--signal-ink)"
                     fontFamily="Geist Mono, monospace">★</text>
                 </g>
               )}
@@ -5967,11 +6075,11 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         {/* Meet pin */}
         {meetMode && meetTarget && (
           <g>
-            <circle cx={meetTarget.x} cy={meetTarget.y} r="3" fill="none" stroke="#e85d2e" strokeWidth="0.6" opacity="0.8">
+            <circle cx={meetTarget.x} cy={meetTarget.y} r="3" fill="none" stroke="var(--signal-ink)" strokeWidth="0.6" opacity="0.8">
               <animate attributeName="r" values="1.5;5.5;1.5" dur="1.4s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.9;0;0.9" dur="1.4s" repeatCount="indefinite"/>
             </circle>
-            <circle cx={meetTarget.x} cy={meetTarget.y} r="1.6" fill="#e85d2e" stroke="#fff" strokeWidth="0.5"/>
+            <circle cx={meetTarget.x} cy={meetTarget.y} r="1.6" fill="var(--signal-ink)" stroke="var(--ink)" strokeWidth="0.5"/>
           </g>
         )}
 
@@ -5985,20 +6093,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const mid1y = avatar.y + (target.y - avatar.y) * 0.33;
           const mid2x = avatar.x + (target.x - avatar.x) * 0.66;
           const mid2y = avatar.y + (target.y - avatar.y) * 0.66 + (Math.random() > 0.5 ? 2 : -2);
-          const walkMins = typeof _pairKey === "function" && typeof WALK_PAIRS !== "undefined"
-            ? (WALK_PAIRS[_pairKey(_nearestStageId(avatar.x, avatar.y) || "", selected)] || [0, 0])
-            : [0, 0];
-          const etaMin = Math.round((walkMins[0] + walkMins[1]) / 2) || Math.round(dist * 0.4);
+          // ⛔ This line used to compute its OWN eta: read WALK_PAIRS directly,
+          // fall through to `dist * 0.4`, and paint the result. That fallback
+          // is art-coordinate arithmetic (#97) scaled by a constant measured at
+          // EDC Las Vegas, and it never asked readoutHonest() — so every
+          // festival whose pairs miss the table, which is all of them but EDC
+          // LV, drew an invented number over the route line. walkMinsLabel's
+          // "EVERY walk readout funnels through here" was simply false.
+          // It funnels now: a label, or no label at all.
+          const etaLabel = walkMinsLabel(computeWalkRange(avatar, target, dist, NOW.time));
           return (
             <g>
               <path d={`M${avatar.x},${avatar.y} C${mid1x},${mid1y} ${mid2x},${mid2y} ${target.x},${target.y}`}
                 fill="none" stroke={target.color} strokeWidth="0.6" strokeDasharray="2 2" opacity="0.6">
                 <animate attributeName="stroke-dashoffset" values="0;-8" dur="1.5s" repeatCount="indefinite"/>
               </path>
-              <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
-                textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
-                fill={target.color} opacity="0.85"
-              >{etaMin} MIN</text>
+              {etaLabel && (
+                <text x={(avatar.x + target.x) / 2} y={(avatar.y + target.y) / 2 - 2}
+                  textAnchor="middle" fontSize="3" fontFamily="Geist Mono, monospace" fontWeight="700"
+                  fill={target.color} opacity="0.85"
+                >{etaLabel} MIN</text>
+              )}
             </g>
           );
         })()}
@@ -6008,22 +6123,29 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <path d={`M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`}
-            fill="#f59a36" opacity="0.3"/>
-          <circle cx={avatar.x} cy={avatar.y} r="3.2" fill="#f59a36" opacity="0.22">
+            fill="var(--signal-ink)" opacity="0.3"/>
+          <circle cx={avatar.x} cy={avatar.y} r="3.2" fill="var(--signal-ink)" opacity="0.22">
             <animate attributeName="r" values="2.5;4.5;2.5" dur="2.2s" repeatCount="indefinite"/>
           </circle>
-          <circle cx={avatar.x} cy={avatar.y} r="1.8" fill="#f59a36" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
-          <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="#fff"/>
+          <circle data-avatar-dot cx={avatar.x} cy={avatar.y} r="1.8" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
+          <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="var(--ink)"/>
         </g>
         </g>
       </svg>
 
-      {/* HTML label overlay — sized to match the SVG's xMidYMid-meet square so
-          left/top % values align exactly with the dots inside the SVG. */}
-      <div style={{
-        position: "absolute", top: "50%", left: 0, width: "100%",
-        aspectRatio: "1 / 1", transform: "translateY(-50%)",
-        pointerEvents: "none",
+      {/* HTML label overlay. Every child places itself with `mapY()`, which
+          already carries the offset that centres the 0–100 map in a viewBox as
+          tall as the CONTAINER. So in a portrait container this box has to be
+          the container itself. It used to stay the centred square from before
+          `mapY()` existed, which applied the centring twice: everything off the
+          map's middle row was pulled toward it (the YOU label sat ~85 px above
+          its dot in a bottom corner, and stage pills drifted off their pins).
+          A container no taller than wide has no offset (VB_H is 100), and
+          keeps the square. */}
+      <div data-map-html-overlay style={{
+        position: "absolute", left: 0, width: "100%", pointerEvents: "none",
+        ...(VB_H > 100 ? { top: 0, height: "100%" }
+                       : { top: "50%", aspectRatio: "1 / 1", transform: "translateY(-50%)" }),
       }}>
         {/* Place labels and entrance gates, PER FESTIVAL. This used to be a
             hardcoded Las Vegas block behind `mapTheme !== "park"`, so any
@@ -6032,10 +6154,10 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             declaring them. */}
         {(FESTIVAL_CONFIG.placeLabel || (FESTIVAL_CONFIG.gates || []).length > 0) && (<>
         {FESTIVAL_CONFIG.placeLabel && <div style={{
-          position: "absolute", left: "50%", top: "43%",
+          position: "absolute", left: "50%", top: `${mapY(43)}%`,
           transform: "translate(-50%, -130%)",
           fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 2.2, fontWeight: 700,
-          color: "rgba(232,93,46,0.85)",
+          color: "rgba(var(--signal-rgb),0.85)",
         }}>{FESTIVAL_CONFIG.placeLabel}</div>}
 
         {/* Entrance gate labels */}
@@ -6044,8 +6166,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             position: "absolute", left: `${g.x}%`, top: `${mapY(g.y)}%`,
             transform: `translate(-50%, -50%)${counterRot}`,
             fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.4, fontWeight: 700,
-            color: "rgba(80,230,160,0.92)",
-            textShadow: "0 0 8px rgba(80,230,160,0.5)",
+            color: "rgba(var(--signal-rgb),0.92)",
+            textShadow: "0 0 8px rgba(var(--signal-rgb),0.5)",
             whiteSpace: "nowrap", pointerEvents: "none",
           }}>{g.label}</div>
         ))}
@@ -6061,7 +6183,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
             fontFamily: "Geist Mono, monospace",
             fontSize: lm.size, letterSpacing: lm.ls, fontWeight: 700,
             color: lm.color,
-            textShadow: "0 1px 6px rgba(0,0,0,0.8)",
+            textShadow: "0 1px 6px rgba(var(--shade-rgb),0.8)",
             whiteSpace: "nowrap", pointerEvents: "none",
           }}>{lm.label}</div>
         ))}
@@ -6124,28 +6246,35 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           const hx = Math.max(0, Math.min(1, (s.x - 8) / 84));
           const shiftX = `${(-hx * 100).toFixed(1)}%`;
           const tx = {
-            N: { transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot}` },
-            S: { transform: `translate(${shiftX}, ${off}px)${counterRot}` },
-            E: { transform: `translate(${off}px, -50%)${counterRot}` },
-            W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot}` },
+            N: { transform: `translate(${shiftX}, calc(-100% - ${off}px))${counterRot} translateX(var(--pill-nudge, 0px))` },
+            S: { transform: `translate(${shiftX}, ${off}px)${counterRot} translateX(var(--pill-nudge, 0px))` },
+            E: { transform: `translate(${off}px, -50%)${counterRot} translateX(var(--pill-nudge, 0px))` },
+            W: { transform: `translate(calc(-100% - ${off}px), -50%)${counterRot} translateX(var(--pill-nudge, 0px))` },
           }[anchor];
           return (
-            <div key={s.id} role="button" tabIndex={0} aria-label={`${s.name} stage`}
+            <div key={s.id} data-stage-pill role="button" tabIndex={0} aria-label={`${s.name} stage`}
               onClick={(e) => { e.stopPropagation(); onPickStage(s.id); }}
               onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPickStage(s.id); } }}
               style={{
                 position: "absolute", ...pos, ...tx,
                 pointerEvents: "auto", cursor: "pointer",
-                background: on ? s.color : "rgba(6,4,18,0.82)",
-                color: on ? "#fff" : "rgba(255,255,255,0.88)",
-                border: `1px solid ${on ? s.color : "rgba(255,255,255,0.18)"}`,
+                // Off: the map's glass surface, so it follows the mode. On: the
+                // stage's own colour, with whichever ink reads on it.
+                background: on ? s.color : "rgba(var(--glass),0.92)",
+                color: on ? _inkOnHex(s.color) : "var(--ink)",
+                border: `1px solid ${on ? s.color : "var(--line-2)"}`,
                 padding: on ? "4px 10px" : "3px 9px",
                 borderRadius: 999,
                 fontFamily: "Geist Mono, monospace",
                 fontSize: on ? 9.5 : 8.5,
                 letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-                maxWidth: "46vw", overflow: "hidden", textOverflow: "ellipsis",
+                // A saved set's full name ("INTERPLANETARY CRIMINAL B2B MAIN
+                // PHASE · 30M") wraps inside a bounded pill rather than running
+                // off a 320px map; max-content keeps an edge stage's pill from
+                // collapsing to the sliver of width left of its anchor.
+                width: "max-content", maxWidth: "min(46vw, 170px)",
+                whiteSpace: "normal", overflowWrap: "anywhere", lineHeight: 1.35,
+
                 boxShadow: on
                   ? `0 4px 18px ${s.color}66, 0 0 8px ${s.color}33`
                   : "0 1px 0 rgba(0,0,0,0.4), 0 2px 12px rgba(0,0,0,0.5)",
@@ -6153,7 +6282,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               }}>
               <span style={{
                 display: "inline-block", width: 6, height: 6, borderRadius: 6,
-                background: on ? "#fff" : s.color, marginRight: 6,
+                background: on ? "var(--ink)" : s.color, marginRight: 6,
                 verticalAlign: "1px",
                 animation: liveArtist && !on ? "pulse 1.6s infinite" : "none",
               }}/>
@@ -6166,7 +6295,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           <div key={f.id} style={{
             position: "absolute", left: `${f.x}%`, top: `${mapY(f.y)}%`,
             transform: `translate(-50%, 14px)${counterRot}`,
-            background: f.color, color: "#fff",
+            background: f.color, color: _inkOnHex(f.color),
             padding: "2px 7px", borderRadius: 999,
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             boxShadow: `0 3px 10px ${f.color}66`, pointerEvents: "none",
@@ -6191,18 +6320,18 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
               <div style={{
                 width: 32, height: 32, borderRadius: 999,
                 background: f.color,
-                border: "2px solid rgba(255,255,255,0.95)",
-                boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(0,0,0,0.45)`,
+                border: "2px solid rgba(var(--ink-rgb),0.95)",
+                boxShadow: `0 4px 14px ${f.color}aa, 0 0 0 1px rgba(var(--shade-rgb),0.45)`,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "#fff",
+                color: _inkOnHex(f.color),
                 fontFamily: "Instrument Serif, serif", fontSize: 18, fontWeight: 400,
                 lineHeight: 1,
               }}>{initial}</div>
               {/* Name + last-seen pill */}
               <div style={{
                 display: "flex", alignItems: "center", gap: 4,
-                background: "rgba(6,4,18,0.85)", color: "#fff",
-                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(var(--shade-rgb),0.85)", color: "var(--ink)",
+                border: "1px solid rgba(var(--ink-rgb),0.18)",
                 padding: "2px 7px", borderRadius: 999,
                 fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
                 whiteSpace: "nowrap",
@@ -6219,7 +6348,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
                   </span>
                 )}
                 {seen.label && seen.freshness !== "fresh" && (
-                  <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: 500 }}>
+                  <span style={{ color: "var(--text-2)", fontWeight: 500 }}>
                     · {seen.label}
                   </span>
                 )}
@@ -6228,13 +6357,13 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })}
 
-        <div style={{
+        <div data-avatar-label style={{
           position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
-          background: "rgba(245,154,54,0.95)", color: "#fff",
+          background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
           padding: "2px 8px", borderRadius: 999,
           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
-          pointerEvents: "none", boxShadow: "0 3px 10px rgba(245,154,54,0.45)",
+          pointerEvents: "none", boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)",
         }}>YOU</div>
       </div>
     </div>
@@ -6249,7 +6378,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           width: 44, height: 44, borderRadius: 44,
           background: "rgba(var(--glass),0.92)",
           border: "1px solid var(--line-2)",
-          boxShadow: "0 3px 10px rgba(26,18,13,0.18)",
+          boxShadow: "0 3px 10px rgba(var(--shade-rgb),0.18)",
           display: "flex", alignItems: "center", justifyContent: "center",
           zIndex: 5, pointerEvents: "none",
         }}>
@@ -6286,7 +6415,7 @@ function RideshareSheet({ onClose }) {
     return (
       <div onClick={onClose} style={{
         position: "absolute", inset: 0, zIndex: 12,
-        background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)",
+        background: "rgba(var(--shade-rgb),0.45)", backdropFilter: "blur(4px)",
         display: "flex", alignItems: "flex-end",
         animation: "fadeIn .2s",
       }}>
@@ -6322,7 +6451,7 @@ function RideshareSheet({ onClose }) {
   return (
     <div onClick={onClose} style={{
       position: "absolute", inset: 0, zIndex: 12,
-      background: "rgba(0,0,0,0.45)",
+      background: "rgba(var(--shade-rgb),0.45)",
       display: "flex", alignItems: "flex-end",
       animation: "fadeIn .2s",
     }}>
@@ -6330,7 +6459,7 @@ function RideshareSheet({ onClose }) {
         background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         width: "100%", padding: "14px 20px 24px",
-        boxShadow: "0 -10px 40px rgba(0,0,0,0.4)",
+        boxShadow: "0 -10px 40px rgba(var(--shade-rgb),0.4)",
       }}>
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
           <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
@@ -6347,13 +6476,13 @@ function RideshareSheet({ onClose }) {
 
         <div style={{ display: "grid", gap: 10 }}>
           <button onClick={() => open(uberUrl)} style={{
-            background: "#000", color: "#fff", border: "none",
+            background: "var(--paper)", color: "var(--ink)", border: "none",
             borderRadius: 12, padding: "14px 16px",
             fontFamily: "Geist Mono, monospace", fontSize: 12, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer",
           }}>OPEN UBER</button>
           <button onClick={() => open(lyftUrl)} style={{
-            background: "#FF00BF", color: "#fff", border: "none",
+            background: "var(--signal)", color: "var(--on-signal)", border: "none",
             borderRadius: 12, padding: "14px 16px",
             fontFamily: "Geist Mono, monospace", fontSize: 12, letterSpacing: 1.4, fontWeight: 700,
             cursor: "pointer",
@@ -6382,9 +6511,9 @@ function GroundPeek({ stage, onClose }) {
       position: "absolute", top: 12, right: 12,
       width: 160, height: 120,
       borderRadius: 12, overflow: "hidden",
-      background: "#0a0414",
-      border: "1px solid rgba(247,237,224,0.2)",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.5)",
+      background: "var(--paper)",
+      border: "1px solid rgba(var(--ink-rgb),0.2)",
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.5)",
       zIndex: 4,
     }}>
       <svg viewBox="0 0 200 140" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
@@ -6402,9 +6531,9 @@ function GroundPeek({ stage, onClose }) {
         <rect x="0" y="0" width="200" height="60" fill={`url(#peekSky-${stage.id})`}/>
         <rect x="0" y="60" width="200" height="80" fill={`url(#peekGnd-${stage.id})`}/>
         {/* stage silhouette */}
-        <rect x="60" y="30" width="80" height="40" fill="#0a0414" stroke={stage.color} strokeWidth="1.5"/>
+        <rect x="60" y="30" width="80" height="40" fill="var(--paper)" stroke={stage.color} strokeWidth="1.5"/>
         <rect x="72" y="38" width="56" height="22" fill={stage.color} opacity="0.9"/>
-        <rect x="56" y="24" width="88" height="4" fill="#0a0414" stroke={stage.color} strokeWidth="0.8"/>
+        <rect x="56" y="24" width="88" height="4" fill="var(--paper)" stroke={stage.color} strokeWidth="0.8"/>
         {[-2,-1,0,1,2].map(i => (
           <g key={i}>
             <circle cx={100 + i*16} cy={26} r="1.3" fill={stage.color}/>
@@ -6412,7 +6541,7 @@ function GroundPeek({ stage, onClose }) {
           </g>
         ))}
         {/* crowd */}
-        <path d="M20,80 Q100,65 180,80 L180,95 L20,95 Z" fill="#000" opacity="0.8"/>
+        <path d="M20,80 Q100,65 180,80 L180,95 L20,95 Z" fill="var(--paper)" opacity="0.8"/>
         {/* label */}
         <rect x="65" y="108" width="70" height="14" rx="7" fill="rgba(10,4,20,0.9)" stroke={stage.color} strokeWidth="0.8"/>
         <text x="100" y="117" textAnchor="middle" fill={stage.color} fontFamily="Geist Mono, monospace" fontSize="7" fontWeight="700" letterSpacing="1">{stage.name.toUpperCase()}</text>
@@ -6420,14 +6549,14 @@ function GroundPeek({ stage, onClose }) {
       <button onClick={onClose} aria-label="Close" style={{
         position: "absolute", top: 4, right: 4,
         width: 20, height: 20, borderRadius: 20,
-        background: "rgba(10,4,20,0.85)", border: "1px solid rgba(247,237,224,0.3)",
-        color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+        background: "rgba(var(--shade-rgb),0.85)", border: "1px solid rgba(var(--ink-rgb),0.3)",
+        color: "var(--ink)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
         fontSize: 10, padding: 0,
       }}>×</button>
       <div style={{
         position: "absolute", bottom: 4, left: 4,
         fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
-        color: "rgba(247,237,224,0.7)", background: "rgba(10,4,20,0.6)",
+        color: "var(--text-2)", background: "rgba(var(--shade-rgb),0.6)",
         padding: "2px 5px", borderRadius: 4,
       }}>GROUND VIEW</div>
     </div>
@@ -6438,15 +6567,9 @@ function GroundPeek({ stage, onClose }) {
 // WCAG contrast helper — picks dark vs white ink for text/icons sitting ON a
 // stage color, so light stages (cyan/green/yellow) don't render unreadable
 // white text on the hero / GO HERE button / nav icon. Relative-luminance gate.
-function _inkOn(hex) {
-  try {
-    const h = String(hex).replace("#", "");
-    const n = h.length === 3 ? h.split("").map(c => c + c).join("") : h;
-    const ch = i => { let v = parseInt(n.slice(i, i + 2), 16) / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
-    const L = 0.2126 * ch(0) + 0.7152 * ch(2) + 0.0722 * ch(4);
-    return L > 0.45 ? "#1a120d" : "#fff";
-  } catch { return "#fff"; }
-}
+// One policy for text on a stage colour: the AA-correct choice (this used a
+// 0.45 luminance cut, which put white text on mid-tone fills at ~3:1).
+function _inkOn(hex) { return _inkOnHex(hex); }
 
 // Slim "navigating" chrome shown after GO HERE: collapses the full place card
 // so the animated walking route + ETA already drawn on the map are visible.
@@ -6461,32 +6584,28 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
   }, [onStop]);
   return (
     <div style={{
-      background: "var(--paper)", color: "var(--ink)",
-      padding: "12px 14px calc(12px + env(safe-area-inset-bottom, 0px))",
-      borderTopLeftRadius: 22, borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
-      display: "flex", alignItems: "center", gap: 11,
+      background: "var(--s1)", color: "var(--ink)",
+      padding: "12px 12px calc(12px + env(safe-area-inset-bottom, 0px)) 16px",
+      borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
+      display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap",
       animation: "sheetUp 0.25s var(--ease-smooth)",
     }}>
-      <div style={{
-        width: 40, height: 40, borderRadius: 40, background: stage.color, flexShrink: 0,
+      <div className="duo-well" style={{
+        width: 40, height: 40, borderRadius: "50%", flexShrink: 0, color: "var(--acc-ink)",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={_inkOn(stage.color)} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
       </div>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, color: "var(--muted)" }}>ROUTING TO</div>
-        <div className="serif" style={{ fontSize: 19, lineHeight: 1.05, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{stage.name}</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600, marginTop: 1 }}>{eta ? `~${eta} MIN \u00b7 ` : ""}FOLLOW THE ROUTE</div>
+      <div style={{ flex: "1 1 120px", minWidth: 0 }}>
+        <div className="duo-label duo-ink3">Routing to</div>
+        <div className="duo-headline duo-name" style={{ marginTop: 2 }}>{stage.name}</div>
+        <div className="duo-data-s duo-ink2" style={{ marginTop: 1 }}>{eta ? `~${eta} min \u00b7 ` : ""}follow the route</div>
       </div>
-      <button onClick={onDetails} aria-label="Show stage details" className="mono" style={{
-        flexShrink: 0, background: "var(--paper-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
-        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-      }}>DETAILS</button>
-      <button onClick={onStop} aria-label="Stop routing" className="mono" style={{
-        flexShrink: 0, background: "var(--ink)", border: "none", color: "var(--paper)",
-        borderRadius: 999, padding: "9px 13px", cursor: "pointer", fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
-      }}>✕ STOP</button>
+      <button onClick={onDetails} aria-label="Show stage details" className="duo-chip"><span>Details</span></button>
+      <button onClick={onStop} aria-label="Stop routing" className="duo-btn" style={{
+        flexShrink: 0, background: "var(--s3)", color: "var(--ink)", minHeight: 44, padding: "0 14px", fontSize: 14,
+      }}>Stop</button>
     </div>
   );
 }
@@ -6507,29 +6626,29 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
       : `Group · ${groupFriends.length + 1} people`;
     const routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
     return (
-      <div style={{ background: "var(--paper)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: 22, borderTopRightRadius: 22, boxShadow: "0 -10px 30px rgba(0,0,0,0.4)" }}>
+      <div style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
-          <div style={{ width: 38, height: 38, borderRadius: 38, background: "var(--ember)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="#fff"/></svg>
+          <div style={{ width: 40, height: 40, borderRadius: 40, background: "var(--acc)", color: "var(--on-acc)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2 C8 2 5 5 5 9 c0 5 7 13 7 13 s7-8 7-13 c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="currentColor"/></svg>
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ember-ink)", fontWeight: 700 }}>MEETING</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1.05 }}>{title}</div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
+            <div className="duo-label duo-acc">Meeting</div>
+            <div className="duo-headline" style={{ marginTop: 2 }}>{title}</div>
+            <div className="duo-data-s duo-ink2" style={{ marginTop: 2 }}>{eta == null ? "" : `ETA ~${eta} MIN \u00b7 `}{routingLabel}</div>
           </div>
-          <button onClick={onCancelMeet} style={{ background: "transparent", border: "1px solid var(--line-2)", color: "var(--muted)", borderRadius: 999, padding: "7px 10px", cursor: "pointer", fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600 }}>END</button>
+          <button onClick={onCancelMeet} className="duo-chip"><span>End</span></button>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          <div style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
-            <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)" }}>YOUR ETA</div>
-            <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{youMins == null
-              ? <span style={{ fontSize: 11, color: "var(--muted)" }}>UNSURVEYED</span>
+          <div className="duo-card" style={{ flex: "1 0 calc(50% - 4px)", padding: "10px 12px" }}>
+            <div className="duo-label duo-ink3">Your ETA</div>
+            <div className="duo-clock" style={{ fontSize: 22, marginTop: 4 }}>{youMins == null
+              ? <span className="duo-data-s duo-ink2">Unsurveyed</span>
               : <>{youMins} <span style={{ fontSize: 11 }}>min</span></>}</div>
           </div>
           {fEtas.map(({ f, mins }) => (
-            <div key={f.id} style={{ flex: "1 0 calc(50% - 4px)", background: "var(--paper-2)", borderRadius: 10, padding: "7px 10px" }}>
-              <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: f.color }}>{f.name.toUpperCase()} ETA</div>
-              <div className="serif" style={{ fontSize: 18, marginTop: 2 }}>{mins} <span style={{ fontSize: 11 }}>min</span></div>
+            <div key={f.id} className="duo-card" style={{ flex: "1 0 calc(50% - 4px)", padding: "10px 12px" }}>
+              <div className="duo-label duo-ink3">{f.name} ETA</div>
+              <div className="duo-clock" style={{ fontSize: 22, marginTop: 4 }}>{mins} <span style={{ fontSize: 11 }}>min</span></div>
             </div>
           ))}
         </div>
@@ -6570,17 +6689,13 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
   const preview = mine.slice(0, 6);
   const more = mine.length - preview.length;
   return (
-    <div style={{
-      marginBottom: 10, padding: "10px 12px",
-      background: `${accent}14`, border: `1px solid ${accent}40`,
-      borderRadius: 12,
-    }}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 8 }}>
+    <div className="duo-card" style={{ marginBottom: 10, padding: "12px 12px 10px 14px" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, flexWrap: "wrap", marginBottom: 6 }}>
         <div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
-            ◐ YOUR NIGHTS AT THIS STAGE
+          <div className="duo-label duo-ink3">
+            Your nights at this stage
           </div>
-          <div className="serif" style={{ fontSize: 13, color: "var(--ink)", marginTop: 2 }}>
+          <div className="duo-body-s" style={{ color: "var(--ink)", marginTop: 3 }}>
             {mine.length} {mine.length === 1 ? "memory" : "memories"} saved
           </div>
         </div>
@@ -6588,30 +6703,14 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
           {stageObj && mine.length > 0 && (<>
             <button
               onClick={() => window._shareStageCollage?.(stageObj, mine)}
-              className="mono"
-              title="Share a photo collage of your nights at this stage"
-              style={{
-                background: accent, color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}>📸 SHARE</button>
+              className="duo-chip"
+              title="Share a photo collage of your nights at this stage"><span>Share</span></button>
             <button
               onClick={() => window._shareStageCollage?.(stageObj, mine, "gif")}
-              className="mono"
-              title="Share an animated GIF of your nights at this stage"
-              style={{
-                background: "#6D28D9", color: "#fff", border: "none",
-                borderRadius: 999, padding: "5px 11px", cursor: "pointer",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                whiteSpace: "nowrap",
-              }}>🎬 GIF</button>
+              className="duo-chip"
+              title="Share an animated GIF of your nights at this stage"><span>GIF</span></button>
           </>)}
-          <button onClick={onOpen} className="mono" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            padding: 0,
-          }}>VIEW ALL →</button>
+          <button onClick={onOpen} className="duo-link">View all →</button>
         </div>
       </div>
       <div style={{
@@ -6623,12 +6722,11 @@ function YourStagePhotosStrip({ stageId, accent, onOpen, stageObj }) {
           <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => onOpen(m.night)} />
         ))}
         {more > 0 && (
-          <button onClick={onOpen} className="mono" aria-label={`View all ${mine.length} memories`} style={{
+          <button onClick={onOpen} className="duo-data" aria-label={`View all ${mine.length} memories`} style={{
             width: 76, height: 76, flexShrink: 0,
-            borderRadius: 10,
-            background: "transparent",
-            border: `1px dashed ${accent}66`, color: accent,
-            cursor: "pointer", fontSize: 10, letterSpacing: 1, fontWeight: 700,
+            borderRadius: "var(--rad-sm)",
+            background: "var(--s3)", border: "none", color: "var(--ink-2)",
+            cursor: "pointer",
           }}>+{more}</button>
         )}
       </div>
@@ -6652,152 +6750,115 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
     return () => document.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  // The board's place card: an s1 sheet with the stage's colour as a dot
+  // only (stage colours stay on the map), board stat cards, the accent
+  // button, and the Lineup row for every set.
+  const cellNote = (t) => t == null ? null : String(t).charAt(0) + String(t).slice(1).toLowerCase();
   return (
     <div style={{
-      background: "var(--paper)", color: "var(--ink)",
+      background: "var(--s1)", color: "var(--ink)",
       padding: "0 0 10px",
-      borderTopLeftRadius: 22, borderTopRightRadius: 22,
-      boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+      borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)",
+      boxShadow: "var(--e2)",
       maxHeight: expanded ? "72vh" : "auto",
       display: "flex", flexDirection: "column",
       overflow: "hidden",
       animation: "sheetUp 0.3s var(--ease-smooth)",
     }}>
-      {/* Stage-color hero strip — Apple Maps place-card pattern. Ink (text +
-          handle + close) auto-flips to dark on light stage colors so it stays
-          WCAG-readable on cyan/green/yellow stages, not just dark ones. */}
-      <div style={{
-        background: stage.color, color: heroInk,
-        padding: "6px 16px 12px", position: "relative",
-      }}>
+      <div style={{ padding: "6px 16px 4px", position: "relative" }}>
         <div onClick={() => setExpanded(e => !e)} style={{
           display: "flex", justifyContent: "center", cursor: "pointer",
           padding: "2px 0 8px",
         }}>
-          <div style={{ width: 36, height: 4, borderRadius: 4, background: heroInk === "#fff" ? "rgba(255,255,255,0.55)" : "rgba(26,18,13,0.45)" }}/>
+          <div style={{ width: 36, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, fontWeight: 700, opacity: 0.85, marginBottom: 3 }}>
-              {stage.short} · STAGE
+            <div className="duo-label duo-ink3" style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              <i aria-hidden="true" style={{ width: 10, height: 10, borderRadius: "50%", background: stage.color, flexShrink: 0 }} />
+              {stage.short} · Stage
             </div>
-            <div className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.3 }}>
+            <div className="duo-title duo-name">
               {stage.name}
             </div>
           </div>
           <button onClick={onClose} aria-label="Close" style={{
-            background: heroInk === "#fff" ? "rgba(255,255,255,0.22)" : "rgba(26,18,13,0.14)",
-            border: `1px solid ${heroInk === "#fff" ? "rgba(255,255,255,0.35)" : "rgba(26,18,13,0.25)"}`,
-            color: heroInk, borderRadius: 999, width: 30, height: 30, padding: 0,
-            cursor: "pointer", fontSize: 16, fontWeight: 700, flexShrink: 0,
+            background: "var(--s3)", border: "none",
+            color: "var(--ink)", borderRadius: "50%", width: 44, height: 44, padding: 0,
+            cursor: "pointer", fontSize: 20, flexShrink: 0, marginRight: -6,
             display: "flex", alignItems: "center", justifyContent: "center",
-            backdropFilter: "blur(6px)",
           }}>×</button>
         </div>
       </div>
 
-      {/* Metadata grid — Apple-Maps place-card stat cells. Replaces the old
-          crammed single 9px line: each fact gets its own scannable cell. */}
+      {/* Stat cells. An unmeasured walk or distance is a dash with
+          "Unsurveyed" under it, never a number; both cells keep their place
+          so the card does not reflow. */}
       <div style={{
-        display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6,
-        padding: "10px 14px 0",
+        // auto-fit, not a fixed 3: at 320 a third of the row is narrower than
+        // "DISTANCE" in Michroma and "Unsurveyed" in Martian Mono.
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(104px, 1fr))", gap: 8,
+        padding: "8px 16px 0",
       }}>
         {[
-          // A dash with UNSURVEYED under it, never a number. Both cells keep
-          // their place in the grid so the card does not reflow, and the note
-          // says WHY — an unexplained "—" just reads as a broken app.
           walk.known === false
-            ? { label: "WALK", value: "—", unit: "", note: "UNSURVEYED" }
-            : { label: "WALK", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
+            ? { label: "Walk", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "Walk", value: walkMinsLabel(walk), unit: "min", note: walk.peak ? "PEAK" : walk.plan ? "PLAN 20+" : null },
           distM == null
-            ? { label: "DISTANCE", value: "—", unit: "", note: "UNSURVEYED" }
-            : { label: "DISTANCE", value: `${distM}`, unit: "m", note: null },
-          { label: "SETS", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
+            ? { label: "Distance", value: "—", unit: "", note: "UNSURVEYED" }
+            : { label: "Distance", value: `${distM}`, unit: "m", note: null },
+          { label: "Sets", value: `${sets.length}`, unit: day === NOW.night ? "today" : "set day", note: `${totalAcrossDays} · ${DAYS.length} NIGHTS` },
         ].map(c => (
-          <div key={c.label} style={{
-            background: "var(--paper-2)", border: "1px solid var(--line)",
-            borderRadius: 12, padding: "8px 10px", minWidth: 0,
-          }}>
-            <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>{c.label}</div>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1, marginTop: 3, color: "var(--ink)" }}>
-              {c.value}{c.unit ? <span style={{ fontSize: 10, fontWeight: 400, color: "var(--muted)" }}> {c.unit}</span> : null}
+          <div key={c.label} className="duo-card" style={{ padding: "10px 12px", minWidth: 0 }}>
+            <div className="duo-label duo-ink3">{c.label}</div>
+            <div className="duo-clock" style={{ fontSize: 24, marginTop: 6, color: "var(--ink)" }}>
+              {c.value}{c.unit ? <span className="duo-body-s duo-ink2" style={{ fontWeight: 400, letterSpacing: 0 }}> {c.unit}</span> : null}
             </div>
-            {c.note && <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", fontWeight: 700, marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.note}</div>}
+            {c.note && <div className="duo-data-s duo-ink2" style={{ marginTop: 4 }}>{cellNote(c.note)}</div>}
           </div>
         ))}
       </div>
 
-      {/* Primary CTA row — GO HERE (route + live ETA) · PEEK · SAVE.
-          Apple-Maps "Directions / … / bookmark" pattern. */}
-      <div style={{ display: "flex", gap: 6, padding: "8px 14px 0" }}>
-        <button onClick={() => onGoHere?.(stage)} className="mono" style={{
-          flex: 2, background: stage.color, color: heroInk, border: "none",
-          borderRadius: 12, padding: "11px 10px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 800,
-          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 6,
-        }}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={heroInk} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-          GO HERE
+      {/* Go here (route + live ETA) · Peek · Save. */}
+      <div style={{ display: "flex", gap: 8, padding: "10px 16px 0" }}>
+        <button onClick={() => onGoHere?.(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+          Go here
         </button>
-        <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="mono" style={{
-          flex: 1, background: peek ? stage.color : "var(--paper-2)",
-          color: peek ? "#fff" : "var(--ink)",
-          border: peek ? "none" : "1px solid var(--line-2)",
-          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
-        }}>{peek ? "◉ PEEK" : "◯ PEEK"}</button>
+        <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="duo-btn" style={{
+          flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
+          background: peek ? "var(--acc-14)" : "var(--s3)", color: peek ? "var(--acc-ink)" : "var(--ink)",
+        }}>Peek</button>
         <button onClick={() => onToggleSave?.(stage.id)} aria-pressed={!!stageSaved}
-          aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="mono" style={{
-          flex: 1, background: stageSaved ? "rgba(232,93,46,0.12)" : "var(--paper-2)",
-          color: stageSaved ? "var(--ember-ink)" : "var(--ink)",
-          border: stageSaved ? "1px solid rgba(232,93,46,0.45)" : "1px solid var(--line-2)",
-          borderRadius: 12, padding: "11px 8px", cursor: "pointer",
-          fontSize: 11, letterSpacing: 1.2, fontWeight: 700,
-          display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 5,
-        }}>{stageSaved ? "♥ SAVED" : "♡ SAVE"}</button>
+          aria-label={stageSaved ? "Saved — remove this stage" : "Save this stage"} className="duo-btn" style={{
+          flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
+          background: stageSaved ? "var(--acc-14)" : "var(--s3)", color: stageSaved ? "var(--acc-ink)" : "var(--ink)",
+        }}>{stageSaved ? "♥ Saved" : "♡ Save"}</button>
       </div>
 
       {/* Secondary — full lineup + far-stage hint. */}
-      <div style={{ display: "flex", gap: 6, padding: "8px 14px 2px" }}>
-        <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="mono" style={{
-          flex: 1, background: "transparent", border: "1px solid var(--line-2)",
-          color: "var(--muted)", borderRadius: 999, padding: "7px 13px", cursor: "pointer",
-          fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-        }}>☰ FULL LINEUP</button>
+      <div style={{ display: "flex", gap: 8, padding: "6px 16px 2px", alignItems: "center", flexWrap: "wrap" }}>
+        <button onClick={() => setState({ ...state, tab: "lineup", lineupDay: day, stageFilter: stage.id })} className="duo-chip">
+          <span>Full lineup</span>
+        </button>
         {walk.known !== false && walk.lo > 25 && (
-          <div className="mono" style={{
-            flexShrink: 0, background: "rgba(193,74,74,0.1)", border: "1px solid rgba(193,74,74,0.35)",
-            color: "var(--alert)", borderRadius: 999, padding: "7px 13px",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700, whiteSpace: "nowrap",
-            display: "inline-flex", alignItems: "center",
-          }}>↗ FAR · {walk.lo} MIN</div>
+          <span className="duo-data-s" style={{ color: "var(--clash)" }}>↗ Far · {walk.lo} min</span>
         )}
       </div>
 
-      <div style={{ padding: "6px 14px 0" }}>
+      <div style={{ padding: "6px 16px 0" }}>
 
-      {/* Stage vibe — vet-flavor descriptor that summarises the room's
-          identity ("Sunrise Cathedral", "Loudest Drops") plus when it peaks.
-          Falls back gracefully if the stage data has no vibe field yet. */}
+      {/* Stage vibe: the room's identity and when it peaks. */}
       {stage.vibe && (
-        <div style={{
-          marginBottom: 10, padding: "9px 11px", borderRadius: 12,
-          background: "var(--paper-2)",
-          borderLeft: `3px solid ${stage.color}`,
-        }}>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8 }}>
-            <div className="mono" style={{
-              fontSize: 9, letterSpacing: 1.4, fontWeight: 800,
-              color: stage.color, textTransform: "uppercase",
-            }}>{stage.vibe}</div>
+        <div className="duo-well" style={{ marginBottom: 10, padding: "10px 12px" }}>
+          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+            <div className="duo-label" style={{ color: "var(--ink)" }}>{stage.vibe}</div>
             {stage.peak && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 600 }}>
-                PEAKS {stage.peak}
-              </div>
+              <div className="duo-data-s duo-ink2">Peaks {stage.peak}</div>
             )}
           </div>
           {stage.vibeNote && (
-            <div style={{ fontSize: 12, lineHeight: 1.35, color: "var(--ink)", marginTop: 4 }}>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 4, fontWeight: 400 }}>
               {stage.vibeNote}
             </div>
           )}
@@ -6814,53 +6875,43 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
       />
 
       {/* Day tabs */}
-      <div style={{ display: "flex", gap: 4, marginBottom: 10 }}>
+      <div className="duo-seg" role="radiogroup" aria-label="Day" style={{ marginBottom: 10 }}>
         {DAYS.map(d => {
           const on = d.n === day;
           const count = activeLineup().filter(a => a.stage === stage.id && a.day === d.n).length;
           return (
-            <button key={d.n} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
-              flex: 1, padding: "7px 6px", borderRadius: 8,
-              background: on ? stage.color : "var(--paper-2)",
-              color: on ? "#fff" : "var(--ink)",
-              border: "none", cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 1,
+            <button key={d.n} role="radio" aria-checked={on} onClick={() => { setDay(d.n); setExpanded(true); }} style={{
+              minHeight: 44, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2,
             }}>
-              <span className="mono" style={{ fontSize: 9, letterSpacing: 1.4, opacity: on ? 0.85 : 0.55, fontWeight: 600 }}>{d.label}</span>
-              <span className="serif" style={{ fontSize: 13, lineHeight: 1 }}>{count} <span style={{ fontSize: 9, opacity: 0.7 }}>sets</span></span>
+              <span>{d.label}</span>
+              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{count} sets</span>
             </button>
           );
         })}
       </div>
 
-      {/* Now playing marker (only if today) */}
+      {/* Now playing (only if today): the board's lifted card. */}
       {day === NOW.night && nowAtStage && (
-        <div onClick={() => onOpenArtist(nowAtStage.id)} style={{
-          display: "flex", alignItems: "center", gap: 10,
-          padding: "8px 10px", marginBottom: 8,
-          background: stage.color, color: "#fff",
-          borderRadius: 12, cursor: "pointer",
+        <div onClick={() => onOpenArtist(nowAtStage.id)} className="duo-card duo-lift" style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: "10px 12px", marginBottom: 8, cursor: "pointer",
         }}>
-          <span style={{
-            width: 7, height: 7, borderRadius: 7, background: "#fff",
-            boxShadow: "0 0 0 4px rgba(255,255,255,0.3)",
-            animation: "pulse 1.6s infinite", flexShrink: 0,
-          }}/>
+          <DuoAvatar name={nowAtStage.name} size={42} ring="on" />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, opacity: 0.9 }}>ON STAGE NOW</div>
-            <div className="serif" style={{ fontSize: 16, lineHeight: 1.05 }}>{nowAtStage.name}</div>
-          </div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1, opacity: 0.9, whiteSpace: "nowrap" }}>
-            {fmt12(nowAtStage.start)}–{fmt12(nowAtStage.end)}
+            <DuoLive>On stage now</DuoLive>
+            <div className="duo-headline duo-name" style={{ fontWeight: 700, marginTop: 2 }}>{actDisplayName(nowAtStage.name)}</div>
+            <div className="duo-data-s duo-ink2" style={{ marginTop: 2 }}>
+              {fmt12(nowAtStage.start)}–{fmt12(nowAtStage.end)}
+            </div>
           </div>
         </div>
       )}
 
       {/* Full day lineup */}
-      <div style={{ overflowY: "auto", flex: 1, maxHeight: expanded ? "50vh" : 180, paddingBottom: 6 }}>
+      <div style={{ overflowY: "auto", flex: 1, maxHeight: expanded ? "50vh" : 180, paddingBottom: 6, margin: "0 -4px", padding: "0 4px" }}>
         {sets.length === 0 && (
           <div style={{ padding: "20px 0", textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 16, fontStyle: "italic", color: "var(--muted)" }}>
+            <div className="duo-body-s duo-ink2" style={{ fontWeight: 400, fontSize: 15 }}>
               No sets scheduled — stage dark tonight
             </div>
           </div>
@@ -6877,51 +6928,34 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
             setState({ ...state, saved: next });
           };
           return (
-            <div key={s.id} onClick={() => onOpenArtist(s.id)} style={{
-              display: "flex", alignItems: "center", gap: 10,
-              padding: "9px 4px",
-              borderBottom: "1px solid var(--line)",
-              cursor: "pointer",
-              opacity: live ? 1 : 0.92,
-            }}>
-              <div style={{ width: 52, flexShrink: 0 }}>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 0.3, fontWeight: 600, color: live ? stage.color : "var(--ink)" }}>{fmt12(s.start)}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)" }}>{fmt12(s.end)}</div>
+            <div key={s.id} onClick={() => onOpenArtist(s.id)}
+              className={"duo-lrow" + (live ? " live" : isSaved ? " plan" : "")}
+              style={{ cursor: "pointer", margin: 0, paddingLeft: 8 }}>
+              <div style={{ width: 72, flexShrink: 0 }}>
+                <div className="duo-data" style={{ fontSize: 13, color: "var(--ink)" }}>{fmt12(s.start)}</div>
+                <div className="duo-data-s duo-ink2">{fmt12(s.end)}</div>
               </div>
+              <DuoAvatar name={s.name} size={42} ring={live || isSaved ? "on" : ""} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div className="serif" style={{ fontSize: 18, lineHeight: 1.1, letterSpacing: -0.2 }}>{s.name}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                  {s.genre.toUpperCase()}
+                <div className="duo-headline duo-name" style={{ fontWeight: 700 }}>{actDisplayName(s.name)}</div>
+                <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
+                  {live ? <span style={{ color: "var(--live)" }}>Live · </span> : null}{s.genre}
                 </div>
               </div>
-              {live && (
-                <span className="mono" style={{
-                  fontSize: 8, letterSpacing: 1.3, fontWeight: 700,
-                  color: "#fff", background: stage.color,
-                  padding: "2px 6px", borderRadius: 4,
-                }}>LIVE</span>
-              )}
-              <button onClick={toggleSaveSet} aria-pressed={isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} style={{
-                background: isSaved ? "var(--ember)" : "transparent",
-                border: `1px solid ${isSaved ? "var(--ember)" : "var(--line-2)"}`,
-                color: isSaved ? "#fff" : "var(--muted)",
-                borderRadius: 999, width: 28, height: 28,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", flexShrink: 0, fontSize: 13,
-                transition: "all .15s",
-              }}>{isSaved ? "✓" : "+"}</button>
+              <button onClick={toggleSaveSet} aria-pressed={!!isSaved} aria-label={isSaved ? `Remove ${s.name} from saved sets` : `Save ${s.name}`} className="duo-add">
+                <span>{isSaved
+                  ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+                  : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>}</span>
+              </button>
             </div>
           );
         })}
       </div>
 
       {!expanded && sets.length > 3 && (
-        <button onClick={() => setExpanded(true)} style={{
-          marginTop: 4, padding: "8px",
-          background: "transparent", border: "none",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, color: "var(--muted)",
-          cursor: "pointer", fontWeight: 600,
-        }}>SEE ALL {sets.length} SETS ↓</button>
+        <button onClick={() => setExpanded(true)} className="duo-link" style={{ marginTop: 2, padding: "0 4px" }}>
+          See all {sets.length} sets ↓
+        </button>
       )}
       </div>
     </div>
@@ -7060,13 +7094,13 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 50 }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)", animation: "fadeIn .2s" }}/>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(var(--shade-rgb),0.45)", animation: "fadeIn .2s" }}/>
       <div style={{
         position: "absolute", left: 0, right: 0, bottom: 0,
         background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         height: "82%", display: "flex", flexDirection: "column",
-        boxShadow: "0 -14px 36px rgba(0,0,0,0.45)",
+        boxShadow: "0 -14px 36px rgba(var(--shade-rgb),0.45)",
       }}>
         {/* Header */}
         <div style={{
@@ -7075,7 +7109,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
         }}>
           <div style={{
             width: 42, height: 42, borderRadius: 42, background: friend.avatarTone,
-            color: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+            color: "var(--paper)", display: "flex", alignItems: "center", justifyContent: "center",
             fontFamily: "Instrument Serif, serif", fontSize: 20, position: "relative", flexShrink: 0,
           }}>
             {friend.name[0]}
@@ -7117,8 +7151,8 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
         {/* Offline banner */}
         {!navigator.onLine && (
           <div style={{
-            padding: "5px 16px", background: "rgba(232,93,46,0.08)",
-            borderBottom: "1px solid rgba(232,93,46,0.18)",
+            padding: "5px 16px", background: "rgba(var(--signal-rgb),0.08)",
+            borderBottom: "1px solid rgba(var(--signal-rgb),0.18)",
           }}>
             <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--ember-ink)", fontWeight: 700 }}>
               ⚠ OFFLINE · MESSAGES QUEUE & SEND WHEN YOU'RE BACK ONLINE
@@ -7157,7 +7191,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
                     maxWidth: "76%",
                     padding: "8px 12px", borderRadius: 18,
                     background: mine ? "var(--ember)" : "var(--paper-2)",
-                    color: mine ? "#fff" : "var(--ink)",
+                    color: mine ? "var(--ink)" : "var(--ink)",
                     fontSize: 14, lineHeight: 1.35,
                     borderBottomRightRadius: mine ? 6 : 18,
                     borderBottomLeftRadius: mine ? 18 : 6,
@@ -7203,10 +7237,11 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
             const smart = buildSmartReplies({ myStage, friendStage, nextSavedSet });
             const all = [...smart, ...QUICK_REPLIES];
             return all.map((qr, i) => (
-              <button key={`${qr.tag}-${i}`} onClick={() => send(qr.text)} className="mono" style={{
-                flexShrink: 0, padding: "6px 11px", borderRadius: 999,
+              <button key={`${qr.tag}-${i}`} onClick={() => send(qr.text)} className="mono" data-quick-reply={qr.smart ? "smart" : "stock"} style={{
+                flexShrink: 0, maxWidth: "100%", padding: "6px 11px", borderRadius: qr.smart ? 14 : 999,
+                textAlign: "left", overflowWrap: "anywhere",
                 background: qr.smart ? "var(--ember)" : "var(--paper-2)",
-                color: qr.smart ? "#fff" : "var(--ink)",
+                color: qr.smart ? "var(--ink)" : "var(--ink)",
                 border: qr.smart ? "none" : "1px solid var(--line-2)",
                 fontSize: 10, letterSpacing: 1.1, fontWeight: 600,
                 cursor: "pointer", textTransform: "uppercase",
@@ -7240,7 +7275,7 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
           <button onClick={() => send(draft)} disabled={!draft.trim()} aria-label="Send message" style={{
             width: 38, height: 38, borderRadius: 38,
             background: draft.trim() ? "var(--ember)" : "var(--line-2)",
-            color: "#fff", border: "none",
+            color: "var(--ink)", border: "none",
             cursor: draft.trim() ? "pointer" : "default",
             display: "flex", alignItems: "center", justifyContent: "center",
             transition: "background .2s",
@@ -7255,4 +7290,12 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
   );
 }
 
-Object.assign(window, { MapScreen, getMyPingCode, WALK_PAIRS, _pairKey });
+// geometryVerifiedFor is THE predicate for every numeric distance claim, and
+// home.jsx calls it by bare name — export it explicitly rather than relying on
+// the const→var lowering to leave a window prop behind. _geomVerifiedMemo is
+// exported because the verify control flips one entry to prove minutes return
+// when geometry clears; nothing in the app may write to it.
+Object.assign(window, {
+  MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
+  geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
+});

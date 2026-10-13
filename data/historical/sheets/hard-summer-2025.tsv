@@ -1,0 +1,92 @@
+day	stage	start	end	artist	settimeId	timeSource	captureTimestamp
+1	HARD Stage	21:00	22:00	FEID	40904	epoch	20251006215127
+1	HARD Stage	19:05	20:20	Kaytranada	40905	epoch	20251006215127
+1	HARD Stage	17:30	18:45	Marlon Hoffstadt	40906	epoch	20251006215127
+1	HARD Stage	16:40	17:25	Busta Rhymes	42362	epoch	20251006215127
+1	HARD Stage	15:05	16:35	Torren Foot B2B Airwolf Paradise	40908	epoch	20251006215127
+1	HARD Stage	14:00	15:05	Ladies of Leisure	42363	epoch	20251006215127
+1	HARDER Stage	20:45	22:00	Sara Landry	40937	epoch	20251006215127
+1	HARDER Stage	19:30	20:45	Gordo	40910	epoch	20251006215127
+1	HARDER Stage	18:15	19:30	Walker & Royce B2B VNSSA	40912	epoch	20251006215127
+1	HARDER Stage	17:00	18:15	Habstrakt B2B JSTJR	40913	epoch	20251006215127
+1	HARDER Stage	16:00	17:00	BOLO	40909	epoch	20251006215127
+1	HARDER Stage	15:00	16:00	pluko	40914	epoch	20251006215127
+1	HARDER Stage	14:00	15:00	Ivarr	40915	epoch	20251006215127
+1	Green Stage	21:00	22:00	Crankdat	40916	epoch	20251006215127
+1	Green Stage	20:00	21:00	Tape B B2B Mersiv	40917	epoch	20251006215127
+1	Green Stage	19:00	20:00	Peekaboo	40918	epoch	20251006215127
+1	Green Stage	18:00	19:00	Bou	40919	epoch	20251006215127
+1	Green Stage	17:00	18:00	Hybrid Minds	40920	epoch	20251006215127
+1	Green Stage	16:00	17:00	Viperactive	40921	epoch	20251006215127
+1	Green Stage	15:00	16:00	YDG	40922	epoch	20251006215127
+1	Green Stage	14:00	15:00	STVSH	40923	epoch	20251006215127
+1	Purple Stage	20:50	22:00	MALUGI	40924	epoch	20251006215127
+1	Purple Stage	19:30	20:30	Floating Points Live	40925	epoch	20251006215127
+1	Purple Stage	18:00	19:10	Funk Tribu	40927	epoch	20251006215127
+1	Purple Stage	17:00	18:00	Overmono (DJ Set)	40926	epoch	20251006215127
+1	Purple Stage	16:00	17:00	Alex Chapman + Zoe Gitter	40928	epoch	20251006215127
+1	Purple Stage	15:00	16:00	Villager	40929	epoch	20251006215127
+1	Purple Stage	14:00	15:00	Dara Genesis	40930	epoch	20251006215127
+1	Pink Stage	20:30	22:00	Sosa	40931	epoch	20251006215127
+1	Pink Stage	19:00	20:30	Loco Dice	40932	epoch	20251006215127
+1	Pink Stage	17:45	19:00	The Blessed Madonna	40933	epoch	20251006215127
+1	Pink Stage	16:30	17:45	Blackchild	40934	epoch	20251006215127
+1	Pink Stage	15:15	16:30	Cromby	40935	epoch	20251006215127
+1	Pink Stage	14:00	15:15	Annicka	40936	epoch	20251006215127
+1	Beatbox Boombox Art Car	20:30	22:00	Athena	43608	epoch	20251006215127
+1	Beatbox Boombox Art Car	19:30	20:30	Habstrakt	43609	epoch	20251006215127
+1	Beatbox Boombox Art Car	18:00	19:30	Kittamami	43610	epoch	20251006215127
+1	Beatbox Boombox Art Car	16:30	18:00	Sosh & Mosh	43611	epoch	20251006215127
+1	Beatbox Boombox Art Car	15:00	16:30	Mark Lizaola	43612	epoch	20251006215127
+1	Beatbox Boombox Art Car	14:00	15:00	Eejay	43613	epoch	20251006215127
+1	Locals Only Ice Cream Truck	20:30	22:00	John Bryars	43620	epoch	20251006215127
+1	Locals Only Ice Cream Truck	19:00	20:30	Stoneypie	43622	epoch	20251006215127
+1	Locals Only Ice Cream Truck	17:30	19:00	Marie Nyx	43623	epoch	20251006215127
+1	Locals Only Ice Cream Truck	16:00	17:30	BB Shaine	43624	epoch	20251006215127
+1	Locals Only Ice Cream Truck	15:00	16:00	Hannah Monica	43625	epoch	20251006215127
+1	Locals Only Ice Cream Truck	14:00	15:00	DJ Naté	43626	epoch	20251006215127
+2	HARD Stage	20:20	22:00	Dom Dolla	40938	epoch	20251008010611
+2	HARD Stage	18:15	19:45	Four Tet	40939	epoch	20251008010611
+2	HARD Stage	17:00	18:15	Barry Can't Swim	42360	epoch	20251008010611
+2	HARD Stage	16:00	17:00	Riordan	40940	epoch	20251008010611
+2	HARD Stage	15:00	16:00	Linska	40941	epoch	20251008010611
+2	HARD Stage	14:00	15:00	Trace	40942	epoch	20251008010611
+2	HARDER Stage	21:00	22:00	Deorro	40943	epoch	20251008010611
+2	HARDER Stage	20:00	20:45	JUVENILE & The 400 Degreez Band	40944	epoch	20251008010611
+2	HARDER Stage	18:30	19:45	James Hype	40945	epoch	20251008010611
+2	HARDER Stage	17:15	18:30	it's murph	40946	epoch	20251008010611
+2	HARDER Stage	16:00	17:15	D.O.D	40947	epoch	20251008010611
+2	HARDER Stage	15:00	16:00	Daniel Allan	40948	epoch	20251008010611
+2	HARDER Stage	14:00	15:00	AIMMIA	40949	epoch	20251008010611
+2	Green Stage	21:00	22:00	Nico Moreno	40950	epoch	20251008010611
+2	Green Stage	20:00	21:00	999999999	40951	epoch	20251008010611
+2	Green Stage	19:00	20:00	I Hate Models	40952	epoch	20251008010611
+2	Green Stage	18:00	19:00	Alignment	40953	epoch	20251008010611
+2	Green Stage	17:00	18:00	Narciss	40954	epoch	20251008010611
+2	Green Stage	16:00	17:00	ØTTA	40955	epoch	20251008010611
+2	Green Stage	15:00	16:00	OZA	43169	epoch	20251008010611
+2	Green Stage	14:00	15:00	fun2bjane	40956	epoch	20251008010611
+2	Purple Stage	20:49	22:00	Gesaffelstein	40957	epoch	20251008010611
+2	Purple Stage	18:30	20:04	KI/KI B2B DJ Gigola	40958	epoch	20251008010611
+2	Purple Stage	17:30	18:30	MPH	40959	epoch	20251008010611
+2	Purple Stage	16:35	17:25	Fcukers	42361	epoch	20251008010611
+2	Purple Stage	15:15	16:30	Player Dave	40960	epoch	20251008010611
+2	Purple Stage	14:00	15:15	BRUX	40961	epoch	20251008010611
+2	Pink Stage	20:30	22:00	Adam Ten B2B Mita Gami	40962	epoch	20251008010611
+2	Pink Stage	19:05	20:30	Ben Sterling	40963	epoch	20251008010611
+2	Pink Stage	17:40	19:05	Prospa	40964	epoch	20251008010611
+2	Pink Stage	16:15	17:40	KILIMANJARO B2B Melé	40965	epoch	20251008010611
+2	Pink Stage	15:00	16:15	Yamagucci	40966	epoch	20251008010611
+2	Pink Stage	14:00	15:00	Trax Unit	40967	epoch	20251008010611
+2	Beatbox Boombox Art Car	20:30	22:00	Shay Elys	43614	epoch	20251008010611
+2	Beatbox Boombox Art Car	19:00	20:30	Hu Dat	43615	epoch	20251008010611
+2	Beatbox Boombox Art Car	17:30	19:00	Nebula	43616	epoch	20251008010611
+2	Beatbox Boombox Art Car	16:00	17:30	John Liwag	43617	epoch	20251008010611
+2	Beatbox Boombox Art Car	15:00	16:00	Shaking	43618	epoch	20251008010611
+2	Beatbox Boombox Art Car	14:00	15:00	Meezu	43619	epoch	20251008010611
+2	Locals Only Ice Cream Truck	20:30	22:00	Cquestt	43627	epoch	20251008010611
+2	Locals Only Ice Cream Truck	19:00	20:30	Chrysalis	43628	epoch	20251008010611
+2	Locals Only Ice Cream Truck	17:30	19:00	DJ Warning	43629	epoch	20251008010611
+2	Locals Only Ice Cream Truck	16:00	17:30	Coldsweat	43630	epoch	20251008010611
+2	Locals Only Ice Cream Truck	15:00	16:00	Trussie	43631	epoch	20251008010611
+2	Locals Only Ice Cream Truck	14:00	15:00	Joey G	43632	epoch	20251008010611

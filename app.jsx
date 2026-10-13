@@ -42,197 +42,233 @@ function VfxParticleField({ count = 14, scale = 1 }) {
   );
 }
 
-function OnboardingModal({ onDone, setState, state }) {
-  const [step, setStep] = React.useState(0);
-  const [name, setName] = React.useState(() => {
-    try { return localStorage.getItem("user_name") || ""; } catch { return ""; }
-  });
-  const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
+// ── Field Mode onboarding ─────────────────────────────────────────
+// Three pages that show the product with the festival's REAL lineup (no
+// invented stats or placeholder art), then the festival list. No permission
+// prompts here: name, Spotify and reminders are asked when the user opens
+// Personalize (Home's setup notice, Me), each with one sentence of why.
+function _onbHeadliners(n) {
+  const lineup = (typeof activeLineup === "function" ? activeLineup() : ARTISTS) || [];
+  return [...lineup]
+    .sort((a, b) => (b.tier || 0) - (a.tier || 0) || (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .slice(0, n);
+}
 
-  const finish = () => {
+function OnbSchedulePreview() {
+  const rows = _onbHeadliners(4)
+    .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)))
+    .slice(0, 3);
+  // The Lineup list row as it now looks: mono time, face, name over stage,
+  // the circled add (filled on the first: on your plan).
+  return (
+    <div className="duo-card" style={{ padding: "6px 12px" }}>
+      {rows.map((a, i) => {
+        const st = STAGES.find(s => s.id === a.stage);
+        const on = i === 0;
+        return (
+          <div key={a.id} className={`duo-lrow${on ? " plan" : ""}`} style={{ margin: "2px -4px", paddingLeft: 8 }}>
+            <div className={`duo-data${on ? "" : " duo-ink2"}`} style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>{fmt12(a.start)}</div>
+            <DuoAvatar name={a.name} size={42} ring={on ? "on" : ""} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div className="duo-headline duo-name" style={{ fontWeight: 700 }}>{a.name}</div>
+              <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{FESTIVAL_CONFIG.dayDates?.[a.day]?.name || ""}{st ? ` · ${st.name}` : ""}</div>
+            </div>
+            <span className="duo-add" aria-hidden="true" {...(on ? { "aria-pressed": "true" } : {})} style={{ color: on ? "var(--on-acc)" : "var(--ink-2)" }}>
+              <span style={on ? { background: "var(--acc)", boxShadow: "0 6px 16px -8px var(--acc-55)" } : undefined}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  {on ? <path d="M5 12.5 L10 17.5 L19 7"/> : <path d="M12 5 V19 M5 12 H19"/>}
+                </svg>
+              </span>
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// The real hero-card renderer, so onboarding shows exactly what a user keeps.
+function OnbCardPreview({ artists, count = 1 }) {
+  const [urls, setUrls] = React.useState([]);
+  React.useEffect(() => {
+    let live = true; const made = [];
+    (async () => {
+      for (const a of artists.slice(0, count)) {
+        let c = null;
+        try { c = typeof _renderHeroCard === "function" ? await _renderHeroCard(a) : null; } catch {}
+        if (!live || !c) continue;
+        const blob = await new Promise(r => c.toBlob(r, "image/png"));
+        if (!live || !blob) continue;
+        const u = URL.createObjectURL(blob);
+        made.push(u);
+        setUrls(prev => [...prev, u]);
+      }
+    })();
+    return () => { live = false; made.forEach(u => { try { URL.revokeObjectURL(u); } catch {} }); };
+  }, []);
+  return (
+    <div style={{ display: "flex", justifyContent: "center", gap: 8 }}>
+      {artists.slice(0, count).map((a, i) => (
+        <div key={a.id} style={{ width: count === 1 ? "72%" : "31%", aspectRatio: "4 / 5", borderRadius: 14, overflow: "hidden", background: "var(--paper-2)" }}>
+          {urls[i] && <img src={urls[i]} alt={`${a.name} set card`} style={{ width: "100%", height: "100%", display: "block" }} />}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function OnboardingModal({ onDone, setState, state }) {
+  // 0-2 are the story, 3 is the festival list. Clamped: a double tap must
+  // never run past the last page (the old wizard blanked that way).
+  const [page, setPage] = React.useState(0);
+  const [q, setQ] = React.useState("");
+  const heads = React.useMemo(() => _onbHeadliners(3), []);
+  // Picking a festival here IS entering it. Both halves of that were broken:
+  // a DIFFERENT festival reloaded without the landing sentinel, so the boot
+  // after the reload saw a bare URL and routed to the chooser; and the SAME
+  // festival called onDone() over a state whose tab was already "landing"
+  // (a first launch has no deep link), so dismissing the modal revealed the
+  // chooser too. Either way the user picked a festival and got asked again.
+  const finish = (festId) => {
+    try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
+    if (festId && festId !== FESTIVAL_CONFIG.id) {
+      try { sessionStorage.setItem("plursky_landing_entered", festId); } catch {}
+      setActiveFestivalAndReload(festId);
+      return;
+    }
+    setState(s => ({ ...s, tab: "home", artist: null }));
+    onDone();
+  };
+  const PAGES = [
+    { title: "Plan the night.", body: "Save the sets you want and see what’s on now, next and at every stage.", preview: <OnbSchedulePreview /> },
+    { title: "Know what you caught.", body: "Your photos and clips land on the artist, stage and time they happened.", preview: <OnbCardPreview artists={heads} count={1} /> },
+    { title: "Keep the weekend.", body: "Every set you catch becomes a card for your recap.", preview: <OnbCardPreview artists={heads} count={3} />,
+      plus: "keeps the full weekend in 1080p — no watermark, cloud backup, offline maps." },
+  ];
+  const story = page < 3;
+  const cur = PAGES[Math.min(page, 2)];
+  const term = q.trim().toLowerCase();
+  const now = Date.now();
+  const list = FESTIVALS_REGISTRY
+    .filter(f => (f.config.endMs || 0) >= now)
+    .sort((a, b) => (a.config.startMs || 0) - (b.config.startMs || 0))
+    .filter(f => !term || `${f.config.name} ${f.config.location}`.toLowerCase().includes(term));
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Welcome to Plursky" style={{
+      position: "absolute", inset: 0, zIndex: 100, background: "var(--paper)", color: "var(--ink)",
+      display: "flex", flexDirection: "column",
+      paddingTop: "var(--top-pad, 0px)", paddingBottom: "env(safe-area-inset-bottom, 0px)",
+      animation: "fadeIn .25s",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: 52, padding: "0 8px 0 20px" }}>
+        <span className={story ? "duo-data-s duo-ink2" : "duo-label duo-ink3"}>{story ? `${page + 1} / 3` : "Almost there"}</span>
+        {story && <button onClick={() => setPage(3)} style={{ ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>Skip</button>}
+      </div>
+      {story ? (
+        <>
+          <div key={page} style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "8px 20px 0", display: "flex", flexDirection: "column", justifyContent: "center", animation: "fadeIn .2s" }}>
+            {cur.preview}
+          </div>
+          <div style={{ padding: "24px 20px 16px" }}>
+            <h1 style={{ margin: 0, font: "800 34px/1.15 var(--f-ui)", letterSpacing: "-0.03em" }}>{cur.title}</h1>
+            <p className="duo-body duo-ink2" style={{ margin: cur.plus ? "10px 0 12px" : "10px 0 24px" }}>{cur.body}</p>
+            {/* One line, no price and no button: the free app is complete, this
+                only says what Plursky+ adds. */}
+            {cur.plus && (
+              <p style={{ margin: "0 0 24px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                <span style={{ color: "var(--acc-ink)", fontWeight: 650 }}>Plursky+</span> {cur.plus}
+              </p>
+            )}
+            <FieldButton onClick={() => setPage(p => Math.min(p + 1, 3))}>{page < 2 ? "Continue" : "Choose your festival"}</FieldButton>
+          </div>
+        </>
+      ) : (
+        <>
+          <div style={{ padding: "0 20px 8px" }}>
+            <h1 className="duo-title" style={{ margin: "0 0 12px" }}>Where are you raving?</h1>
+            <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search festivals" aria-label="Search festivals" className="duo-input" style={{ padding: "0 16px" }} />
+          </div>
+          <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "0 20px" }}>
+            {list.map(f => {
+              const isActive = f.config.id === FESTIVAL_CONFIG.id;
+              // Same entitlement policy as the landing and the switcher: a
+              // Plus subscriber reinstalling the app can still pick the
+              // early-access festival they paid for. It does NOT open the
+              // offer sheet for everyone else — a paywall inside first-run is
+              // a product call Jake has not made, and the free app is meant to
+              // feel complete. The row says what it needs instead.
+              const locked = typeof landingCanEnter === "function"
+                ? !landingCanEnter(f, Date.now(), !!window._isPlusSub?.())
+                : !f.available;
+              return (
+                <button key={f.config.id} disabled={locked} onClick={() => finish(f.config.id)} style={{
+                  width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 72, padding: "8px 0",
+                  background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
+                  color: "var(--ink)", textAlign: "left", fontFamily: "inherit",
+                  cursor: locked ? "default" : "pointer", opacity: locked ? 0.55 : 1,
+                }}>
+                  <FestivalThumb entry={f} />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="duo-headline">{f.config.name}</div>
+                    <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{f.config.location} · {f.config.dates}</div>
+                    {(isActive || locked) && (
+                      <div style={{ marginTop: 2, font: "650 13px/1.385 var(--f-ui)", color: isActive ? "var(--acc-ink)" : "var(--ink-2)" }}>
+                        {isActive ? "Selected" : f.previewOnly ? (locked ? "Early access · Plursky+" : "Early access") : "Soon"}
+                      </div>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+            {!list.length && <p style={{ padding: "24px 0", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>No festival by that name yet.</p>}
+          </div>
+          <div style={{ padding: "12px 20px 16px" }}>
+            <FieldButton onClick={() => finish(null)}>Continue with {FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name}</FieldButton>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+// Personalize: name, Spotify and reminders, each asked with one sentence of
+// why, only when the user opens it. Closing saves the name.
+function PersonalizeSheet({ state, onClose }) {
+  const [name, setName] = React.useState(() => { try { return localStorage.getItem("user_name") || ""; } catch { return ""; } });
+  const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
+  const save = () => {
     try {
-      localStorage.setItem("onboarded", ONBOARD_VERSION);
       if (name.trim()) {
         localStorage.setItem("user_name", name.trim());
         localStorage.setItem("plursky_display_name", name.trim());
       }
     } catch {}
-    onDone();
+    // Screens that are already mounted (Me) hold the name in state; tell them.
+    if (name.trim()) window.dispatchEvent(new CustomEvent("plursky:display-name", { detail: name.trim() }));
+    onClose();
   };
-  // Clamped, and the clamp is load-bearing. `next` used to be `s => s + 1`
-  // with no ceiling, and `cur = STEPS[step]` right below has no fallback,
-  // so any input that landed two `next` calls in one React batch — a fast
-  // double-tap on CONTINUE, a touch that emits a duplicate click — ran off
-  // the end of STEPS and threw on `cur.kicker`. The modal blanked with no
-  // way forward and `onboarded` was never written, so it came back on every
-  // launch. Caught 2026-09-06 driving onboarding headlessly. STEPS is
-  // declared below this line, which is fine: `next` only reads it at click
-  // time, never at eval time.
-  const next = () => setStep(s => Math.min(s + 1, STEPS.length - 1));
-
-  const STEPS = [
-    {
-      kicker: "WELCOME",
-      title: <>Welcome to <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>Plursky</span></>,
-      body: `${ARTISTS.length} artists across ${STAGES.length} stages. Live map, walking ETAs, conflict detection, crew meetups, and set reminders — all offline. Built for ${FESTIVAL_CONFIG.name || "the festival"}.`,
-      preview: (
-        <>
-          {/* VFX hero showcase — 3-second animated preview of the festival atmosphere */}
-          <div style={{
-            margin: "12px -22px 0", borderRadius: 14, overflow: "hidden",
-            height: 120, position: "relative",
-            background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
-          }}>
-            <VfxParticleField count={14} />
-            <div style={{
-              position: "absolute", bottom: 0, left: 0, right: 0,
-              background: "linear-gradient(0deg, rgba(26,16,48,0.9) 0%, transparent 100%)",
-              padding: "24px 16px 10px",
-            }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.8, color: "var(--ember-ink)", fontWeight: 800 }}>
-                SEE WHAT PLURSKY LOOKS LIKE AT THE FESTIVAL
-              </div>
-            </div>
-          </div>
-          {/* Stage chips */}
-          <div style={{
-            display: "flex", gap: 6, overflowX: "auto", margin: "10px -22px 0", padding: "0 22px",
-            scrollbarWidth: "none",
-          }}>
-            {STAGES.slice(0, 5).map(s => (
-              <div key={s.id} style={{
-                flexShrink: 0, width: 80, padding: "8px 6px",
-                background: `${s.color}14`, border: `1px solid ${s.color}44`,
-                borderRadius: 10, textAlign: "center",
-              }}>
-                <div style={{
-                  width: 28, height: 28, borderRadius: 28, background: s.color,
-                  margin: "0 auto 6px", display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: `0 0 12px ${s.color}44`,
-                }}>
-                  <span style={{ fontSize: 10, color: "#fff", fontWeight: 800 }}>{activeLineup().filter(a => a.stage === s.id).length}</span>
-                </div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 700 }}>{s.short}</div>
-              </div>
-            ))}
-          </div>
-        </>
-      ),
-      input: (
-        <input
-          type="text"
-          placeholder="What should we call you?"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          autoFocus
-          style={{
-            width: "100%", padding: "12px 14px", marginTop: 12,
-            background: "var(--paper-2)", border: "1px solid var(--line-2)",
-            borderRadius: 12, fontFamily: "Geist, sans-serif", fontSize: 14,
-            color: "var(--ink)", outline: "none",
-          }}/>
-      ),
-      cta: { label: name.trim() ? `CONTINUE AS ${name.trim().toUpperCase()}` : "CONTINUE", onClick: next },
-    },
-    {
-      kicker: "STEP 2 OF 3",
-      title: <>Match the <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>lineup</span> to your Spotify</>,
-      body: `Connect Spotify and we'll mark every artist you already love across all ${ARTISTS.length} sets, plus surface deep-cut discoveries you don't know yet.`,
-      cta: state.spotifyConnected
-        ? { label: "✓ ALREADY CONNECTED — CONTINUE", onClick: next }
-        : { label: "CONNECT SPOTIFY", onClick: () => startSpotifyAuth() },
-      skip: { label: "SKIP", onClick: next },
-    },
-    {
-      kicker: "STEP 3 OF 3",
-      title: <>Reminders before each <span style={{ fontStyle: "italic", color: "var(--ember-ink)" }}>set</span></>,
-      body: notifSupported
-        ? `Get a push 15 minutes before any saved set starts — including the sunrise sets at ${STAGES.find(s => s.id === FESTIVAL_CONFIG.mainStageId)?.name || "the main stage"}. We don't track you, no account needed.`
-        : "Push notifications aren't supported in this browser. You can still set custom alarms from the Lineup page.",
-      cta: !notifSupported
-        ? { label: "GOT IT", onClick: finish }
-        : notifPerm === "granted"
-          ? { label: "✓ ENABLED — FINISH", onClick: finish }
-          : { label: "ENABLE NOTIFICATIONS", onClick: async () => { await enableNotifs(); finish(); } },
-      skip: notifSupported && notifPerm !== "granted" ? { label: "MAYBE LATER", onClick: finish } : null,
-    },
-  ];
-
-  const cur = STEPS[step];
-
+  const title = { fontSize: 17, lineHeight: "22px", fontWeight: 600 };
+  const why = { margin: "2px 0 12px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" };
+  const rule = <div style={{ height: 1, background: "var(--line)", margin: "20px 0" }} />;
+  const done = (text) => <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600, color: "var(--signal-ink)" }}>✓ {text}</div>;
   return (
-    <div style={{
-      position: "absolute", inset: 0, zIndex: 100,
-      // OPAQUE, not a scrim. This was rgba(13,8,4,0.55) + backdropFilter
-      // blur(6px), which meant the first thing a new user ever saw was the
-      // map screen smeared behind frosted glass — festival art rendered as
-      // an artifact of not having dismissed a sheet yet. A blur does not
-      // hide the map, it advertises it badly. Same gradient as the step-1
-      // hero, so the backdrop and the hero read as one surface.
-      background: "linear-gradient(160deg, #1a1030 0%, #2a1a3d 50%, #1a120d 100%)",
-      display: "flex", alignItems: "flex-end", animation: "fadeIn .25s",
-      overflow: "hidden",
-    }}>
-      {/* Same particle field as the hero, sparser and larger for full-bleed. */}
-      <VfxParticleField count={18} scale={1.6} />
-      <div style={{
-        background: "var(--paper)", color: "var(--ink)",
-        borderTopLeftRadius: 26, borderTopRightRadius: 26,
-        width: "100%", padding: "16px 22px 26px",
-        boxShadow: "0 -16px 50px rgba(0,0,0,0.4)",
-        // The particle field is absolutely positioned, so a STATIC sheet
-        // would paint underneath it — positioned elements win the paint
-        // order regardless of source order. Make the sheet positioned too.
-        position: "relative", zIndex: 1,
-      }}>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
-          <div style={{ width: 38, height: 4, borderRadius: 4, background: "var(--line-2)" }}/>
-        </div>
-
-        {/* Step indicator */}
-        <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-          {STEPS.map((_, i) => (
-            <div key={i} style={{
-              flex: 1, height: 3, borderRadius: 3,
-              background: i <= step ? "var(--ember)" : "var(--line)",
-              transition: "background .2s",
-            }}/>
-          ))}
-        </div>
-
-        <div key={step} style={{ animation: "slideUp 0.25s ease-out" }}>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", marginBottom: 6, fontWeight: 600 }}>
-          {cur.kicker}
-        </div>
-        <div className="serif" style={{ fontSize: 32, lineHeight: 1.05, letterSpacing: -0.4, marginBottom: 12 }}>
-          {cur.title}
-        </div>
-        <div style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.5, marginBottom: 18 }}>
-          {cur.body}
-        </div>
-
-        {cur.preview}
-        {cur.input}
-
-        <div style={{ display: "grid", gap: 8, marginTop: 18 }}>
-          <button onClick={cur.cta.onClick} style={{
-            background: "var(--ink)", color: "var(--paper)", border: "none",
-            borderRadius: 999, padding: "13px 18px",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-            cursor: "pointer",
-          }}>{cur.cta.label}</button>
-          {cur.skip && (
-            <button onClick={cur.skip.onClick} style={{
-              background: "transparent", color: "var(--muted)", border: "none",
-              padding: "8px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-              cursor: "pointer",
-            }}>{cur.skip.label}</button>
-          )}
-        </div>
-        </div>{/* close step animation wrapper */}
-      </div>
-    </div>
+    <FieldSheet title="Personalize Plursky" onClose={save}>
+      <label htmlFor="plursky-name" style={{ display: "block", ...title }}>Your name</label>
+      <p style={why}>Shown on your Me tab.</p>
+      <input id="plursky-name" value={name} onChange={e => setName(e.target.value)} placeholder="What should we call you?" autoComplete="nickname" style={{
+        width: "100%", height: 44, borderRadius: 14, border: "none", background: "var(--paper-2)",
+        color: "var(--ink)", padding: "0 16px", fontSize: 16, outline: "none", fontFamily: "inherit",
+      }} />
+      {rule}
+      <div style={title}>Spotify</div>
+      <p style={why}>Marks the artists you already love across the lineup.</p>
+      {state.spotifyConnected ? done("Connected") : <FieldButton kind="secondary" onClick={() => startSpotifyAuth()}>Connect Spotify</FieldButton>}
+      {rule}
+      <div style={title}>Set reminders</div>
+      <p style={why}>{notifSupported ? "A heads-up 15 minutes before each saved set starts." : "This browser can’t send notifications. You can still set alarms from the Lineup."}</p>
+      {notifSupported && (notifPerm === "granted" ? done("On") : <FieldButton kind="secondary" onClick={() => enableNotifs()}>Turn on reminders</FieldButton>)}
+      <FieldButton onClick={save} style={{ marginTop: 24 }}>Done</FieldButton>
+    </FieldSheet>
   );
 }
 
@@ -275,7 +311,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
       a.name.toLowerCase().includes(query) ||
       a.genre.toLowerCase().includes(query) ||
       (stage?.name || "").toLowerCase().includes(query) ||
-      (stage?.short || "").toLowerCase().includes(query) ||
+      (stage?.short || "").toLowerCase().includes(query) || (stage?.code || "").toLowerCase().includes(query) ||
       (stage?.vibe || "").toLowerCase().includes(query) ||
       (["legend","legendary","sunrise","b2b"].includes(query) && isLegendary(a))
     );
@@ -376,7 +412,7 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                       borderBottom: "1px solid var(--line)", background: "transparent",
                       cursor: "pointer", textAlign: "left", alignItems: "center",
                     }}>
-                      <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color, boxShadow: `0 0 5px ${st?.color}66`, flexShrink: 0 }}/>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, lineHeight: 1.1, color: "var(--ink)" }}>{a.name}</div>
                         <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 2 }}>
@@ -419,15 +455,15 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
                   alignItems: "center", border: "none", borderBottom: "1px solid var(--line)",
                   animation: ri < 12 ? `springIn 0.3s ease-out ${ri * 30}ms both` : undefined,
                 }}>
-                  <div style={{ width: 4, alignSelf: "stretch", background: stage?.color || "#8a8580", borderRadius: 3, flexShrink: 0 }} />
+                  <div style={{ width: 4, alignSelf: "stretch", background: "var(--line-2)", borderRadius: 3, flexShrink: 0 }} />
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
                       <span className="serif" style={{ fontSize: 20, lineHeight: 1.05, letterSpacing: -0.2 }}>{a.name}</span>
-                      {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "#fbbf24", fontWeight: 800 }}>★ DON'T MISS</span>}
+                      {leg && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 800 }}>★ DON'T MISS</span>}
                     </div>
                     <div style={{ display: "flex", gap: 5, marginTop: 2, alignItems: "center" }}>
-                      <span style={{ width: 6, height: 6, borderRadius: 6, background: stage.color, boxShadow: `0 0 5px ${stage.color}66`, flexShrink: 0 }}/>
-                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
+                      <span style={{ width: 6, height: 6, borderRadius: 6, background: "var(--text-3)", flexShrink: 0 }}/>
+                      <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--text-2)", fontWeight: 600, textTransform: "uppercase" }}>{stage.short}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
                       <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{DAY_LABEL[a.day]} {fmt12(a.start)}–{fmt12(a.end)}</span>
                       <span style={{ color: "var(--muted)" }}>·</span>
@@ -451,19 +487,32 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
 // Used by save/unsave heart-tap and other quick confirmations.
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
+  // Deferred toasts (nudges, not results) wait here while another toast is on
+  // screen instead of replacing it. Every toast used to replace the current
+  // one at once, and the one-time cloud nudge landed ~80 ms after an import
+  // result ("Imported 1 · 1 failed"), wiping it before anyone could read it.
+  const queue = React.useRef([]), showing = React.useRef(false);
   React.useEffect(() => {
-    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration }.
+    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer }.
     // Text-only calls keep the old 1600ms quick-confirm behaviour; passing an
-    // action turns it into an actionable toast (e.g. a 3s UNDO).
+    // action turns it into an actionable toast (e.g. a 3s UNDO). `defer`
+    // queues the toast behind whatever is showing.
     window.plurskyToast = (text, opts = {}) => {
-      setMsg(null);
-      requestAnimationFrame(() => setMsg({ text, id: Date.now(), ...opts }));
+      if (opts.defer && showing.current) { queue.current.push({ text, ...opts }); return; }
+      showing.current = true;
+      // A fresh id re-keys the pill, which restarts its fade-in.
+      setMsg({ text, id: Date.now() + Math.random(), ...opts });
       try { navigator.vibrate?.(15); } catch {}
     };
     return () => { delete window.plurskyToast; };
   }, []);
   React.useEffect(() => {
-    if (!msg) return;
+    if (!msg) {
+      const next = queue.current.shift();
+      if (next) { showing.current = true; setMsg({ ...next, id: Date.now() + Math.random() }); }
+      else showing.current = false;
+      return;
+    }
     const t = setTimeout(() => setMsg(null), msg.duration || 1600);
     return () => clearTimeout(t);
   }, [msg?.id]);
@@ -474,20 +523,21 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      <div className="mono" role="status" aria-live="polite" style={{
-        background: "var(--ink)", color: "var(--paper)",
-        padding: hasAction ? "7px 7px 7px 16px" : "9px 16px", borderRadius: 999,
-        fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-        boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
-        animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: "100%",
+      // Board toast: an elevated card in SF that WRAPS. The old one-line
+      // pill ellipsised every long message ("No photos received — pick a
+      // few at a time; if they're in iCloud…" lost its instruction).
+      <div key={msg.id} role="status" aria-live="polite" style={{
+        background: "var(--s1)", color: "var(--ink)",
+        padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
+        font: "500 14px/1.36 var(--f-ui)",
+        boxShadow: "var(--e2)",
+        animation: "fadeIn .15s", display: "flex", alignItems: "center", gap: 12, maxWidth: 440,
         pointerEvents: hasAction ? "auto" : "none",
       }}>
-        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{msg.text}</span>
+        <span style={{ minWidth: 0, overflowWrap: "anywhere" }}>{msg.text}</span>
         {hasAction && (
-          <button onClick={() => { try { msg.onAction(); } catch {} setMsg(null); }} className="mono" style={{
-            flexShrink: 0, background: "var(--paper)", color: "var(--ink)", border: "none",
-            borderRadius: 999, padding: "6px 13px", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
+          <button onClick={() => { try { msg.onAction(); } catch {} setMsg(null); }} className="duo-link" style={{
+            flexShrink: 0, padding: "0 10px",
           }}>{msg.actionLabel}</button>
         )}
       </div>
@@ -507,29 +557,21 @@ function App() {
     catch { return false; }
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
+  const [personalizeOpen, setPersonalizeOpen] = React.useState(false);
   // True while any full-screen overlay is mounted. The search FAB below hides
   // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
   const modalOpen = useModalOpen();
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
-    return () => { delete window.plurskyOpenOnboarding; };
+    window.plurskyOpenPersonalize = () => setPersonalizeOpen(true);
+    window.plurskyOpenSearch = () => setSearchOpen(true);
+    return () => { delete window.plurskyOpenOnboarding; delete window.plurskyOpenPersonalize; delete window.plurskyOpenSearch; };
   }, []);
   // Drain the outbox (queued crew messages from offline moments) on mount,
   // on reconnect, and every 30s. Idempotent — safe to call once at startup.
   React.useEffect(() => {
     try { sbOutboxInit?.(); } catch {}
   }, []);
-  // Night-aware theme — shifts palette with the sky during the festival, unless
-  // the user has pinned LIGHT or DARK. The resolver and the pref both live in
-  // chrome.jsx (see resolveThemeClass / useThemeMode); this effect only owns the
-  // recompute cadence, so AUTO still crosses 20:00 without a reload. Re-runs on
-  // themeMode so tapping the segmented control repaints immediately.
-  const { mode: themeMode } = useThemeMode();
-  React.useEffect(() => {
-    applyThemeClass();
-    const id = setInterval(applyThemeClass, 60000);
-    return () => clearInterval(id);
-  }, [themeMode]);
   // Native Spotify OAuth handoff (v196). When the user finishes the
   // SafariViewController flow, the appUrlOpen listener in spotify.jsx
   // exchanges the code for a token and dispatches this event. Mirror it
@@ -575,9 +617,21 @@ function App() {
     //   3. strip the param BEFORE reloading, so even if 1 or 2 ever regress a
     //      reload cannot re-trigger this.
     const dlFest = params.get("f") || params.get("festival");
+    // Set when this load is on its way OUT via a festival switch. location
+    // .reload() does NOT stop execution — the rest of this initializer still
+    // runs — so anything that CONSUMES one-shot state has to skip itself here
+    // or the reload arrives to find it already spent.
+    let switchingFestival = false;
+    // Whether ?f= named a festival this load can actually show. A gated or
+    // unknown id is not a destination: it must not route to the PREVIOUS
+    // festival's Home, which is what counting the raw param did.
+    let dlFestOk = false;
     if (dlFest && typeof FESTIVALS_REGISTRY !== "undefined") {
       const fEntry = FESTIVALS_REGISTRY.find(f => f.config.id === dlFest);
-      const canSwitch = !!fEntry && (fEntry.available || (fEntry.previewOnly && window._isPlusSub?.()));
+      // The resolver's own predicate: a switch it would throw away on reload
+      // is exactly the "lands on an unrelated festival" bug.
+      const canSwitch = !!fEntry && festivalCanBeActive(fEntry);
+      dlFestOk = canSwitch;
       if (canSwitch && dlFest !== FESTIVAL_CONFIG.id) {
         try {
           const u = new URL(window.location.href);
@@ -590,6 +644,12 @@ function App() {
           }
           window.history.replaceState({}, "", u.toString());
         } catch {}
+        // The reload that follows has no ?f= left in the URL, so without this
+        // the next boot would see "no deep link" and show General Home — the
+        // user asked for a named festival and would land on the chooser.
+        // Same sentinel the General Landing uses when you tap a festival.
+        try { sessionStorage.setItem("plursky_landing_entered", dlFest); } catch {}
+        switchingFestival = true;
         setActiveFestivalAndReload(dlFest);
       }
     }
@@ -602,8 +662,13 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories"].includes(dlTab) ? dlTab : null;
-    const validStage  = dlStage && STAGES.find(s => s.id === dlStage || s.short.toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
+    // shape is checked here; HistoricalEditionView opens an id only if the
+    // library index lists it, so a bad id reads "not in the library".
+    const dlEdition   = params.get("edition");
+    const validEdition = validTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(dlEdition || "") ? dlEdition : null;
+    const validStage  = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
     const validDay    = dlDay && festivalDayNums().includes(+dlDay) ? +dlDay : null;
     // Decode shared lineup: comma-joined IDs validated against the local lineup so
     // a stale or malicious URL can't inject phantom artists.
@@ -631,10 +696,49 @@ function App() {
       try { history.replaceState(null, "", window.location.pathname); } catch {}
     }
 
+    // ── Root routing (v341) ────────────────────────────────────────────────
+    // A plain launch lands on General Home. A deep link that NAMES a
+    // destination still goes straight there — the crawlable /f/<id>/ stubs,
+    // share links and invite links all keep working unchanged.
+    //
+    // The stored active festival is deliberately NOT consulted: treating it as
+    // a destination is the behaviour this wave exists to remove, and it is
+    // also how a returning user ended up on a finished festival's wrap page.
+    // It stays in place as continuity INPUT — the scoped screens still read
+    // it — but it no longer chooses the landing state.
+    try { if (typeof runLandingMigration === "function") runLandingMigration(); } catch {}
+    // Set by the landing right before setActiveFestivalAndReload, so the boot
+    // that the reload produces lands INSIDE the festival the user just tapped
+    // instead of bouncing back to General Home. Session-scoped and read once.
+    let enteredFromLanding = null;
+    try {
+      enteredFromLanding = sessionStorage.getItem("plursky_landing_entered");
+      // Do NOT consume it on a load that is itself about to reload into the
+      // festival — that read-and-remove is what made a ?f= deep link land on
+      // General Home: the sentinel was written and spent in the same tick,
+      // and the boot after the reload saw a bare URL and no sentinel.
+      if (enteredFromLanding && !switchingFestival) sessionStorage.removeItem("plursky_landing_entered");
+    } catch {}
+    // Decided on the VALIDATED values, never the raw ones: a stale share link
+    // (?artist=removed-id, ?tab=bogus, ?f=<gated>) names nothing this load
+    // can open, and treating it as a destination silently opened whichever
+    // festival happened to be active instead of the chooser.
+    const validParams = new URLSearchParams();
+    if (dlFestOk)              validParams.set("f", dlFest);
+    if (validArtist)           validParams.set("artist", validArtist);
+    if (validTab)              validParams.set("tab", validTab);
+    if (validStage)            validParams.set("stage", validStage);
+    if (validDay)              validParams.set("day", String(validDay));
+    if (validFriendIds.length) validParams.set("lineup", validFriendIds.join(","));
+    if (validCrew)             validParams.set("crew", validCrew);
+    const deepLinked = typeof landingShouldOpenGeneral === "function"
+      ? !landingShouldOpenGeneral(validParams)
+      : true;
+    const bootTab = (validStage ? "lineup" : validTab) || (validCrew ? "me" : null);
     return {
       // Crew deep-link without an explicit tab routes to Me so CrewCard mounts
       // and auto-joins (otherwise the friend never subscribes to broadcasts).
-      tab:             (validStage ? "lineup" : validTab) || (validCrew ? "me" : "home"),
+      tab:             bootTab || (deepLinked || enteredFromLanding ? "home" : "landing"),
       saved:           saved ?? [],
       spotifyConnected: spotifyTokenValid(),
       artist:          validArtist,
@@ -642,6 +746,7 @@ function App() {
       lineupDay:       validDay || NOW.day,
       friendLineup:    validFriendIds.length ? validFriendIds : null,
       friendName:      validFriendIds.length ? validFrom : null,
+      pastEdition:     validEdition,
       _navStack:       [],
     };
   });
@@ -657,8 +762,10 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories"].includes(tab)) {
-          setState(prev => ({ ...prev, tab }));
+        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
+          const edition = params.get("edition");
+          const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
+          setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
           setShowOnboarding(false);
         }
       } catch {}
@@ -735,7 +842,8 @@ function App() {
           const seen = (() => { try { return localStorage.getItem("cloud_nudge_seen") === "1"; } catch { return false; } })();
           if (!seen && typeof window.plurskyToast === "function") {
             try { localStorage.setItem("cloud_nudge_seen", "1"); } catch {}
-            window.plurskyToast("Saved. Sign in on Me tab to back up.");
+            // A nudge, not a result: it waits for any toast already showing.
+            window.plurskyToast("Saved. Sign in on Me tab to back up.", { defer: true });
           }
         }
       } catch {}
@@ -744,7 +852,11 @@ function App() {
   }, [state.saved.join(",")]);
 
   let body;
-  if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
+  // General Home is checked BEFORE state.artist: it is the one surface that is
+  // not scoped to a festival, so no festival-scoped screen may mount under it
+  // as a fallback (the landing gate asserts exactly this).
+  if (state.tab === "landing") body = <GeneralLandingScreen state={state} setState={setState} />;
+  else if (state.artist) body = <ArtistScreen state={state} setState={setState} />;
   else if (state.tab === "home")     body = <HomeScreen     state={state} setState={setState} />;
   else if (state.tab === "map")      body = <MapScreen      state={state} setState={setState} />;
   else if (state.tab === "lineup")   body = <LineupScreen   state={state} setState={setState} />;
@@ -752,47 +864,38 @@ function App() {
   else if (state.tab === "memories") body = <MemoriesScreen state={state} setState={setState} />;
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
+  else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
 
   return (
     <IOSDevice dark={statusBarStyle === "light"}>
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: "var(--top-pad, 54px)" }}>
-        <StatusStrip />
+      {/* Field Mode Home runs its hero under the safe area and carries its
+          own live/offline status, so it skips the top inset and the strip. */}
+      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+        {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
+            is festival-scoped chrome and stays off General Home. */}
+        {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
         <div style={{ flex: 1, position: "relative" }}>
           {body}
           {/* Search FAB — floats above TabBar, accessible from any screen.
               Labeled pill so first-time users actually notice it. */}
-          {/* Not on the lineup GRID: its own search is one upward scroll away,
-              and the pill covered set cards there (#116). */}
-          {!state.artist && !searchOpen && state.tab !== "map" && !modalOpen && !(state.tab === "lineup" && state.lineupGrid) && (
-            <button
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search artists, stages, genres"
-              style={{
-                position: "absolute", bottom: 16, right: 16, zIndex: 30,
-                height: 42, borderRadius: 999, padding: "0 16px 0 12px",
-                background: "var(--ink)", color: "var(--paper)",
-                border: "none", cursor: "pointer",
-                display: "flex", alignItems: "center", gap: 7,
-                boxShadow: "0 4px 16px rgba(0,0,0,0.28)",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-                <circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/>
-              </svg>
-              SEARCH
-            </button>
-          )}
+          {/* No floating Search pill on any tab. It covered a control wherever
+              it sat: Share on Home, the bookmark column on Lineup (#116), the
+              Festival row on Me. Search lives in the page instead: the hero's
+              top bar on Today, the search field on Lineup, the sheet on Map. */}
           <ToastHost />
         </div>
-        {!state.artist && (() => {
+        {/* No bottom nav on General Home. The bar is festival-scoped chrome —
+            Today / Lineup / Map all mean "of the active festival" — and
+            showing it on a screen with no festival chosen would be the same
+            implicit selection this wave removes. */}
+        {!state.artist && state.tab !== "landing" && (() => {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap"] : ["spotify", "memories", "recap"];
+          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
@@ -805,7 +908,7 @@ function App() {
         <SearchModal
           onClose={() => setSearchOpen(false)}
           onSelectArtist={(id) => setState({ ...state, artist: id })}
-          saved={state.saved || []}
+          saved={savedInLineup(state.saved)}
         />
       )}
       {showOnboarding && (
@@ -815,7 +918,11 @@ function App() {
           onDone={() => setShowOnboarding(false)}
         />
       )}
-      {window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
+      {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
+      {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
+          festival and starts its geolocation flow, so General Home, which is
+          before any festival is chosen, never mounts it. */}
+      {state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar)}
       <BatterySaverToast />
     </IOSDevice>
   );
@@ -899,7 +1006,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v317",
+        version: "v414",
       }));
     } catch {}
   }
@@ -914,25 +1021,23 @@ class RootErrorBoundary extends React.Component {
   render() {
     if (!this.state.err) return this.props.children;
     return (
+      // The page's own background and ink. The old screen painted --ink with
+      // body copy in the SHADE colour, which in Light is dark on dark.
       <div style={{
         minHeight: "100vh", display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center", padding: "40px 24px",
-        background: "#f7ede0", color: "#1a120d", fontFamily: "Geist, system-ui, sans-serif",
+        background: "var(--bg)", color: "var(--ink)", fontFamily: "var(--f-ui)",
         textAlign: "center",
       }}>
-        <div style={{ fontFamily: "Instrument Serif, serif", fontSize: 36, marginBottom: 6 }}>
+        <div className="duo-title" style={{ marginBottom: 8 }}>
           Something glitched.
         </div>
-        <div style={{ fontSize: 14, color: "rgba(26,18,13,0.65)", marginBottom: 22, maxWidth: 340, lineHeight: 1.5 }}>
+        <div className="duo-body" style={{ color: "var(--ink-2)", marginBottom: 22, maxWidth: 340 }}>
           Plursky hit an unexpected error. Your saved lineup is safe — reloading should fix it.
         </div>
-        <button onClick={this.reload} style={{
-          background: "#1a120d", color: "#f7ede0", border: "none",
-          borderRadius: 12, padding: "12px 22px", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
-        }}>RELOAD</button>
-        <div style={{ marginTop: 22, fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "rgba(26,18,13,0.45)" }}>
-          PLURSKY · v317
+        <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
+        <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
+          Plursky · v414
         </div>
       </div>
     );
@@ -976,34 +1081,34 @@ function SetStartingCinematic() {
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 9998,
-      background: "rgba(13,8,4,0.92)", color: "#fff",
+      background: "rgba(var(--shade-rgb),0.92)", color: "var(--ink)",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
       animation: "fadeIn 0.5s ease-out",
       backdropFilter: "blur(12px)",
     }} onClick={() => setShow(null)}>
       <div style={{
         position: "absolute", inset: 0, opacity: 0.15,
-        background: `radial-gradient(ellipse at 50% 40%, ${stage?.color || "var(--ember)"}, transparent 70%)`,
+        background: `radial-gradient(ellipse at 50% 40%, var(--signal), transparent 70%)`,
         animation: "vfx-pulse 2s ease-in-out infinite",
       }}/>
       <div style={{ position: "relative", textAlign: "center", padding: "0 32px" }}>
         <div className="mono" style={{
-          fontSize: 10, letterSpacing: 3, color: stage?.color || "var(--ember-ink)", fontWeight: 800, marginBottom: 12,
+          fontSize: 10, letterSpacing: 3, color: "var(--signal-ink)", fontWeight: 800, marginBottom: 12,
           animation: "vfx-pulse 1.5s ease-in-out infinite",
         }}>SET STARTING</div>
         <div className="serif" style={{
           fontSize: 42, lineHeight: 0.95, letterSpacing: -1, marginBottom: 8,
-          textShadow: `0 0 40px ${stage?.color || "var(--ember)"}55`,
+          textShadow: "0 0 40px rgba(var(--signal-rgb),0.33)",
         }}>{a.name}</div>
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: stage?.color || "#fff", marginBottom: 24 }}>
+        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.4, color: "var(--text-2)", marginBottom: 24 }}>
           {stage?.name?.toUpperCase() || ""} · {fmt12(a.start)}
         </div>
         <div style={{
           fontFamily: "Geist Mono, monospace", fontSize: 52, fontWeight: 200,
           letterSpacing: 2, fontVariantNumeric: "tabular-nums",
-          color: "#fff", textShadow: `0 0 30px ${stage?.color || "var(--ember)"}`,
+          color: "var(--ink)", textShadow: "0 0 30px rgba(var(--signal-rgb),0.8)",
         }}>{minsLeft} MIN</div>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "rgba(255,255,255,0.4)", marginTop: 20 }}>
+        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.6, color: "var(--text-3)", marginTop: 20 }}>
           TAP TO DISMISS
         </div>
       </div>

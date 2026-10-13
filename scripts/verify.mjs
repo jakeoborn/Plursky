@@ -23,6 +23,10 @@ const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
   .filter(f => f.endsWith(".js")).sort();
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
+execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
+
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
 // 2026-08-29: `git add -A` picked up a `node_modules` symlink because
@@ -94,6 +98,70 @@ console.log("▸ iOS focus-zoom floor — form fields stay ≥16px on iOS");
       "without it iOS zooms on focus and fresh-install onboarding renders cropped");
   }
   console.log(`  ✓ input,textarea,select floored at ${m[1]}px on iOS`);
+}
+
+// ── 0b2a. AGENT_LOG order ─────────────────────────────────────────────────
+// Agents read the top of AGENT_LOG at session start, and the file says its
+// entries are reverse chronological. Entries appended at the bottom hid the
+// newest blocker below two days of older ones (Codex, #200). An entry with
+// no time counts as 00:00 that day; equal timestamps keep file order.
+console.log("▸ AGENT_LOG order — Entries stay newest first");
+{
+  const log = readFileSync(join(ROOT, "AGENT_LOG.md"), "utf8").split("\n");
+  const start = log.indexOf("## Entries");
+  if (start < 0) fail("AGENT_LOG.md has no '## Entries' section");
+  let prev = null, n = 0;
+  for (let i = start + 1; i < log.length && !log[i].startsWith("## "); i++) {
+    if (!log[i].trim()) continue;
+    // Any other row in Entries must be a well-formed entry: a row the regex
+    // can't read would otherwise drop out of the order check unseen.
+    // The whole row, not a prefix: a real date, a real time, and the
+    // Author/Lane routing fields the log's readers rely on.
+    const m = /^- (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))? CT \| Author: (?:Claude|Instinct) \| Lane: [^|]*\S[^|]* \| \S/.exec(log[i]);
+    const [y, mo, d] = m ? m[1].split("-").map(Number) : [];
+    const realDate = m && mo >= 1 && mo <= 12 && d >= 1 && d <= new Date(Date.UTC(y, mo, 0)).getUTCDate();
+    const realTime = m && (!m[2] || (+m[2].slice(0, 2) <= 23 && +m[2].slice(3) <= 59));
+    if (!m || !realDate || !realTime) fail(`AGENT_LOG.md line ${i + 1} is not a well-formed entry ("- YYYY-MM-DD HH:MM CT | Author: Claude or Instinct | Lane: … | …", a real date and time): ${log[i].slice(0, 80)}`);
+    const key = `${m[1]} ${m[2] || "00:00"}`;
+    if (prev && key > prev) fail(`AGENT_LOG.md line ${i + 1} (${key}) is newer than the entry above it (${prev}); entries are reverse chronological, so new entries go at the TOP of '## Entries'`);
+    prev = key; n++;
+  }
+  console.log(`  ✓ ${n} entries, newest first`);
+}
+
+// ── 0b3. Duplicate-global gate ────────────────────────────────────────────
+// Every .jsx loads as a classic script, so a top-level declaration is a
+// GLOBAL and a later file's copy silently replaces an earlier one. home.jsx
+// declared ShareLineupButton({ savedIds }), the friend-link share, and
+// lineup.jsx declared ShareLineupButton({ state }), the export menu. lineup
+// loads later, so Home's pre-festival SHARE ran the menu with no state and
+// every option threw "Cannot read properties of undefined (reading 'saved')"
+// (found 2026-09-12). One top-level name, one file.
+// Names come from Babel's program-scope bindings, not a line regex, so a
+// later declarator (`const A = 1, B = 2`), a destructured name, a
+// `function*`, and a `var` hoisted out of a top-level block all count.
+console.log("▸ Duplicate-global gate — no top-level name declared in two .jsx files");
+{
+  const seen = new Map();
+  for (const f of readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort()) {
+    const ast = parseSync(readFileSync(join(ROOT, f), "utf8"), { filename: f,
+      presets: [["@babel/preset-react", {}]], babelrc: false, configFile: false, ast: true, code: false });
+    traverse(ast, {
+      Program(p) {
+        for (const [name, b] of Object.entries(p.scope.bindings)) {
+          if (!seen.has(name)) seen.set(name, []);
+          seen.get(name).push(`${f}:${b.identifier.loc.start.line}`);
+        }
+        p.stop();
+      },
+    });
+  }
+  const dups = [...seen].filter(([, at]) => new Set(at.map(a => a.split(":")[0])).size > 1);
+  if (dups.length) {
+    for (const [n, at] of dups) console.log(`  ✗  ${n} — ${at.join(", ")}`);
+    fail(`${dups.length} top-level name(s) declared in more than one .jsx file; the later script silently replaces the earlier one. Rename one.`);
+  }
+  console.log(`  ✓ ${seen.size} top-level names, each declared in one file`);
 }
 
 // ── 0c. Precompile gates (v253) ────────────────────────────────────────────
@@ -325,6 +393,75 @@ if (fdata.length) {
   }
 }
 
+// ── Festival-status freshness gate ───────────────────────────────────────
+// docs/qa/INSTINCT-QUEUE.md is the tracker both agents plan from. Its live and
+// gated counts were typed by hand and read "9 live" while the registry had 12
+// (found 2026-09-12). The table between the festival-status markers is now
+// generated from FESTIVALS_REGISTRY + _DATA_SETS, and a flip, a new entry or a
+// lineup change that does not regenerate it fails here.
+{
+  console.log("▸ Festival-status gate — the queue's live/gated table must match the registry");
+  try {
+    const out = execFileSync("node", ["scripts/festival-status.mjs", "--check"],
+                             { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival status table is stale — run: node scripts/festival-status.mjs");
+  }
+}
+
+// ── Set-time importer gate ───────────────────────────────────────────────
+// Every gated festival flips through import-set-times.mjs. It must write into
+// the festival's own module, take days from the sheet for a lineup that
+// publishes none, place null-day acts, and refuse a sheet it cannot place.
+// The test runs against the real modules in a throwaway copy.
+{
+  console.log("▸ Set-time importer gate — module target, sheet days, refusals");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the set-time importer failed its test — see above");
+  }
+}
+
+// ── Festival switcher order gate ─────────────────────────────────────────
+// The switcher lists live → upcoming → TBA → ended (Jake 2026-09-13). The
+// test runs data.jsx's _sortFestivalsForSwitcher on fixtures and the registry.
+{
+  console.log("▸ Festival switcher order gate — live, upcoming, TBA, ended");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-switcher-order.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("the festival switcher order failed its test — see above");
+  }
+}
+
+// ── Lineup removals gate ─────────────────────────────────────────────────
+// An act an official lineup billed and then dropped stays OUT of the lineup,
+// and its module record keeps a cited, one-line re-add (III Points 2026).
+{
+  console.log("▸ Lineup removals gate — dropped acts out, cited, re-addable");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-removals.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    console.log("  " + out.trim());
+  } catch (e) {
+    const detail = ((e.stderr || "") + (e.stdout || "")).trim();
+    if (detail) console.log("  " + detail.replace(/\n/g, "\n  "));
+    fail("a dropped act is back in a lineup, or its record is incomplete — see above");
+  }
+}
+
 // ── Precache integrity gate ──────────────────────────────────────────────
 // sw.js installs its own-origin files with cache.addAll(), and addAll is
 // ATOMIC: it rejects as a unit. One entry that 404s and NOTHING in LOCAL gets
@@ -450,8 +587,12 @@ if (fdata.length) {
   const SRC = readdirSync(ROOT).filter(f => f.endsWith(".jsx")).sort();
   const DAY_LIST = /\[\s*1\s*,\s*2\s*,\s*3\s*\]\s*\.\s*(?:map|flatMap|forEach|filter|includes|some|every)\s*\(/;
   // `live` as well as `isLive`: the live strip's selector was `const live =`.
-  const LIVE_DEF = /\b(?:isLive|live)\s*[:=](?!=)/;
-  const CLOCK = /NOW\??\.time|\bnowMin\b|toNightMin\s*\(/;
+  // is…Live too: NowPlayingBar's isFestivalLive was a fixed 19:00-05:30 window
+  // over the base dayDates, so the bar never showed at a daytime set or on
+  // ACL Weekend 2. A fixed hour off midnightUtc, and the device's getHours(),
+  // are the same clock-built test in other clothes.
+  const LIVE_DEF = /\b(?:is\w*Live|live)\s*[:=](?!=)/;
+  const CLOCK = /NOW\??\.time|\bnowMin\b|toNightMin\s*\(|midnightUtc\s*\+[^;\n]*3600000|\.getHours\s*\(/;
   // Real-date evidence: the statement, or the 15 lines above it, reads
   // NOW.night or isSetLive — the enclosing selection is scoped to tonight.
   const REAL = /NOW\??\.night|isSetLive\s*\(/;
@@ -473,7 +614,16 @@ if (fdata.length) {
       if (LIVE_DEF.test(ln)) {
         // The definition runs to its statement end; an IIFE spans a few lines.
         let stmt = ln.slice(ln.search(LIVE_DEF));
-        for (let j = i + 1; j < Math.min(lines.length, i + 6) && !/[;,]\s*$|\}\)\(\);?\s*$/.test(stmt.trimEnd()); j++) stmt += "\n" + lines[j];
+        if (/=>\s*\{\s*$/.test(stmt.trimEnd())) {
+          // A hook or IIFE body (`useMemo(() => {`): read to its close, `}, [deps])`
+          // or `})()`. Its first `;` is inside the body, not the statement end.
+          for (let j = i + 1; j < Math.min(lines.length, i + 40); j++) {
+            stmt += "\n" + lines[j];
+            if (/^\s*\}\s*(?:,\s*\[[^\]]*\]\s*)?\)/.test(lines[j])) break;
+          }
+        } else {
+          for (let j = i + 1; j < Math.min(lines.length, i + 6) && !/[;,]\s*$|\}\)\(\);?\s*$/.test(stmt.trimEnd()); j++) stmt += "\n" + lines[j];
+        }
         const above = lines.slice(Math.max(0, i - 15), i).join("\n");
         if (CLOCK.test(stmt) && !REAL.test(stmt) && !REAL.test(above)) { bad.push(`${f}:${i + 1}  LIVE flag built from the clock — use isSetLive(a)`); lives++; }
       }
@@ -683,13 +833,30 @@ if (fdata.length) {
     const live  = f.available === true;
     const label = String(id).padEnd(26);
     if (blank === acts.length) {
-      // Schedule not published. Honest — but it is not a shippable state.
-      if (live) {
-        console.log(`  ✗ ${label} available:true with NO set times (${acts.length} acts all blank)`);
+      // Schedule not published. There are now TWO honest shapes here, and the
+      // difference must be DECLARED, never inferred:
+      //   gated          — the festival is simply waiting its turn.
+      //   open + pending — the lineup is published and switchable, and the
+      //                    app says "set times pending" (founder call
+      //                    2026-09-15: open the festival, don't hold it back).
+      // An open festival that forgets the flag is still the original defect:
+      // live, no times, and nothing anywhere admitting it. That stays fatal.
+      if (live && f.scheduleTBA !== true) {
+        console.log(`  ✗ ${label} available:true with NO set times and no scheduleTBA (${acts.length} acts all blank)`);
         sbad++;
+      } else if (live) {
+        console.log(`  ok ${label} open, lineup published, set times pending (${acts.length} acts)`);
       } else {
         console.log(`  ok ${label} gated, schedule unpublished (${acts.length} acts, all blank)`);
       }
+      continue;
+    }
+    // The reverse of the above, and the failure mode a flip actually has: the
+    // real schedule lands, someone forgets to clear the flag, and the app goes
+    // on telling users the times are pending while showing them.
+    if (f.scheduleTBA === true) {
+      console.log(`  ✗ ${label} scheduleTBA still set, but ${acts.length - blank}/${acts.length} acts carry times — clear the flag`);
+      sbad++;
       continue;
     }
     if (blank > 0) {
@@ -707,7 +874,10 @@ if (fdata.length) {
     // carries that to users (#115 Schedule Sync). Copied from the module's own
     // SOURCE note; `official: false` marks a secondary or third-party capture.
     const ss = (f.config || f).scheduleSource;
-    if (live && !(ss && /^https:\/\//.test(ss.url || "") && /^\d{4}-\d{2}(-\d{2})?$/.test(ss.observedAt || "")
+    // A pending festival has no schedule to cite yet, so it is exempt — it
+    // never reaches here anyway, since all-blank continues above.
+    if (live && f.scheduleTBA !== true
+        && !(ss && /^https:\/\//.test(ss.url || "") && /^\d{4}-\d{2}(-\d{2})?$/.test(ss.observedAt || "")
                   && typeof ss.official === "boolean")) {
       console.log(`  ✗ ${label} live schedule with no scheduleSource { url, observedAt, official }`);
       ssbad++;
@@ -847,6 +1017,7 @@ if (fdata.length) {
     ["Small (danny g luvs u B2B Bori)", "Small (danny g luvs u B2B Bori)"],
     ["DOG BLOOD (SKRILLEX + BOYS NOIZE)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)"],
     ["Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)"],
+    ["GZA performing Liquid Swords", "GZA"],
     ["Levity", "Levity"], ["", ""],
   ];
   const SPLIT = [
@@ -1298,20 +1469,24 @@ const REGISTRATION_TOL_M = 25;
       // Snapchat Stage, so the cross-check was real geometry against a stage
       // this app does not have. `bonus` was a label borrowed from the
       // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
-      // satellite-measured now; the only other anchor, `bmi`, is derived
-      // through that same basis and therefore cannot disagree with it.
+      // satellite-measured now, and it is the whole anchor set: `bmi`, which
+      // was derived through that same basis and so could never disagree with
+      // it, was dropped on 2026-09-23 after it measured 57 m off the 2026 fit.
       //
-      // Clears when the official 2026 patron map publishes and `snapchat` —
-      // the one real 2026 stage still unanchored — can be measured. That is
-      // an independent anchor, which is exactly what is missing.
+      // The official 2026 patron map published on 2026-09-22 and now places
+      // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
+      // waiver: a poster is not a survey, so it yields no world anchor, and
+      // test-acl-map-2026.mjs fails if one is read off it. Clears when
+      // `snapchat` (the one 2026 stage with no anchor) is measured on the
+      // ground or on satellite. That is the independent anchor still missing.
       //
       // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
       // clear this. A crowd anchor answers "where does a person STAND"; a
       // gpsAnchor answers "where did the artist DRAW it". EDC's measured
       // kinetic centroid is 438 m from its own poster pin.
       note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
-            "independent checks it — bmi is derived through that same basis. " +
-            "Needs the 2026 patron map to anchor snapchat",
+            "independent checks it (the derived bmi anchor was dropped 2026-09-23). " +
+            "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
     },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
     // four independent osm anchors, so it has neither registration finding.
@@ -1717,9 +1892,18 @@ const REGISTRATION_TOL_M = 25;
     };
     const bad = [];
     for (const [name, probe] of Object.entries(probes)) {
-      // The demo avatar is an admitted simulation and keeps its numbers —
-      // blanking those would only make the pre-festival app look broken.
-      if (probe(demo) !== true) bad.push(`${name} suppressed for the DEMO avatar`);
+      // ⛔ NO DEMO EXCEPTION. This gate used to REQUIRE the demo avatar to keep
+      // its numbers, on the reasoning that a simulation may simulate. That was
+      // wrong, and it was wrong in the direction that reaches a real person: a
+      // PLANNING view has no GPS by definition, so the demo branch is the one
+      // an attendee actually reads while building their night days before the
+      // gates open. Blind ACL was handing out grid-derived minutes there the
+      // whole time. The predicate is asked about the FESTIVAL now, in every
+      // state, so demo and live must give the same answer.
+      if (probe(demo) !== sourced) {
+        bad.push(sourced ? `${name} suppressed for the DEMO avatar on a SOURCED map`
+                         : `${name} still quoted for a DEMO avatar on unverified geometry`);
+      }
       if (probe(live) !== sourced) {
         bad.push(sourced ? `${name} suppressed on a SOURCED map` : `${name} still quoted from a LIVE position`);
       }
@@ -1760,6 +1944,186 @@ const REGISTRATION_TOL_M = 25;
   console.log(`  ✓ ${rdChecked} live festival(s): every grid readout matches its registration provenance`);
   if (REG_GRID_NO_AFFINE.length)
     console.log(`  ✓ ${REG_GRID_NO_AFFINE.length} more carry a layout grid with no affine — checked, not assumed`);
+
+  // ── The FOURTH walk readout ────────────────────────────────────────────
+  // The gate above guards map.jsx, which asks readoutHonest() before it
+  // quotes anything. home.jsx had its own walk readout that asked nothing:
+  // stageWalkMinutes() fell through to `hypot(x, y) * 0.4` on the STAGE GRID
+  // for every pair outside its hand-measured EDC table — 12 of the 13
+  // festivals with stages. ACL shipped "amex → beatbox = 29 min" and a
+  // LEAVE BY time off poster pixels, to a phone standing in Zilker Park.
+  //
+  // That is precisely the drift this gate's own header predicted: "someone
+  // adds a fourth walk readout that formats lo/hi itself, and the data says
+  // one thing while the screen says another." So the rule is now enforced at
+  // the source: a stage-to-stage minute count comes from a MEASURED table or
+  // it does not exist. Coordinate arithmetic inside that function is banned.
+  console.log("▸ Walk-readout gate — stage minutes come from a measured table or not at all");
+  {
+    // ⚠ These read the COMPILED build, not the .jsx sources, and that is
+    // deliberate. compile.mjs transforms with `comments: false`, so the build
+    // carries code and no prose. Grepping the source instead made this gate
+    // fail on its OWN comment — the paragraph in map.jsx that records why the
+    // `dist * 0.4` fallback must never come back quotes the expression, and a
+    // gate that greps prose cannot tell an explanation from a regression. The
+    // only way to go green would have been to DELETE the documentation, which
+    // is precisely backwards. The build is also what actually ships, and the
+    // precompile gate above already guarantees it is not stale.
+    const hbuild = readFileSync(join(ROOT, "build/home.js"), "utf8");
+    const COORD = /Math\.hypot|Math\.sqrt/;
+    // Whole-file, not just the one function: the bug this gate exists for was
+    // a SECOND readout growing in a different place, so checking only
+    // stageWalkMinutes would repeat the mistake that let it through twice.
+    // home.jsx has no legitimate coordinate arithmetic at all (measured: zero
+    // occurrences), so the broad net costs nothing and catches the next one.
+    if (COORD.test(hbuild)) {
+      fail("home.jsx derives a distance from stage COORDINATES (Math.hypot/Math.sqrt). " +
+           "Those x/y are art, not a survey (#97) — home.jsx has no honest use for them. " +
+           "A stage-to-stage minute comes from a MEASURED table or it does not exist.");
+    }
+    const fn = /function stageWalkMinutes\s*\([^)]*\)\s*\{([\s\S]*?)\n\}/.exec(hbuild);
+    if (!fn) fail("build/home.js: stageWalkMinutes() not found — the walk-readout gate cannot check what it cannot see");
+    if (!/WALK_TABLE_FESTIVAL_ID/.test(fn[1])) {
+      fail("home.jsx stageWalkMinutes() does not check WHICH festival is asking. " +
+           "The table is keyed by BARE stage id and EDC Orlando reuses four of them, " +
+           "so an unguarded lookup quotes Las Vegas minutes in Tinker Field.");
+    }
+    // The route line in TopDownMap had its OWN copy of the fabrication and
+    // this gate could not see it, because the gate only ever read one
+    // function in one file. `dist * 0.4` is that fallback's signature.
+    const mbuild = readFileSync(join(ROOT, "build/map.js"), "utf8");
+    if (/dist\s*\*\s*0\.4/.test(mbuild)) {
+      fail("map.jsx converts a GRID DISTANCE straight into minutes (`dist * 0.4`). " +
+           "That constant was measured at EDC Las Vegas and the coordinates are art (#97). " +
+           "Send the readout through computeWalkRange()/walkMinsLabel() like every other one.");
+    }
+
+    // ── Behaviour, not source text ──────────────────────────────────────
+    // The static half above is why the first two attempts at this gate
+    // passed a build that still fabricated: a regex over one function body
+    // cannot see a table keyed by BARE stage id being read on a festival it
+    // never measured. EDC Orlando reuses kinetic/circuit/neon/stereo, which
+    // is 6 colliding pairs of Las Vegas Motor Speedway minutes waiting to
+    // land in Tinker Field.
+    //
+    // It also cannot be checked through the live registry: getActiveFestivalId
+    // requires `.available`, so a gated festival can NEVER be made active and
+    // every live-festival probe skips the one festival that actually collides.
+    // So walk _DATA_SETS, which holds gated festivals too, and pass the id in.
+    const vmw = await import("node:vm");
+    const loadW = (fid) => {
+      const store = { active_festival_id: fid, active_festival_explicit: "1" };
+      const noop = () => {};
+      const ctx = {
+        console: { log: noop, warn: noop, error: noop }, Date, Math, JSON, Object, Array,
+        String, Number, Boolean, Set, Map, isNaN, parseInt, parseFloat, isFinite,
+        setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
+        fetch: () => new Promise(noop), URLSearchParams, location: { search: "" },
+        localStorage: { getItem: k => (k in store ? store[k] : null),
+                        setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
+        navigator: { userAgent: "node", geolocation: {} },
+        document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} },
+                    createElement: () => ({ style: {}, setAttribute: noop }), getElementById: () => null,
+                    querySelector: () => null, head: { appendChild: noop } },
+        React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
+        ReactDOM: { createRoot: () => ({ render: noop }) },
+      };
+      ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
+      ctx.window.addEventListener = noop; ctx.window.removeEventListener = noop;
+      ctx.window.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
+      vmw.createContext(ctx);
+      const wmods = execFileSync("git", ["ls-files", "data/festivals/*.js"], { cwd: ROOT })
+        .toString().trim().split("\n").filter(Boolean)
+        .map(f => readFileSync(join(ROOT, f), "utf8")).join("\n");
+      vmw.runInContext(wmods, ctx);
+      // index.html order: data → … → home → map.
+      vmw.runInContext(readFileSync(join(ROOT, "build/data.js"), "utf8"), ctx);
+      vmw.runInContext(readFileSync(join(ROOT, "build/home.js"), "utf8"), ctx);
+      vmw.runInContext(readFileSync(join(ROOT, "build/map.js"), "utf8"), ctx);
+      return ctx;
+    };
+
+    const wc = loadW("edc-lv-2026");
+    const TABLE_FID = wc.WALK_TABLE_FESTIVAL_ID;
+    if (!TABLE_FID) fail("data.jsx must export WALK_TABLE_FESTIVAL_ID — the walk tables are one festival's measurements and nothing says which");
+    if (typeof wc.stageWalkMinutes !== "function") fail("home.jsx stageWalkMinutes() is not reachable from the compiled build — this gate would silently check nothing");
+    const WDS = wc._DATA_SETS || {};
+    if (!Object.keys(WDS).length) fail("_DATA_SETS is empty in the vm — the walk gate cannot enumerate festivals");
+
+    if (typeof wc.geometryVerifiedFor !== "function") {
+      fail("map.jsx must export geometryVerifiedFor(festivalId) — one predicate governs every numeric distance claim");
+    }
+    let wBad = 0, wFests = 0, wPairs = 0;
+    for (const [fid, ds] of Object.entries(WDS)) {
+      const ids = (ds.stages || []).map(s => s.id);
+      if (ids.length < 2) continue;
+      wFests++;
+      const bad = [];
+      const verified = wc.geometryVerifiedFor(fid);
+      for (let i = 0; i < ids.length; i++) {
+        for (let j = i + 1; j < ids.length; j++) {
+          wPairs++;
+          const m = wc.stageWalkMinutes(ids[i], ids[j], fid);
+          // Festival IDENTITY is not evidence. A measured table says somebody
+          // walked it; only the predicate says the geometry was checked.
+          if (!verified && m != null && m !== 0) bad.push(`${ids[i]}~${ids[j]}=${m}min`);
+        }
+      }
+      if (bad.length) {
+        wBad++;
+        console.log(`  ✗  ${fid.padEnd(26)} quotes minutes on UNVERIFIED geometry: ${bad.slice(0, 6).join(", ")}${bad.length > 6 ? ` +${bad.length - 6} more` : ""}`);
+      } else {
+        console.log(`  ok ${fid.padEnd(26)} ${String(ids.length).padStart(2)} stages — ${verified ? "geometry verified, minutes allowed" : "blind, no minutes in any state"}`);
+      }
+    }
+    if (wBad) {
+      fail(`${wBad} festival(s) quote walk minutes on geometry nobody verified — see above. ` +
+           `One predicate governs every numeric distance claim: geometryVerifiedFor(festivalId), ` +
+           `asked per festival and never about the avatar.`);
+    }
+    console.log(`  ✓ ${wFests} festival(s), ${wPairs} stage pair(s) — no minutes on unverified geometry, gated festivals included`);
+
+    // ── POSITIVE CONTROL ──────────────────────────────────────────────
+    // Every row above is a silence, and a gate that can only assert silence
+    // would pass just as happily if the feature had been deleted outright. So
+    // flip the predicate's memo for the one festival that actually HAS a
+    // measured table, prove the minutes come back, and prove the flip was
+    // undone — otherwise every later gate in this run would be reading a
+    // doctored predicate.
+    //
+    // ⚠ This comment used to open "NO festival in the fleet is verified
+    // today". Measured false on 2026-09-17: geometryVerifiedFor() is TRUE for
+    // summerfest-2026, lollapalooza-2026 and outside-lands-2026. The control
+    // still has to synthesise its subject, but for a narrower reason — those
+    // three carry no measured walk table (0 of 45, 36 and 21 pairs) while
+    // edc-lv-2026 has all 36 and is blind. Verified geometry and a measured
+    // table are separate properties and nothing has both yet, which is also
+    // why `before` is asserted false below rather than assumed: the day a
+    // verified festival gains a table, that assertion is what tells us to
+    // re-point the control instead of silently testing nothing.
+    {
+      const lvIds = ((WDS[TABLE_FID] || {}).stages || []).map(s => s.id);
+      const countPairs = () => {
+        let n = 0;
+        for (let i = 0; i < lvIds.length; i++)
+          for (let j = i + 1; j < lvIds.length; j++)
+            if (wc.stageWalkMinutes(lvIds[i], lvIds[j], TABLE_FID) != null) n++;
+        return n;
+      };
+      const before = wc.geometryVerifiedFor(TABLE_FID);
+      if (before) fail(`${TABLE_FID} reports VERIFIED geometry — this control assumes it is blind; re-point the control`);
+      wc._geomVerifiedMemo[TABLE_FID] = true;
+      const back = countPairs();
+      wc._geomVerifiedMemo[TABLE_FID] = before;
+      if (back !== 36) {
+        fail(`Walk-readout control: with ${TABLE_FID} marked verified the measured table must quote all 36 pairs, got ${back}. ` +
+             `Without this the gate cannot tell "correctly blind" from "the feature is dead".`);
+      }
+      if (countPairs() !== 0) fail("Walk-readout control: the memo did not restore — later gates would read a doctored predicate");
+      console.log(`  ✓ control: marking ${TABLE_FID} verified restores all 36 measured pairs; blind restored after`);
+    }
+    console.log("  ✓ compiled build: no coordinate arithmetic in home.js, no `dist * 0.4` in map.js");
+  }
 
   // ── The capture path must emit what the crowd-anchor gate accepts ──────
   // survey.jsx exists to produce crowdAnchors rows, and the gate above
@@ -1816,6 +2180,14 @@ const REGISTRATION_TOL_M = 25;
   }
 }
 
+console.log("▸ ACL September30 stable-identity and source gate");
+try { console.log(execFileSync(process.execPath, ["scripts/test-acl-september30.mjs"], {cwd:ROOT,encoding:"utf8"})); }
+catch(e) { fail("ACL September30 regression: " + (e.stdout || e.message)); }
+console.log("▸ ACL programming readiness - independent event identities and source-only vendor map");
+try {
+  console.log(execFileSync(process.execPath, ["scripts/test-acl-programming-readiness.mjs"], { cwd: ROOT }).toString().trim());
+} catch (e) { fail("ACL programming readiness: " + (e.stdout || e.message)); }
+
 if (process.argv.includes("--parse-only")) process.exit(0);
 
 // ── 1z. Mixed-import toast regression ─────────────────────────────────────
@@ -1828,6 +2200,110 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`mixed-import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a. iPhone video GPS (QuickTime mdta) ───────────────────────────────
+{
+  console.log("▸ Video GPS gate — iPhone mdta location + accuracy reach the tagger");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-video-mdta.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`video mdta GPS regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a1. Song estimates: the moment's own festival, never EXACT ─────────
+{
+  console.log("▸ Song estimate gate — own festival, per-festival cache, zone-proof, tracklist cue is LIKELY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-song-confidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`song estimate regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a2. setlist.fm fallback fails closed ───────────────────────────────
+// A setlist counts only on the requested festival's own day dates at a venue
+// its own metadata names; no other festival's venue, no first-row default.
+{
+  console.log("▸ setlist.fm fallback gate — requested edition only, no setlists[0] default");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-setlist-fallback.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`setlist.fm fallback regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-a3. Capture-time trust answers with a boolean ──────────────────────
+// "Is this a real festival capture time?" is a TRUST question, and it must not
+// be answered with a festival identity nobody can justify. The old
+// _anyFestivalNight walked _allDataSets() and returned {festivalId, night} from
+// the FIRST claimant, which broke in two different directions:
+//
+//   · LATENT — 10 of the 53 night windows are claimed by two festivals running
+//     the same weekend (lost-lands/nocturnal, lollapalooza/hard-summer,
+//     crssd/portola). On those, "first wins" reports _DATA_SETS declaration
+//     order as a fact. No caller read the id, so nothing was wrong on screen —
+//     it was a wrong answer sitting in the return type waiting to be believed.
+//   · LIVE — _allDataSets() filters to registry-`available`. Correct for
+//     _resolveFestivalForPhoto, which ATTRIBUTES (a gated id strands a moment,
+//     since getActiveFestivalId() also requires `available`); wrong for a trust
+//     question, where availability is a UI concern. edc-orlando-2026 is gated
+//     and is the only gated festival with a data module, so a genuine EDC
+//     Orlando capture time was rejected as junk and the clip imported as
+//     no-date.
+//
+// The gate gives the predicate a gated-only instant, an unclaimed instant, a
+// two-festival instant and the active festival's own, and requires a boolean
+// every time — so neither "trust nothing" nor "trust everything" can buy a
+// pass, and no invented id can come back. It also asserts the old name is gone
+// from source, because the point of the rename is that the mis-attribution path
+// is unreachable rather than merely unused.
+// Photo tagging respects a two-weekend festival (lane ruling 2026-09-23, #225):
+// a weekend-2 photo gets its night and its weekend's acts, a weekend-1 photo
+// never lands on a weekend-2-only act, and single-weekend festivals return
+// exactly what main returned. Runs the compiled matcher.
+{
+  console.log("▸ Weekend photo-tag gate — ACL weekends resolve, wrong-weekend acts never match");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-weekend-photo-tag.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL W2 now-playing failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Capture-time trust gate — boolean answer, gated festivals counted, no invented festival id");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-capture-time-trust.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`capture-time trust failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -1863,6 +2339,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b2a. Official set-times fetcher ────────────────────────────────────
+// fetch-insomniac-settimes.mjs turns the official /lineup/set-times/day-N/
+// pages into the importer's sheet. Its parser must drop the Full Schedule
+// repeats, keep B2B billings whole, decode accents, and read the epochs as
+// the printed wall clock (UTC), or a flip imports wrong times.
+{
+  console.log("▸ Set-times fetcher gate — official page markup → sheet rows");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-insomniac-settimes.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set-times fetcher parser failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree
@@ -1895,6 +2388,603 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`schedule review failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5. Sitemap content fingerprint ────────────────────────────────────
+// sitemap <lastmod> is a fingerprint of each page's own indexable content, so
+// a rendered field missing from that fingerprint freezes the date while the
+// page moves — telling a crawler "nothing changed here" about a page that did.
+// Mutants prove each render-driving field class moves exactly its own url,
+// unrendered fields move none, and the generator's render path cannot grow a
+// field the fingerprint does not see. This is a regression gate on the hash,
+// NOT a second freshness gate: the clock stays --check-strict's alone.
+{
+  console.log("▸ Sitemap-fingerprint gate — rendered fields move one url, unrendered move none, coverage complete");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-fingerprint.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap fingerprint failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
+// The homepage, terms and privacy fingerprints come from committed files only,
+// so plain --check (the freshness gate above) must hold them to the committed
+// ledger and <lastmod>. A cache-bust that skipped the regenerate used to pass
+// here and turn the scheduled --check-strict job red after the merge. Runs the
+// real generator in scratch copies, with festival-row controls.
+{
+  console.log("▸ Sitemap commit-row gate — a stale homepage/terms/privacy fingerprint fails plain --check");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-commit-rows.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap commit rows failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b6. Memories grouping reachability ─────────────────────────────────
+// Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
+// exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
+// festival could not resolve fell out of BOTH groups — the set spine filtered
+// it (no matching artist) and "Between sets" never took it (its artistId is
+// truthy) — so it rendered nowhere while the day header's "N MOMENTS" and the
+// peak window still counted it. Fixtures cover an active set, a stale id, an
+// untagged clip, a stage-only clip, and a REAL cross-festival id pulled from
+// another entry in _DATA_SETS. The test runs build/spotify.js in a vm, so it
+// grades the shipped function rather than a re-implementation of it.
+{
+  console.log("▸ Memories-grouping gate — every counted moment reachable exactly once");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-grouping.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories grouping failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5b. Memories v2 organized library ─────────────────────────────────
+// Four contracts the v2 design wave introduces, graded against build/spotify.js
+// in a vm:
+//   · PEAK SEMANTICS — the analysis window and the OBSERVED capture span are
+//     two different numbers. The old card hardcoded "N moments in 20 minutes",
+//     so five clips shot inside one minute claimed twenty minutes of events.
+//   · MEDIA-IDENTITY DEDUPE — two RECORDS pointing at one piece of media must
+//     not inflate a count or render twice.
+//   · NO DUPLICATE HERO — _GroupHeroThumb drew the cover, then the cover was
+//     prepended to orderedMoments and drawn AGAIN as a full row.
+//   · REACHABILITY SURVIVES DEDUPE — #210's invariant is that every counted
+//     record is reachable exactly once, so a de-duplicated record has to stay
+//     reachable rather than becoming a new orphan.
+{
+  console.log("▸ Memories-library gate — bounded set cards, one hero, honest peak copy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-library.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories library failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5c. General Landing + saved festivals ─────────────────────────────
+// Three stores have to stay apart or one festival's state shows up on
+// another's screen: the explicit SAVED list, the ACTIVE festival id, and
+// whether this load lands on General Home. The gate also pins the landing's
+// counting rule — a festival card counts UNIQUE media whose festivalId is
+// EXACTLY that festival, so an unstamped legacy moment is surfaced separately
+// instead of being attributed to whichever card happens to be on screen.
+{
+  console.log("▸ Landing-state gate — saved is not active, and a card counts only its own festival");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-landing-saved-festivals.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`landing state failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist screen: an act with no day ─────────────────────────────────────
+// A billed act no official schedule has placed renders ("DAY + SET TIME NOT
+// PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so
+// the gate survives Escape's set times publishing.
+{
+  console.log("▸ Artist no-day — a billed, unplaced act renders instead of crashing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-no-day.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── /f/ page status chip ─────────────────────────────────────────────────
+// A festival whose day split is unpublished (one dayDates bucket, a two-day
+// printed range) is "Happening now" on every printed day; a festival that
+// runs in blocks is not in its gap. Real registry festivals at pinned dates.
+{
+  console.log("▸ Page status — single-bucket festivals stay live through their last day; gaps are not live");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-page-status.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`page status failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Map: HTML labels sit on the SVG points they name ─────────────────────
+// The YOU label and the stage pills are HTML over an SVG map. In a portrait
+// container the HTML layer applied the map's vertical centring twice, so the
+// YOU label rendered ~85 px off its dot. Measured against the SVG's own
+// transform; pills come from a fixture so the gate does not depend on which
+// live festival's art prints its own stage names.
+{
+  console.log("▸ Map overlay registration — the YOU label and stage pills sit on their points");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-overlay-registration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map overlay registration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── III Points 2026: each act's day is the official day graphic's ─────────
+// The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
+// day-split/graphic.tsv; the list page is the lineup. Both directions of the
+// join, B2B order as billed, and no stage or time anywhere.
+{
+  console.log("▸ III Points day split — every act on the official graphic's day, B2B as billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iii-points-days.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Saved sets the lineup still carries ──────────────────────────────────
+// Every saved-set surface reads savedInLineup(); storage, cloud push and the
+// sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
+// data-retention decision). Removed, removed-then-readded, union merge, zero
+// live; plus a detector for raw saved-list counts.
+{
+  console.log("▸ Saved-set view — counts and screens read the lineup; storage keeps every id");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-saved-set-lineup-view.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`saved-set view failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// CRSSD Fall 2026's flip drops Skepta Más Tiempo (Codex P2 on #249): the REAL
+// orphan id against the REAL flipped lineup. Counts, Search, Build My Night and
+// its share, crew showdown read zero for it; storage and the cloud push keep
+// it; re-billing the act brings it back saved.
+{
+  console.log("▸ CRSSD saved orphan — Skepta Más Tiempo reads zero, stays stored, returns if re-billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crssd-saved-orphan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`CRSSD saved orphan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Summerfest 2026 pulls su24, the wrong-stage copy of Stephan Jenkins (su45):
+// a saved su24 reads zero but stays stored and pushed, a moment tagged su24
+// lands in Needs Review, and re-adding the row brings both back.
+{
+  console.log("▸ Summerfest su24 removal — saved pick reads zero, stays stored; its moment goes to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-su24-removal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest su24 removal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
+// A downward scroll folds the WHOLE filter header into one compact bar that
+// names the selection; an upward scroll or a tap brings it back; the list
+// never jumps and a resize-clamped scroll is not read as the user (GRID used
+// to oscillate open/closed). Rows: artist name loudest, no "· —" placeholder,
+// no "Weekend N" with one weekend selected, AA meta contrast, 44px centred
+// save buttons. The clock is pinned to a live ACL evening.
+{
+  console.log("▸ Lineup readability gate — header folds to one bar, rows read");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-readability.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`lineup readability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Screen layout: the board's Me and Today (before the festival) ──
+// An empty account asks for a name (never a dash), Plan / Memories / Crew /
+// Badges are four round actions on one row with no zero counts, the
+// Plursky+ entry stays fully on screen at the top, festival rows keep their
+// title on one line at 320. Both modes, 393 and 320, empty and populated.
+{
+  console.log("▸ Screen layout gate — Me and Today before the festival, on the board");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-ap. Appearance: one system, two modes ──
+// Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
+// in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
+// checked in BOTH modes, each loaded in one and toggled into the other: text
+// contrast (WCAG AA) against what is really behind it, text on a photo keeps
+// one colour, no colour left behind by a toggle (settled pixel diff on every
+// screenful), artist names never truncated (3+ chains as "First +N"), stages
+// never shown as codes, and the resolver rules. A mode-specific break fails.
+{
+  console.log("▸ Appearance gate — every screen in Dark and Light, names in full");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-appearance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`appearance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5c2. Spotify artist images: attributed, temporary, never exported ──
+// Spotify's Developer Terms allow only temporary caching of Spotify cover art
+// and the Design Guidelines forbid cropping or overlaying it and require the
+// Spotify logo linking back. The gate pins: one helper owns artist_images_v1
+// and records each entry's source and fetch time; a Spotify entry is shown for
+// 24 h and then dropped; an unknown legacy entry is never shown or exported;
+// the recap hero card never draws a Spotify image; and a Spotify-sourced
+// artist hero is uncropped, un-overlaid and carries the linked full logo.
+{
+  console.log("▸ Spotify image gate — attributed, uncropped, 24 h, never in a share card");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-spotify-image-compliance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5d. Media state machine, in the running app ───────────────────────
+// useMomentPhoto used to hold `url = null` forever when the local lookup AND
+// the cloud restore both came back empty, and every thumbnail reads "no url
+// yet" as "still loading" — so a photo this device will never have shimmered
+// until the user gave up. Three runs cover the three outcomes: no cloud path,
+// a cloud call that REJECTS (offline-retryable) and a cloud call that answers
+// "no" (genuinely unavailable). The rejecting run stays NOMINALLY ONLINE on
+// purpose, so an "offline" verdict can only have come from the request result
+// and never from navigator.onLine.
+{
+  console.log("▸ Media-state gate — a failed lookup reaches a designed terminal state, never a permanent shimmer");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-media-state.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`media state failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5e. Root routing, deep links and the live count contract ──────────
+// The companion to the landing-state gate: that one proves the RULES, this one
+// proves the running app obeys them. A plain launch renders General Home with
+// no festival-scoped chrome mounted underneath; ?tab= and ?f= still name their
+// destination (?f= reloads, so the sentinel that survives the reload is part
+// of what is graded); entering a festival does not save it and saving does not
+// navigate; and a day header never claims a number its sections do not
+// contain. Both surfaces are also checked for horizontal pan at 320 CSS px.
+{
+  console.log("▸ Landing-routing gate — General Home at root, deep links intact, header counts honest");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-landing-routing.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`landing routing failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b5f. Memories v2 / Landing accessibility + large text ──────────────
+// Target size, accessible names, heading structure, horizontal pan, clipping,
+// text-over-text and reduced motion, at 393 and 320 CSS px and again with
+// every font size doubled. The doubling is a PROXY for iOS Dynamic Type at
+// 200% — Plursky styles in px with no text-size-adjust, so Dynamic Type does
+// not scale it today — and it is what surfaced the px line-heights that made
+// a scaled title print through the eyebrow above it.
+{
+  console.log("▸ Memories-a11y gate — 44x44, headings, no pan/clip/overlap, at normal and 200% type");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-memories-a11y.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`memories a11y failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b6a. Legacy festival attribution ───────────────────────────────────
+// A legacy (pre-v204) moment gets its festivalId from its OWN capture time, not
+// from whichever festival happened to be on screen when the app next booted.
+// The old sweep stamped every unstamped moment `lastSeen || cur` at once: with
+// ACL active on a first load, a clip shot 2026-05-15 (EDC Las Vegas) and one
+// shot 2026-11-06 (EDC Orlando) were both stamped `acl-2026`, whose window is
+// Oct 2-4 & 9-11. _activeMoments() keeps a moment only when its festivalId is
+// the current one, so neither was reachable from the festival it was shot at,
+// and the pointer advanced in the same pass — destroying the `lastSeen` evidence
+// a later load would have needed to correct it.
+//
+// The gate checks the shape of the claim, not the implementation: a record
+// presented as attributed must be claimed by that festival's night windows, a
+// record that cannot be proved must SAY so, and — so the flag cannot buy a
+// trivial pass — every provable record must come back evidence-backed. It also
+// covers the gated case (edc-orlando-2026 is invisible to photo-tag's
+// registry-filtered _allDataSets) and the once-per-load flag that used to be
+// burned by an early return before FESTIVAL_CONFIG was ready.
+{
+  console.log("▸ Festival-migration gate — legacy moments attributed from their own capture time");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-migration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival migration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b7. Festival FAQ structured data ───────────────────────────────────
+// A festival page's FAQPage JSON-LD may never claim something the page does
+// not visibly say. Google treats that mismatch as a structured-data violation
+// and the penalty lands on the whole site's rich-result eligibility, not just
+// the offending page — the same rule the generator's `performer` block has
+// always followed. The visible <dl> and the JSON-LD are built from ONE array,
+// so they cannot disagree today; this gate is what keeps that true when
+// someone later edits one render path and not the other. It also enforces the
+// honesty the array encodes: a stage-count answer needs a rendered stage list,
+// "Yes, times are published" needs a rendered schedule grid, "Not yet" needs
+// the absence of one, and a stated artist count must equal the printed one.
+{
+  console.log("▸ Festival FAQ gate — structured data never outruns the rendered page");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-faq.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival FAQ structured data failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8. Festival capability claims ─────────────────────────────────────
+// A festival page may not claim a capability the data behind that page does
+// not prove. One sentence used to promise "a live map … with every stage,
+// water station and amenity" on all 15 stage-bearing pages: three separate
+// claims, and the fleet supports none of them uniformly — geometryVerifiedFor()
+// is true for 3 festivals, 6 carry ZERO amenities, and ACL is deliberately
+// blind because its stage coordinates are poster art. The gate asks map.jsx's
+// OWN predicate (loaded from the compiled build) rather than a second copy of
+// its logic, and it asserts that predicate DISCRIMINATES, so the map rule can
+// never pass by being unsatisfiable.
+{
+  console.log("▸ Festival claims gate — no page claims what its data cannot prove");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-claims.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival capability claims failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8a. Festival full pages ───────────────────────────────────────────
+// Each /f/<id>/ page carries every section its data backs and nothing its data
+// does not: a map section iff a Plursky plate or a recorded official map page,
+// no patron-map art embedded (provenance is not reuse rights), every positioned
+// stage numbered on the plate, no walk or distance claim on unverified
+// geometry, every lineup name, every set row per weekend, noindex while a
+// lineup is empty. It mutates pages in memory to prove it catches an embedded
+// official map, a dropped act and a walk-time sentence.
+{
+  console.log("▸ Festival pages gate — every section backed, nothing unbacked");
+  try {
+    execFileSync(process.execPath, ["scripts/test-iii-points-stage-programming.mjs"], { cwd: ROOT, stdio: "pipe" });
+    const out = execFileSync(process.execPath, ["scripts/test-festival-pages.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival pages failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8b. Official embeds on festival pages ────────────────────────────
+// Watch & listen shows only the festival's OWN posts: the official site links
+// the account, the platform names that account as the author, the post is
+// live and from this edition, and the caps hold (1 YouTube, 3 social across
+// Instagram + X, 1 Spotify). Players are youtube-nocookie / Spotify embed,
+// lazy, no autoplay; the Instagram/X scripts load once, late. Also pins the
+// "for humans" fold: 20 lineup rows, then Show all.
+{
+  console.log("▸ Official embeds gate — official, live, capped, lazy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-official-embeds.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`official embeds failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8b. Social embeds are tap-to-load ────────────────────────────────
+// Instagram and X posts on /f/ pages load only when the reader taps one:
+// a real browser renders and scrolls the page and asserts zero requests to
+// either platform, then taps and asserts exactly the tapped post loads.
+{
+  console.log("▸ Embeds tap-to-load gate — no Instagram/X request before a tap");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-embeds-tap.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Official maps and hours, exactly as ruled ─────────────────────
+// Every map link and hours value carries its first-party URL and the date it
+// was read; a festival with no published value has no field, and the held
+// ones (Portola, EDC Orlando, Decadence, Beyond SoCal, Countdown NYE, Outside
+// Lands) stay empty. Edition gate: hours print only from the official page's
+// dated block for THIS edition (editionHours()).
+{
+  console.log("▸ Maps & hours gate — every value sourced and dated, nothing inferred");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-maps-hours.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maps & hours failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8d. Server readiness probes read their bodies ─────────────────────
+// A probe that checks a fetch's status without reading its body can
+// crash Node's fetch from a socket event (CI run 36089778095, embeds tap gate).
+{
+  console.log("▸ Readiness-probe gate — every server probe reads its body");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-readiness-probe.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`readiness probe failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b9. Shell portability ──────────────────────────────────────────────
+// Every push in this repo goes through scripts/verify-and-push.sh, and that
+// wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
+// cannot exec the interpreter and returns 126 — which a caller reads as "the
+// gate ran and failed", not "the gate never started". That is the same
+// false-success shape as a piped exit code, one layer further down, and it is
+// invisible to every other gate here because they all run under node.
+{
+  console.log("▸ Shell portability gate — an executable script starts on a box that is not this one");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-shell-portability.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`shell portability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c4. Historical editions (Past Festivals) ─────────────────────────
+// Past editions are frozen facts read from archived OFFICIAL pages. Each one
+// must validate (days, stages, times, provenance, review manifest), equal what
+// its reviewed sheet builds, and stay out of the live registry, schedule and
+// precache. The gate also proves every rule by mutating a real edition.
+{
+  console.log("▸ Historical-editions gate — archived official schedules are valid, reviewed and isolated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-historical-editions.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`historical editions failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c6. Past Festivals UI ─────────────────────────────────────────────
+// The library screens at 393pt, driven through the switcher: every count and
+// row comes from data/historical, a lineup_only edition renders names with no
+// times (a route-intercepted fixture), a failed fetch retries, nothing scrolls
+// sideways, and browsing never moves the active festival or the saved plan.
+{
+  console.log("▸ Past Festivals UI gate — the archived library renders from its files, read-only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-festivals-ui.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past Festivals UI failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Past look-backs gate — a gated festival opens its past edition as a labelled look-back, or stays gated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-lookbacks.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -1935,6 +3025,41 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   console.log(`  ✓ 0 poster-style <video> elements across the app's .jsx files; posters extract only via the idle queue; thumbnails lazy + async`);
 }
 
+// ── 1z-c1. Archive recovery attributes from the clip's own capture time ───
+// A video pulled back out of the archive by fingerprint must take its festival
+// AND its night from its own capture time, not from whichever festival is on
+// screen. _recoverCurrentVideoMomentsFromArchive copies the archived record's
+// real takenAt onto the moment and then used to ignore it three times over:
+// `needsRecovery` was judged by _photoFestivalNight(parsed) with no config (so
+// it fell back to the ACTIVE festival, and a clip from any other festival was
+// unplaceable by definition and always looked broken); `recoveredNight` was
+// computed the same way, so the night bucket inherited the assumption; and the
+// attribution itself was `if (!m.festivalId) m.festivalId = cur;`.
+//
+// The lookup only searches archive[cur].moments, so `= cur` PROPAGATED that
+// bucket's prior attribution rather than inventing a fresh one — but the bucket
+// was filled by whichever festival was on screen, which #213 established is not
+// evidence. Measured with acl-2026 active: a clip whose recovered capture time
+// is claimed by edc-lv-2026 and nothing else was stamped acl-2026, with
+// festivalAttribution null — not a declared guess, a fact-shaped stamp.
+//
+// The gate's night fixture uses the attributed festival's LAST night against a
+// seeded bucket of 1, and the archived record carries no `night`, so a night
+// computed against the wrong config cannot pass by coincidence. An existing
+// festivalId is still never re-stamped (#213's rule), so this corrects future
+// recoveries, not moments already mis-stamped.
+{
+  console.log("▸ Archive-recovery gate — recovered clips attributed from their own capture time");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-archive-recovery-attribution.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`archive recovery attribution failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c2. Post-import review ─────────────────────────────────────────────
 // Who needs review, what each retag writes, that a write touches exactly the
 // moments it names (never another festival's), that the lineup offered is the
@@ -1966,6 +3091,70 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`live check-in failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
+// A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
+// wraps inside the row at 320px instead of cutting at 8 characters.
+{
+  console.log("▸ Map quick replies gate — smart chips name the artist in full, fit the row at 320px");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-quick-replies.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map quick replies failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c5. ACL 2026 map: art coordinates are not world coordinates ────────
+// The plate is the verified first-party 2026 patron map, every stage/amenity
+// x/y is a measured row on it, the four satellite anchors are untouched and
+// in order, and nothing (Snapchat, Tito's, Beatbox) is anchored off a poster.
+{
+  console.log("▸ ACL 2026 map gate — verified plate, measured pins, satellite anchors untouched, no poster anchors");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-map-2026.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL 2026 map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Georeference tool + EDC Orlando 2026 map pipeline ─────────────────────
+// scripts/georef-map.mjs re-derives the grid, scale and centroid edc-orlando
+// ships from its own anchors, and build-edco-map-2026.mjs may ship only the
+// placeholder until an official 2026 map is pinned by hash.
+{
+  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c8. An existing festival stamp is corrected only on proof ──────────
+// Capture time can show a stamp is wrong; only festivalStampSource can show the
+// machine wrote it. A proven fallback stamp with one contradicting claimant is
+// corrected (festivalId, night and bucket together). Every other contradiction
+// keeps the stamp and goes to Needs Review. tagSource is never the evidence.
+{
+  console.log("▸ Festival stamp provenance gate — only proven machine stamps corrected, the rest to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-stamp-provenance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival stamp provenance failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

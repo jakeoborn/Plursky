@@ -1,0 +1,30 @@
+{
+  "festivalId": "decadence-colorado-2026",
+  "source": null,
+  "scheduleHash": "ce7f346b6f23d0e7",
+  "acts": [
+    {"id":"dec-alesso","name":"Alesso","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-black-tiger-sex-machine","name":"Black Tiger Sex Machine","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-daniel-allan","name":"Daniel Allan","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-deathpact","name":"Deathpact","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-dj-snake","name":"DJ Snake","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-excision","name":"Excision","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-green-velvet","name":"Green Velvet","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-lane-8","name":"Lane 8","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-seven-lions","name":"Seven Lions","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-sullivan-king","name":"Sullivan King","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-yousuke-yukimatsu","name":"YØU$UK€ ¥UK1MAT$U","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-zeds-dead","name":"Zeds Dead","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-zingara","name":"Zingara","day":1,"stage":null,"start":"","end":""},
+    {"id":"dec-alleycvt","name":"ALLEYCVT","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-crankdat","name":"Crankdat","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-gorillat","name":"GorillaT","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-griz","name":"GRiZ","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-isoxo","name":"ISOxo","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-its-murph","name":"it’s murph","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-kasbo","name":"Kasbo","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-levity","name":"Levity","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-marshmello","name":"Marshmello","day":2,"stage":null,"start":"","end":""},
+    {"id":"dec-the-resistance","name":"The Resistance","day":2,"stage":null,"start":"","end":""}
+  ]
+}

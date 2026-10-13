@@ -1,0 +1,238 @@
+# III Points 2026: every billed act, reconciled row by row, 2026-09-30.
+# list_text / list_structured_name: today's official list row (who plays). graphic_*: the July lineup-by-day graphic (which day).
+# evidence: graphic_full_set = the graphic bills this whole set on that day | graphic_member_only = the graphic bills one member alone, the set is DAY TBA | not_on_graphic = DAY TBA
+act_id	shipped_name	list_text	list_structured_name	graphic_billing	graphic_day	graphic_zone	shipped_day	evidence	note
+iiip-1tbsp	1tbsp	1tbsp	1tbsp	ITBSP	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	same set, spelled differently
+iiip-aabel-b2b-siegel	Aabel B2B Siegel	Aabel B2B Siegel	Aabel & Siegel	Aabel B2B Siegel	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-ackdaddy	Ackdaddy	Ackdaddy	Ackdaddy	Ackdaddy	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-adam-at-the-door	Adam At The Door	Adam At The Door	Adam At The Door	Adam At The Door	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-ahmed-spins-b2b-omri	Ahmed Spins B2B OMRI.	Ahmed Spins B2B OMRI.	Ahmed Spins & OMRI.	Ahmed Spins B2B OMRI.	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-alejo	ALEJO	ALEJO	ALEJO	Alejo	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-alexx-in-chainss-b2b-solte	Alexx in Chainss B2B Soltek	Alexx in Chainss B2B Soltek	Alexx in Chainss & Soltek	Alexx in Chainss B2B Soltek	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-aphex-twink-b2b-foreseer	Aphex Twink B2B FORESEER	Aphex Twink B2B FORESEER	Aphex Twink & FORESEER	Aphex Twink B2B Foreseer	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-b0yg1rl	B0YG1RL	B0YG1RL	B0YG1RL	BOYGIRL	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-baby-jesus-b2b-chaos	Baby Jesus B2B CHAOS!	Baby Jesus B2B CHAOS!	Baby Jesus & CHAOS!	Baby Jesus B2B Chaos!	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-bakke	Bakke	Bakke	Bakke	Bakke	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-beltran-b2b-ben-sterling	Beltran B2B Ben Sterling	Beltran B2B Ben Sterling	Beltran & Ben Sterling	Beltran B2B Ben Sterling	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-bill-patrick-b2b-bort	Bill Patrick B2B Bort	Bill Patrick B2B Bort	Bill Patrick & Bort	Bill Patrick B2B Bort	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-bone-thugs-n-harmony	Bone Thugs-N-Harmony	Bone Thugs-N-Harmony	Bone Thugs-N-Harmony	Bone Thugs-N-Harmony	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-brunello-b2b-rafael	Brunello B2B Rafael	Brunello B2B Rafael	Brunello & Rafael	Brunello B2B Rafael	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-cami-di-marzo	Cami di Marzo	Cami di Marzo	Cami di Marzo	Cami Di Marzo	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-cloonee	Cloonee	Cloonee	Cloonee	Cloonee	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-connan-mockasin	Connan Mockasin	Connan Mockasin	Connan Mockasin	Connan Mockasin	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-corridos-ketamina	Corridos Ketamina	Corridos Ketamina	Corridos Ketamina	Corridos Ketamina	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-daizy	Daizy	Daizy	Daizy (US)	Daizy	Fri Oct 16	local	Fri Oct 16	graphic_full_set	structured name "Daizy (US)"
+iiip-dan-molinari	Dan Molinari	Dan Molinari	Dan Molinari	Dan Molinari	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-danny-brown	Danny Brown	Danny Brown	Danny Brown	Danny Brown	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-danny-daze-b2b-dj-godfathe	Danny Daze B2B DJ Godfather	Danny Daze B2B DJ Godfather	Danny Daze & DJ Godfather	Danny Daze B2B DJ Godfather	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-deep-cleansing	Deep Cleansing	Deep Cleansing	Deep Cleansing	Deep Cleansing	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-differ	Differ	Differ	Differ	Differ	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-discip	Discip	Discip	Discip	Discip	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-disco-lines	Disco Lines	Disco Lines	Disco Lines	Disco Lines	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-dj-harvey	DJ Harvey	DJ Harvey	DJ Harvey	DJ Harvey	Fri Oct 16	444	Fri Oct 16	graphic_full_set	
+iiip-dj-sabi-b2b-grue5ome	DJ Sabi B2B GRUE5OME	DJ Sabi B2B GRUE5OME	DJ Sabi & GRUE5OME	DJ Sabi B2B Grue5ome	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-dr-rubinstein-b2b-ultrathe	Dr. Rubinstein B2B Ultrathem	Dr. Rubinstein B2B Ultrathem	Dr. Rubinstein & Ultrathem	Dr. Rubinstein B2B Ultrathem	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-duun-b2b-sleepy-c	duun B2B Sleepy C	duun B2B Sleepy C	duun & Sleepy C	Duun B2B Sleepy C	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-eco-sistema	eco-sistema	eco-sistema	eco-sistema	Eco-Sistema	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-eli-escobar-b2b-jubilee	Eli Escobar B2B Jubilee	Eli Escobar B2B Jubilee	Eli Escobar & Jubilee	Eli Escobar B2B Jubilee	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-elias-garcia-b2b-mila-gama	Elias Garcia B2B Mila Gama	Elias Garcia B2B Mila Gama	Elias Garcia & Mila Gama	Elias Garcia B2B Mila Gama	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-eveava-b2b-jovigibs	eveava B2B Jovigibs	eveava B2B Jovigibs	eveava & Jovigibs	Eveava B2B Jovigibs	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-extra-andrew-b2b-mutant-pe	Extra Andrew B2B Mutant Pete	Extra Andrew B2B Mutant Pete	Extra Andrew & Mutant Pete	Extra Andrew B2B Mutant Pete	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-feph-b2b-mr-tron	Feph B2B Mr. Tron	Feph B2B Mr. Tron	Feph & Mr. Tron	Feph B2B Mr. Tron	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-fiin	Fiin	Fiin	Fiin	Fiin	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-floating-points	Floating Points	Floating Points	Floating Points	Floating Points	Fri Oct 16	444	Fri Oct 16	graphic_full_set	
+iiip-flying-lotus	Flying Lotus	Flying Lotus	Flying Lotus	Flying Lotus	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-gio-elia-b2b-meghan-lee	Gio Elia B2B Meghan Lee	Gio Elia B2B Meghan Lee	Gio Elia & Meghan Lee	Gio Elia B2B Meghan Lee	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-godisound	Godisound	Godisound	Godisound	Godisound	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-grace-arribas-b2b-marte	Grace Arribas B2B MARTE	Grace Arribas B2B MARTE	Grace Arribas & MARTE	Grace Arribas B2B Marte	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-hamdi	Hamdi	Hamdi	Hamdi	Hamdi	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-heidi-lawden	Heidi Lawden	Heidi Lawden	Heidi Lawden	Heidi Lawden	Fri Oct 16	444	Fri Oct 16	graphic_full_set	
+iiip-honey-dijon	Honey Dijon	Honey Dijon	Honey Dijon	Honey Dijon	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-rimaye-b2b-inbal	Inbal B2B Rimaye	Rimaye B2B Inbal	Rimaye & Inbal	Inbal B2B Rimaye	Fri Oct 16	local	Fri Oct 16	graphic_full_set	list prints "Rimaye B2B Inbal"
+iiip-invt	INVT	INVT	INVT	INVT	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-ivy-lab	Ivy Lab	Ivy Lab	Ivy Lab	Ivy Lab	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-jacques-greene	Jacques Greene	Jacques Greene	Jacques Greene	Jacques Greene	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-jane-remover	Jane Remover	Jane Remover	Jane Remover	Jane Remover	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-jeremy-ismael	Jeremy Ismael	Jeremy Ismael	Jeremy Ismael	Jeremy Ismael	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-jigitz	Jigitz	Jigitz	Jigitz	Jigitz	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-joanna-kuchta-b2b-robyn-si	Joanna Kuchta B2B Robyn Sin Love	Joanna Kuchta B2B Robyn Sin Love	Joanna Kuchta & Robyn Sin Love	Joanna Kuchta B2B Robyn Sin Love	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-lotusoph-b2b-julia-saturno	Julia Saturno B2B Lotusoph	Lotusoph B2B Julia Saturno	Lotusoph & Julia Saturno	Julia Saturno B2B Lotusoph	Fri Oct 16	local	Fri Oct 16	graphic_full_set	list prints "Lotusoph B2B Julia Saturno"
+iiip-jump-source	Jump Source (Live)	Jump Source (Live)	Jump Source	Jump Source (live)	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-katie-ox-b2b-nat-siriani	Katie Ox B2B Nat Siriani	Katie Ox B2B Nat Siriani	Katie Ox & Nat Siriani	Katie Ox B2B Nat Siriani	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-kumi	Kumi	Kumi	Kumi	Kumi	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-lagrimas-de-oro	Lagrimas de Oro	Lagrimas de Oro	Lagrimas de Oro	Lagrimas de Oro	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-lauren-palma	Lauren Palma	Lauren Palma	Lauren Palma	Lauren Palma	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-levity-b2b-taiki-nulight	Levity B2B Taiki Nulight	Levity B2B Taiki Nulight	Levity & Taiki Nulight	Levity B2B Taiki Nulight	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-lil-kim	Lil' Kim	Lil' Kim	Lil&apos; Kim	Lil' Kim	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	structured name "Lil&apos; Kim"
+iiip-lousy-lover-b2b-lucaz	Lousy Lover B2B Lucaz	Lousy Lover B2B Lucaz	Lousy Lover & Lucaz	Lousy Lover B2B Lucaz	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-maccabi-b2b-pezlo-md	Maccabi B2B Pezlo MD	Maccabi B2B Pezlo MD	Maccabi & Pezlo MD	Maccabiii B2B Pezlo MD	Fri Oct 16	local	Fri Oct 16	graphic_full_set	same set, spelled differently
+iiip-maher-daniel-b2b-mai-iache	Maher Daniel B2B Mai Iachetti	Maher Daniel B2B Mai Iachetti	Maher Daniel & Mai Iachetti	Maher Daniel B2B Mai Iachetti	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-malone-b2b-miluhska	Malóne B2B Miluhska	Malóne B2B Miluhska	Malóne & Miluhska	Malóne Morez B2B Miluhska	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	same set, spelled differently
+iiip-mary-droppinz	Mary Droppinz	Mary Droppinz	Mary Droppinz	Mary Droppinz	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-mason-norris-b2b-mia-vende	Mason Norris B2B Mia Vendetta	Mason Norris B2B Mia Vendetta	Mason Norris & Mia Vendetta	Mason Norris B2B Mia Vendetta	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-megusta-b2b-migs	Megusta B2B MIGS	Megusta B2B MIGS	Megusta & MIGS	Megusta B2B Migs	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-men-i-trust	Men I Trust	Men I Trust	Men I Trust	Men I Trust	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-mgna-crrrta	MGNA Crrrta	MGNA Crrrta	MGNA Crrrta	MGNA Crrrta	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-miguel-clark-b2b-naim-zarz	Miguel Clark B2B Naim Zarzour	Miguel Clark B2B Naim Zarzour	Miguel Clark & Naim Zarzour	Miguel Clark B2B Naim Zarzour	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-miguelle-tons-b2b-saraga	Miguelle & Tons B2B Saraga	Miguelle & Tons B2B Saraga	Miguelle & Tons & Saraga	Miguelle & Tons B2B Saraga	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-mind-enterprises	Mind Enterprises	Mind Enterprises	Mind Enterprises	Mind Enterprises	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-moscoman	Moscoman	Moscoman	Moscoman	Moscoman	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-nate-sib	nate sib	nate sib	nate sib	Nate Sib	Fri Oct 16	ring-red	Fri Oct 16	graphic_full_set	
+iiip-nicholas-g-padilla	Nicholas G. Padilla	Nicholas G. Padilla	Nicholas G. Padilla	Nicholas G. Padilla	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-nicole-gallamini-b2b-nikit	Nicole Gallamini B2B Nikita Green	Nicole Gallamini B2B Nikita Green	Nicole Gallamini & Nikita Green	Nicole Gallamini B2B Nikita Green	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-odd-mob	Odd Mob	Odd Mob	Odd Mob	Odd Mob	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-oma-totem-b2b-true-vine	oma totem B2B True Vine	oma totem B2B True Vine	oma totem & True Vine	Oma Totem B2B True Vine	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-parcels	Parcels	Parcels	Parcels	Parcels	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-patch	Patch+	Patch+	Patch+	Patch+	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-pawsa	PAWSA	PAWSA	PAWSA	PAWSA	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-proletar-b2b-zamurai	Proletar B2B Zamurai	Proletar B2B Zamurai	Proletar & Zamurai	Proletar B2B Zamurai	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-puma	Puma	Puma	Puma	Puma	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-purity-ring	Purity Ring	Purity Ring	Purity Ring	Purity Ring	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-r-v-calypso	R/V Calypso	R/V Calypso	R/V Calypso	R/V Calypso	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-ragie-ban	Ragie Ban	Ragie Ban	Ragie Ban	Ragie Ban	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-rello	Rello	Rello	Rello	Rello	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-rental-snakes	Rental Snakes (Live)	Rental Snakes (Live)	Rental Snakes	Rental Snakes (live)	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-roddy-lima	Roddy Lima	Roddy Lima	Roddy Lima	Roddy Lima	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-peach-b2b-shanti-celeste	Shanti Celeste B2B Peach	Peach B2B Shanti Celeste	Peach & Shanti Celeste	Shanti Celeste B2B Peach	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	list prints "Peach B2B Shanti Celeste"
+iiip-raje-b2b-slugg	Slugg B2B RAJE	RAJE B2B Slugg	RAJE & Slugg	Slugg B2B Raje	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	list prints "RAJE B2B Slugg"
+iiip-sportswax	Sportswax	Sportswax	Sportswax	Sportswax	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-will-buck-b2b-taimur	Taimur B2B Will Buck	Will Buck B2B Taimur	Will Buck & Taimur	Taimur B2B Will Buck	Fri Oct 16	local	Fri Oct 16	graphic_full_set	list prints "Will Buck B2B Taimur"
+iiip-tech-g1rls	Tech G1rls	Tech G1rls	Tech G1rls	Tech Girls	Fri Oct 16	ring-pink	Fri Oct 16	graphic_full_set	
+iiip-tiffy-vera-b2b-thunderpony	Thunderpony B2B Tiffy Vera	Tiffy Vera B2B Thunderpony	Tiffy Vera & Thunderpony	Thunderpony B2B Tiffy Vera	Fri Oct 16	local	Fri Oct 16	graphic_full_set	list prints "Tiffy Vera B2B Thunderpony"
+iiip-tokischa	Tokischa	Tokischa	Tokischa	Tokischa	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	
+iiip-uchi	Uchi	Uchi	Uchi	Uchi	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-v1fro	V1FRO	V1FRO	V1FRO	Vifro	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-vania-junco	Vania Junco	Vania Junco	Vania Junco	Vania Junco	Fri Oct 16	ring-blue	Fri Oct 16	graphic_full_set	
+iiip-max-styler-b2b-vintage-cul	Vintage Culture B2B Max Styler	Max Styler B2B Vintage Culture	Max Styler & Vintage Culture	Vintage Culture B2B Max Styler	Fri Oct 16	centre	Fri Oct 16	graphic_full_set	list prints "Max Styler B2B Vintage Culture"
+iiip-will-renuart	Will Renuart	Will Renuart	Will Renuart	Will Renuart	Fri Oct 16	local	Fri Oct 16	graphic_full_set	
+iiip-zep	ZEP	ZEP	ZEP	Zep	Fri Oct 16	ring-lilac	Fri Oct 16	graphic_full_set	
+iiip-1-800-lolita-b2b-xana	1-800-305	1-800-305	1-800-Lolita&Xana	1-800-305	Sat Oct 17	local	Sat Oct 17	graphic_full_set	structured name "1-800-Lolita&Xana"
+iiip-2up	2UP!	2UP!	2UP!	2UP!	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-619	619!	619!	619!	619!	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-999999999	999999999	999999999	999999999	999999999	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-adam-port	Adam Port	Adam Port	Adam Port	Adam Port	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-ale-acosta-b2b-hazon	Ale Acosta B2B Hazón	Ale Acosta B2B Hazón	Ale Acosta & Hazón	Ale Acosta B2B Hazón	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-alezsandro-b2b-dalva	Alezsandro B2B Dalva	Alezsandro B2B Dalva	Alezsandro & Dalva	Alezsandro B2B Dalva	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-allnightkev-b2b-lo-g	Allnightkev B2B Lo-G	Allnightkev B2B Lo-G	Allnightkev & Lo-G	Allnightkev B2B Lo-G	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-ashley-venom-b2b-souls-dep	Ashley Venom B2B Souls Departed	Ashley Venom B2B Souls Departed	Ashley Venom & Souls Departed	Ashley Venom B2B Souls Departed	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-bassvictim	Bassvictim	Bassvictim	Bassvictim	Bassvictim	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-pressure-point-b2b-berrakk	Berrakka B2B Pressure Point	Pressure Point B2B Berrakka	Pressure Point & Berrakka	Berrakka B2B Pressure Point	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	list prints "Pressure Point B2B Berrakka"
+iiip-blood-orange	Blood Orange	Blood Orange	Blood Orange	Blood Orange	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-bonita-applebumz-b2b-toni-	Bonita Applebumz B2B Toni Shardai	Bonita Applebumz B2B Toni Shardai	Bonita Applebumz & Toni Shardai	Bonita Applebumz B2B Toni Shardai	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-bozito-b2b-gabo-escalona	Bozito B2B Gabo Escalona	Bozito B2B Gabo Escalona	Bozito & Gabo Escalona	Bozito B2B Gabo Escalona	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-camp-blu	Camp Blu	Camp Blu	Camp Blu	Camp Blu	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-carter-jackson-brown	Carter Jackson-Brown	Carter Jackson-Brown	Carter Jackson-Brown	Carter Jackson-Brown	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-chanel-beads	Chanel Beads	Chanel Beads	Chanel Beads	Chanel Beads	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-charlotte-de-witte	Charlotte de Witte	Charlotte de Witte	Charlotte de Witte	Charlotte de Witte	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-chasewest	ChaseWest	ChaseWest	ChaseWest	Chasewest	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-coffintexts-b2b-dj-fuckoff	Coffintexts B2B DJ Fuckoff	Coffintexts B2B DJ Fuckoff	Coffintexts & DJ Fuckoff	Coffintexts B2B DJ Fuckoff	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-cole-knight-b2b-dreya-v	Cole Knight B2B DREYA V	Cole Knight B2B DREYA V	Cole Knight & DREYA V	Cole Knight B2B Dreya V	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-daphni	Daphni	Daphni	Daphni	Daphni	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-david-vunk	David Vunk	David Vunk	David Vunk	David Vunk	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-dean-turnley	Dean Turnley	Dean Turnley	Dean Turnley	Dean Turnley	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-d-luxe-b2b-dennis-baker	Dennis Baker B2B D.Luxe	D.Luxe B2B Dennis Baker	D.Luxe & Dennis Baker	Dennis Baker B2B D.Luxe	Sat Oct 17	local	Sat Oct 17	graphic_full_set	list prints "D.Luxe B2B Dennis Baker"
+iiip-dj-ray-b2b-ez-dee	DJ Ray B2B EZ Dee	DJ Ray B2B EZ Dee	DJ Ray & EZ Dee	DJ Ray B2B Ez Dee	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-dj-three-b2b-sister-system	DJ Three B2B Sister System	DJ Three B2B Sister System	DJ Three & Sister System	DJ Three B2B Sister System	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-domnrob	DomnRob	DomnRob	DomnRob	Domnrob	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-doris-dana	doris dana	doris dana	doris dana	Doris Dana (live)	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-duality-b2b-gumthewrapper	Duality B2B GumtheWrapper	Duality B2B GumtheWrapper	Duality & GumtheWrapper	Duality B2B Gumthewrapper	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-dude-skywalker	Dude Skywalker	Dude Skywalker	Dude Skywalker	Dude Skywalker	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-ear	ear	ear	ear	Ear	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-ellynora	Ellynora	Ellynora	Ellynora	Ellynora	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-faith-leazae	Faith Leazae	Faith Leazae	Faith Leazae	Faith Leazae	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-fakemink	fakemink	fakemink	fakemink	Fakemink	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-fine	Fine	Fine	Fine	Fine	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-four-tet	Four Tet	Four Tet	Four Tet	Four Tet	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-generous-b-b2b-hakuna	Generous B B2B Hakuna	Generous B B2B Hakuna	Generous B & Hakuna	Generous B B2B Hakuna	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-haai	HAAi	HAAi	HAAi	HAAi	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-horsegiirl	horsegiirL	horsegiirL	horsegiirL	Horsegiirl	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-idriss-d-b2b-danyelino	Idriss D B2B Danyelino	Idriss D B2B Danyelino	Idriss D & Danyelino	Idriss D B2B Danyelino	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-interplanetary-criminal	Interplanetary Criminal	Interplanetary Criminal	Interplanetary Criminal	Interplanetary Criminal	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-jason-rault	Jason Rault	Jason Rault	Jason Rault	Jason Rault	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-jbz	JBZ	JBZ	JBZ	JBZ	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-jinn-pr	JINN_PR	JINN_PR	JINN_PR	Jinn_PR	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-joss-dean	Joss Dean	Joss Dean	Joss Dean	Joss Dean	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-kelela	Kelela	Kelela	Kelela	Kelela	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-kettama	KETTAMA	KETTAMA	KETTAMA	Kettama	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-khami	Khami	Khami	Khami	Khami	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-ki-ki	KI/KI	KI/KI	KI/KI	KI/KI	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-kinahau	KinAhau	KinAhau	KinAhau	Kinahau	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-kujo-b2b-rara	Kujo B2B RARA	Kujo B2B RARA	Kujo & RARA	Kujo B2B Rara	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-la-bb	La BB	La BB	La BB	La BB	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-lady-narcisse-b2b-racci	Lady Narcisse B2B Racci	Lady Narcisse B2B Racci	Lady Narcisse & Racci	Lady Narcisse B2B Racci	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-ladyboy	LADYBOY	LADYBOY	LADYBOY	Ladyboy	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-liquid-dinosaurs	Liquid Dinosaurs	Liquid Dinosaurs	Liquid Dinosaurs	Liquid Dinosaurs	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-lizzie-mcguire	Lizzie_mcguire	Lizzie_mcguire	Lizzie_mcguire	Lizzie_McGuire	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-loukeman	Loukeman	Loukeman	Loukeman	Loukeman	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-lupreme-b2b-santo	Lupreme B2B SANTO	Lupreme B2B SANTO	Lupreme & SANTO	Lupreme B2B Santo	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-machine-girl	Machine Girl	Machine Girl	Machine Girl	Machine Girl	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-mango-b2b-mister-lo	Mango B2B Mister Lo	Mango B2B Mister Lo	Mango & Mister Lo	Mango B2B Mister Lo	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-marco-carola-b2b-franky-ri	Marco Carola B2B Franky Rizardo	Marco Carola B2B Franky Rizardo	Marco Carola & Franky Rizardo	Marco Carola B2B Franky Rizardo	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-marie-qrie-b2b-viva-vidal	Marie Qrie B2B Viva Vidal	Marie Qrie B2B Viva Vidal	Marie Qrie & Viva Vidal	Marie Qrie B2B Viva Vidal	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-marsolo	Marsolo	Marsolo	Marsolo	Marsolo	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-max-dean-b2b-luke-dean	Max Dean B2B Luke Dean	Max Dean B2B Luke Dean	Max Dean & Luke Dean	Max Dean B2B Luke Dean	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-milo-ziro-b2b-xilla	Milo Ziro B2B Xilla	Milo Ziro B2B Xilla	Milo Ziro & Xilla	Milo Ziro B2B Xilla	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-ml-buch	ML Buch	ML Buch	ML Buch	ML Buch	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-monoky	Monoky	Monoky	Monoky	Monoky	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-mph	MPH	MPH	MPH	MPH	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-mr-bitch	Mr. Bitch	Mr. Bitch	Mr. Bitch	Mr. Bitch	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-artime-b2b-mystic-bill	Mystic Bill B2B Artime	Artime B2B Mystic Bill	Artime & Mystic Bill	Mystic Bill B2B Artime	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	list prints "Artime B2B Mystic Bill"
+iiip-natalia-roth-b2b-max-stern	Natalia Roth B2B Max Stern	Natalia Roth B2B Max Stern	Natalia Roth & Max Stern	Natalia Roth B2B Max Stern	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-nick-leon-b2b-safety-tranc	Nick León B2B Safety Trance	Nick León B2B Safety Trance	Nick León & Safety Trance	Nick León B2B Safety Trance	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-nii-tei	Nii Tei	Nii Tei	Nii Tei	Nii Tei	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-omar	Omar+	Omar+	Omar+	Omar+	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-phiphi-b2b-winter-wrong	phiphi B2B Winter Wrong	phiphi B2B Winter Wrong	phiphi & Winter Wrong	Phiphi B2B Winter Wrong	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-rebolledo	Rebolledo	Rebolledo	Rebolledo	Rebolledo	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-red-axes	Red Axes	Red Axes	Red Axes	Red Axes	Sat Oct 17	444	Sat Oct 17	graphic_full_set	
+iiip-res-live	res_ (live)	res_ (live)	res_	res_ (live)	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-roman-flugel	Roman Flügel	Roman Flügel	Roman Flügel	Roman Flügel	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-jinks-b2b-romulo-del-casti	Romulo Del Castillo B2B Jinks	Jinks B2B Romulo Del Castillo	Jinks & Romulo Del Castillo	Romulo Del Castillo B2B Jinks	Sat Oct 17	local	Sat Oct 17	graphic_full_set	list prints "Jinks B2B Romulo Del Castillo"
+iiip-rude-boy-b2b-sdrv	Rude Boy B2B SDRV	Rude Boy B2B SDRV	Rude Boy & SDRV	Rude Boy B2B SDRV	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-rusowsky	rusowsky	rusowsky	rusowsky	Rusowsky	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-saint-romero	Saint & Romero (Hybrid)	Saint & Romero (Hybrid)	Saint & Romero	Saint & Romero (hybrid)	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-sam-alfred	Sam Alfred	Sam Alfred	Sam Alfred	Sam Alfred	Sat Oct 17	ring-pink	Sat Oct 17	graphic_full_set	
+iiip-santiago-villu	Santiago Villu	Villu	Santiago Villu	Santiago Villu	Sat Oct 17	local	Sat Oct 17	graphic_full_set	list prints "Villu"
+iiip-saturnsarii-b2b-suz	SATURNSARii B2B SUZ	SATURNSARii B2B SUZ	SATURNSARii & SUZ	Saturnsarii B2B Suz	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-seth-troxler	Seth Troxler	Seth Troxler	Seth Troxler	Seth Troxler	Sat Oct 17	444	Sat Oct 17	graphic_full_set	
+iiip-shinobi	Shinobi	Shinobi	Shinobi	Shinobi	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-grant-sabadash-b2b-shir-mi	Shir Miya B2B Grant Sabadash	Grant Sabadash B2B Shir Miya	Grant Sabadash & Shir Miya	Shir Miya B2B Grant Sabadash	Sat Oct 17	local	Sat Oct 17	graphic_full_set	list prints "Grant Sabadash B2B Shir Miya"
+iiip-silvie-loto-b2b-ms-mada	Silvie Loto B2B Ms. Mada	Silvie Loto B2B Ms. Mada	Silvie Loto & Ms. Mada	Silvie Loto B2B Ms. Mada	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-sosa	Sosa	Sosa	Sosa	Sosa	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-spice-crime-b2b-violeta	Spice Crime B2B Violeta	Spice Crime B2B Violeta	Spice Crime & Violeta	Spice Crime B2B Violeta	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-sunn-o	Sunn O)))	Sunn O)))	Sunn O)))	Sunn O)))	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-terence-tabeau	Terence Tabeau	Terence Tabeau	Terence Tabeau	Terence Tabeau	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-tiga	Tiga	Tiga	Tiga	Tiga	Sat Oct 17	ring-red	Sat Oct 17	graphic_full_set	
+iiip-tricky	Tricky	Tricky	Tricky	Tricky	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-underworld	Underworld	Underworld	Underworld	Underworld	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-velora	Velora	Velora	Velora	Velora	Sat Oct 17	ring-blue	Sat Oct 17	graphic_full_set	
+iiip-vsyana	vsyana	vsyana	vsyana	Vsyana	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-vtss	VTSS	VTSS	VTSS	VTSS	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-vvilhelm	VVilhelm	VVilhelm	VVilhelm	Vvilhelm	Sat Oct 17	local	Sat Oct 17	graphic_full_set	
+iiip-whitesquare	Whitesquare	Whitesquare	Whitesquare	Whitesquare	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-willikens-ivkovic	Willikens & Ivkovic	Willikens & Ivkovic	Willikens & Ivkovic	Willikens & Ivkovic	Sat Oct 17	444	Sat Oct 17	graphic_full_set	
+iiip-yhwh-nailgun	YHWH Nailgun	YHWH Nailgun	YHWH Nailgun	YHWH Nailgun	Sat Oct 17	ring-lilac	Sat Oct 17	graphic_full_set	
+iiip-u-uk-uk1mat-u	¥ØU$UK€ ¥UK1MAT$U	¥ØU$UK€ ¥UK1MAT$U	¥ØU$UK€ ¥UK1MAT$U	¥ØU$UK€ ¥UKIMAT$U	Sat Oct 17	centre	Sat Oct 17	graphic_full_set	
+iiip-bricolage-b2b-day-dem	Bricolage B2B DAY/DEM	Bricolage B2B DAY/DEM	Bricolage & DAY/DEM	Day/Dem	Sat Oct 17	local	DAY TBA	graphic_member_only	
+iiip-sel-6-b2b-playshado	SEL.6 B2B Playshado	SEL.6 B2B Playshado	SEL.6 & Playshado	SEL.6	Sat Oct 17	local	DAY TBA	graphic_member_only	
+iiip-fiuza-b2b-madison-kay	FIUZA B2B Madison Kay	FIUZA B2B Madison Kay	FIUZA & Madison Kay	Fiuza	Fri Oct 16	local	DAY TBA	graphic_member_only	
+iiip-amar	amar	amar	amar				DAY TBA	not_on_graphic	
+iiip-blind-fish	Blind Fish	Blind Fish	Blind Fish				DAY TBA	not_on_graphic	
+iiip-canela	Canela	Canela	Canela				DAY TBA	not_on_graphic	
+iiip-crespi-drum-syndicate-live	Crespi Drum Syndicate (Live)	Crespi Drum Syndicate (Live)	Crespi Drum Syndicate				DAY TBA	not_on_graphic	
+iiip-cumbiamba	Cumbiamba	Cumbiamba	Cumbiamba				DAY TBA	not_on_graphic	
+iiip-dj-ahamed	DJ Ahamed	DJ Ahamed	DJ Ahamed				DAY TBA	not_on_graphic	
+iiip-emily-afre	Emily Afre	Emily Afre	Emily Afre				DAY TBA	not_on_graphic	
+iiip-ghostface-killah-presents	Ghostface Killah presents Supreme Clientele	Ghostface Killah presents Supreme Clientele	Ghostface Killah				DAY TBA	not_on_graphic	structured name "Ghostface Killah"
+iiip-godblessjai	GodBlessJai	GodBlessJai	GodBlessJai				DAY TBA	not_on_graphic	
+iiip-huracan	Huracán	Huracán	Huracán				DAY TBA	not_on_graphic	
+iiip-iiry	iiry?	iiry?	iiry?				DAY TBA	not_on_graphic	
+iiip-lylac	Lylac	Lylac	Lylac				DAY TBA	not_on_graphic	
+iiip-nikole	Nikole	Nikole	Nikole				DAY TBA	not_on_graphic	
+iiip-p1no-b2b-trippie-hippie	P1no B2B Trippie Hippie	P1no B2B Trippie Hippie	P1no & Trippie Hippie				DAY TBA	not_on_graphic	
+iiip-scotty-sobek	Scotty Sobek	Scotty Sobek	Scotty Sobek				DAY TBA	not_on_graphic	
+iiip-serafitz-b2b-sol-discos	serafitz B2B SOL Discos	serafitz B2B SOL Discos	serafitz & SOL Discos				DAY TBA	not_on_graphic	
+# On the graphic, not billed on today's list (not in the lineup):
+				Underscores	Fri Oct 16	centre		graphic_only	on no list read (08-29, 09-02, 09-25, 09-30)
+				GZA performing Liquid Swords	Fri Oct 16	ring-red		graphic_only	billed 09-25, removed by 09-30; see REMOVED_FROM_LINEUP
+				Mr. Brown	Fri Oct 16	local		graphic_only	removed from the list by 09-25
+				Jencarlos	Sat Oct 17	local		graphic_only	removed from the list by 09-25

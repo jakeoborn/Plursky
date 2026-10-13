@@ -288,6 +288,14 @@ async function sbPush(artistIds, notes) {
   } catch {}
   await _sb.from("user_data").upsert(row);
 }
+function mergeCloudSaved(localSaved, cloud, removedAt) {
+  var cloudUpdated = cloud && cloud.updated_at || new Date(0).toISOString();
+  var union = new Set([...(localSaved || []), ...(cloud && cloud.artist_ids || [])]);
+  for (var [id, ts] of Object.entries(removedAt || {})) {
+    if (ts > cloudUpdated) union.delete(id);
+  }
+  return [...union];
+}
 async function sbPushMoments() {
   if (!_sb) return;
   var saved = null,
@@ -509,12 +517,7 @@ function AccountCard({
             try {
               localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved));
             } catch {}
-            var cloudUpdated = cloud.updated_at || new Date(0).toISOString();
-            var union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
-            for (var [id, removedAt] of Object.entries(mergedRemoved)) {
-              if (removedAt > cloudUpdated) union.delete(id);
-            }
-            var merged = [...union];
+            var merged = mergeCloudSaved(st.saved, cloud, mergedRemoved);
             var localNotes = {};
             try {
               localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}");
@@ -630,14 +633,15 @@ function AccountCard({
   };
   var summary = !configured ? "NOT CONFIGURED" : sbUser ? React.createElement("span", {
     style: {
-      color: "var(--success)"
+      color: "var(--acc-ink)"
     }
   }, "● SYNCED · ", (sbUser.email || sbUser.user_metadata?.full_name || "signed in").toString().slice(0, 22)) : "TAP TO SIGN IN";
   return React.createElement("div", {
     style: {
       marginTop: 20,
-      background: "var(--paper)",
-      border: "1px solid var(--line)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       borderRadius: 16,
       padding: 16
     }
@@ -660,7 +664,7 @@ function AccountCard({
     style: {
       width: 34,
       height: 34,
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       background: "var(--ink)",
       display: "flex",
       alignItems: "center",
@@ -687,34 +691,39 @@ function AccountCard({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 18,
-      lineHeight: 1
-    }
+    className: "duo-headline"
   }, "Cloud account"), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginTop: 2,
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, expanded ? "SYNC LINEUP + NOTES ACROSS DEVICES" : summary)), React.createElement("span", {
-    className: "mono",
+  }, expanded ? "SYNC LINEUP + NOTES ACROSS DEVICES" : summary)), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      fontSize: 11,
-      color: "var(--muted)",
-      transform: expanded ? "rotate(180deg)" : "none",
+      flexShrink: 0,
+      transform: expanded ? "rotate(90deg)" : "none",
       transition: "transform .15s"
     }
-  }, "▾")), !expanded ? null : React.createElement(React.Fragment, null, !configured && React.createElement("div", {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  }))), !expanded ? null : React.createElement(React.Fragment, null, !configured && React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       lineHeight: 1.5
     }
   }, "Add your Supabase URL and anon key to ", React.createElement("span", {
@@ -748,7 +757,7 @@ function AccountCard({
         gap: 10,
         padding: "10px 12px",
         background: "var(--paper-2)",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         marginBottom: 12
       }
     }, React.createElement("div", {
@@ -762,7 +771,7 @@ function AccountCard({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#fff",
+        color: "var(--on-signal)",
         fontFamily: "Instrument Serif, serif",
         fontSize: 15
       }
@@ -793,7 +802,7 @@ function AccountCard({
       style: {
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "var(--success)",
+        color: "var(--acc-ink)",
         marginTop: 2
       }
     }, "● SIGNED IN", sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""))), React.createElement("div", {
@@ -807,10 +816,10 @@ function AccountCard({
       disabled: syncing,
       style: {
         flex: 1,
-        background: syncMsg ? "var(--success)" : "var(--ink)",
+        background: syncMsg ? "var(--acc)" : "var(--ink)",
         color: "var(--paper)",
         border: "none",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         padding: "10px 14px",
         cursor: "pointer",
         fontFamily: "Geist Mono, monospace",
@@ -819,18 +828,18 @@ function AccountCard({
         fontWeight: 600,
         transition: "background 0.3s"
       }
-    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${state.saved.length} SETS TO CLOUD`), React.createElement("button", {
+    }, syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${savedInLineup(state.saved).length} SETS TO CLOUD`), React.createElement("button", {
       onClick: handleSignOut,
       style: {
         background: "transparent",
         border: "1px solid var(--line-2)",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         padding: "10px 14px",
         cursor: "pointer",
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         letterSpacing: 1.2,
-        color: "var(--muted)"
+        color: "var(--ink-2)"
       }
     }, "SIGN OUT")), React.createElement("div", {
       style: {
@@ -848,7 +857,7 @@ function AccountCard({
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         letterSpacing: 1.2,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         textDecoration: "underline"
       }
     }, "↓ EXPORT MY DATA")), React.createElement("div", {
@@ -870,15 +879,15 @@ function AccountCard({
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         letterSpacing: 1.2,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         textDecoration: "underline"
       }
     }, "DELETE ACCOUNT"), deletePhase !== "idle" && React.createElement("div", {
       style: {
         padding: "10px 12px",
-        background: "rgba(232,93,46,0.08)",
-        border: "1px solid rgba(232,93,46,0.35)",
-        borderRadius: 10
+        background: "rgba(var(--signal-rgb),0.08)",
+        border: "1px solid rgba(var(--signal-rgb),0.35)",
+        borderRadius: "var(--rad-sm)"
       }
     }, React.createElement("div", {
       className: "mono",
@@ -906,9 +915,9 @@ function AccountCard({
       style: {
         flex: 1,
         background: "var(--ember)",
-        color: "#fff",
+        color: "var(--on-ember)",
         border: "none",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         padding: "9px 12px",
         cursor: deletePhase === "working" ? "default" : "pointer",
         fontFamily: "Geist Mono, monospace",
@@ -925,18 +934,18 @@ function AccountCard({
       style: {
         background: "transparent",
         border: "1px solid var(--line-2)",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         padding: "9px 14px",
         cursor: deletePhase === "working" ? "default" : "pointer",
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
         letterSpacing: 1.2,
-        color: "var(--muted)"
+        color: "var(--ink-2)"
       }
     }, "CANCEL")), deleteErr && React.createElement("div", {
       style: {
         fontSize: 11,
-        color: "#f87171",
+        color: "var(--alert)",
         marginTop: 6
       }
     }, deleteErr))));
@@ -946,10 +955,10 @@ function AccountCard({
     style: {
       width: "100%",
       marginBottom: appleErr ? 6 : 0,
-      background: appleBusy ? "#444" : "#000",
-      color: "#fff",
+      background: appleBusy ? "var(--paper-3)" : "var(--paper)",
+      color: "var(--ink)",
       border: "none",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       padding: "11px 14px",
       cursor: appleBusy ? "default" : "pointer",
       display: "flex",
@@ -964,9 +973,9 @@ function AccountCard({
     style: {
       width: 14,
       height: 14,
-      borderRadius: 14,
-      border: "2px solid rgba(255,255,255,0.35)",
-      borderTopColor: "#fff",
+      borderRadius: "var(--rad-md)",
+      border: "2px solid rgba(var(--ink-rgb),0.35)",
+      borderTopColor: "var(--ink)",
       animation: "spin 0.8s linear infinite",
       display: "inline-block"
     }
@@ -974,18 +983,18 @@ function AccountCard({
     width: "16",
     height: "16",
     viewBox: "0 0 814 1000",
-    fill: "white"
+    fill: "var(--ink)"
   }, React.createElement("path", {
     d: "M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663.1 0 541.8c0-207.5 133.4-317.1 264.5-317.1 70.4 0 128.9 45.5 173 45.5 42.9 0 109.9-48.1 190.5-48.1C500.1 222.2 620.9 240.3 788.1 340.9zM530.4 220.5c-20.1-29.7-47.1-66.8-97.3-66.8-12.1 0-24.2 2.3-35.7 5.1-7.1 1.8-14.1 3.9-21.3 3.9-1.9 0-3.8-.1-5.7-.3 11.4-57.7 56.4-143.4 122.3-180.5 27.9-15.7 59-26.2 91.9-26.2 2.9 0 5.8.1 8.7.3-1 56.1-23.8 117.3-63 164.5z"
   })), appleBusy ? "Signing in…" : "Sign in with Apple"), appleErr && React.createElement("div", {
     style: {
-      background: "rgba(248,113,113,0.10)",
-      border: "1px solid rgba(248,113,113,0.45)",
-      borderRadius: 10,
+      background: "rgba(var(--alert-rgb),0.10)",
+      border: "1px solid rgba(var(--alert-rgb),0.45)",
+      borderRadius: "var(--rad-sm)",
       padding: "10px 12px",
       marginTop: 10,
       fontSize: 12,
-      color: "#c14a4a",
+      color: "var(--alert)",
       lineHeight: 1.45
     }
   }, React.createElement("div", {
@@ -1017,7 +1026,7 @@ function AccountCard({
   }, "TRY AGAIN")))));
 }
 var PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
-var PRESENCE_COLORS = ["#e85d2e", "#7b3d9a", "#f59a36", "#6f8fb8", "#2d7a55", "#e85d8f", "#34b4e8", "#a855f7"];
+var PRESENCE_COLORS = ["#FFD60A", "#30D158", "#64D2FF", "#B79CFF", "#FF6FB5", "#FF9F0A"];
 function _presChannelName() {
   var code = null;
   try {
@@ -1430,8 +1439,8 @@ function FriendsCard({
     live: sharing
   }), React.createElement("div", {
     style: {
-      padding: "12px 14px",
-      borderRadius: 12,
+      padding: "14px 16px",
+      borderRadius: "var(--rad-md)",
       marginBottom: 8,
       background: sharing ? "var(--ink)" : "var(--paper)",
       border: `1px solid ${sharing ? "transparent" : "var(--line)"}`,
@@ -1452,12 +1461,12 @@ function FriendsCard({
       flexShrink: 0,
       background: sharing ? _presColor(_presMyId || "x") : "var(--paper-2)",
       border: sharing ? "none" : "1px solid var(--line-2)",
-      color: sharing ? "#fff" : "var(--muted)",
+      color: sharing ? "var(--ink)" : "var(--ink-2)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      fontFamily: "Instrument Serif, serif",
-      fontSize: 18,
+      fontSize: 16,
+      fontWeight: 650,
       position: "relative"
     }
   }, myName ? myName[0].toUpperCase() : "?", sharing && React.createElement("div", {
@@ -1468,7 +1477,7 @@ function FriendsCard({
       width: 11,
       height: 11,
       borderRadius: 11,
-      background: "var(--success)",
+      background: "var(--live)",
       border: "2px solid var(--ink)"
     }
   })), React.createElement("div", {
@@ -1477,36 +1486,25 @@ function FriendsCard({
       minWidth: 0
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 16,
-      lineHeight: 1
-    }
+    className: "duo-headline"
   }, myName || "Set your name"), React.createElement("div", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      marginTop: 3,
-      textTransform: "uppercase",
-      color: sharing ? "rgba(247,237,224,0.55)" : "var(--muted)"
+      marginTop: 2,
+      fontWeight: 400
     }
-  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · LIVE" : "You · tap GO LIVE to share")), React.createElement("button", {
+  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live" : "You · tap Go live to share")), React.createElement("button", {
     onClick: handleToggle,
+    className: "duo-btn",
     style: {
-      background: sharing ? "rgba(247,237,224,0.15)" : "var(--ember)",
-      color: "#fff",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700,
+      background: sharing ? "var(--s3)" : "var(--acc)",
+      color: sharing ? "var(--ink)" : "var(--on-acc)",
+      minHeight: 40,
+      padding: "0 14px",
+      fontSize: 14,
       flexShrink: 0
     }
-  }, sharing ? "STOP" : myName ? "GO LIVE" : "SET NAME")), !sharing && editName && React.createElement("div", {
+  }, sharing ? "Stop" : myName ? "Go live" : "Set name")), !sharing && editName && React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -1522,42 +1520,36 @@ function FriendsCard({
     maxLength: 20,
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
-      padding: "8px 12px",
-      fontFamily: "Geist, sans-serif",
-      fontSize: 14,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
+      padding: "0 12px",
+      minHeight: 44,
+      fontFamily: "var(--f-ui)",
+      fontSize: 16,
       color: "var(--ink)",
       outline: "none"
     }
   }), React.createElement("button", {
     onClick: () => saveName(nameInput),
+    className: "duo-btn",
     style: {
-      background: nameInput.trim() ? "var(--ember)" : "var(--paper-2)",
-      color: nameInput.trim() ? "#fff" : "var(--muted)",
-      border: "none",
-      borderRadius: 10,
-      padding: "8px 12px",
-      cursor: nameInput.trim() ? "pointer" : "default",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.1,
-      fontWeight: 700
+      background: nameInput.trim() ? "var(--acc)" : "var(--s3)",
+      color: nameInput.trim() ? "var(--on-acc)" : "var(--ink-2)",
+      minHeight: 44,
+      padding: "0 16px",
+      cursor: nameInput.trim() ? "pointer" : "default"
     }
   }, "OK")), sharing && React.createElement("div", {
     style: {
       marginTop: 10
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 8.5,
-      letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.45)",
       marginBottom: 6
     }
-  }, "CURRENT STAGE"), React.createElement("div", {
+  }, "Current stage"), React.createElement("div", {
     style: {
       display: "flex",
       flexWrap: "wrap",
@@ -1566,16 +1558,17 @@ function FriendsCard({
   }, STAGES?.map(s => React.createElement("button", {
     key: s.id,
     onClick: () => handleStage(s.id),
+    "aria-pressed": stageId === s.id,
     style: {
-      background: stageId === s.id ? s.color : "rgba(247,237,224,0.08)",
-      color: stageId === s.id ? "#fff" : "rgba(247,237,224,0.65)",
-      border: `1px solid ${stageId === s.id ? s.color : "rgba(247,237,224,0.18)"}`,
+      background: stageId === s.id ? "var(--acc)" : "var(--s3)",
+      color: stageId === s.id ? "var(--on-acc)" : "var(--ink-2)",
+      border: "none",
       borderRadius: 999,
-      padding: "4px 9px",
+      padding: "0 12px",
+      minHeight: 36,
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 8,
-      letterSpacing: 1,
+      fontFamily: "var(--f-ui)",
+      fontSize: 13,
       fontWeight: 600,
       transition: "all .12s"
     }
@@ -1586,25 +1579,23 @@ function FriendsCard({
   }) : React.createElement("div", {
     style: {
       padding: "13px 14px",
-      borderRadius: 12,
-      background: "var(--paper)",
-      border: "1px solid var(--line)"
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none"
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-headline",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.3,
-      color: "var(--muted)"
+      fontSize: 15
     }
-  }, "NO FRIENDS ONLINE YET"), React.createElement("div", {
+  }, "No friends online yet"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 12,
-      color: "var(--muted)",
-      marginTop: 3,
-      lineHeight: 1.45
+      marginTop: 2,
+      fontWeight: 400
     }
-  }, "Share Plursky with your crew — anyone who taps GO LIVE shows up here instantly.")));
+  }, "Share Plursky with your crew — anyone who taps Go live shows up here instantly.")));
 }
 function _FriendsHeader({
   count,
@@ -1618,18 +1609,8 @@ function _FriendsHeader({
       marginBottom: 10
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22
-    }
-  }, "Friends at ", window.FESTIVAL_CONFIG?.brand || "the festival"), live && count > 0 && React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--success)"
-    }
-  }, "● ", count, " LIVE"));
+    className: "duo-headline"
+  }, "Friends at ", window.FESTIVAL_CONFIG?.brand || "the festival"), live && count > 0 && React.createElement(DuoLive, null, count, " live"));
 }
 function _FriendRows({
   friends,
@@ -1662,8 +1643,8 @@ function _FriendRows({
         width: 38,
         height: 38,
         borderRadius: 38,
-        background: f.color || "#888",
-        color: "#fff",
+        background: f.color || "var(--paper-3)",
+        color: "var(--ink)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -2362,7 +2343,7 @@ function ReportSheet({
       padding: "9px 10px",
       borderRadius: 999,
       background: busy ? "var(--paper)" : "var(--ember)",
-      color: busy ? "var(--muted)" : "#fff",
+      color: busy ? "var(--muted)" : "var(--ink)",
       border: "none",
       cursor: busy ? "default" : "pointer",
       fontFamily: "Geist Mono, monospace",
@@ -2670,8 +2651,8 @@ function CrewChat({
       marginBottom: 6,
       padding: "7px 10px",
       borderRadius: 10,
-      background: !online ? "rgba(232,93,46,0.10)" : "var(--paper-2)",
-      border: !online ? "1px solid rgba(232,93,46,0.35)" : "1px solid var(--line)",
+      background: !online ? "rgba(var(--signal-rgb),0.10)" : "var(--paper-2)",
+      border: !online ? "1px solid rgba(var(--signal-rgb),0.35)" : "1px solid var(--line)",
       color: !online ? "var(--ember-ink)" : "var(--muted)",
       fontSize: 9,
       letterSpacing: 1.1,
@@ -2735,15 +2716,15 @@ function CrewChat({
         borderRadius: 12,
         marginBottom: 6,
         textAlign: "center",
-        background: "linear-gradient(135deg, rgba(109,40,217,0.08), rgba(232,93,46,0.08))",
-        border: "1px solid rgba(109,40,217,0.12)"
+        background: "linear-gradient(135deg, rgba(var(--signal-rgb),0.08), rgba(var(--signal-rgb),0.08))",
+        border: "1px solid rgba(var(--signal-rgb),0.12)"
       }
     }, React.createElement("div", {
       className: "mono",
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "#6D28D9",
+        color: "var(--signal-ink)",
         fontWeight: 700
       }
     }, "✨ PLURSKY+ · CREW SHOWDOWN · FESTIVAL DNA · NO WATERMARKS"), React.createElement("div", {
@@ -2833,7 +2814,7 @@ function CrewChat({
             top: 0,
             bottom: 0,
             width: `${pct}%`,
-            background: onMine ? "rgba(232,93,46,0.16)" : "rgba(123,61,154,0.12)",
+            background: onMine ? "rgba(var(--signal-rgb),0.16)" : "rgba(var(--signal-rgb),0.12)",
             transition: "width 0.3s"
           }
         }), React.createElement("span", {
@@ -2943,7 +2924,7 @@ function CrewChat({
         borderRadius: 12,
         background: "var(--paper)",
         border: "1px solid var(--line)",
-        boxShadow: "0 4px 14px rgba(0,0,0,0.05)",
+        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
         display: "flex",
         flexDirection: "column",
         gap: 2,
@@ -3030,7 +3011,7 @@ function CrewChat({
       padding: "8px 12px",
       marginBottom: 8,
       borderRadius: 10,
-      background: "rgba(45,122,85,0.12)",
+      background: "rgba(var(--signal-rgb),0.12)",
       color: "var(--success)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9.5,
@@ -3098,7 +3079,7 @@ function CrewChat({
         padding: "6px 4px",
         borderRadius: 8,
         background: on ? s.color : "var(--paper)",
-        color: on ? "#fff" : "var(--ink)",
+        color: on ? _inkOnHex(s.color) : "var(--ink)",
         border: on ? "none" : "1px solid var(--line-2)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
@@ -3138,7 +3119,7 @@ function CrewChat({
       padding: "8px 10px",
       borderRadius: 999,
       background: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "var(--ember)" : "var(--paper)",
-      color: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "#fff" : "var(--muted)",
+      color: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "var(--ink)" : "var(--muted)",
       border: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "none" : "1px solid var(--line-2)",
       cursor: pollQ.trim() && pollStageIds.length >= 2 && pollStageIds.length <= 6 ? "pointer" : "default",
       fontFamily: "Geist Mono, monospace",
@@ -3194,7 +3175,7 @@ function CrewChat({
     style: {
       padding: "9px 14px",
       background: input.trim() && !busy ? "var(--ember)" : "var(--paper-2)",
-      color: input.trim() && !busy ? "#fff" : "var(--muted)",
+      color: input.trim() && !busy ? "var(--ink)" : "var(--muted)",
       border: "none",
       borderRadius: 10,
       cursor: input.trim() && !busy ? "pointer" : "default",
@@ -3239,7 +3220,7 @@ function CrewCard({
     leaveRef.current = sbGroupJoin(newCode, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     }, setMembers);
     setJoined(true);
     setJoining(false);
@@ -3251,7 +3232,7 @@ function CrewCard({
     if (joined) sbGroupUpdate(code, {
       pid: myPid,
       name: myName,
-      artistIds: state.saved
+      artistIds: savedInLineup(state.saved)
     });
   }, [state.saved.join(","), joined]);
   React.useEffect(() => {
@@ -3350,18 +3331,13 @@ function CrewCard({
       gap: 8
     }
   }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22
-    }
+    className: "duo-headline"
   }, "Crew Mode"), !expanded && !joined && React.createElement("span", {
-    className: "mono",
+    className: "duo-body-s duo-ink2",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--muted)"
+      fontWeight: 400
     }
-  }, "· TAP TO START OR JOIN")), React.createElement("div", {
+  }, "Tap to start or join")), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "baseline",
@@ -3372,28 +3348,37 @@ function CrewCard({
     style: {
       fontSize: 10,
       letterSpacing: 1.2,
-      color: "var(--success)"
+      color: "var(--acc-ink)"
     }
-  }, "● ", others.length + 1, " IN CREW"), React.createElement("span", {
-    className: "mono",
+  }, "● ", others.length + 1, " IN CREW"), React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "13",
+    height: "13",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "var(--ink-3)",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     style: {
-      fontSize: 11,
-      color: "var(--muted)",
-      transform: expanded ? "rotate(180deg)" : "none",
+      flexShrink: 0,
+      transform: expanded ? "rotate(90deg)" : "none",
       transition: "transform .15s"
     }
-  }, "▾"))), !expanded ? null : !joined ? React.createElement("div", {
+  }, React.createElement("path", {
+    d: "M9 18 L15 12 L9 6"
+  })))), !expanded ? null : !joined ? React.createElement("div", {
     style: {
       padding: "15px 14px",
-      borderRadius: 14,
+      borderRadius: "var(--rad-md)",
       background: "var(--paper)",
       border: "1px solid var(--line)"
     }
   }, React.createElement("div", {
     style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
       marginBottom: 14
     }
   }, "Share a crew code with friends. When they join, you'll see which sets overlap — and the lineup shows crew badges."), React.createElement("button", {
@@ -3404,7 +3389,7 @@ function CrewCard({
       background: "var(--ink)",
       color: "var(--paper)",
       border: "none",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -3432,9 +3417,9 @@ function CrewCard({
     style: {
       flex: 1,
       padding: "9px 12px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-sm)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 13,
       color: "var(--ink)",
@@ -3446,9 +3431,9 @@ function CrewCard({
     style: {
       padding: "9px 14px",
       background: codeInput.length >= 4 ? "var(--ember)" : "var(--paper-2)",
-      color: codeInput.length >= 4 ? "#fff" : "var(--muted)",
+      color: codeInput.length >= 4 ? "var(--ink)" : "var(--ink-2)",
       border: "none",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
@@ -3462,17 +3447,17 @@ function CrewCard({
       padding: "9px",
       background: "transparent",
       border: "1px solid var(--line-2)",
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9.5,
       letterSpacing: 1.2
     }
   }, "JOIN A FRIEND'S CREW")) : React.createElement("div", null, React.createElement("div", {
     style: {
-      padding: "12px 14px",
-      borderRadius: 12,
+      padding: "14px 16px",
+      borderRadius: "var(--rad-md)",
       marginBottom: 8,
       background: "var(--ink)",
       color: "var(--paper)",
@@ -3489,13 +3474,13 @@ function CrewCard({
       height: 44,
       borderRadius: 44,
       flexShrink: 0,
-      border: totemUrl ? "2px solid rgba(247,237,224,0.5)" : "2px dashed rgba(247,237,224,0.3)",
-      background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(247,237,224,0.08)",
+      border: totemUrl ? "2px solid rgba(var(--ink-rgb),0.5)" : "2px dashed rgba(var(--ink-rgb),0.3)",
+      background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(var(--ink-rgb),0.08)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "rgba(247,237,224,0.4)",
+      color: "var(--text-3)",
       fontSize: 16,
       padding: 0,
       animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none"
@@ -3520,7 +3505,7 @@ function CrewCard({
     style: {
       fontSize: 8.5,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.45)",
+      color: "var(--text-3)",
       marginBottom: 3
     }
   }, totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"), React.createElement("div", {
@@ -3556,12 +3541,12 @@ function CrewCard({
       setTimeout(() => setCopied(false), 1500);
     },
     style: {
-      background: copied ? "rgba(45,122,85,0.3)" : "rgba(247,237,224,0.12)",
+      background: copied ? "rgba(var(--signal-rgb),0.3)" : "rgba(var(--ink-rgb),0.12)",
       border: "none",
       borderRadius: 8,
       padding: "7px 11px",
       cursor: "pointer",
-      color: copied ? "var(--success)" : "var(--paper)",
+      color: copied ? "var(--acc-ink)" : "var(--paper)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -3574,12 +3559,12 @@ function CrewCard({
       setMembers(new Map());
     },
     style: {
-      background: "rgba(247,237,224,0.08)",
+      background: "rgba(var(--ink-rgb),0.08)",
       border: "none",
       borderRadius: 8,
       padding: "7px 11px",
       cursor: "pointer",
-      color: "rgba(247,237,224,0.5)",
+      color: "var(--text-3)",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.2
@@ -3587,7 +3572,7 @@ function CrewCard({
   }, "LEAVE")), others.length === 0 ? React.createElement("div", {
     style: {
       padding: "13px 14px",
-      borderRadius: 12,
+      borderRadius: "var(--rad-md)",
       background: "var(--paper)",
       border: "1px solid var(--line)"
     }
@@ -3596,12 +3581,12 @@ function CrewCard({
     style: {
       fontSize: 9,
       letterSpacing: 1.3,
-      color: "var(--muted)"
+      color: "var(--ink-2)"
     }
   }, "WAITING FOR CREW"), React.createElement("div", {
     style: {
       fontSize: 12,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginTop: 3,
       lineHeight: 1.45
     }
@@ -3612,7 +3597,7 @@ function CrewCard({
       gap: 7
     }
   }, others.map(([pid, m]) => {
-    var ids = m.artistIds || [];
+    var ids = savedInLineup(m.artistIds);
     var inCommon = ids.filter(id => state.saved.includes(id)).length;
     var isOpen = expandedPid === pid;
     var ARTISTS = window.ARTISTS || [];
@@ -3621,9 +3606,10 @@ function CrewCard({
     return React.createElement("div", {
       key: pid,
       style: {
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        borderRadius: 12,
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
+        borderRadius: "var(--rad-md)",
         overflow: "hidden"
       }
     }, React.createElement("button", {
@@ -3645,7 +3631,7 @@ function CrewCard({
         height: 36,
         borderRadius: 36,
         background: _presColor(pid),
-        color: "#fff",
+        color: "var(--ink)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -3669,7 +3655,7 @@ function CrewCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2
       }
     }, ids.length, " SETS", inCommon > 0 ? ` · ${inCommon} IN COMMON` : "")), React.createElement("svg", {
@@ -3677,7 +3663,7 @@ function CrewCard({
       height: "13",
       viewBox: "0 0 24 24",
       fill: "none",
-      stroke: "var(--muted)",
+      stroke: "var(--ink-2)",
       strokeWidth: "2",
       strokeLinecap: "round",
       strokeLinejoin: "round",
@@ -3698,7 +3684,7 @@ function CrewCard({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         padding: "12px 0"
       }
     }, "NO SETS SAVED YET") : picks.map(a => {
@@ -3718,7 +3704,7 @@ function CrewCard({
           width: 6,
           height: 6,
           borderRadius: 6,
-          background: st?.color || "var(--muted)",
+          background: st?.color || "var(--ink-2)",
           flexShrink: 0
         }
       }), React.createElement("span", {
@@ -3738,7 +3724,7 @@ function CrewCard({
           letterSpacing: 1,
           fontWeight: 800,
           color: "var(--horizon)",
-          background: "rgba(123,61,154,0.12)",
+          background: "rgba(var(--signal-rgb),0.12)",
           padding: "1px 5px",
           borderRadius: 999
         }
@@ -3747,7 +3733,7 @@ function CrewCard({
         style: {
           fontSize: 8,
           letterSpacing: 0.8,
-          color: "var(--muted)",
+          color: "var(--ink-2)",
           flexShrink: 0
         }
       }, (st?.short || "").toUpperCase(), " · ", window.fmt12 ? window.fmt12(a.start) : a.start));
@@ -3759,7 +3745,7 @@ function CrewCard({
         initial: (myName || "M")[0].toUpperCase(),
         color: _presColor(myPid)
       }];
-      var crewArtistIds = new Set(state.saved || []);
+      var crewArtistIds = new Set(savedInLineup(state.saved));
       var overlapIds = new Set();
       for (var [pid, m] of others) {
         crewNames.push(m.name || "Friend");
@@ -3767,7 +3753,7 @@ function CrewCard({
           initial: (m.name || "F")[0].toUpperCase(),
           color: _presColor(pid)
         });
-        for (var id of m.artistIds || []) {
+        for (var id of savedInLineup(m.artistIds)) {
           crewArtistIds.add(id);
           if ((state.saved || []).includes(id)) overlapIds.add(id);
         }
@@ -3792,10 +3778,10 @@ function CrewCard({
       style: {
         flex: 1,
         padding: "11px",
-        background: "#6D28D9",
-        color: "#fff",
+        background: "var(--signal)",
+        color: "var(--on-signal)",
         border: "none",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
@@ -3806,10 +3792,10 @@ function CrewCard({
       onClick: () => _crewShare("gif"),
       style: {
         padding: "11px 14px",
-        background: "#6D28D9",
-        color: "#fff",
+        background: "var(--signal)",
+        color: "var(--on-signal)",
         border: "none",
-        borderRadius: 10,
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         fontFamily: "Geist Mono, monospace",
         fontSize: 10,
@@ -3830,10 +3816,10 @@ function CrewCard({
     className: "mono",
     style: {
       padding: "8px 11px",
-      background: "rgba(109,40,217,0.08)",
+      background: "rgba(var(--signal-rgb),0.08)",
       color: "var(--ink)",
-      border: "1px solid rgba(109,40,217,0.15)",
-      borderRadius: 10,
+      border: "1px solid rgba(var(--signal-rgb),0.15)",
+      borderRadius: "var(--rad-sm)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -3922,23 +3908,30 @@ async function sbUploadMomentMedia(photoId, blob) {
     return false;
   }
 }
+function _cloudSaysAbsent(error) {
+  if (!error) return false;
+  var code = error.status ?? error.statusCode ?? error.originalError?.status;
+  if (code != null && String(code) === "404") return true;
+  return /not[_\s-]?found|no such (?:file|object|key)/i.test(`${error.message || ""} ${error.error || ""}`);
+}
 async function sbDownloadMomentMedia(photoId) {
   if (!_sb || !photoId || _cloudMissing.has(photoId)) return null;
-  try {
-    var user = await sbGetUser();
-    if (!user) return null;
-    var {
-      data,
-      error
-    } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
-    if (error || !data) {
-      _cloudMissing.add(photoId);
-      return null;
-    }
-    return data;
-  } catch {
+  var user = await sbGetUser();
+  if (!user) return null;
+  var {
+    data,
+    error
+  } = await _sb.storage.from(_MEDIA_BUCKET).download(`${user.id}/${photoId}`);
+  if (error) {
+    if (!_cloudSaysAbsent(error)) throw error;
+    _cloudMissing.add(photoId);
     return null;
   }
+  if (!data) {
+    _cloudMissing.add(photoId);
+    return null;
+  }
+  return data;
 }
 Object.assign(window, {
   sbUploadMomentMedia,

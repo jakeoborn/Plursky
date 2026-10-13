@@ -1,0 +1,43 @@
+# Weekly re-check of the official embeds on the committed /f/ pages.
+#
+# A post that the festival deletes, makes private or stops allowing embeds on
+# goes dead without any commit here. The pages would then show a platform
+# "unavailable" box, which the embeds spec forbids. This job re-runs the same
+# verification the build uses (scripts/check-official-embeds.mjs --report)
+# against the embeds the committed pages show and fails the run when one is
+# dead. The repo is public and open defects are reported privately, so the
+# log carries only the count: GitHub emails the owner about the failed run,
+# and the detail comes from running the same command locally. Like
+# page-freshness.yml it never pushes: dropping an embed changes a public
+# page, so it goes through a PR.
+name: official embeds weekly
+
+on:
+  schedule:
+    # Mondays 06:40 UTC, off the hour (see page-freshness.yml).
+    - cron: '40 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  embeds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Playwright drives the runner's system Chrome for the YouTube player
+      # probe (the same executablePath fallback the other browser gates use).
+      - run: npm ci
+
+      - name: Re-verify the embeds on the committed pages
+        run: |
+          set +e
+          node scripts/check-official-embeds.mjs --report > embeds-report.md
+          code=$?
+          # The count only; the list stays off this public log.
+          head -n 1 embeds-report.md | sed 's/^## //'
+          exit $code

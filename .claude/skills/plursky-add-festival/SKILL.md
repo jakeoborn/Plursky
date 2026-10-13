@@ -11,8 +11,16 @@ priority order). This skill is the execution path. ACL (`data.jsx`, search
 
 ## 0. GATE: are official set times published?
 
-Go straight to `festivaldust.com/festivals/<slug>/set-times` (it says
-explicitly "before set times drop" when TBA); fall back to the official app.
+**Insomniac-platform sites** (edc.com subdomains, Nocturnal, Escape,
+Dreamstate, III Points): the official times are machine-readable at
+`<site>/lineup/set-times/day-N/`. Run
+`node scripts/fetch-insomniac-settimes.mjs <site>/lineup/set-times --days N --out sheet.tsv`
+(exit 3 = not published yet), then feed the sheet to `import-set-times.mjs`.
+It reproduced Nocturnal's 86 shipped rows exactly.
+
+Otherwise go to `festivaldust.com/festivals/<slug>/set-times` for DISCOVERY
+(it says explicitly "before set times drop" when TBA); the source of record
+is always the festival's own site or app.
 - **Times published** → build everything live, `available: true`.
 - **Times NOT published** (typical until ~9 days out) → build the FULL
   scaffold anyway with `available: false` + `setTimesProvisional: true` in

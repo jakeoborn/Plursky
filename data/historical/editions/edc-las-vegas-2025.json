@@ -1,0 +1,6308 @@
+{
+ "id": "edc-las-vegas-2025",
+ "festivalId": "edc-lv",
+ "name": "EDC Las Vegas 2025",
+ "year": 2025,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 12,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-05-16",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-05-17",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2025-05-18",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "edc-las-vegas-2025:kinetic-field",
+   "name": "Kinetic Field"
+  },
+  {
+   "id": "edc-las-vegas-2025:cosmic-meadow",
+   "name": "Cosmic Meadow"
+  },
+  {
+   "id": "edc-las-vegas-2025:circuit-grounds",
+   "name": "Circuit Grounds"
+  },
+  {
+   "id": "edc-las-vegas-2025:neon-garden",
+   "name": "Neon Garden"
+  },
+  {
+   "id": "edc-las-vegas-2025:basspod",
+   "name": "Basspod"
+  },
+  {
+   "id": "edc-las-vegas-2025:wasteland",
+   "name": "Wasteland"
+  },
+  {
+   "id": "edc-las-vegas-2025:quantum-valley",
+   "name": "Quantum Valley"
+  },
+  {
+   "id": "edc-las-vegas-2025:stereo-bloom",
+   "name": "Stereo Bloom"
+  },
+  {
+   "id": "edc-las-vegas-2025:bionic-jungle",
+   "name": "Bionic Jungle"
+  },
+  {
+   "id": "edc-las-vegas-2025:forest-house",
+   "name": "Forest House"
+  },
+  {
+   "id": "edc-las-vegas-2025:beatbox-art-car",
+   "name": "Beatbox Art Car"
+  },
+  {
+   "id": "edc-las-vegas-2025:metaphoenix",
+   "name": "Metaphoenix"
+  },
+  {
+   "id": "edc-las-vegas-2025:ubuntu",
+   "name": "Ubuntu"
+  },
+  {
+   "id": "edc-las-vegas-2025:yeedc",
+   "name": "yeEDC!"
+  },
+  {
+   "id": "edc-las-vegas-2025:blacklight-bar",
+   "name": "Blacklight Bar"
+  }
+ ],
+ "artists": [
+  {
+   "id": "edc-las-vegas-2025:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dom-dolla-b2b-chase-and-status",
+   "name": "Dom Dolla B2B Chase & Status",
+   "key": "dom-dolla-b2b-chase-and-status",
+   "performers": [
+    "dom-dolla",
+    "chase-and-status"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sara-landry",
+   "name": "Sara Landry",
+   "key": "sara-landry",
+   "performers": [
+    "sara-landry"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:deorro-and-friends",
+   "name": "Deorro & Friends",
+   "key": "deorro-and-friends",
+   "performers": [
+    "deorro-and-friends"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lavern",
+   "name": "Lavern",
+   "key": "lavern",
+   "performers": [
+    "lavern"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:nghtmre-presents-mindfull",
+   "name": "NGHTMRE presents: MINDFULL",
+   "key": "nghtmre-presents-mindfull",
+   "performers": [
+    "nghtmre-presents-mindfull"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:crankdat",
+   "name": "Crankdat",
+   "key": "crankdat",
+   "performers": [
+    "crankdat"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tape-b",
+   "name": "Tape B",
+   "key": "tape-b",
+   "performers": [
+    "tape-b"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:trivecta",
+   "name": "Trivecta",
+   "key": "trivecta",
+   "performers": [
+    "trivecta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:chyl",
+   "name": "CHYL",
+   "key": "chyl",
+   "performers": [
+    "chyl"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:daniel-allan",
+   "name": "Daniel Allan",
+   "key": "daniel-allan",
+   "performers": [
+    "daniel-allan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sosa-b2b-classmatic",
+   "name": "Sosa B2B Classmatic",
+   "key": "sosa-b2b-classmatic",
+   "performers": [
+    "sosa",
+    "classmatic"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:layton-giordani",
+   "name": "Layton Giordani",
+   "key": "layton-giordani",
+   "performers": [
+    "layton-giordani"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cloonee",
+   "name": "Cloonee",
+   "key": "cloonee",
+   "performers": [
+    "cloonee"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mochakk",
+   "name": "Mochakk",
+   "key": "mochakk",
+   "performers": [
+    "mochakk"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:armand-van-helden",
+   "name": "Armand Van Helden",
+   "key": "armand-van-helden",
+   "performers": [
+    "armand-van-helden"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:annicka",
+   "name": "Annicka",
+   "key": "annicka",
+   "performers": [
+    "annicka"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:adam-ten-b2b-mita-gami",
+   "name": "Adam Ten B2B Mita Gami",
+   "key": "adam-ten-b2b-mita-gami",
+   "performers": [
+    "adam-ten",
+    "mita-gami"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:blond-ish",
+   "name": "BLOND:ISH",
+   "key": "blond-ish",
+   "performers": [
+    "blond-ish"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:skepta-mas-tiempo",
+   "name": "Skepta Más Tiempo",
+   "key": "skepta-mas-tiempo",
+   "performers": [
+    "skepta-mas-tiempo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ben-sterling-b2b-rossi",
+   "name": "Ben Sterling B2B Rossi.",
+   "key": "ben-sterling-b2b-rossi",
+   "performers": [
+    "ben-sterling",
+    "rossi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:airrica",
+   "name": "Airrica",
+   "key": "airrica",
+   "performers": [
+    "airrica"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:masha-mar",
+   "name": "Masha Mar",
+   "key": "masha-mar",
+   "performers": [
+    "masha-mar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:distinct-motive",
+   "name": "Distinct Motive",
+   "key": "distinct-motive",
+   "performers": [
+    "distinct-motive"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:simula",
+   "name": "Simula",
+   "key": "simula",
+   "performers": [
+    "simula"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:caspa-b2b-rusko",
+   "name": "Caspa B2B Rusko",
+   "key": "caspa-b2b-rusko",
+   "performers": [
+    "caspa",
+    "rusko"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:riot-ten",
+   "name": "Riot Ten",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kompany",
+   "name": "Kompany",
+   "key": "kompany",
+   "performers": [
+    "kompany"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ahee",
+   "name": "AHEE",
+   "key": "ahee",
+   "performers": [
+    "ahee"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:basstripper-b2b-sota",
+   "name": "Basstripper B2B Sota",
+   "key": "basstripper-b2b-sota",
+   "performers": [
+    "basstripper",
+    "sota"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:andromedik",
+   "name": "Andromedik",
+   "key": "andromedik",
+   "performers": [
+    "andromedik"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:anime",
+   "name": "AniMe",
+   "key": "anime",
+   "performers": [
+    "anime"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:shl-mo",
+   "name": "Shlømo",
+   "key": "shl-mo",
+   "performers": [
+    "shl-mo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:basswell",
+   "name": "Basswell",
+   "key": "basswell",
+   "performers": [
+    "basswell"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:oguz",
+   "name": "OGUZ",
+   "key": "oguz",
+   "performers": [
+    "oguz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cera-khin",
+   "name": "Cera Khin",
+   "key": "cera-khin",
+   "performers": [
+    "cera-khin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:6ejou",
+   "name": "6ejou",
+   "key": "6ejou",
+   "performers": [
+    "6ejou"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:onlynumbers",
+   "name": "Onlynumbers",
+   "key": "onlynumbers",
+   "performers": [
+    "onlynumbers"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:biia",
+   "name": "BIIA",
+   "key": "biia",
+   "performers": [
+    "biia"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:caravel",
+   "name": "Caravel",
+   "key": "caravel",
+   "performers": [
+    "caravel"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:clawz",
+   "name": "Clawz",
+   "key": "clawz",
+   "performers": [
+    "clawz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:yoji-biomehanika",
+   "name": "Yoji Biomehanika",
+   "key": "yoji-biomehanika",
+   "performers": [
+    "yoji-biomehanika"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:omiki",
+   "name": "Omiki",
+   "key": "omiki",
+   "performers": [
+    "omiki"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:david-rust",
+   "name": "David Rust",
+   "key": "david-rust",
+   "performers": [
+    "david-rust"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:avalon",
+   "name": "Avalon",
+   "key": "avalon",
+   "performers": [
+    "avalon"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:marie-vaunt",
+   "name": "Marie Vaunt",
+   "key": "marie-vaunt",
+   "performers": [
+    "marie-vaunt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:victor-ruiz",
+   "name": "Victor Ruiz",
+   "key": "victor-ruiz",
+   "performers": [
+    "victor-ruiz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:paul-oakenfold",
+   "name": "Paul Oakenfold",
+   "key": "paul-oakenfold",
+   "performers": [
+    "paul-oakenfold"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:david-forbes",
+   "name": "David Forbes",
+   "key": "david-forbes",
+   "performers": [
+    "david-forbes"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mr-brooks",
+   "name": "Mr. Brooks",
+   "key": "mr-brooks",
+   "performers": [
+    "mr-brooks"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ky-william",
+   "name": "Ky William",
+   "key": "ky-william",
+   "performers": [
+    "ky-william"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vnssa",
+   "name": "VNSSA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:biscits",
+   "name": "Biscits",
+   "key": "biscits",
+   "performers": [
+    "biscits"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:disco-dom",
+   "name": "Disco Dom",
+   "key": "disco-dom",
+   "performers": [
+    "disco-dom"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:matroda-and-friends",
+   "name": "Matroda & Friends",
+   "key": "matroda-and-friends",
+   "performers": [
+    "matroda-and-friends"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:jackie-hollander",
+   "name": "Jackie Hollander",
+   "key": "jackie-hollander",
+   "performers": [
+    "jackie-hollander"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:linska",
+   "name": "Linska",
+   "key": "linska",
+   "performers": [
+    "linska"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:x-club",
+   "name": "X CLUB.",
+   "key": "x-club",
+   "performers": [
+    "x-club"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-fuckoff",
+   "name": "DJ Fuckoff",
+   "key": "dj-fuckoff",
+   "performers": [
+    "dj-fuckoff"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:malugi",
+   "name": "MALUGI",
+   "key": "malugi",
+   "performers": [
+    "malugi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:narciss",
+   "name": "Narciss",
+   "key": "narciss",
+   "performers": [
+    "narciss"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:skream-b2b-partiboi69",
+   "name": "Skream B2B Partiboi69",
+   "key": "skream-b2b-partiboi69",
+   "performers": [
+    "skream",
+    "partiboi69"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:invt",
+   "name": "INVT",
+   "key": "invt",
+   "performers": [
+    "invt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lake-hills",
+   "name": "Lake Hills",
+   "key": "lake-hills",
+   "performers": [
+    "lake-hills"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alex-chapman-zoe-gitter",
+   "name": "Alex Chapman + Zoe Gitter",
+   "key": "alex-chapman-zoe-gitter",
+   "performers": [
+    "alex-chapman-zoe-gitter"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pls-and-ty",
+   "name": "PLS&TY",
+   "key": "pls-and-ty",
+   "performers": [
+    "pls-and-ty"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:linney",
+   "name": "Linney",
+   "key": "linney",
+   "performers": [
+    "linney"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:wes-mills",
+   "name": "wes mills",
+   "key": "wes-mills",
+   "performers": [
+    "wes-mills"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:silver-panda",
+   "name": "Silver Panda",
+   "key": "silver-panda",
+   "performers": [
+    "silver-panda"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:matt-faulk",
+   "name": "Matt Faulk",
+   "key": "matt-faulk",
+   "performers": [
+    "matt-faulk"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:goshfather",
+   "name": "Goshfather",
+   "key": "goshfather",
+   "performers": [
+    "goshfather"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:boizy",
+   "name": "Boizy",
+   "key": "boizy",
+   "performers": [
+    "boizy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:big-daddy-kess",
+   "name": "Big Daddy Kess",
+   "key": "big-daddy-kess",
+   "performers": [
+    "big-daddy-kess"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rollz-royce",
+   "name": "Rollz Royce",
+   "key": "rollz-royce",
+   "performers": [
+    "rollz-royce"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:soren",
+   "name": "SOREN",
+   "key": "soren",
+   "performers": [
+    "soren"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rayray",
+   "name": "RayRay",
+   "key": "rayray",
+   "performers": [
+    "rayray"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sihk",
+   "name": "Sihk",
+   "key": "sihk",
+   "performers": [
+    "sihk"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dead-x",
+   "name": "Dead X",
+   "key": "dead-x",
+   "performers": [
+    "dead-x"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:water-spirit",
+   "name": "Water Spirit",
+   "key": "water-spirit",
+   "performers": [
+    "water-spirit"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cutdwn",
+   "name": "CUTDWN",
+   "key": "cutdwn",
+   "performers": [
+    "cutdwn"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kami-hybrid-warfare-set",
+   "name": "KAMI (Hybrid Warfare Set)",
+   "key": "kami-hybrid-warfare-set",
+   "performers": [
+    "kami-hybrid-warfare-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:inigma",
+   "name": "INIGMA",
+   "key": "inigma",
+   "performers": [
+    "inigma"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:jenna-shaw",
+   "name": "Jenna Shaw",
+   "key": "jenna-shaw",
+   "performers": [
+    "jenna-shaw"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:horichh",
+   "name": "Horichh",
+   "key": "horichh",
+   "performers": [
+    "horichh"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cato-anaya",
+   "name": "Cato Anaya",
+   "key": "cato-anaya",
+   "performers": [
+    "cato-anaya"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mattilo",
+   "name": "Mattilo",
+   "key": "mattilo",
+   "performers": [
+    "mattilo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ky-william-b2b-alves",
+   "name": "Ky William B2B Alves",
+   "key": "ky-william-b2b-alves",
+   "performers": [
+    "ky-william",
+    "alves"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:avi-snow",
+   "name": "Avi Snow",
+   "key": "avi-snow",
+   "performers": [
+    "avi-snow"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lady-sinclair",
+   "name": "Lady Sinclair",
+   "key": "lady-sinclair",
+   "performers": [
+    "lady-sinclair"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:haylee-wood",
+   "name": "Haylee Wood",
+   "key": "haylee-wood",
+   "performers": [
+    "haylee-wood"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:soul-purpose",
+   "name": "Soul Purpose",
+   "key": "soul-purpose",
+   "performers": [
+    "soul-purpose"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:jon-casey",
+   "name": "Jon Casey",
+   "key": "jon-casey",
+   "performers": [
+    "jon-casey"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-lag",
+   "name": "DJ Lag",
+   "key": "dj-lag",
+   "performers": [
+    "dj-lag"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kitty-amor",
+   "name": "Kitty Amor",
+   "key": "kitty-amor",
+   "performers": [
+    "kitty-amor"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sarz",
+   "name": "Sarz",
+   "key": "sarz",
+   "performers": [
+    "sarz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:eli-fola-hybrid-set",
+   "name": "Eli Fola (Hybrid Set)",
+   "key": "eli-fola-hybrid-set",
+   "performers": [
+    "eli-fola-hybrid-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:afromantis-collective",
+   "name": "AfroMantis Collective",
+   "key": "afromantis-collective",
+   "performers": [
+    "afromantis-collective"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:zevy",
+   "name": "Zevy",
+   "key": "zevy",
+   "performers": [
+    "zevy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vavo",
+   "name": "VAVO",
+   "key": "vavo",
+   "performers": [
+    "vavo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-slim-mcgraw",
+   "name": "DJ Slim McGraw",
+   "key": "dj-slim-mcgraw",
+   "performers": [
+    "dj-slim-mcgraw"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:country-night",
+   "name": "Country Night",
+   "key": "country-night",
+   "performers": [
+    "country-night"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ami-g",
+   "name": "$ami G",
+   "key": "ami-g",
+   "performers": [
+    "ami-g"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:party-dads",
+   "name": "PARTY DADS",
+   "key": "party-dads",
+   "performers": [
+    "party-dads"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mer-bear",
+   "name": "Mer Bear",
+   "key": "mer-bear",
+   "performers": [
+    "mer-bear"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alcala-bros",
+   "name": "Alcala Bros",
+   "key": "alcala-bros",
+   "performers": [
+    "alcala-bros"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dea-magna",
+   "name": "Dea Magna",
+   "key": "dea-magna",
+   "performers": [
+    "dea-magna"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kieran-san-jose",
+   "name": "Kieran San Jose",
+   "key": "kieran-san-jose",
+   "performers": [
+    "kieran-san-jose"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dena",
+   "name": "Dena",
+   "key": "dena",
+   "performers": [
+    "dena"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:2ar",
+   "name": "2AR",
+   "key": "2ar",
+   "performers": [
+    "2ar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:arman",
+   "name": "arman.",
+   "key": "arman",
+   "performers": [
+    "arman"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kian",
+   "name": "Kian",
+   "key": "kian",
+   "performers": [
+    "kian"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:harristone",
+   "name": "Harristone",
+   "key": "harristone",
+   "performers": [
+    "harristone"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:meduza",
+   "name": "Meduza",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:illenium-b2b-slander",
+   "name": "Illenium B2B SLANDER",
+   "key": "illenium-b2b-slander",
+   "performers": [
+    "illenium",
+    "slander"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ben-nicky",
+   "name": "Ben Nicky",
+   "key": "ben-nicky",
+   "performers": [
+    "ben-nicky"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:xandra",
+   "name": "Xandra",
+   "key": "xandra",
+   "performers": [
+    "xandra"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hedex",
+   "name": "Hedex",
+   "key": "hedex",
+   "performers": [
+    "hedex"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:odd-mob",
+   "name": "Odd Mob",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ayybo",
+   "name": "AYYBO",
+   "key": "ayybo",
+   "performers": [
+    "ayybo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:gesaffelstein",
+   "name": "Gesaffelstein",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-snake-hip-hop-set",
+   "name": "DJ Snake (Hip Hop Set)",
+   "key": "dj-snake-hip-hop-set",
+   "performers": [
+    "dj-snake-hip-hop-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:brutalismus-3000",
+   "name": "Brutalismus 3000",
+   "key": "brutalismus-3000",
+   "performers": [
+    "brutalismus-3000"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:bicep-present-chroma",
+   "name": "Bicep present Chroma",
+   "key": "bicep-present-chroma",
+   "performers": [
+    "bicep-present-chroma"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:oppidan",
+   "name": "Oppidan",
+   "key": "oppidan",
+   "performers": [
+    "oppidan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:villager",
+   "name": "Villager",
+   "key": "villager",
+   "performers": [
+    "villager"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:space-92-x-popof-present-turbulences",
+   "name": "Space 92 x Popof present: Turbulences",
+   "key": "space-92-x-popof-present-turbulences",
+   "performers": [
+    "space-92-x-popof-present-turbulences"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tchami-x-malaa-no-redemption",
+   "name": "Tchami x Malaa (No Redemption)",
+   "key": "tchami-x-malaa-no-redemption",
+   "performers": [
+    "tchami-x-malaa-no-redemption"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:isoknock",
+   "name": "ISOKNOCK",
+   "key": "isoknock",
+   "performers": [
+    "isoknock"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mau-p",
+   "name": "Mau P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hugel",
+   "name": "HUGEL",
+   "key": "hugel",
+   "performers": [
+    "hugel"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lf-system",
+   "name": "LF SYSTEM",
+   "key": "lf-system",
+   "performers": [
+    "lf-system"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:torren-foot",
+   "name": "Torren Foot",
+   "key": "torren-foot",
+   "performers": [
+    "torren-foot"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dennis-cruz",
+   "name": "Dennis Cruz",
+   "key": "dennis-cruz",
+   "performers": [
+    "dennis-cruz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:the-martinez-brothers-b2b-loco-dice",
+   "name": "The Martinez Brothers B2B Loco Dice",
+   "key": "the-martinez-brothers-b2b-loco-dice",
+   "performers": [
+    "the-martinez-brothers",
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:carlita",
+   "name": "Carlita",
+   "key": "carlita",
+   "performers": [
+    "carlita"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:beltran",
+   "name": "Beltran",
+   "key": "beltran",
+   "performers": [
+    "beltran"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sosa",
+   "name": "Sosa",
+   "key": "sosa",
+   "performers": [
+    "sosa"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cole-knight",
+   "name": "Cole Knight",
+   "key": "cole-knight",
+   "performers": [
+    "cole-knight"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:shades",
+   "name": "Shades",
+   "key": "shades",
+   "performers": [
+    "shades"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:level-up",
+   "name": "Level Up",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:netsky",
+   "name": "Netsky",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:svdden-death",
+   "name": "Svdden Death",
+   "key": "svdden-death",
+   "performers": [
+    "svdden-death"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:chase-and-status",
+   "name": "Chase & Status",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ray-volpe",
+   "name": "Ray Volpe",
+   "key": "ray-volpe",
+   "performers": [
+    "ray-volpe"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:jessica-audiffred-b2b-layz",
+   "name": "Jessica Audiffred B2B LAYZ",
+   "key": "jessica-audiffred-b2b-layz",
+   "performers": [
+    "jessica-audiffred",
+    "layz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:infekt",
+   "name": "INFEKT",
+   "key": "infekt",
+   "performers": [
+    "infekt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:samplifire",
+   "name": "Samplifire",
+   "key": "samplifire",
+   "performers": [
+    "samplifire"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rzrkt-b2b-vastive",
+   "name": "RZRKT B2B Vastive",
+   "key": "rzrkt-b2b-vastive",
+   "performers": [
+    "rzrkt",
+    "vastive"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:fury-with-mc-dino",
+   "name": "Fury with MC Dino",
+   "key": "fury-with-mc-dino",
+   "performers": [
+    "fury-with-mc-dino"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:restricted",
+   "name": "Restricted",
+   "key": "restricted",
+   "performers": [
+    "restricted"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lil-texas",
+   "name": "Lil Texas",
+   "key": "lil-texas",
+   "performers": [
+    "lil-texas"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sub-zero-project",
+   "name": "Sub Zero Project",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mish",
+   "name": "Mish",
+   "key": "mish",
+   "performers": [
+    "mish"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:d-sturb",
+   "name": "D-Sturb",
+   "key": "d-sturb",
+   "performers": [
+    "d-sturb"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:devin-wild",
+   "name": "Devin Wild",
+   "key": "devin-wild",
+   "performers": [
+    "devin-wild"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:angel-cannon",
+   "name": "ANGEL CANNON",
+   "key": "angel-cannon",
+   "performers": [
+    "angel-cannon"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tta",
+   "name": "ØTTA",
+   "key": "tta",
+   "performers": [
+    "tta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:trance-wax",
+   "name": "Trance Wax",
+   "key": "trance-wax",
+   "performers": [
+    "trance-wax"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ben-hemsley",
+   "name": "Ben Hemsley",
+   "key": "ben-hemsley",
+   "performers": [
+    "ben-hemsley"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:maddix-b2b-ben-nicky",
+   "name": "Maddix B2B Ben Nicky",
+   "key": "maddix-b2b-ben-nicky",
+   "performers": [
+    "maddix",
+    "ben-nicky"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:funk-tribu",
+   "name": "Funk Tribu",
+   "key": "funk-tribu",
+   "performers": [
+    "funk-tribu"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hannah-laing",
+   "name": "Hannah Laing",
+   "key": "hannah-laing",
+   "performers": [
+    "hannah-laing"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:billy-gillies",
+   "name": "Billy Gillies",
+   "key": "billy-gillies",
+   "performers": [
+    "billy-gillies"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lostly",
+   "name": "Lostly",
+   "key": "lostly",
+   "performers": [
+    "lostly"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:miyuki",
+   "name": "Miyuki",
+   "key": "miyuki",
+   "performers": [
+    "miyuki"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:amal-nemer",
+   "name": "Amal Nemer",
+   "key": "amal-nemer",
+   "performers": [
+    "amal-nemer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:bontan-b2b-calussa",
+   "name": "Bontan B2B Calussa",
+   "key": "bontan-b2b-calussa",
+   "performers": [
+    "bontan",
+    "calussa"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ameme",
+   "name": "AMÉMÉ",
+   "key": "ameme",
+   "performers": [
+    "ameme"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hugel-and-friends",
+   "name": "HUGEL & Friends",
+   "key": "hugel-and-friends",
+   "performers": [
+    "hugel-and-friends"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:francis-mercier",
+   "name": "Francis Mercier",
+   "key": "francis-mercier",
+   "performers": [
+    "francis-mercier"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:maz",
+   "name": "Maz",
+   "key": "maz",
+   "performers": [
+    "maz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ahmed-spins",
+   "name": "Ahmed Spins",
+   "key": "ahmed-spins",
+   "performers": [
+    "ahmed-spins"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:wakyin",
+   "name": "Wakyin",
+   "key": "wakyin",
+   "performers": [
+    "wakyin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:twenty-six",
+   "name": "TWENTY SIX",
+   "key": "twenty-six",
+   "performers": [
+    "twenty-six"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tdj",
+   "name": "TDJ",
+   "key": "tdj",
+   "performers": [
+    "tdj"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mcr-t",
+   "name": "MCR-T",
+   "key": "mcr-t",
+   "performers": [
+    "mcr-t"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:horsegiirl",
+   "name": "horsegiirL",
+   "key": "horsegiirl",
+   "performers": [
+    "horsegiirl"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dj-gigola",
+   "name": "DJ Gigola",
+   "key": "dj-gigola",
+   "performers": [
+    "dj-gigola"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:fcukers-dj-set",
+   "name": "Fcukers (DJ Set)",
+   "key": "fcukers-dj-set",
+   "performers": [
+    "fcukers-dj-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dylan-brady",
+   "name": "Dylan Brady",
+   "key": "dylan-brady",
+   "performers": [
+    "dylan-brady"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pablo-bozzi",
+   "name": "Pablo Bozzi",
+   "key": "pablo-bozzi",
+   "performers": [
+    "pablo-bozzi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mrd",
+   "name": "MRD",
+   "key": "mrd",
+   "performers": [
+    "mrd"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:synnhaven",
+   "name": "Synnhaven",
+   "key": "synnhaven",
+   "performers": [
+    "synnhaven"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:bunny-rabbit-in-the-moon",
+   "name": "Bunny (Rabbit in the Moon)",
+   "key": "bunny-rabbit-in-the-moon",
+   "performers": [
+    "bunny-rabbit-in-the-moon"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sam-blacky",
+   "name": "Sam Blacky",
+   "key": "sam-blacky",
+   "performers": [
+    "sam-blacky"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vintage-culture-b2b-doozie",
+   "name": "Vintage Culture B2B Doozie",
+   "key": "vintage-culture-b2b-doozie",
+   "performers": [
+    "vintage-culture",
+    "doozie"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:calussa",
+   "name": "Calussa",
+   "key": "calussa",
+   "performers": [
+    "calussa"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:nekter",
+   "name": "NEKTER",
+   "key": "nekter",
+   "performers": [
+    "nekter"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kenzii-scott",
+   "name": "Kenzii Scott",
+   "key": "kenzii-scott",
+   "performers": [
+    "kenzii-scott"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:marc-v",
+   "name": "Marc V",
+   "key": "marc-v",
+   "performers": [
+    "marc-v"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:papa-lu",
+   "name": "Papa Lu",
+   "key": "papa-lu",
+   "performers": [
+    "papa-lu"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:myles-o-neal",
+   "name": "Myles O'Neal",
+   "key": "myles-o-neal",
+   "performers": [
+    "myles-o-neal"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:celo",
+   "name": "CELO",
+   "key": "celo",
+   "performers": [
+    "celo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:elephante",
+   "name": "Elephante",
+   "key": "elephante",
+   "performers": [
+    "elephante"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:emo-nite-grave-rave-set",
+   "name": "Emo Nite (Grave Rave Set)",
+   "key": "emo-nite-grave-rave-set",
+   "performers": [
+    "emo-nite-grave-rave-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:uro-tra-h",
+   "name": "€URO TRA$H",
+   "key": "uro-tra-h",
+   "performers": [
+    "uro-tra-h"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:brody-jenner-presents-brosa",
+   "name": "Brody Jenner presents Brosa",
+   "key": "brody-jenner-presents-brosa",
+   "performers": [
+    "brody-jenner-presents-brosa"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:marianna-hadad",
+   "name": "Marianna Hadad",
+   "key": "marianna-hadad",
+   "performers": [
+    "marianna-hadad"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tha-funk-junkie",
+   "name": "Tha Funk Junkie",
+   "key": "tha-funk-junkie",
+   "performers": [
+    "tha-funk-junkie"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:malcolm-zeller",
+   "name": "Malcolm Zeller",
+   "key": "malcolm-zeller",
+   "performers": [
+    "malcolm-zeller"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:stoley",
+   "name": "Stoley",
+   "key": "stoley",
+   "performers": [
+    "stoley"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pocket",
+   "name": "Pocket",
+   "key": "pocket",
+   "performers": [
+    "pocket"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:anatta",
+   "name": "ANATTA",
+   "key": "anatta",
+   "performers": [
+    "anatta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:harvard-bass-b2b-shaded",
+   "name": "Harvard Bass B2B Shaded",
+   "key": "harvard-bass-b2b-shaded",
+   "performers": [
+    "harvard-bass",
+    "shaded"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:caleb-dent",
+   "name": "Caleb Dent",
+   "key": "caleb-dent",
+   "performers": [
+    "caleb-dent"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:quality-g",
+   "name": "Quality G",
+   "key": "quality-g",
+   "performers": [
+    "quality-g"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:karaba",
+   "name": "KARABA",
+   "key": "karaba",
+   "performers": [
+    "karaba"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kasango",
+   "name": "Kasango",
+   "key": "kasango",
+   "performers": [
+    "kasango"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dee-ma",
+   "name": "DEE/MA",
+   "key": "dee-ma",
+   "performers": [
+    "dee-ma"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:aqutie",
+   "name": "AQUTIE",
+   "key": "aqutie",
+   "performers": [
+    "aqutie"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lucky-lou",
+   "name": "Lucky Lou",
+   "key": "lucky-lou",
+   "performers": [
+    "lucky-lou"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:moonlght",
+   "name": "Moonlght",
+   "key": "moonlght",
+   "performers": [
+    "moonlght"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:roxy-ferrari",
+   "name": "Roxy Ferrari",
+   "key": "roxy-ferrari",
+   "performers": [
+    "roxy-ferrari"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:recess",
+   "name": "Recess",
+   "key": "recess",
+   "performers": [
+    "recess"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pinke",
+   "name": "Pinke",
+   "key": "pinke",
+   "performers": [
+    "pinke"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:taylor-kade-yeedm-set",
+   "name": "Taylor Kade (YeeDM Set)",
+   "key": "taylor-kade-yeedm-set",
+   "performers": [
+    "taylor-kade-yeedm-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ricky-retro",
+   "name": "Ricky Retro",
+   "key": "ricky-retro",
+   "performers": [
+    "ricky-retro"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:trouble",
+   "name": "Trouble",
+   "key": "trouble",
+   "performers": [
+    "trouble"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:reza",
+   "name": "Reza",
+   "key": "reza",
+   "performers": [
+    "reza"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sabrosura-boyz",
+   "name": "Sabrosura Boyz",
+   "key": "sabrosura-boyz",
+   "performers": [
+    "sabrosura-boyz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:greg-mike-b2b-larry-loud",
+   "name": "Greg Mike B2B Larry Loud",
+   "key": "greg-mike-b2b-larry-loud",
+   "performers": [
+    "greg-mike",
+    "larry-loud"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kromi",
+   "name": "KROMI",
+   "key": "kromi",
+   "performers": [
+    "kromi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:bones",
+   "name": "Bones",
+   "key": "bones",
+   "performers": [
+    "bones"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:simfonik",
+   "name": "simfonik",
+   "key": "simfonik",
+   "performers": [
+    "simfonik"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:discrete",
+   "name": "Discrete",
+   "key": "discrete",
+   "performers": [
+    "discrete"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:champ-fresnel",
+   "name": "Champ Fresnel",
+   "key": "champ-fresnel",
+   "performers": [
+    "champ-fresnel"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tiesto-in-search-of-sunrise-set-2025",
+   "name": "Tiësto - In Search of Sunrise Set 2025",
+   "key": "tiesto-in-search-of-sunrise-set-2025",
+   "performers": [
+    "tiesto-in-search-of-sunrise-set-2025"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:marlon-hoffstadt",
+   "name": "Marlon Hoffstadt",
+   "key": "marlon-hoffstadt",
+   "performers": [
+    "marlon-hoffstadt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:james-hype",
+   "name": "James Hype",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:artbat-b2b-morten",
+   "name": "ARTBAT B2B MORTEN",
+   "key": "artbat-b2b-morten",
+   "performers": [
+    "artbat",
+    "morten"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:nora-en-pure",
+   "name": "Nora En Pure",
+   "key": "nora-en-pure",
+   "performers": [
+    "nora-en-pure"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mike-posner-alive-again",
+   "name": "Mike Posner: Alive Again",
+   "key": "mike-posner-alive-again",
+   "performers": [
+    "mike-posner-alive-again"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:disco-lines",
+   "name": "Disco Lines",
+   "key": "disco-lines",
+   "performers": [
+    "disco-lines"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:it-s-murph",
+   "name": "it's murph",
+   "key": "it-s-murph",
+   "performers": [
+    "it-s-murph"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alison-wonderland-b2b-kaskade",
+   "name": "Alison Wonderland B2B Kaskade",
+   "key": "alison-wonderland-b2b-kaskade",
+   "performers": [
+    "alison-wonderland",
+    "kaskade"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tokimonsta",
+   "name": "TOKiMONSTA",
+   "key": "tokimonsta",
+   "performers": [
+    "tokimonsta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:girl-math-vnssa-b2b-nala",
+   "name": "Girl Math (VNSSA B2B Nala)",
+   "key": "girl-math-vnssa-b2b-nala",
+   "performers": [
+    "girl-math-vnssa",
+    "nala"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:gudfella",
+   "name": "GUDFELLA",
+   "key": "gudfella",
+   "performers": [
+    "gudfella"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:svdden-death-voyd",
+   "name": "Svdden Death: VOYD",
+   "key": "svdden-death-voyd",
+   "performers": [
+    "svdden-death-voyd"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:slander-b2b-nghtmre",
+   "name": "SLANDER B2B NGHTMRE",
+   "key": "slander-b2b-nghtmre",
+   "performers": [
+    "slander",
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:i-hate-models-presents-face-ii-face-a-v",
+   "name": "I Hate Models presents Face II Face A/V",
+   "key": "i-hate-models-presents-face-ii-face-a-v",
+   "performers": [
+    "i-hate-models-presents-face-ii-face-a-v"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:maddix",
+   "name": "Maddix",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alleycvt",
+   "name": "ALLEYCVT",
+   "key": "alleycvt",
+   "performers": [
+    "alleycvt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:nico-moreno-b2b-i-hate-models",
+   "name": "Nico Moreno B2B I Hate Models",
+   "key": "nico-moreno-b2b-i-hate-models",
+   "performers": [
+    "nico-moreno",
+    "i-hate-models"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:funk-tribu-b2b-tta",
+   "name": "Funk Tribu B2B ØTTA",
+   "key": "funk-tribu-b2b-tta",
+   "performers": [
+    "funk-tribu",
+    "tta"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alignment",
+   "name": "Alignment",
+   "key": "alignment",
+   "performers": [
+    "alignment"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:clara-cuve",
+   "name": "Clara Cuvé",
+   "key": "clara-cuve",
+   "performers": [
+    "clara-cuve"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:southstar",
+   "name": "southstar",
+   "key": "southstar",
+   "performers": [
+    "southstar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:selective-response",
+   "name": "Selective Response",
+   "key": "selective-response",
+   "performers": [
+    "selective-response"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:drinkurwater",
+   "name": "DRINKURWATER",
+   "key": "drinkurwater",
+   "performers": [
+    "drinkurwater"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rudim3ntal",
+   "name": "Rudim3ntal",
+   "key": "rudim3ntal",
+   "performers": [
+    "rudim3ntal"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:inzo",
+   "name": "INZO",
+   "key": "inzo",
+   "performers": [
+    "inzo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:crankdat-b2b-tape-b",
+   "name": "Crankdat B2B Tape B",
+   "key": "crankdat-b2b-tape-b",
+   "performers": [
+    "crankdat",
+    "tape-b"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:of-the-trees",
+   "name": "Of The Trees",
+   "key": "of-the-trees",
+   "performers": [
+    "of-the-trees"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:levity",
+   "name": "Levity",
+   "key": "levity",
+   "performers": [
+    "levity"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:truth",
+   "name": "Truth",
+   "key": "truth",
+   "performers": [
+    "truth"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:steller",
+   "name": "Steller",
+   "key": "steller",
+   "performers": [
+    "steller"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:soothslayer",
+   "name": "Soothslayer",
+   "key": "soothslayer",
+   "performers": [
+    "soothslayer"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:levenkhan",
+   "name": "Levenkhan",
+   "key": "levenkhan",
+   "performers": [
+    "levenkhan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:adrenalize",
+   "name": "Adrenalize",
+   "key": "adrenalize",
+   "performers": [
+    "adrenalize"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:rooler",
+   "name": "Rooler",
+   "key": "rooler",
+   "performers": [
+    "rooler"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:showtek-hardstyle-set",
+   "name": "Showtek (Hardstyle Set)",
+   "key": "showtek-hardstyle-set",
+   "performers": [
+    "showtek-hardstyle-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dual-damage",
+   "name": "Dual Damage",
+   "key": "dual-damage",
+   "performers": [
+    "dual-damage"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:yosuf",
+   "name": "Yosuf",
+   "key": "yosuf",
+   "performers": [
+    "yosuf"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:death-code-b2b-kami",
+   "name": "DEATH CODE B2B KAMI",
+   "key": "death-code-b2b-kami",
+   "performers": [
+    "death-code",
+    "kami"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:anoluxx",
+   "name": "Anoluxx",
+   "key": "anoluxx",
+   "performers": [
+    "anoluxx"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:arodes",
+   "name": "ARODES",
+   "key": "arodes",
+   "performers": [
+    "arodes"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:korolova",
+   "name": "Korolova",
+   "key": "korolova",
+   "performers": [
+    "korolova"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:chris-avantgarde",
+   "name": "Chris Avantgarde",
+   "key": "chris-avantgarde",
+   "performers": [
+    "chris-avantgarde"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pryda",
+   "name": "Pryda",
+   "key": "pryda",
+   "performers": [
+    "pryda"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:argy",
+   "name": "Argy",
+   "key": "argy",
+   "performers": [
+    "argy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:miss-monique",
+   "name": "Miss Monique",
+   "key": "miss-monique",
+   "performers": [
+    "miss-monique"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:le-youth",
+   "name": "Le Youth",
+   "key": "le-youth",
+   "performers": [
+    "le-youth"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:nils-hoffmann",
+   "name": "Nils Hoffmann",
+   "key": "nils-hoffmann",
+   "performers": [
+    "nils-hoffmann"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:laura-van-dam",
+   "name": "Laura van Dam",
+   "key": "laura-van-dam",
+   "performers": [
+    "laura-van-dam"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lauren-mia",
+   "name": "Lauren Mia",
+   "key": "lauren-mia",
+   "performers": [
+    "lauren-mia"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:33-below-b2b-mph",
+   "name": "33 Below B2B MPH",
+   "key": "33-below-b2b-mph",
+   "performers": [
+    "33-below",
+    "mph"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:riordan",
+   "name": "Riordan",
+   "key": "riordan",
+   "performers": [
+    "riordan"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:walker-and-royce",
+   "name": "Walker & Royce",
+   "key": "walker-and-royce",
+   "performers": [
+    "walker-and-royce"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:interplanetary-criminal",
+   "name": "Interplanetary Criminal",
+   "key": "interplanetary-criminal",
+   "performers": [
+    "interplanetary-criminal"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:champion",
+   "name": "Champion",
+   "key": "champion",
+   "performers": [
+    "champion"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:pocket-b2b-sam-binga",
+   "name": "Pocket B2B Sam Binga",
+   "key": "pocket-b2b-sam-binga",
+   "performers": [
+    "pocket",
+    "sam-binga"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:raecola",
+   "name": "RaeCola",
+   "key": "raecola",
+   "performers": [
+    "raecola"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ben-sterling-b2b-beltran",
+   "name": "Ben Sterling B2B Beltran",
+   "key": "ben-sterling-b2b-beltran",
+   "performers": [
+    "ben-sterling",
+    "beltran"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ben-sterling-b2b-ahmed-spins",
+   "name": "Ben Sterling B2B Ahmed Spins",
+   "key": "ben-sterling-b2b-ahmed-spins",
+   "performers": [
+    "ben-sterling",
+    "ahmed-spins"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:prospa-b2b-josh-baker",
+   "name": "Prospa B2B Josh Baker",
+   "key": "prospa-b2b-josh-baker",
+   "performers": [
+    "prospa",
+    "josh-baker"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:omri",
+   "name": "OMRI.",
+   "key": "omri",
+   "performers": [
+    "omri"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:slugg",
+   "name": "Slugg",
+   "key": "slugg",
+   "performers": [
+    "slugg"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lumberjvck",
+   "name": "LUMBERJVCK",
+   "key": "lumberjvck",
+   "performers": [
+    "lumberjvck"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:damon-sharpe",
+   "name": "Damon Sharpe",
+   "key": "damon-sharpe",
+   "performers": [
+    "damon-sharpe"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tim-clark",
+   "name": "Tim Clark",
+   "key": "tim-clark",
+   "performers": [
+    "tim-clark"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:human404",
+   "name": "HUMAN404",
+   "key": "human404",
+   "performers": [
+    "human404"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:the-archer-b2b-loco-and-jam",
+   "name": "The Archer B2B Loco & Jam",
+   "key": "the-archer-b2b-loco-and-jam",
+   "performers": [
+    "the-archer",
+    "loco-and-jam"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:alison-wonderland-throwback-mixmag-set",
+   "name": "Alison Wonderland (Throwback Mixmag Set)",
+   "key": "alison-wonderland-throwback-mixmag-set",
+   "performers": [
+    "alison-wonderland-throwback-mixmag-set"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:neon-deluz",
+   "name": "Neon Deluz",
+   "key": "neon-deluz",
+   "performers": [
+    "neon-deluz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:ward-andrews",
+   "name": "Ward Andrews",
+   "key": "ward-andrews",
+   "performers": [
+    "ward-andrews"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:assembly",
+   "name": "Assembly",
+   "key": "assembly",
+   "performers": [
+    "assembly"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:allenora",
+   "name": "Allenora",
+   "key": "allenora",
+   "performers": [
+    "allenora"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:lizdek",
+   "name": "Lizdek",
+   "key": "lizdek",
+   "performers": [
+    "lizdek"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:trickstar",
+   "name": "TRICKSTAR",
+   "key": "trickstar",
+   "performers": [
+    "trickstar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hex-cougar",
+   "name": "Hex Cougar",
+   "key": "hex-cougar",
+   "performers": [
+    "hex-cougar"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:silcrow",
+   "name": "Silcrow",
+   "key": "silcrow",
+   "performers": [
+    "silcrow"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:vari",
+   "name": "VARI",
+   "key": "vari",
+   "performers": [
+    "vari"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:odd-language",
+   "name": "Odd Language",
+   "key": "odd-language",
+   "performers": [
+    "odd-language"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:malixe",
+   "name": "Malixe",
+   "key": "malixe",
+   "performers": [
+    "malixe"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:oddly-godly",
+   "name": "Oddly Godly",
+   "key": "oddly-godly",
+   "performers": [
+    "oddly-godly"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kaysin",
+   "name": "Kaysin",
+   "key": "kaysin",
+   "performers": [
+    "kaysin"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sam-binga",
+   "name": "Sam Binga",
+   "key": "sam-binga",
+   "performers": [
+    "sam-binga"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:mph",
+   "name": "MPH",
+   "key": "mph",
+   "performers": [
+    "mph"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:veggi",
+   "name": "veggi",
+   "key": "veggi",
+   "performers": [
+    "veggi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:gaia",
+   "name": "Gaia",
+   "key": "gaia",
+   "performers": [
+    "gaia"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:sarah-de-warren",
+   "name": "Sarah de Warren",
+   "key": "sarah-de-warren",
+   "performers": [
+    "sarah-de-warren"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kilimanjaro",
+   "name": "KILIMANJARO",
+   "key": "kilimanjaro",
+   "performers": [
+    "kilimanjaro"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:meedy-pizzi",
+   "name": "Meedy + Pizzi",
+   "key": "meedy-pizzi",
+   "performers": [
+    "meedy-pizzi"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:uncle-waffles",
+   "name": "Uncle Waffles",
+   "key": "uncle-waffles",
+   "performers": [
+    "uncle-waffles"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:one-tribe-presents-ameme-b2b-baron",
+   "name": "One Tribe Presents (AMÉMÉ B2B Baron)",
+   "key": "one-tribe-presents-ameme-b2b-baron",
+   "performers": [
+    "one-tribe-presents-ameme",
+    "baron"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:da-capo",
+   "name": "Da Capo",
+   "key": "da-capo",
+   "performers": [
+    "da-capo"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:andre-power",
+   "name": "Andre Power",
+   "key": "andre-power",
+   "performers": [
+    "andre-power"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:dreeemy",
+   "name": "DRĖĖĖMY",
+   "key": "dreeemy",
+   "performers": [
+    "dreeemy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:brdwy",
+   "name": "BRDWY",
+   "key": "brdwy",
+   "performers": [
+    "brdwy"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:willie-pake",
+   "name": "Willie Pake",
+   "key": "willie-pake",
+   "performers": [
+    "willie-pake"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:roadhouse",
+   "name": "Roadhouse",
+   "key": "roadhouse",
+   "performers": [
+    "roadhouse"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:k-gianni",
+   "name": "K.Gianni",
+   "key": "k-gianni",
+   "performers": [
+    "k-gianni"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:kidmaverick",
+   "name": "KidMaverick",
+   "key": "kidmaverick",
+   "performers": [
+    "kidmaverick"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:corey-biggs",
+   "name": "Corey Biggs",
+   "key": "corey-biggs",
+   "performers": [
+    "corey-biggs"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tim-underscore",
+   "name": "Tim Underscore",
+   "key": "tim-underscore",
+   "performers": [
+    "tim-underscore"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:stedicam",
+   "name": "Stedicam",
+   "key": "stedicam",
+   "performers": [
+    "stedicam"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:blklght",
+   "name": "BLKLGHT",
+   "key": "blklght",
+   "performers": [
+    "blklght"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:tripps",
+   "name": "Tripps",
+   "key": "tripps",
+   "performers": [
+    "tripps"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:backcourt",
+   "name": "BACKCOURT",
+   "key": "backcourt",
+   "performers": [
+    "backcourt"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:hanz",
+   "name": "HANZ",
+   "key": "hanz",
+   "performers": [
+    "hanz"
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2025:bo-knows",
+   "name": "Bo Knows",
+   "key": "bo-knows",
+   "performers": [
+    "bo-knows"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:0413:gorgon-city",
+   "artistId": "edc-las-vegas-2025:gorgon-city",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "04:13",
+   "end": "05:28"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:0300:dj-snake",
+   "artistId": "edc-las-vegas-2025:dj-snake",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "03:00",
+   "end": "04:10"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:0237:dom-dolla-b2b-chase-and-status",
+   "artistId": "edc-las-vegas-2025:dom-dolla-b2b-chase-and-status",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "02:37",
+   "end": "02:57"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:0147:dom-dolla",
+   "artistId": "edc-las-vegas-2025:dom-dolla",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "01:47",
+   "end": "02:37"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:0031:alesso",
+   "artistId": "edc-las-vegas-2025:alesso",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "00:31",
+   "end": "01:41"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:2318:sara-landry",
+   "artistId": "edc-las-vegas-2025:sara-landry",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "23:18",
+   "end": "00:28"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:2206:deorro-and-friends",
+   "artistId": "edc-las-vegas-2025:deorro-and-friends",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "22:06",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:2100:alok",
+   "artistId": "edc-las-vegas-2025:alok",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:2000:noizu",
+   "artistId": "edc-las-vegas-2025:noizu",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:kinetic-field:1900:lavern",
+   "artistId": "edc-las-vegas-2025:lavern",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:0415:nghtmre-presents-mindfull",
+   "artistId": "edc-las-vegas-2025:nghtmre-presents-mindfull",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:0315:yellow-claw",
+   "artistId": "edc-las-vegas-2025:yellow-claw",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:0200:crankdat",
+   "artistId": "edc-las-vegas-2025:crankdat",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "02:00",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:0030:tape-b",
+   "artistId": "edc-las-vegas-2025:tape-b",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:2315:rl-grime",
+   "artistId": "edc-las-vegas-2025:rl-grime",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:2200:armnhmr",
+   "artistId": "edc-las-vegas-2025:armnhmr",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:2100:trivecta",
+   "artistId": "edc-las-vegas-2025:trivecta",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:2000:chyl",
+   "artistId": "edc-las-vegas-2025:chyl",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:1900:daniel-allan",
+   "artistId": "edc-las-vegas-2025:daniel-allan",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:1730:sosa-b2b-classmatic",
+   "artistId": "edc-las-vegas-2025:sosa-b2b-classmatic",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:cosmic-meadow:1700:baggi",
+   "artistId": "edc-las-vegas-2025:baggi",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "17:00",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:0430:layton-giordani",
+   "artistId": "edc-las-vegas-2025:layton-giordani",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:0330:eli-brown",
+   "artistId": "edc-las-vegas-2025:eli-brown",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:0200:cloonee",
+   "artistId": "edc-las-vegas-2025:cloonee",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:0030:tiesto",
+   "artistId": "edc-las-vegas-2025:tiesto",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:2300:mochakk",
+   "artistId": "edc-las-vegas-2025:mochakk",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:2130:armand-van-helden",
+   "artistId": "edc-las-vegas-2025:armand-van-helden",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:2015:max-styler",
+   "artistId": "edc-las-vegas-2025:max-styler",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:circuit-grounds:1900:annicka",
+   "artistId": "edc-las-vegas-2025:annicka",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:0400:hot-since-82",
+   "artistId": "edc-las-vegas-2025:hot-since-82",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:0215:adam-ten-b2b-mita-gami",
+   "artistId": "edc-las-vegas-2025:adam-ten-b2b-mita-gami",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "02:15",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:0030:blond-ish",
+   "artistId": "edc-las-vegas-2025:blond-ish",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "00:30",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:2315:skepta-mas-tiempo",
+   "artistId": "edc-las-vegas-2025:skepta-mas-tiempo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:2200:ben-sterling-b2b-rossi",
+   "artistId": "edc-las-vegas-2025:ben-sterling-b2b-rossi",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:2015:airrica",
+   "artistId": "edc-las-vegas-2025:airrica",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:neon-garden:1900:masha-mar",
+   "artistId": "edc-las-vegas-2025:masha-mar",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:0430:distinct-motive",
+   "artistId": "edc-las-vegas-2025:distinct-motive",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:0330:simula",
+   "artistId": "edc-las-vegas-2025:simula",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:0230:caspa-b2b-rusko",
+   "artistId": "edc-las-vegas-2025:caspa-b2b-rusko",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:0130:sullivan-king",
+   "artistId": "edc-las-vegas-2025:sullivan-king",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:0030:riot-ten",
+   "artistId": "edc-las-vegas-2025:riot-ten",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:2330:apashe",
+   "artistId": "edc-las-vegas-2025:apashe",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:2230:andy-c",
+   "artistId": "edc-las-vegas-2025:andy-c",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:2130:kompany",
+   "artistId": "edc-las-vegas-2025:kompany",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:2040:ahee",
+   "artistId": "edc-las-vegas-2025:ahee",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "20:40",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:1950:basstripper-b2b-sota",
+   "artistId": "edc-las-vegas-2025:basstripper-b2b-sota",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:50",
+   "end": "20:40"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:basspod:1900:andromedik",
+   "artistId": "edc-las-vegas-2025:andromedik",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:00",
+   "end": "19:50"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:0430:anime",
+   "artistId": "edc-las-vegas-2025:anime",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:0330:shl-mo",
+   "artistId": "edc-las-vegas-2025:shl-mo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:0230:basswell",
+   "artistId": "edc-las-vegas-2025:basswell",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:0130:oguz",
+   "artistId": "edc-las-vegas-2025:oguz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:0030:cera-khin",
+   "artistId": "edc-las-vegas-2025:cera-khin",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:2330:6ejou",
+   "artistId": "edc-las-vegas-2025:6ejou",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:2230:onlynumbers",
+   "artistId": "edc-las-vegas-2025:onlynumbers",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:2130:biia",
+   "artistId": "edc-las-vegas-2025:biia",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:2030:caravel",
+   "artistId": "edc-las-vegas-2025:caravel",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:wasteland:1900:clawz",
+   "artistId": "edc-las-vegas-2025:clawz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:0400:yoji-biomehanika",
+   "artistId": "edc-las-vegas-2025:yoji-biomehanika",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:0300:omiki",
+   "artistId": "edc-las-vegas-2025:omiki",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:0200:david-rust",
+   "artistId": "edc-las-vegas-2025:david-rust",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:0100:avalon",
+   "artistId": "edc-las-vegas-2025:avalon",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:0000:vini-vici",
+   "artistId": "edc-las-vegas-2025:vini-vici",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:2300:marie-vaunt",
+   "artistId": "edc-las-vegas-2025:marie-vaunt",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:2200:victor-ruiz",
+   "artistId": "edc-las-vegas-2025:victor-ruiz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:2100:paul-oakenfold",
+   "artistId": "edc-las-vegas-2025:paul-oakenfold",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:2000:david-forbes",
+   "artistId": "edc-las-vegas-2025:david-forbes",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:quantum-valley:1900:mr-brooks",
+   "artistId": "edc-las-vegas-2025:mr-brooks",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:0430:ky-william",
+   "artistId": "edc-las-vegas-2025:ky-william",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:0315:vnssa",
+   "artistId": "edc-las-vegas-2025:vnssa",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "03:15",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:0200:biscits",
+   "artistId": "edc-las-vegas-2025:biscits",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "02:00",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:0045:disco-dom",
+   "artistId": "edc-las-vegas-2025:disco-dom",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:2330:matroda-and-friends",
+   "artistId": "edc-las-vegas-2025:matroda-and-friends",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:2215:omnom",
+   "artistId": "edc-las-vegas-2025:omnom",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson",
+   "artistId": "edc-las-vegas-2025:kyle-watson",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:2000:jackie-hollander",
+   "artistId": "edc-las-vegas-2025:jackie-hollander",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:stereo-bloom:1900:linska",
+   "artistId": "edc-las-vegas-2025:linska",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:0400:boys-noize",
+   "artistId": "edc-las-vegas-2025:boys-noize",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:0230:x-club",
+   "artistId": "edc-las-vegas-2025:x-club",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:0130:dj-fuckoff",
+   "artistId": "edc-las-vegas-2025:dj-fuckoff",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:0030:malugi",
+   "artistId": "edc-las-vegas-2025:malugi",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:2300:narciss",
+   "artistId": "edc-las-vegas-2025:narciss",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:2130:skream-b2b-partiboi69",
+   "artistId": "edc-las-vegas-2025:skream-b2b-partiboi69",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:2015:invt",
+   "artistId": "edc-las-vegas-2025:invt",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:1900:lake-hills",
+   "artistId": "edc-las-vegas-2025:lake-hills",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:bionic-jungle:1700:alex-chapman-zoe-gitter",
+   "artistId": "edc-las-vegas-2025:alex-chapman-zoe-gitter",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:0400:pls-and-ty",
+   "artistId": "edc-las-vegas-2025:pls-and-ty",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:0300:linney",
+   "artistId": "edc-las-vegas-2025:linney",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:0200:lavern",
+   "artistId": "edc-las-vegas-2025:lavern",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:0100:wes-mills",
+   "artistId": "edc-las-vegas-2025:wes-mills",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:0000:silver-panda",
+   "artistId": "edc-las-vegas-2025:silver-panda",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:2200:matt-faulk",
+   "artistId": "edc-las-vegas-2025:matt-faulk",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:2100:goshfather",
+   "artistId": "edc-las-vegas-2025:goshfather",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:2000:boizy",
+   "artistId": "edc-las-vegas-2025:boizy",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:forest-house:1900:big-daddy-kess",
+   "artistId": "edc-las-vegas-2025:big-daddy-kess",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:0430:rollz-royce",
+   "artistId": "edc-las-vegas-2025:rollz-royce",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:0330:soren",
+   "artistId": "edc-las-vegas-2025:soren",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:0230:rayray",
+   "artistId": "edc-las-vegas-2025:rayray",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:0130:sihk",
+   "artistId": "edc-las-vegas-2025:sihk",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:0030:dead-x",
+   "artistId": "edc-las-vegas-2025:dead-x",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:2330:water-spirit",
+   "artistId": "edc-las-vegas-2025:water-spirit",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:2200:cutdwn",
+   "artistId": "edc-las-vegas-2025:cutdwn",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:2030:kami-hybrid-warfare-set",
+   "artistId": "edc-las-vegas-2025:kami-hybrid-warfare-set",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:beatbox-art-car:1900:inigma",
+   "artistId": "edc-las-vegas-2025:inigma",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:0415:jenna-shaw",
+   "artistId": "edc-las-vegas-2025:jenna-shaw",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:0300:horichh",
+   "artistId": "edc-las-vegas-2025:horichh",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "03:00",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:0200:cato-anaya",
+   "artistId": "edc-las-vegas-2025:cato-anaya",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:0100:mattilo",
+   "artistId": "edc-las-vegas-2025:mattilo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:0000:ky-william-b2b-alves",
+   "artistId": "edc-las-vegas-2025:ky-william-b2b-alves",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:2245:avi-snow",
+   "artistId": "edc-las-vegas-2025:avi-snow",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:2130:lady-sinclair",
+   "artistId": "edc-las-vegas-2025:lady-sinclair",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:2015:haylee-wood",
+   "artistId": "edc-las-vegas-2025:haylee-wood",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:metaphoenix:1900:soul-purpose",
+   "artistId": "edc-las-vegas-2025:soul-purpose",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:0400:jon-casey",
+   "artistId": "edc-las-vegas-2025:jon-casey",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:0230:dj-lag",
+   "artistId": "edc-las-vegas-2025:dj-lag",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:0100:kitty-amor",
+   "artistId": "edc-las-vegas-2025:kitty-amor",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:2330:sarz",
+   "artistId": "edc-las-vegas-2025:sarz",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:2030:eli-fola-hybrid-set",
+   "artistId": "edc-las-vegas-2025:eli-fola-hybrid-set",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:ubuntu:1900:afromantis-collective",
+   "artistId": "edc-las-vegas-2025:afromantis-collective",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:0330:zevy",
+   "artistId": "edc-las-vegas-2025:zevy",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "03:30",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:0130:vavo",
+   "artistId": "edc-las-vegas-2025:vavo",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:0000:dj-slim-mcgraw",
+   "artistId": "edc-las-vegas-2025:dj-slim-mcgraw",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:2215:country-night",
+   "artistId": "edc-las-vegas-2025:country-night",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:2045:ami-g",
+   "artistId": "edc-las-vegas-2025:ami-g",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:yeedc:1900:party-dads",
+   "artistId": "edc-las-vegas-2025:party-dads",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:0415:mer-bear",
+   "artistId": "edc-las-vegas-2025:mer-bear",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:0315:alcala-bros",
+   "artistId": "edc-las-vegas-2025:alcala-bros",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:0215:dea-magna",
+   "artistId": "edc-las-vegas-2025:dea-magna",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "02:15",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:0100:kieran-san-jose",
+   "artistId": "edc-las-vegas-2025:kieran-san-jose",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:2345:dena",
+   "artistId": "edc-las-vegas-2025:dena",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:2230:2ar",
+   "artistId": "edc-las-vegas-2025:2ar",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:2130:arman",
+   "artistId": "edc-las-vegas-2025:arman",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:2015:kian",
+   "artistId": "edc-las-vegas-2025:kian",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d1:blacklight-bar:1900:harristone",
+   "artistId": "edc-las-vegas-2025:harristone",
+   "day": 1,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:0413:meduza",
+   "artistId": "edc-las-vegas-2025:meduza",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "04:13",
+   "end": "05:28"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:0300:kaskade",
+   "artistId": "edc-las-vegas-2025:kaskade",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "03:00",
+   "end": "04:10"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:0147:illenium-b2b-slander",
+   "artistId": "edc-las-vegas-2025:illenium-b2b-slander",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "01:47",
+   "end": "02:57"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:0031:fisher",
+   "artistId": "edc-las-vegas-2025:fisher",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "00:31",
+   "end": "01:41"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:2318:eric-prydz",
+   "artistId": "edc-las-vegas-2025:eric-prydz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "23:18",
+   "end": "00:28"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:2206:afrojack",
+   "artistId": "edc-las-vegas-2025:afrojack",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "22:06",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:2100:ben-nicky",
+   "artistId": "edc-las-vegas-2025:ben-nicky",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:2000:dimension",
+   "artistId": "edc-las-vegas-2025:dimension",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:kinetic-field:1900:xandra",
+   "artistId": "edc-las-vegas-2025:xandra",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0430:hedex",
+   "artistId": "edc-las-vegas-2025:hedex",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0330:odd-mob",
+   "artistId": "edc-las-vegas-2025:odd-mob",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0230:boys-noize",
+   "artistId": "edc-las-vegas-2025:boys-noize",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0200:ayybo",
+   "artistId": "edc-las-vegas-2025:ayybo",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "02:00",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0048:gesaffelstein",
+   "artistId": "edc-las-vegas-2025:gesaffelstein",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "00:48",
+   "end": "01:59"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:0001:dj-snake-hip-hop-set",
+   "artistId": "edc-las-vegas-2025:dj-snake-hip-hop-set",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "00:01",
+   "end": "00:46"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:2250:brutalismus-3000",
+   "artistId": "edc-las-vegas-2025:brutalismus-3000",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "22:50",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:2110:bicep-present-chroma",
+   "artistId": "edc-las-vegas-2025:bicep-present-chroma",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "21:10",
+   "end": "22:40"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:2000:oppidan",
+   "artistId": "edc-las-vegas-2025:oppidan",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:cosmic-meadow:1900:villager",
+   "artistId": "edc-las-vegas-2025:villager",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:0430:space-92-x-popof-present-turbulences",
+   "artistId": "edc-las-vegas-2025:space-92-x-popof-present-turbulences",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:0330:tchami-x-malaa-no-redemption",
+   "artistId": "edc-las-vegas-2025:tchami-x-malaa-no-redemption",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:0230:charlotte-de-witte",
+   "artistId": "edc-las-vegas-2025:charlotte-de-witte",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:0127:isoknock",
+   "artistId": "edc-las-vegas-2025:isoknock",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "01:27",
+   "end": "02:27"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:0005:rezz",
+   "artistId": "edc-las-vegas-2025:rezz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "00:05",
+   "end": "01:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:2230:mau-p",
+   "artistId": "edc-las-vegas-2025:mau-p",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:2115:hugel",
+   "artistId": "edc-las-vegas-2025:hugel",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:2000:lf-system",
+   "artistId": "edc-las-vegas-2025:lf-system",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:circuit-grounds:1900:torren-foot",
+   "artistId": "edc-las-vegas-2025:torren-foot",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:0415:vintage-culture",
+   "artistId": "edc-las-vegas-2025:vintage-culture",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:0300:dennis-cruz",
+   "artistId": "edc-las-vegas-2025:dennis-cruz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "03:00",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:0030:the-martinez-brothers-b2b-loco-dice",
+   "artistId": "edc-las-vegas-2025:the-martinez-brothers-b2b-loco-dice",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "00:30",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:2315:carlita",
+   "artistId": "edc-las-vegas-2025:carlita",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:2200:beltran",
+   "artistId": "edc-las-vegas-2025:beltran",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:2045:sosa",
+   "artistId": "edc-las-vegas-2025:sosa",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:neon-garden:1900:cole-knight",
+   "artistId": "edc-las-vegas-2025:cole-knight",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "19:00",
+   "end": "20:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:0430:shades",
+   "artistId": "edc-las-vegas-2025:shades",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:0330:level-up",
+   "artistId": "edc-las-vegas-2025:level-up",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:0230:netsky",
+   "artistId": "edc-las-vegas-2025:netsky",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:0130:svdden-death",
+   "artistId": "edc-las-vegas-2025:svdden-death",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:0030:chase-and-status",
+   "artistId": "edc-las-vegas-2025:chase-and-status",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:2330:ray-volpe",
+   "artistId": "edc-las-vegas-2025:ray-volpe",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:2230:jessica-audiffred-b2b-layz",
+   "artistId": "edc-las-vegas-2025:jessica-audiffred-b2b-layz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:2130:infekt",
+   "artistId": "edc-las-vegas-2025:infekt",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:2040:samplifire",
+   "artistId": "edc-las-vegas-2025:samplifire",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "20:40",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:1950:rzrkt-b2b-vastive",
+   "artistId": "edc-las-vegas-2025:rzrkt-b2b-vastive",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:50",
+   "end": "20:40"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:basspod:1900:fury-with-mc-dino",
+   "artistId": "edc-las-vegas-2025:fury-with-mc-dino",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:00",
+   "end": "19:50"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:0430:restricted",
+   "artistId": "edc-las-vegas-2025:restricted",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:0330:rayray",
+   "artistId": "edc-las-vegas-2025:rayray",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:0230:lil-texas",
+   "artistId": "edc-las-vegas-2025:lil-texas",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:0130:sub-zero-project",
+   "artistId": "edc-las-vegas-2025:sub-zero-project",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:0030:darren-styles",
+   "artistId": "edc-las-vegas-2025:darren-styles",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:2330:mish",
+   "artistId": "edc-las-vegas-2025:mish",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:2230:d-sturb",
+   "artistId": "edc-las-vegas-2025:d-sturb",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:2130:code-black",
+   "artistId": "edc-las-vegas-2025:code-black",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:2030:devin-wild",
+   "artistId": "edc-las-vegas-2025:devin-wild",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:wasteland:1900:angel-cannon",
+   "artistId": "edc-las-vegas-2025:angel-cannon",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:0430:tta",
+   "artistId": "edc-las-vegas-2025:tta",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:0330:trance-wax",
+   "artistId": "edc-las-vegas-2025:trance-wax",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:0230:ben-hemsley",
+   "artistId": "edc-las-vegas-2025:ben-hemsley",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:0130:maddix-b2b-ben-nicky",
+   "artistId": "edc-las-vegas-2025:maddix-b2b-ben-nicky",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:0030:funk-tribu",
+   "artistId": "edc-las-vegas-2025:funk-tribu",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:2330:hannah-laing",
+   "artistId": "edc-las-vegas-2025:hannah-laing",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:2230:cosmic-gate",
+   "artistId": "edc-las-vegas-2025:cosmic-gate",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:2130:billy-gillies",
+   "artistId": "edc-las-vegas-2025:billy-gillies",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:2030:lostly",
+   "artistId": "edc-las-vegas-2025:lostly",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:quantum-valley:1900:miyuki",
+   "artistId": "edc-las-vegas-2025:miyuki",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:0430:amal-nemer",
+   "artistId": "edc-las-vegas-2025:amal-nemer",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:0300:bontan-b2b-calussa",
+   "artistId": "edc-las-vegas-2025:bontan-b2b-calussa",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "03:00",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:0145:ameme",
+   "artistId": "edc-las-vegas-2025:ameme",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "01:45",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:0030:hugel-and-friends",
+   "artistId": "edc-las-vegas-2025:hugel-and-friends",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:2315:francis-mercier",
+   "artistId": "edc-las-vegas-2025:francis-mercier",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:2200:maz",
+   "artistId": "edc-las-vegas-2025:maz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:2100:ahmed-spins",
+   "artistId": "edc-las-vegas-2025:ahmed-spins",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:2000:wakyin",
+   "artistId": "edc-las-vegas-2025:wakyin",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:stereo-bloom:1900:twenty-six",
+   "artistId": "edc-las-vegas-2025:twenty-six",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:0430:tdj",
+   "artistId": "edc-las-vegas-2025:tdj",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:0315:mcr-t",
+   "artistId": "edc-las-vegas-2025:mcr-t",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "03:15",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:0145:horsegiirl",
+   "artistId": "edc-las-vegas-2025:horsegiirl",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:0015:dj-gigola",
+   "artistId": "edc-las-vegas-2025:dj-gigola",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "00:15",
+   "end": "01:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:2245:fcukers-dj-set",
+   "artistId": "edc-las-vegas-2025:fcukers-dj-set",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "22:45",
+   "end": "00:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:2130:dylan-brady",
+   "artistId": "edc-las-vegas-2025:dylan-brady",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:2015:pablo-bozzi",
+   "artistId": "edc-las-vegas-2025:pablo-bozzi",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:bionic-jungle:1900:mrd",
+   "artistId": "edc-las-vegas-2025:mrd",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:0415:synnhaven",
+   "artistId": "edc-las-vegas-2025:synnhaven",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:0315:bunny-rabbit-in-the-moon",
+   "artistId": "edc-las-vegas-2025:bunny-rabbit-in-the-moon",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:0200:sam-blacky",
+   "artistId": "edc-las-vegas-2025:sam-blacky",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "02:00",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:2300:vintage-culture-b2b-doozie",
+   "artistId": "edc-las-vegas-2025:vintage-culture-b2b-doozie",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "23:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:2200:calussa",
+   "artistId": "edc-las-vegas-2025:calussa",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:2100:nekter",
+   "artistId": "edc-las-vegas-2025:nekter",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:2000:kenzii-scott",
+   "artistId": "edc-las-vegas-2025:kenzii-scott",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:forest-house:1900:marc-v",
+   "artistId": "edc-las-vegas-2025:marc-v",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:0415:papa-lu",
+   "artistId": "edc-las-vegas-2025:papa-lu",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:0315:myles-o-neal",
+   "artistId": "edc-las-vegas-2025:myles-o-neal",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:0215:celo",
+   "artistId": "edc-las-vegas-2025:celo",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "02:15",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:0100:elephante",
+   "artistId": "edc-las-vegas-2025:elephante",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:2345:emo-nite-grave-rave-set",
+   "artistId": "edc-las-vegas-2025:emo-nite-grave-rave-set",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:2230:uro-tra-h",
+   "artistId": "edc-las-vegas-2025:uro-tra-h",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:2130:brody-jenner-presents-brosa",
+   "artistId": "edc-las-vegas-2025:brody-jenner-presents-brosa",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:2015:marianna-hadad",
+   "artistId": "edc-las-vegas-2025:marianna-hadad",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:beatbox-art-car:1900:tha-funk-junkie",
+   "artistId": "edc-las-vegas-2025:tha-funk-junkie",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:0415:malcolm-zeller",
+   "artistId": "edc-las-vegas-2025:malcolm-zeller",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:0300:stoley",
+   "artistId": "edc-las-vegas-2025:stoley",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "03:00",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:0130:pocket",
+   "artistId": "edc-las-vegas-2025:pocket",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:0000:twenty-six",
+   "artistId": "edc-las-vegas-2025:twenty-six",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:2245:anatta",
+   "artistId": "edc-las-vegas-2025:anatta",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:2130:harvard-bass-b2b-shaded",
+   "artistId": "edc-las-vegas-2025:harvard-bass-b2b-shaded",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:2015:caleb-dent",
+   "artistId": "edc-las-vegas-2025:caleb-dent",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:metaphoenix:1900:quality-g",
+   "artistId": "edc-las-vegas-2025:quality-g",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:0400:dj-lag",
+   "artistId": "edc-las-vegas-2025:dj-lag",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:0230:karaba",
+   "artistId": "edc-las-vegas-2025:karaba",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:2330:kasango",
+   "artistId": "edc-las-vegas-2025:kasango",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:2200:kitty-amor",
+   "artistId": "edc-las-vegas-2025:kitty-amor",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:2100:dee-ma",
+   "artistId": "edc-las-vegas-2025:dee-ma",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:ubuntu:1900:aqutie",
+   "artistId": "edc-las-vegas-2025:aqutie",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:0315:lucky-lou",
+   "artistId": "edc-las-vegas-2025:lucky-lou",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:0130:moonlght",
+   "artistId": "edc-las-vegas-2025:moonlght",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "01:30",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:0000:roxy-ferrari",
+   "artistId": "edc-las-vegas-2025:roxy-ferrari",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:2300:recess",
+   "artistId": "edc-las-vegas-2025:recess",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "23:00",
+   "end": "23:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:2145:pinke",
+   "artistId": "edc-las-vegas-2025:pinke",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "21:45",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:2030:taylor-kade-yeedm-set",
+   "artistId": "edc-las-vegas-2025:taylor-kade-yeedm-set",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:yeedc:1900:ricky-retro",
+   "artistId": "edc-las-vegas-2025:ricky-retro",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:0415:trouble",
+   "artistId": "edc-las-vegas-2025:trouble",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:0300:reza",
+   "artistId": "edc-las-vegas-2025:reza",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "03:00",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:0145:sabrosura-boyz",
+   "artistId": "edc-las-vegas-2025:sabrosura-boyz",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "01:45",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:0030:greg-mike-b2b-larry-loud",
+   "artistId": "edc-las-vegas-2025:greg-mike-b2b-larry-loud",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:2315:kromi",
+   "artistId": "edc-las-vegas-2025:kromi",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:2200:bones",
+   "artistId": "edc-las-vegas-2025:bones",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:2100:simfonik",
+   "artistId": "edc-las-vegas-2025:simfonik",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:2000:discrete",
+   "artistId": "edc-las-vegas-2025:discrete",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d2:blacklight-bar:1900:champ-fresnel",
+   "artistId": "edc-las-vegas-2025:champ-fresnel",
+   "day": 2,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:0413:tiesto-in-search-of-sunrise-set-2025",
+   "artistId": "edc-las-vegas-2025:tiesto-in-search-of-sunrise-set-2025",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "04:13",
+   "end": "05:28"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:0300:marlon-hoffstadt",
+   "artistId": "edc-las-vegas-2025:marlon-hoffstadt",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "03:00",
+   "end": "04:10"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:0147:armin-van-buuren",
+   "artistId": "edc-las-vegas-2025:armin-van-buuren",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "01:47",
+   "end": "02:57"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:0011:martin-garrix",
+   "artistId": "edc-las-vegas-2025:martin-garrix",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "00:11",
+   "end": "01:41"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:2303:james-hype",
+   "artistId": "edc-las-vegas-2025:james-hype",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "23:03",
+   "end": "00:06"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
+   "artistId": "edc-las-vegas-2025:artbat-b2b-morten",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:2054:nora-en-pure",
+   "artistId": "edc-las-vegas-2025:nora-en-pure",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "20:54",
+   "end": "21:54"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:1954:danny-avila",
+   "artistId": "edc-las-vegas-2025:danny-avila",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "19:54",
+   "end": "20:54"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:kinetic-field:1900:mike-posner-alive-again",
+   "artistId": "edc-las-vegas-2025:mike-posner-alive-again",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:kinetic-field",
+   "start": "19:00",
+   "end": "19:54"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:0430:disco-lines",
+   "artistId": "edc-las-vegas-2025:disco-lines",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:0330:it-s-murph",
+   "artistId": "edc-las-vegas-2025:it-s-murph",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:0230:matroda",
+   "artistId": "edc-las-vegas-2025:matroda",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:0100:alison-wonderland-b2b-kaskade",
+   "artistId": "edc-las-vegas-2025:alison-wonderland-b2b-kaskade",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:0000:loud-luxury",
+   "artistId": "edc-las-vegas-2025:loud-luxury",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:2300:sidepiece",
+   "artistId": "edc-las-vegas-2025:sidepiece",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:2200:dombresky",
+   "artistId": "edc-las-vegas-2025:dombresky",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:2100:tokimonsta",
+   "artistId": "edc-las-vegas-2025:tokimonsta",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:2000:girl-math-vnssa-b2b-nala",
+   "artistId": "edc-las-vegas-2025:girl-math-vnssa-b2b-nala",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:cosmic-meadow:1900:gudfella",
+   "artistId": "edc-las-vegas-2025:gudfella",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:cosmic-meadow",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:0410:svdden-death-voyd",
+   "artistId": "edc-las-vegas-2025:svdden-death-voyd",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "04:10",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:0250:black-tiger-sex-machine",
+   "artistId": "edc-las-vegas-2025:black-tiger-sex-machine",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "02:50",
+   "end": "04:05"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:0115:slander-b2b-nghtmre",
+   "artistId": "edc-las-vegas-2025:slander-b2b-nghtmre",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "01:15",
+   "end": "02:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:0000:excision",
+   "artistId": "edc-las-vegas-2025:excision",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:2245:atliens",
+   "artistId": "edc-las-vegas-2025:atliens",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:2130:i-hate-models-presents-face-ii-face-a-v",
+   "artistId": "edc-las-vegas-2025:i-hate-models-presents-face-ii-face-a-v",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:2015:maddix",
+   "artistId": "edc-las-vegas-2025:maddix",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:circuit-grounds:1900:alleycvt",
+   "artistId": "edc-las-vegas-2025:alleycvt",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:circuit-grounds",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
+   "artistId": "edc-las-vegas-2025:nico-moreno-b2b-i-hate-models",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "03:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:0130:amelie-lens",
+   "artistId": "edc-las-vegas-2025:amelie-lens",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:0000:funk-tribu-b2b-tta",
+   "artistId": "edc-las-vegas-2025:funk-tribu-b2b-tta",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:2245:alignment",
+   "artistId": "edc-las-vegas-2025:alignment",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:2130:clara-cuve",
+   "artistId": "edc-las-vegas-2025:clara-cuve",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "21:30",
+   "end": "22:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:2030:southstar",
+   "artistId": "edc-las-vegas-2025:southstar",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:neon-garden:1900:selective-response",
+   "artistId": "edc-las-vegas-2025:selective-response",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:neon-garden",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:0430:drinkurwater",
+   "artistId": "edc-las-vegas-2025:drinkurwater",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:0330:rudim3ntal",
+   "artistId": "edc-las-vegas-2025:rudim3ntal",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:0230:inzo",
+   "artistId": "edc-las-vegas-2025:inzo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:0130:crankdat-b2b-tape-b",
+   "artistId": "edc-las-vegas-2025:crankdat-b2b-tape-b",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:0030:liquid-stranger",
+   "artistId": "edc-las-vegas-2025:liquid-stranger",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:2330:of-the-trees",
+   "artistId": "edc-las-vegas-2025:of-the-trees",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:2230:ydg",
+   "artistId": "edc-las-vegas-2025:ydg",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:2130:levity",
+   "artistId": "edc-las-vegas-2025:levity",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:2040:truth",
+   "artistId": "edc-las-vegas-2025:truth",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "20:40",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:1950:steller",
+   "artistId": "edc-las-vegas-2025:steller",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:50",
+   "end": "20:40"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:basspod:1900:soothslayer",
+   "artistId": "edc-las-vegas-2025:soothslayer",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:basspod",
+   "start": "19:00",
+   "end": "19:50"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:0430:levenkhan",
+   "artistId": "edc-las-vegas-2025:levenkhan",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:0330:adrenalize",
+   "artistId": "edc-las-vegas-2025:adrenalize",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:0230:rooler",
+   "artistId": "edc-las-vegas-2025:rooler",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:0130:da-tweekaz",
+   "artistId": "edc-las-vegas-2025:da-tweekaz",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:0030:showtek-hardstyle-set",
+   "artistId": "edc-las-vegas-2025:showtek-hardstyle-set",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:2330:lady-faith",
+   "artistId": "edc-las-vegas-2025:lady-faith",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:2230:dual-damage",
+   "artistId": "edc-las-vegas-2025:dual-damage",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:2130:yosuf",
+   "artistId": "edc-las-vegas-2025:yosuf",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:2030:death-code-b2b-kami",
+   "artistId": "edc-las-vegas-2025:death-code-b2b-kami",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:wasteland:1900:anoluxx",
+   "artistId": "edc-las-vegas-2025:anoluxx",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:wasteland",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:0430:arodes",
+   "artistId": "edc-las-vegas-2025:arodes",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:0330:korolova",
+   "artistId": "edc-las-vegas-2025:korolova",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:0215:chris-avantgarde",
+   "artistId": "edc-las-vegas-2025:chris-avantgarde",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "02:15",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:0100:pryda",
+   "artistId": "edc-las-vegas-2025:pryda",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:0000:argy",
+   "artistId": "edc-las-vegas-2025:argy",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:2300:miss-monique",
+   "artistId": "edc-las-vegas-2025:miss-monique",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:2200:le-youth",
+   "artistId": "edc-las-vegas-2025:le-youth",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:2100:nils-hoffmann",
+   "artistId": "edc-las-vegas-2025:nils-hoffmann",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:2000:laura-van-dam",
+   "artistId": "edc-las-vegas-2025:laura-van-dam",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:quantum-valley:1900:lauren-mia",
+   "artistId": "edc-las-vegas-2025:lauren-mia",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:quantum-valley",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:0430:mattilo",
+   "artistId": "edc-las-vegas-2025:mattilo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:0315:33-below-b2b-mph",
+   "artistId": "edc-las-vegas-2025:33-below-b2b-mph",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "03:15",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:0200:riordan",
+   "artistId": "edc-las-vegas-2025:riordan",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "02:00",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:0030:walker-and-royce",
+   "artistId": "edc-las-vegas-2025:walker-and-royce",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:2315:interplanetary-criminal",
+   "artistId": "edc-las-vegas-2025:interplanetary-criminal",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:2200:odd-mob",
+   "artistId": "edc-las-vegas-2025:odd-mob",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:2100:champion",
+   "artistId": "edc-las-vegas-2025:champion",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:2000:pocket-b2b-sam-binga",
+   "artistId": "edc-las-vegas-2025:pocket-b2b-sam-binga",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:stereo-bloom:1900:raecola",
+   "artistId": "edc-las-vegas-2025:raecola",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:stereo-bloom",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:0330:ben-sterling-b2b-beltran",
+   "artistId": "edc-las-vegas-2025:ben-sterling-b2b-beltran",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "03:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:0200:ben-sterling-b2b-ahmed-spins",
+   "artistId": "edc-las-vegas-2025:ben-sterling-b2b-ahmed-spins",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:2330:prospa-b2b-josh-baker",
+   "artistId": "edc-las-vegas-2025:prospa-b2b-josh-baker",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "23:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:2200:omri",
+   "artistId": "edc-las-vegas-2025:omri",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:2030:cole-knight",
+   "artistId": "edc-las-vegas-2025:cole-knight",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:bionic-jungle:1900:slugg",
+   "artistId": "edc-las-vegas-2025:slugg",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:bionic-jungle",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:0430:lumberjvck",
+   "artistId": "edc-las-vegas-2025:lumberjvck",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:0330:damon-sharpe",
+   "artistId": "edc-las-vegas-2025:damon-sharpe",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:0230:tim-clark",
+   "artistId": "edc-las-vegas-2025:tim-clark",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "02:30",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:0130:human404",
+   "artistId": "edc-las-vegas-2025:human404",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:0000:the-archer-b2b-loco-and-jam",
+   "artistId": "edc-las-vegas-2025:the-archer-b2b-loco-and-jam",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "00:00",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:2300:arodes",
+   "artistId": "edc-las-vegas-2025:arodes",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:2145:alison-wonderland-throwback-mixmag-set",
+   "artistId": "edc-las-vegas-2025:alison-wonderland-throwback-mixmag-set",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:2100:neon-deluz",
+   "artistId": "edc-las-vegas-2025:neon-deluz",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:2000:ward-andrews",
+   "artistId": "edc-las-vegas-2025:ward-andrews",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:forest-house:1900:assembly",
+   "artistId": "edc-las-vegas-2025:assembly",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:forest-house",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:0430:allenora",
+   "artistId": "edc-las-vegas-2025:allenora",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "04:30",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:0330:lizdek",
+   "artistId": "edc-las-vegas-2025:lizdek",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "03:30",
+   "end": "04:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:0215:trickstar",
+   "artistId": "edc-las-vegas-2025:trickstar",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "02:15",
+   "end": "03:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:0100:hex-cougar",
+   "artistId": "edc-las-vegas-2025:hex-cougar",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:2345:silcrow",
+   "artistId": "edc-las-vegas-2025:silcrow",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:2230:vari",
+   "artistId": "edc-las-vegas-2025:vari",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:2130:odd-language",
+   "artistId": "edc-las-vegas-2025:odd-language",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:2015:malixe",
+   "artistId": "edc-las-vegas-2025:malixe",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:beatbox-art-car:1900:oddly-godly",
+   "artistId": "edc-las-vegas-2025:oddly-godly",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:beatbox-art-car",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:0415:kaysin",
+   "artistId": "edc-las-vegas-2025:kaysin",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:0245:sam-binga",
+   "artistId": "edc-las-vegas-2025:sam-binga",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "02:45",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:0130:gudfella",
+   "artistId": "edc-las-vegas-2025:gudfella",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "01:30",
+   "end": "02:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:0030:tokimonsta",
+   "artistId": "edc-las-vegas-2025:tokimonsta",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:2300:mph",
+   "artistId": "edc-las-vegas-2025:mph",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:2130:veggi",
+   "artistId": "edc-las-vegas-2025:veggi",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:2015:gaia",
+   "artistId": "edc-las-vegas-2025:gaia",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:metaphoenix:1900:sarah-de-warren",
+   "artistId": "edc-las-vegas-2025:sarah-de-warren",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:metaphoenix",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:0400:kilimanjaro",
+   "artistId": "edc-las-vegas-2025:kilimanjaro",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:0200:meedy-pizzi",
+   "artistId": "edc-las-vegas-2025:meedy-pizzi",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "02:00",
+   "end": "04:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:0100:uncle-waffles",
+   "artistId": "edc-las-vegas-2025:uncle-waffles",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron",
+   "artistId": "edc-las-vegas-2025:one-tribe-presents-ameme-b2b-baron",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:2200:da-capo",
+   "artistId": "edc-las-vegas-2025:da-capo",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:2030:andre-power",
+   "artistId": "edc-las-vegas-2025:andre-power",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:ubuntu:1900:dreeemy",
+   "artistId": "edc-las-vegas-2025:dreeemy",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:ubuntu",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:0330:brdwy",
+   "artistId": "edc-las-vegas-2025:brdwy",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "03:30",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:0130:willie-pake",
+   "artistId": "edc-las-vegas-2025:willie-pake",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:0000:roadhouse",
+   "artistId": "edc-las-vegas-2025:roadhouse",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:2215:k-gianni",
+   "artistId": "edc-las-vegas-2025:k-gianni",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:2045:kidmaverick",
+   "artistId": "edc-las-vegas-2025:kidmaverick",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:yeedc:1900:corey-biggs",
+   "artistId": "edc-las-vegas-2025:corey-biggs",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:yeedc",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:0415:tim-underscore",
+   "artistId": "edc-las-vegas-2025:tim-underscore",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "04:15",
+   "end": "05:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:0315:stedicam",
+   "artistId": "edc-las-vegas-2025:stedicam",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:0215:blklght",
+   "artistId": "edc-las-vegas-2025:blklght",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "02:15",
+   "end": "03:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:0100:lucky-lou",
+   "artistId": "edc-las-vegas-2025:lucky-lou",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:2345:tripps",
+   "artistId": "edc-las-vegas-2025:tripps",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:2230:raecola",
+   "artistId": "edc-las-vegas-2025:raecola",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:2130:backcourt",
+   "artistId": "edc-las-vegas-2025:backcourt",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:2015:hanz",
+   "artistId": "edc-las-vegas-2025:hanz",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-las-vegas-2025:d3:blacklight-bar:1900:bo-knows",
+   "artistId": "edc-las-vegas-2025:bo-knows",
+   "day": 3,
+   "stageId": "edc-las-vegas-2025:blacklight-bar",
+   "start": "19:00",
+   "end": "20:15"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "structured_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+  "captures": [
+   {
+    "day": 1,
+    "archivedUrl": "https://web.archive.org/web/20250611072342/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+    "captureTimestamp": "20250611072342",
+    "sha256": "581e0143873c9a50a16efffc21a7d874f5e34790837a2a6324bbc62626411eea"
+   },
+   {
+    "day": 2,
+    "archivedUrl": "https://web.archive.org/web/20250908235528/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20250908235528",
+    "sha256": "cda610a65fb570bb7d2a4c0570f4076c2665278ac4d511562b394c0cbfbadd9e"
+   },
+   {
+    "day": 3,
+    "archivedUrl": "https://web.archive.org/web/20250611062931/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+    "captureTimestamp": "20250611062931",
+    "sha256": "1de9a381a329dc78acc36b4e858b532f2a9f336f1f06ca1163f11f400a456c45"
+   }
+  ]
+ }
+}

@@ -2,7 +2,7 @@ var SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/pro
 var _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   var raw = String(s || "");
-  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+/g, " ").trim();
+  var t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => _LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m).replace(/\s+performing\s.*$/i, "").replace(/\s+/g, " ").trim();
   return t || raw;
 }
 function _b2bParts(name) {
@@ -211,50 +211,6 @@ function _validateGenreMatch(lineupGenre, ...externalFields) {
   if (!_isElectronic(lineupGenre)) return true;
   return externalFields.some(_isElectronic);
 }
-var _TADB_TTL = 7 * 24 * 3600000;
-async function fetchAudioDB(artistName, lineupGenre) {
-  artistName = _lookupName(artistName);
-  var cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
-  try {
-    var c = JSON.parse(localStorage.getItem(cacheKey) || "null");
-    if (c && Date.now() - c.fetchedAt < _TADB_TTL) return c.data;
-  } catch {}
-  try {
-    var res = await fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(artistName)}`);
-    if (!res.ok) return null;
-    var json = await res.json();
-    var artist = (json.artists || [])[0];
-    if (!artist) return null;
-    if (!_validateGenreMatch(lineupGenre, artist.strGenre, artist.strStyle, artist.strMood)) {
-      try {
-        localStorage.setItem(cacheKey, JSON.stringify({
-          data: null,
-          fetchedAt: Date.now()
-        }));
-      } catch {}
-      return null;
-    }
-    var data = {
-      bio: artist.strBiographyEN || "",
-      image: artist.strArtistThumb || artist.strArtistFanart || null,
-      banner: artist.strArtistFanart2 || artist.strArtistFanart || null,
-      mood: artist.strMood || "",
-      style: artist.strStyle || "",
-      country: artist.strCountry || "",
-      formed: artist.intFormedYear || "",
-      website: artist.strWebsite || ""
-    };
-    try {
-      localStorage.setItem(cacheKey, JSON.stringify({
-        data,
-        fetchedAt: Date.now()
-      }));
-    } catch {}
-    return data;
-  } catch {
-    return null;
-  }
-}
 var LASTFM_KEY = "aae1625166e1c4fa3197ef44774c4ead";
 var _LFM_TTL = 24 * 3600000;
 async function fetchLastfm(artistName, lineupGenre) {
@@ -401,39 +357,38 @@ function SpiderWeb({
     };
   });
   var edcCount = nodes.filter(n => n.edcArtist).length;
-  var truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  var twoLines = (str, max) => {
+    var n = actDisplayName(str);
+    if (n.length <= max || !n.includes(" ")) return [n];
+    var mid = n.length / 2;
+    var best = -1;
+    for (var i = 0; i < n.length; i++) if (n[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return [n.slice(0, best), n.slice(best + 1)];
+  };
   return React.createElement("div", {
+    className: "duo-card",
     style: {
-      background: "var(--ink)",
-      borderRadius: 16,
-      padding: "12px 12px 8px",
+      padding: "14px 12px 8px",
       marginBottom: 18
     }
   }, React.createElement("div", {
     style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
       marginBottom: 6,
-      padding: "0 2px"
+      padding: "0 4px"
     }
   }, React.createElement("span", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.5,
-      color: "rgba(247,237,224,0.45)",
-      fontWeight: 700
+      display: "block"
     }
-  }, "SIMILAR ARTISTS"), edcCount > 0 && React.createElement("span", {
-    className: "mono",
+  }, "Similar artists"), edcCount > 0 && React.createElement("span", {
+    className: "duo-body-s duo-acc",
     style: {
-      fontSize: 8,
-      letterSpacing: 1,
-      color: currentStage.color,
-      fontWeight: 700
+      display: "block",
+      marginTop: 4,
+      fontWeight: 650
     }
-  }, edcCount, " ALSO AT ", (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase(), " — TAP TO EXPLORE")), React.createElement("svg", {
+  }, edcCount, " also at ", FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "this festival", " — tap to explore")), React.createElement("svg", {
     viewBox: `0 0 ${W} ${H}`,
     width: "100%",
     style: {
@@ -448,11 +403,11 @@ function SpiderWeb({
     r: "50%"
   }, React.createElement("stop", {
     offset: "0%",
-    stopColor: n.edcStage.color,
+    stopColor: "var(--text-3)",
     stopOpacity: "0.28"
   }), React.createElement("stop", {
     offset: "100%",
-    stopColor: n.edcStage.color,
+    stopColor: "var(--text-3)",
     stopOpacity: "0"
   })))), nodes.map((n, i) => React.createElement("line", {
     key: `l${i}`,
@@ -460,7 +415,7 @@ function SpiderWeb({
     y1: cy,
     x2: n.x,
     y2: n.y,
-    stroke: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
+    stroke: n.edcStage ? "var(--line-2)" : "rgba(var(--ink-rgb),0.07)",
     strokeWidth: n.edcStage ? 1.4 : 0.8,
     opacity: n.edcStage ? 0.5 : 1,
     strokeDasharray: n.edcStage ? undefined : "2.5 4"
@@ -473,26 +428,33 @@ function SpiderWeb({
   })), React.createElement("circle", {
     cx: cx,
     cy: cy,
-    r: 28,
-    fill: currentStage.color
+    r: 32,
+    fill: "var(--signal)"
   }), React.createElement("circle", {
     cx: cx,
     cy: cy,
-    r: 33,
+    r: 37,
     fill: "none",
-    stroke: currentStage.color,
+    stroke: "var(--signal)",
     strokeWidth: 1,
     opacity: 0.3
-  }), React.createElement("text", {
-    x: cx,
-    y: cy,
-    textAnchor: "middle",
-    dominantBaseline: "middle",
-    fill: "#fff",
-    fontSize: currentArtist.name.length > 10 ? 7 : 8.5,
-    fontFamily: "Geist Mono, monospace",
-    fontWeight: "700"
-  }, truncate(currentArtist.name, 11)), nodes.map((n, i) => {
+  }), (() => {
+    var ln = twoLines(currentArtist.name, 10);
+    return React.createElement("text", {
+      x: cx,
+      y: cy - (ln.length - 1) * 5,
+      textAnchor: "middle",
+      dominantBaseline: "middle",
+      fill: "var(--on-signal)",
+      fontSize: ln.length > 1 || currentArtist.name.length > 10 ? 8 : 9,
+      fontFamily: "Geist Mono, monospace",
+      fontWeight: "700"
+    }, ln.map((t, i) => React.createElement("tspan", {
+      key: i,
+      x: cx,
+      dy: i ? 10 : 0
+    }, t)));
+  })(), nodes.map((n, i) => {
     var r = n.edcArtist ? 21 : 14;
     var labelY = n.y + r + 13;
     var dayLabel = n.edcArtist ? ["FRI", "SAT", "SUN"][n.edcArtist.day - 1] : null;
@@ -511,30 +473,34 @@ function SpiderWeb({
       cx: n.x,
       cy: n.y,
       r: r,
-      fill: n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)",
-      stroke: n.edcStage ? "none" : "rgba(247,237,224,0.22)",
+      fill: n.edcStage ? "var(--paper-3)" : "rgba(var(--ink-rgb),0.07)",
+      stroke: n.edcStage ? "none" : "rgba(var(--ink-rgb),0.22)",
       strokeWidth: 1
     }), n.edcStage && React.createElement("circle", {
       cx: n.x,
       cy: n.y,
       r: r + 6,
       fill: "none",
-      stroke: n.edcStage.color,
+      stroke: "var(--line-2)",
       strokeWidth: 0.9,
       opacity: 0.35
     }), React.createElement("text", {
       x: n.x,
       y: labelY,
       textAnchor: "middle",
-      fill: n.edcStage ? "rgba(247,237,224,0.9)" : "rgba(247,237,224,0.32)",
+      fill: n.edcStage ? "var(--ink)" : "var(--text-2)",
       fontSize: 7.5,
       fontFamily: "Geist Mono, monospace",
       fontWeight: n.edcStage ? "600" : "400"
-    }, truncate(n.name, 13)), n.edcStage && dayLabel && React.createElement("text", {
+    }, twoLines(n.name, 13).map((t, i) => React.createElement("tspan", {
+      key: i,
       x: n.x,
-      y: labelY + 11,
+      dy: i ? 9 : 0
+    }, t))), n.edcStage && dayLabel && React.createElement("text", {
+      x: n.x,
+      y: labelY + 11 + (twoLines(n.name, 13).length - 1) * 9,
       textAnchor: "middle",
-      fill: n.edcStage.color,
+      fill: "var(--text-2)",
       fontSize: 7,
       fontFamily: "Geist Mono, monospace",
       fontWeight: "700"
@@ -566,10 +532,10 @@ function ShareArtistButton({
       width: 32,
       height: 32,
       borderRadius: 32,
-      background: copied ? "rgba(45,122,85,0.85)" : "rgba(255,255,255,0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       fontSize: 14,
       display: "flex",
@@ -621,10 +587,10 @@ function _YourMomentThumb({
       width: 76,
       height: 76,
       flexShrink: 0,
-      borderRadius: 10,
+      borderRadius: "var(--rad-sm)",
       overflow: "hidden",
       background: "var(--paper-2)",
-      border: `1px solid ${accent}22`,
+      border: `1px solid rgba(var(--signal-rgb),0.13)`,
       padding: 0,
       cursor: "pointer",
       position: "relative",
@@ -641,9 +607,9 @@ function _YourMomentThumb({
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#fff",
+      color: "var(--ink)",
       fontSize: 18,
-      textShadow: "0 1px 4px rgba(0,0,0,0.7)",
+      textShadow: "0 1px 4px rgba(var(--shade-rgb),0.7)",
       pointerEvents: "none"
     }
   }, "▶")) : React.createElement("img", {
@@ -665,7 +631,7 @@ function _YourMomentThumb({
       justifyContent: "center",
       fontSize: 8,
       letterSpacing: 1.2,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       fontWeight: 700
     }
   }, "···"));
@@ -730,63 +696,28 @@ function YourPhotosStrip({
     } catch {}
   };
   if (mine.length === 0) {
-    var stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
-    var when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
     return React.createElement("div", {
-      style: {
-        marginBottom: 18,
-        borderRadius: 16,
-        padding: "16px",
-        background: "var(--night)",
-        color: "#fff",
-        border: "1px dashed rgba(255,255,255,0.12)"
-      }
-    }, React.createElement("div", {
+      "data-artist-moments-empty": true,
       style: {
         display: "flex",
         alignItems: "center",
-        gap: 8,
-        marginBottom: 6
+        gap: 10,
+        marginBottom: 18,
+        padding: "10px 0",
+        borderTop: "1px solid var(--line)",
+        borderBottom: "1px solid var(--line)"
       }
-    }, React.createElement("div", {
+    }, React.createElement("span", {
+      className: "duo-sect",
       style: {
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        background: "rgba(255,255,255,0.25)"
+        flexShrink: 0
       }
-    }), React.createElement("span", {
-      className: "mono",
+    }, "Your moments"), React.createElement("span", {
       style: {
-        fontSize: 9,
-        letterSpacing: 1.6,
-        fontWeight: 700,
-        color: "rgba(255,255,255,0.4)"
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)"
       }
-    }, "YOUR MOMENTS")), React.createElement("div", {
-      style: {
-        fontSize: 13,
-        lineHeight: 1.5,
-        color: "rgba(255,255,255,0.7)"
-      }
-    }, "You haven't filmed anything at ", artistObj?.name || "this set", " yet."), (when || stage) && React.createElement("button", {
-      onClick: () => onOpenMap?.(artistObj),
-      className: "mono",
-      style: {
-        marginTop: 10,
-        padding: "8px 12px",
-        borderRadius: 8,
-        width: "100%",
-        background: `${accent}18`,
-        border: `1px solid ${accent}40`,
-        color: accent,
-        cursor: "pointer",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        textAlign: "left"
-      }
-    }, stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE", when ? ` · ${when}` : "", " →"));
+    }, "Photos and clips from this set will show here."));
   }
   var preview = mine.slice(0, 8);
   var more = mine.length - preview.length;
@@ -797,8 +728,8 @@ function YourPhotosStrip({
       borderRadius: 16,
       overflow: "hidden",
       background: "var(--night)",
-      color: "#fff",
-      boxShadow: `0 0 24px ${accent}22, inset 0 1px 0 rgba(255,255,255,0.06)`
+      color: "var(--ink)",
+      boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13), inset 0 1px 0 rgba(var(--ink-rgb),0.06)`
     }
   }, React.createElement("div", {
     style: {
@@ -831,18 +762,18 @@ function YourPhotosStrip({
       fontSize: 9,
       letterSpacing: 1.6,
       fontWeight: 700,
-      color: accent
+      color: "var(--signal-ink)"
     }
   }, "YOUR MOMENTS")), React.createElement("button", {
     onClick: () => onOpen(night),
     className: "mono",
     style: {
-      background: "rgba(255,255,255,0.08)",
-      border: "1px solid rgba(255,255,255,0.1)",
+      background: "rgba(var(--ink-rgb),0.08)",
+      border: "1px solid rgba(var(--ink-rgb),0.1)",
       borderRadius: 999,
       padding: "4px 10px",
       cursor: "pointer",
-      color: "rgba(255,255,255,0.5)",
+      color: "var(--text-3)",
       fontSize: 8,
       letterSpacing: 1.2,
       fontWeight: 700
@@ -858,12 +789,12 @@ function YourPhotosStrip({
     className: "serif",
     style: {
       fontSize: 20,
-      color: "#fff"
+      color: "var(--ink)"
     }
   }, mine.length), React.createElement("span", {
     style: {
       fontSize: 10,
-      color: "rgba(255,255,255,0.45)"
+      color: "var(--text-3)"
     }
   }, mine.length === 1 ? "memory" : "memories", vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""))), React.createElement("div", {
     className: "no-scrollbar",
@@ -884,8 +815,8 @@ function YourPhotosStrip({
       width: 82,
       height: 110,
       borderRadius: 8,
-      border: `1px solid rgba(255,255,255,0.08)`,
-      boxShadow: i === 0 ? `0 0 12px ${accent}33` : undefined
+      border: `1px solid rgba(var(--ink-rgb),0.08)`,
+      boxShadow: i === 0 ? `0 0 12px rgba(var(--signal-rgb),0.2)` : undefined
     }
   })), more > 0 && React.createElement("button", {
     onClick: () => onOpen(night),
@@ -896,9 +827,9 @@ function YourPhotosStrip({
       height: 110,
       flexShrink: 0,
       borderRadius: 8,
-      background: "rgba(255,255,255,0.04)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      color: accent,
+      background: "rgba(var(--ink-rgb),0.04)",
+      border: "1px solid rgba(var(--ink-rgb),0.08)",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 13,
       fontWeight: 700,
@@ -919,9 +850,9 @@ function YourPhotosStrip({
       flex: 1,
       padding: "8px 0",
       borderRadius: 8,
-      background: `${accent}18`,
-      border: `1px solid ${accent}40`,
-      color: accent,
+      background: `rgba(var(--signal-rgb),0.09)`,
+      border: `1px solid rgba(var(--signal-rgb),0.25)`,
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -934,9 +865,9 @@ function YourPhotosStrip({
       flex: 1,
       padding: "8px 0",
       borderRadius: 8,
-      background: "rgba(109,40,217,0.15)",
-      border: "1px solid rgba(109,40,217,0.35)",
-      color: "#a78bfa",
+      background: "rgba(var(--signal-rgb),0.15)",
+      border: "1px solid rgba(var(--signal-rgb),0.35)",
+      color: "var(--signal-ink)",
       cursor: "pointer",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -952,20 +883,21 @@ function YourPhotosStrip({
       artist: artistObj,
       moments: mine
     }),
-    className: "mono",
     style: {
       width: "100%",
-      padding: "10px 0",
-      borderRadius: 8,
-      background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
+      minHeight: 44,
+      padding: "0 16px",
+      borderRadius: "var(--rad-md)",
+      background: "var(--signal)",
       border: "none",
-      color: "#fff",
+      color: "var(--on-signal)",
       cursor: "pointer",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 600,
+      fontFamily: "inherit"
     }
-  }, "🎞 MY ", String(artistObj.name || "").toUpperCase(), " SET")), lightbox && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
+  }, "My ", artistObj.name, " set")), lightbox && typeof MomentLightbox === "function" && React.createElement(MomentLightbox, {
     moments: lightbox.moments,
     index: lightbox.index,
     onClose: () => setLightbox(null),
@@ -1012,14 +944,14 @@ function ArtistAtmosphere({
     style: {
       position: "absolute",
       inset: "-30%",
-      background: `radial-gradient(ellipse at 30% 80%, ${stageColor}35, transparent 60%)`,
+      background: `radial-gradient(ellipse at 30% 80%, rgba(var(--signal-rgb),0.21), transparent 60%)`,
       animation: `vfx-wash ${intense ? 3 : 5}s ease-in-out infinite`
     }
   }), React.createElement("div", {
     style: {
       position: "absolute",
       inset: "-30%",
-      background: `radial-gradient(ellipse at 70% 20%, ${stageColor}25, transparent 55%)`,
+      background: `radial-gradient(ellipse at 70% 20%, rgba(var(--signal-rgb),0.15), transparent 55%)`,
       animation: `vfx-wash ${intense ? 4 : 6}s ease-in-out 2s infinite`
     }
   }), React.createElement("div", {
@@ -1029,7 +961,7 @@ function ArtistAtmosphere({
       left: 0,
       right: 0,
       height: "45%",
-      background: `linear-gradient(0deg, ${stageColor}28, transparent)`
+      background: `linear-gradient(0deg, rgba(var(--signal-rgb),0.16), transparent)`
     }
   }), intense && React.createElement("div", {
     style: {
@@ -1037,7 +969,7 @@ function ArtistAtmosphere({
       top: 0,
       width: "50%",
       height: "100%",
-      background: `radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06), transparent 70%)`,
+      background: `radial-gradient(ellipse at 50% 30%, rgba(var(--ink-rgb),0.06), transparent 70%)`,
       animation: "vfx-scan 10s ease-in-out infinite",
       filter: "blur(30px)"
     }
@@ -1069,7 +1001,7 @@ function PyroStarburst({
       x: Math.cos(angle) * dist,
       y: Math.sin(angle) * dist - 25,
       size: 2 + i % 4 * 1.2,
-      color: i % 4 === 0 ? "#fbbf24" : i % 4 === 1 ? color : i % 4 === 2 ? "#fff" : "#f59a36",
+      color: i % 4 === 0 ? "var(--signal-ink)" : i % 4 === 1 ? color : i % 4 === 2 ? "var(--ink)" : "var(--signal-ink)",
       delay: i % 7 * 25
     };
   }), [color]);
@@ -1105,13 +1037,21 @@ function PyroStarburst({
       width: 6,
       height: 6,
       borderRadius: "50%",
-      background: "#fff",
+      background: "var(--ink)",
       marginLeft: -3,
       marginTop: -3,
-      boxShadow: `0 0 30px 10px rgba(255,255,255,0.6), 0 0 60px 20px ${color}55`
+      boxShadow: `0 0 30px 10px rgba(var(--ink-rgb),0.6), 0 0 60px 20px rgba(var(--signal-rgb),0.33)`
     }
   }));
 }
+function _licenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+}
+var _creditLink = {
+  color: "inherit",
+  textDecoration: "underline",
+  textUnderlineOffset: 2
+};
 function ArtistScreen({
   state,
   setState
@@ -1127,14 +1067,12 @@ function ArtistScreen({
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
-  var artistImages = React.useMemo(() => {
-    try {
-      return JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-    } catch {
-      return {};
-    }
-  }, []);
+  var artistImageExpiry = useArtistImageExpiry();
+  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
   var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
+  React.useEffect(() => {
+    if (artistImageExpiry) setFetchedPhoto(null);
+  }, [artistImageExpiry]);
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
   var handleSave = () => {
@@ -1169,10 +1107,8 @@ function ArtistScreen({
   var [tmError, setTmError] = React.useState(false);
   var [mcTracks, setMcTracks] = React.useState(undefined);
   var [mcPlaying, setMcPlaying] = React.useState(null);
-  var [tadb, setTadb] = React.useState(undefined);
-  var heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
-  var heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  var heroPhotoSrc = heroPhotoCache ? "CACHED" : fetchedPhoto ? "SPOTIFY" : tadb?.image ? "THEAUDIODB" : null;
+  var heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
+  var heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1186,7 +1122,6 @@ function ArtistScreen({
     setYtVideo(undefined);
     setTmEvents(undefined);
     setMcTracks(undefined);
-    setTadb(undefined);
     setEdcTracklist(undefined);
     setSlError(false);
     setYtError(false);
@@ -1205,21 +1140,8 @@ function ArtistScreen({
       setTmError(true);
     });
     fetchMixcloud(lookupName).then(setMcTracks);
-    fetchAudioDB(lookupName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
-  React.useEffect(() => {
-    var img = tadb?.image;
-    if (!img) return;
-    var ln = activeName.toLowerCase();
-    try {
-      var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      if (!imgs[ln]) {
-        imgs[ln] = img;
-        localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-      }
-    } catch {}
-  }, [tadb, activeName]);
   var [spotifyStats, setSpotifyStats] = React.useState(null);
   var [saveCount, setSaveCount] = React.useState(null);
   React.useEffect(() => {
@@ -1242,7 +1164,7 @@ function ArtistScreen({
       setSpotifyStats(null);
     }
     var ln = activeName.toLowerCase();
-    if (artistImages[ln] && hasCachedStats) return;
+    if (heroCacheRec && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     var ctrl = new AbortController();
     getValidToken().then(token => {
@@ -1257,15 +1179,13 @@ function ArtistScreen({
         var items = d?.artists?.items || [];
         var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
         if (!match) return;
-        if (!artistImages[ln]) {
+        if (!heroCacheRec) {
           var img = match?.images?.[0]?.url;
           if (img) {
             setFetchedPhoto(img);
-            try {
-              var imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-              imgs[ln] = img;
-              localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-            } catch {}
+            putArtistImage(activeName, img, "spotify", {
+              spotifyId: match.id
+            });
           }
         }
         var topTrackNames = [];
@@ -1362,67 +1282,10 @@ function ArtistScreen({
   var connected = isSpotifyConnected();
   var [heroParallax, setHeroParallax] = React.useState(0);
   var scrollBodyRef = React.useRef(null);
-  return React.createElement(Screen, {
-    bg: "var(--paper)"
-  }, React.createElement(ScrollBody, {
-    ref: scrollBodyRef,
-    onScroll: e => {
-      var y = e.currentTarget.scrollTop;
-      setHeroParallax(Math.min(60, y * 0.3));
-    }
-  }, React.createElement("div", {
-    style: {
-      height: 300,
-      position: "relative",
-      overflow: "hidden",
-      color: "#fff"
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      top: -30,
-      background: heroPhoto ? "var(--ink)" : `linear-gradient(160deg, var(--ink) 0%, ${stage?.color || "#2a1a3d"}44 40%, var(--ink) 100%)`,
-      backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
-      backgroundSize: "cover",
-      backgroundPosition: "center 20%",
-      transform: `translateY(${heroParallax}px)`,
-      willChange: "transform"
-    }
-  }), heroPhoto && React.createElement(ArtistAtmosphere, {
-    genre: a.genre,
-    stageColor: stage?.color || "var(--ember)",
-    tier: a.tier
-  }), !heroPhoto && React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      overflow: "hidden",
-      pointerEvents: "none",
-      zIndex: 1
-    }
-  }, React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: "30%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: 180,
-      height: 180,
-      borderRadius: "50%",
-      background: `radial-gradient(circle, ${stage?.color || "var(--ember)"}30, transparent 70%)`,
-      animation: "vfx-pulse 4s ease-in-out infinite"
-    }
-  })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
-    color: stage?.color || "var(--ember)"
-  }), React.createElement("div", {
-    style: {
-      position: "absolute",
-      inset: 0,
-      zIndex: 2,
-      background: heroPhoto ? `linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.06) 26%, ${stage?.color || "rgba(26,18,13,1)"}22 52%, rgba(26,18,13,0.72) 76%, rgba(26,18,13,0.96) 100%)` : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`
-    }
-  }), React.createElement("button", {
+  var spotifyHero = !!heroPhoto && heroSource === "spotify";
+  var spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
+  var spotifyArtistUrl = spotifyArtistId ? "https://open.spotify.com/artist/" + spotifyArtistId : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
+  var heroControls = React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
       ...state,
       artist: null
@@ -1436,10 +1299,10 @@ function ArtistScreen({
       width: 38,
       height: 38,
       borderRadius: 38,
-      background: "rgba(255,255,255,0.18)",
+      background: "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       fontSize: 18,
       display: "flex",
@@ -1462,10 +1325,10 @@ function ArtistScreen({
       display: "inline-flex",
       alignItems: "center",
       gap: 5,
-      background: playing ? "var(--ember)" : "rgba(255,255,255,0.18)",
+      background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff",
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)",
       cursor: "pointer",
       borderRadius: 999,
       padding: "5px 10px",
@@ -1480,8 +1343,8 @@ function ArtistScreen({
       width: 8,
       height: 8,
       borderRadius: "50%",
-      border: "1.5px solid rgba(255,255,255,0.4)",
-      borderTopColor: "#fff",
+      border: "1.5px solid rgba(var(--ink-rgb),0.4)",
+      borderTopColor: "var(--ink)",
       animation: "spin 0.75s linear infinite",
       display: "inline-block"
     }
@@ -1489,7 +1352,7 @@ function ArtistScreen({
     width: "9",
     height: "9",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("rect", {
     x: "6",
     y: "4",
@@ -1506,49 +1369,31 @@ function ArtistScreen({
     width: "9",
     height: "9",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("path", {
     d: "M8 5 L19 12 L8 19 Z"
   })), "PREVIEW"), React.createElement(Pill, {
     tone: "outline",
     style: {
-      background: "rgba(255,255,255,0.15)",
-      color: "#fff",
+      background: "rgba(var(--ink-rgb),0.15)",
+      color: "var(--ink)",
       backdropFilter: "blur(8px)",
-      borderColor: "rgba(255,255,255,0.3)"
+      borderColor: "rgba(var(--ink-rgb),0.3)"
     }
-  }, "DAY ", a.day, " · ", fmt12(a.start)), React.createElement(ShareArtistButton, {
+  }, React.createElement("span", {
+    "data-artist-day-pill": true
+  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a
-  })), heroPhoto && heroPhotoSrc && React.createElement("div", {
-    className: "mono",
-    "aria-hidden": "true",
-    style: {
-      position: "absolute",
-      top: 58,
-      right: 14,
-      zIndex: 3,
-      fontSize: 7.5,
-      letterSpacing: 1,
-      fontWeight: 700,
-      color: "rgba(255,255,255,0.55)",
-      textShadow: "0 1px 4px rgba(0,0,0,0.6)"
-    }
-  }, "PHOTO · ", heroPhotoSrc), React.createElement("div", {
-    style: {
-      position: "absolute",
-      bottom: 16,
-      left: 18,
-      right: 18,
-      zIndex: 3
-    }
-  }, React.createElement("div", {
+  })));
+  var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
+  var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
-      marginBottom: 8
+      marginBottom: 12
     }
-  }, React.createElement("div", {
+  }, heroGenre && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 10,
@@ -1556,20 +1401,20 @@ function ArtistScreen({
       opacity: 0.85,
       fontWeight: 600
     }
-  }, a.genre.toUpperCase()), stage && React.createElement("div", {
+  }, heroGenre.toUpperCase()), heroGenre && stage && React.createElement("div", {
     style: {
       width: 4,
       height: 4,
       borderRadius: 4,
-      background: stage.color,
-      boxShadow: `0 0 6px ${stage.color}`
+      background: "var(--signal)",
+      boxShadow: `0 0 6px var(--signal)`
     }
   }), stage && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: stage.color,
+      color: "var(--signal-ink)",
       fontWeight: 700
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
@@ -1578,9 +1423,142 @@ function ArtistScreen({
       fontSize: isB2B ? 34 : 52,
       lineHeight: 0.88,
       letterSpacing: -1.5,
-      textShadow: "0 2px 20px rgba(0,0,0,0.5)"
+      textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)"
     }
-  }, a.name))), isB2B && React.createElement("div", {
+  }, a.name));
+  return React.createElement(Screen, {
+    bg: "var(--paper)"
+  }, React.createElement(ScrollBody, {
+    ref: scrollBodyRef,
+    onScroll: e => {
+      var y = e.currentTarget.scrollTop;
+      setHeroParallax(Math.min(60, y * 0.3));
+    }
+  }, spotifyHero ? React.createElement("div", {
+    "data-hero": "spotify",
+    style: {
+      position: "relative",
+      color: "var(--ink)",
+      background: "var(--paper)",
+      padding: "64px 18px 16px"
+    }
+  }, heroControls, React.createElement("figure", {
+    style: {
+      margin: 0,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    }
+  }, React.createElement("img", {
+    src: heroPhoto,
+    alt: activeName + " (photo from Spotify)",
+    "data-spotify-image": "1",
+    style: {
+      display: "block",
+      width: "min(60vw, 236px)",
+      maxWidth: "100%",
+      height: "auto",
+      borderRadius: 4
+    }
+  }), React.createElement("a", {
+    href: spotifyArtistUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    "data-spotify-attribution": "1",
+    "aria-label": "Photo from Spotify. Open " + activeName + " on Spotify",
+    style: {
+      display: "inline-flex",
+      color: "var(--ink)",
+      padding: "11px 11px 11px 0"
+    }
+  }, React.createElement(SpotifyFullLogo, {
+    height: 21
+  }))), React.createElement("div", {
+    style: {
+      marginTop: 6
+    }
+  }, heroNameInner)) : React.createElement("div", {
+    className: "media-scope",
+    style: {
+      height: 300,
+      position: "relative",
+      overflow: "hidden",
+      color: "var(--ink)"
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      top: -30,
+      backgroundColor: "var(--media-ground)",
+      backgroundImage: heroPhoto ? `url(${heroPhoto})` : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
+      backgroundSize: "cover",
+      backgroundPosition: "center 20%",
+      transform: `translateY(${heroParallax}px)`,
+      willChange: "transform"
+    }
+  }), heroPhoto && React.createElement(ArtistAtmosphere, {
+    genre: a.genre,
+    stageColor: "var(--signal)",
+    tier: a.tier
+  }), !heroPhoto && React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 1
+    }
+  }, React.createElement("div", {
+    style: {
+      position: "absolute",
+      top: "30%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      width: 180,
+      height: 180,
+      borderRadius: "50%",
+      background: `radial-gradient(circle, rgba(var(--signal-rgb),0.19), transparent 70%)`,
+      animation: "vfx-pulse 4s ease-in-out infinite"
+    }
+  })), a.tier === 3 && heroPhoto && React.createElement(PyroStarburst, {
+    color: "var(--signal)"
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      inset: 0,
+      zIndex: 2,
+      background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
+    }
+  }), heroControls, React.createElement("div", {
+    style: {
+      position: "absolute",
+      bottom: 16,
+      left: 18,
+      right: 18,
+      zIndex: 3
+    }
+  }, heroNameInner)), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+    "data-artist-photo-credit": "1",
+    "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
+    style: {
+      padding: "8px 18px 0",
+      fontSize: "var(--fs-label)",
+      lineHeight: "16px",
+      color: "var(--text-3)",
+      whiteSpace: "nowrap"
+    }
+  }, React.createElement("a", {
+    href: heroCacheRec.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _creditLink
+  }, heroCacheRec.author), " · ", React.createElement("a", {
+    href: heroCacheRec.licenseUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: _creditLink
+  }, _licenseLabel(heroCacheRec.license)), " · Cropped"), isB2B && React.createElement("div", {
     style: {
       display: "flex",
       background: "var(--paper-2)",
@@ -1594,12 +1572,12 @@ function ArtistScreen({
       padding: "11px 8px",
       background: "transparent",
       border: "none",
-      borderBottom: `2px solid ${activeB2B === i ? stage?.color || "#8a8580" : "transparent"}`,
+      borderBottom: `2px solid ${activeB2B === i ? "var(--signal)" : "transparent"}`,
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: activeB2B === i ? stage?.color || "#8a8580" : "var(--muted)",
+      font: "500 11px/1.273 var(--f-display)",
+      letterSpacing: ".12em",
+      minHeight: 44,
+      color: activeB2B === i ? "var(--signal-ink)" : "var(--ink-3)",
       fontWeight: activeB2B === i ? 700 : 400,
       transition: "color 0.15s, border-color 0.15s"
     }
@@ -1608,6 +1586,188 @@ function ArtistScreen({
       padding: "18px 20px 24px"
     }
   }, (() => {
+    var live = typeof isSetLive === "function" && isSetLive(a);
+    var dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || {
+      label: `DAY ${a.day}`
+    }).label;
+    var minsLeft = null,
+      pct = 0;
+    if (live && a.start && a.end && typeof festivalNightDate === "function") {
+      try {
+        var startMs = festivalNightDate(a.day, a.start).getTime();
+        var endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
+        var now = Date.now();
+        minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+        pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
+      } catch {}
+    }
+    var go = n => (window._pushNav || (x => setState({
+      ...state,
+      ...x
+    })))(n);
+    return React.createElement("div", {
+      "data-artist-set-card": true,
+      className: `duo-card${live ? " duo-lift" : ""}`,
+      style: {
+        padding: "14px 16px",
+        marginBottom: 16
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        columnGap: 12,
+        rowGap: 4,
+        flexWrap: "wrap"
+      }
+    }, live ? React.createElement("span", {
+      style: {
+        whiteSpace: "nowrap"
+      }
+    }, React.createElement(DuoLive, null, `Live now${dayLabel ? ` · ${dayLabel}` : ""}`)) : React.createElement("span", {
+      className: "duo-label duo-ink3"
+    }, dayLabel || "Day TBA"), minsLeft != null && React.createElement("span", {
+      className: "duo-data-s duo-ink3",
+      style: {
+        whiteSpace: "nowrap"
+      }
+    }, minsLeft, " MIN LEFT")), React.createElement("div", {
+      className: "duo-headline",
+      style: {
+        marginTop: 8
+      }
+    }, stage.name), a.day == null || !a.start ? React.createElement("div", {
+      className: "duo-data-s duo-ink2",
+      style: {
+        marginTop: 6
+      }
+    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED") : React.createElement("div", {
+      className: "duo-clock",
+      style: {
+        fontSize: "clamp(20px, 7vw, 28px)",
+        marginTop: 6
+      }
+    }, fmt12(a.start), React.createElement("span", {
+      className: "duo-ink3",
+      style: {
+        fontSize: "0.65em"
+      }
+    }, " → "), fmt12(a.end)), live && React.createElement("div", {
+      className: "duo-track",
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("b", {
+      style: {
+        width: `${pct}%`
+      }
+    })), saveCount != null && saveCount >= 2 && React.createElement("div", {
+      className: "duo-data-s duo-acc",
+      style: {
+        marginTop: 10
+      }
+    }, saveCount, " FANS GOING"), React.createElement("div", {
+      style: {
+        display: "flex",
+        columnGap: 8,
+        flexWrap: "wrap",
+        marginTop: 6
+      }
+    }, React.createElement("button", {
+      className: "duo-chip",
+      onClick: () => go({
+        tab: "map",
+        focusStage: a.stage,
+        artist: null
+      })
+    }, React.createElement("span", null, "On map")), a.day != null && React.createElement("button", {
+      className: "duo-chip",
+      onClick: () => go({
+        tab: "lineup",
+        lineupDay: a.day,
+        lineupHighlight: a.id,
+        artist: null
+      })
+    }, React.createElement("span", null, "Schedule"))));
+  })(), (() => {
+    if (a.day == null || !a.start || !a.stage) return null;
+    var sameWk = x => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
+    var pool = a.weekend === "W1" || a.weekend === "W2" ? lineupFor(a.weekend) : activeLineup(state.saved);
+    var night = pool.filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    var i = night.findIndex(x => x.id === a.id);
+    if (i < 0 || night.length < 2) return null;
+    var rows = [night[i - 1] && [night[i - 1], "Before"], [a, "This set"], night[i + 1] && [night[i + 1], "After"]].filter(Boolean);
+    var open = id => (window._pushNav || (x => setState({
+      ...state,
+      ...x
+    })))({
+      artist: id
+    });
+    return React.createElement("section", {
+      "data-artist-stage-night": true,
+      style: {
+        marginBottom: 20
+      }
+    }, React.createElement("h2", {
+      className: "duo-sect",
+      style: {
+        padding: "4px 0 6px"
+      }
+    }, "On ", stage.name, " that night"), rows.map(([x, label]) => {
+      var me = x.id === a.id;
+      return React.createElement("button", {
+        key: x.id,
+        onClick: me ? undefined : () => open(x.id),
+        disabled: me,
+        "aria-label": `${label}: ${x.name}, ${fmt12(x.start)}`,
+        style: {
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          minHeight: 56,
+          padding: "6px 0",
+          border: "none",
+          borderTop: "1px solid var(--line)",
+          background: "none",
+          color: "var(--ink)",
+          textAlign: "left",
+          cursor: me ? "default" : "pointer",
+          fontFamily: "inherit"
+        }
+      }, React.createElement(DuoAvatar, {
+        name: x.name,
+        size: 36,
+        ring: me ? "on" : ""
+      }), React.createElement("span", {
+        style: {
+          flex: 1,
+          minWidth: 0,
+          display: "flex",
+          flexDirection: "column"
+        }
+      }, React.createElement("span", {
+        className: "duo-name",
+        style: {
+          font: "600 15px/1.33 var(--f-ui)",
+          color: me ? "var(--acc-ink)" : "var(--ink)"
+        }
+      }, actDisplayName(x.name)), React.createElement("span", {
+        className: "duo-label duo-ink3",
+        style: {
+          marginTop: 2
+        }
+      }, label)), React.createElement("span", {
+        className: "duo-data",
+        style: {
+          fontSize: 13,
+          color: me ? "var(--ink)" : "var(--ink-2)",
+          whiteSpace: "nowrap"
+        }
+      }, fmt12(x.start)));
+    }));
+  })(), (() => {
     var cells = [];
     if (saveCount != null && saveCount > 0) cells.push({
       label: "GOING",
@@ -1623,12 +1783,10 @@ function ArtistScreen({
     });
     if (cells.length === 0) return null;
     return React.createElement("div", {
+      className: "duo-card",
       style: {
         display: "grid",
         gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
-        borderRadius: 14,
         padding: "12px 4px",
         marginBottom: 12
       }
@@ -1642,40 +1800,35 @@ function ArtistScreen({
         padding: "2px 6px"
       }
     }, React.createElement("div", {
-      className: "serif",
+      className: "duo-data",
       style: {
-        fontSize: 22,
+        fontSize: 20,
         lineHeight: 1,
-        marginBottom: 5
+        marginBottom: 6,
+        color: "var(--ink)"
       }
     }, c.value), React.createElement("div", {
-      className: "mono",
-      style: {
-        fontSize: 8,
-        letterSpacing: 1.2,
-        color: "var(--muted)",
-        fontWeight: 700
-      }
+      className: "duo-label duo-ink3"
     }, c.label))));
   })(), (() => {
     var sections = [{
       id: "artist-section-bio",
-      label: "BIO"
+      label: "Bio"
     }, {
       id: "artist-section-tracklist",
-      label: "TRACKLIST"
+      label: "Tracklist"
     }, {
       id: "artist-section-livestream",
-      label: "LIVE SET"
+      label: "Live set"
     }, {
       id: "artist-section-setlists",
-      label: "SETLISTS"
+      label: "Setlists"
     }, {
       id: "artist-section-similar",
-      label: "SIMILAR"
+      label: "Similar"
     }, {
       id: "artist-section-upcoming",
-      label: "UPCOMING"
+      label: "Upcoming"
     }];
     var [activeChip, setActiveChip] = React.useState(sections[0].id);
     React.useEffect(() => {
@@ -1700,10 +1853,10 @@ function ArtistScreen({
     return React.createElement("div", {
       style: {
         display: "flex",
-        gap: 6,
+        gap: 8,
         overflowX: "auto",
         overflowY: "hidden",
-        marginBottom: 16,
+        marginBottom: 8,
         marginLeft: -20,
         marginRight: -20,
         paddingLeft: 20,
@@ -1714,28 +1867,15 @@ function ArtistScreen({
       var on = activeChip === c.id;
       return React.createElement("button", {
         key: c.id,
+        className: "duo-chip",
+        "aria-pressed": on,
         onClick: () => {
           document.getElementById(c.id)?.scrollIntoView({
             behavior: "smooth",
             block: "start"
           });
-        },
-        style: {
-          background: on ? "var(--ink)" : "var(--paper-2)",
-          border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
-          borderRadius: 999,
-          padding: "6px 12px",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: 9,
-          letterSpacing: 1.2,
-          fontWeight: 600,
-          color: on ? "var(--paper)" : "var(--ink)",
-          cursor: "pointer",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-          transition: "all 0.2s ease"
         }
-      }, c.label);
+      }, React.createElement("span", null, c.label));
     }));
   })(), React.createElement("div", {
     id: "artist-section-bio",
@@ -1743,129 +1883,13 @@ function ArtistScreen({
     style: {
       fontSize: 20,
       lineHeight: 1.35,
-      marginBottom: tadb?.bio ? 8 : 16,
+      marginBottom: 16,
       textWrap: "pretty"
     }
-  }, a.bio), tadb?.bio && tadb.bio.length > 60 && React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.6,
-      color: "var(--muted)",
-      marginBottom: 16
-    }
-  }, tadb.bio.slice(0, 320), tadb.bio.length > 320 ? "…" : "", (tadb.mood || tadb.style || tadb.country) && React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 6,
-      marginTop: 8,
-      flexWrap: "wrap"
-    }
-  }, [tadb.mood, tadb.style, tadb.country].filter(Boolean).map(tag => React.createElement("span", {
-    key: tag,
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1,
-      padding: "3px 8px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      color: "var(--muted)"
-    }
-  }, tag.toUpperCase())))), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: 14,
-      background: "var(--paper-2)",
-      borderRadius: 14,
-      marginBottom: 16
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 6,
-      alignSelf: "stretch",
-      background: stage.color,
-      borderRadius: 3
-    }
-  }), React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 20,
-      lineHeight: 1
-    }
-  }, stage.name), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      marginTop: 3
-    }
-  }, DAYS.find(d => d.n === a.day).label, " · ", fmt12(a.start), "–", fmt12(a.end)), saveCount != null && saveCount >= 2 && React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      color: stage.color,
-      marginTop: 5
-    }
-  }, "● ", saveCount, " FANS GOING")), React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 6,
-      flexShrink: 0
-    }
-  }, React.createElement("button", {
-    onClick: () => (window._pushNav || (n => setState({
-      ...state,
-      ...n
-    })))({
-      tab: "map",
-      focusStage: a.stage,
-      artist: null
-    }),
-    style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 12px",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      cursor: "pointer"
-    }
-  }, "ON MAP"), React.createElement("button", {
-    onClick: () => (window._pushNav || (n => setState({
-      ...state,
-      ...n
-    })))({
-      tab: "lineup",
-      lineupDay: a.day,
-      lineupHighlight: a.id,
-      artist: null
-    }),
-    style: {
-      background: "transparent",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      padding: "6px 12px",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      cursor: "pointer",
-      whiteSpace: "nowrap"
-    }
-  }, "SCHEDULE"))), React.createElement(YourPhotosStrip, {
+  }, a.bio), React.createElement(YourPhotosStrip, {
     artistId: a.id,
     night: a.day,
-    accent: stage.color,
+    accent: "var(--signal)",
     artistObj: a,
     onOpen: n => (window._pushNav || (x => setState({
       ...state,
@@ -1891,44 +1915,40 @@ function ArtistScreen({
       flexWrap: "wrap"
     }
   }, [{
-    label: "SPOTIFY",
-    accent: "#1DB954",
+    label: "Spotify",
     url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists`
   }, {
-    label: "SOUNDCLOUD",
-    accent: "#ff5500",
+    label: "SoundCloud",
     url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}`
   }, {
     label: "RA",
-    accent: "#000",
     url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}`
   }, {
-    label: "INSTAGRAM",
-    accent: "#E1306C",
+    label: "Instagram",
     url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g, "").toLowerCase())}`
   }, {
     label: "𝕏",
-    accent: "#000",
     url: `https://x.com/search?q=${encodeURIComponent(lookupName)}`
   }].map(({
     label,
-    url,
-    accent
+    url
   }) => React.createElement("a", {
     key: label,
     href: url,
     target: "_blank",
     rel: "noopener noreferrer",
     style: {
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 8,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      padding: "5px 10px",
+      display: "inline-flex",
+      alignItems: "center",
+      minHeight: 36,
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 600,
+      padding: "0 12px",
       borderRadius: 999,
-      background: `${accent}10`,
-      border: `1px solid ${accent}30`,
-      color: accent,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
       textDecoration: "none",
       transition: "background 0.15s"
     }
@@ -1949,9 +1969,9 @@ function ArtistScreen({
         marginBottom: 18,
         borderRadius: 16,
         overflow: "hidden",
-        background: "var(--ink)",
-        color: "#fff",
-        boxShadow: `0 0 24px ${stage.color}22`
+        background: "var(--paper-2)",
+        color: "var(--ink)",
+        boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13)`
       }
     }, React.createElement("div", {
       style: {
@@ -1979,14 +1999,14 @@ function ArtistScreen({
         fontSize: 9,
         letterSpacing: 1.6,
         fontWeight: 700,
-        color: stage.color
+        color: "var(--signal-ink)"
       }
     }, "WHAT THEY PLAYED AT ", (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase())), React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(255,255,255,0.35)"
+        color: "var(--text-3)"
       }
     }, tracks.length, " TRACKS"))), React.createElement("div", {
       style: {
@@ -1999,13 +2019,13 @@ function ArtistScreen({
         alignItems: "baseline",
         gap: 10,
         padding: "5px 0",
-        borderTop: i === 0 ? `1px solid rgba(255,255,255,0.06)` : "none"
+        borderTop: i === 0 ? `1px solid rgba(var(--ink-rgb),0.06)` : "none"
       }
     }, React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
-        color: "rgba(255,255,255,0.25)",
+        color: "var(--text-3)",
         width: 38,
         textAlign: "right",
         flexShrink: 0
@@ -2018,7 +2038,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#fff",
+        color: "var(--ink)",
         lineHeight: 1.3,
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -2029,7 +2049,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.4)",
+        color: "var(--text-3)",
         marginTop: 1
       }
     }, t.artist)))), tracks.length > 8 && React.createElement("button", {
@@ -2041,7 +2061,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: stage.color,
+        color: "var(--signal-ink)",
         padding: "8px 0 2px",
         display: "block"
       }
@@ -2052,11 +2072,11 @@ function ArtistScreen({
       style: {
         display: "block",
         padding: "10px 16px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderTop: "1px solid rgba(var(--ink-rgb),0.06)",
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.2,
-        color: "rgba(255,255,255,0.35)",
+        color: "var(--text-3)",
         textDecoration: "none",
         textAlign: "center"
       }
@@ -2107,7 +2127,7 @@ function ArtistScreen({
     style: {
       height: "100%",
       width: `${spotifyStats.popularity}%`,
-      background: `linear-gradient(90deg, ${stage.color}88, ${stage.color})`,
+      background: `linear-gradient(90deg, rgba(var(--signal-rgb),0.53), var(--signal))`,
       borderRadius: 5,
       transition: "width 0.8s ease"
     }
@@ -2118,10 +2138,8 @@ function ArtistScreen({
       gap: 6
     }
   }, React.createElement("span", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 24,
-      lineHeight: 1,
       letterSpacing: -0.5
     }
   }, _fmtCount(spotifyStats.followers)), React.createElement("span", {
@@ -2129,7 +2147,7 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.3,
-      color: "var(--muted)"
+      color: "var(--ink-2)"
     }
   }, "SPOTIFY FOLLOWERS"))), spotifyStats.genres?.length > 0 && React.createElement("div", {
     style: {
@@ -2144,10 +2162,10 @@ function ArtistScreen({
       fontSize: 9,
       letterSpacing: 1,
       padding: "4px 10px",
-      background: `${stage.color}18`,
-      border: `1px solid ${stage.color}38`,
+      background: `rgba(var(--signal-rgb),0.09)`,
+      border: `1px solid rgba(var(--signal-rgb),0.22)`,
       borderRadius: 999,
-      color: stage.color,
+      color: "var(--signal-ink)",
       fontWeight: 600
     }
   }, g.toUpperCase())))), LASTFM_KEY && lfm === undefined && React.createElement("div", {
@@ -2164,9 +2182,10 @@ function ArtistScreen({
     key: i,
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
@@ -2233,48 +2252,40 @@ function ArtistScreen({
   }, lfm.listeners > 0 && React.createElement("div", {
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 22,
-      lineHeight: 1,
-      letterSpacing: -0.5
+      fontSize: 26
     }
   }, _fmtCount(lfm.listeners)), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 4
+      marginTop: 6
     }
   }, "LISTENERS")), lfm.playcount > 0 && React.createElement("div", {
     style: {
       flex: 1,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
-    className: "serif",
+    className: "duo-clock",
     style: {
-      fontSize: 22,
-      lineHeight: 1,
-      letterSpacing: -0.5
+      fontSize: 26
     }
   }, _fmtCount(lfm.playcount)), React.createElement("div", {
-    className: "mono",
+    className: "duo-label duo-ink3",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 4
+      marginTop: 6
     }
   }, "TOTAL SCROBBLES"))), lfm.tags.length > 0 && React.createElement("div", {
     style: {
@@ -2293,13 +2304,13 @@ function ArtistScreen({
       background: "var(--paper-2)",
       border: "1px solid var(--line-2)",
       borderRadius: 999,
-      color: "var(--muted)"
+      color: "var(--ink-2)"
     }
   }, tag.toUpperCase()))), lfm.bio && lfm.bio.length > 40 && React.createElement("div", {
     style: {
       fontSize: 13,
       lineHeight: 1.55,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginBottom: 12
     }
   }, lfm.bio, lfm.url && React.createElement("a", {
@@ -2335,11 +2346,8 @@ function ArtistScreen({
         marginBottom: 18
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-sect",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
         marginBottom: 10,
         display: "flex",
         alignItems: "center",
@@ -2353,7 +2361,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         textDecoration: "none"
       }
     }, "SEARCH YOUTUBE ↗")), YOUTUBE_KEY && ytVideo === undefined && React.createElement("div", {
@@ -2361,8 +2369,9 @@ function ArtistScreen({
         borderRadius: 16,
         overflow: "hidden",
         aspectRatio: "16/9",
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -2373,7 +2382,7 @@ function ArtistScreen({
         height: 20,
         borderRadius: "50%",
         border: "2px solid var(--line)",
-        borderTopColor: "var(--muted)",
+        borderTopColor: "var(--ink-2)",
         animation: "spin 0.8s linear infinite"
       }
     })), YOUTUBE_KEY && ytVideo && !ytPlaying && React.createElement("div", {
@@ -2384,8 +2393,8 @@ function ArtistScreen({
         overflow: "hidden",
         aspectRatio: "16/9",
         cursor: "pointer",
-        background: "var(--ink)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.25)"
+        background: "var(--paper-2)",
+        boxShadow: "0 8px 32px rgba(var(--shade-rgb),0.25)"
       }
     }, ytVideo.thumbnail && React.createElement("img", {
       src: ytVideo.thumbnail,
@@ -2400,7 +2409,7 @@ function ArtistScreen({
       style: {
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.75) 100%)",
+        background: "linear-gradient(180deg, rgba(var(--shade-rgb),0.05) 0%, rgba(var(--shade-rgb),0.15) 50%, rgba(var(--shade-rgb),0.75) 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -2410,18 +2419,18 @@ function ArtistScreen({
         width: 62,
         height: 62,
         borderRadius: 62,
-        background: "rgba(255,0,0,0.92)",
+        background: "rgba(var(--alert-rgb),0.92)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxShadow: "0 6px 28px rgba(255,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+        boxShadow: "0 6px 28px rgba(var(--alert-rgb),0.4), 0 2px 8px rgba(var(--shade-rgb),0.3)",
         transition: "transform 0.15s"
       }
     }, React.createElement("svg", {
       width: "22",
       height: "22",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     })))), React.createElement("div", {
@@ -2435,7 +2444,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 13,
-        color: "#fff",
+        color: "var(--ink)",
         lineHeight: 1.3,
         fontWeight: 500
       }
@@ -2451,29 +2460,29 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "rgba(255,255,255,0.5)"
+        color: "var(--text-3)"
       }
     }, "TAP TO PLAY"), ytVideo.durationMin > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.5)"
+        color: "var(--text-3)"
       }
     }, ytVideo.durationMin >= 60 ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M` : `${ytVideo.durationMin} MIN`), ytVideo.views > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 0.8,
-        color: "rgba(255,255,255,0.5)",
+        color: "var(--text-3)",
         marginLeft: "auto"
       }
     }, ytVideo.views >= 1e6 ? `${(ytVideo.views / 1e6).toFixed(1)}M` : ytVideo.views >= 1e3 ? `${(ytVideo.views / 1e3).toFixed(0)}K` : ytVideo.views, " VIEWS")))), YOUTUBE_KEY && ytVideo && ytPlaying && React.createElement("div", {
       style: {
-        borderRadius: 14,
+        borderRadius: "var(--rad-md)",
         overflow: "hidden",
         aspectRatio: "16/9",
-        background: "#000"
+        background: "var(--paper)"
       }
     }, React.createElement("iframe", {
       src: `https://www.youtube.com/embed/${ytVideo.videoId}?autoplay=1`,
@@ -2488,12 +2497,14 @@ function ArtistScreen({
     })), YOUTUBE_KEY && ytVideo === null && React.createElement("div", {
       style: {
         padding: "16px 14px",
-        borderRadius: 12,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
+        borderRadius: "var(--rad-md)",
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
         textAlign: "center"
       }
     }, React.createElement("div", {
+      "aria-hidden": "true",
       style: {
         fontSize: 20,
         opacity: 0.3,
@@ -2504,7 +2515,7 @@ function ArtistScreen({
       style: {
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "var(--muted)"
+        color: "var(--ink-2)"
       }
     }, ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"), ytError && React.createElement("button", {
       onClick: () => {
@@ -2520,8 +2531,8 @@ function ArtistScreen({
         marginTop: 8,
         padding: "6px 14px",
         borderRadius: 999,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line-2)",
+        background: "var(--s3)",
+        border: "none",
         color: "var(--ink)",
         fontSize: 9,
         letterSpacing: 1.2,
@@ -2538,9 +2549,9 @@ function ArtistScreen({
         marginTop: 8,
         padding: "6px 14px",
         borderRadius: 999,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line-2)",
-        color: "var(--muted)",
+        background: "var(--s3)",
+        border: "none",
+        color: "var(--ink-2)",
         fontSize: 9,
         letterSpacing: 1.2,
         fontWeight: 700,
@@ -2554,9 +2565,10 @@ function ArtistScreen({
         display: "flex",
         alignItems: "center",
         gap: 10,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
-        borderRadius: 12,
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
+        borderRadius: "var(--rad-md)",
         padding: "12px 14px",
         textDecoration: "none"
       }
@@ -2565,7 +2577,7 @@ function ArtistScreen({
         width: 36,
         height: 36,
         borderRadius: 36,
-        background: "#ff0000",
+        background: "var(--alert)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -2575,7 +2587,7 @@ function ArtistScreen({
       width: "14",
       height: "14",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))), React.createElement("div", null, React.createElement("div", {
@@ -2589,13 +2601,13 @@ function ArtistScreen({
       style: {
         fontSize: 9,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2
       }
     }, activeName.toUpperCase(), " LIVE SET · ", (FESTIVAL_CONFIG.brand || "FESTIVAL").toUpperCase())), React.createElement("div", {
       style: {
         marginLeft: "auto",
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         fontSize: 14
       }
     }, "↗")));
@@ -2606,11 +2618,8 @@ function ArtistScreen({
         marginBottom: 18
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-sect",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.4,
-        color: "var(--muted)",
         marginBottom: 10,
         display: "flex",
         alignItems: "center",
@@ -2630,7 +2639,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         textDecoration: "none"
       }
     }, "SEARCH ↗")), mcTracks === undefined && React.createElement("div", {
@@ -2645,8 +2654,8 @@ function ArtistScreen({
         display: "flex",
         gap: 12,
         alignItems: "center",
-        background: "var(--ink)",
-        borderRadius: 14,
+        background: "var(--paper-2)",
+        borderRadius: "var(--rad-md)",
         overflow: "hidden"
       }
     }, React.createElement("div", {
@@ -2686,8 +2695,8 @@ function ArtistScreen({
         display: "flex",
         gap: 12,
         alignItems: "center",
-        background: "var(--ink)",
-        borderRadius: 14,
+        background: "var(--paper-2)",
+        borderRadius: "var(--rad-md)",
         overflow: "hidden",
         cursor: "pointer"
       }
@@ -2697,7 +2706,7 @@ function ArtistScreen({
         height: 72,
         flexShrink: 0,
         position: "relative",
-        background: "rgba(247,237,224,0.06)"
+        background: "rgba(var(--ink-rgb),0.06)"
       }
     }, track.thumbnail && React.createElement("img", {
       src: track.thumbnail,
@@ -2715,14 +2724,14 @@ function ArtistScreen({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0,0,0,0.35)"
+        background: "rgba(var(--shade-rgb),0.35)"
       }
     }, React.createElement("div", {
       style: {
         width: 28,
         height: 28,
         borderRadius: 28,
-        background: "#ff5500",
+        background: "var(--signal)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center"
@@ -2731,7 +2740,7 @@ function ArtistScreen({
       width: "10",
       height: "10",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))))), React.createElement("div", {
@@ -2743,7 +2752,7 @@ function ArtistScreen({
     }, React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "var(--paper)",
+        color: "var(--ink)",
         lineHeight: 1.3,
         fontWeight: 500,
         overflow: "hidden",
@@ -2764,7 +2773,7 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "#ff5500",
+        color: "var(--signal-ink)",
         fontWeight: 700
       }
     }, track.user.toUpperCase()), track.duration > 0 && React.createElement("span", {
@@ -2772,20 +2781,20 @@ function ArtistScreen({
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.4)"
+        color: "var(--text-3)"
       }
     }, _mcDur(track.duration)), track.plays > 0 && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
         letterSpacing: 1,
-        color: "rgba(247,237,224,0.35)"
+        color: "var(--text-3)"
       }
     }, _mcFmt(track.plays), " PLAYS")))), mcPlaying === track.key && React.createElement("div", {
       style: {
-        borderRadius: 14,
+        borderRadius: "var(--rad-md)",
         overflow: "hidden",
-        background: "var(--ink)"
+        background: "var(--paper-2)"
       }
     }, React.createElement("iframe", {
       src: `https://www.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(track.key)}&mini=0&hide_cover=0&light=0&autoplay=1`,
@@ -2806,7 +2815,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 9,
         letterSpacing: 1.2,
-        color: "rgba(247,237,224,0.4)",
+        color: "var(--text-3)",
         cursor: "pointer"
       }
     }, "▲ CLOSE")))), Array.isArray(mcTracks) && mcTracks.length === 0 && React.createElement("a", {
@@ -2817,9 +2826,10 @@ function ArtistScreen({
         display: "flex",
         alignItems: "center",
         gap: 10,
-        background: "var(--paper-2)",
-        border: "1px solid var(--line)",
-        borderRadius: 12,
+        background: "var(--s2)",
+        boxShadow: "var(--e1)",
+        border: "none",
+        borderRadius: "var(--rad-md)",
         padding: "12px 14px",
         textDecoration: "none"
       }
@@ -2828,7 +2838,7 @@ function ArtistScreen({
         width: 36,
         height: 36,
         borderRadius: 36,
-        background: "#ff5500",
+        background: "var(--signal)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -2838,7 +2848,7 @@ function ArtistScreen({
       width: "14",
       height: "14",
       viewBox: "0 0 24 24",
-      fill: "#fff"
+      fill: "var(--ink)"
     }, React.createElement("path", {
       d: "M8 5 L19 12 L8 19 Z"
     }))), React.createElement("div", null, React.createElement("div", {
@@ -2852,13 +2862,13 @@ function ArtistScreen({
       style: {
         fontSize: 9,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2
       }
     }, activeName.toUpperCase(), " · SETS & MIXES")), React.createElement("div", {
       style: {
         marginLeft: "auto",
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         fontSize: 14
       }
     }, "↗")));
@@ -2869,11 +2879,8 @@ function ArtistScreen({
       marginBottom: 18
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-sect",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
       marginBottom: 10,
       display: "flex",
       alignItems: "center",
@@ -2888,9 +2895,10 @@ function ArtistScreen({
   }, [0, 1].map(i => React.createElement("div", {
     key: i,
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: "12px 16px",
       display: "flex",
       alignItems: "center",
@@ -2923,9 +2931,10 @@ function ArtistScreen({
   }))))), tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && React.createElement("div", {
     style: {
       padding: "16px 14px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       textAlign: "center"
     }
   }, React.createElement("div", {
@@ -2939,7 +2948,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)"
+      color: "var(--ink-2)"
     }
   }, tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"), tmError && React.createElement("button", {
     onClick: () => {
@@ -2955,8 +2964,8 @@ function ArtistScreen({
       marginTop: 8,
       padding: "6px 14px",
       borderRadius: 999,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      background: "var(--s3)",
+      border: "none",
       color: "var(--ink)",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -2966,9 +2975,10 @@ function ArtistScreen({
   }, "↻ RETRY")), Array.isArray(tmEvents) && tmEvents.map((ev, idx) => React.createElement("div", {
     key: idx,
     style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
-      borderRadius: 12,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       padding: "12px 16px",
       marginBottom: 8,
       display: "flex",
@@ -2989,14 +2999,12 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 1.1,
-      color: "rgba(255,255,255,0.75)"
+      color: "var(--on-ember)"
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""), React.createElement("div", {
-    className: "serif",
+    className: "duo-headline",
     style: {
-      fontSize: 20,
-      lineHeight: 1,
-      color: "#fff",
+      color: "var(--on-ember)",
       letterSpacing: -0.5
     }
   }, ev.date ? _tmDate(ev.date).split(" ")[1].replace(",", "") : "—"), React.createElement("div", {
@@ -3004,7 +3012,7 @@ function ArtistScreen({
     style: {
       fontSize: 8,
       letterSpacing: 0.8,
-      color: "rgba(255,255,255,0.7)"
+      color: "var(--on-ember)"
     }
   }, ev.date ? ev.date.split("-")[0] : "")), React.createElement("div", {
     style: {
@@ -3026,7 +3034,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 0.8,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginTop: 3
     }
   }, ev.location, ev.time ? ` · ${ev.time.slice(0, 5)}` : "")), ev.url && React.createElement("a", {
@@ -3052,11 +3060,8 @@ function ArtistScreen({
       marginBottom: 18
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-sect",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.4,
-      color: "var(--muted)",
       marginBottom: 10,
       display: "flex",
       alignItems: "center",
@@ -3072,7 +3077,7 @@ function ArtistScreen({
     key: i,
     style: {
       background: "var(--paper-2)",
-      borderRadius: 12,
+      borderRadius: "var(--rad-md)",
       padding: "12px 14px",
       border: "1px solid var(--line)"
     }
@@ -3120,9 +3125,10 @@ function ArtistScreen({
   }))))))), setlists !== undefined && setlists !== null && setlists.length === 0 && React.createElement("div", {
     style: {
       padding: "16px 14px",
-      borderRadius: 12,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line)",
+      borderRadius: "var(--rad-md)",
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       textAlign: "center"
     }
   }, React.createElement("div", {
@@ -3136,7 +3142,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "var(--muted)"
+      color: "var(--ink-2)"
     }
   }, slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"), slError && React.createElement("button", {
     onClick: () => {
@@ -3152,8 +3158,8 @@ function ArtistScreen({
       marginTop: 8,
       padding: "6px 14px",
       borderRadius: 999,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      background: "var(--s3)",
+      border: "none",
       color: "var(--ink)",
       fontSize: 9,
       letterSpacing: 1.2,
@@ -3172,10 +3178,10 @@ function ArtistScreen({
       key: idx,
       style: {
         background: "var(--paper-2)",
-        borderRadius: 12,
+        borderRadius: "var(--rad-md)",
         padding: "12px 14px",
         marginBottom: 10,
-        border: `1px solid ${isFest ? "rgba(232,93,46,0.4)" : "var(--line)"}`
+        border: `1px solid ${isFest ? "rgba(var(--signal-rgb),0.4)" : "var(--line)"}`
       }
     }, React.createElement("div", {
       style: {
@@ -3204,7 +3210,7 @@ function ArtistScreen({
     }, _slDate(sl.eventDate)), React.createElement("div", {
       style: {
         fontSize: 12,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         marginTop: 2
       }
     }, venue, city ? ` · ${city}${state ? `, ${state}` : ""}` : "")), sl.url && React.createElement("a", {
@@ -3215,7 +3221,7 @@ function ArtistScreen({
         fontFamily: "Geist Mono, monospace",
         fontSize: 8,
         letterSpacing: 1.1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         textDecoration: "none",
         flexShrink: 0,
         marginLeft: 8,
@@ -3228,7 +3234,7 @@ function ArtistScreen({
         paddingTop: 8,
         fontSize: 10,
         letterSpacing: 1,
-        color: "var(--muted)",
+        color: "var(--ink-2)",
         fontStyle: "italic"
       }
     }, "SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS") : React.createElement("div", {
@@ -3251,7 +3257,7 @@ function ArtistScreen({
         className: "mono",
         style: {
           fontSize: 9,
-          color: "var(--muted)",
+          color: "var(--ink-2)",
           width: 18,
           textAlign: "right",
           flexShrink: 0
@@ -3259,7 +3265,7 @@ function ArtistScreen({
       }, si + 1), React.createElement("span", {
         style: {
           fontSize: 13,
-          color: isBanger ? stage.color : "var(--ink)",
+          color: isBanger ? "var(--signal-ink)" : "var(--ink)",
           fontWeight: isBanger ? 600 : 400,
           flex: 1
         }
@@ -3268,14 +3274,14 @@ function ArtistScreen({
         style: {
           fontSize: 8,
           letterSpacing: 1,
-          color: stage.color,
+          color: "var(--signal-ink)",
           fontWeight: 700
         }
       }, "BANGER"), song.tape && React.createElement("span", {
         className: "mono",
         style: {
           fontSize: 8,
-          color: "var(--muted)",
+          color: "var(--ink-2)",
           letterSpacing: 1
         }
       }, "TAPE"));
@@ -3305,7 +3311,7 @@ function ArtistScreen({
     style: {
       fontSize: 9,
       letterSpacing: 1.4,
-      color: "var(--muted)",
+      color: "var(--ink-2)",
       marginBottom: 6,
       display: "flex",
       alignItems: "center",
@@ -3328,9 +3334,9 @@ function ArtistScreen({
       width: "100%",
       padding: "10px 12px",
       boxSizing: "border-box",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 12,
+      background: "var(--s3)",
+      border: "none",
+      borderRadius: "var(--rad-md)",
       resize: "none",
       fontFamily: "Geist, sans-serif",
       fontSize: 14,
@@ -3358,7 +3364,7 @@ function ArtistScreen({
       height: 44,
       borderRadius: 44,
       border: "none",
-      background: !connected ? "rgba(247,237,224,0.1)" : playing ? "var(--ember)" : "#1DB954",
+      background: !connected ? "rgba(var(--ink-rgb),0.1)" : playing ? "var(--ember)" : "#1DB954",
       cursor: connected && preview !== "none" ? "pointer" : "default",
       display: "flex",
       alignItems: "center",
@@ -3371,15 +3377,15 @@ function ArtistScreen({
       width: 16,
       height: 16,
       borderRadius: "50%",
-      border: "2px solid rgba(255,255,255,0.35)",
-      borderTopColor: "#fff",
+      border: "2px solid rgba(var(--ink-rgb),0.35)",
+      borderTopColor: "var(--ink)",
       animation: "spin 0.75s linear infinite"
     }
   }) : playing ? React.createElement("svg", {
     width: "14",
     height: "14",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("rect", {
     x: "5",
     y: "4",
@@ -3396,7 +3402,7 @@ function ArtistScreen({
     width: "16",
     height: "16",
     viewBox: "0 0 24 24",
-    fill: "#fff"
+    fill: "var(--ink)"
   }, React.createElement("path", {
     d: "M8 5 L19 12 L8 19 Z"
   }))), React.createElement("div", {
@@ -3412,10 +3418,12 @@ function ArtistScreen({
     }
   }, preview && typeof preview === "object" ? preview.name : "30-sec Preview"), React.createElement("div", {
     className: "mono",
+    "data-preview-status": true,
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
-      color: "rgba(247,237,224,0.5)",
+      color: "var(--paper)",
+      opacity: 0.6,
       marginTop: 3
     }
   }, !connected ? "CONNECT SPOTIFY TO PREVIEW" : preview === "none" ? "NO PREVIEW AVAILABLE" : preview === "loading" ? "LOADING…" : playing ? "PLAYING · VIA SPOTIFY" : "TAP TO PLAY · 30 SEC")), React.createElement("div", {
@@ -3431,7 +3439,7 @@ function ArtistScreen({
     style: {
       width: 2.5,
       height: h,
-      background: playing ? i % 2 === 0 ? "var(--ember)" : "#f59a36" : connected ? "#1DB954" : "rgba(247,237,224,0.2)",
+      background: playing ? i % 2 === 0 ? "var(--ember)" : "#f59a36" : connected ? "#1DB954" : "rgba(var(--ink-rgb),0.2)",
       borderRadius: 2,
       transition: "height 0.12s ease, background 0.3s"
     }
@@ -3439,7 +3447,7 @@ function ArtistScreen({
     style: {
       flexShrink: 0,
       padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-      background: saveFlash ? saved ? "rgba(45,122,85,0.08)" : "var(--paper)" : "var(--paper)",
+      background: saveFlash && saved ? "var(--acc-wash)" : "var(--bg)",
       borderTop: "1px solid var(--line)",
       display: "flex",
       gap: 8,
@@ -3450,15 +3458,15 @@ function ArtistScreen({
     style: {
       flex: 1,
       padding: "14px",
-      borderRadius: 14,
-      background: saved ? "var(--ink)" : "var(--ember)",
-      color: saved ? "var(--paper)" : "#fff",
-      border: "none",
+      borderRadius: "var(--rad-sm)",
+      minHeight: 52,
+      background: saved ? "transparent" : "var(--acc)",
+      color: saved ? "var(--ink)" : "var(--on-acc)",
+      border: saved ? "1px solid var(--line-2)" : "none",
       cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.4,
-      fontWeight: 500,
+      boxShadow: saved ? "none" : "0 10px 28px -12px var(--acc-55)",
+      font: "650 17px/1.3 var(--f-ui)",
+      letterSpacing: "-0.01em",
       transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
       transform: saveFlash ? "scale(1.03)" : "scale(1)"
     }
@@ -3468,7 +3476,7 @@ function ArtistScreen({
       display: "inline-block",
       marginRight: 4
     }
-  }, "✓"), saved ? saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP" : "+ ADD TO LINEUP"), React.createElement("button", {
+  }, "✓"), saved ? saveFlash ? "Saved" : "✓ Saved to lineup" : "Add to lineup"), React.createElement("button", {
     onClick: () => (window._pushNav || (n => setState({
       ...state,
       ...n
@@ -3480,13 +3488,32 @@ function ArtistScreen({
     "aria-label": "Open memories",
     style: {
       width: 54,
-      borderRadius: 14,
+      borderRadius: "var(--rad-sm)",
       background: "transparent",
       border: "1px solid var(--line-2)",
       cursor: "pointer",
-      fontSize: 16
+      color: "var(--ink)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
     }
-  }, "📸")));
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M4 8h3l2-3h6l2 3h3v11H4z"
+  }), React.createElement("circle", {
+    cx: "12",
+    cy: "13",
+    r: "3.5"
+  })))));
 }
 Object.assign(window, {
   ArtistScreen

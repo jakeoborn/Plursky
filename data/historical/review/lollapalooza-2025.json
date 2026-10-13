@@ -1,0 +1,152 @@
+{
+ "id": "lollapalooza-2025",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-07-31",
+   "sha256": "b0bceecf8ecc9115d8967006ddc8f3af8fa739b72c2af5a475d0fd3fe9551a0c",
+   "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73ce0067cda1581362f9_LOL25_Schedule-07.30-BT_Thurs.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:33:52.061Z",
+   "rowsConfirmed": 58,
+   "note": "Header read off the graphic: THURSDAY July 31, 2025. Perry's stage is printed as DOLLAPALOOZA on this day; kept verbatim.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 50,
+   "corrections": [
+    "MATT CHAMPION: artist \"CHAMPION\" → \"MATT CHAMPION\"",
+    "MAGDALENA BAY: artist \"kg MAGDALENA BAY\" → \"MAGDALENA BAY\"",
+    "23 SKIDOO & THE SECRET AGENCY: artist \"23 SKIDOO & THE SEGRET AGENGY\" → \"23 SKIDOO & THE SECRET AGENCY\"; stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "SCHOOL OF ROCK: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "MICHAEL & THE ROCKNESS MONSTERS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "JUSTIN ROBERTS & THE NOT READY FOR NAPTIME PLAYERS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "HALF•ALIVE: artist \"kg HALF•ALIVE\" → \"HALF•ALIVE\"",
+    "ALEX WARREN: artist \"ALEX K9 WARREN\" → \"ALEX WARREN\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 BO STALOCH",
+    "TOYOTA MUSIC DEN 15:00-15:30 GIRL TONES",
+    "TOYOTA MUSIC DEN 16:00-16:30 SOFIA CAMARA",
+    "TOYOTA MUSIC DEN 17:00-17:30 JADE LEMAC",
+    "TOYOTA MUSIC DEN 18:00-18:30 YANA",
+    "BUD LIGHT BACKYARD 15:00-16:30 MR. SHAW (DJ SET)",
+    "BUD LIGHT BACKYARD 17:00-17:30 MARK AMBOR",
+    "BUD LIGHT BACKYARD 17:30-19:00 DEROZA (DJ SET)"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2025-08-01",
+   "sha256": "a5b587824d0795b4c2e577e87fcdef69544e64a77418f6425b12d3f562853c72",
+   "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688a73b2244709abd26b129f_LOL25_Schedule-07.30-BT_Fri.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:33:52.066Z",
+   "rowsConfirmed": 60,
+   "note": "Header read off the graphic: FRIDAY Aug 1, 2025",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 52,
+   "corrections": [
+    "DJO: artist \"kg DJO\" → \"DJO\"",
+    "MICHAEL & THE ROCKNESS MONSTERS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "23 SKIDOO & THE SECRET AGENCY: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "JUSTIN ROBERTS & THE NOT READY FOR NAPTIME PLAYERS: artist \"JUSTIN ROBERTS & THE NOT READY FOR HAPTIME PLAYERS\" → \"JUSTIN ROBERTS & THE NOT READY FOR NAPTIME PLAYERS\"; stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "SCHOOL OF ROCK: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "CAROL ADES: artist \"CAROL*g ADES\" → \"CAROL ADES\"",
+    "ORLA GARTLAND: artist \"ORLA Kg GARTLAND\" → \"ORLA GARTLAND\"",
+    "THE DARE: artist \"THE 59 DARE\" → \"THE DARE\"",
+    "OCEAN ALLEY: artist \"OCEAN *g ALLEY\" → \"OCEAN ALLEY\"",
+    "DEL WATER GAP: artist \"DEL kg WATER GAP\" → \"DEL WATER GAP\"",
+    "OTOBOKE BEAVER: artist \"ОTОBOKE BEAVER\" → \"OTOBOKE BEAVER\"",
+    "BLEACHERS: artist \"kg BLEACHERS\" → \"BLEACHERS\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 CAROL ADES",
+    "TOYOTA MUSIC DEN 15:00-15:30 OLD MERVS",
+    "TOYOTA MUSIC DEN 16:00-16:30 HEY, NOTHING",
+    "TOYOTA MUSIC DEN 17:00-17:30 CAROLINE KINGSBURY",
+    "TOYOTA MUSIC DEN 18:00-18:30 MIDNIGHT GENERATION",
+    "BUD LIGHT BACKYARD 16:00-17:30 LUCKY LOU (DJ SET)",
+    "BUD LIGHT BACKYARD 18:00-18:30 ZINADELPHIA",
+    "BUD LIGHT BACKYARD 18:30-20:00 KUPYD (DJ SET)"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2025-08-02",
+   "sha256": "5762853d24c078502261d27cdfeb7e59f2c745aa5cb9e8d7aa9808804fb431b0",
+   "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251224222747/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688e3b65796c112dba7ffee1_LOL25_Schedule-08.01-WEB.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:33:52.067Z",
+   "rowsConfirmed": 60,
+   "note": "Header read off the graphic: SATURDAY Aug 2, 2025. Re-issued graphic (08.01-WEB) adds CHANCE THE RAPPER on Perry's 5:50-6:05; earlier Saturday revisions are in the ledger.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 52,
+   "corrections": [
+    "DR. FRESCH: artist \"kg DR. FRESCH\" → \"DR. FRESCH\"",
+    "CA7RIEL & PACO AMOROSO: artist \"CAZRIEL & PACO AMOROSO\" → \"CA7RIEL & PACO AMOROSO\"",
+    "BIRDS OF A FEATHER: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "FYÜTCH & AURA V: artist \"FYUTCH & AURA V\" → \"FYÜTCH & AURA V\"; stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "DIVINITY ROXX AND DIVI ROXX KIDS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "SPECIAL GUEST: THE HAPPINESS CLUB: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "Q BROTHERS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "NAOMI SCOTT: artist \"NAOMI *9 SCOTT\" → \"NAOMI SCOTT\"",
+    "ORION SUN: artist \"ORION 59 SUN\" → \"ORION SUN\"",
+    "BILMURI: artist \"BILMURİ*\" → \"BILMURI\"",
+    "DAMIANO DAVID: artist \"DAMIANO9 DAVID\" → \"DAMIANO DAVID\"",
+    "WASIA PROJECT: artist \"WASIA *9 PROJECT\" → \"WASIA PROJECT\"",
+    "MONTELL FISH: artist \"MONTELL® FISH\" → \"MONTELL FISH\"",
+    "KICKFLIP: artist \"KICKFLIP®\" → \"KICKFLIP\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 LANDON CONRATH",
+    "TOYOTA MUSIC DEN 15:00-15:30 NEWDAD",
+    "TOYOTA MUSIC DEN 16:00-16:30 WINNETKA BOWLING LEAGUE",
+    "TOYOTA MUSIC DEN 17:00-17:30 RACHEL GRAE",
+    "TOYOTA MUSIC DEN 18:00-18:30 JUNIOR VARSITY",
+    "BUD LIGHT BACKYARD 15:30-17:00 HEAVY (DJ SET)",
+    "BUD LIGHT BACKYARD 17:30-18:00 MAX MCNOWN",
+    "BUD LIGHT BACKYARD 18:00-19:30 ZILLION (DJ SET)"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2025-08-03",
+   "sha256": "bd0393c1d7b6668a7b78c2e1c2d6fa5e8eb805e9fb8660ec43612aacf339142c",
+   "originalUrl": "https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20251215060330/https://cdn.prod.website-files.com/67c1632e86f99390b0516b6d/688f9be9b26f26166ba53026_LOL25_Schedule-08.03.04-Sun-WEB.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels, session b376a80d",
+   "reviewedAt": "2026-09-23T02:33:52.067Z",
+   "rowsConfirmed": 59,
+   "note": "Header read off the graphic: SUNDAY Aug 3, 2025",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 51,
+   "corrections": [
+    "KATSEYE INTERVIEW WITH DAVIS BURLESON: artist \"KATSEYE\" → \"KATSEYE INTERVIEW WITH DAVIS BURLESON\"",
+    "BIRDS OF A FEATHER: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "DIVINITY ROXX AND DIVI ROXX KIDS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "Q BROTHERS: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "SPECIAL GUEST: THE HAPPINESS CLUB: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "FYÜTCH & AURA V: stage \"KIDZAPALOOZA Presented By Lifeway Kefir\" → \"KIDZAPALOOZA\"",
+    "LA FEMME: artist \"LA FEMME WAVE TO\" → \"LA FEMME\"",
+    "WAVE TO EARTH: artist \"EARTH\" → \"WAVE TO EARTH\"",
+    "A$AP ROCKY: artist \"ASAP ROCKY\" → \"A$AP ROCKY\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 THE DROPTINES",
+    "TOYOTA MUSIC DEN 15:00-15:30 JOE P",
+    "TOYOTA MUSIC DEN 16:00-16:30 THE CRITICALS",
+    "TOYOTA MUSIC DEN 17:00-17:30 VINCENT LIMA",
+    "TOYOTA MUSIC DEN 18:00-18:30 FLOWEROVLOVE",
+    "BUD LIGHT BACKYARD 16:00-17:30 CHACHI (DJ SET)",
+    "BUD LIGHT BACKYARD 18:00-18:30 WILD RIVERS",
+    "BUD LIGHT BACKYARD 18:30-20:00 GOO (DJ SET)"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

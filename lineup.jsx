@@ -123,6 +123,9 @@ function NightWizard({ state, setState, onClose }) {
   // counts, the list, the gap fits and Auto-fill resolved from storage and
   // hid other-weekend picks until Save (round 5, same defect as the share).
   const localIds = Array.from(local);
+  // Writes keep the raw selection (an orphan stays stored); what the wizard
+  // counts, exports and shares is the lineup's view of it.
+  const liveLocalIds = savedInLineup(localIds);
 
   const dayStats = DAYS.map(d => {
     const sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
@@ -191,31 +194,32 @@ function NightWizard({ state, setState, onClose }) {
     <div style={{ position: "fixed", inset: 0, zIndex: 90, background: "var(--paper)", display: "flex", flexDirection: "column" }}>
       {/* Header */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
+        columnGap: 10, rowGap: 8,
         padding: "16px 18px 12px",
         paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
         borderBottom: "1px solid var(--line)",
       }}>
         <button onClick={onClose} aria-label="Close Build My Night" style={{
-          width: 36, height: 36, borderRadius: 36, background: "var(--paper-2)",
-          border: "1px solid var(--line-2)", fontSize: 18, cursor: "pointer",
+          width: 44, height: 44, borderRadius: 44, background: "var(--s2)", boxShadow: "var(--e1)",
+          border: "none", color: "var(--ink)", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-        }}>←</button>
-        <div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.8, fontWeight: 700, textAlign: "center" }}>BUILD MY NIGHT</div>
-          <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", marginTop: 2 }}>
-            {Array.from(local).length} SETS SAVED
+        }}><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg></button>
+        <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+          <div className="duo-label" style={{ whiteSpace: "nowrap" }}>My night</div>
+          <div className="duo-data-s duo-ink3" style={{ marginTop: 4, whiteSpace: "nowrap" }}>
+            {liveLocalIds.length} SETS SAVED
           </div>
         </div>
-        <div style={{ display: "flex", gap: 6 }}>
-          {Array.from(local).length > 0 && (<>
+        <div style={{ display: "flex", gap: 6, marginLeft: "auto" }}>
+          {liveLocalIds.length > 0 && (<>
             <button
-              onClick={() => exportSavedSetsICS(Array.from(local))}
+              onClick={() => exportSavedSetsICS(liveLocalIds)}
               aria-label="Export to calendar"
               title="Export to calendar"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -225,15 +229,15 @@ function NightWizard({ state, setState, onClose }) {
             </button>
             <button
               onClick={() => {
-                const text = _nightShareText(Array.from(local));
+                const text = _nightShareText(liveLocalIds);
                 if (navigator.share) { navigator.share({ title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`, text }).catch(() => {}); }
                 else { try { navigator.clipboard.writeText(text); } catch {} }
               }}
               aria-label="Share lineup"
               title="Share lineup"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -242,16 +246,8 @@ function NightWizard({ state, setState, onClose }) {
               </svg>
             </button>
           </>)}
-          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" style={{
-            background: "var(--horizon)", color: "#fff", border: "none",
-            borderRadius: 999, padding: "8px 13px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>✦ AUTO</button>
-          <button onClick={handleSave} style={{
-            background: "var(--ember)", color: "#fff", border: "none",
-            borderRadius: 999, padding: "8px 16px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>SAVE ✓</button>
+          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" className="duo-chip"><span>Auto</span></button>
+          <button onClick={handleSave} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 15 }}>Save</button>
         </div>
       </div>
 
@@ -260,19 +256,20 @@ function NightWizard({ state, setState, onClose }) {
         {dayStats.map(d => {
           const on = d.n === activeDay;
           return (
-            <button key={d.n} onClick={() => setActiveDay(d.n)} style={{
-              flex: 1, padding: "8px 6px", borderRadius: 12, cursor: "pointer", textAlign: "center",
-              background: on ? "var(--ink)" : "var(--paper-2)",
-              border: on ? "none" : "1px solid var(--line)",
-              transition: "all .15s",
+            <button key={d.n} onClick={() => setActiveDay(d.n)} aria-pressed={on} style={{
+              flex: 1, padding: "10px 6px", borderRadius: "var(--rad-sm)", cursor: "pointer", textAlign: "center",
+              background: "var(--s2)", border: "none", color: "var(--ink)",
+              boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)",
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(247,237,224,0.55)" : "var(--muted)" }}>{d.short}</div>
-              <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
+              {/* DAYS rows carry `label` (FRI); `short` never existed, so these
+                  tiles printed no day at all. */}
+              <div className="duo-label" style={{ color: on ? "var(--ink)" : "var(--ink-3)" }}>{d.label}</div>
+              <div className="duo-clock" style={{ fontSize: 24, marginTop: 6 }}>{d.count}</div>
               {d.clashes > 0
-                ? <div className="mono" style={{ fontSize: 8, color: "var(--ember-ink)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
+                ? <div className="duo-data-s" style={{ color: "var(--clash)", marginTop: 4 }}>{d.clashes} CLASH</div>
                 : d.count > 0
-                  ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(247,237,224,0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
-                  : <div style={{ height: 12 }} />
+                  ? <div className="duo-data-s duo-ink3" style={{ marginTop: 4 }}>CLEAN</div>
+                  : <div style={{ height: 15, marginTop: 4 }} />
               }
             </button>
           );
@@ -283,11 +280,8 @@ function NightWizard({ state, setState, onClose }) {
       <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "14px 16px 40px" }}>
         {sorted.length === 0 ? (
           <div style={{ textAlign: "center", paddingTop: 60 }}>
-            <div style={{ fontSize: 28, opacity: 0.25, marginBottom: 6 }}>★</div>
-            <div className="serif" style={{ fontSize: 24, fontStyle: "italic", color: "var(--muted)" }}>Nothing saved</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--muted)", marginTop: 8 }}>
-              SAVE SETS IN LINEUP FIRST
-            </div>
+            <div className="duo-headline">Nothing saved for this day</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 6 }}>Save sets in the lineup first.</div>
           </div>
         ) : (
           <>
@@ -297,37 +291,29 @@ function NightWizard({ state, setState, onClose }) {
                 const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
                 const clash = conflictIds.has(a.id);
                 return (
-                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 7, alignItems: "flex-start" }}>
+                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 8, alignItems: "flex-start" }}>
                     {/* Time */}
-                    <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, letterSpacing: 0.5, color: "var(--muted)", textAlign: "right", paddingTop: 11 }}>
+                    <div className="duo-data-s duo-ink3" style={{ width: 52, flexShrink: 0, textAlign: "right", paddingTop: 14 }}>
                       {fmt12(a.start)}
                     </div>
-                    {/* Block */}
+                    {/* Block: on your plan = the accent wash; a clash takes the
+                        clash edge. The name is whole: it wraps, never "…". */}
                     <div style={{
-                      flex: 1,
-                      background: clash ? "var(--ink)" : "var(--paper-2)",
-                      border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-                      borderLeft: `4px solid ${stage.color}`,
-                      borderRadius: 12, padding: "9px 12px",
+                      flex: 1, minWidth: 0,
+                      background: "var(--acc-wash)", "--ring-bg": "var(--acc-wash)",
+                      boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+                      borderRadius: "var(--rad-sm)", padding: "8px 6px 8px 10px",
+                      display: "flex", alignItems: "center", gap: 10,
                     }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontSize: 14, fontWeight: 600, color: clash ? "var(--paper)" : "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                            {a.name}
-                          </div>
-                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(247,237,224,0.5)" : "var(--muted)", marginTop: 3 }}>
-                            {stage.short} · {fmt12(a.start)}–{fmt12(a.end)}
-                          </div>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
-                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>⚠ CLASH</span>}
-                          <button onClick={() => drop(a.id)} style={{
-                            background: "rgba(232,93,46,0.12)", border: "1px solid rgba(232,93,46,0.25)",
-                            borderRadius: 999, padding: "3px 9px", cursor: "pointer",
-                            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)",
-                          }}>DROP</button>
+                      <DuoAvatar name={a.name} size={34} ring={clash ? "cl" : "on"} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="duo-headline duo-name" style={{ fontSize: 15 }}>{actDisplayName(a.name)}</div>
+                        <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>
+                          {clash && <span style={{ color: "var(--clash)", fontWeight: 650 }}>Clash · </span>}
+                          {stage.name} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span>
                         </div>
                       </div>
+                      <button onClick={() => drop(a.id)} className="duo-chip" aria-label={`Drop ${a.name}`}><span>Drop</span></button>
                     </div>
                   </div>
                 );
@@ -342,7 +328,7 @@ function NightWizard({ state, setState, onClose }) {
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 0" }}>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", whiteSpace: "nowrap" }}>
+                        <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>
                           FREE · {fmtGap(item.gapMin)}
                         </span>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
@@ -352,13 +338,8 @@ function NightWizard({ state, setState, onClose }) {
                           {item.fits.map(f => {
                             const fs = (STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE);
                             return (
-                              <button key={f.id} onClick={() => add(f.id)} style={{
-                                background: `${fs.color}12`, border: `1px dashed ${fs.color}`,
-                                borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-                                fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
-                                color: "var(--ink)",
-                              }}>
-                                + {f.name} {fmt12(f.start)} {fs.short}
+                              <button key={f.id} onClick={() => add(f.id)} className="duo-chip" aria-label={`Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`}>
+                                <span style={{ borderStyle: "dashed" }}>+ {actDisplayName(f.name)} <b>{fmt12(f.start)}</b> {fs.name}</span>
                               </button>
                             );
                           })}
@@ -374,10 +355,10 @@ function NightWizard({ state, setState, onClose }) {
             {/* Sunrise */}
             {sunrise && (
               <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 6 }}>
-                <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, color: "var(--flare)", textAlign: "right", letterSpacing: 0.5 }}>{sunrise}</div>
+                <div className="duo-data-s duo-sun" style={{ width: 52, flexShrink: 0, textAlign: "right" }}>{sunrise}</div>
                 <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, var(--flare), transparent)` }} />
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>☀ SUNRISE</span>
+                  <div style={{ flex: 1, height: 1, background: "var(--sun)", opacity: 0.6 }} />
+                  <span className="duo-label duo-sun">Sunrise</span>
                 </div>
               </div>
             )}
@@ -394,6 +375,73 @@ function NightWizard({ state, setState, onClose }) {
 // commits via onApply or wipes via onReset. Live count on the
 // primary CTA so users see how many sets they'll land on before
 // they tap Apply.
+// The board's stage overview: every stage that plays this day, by its full
+// name, on one shared time axis, so the whole night reads at a glance on a
+// phone without panning (ruling 2026-09-15: all stages visible, full names,
+// never a horizontally panning view). The grid keeps its 96px columns for
+// reading sets; this strip is the overview the grid cannot be at that width.
+// Your plan is the accent bar, a set playing now is ink, the rest is a quiet
+// line. A stage name is a button: in LIST it narrows to that stage (tap again
+// for all), in GRID it brings that stage's column into view.
+function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
+  const lanes = React.useMemo(() => {
+    const by = new Map();
+    for (const a of sets) {
+      const s = toNightMin(a.start), e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({ a, s, e: Number.isFinite(e) && e > s ? e : s + 60 });
+    }
+    // Map order, as the grid and the Filters sheet list stages.
+    return STAGES.filter(st => by.has(st.id)).map(st => ({ stage: st, sets: by.get(st.id) }));
+  }, [sets]);
+  if (lanes.length < 2) return null;
+  const all = lanes.flatMap(l => l.sets);
+  const t0 = Math.floor(Math.min(...all.map(x => x.s)) / 60) * 60;
+  const t1 = Math.ceil(Math.max(...all.map(x => x.e)) / 60) * 60;
+  const span = Math.max(60, t1 - t0);
+  const pct = m => `${((m - t0) / span) * 100}%`;
+  const nowMin = liveNight && NOW.time ? toNightMin(NOW.time) : null;
+  const showNow = nowMin != null && nowMin >= t0 && nowMin <= t1;
+  const step = span > 8 * 60 ? 120 : 60;
+  const ticks = []; for (let m = Math.ceil(t0 / step) * step; m <= t1; m += step) ticks.push(m);
+  const tick = m => { const h = Math.floor(m / 60) % 24; return `${h % 12 || 12}${h >= 12 ? "P" : "A"}`; };
+  return (
+    <div data-lineup-overview role="group" aria-label="Every stage tonight" style={{ padding: "4px 20px 8px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)", columnGap: 12, alignItems: "center" }}>
+        {lanes.map(({ stage, sets }) => {
+          const on = stageFilter === stage.id;
+          const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+          return (
+            <React.Fragment key={stage.id}>
+              <button type="button" data-overview-stage={stage.id} aria-pressed={on}
+                aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
+                onClick={() => onStage(stage.id)}
+                style={{ border: 0, background: "none", padding: "1px 0", minHeight: 16, cursor: "pointer", textAlign: "left",
+                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere" }}>
+                {stage.name}
+              </button>
+              <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+                {sets.map(({ a, s, e }) => {
+                  const mineSet = savedSet.has(a.id), live = isSetLive(a);
+                  return <span key={a.id} style={{ position: "absolute", left: pct(s), width: `calc(${((e - s) / span) * 100}% - 2px)`,
+                    top: mineSet ? 5.5 : 7, height: mineSet ? 5 : 2, borderRadius: 3, minWidth: 2,
+                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)" }} />;
+                })}
+                {showNow && <span style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
+              </div>
+            </React.Fragment>
+          );
+        })}
+        <span />
+        <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+          {ticks.map(m => <span key={m} className="duo-data-s duo-ink3" style={{ position: "absolute", left: pct(m), top: 4, transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)", fontSize: 11, lineHeight: "12px", whiteSpace: "nowrap" }}>{tick(m)}</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LineupFilterSheet({
   onClose, day, dayGenres, savedIds = [], weekendFilter = "all",
   initial,           // { filter, tierFilter, stageFilter, genreFilter, sortBy }
@@ -409,7 +457,7 @@ function LineupFilterSheet({
   const matchCount = React.useMemo(() => {
     return lineupFor(weekendFilter)
       .filter(a => a.day === day)
-      .filter(a => f.filter === "all" || savedSet.has(a.id))
+      .filter(a => f.filter === "all" || (f.filter === "saved" ? savedSet.has(a.id) : isSetLive(a)))
       .filter(a => f.stageFilter === "all" || a.stage === f.stageFilter)
       .filter(a => f.genreFilter === "all" || a.genre === f.genreFilter)
       .filter(a => {
@@ -422,134 +470,72 @@ function LineupFilterSheet({
       }).length;
   }, [f, day, savedSet, weekendFilter]);
 
-  const chip = (on, accent, delay) => ({
-    flexShrink: 0, padding: "6px 12px", borderRadius: 999,
-    background: on ? (accent || "var(--ink)") : "var(--paper-2)",
-    color: on ? "#fff" : "var(--ink)",
-    border: on ? "none" : "1px solid var(--line-2)",
-    fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1,
-    fontWeight: on ? 700 : 500, cursor: "pointer", whiteSpace: "nowrap",
-    animation: delay != null ? `springIn 0.3s ease-out ${delay}ms both` : undefined,
-  });
-  const sectionLabel = {
-    fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
-    fontFamily: "Geist Mono, monospace", marginBottom: 6, marginTop: 4,
-  };
-
+  // The board's chips: a 34pt pill in a 44pt target, selected = ink fill.
+  const sectionLabel = { margin: "20px 0 4px" };
+  const row = { display: "flex", columnGap: 8, flexWrap: "wrap" };
+  const opt = (key, id, label, extra) => (
+    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} className="duo-chip"><span>{extra}{label}</span></button>
+  );
   return (
-    <div onClick={onClose} style={{
-      position: "fixed", inset: 0, background: "rgba(13,10,8,0.55)",
-      zIndex: 60, display: "flex", alignItems: "flex-end", justifyContent: "center",
-    }}>
-      <div onClick={e => e.stopPropagation()} style={{
-        width: "100%", maxWidth: 460,
-        background: "var(--paper)", color: "var(--ink)",
-        borderRadius: "16px 16px 0 0",
-        padding: "16px 18px 18px",
-        boxShadow: "0 -8px 32px rgba(0,0,0,0.35)",
-        maxHeight: "90vh", display: "flex", flexDirection: "column",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.5, fontWeight: 800 }}>FILTERS</span>
-          <button onClick={onClose} aria-label="Close filters" style={{
-            background: "transparent", border: "none", color: "var(--muted)",
-            fontSize: 18, cursor: "pointer", lineHeight: 1,
-          }}>×</button>
-        </div>
-
-        <div style={{ overflowY: "auto", flex: 1, paddingRight: 2 }}>
-          {/* SHOW — all vs only mine */}
-          <div style={sectionLabel}>SHOW</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "all",   label: "ALL" },
-              { id: "saved", label: `MINE${savedCount ? ` · ${savedCount}` : ""}`, accent: "var(--ember)" },
-            ].map((o, i) => (
-              <button key={o.id} onClick={() => set("filter", o.id)}
-                style={chip(f.filter === o.id, o.accent, i * 25)}>{o.label}</button>
-            ))}
-          </div>
-
-          {/* TIER */}
-          <div style={sectionLabel}>TIER</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "all",    label: "ALL TIERS" },
-              { id: "legend", label: "★ LEGENDARY",   accent: "#fbbf24" },
-              { id: "head",   label: "HEADLINERS",    accent: "var(--ember)" },
-              { id: "prime",  label: "PRIME TIME",    accent: "var(--horizon)" },
-              { id: "open",   label: "OPENERS",       accent: "var(--success)" },
-            ].map((t, i) => (
-              <button key={t.id} onClick={() => set("tierFilter", t.id)}
-                style={chip(f.tierFilter === t.id, t.accent, 50 + i * 25)}>{t.label}</button>
-            ))}
-          </div>
-
-          {/* STAGE */}
-          <div style={sectionLabel}>STAGE</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            <button onClick={() => set("stageFilter", "all")}
-              style={chip(f.stageFilter === "all", undefined, 175)}>ALL STAGES</button>
-            {STAGES.map((s, i) => (
-              <button key={s.id} onClick={() => set("stageFilter", s.id)}
-                style={chip(f.stageFilter === s.id, s.color, 200 + i * 25)}>{s.short || s.name}</button>
-            ))}
-          </div>
-
-          {/* GENRE — only if there's enough variety on the day */}
-          {dayGenres.length > 0 && (
-            <>
-              <div style={sectionLabel}>GENRE</div>
-              <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-                <button onClick={() => set("genreFilter", "all")}
-                  style={chip(f.genreFilter === "all", undefined, 425)}>ALL GENRES</button>
-                {dayGenres.map((g, i) => (
-                  <button key={g} onClick={() => set("genreFilter", g)}
-                    style={chip(f.genreFilter === g, "var(--horizon)", 450 + i * 25)}>{g.toUpperCase()}</button>
-                ))}
-              </div>
-            </>
-          )}
-
-          {/* SORT */}
-          <div style={sectionLabel}>SORT BY</div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14, flexWrap: "wrap" }}>
-            {[
-              { id: "time",  label: "TIME" },
-              { id: "tier",  label: "TIER" },
-              { id: "stage", label: "STAGE" },
-            ].map((o, i) => (
-              <button key={o.id} onClick={() => set("sortBy", o.id)}
-                style={chip(f.sortBy === o.id, undefined, 600 + i * 25)}>{o.label}</button>
-            ))}
-          </div>
-        </div>
-
-        {/* CTAs */}
-        <div style={{
-          display: "flex", gap: 8, paddingTop: 12,
-          borderTop: "1px solid var(--line)",
-          marginTop: 6,
-        }}>
-          <button onClick={() => onReset()} className="mono" style={{
-            padding: "11px 16px", borderRadius: 999,
-            background: "transparent", color: "var(--muted)",
-            border: "1px solid var(--line-2)", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>RESET</button>
-          <button onClick={() => onApply(f)} className="mono" style={{
-            flex: 1, padding: "11px 14px", borderRadius: 999,
-            background: "var(--ember)", color: "#fff",
-            border: "none", cursor: "pointer",
-            fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-          }}>APPLY · {matchCount} {matchCount === 1 ? "SET" : "SETS"}</button>
-        </div>
+    <FieldSheet title="Filters" onClose={onClose}>
+      <div className="duo-sect" style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
+      <div style={row}>
+        {opt("filter", "all", "All")}
+        {opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`)}
+        {opt("filter", "now", "Now")}
       </div>
-    </div>
+      <div className="duo-sect" style={sectionLabel}>Tier</div>
+      <div style={row}>
+        {opt("tierFilter", "all", "All tiers")}
+        {opt("tierFilter", "legend", "Legendary")}
+        {opt("tierFilter", "head", "Headliners")}
+        {opt("tierFilter", "prime", "Prime time")}
+        {opt("tierFilter", "open", "Openers")}
+      </div>
+      <div className="duo-sect" style={sectionLabel}>Stage</div>
+      <div style={row}>
+        {opt("stageFilter", "all", "All stages")}
+        {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))}
+      </div>
+      {dayGenres.length > 0 && (
+        <>
+          <div className="duo-sect" style={sectionLabel}>Genre</div>
+          <div style={row}>
+            {opt("genreFilter", "all", "All genres")}
+            {dayGenres.map(g => opt("genreFilter", g, g))}
+          </div>
+        </>
+      )}
+      <div className="duo-sect" style={sectionLabel}>Sort by</div>
+      <div style={row}>
+        {opt("sortBy", "time", "Time")}
+        {opt("sortBy", "tier", "Tier")}
+        {opt("sortBy", "stage", "Stage")}
+      </div>
+      <div style={{ display: "flex", gap: 8, marginTop: 24 }}>
+        <FieldButton kind="secondary" onClick={() => onReset()} style={{ width: "auto", flex: "0 0 auto" }}>Reset</FieldButton>
+        <FieldButton onClick={() => onApply(f)} style={{ flex: 1 }}>Show {matchCount} {matchCount === 1 ? "set" : "sets"}</FieldButton>
+      </div>
+    </FieldSheet>
   );
 }
 
+
+// A value the data uses to mean "unknown" is not content. Several festival
+// modules fill genre/country with "—", so ACL rows read "BMI Stage · —".
+// Drop it rather than print a separator that leads nowhere.
+function _lineupMetaValue(v) {
+  const s = String(v == null ? "" : v).trim();
+  if (!s || /^[-–—?·.\s]+$/.test(s) || /^(tba|tbd|n\/?a|unknown)$/i.test(s)) return null;
+  return s;
+}
+// "FRI" → "Fri", for the compact bar's one-line summary.
+const _lineupDayWord = (w) => { const s = String(w || ""); return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); };
+
 function LineupScreen({ state, setState }) {
+  // Names are never truncated: fit each list name to its row after every
+  // render and on resize.
+  useFitNames(() => document.querySelector("[data-lineup-scroll]"));
   // Highlight-on-arrival: ArtistScreen "SCHEDULE" hands off `lineupHighlight`.
   // Force the day to that artist's day so the flash actually has a target,
   // even if state.lineupDay was set to something else by an earlier route.
@@ -561,11 +547,18 @@ function LineupScreen({ state, setState }) {
     }
     return state.lineupDay || NOW.day;
   });
+  // This festival is open with its lineup published and its schedule still to
+  // come (founder call 2026-09-15: show the lineup, don't hold the festival
+  // back). The screen has to SAY that — a list of acts whose every time reads
+  // "—" otherwise looks like the app failed to load them.
+  const _schedTBA = typeof isScheduleTBA === "function" && isScheduleTBA();
   const [filter, setFilter] = React.useState("all"); // all | saved
   const [stageFilter, setStageFilter] = React.useState("all"); // all | stage id
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
+  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
+  const [sortBy, setSortBy] = React.useState("time");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
   // the same slot and read as clutter). Single-weekend festivals stay "all" so
@@ -582,6 +575,9 @@ function LineupScreen({ state, setState }) {
   const [weekendFilter, setWeekendFilter] = React.useState(
     () => hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends)
   const [q, setQ] = React.useState(""); // artist/stage/genre search
+  // Search is one icon in the header (the board's), not a standing field: the
+  // field opens on a tap and stays while it holds a term.
+  const [searchOpen, setSearchOpen] = React.useState(false);
 
   // After the screen renders, scroll the highlighted card/block into view and
   // let the CSS flash play. Then clear the highlight so re-mounts don't fire
@@ -603,10 +599,18 @@ function LineupScreen({ state, setState }) {
   // them. Active filters surface as dismissable chips so a user can clear
   // them without re-opening the panel.
   const [filterSheetOpen, setFilterSheetOpen] = React.useState(false);
-  const [viewMode, setViewMode] = React.useState(() => {
+  const [viewModePref, setViewMode] = React.useState(() => {
     try { return localStorage.getItem('plursky_lineup_view') || 'list'; } catch { return 'list'; }
   });
-  React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewMode); } catch {} }, [viewMode]);
+  React.useEffect(() => { try { localStorage.setItem('plursky_lineup_view', viewModePref); } catch {} }, [viewModePref]);
+  // With no set times there is no timetable to draw, so the grid is not merely
+  // un-offered (the toggle is hidden) — it must not be the ACTIVE mode either.
+  // `plursky_lineup_view` persists across a festival switch, and viewMode
+  // drives the scroll container and both row blocks further down: a stale
+  // "grid" carried in from EDC would have rendered an unscrollable, EMPTY
+  // screen here — no grid, because gridLead is false, and no list, because
+  // `viewMode === "list"` was false too. Resolve it once, here.
+  const viewMode = _schedTBA ? "list" : viewModePref;
 
   // ── Collapsing header ────────────────────────────────────────────────────
   // The title block + dates + day cards + weekend toggle + toolbar + search
@@ -616,17 +620,55 @@ function LineupScreen({ state, setState }) {
   // Scrolling up brings it back. Height + opacity, never display:none, so
   // the list underneath does not jump.
   const [collapsed, setCollapsed] = React.useState(false);
+  const collapsedRef = React.useRef(false);
+  collapsedRef.current = collapsed;
+  // Opening at the current hour HOLDS the hour while the page settles: until
+  // the user's first input (touch, wheel, pointer, key) or 1.5 s, whichever
+  // comes first. Until then nothing the page does moves the
+  // list off it, the fold, a late font, a row that resizes, and no scroll
+  // event folds or unfolds the header, because none of them is the user.
+  const openHoldRef = React.useRef(false);
+  // A fold or unfold the user asked for by a tap (the bar, search) resizes the
+  // list and nudges its scroll; for a moment that is not a drag either.
+  const tapLockRef = React.useRef(0);
+  const unfoldByTap = () => { tapLockRef.current = performance.now() + 400; setCollapsed(false); };
+  // The whole filter header folds, so its height is measured, not guessed:
+  // max-height animates to the real number and the list never jumps.
+  const filtersRef = React.useRef(null);
+  const [filtersH, setFiltersH] = React.useState(0);
+  const filtersHRef = React.useRef(0);
+  filtersHRef.current = filtersH;
+  React.useLayoutEffect(() => {
+    const el = filtersRef.current;
+    if (!el) return;
+    const measure = () => setFiltersH(el.offsetHeight);
+    measure();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(measure) : null;
+    if (ro) ro.observe(el);
+    return () => { if (ro) ro.disconnect(); };
+  }, [viewMode]);
+  const reduceMotion = typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   React.useEffect(() => {
     // The scrolling element differs by mode: LIST scrolls the page body,
     // GRID scrolls the grid itself (it owns the only scroll region there).
-    let el = null, lastY = 0;
+    let el = null, lastY = 0, lockUntil = 0, lastH = 0, lastInput = -1e9;
+    // Only scrolling the user drives folds or unfolds the header. The page
+    // moves the list too (opening at the hour, scroll anchoring after a
+    // resize, Jump to now), and none of that may toggle it.
+    const onInput = () => { lastInput = performance.now(); };
+    const onKey = (e) => { if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput(); };
     const attach = () => {
       const next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
       el = next;
       lastY = el ? el.scrollTop : 0;
-      if (el) el.addEventListener("scroll", onScroll, { passive: true });
+      lastH = el ? el.clientHeight : 0;
+      if (el) {
+        el.addEventListener("scroll", onScroll, { passive: true });
+        el.addEventListener("wheel", onInput, { passive: true });
+        el.addEventListener("touchmove", onInput, { passive: true });
+      }
     };
     // Read straight through — no rAF. The handler only reads scrollTop and
     // may set one boolean, and coalescing it behind a frame made the collapse
@@ -634,26 +676,113 @@ function LineupScreen({ state, setState }) {
     function onScroll() {
       if (!el) return;
       const y = el.scrollTop;
-      // Hysteresis: collapse only after a real downward drag past the title's
-      // own height, expand on any meaningful upward move. Without the gap the
-      // header flickers on the momentum bounce.
-      if (y > 56 && y > lastY + 4) setCollapsed(true);
-      else if (y < lastY - 8 || y < 24) setCollapsed(false);
+      const t = performance.now();
+      // While the header animates, the list's own box is resizing; those
+      // scroll events are not the user's and must not flip it back. Folding
+      // makes the scroller taller, which CLAMPS scrollTop upward near the
+      // end of the list: read as "the user scrolled up", that reopened the
+      // header, the list re-clamped, and GRID oscillated every ~500ms.
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      // Hysteresis: collapse only after a real downward drag, expand on any
+      // meaningful upward move. Without the gap the header flickers on the
+      // momentum bounce.
+      if (y > 56 && y > lastY + 4) {
+        // Only when the list still scrolls with the header gone. Otherwise
+        // folding it clamps scrollTop under 24 and bounces it open again.
+        if (!collapsedRef.current && el.scrollHeight - el.clientHeight - filtersHRef.current > 80) {
+          lockUntil = t + 280; setCollapsed(true);
+        }
+      } else if ((y < lastY - 8 || y < 24) && collapsedRef.current) {
+        lockUntil = t + 280; setCollapsed(false);
+      }
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     // The grid mounts a beat after a mode switch, so retry once.
     const t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
     };
   }, [viewMode, day]);
   // GRID opens collapsed: the grid IS the content there, and an expanded
-  // header left it ~390px of an 812px screen. LIST opens expanded — the title
-  // is the first thing you read on a list. Scrolling up restores the header in
-  // either mode.
-  React.useEffect(() => { setCollapsed(viewMode === "grid"); }, [day, viewMode, weekendFilter]);
+  // header left it ~390px of an 812px screen. LIST opens expanded, the title
+  // first, EXCEPT on the night that is running: there it opens at the current
+  // hour (Jake, 2026-10-06), scrolled to the first set of this hour or the
+  // earliest one still playing ([data-open-anchor]), with the header folded
+  // as GRID's is. Scrolling up, or a tap on the bar, restores the header.
+  // Late on the running night the sets after the hour are shorter than the
+  // screen, so scrollTop maxes out with the hour still far down the list
+  // (ACL Fri 20:30: 407px). The tail after the last set takes up exactly the
+  // difference, never more; it exists only on the running night.
+  const fitOpenTail = (sc) => {
+    const a = sc.querySelector("[data-open-anchor]"), tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    const base = sc.scrollHeight - tail.offsetHeight;
+    const need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
+  // The tail is the open's alone: a filter, search or sort on the running
+  // night is a new list that does not scroll to the hour, so the tail goes
+  // back to 0 rather than end it in blank space. Declared before the open
+  // effect, so a change that also reopens (day, weekend) is sized after it.
+  React.useLayoutEffect(() => {
+    const tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
+    if (tail) tail.style.height = "0px";
+  }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      const sc = document.querySelector("[data-lineup-scroll]");
+      const anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        fitOpenTail(sc);
+        const top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        // Near the top already (the night's first hour), or a list too short
+        // to scroll once folded: open as any other day.
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openHoldRef.current = true;
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
+    openHoldRef.current = false;
+    setCollapsed(viewMode === "grid");
+  }, [day, viewMode, weekendFilter]);
+  // The hold: re-anchor whenever the list box or anything above the hour
+  // resizes (the fold shrinks the plan actions; Chrome's scroll anchoring
+  // compensates, WebKit's does not), and let go on the first input.
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
+    const sc = document.querySelector("[data-lineup-scroll]");
+    if (!sc) return undefined;
+    const reanchor = () => {
+      if (!openHoldRef.current) return;
+      const a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      fitOpenTail(sc);
+      const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (const c of sc.children) { if (c.hasAttribute("data-open-anchor")) break; ro.observe(c); }
+    }
+    const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    const settle = setTimeout(() => release(), 1500);
+    const stop = () => { clearTimeout(settle); if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
+    // The fold may still be settling when the hold lets go: size the tail to
+    // the final box once more, so it never adds more room than the hour needs.
+    function release() { openHoldRef.current = false; stop(); fitOpenTail(sc); }
+    INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
+    reanchor();
+    return stop;
+  }, [day, viewMode, weekendFilter]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -670,8 +799,6 @@ function LineupScreen({ state, setState }) {
 
   // (v165: grid now shows one day at a time like list, so the scroll-to-
   // section listener and sessionStorage position restore are no longer needed.)
-  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
-  const [sortBy, setSortBy] = React.useState("time");
   // Active-filter count powers the badge on the FILTERS trigger button — replaces
   // the old in-page dismissable-chip strip. "filter !== all" (Mine vs All) and
   // sortBy counted because they're meaningful state diverging from defaults.
@@ -697,7 +824,8 @@ function LineupScreen({ state, setState }) {
 
   const matchesActive = (a) => {
     if (weekendFilter !== "all" && a.weekend !== weekendFilter && a.weekend !== "both") return false;
-    if (filter !== "all" && !state.saved.includes(a.id)) return false;
+    if (filter === "saved" && !state.saved.includes(a.id)) return false;
+    if (filter === "now" && !isSetLive(a)) return false;
     if (stageFilter !== "all" && a.stage !== stageFilter) return false;
     if (genreFilter !== "all" && a.genre !== genreFilter) return false;
     if (tierFilter === "head"   && a.tier !== 3) return false;
@@ -726,13 +854,15 @@ function LineupScreen({ state, setState }) {
   // Memoized so the 6-filter chain + sort only recomputes when an input
   // actually changes — was rebuilding over all 400+ artists on every render
   // (perf jank on older phones, report-card #8). Search (#3) folds in here.
+  // "Now" rows change with the clock, so that filter re-derives on each 30 s tick.
+  const _nowBucket = filter === "now" ? Math.floor(Date.now() / 30000) : 0;
   const savedSetIds = React.useMemo(() => new Set(state.saved), [state.saved]);
   const dayArtists = React.useMemo(() => {
     const term = q.trim().toLowerCase();
     return lineupFor(weekendFilter)
       .filter(a => a.day === day)
       .filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")
-      .filter(a => filter === "all" || savedSetIds.has(a.id))
+      .filter(a => filter === "all" || (filter === "saved" ? savedSetIds.has(a.id) : isSetLive(a)))
       .filter(a => stageFilter === "all" || a.stage === stageFilter)
       .filter(a => genreFilter === "all" || a.genre === genreFilter)
       .filter(a => {
@@ -771,7 +901,7 @@ function LineupScreen({ state, setState }) {
         }
         return toNightMin(a.start) - toNightMin(b.start);
       });
-  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds]);
+  }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
 
   // When a search empties the current day, the overwhelmingly common reason is
   // that the artist plays a DIFFERENT day — so say so rather than leaving the
@@ -827,7 +957,8 @@ function LineupScreen({ state, setState }) {
       return next;
     });
   };
-  // conflictById: artist.id → array of saved set names this artist clashes with.
+  // conflictById: artist.id → the saved SETS (whole acts) this artist clashes
+  // with, so a row can name the other side: who, when and where.
   // Powers the per-card ⚠ chip so users can spot WHICH saved sets clash, not
   // just the day-tab total. Memoized — was an O(n²) overlap loop on every
   // render (report-card #8); now only recomputes when saved/day/acks change.
@@ -843,8 +974,8 @@ function LineupScreen({ state, setState }) {
           }
           // Per-card chip stays even after KEEP BOTH so the warning info
           // doesn't disappear — the only thing that hides is the resolver card.
-          (_byId[a.id] = _byId[a.id] || []).push(b.name);
-          (_byId[b.id] = _byId[b.id] || []).push(a.name);
+          (_byId[a.id] = _byId[a.id] || []).push(b);
+          (_byId[b.id] = _byId[b.id] || []).push(a);
         }
       }
     }
@@ -858,7 +989,8 @@ function LineupScreen({ state, setState }) {
   // timetable and come back at the top — no separate show/hide state that
   // can disagree with the scroll position, and no second vertical scroller.
   // Same condition the grid itself renders under.
-  const gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  const liveSavedCount = savedInLineup(state.saved).length;
+  const gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   // The floating global Search pill hides in GRID (app.jsx): the grid's own
   // search is one short upward scroll away, and the pill sat on set cards.
   React.useEffect(() => {
@@ -866,93 +998,136 @@ function LineupScreen({ state, setState }) {
     setState(s => (!!s.lineupGrid === g ? s : { ...s, lineupGrid: g }));
   }, [viewMode]);
 
-  const searchRow = (
-    <div style={{ padding: gridLead ? "10px 12px 0" : "8px 16px 4px" }}>
+  const online = useOnlineStatus();
+  // Tier, stage, genre and sort live in the Filters sheet; its button counts them.
+  const otherFilterCount = (tierFilter !== "all" ? 1 : 0) + (stageFilter !== "all" ? 1 : 0)
+                         + (genreFilter !== "all" ? 1 : 0) + (sortBy !== "time" ? 1 : 0);
+  const textBtn = { ...fieldIconBtn, width: "auto", padding: "0 8px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
+  // LIST shows "Jump to now" only while the NOW rule is scrolled out of view.
+  const [nowOff, setNowOff] = React.useState(false);
+  React.useEffect(() => {
+    if (viewMode !== "list") return undefined;
+    const root = document.querySelector("[data-lineup-scroll]");
+    const rule = document.querySelector("[data-now-rule]");
+    if (!root || !rule || typeof IntersectionObserver !== "function") { setNowOff(false); return undefined; }
+    const io = new IntersectionObserver(([e]) => setNowOff(!e.isIntersecting), { root });
+    io.observe(rule);
+    return () => io.disconnect();
+  }, [viewMode, day, dayArtists, filter, sortBy]);
+
+  const searchInputRef = React.useRef(null);
+  // The compact bar's search button: unfold, then focus the one search input
+  // (in GRID it rides the grid's own scroller, so bring that to the top).
+  const openSearch = () => {
+    setSearchOpen(true);
+    unfoldByTap();
+    if (viewMode === "grid") {
+      const g = document.querySelector("[data-grid-scroll]");
+      if (g) try { g.scrollTo({ top: 0 }); } catch {}
+    }
+    setTimeout(() => { try { searchInputRef.current?.focus({ preventScroll: true }); } catch {} }, reduceMotion ? 0 : 260);
+  };
+  // What the folded bar says: "Fri 2 · Weekend 1 · All stages", plus a stage
+  // or Saved/Now, extra filters and a search term when they narrow the list.
+  const compactSummary = (() => {
+    const d = dayStats.find(x => x.n === day);
+    const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
+    const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
+    const show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
+    const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
+    return [
+      dayText,
+      hasWeekends ? (weekendFilter === "W2" ? "Weekend 2" : "Weekend 1") : null,
+      show,
+      extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null,
+      q.trim() ? `“${q.trim()}”` : null,
+    ].filter(Boolean).join(" · ");
+  })();
+  const surpriseMe = () => {
+    const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    const savedGenres = new Set(savedArtists.map(a => a.genre));
+    const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    const pool = savedGenres.size
+      ? unsaved.filter(a => savedGenres.has(a.genre))
+      : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({ ...state, artist: pick.id });
+  };
+  const searchRow = !(searchOpen || q) ? null : (
+    <div data-lineup-search style={{ padding: gridLead ? "8px 12px 0" : "4px 20px 4px" }}>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-        <span aria-hidden="true" style={{
-          position: "absolute", left: 12, fontSize: 13, color: "var(--muted)",
-          pointerEvents: "none",
-        }}>⌕</span>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round"
+          style={{ position: "absolute", left: 14, pointerEvents: "none", zIndex: 1 }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         <input
+          ref={searchInputRef}
           value={q}
           onChange={e => setQ(e.target.value)}
           placeholder="Search artists, stages, genres…"
           aria-label="Search the lineup"
-          style={{
-            width: "100%", boxSizing: "border-box",
-            padding: "9px 34px 9px 32px", borderRadius: 12,
-            border: "1px solid var(--line-2)", background: "var(--paper-2)",
-            color: "var(--ink)", fontSize: 14, outline: "none",
-            fontFamily: "inherit",
-          }}
+          className="duo-input"
+          style={{ padding: "0 44px 0 40px" }}
         />
         {q && (
-          <button
-            onClick={() => setQ("")}
-            aria-label="Clear search"
-            style={{
-              position: "absolute", right: 6, width: 28, height: 28,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              borderRadius: 999, border: "none", background: "transparent",
-              color: "var(--muted)", fontSize: 16, cursor: "pointer",
-            }}
-          >×</button>
-        )}
-      </div>
-    </div>
-  );
-
-  // MY NIGHT / SHARE / SURPRISE / SETS COUNT. In GRID the count leads on the
-  // left so the row reads as one zone with the search above it.
-  const actionsRow = (
-    <div style={{
-      display: "flex", alignItems: "center", justifyContent: gridLead ? "space-between" : "flex-end",
-      padding: gridLead ? "8px 12px 10px" : "10px 20px", gap: 8,
-    }}>
-      {gridLead && (
-        <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>{dayArtists.length} SETS</div>
-      )}
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        {totalSaved >= 2 && (
-          <button onClick={() => setWizardOpen(true)} style={{
-            display: "flex", alignItems: "center", gap: 5,
-            background: dayStats.some(d => d.clashes > 0) ? "var(--ember)" : "var(--ink)",
-            color: "var(--paper)", border: "none",
-            borderRadius: 999, padding: "5px 12px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>
-            {dayStats.some(d => d.clashes > 0) ? "⚠" : "✦"} MY NIGHT
+          <button onClick={() => setQ("")} aria-label="Clear search" style={{ ...fieldIconBtn, position: "absolute", right: 0, color: "var(--text-2)" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
         )}
-        {state.saved.length > 0 && (
-          <ShareLineupButton state={state} />
-        )}
-        <button onClick={() => {
-          const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-          const savedGenres = new Set(savedArtists.map(a => a.genre));
-          const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-          const pool = savedGenres.size
-            ? unsaved.filter(a => savedGenres.has(a.genre))
-            : unsaved;
-          if (!(pool.length ? pool : unsaved).length) return;
-          const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-          setState({ ...state, artist: pick.id });
-        }} className="mono" title="Discover a random artist that matches your taste" style={{
-          padding: "5px 10px", borderRadius: 999,
-          background: "var(--horizon)", color: "#fff", border: "none",
-          fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
-          whiteSpace: "nowrap",
-        }}>✦ SURPRISE</button>
-        {!gridLead && (
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-            {dayArtists.length} SETS
-          </div>
-        )}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0 -8px" }}>
+        <button onClick={surpriseMe} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
+        <button onClick={() => { setQ(""); setSearchOpen(false); }} style={textBtn}>Done</button>
       </div>
     </div>
   );
 
-  const conflictCard = conflicts.length > 0 && filter !== "all" ? (
+  // "Save the Day": nothing saved for this day yet → one tap saves its
+  // headliners. A quiet row in both modes, gone once the day has a save.
+  const saveDayCard = savedToday.length === 0 ? (() => {
+    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
+    if (dayTopPicks.length === 0) return null;
+    const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    const topPickIds = dayTopPicks.map(a => a.id);
+    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
+    return (
+      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} headliners for ${dayLabel}`}
+        style={{ ...textBtn, color: "var(--ink)", fontWeight: 600 }}>Save top picks · {dayTopPicks.length}</button>
+    );
+  })() : null;
+
+  // Plan actions belong to the plan: Share, Calendar and schedule Updates
+  // show under My plan. With nothing saved for this day the one
+  // header action is "Save top picks". Everything else is search (Surprise
+  // me) or Filters, one tap away, so scanning sets is what the screen is for.
+  // My night stays in the header in every view: it is the plan's entry
+  // point and carries the plan-wide clash signal.
+  const myNight = totalSaved >= 2 ? (() => {
+    const clash = dayStats.some(d => d.clashes > 0);
+    return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
+  })() : null;
+  const planActions = filter === "saved" ? (
+    <>
+      {liveSavedCount > 0 && <ShareLineupButton state={state} />}
+      {liveSavedCount > 0 && (
+        <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
+      )}
+      {hasFeed && (
+        <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
+      )}
+    </>
+  ) : null;
+  const actionsRow = (saveDayCard || myNight || planActions) ? (
+    <div data-lineup-actions style={{
+      display: "flex", alignItems: "center", flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px", gap: 4,
+    }}>
+      {saveDayCard}
+      {myNight}
+      {planActions}
+    </div>
+  ) : null;
+
+  const conflictCard = conflicts.length > 0 && filter === "saved" ? (
     <ConflictResolver
       conflicts={conflicts}
       onKeep={(keepId, dropId) => {
@@ -967,291 +1142,196 @@ function LineupScreen({ state, setState }) {
     const stage = STAGES.find(s => s.id === stageFilter);
     if (!stage?.vibe) return null;
     return (
-      <div style={{
-        margin: gridLead ? "0 12px 10px" : "0 16px 10px",
-        padding: "10px 12px",
-        borderRadius: 12,
-        borderLeft: `3px solid ${stage.color}`,
-        background: `${stage.color}12`,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: stage.vibeNote ? 5 : 0 }}>
-          <span className="mono" style={{
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 800,
-            color: stage.color, textTransform: "uppercase",
-          }}>{stage.vibe}</span>
-          {stage.peak && (
-            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--muted)", fontWeight: 600 }}>
-              · PEAKS {stage.peak}
-            </span>
-          )}
-          {stage.desc && (
-            <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)", marginLeft: "auto" }}>
-              {stage.desc.toUpperCase()}
-            </span>
-          )}
+      <div style={{ margin: gridLead ? "0 12px 12px" : "4px 20px 12px", padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)" }}>
+        <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>
+          <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: "var(--text-3)" }} />
+          {stage.name} · {stage.vibe}{stage.peak ? ` · peaks ${stage.peak}` : ""}
         </div>
-        {stage.vibeNote && (
-          <div style={{ fontSize: 12, lineHeight: 1.4, color: "var(--ink)", fontStyle: "italic" }}>
-            {stage.vibeNote}
-          </div>
-        )}
+        {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
+        {stage.vibeNote && <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px" }}>{stage.vibeNote}</div>}
+        <button onClick={() => setState({ ...state, tab: "map", focusStage: stage.id })} style={{ ...textBtn, margin: "4px 0 -8px -8px", color: "var(--acc-ink)" }}>Show on map</button>
       </div>
-    );
-  })() : null;
-
-  // "Save the Day" — when nothing is saved for the selected day, one tap
-  // saves every tier-3 top pick. Disappears once the day has any save. In
-  // GRID it is an optional assist above the timetable, not the screen's
-  // hero: one slim outlined row that scrolls away with the rest.
-  const saveDayCard = savedToday.length === 0 ? (() => {
-    const dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
-    if (dayTopPicks.length === 0) return null;
-    const dayLabel = DAYS.find(d => d.n === day)?.label || `Day ${day}`;
-    const topPickIds = dayTopPicks.map(a => a.id);
-    const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
-    if (gridLead) return (
-      <button data-save-day onClick={save} style={{
-        width: "calc(100% - 24px)", margin: "0 12px 10px",
-        display: "flex", alignItems: "center", gap: 10, minHeight: 44,
-        background: "transparent", color: "var(--ember-ink)", border: "1px solid var(--ember)",
-        borderRadius: 12, padding: "8px 12px", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
-      }}>
-        <span aria-hidden="true" style={{ fontSize: 14, flexShrink: 0 }}>✦</span>
-        <span style={{ flex: 1, minWidth: 0, fontSize: 13, fontWeight: 600, color: "var(--ink)" }}>Save all top picks for {dayLabel}</span>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800, flexShrink: 0 }}>+{dayTopPicks.length} · SAVE</span>
-      </button>
-    );
-    return (
-      <button
-        onClick={save}
-        style={{
-          width: "100%",
-          display: "flex", alignItems: "center", gap: 12,
-          background: "var(--ember)", color: "#fff", border: "none",
-          borderRadius: 14, padding: "13px 16px",
-          margin: "12px 0 14px",
-          cursor: "pointer", textAlign: "left",
-          boxShadow: "0 4px 16px rgba(232,93,46,0.30)",
-          fontFamily: "inherit",
-        }}>
-        <span style={{
-          flexShrink: 0, width: 38, height: 38, borderRadius: 999,
-          background: "rgba(255,255,255,0.18)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 18, lineHeight: 1,
-        }}>✦</span>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="serif" style={{ fontSize: 18, lineHeight: 1.05, color: "#fff" }}>
-            Save all top picks for {dayLabel}
-          </div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, marginTop: 3, opacity: 0.9, fontWeight: 700 }}>
-            +{dayTopPicks.length} SETS · TAP TO ADD
-          </div>
-        </div>
-        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.3, fontWeight: 800, flexShrink: 0 }}>
-          SAVE →
-        </span>
-      </button>
     );
   })() : null;
 
   return (
     <Screen bg="var(--paper)">
-      {/* Title + dates. Folds on scroll down, returns on scroll up. Height
-          and opacity, never display:none, so the list below never jumps.
+      {/* The whole filter header (title, days, weekend, show row, search,
+          count) folds on a downward scroll into one compact bar, and returns
+          on an upward scroll or a tap on that bar. Height + opacity to the
+          MEASURED height, never display:none, so the list never jumps; inert
+          while folded so focus cannot land on a control nobody can see.
           minHeight:0 because a column flex item's default min-height:auto
-          would floor this at its content height. */}
-      <div data-lineup-header data-collapsed={collapsed ? "1" : "0"} style={{
-        padding: collapsed ? "0 20px" : "8px 20px 8px",
-        display: "flex", alignItems: "center", gap: 8,
-        maxHeight: collapsed ? 0 : 90, minHeight: 0,
-        opacity: collapsed ? 0 : 1,
-        overflow: "hidden", flexShrink: 0,
-        transform: collapsed ? "translateY(-6px)" : "translateY(0)",
-        transition: "max-height 220ms ease, opacity 160ms ease, padding 220ms ease, transform 220ms ease",
-        pointerEvents: collapsed ? "none" : "auto",
+          would floor it at its content height. */}
+      <div data-lineup-filters data-collapsed={collapsed ? "1" : "0"}
+        inert={collapsed ? "" : undefined} aria-hidden={collapsed || undefined}
+        style={{
+          flexShrink: 0, minHeight: 0, overflow: "hidden",
+          maxHeight: collapsed ? 0 : (filtersH ? filtersH : "none"),
+          opacity: collapsed ? 0 : 1,
+          transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
+        }}>
+      <div ref={filtersRef}>
+      <div data-lineup-header style={{
+        padding: "8px 8px 4px 20px",
+        display: "flex", alignItems: "center", gap: 4,
       }}>
         {state._navStack?.length > 0 && (
-          <button onClick={() => window._popNav?.()} aria-label="Go back" style={{
-            width: 32, height: 32, borderRadius: 8,
-            background: "var(--paper-2)", border: "1px solid var(--line)",
-            color: "var(--ink)", cursor: "pointer", fontSize: 16, flexShrink: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>←</button>
+          <button onClick={() => window._popNav?.()} aria-label="Go back" style={{ ...fieldIconBtn, marginLeft: -12 }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg>
+          </button>
         )}
-        <div style={{ flex: 1 }}>
-          <TopBar title={<span>Lineup</span>} sub={`${FESTIVAL_CONFIG.brand.toUpperCase()} · ${FESTIVAL_CONFIG.dates.toUpperCase()}`} tight />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <h1 className="duo-title" style={{ margin: 0 }}>Lineup</h1>
         </div>
-        {hasFeed && (
-          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={{
-            minHeight: 32, padding: "0 11px", borderRadius: 999, flexShrink: 0, cursor: "pointer",
-            background: "transparent", border: "1px solid var(--line-2)", color: "var(--ink)",
-            fontFamily: "'Geist Mono', monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          }}>↻ UPDATES</button>
-        )}
+        {/* The board's two header actions: search and Filters. */}
+        <button data-lineup-search-toggle onClick={() => (searchOpen || q) ? (setQ(""), setSearchOpen(false)) : openSearch()}
+          aria-label="Search" aria-expanded={!!(searchOpen || q)} style={{ ...fieldIconBtn, color: "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
+        </button>
+        <button data-lineup-filters-open onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`}
+          style={{ ...fieldIconBtn, position: "relative", color: otherFilterCount ? "var(--acc-ink)" : "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H13 M17 7 H20 M4 17 H7 M11 17 H20"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+          {otherFilterCount > 0 && <b aria-hidden="true" className="duo-data-s" style={{ position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, background: "var(--acc)", color: "var(--on-acc)", fontSize: 11, lineHeight: "16px", textAlign: "center" }}>{otherFilterCount}</b>}
+        </button>
       </div>
 
-      {/* Day tabs — now with per-day saved + conflict badges baked in so a
-          vet can see at a glance which night needs schedule attention. */}
-      <div style={{
-        display: "flex", gap: 6, flexShrink: 0,
-        padding: collapsed ? "4px 16px 5px" : "4px 16px 10px",
-        borderBottom: "1px solid var(--line)",
-        transition: "padding 220ms ease",
+      {/* Day selector: stays on screen while the list scrolls. Per-day saved
+          and clash counts ride on each day, in words for assistive tech. */}
+      <div role="tablist" aria-label="Festival day" style={{
+        display: "flex", gap: 22, flexShrink: 0, flexWrap: "wrap",
+        padding: "6px 20px 8px",
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
           return (
-            <button key={d.n} onClick={() => {
-              setDay(d.n);
-              setState(s => ({ ...s, lineupDay: d.n }));
-            }} style={{
-              flex: 1,
-              padding: collapsed ? "4px 8px" : "10px 8px",
-              borderRadius: 12,
-              transition: "padding 220ms ease",
-              background: on ? "var(--ink)" : "transparent",
-              color: on ? "var(--paper)" : "var(--ink)",
-              border: on ? "none" : "1px solid var(--line-2)",
-              cursor: "pointer",
-              display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
-              position: "relative",
-            }}>
-              {collapsed ? (
-                <span className="mono" style={{
-                  fontSize: 10, letterSpacing: 1.2, fontWeight: 800,
-                  display: "flex", alignItems: "baseline", gap: 5,
-                }}>
-                  {d.label} {d.date.split(" ")[1]}
-                  {d.count > 0 && (
-                    <span style={{ fontSize: 8, color: on ? "rgba(247,237,224,0.75)" : "var(--ember)" }}>
-                      ★{d.count}{d.clashes > 0 ? `·${d.clashes}⚠` : ""}
-                    </span>
-                  )}
+            <button key={d.n} role="tab" aria-selected={on} className="duo-tab"
+              aria-label={`${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
+              onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}>
+              <span className="duo-label" style={{ fontSize: 12 }}>{d.label}</span>
+              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{d.date.split(" ")[1]}</span>
+              {d.count > 0 && (
+                <span aria-hidden="true" className="duo-data-s" style={{ color: d.clashes ? "var(--clash)" : "var(--acc-ink)", whiteSpace: "nowrap" }}>
+                  {d.count}
                 </span>
-              ) : (
-                <>
-                  <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: on ? 0.7 : 0.5 }}>{d.label}</span>
-                  <span className="serif" style={{ fontSize: 18 }}>{d.date.split(" ")[1]}</span>
-                  {d.count > 0 && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                      color: on ? "rgba(247,237,224,0.7)" : "var(--muted)",
-                      marginTop: 1,
-                    }}>
-                      {d.count} SAVED{d.clashes > 0 ? ` · ${d.clashes}⚠` : ""}
-                    </span>
-                  )}
-                </>
               )}
             </button>
           );
         })}
       </div>
 
-      {/* Weekend toggle — only shows for multi-weekend festivals like ACL */}
+      {/* Weekend toggle, only for multi-weekend festivals like ACL. */}
       {hasWeekends && (
-        <div style={{
-          display: "flex", gap: 4, padding: "8px 16px 6px",
-          borderBottom: "1px solid var(--line)",
-        }}>
-          {[
-            { value: "W1",  label: "WEEKEND 1" },
-            { value: "W2",  label: "WEEKEND 2" },
-          ].map(w => {
+        <div role="tablist" aria-label="Weekend" className="duo-seg" style={{ margin: "0 20px 8px" }}>
+          {[{ value: "W1", label: "Weekend 1" }, { value: "W2", label: "Weekend 2" }].map(w => {
             const on = weekendFilter === w.value;
             return (
-              <button key={w.value} onClick={() => setWeekendFilter(w.value)} className="mono" style={{
-                flex: 1, padding: "7px 6px", borderRadius: 8,
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--muted)",
-                border: on ? "none" : "1px solid var(--line-2)",
-                fontSize: 9, letterSpacing: 1.2, fontWeight: 700, cursor: "pointer",
-              }}>{w.label}</button>
+              <button key={w.value} role="tab" aria-selected={on} aria-pressed={on} onClick={() => setWeekendFilter(w.value)}>{w.label}</button>
             );
           })}
         </div>
       )}
 
-      {/* Compact toolbar: view mode segment + single FILTERS trigger.
-          All filter/sort dimensions live inside the bottom sheet now —
-          no more in-page expanding drawer + active-chip strip. The
-          badge count on the trigger replaces the strip's signaling. */}
-      <div className="no-scrollbar" style={{
-        display: "flex", alignItems: "center", gap: 6, padding: "10px 16px 8px",
-        overflowX: "auto", scrollbarWidth: "none",
-        borderBottom: "1px solid var(--line)",
-      }}>
-        <div style={{
-          flexShrink: 0, display: "inline-flex",
-          border: "1px solid var(--line-2)", borderRadius: 999, padding: 2, gap: 2,
-        }}>
-          {[["list","☰ LIST"],["grid","⊞ GRID"]].map(([k,l]) => {
-            const on = viewMode === k;
-            return (
-              <button key={k} onClick={() => setViewMode(k)} className="mono" style={{
-                padding: "3px 9px", borderRadius: 999, border: "none",
-                background: on ? "var(--ink)" : "transparent",
-                color: on ? "var(--paper)" : "var(--ink)",
-                fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-                whiteSpace: "nowrap",
-              }}>{l}</button>
-            );
-          })}
-          <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} className="mono" style={{
-            padding: "3px 9px", borderRadius: 999, border: "none",
-            background: "transparent", color: "var(--ink)",
-            fontSize: 9, letterSpacing: 1, fontWeight: 700, cursor: "pointer",
-            whiteSpace: "nowrap",
-          }}>◎ MAP</button>
-        </div>
-        <button onClick={() => setFilterSheetOpen(true)} className="mono" style={{
-          flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-          background: activeFilterCount > 0 ? "var(--ember)" : "transparent",
-          color: activeFilterCount > 0 ? "#fff" : "var(--ink)",
-          border: activeFilterCount > 0 ? "none" : "1px solid var(--line-2)",
-          fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
-          fontWeight: 700, whiteSpace: "nowrap",
-          display: "inline-flex", alignItems: "center", gap: 6,
-        }}>
-          <span>FILTERS</span>
-          {activeFilterCount > 0 && (
-            <span style={{
-              background: "rgba(255,255,255,0.28)",
-              borderRadius: 999, padding: "1px 7px",
-              fontSize: 9, fontWeight: 800,
-            }}>{activeFilterCount}</span>
-          )}
-        </button>
-        {/* Pre-festival utility: saved sets → .ics into Calendar. The same
-            export already lives in the NightWizard header; this surfaces it
-            from the main schedule (Partiful/Eventbrite add-to-calendar
-            pattern — affordance on the schedule itself). */}
-        {state.saved.length > 0 && (
-          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(state.saved); }} className="mono" style={{
-            flexShrink: 0, padding: "5px 11px", borderRadius: 999,
-            background: "transparent", color: "var(--ink)",
-            border: "1px solid var(--line-2)",
-            fontSize: 10, letterSpacing: 1.1, cursor: "pointer",
-            fontWeight: 700, whiteSpace: "nowrap",
-          }}>📅 CALENDAR</button>
-        )}
-        {sortBy !== "time" && (
-          <span className="mono" style={{
-            flexShrink: 0, padding: "5px 9px", borderRadius: 999,
-            background: "var(--paper-2)", color: "var(--muted)",
-            border: "1px solid var(--line-2)",
-            fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
-            whiteSpace: "nowrap",
-          }}>SORT: {sortBy.toUpperCase()}</span>
-        )}
-      </div>
+      {!_schedTBA && (
+        <LineupOverview
+          sets={lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"))}
+          savedSet={savedSetIds}
+          liveNight={NOW.night === day}
+          stageFilter={viewMode === "list" ? stageFilter : "all"}
+          onStage={id => {
+            if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
+            setStageFilter(stageFilter === id ? "all" : id);
+          }} />
+      )}
 
-      {/* LIST: the utility stack sits here, above the list. GRID: the same
-          elements ride INSIDE the grid's one scroller (TimelineGrid `lead`),
+      {/* The board's mode row: List or Grid, then My plan and Live as
+          toggles (both off = every set). Tier, stage, genre and sort live in
+          the Filters sheet behind the header's Filters button. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 6px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", rowGap: 0 }}>
+        {!_schedTBA && (
+          <div role="radiogroup" aria-label="View" style={{ display: "flex", gap: 8 }}>
+            {[{ id: "list", label: "List" }, { id: "grid", label: "Grid" }].map(o => (
+              <button key={o.id} role="radio" aria-checked={viewMode === o.id} aria-label={o.label} className="duo-chip duo-viewchip"
+                onClick={() => setViewMode(o.id)}>
+                <span>
+                  <span className="lbl">{o.label}</span>
+                  {/* Under 360pt the pair is two icons, so the row fits on one line. */}
+                  <svg className="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    {o.id === "list" ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/> : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
+                  </svg>
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+        {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
+          const on = filter === o.id;
+          return (
+            <button key={o.id} aria-pressed={on} className="duo-chip" data-lineup-show={o.id}
+              onClick={() => setFilter(on ? "all" : o.id)}>
+              <span>
+                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
+                {o.label}
+                {o.n > 0 && <b>{o.n}</b>}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      {/* LIST: the utility stack folds with the header. GRID: the same
+          elements ride INSIDE the grid's one scroller (TimelineGrid lead),
           so they scroll away and leave the timetable (#116). */}
       {!gridLead && searchRow}
       {!gridLead && actionsRow}
+      </div>
+      </div>
+
+      {/* Folded: one line says what is selected; a tap on it (or any upward
+          scroll) brings the full header back, and search is one tap too. */}
+      <div data-lineup-compact data-collapsed={collapsed ? "1" : "0"}
+        inert={collapsed ? undefined : ""} aria-hidden={collapsed ? undefined : true}
+        style={{
+          flexShrink: 0, minHeight: 0, overflow: "hidden",
+          maxHeight: collapsed ? 56 : 0, opacity: collapsed ? 1 : 0,
+          borderBottom: collapsed ? "1px solid var(--line)" : "none",
+          transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
+        }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "2px 8px 2px 20px", minHeight: 48 }}>
+          <button data-lineup-expand onClick={unfoldByTap}
+            aria-label={`Show days and filters. Showing ${compactSummary}`}
+            style={{
+              flex: 1, minWidth: 0, minHeight: 44, padding: 0, border: "none", background: "transparent",
+              color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+              display: "flex", alignItems: "center", gap: 6,
+              fontSize: 15, lineHeight: "20px", fontWeight: 600,
+            }}>
+            <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>{compactSummary}</span>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M6 9 L12 15 L18 9"/></svg>
+          </button>
+          <button data-lineup-search-open aria-label="Search" onClick={openSearch} style={{ ...fieldIconBtn, color: "var(--ink)" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
+          </button>
+        </div>
+      </div>
+      {!online && (
+        <div role="status" className="duo-card duo-body-s" style={{ margin: "8px 16px 0", padding: "10px 14px", display: "flex", alignItems: "center", gap: 10, color: "var(--ink-2)", fontWeight: 400 }}>
+          <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--ink-3)", flexShrink: 0 }} />
+          Offline · showing the schedule saved on this phone
+        </div>
+      )}
+
+      {/* Open, lineup in, schedule still to come. Without this the screen is a
+          list of acts whose every time reads "—", which looks like the app
+          failed to load them rather than like the festival hasn't said yet. */}
+      {_schedTBA && (
+        <div role="status" className="duo-card" style={{ margin: "8px 16px 0", padding: "12px 16px" }}>
+          <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
+            The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
+          </div>
+        </div>
+      )}
+
 
       {wizardOpen && (
         <NightWizard state={state} setState={setState} onClose={() => setWizardOpen(false)} />
@@ -1264,12 +1344,11 @@ function LineupScreen({ state, setState }) {
           only scrolling element on the screen. Two nested scroll regions was
           the whole "tough to navigate" complaint — a drag on iOS would pick
           whichever one it liked. LIST mode is unchanged. */}
-      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={
+      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time")} style={
         viewMode === "grid"
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
-          : { padding: "0 16px 90px" }
+          : { padding: "0 20px 96px" }
       }>
-        {!gridLead && saveDayCard}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
@@ -1292,7 +1371,7 @@ function LineupScreen({ state, setState }) {
                   the full width so more stages are visible at once. */}
               <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
                 <TimelineGrid
-                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}{saveDayCard}</>}
+                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}</>}
                   day={day}
                   allDayArtists={dayArt}
                   state={state}
@@ -1306,240 +1385,171 @@ function LineupScreen({ state, setState }) {
             </div>
           );
         })()}
-        {/* Zero rows has two completely different causes and they used to share
-            one message: a search that matched nothing told you "No sets saved
-            yet — TAP ANY [+] TO SAVE YOUR FIRST SET", which answers a question
-            nobody asked and hides the fact that the query is what emptied the
-            list. Search loses to nothing else here, because when a query is
-            active it is always the thing the user is looking at. */}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() !== "" && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              No matches for “{q.trim()}”
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {_otherDayHits > 0
-                ? `${_otherDayHits} MATCH${_otherDayHits === 1 ? "" : "ES"} ON ANOTHER DAY`
-                : "NO ARTIST, STAGE OR GENRE BY THAT NAME"}
-            </div>
-            <button onClick={() => setQ("")} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>CLEAR SEARCH</button>
-          </div>
-        )}
-        {/* The SAME defect the search branch above was fixed for, one layer
-            out: a TIER/STAGE/GENRE chip that matches nothing fell through to
-            the saved-list message and told the user "No sets saved yet — TAP
-            ANY [+] TO SAVE YOUR FIRST SET". Saving is not the problem and the
-            filter is not mentioned. Reachable on any festival — a stage that
-            does not run on the selected day, or a genre with no act that
-            day. Named causes beat one generic message — that was the lesson
-            the first fix wrote down, and it applies to the chips too. */}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && _chipFilterActive && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              {_emptyChipLabel
-                ? `Nothing on ${_emptyChipLabel} yet`
-                : "Nothing matches those filters"}
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {_emptyChipLabel ? "NOTHING THERE ON THIS DAY" : "TRY CLEARING ONE OF THEM"}
-            </div>
-            <button onClick={() => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); }} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>CLEAR FILTERS</button>
-          </div>
-        )}
-        {viewMode === "list" && dayArtists.length === 0 && q.trim() === "" && !_chipFilterActive && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              {state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day"}
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              {state.saved.length === 0
-                ? "TAP ANY [+] TO SAVE YOUR FIRST SET"
-                : 'SWITCH TO "ALL" TO BROWSE'}
-            </div>
-            {state.saved.length === 0 && filter !== "all" && (
-              <button onClick={() => setFilter("all")} className="mono" style={{
-                marginTop: 14, padding: "8px 16px", borderRadius: 999,
-                background: "var(--ink)", color: "var(--paper)", border: "none",
-                fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-              }}>BROWSE ALL SETS</button>
-            )}
-          </div>
-        )}
-        {viewMode === "grid" && filter === "saved" && state.saved.length === 0 && (
-          <div style={{ padding: 40, textAlign: "center" }}>
-            <div className="serif" style={{ fontSize: 22, color: "var(--muted)", fontStyle: "italic", marginBottom: 6 }}>
-              No sets saved yet
-            </div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
-              SWITCH TO ALL — TAP ANY SET TO SAVE
-            </div>
-            <button onClick={() => setFilter("all")} className="mono" style={{
-              marginTop: 14, padding: "8px 16px", borderRadius: 999,
-              background: "var(--ink)", color: "var(--paper)", border: "none",
-              fontSize: 10, letterSpacing: 1.4, fontWeight: 700, cursor: "pointer",
-            }}>BROWSE ALL SETS</button>
-          </div>
-        )}
-        {viewMode === "list" && dayArtists.map(a => {
-          const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
-          const saved = state.saved.includes(a.id);
-          const clashWith = conflictById[a.id];
-          const isHighlighted = highlightId === a.id;
-          // FotMob-style LIVE pill — green pulsing dot + LIVE caps when
-          // the set is currently playing (real date AND time, see isSetLive).
-          const isLive = isSetLive(a);
+        {/* Zero rows has different causes; each gets its own sentence and one
+            action: search, then the Filters chips, then Now, then saved. */}
+        {viewMode === "list" && dayArtists.length === 0 && (() => {
+          const term = q.trim();
+          const empty = term
+            ? { title: `No matches for “${term}”`,
+                sub: _otherDayHits > 0 ? `${_otherDayHits} match${_otherDayHits === 1 ? "" : "es"} on another day.` : "No artist, stage or genre by that name.",
+                action: "Clear search", onAction: () => setQ("") }
+            : _chipFilterActive
+            ? { title: _emptyChipLabel ? `Nothing on ${_emptyChipLabel} yet` : "Nothing matches those filters",
+                sub: _emptyChipLabel ? "Nothing there on this day." : "Try clearing one of them.",
+                action: "Clear filters", onAction: () => { setTierFilter("all"); setStageFilter("all"); setGenreFilter("all"); } }
+            : filter === "now"
+            ? { title: "Nothing is on right now",
+                sub: NOW.night === day ? "Between sets on this day." : "This day isn't live right now.",
+                action: "Show all sets", onAction: () => setFilter("all") }
+            : { title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
+                sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+                action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
           return (
-            <div key={a.id}
-              data-animate
-              data-lineup-highlight={isHighlighted ? "true" : undefined}
-              style={{
-                display: "flex", gap: 10, padding: "12px 8px",
-                margin: "0 -8px",
-                borderBottom: "1px solid var(--line)",
-                alignItems: "center",
-                borderRadius: isHighlighted ? 10 : 0,
-                animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
-              }}>
-              <div style={{ width: 46, flexShrink: 0 }}>
-                <div className="mono" style={{ fontSize: 13, letterSpacing: 0.5, fontWeight: 500 }}>{fmt12(a.start)}</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)" }}>{fmt12(a.end)}</div>
-                {isLive && (
-                  <div className="mono" style={{
-                    marginTop: 4, fontSize: 8, letterSpacing: 1, fontWeight: 800,
-                    color: "var(--success)", background: "rgba(45,122,85,0.14)",
-                    border: "0.5px solid rgba(45,122,85,0.55)",
-                    padding: "1px 5px", borderRadius: 4,
-                    display: "inline-flex", alignItems: "center", gap: 4,
-                  }}>
-                    <span style={{
-                      width: 5, height: 5, borderRadius: 5,
-                      background: "var(--success)",
-                      animation: "pulse 1.4s infinite",
-                    }}/>LIVE
-                  </div>
-                )}
-                {clashWith && (
-                  <div className="mono" title={`Overlaps with ${clashWith.join(", ")}`} style={{
-                    marginTop: 4, fontSize: 8, letterSpacing: 0.8, fontWeight: 800,
-                    color: "var(--ember-ink)", background: "rgba(232,93,46,0.12)",
-                    border: "0.5px solid rgba(232,93,46,0.55)",
-                    padding: "1px 4px", borderRadius: 4,
-                    display: "inline-block",
-                  }}>⚠ CLASH</div>
-                )}
-              </div>
-              <div style={{ width: 4, alignSelf: "stretch", background: stage.color, borderRadius: 3 }} />
-              <div style={{ flex: 1, minWidth: 0, cursor: "pointer" }}
-                   onClick={() => setState({ ...state, artist: a.id })}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 7, flexWrap: "wrap" }}>
-                  <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, letterSpacing: -0.3 }}>{a.name}</div>
-                  <TierStars tier={a.tier} />
-                  {isLegendary(a) && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 800,
-                      color: "#fbbf24", background: "rgba(251,191,36,0.14)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(251,191,36,0.6)",
-                    }}>★ DON'T MISS</span>
-                  )}
-                  {spotifyMatchedIds.has(a.id) && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
-                      color: "#1DB954", background: "rgba(29,185,84,0.12)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(29,185,84,0.5)",
-                    }}>♫</span>
-                  )}
-                  {(() => { const n = window.sbGetCrewCount?.(a.id) || 0; return n > 0 ? (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1, fontWeight: 700,
-                      color: "var(--horizon)", background: "rgba(123,61,154,0.12)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: "0.5px solid rgba(123,61,154,0.5)",
-                    }}>👥 {n}</span>
-                  ) : null; })()}
-                  {hasWeekends && a.weekend && a.weekend !== "both" && (
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
-                      color: a.weekend === "W1" ? "#2563eb" : "#9333ea",
-                      background: a.weekend === "W1" ? "rgba(37,99,235,0.1)" : "rgba(147,51,234,0.1)",
-                      padding: "1px 6px", borderRadius: 999,
-                      border: `0.5px solid ${a.weekend === "W1" ? "rgba(37,99,235,0.4)" : "rgba(147,51,234,0.4)"}`,
-                    }}>{a.weekend}</span>
-                  )}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: stage.color, fontWeight: 600, textTransform: "uppercase" }}>
-                    {stage.name}
-                  </span>
-                  <span style={{ fontSize: 9, color: "var(--muted)" }}>·</span>
-                  <span className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", textTransform: "uppercase" }}>
-                    {a.genre}
-                  </span>
-                </div>
-                {stage.vibe && (
-                  <div style={{ marginTop: 4, display: "flex", alignItems: "center", gap: 5 }}>
-                    <span className="mono" style={{
-                      fontSize: 8, letterSpacing: 1.1, fontWeight: 700,
-                      color: stage.color,
-                      padding: "1px 6px", borderRadius: 999,
-                      background: `${stage.color}1a`,
-                      border: `0.5px solid ${stage.color}55`,
-                      textTransform: "uppercase",
-                    }}>{stage.vibe}</span>
-                    {stage.peak && (
-                      <span className="mono" style={{ fontSize: 8, letterSpacing: 0.9, color: "var(--muted)" }}>
-                        PEAKS {stage.peak}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-              <button onClick={() => toggleSave(state, setState, a.id)}
-                aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved} style={{
-                width: 44, height: 44, borderRadius: 44, flexShrink: 0,
-                background: saved ? "var(--ember)" : "transparent",
-                border: saved ? "none" : "1px solid var(--line-2)",
-                color: saved ? "#fff" : "var(--ink)",
-                cursor: "pointer",
-                fontSize: 18, fontWeight: 300,
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>{saved ? "✓" : "+"}</button>
+            <div style={{ padding: "40px 0" }}>
+              <div className="duo-headline">{empty.title}</div>
+              <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>{empty.sub}</div>
+              {empty.action && <FieldButton kind="secondary" onClick={empty.onAction} style={{ marginTop: 16 }}>{empty.action}</FieldButton>}
             </div>
           );
-        })}
+        })()}
+        {viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && (
+          <div style={{ padding: "40px 20px" }}>
+            <div className="duo-headline">No sets saved yet</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>Switch to All stages and tap any set to save it.</div>
+            <FieldButton kind="secondary" onClick={() => setFilter("all")} style={{ marginTop: 16 }}>Show all sets</FieldButton>
+          </div>
+        )}
+        {viewMode === "list" && (() => {
+          // One NOW rule, before the first set that hasn't started: only on the
+          // night that is actually running, and only in time order.
+          const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+          const renderRow = (a, pinned) => {
+            const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
+            const saved = state.saved.includes(a.id);
+            const clashWith = conflictById[a.id];
+            const isHighlighted = highlightId === a.id;
+            const isLive = isSetLive(a);
+            const ring = saved || isLive ? (clashWith ? "cl" : "on") : "";
+            // Dot: neutral in the main list; the stage colour in Saved/Now,
+            // which interleave stages. One dot, never coloured text.
+            const dotColor = filter === "all" ? "var(--ink-3)" : (stage.color || "var(--ink-3)");
+            // The board's list row: time, face, name over stage, circled add.
+            // On your plan = a faint accent wash; playing now = the lifted card.
+            return (
+              <div key={pinned ? `pin-${a.id}` : a.id}
+                data-animate
+                data-now-on-plan={pinned ? a.id : undefined}
+                data-lineup-highlight={isHighlighted && !pinned ? "true" : undefined}
+                className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
+                style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
+                <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
+                  style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
+                  {fmt12(a.start)}
+                </div>
+                <DuoAvatar name={a.name} size={42} ring={ring} />
+                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                  flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
+                  color: "var(--ink)", textAlign: "left", cursor: "pointer",
+                  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
+                }}>
+                  <span data-set-name data-fit-name data-fit-min="14" className="duo-headline"
+                    style={{ fontWeight: 700, color: "var(--ink)", whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
+                  <span data-set-meta style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
+                      background: isLive && filter === "all" ? "var(--live)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
+                    {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
+                    {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
+                    {_lineupMetaValue(stage.name)}
+                  </span>
+                  {/* A clash names the other side (lane ruling 2026-09-26), so
+                      choosing between them means something. It wraps: a name
+                      is never truncated. */}
+                  {clashWith && !pinned && clashWith.map(o => (
+                    <span key={o.id} data-clash-with={o.id} style={{ font: "600 13px/1.385 var(--f-ui)", color: "var(--clash)" }}>
+                      vs {actDisplayName(o.name)} · {fmt12(o.start)} · {(STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name}
+                    </span>
+                  ))}
+                </button>
+                <button onClick={() => toggleSave(state, setState, a.id)} className="duo-add"
+                  aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}>
+                  <span aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      {saved ? <path d="M5 12.5 L10 17.5 L19 7"/> : <path d="M12 5 V19 M5 12 H19"/>}
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            );
+          };
+          const rows = dayArtists.map(a => renderRow(a));
+          if (nowMin != null && dayArtists.length) {
+            const i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
+            rows.splice(i === -1 ? rows.length : i, 0, (
+              <div key="__now" data-now-rule style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0 8px" }}>
+                <span className="duo-sect" style={{ color: "var(--acc-ink)" }}>Now</span>
+                <span className="duo-data-s duo-acc">{fmt12(NOW.time)}</span>
+                <span aria-hidden="true" style={{ flex: 1, height: 1.5, background: "var(--acc)", boxShadow: "0 0 10px var(--acc-55)" }} />
+              </div>
+            ));
+          }
+          // Where the list opens on the running night: the first set of this
+          // hour, or the earliest one still playing if it started before.
+          // Now on your plan, the one lifted card (only while a set you saved
+          // is actually playing; empty means absent, never a placeholder),
+          // sits right there, so it is the first thing in view.
+          if (nowMin != null) {
+            const hour = Math.floor(nowMin / 60) * 60;
+            const at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+            const nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+            if (at !== -1) rows.splice(at, 0,
+              <div key="__open" data-open-anchor aria-hidden="true" style={{ height: 0 }} />,
+              ...(nowMine.length ? [
+                <div key="__nowmine" data-now-on-plan-card style={{ padding: "8px 0 12px" }}>
+                  <div className="duo-sect" style={{ padding: "4px 0 8px" }}>Now on your plan</div>
+                  {nowMine.map(a => renderRow(a, true))}
+                </div>
+              ] : []));
+            // Late in the night too few sets follow the hour to scroll it to
+            // the top; this tail (sized by fitOpenTail, 0 when not needed)
+            // gives the list the room. Running night only.
+            if (at !== -1) rows.push(<div key="__tail" data-open-tail aria-hidden="true" />);
+          }
+          return rows;
+        })()}
       </ScrollBody>
 
-      {viewMode === "grid" && NOW.night === day && NOW.time && (
+      {/* Jump to now: only on the running night. LIST shows it only while
+          the NOW rule is out of view; GRID keeps it (its now-line is drawn
+          inside the timetable). */}
+      {NOW.night === day && NOW.time && (viewMode === "grid" || (nowOff && filter !== "now" && sortBy === "time")) && (
         <button onClick={() => {
-          const el = document.querySelector("[data-grid-scroll]");
-          const nowMin = toNightMin(NOW.time);
-          if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
-            // The utility stack rides above the timetable in the same scroller.
-            const lead = el.querySelector("[data-grid-lead]");
-            const top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
-            el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+          if (viewMode === "grid") {
+            const el = document.querySelector("[data-grid-scroll]");
+            const nowMin = toNightMin(NOW.time);
+            if (el && nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) {
+              // The utility stack rides above the timetable in the same scroller.
+              const lead = el.querySelector("[data-grid-lead]");
+              const top = (lead ? lead.offsetHeight : 0) + (nowMin - GRID_START_MIN) * GRID_PX_PER_MIN - 120;
+              el.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+            }
+          } else {
+            const r = document.querySelector("[data-now-rule]");
+            if (r) try { r.scrollIntoView({ behavior: "smooth", block: "center" }); } catch {}
           }
-        }} style={{
-          // bottom:80 cleared the floating Search pill, which GRID no longer shows.
-          position: "absolute", bottom: 16, right: 16, zIndex: 8,
-          background: "var(--ember)", color: "#fff", border: "none",
-          borderRadius: 999, padding: "8px 14px",
-          boxShadow: "0 4px 16px rgba(232,93,46,0.4)",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.4, fontWeight: 800,
-          cursor: "pointer", display: "flex", alignItems: "center", gap: 5,
-          animation: "springIn 0.3s ease-out",
+        }} aria-label="Jump to now" style={{
+          // Bottom-centre: the right edge is the bookmark column, and a pill
+          // there sat on a live row's Save. It shows only while the NOW rule
+          // is scrolled away, so it never parks over a row for long.
+          position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: 16, zIndex: 8,
+          minHeight: 44, padding: "0 16px 0 14px", borderRadius: 22,
+          background: "var(--chrome)", border: "1px solid var(--line-2)", color: "var(--ink)",
+          backdropFilter: "blur(20px) saturate(160%)", WebkitBackdropFilter: "blur(20px) saturate(160%)",
+          fontSize: 15, lineHeight: "20px", fontWeight: 600,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
         }}>
-          <span style={{ width: 6, height: 6, borderRadius: 6, background: "#fff", animation: "pulse 1.6s infinite" }}/>
-          NOW
+          <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)" }}/>
+          Now
         </button>
       )}
 
@@ -1547,7 +1557,7 @@ function LineupScreen({ state, setState }) {
         <LineupFilterSheet
           day={day}
           dayGenres={dayGenres}
-          savedIds={state.saved || []}
+          savedIds={savedInLineup(state.saved)}
           weekendFilter={weekendFilter}
           initial={{ filter, tierFilter, stageFilter, genreFilter, sortBy }}
           onClose={() => setFilterSheetOpen(false)}
@@ -1706,7 +1716,7 @@ function ScheduleReviewSheet({ saved, onClose }) {
 
   return ReactDOM.createPortal(
     <div onClick={onClose} style={{
-      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(0,0,0,0.45)",
+      position: "fixed", inset: 0, zIndex: 9000, background: "rgba(var(--shade-rgb),0.45)",
       display: "flex", alignItems: "flex-end", justifyContent: "center",
     }}>
       <div role="dialog" aria-modal="true" aria-label="Schedule update" data-sched-phase={st.phase} onClick={e => e.stopPropagation()} style={{
@@ -1734,7 +1744,11 @@ function ScheduleReviewSheet({ saved, onClose }) {
 }
 
 // Treat times before 08:00 as "next day" so 23:00 < 01:30 etc. compares correctly.
+// An act with a day but no published set time has start null: NaN, never a
+// throw, so it compares false everywhere (never live, never next). Home's
+// stage board threw here on a live night and took the whole screen down.
 function toNightMin(hhmm) {
+  if (typeof hhmm !== "string") return NaN;
   const [h, m] = hhmm.split(":").map(Number);
   return (h < 8 ? h + 24 : h) * 60 + m;
 }
@@ -1786,9 +1800,17 @@ const _gridBounds = (() => {
   // weekend-exempt: earliest/latest set times, which both weekends share. It
   // also runs at module scope, before the active lineup exists.
   const all = typeof ARTISTS !== "undefined" ? ARTISTS : [];
-  if (!all.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
+  // A festival can ship its LINEUP before its SET TIMES. Every act then
+  // carries start "" / end "", so toNightMin returns NaN and every comparison
+  // below is false: lo stayed Infinity and hi -Infinity, GRID_TOTAL_H came out
+  // NaN, and the timetable rendered with broken geometry. The `!all.length`
+  // guard never fired, because the acts are all there — only their times are
+  // missing. Bound the grid on acts that actually carry a time.
+  const timed = all.filter(a => a && a.start && a.end
+    && !isNaN(toNightMin(a.start)) && !isNaN(toNightMin(a.end)));
+  if (!timed.length) return { start: 19 * 60, end: (24 + 5) * 60 + 30 };
   let lo = Infinity, hi = -Infinity;
-  all.forEach(a => {
+  timed.forEach(a => {
     const s = toNightMin(a.start), e = toNightMin(a.end);
     if (s < lo) lo = s;
     if (e > hi) hi = e;
@@ -1870,9 +1892,9 @@ function SavedSidebar({ day, state, setState }) {
                 top, left: 4, right: 4, height: blockH,
                 display: "flex", alignItems: "stretch", gap: 5,
                 padding: "4px 4px 4px 5px",
-                background: stage ? `${stage.color}1a` : "var(--paper-2)",
-                border: isLive ? "1px solid var(--success)" : `1px solid ${stage?.color || "var(--line-2)"}40`,
-                borderLeft: `3px solid ${stage?.color || "var(--line-2)"}`,
+                background: "var(--paper-2)",
+                border: isLive ? "1px solid var(--success)" : "1px solid var(--line)",
+                borderLeft: `3px solid ${isLive ? "var(--signal)" : "var(--line-2)"}`,
                 borderRadius: 6,
                 cursor: "pointer", textAlign: "left",
                 overflow: "hidden",
@@ -1896,7 +1918,7 @@ function SavedSidebar({ day, state, setState }) {
                 onClick={(e) => unsave(a.id, e)}
                 style={{
                   flexShrink: 0, width: 18, height: 18, borderRadius: 999,
-                  background: "rgba(0,0,0,0.06)", color: "var(--muted)",
+                  background: "rgba(var(--shade-rgb),0.06)", color: "var(--muted)",
                   border: "none", cursor: "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: 10, fontWeight: 700, lineHeight: 1,
@@ -1910,6 +1932,42 @@ function SavedSidebar({ day, state, setState }) {
   );
 }
 
+// A block is as tall as its set, so a 15-minute slot is ~27px and a two-line
+// name does not fit it. Never clip the name (a name is never truncated): first
+// drop the time label (the hour gutter carries it), then shrink the name to a
+// floor, and only then let the block grow past its slot. A grown block nudges
+// the next block in its column down rather than covering its name, so a run of
+// back-to-back short sets drifts a few minutes off the ruler instead.
+function fitGridBlocks(root) {
+  if (!root) return;
+  const cols = new Map();
+  for (const b of root.querySelectorAll("[data-grid-block]")) {
+    const name = b.querySelector("[data-grid-name]"), time = b.querySelector("[data-grid-time]");
+    if (!name) continue;
+    b.style.top = b.dataset.top + "px"; b.style.height = b.dataset.h + "px"; b.style.zIndex = b.dataset.z; delete b.dataset.gridGrown;
+    // A column is a parent plus a lane offset (`left` is relative to the stage).
+    let byLeft = cols.get(b.parentElement); if (!byLeft) cols.set(b.parentElement, byLeft = new Map());
+    if (!byLeft.has(b.dataset.left)) byLeft.set(b.dataset.left, []); byLeft.get(b.dataset.left).push(b);
+    if (time) time.style.display = "";
+    if (!name.dataset.base) name.dataset.base = String(parseFloat(getComputedStyle(name).fontSize));
+    const base = parseFloat(name.dataset.base);
+    name.style.fontSize = base + "px";
+    const over = () => b.scrollHeight > b.clientHeight + 1;
+    if (!over()) continue;
+    if (time) time.style.display = "none";
+    for (let s = base; over() && s > 9; ) { s = Math.max(9, s - 0.5); name.style.fontSize = s + "px"; }
+    if (over()) { b.style.height = b.scrollHeight + "px"; b.dataset.gridGrown = "1"; }
+  }
+  for (const col of [...cols.values()].flatMap(m => [...m.values()])) {
+    col.sort((a, b) => a.dataset.top - b.dataset.top);
+    for (let i = 1; i < col.length; i++) {
+      const prev = col[i - 1], floor = parseFloat(prev.style.top) + parseFloat(prev.style.height) + 2;
+      const moved = prev.dataset.gridGrown || parseFloat(prev.style.top) !== parseFloat(prev.dataset.top);
+      if (moved && parseFloat(col[i].style.top) < floor) col[i].style.top = floor + "px";
+    }
+  }
+}
+
 // One set block. Extracted from TimelineGrid's inline map so FOCUS and ALL
 // modes render identical blocks — including the long-press-to-save gesture,
 // which is easy to lose in a rewrite and impossible to notice missing.
@@ -1919,18 +1977,9 @@ function GridSetBlock({
   showEndTime, dueMins, narrow = false,
 }) {
   const isHeadliner = a.tier === 3;
-  // How many lines the name gets. This used to be a flat 2 above `narrow`,
-  // which was fine when the only wide column was the 200px+ FOCUS panel and
-  // wrong the moment every column became ~98px: it printed
-  // "MAX DEAN B2B LUKE…" inside a block with room for four lines. Budget it
-  // off the block's own height instead — line box ≈ font × 1.1, minus the
-  // padding and the time row — and cap at 4 so a long slot does not become a
-  // wall of text.
-  const _lineH   = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  const _chrome  = narrow ? 8 : 20; // padding, plus the time line where it renders
-  const nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
-  const fillAlpha = isHeadliner ? "38" : "22";
-  const dimAlpha  = isHeadliner ? "14" : "08";
+  // One accent: the rail marks what you saved; the stage is its column header.
+  const _saved = (state.saved || []).includes(a.id);
+  const _live = typeof isSetLive === "function" && isSetLive(a);
   const _store = refStore;
   const _resetHold = (e) => {
     const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
@@ -1940,6 +1989,7 @@ function GridSetBlock({
   };
   return (
     <div
+      data-grid-block data-top={top} data-left={left} data-h={height} data-z={isHighlighted ? 6 : dueMins != null ? 5 : ""}
       data-lineup-highlight={isHighlighted ? "true" : undefined}
       onClick={() => { if (_store.fired) { _store.fired = false; return; } setState({ ...state, artist: a.id }); }}
       onPointerDown={(e) => {
@@ -1959,80 +2009,71 @@ function GridSetBlock({
       onPointerCancel={_resetHold}
       style={{
         position: "absolute", top, left, width, height,
-        background: `${stage.color}${active || isHighlighted ? fillAlpha : dimAlpha}`,
-        borderLeft: `3px solid ${active || isHighlighted ? stage.color : stage.color + "44"}`,
-        borderRadius: 6,
-        padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+        // The board's timetable block: your plan is an accent wash with an
+        // accent edge (the clash colour when it clashes); everything else is
+        // a plain card. No side rail and no star: one accent, one meaning.
+        background: _saved ? "var(--acc-wash)" : "var(--s2)",
+        borderRadius: narrow ? 8 : 10,
+        padding: narrow ? "3px 4px" : "5px 6px 5px 7px",
         cursor: "pointer", overflow: "hidden",
         opacity: active || isHighlighted ? 1 : 0.32,
-        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
+        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease",
         boxShadow: dueMins != null
-          ? `0 0 0 2px var(--ember), 0 2px 12px ${stage.color}55`
-          : clash && active
-            ? "inset 0 0 0 1.5px var(--ember)"
-            : (isHeadliner && (active || isHighlighted) ? `0 2px 8px ${stage.color}33` : "none"),
+          ? "var(--glow)"
+          : _saved
+            ? `inset 0 0 0 1.5px ${clash && active ? "var(--clash)" : "var(--acc)"}`
+            : "inset 0 0 0 1px var(--line)",
+        "--ring-bg": _saved ? "var(--acc-wash)" : "var(--s2)",
         zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
         animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
         display: "flex", flexDirection: "column",
       }}>
-      <div style={{
+      {/* Face + status, the first thing to go when a short block overflows
+          (fitGridBlocks hides [data-grid-time]). Below `narrow` there is no
+          room for either and the hour gutter carries the time. */}
+      {!narrow && (
+        <div data-grid-time className="duo-gb-head">
+          {height > 40 && <DuoAvatar name={a.name} size={22} ring={_saved ? (clash && active ? "cl" : "on") : ""} />}
+          <span className="duo-data-s" style={{ fontSize: 11, whiteSpace: "nowrap", marginLeft: "auto",
+            color: clash && active ? "var(--clash)" : _live ? "var(--live)" : "var(--ink-3)" }}>
+            {clash && active ? "CLASH" : _live ? "LIVE" : fmt12(a.start)}
+          </span>
+        </div>
+      )}
+      <div data-grid-name style={{
         fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-        fontWeight: isHeadliner ? 800 : 700,
-        lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
-        overflow: "hidden", textOverflow: "ellipsis",
-        display: "-webkit-box",
-        WebkitLineClamp: nameLines,
-        WebkitBoxOrient: "vertical",
+        fontWeight: _saved ? 700 : isHeadliner ? 650 : 550,
+        lineHeight: narrow ? 1.05 : 1.15, color: _saved ? "var(--ink)" : "var(--ink-2)",
+        // The whole name, always: no clamp, no ellipsis (a name is never
+        // truncated). Hyphenation splits a long word at a syllable instead of
+        // "Interplanetar / y".
+        hyphens: "auto", WebkitHyphens: "auto",
         // overflowWrap, NOT wordBreak. `wordBreak: break-word` breaks at any
         // character even when a space break was available, which turned
         // "Paris Paloma" into "Paris / Palom / a". overflowWrap breaks long
         // tokens only when they would otherwise overflow, so short names wrap
         // at their spaces and only genuinely-too-long words get split.
         overflowWrap: "break-word",
-        paddingRight: saved ? (clash ? (narrow ? 19 : 23) : (narrow ? 9 : 12)) : 0,
-        fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
-      }}>{a.name}</div>
-      {/* Time label. The range only renders where it FITS — a 94px column
-          clipped "2:45 PM - 3:30 P" mid-string, so narrow layouts show the
-          start time alone rather than a truncated lie. Below `narrow` even the
-          start does not fit, and the hour gutter already carries it. */}
-      {!narrow && (
-        <div className="mono" style={{
-          fontSize: 8, letterSpacing: 0.3, color: "var(--muted)",
-          marginTop: 2, whiteSpace: "nowrap",
-        }}>{fmt12(a.start)}{showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
-      )}
+        fontFamily: "var(--f-ui)",
+      }}>{actDisplayName(a.name)}</div>
       {dueMins != null && height > 46 && (
-        <div className="mono" style={{
-          marginTop: "auto", fontSize: 8, letterSpacing: 1, fontWeight: 800,
-          color: "var(--ember-ink)", whiteSpace: "nowrap",
-        }}>YOU'RE DUE HERE · {dueMins} MIN</div>
+        <div className="duo-data-s" style={{ marginTop: "auto", fontSize: 11, color: "var(--acc-ink)" }}>DUE · {dueMins} MIN</div>
       )}
-      {saved && (
-        <span style={{
-          position: "absolute", top: 3, right: 5,
-          fontSize: 10, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
-        }}>★</span>
-      )}
-      {/* The conflict mark. conflictById is built from SAVED sets only, so
-          a clash always carries a ★ too — the ⚠ sits just inside it. Same
-          ⚠ language the LIST rows use, and the reason this view shows every
-          stage at once: you cannot dodge a collision you cannot see. */}
-      {clash && (
+      {/* Narrow blocks have no status row, so a clash keeps a mark of its own. */}
+      {clash && narrow && (
         <span title="Overlaps another saved set" aria-label="clash" style={{
-          position: "absolute", top: 2.5, right: narrow ? 13 : 16,
-          fontSize: 9, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
-        }}>⚠</span>
+          position: "absolute", top: 3, right: 3, width: 6, height: 6, borderRadius: 3, background: "var(--clash)",
+        }} />
       )}
       {!saved && matched && height > 30 && (
-        <span style={{
-          position: "absolute", top: 4, right: 5,
-          fontSize: 9, color: "#1DB954", fontWeight: 800, lineHeight: 1,
+        <span aria-hidden="true" style={{
+          position: "absolute", bottom: 4, right: 5,
+          fontSize: 9, color: "var(--spotify)", fontWeight: 800, lineHeight: 1,
         }}>♫</span>
       )}
       <div data-lpfill aria-hidden="true" style={{
         position: "absolute", left: 0, bottom: 0, height: 3, width: "0%",
-        background: stage.color, borderRadius: "0 0 6px 6px",
+        background: "var(--signal)", borderRadius: "0 0 6px 6px",
         pointerEvents: "none", zIndex: 3,
       }}/>
     </div>
@@ -2072,6 +2113,13 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
   const scrollRef = React.useRef(null);
   const leadRef = React.useRef(null);
   const _blockRefs = React.useRef({});
+  // Refit after every render and on resize (a rotation keeps the grid mounted).
+  React.useLayoutEffect(() => { fitGridBlocks(scrollRef.current); });
+  React.useEffect(() => {
+    const onR = () => fitGridBlocks(scrollRef.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
+  }, []);
 
   const HOURS = [];
   for (let h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
@@ -2144,6 +2192,13 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
     // i * COL_W — that lands it flush against the gutter, not under it.
     el.scrollTo({ left: i * COL_W, behavior: "smooth" });
   };
+  // The header's stage overview names a stage; bring its column into view.
+  const _toStage = React.useRef(scrollToStage); _toStage.current = scrollToStage;
+  React.useEffect(() => {
+    const on = (e) => _toStage.current(e.detail);
+    window.addEventListener("plursky:grid-stage", on);
+    return () => window.removeEventListener("plursky:grid-stage", on);
+  }, []);
 
   // Open on the current hour (or the next saved set) instead of at the top of
   // a 12-hour day.
@@ -2216,7 +2271,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                 cannot slide out from under the headers. */}
             <div style={{
               width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0, zIndex: 2,
-              background: "var(--paper)",
+              background: "var(--bg)",
               borderRight: "1px solid var(--line)",
               borderBottom: "1px solid var(--line-2)",
             }}/>
@@ -2228,26 +2283,18 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                   data-stage-head={s.id}
                   onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} scrollToStage(s.id); }}
                   title={s.name}
-                  className="mono"
                   style={{
                     width: COL_W, flexShrink: 0, height: HEAD_H,
                     border: "none", borderLeft: "1px solid var(--line)",
                     borderBottom: "1px solid var(--line-2)",
-                    background: "var(--paper)", color: "var(--ink)",
+                    background: "var(--bg)", color: n > 0 ? "var(--ink)" : "var(--ink-2)",
                     padding: "3px 5px 0", cursor: "pointer", position: "relative",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                    fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
-                    fontFamily: "inherit",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                    font: "600 12px/1.15 var(--f-ui)",
                   }}>
-                  {/* The stage's colour, sitting directly on top of its own
-                      column — the same colour the blocks below are tinted in. */}
-                  <span aria-hidden="true" style={{
-                    position: "absolute", left: 0, right: 0, top: 0, height: 3,
-                    background: s.color,
-                  }}/>
-                  <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.short}</span>
+                  <span style={{ textAlign: "center" }}>{s.short}</span>
                   {n > 0 && (
-                    <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
+                    <span aria-label={`${n} on your plan`} className="duo-data-s" style={{ flexShrink: 0, fontSize: 11, color: "var(--acc-ink)" }}>{n}</span>
                   )}
                 </button>
               );
@@ -2262,24 +2309,31 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               borderRight: "1px solid var(--line)",
             }}>
               {HOURS.map(h => (
-                <div key={h.label} className="mono" style={{
-                  position: "absolute", top: minToTop(h.mins) - 6, right: 6,
-                  fontSize: 9, letterSpacing: 0.3,
-                  color: "var(--muted)", fontWeight: 700,
+                <div key={h.label} className="duo-data-s duo-ink3" style={{
+                  position: "absolute", top: minToTop(h.mins) - 7, right: 6, fontSize: 11, whiteSpace: "nowrap",
                 }}>{h.label}</div>
               ))}
               {/* NOW docks to the gutter and stays there. It used to be
                   positioned in content space, so scrolling sideways slid it
                   over the set blocks. */}
               {nowTop != null && (
-                <span className="mono" style={{
-                  position: "absolute", left: 2, top: nowTop - 7, zIndex: 6,
-                  fontSize: 8, letterSpacing: 0.6, color: "#fff", fontWeight: 800,
-                  background: "var(--ember)", padding: "1px 4px", borderRadius: 3,
+                <span className="duo-data-s" style={{
+                  position: "absolute", left: 2, top: nowTop - 9, zIndex: 6, fontSize: 11,
+                  color: "var(--on-acc)", background: "var(--acc)", padding: "2px 5px", borderRadius: 5,
                 }}>NOW</span>
               )}
             </div>
 
+            {/* The now line sits UNDER the blocks (earlier in the DOM, no
+                z-index): it shows in the gaps and never strikes a name. */}
+            {nowTop != null && (
+              <div style={{
+                position: "absolute", left: GUTTER_W, right: 0, top: nowTop, height: 0,
+                borderTop: "1.5px solid var(--acc)",
+                boxShadow: "0 0 10px var(--acc-55)",
+                pointerEvents: "none",
+              }}/>
+            )}
             {cols.map(({ stage, artists: stageArtists }, si) => {
               const lanes = layoutLanes(stageArtists);
               return (
@@ -2287,7 +2341,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                   width: COL_W, flexShrink: 0,
                   position: "relative", height: TOTAL_H,
                   borderLeft: "1px solid var(--line)",
-                  background: si % 2 === 0 ? "transparent" : "rgba(26,18,13,0.018)",
+                  background: si % 2 === 0 ? "transparent" : "rgba(var(--shade-rgb),0.018)",
                 }}>
                   <GridHourLines hours={HOURS} minToTop={minToTop} />
                   {stageArtists.map(a => {
@@ -2320,14 +2374,6 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               );
             })}
 
-            {nowTop != null && (
-              <div style={{
-                position: "absolute", left: GUTTER_W, right: 0, top: nowTop, height: 0,
-                borderTop: "2px solid var(--ember)",
-                boxShadow: "0 0 8px rgba(232,93,46,0.55)",
-                zIndex: 3, pointerEvents: "none",
-              }}/>
-            )}
           </div>
           </>) : (
             <div className="mono" style={{ position: "sticky", left: 0, width: boxW, padding: "28px 16px", textAlign: "center", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>
@@ -2364,90 +2410,43 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
     setIdx(i => (i + 1 < conflicts.length ? i + 1 : i));
   };
 
+  const crBtn = { ...fieldIconBtn, width: "auto", padding: "0 10px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
   return (
-    <div style={{
-      margin: "0 16px 14px",
-      padding: 14,
-      borderRadius: 16,
-      background: "var(--ink)",
-      color: "var(--paper)",
-      position: "relative", overflow: "hidden",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ember)" strokeWidth="2">
-            <polygon points="12,3 22,20 2,20" strokeLinejoin="round"/>
-            <path d="M12 10 V14" strokeLinecap="round"/>
-            <circle cx="12" cy="17" r="0.7" fill="var(--ember)"/>
-          </svg>
-          <span className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--ember-ink)", fontWeight: 700 }}>
-            CONFLICT {idx + 1}/{conflicts.length}
-          </span>
-        </div>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)" }}>
-          OVERLAP {overlapStart}–{overlapEnd}
-        </span>
+    <div role="group" aria-label="Schedule clash" style={{ margin: "4px 20px 12px", padding: "12px 14px 4px", borderRadius: 14, background: "var(--paper-2)" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
+        <span style={{ ..._fieldEyebrow, color: "var(--warn)" }}>⚠ Clash {safeIdx + 1} of {conflicts.length}</span>
+        <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>Overlap {fmt12(overlapStart)}–{fmt12(overlapEnd)}</span>
       </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 10 }}>
-        {[a, b].map((art, i) => {
-          const stg = i === 0 ? sA : sB;
-          return (
-            <div key={art.id} style={{
-              background: "rgba(247,237,224,0.06)", borderRadius: 12, padding: "9px 10px",
-              borderLeft: `3px solid ${stg.color}`,
-            }}>
-              <div className="serif" style={{ fontSize: 18, lineHeight: 1.05 }}>{art.name}</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.55)", marginTop: 3 }}>
-                {stg.name.toUpperCase()} · {fmt12(art.start)}–{fmt12(art.end)}
-              </div>
-              <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{
-                marginTop: 8, width: "100%",
-                background: stg.color, color: "#fff", border: "none",
-                borderRadius: 8, padding: "6px 8px",
-                fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                cursor: "pointer",
-              }}>KEEP THIS</button>
+      {[a, b].map((art, i) => {
+        const stg = i === 0 ? sA : sB;
+        return (
+          <div key={art.id} style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, borderBottom: "1px solid var(--line)" }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(art.name)}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{stg.name} · {fmt12(art.start)}–{fmt12(art.end)}</div>
             </div>
-          );
-        })}
-      </div>
-
-      <div style={{ display: "flex", gap: 6 }}>
-        <button onClick={() => onKeepBoth?.(pair)} style={{
-          flex: 1, background: "rgba(247,237,224,0.08)",
-          border: "1px solid rgba(247,237,224,0.3)",
-          color: "var(--paper)", borderRadius: 10, padding: "8px 10px",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-          cursor: "pointer",
-        }}>KEEP BOTH ↺</button>
-        <button onClick={() => onSplit(pair)} style={{
-          flex: 1, background: "transparent", border: "1px solid rgba(247,237,224,0.3)",
-          color: "var(--paper)", borderRadius: 10, padding: "8px 10px",
-          fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-          cursor: "pointer",
-        }}>SPLIT NIGHT →</button>
-        {conflicts.length > 1 && (
-          <button onClick={next} style={{
-            background: "transparent", border: "1px solid rgba(247,237,224,0.3)",
-            color: "rgba(247,237,224,0.65)", borderRadius: 10, padding: "8px 12px",
-            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-            cursor: "pointer",
-          }}>NEXT</button>
-        )}
+            <button onClick={() => onKeep(art.id, i === 0 ? b.id : a.id)} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Keep this</button>
+          </div>
+        );
+      })}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <button onClick={() => onKeepBoth?.(pair)} style={crBtn}>Keep both</button>
+        <button onClick={() => onSplit(pair)} style={crBtn}>Split the night</button>
+        {conflicts.length > 1 && <button onClick={next} style={crBtn}>Next clash</button>}
       </div>
     </div>
   );
 }
 
 function TierStars({ tier }) {
-  const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "rgba(26,18,13,0.25)" };
+  // Tokens, not literal ink: literal dark fills vanish on the black shell.
+  const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "var(--text-3)" };
   return (
     <span style={{ display: "inline-flex", gap: 1.5, alignItems: "center" }}>
       {/* not-days: three tier stars */}
       {[1, 2, 3].map(i => (
         <svg key={i} width="9" height="9" viewBox="0 0 24 24"
-          fill={i <= tier ? colors[tier] : "rgba(26,18,13,0.12)"}>
+          fill={i <= tier ? colors[tier] : "var(--line-2)"}>
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ))}
@@ -2671,7 +2670,7 @@ function printLineupPDF(state) {
 }
 
 async function copyScheduleText(state) {
-  const ids = state.saved;
+  const ids = savedInLineup(state.saved);
   if (!ids.length) return { ok: false, reason: "empty" };
   const lines = festivalDayNums().flatMap(day => {
     const d = FESTIVAL_CONFIG.dayDates[day];
@@ -2706,7 +2705,7 @@ function ShareLineupButton({ state }) {
   const wrap = (key, fn) => async () => {
     if (busy) return;
     setOpen(false); setBusy(true);
-    const r = await fn(state);
+    const r = await fn({ ...state, saved: savedInLineup(state.saved) });
     setBusy(false);
     if (r?.ok) { setDone(key); setTimeout(() => setDone(null), 1800); }
     else if (r?.reason === "popup_blocked") {
@@ -2716,23 +2715,24 @@ function ShareLineupButton({ state }) {
 
   return (
     <div style={{ position: "relative" }}>
-      <button onClick={() => setOpen(o => !o)} disabled={busy} style={{
-        display: "flex", alignItems: "center", gap: 5,
-        padding: "5px 10px", borderRadius: 999,
-        background: done ? "var(--success)" : "var(--ink)",
-        color: "var(--paper)", border: "none",
-        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
-        cursor: busy ? "wait" : "pointer", textTransform: "uppercase",
+      {/* Field Mode: a quiet 44pt text action; the result reads in words. */}
+      <button onClick={() => setOpen(o => !o)} disabled={busy} aria-haspopup="menu" aria-expanded={open} style={{
+        display: "flex", alignItems: "center", gap: 6,
+        minHeight: 44, padding: "0 4px", borderRadius: 14,
+        background: "transparent", border: "none",
+        color: done ? "var(--signal-ink)" : "var(--text-2)",
+        fontSize: 15, lineHeight: "20px", fontWeight: 500,
+        cursor: busy ? "wait" : "pointer",
         opacity: busy ? 0.65 : 1,
       }}>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 4 V14"/><path d="M7 9 L12 4 L17 9"/><path d="M5 14 V20 H19 V14"/>
         </svg>
-        {done === "image" ? "SAVED"
-          : done === "cal" ? "ADDED"
-          : done === "pdf" ? "PRINTED"
-          : done === "txt" ? "COPIED"
-          : busy ? "…" : "SHARE"}
+        {done === "image" ? "Saved"
+          : done === "cal" ? "Added"
+          : done === "pdf" ? "Printed"
+          : done === "txt" ? "Copied"
+          : busy ? "…" : "Share"}
       </button>
 
       {open && (
@@ -2742,9 +2742,9 @@ function ShareLineupButton({ state }) {
           }}/>
           <div style={{
             position: "absolute", right: 0, top: "calc(100% + 6px)", zIndex: 61,
-            background: "var(--paper)", border: "1px solid var(--line-2)",
-            borderRadius: 12, padding: 5, minWidth: 200,
-            boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
+            background: "var(--paper-2)", border: "1px solid var(--line-2)",
+            borderRadius: 14, padding: 5, minWidth: 200,
+            boxShadow: "var(--shadow-pop)",
           }}>
             <ShareMenuItem icon="img"  label="Image for stories" sub="1080×1920 PNG" onClick={wrap("image", shareLineupImage)} />
             <ShareMenuItem icon="cal"  label="Add to calendar"   sub=".ics with 15-min reminders" onClick={wrap("cal", exportLineupICS)} />
@@ -2806,13 +2806,14 @@ function toggleSave(state, setState, id) {
   setState(s => ({ ...s, saved: next }));
   try {
     const label = a?.name ? a.name.toUpperCase() : "SET";
-    const isFirstSave = !has && state.saved.length === 0;
-    const isMilestone = !has && [5, 10, 15, 20].includes(next.length);
+    const liveNext = savedInLineup(next).length;
+    const isFirstSave = !has && savedInLineup(state.saved).length === 0;
+    const isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
     const msg = has ? `REMOVED · ${label}`
       : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO`
-      : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING`
+      : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING`
       : hasConflict ? `SAVED · ${label} · ⚠ CLASH`
-      : `SAVED · ${next.length} SETS`;
+      : `SAVED · ${liveNext} SETS`;
     // 3s UNDO toast — restores the exact prior saved set and reverses the
     // cloud-sync tombstone so an accidental tap (or long-press) is one tap to
     // revert. Re-saving clears the removal tombstone; un-saving re-adds it.
@@ -2975,4 +2976,4 @@ async function shareLineupImage(state) {
   });
 }
 
-Object.assign(window, { LineupScreen, NightWizard, toggleSave, toNightMin, overlaps, shareLineupImage });
+Object.assign(window, { LineupScreen, NightWizard, toggleSave, toNightMin, overlaps, shareLineupImage, ShareLineupButton });

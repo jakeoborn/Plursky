@@ -18,13 +18,15 @@ const SETLISTS_PROXY_URL = "https://pzoijbqsbbwyuyjinjtj.functions.supabase.co/p
 // who the act is — "Sunday (1994)", "KAUFMANN (DE)", "Small (danny g luvs u B2B
 // Bori)", "DOG BLOOD (SKRILLEX + BOYS NOIZE)". A note says so: it contains the
 // word "set" ("Sunset Set", "DJ set", "2 Hour Set"), or is one of the few the
-// lineups print without it (Live, Detox, In The Round, "… Classics"). Built
+// lineups print without it (Live, Detox, In The Round, "… Classics"), or an
+// unbracketed "… performing <album>" billing. Built
 // from all 26 parentheticals across the registry, 2026-09-10; the regression
 // table lives in scripts/verify.mjs. spotify-api.jsx's searches use this too.
 const _LOOKUP_SET_NOTE = /^(?:.*\bsets?\b.*|live|detox|in the round|.*\bclassics\b.*)$/i;
 function _lookupName(s) {
   const raw = String(s || "");
   const t = raw.replace(/\s*\(([^)]*)\)\s*/g, (m, inner) => (_LOOKUP_SET_NOTE.test(inner.trim()) ? " " : m))
+    .replace(/\s+performing\s.*$/i, "")  // "GZA performing Liquid Swords" (III Points 2026) is GZA
     .replace(/\s+/g, " ").trim();
   return t || raw;
 }
@@ -263,44 +265,10 @@ function _validateGenreMatch(lineupGenre, ...externalFields) {
   return externalFields.some(_isElectronic);
 }
 
-// ── TheAudioDB ─────────────────────────────────────────────────
-// Free public API — no key required. Better bios + artist images for EDC artists.
-const _TADB_TTL = 7 * 24 * 3600000; // cache 7 days (biography rarely changes)
-
-async function fetchAudioDB(artistName, lineupGenre) {
-  artistName = _lookupName(artistName);
-  const cacheKey = `tadb_${artistName.toLowerCase().replace(/\W+/g, "_")}_v2`;
-  try {
-    const c = JSON.parse(localStorage.getItem(cacheKey) || "null");
-    if (c && Date.now() - c.fetchedAt < _TADB_TTL) return c.data;
-  } catch {}
-  try {
-    const res = await fetch(
-      `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(artistName)}`
-    );
-    if (!res.ok) return null;
-    const json = await res.json();
-    const artist = (json.artists || [])[0];
-    if (!artist) return null;
-    // Reject name collisions: if lineup says electronic, TADB result must look electronic too
-    if (!_validateGenreMatch(lineupGenre, artist.strGenre, artist.strStyle, artist.strMood)) {
-      try { localStorage.setItem(cacheKey, JSON.stringify({ data: null, fetchedAt: Date.now() })); } catch {}
-      return null;
-    }
-    const data = {
-      bio:     artist.strBiographyEN || "",
-      image:   artist.strArtistThumb || artist.strArtistFanart || null,
-      banner:  artist.strArtistFanart2 || artist.strArtistFanart || null,
-      mood:    artist.strMood    || "",
-      style:   artist.strStyle   || "",
-      country: artist.strCountry || "",
-      formed:  artist.intFormedYear || "",
-      website: artist.strWebsite   || "",
-    };
-    try { localStorage.setItem(cacheKey, JSON.stringify({ data, fetchedAt: Date.now() })); } catch {}
-    return data;
-  } catch { return null; }
-}
+// TheAudioDB is not a source (its free-API terms; lane ruling 2026-09-24), and
+// neither is the iTunes Search API, whose artwork is only "to promote store
+// content", beside a store badge. Artist photos come from the cache, then
+// Spotify under its 24 h rule, then the gradient.
 
 // ── Last.fm ────────────────────────────────────────────────────
 // Free API key at https://www.last.fm/api/account/create
@@ -447,23 +415,25 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
   });
 
   const edcCount = nodes.filter(n => n.edcArtist).length;
-  const truncate = (str, max) => str.length > max ? str.slice(0, max) + "…" : str;
+  // Names are never cut (lane ruling 2026-09-26): a long one breaks over two
+  // lines at the space nearest its middle instead of losing its end.
+  const twoLines = (str, max) => {
+    const n = actDisplayName(str);
+    if (n.length <= max || !n.includes(" ")) return [n];
+    const mid = n.length / 2; let best = -1;
+    for (let i = 0; i < n.length; i++) if (n[i] === " " && (best < 0 || Math.abs(i - mid) < Math.abs(best - mid))) best = i;
+    return [n.slice(0, best), n.slice(best + 1)];
+  };
 
   return (
-    <div style={{
-      background: "var(--ink)", borderRadius: 16,
-      padding: "12px 12px 8px", marginBottom: 18,
-    }}>
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        marginBottom: 6, padding: "0 2px",
-      }}>
-        <span className="mono" style={{ fontSize: 9, letterSpacing: 1.5, color: "rgba(247,237,224,0.45)", fontWeight: 700 }}>
-          SIMILAR ARTISTS
+    <div className="duo-card" style={{ padding: "14px 12px 8px", marginBottom: 18 }}>
+      <div style={{ marginBottom: 6, padding: "0 4px" }}>
+        <span className="duo-label duo-ink3" style={{ display: "block" }}>
+          Similar artists
         </span>
         {edcCount > 0 && (
-          <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: currentStage.color, fontWeight: 700 }}>
-            {edcCount} ALSO AT {(FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "").toUpperCase()} — TAP TO EXPLORE
+          <span className="duo-body-s duo-acc" style={{ display: "block", marginTop: 4, fontWeight: 650 }}>
+            {edcCount} also at {FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName || "this festival"} — tap to explore
           </span>
         )}
       </div>
@@ -472,8 +442,8 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         <defs>
           {nodes.filter(n => n.edcStage).map((n, i) => (
             <radialGradient key={`rg${i}`} id={`spkGrad${i}`} cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor={n.edcStage.color} stopOpacity="0.28"/>
-              <stop offset="100%" stopColor={n.edcStage.color} stopOpacity="0"/>
+              <stop offset="0%" stopColor="var(--text-3)" stopOpacity="0.28"/>
+              <stop offset="100%" stopColor="var(--text-3)" stopOpacity="0"/>
             </radialGradient>
           ))}
         </defs>
@@ -481,7 +451,7 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         {/* Connection lines */}
         {nodes.map((n, i) => (
           <line key={`l${i}`} x1={cx} y1={cy} x2={n.x} y2={n.y}
-            stroke={n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)"}
+            stroke={n.edcStage ? "var(--line-2)" : "rgba(var(--ink-rgb),0.07)"}
             strokeWidth={n.edcStage ? 1.4 : 0.8}
             opacity={n.edcStage ? 0.5 : 1}
             strokeDasharray={n.edcStage ? undefined : "2.5 4"}
@@ -496,13 +466,14 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
         ))}
 
         {/* Center node */}
-        <circle cx={cx} cy={cy} r={28} fill={currentStage.color}/>
-        <circle cx={cx} cy={cy} r={33} fill="none" stroke={currentStage.color} strokeWidth={1} opacity={0.3}/>
-        <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
-          fill="#fff" fontSize={currentArtist.name.length > 10 ? 7 : 8.5}
-          fontFamily="Geist Mono, monospace" fontWeight="700">
-          {truncate(currentArtist.name, 11)}
-        </text>
+        <circle cx={cx} cy={cy} r={32} fill={"var(--signal)"}/>
+        <circle cx={cx} cy={cy} r={37} fill="none" stroke={"var(--signal)"} strokeWidth={1} opacity={0.3}/>
+        {(() => { const ln = twoLines(currentArtist.name, 10); return (
+          <text x={cx} y={cy - (ln.length - 1) * 5} textAnchor="middle" dominantBaseline="middle"
+            fill="var(--on-signal)" fontSize={ln.length > 1 || currentArtist.name.length > 10 ? 8 : 9}
+            fontFamily="Geist Mono, monospace" fontWeight="700">
+            {ln.map((t, i) => <tspan key={i} x={cx} dy={i ? 10 : 0}>{t}</tspan>)}
+          </text>); })()}
 
         {/* Peripheral nodes */}
         {nodes.map((n, i) => {
@@ -519,30 +490,30 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
 
               {/* Node */}
               <circle cx={n.x} cy={n.y} r={r}
-                fill={n.edcStage ? n.edcStage.color : "rgba(247,237,224,0.07)"}
-                stroke={n.edcStage ? "none" : "rgba(247,237,224,0.22)"}
+                fill={n.edcStage ? "var(--paper-3)" : "rgba(var(--ink-rgb),0.07)"}
+                stroke={n.edcStage ? "none" : "rgba(var(--ink-rgb),0.22)"}
                 strokeWidth={1}
               />
               {/* Outer ring on EDC nodes */}
               {n.edcStage && (
                 <circle cx={n.x} cy={n.y} r={r + 6}
-                  fill="none" stroke={n.edcStage.color} strokeWidth={0.9} opacity={0.35}
+                  fill="none" stroke="var(--line-2)" strokeWidth={0.9} opacity={0.35}
                 />
               )}
 
               {/* Artist name */}
               <text x={n.x} y={labelY} textAnchor="middle"
-                fill={n.edcStage ? "rgba(247,237,224,0.9)" : "rgba(247,237,224,0.32)"}
+                fill={n.edcStage ? "var(--ink)" : "var(--text-2)"}
                 fontSize={7.5} fontFamily="Geist Mono, monospace"
                 fontWeight={n.edcStage ? "600" : "400"}
               >
-                {truncate(n.name, 13)}
+                {twoLines(n.name, 13).map((t, i) => <tspan key={i} x={n.x} dy={i ? 9 : 0}>{t}</tspan>)}
               </text>
 
               {/* Stage · Day under EDC matches */}
               {n.edcStage && dayLabel && (
-                <text x={n.x} y={labelY + 11} textAnchor="middle"
-                  fill={n.edcStage.color} fontSize={7}
+                <text x={n.x} y={labelY + 11 + (twoLines(n.name, 13).length - 1) * 9} textAnchor="middle"
+                  fill="var(--text-2)" fontSize={7}
                   fontFamily="Geist Mono, monospace" fontWeight="700"
                 >
                   {n.edcStage.short} · {dayLabel}
@@ -572,10 +543,10 @@ function ShareArtistButton({ artist }) {
   return (
     <button onClick={handleShare} aria-label={copied ? "Link copied" : "Share artist"} style={{
       width: 32, height: 32, borderRadius: 32,
-      background: copied ? "rgba(45,122,85,0.85)" : "rgba(255,255,255,0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
-      border: "1px solid rgba(255,255,255,0.3)",
-      color: "#fff", cursor: "pointer", fontSize: 14,
+      border: "1px solid rgba(var(--ink-rgb),0.3)",
+      color: "var(--ink)", cursor: "pointer", fontSize: 14,
       display: "flex", alignItems: "center", justifyContent: "center",
       transition: "background 0.2s",
     }}>
@@ -605,9 +576,9 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
   return (
     <button onClick={onClick} aria-label="Open moment" style={{
       width: 76, height: 76, flexShrink: 0,
-      borderRadius: 10, overflow: "hidden",
+      borderRadius: "var(--rad-sm)", overflow: "hidden",
       background: "var(--paper-2)",
-      border: `1px solid ${accent}22`,
+      border: `1px solid rgba(var(--signal-rgb),0.13)`,
       padding: 0, cursor: "pointer", position: "relative",
       ...overrideStyle,
     }}>
@@ -618,8 +589,8 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
             <span aria-hidden="true" style={{
               position: "absolute", inset: 0, display: "flex",
               alignItems: "center", justifyContent: "center",
-              color: "#fff", fontSize: 18,
-              textShadow: "0 1px 4px rgba(0,0,0,0.7)",
+              color: "var(--ink)", fontSize: 18,
+              textShadow: "0 1px 4px rgba(var(--shade-rgb),0.7)",
               pointerEvents: "none",
             }}>▶</span>
           </>
@@ -632,7 +603,7 @@ function _YourMomentThumb({ moment, accent, onClick, style: overrideStyle }) {
         <span className="mono" style={{
           position: "absolute", inset: 0, display: "flex",
           alignItems: "center", justifyContent: "center",
-          fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700,
+          fontSize: 8, letterSpacing: 1.2, color: "var(--ink-2)", fontWeight: 700,
         }}>···</span>
       )}
     </button>
@@ -692,32 +663,12 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
   // set time and stage are the useful thing to show instead: the answer to
   // "why don't I have anything here" is usually "you haven't gone yet".
   if (mine.length === 0) {
-    const stage = (typeof STAGES !== "undefined" ? STAGES : window.STAGES || []).find(x => x.id === artistObj?.stage);
-    const when = artistObj?.start ? `${typeof fmt12 === "function" ? fmt12(artistObj.start) : artistObj.start}${artistObj.end ? `–${typeof fmt12 === "function" ? fmt12(artistObj.end) : artistObj.end}` : ""}` : null;
+    // The set card at the top of the page carries the stage and time, so
+    // the empty state is one quiet line that says the feature exists.
     return (
-      <div style={{
-        marginBottom: 18, borderRadius: 16, padding: "16px",
-        background: "var(--night)", color: "#fff",
-        border: "1px dashed rgba(255,255,255,0.12)",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.25)" }} />
-          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "rgba(255,255,255,0.4)" }}>
-            YOUR MOMENTS
-          </span>
-        </div>
-        <div style={{ fontSize: 13, lineHeight: 1.5, color: "rgba(255,255,255,0.7)" }}>
-          You haven't filmed anything at {artistObj?.name || "this set"} yet.
-        </div>
-        {(when || stage) && (
-          <button onClick={() => onOpenMap?.(artistObj)} className="mono" style={{
-            marginTop: 10, padding: "8px 12px", borderRadius: 8, width: "100%",
-            background: `${accent}18`, border: `1px solid ${accent}40`, color: accent,
-            cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
-          }}>
-            {stage ? `${stage.name.toUpperCase()}` : "FIND THE STAGE"}{when ? ` · ${when}` : ""} →
-          </button>
-        )}
+      <div data-artist-moments-empty style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18, padding: "10px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+        <span className="duo-sect" style={{ flexShrink: 0 }}>Your moments</span>
+        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>Photos and clips from this set will show here.</span>
       </div>
     );
   }
@@ -727,8 +678,8 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
   return (
     <div style={{
       marginBottom: 18, borderRadius: 16, overflow: "hidden",
-      background: "var(--night)", color: "#fff",
-      boxShadow: `0 0 24px ${accent}22, inset 0 1px 0 rgba(255,255,255,0.06)`,
+      background: "var(--night)", color: "var(--ink)",
+      boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13), inset 0 1px 0 rgba(var(--ink-rgb),0.06)`,
     }}>
       <div style={{ padding: "14px 16px 10px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 2 }}>
@@ -737,19 +688,19 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
               width: 6, height: 6, borderRadius: "50%", background: accent,
               boxShadow: `0 0 8px ${accent}`,
             }} />
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: accent }}>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "var(--signal-ink)" }}>
               YOUR MOMENTS
             </span>
           </div>
           <button onClick={() => onOpen(night)} className="mono" style={{
-            background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(var(--ink-rgb),0.08)", border: "1px solid rgba(var(--ink-rgb),0.1)",
             borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-            color: "rgba(255,255,255,0.5)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
+            color: "var(--text-3)", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
           }}>VIEW ALL →</button>
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginTop: 4 }}>
-          <span className="serif" style={{ fontSize: 20, color: "#fff" }}>{mine.length}</span>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>
+          <span className="serif" style={{ fontSize: 20, color: "var(--ink)" }}>{mine.length}</span>
+          <span style={{ fontSize: 10, color: "var(--text-3)" }}>
             {mine.length === 1 ? "memory" : "memories"}{vids > 0 ? ` · ${vids} video${vids > 1 ? "s" : ""}` : ""}
           </span>
         </div>
@@ -763,15 +714,15 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
           <_YourMomentThumb key={m.id} moment={m} accent={accent} onClick={() => openAt(i)}
             style={{
               width: 82, height: 110, borderRadius: 8,
-              border: `1px solid rgba(255,255,255,0.08)`,
-              boxShadow: i === 0 ? `0 0 12px ${accent}33` : undefined,
+              border: `1px solid rgba(var(--ink-rgb),0.08)`,
+              boxShadow: i === 0 ? `0 0 12px rgba(var(--signal-rgb),0.2)` : undefined,
             }} />
         ))}
         {more > 0 && (
           <button onClick={() => onOpen(night)} className="mono" aria-label={`View all ${mine.length} moments`} style={{
             width: 82, height: 110, flexShrink: 0, borderRadius: 8,
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)", color: accent,
+            background: "rgba(var(--ink-rgb),0.04)",
+            border: "1px solid rgba(var(--ink-rgb),0.08)", color: "var(--signal-ink)",
             cursor: "pointer", fontSize: 13, fontWeight: 700,
             display: "flex", alignItems: "center", justifyContent: "center",
           }}>+{more}</button>
@@ -787,8 +738,8 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
             className="mono"
             style={{
               flex: 1, padding: "8px 0", borderRadius: 8,
-              background: `${accent}18`, border: `1px solid ${accent}40`,
-              color: accent, cursor: "pointer",
+              background: `rgba(var(--signal-rgb),0.09)`, border: `1px solid rgba(var(--signal-rgb),0.25)`,
+              color: "var(--signal-ink)", cursor: "pointer",
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             }}>SHARE COLLAGE</button>
           <button
@@ -796,8 +747,8 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
             className="mono"
             style={{
               flex: 1, padding: "8px 0", borderRadius: 8,
-              background: "rgba(109,40,217,0.15)", border: "1px solid rgba(109,40,217,0.35)",
-              color: "#a78bfa", cursor: "pointer",
+              background: "rgba(var(--signal-rgb),0.15)", border: "1px solid rgba(var(--signal-rgb),0.35)",
+              color: "var(--signal-ink)", cursor: "pointer",
               fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
             }}>CREATE GIF</button>
         </div>
@@ -807,13 +758,11 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
           {/* "My {artist} set" — every clip tagged to this act, one tap. */}
           <button
             onClick={() => window._shareScopedRecap?.({ scope: "artist", artist: artistObj, moments: mine })}
-            className="mono"
             style={{
-              width: "100%", padding: "10px 0", borderRadius: 8,
-              background: "linear-gradient(135deg, #6D28D9, #e85d2e)",
-              border: "none", color: "#fff", cursor: "pointer",
-              fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-            }}>🎞 MY {String(artistObj.name || "").toUpperCase()} SET</button>
+              width: "100%", minHeight: 44, padding: "0 16px", borderRadius: "var(--rad-md)",
+              background: "var(--signal)", border: "none", color: "var(--on-signal)", cursor: "pointer",
+              fontSize: 15, lineHeight: "20px", fontWeight: 600, fontFamily: "inherit",
+            }}>My {artistObj.name} set</button>
         </div>
       )}
       {lightbox && typeof MomentLightbox === "function" && (
@@ -858,19 +807,19 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
           like stage wash lights cycling. This is the signature motion. */}
       <div style={{
         position: "absolute", inset: "-30%",
-        background: `radial-gradient(ellipse at 30% 80%, ${stageColor}35, transparent 60%)`,
+        background: `radial-gradient(ellipse at 30% 80%, rgba(var(--signal-rgb),0.21), transparent 60%)`,
         animation: `vfx-wash ${intense ? 3 : 5}s ease-in-out infinite`,
       }}/>
       <div style={{
         position: "absolute", inset: "-30%",
-        background: `radial-gradient(ellipse at 70% 20%, ${stageColor}25, transparent 55%)`,
+        background: `radial-gradient(ellipse at 70% 20%, rgba(var(--signal-rgb),0.15), transparent 55%)`,
         animation: `vfx-wash ${intense ? 4 : 6}s ease-in-out 2s infinite`,
       }}/>
 
       {/* Edge glow — warm light pooling at the bottom like stage floor wash */}
       <div style={{
         position: "absolute", bottom: 0, left: 0, right: 0, height: "45%",
-        background: `linear-gradient(0deg, ${stageColor}28, transparent)`,
+        background: `linear-gradient(0deg, rgba(var(--signal-rgb),0.16), transparent)`,
       }}/>
 
       {/* Headliner extra: slow sweeping highlight like a follow-spot */}
@@ -878,7 +827,7 @@ function ArtistAtmosphere({ genre, stageColor, tier }) {
         <div style={{
           position: "absolute", top: 0,
           width: "50%", height: "100%",
-          background: `radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.06), transparent 70%)`,
+          background: `radial-gradient(ellipse at 50% 30%, rgba(var(--ink-rgb),0.06), transparent 70%)`,
           animation: "vfx-scan 10s ease-in-out infinite",
           filter: "blur(30px)",
         }}/>
@@ -906,7 +855,7 @@ function PyroStarburst({ color }) {
         x: Math.cos(angle) * dist,
         y: Math.sin(angle) * dist - 25,
         size: 2 + (i % 4) * 1.2,
-        color: i % 4 === 0 ? "#fbbf24" : i % 4 === 1 ? color : i % 4 === 2 ? "#fff" : "#f59a36",
+        color: i % 4 === 0 ? "var(--signal-ink)" : i % 4 === 1 ? color : i % 4 === 2 ? "var(--ink)" : "var(--signal-ink)",
         delay: (i % 7) * 25,
       };
     }), [color]);
@@ -929,13 +878,19 @@ function PyroStarburst({ color }) {
         <div style={{
           position: "absolute", left: "50%", top: "38%",
           width: 6, height: 6, borderRadius: "50%",
-          background: "#fff", marginLeft: -3, marginTop: -3,
-          boxShadow: `0 0 30px 10px rgba(255,255,255,0.6), 0 0 60px 20px ${color}55`,
+          background: "var(--ink)", marginLeft: -3, marginTop: -3,
+          boxShadow: `0 0 30px 10px rgba(var(--ink-rgb),0.6), 0 0 60px 20px rgba(var(--signal-rgb),0.33)`,
         }}/>
       )}
     </div>
   );
 }
+
+// "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
+function _licenseLabel(id) {
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+}
+const _creditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
 
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
@@ -957,13 +912,16 @@ function ArtistScreen({ state, setState }) {
   // activeName, so the note still shows and other screens still hit the cache.
   const lookupName = _lookupName(activeName);
 
-  const artistImages = React.useMemo(() => {
-    try { return JSON.parse(localStorage.getItem("artist_images_v1") || "{}"); } catch { return {}; }
-  }, []);
+  // The cached entry for the tab on screen, or null when it is missing,
+  // expired (Spotify, 24 h) or of unknown source — see getArtistImage.
+  // expiry ticks when a Spotify entry turns 24 h while this page is open: the
+  // cached record is re-read and the fetched Spotify URL is let go.
+  const artistImageExpiry = useArtistImageExpiry();
+  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
   // On-demand photo: use cached image or fetch from Spotify search
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  // heroPhoto is computed further down, AFTER `tadb` exists — see the note
-  // there. Computing it here silently produced "no photo" on every artist.
+  React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);
+  // heroPhoto is computed further down, with the rest of the hero's state.
   const saved = state.saved.includes(a.id);
   const [saveFlash, setSaveFlash] = React.useState(false);
   const handleSave = () => {
@@ -1001,37 +959,16 @@ function ArtistScreen({ state, setState }) {
   const [tmError,   setTmError]   = React.useState(false);
   const [mcTracks,  setMcTracks]  = React.useState(undefined);
   const [mcPlaying, setMcPlaying] = React.useState(null); // key of playing track
-  const [tadb,      setTadb]      = React.useState(undefined);
 
   // ── Hero photo ───────────────────────────────────────────────────────────
-  // This used to be computed ~40 lines ABOVE the `tadb` declaration. Written
-  // as `const`, that is a temporal-dead-zone ReferenceError — but the build
-  // lowers const to var (CLAUDE.md §5), so `tadb` was simply `undefined` on
-  // every single render and `tadb?.image` never contributed anything. It read
-  // like a working fallback chain and was dead code.
-  //
-  // That mattered because the other links were dead for most users too:
-  //  · fetchedPhoto — Spotify, which needs the user to have connected
-  //  · api.deezer.com — returned CORS headers but NO
-  //    access-control-allow-origin (measured 2026-09-05), so the browser
-  //    blocked every response and the catch returned null. It was removed in
-  //    v254 rather than left firing one guaranteed-failing request per artist
-  //    view. If photo coverage gaps show up, the follow-up is a NATIVE HTTP
-  //    bridge (Capacitor), where same-origin policy does not apply — not a
-  //    second attempt at calling it from the browser.
-  // So on a fresh install with no Spotify there was no path to a photo at
-  // all, which is exactly what Jake reported. TheAudioDB does send
-  // access-control-allow-origin: * and had a thumbnail for the first artist
-  // tried, so it is the lane that actually works today.
-  //
-  // artistImages is a SHARED cache with several writers (Spotify here and in
-  // chrome.jsx, iTunes in chrome.jsx, TheAudioDB below), so a hit cannot be
-  // attributed to any one of them — hence the honest "CACHED" label.
-  const heroPhotoCache = artistImages[activeName.toLowerCase()] || null;
-  const heroPhoto = heroPhotoCache || fetchedPhoto || (tadb?.image ?? null);
-  const heroPhotoSrc = heroPhotoCache ? "CACHED"
-    : fetchedPhoto ? "SPOTIFY"
-    : (tadb?.image ? "THEAUDIODB" : null);
+  // The chain: the cached entry (getArtistImage records its source, so the
+  // hero knows when it owes Spotify's attribution), then this screen's own
+  // Spotify fetch, then no photo (the gradient). A user with no Spotify
+  // connection sees the gradient: TheAudioDB and the iTunes Search API are not
+  // sources (lane ruling 2026-09-24, on their terms), and api.deezer.com sends
+  // no access-control-allow-origin (measured 2026-09-05; removed in v254).
+  const heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
+  const heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
   const [slError,   setSlError]   = React.useState(false);
   const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1039,33 +976,15 @@ function ArtistScreen({ state, setState }) {
   React.useEffect(() => {
     setYtPlaying(false); setMcPlaying(null); setTlExpanded(false);
     setLfm(undefined); setSetlists(undefined); setYtVideo(undefined); setTmEvents(undefined);
-    setMcTracks(undefined); setTadb(undefined); setEdcTracklist(undefined);
+    setMcTracks(undefined); setEdcTracklist(undefined);
     setSlError(false); setYtError(false); setTmError(false);
     fetchLastfm(lookupName, a.genre).then(setLfm);
     fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); });
     fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); });
     fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); });
     fetchMixcloud(lookupName).then(setMcTracks);
-    fetchAudioDB(lookupName, a.genre).then(setTadb);
     if (window._getTracklistForArtist) window._getTracklistForArtist(a.name).then(setEdcTracklist);
   }, [a.id, activeB2B]);
-
-  // Persist the TheAudioDB thumbnail into the SHARED artist_images_v1 cache.
-  // Deezer used to be the only thing seeding this cache for users with no
-  // Spotify connection, and it was CORS-blocked, so those users saw a photo on
-  // the artist screen (via tadb.image, read directly) and a grey placeholder
-  // everywhere else. Writing it here closes that gap through the lane that
-  // works. Never overwrite an existing entry — Spotify's images are higher
-  // resolution and chrome.jsx's queue may already have won the race.
-  React.useEffect(() => {
-    const img = tadb?.image;
-    if (!img) return;
-    const ln = activeName.toLowerCase();
-    try {
-      const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-      if (!imgs[ln]) { imgs[ln] = img; localStorage.setItem("artist_images_v1", JSON.stringify(imgs)); }
-    } catch {}
-  }, [tadb, activeName]);
 
   // Spotify stats: popularity, followers, genres — loaded from cache or fetched alongside photo
   const [spotifyStats, setSpotifyStats] = React.useState(null);
@@ -1089,11 +1008,10 @@ function ArtistScreen({ state, setState }) {
       if (cached) { setSpotifyStats(cached); hasCachedStats = true; }
       else setSpotifyStats(null);
     } catch { setSpotifyStats(null); }
-    // The photo fallback for disconnected users is TheAudioDB, fetched by the
-    // effect above and persisted by the one below — not a second call here.
+    // A disconnected user gets no photo (the gradient); see the hero chain.
     const ln = activeName.toLowerCase();
     // Skip Spotify network call if we already have both photo and stats cached
-    if (artistImages[ln] && hasCachedStats) return;
+    if (heroCacheRec && hasCachedStats) return;
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     const ctrl = new AbortController();
     getValidToken().then(token => {
@@ -1107,15 +1025,11 @@ function ArtistScreen({ state, setState }) {
         || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
       if (!match) return;
       // Photo
-      if (!artistImages[ln]) {
+      if (!heroCacheRec) {
         const img = match?.images?.[0]?.url;
         if (img) {
           setFetchedPhoto(img);
-          try {
-            const imgs = JSON.parse(localStorage.getItem("artist_images_v1") || "{}");
-            imgs[ln] = img;
-            localStorage.setItem("artist_images_v1", JSON.stringify(imgs));
-          } catch {}
+          putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
         }
       }
       // Stats + top track names (for setlist highlighting)
@@ -1218,6 +1132,84 @@ function ArtistScreen({ state, setState }) {
   const connected = isSpotifyConnected();
   const [heroParallax, setHeroParallax] = React.useState(0);
   const scrollBodyRef = React.useRef(null);
+  const spotifyHero = !!heroPhoto && heroSource === "spotify";
+  const spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
+  const spotifyArtistUrl = spotifyArtistId
+    ? "https://open.spotify.com/artist/" + spotifyArtistId
+    : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
+  const heroControls = (
+    <>
+      <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
+        position: "absolute", top: 14, left: 14, zIndex: 10,
+        width: 38, height: 38, borderRadius: 38,
+        background: "rgba(var(--ink-rgb),0.18)", backdropFilter: "blur(8px)",
+        border: "1px solid rgba(var(--ink-rgb),0.3)",
+        color: "var(--ink)", cursor: "pointer", fontSize: 18,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>←</button>
+
+      <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
+        {connected && preview !== "none" && (
+          <button onClick={handlePreview} style={{
+            display: "inline-flex", alignItems: "center", gap: 5,
+            background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(var(--ink-rgb),0.3)",
+            color: "var(--ink)", cursor: "pointer",
+            borderRadius: 999, padding: "5px 10px",
+            fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            whiteSpace: "nowrap",
+          }}>
+            {preview === "loading" ? (
+              <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(var(--ink-rgb),0.4)", borderTopColor: "var(--ink)", animation: "spin 0.75s linear infinite", display: "inline-block" }} />
+            ) : playing ? (
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+            ) : (
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+            )}
+            PREVIEW
+          </button>
+        )}
+        <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
+          {/* The time joins only when there is one: fmt12("") is an em dash, and
+              "DAY TBA · —" reads as a time that exists. One text node, so the
+              gate can assert the exact string. */}
+          <span data-artist-day-pill>
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+          </span>
+        </Pill>
+        <ShareArtistButton artist={a} />
+      </div>
+    </>
+  );
+  const heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
+  const heroNameInner = (
+    <>
+      {/* 12px clears the name's cap height: at lineHeight 0.88 a two-line
+          name (Amyl And The Sniffers at 320) put its first line into the
+          eyebrow at 8px. A placeholder genre ("—") prints nothing. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+        {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+          {heroGenre.toUpperCase()}
+        </div>}
+        {heroGenre && stage && (
+          <div style={{
+            width: 4, height: 4, borderRadius: 4, background: "var(--signal)",
+            boxShadow: `0 0 6px var(--signal)`,
+          }}/>
+        )}
+        {stage && (
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
+            {stage.name.toUpperCase()}
+          </div>
+        )}
+      </div>
+      <div className="serif" style={{
+        fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
+        textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
+      }}>{a.name}</div>
+    </>
+  );
 
   return (
     <Screen bg="var(--paper)">
@@ -1226,23 +1218,57 @@ function ArtistScreen({ state, setState }) {
         setHeroParallax(Math.min(60, y * 0.3));
       }}>
       {/* Hero */}
-      <div style={{
+      {spotifyHero ? (
+        // Spotify's Design Guidelines for Spotify artwork: "Don't crop the
+        // artwork in any way", "Don't overlay images or text on top of the
+        // artwork", "Don't animate or distort it", corners rounded 4px on
+        // small devices, and the full Spotify logo (icon + wordmark) linking
+        // back to Spotify. So this hero shows the image whole at its own
+        // aspect, with no scrim, parallax, atmosphere or text on it, and the
+        // logo under it links to the artist on Spotify. Every other source
+        // keeps the full-bleed hero below.
+        <div data-hero="spotify" style={{
+          position: "relative", color: "var(--ink)", background: "var(--paper)",
+          padding: "64px 18px 16px",
+        }}>
+          {heroControls}
+          <figure style={{ margin: 0, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <img src={heroPhoto} alt={activeName + " (photo from Spotify)"} data-spotify-image="1" style={{
+              display: "block", width: "min(60vw, 236px)", maxWidth: "100%", height: "auto", borderRadius: 4,
+            }}/>
+            <a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer" data-spotify-attribution="1"
+              aria-label={"Photo from Spotify. Open " + activeName + " on Spotify"} style={{
+                display: "inline-flex", color: "var(--ink)", padding: "11px 11px 11px 0",
+              }}>
+              <SpotifyFullLogo height={21} />
+            </a>
+          </figure>
+          <div style={{ marginTop: 6 }}>
+            {heroNameInner}
+          </div>
+        </div>
+      ) : (
+      <div className="media-scope" style={{
         height: 300, position: "relative",
         overflow: "hidden",
-        color: "#fff",
+        color: "var(--ink)",
       }}>
         <div style={{
           position: "absolute", inset: 0, top: -30,
-          background: heroPhoto
-            ? "var(--ink)"
-            : `linear-gradient(160deg, var(--ink) 0%, ${stage?.color || "#2a1a3d"}44 40%, var(--ink) 100%)`,
-          backgroundImage: heroPhoto ? `url(${heroPhoto})` : undefined,
+          // Longhands only: a `background` shorthand holding var() is wiped
+          // when React then sets backgroundSize/Position, so the no-photo
+          // hero used to paint NOTHING (invisible in Dark, a pale ground
+          // under white controls in Light).
+          backgroundColor: "var(--media-ground)",
+          backgroundImage: heroPhoto
+            ? `url(${heroPhoto})`
+            : `linear-gradient(160deg, var(--media-ground) 0%, rgba(var(--signal-rgb),0.27) 40%, var(--media-ground) 100%)`,
           backgroundSize: "cover",
           backgroundPosition: "center 20%",
           transform: `translateY(${heroParallax}px)`,
           willChange: "transform",
         }}/>
-        {heroPhoto && <ArtistAtmosphere genre={a.genre} stageColor={stage?.color || "var(--ember)"} tier={a.tier} />}
+        {heroPhoto && <ArtistAtmosphere genre={a.genre} stageColor={"var(--signal)"} tier={a.tier} />}
         {!heroPhoto && (
           <div style={{
             position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none", zIndex: 1,
@@ -1250,12 +1276,12 @@ function ArtistScreen({ state, setState }) {
             <div style={{
               position: "absolute", top: "30%", left: "50%", transform: "translate(-50%, -50%)",
               width: 180, height: 180, borderRadius: "50%",
-              background: `radial-gradient(circle, ${stage?.color || "var(--ember)"}30, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(var(--signal-rgb),0.19), transparent 70%)`,
               animation: "vfx-pulse 4s ease-in-out infinite",
             }}/>
           </div>
         )}
-        {a.tier === 3 && heroPhoto && <PyroStarburst color={stage?.color || "var(--ember)"} />}
+        {a.tier === 3 && heroPhoto && <PyroStarburst color={"var(--signal)"} />}
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
           // The scrim has to guarantee legibility over ANY photo, not just a
@@ -1265,54 +1291,10 @@ function ArtistScreen({ state, setState }) {
           // bottom third and puts a light veil up top so the back button and
           // date pill survive a bright sky too.
           background: heroPhoto
-            ? `linear-gradient(180deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.06) 26%, ${stage?.color || "rgba(26,18,13,1)"}22 52%, rgba(26,18,13,0.72) 76%, rgba(26,18,13,0.96) 100%)`
-            : `linear-gradient(180deg, transparent 0%, ${stage?.color || "rgba(26,18,13,1)"}15 50%, rgba(26,18,13,0.95) 100%)`,
+            ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)`
+            : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`,
         }} />
-        <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
-          position: "absolute", top: 14, left: 14, zIndex: 10,
-          width: 38, height: 38, borderRadius: 38,
-          background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
-          border: "1px solid rgba(255,255,255,0.3)",
-          color: "#fff", cursor: "pointer", fontSize: 18,
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}>←</button>
-
-        <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
-          {connected && preview !== "none" && (
-            <button onClick={handlePreview} style={{
-              display: "inline-flex", alignItems: "center", gap: 5,
-              background: playing ? "var(--ember)" : "rgba(255,255,255,0.18)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.3)",
-              color: "#fff", cursor: "pointer",
-              borderRadius: 999, padding: "5px 10px",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-              whiteSpace: "nowrap",
-            }}>
-              {preview === "loading" ? (
-                <span style={{ width: 8, height: 8, borderRadius: "50%", border: "1.5px solid rgba(255,255,255,0.4)", borderTopColor: "#fff", animation: "spin 0.75s linear infinite", display: "inline-block" }} />
-              ) : playing ? (
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
-              ) : (
-                <svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M8 5 L19 12 L8 19 Z"/></svg>
-              )}
-              PREVIEW
-            </button>
-          )}
-          <Pill tone="outline" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", backdropFilter: "blur(8px)", borderColor: "rgba(255,255,255,0.3)" }}>
-            DAY {a.day} · {fmt12(a.start)}
-          </Pill>
-          <ShareArtistButton artist={a} />
-        </div>
-
-        {heroPhoto && heroPhotoSrc && (
-          <div className="mono" aria-hidden="true" style={{
-            position: "absolute", top: 58, right: 14, zIndex: 3,
-            fontSize: 7.5, letterSpacing: 1, fontWeight: 700,
-            color: "rgba(255,255,255,0.55)",
-            textShadow: "0 1px 4px rgba(0,0,0,0.6)",
-          }}>PHOTO · {heroPhotoSrc}</div>
-        )}
+        {heroControls}
 
         {/* zIndex 3 puts the name/genre ABOVE the scrim. Without it the text
             sat UNDER the gradient (scrim is zIndex 2) and every attempt to
@@ -1320,28 +1302,26 @@ function ArtistScreen({ state, setState }) {
             same amount — proven by painting the scrim solid green and
             watching the name go green with it. */}
         <div style={{ position: "absolute", bottom: 16, left: 18, right: 18, zIndex: 3 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
-              {a.genre.toUpperCase()}
-            </div>
-            {stage && (
-              <div style={{
-                width: 4, height: 4, borderRadius: 4, background: stage.color,
-                boxShadow: `0 0 6px ${stage.color}`,
-              }}/>
-            )}
-            {stage && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, fontWeight: 700 }}>
-                {stage.name.toUpperCase()}
-              </div>
-            )}
-          </div>
-          <div className="serif" style={{
-            fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
-            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
-          }}>{a.name}</div>
+          {heroNameInner}
         </div>
       </div>
+      )}
+
+      {/* Licensed photo credit, a caption directly under the photo it
+          credits: label type (11px floor) in --text-3, links underlined in
+          the same colour. The author links to the source page, the license
+          name to its deed; "Cropped" is the change notice. One line at 320:
+          the ledger caps author length (scripts/lib/artist-photo-ledger.mjs). */}
+      {heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && (
+        <div data-artist-photo-credit="1" aria-label={"Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped"} style={{
+          padding: "8px 18px 0", fontSize: "var(--fs-label)", lineHeight: "16px",
+          color: "var(--text-3)", whiteSpace: "nowrap",
+        }}>
+          <a href={heroCacheRec.sourceUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{heroCacheRec.author}</a>
+          {" · "}<a href={heroCacheRec.licenseUrl} target="_blank" rel="noopener noreferrer" style={_creditLink}>{_licenseLabel(heroCacheRec.license)}</a>
+          {" · Cropped"}
+        </div>
+      )}
 
       {/* B2B artist tabs — one per individual artist */}
       {isB2B && (
@@ -1350,10 +1330,10 @@ function ArtistScreen({ state, setState }) {
             <button key={i} onClick={() => setActiveB2B(i)} style={{
               flex: 1, padding: "11px 8px",
               background: "transparent", border: "none",
-              borderBottom: `2px solid ${activeB2B === i ? (stage?.color || "#8a8580") : "transparent"}`,
+              borderBottom: `2px solid ${activeB2B === i ? ("var(--signal)") : "transparent"}`,
               cursor: "pointer",
-              fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-              color: activeB2B === i ? (stage?.color || "#8a8580") : "var(--muted)",
+              font: "500 11px/1.273 var(--f-display)", letterSpacing: ".12em", minHeight: 44,
+              color: activeB2B === i ? ("var(--signal-ink)") : "var(--ink-3)",
               fontWeight: activeB2B === i ? 700 : 400,
               transition: "color 0.15s, border-color 0.15s",
             }}>{part.toUpperCase()}</button>
@@ -1362,6 +1342,84 @@ function ArtistScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "18px 20px 24px" }}>
+        {/* Stage & time: the board's set card. Lifted while the set is on,
+            with minutes left and progress (Today's math); otherwise the day
+            and the clock. A billed act no official schedule has placed
+            (Escape's lineup-card acts, CRSSD's late adds) has no day: say so,
+            rather than look up a day that does not exist and crash. */}
+        {(() => {
+          const live = typeof isSetLive === "function" && isSetLive(a);
+          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
+          let minsLeft = null, pct = 0;
+          if (live && a.start && a.end && typeof festivalNightDate === "function") {
+            try {
+              const startMs = festivalNightDate(a.day, a.start).getTime();
+              const endMs = startMs + Math.max(1, toNightMin(a.end) - toNightMin(a.start)) * 60000;
+              const now = Date.now();
+              minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
+              pct = Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100)));
+            } catch {}
+          }
+          const go = (n) => (window._pushNav || ((x) => setState({ ...state, ...x })))(n);
+          return (
+            <div data-artist-set-card className={`duo-card${live ? " duo-lift" : ""}`} style={{ padding: "14px 16px", marginBottom: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", columnGap: 12, rowGap: 4, flexWrap: "wrap" }}>
+                {live ? <span style={{ whiteSpace: "nowrap" }}><DuoLive>{`Live now${dayLabel ? ` · ${dayLabel}` : ""}`}</DuoLive></span>
+                  : <span className="duo-label duo-ink3">{dayLabel || "Day TBA"}</span>}
+                {minsLeft != null && <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>{minsLeft} MIN LEFT</span>}
+              </div>
+              <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
+              {a.day == null || !a.start
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
+                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
+              {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
+              {saveCount != null && saveCount >= 2 && (
+                <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
+              )}
+              <div style={{ display: "flex", columnGap: 8, flexWrap: "wrap", marginTop: 6 }}>
+                <button className="duo-chip" onClick={() => go({ tab: "map", focusStage: a.stage, artist: null })}><span>On map</span></button>
+                {a.day != null && <button className="duo-chip" onClick={() => go({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })}><span>Schedule</span></button>}
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* On <stage> that night: who plays before and after this set, from
+            the published schedule only (same stage, same night, same weekend).
+            Absent when the set has no day, time or neighbours. */}
+        {(() => {
+          if (a.day == null || !a.start || !a.stage) return null;
+          const sameWk = (x) => !a.weekend || a.weekend === "both" || !x.weekend || x.weekend === "both" || x.weekend === a.weekend;
+          // This act's own weekend when it has one, else the weekend the user is on.
+          const pool = a.weekend === "W1" || a.weekend === "W2" ? lineupFor(a.weekend) : activeLineup(state.saved);
+          const night = pool.filter(x => x.stage === a.stage && x.day === a.day && x.start && sameWk(x))
+            .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+          const i = night.findIndex(x => x.id === a.id);
+          if (i < 0 || night.length < 2) return null;
+          const rows = [night[i - 1] && [night[i - 1], "Before"], [a, "This set"], night[i + 1] && [night[i + 1], "After"]].filter(Boolean);
+          const open = (id) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ artist: id });
+          return (
+            <section data-artist-stage-night style={{ marginBottom: 20 }}>
+              <h2 className="duo-sect" style={{ padding: "4px 0 6px" }}>On {stage.name} that night</h2>
+              {rows.map(([x, label]) => {
+                const me = x.id === a.id;
+                return (
+                  <button key={x.id} onClick={me ? undefined : () => open(x.id)} disabled={me}
+                    aria-label={`${label}: ${x.name}, ${fmt12(x.start)}`}
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", borderTop: "1px solid var(--line)", background: "none", color: "var(--ink)", textAlign: "left", cursor: me ? "default" : "pointer", fontFamily: "inherit" }}>
+                    <DuoAvatar name={x.name} size={36} ring={me ? "on" : ""} />
+                    <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
+                      <span className="duo-name" style={{ font: "600 15px/1.33 var(--f-ui)", color: me ? "var(--acc-ink)" : "var(--ink)" }}>{actDisplayName(x.name)}</span>
+                      <span className="duo-label duo-ink3" style={{ marginTop: 2 }}>{label}</span>
+                    </span>
+                    <span className="duo-data" style={{ fontSize: 13, color: me ? "var(--ink)" : "var(--ink-2)", whiteSpace: "nowrap" }}>{fmt12(x.start)}</span>
+                  </button>
+                );
+              })}
+            </section>
+          );
+        })()}
+
         {/* Glance stats — only render cells with values; hide row entirely if none */}
         {(() => {
           const cells = [];
@@ -1370,10 +1428,9 @@ function ArtistScreen({ state, setState }) {
           if (spotifyStats?.popularity > 0)       cells.push({ label: "POPULARITY", value: spotifyStats.popularity });
           if (cells.length === 0) return null;
           return (
-            <div style={{
+            <div className="duo-card" style={{
               display: "grid", gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
-              background: "var(--paper-2)", border: "1px solid var(--line)",
-              borderRadius: 14, padding: "12px 4px", marginBottom: 12,
+              padding: "12px 4px", marginBottom: 12,
             }}>
               {cells.map((c, i) => (
                 <div key={c.label} style={{
@@ -1381,10 +1438,10 @@ function ArtistScreen({ state, setState }) {
                   borderLeft: i === 0 ? "none" : "1px solid var(--line)",
                   padding: "2px 6px",
                 }}>
-                  <div className="serif" style={{ fontSize: 22, lineHeight: 1, marginBottom: 5 }}>
+                  <div className="duo-data" style={{ fontSize: 20, lineHeight: 1, marginBottom: 6, color: "var(--ink)" }}>
                     {c.value}
                   </div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700 }}>
+                  <div className="duo-label duo-ink3">
                     {c.label}
                   </div>
                 </div>
@@ -1396,12 +1453,12 @@ function ArtistScreen({ state, setState }) {
         {/* Section-jump chips — scroll-spy highlights the active section */}
         {(() => {
           const sections = [
-            { id: "artist-section-bio",        label: "BIO" },
-            { id: "artist-section-tracklist",  label: "TRACKLIST" },
-            { id: "artist-section-livestream", label: "LIVE SET" },
-            { id: "artist-section-setlists",   label: "SETLISTS" },
-            { id: "artist-section-similar",    label: "SIMILAR" },
-            { id: "artist-section-upcoming",   label: "UPCOMING" },
+            { id: "artist-section-bio",        label: "Bio" },
+            { id: "artist-section-tracklist",  label: "Tracklist" },
+            { id: "artist-section-livestream", label: "Live set" },
+            { id: "artist-section-setlists",   label: "Setlists" },
+            { id: "artist-section-similar",    label: "Similar" },
+            { id: "artist-section-upcoming",   label: "Upcoming" },
           ];
           const [activeChip, setActiveChip] = React.useState(sections[0].id);
           React.useEffect(() => {
@@ -1416,8 +1473,8 @@ function ArtistScreen({ state, setState }) {
           }, [a.id]);
           return (
             <div style={{
-              display: "flex", gap: 6, overflowX: "auto", overflowY: "hidden",
-              marginBottom: 16, marginLeft: -20, marginRight: -20,
+              display: "flex", gap: 8, overflowX: "auto", overflowY: "hidden",
+              marginBottom: 8, marginLeft: -20, marginRight: -20,
               paddingLeft: 20, paddingRight: 20,
               scrollbarWidth: "none",
             }}>
@@ -1426,19 +1483,11 @@ function ArtistScreen({ state, setState }) {
                 return (
                   <button
                     key={c.id}
+                    className="duo-chip" aria-pressed={on}
                     onClick={() => {
                       document.getElementById(c.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    style={{
-                      background: on ? "var(--ink)" : "var(--paper-2)",
-                      border: on ? "1px solid var(--ink)" : "1px solid var(--line-2)",
-                      borderRadius: 999, padding: "6px 12px",
-                      fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 600,
-                      color: on ? "var(--paper)" : "var(--ink)", cursor: "pointer",
-                      whiteSpace: "nowrap", flexShrink: 0,
-                      transition: "all 0.2s ease",
-                    }}
-                  >{c.label}</button>
+                  ><span>{c.label}</span></button>
                 );
               })}
             </div>
@@ -1447,61 +1496,9 @@ function ArtistScreen({ state, setState }) {
 
         {/* Bio — moved above the stage card so it sits in the initial
             viewport (was getting pushed below the fold by the new stat
-            row + chip nav). AudioDB extended bio follows when available. */}
-        <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: tadb?.bio ? 8 : 16, textWrap: "pretty" }}>
+            row + chip nav). */}
+        <div id="artist-section-bio" className="serif" style={{ fontSize: 20, lineHeight: 1.35, marginBottom: 16, textWrap: "pretty" }}>
           {a.bio}
-        </div>
-        {tadb?.bio && tadb.bio.length > 60 && (
-          <div style={{ fontSize: 13, lineHeight: 1.6, color: "var(--muted)", marginBottom: 16 }}>
-            {tadb.bio.slice(0, 320)}{tadb.bio.length > 320 ? "…" : ""}
-            {(tadb.mood || tadb.style || tadb.country) && (
-              <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-                {[tadb.mood, tadb.style, tadb.country].filter(Boolean).map(tag => (
-                  <span key={tag} className="mono" style={{
-                    fontSize: 8, letterSpacing: 1, padding: "3px 8px",
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                    borderRadius: 999, color: "var(--muted)",
-                  }}>{tag.toUpperCase()}</span>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Stage & time */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: 14,
-          background: "var(--paper-2)",
-          borderRadius: 14,
-          marginBottom: 16,
-        }}>
-          <div style={{ width: 6, alignSelf: "stretch", background: stage.color, borderRadius: 3 }} />
-          <div style={{ flex: 1 }}>
-            <div className="serif" style={{ fontSize: 20, lineHeight: 1 }}>{stage.name}</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--muted)", marginTop: 3 }}>
-              {DAYS.find(d => d.n === a.day).label} · {fmt12(a.start)}–{fmt12(a.end)}
-            </div>
-            {saveCount != null && saveCount >= 2 && (
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: stage.color, marginTop: 5 }}>
-                ● {saveCount} FANS GOING
-              </div>
-            )}
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 6, flexShrink: 0 }}>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "map", focusStage: a.stage, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer",
-            }}>ON MAP</button>
-            <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "lineup", lineupDay: a.day, lineupHighlight: a.id, artist: null })} style={{
-              background: "transparent", border: "1px solid var(--line-2)",
-              borderRadius: 999, padding: "6px 12px",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-              cursor: "pointer", whiteSpace: "nowrap",
-            }}>SCHEDULE</button>
-          </div>
         </div>
 
         {/* Per-artist memories strip — the first surface in the rewatch
@@ -1510,7 +1507,7 @@ function ArtistScreen({ state, setState }) {
         <YourPhotosStrip
           artistId={a.id}
           night={a.day}
-          accent={stage.color}
+          accent={"var(--signal)"}
           artistObj={a}
           onOpen={(n) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ tab: "memories", memoriesNight: n, artist: null })}
           onOpenMap={(art) => (window._pushNav || ((x) => setState({ ...state, ...x })))({ tab: "map", focusStage: art?.stage || a.stage, artist: null })}
@@ -1521,19 +1518,20 @@ function ArtistScreen({ state, setState }) {
             fetch); falls back to the search-by-artist URL otherwise. */}
         <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
           {[
-            { label: "SPOTIFY", accent: "#1DB954", url: spotifyStats?.spotifyId
+            { label: "Spotify", url: spotifyStats?.spotifyId
                 ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}`
                 : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists` },
-            { label: "SOUNDCLOUD", accent: "#ff5500", url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}` },
-            { label: "RA", accent: "#000", url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}` },
-            { label: "INSTAGRAM", accent: "#E1306C", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g,"").toLowerCase())}` },
-            { label: "𝕏", accent: "#000", url: `https://x.com/search?q=${encodeURIComponent(lookupName)}` },
-          ].map(({ label, url, accent }) => (
+            { label: "SoundCloud", url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}` },
+            { label: "RA", url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}` },
+            { label: "Instagram", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g,"").toLowerCase())}` },
+            { label: "𝕏", url: `https://x.com/search?q=${encodeURIComponent(lookupName)}` },
+          ].map(({ label, url }) => (
             <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{
-              fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2, fontWeight: 700,
-              padding: "5px 10px", borderRadius: 999,
-              background: `${accent}10`, border: `1px solid ${accent}30`,
-              color: accent, textDecoration: "none",
+              display: "inline-flex", alignItems: "center", minHeight: 36,
+              fontSize: 13, lineHeight: "18px", fontWeight: 600,
+              padding: "0 12px", borderRadius: 999,
+              background: "var(--paper-2)", border: "1px solid var(--line-2)",
+              color: "var(--ink)", textDecoration: "none",
               transition: "background 0.15s",
             }}>{label} ↗</a>
           ))}
@@ -1554,18 +1552,18 @@ function ArtistScreen({ state, setState }) {
           return (
             <div style={{
               marginBottom: 18, borderRadius: 16, overflow: "hidden",
-              background: "var(--ink)", color: "#fff",
-              boxShadow: `0 0 24px ${stage.color}22`,
+              background: "var(--paper-2)", color: "var(--ink)",
+              boxShadow: `0 0 24px rgba(var(--signal-rgb),0.13)`,
             }}>
               <div style={{ padding: "14px 16px 8px" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <span style={{ fontSize: 14 }}>♫</span>
-                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: stage.color }}>
+                    <span className="mono" style={{ fontSize: 9, letterSpacing: 1.6, fontWeight: 700, color: "var(--signal-ink)" }}>
                       WHAT THEY PLAYED AT {(FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.brand || "EDC").toUpperCase()}
                     </span>
                   </div>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(255,255,255,0.35)" }}>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                     {tracks.length} TRACKS
                   </span>
                 </div>
@@ -1574,17 +1572,17 @@ function ArtistScreen({ state, setState }) {
                 {shown.map((t, i) => (
                   <div key={i} style={{
                     display: "flex", alignItems: "baseline", gap: 10, padding: "5px 0",
-                    borderTop: i === 0 ? `1px solid rgba(255,255,255,0.06)` : "none",
+                    borderTop: i === 0 ? `1px solid rgba(var(--ink-rgb),0.06)` : "none",
                   }}>
-                    <span className="mono" style={{ fontSize: 8, color: "rgba(255,255,255,0.25)", width: 38, textAlign: "right", flexShrink: 0 }}>
+                    <span className="mono" style={{ fontSize: 8, color: "var(--text-3)", width: 38, textAlign: "right", flexShrink: 0 }}>
                       {fmtTime(t.time)}
                     </span>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         {t.title}
                       </div>
                       {t.artist && t.artist !== a.name && (
-                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.4)", marginTop: 1 }}>
+                        <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginTop: 1 }}>
                           {t.artist}
                         </div>
                       )}
@@ -1595,7 +1593,7 @@ function ArtistScreen({ state, setState }) {
                   <button onClick={() => setTlExpanded(e => !e)} style={{
                     background: "transparent", border: "none", cursor: "pointer",
                     fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                    color: stage.color, padding: "8px 0 2px", display: "block",
+                    color: "var(--signal-ink)", padding: "8px 0 2px", display: "block",
                   }}>
                     {tlExpanded ? "SHOW LESS ↑" : `+${tracks.length - 8} MORE TRACKS ↓`}
                   </button>
@@ -1604,9 +1602,9 @@ function ArtistScreen({ state, setState }) {
               {edcTracklist.url && (
                 <a href={edcTracklist.url} target="_blank" rel="noopener noreferrer" style={{
                   display: "block", padding: "10px 16px",
-                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  borderTop: "1px solid rgba(var(--ink-rgb),0.06)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.2,
-                  color: "rgba(255,255,255,0.35)", textDecoration: "none", textAlign: "center",
+                  color: "var(--text-3)", textDecoration: "none", textAlign: "center",
                 }}>SOURCE: 1001TRACKLISTS ↗</a>
               )}
             </div>
@@ -1629,7 +1627,7 @@ function ArtistScreen({ state, setState }) {
                   <div style={{ height: 5, background: "var(--line-2)", borderRadius: 5, overflow: "hidden" }}>
                     <div style={{
                       height: "100%", width: `${spotifyStats.popularity}%`,
-                      background: `linear-gradient(90deg, ${stage.color}88, ${stage.color})`,
+                      background: `linear-gradient(90deg, rgba(var(--signal-rgb),0.53), var(--signal))`,
                       borderRadius: 5, transition: "width 0.8s ease",
                     }} />
                   </div>
@@ -1637,10 +1635,10 @@ function ArtistScreen({ state, setState }) {
               )}
               {spotifyStats.followers > 0 && (
                 <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                  <span className="serif" style={{ fontSize: 24, lineHeight: 1, letterSpacing: -0.5 }}>
+                  <span className="duo-headline" style={{ letterSpacing: -0.5 }}>
                     {_fmtCount(spotifyStats.followers)}
                   </span>
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)" }}>SPOTIFY FOLLOWERS</span>
+                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--ink-2)" }}>SPOTIFY FOLLOWERS</span>
                 </div>
               )}
             </div>
@@ -1649,8 +1647,8 @@ function ArtistScreen({ state, setState }) {
                 {spotifyStats.genres.slice(0, 5).map(g => (
                   <span key={g} className="mono" style={{
                     fontSize: 9, letterSpacing: 1, padding: "4px 10px",
-                    background: `${stage.color}18`, border: `1px solid ${stage.color}38`,
-                    borderRadius: 999, color: stage.color, fontWeight: 600,
+                    background: `rgba(var(--signal-rgb),0.09)`, border: `1px solid rgba(var(--signal-rgb),0.22)`,
+                    borderRadius: 999, color: "var(--signal-ink)", fontWeight: 600,
                   }}>{g.toUpperCase()}</span>
                 ))}
               </div>
@@ -1663,7 +1661,7 @@ function ArtistScreen({ state, setState }) {
           <div style={{ marginBottom: 18 }}>
             <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
               {[0, 1].map(i => (
-                <div key={i} style={{ flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "10px 14px" }}>
+                <div key={i} style={{ flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", padding: "10px 14px" }}>
                   <div className="skel" style={{ width: "50%", height: 22, marginBottom: 8 }}/>
                   <div className="skel" style={{ width: "70%", height: 9 }}/>
                 </div>
@@ -1688,26 +1686,26 @@ function ArtistScreen({ state, setState }) {
               }}>
                 {lfm.listeners > 0 && (
                   <div style={{
-                    flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)",
-                    borderRadius: 12, padding: "10px 14px",
+                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                    borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="serif" style={{ fontSize: 22, lineHeight: 1, letterSpacing: -0.5 }}>
+                    <div className="duo-clock" style={{ fontSize: 26 }}>
                       {_fmtCount(lfm.listeners)}
                     </div>
-                    <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4 }}>
+                    <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
                       LISTENERS
                     </div>
                   </div>
                 )}
                 {lfm.playcount > 0 && (
                   <div style={{
-                    flex: 1, background: "var(--paper-2)", border: "1px solid var(--line)",
-                    borderRadius: 12, padding: "10px 14px",
+                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                    borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="serif" style={{ fontSize: 22, lineHeight: 1, letterSpacing: -0.5 }}>
+                    <div className="duo-clock" style={{ fontSize: 26 }}>
                       {_fmtCount(lfm.playcount)}
                     </div>
-                    <div className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--muted)", marginTop: 4 }}>
+                    <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
                       TOTAL SCROBBLES
                     </div>
                   </div>
@@ -1725,7 +1723,7 @@ function ArtistScreen({ state, setState }) {
                     background: "var(--paper-2)",
                     border: "1px solid var(--line-2)",
                     borderRadius: 999,
-                    color: "var(--muted)",
+                    color: "var(--ink-2)",
                   }}>{tag.toUpperCase()}</span>
                 ))}
               </div>
@@ -1734,7 +1732,7 @@ function ArtistScreen({ state, setState }) {
             {/* Bio supplement — only show if not a stub */}
             {lfm.bio && lfm.bio.length > 40 && (
               <div style={{
-                fontSize: 13, lineHeight: 1.55, color: "var(--muted)",
+                fontSize: 13, lineHeight: 1.55, color: "var(--ink-2)",
                 marginBottom: 12,
               }}>
                 {lfm.bio}
@@ -1766,14 +1764,13 @@ function ArtistScreen({ state, setState }) {
           const ytSearchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(lookupName + " live set " + (FESTIVAL_CONFIG.brand || FESTIVAL_CONFIG.shortName))}`;
           return (
             <div style={{ marginBottom: 18 }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10,
+              <div className="duo-sect" style={{ marginBottom: 10,
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 LIVE SET
                 <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                  color: "var(--muted)", textDecoration: "none",
+                  color: "var(--ink-2)", textDecoration: "none",
                 }}>SEARCH YOUTUBE ↗</a>
               </div>
 
@@ -1781,12 +1778,12 @@ function ArtistScreen({ state, setState }) {
               {YOUTUBE_KEY && ytVideo === undefined && (
                 <div style={{
                   borderRadius: 16, overflow: "hidden", aspectRatio: "16/9",
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                   display: "flex", alignItems: "center", justifyContent: "center",
                 }}>
                   <div style={{
                     width: 20, height: 20, borderRadius: "50%",
-                    border: "2px solid var(--line)", borderTopColor: "var(--muted)",
+                    border: "2px solid var(--line)", borderTopColor: "var(--ink-2)",
                     animation: "spin 0.8s linear infinite",
                   }}/>
                 </div>
@@ -1797,8 +1794,8 @@ function ArtistScreen({ state, setState }) {
                 <div onClick={() => setYtPlaying(true)} style={{
                   position: "relative", borderRadius: 16, overflow: "hidden",
                   aspectRatio: "16/9", cursor: "pointer",
-                  background: "var(--ink)",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+                  background: "var(--paper-2)",
+                  boxShadow: "0 8px 32px rgba(var(--shade-rgb),0.25)",
                 }}>
                   {ytVideo.thumbnail && (
                     <img src={ytVideo.thumbnail} alt={ytVideo.title} style={{
@@ -1807,17 +1804,17 @@ function ArtistScreen({ state, setState }) {
                   )}
                   <div style={{
                     position: "absolute", inset: 0,
-                    background: "linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.75) 100%)",
+                    background: "linear-gradient(180deg, rgba(var(--shade-rgb),0.05) 0%, rgba(var(--shade-rgb),0.15) 50%, rgba(var(--shade-rgb),0.75) 100%)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}>
                     <div style={{
                       width: 62, height: 62, borderRadius: 62,
-                      background: "rgba(255,0,0,0.92)",
+                      background: "rgba(var(--alert-rgb),0.92)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      boxShadow: "0 6px 28px rgba(255,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+                      boxShadow: "0 6px 28px rgba(var(--alert-rgb),0.4), 0 2px 8px rgba(var(--shade-rgb),0.3)",
                       transition: "transform 0.15s",
                     }}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--ink)">
                         <path d="M8 5 L19 12 L8 19 Z"/>
                       </svg>
                     </div>
@@ -1826,20 +1823,20 @@ function ArtistScreen({ state, setState }) {
                     position: "absolute", bottom: 0, left: 0, right: 0,
                     padding: "32px 14px 12px",
                   }}>
-                    <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.3, fontWeight: 500 }}>{ytVideo.title}</div>
+                    <div style={{ fontSize: 13, color: "var(--ink)", lineHeight: 1.3, fontWeight: 500 }}>{ytVideo.title}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 5 }}>
-                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(255,255,255,0.5)" }}>
+                      <span className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--text-3)" }}>
                         TAP TO PLAY
                       </span>
                       {ytVideo.durationMin > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.5)" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)" }}>
                           {ytVideo.durationMin >= 60
                             ? `${Math.floor(ytVideo.durationMin / 60)}H ${ytVideo.durationMin % 60}M`
                             : `${ytVideo.durationMin} MIN`}
                         </span>
                       )}
                       {ytVideo.views > 0 && (
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.5)", marginLeft: "auto" }}>
+                        <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--text-3)", marginLeft: "auto" }}>
                           {ytVideo.views >= 1e6
                             ? `${(ytVideo.views / 1e6).toFixed(1)}M`
                             : ytVideo.views >= 1e3
@@ -1854,7 +1851,7 @@ function ArtistScreen({ state, setState }) {
 
               {/* Inline iframe after tap */}
               {YOUTUBE_KEY && ytVideo && ytPlaying && (
-                <div style={{ borderRadius: 14, overflow: "hidden", aspectRatio: "16/9", background: "#000" }}>
+                <div style={{ borderRadius: "var(--rad-md)", overflow: "hidden", aspectRatio: "16/9", background: "var(--paper)" }}>
                   <iframe
                     src={`https://www.youtube.com/embed/${ytVideo.videoId}?autoplay=1`}
                     style={{ width: "100%", height: "100%", border: "none", display: "block" }}
@@ -1867,18 +1864,18 @@ function ArtistScreen({ state, setState }) {
               {/* No result — show error retry or fallback search link */}
               {YOUTUBE_KEY && ytVideo === null && (
                 <div style={{
-                  padding: "16px 14px", borderRadius: 12,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
+                  padding: "16px 14px", borderRadius: "var(--rad-md)",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                   textAlign: "center",
                 }}>
-                  <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                  <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                     {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
                   </div>
                   {ytError && (
                     <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
                       marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                      background: "var(--s3)", border: "none",
                       color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                       cursor: "pointer",
                     }}>↻ RETRY</button>
@@ -1886,8 +1883,8 @@ function ArtistScreen({ state, setState }) {
                   {!ytError && (
                     <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" className="mono" style={{
                       display: "inline-block", marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                      background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                      color: "var(--muted)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+                      background: "var(--s3)", border: "none",
+                      color: "var(--ink-2)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                       textDecoration: "none",
                     }}>SEARCH YOUTUBE ↗</a>
                   )}
@@ -1898,22 +1895,22 @@ function ArtistScreen({ state, setState }) {
               {!YOUTUBE_KEY && (
                 <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   display: "flex", alignItems: "center", gap: 10,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
-                  borderRadius: 12, padding: "12px 14px", textDecoration: "none",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  borderRadius: "var(--rad-md)", padding: "12px 14px", textDecoration: "none",
                 }}>
                   <div style={{
-                    width: 36, height: 36, borderRadius: 36, background: "#ff0000",
+                    width: 36, height: 36, borderRadius: 36, background: "var(--alert)",
                     display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                   }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5 L19 12 L8 19 Z"/></svg>
                   </div>
                   <div>
                     <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>Watch on YouTube</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", marginTop: 2 }}>
                       {activeName.toUpperCase()} LIVE SET · {(FESTIVAL_CONFIG.brand || "FESTIVAL").toUpperCase()}
                     </div>
                   </div>
-                  <div style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 14 }}>↗</div>
+                  <div style={{ marginLeft: "auto", color: "var(--ink-2)", fontSize: 14 }}>↗</div>
                 </a>
               )}
             </div>
@@ -1925,8 +1922,7 @@ function ArtistScreen({ state, setState }) {
           const mcSearchUrl = `https://www.mixcloud.com/search/?q=${encodeURIComponent(lookupName + " " + (FESTIVAL_CONFIG.brand || "festival"))}`;
           return (
             <div style={{ marginBottom: 18 }}>
-              <div className="mono" style={{
-                fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10,
+              <div className="duo-sect" style={{ marginBottom: 10,
                 display: "flex", alignItems: "center", justifyContent: "space-between",
               }}>
                 <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -1934,7 +1930,7 @@ function ArtistScreen({ state, setState }) {
                 </span>
                 <a href={mcSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                  color: "var(--muted)", textDecoration: "none",
+                  color: "var(--ink-2)", textDecoration: "none",
                 }}>SEARCH ↗</a>
               </div>
 
@@ -1942,7 +1938,7 @@ function ArtistScreen({ state, setState }) {
               {mcTracks === undefined && (
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   {[0, 1].map(i => (
-                    <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", background: "var(--ink)", borderRadius: 14, overflow: "hidden" }}>
+                    <div key={i} style={{ display: "flex", gap: 12, alignItems: "center", background: "var(--paper-2)", borderRadius: "var(--rad-md)", overflow: "hidden" }}>
                       <div className="skel-dark" style={{ width: 72, height: 72, flexShrink: 0, borderRadius: 0 }}/>
                       <div style={{ flex: 1, padding: "10px 14px 10px 0" }}>
                         <div className="skel-dark" style={{ width: "80%", height: 12, marginBottom: 8 }}/>
@@ -1960,13 +1956,13 @@ function ArtistScreen({ state, setState }) {
                   {mcPlaying !== track.key && (
                     <div onClick={() => setMcPlaying(track.key)} style={{
                       display: "flex", gap: 12, alignItems: "center",
-                      background: "var(--ink)", borderRadius: 14, overflow: "hidden",
+                      background: "var(--paper-2)", borderRadius: "var(--rad-md)", overflow: "hidden",
                       cursor: "pointer",
                     }}>
                       {/* Thumbnail */}
                       <div style={{
                         width: 72, height: 72, flexShrink: 0, position: "relative",
-                        background: "rgba(247,237,224,0.06)",
+                        background: "rgba(var(--ink-rgb),0.06)",
                       }}>
                         {track.thumbnail && (
                           <img src={track.thumbnail} alt="" style={{
@@ -1977,14 +1973,14 @@ function ArtistScreen({ state, setState }) {
                         <div style={{
                           position: "absolute", inset: 0,
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          background: "rgba(0,0,0,0.35)",
+                          background: "rgba(var(--shade-rgb),0.35)",
                         }}>
                           <div style={{
                             width: 28, height: 28, borderRadius: 28,
-                            background: "#ff5500",
+                            background: "var(--signal)",
                             display: "flex", alignItems: "center", justifyContent: "center",
                           }}>
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--ink)">
                               <path d="M8 5 L19 12 L8 19 Z"/>
                             </svg>
                           </div>
@@ -1994,21 +1990,21 @@ function ArtistScreen({ state, setState }) {
                       {/* Info */}
                       <div style={{ flex: 1, minWidth: 0, padding: "10px 14px 10px 0" }}>
                         <div style={{
-                          fontSize: 12, color: "var(--paper)", lineHeight: 1.3, fontWeight: 500,
+                          fontSize: 12, color: "var(--ink)", lineHeight: 1.3, fontWeight: 500,
                           overflow: "hidden", textOverflow: "ellipsis",
                           display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical",
                         }}>{track.name}</div>
                         <div style={{ display: "flex", gap: 8, marginTop: 5, alignItems: "center" }}>
-                          <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "#ff5500", fontWeight: 700 }}>
+                          <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 700 }}>
                             {track.user.toUpperCase()}
                           </span>
                           {track.duration > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.4)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcDur(track.duration)}
                             </span>
                           )}
                           {track.plays > 0 && (
-                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "rgba(247,237,224,0.35)" }}>
+                            <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--text-3)" }}>
                               {_mcFmt(track.plays)} PLAYS
                             </span>
                           )}
@@ -2019,7 +2015,7 @@ function ArtistScreen({ state, setState }) {
 
                   {/* Embedded player */}
                   {mcPlaying === track.key && (
-                    <div style={{ borderRadius: 14, overflow: "hidden", background: "var(--ink)" }}>
+                    <div style={{ borderRadius: "var(--rad-md)", overflow: "hidden", background: "var(--paper-2)" }}>
                       <iframe
                         src={`https://www.mixcloud.com/widget/iframe/?feed=${encodeURIComponent(track.key)}&mini=0&hide_cover=0&light=0&autoplay=1`}
                         style={{ width: "100%", height: 120, border: "none", display: "block" }}
@@ -2029,7 +2025,7 @@ function ArtistScreen({ state, setState }) {
                         width: "100%", background: "transparent", border: "none",
                         padding: "8px 0 10px",
                         fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
-                        color: "rgba(247,237,224,0.4)", cursor: "pointer",
+                        color: "var(--text-3)", cursor: "pointer",
                       }}>▲ CLOSE</button>
                     </div>
                   )}
@@ -2040,22 +2036,22 @@ function ArtistScreen({ state, setState }) {
               {Array.isArray(mcTracks) && mcTracks.length === 0 && (
                 <a href={mcSearchUrl} target="_blank" rel="noopener noreferrer" style={{
                   display: "flex", alignItems: "center", gap: 10,
-                  background: "var(--paper-2)", border: "1px solid var(--line)",
-                  borderRadius: 12, padding: "12px 14px", textDecoration: "none",
+                  background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  borderRadius: "var(--rad-md)", padding: "12px 14px", textDecoration: "none",
                 }}>
                   <div style={{
-                    width: 36, height: 36, borderRadius: 36, background: "#ff5500",
+                    width: 36, height: 36, borderRadius: 36, background: "var(--signal)",
                     display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                   }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--ink)"><path d="M8 5 L19 12 L8 19 Z"/></svg>
                   </div>
                   <div>
                     <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500 }}>Search on Mixcloud</div>
-                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                    <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", marginTop: 2 }}>
                       {activeName.toUpperCase()} · SETS & MIXES
                     </div>
                   </div>
-                  <div style={{ marginLeft: "auto", color: "var(--muted)", fontSize: 14 }}>↗</div>
+                  <div style={{ marginLeft: "auto", color: "var(--ink-2)", fontSize: 14 }}>↗</div>
                 </a>
               )}
             </div>
@@ -2066,14 +2062,14 @@ function ArtistScreen({ state, setState }) {
         <div id="artist-section-upcoming" />
         {TICKETMASTER_KEY && (
           <div style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="duo-sect" style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               UPCOMING SHOWS
             </div>
 
             {tmEvents === undefined && (
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {[0, 1].map(i => (
-                  <div key={i} style={{ background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12, padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
+                  <div key={i} style={{ background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", padding: "12px 16px", display: "flex", alignItems: "center", gap: 12 }}>
                     <div className="skel" style={{ width: 42, height: 56, borderRadius: 8 }}/>
                     <div style={{ flex: 1 }}>
                       <div className="skel" style={{ width: "75%", height: 13, marginBottom: 6 }}/>
@@ -2086,18 +2082,18 @@ function ArtistScreen({ state, setState }) {
 
             {tmEvents !== undefined && tmEvents !== null && tmEvents.length === 0 && (
               <div style={{
-                padding: "16px 14px", borderRadius: 12,
-                background: "var(--paper-2)", border: "1px solid var(--line)",
+                padding: "16px 14px", borderRadius: "var(--rad-md)",
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"}
                 </div>
                 {tmError && (
                   <button onClick={() => { setTmError(false); setTmEvents(undefined); fetchTicketmaster(lookupName).then(setTmEvents).catch(() => { setTmEvents([]); setTmError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    background: "var(--s3)", border: "none",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                     cursor: "pointer",
                   }}>↻ RETRY</button>
@@ -2107,8 +2103,8 @@ function ArtistScreen({ state, setState }) {
 
             {Array.isArray(tmEvents) && tmEvents.map((ev, idx) => (
               <div key={idx} style={{
-                background: "var(--paper-2)", border: "1px solid var(--line)",
-                borderRadius: 12, padding: "12px 16px", marginBottom: 8,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                borderRadius: "var(--rad-md)", padding: "12px 16px", marginBottom: 8,
                 display: "flex", alignItems: "center", gap: 12,
               }}>
                 {/* Date block */}
@@ -2117,13 +2113,13 @@ function ArtistScreen({ state, setState }) {
                   background: "var(--ember)", borderRadius: 8,
                   padding: "6px 10px", minWidth: 42,
                 }}>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "rgba(255,255,255,0.75)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--on-ember)" }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[0].toUpperCase() : ""}
                   </div>
-                  <div className="serif" style={{ fontSize: 20, lineHeight: 1, color: "#fff", letterSpacing: -0.5 }}>
+                  <div className="duo-headline" style={{ color: "var(--on-ember)", letterSpacing: -0.5 }}>
                     {ev.date ? _tmDate(ev.date).split(" ")[1].replace(",","") : "—"}
                   </div>
-                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "rgba(255,255,255,0.7)" }}>
+                  <div className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--on-ember)" }}>
                     {ev.date ? ev.date.split("-")[0] : ""}
                   </div>
                 </div>
@@ -2133,7 +2129,7 @@ function ArtistScreen({ state, setState }) {
                   <div style={{ fontSize: 13, fontWeight: 500, color: "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {ev.venueName}
                   </div>
-                  <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginTop: 3 }}>
+                  <div className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--ink-2)", marginTop: 3 }}>
                     {ev.location}{ev.time ? ` · ${ev.time.slice(0,5)}` : ""}
                   </div>
                 </div>
@@ -2157,14 +2153,14 @@ function ArtistScreen({ state, setState }) {
         <div id="artist-section-setlists" />
         {SETLISTS_PROXY_URL && (
           <div style={{ marginBottom: 18 }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
+            <div className="duo-sect" style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               SETLIST HISTORY
             </div>
 
             {setlists === undefined && (
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {[0, 1].map(i => (
-                  <div key={i} style={{ background: "var(--paper-2)", borderRadius: 12, padding: "12px 14px", border: "1px solid var(--line)" }}>
+                  <div key={i} style={{ background: "var(--paper-2)", borderRadius: "var(--rad-md)", padding: "12px 14px", border: "1px solid var(--line)" }}>
                     <div className="skel" style={{ width: "40%", height: 10, marginBottom: 8 }}/>
                     <div className="skel" style={{ width: "70%", height: 12, marginBottom: 10 }}/>
                     <div style={{ borderTop: "1px solid var(--line)", paddingTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
@@ -2182,18 +2178,18 @@ function ArtistScreen({ state, setState }) {
 
             {setlists !== undefined && setlists !== null && setlists.length === 0 && (
               <div style={{
-                padding: "16px 14px", borderRadius: 12,
-                background: "var(--paper-2)", border: "1px solid var(--line)",
+                padding: "16px 14px", borderRadius: "var(--rad-md)",
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
                 <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
-                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>
+                <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
                 </div>
                 {slError && (
                   <button onClick={() => { setSlError(false); setSetlists(undefined); fetchSetlists(lookupName).then(setSetlists).catch(() => { setSetlists([]); setSlError(true); }); }} className="mono" style={{
                     marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                    background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                    background: "var(--s3)", border: "none",
                     color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
                     cursor: "pointer",
                   }}>↻ RETRY</button>
@@ -2211,9 +2207,9 @@ function ArtistScreen({ state, setState }) {
               const state = sl.venue?.city?.stateCode || sl.venue?.city?.country?.code || "";
               return (
                 <div key={idx} style={{
-                  background: "var(--paper-2)", borderRadius: 12,
+                  background: "var(--paper-2)", borderRadius: "var(--rad-md)",
                   padding: "12px 14px", marginBottom: 10,
-                  border: `1px solid ${isFest ? "rgba(232,93,46,0.4)" : "var(--line)"}`,
+                  border: `1px solid ${isFest ? "rgba(var(--signal-rgb),0.4)" : "var(--line)"}`,
                 }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 8 }}>
                     <div>
@@ -2225,14 +2221,14 @@ function ArtistScreen({ state, setState }) {
                       <div className="mono" style={{ fontSize: 10, letterSpacing: 0.8, color: "var(--ink)", fontWeight: 600 }}>
                         {_slDate(sl.eventDate)}
                       </div>
-                      <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: "var(--ink-2)", marginTop: 2 }}>
                         {venue}{city ? ` · ${city}${state ? `, ${state}` : ""}` : ""}
                       </div>
                     </div>
                     {sl.url && (
                       <a href={sl.url} target="_blank" rel="noopener noreferrer" style={{
                         fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
-                        color: "var(--muted)", textDecoration: "none", flexShrink: 0, marginLeft: 8, marginTop: 2,
+                        color: "var(--ink-2)", textDecoration: "none", flexShrink: 0, marginLeft: 8, marginTop: 2,
                       }}>SETLIST.FM ↗</a>
                     )}
                   </div>
@@ -2240,7 +2236,7 @@ function ArtistScreen({ state, setState }) {
                   {songs.length === 0 ? (
                     <div className="mono" style={{
                       borderTop: "1px solid var(--line)", paddingTop: 8,
-                      fontSize: 10, letterSpacing: 1, color: "var(--muted)",
+                      fontSize: 10, letterSpacing: 1, color: "var(--ink-2)",
                       fontStyle: "italic",
                     }}>
                       SONGS NOT DOCUMENTED · TAP SETLIST.FM ↗ FOR DETAILS
@@ -2253,10 +2249,10 @@ function ArtistScreen({ state, setState }) {
                                       || lfm?.topTrackNames?.includes(sn);
                         return (
                           <div key={si} style={{ display: "flex", alignItems: "center", gap: 10, padding: "3px 0" }}>
-                            <span className="mono" style={{ fontSize: 9, color: "var(--muted)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
-                            <span style={{ fontSize: 13, color: isBanger ? stage.color : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
-                            {isBanger && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: stage.color, fontWeight: 700 }}>BANGER</span>}
-                            {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--muted)", letterSpacing: 1 }}>TAPE</span>}
+                            <span className="mono" style={{ fontSize: 9, color: "var(--ink-2)", width: 18, textAlign: "right", flexShrink: 0 }}>{si + 1}</span>
+                            <span style={{ fontSize: 13, color: isBanger ? "var(--signal-ink)" : "var(--ink)", fontWeight: isBanger ? 600 : 400, flex: 1 }}>{song.name}</span>
+                            {isBanger && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--signal-ink)", fontWeight: 700 }}>BANGER</span>}
+                            {song.tape && <span className="mono" style={{ fontSize: 8, color: "var(--ink-2)", letterSpacing: 1 }}>TAPE</span>}
                           </div>
                         );
                       })}
@@ -2279,7 +2275,7 @@ function ArtistScreen({ state, setState }) {
 
         {/* Personal note */}
         <div style={{ marginBottom: 16 }}>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--muted)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: "var(--ink-2)", marginBottom: 6, display: "flex", alignItems: "center", gap: 6 }}>
             MY NOTE
             {note.trim() && <span style={{ width: 5, height: 5, borderRadius: 5, background: "var(--ember)" }} />}
           </div>
@@ -2291,8 +2287,8 @@ function ArtistScreen({ state, setState }) {
             maxLength={500}
             style={{
               width: "100%", padding: "10px 12px", boxSizing: "border-box",
-              background: "var(--paper-2)", border: "1px solid var(--line-2)",
-              borderRadius: 12, resize: "none",
+              background: "var(--s3)", border: "none",
+              borderRadius: "var(--rad-md)", resize: "none",
               fontFamily: "Geist, sans-serif", fontSize: 14, lineHeight: 1.4,
               color: "var(--ink)", outline: "none",
             }}
@@ -2308,7 +2304,7 @@ function ArtistScreen({ state, setState }) {
           {/* Play/Pause button */}
           <button onClick={handlePreview} aria-label={playing ? "Pause preview" : "Play preview"} aria-pressed={playing} style={{
             width: 44, height: 44, borderRadius: 44, border: "none",
-            background: !connected ? "rgba(247,237,224,0.1)"
+            background: !connected ? "rgba(var(--ink-rgb),0.1)"
               : playing ? "var(--ember)"
               : "#1DB954",
             cursor: connected && preview !== "none" ? "pointer" : "default",
@@ -2318,17 +2314,17 @@ function ArtistScreen({ state, setState }) {
             {preview === "loading" ? (
               <div style={{
                 width: 16, height: 16, borderRadius: "50%",
-                border: "2px solid rgba(255,255,255,0.35)",
-                borderTopColor: "#fff",
+                border: "2px solid rgba(var(--ink-rgb),0.35)",
+                borderTopColor: "var(--ink)",
                 animation: "spin 0.75s linear infinite",
               }} />
             ) : playing ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--ink)">
                 <rect x="5" y="4" width="4" height="16" rx="1"/>
                 <rect x="15" y="4" width="4" height="16" rx="1"/>
               </svg>
             ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--ink)">
                 <path d="M8 5 L19 12 L8 19 Z"/>
               </svg>
             )}
@@ -2339,7 +2335,9 @@ function ArtistScreen({ state, setState }) {
             <div className="serif" style={{ fontSize: 16, lineHeight: 1.1 }}>
               {preview && typeof preview === "object" ? preview.name : "30-sec Preview"}
             </div>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "rgba(247,237,224,0.5)", marginTop: 3 }}>
+            {/* The card is inverted (ink ground), so the status line takes the
+                card's own text colour; --ink here drew it invisible. */}
+            <div className="mono" data-preview-status style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--paper)", opacity: 0.6, marginTop: 3 }}>
               {!connected     ? "CONNECT SPOTIFY TO PREVIEW"
                : preview === "none"    ? "NO PREVIEW AVAILABLE"
                : preview === "loading" ? "LOADING…"
@@ -2355,7 +2353,7 @@ function ArtistScreen({ state, setState }) {
                 width: 2.5, height: h,
                 background: playing
                   ? (i % 2 === 0 ? "var(--ember)" : "#f59a36")
-                  : connected ? "#1DB954" : "rgba(247,237,224,0.2)",
+                  : connected ? "#1DB954" : "rgba(var(--ink-rgb),0.2)",
                 borderRadius: 2,
                 transition: "height 0.12s ease, background 0.3s",
               }} />
@@ -2371,28 +2369,35 @@ function ArtistScreen({ state, setState }) {
       <div style={{
         flexShrink: 0,
         padding: "12px 20px calc(10px + env(safe-area-inset-bottom)) 20px",
-        background: saveFlash ? (saved ? "rgba(45,122,85,0.08)" : "var(--paper)") : "var(--paper)",
+        background: saveFlash && saved ? "var(--acc-wash)" : "var(--bg)",
         borderTop: "1px solid var(--line)",
         display: "flex", gap: 8,
         transition: "background 0.3s ease",
       }}>
         <button onClick={handleSave} style={{
-          flex: 1, padding: "14px", borderRadius: 14,
-          background: saved ? "var(--ink)" : "var(--ember)",
-          color: saved ? "var(--paper)" : "#fff",
-          border: "none", cursor: "pointer",
-          fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 500,
+          flex: 1, padding: "14px", borderRadius: "var(--rad-sm)",
+          minHeight: 52,
+          background: saved ? "transparent" : "var(--acc)",
+          color: saved ? "var(--ink)" : "var(--on-acc)",
+          border: saved ? "1px solid var(--line-2)" : "none", cursor: "pointer",
+          boxShadow: saved ? "none" : "0 10px 28px -12px var(--acc-55)",
+          font: "650 17px/1.3 var(--f-ui)", letterSpacing: "-0.01em",
           transition: "background 0.2s ease, transform 0.35s var(--ease-spring)",
           transform: saveFlash ? "scale(1.03)" : "scale(1)",
         }}>
           {saveFlash && saved && <span style={{ animation: "checkIn 0.35s ease", display: "inline-block", marginRight: 4 }}>✓</span>}
-          {saved ? (saveFlash ? "SAVED!" : "✓ SAVED TO LINEUP") : "+ ADD TO LINEUP"}
+          {saved ? (saveFlash ? "Saved" : "✓ Saved to lineup") : "Add to lineup"}
         </button>
         <button onClick={() => (window._pushNav || ((n) => setState({ ...state, ...n })))({ tab: "memories", memoriesNight: a.day, artist: null })} aria-label="Open memories" style={{
-          width: 54, borderRadius: 14,
+          width: 54, borderRadius: "var(--rad-sm)",
           background: "transparent", border: "1px solid var(--line-2)",
-          cursor: "pointer", fontSize: 16,
-        }}>📸</button>
+          cursor: "pointer", color: "var(--ink)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>
+          </svg>
+        </button>
       </div>
     </Screen>
   );

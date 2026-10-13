@@ -119,7 +119,23 @@
   // `tier` drives lineup card weighting; with no times there is no basis to
   // rank, so every act sits at the same tier. `provisional: true` marks the
   // whole set for the flip session.
-  const mk = (id, name, day) => ({
+  // The flip fills this block from the OFFICIAL schedule:
+  //   node scripts/fetch-insomniac-settimes.mjs https://escapehalloween.com/lineup/set-times --days 2 --out sheet.tsv
+  //   node scripts/import-set-times.mjs escape-halloween-2026 sheet.tsv --source <official-url>
+  // id → [stageId, start, end, day?]. The importer writes `day` only for the
+  // lineup-card acts below, whose day is null until the schedule places them.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN escape-halloween-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, unscheduled, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing Escape Halloween 2026." };
+  };
+
+  const mk = (id, name, day) => scheduled({
     id, name, genre: "—", country: "—",
     stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #F4511E, #1a0a14)",
@@ -131,7 +147,7 @@
   // Official 2026 lineup-card acts that are not present in either published
   // day list. Captured 2026-09-10. They stay fully unscheduled: no day, stage,
   // time, or billing rank is inferred before the set-times page publishes.
-  const mkUnscheduled = (id, name) => ({
+  const mkUnscheduled = (id, name) => scheduled({
     id, name, genre: "—", country: "—", stage: null, day: null,
     start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #F4511E, #1a0a14)",
@@ -253,6 +269,9 @@
 
   const CONFIG = {
     id:        "escape-halloween-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://escapehalloween.com/lineup/", observedAt: "2026-09-07", official: true },
     name:      "Escape Halloween 2026",
     shortName: "Escape",
     brand:     "Escape",
@@ -325,6 +344,11 @@
     // LAST YEAR'S map, per the founder ruling. See the header before
     // touching any of this.
     mapImage: "escape-2025-map.webp",
+
+    // The festival's OWN map page, linked (never embedded) by the /f/ page:
+    // official publication is provenance, not reuse rights. mapYear is the
+    // year printed on the map the page showed when checked — the 2026 page still shows the 2025 map.
+    mapSource: { url: "https://escapehalloween.com/festival-map/", observedAt: "2026-09-24", mapYear: 2025 },
     mapStyle: "image-overlay",
     mapTheme: "park",
     mapPrintsStageNames: true,
@@ -339,6 +363,6 @@
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: set times and artist→stage are unpublished, and the map is last
     // year's. Flip when Insomniac drops the schedule (~late Oct).
-    registry: { available: false, accent: "#F4511E", emoji: "🎪", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#F4511E", emoji: "🎪", region: "North America" },
   };
 })();

@@ -1833,6 +1833,12 @@
 
   const CONFIG = {
     id:        "nocturnal-wonderland-2026",
+    // Hours as the festival's OWN page prints them (24h wall clock, local):
+    // label is the page's word for the window ("Gates", "Festival", "Event").
+    // No published value means no field — never inferred from an older year.
+    // `dated` quotes the page's dated block verbatim; editionHours() prints the
+    // hours only when that block is for this edition.
+    hours: { label: "Festival", open: "15:00", close: "00:00", daily: true, url: "https://www.nocturnalwonderland.com/guide/hours-and-info/", dated: "September 19 + 20, 2026", observedAt: "2026-09-24" },
     // From the SOURCE note above: nocturnalwonderland.com/lineup/set-times/day-1/ + /day-2/, accessed 2026-09-10. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://nocturnalwonderland.com/lineup/set-times/day-1/", observedAt: "2026-09-10", official: true },
     name:      "Nocturnal Wonderland 2026",

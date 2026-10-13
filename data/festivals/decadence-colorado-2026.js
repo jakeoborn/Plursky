@@ -135,7 +135,22 @@
   // weighting; with no times there is no basis to rank, so every act sits at
   // the same tier rather than being silently ordered by a guess.
   // `provisional: true` marks the whole set for the flip session.
-  const mk = (id, name, day) => ({
+  // The flip fills this block from the OFFICIAL schedule, after the two
+  // arenas' names come from the same source into STAGES:
+  //   node scripts/import-set-times.mjs decadence-colorado-2026 <sheet.tsv> --source <official-url>
+  // id \u2192 [stageId, start, end]. Empty until then: every act unplaced.
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN decadence-colorado-2026
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing Decadence Colorado 2026." };
+  };
+
+  const mk = (id, name, day) => scheduled({
     id, name, genre: "\u2014", country: "\u2014",
     stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #d946ef, #0b0620)",
@@ -182,6 +197,9 @@
 
   const CONFIG = {
     id:        "decadence-colorado-2026",
+    // Where the lineup rows came from (the SOURCE note above), as data so the
+    // public /f/ page can cite it. observedAt = the date it was read.
+    lineupSource: { url: "https://decadencenye.com/lineup/", observedAt: "2026-09-10", official: true },
     name:      "Decadence Colorado 2026",
     shortName: "Decadence",
     brand:     "Decadence NYE",
@@ -292,6 +310,6 @@
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
     // GATED: stage names, stage assignments, set times and the official map
     // are all unpublished. The lineup and the day split are real.
-    registry: { available: false, accent: "#d946ef", emoji: "\u2728", region: "North America" },
+    registry: { available: true, scheduleTBA: true, accent: "#d946ef", emoji: "\u2728", region: "North America" },
   };
 })();

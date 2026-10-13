@@ -1,0 +1,836 @@
+{
+  "edc-lv-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_lasvegas/reel/C33lfCYPorg/",
+      "officialAccount": "https://www.instagram.com/edc_lasvegas/",
+      "accountSourceUrl": "https://lasvegas.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_LasVegas/status/2022007805209702830",
+      "officialAccount": "https://twitter.com/EDC_LasVegas",
+      "accountSourceUrl": "https://lasvegas.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_LasVegas/status/1930432526239055955",
+      "officialAccount": "https://twitter.com/EDC_LasVegas",
+      "accountSourceUrl": "https://lasvegas.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/6aKeNXbP3MirExlGu1tVXf",
+      "officialAccount": "https://open.spotify.com/playlist/6aKeNXbP3MirExlGu1tVXf",
+      "accountSourceUrl": "https://lasvegas.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "edc-orlando-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_orlando/reel/DRvNpwrjWaV/",
+      "officialAccount": "https://www.instagram.com/edc_orlando/",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_orlando/reel/DPNK0WZj37b/",
+      "officialAccount": "https://www.instagram.com/edc_orlando/",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_orlando/reel/DCUa9wyPL3q/",
+      "officialAccount": "https://www.instagram.com/edc_orlando/",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_Orlando/status/1963678468421399004",
+      "officialAccount": "https://twitter.com/EDC_Orlando",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/31JmJV1ZZCGX2ZmeWKI1Hg",
+      "officialAccount": "https://open.spotify.com/playlist/31JmJV1ZZCGX2ZmeWKI1Hg",
+      "accountSourceUrl": "https://orlando.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "edc-mexico-2027": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_mexico/p/DGeZ2QESlrI/",
+      "officialAccount": "https://www.instagram.com/edc_mexico/",
+      "accountSourceUrl": "https://mexico.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/edc_mexico/p/DF0jQL6v_m8/",
+      "officialAccount": "https://www.instagram.com/edc_mexico/",
+      "accountSourceUrl": "https://mexico.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EDC_MEXICO/status/1861183273994469779",
+      "officialAccount": "https://twitter.com/edc_mexico",
+      "accountSourceUrl": "https://mexico.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/52pDVp6zxrUhcxGmhiFIhD",
+      "officialAccount": "https://open.spotify.com/playlist/52pDVp6zxrUhcxGmhiFIhD",
+      "accountSourceUrl": "https://mexico.edc.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "nocturnal-wonderland-2026": [
+    {
+      "platform": "x",
+      "url": "https://x.com/NocturnalWland/status/1833929828581720483",
+      "officialAccount": "https://twitter.com/nocturnalwland",
+      "accountSourceUrl": "https://www.nocturnalwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/2ElJvqUMNvJB120gJzi7Kq",
+      "officialAccount": "https://open.spotify.com/playlist/2ElJvqUMNvJB120gJzi7Kq",
+      "accountSourceUrl": "https://www.nocturnalwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "hard-summer-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=XX2XMvp6EL0",
+      "officialAccount": "https://www.youtube.com/user/Hardfest",
+      "accountSourceUrl": "https://www.hardsummer.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DaQt9LoCe1j/",
+      "officialAccount": "https://www.instagram.com/HARDFEST/",
+      "accountSourceUrl": "https://www.hardsummer.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/HARDFEST/status/2026386654248734834",
+      "officialAccount": "https://twitter.com/HARDFEST",
+      "accountSourceUrl": "https://www.hardsummer.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/69NIxGSDXjmdUGSqM32IEA",
+      "officialAccount": "https://open.spotify.com/playlist/69NIxGSDXjmdUGSqM32IEA",
+      "accountSourceUrl": "https://www.hardsummer.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "beyond-wonderland-socal-2027": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/beyondwland/reel/DEN2IOuxWkK/",
+      "officialAccount": "https://instagram.com/beyondwland/",
+      "accountSourceUrl": "https://socal.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/beyondwland/p/C5ZC-PEOZcg/",
+      "officialAccount": "https://instagram.com/beyondwland/",
+      "accountSourceUrl": "https://socal.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/BeyondWland/status/1897376573159776477",
+      "officialAccount": "https://twitter.com/beyondwland",
+      "accountSourceUrl": "https://socal.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/BeyondWland/status/2031490286770131108",
+      "officialAccount": "https://twitter.com/beyondwland",
+      "accountSourceUrl": "https://socal.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/7MGRNqdZ5jjvF8Dscmy42t",
+      "officialAccount": "https://open.spotify.com/playlist/7MGRNqdZ5jjvF8Dscmy42t",
+      "accountSourceUrl": "https://socal.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "beyond-wonderland-gorge-2027": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/beyondwlandpnw/p/C2dJS3hP6LO/",
+      "officialAccount": "https://www.instagram.com/beyondwlandpnw/",
+      "accountSourceUrl": "https://pnw.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/beyondwlandpnw/reel/C59DockxxHx/",
+      "officialAccount": "https://www.instagram.com/beyondwlandpnw/",
+      "accountSourceUrl": "https://pnw.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/beyondwlandpnw/p/DHWgWnYyFe_/",
+      "officialAccount": "https://www.instagram.com/beyondwlandpnw/",
+      "accountSourceUrl": "https://pnw.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/BeyondWlandPNW/status/1939773516187885793",
+      "officialAccount": "https://twitter.com/beyondwlandpnw",
+      "accountSourceUrl": "https://pnw.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/551QIUGTDUvr7jAFb9y6oK",
+      "officialAccount": "https://open.spotify.com/playlist/551QIUGTDUvr7jAFb9y6oK",
+      "accountSourceUrl": "https://pnw.beyondwonderland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "escape-halloween-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/escapehalloween/p/C51VOoELI6_/",
+      "officialAccount": "https://www.instagram.com/escapehalloween/",
+      "accountSourceUrl": "https://escapehalloween.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/escapehalloween/p/Cx8pbLqOt2S/",
+      "officialAccount": "https://www.instagram.com/escapehalloween/",
+      "accountSourceUrl": "https://escapehalloween.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/EscapeHalloween/status/1954226188043399665",
+      "officialAccount": "https://twitter.com/EscapeHalloween",
+      "accountSourceUrl": "https://escapehalloween.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/05UbakOey3Wx9a44Ck2Lyd",
+      "officialAccount": "https://open.spotify.com/playlist/05UbakOey3Wx9a44Ck2Lyd",
+      "accountSourceUrl": "https://escapehalloween.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "dreamstate-socal-2026": [
+    {
+      "platform": "x",
+      "url": "https://x.com/DreamstateUSA/status/1987977510144156152",
+      "officialAccount": "https://twitter.com/DreamstateUSA",
+      "accountSourceUrl": "https://socal.dreamstateusa.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/1xmVnKmyX8jJrXmEGndRdY",
+      "officialAccount": "https://open.spotify.com/playlist/1xmVnKmyX8jJrXmEGndRdY",
+      "accountSourceUrl": "https://socal.dreamstateusa.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "countdown-nye-2026": [
+    {
+      "platform": "x",
+      "url": "https://x.com/countdown_nye/status/1978626950059999544",
+      "officialAccount": "https://twitter.com/countdown_nye",
+      "accountSourceUrl": "https://countdownnye.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/4U3wjxn8PEtjqv1XrPeGC6",
+      "officialAccount": "https://open.spotify.com/playlist/4U3wjxn8PEtjqv1XrPeGC6",
+      "accountSourceUrl": "https://countdownnye.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "coachella-2027": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DOpjC9aEbB6/",
+      "officialAccount": "https://www.instagram.com/coachella/",
+      "accountSourceUrl": "https://www.coachella.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/coachella/p/DXxZVLiklra/",
+      "officialAccount": "https://www.instagram.com/coachella/",
+      "accountSourceUrl": "https://www.coachella.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/coachella/reel/DXz32uux-sA/",
+      "officialAccount": "https://www.instagram.com/coachella/",
+      "accountSourceUrl": "https://www.coachella.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    }
+  ],
+  "tomorrowland-2027": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=k5yQBhDnrvM",
+      "officialAccount": "https://www.youtube.com/@tomorrowland",
+      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZkZvZhjRxg/",
+      "officialAccount": "https://www.instagram.com/tomorrowland/",
+      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DT0M-0oDVRD/",
+      "officialAccount": "https://www.instagram.com/tomorrowland/",
+      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
+      "officialAccount": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
+      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "electric-forest-2027": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/electric_forest/p/DaIxesFHAxj/",
+      "officialAccount": "https://www.instagram.com/electric_forest/",
+      "accountSourceUrl": "https://www.electricforestfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/electric_forest/p/DaH3432HJAn/",
+      "officialAccount": "https://www.instagram.com/electric_forest/",
+      "accountSourceUrl": "https://www.electricforestfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/electric_forest/p/DaH3delhCWT/",
+      "officialAccount": "https://www.instagram.com/electric_forest/",
+      "accountSourceUrl": "https://www.electricforestfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/7jHh1nCUwYHFJQUW16V9sa",
+      "officialAccount": "https://open.spotify.com/playlist/7jHh1nCUwYHFJQUW16V9sa",
+      "accountSourceUrl": "https://www.electricforestfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "ultra-miami-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=4GjztNT2bRE",
+      "officialAccount": "https://www.youtube.com/umftv",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/Dc1dduhtDQ8/",
+      "officialAccount": "https://www.instagram.com/ultra/",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/ultra/p/DditxOuk8kk/",
+      "officialAccount": "https://www.instagram.com/ultra/",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/ultra/p/Ddfq6j9EZii/",
+      "officialAccount": "https://www.instagram.com/ultra/",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DWywBfsDb2J/",
+      "officialAccount": "https://www.instagram.com/ultra/",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/5EMV8YLCANkLaKdpLcWQh5",
+      "officialAccount": "https://open.spotify.com/user/s8oiiaafyt924cvkklj9mpp7w",
+      "accountSourceUrl": "https://ultramusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "lost-lands-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=2aXXxuDtUJo",
+      "officialAccount": "https://www.youtube.com/c/LostLandsMusicFestival",
+      "accountSourceUrl": "https://www.lostlandsfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "trailer"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DYP6adbMal_/",
+      "officialAccount": "https://www.instagram.com/lostlandsfestival/",
+      "accountSourceUrl": "https://www.lostlandsfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/lostlandsfestival/p/DdjtWPkER06/",
+      "officialAccount": "https://www.instagram.com/lostlandsfestival/",
+      "accountSourceUrl": "https://www.lostlandsfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/lostlandsfestival/p/Ddhj6HmjxTS/",
+      "officialAccount": "https://www.instagram.com/lostlandsfestival/",
+      "accountSourceUrl": "https://www.lostlandsfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    }
+  ],
+  "acl-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DX9afEPDKLr/",
+      "officialAccount": "https://www.instagram.com/aclfestival/",
+      "accountSourceUrl": "https://www.aclfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DcJ62D5CfuO/",
+      "officialAccount": "https://www.instagram.com/aclfestival/",
+      "accountSourceUrl": "https://www.aclfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/aclfestival/status/2051663687899811953",
+      "officialAccount": "https://twitter.com/aclfestival",
+      "accountSourceUrl": "https://www.aclfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    }
+  ],
+  "governors-ball-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZYsfTOICNV/",
+      "officialAccount": "https://www.instagram.com/govballnyc/",
+      "accountSourceUrl": "https://www.governorsballmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DZYBikQiRMq/",
+      "officialAccount": "https://www.instagram.com/govballnyc/",
+      "accountSourceUrl": "https://www.governorsballmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/GovBallNYC/status/2008555042366705813",
+      "officialAccount": "https://twitter.com/govballnyc",
+      "accountSourceUrl": "https://www.governorsballmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    }
+  ],
+  "lollapalooza-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DWEjmYolFgT/",
+      "officialAccount": "https://instagram.com/lollapalooza",
+      "accountSourceUrl": "https://www.lollapalooza.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DbgfYjSDbmr/",
+      "officialAccount": "https://instagram.com/lollapalooza",
+      "accountSourceUrl": "https://www.lollapalooza.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/lollapalooza/status/2083621871346495987",
+      "officialAccount": "https://twitter.com/lollapalooza",
+      "accountSourceUrl": "https://www.lollapalooza.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    }
+  ],
+  "outside-lands-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=Y7PeLt8dbHw",
+      "officialAccount": "https://www.youtube.com/user/OutsideLands",
+      "accountSourceUrl": "https://www.sfoutsidelands.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DVbtRD2kp9P/",
+      "officialAccount": "https://www.instagram.com/outsidelands/",
+      "accountSourceUrl": "https://www.sfoutsidelands.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DVwHALQketR/",
+      "officialAccount": "https://www.instagram.com/outsidelands/",
+      "accountSourceUrl": "https://www.sfoutsidelands.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/sfoutsidelands/status/1902795869474460017",
+      "officialAccount": "https://x.com/sfoutsidelands",
+      "accountSourceUrl": "https://www.sfoutsidelands.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    }
+  ],
+  "summerfest-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=MipYmCdGRWs",
+      "officialAccount": "https://www.youtube.com/summerfestinsider",
+      "accountSourceUrl": "https://www.summerfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DU8IXTSDMN2/",
+      "officialAccount": "https://www.instagram.com/summerfest/",
+      "accountSourceUrl": "https://www.summerfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/Ddjbzk6l13y/",
+      "officialAccount": "https://www.instagram.com/summerfest/",
+      "accountSourceUrl": "https://www.summerfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/Summerfest/status/2024461508411846785",
+      "officialAccount": "https://x.com/Summerfest",
+      "accountSourceUrl": "https://www.summerfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    }
+  ],
+  "iii-points-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DVeP_fKEeNA/",
+      "officialAccount": "https://www.instagram.com/IIIPoints/",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DU3mWSnkbaD/",
+      "officialAccount": "https://www.instagram.com/IIIPoints/",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DS_OZkPjgqj/",
+      "officialAccount": "https://www.instagram.com/IIIPoints/",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "carousel"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DP67RslDoZY/",
+      "officialAccount": "https://www.instagram.com/IIIPoints/",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "photo"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/iiiPoints/status/1917601243607830972",
+      "officialAccount": "https://twitter.com/IIIPoints",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/6SNUo04uqX8mDALxD9hkFC",
+      "officialAccount": "https://open.spotify.com/playlist/6SNUo04uqX8mDALxD9hkFC",
+      "accountSourceUrl": "https://www.iiipoints.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "crssd-fall-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/crssdfest/reel/C7NHAKjSALI/",
+      "officialAccount": "https://www.instagram.com/crssdfest/",
+      "accountSourceUrl": "https://www.crssdfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/crssdfest/status/1882163865049612741",
+      "officialAccount": "https://twitter.com/crssdfest",
+      "accountSourceUrl": "https://www.crssdfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I",
+      "officialAccount": "https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I",
+      "accountSourceUrl": "https://www.crssdfest.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "portola-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=ZcLw3yqt6Cs",
+      "officialAccount": "https://www.youtube.com/@portolafestival",
+      "accountSourceUrl": "https://portolamusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "trailer"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DY5RfGrhdtj/",
+      "officialAccount": "https://www.instagram.com/portolafestival/",
+      "accountSourceUrl": "https://portolamusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/PortolaFestival/status/1840121508854899059",
+      "officialAccount": "https://twitter.com/portolafestival",
+      "accountSourceUrl": "https://portolamusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/PortolaFestival/status/1926002029941428710",
+      "officialAccount": "https://twitter.com/portolafestival",
+      "accountSourceUrl": "https://portolamusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/37i9dQZF1DX5LFAujdafjI",
+      "officialAccount": "https://open.spotify.com/playlist/37i9dQZF1DX5LFAujdafjI",
+      "accountSourceUrl": "https://portolamusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "arc-2026": [
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=IEwo9y1e5sQ",
+      "officialAccount": "https://www.youtube.com/channel/UC5AOhbMw3M618Q2hk6zt5yw",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "aftermovie"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/arcmusicfestival/p/DOMKheZDVdr/",
+      "officialAccount": "https://www.instagram.com/arcmusicfestival/",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/arcmusicfestival/p/C2QJehGrDqJ/",
+      "officialAccount": "https://www.instagram.com/arcmusicfestival/",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/arcmusicfestival/reel/C4GgL2trkGF/",
+      "officialAccount": "https://www.instagram.com/arcmusicfestival/",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "video"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/arcmusicfest/status/2031405805388410929",
+      "officialAccount": "https://twitter.com/arcmusicfest",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "x",
+      "url": "https://x.com/arcmusicfest/status/2031467774321611074",
+      "officialAccount": "https://twitter.com/arcmusicfest",
+      "accountSourceUrl": "https://arcmusicfestival.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    },
+    {
+      "platform": "spotify",
+      "url": "https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El",
+      "officialAccount": "https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El",
+      "accountSourceUrl": "https://arcmusicfestival.com/2025/03/spotify-playlist/",
+      "observedAt": "2026-09-24",
+      "kind": "playlist"
+    }
+  ],
+  "decadence-colorado-2026": [
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DcPakYHJ65H/",
+      "officialAccount": "https://www.instagram.com/decadencenye/",
+      "accountSourceUrl": "https://decadencenye.com/",
+      "observedAt": "2026-09-24",
+      "kind": "lineup"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/p/DcJjcQsKoCO/",
+      "officialAccount": "https://www.instagram.com/decadencenye/",
+      "accountSourceUrl": "https://decadencenye.com/",
+      "observedAt": "2026-09-24",
+      "kind": "announcement"
+    }
+  ]
+}

@@ -218,14 +218,14 @@ function SurveyPanel({ onClose, nearestStageId }) {
   });
 
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 40, background: "rgba(26,18,13,0.55)", display: "flex", alignItems: "flex-end" }}>
+    <div style={{ position: "absolute", inset: 0, zIndex: 40, background: "rgba(var(--shade-rgb),0.55)", display: "flex", alignItems: "flex-end" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0 }}/>
       <div style={{
         position: "relative", width: "100%", maxHeight: "88%", overflowY: "auto",
         background: "var(--paper)", color: "var(--ink)",
         borderTopLeftRadius: 22, borderTopRightRadius: 22,
         padding: "14px 16px calc(16px + env(safe-area-inset-bottom, 0px))",
-        boxShadow: "0 -10px 30px rgba(0,0,0,0.4)",
+        boxShadow: "0 -10px 30px rgba(var(--shade-rgb),0.4)",
       }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 2 }}>
           <div className="serif" style={{ fontSize: 22, flex: 1 }}>Crowd survey</div>
@@ -237,7 +237,7 @@ function SurveyPanel({ onClose, nearestStageId }) {
         </div>
 
         {rec.error && (
-          <div style={{ background: "rgba(193,74,74,0.10)", border: "1px solid rgba(193,74,74,0.35)", color: "#c14a4a",
+          <div style={{ background: "rgba(var(--alert-rgb),0.10)", border: "1px solid rgba(var(--alert-rgb),0.35)", color: "var(--alert)",
                         borderRadius: 10, padding: "9px 11px", marginBottom: 10, fontSize: 12 }}>{rec.error}</div>
         )}
 
@@ -281,7 +281,7 @@ function SurveyPanel({ onClose, nearestStageId }) {
 
         {/* ── the attestation data.jsx refuses to ship without ── */}
         {pending.map(r => (
-          <div key={r.stageId} style={{ background: "rgba(245,154,54,0.10)", border: "1px solid rgba(245,154,54,0.4)",
+          <div key={r.stageId} style={{ background: "rgba(var(--signal-rgb),0.10)", border: "1px solid rgba(var(--signal-rgb),0.4)",
                                         borderRadius: 12, padding: "10px 12px", marginBottom: 8 }}>
             <div style={{ fontSize: 12.5, lineHeight: 1.45 }}>
               At <strong>{(STAGES.find(s => s.id === r.stageId) || {}).name || r.stageId}</strong>, was

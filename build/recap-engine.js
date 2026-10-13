@@ -171,6 +171,171 @@ async function _shareCanvasAsImage(canvas, {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   return true;
 }
+var HERO_CARD_W = 1080,
+  HERO_CARD_H = 1350;
+var _HERO_FONT = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", system-ui, sans-serif';
+async function _heroCardSource(artist) {
+  try {
+    var all = _activeMoments(_readMoments());
+    var ms = [];
+    Object.values(all || {}).forEach(arr => {
+      if (Array.isArray(arr)) ms.push(...arr);
+    });
+    var score = typeof _heroScore === "function" ? _heroScore : () => 0;
+    var mine = ms.filter(m => m && m.artistId === artist.id && m.photoId).sort((a, b) => (a.kind === "video") - (b.kind === "video") || score(b) - score(a));
+    for (var m of mine.slice(0, 3)) {
+      var blob = await _getPhoto(m.photoId).catch(() => null);
+      if (!blob) continue;
+      if (m.kind === "video") {
+        var frame = await _frameFromVideoBlob(blob);
+        if (frame) return {
+          src: frame,
+          revoke: null
+        };
+        continue;
+      }
+      try {
+        var {
+          img,
+          revoke
+        } = await _imgFromBlob(blob);
+        return {
+          src: img,
+          revoke
+        };
+      } catch {}
+    }
+  } catch {}
+  try {
+    var url = getShareableArtistImage(artist.name || "")?.url;
+    if (url) {
+      var _img = await new Promise((res, rej) => {
+        var im = new Image();
+        im.crossOrigin = "anonymous";
+        im.onload = () => res(im);
+        im.onerror = rej;
+        im.src = url;
+      });
+      return {
+        src: _img,
+        revoke: null
+      };
+    }
+  } catch {}
+  return null;
+}
+function _heroWrap(ctx, text, maxW) {
+  var lines = [];
+  var line = "";
+  for (var w of String(text || "").split(/\s+/).filter(Boolean)) {
+    var next = line ? line + " " + w : w;
+    if (!line || ctx.measureText(next).width <= maxW) line = next;else {
+      lines.push(line);
+      line = w;
+    }
+  }
+  if (line) lines.push(line);
+  return lines.flatMap(l => {
+    if (ctx.measureText(l).width <= maxW) return [l];
+    var out = [];
+    var cur = "";
+    for (var ch of l) {
+      if (cur && ctx.measureText(cur + ch).width > maxW) {
+        out.push(cur);
+        cur = ch;
+      } else cur += ch;
+    }
+    if (cur) out.push(cur);
+    return out;
+  });
+}
+function _drawHeroCard(artist, source) {
+  var W = HERO_CARD_W,
+    H = HERO_CARD_H,
+    PAD = 72;
+  var CFG = window.FESTIVAL_CONFIG || {};
+  var stage = (window.STAGES || []).find(s => s.id === artist.stage);
+  var c = document.createElement("canvas");
+  c.width = W;
+  c.height = H;
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "#141414";
+  ctx.fillRect(0, 0, W, H);
+  if (source) {
+    _drawCover(ctx, source, 0, 0, W, H);
+    var g = ctx.createLinearGradient(0, H * 0.4, 0, H);
+    g.addColorStop(0, "rgba(8,8,8,0)");
+    g.addColorStop(1, "rgba(8,8,8,0.88)");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+  }
+  ctx.textBaseline = "alphabetic";
+  ctx.textAlign = "right";
+  ctx.font = `600 34px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  ctx.fillText("Plursky", W - PAD, PAD + 26);
+  ctx.textAlign = "left";
+  var maxW = W - PAD * 2;
+  var meta = [CFG.dayDates?.[artist.day]?.name, stage?.name, typeof fmt12 === "function" ? fmt12(artist.start) : artist.start].filter(Boolean).join(" · ");
+  ctx.font = `500 44px ${_HERO_FONT}`;
+  var metaLines = _heroWrap(ctx, meta, maxW);
+  ctx.font = `700 92px ${_HERO_FONT}`;
+  var nameLines = _heroWrap(ctx, artist.name, maxW);
+  var y = H - PAD;
+  ctx.font = `500 44px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  for (var k = metaLines.length - 1; k >= 0; k--) {
+    ctx.fillText(metaLines[k], PAD, y);
+    y -= 56;
+  }
+  y -= 12;
+  ctx.font = `700 92px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.96)";
+  for (var _k = nameLines.length - 1; _k >= 0; _k--) {
+    ctx.fillText(nameLines[_k], PAD, y);
+    y -= 102;
+  }
+  y -= 4;
+  ctx.font = `600 34px ${_HERO_FONT}`;
+  ctx.fillStyle = "rgba(255,255,255,0.72)";
+  ctx.fillText(`${CFG.shortName || CFG.name || ""}${CFG.year ? " · " + CFG.year : ""}`.toUpperCase(), PAD, y);
+  return c;
+}
+async function _renderHeroCard(artist) {
+  var source = await _heroCardSource(artist);
+  var canvas = _drawHeroCard(artist, source && source.src);
+  if (source) {
+    try {
+      canvas.getContext("2d").getImageData(0, 0, 1, 1);
+    } catch {
+      canvas = _drawHeroCard(artist, null);
+    }
+    try {
+      source.revoke?.();
+    } catch {}
+  }
+  return canvas;
+}
+async function _saveCanvasImage(canvas, {
+  filename,
+  title
+}) {
+  if (window.Capacitor?.isNativePlatform?.()) return _shareCanvasAsImage(canvas, {
+    filename,
+    title
+  });
+  var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
+  if (!blob) return false;
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  return true;
+}
 async function _renderFestivalYearCard(yd) {
   var W = 1080,
     H = 1920;
@@ -315,13 +480,17 @@ async function _resolveMomentSong(m) {
     title: m.songCapture.song,
     confidence: m.songCapture.source === "shazam" || m.songCapture.source === "live-shazam" ? "exact" : "estimated"
   };
-  var artist = m?.artistId ? (window.ARTISTS || []).find(a => a.id === m.artistId) : null;
+  var fest = typeof _momentFestival === "function" ? _momentFestival(m) : {
+    fid: null,
+    artists: window.ARTISTS || []
+  };
+  var artist = m?.artistId ? fest.artists.find(a => a.id === m.artistId) : null;
   if (!artist || !m?.takenAt) return null;
   if (typeof _getTracklistForArtist !== "function" || typeof _matchSongAtTime !== "function") return null;
   try {
-    var data = await _getTracklistForArtist(artist.name);
+    var data = await _getTracklistForArtist(artist.name, fest.fid);
     if (!data) return null;
-    var r = _matchSongAtTime(artist, data, m.takenAt);
+    var r = _matchSongAtTime(artist, data, m.takenAt, fest.fid);
     if (r?.song) return {
       title: r.song,
       confidence: r.confidence || "estimated"
@@ -681,7 +850,7 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
       if (song.confidence !== "exact") {
         ctx.fillStyle = "rgba(255,255,255,0.45)";
         ctx.font = "700 12px 'Geist Mono', monospace";
-        ctx.fillText("SETLIST ESTIMATE", 60, H - safe - 88);
+        ctx.fillText(song.confidence === "likely" ? "LIKELY · TRACKLIST" : "SETLIST ESTIMATE", 60, H - safe - 88);
       }
     }
     if (stage) {
@@ -1578,7 +1747,7 @@ async function _shareStageCollage(stage, momentsAcrossArtists, format) {
     subtitle: `MY NIGHTS AT ${stage.short || stage.name?.toUpperCase()}`,
     accent: stage.color || "#1a120d",
     moments: momentsAcrossArtists,
-    filenameSlug: `stage-${stage.short || stage.id}`,
+    filenameSlug: `stage-${stage.id}`,
     shareTitle: `My ${stage.name} at ${CFG.shortName || "the festival"}`,
     format
   });
@@ -2029,7 +2198,8 @@ async function _renderFilmStrip(moments) {
     if (artist) {
       ctx.fillStyle = "rgba(247,237,224,0.6)";
       ctx.font = "700 8px 'Geist Mono', monospace";
-      ctx.fillText(artist.name.toUpperCase().slice(0, 18), x + frameW / 2, y - 10);
+      var lines = _heroWrap(ctx, artist.name.toUpperCase(), frameW);
+      lines.forEach((line, li) => ctx.fillText(line, x + frameW / 2, y - 10 - (lines.length - 1 - li) * 10));
     }
   });
   ctx.fillStyle = "#f7ede0";
@@ -2111,8 +2281,8 @@ async function _renderCrewComparison(myName, myState, otherName, otherArtistIds)
   ctx.font = "700 14px 'Geist Mono', monospace";
   ctx.fillStyle = "rgba(255,255,255,0.4)";
   ctx.fillText(`${(CFG.shortName || "FESTIVAL").toUpperCase()} · ${CFG.dates || ""}`, W / 2, 160);
-  var mySaved = myState.saved || [];
-  var theirSaved = otherArtistIds || [];
+  var mySaved = savedInLineup(myState.saved);
+  var theirSaved = savedInLineup(otherArtistIds);
   var overlap = mySaved.filter(id => theirSaved.includes(id));
   var myOnly = mySaved.filter(id => !theirSaved.includes(id));
   var theirOnly = theirSaved.filter(id => !mySaved.includes(id));
