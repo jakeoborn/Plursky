@@ -2378,6 +2378,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3b. Real map draws raw GPS ────────────────────────────────────────
+// With no affine (III Points: mapMode "real", no gpsAnchors) every fix used to
+// collapse onto the venue centroid. The avatar, the meet pin and the route
+// ends are placed from their own raw lat/lng; affine festivals unchanged. (The
+// MapLibre walk is scripts/e2e-real-map-raw-gps.mjs, run by hand — network.)
+{
+  console.log("▸ Real-map raw GPS gate — live fixes and meet pins drawn where they are");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-real-map-raw-gps.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`real map raw GPS failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b4. Schedule Sync review + overlay ─────────────────────────────────
 // Every committed feed reviews as current; a mutated feed names exactly the
 // changed saved sets, new clashes, moved reminders and cancelled saves; the

@@ -2100,6 +2100,11 @@ function MapScreen({ state, setState }) {
       x: Math.max(2, Math.min(98, x)),
       y: Math.max(2, Math.min(98, y)),
       accuracy: gpsPos.accuracy,
+      // The raw fix rides along. On a festival with no gpsAnchors there is no
+      // affine, gpsToMap() returns the grid centre and mapToGps() the venue
+      // centroid, so x/y above say nothing about where the user is. The real
+      // basemap places this directly (_lngLatOf); x/y stay for the SVG map.
+      gps: { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy ?? null, ts: gpsPos.ts ?? Date.now() },
     };
   }, [gpsPos]);
 
@@ -2110,7 +2115,7 @@ function MapScreen({ state, setState }) {
   // `live` marks this position as REAL, which is what makes a grid-space
   // distance taken from it a claim rather than a simulation. It rides on the
   // avatar so every consumer inherits it — see readoutHonest().
-  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true } : demoAvatar;
+  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true, gps: liveAvatar.gps } : demoAvatar;
 
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
@@ -3019,7 +3024,7 @@ function MapScreen({ state, setState }) {
             onMapClick={(xy) => {
               if (!meetMode) return;
               const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-              setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
+              setMeetTarget({ x: xy.x, y: xy.y, ...(xy.gps ? { gps: xy.gps } : {}), label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
             }}
             onFatal={_disableRealMap}
           />
@@ -3085,6 +3090,7 @@ function MapScreen({ state, setState }) {
                 const ok = sbBroadcastRally({
                   x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
                   stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
+                  gps: meetTarget.gps || null,
                 });
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
@@ -3126,7 +3132,7 @@ function MapScreen({ state, setState }) {
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, label: incomingRally.label, isRally: true });
+              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, ...(incomingRally.gps && Number.isFinite(incomingRally.gps.lat) && Number.isFinite(incomingRally.gps.lng) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -4103,6 +4109,18 @@ function OfflinePacksSheet({ onClose }) {
   );
 }
 
+// Where the real basemap draws a point: its own raw GPS when it carries one
+// (the live avatar, a meet pin dropped on the basemap, a crew friend sharing
+// GPS), else its grid x/y through the affine. Raw GPS never needs the affine,
+// so a festival with no registered art (III Points: mapMode "real", no
+// gpsAnchors) still shows the user where they are. The demo avatar has no
+// gps, so it keeps the grid path and is never presented as a real fix.
+function _lngLatOf(p) {
+  const g = p && p.gps;
+  if (g && Number.isFinite(g.lat) && Number.isFinite(g.lng)) return { lat: g.lat, lng: g.lng };
+  return mapToGps(p.x, p.y);
+}
+
 // Inverse of gpsToMap. Given a 100-space (x, y) inside the LVMS infield,
 // return (lat, lng). Same 3-point affine, solved in the other direction.
 function mapToGps(x, y) {
@@ -4210,6 +4228,11 @@ function RealMap({
   const mapRef = React.useRef(null);
   const stageMarkersRef = React.useRef({});
   const avatarMarkerRef = React.useRef(null);
+  // The latest avatar, for the one-shot "load" handler below: it closes over
+  // the FIRST render's avatar (the demo position), so a fix that arrived
+  // before the map loaded was drawn at the stale spot until the next fix.
+  const avatarRef = React.useRef(avatar);
+  avatarRef.current = avatar;
   const meetMarkerRef = React.useRef(null);
   const savedStarMarkersRef = React.useRef({});
   const friendMarkersRef = React.useRef({}); // id -> { marker, lastSig }
@@ -4310,6 +4333,9 @@ function RealMap({
       loadedRef.current = true;
       clearTimeout(bootTimer);
       setLoaded(true);
+      // Test hook (scripts/e2e-real-map-raw-gps.mjs reads marker positions
+      // back through map.unproject); same pattern as __plurskyPackHits.
+      try { window.__plurskyRealMap = mapRef.current; } catch {}
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then(async (maplibregl) => {
@@ -4994,8 +5020,18 @@ function RealMap({
         // outside-mask FIRST so the festival-floor, zones, etc. render
         // INSIDE the festival hole on top of the satellite imagery,
         // while the mask covers everything else.
-        ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].forEach((id) => {
-          try { if (map.getLayer(id)) map.moveLayer(id); } catch (e) {
+        //
+        // Only when they are NOT already on top, in this order. moveLayer marks
+        // the style changed even when the layer is already last, which fires
+        // styledata, which runs this again: an endless loop (~60/s, measured
+        // 125 styledata in 2 s on III Points and on ACL). The style never
+        // settles, so map "load" never fires and the avatar, stage and
+        // landmark markers it adds never appear, while the GPU churns.
+        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter((id) => map.getLayer(id));
+        const _order = (() => { try { return (map.getStyle().layers || []).map((l) => l.id); } catch { return []; } })();
+        const _tail = _order.slice(_order.length - _top.length);
+        if (_top.some((id, i) => _tail[i] !== id)) _top.forEach((id) => {
+          try { map.moveLayer(id); } catch (e) {
             console.error(`[plursky-map] moveLayer "${id}" failed:`, e);
           }
         });
@@ -5118,7 +5154,7 @@ function RealMap({
           "box-shadow:0 0 16px rgba(245,154,54,0.9),0 2px 6px rgba(0,0,0,0.5);";
         avWrap.appendChild(halo);
         avWrap.appendChild(avDot);
-        const avLatLng = mapToGps(avatar.x, avatar.y);
+        const avLatLng = _lngLatOf(avatarRef.current);
         avatarMarkerRef.current = new maplibregl.Marker({ element: avWrap })
           .setLngLat([avLatLng.lng, avLatLng.lat])
           .addTo(map);
@@ -5146,7 +5182,9 @@ function RealMap({
         const ll = e.lngLat;
         const xy = mapToGps && (typeof gpsToMap === "function") ? gpsToMap(ll.lat, ll.lng) : null;
         if (!xy) return;
-        onMapClickRef.current({ x: Math.max(2, Math.min(98, xy.x)), y: Math.max(2, Math.min(98, xy.y)) });
+        // The clicked lat/lng rides along: without an affine, x/y collapse to
+        // the grid centre and the pin would land on the venue centroid.
+        onMapClickRef.current({ x: Math.max(2, Math.min(98, xy.x)), y: Math.max(2, Math.min(98, xy.y)), gps: { lat: ll.lat, lng: ll.lng } });
       });
 
       map.on("error", (e) => {
@@ -5182,9 +5220,9 @@ function RealMap({
   // Avatar follows GPS / demo position
   React.useEffect(() => {
     if (!loaded || !avatarMarkerRef.current) return;
-    const { lat, lng } = mapToGps(avatar.x, avatar.y);
+    const { lat, lng } = _lngLatOf(avatar);
     avatarMarkerRef.current.setLngLat([lng, lat]);
-  }, [loaded, avatar.x, avatar.y]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng]);
 
   // Crew friend markers — Instagram-style avatar circles. Reconcile diffs on
   // every crewFriends change: add new, move existing, remove dropped. Stable
@@ -5292,7 +5330,7 @@ function RealMap({
       }
       return;
     }
-    const { lat, lng } = mapToGps(meetTarget.x, meetTarget.y);
+    const { lat, lng } = _lngLatOf(meetTarget);
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
     if (!meetMarkerRef.current) {
       const wrap = document.createElement("div");
@@ -5414,13 +5452,13 @@ function RealMap({
       src.setData({ type: "Feature", geometry: { type: "LineString", coordinates: [] } });
       return;
     }
-    const a = mapToGps(avatar.x, avatar.y);
-    const t = mapToGps(target.x, target.y);
+    const a = _lngLatOf(avatar);
+    const t = _lngLatOf(target);
     src.setData({
       type: "Feature",
       geometry: { type: "LineString", coordinates: [[a.lng, a.lat], [t.lng, t.lat]] },
     });
-  }, [loaded, avatar.x, avatar.y, selected, meetTarget, stages]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng, selected, meetTarget, stages]);
 
   const pickStyle = (k) => {
     setStyleKey(k);
@@ -6632,7 +6670,10 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     const title = groupFriends.length === 0 ? "Pinned spot"
       : groupFriends.length === 1 ? `You + ${groupFriends[0].name}`
       : `Group · ${groupFriends.length + 1} people`;
-    const routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    // LIVE only when YOUR dot is a real on-site fix. The demo avatar (off-site,
+    // no permission, before the festival) is a simulation and is never LIVE.
+    const routingLabel = !avatar?.live ? "ROUTE PREVIEW"
+      : groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
     return (
       <div style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
