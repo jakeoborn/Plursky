@@ -1,42 +1,130 @@
 {
  "edc-lv-2026:k9": {
   "bio": "Techno DJ and producer who started KNTXT as a club night at Fuse in Brussels in 2015.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://www.dbnr.be/artists/charlotte-de-witte/", "kind": "agency", "supports": "In 2015, Charlotte de Witte founded KNTXT as a club night in Fuse" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://www.dbnr.be/artists/charlotte-de-witte/",
+    "kind": "agency",
+    "observedAt": "2026-10-12",
+    "excerpt": "In 2015, Charlotte de Witte founded KNTXT as a club night in Fuse, Brussels' premier techno venue."
+   }
+  ]
  },
  "edc-lv-2026:k18": {
   "bio": "Jono, Tony and Paavo: the trio behind Anjunabeats and the weekly Group Therapy radio show.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://anjunabeats.com/artists/57287-above-beyond", "kind": "label", "supports": "Founders of the iconic Anjunabeats ... a weekly radio show (Group Therapy)" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://anjunabeats.com/artists/57287-above-beyond",
+    "kind": "label",
+    "observedAt": "2026-10-12",
+    "excerpt": "Founders of the iconic Anjunabeats, Anjunadeep and Anjunachill record labels"
+   },
+   {
+    "url": "https://anjunabeats.com/artists/57287-above-beyond",
+    "kind": "label",
+    "observedAt": "2026-10-12",
+    "excerpt": "a weekly radio show that reaches millions of dance lovers every Friday (Group Therapy)"
+   }
+  ]
  },
  "edc-lv-2026:k25": {
   "bio": "DJ and producer whose 2013 single \"Animals\" launched him to mainstream prominence.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://martingarrix.com/music/animals/", "kind": "artist", "supports": "\"Animals\" dropped on 17 June 2013 ... launched Martin Garrix to mainstream prominence" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://martingarrix.com/music/animals/",
+    "kind": "artist",
+    "observedAt": "2026-10-12",
+    "excerpt": "The inspiration behind \"Animals\" not only launched Martin Garrix to mainstream prominence"
+   },
+   {
+    "url": "https://martingarrix.com/music/animals/",
+    "kind": "artist",
+    "observedAt": "2026-10-12",
+    "excerpt": "\"Animals\" dropped on 17 June 2013"
+   }
+  ]
  },
  "edc-lv-2026:k27": {
   "bio": "Dutch DJ and producer who hosts the weekly A State of Trance show.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://www.arminvanbuuren.com/biography/", "kind": "artist", "supports": "the Grammy-nominated Dutchman ... still hosts the weekly two-hour show" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://www.arminvanbuuren.com/biography/",
+    "kind": "artist",
+    "observedAt": "2026-10-12",
+    "excerpt": "he still hosts the weekly two-hour show"
+   },
+   {
+    "url": "https://www.arminvanbuuren.com/biography/",
+    "kind": "artist",
+    "observedAt": "2026-10-12",
+    "excerpt": "the Grammy-nominated Dutchman"
+   }
+  ]
  },
  "edc-lv-2026:c6": {
   "bio": "Electronic duo of Rick Smith and Karl Hyde.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://magnumpr.net/portfolio/underworld/", "kind": "agency", "supports": "Smith and Hyde – back to a core duo after the departure of Emerson in 2000" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://magnumpr.net/portfolio/underworld/",
+    "kind": "agency",
+    "observedAt": "2026-10-12",
+    "excerpt": "Smith and Hyde – back to a core duo after the departure of Emerson in 2000"
+   }
+  ]
  },
  "edc-lv-2026:c15": {
   "bio": "The electronic act behind \"Firestarter\".",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://theprodigy.com/2026/01/29/firestarter-30th-anniversary-vinyl-re-release/", "kind": "artist", "supports": "To mark the 30th anniversary, Firestarter is being re-released" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://theprodigy.com/2026/01/29/firestarter-30th-anniversary-vinyl-re-release/",
+    "kind": "artist",
+    "observedAt": "2026-10-12",
+    "excerpt": "To mark the 30th anniversary, Firestarter is being re-released on black 12 inch vinyl"
+   }
+  ]
  },
  "edc-lv-2026:b7": {
   "bio": "Detroit techno producer and a founding member of Underground Resistance.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://www.liaisonartists.com/artists/robert-hood/", "kind": "agency", "supports": "Founding member of the legendary group Underground Resistance" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://www.liaisonartists.com/artists/robert-hood/",
+    "kind": "agency",
+    "observedAt": "2026-10-12",
+    "excerpt": "Founding member of the legendary group Underground Resistance"
+   }
+  ]
  },
  "edc-lv-2026:q22": {
   "bio": "Tokyo-based producer known for melodic house and progressive house.",
-  "observedAt": "2026-10-12",
-  "sources": [{ "url": "https://www.fraktaltalent.com/shingo-nakamura", "kind": "agency", "supports": "a global leader of the Melodic House and Progressive House genres" }]
+  "classification": "reviewed_synthesis",
+  "reviewedAt": "2026-10-12",
+  "sources": [
+   {
+    "url": "https://www.fraktaltalent.com/shingo-nakamura",
+    "kind": "agency",
+    "observedAt": "2026-10-12",
+    "excerpt": "Tokyo-based Shingo Nakamura has developed an iconic melodic house style"
+   },
+   {
+    "url": "https://www.fraktaltalent.com/shingo-nakamura",
+    "kind": "agency",
+    "observedAt": "2026-10-12",
+    "excerpt": "Considered a global leader of the Melodic House and Progressive House genres"
+   }
+  ]
  }
 }
