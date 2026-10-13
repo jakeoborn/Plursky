@@ -276,7 +276,7 @@ function _drawHeroCard(artist, source) {
   ctx.fillText("Plursky", W - PAD, PAD + 26);
   ctx.textAlign = "left";
   var maxW = W - PAD * 2;
-  var meta = [CFG.dayDates?.[artist.day]?.name, stage?.name, typeof fmt12 === "function" ? fmt12(artist.start) : artist.start].filter(Boolean).join(" · ");
+  var meta = [CFG.dayDates?.[artist.day]?.name, stage?.name, typeof setTimeLabel === "function" ? setTimeLabel(artist) : typeof fmt12 === "function" ? fmt12(artist.start) : artist.start].filter(Boolean).join(" · ");
   ctx.font = `500 44px ${_HERO_FONT}`;
   var metaLines = _heroWrap(ctx, meta, maxW);
   ctx.font = `700 92px ${_HERO_FONT}`;
@@ -856,7 +856,8 @@ function _renderVideoFrame(ctx, W, H, t, timeline, chrome, tmpl) {
     if (stage) {
       ctx.fillStyle = stage.color || "rgba(255,255,255,0.7)";
       ctx.font = "700 14px 'Geist Mono', monospace";
-      ctx.fillText(`${stage.name?.toUpperCase()} · ${artist.start || ""}`, 60, H - safe - (song ? 50 : 80));
+      var when = window.setTimesUnconfirmed?.(artist) ? window.SET_TIMES_UNCONFIRMED.toUpperCase() : artist.start || "";
+      ctx.fillText(`${stage.name?.toUpperCase()} · ${when}`, 60, H - safe - (song ? 50 : 80));
     }
   }
   if (chrome.story) {
@@ -1732,7 +1733,7 @@ async function _shareArtistCollage(artist, moments, format) {
   var dayShort = CFG.dayDates?.[artist.day]?.short || `DAY ${artist.day}`;
   return _shareCollage({
     title: artist.name,
-    subtitle: `${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${artist.start}–${artist.end}`,
+    subtitle: `${(stage.name || "").toUpperCase()} · ${dayShort.toUpperCase()} · ${window.setTimesUnconfirmed?.(artist) ? window.SET_TIMES_UNCONFIRMED.toUpperCase() : `${artist.start}–${artist.end}`}`,
     accent: stage.color || "#1a120d",
     moments,
     filenameSlug: artist.name,

@@ -1412,6 +1412,55 @@ function fmt12(t) {
   return `${h12}:${mStr} ${ap}`;
 }
 
+// ── Set-time status: one answer every surface asks ──────────────────────────
+//   "confirmed"   — the act has a start time.
+//   "tba"         — no time yet and nothing disputed (a gated festival's acts):
+//                   today's behaviour, the em dash from fmt12.
+//   "unconfirmed" — the festival module's timeEvidence says the sources disagree
+//                   (Summerfest's School of Rock showcases). The act ships with
+//                   start "" / end "", and a surface prints SET_TIMES_UNCONFIRMED:
+//                   never a dash, a range, a duration or a live state.
+// Evidence is checked FIRST, so a time that reaches an unresolved act some other
+// way (a feed, a stored overlay) can never read as confirmed. timeEvidence rides
+// on the act object itself, attached per edition in the _DATA_SETS loop, so two
+// festivals that share an id can never borrow each other's record.
+const SET_TIMES_UNCONFIRMED = "Set times unconfirmed";
+function _hhmmNightMin(t) {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(typeof t === "string" ? t : "");
+  if (!m) return null;
+  const h = +m[1];
+  return (h < 8 ? h + 24 : h) * 60 + +m[2];
+}
+function setTimeStatus(a) {
+  if (!a) return "tba";
+  if (a.timeEvidence && a.timeEvidence.status === "unresolved") return "unconfirmed";
+  return _hhmmNightMin(a.start) != null ? "confirmed" : "tba";
+}
+function setTimesUnconfirmed(a) { return setTimeStatus(a) === "unconfirmed"; }
+// A row's start, as text: the words for an unconfirmed set, otherwise exactly
+// what fmt12(a.start) printed before (an em dash for TBA).
+function setTimeLabel(a) { return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start); }
+// Night minutes for anything that does precise timing (live/next, stars, grid
+// placement, gaps). null unless the act is "confirmed"; end is null if absent.
+function setTimingMin(a) {
+  if (setTimeStatus(a) !== "confirmed") return null;
+  return { start: _hhmmNightMin(a.start), end: _hhmmNightMin(a.end) };
+}
+// The one order for a list of sets: timed sets by start (equal starts keep
+// their input order, as every list did before), then untimed ones by stage
+// order and id — deterministic whatever order they arrive in, and never a NaN
+// comparison (a comparator that answers NaN lets the engine order them
+// arbitrarily). `stages` is the festival's stage list; day grouping is the caller's.
+function compareSetsByTime(a, b, stages) {
+  const ta = setTimingMin(a), tb = setTimingMin(b);
+  if (ta && tb) return ta.start - tb.start;
+  if (ta || tb) return ta ? -1 : 1;
+  const order = id => { const i = (stages || []).findIndex(s => s.id === id); return i < 0 ? Infinity : i; };
+  const oa = order(a.stage), ob = order(b.stage);
+  if (oa !== ob) return oa < ob ? -1 : 1;
+  return String(a.id) < String(b.id) ? -1 : String(a.id) > String(b.id) ? 1 : 0;
+}
+
 const ARTISTS = [
   // ─────────────────────────── KINETIC FIELD ───────────────────────────
   // FRI
@@ -2005,6 +2054,9 @@ function _scheduleActs(artists) {
   return (artists || []).map(a => {
     const o = { id: a.id, name: a.name, day: a.day, stage: a.stage ?? null, start: a.start || "", end: a.end || "" };
     if (a.weekend != null) o.weekend = a.weekend;   // ACL: "both" / W1 / W2
+    // Only on a disputed act, so every other festival's feed (and its
+    // fingerprint) is byte-for-byte what it was. The diff ignores the key.
+    if (setTimeStatus(a) === "unconfirmed") o.timeStatus = "unconfirmed";
     return o;
   });
 }
@@ -2131,6 +2183,28 @@ function _schedFill(a, artists) {
   const low = (artists || []).reduce((m, x) => (m == null || x.tier > m.tier ? x : m), null) || {};
   return { genre: "", country: "—", tier: low.tier ?? 3, img: low.img || "linear-gradient(135deg, #3a3a3a, #111)", bio: "", ...a };
 }
+// A disputed act's time can only come back through a source-reviewed edit of its
+// festival module (its timeEvidence, header list and row, in one diff). A feed or
+// a stored overlay carries no source proof — an old schedule.json, a stale CDN
+// copy or a hand-made overlay could all say 12:00 — so their times are pinned
+// back to blank for every id the edition's timeEvidence lists as unresolved.
+// Stage moves and cancellations still go through review as before; only start
+// and end are pinned. `attach` puts the record on the act (lineup objects); a
+// feed's bare acts stay bare.
+function _unresolvedTimeRecord(ev, id) {
+  const r = ev && Object.prototype.hasOwnProperty.call(ev, id) ? ev[id] : null;
+  return r && r.status === "unresolved" ? r : null;
+}
+function _pinUnresolvedTimes(acts, ev, attach) {
+  if (!ev || !Array.isArray(acts)) return acts;
+  return acts.map(a => {
+    const r = a && _unresolvedTimeRecord(ev, a.id);
+    if (!r) return a;
+    const o = { ...a, start: "", end: "" };
+    if (attach) o.timeEvidence = r;
+    return o;
+  });
+}
 function _applyScheduleOverlays(sets) {
   const all = _schedOverlays();
   let dirty = false;
@@ -2141,7 +2215,7 @@ function _applyScheduleOverlays(sets) {
     }
     try {
       const bundled = ds.artists;
-      ds.artists = applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled));
+      ds.artists = _pinUnresolvedTimes(applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled)), ds.timeEvidence, true);
       ds.bundledArtists = bundled;
     } catch { delete all[fid]; dirty = true; }
   }
@@ -2180,7 +2254,7 @@ function scheduleReview(fid, feed, opts = {}) {
   if (!ds || !feed || feed.festivalId !== fid || !Array.isArray(feed.acts)) return { error: "bad-feed" };
   const cfg = ds.config;
   const stageIds = new Set((ds.stages || []).map(s => s.id));
-  const acts = feed.acts.map(a => (a && a.stage != null && !stageIds.has(a.stage) ? { ...a, stage: null } : a));
+  const acts = _pinUnresolvedTimes(feed.acts.map(a => (a && a.stage != null && !stageIds.has(a.stage) ? { ...a, stage: null } : a)), ds.timeEvidence);
   const now = opts.now ?? Date.now();
   const saved = opts.saved || [];
   const shown = diffSchedule(_scheduleActs(ds.artists), acts, cfg);
@@ -3562,7 +3636,13 @@ const _DATA_SETS = {
 };
 for (const _id of _WAVE1_IDS) {
   const _f = _WAVE1[_id];
-  if (_f) _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
+  if (!_f) continue;
+  _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
+  // Edition-scoped: the record and the acts it marks come from the same module.
+  if (_f.timeEvidence) {
+    _DATA_SETS[_id].timeEvidence = _f.timeEvidence;
+    _DATA_SETS[_id].artists = _pinUnresolvedTimes(_f.artists, _f.timeEvidence, true);
+  }
 }
 // Confirmed schedule updates, BEFORE anything reads a lineup (see scheduleReview).
 _applyScheduleOverlays(_DATA_SETS);
@@ -3586,6 +3666,7 @@ Object.assign(window, {
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, festivalCanBeActive, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
+  SET_TIMES_UNCONFIRMED, setTimeStatus, setTimesUnconfirmed, setTimeLabel, setTimingMin, compareSetsByTime,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS, WALK_TABLE_FESTIVAL_ID,
 });
