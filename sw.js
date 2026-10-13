@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v383';
+﻿const CACHE      = 'plursky-v426';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v383';
+const APP_VER    = 'v426';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -17,6 +17,11 @@ const LOCAL = [
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png',
+  // The board's label and data faces: offline, a missing one falls back to SF.
+  './fonts/michroma-latin.woff2',
+  './fonts/michroma-latin-ext.woff2',
+  './fonts/martian-mono-latin.woff2',
+  './fonts/martian-mono-latin-ext.woff2',
   // Wave-1 festival data modules. Must be cached alongside data.jsx and must
   // load before it — index.html enforces the order; this list only has to make
   // sure they are all present offline. A missing one drops that festival from
@@ -36,6 +41,8 @@ const LOCAL = [
   `./data/festivals/dreamstate-socal-2026.js?v=${APP_VER}`,
   `./data/festivals/decadence-colorado-2026.js?v=${APP_VER}`,
   `./data/festivals/countdown-nye-2026.js?v=${APP_VER}`,
+  // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
+  `./data/artist-photos.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
@@ -62,6 +69,12 @@ const LOCAL = [
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
   './onboarding-crowd-unsplash.jpg',
+  './artist-photos/amyl-and-the-sniffers.webp',
+  './artist-photos/charli-xcx.webp',
+  './artist-photos/kings-of-leon.webp',
+  './artist-photos/lorde.webp',
+  './artist-photos/skrillex.webp',
+  './artist-photos/the-war-on-drugs.webp',
   './festival-art/acl-2026.webp',
   './festival-art/crssd-fall-2026.webp',
   './festival-art/portola-2026.webp',

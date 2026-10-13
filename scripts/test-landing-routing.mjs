@@ -33,8 +33,14 @@ const seed = (festivalId, artistId) => JSON.stringify({
   ],
 });
 
+// The onboarding sections pick acl-2026, and onboarding lists only festivals
+// that have not ended, so on the real clock its row vanished the night ACL
+// 2026 ended (00:00 UTC Oct 12). Pin the page clock inside ACL Weekend 2
+// (Sat Oct 10, 6 pm CDT), the last state this file was green against.
+const AT = '2026-10-10T23:00:00Z';
 async function open(browser, { url = BASE, init = {}, width = 393 } = {}) {
   const ctx = await browser.newContext({ timezoneId: 'America/Los_Angeles', viewport: { width, height: 800 } });
+  await ctx.clock.install({ time: new Date(AT) });
   await ctx.addInitScript((kv) => {
     // Seed ONCE. addInitScript runs on EVERY navigation, including the reload
     // that setActiveFestivalAndReload performs — re-seeding active_festival_id

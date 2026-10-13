@@ -47,6 +47,58 @@
    }
   },
   {
+   "id": "beyond-wonderland-gorge-2026",
+   "festivalId": "beyond-wonderland-gorge",
+   "festivalName": "Beyond Wonderland at The Gorge",
+   "name": "Beyond Wonderland at The Gorge 2026",
+   "year": 2026,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2026-06-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2026-06-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 56,
+    "sets": 56
+   }
+  },
+  {
+   "id": "beyond-wonderland-socal-2026",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2026",
+   "year": 2026,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2026-03-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2026-03-28",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 133,
+    "sets": 134
+   }
+  },
+  {
    "id": "edc-las-vegas-2025",
    "festivalId": "edc-lv",
    "festivalName": "EDC Las Vegas",

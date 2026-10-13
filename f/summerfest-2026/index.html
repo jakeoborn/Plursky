@@ -19,10 +19,21 @@
 <meta name="twitter:image" content="https://plursky.com/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
+  /* The app's board tokens (index.html), both modes: Dark by default, Light when
+     the reader's system asks for it. --ember is kept as the name of the link /
+     accent-text role so the rules below did not have to move. */
+  :root { color-scheme:dark light;
+          --ink:#F3F0FA; --bg:#07060B; --muted:#ABA4BB; --line:#221E2B; --ember:#B7A3FF; --panel:#19161F;
+          --acc:#9474FF; --on-acc:#0B0816; --target:rgba(148,116,255,.16); }
+  @media (prefers-color-scheme: light) {
+    :root { --ink:#14121C; --bg:#F4F3F8; --muted:#565266; --line:#E6E3EE; --ember:#4A2BFF; --panel:#FFFFFF;
+            --acc:#4A2BFF; --on-acc:#FFFFFF; --target:rgba(74,43,255,.10); }
+  }
+  @font-face { font-family:"Martian Mono"; font-style:normal; font-weight:300 600; font-display:swap;
+               src:url(/fonts/martian-mono-latin.woff2) format("woff2"); unicode-range:U+0000-00FF; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
-         font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+         font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
   nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
   nav.crumbs a { color:var(--muted); }
@@ -37,12 +48,12 @@
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
   .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
-         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         display:flex; align-items:center; justify-content:center; background:var(--bg);
          border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
   ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
   figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
-         background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
+         background:var(--acc); color:var(--on-acc); text-decoration:none; font-weight:700; }
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
@@ -52,8 +63,8 @@
   h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
   ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
-  ul.sets li:target { background:rgba(232,93,46,0.14); }
-  ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
+  ul.sets li:target { background:var(--target); }
+  ul.sets li time { color:var(--muted); font-family:"Martian Mono",ui-monospace,'SF Mono',Menlo,monospace; font-size:13px; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; min-width:116px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
   ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
@@ -1849,7 +1860,6 @@
     <h5>Aurora Pavilion</h5>
     <ul class="sets">
       <li id="set-su23"><time datetime="2026-06-18T12:00">12:00 – 13:50</time> <span>MKE Live Groove: Summerfest Edition</span></li>
-      <li id="set-su24"><time datetime="2026-06-18T14:00">14:00 – 15:05</time> <span>Stephan Jenkins of Third Eye Blind</span></li>
       <li id="set-su25"><time datetime="2026-06-18T18:00">18:00 – 18:45</time> <span>Summerfest Opening Ceremonies</span></li>
       <li id="set-su26"><time datetime="2026-06-18T19:00">19:00 – 20:05</time> <span>Alejandro Escovedo</span></li>
       <li id="set-su27"><time datetime="2026-06-18T21:00">21:00 – 22:30</time> <span>DJ B-Lee</span></li>
@@ -2847,7 +2857,7 @@
         <li><span class="act">St. Paul And The Broken Bones</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Uline Warehouse · <a href="#set-su382">19:30</a>; Weekend 3 · Fri, Jul 3 · AmFam House · <a href="#set-su390">14:00</a></span></li>
         <li><span class="act">State Champs</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Uline Warehouse · <a href="#set-su85">19:30</a>; Weekend 1 · Fri, Jun 19 · AmFam House · <a href="#set-su93">14:00</a></span></li>
         <li><span class="act">Steph Strings</span> <span class="slots">Weekend 1 · Fri, Jun 19 · Big Backyard · <a href="#set-su55">18:00</a></span></li>
-        <li><span class="act">Stephan Jenkins of Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · Aurora Pavilion · <a href="#set-su24">14:00</a>; Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su45">14:00</a></span></li>
+        <li><span class="act">Stephan Jenkins of Third Eye Blind</span> <span class="slots">Weekend 1 · Thu, Jun 18 · AmFam House · <a href="#set-su45">14:00</a></span></li>
         <li><span class="act">Stephen Marley</span> <span class="slots">Weekend 3 · Fri, Jul 3 · BMO Pavilion · <a href="#set-su344">19:15</a></span></li>
         <li><span class="act">Stone Jam Band</span> <span class="slots">Weekend 3 · Fri, Jul 3 · Big Backyard · <a href="#set-su348">16:00</a></span></li>
         <li><span class="act">Straight No Chaser</span> <span class="slots">Weekend 3 · Sat, Jul 4 · Uline Warehouse · <a href="#set-su438">22:00</a></span></li>
@@ -2943,7 +2953,7 @@
       <li><strong>Big Backyard</strong> · Briggs &amp; Stratton Big Backyard · indie + singer-songwriter<br><span class="counts">Thu, Jun 18: 6 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 7 · Thu, Jul 2: 6 · Fri, Jul 3: 6 · Sat, Jul 4: 6</span></li>
       <li><strong>Generac Power Stage</strong> · Mid-grounds · rock + alt<br><span class="counts">Thu, Jun 18: 5 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 5 · Thu, Jul 2: 6 · Fri, Jul 3: 6 · Sat, Jul 4: 6</span></li>
       <li><strong>Miller Lite Oasis</strong> · West · punk, ska, heavy<br><span class="counts">Thu, Jun 18: 6 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 6 · Fri, Jun 26: 6 · Sat, Jun 27: 6 · Thu, Jul 2: 6 · Fri, Jul 3: 7 · Sat, Jul 4: 7</span></li>
-      <li><strong>Aurora Pavilion</strong> · North · world, jazz, local showcase<br><span class="counts">Thu, Jun 18: 5 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 7 · Thu, Jul 2: 6 · Fri, Jul 3: 7 · Sat, Jul 4: 7</span></li>
+      <li><strong>Aurora Pavilion</strong> · North · world, jazz, local showcase<br><span class="counts">Thu, Jun 18: 4 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 7 · Thu, Jul 2: 6 · Fri, Jul 3: 7 · Sat, Jul 4: 7</span></li>
       <li><strong>T-Mobile Stage</strong> · North · pop + hip-hop<br><span class="counts">Thu, Jun 18: 5 · Fri, Jun 19: 6 · Sat, Jun 20: 6 · Thu, Jun 25: 6 · Fri, Jun 26: 5 · Sat, Jun 27: 6 · Thu, Jul 2: 6 · Fri, Jul 3: 6 · Sat, Jul 4: 6</span></li>
       <li><strong>Uline Warehouse</strong> · North gate · classic rock + legacy<br><span class="counts">Thu, Jun 18: 6 · Fri, Jun 19: 5 · Sat, Jun 20: 6 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 6 · Thu, Jul 2: 6 · Fri, Jul 3: 6 · Sat, Jul 4: 6</span></li>
       <li><strong>Summerville</strong> · Johnsonville Summerville · beer garden, repeat sets<br><span class="counts">Thu, Jun 18: 5 · Fri, Jun 19: 5 · Sat, Jun 20: 5 · Thu, Jun 25: 5 · Fri, Jun 26: 5 · Sat, Jun 27: 5 · Thu, Jul 2: 5 · Fri, Jul 3: 5 · Sat, Jul 4: 5</span></li>
@@ -2993,7 +3003,7 @@
       <li>Set times: <a href="https://summerfest.com/lineup" rel="noopener">https://summerfest.com/lineup</a> (official, checked 2026-08-28)</li>
       <li>Map: <a href="https://www.summerfest.com/about/" rel="noopener">https://www.summerfest.com/about/</a> (official, checked 2026-09-24)</li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-09-25">2026-09-25</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-10-13">2026-10-13</time>.</p>
   </section>
 
   <footer>

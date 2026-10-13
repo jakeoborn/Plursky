@@ -1,0 +1,86 @@
+{
+  "id": "beyond-wonderland-gorge-2026",
+  "method": "structured_html",
+  "official": "https://pnw.beyondwonderland.com/lineup/set-times",
+  "window": [
+    "20260601",
+    "20261231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://pnw.beyondwonderland.com/lineup/set-times/day-1/",
+      "date": "2026-06-27",
+      "chosen": "20260627044832",
+      "archivedUrl": "https://web.archive.org/web/20260627044832/https://pnw.beyondwonderland.com/lineup/set-times/day-1/",
+      "sha256": "20ff53b6b1be7b07576be9b23d33831d83f30bdc0755bdab2619e88e61dd0def",
+      "rows": 28,
+      "stages": {
+        "Queen's Valley": 9,
+        "Mad Hatter's Castle": 10,
+        "Caterpillar's Garden": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20260627044832",
+          "archivedUrl": "https://web.archive.org/web/20260627044832/https://pnw.beyondwonderland.com/lineup/set-times/day-1/",
+          "sha256": "20ff53b6b1be7b07576be9b23d33831d83f30bdc0755bdab2619e88e61dd0def",
+          "bytes": 240620,
+          "tabs": [
+            "Saturday, June 27",
+            "Sunday, June 28"
+          ],
+          "date": "2026-06-27",
+          "valid": true,
+          "rows": 28,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://pnw.beyondwonderland.com/lineup/set-times/day-2/",
+      "date": "2026-06-28",
+      "chosen": "20260627044829",
+      "archivedUrl": "https://web.archive.org/web/20260627044829/https://pnw.beyondwonderland.com/lineup/set-times/day-2/",
+      "sha256": "d40794739b35cbf1b81701c57c3fd324886726e28935828d6f93ae9b3b525f9d",
+      "rows": 28,
+      "stages": {
+        "Queen's Valley": 9,
+        "Mad Hatter's Castle": 10,
+        "Caterpillar's Garden": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20260627044829",
+          "archivedUrl": "https://web.archive.org/web/20260627044829/https://pnw.beyondwonderland.com/lineup/set-times/day-2/",
+          "sha256": "d40794739b35cbf1b81701c57c3fd324886726e28935828d6f93ae9b3b525f9d",
+          "bytes": 258297,
+          "tabs": [
+            "Saturday, June 27",
+            "Sunday, June 28"
+          ],
+          "date": "2026-06-28",
+          "valid": true,
+          "rows": 28,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "lineupCheck": {
+    "page": "https://pnw.beyondwonderland.com/lineup/",
+    "archivedUrl": "https://web.archive.org/web/20260627043900/https://pnw.beyondwonderland.com/lineup/",
+    "captureTimestamp": "20260627043900",
+    "sha256": "e59d4001ff5b0da2b66808bb887dba3a2e285d6c3598c9031d60766a05dc923c",
+    "title": "Lineup – Beyond Wonderland at The Gorge 2025",
+    "staleTitle": true,
+    "identityText": "Beyond PNW 2026",
+    "billings": 56,
+    "matched": 56,
+    "aliased": [],
+    "unmatched": [],
+    "setTimesOnly": []
+  },
+  "dropped": []
+}
