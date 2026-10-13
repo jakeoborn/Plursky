@@ -376,7 +376,7 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 function getPermanentArtistImage(name) {
-  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[window.PlurskyArtistKey.artistKey(name || "")];
   if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
   return rec;
 }

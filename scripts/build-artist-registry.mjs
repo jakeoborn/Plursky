@@ -38,32 +38,24 @@
 //            an entry there throws instead of being silently ignored.
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { loadRegistry } from './lib/load-registry.mjs';
-import { slug } from './historical/lib.mjs';
 import { dropReason } from './historical/editions.mjs';
 
 const ROOT = process.cwd();
 
-// The historical slug drops letters NFKD cannot decompose ("RØZ" → "r-z",
-// "ØTTA" → "tta"; "¥" is a stylised Y). Registry keys fold them first; billing
-// text stays verbatim.
-const LETTERS = { '¥': 'Y', 'Ø': 'O', 'ø': 'o', 'Æ': 'AE', 'æ': 'ae', 'Œ': 'OE', 'œ': 'oe', 'ß': 'ss', 'Ł': 'L', 'ł': 'l', 'Đ': 'D', 'đ': 'd', 'Þ': 'Th', 'þ': 'th', 'ð': 'd' };
-export const keyOf = s => slug(String(s).replace(/[¥ØøÆæŒœßŁłĐđÞþð]/g, c => LETTERS[c]));
+// Keys come from data/artist-key.js, the same function the app's photo lookup
+// calls (the historical slug, after folding Ø / Æ / ¥ and the rest).
+import '../data/artist-key.js';
+const { foldKey, splitSetTag } = globalThis.PlurskyArtistKey;
+export const keyOf = foldKey;
 const OUT = `${ROOT}/data/artists`;
 
 // ── Parsing one printed billing ───────────────────────────────────────────
-const SET_TAG = /^(?:.*\bset|live|hybrid|in the round|unmasked)$/i;
-const PEOPLE_IN_PARENS = /\s[x×+]\s|\sb[23]b\s|,|\s&\s/i;
 const UNNAMED = /^\?+$|^(tba|special guest|surprise guest)$/i;
 
 export function parseBilling(printed, known = null) {
-  let name = String(printed).trim();
-  let setTag = null, review = null;
-  const paren = name.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
-  if (paren) {
-    const inner = paren[2].trim();
-    if (SET_TAG.test(inner) && !PEOPLE_IN_PARENS.test(inner)) { setTag = inner; name = paren[1].trim(); }
-    else review = PEOPLE_IN_PARENS.test(inner) ? 'parenthetical names people' : 'parenthetical is not a known set tag';
-  }
+  const split = splitSetTag(printed);
+  const name = split.name, setTag = split.setTag;
+  const review = split.paren === 'people' ? 'parenthetical names people' : split.paren ? 'parenthetical is not a known set tag' : null;
   const act = keyOf(name);
   if (review) return { act: keyOf(printed), setTag, kind: 'performer', performers: [{ key: keyOf(printed), role: 'act' }], review };
   // b2b / b3b first: one set, several performers.
