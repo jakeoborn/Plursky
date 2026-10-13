@@ -775,7 +775,7 @@ function SpotifyScreen({
         marginTop: 2,
         textTransform: "uppercase"
       }
-    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("button", {
+    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", setTimeLabel(a))), React.createElement("button", {
       onClick: () => toggleSave(state, setState, realId),
       style: {
         width: 34,
@@ -849,7 +849,7 @@ function SpotifyScreen({
         marginTop: 2,
         textTransform: "uppercase"
       }
-    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", fmt12(a.start)), a._reason && React.createElement("div", {
+    }, stg?.name || "Stage TBA", " · DAY ", a.day, " · ", setTimeLabel(a)), a._reason && React.createElement("div", {
       style: {
         fontSize: 10,
         fontStyle: "italic",
@@ -6308,7 +6308,7 @@ function _ReviewPicker({
         color: "var(--ink-2)",
         flexShrink: 0
       }
-    }, [st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")));
+    }, [st && st.short, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start && fmt12(a.start)].filter(Boolean).join(" · ")));
   }), !sets.length && React.createElement("div", {
     className: "mono",
     style: {
@@ -10878,7 +10878,7 @@ function AttendanceReview({
         marginTop: 2,
         fontWeight: 600
       }
-    }, (stage?.short || "").toUpperCase(), " · ", fmt12(a.start))), src === "gps" && React.createElement("span", {
+    }, (stage?.short || "").toUpperCase(), " · ", setTimeLabel(a))), src === "gps" && React.createElement("span", {
       className: "mono",
       style: {
         fontSize: 8,
@@ -11780,7 +11780,7 @@ function MeScreen({
           width: 72,
           flexShrink: 0
         }
-      }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", React.createElement("br", null), fmt12(a.start)), typeof DuoAvatar === "function" && React.createElement(DuoAvatar, {
+      }, FESTIVAL_CONFIG.dayDates[a.day]?.short || "", React.createElement("br", null), setTimesUnconfirmed(a) ? null : fmt12(a.start)), typeof DuoAvatar === "function" && React.createElement(DuoAvatar, {
         name: a.name,
         size: 42
       }), React.createElement("span", {
@@ -11799,7 +11799,13 @@ function MeScreen({
         style: {
           display: "block"
         }
-      }, st?.name || "")));
+      }, st?.name || ""), setTimesUnconfirmed(a) && React.createElement("span", {
+        "data-set-time-status": true,
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block"
+        }
+      }, SET_TIMES_UNCONFIRMED)));
     })));
   })(), React.createElement("div", {
     style: {
@@ -11944,7 +11950,7 @@ function FollowedNudge({
         flexShrink: 0,
         fontSize: 13
       }
-    }, fmt12(a.start)), React.createElement(DuoAvatar, {
+    }, setTimesUnconfirmed(a) ? null : fmt12(a.start)), React.createElement(DuoAvatar, {
       name: a.name,
       size: 42
     }), React.createElement("span", {
@@ -11964,7 +11970,14 @@ function FollowedNudge({
         display: "block",
         fontWeight: 400
       }
-    }, [st?.name, day?.name].filter(Boolean).join(" · "))), React.createElement("button", {
+    }, [st?.name, day?.name].filter(Boolean).join(" · ")), setTimesUnconfirmed(a) && React.createElement("span", {
+      "data-set-time-status": true,
+      className: "duo-body-s duo-ink2",
+      style: {
+        display: "block",
+        fontWeight: 400
+      }
+    }, SET_TIMES_UNCONFIRMED)), React.createElement("button", {
       onClick: () => handleSave(a),
       className: "duo-add",
       "aria-pressed": "false",
@@ -12146,7 +12159,7 @@ function BoardPlaylistCard({
     var a = p.artist,
       off = dropped.has(a.id);
     var stg = STAGES.find(s => s.id === a.stage);
-    var when = a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
+    var when = a.day != null && setTimesUnconfirmed(a) ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${SET_TIMES_UNCONFIRMED}` : a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
     return React.createElement("div", {
       key: a.id,
       style: {
@@ -12882,7 +12895,7 @@ function _computeRecap(state) {
     var adjustH = h < 6 ? h + 24 : h;
     return dm.midnightUtc + adjustH * 3600000 + m * 60000;
   };
-  var chronological = caughtArtists.slice().sort((x, y) => _artistEpoch(x) - _artistEpoch(y));
+  var chronological = caughtArtists.filter(a => window.setTimingMin?.(a)).sort((x, y) => _artistEpoch(x) - _artistEpoch(y));
   var firstSet = chronological[0] || null;
   var lastSet = chronological[chronological.length - 1] || null;
   var headlinersCaught = caughtArtists.filter(a => a.tier === 3);

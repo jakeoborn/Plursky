@@ -449,7 +449,7 @@ function SpotifyScreen({ state, setState }) {
                    onClick={() => setState({ ...state, tab: "home", artist: realId })}>
                 <div className="serif" style={{ fontSize: 18, lineHeight: 1.1 }}>{a.name}</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2, textTransform: "uppercase" }}>
-                  {stg?.name || "Stage TBA"} · DAY {a.day} · {fmt12(a.start)}
+                  {stg?.name || "Stage TBA"} · DAY {a.day} · {setTimeLabel(a)}
                 </div>
               </div>
               <button onClick={() => toggleSave(state, setState, realId)} style={{
@@ -486,7 +486,7 @@ function SpotifyScreen({ state, setState }) {
                        onClick={() => setState({ ...state, tab: "home", artist: a.id })}>
                     <div className="serif" style={{ fontSize: 18, lineHeight: 1.1 }}>{a.name}</div>
                     <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2, textTransform: "uppercase" }}>
-                      {stg?.name || "Stage TBA"} · DAY {a.day} · {fmt12(a.start)}
+                      {stg?.name || "Stage TBA"} · DAY {a.day} · {setTimeLabel(a)}
                     </div>
                     {a._reason && (
                       <div style={{ fontSize: 10, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>
@@ -4384,7 +4384,7 @@ function _ReviewPicker({ moments, onClose, onApply }) {
                   {saved.has(a.id) ? "★ " : ""}{a.name}
                 </span>
                 <span className="mono" style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--ink-2)", flexShrink: 0 }}>
-                  {[st && st.short, a.start && fmt12(a.start)].filter(Boolean).join(" · ")}
+                  {[st && st.short, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start && fmt12(a.start)].filter(Boolean).join(" · ")}
                 </span>
               </button>
             );
@@ -7436,7 +7436,7 @@ function AttendanceReview({ night, savedNightArtists }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="serif" style={{ fontSize: 14, lineHeight: 1.1 }}>{a.name}</div>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2, fontWeight: 600 }}>
-                    {(stage?.short || "").toUpperCase()} · {fmt12(a.start)}
+                    {(stage?.short || "").toUpperCase()} · {setTimeLabel(a)}
                   </div>
                 </div>
                 {src === "gps" && (
@@ -7950,12 +7950,13 @@ function MeScreen({ state, setState }) {
                       display: "flex", width: "auto", color: "var(--ink)",
                     }}>
                       <span className="duo-data-s duo-ink2" style={{ width: 72, flexShrink: 0 }}>
-                        {FESTIVAL_CONFIG.dayDates[a.day]?.short || ""}<br/>{fmt12(a.start)}
+                        {FESTIVAL_CONFIG.dayDates[a.day]?.short || ""}<br/>{setTimesUnconfirmed(a) ? null : fmt12(a.start)}
                       </span>
                       {typeof DuoAvatar === "function" && <DuoAvatar name={a.name} size={42} />}
                       <span style={{ flex: 1, minWidth: 0 }}>
                         <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
                         <span className="duo-body-s duo-ink2" style={{ display: "block" }}>{st?.name || ""}</span>
+                        {setTimesUnconfirmed(a) && <span data-set-time-status className="duo-body-s duo-ink2" style={{ display: "block" }}>{SET_TIMES_UNCONFIRMED}</span>}
                       </span>
                     </button>
                   );
@@ -8027,11 +8028,12 @@ function FollowedNudge({ state, setState }) {
             const day = FESTIVAL_CONFIG.dayDates?.[a.day];
             return (
               <div key={a.id} className="duo-lrow">
-                <span className="duo-data duo-ink2" style={{ width: 72, flexShrink: 0, fontSize: 13 }}>{fmt12(a.start)}</span>
+                <span className="duo-data duo-ink2" style={{ width: 72, flexShrink: 0, fontSize: 13 }}>{setTimesUnconfirmed(a) ? null : fmt12(a.start)}</span>
                 <DuoAvatar name={a.name} size={42} />
                 <span style={{ flex: 1, minWidth: 0 }}>
                   <span className="duo-headline duo-name" style={{ display: "block", fontWeight: 700 }}>{actDisplayName(a.name)}</span>
                   <span className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>{[st?.name, day?.name].filter(Boolean).join(" · ")}</span>
+                  {setTimesUnconfirmed(a) && <span data-set-time-status className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>{SET_TIMES_UNCONFIRMED}</span>}
                 </span>
                 <button onClick={() => handleSave(a)} className="duo-add" aria-pressed="false" aria-label={`Save ${a.name}`}>
                   <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
@@ -8121,7 +8123,8 @@ function BoardPlaylistCard({ state, spotifyArtists, connected }) {
       ) : plan.picks.map(p => {
         const a = p.artist, off = dropped.has(a.id);
         const stg = STAGES.find(s => s.id === a.stage);
-        const when = a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
+        const when = a.day != null && setTimesUnconfirmed(a) ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${SET_TIMES_UNCONFIRMED}`
+          : a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
         return (
           <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", opacity: off ? 0.45 : 1 }}>
             <ArtistSwatch artist={a} size={40} />
@@ -8861,7 +8864,9 @@ function _computeRecap(state) {
     const adjustH = h < 6 ? h + 24 : h;
     return dm.midnightUtc + adjustH * 3600000 + m * 60000;
   };
-  const chronological = caughtArtists.slice().sort((x, y) => _artistEpoch(x) - _artistEpoch(y));
+  // Bookends need real times: an untimed set (unconfirmed or TBA) has no
+  // place in "you opened with / closed with", and parsed to NaN here.
+  const chronological = caughtArtists.filter(a => window.setTimingMin?.(a)).sort((x, y) => _artistEpoch(x) - _artistEpoch(y));
   const firstSet = chronological[0] || null;
   const lastSet  = chronological[chronological.length - 1] || null;
 
