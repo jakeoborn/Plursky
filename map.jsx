@@ -364,6 +364,12 @@ const MAP_REGISTRATION_TOL_M = 25;
 // lineup cards, search. It just gets no pin. Passing it into the map layers
 // instead would feed mapToGps(undefined, undefined) to every geo builder and
 // draw a marker at NaN, which renders as an invisible-but-clickable ghost.
+// Is this festival's map plate the art of a DIFFERENT edition? `mapArtYear` is
+// the year the shipped art was drawn for; unset means the festival's own.
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
+
 const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
   .filter(s => typeof s.x === "number" && typeof s.y === "number");
 
@@ -1952,7 +1958,12 @@ function MapScreen({ state, setState }) {
   // SVG ground plate for a venue whose layout nobody has published would be
   // the poster-space-as-world-space defect PR #36 removed from EDC LV.
   const REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  const mapPostureLabel = REAL_MAP_ONLY
+  // A plate drawn for another edition says so, ahead of every other posture:
+  // calling last year's layout the "OFFICIAL MAP" of this year's festival
+  // would be true of the art and false of the festival.
+  const mapPostureLabel = _mapArtIsOtherEdition(FESTIVAL_CONFIG)
+    ? `${FESTIVAL_CONFIG.mapArtYear} MAP · OFFICIAL ${FESTIVAL_CONFIG.year} MAP PENDING`
+    : REAL_MAP_ONLY
     ? "VENUE MAP · STAGES PENDING"
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
       ? "OFFICIAL MAP"
@@ -2396,7 +2407,10 @@ function MapScreen({ state, setState }) {
           </button>
         )}
         <h1 className="duo-title" style={{ margin: 0, flex: 1, minWidth: 0 }}>Map</h1>
-        <span data-map-posture className="duo-code">{mapPostureLabel}</span>
+        {/* duo-code is nowrap; the long other-edition label ("2025 MAP ·
+            OFFICIAL 2026 MAP PENDING") must wrap inside the header instead of
+            running off screen, down to 280. */}
+        <span data-map-posture className="duo-code" style={{ whiteSpace: "normal", lineHeight: 1.35, maxWidth: "100%", boxSizing: "border-box" }}>{mapPostureLabel}</span>
         {(() => {
           const has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
           const cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
@@ -4151,9 +4165,10 @@ function mapToGps(x, y) {
 // preserveAspectRatio="xMidYMid slice"> — "slice" means COVER: scale until the
 // short edge fills, centre, crop the overflow. Three of the five assets are
 // deliberately square (acl-park 1708², ef-forest 1200², lostlands 1400²) so
-// cover is exact and the extent is the plain 0-100 box. Two are NOT:
-// edc-map-2026.jpg is 1080×1350 and edco-tinker-2026.jpg is 960×1200, both
-// 0.80 aspect, so the SVG crops 12.5% off the top AND bottom.
+// cover is exact and the extent is the plain 0-100 box. One is NOT:
+// edc-map-2026.jpg is 1080×1350, 0.80 aspect, so the SVG crops 12.5% off the
+// top AND bottom. (EDC Orlando's old 960×1200 placeholder was the other; its
+// replacement, edco-tinker-2025.webp, is square.)
 //
 // MapLibre's `image` source does no cropping — it stretches the WHOLE image
 // into the quad it is given. Feeding it the plain 0-100 corners would squash
