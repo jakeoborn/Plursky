@@ -1,4 +1,8 @@
-// III Points 2026 - supplied set-time screenshot received October 5, 2026.
+// III Points 2026 - official set times. CONFIRMED 2026-10-07 against the official
+// @iiipoints Instagram grid (pinned post DeHtxkalDzN, 4 slides: Fri and Sat, 13
+// stages). All 231 intervals below match it exactly; 0 corrections. Diff list:
+// docs/qa/reports/iii-points-2026-set-times/official-instagram-2026-10-07.md
+// First transcribed from a III Points-branded screenshot received October 5, 2026.
 // SOURCE: attendee-supplied III Points-branded screenshot. It prints Friday
 // October 16 and Saturday October 17, 13 stages and 231 intervals. SHA256:
 // 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
@@ -137,7 +141,7 @@
   // Verified intervals. Times before 08:00 belong to the preceding festival night.
   const SCHEDULE = {
     // SCHEDULE:BEGIN iii-points-2026
-    // Attendee-supplied III Points-branded screenshot grid received 2026-10-05; sha256 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
+    // Official @iiipoints Instagram grid, checked 2026-10-07 (231 of 231 match). First read from a III Points-branded screenshot received 2026-10-05; sha256 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
     "iiip-ackdaddy": ["mind-melt", "16:00", "17:00", 1],
     "iiip-vania-junco": ["mind-melt", "17:05", "17:35", 1],
     "iiip-connan-mockasin": ["mind-melt", "18:00", "19:00", 1],
@@ -383,7 +387,7 @@
     stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
     bio: `Playing III Points 2026 on ${day === 1 ? "Friday, October 16" : "Saturday, October 17"}. ` +
-         "See the supplied set-time grid for this edition.",
+         "See the official set-time grid for this edition.",
     provisional: true,
   });
 
@@ -673,7 +677,7 @@
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
+    scheduleSource: { url: "https://www.instagram.com/p/DeHtxkalDzN/", observedAt: "2026-10-07", official: true, evidence: "Official III Points Instagram set-time grid (4 slides); all 231 intervals match the 2026-10-05 screenshot transcription", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9", officialSlidesSha256: ["5bd7b7fd0239a710ab6ae6277db1b42fa57f78eef8a9c851ecc695606f846db7", "50f5f225095478a1809558f8f9e6d6f078dd909007c29a2488319b354e206ae4", "a13e5950252ddb9adf3e397f7b5efb6f203c299090bd75c72d7e02477e15fa15", "a34a3d5eb7d461a00c87502d0c061000d9e1677bdfbc4b36472c486cd0e54d92"] },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",

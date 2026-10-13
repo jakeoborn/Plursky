@@ -1175,41 +1175,112 @@ function _mapDisplayPerm(display) {
   if (display === "denied") return "denied";
   return "default";
 }
-var ATTENDED_KEY = "plursky_attended_v1";
-function getAllAttended() {
+var ATTENDED_KEY = "plursky_attended_v2";
+var ATTENDED_LEGACY_KEY = "plursky_attended_v1";
+var ATTENDED_UNATTRIBUTED = "_unattributed";
+function _attendedDataSets() {
   try {
-    var raw = localStorage.getItem(ATTENDED_KEY);
-    var obj = raw ? JSON.parse(raw) : {};
-    Object.keys(obj).forEach(k => {
-      obj[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
-    });
-    return obj;
+    return (typeof _DATA_SETS !== "undefined" ? _DATA_SETS : window._DATA_SETS) || {};
   } catch {
     return {};
   }
 }
-function _writeAttended(map) {
+var _attendedOwnerIndex = null;
+function _attendedOwnerOf(artistId) {
+  var sets = _attendedDataSets();
+  if (!_attendedOwnerIndex || _attendedOwnerIndex._n !== Object.keys(sets).length) {
+    var idx = {
+      _n: Object.keys(sets).length,
+      map: {}
+    };
+    for (var [fid, ds] of Object.entries(sets)) {
+      for (var a of ds?.artists || []) {
+        idx.map[a.id] = a.id in idx.map && idx.map[a.id] !== fid ? null : fid;
+      }
+    }
+    _attendedOwnerIndex = idx;
+  }
+  return _attendedOwnerIndex.map[artistId] || null;
+}
+function _normAttendedNights(obj) {
+  var out = {};
+  if (!obj || typeof obj !== "object") return out;
+  Object.keys(obj).forEach(k => {
+    out[k] = Array.isArray(obj[k]) ? obj[k].filter(x => typeof x === "string") : [];
+  });
+  return out;
+}
+function _migrateLegacyAttended() {
+  var legacy = {};
   try {
-    localStorage.setItem(ATTENDED_KEY, JSON.stringify(map));
+    legacy = JSON.parse(localStorage.getItem(ATTENDED_LEGACY_KEY) || "{}") || {};
+  } catch {}
+  var store = {};
+  for (var [night, ids] of Object.entries(_normAttendedNights(legacy))) {
+    for (var id of ids) {
+      var fid = _attendedOwnerOf(id) || ATTENDED_UNATTRIBUTED;
+      var nights = store[fid] = store[fid] || {};
+      var list = nights[night] = nights[night] || [];
+      if (!list.includes(id)) list.push(id);
+    }
+  }
+  if (Object.keys(_attendedDataSets()).length) {
+    try {
+      localStorage.setItem(ATTENDED_KEY, JSON.stringify(store));
+    } catch {}
+  }
+  return store;
+}
+function _readAttendedStore() {
+  try {
+    var raw = localStorage.getItem(ATTENDED_KEY);
+    if (raw) {
+      var s = JSON.parse(raw);
+      if (s && typeof s === "object") return s;
+    }
+  } catch {}
+  return _migrateLegacyAttended();
+}
+function getAttendedStore() {
+  var s = _readAttendedStore(),
+    out = {};
+  Object.keys(s).forEach(fid => {
+    out[fid] = _normAttendedNights(s[fid]);
+  });
+  return out;
+}
+function getAllAttended(festivalId) {
+  var fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return {};
+  return _normAttendedNights(_readAttendedStore()[fid]);
+}
+function _writeAttended(map, festivalId) {
+  var fid = festivalId || window.FESTIVAL_CONFIG?.id;
+  if (!fid) return;
+  var store = _readAttendedStore();
+  store[fid] = map;
+  try {
+    localStorage.setItem(ATTENDED_KEY, JSON.stringify(store));
   } catch {}
   try {
     window.dispatchEvent(new CustomEvent("plursky-attended-change"));
   } catch {}
 }
-function getAttendedForNight(night) {
-  return new Set(getAllAttended()[night] || []);
+function getAttendedForNight(night, festivalId) {
+  return new Set(getAllAttended(festivalId)[night] || []);
 }
-function getAttendedCount() {
-  var all = getAllAttended();
+function getAttendedCount(festivalId) {
+  var all = getAllAttended(festivalId);
   return Object.values(all).reduce((s, arr) => s + (Array.isArray(arr) ? arr.length : 0), 0);
 }
 function markAttended(night, artistId, source = "manual") {
   if (!night || !artistId) return false;
-  var all = getAllAttended();
+  var fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  var all = getAllAttended(fid);
   var list = all[night] || [];
   if (list.includes(artistId)) return false;
   all[night] = [...list, artistId];
-  _writeAttended(all);
+  _writeAttended(all, fid);
   if (source === "gps") {
     try {
       var log = JSON.parse(localStorage.getItem("plursky_attended_source_v1") || "{}");
@@ -1224,11 +1295,12 @@ function markAttended(night, artistId, source = "manual") {
 }
 function unmarkAttended(night, artistId) {
   if (!night || !artistId) return false;
-  var all = getAllAttended();
+  var fid = _attendedOwnerOf(artistId) || window.FESTIVAL_CONFIG?.id;
+  var all = getAllAttended(fid);
   var list = (all[night] || []).filter(x => x !== artistId);
   if (list.length === (all[night] || []).length) return false;
   all[night] = list;
-  _writeAttended(all);
+  _writeAttended(all, fid);
   return true;
 }
 function isAttended(night, artistId) {
@@ -2953,6 +3025,7 @@ Object.assign(window, {
   NotificationsCard,
   scheduleReminders,
   getAllAttended,
+  getAttendedStore,
   getAttendedForNight,
   getAttendedCount,
   markAttended,

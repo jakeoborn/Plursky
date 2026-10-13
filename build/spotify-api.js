@@ -46,7 +46,7 @@ async function connectAppleMusic() {
   };
   if (!_appleMusicOriginOk()) {
     return {
-      error: "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there."
+      error: window.Capacitor?.isNativePlatform?.() ? "Apple Music sign-in isn't available in the iPhone app yet. Build this playlist at plursky.com." : "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there."
     };
   }
   try {
@@ -162,7 +162,74 @@ function _collectMomentSongs() {
   }
   return out;
 }
+function _amNorm(s) {
+  return String(s || "").normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+}
+function _amCredits(artistName) {
+  return String(artistName || "").split(/\s*(?:,|&|\bx\b|\band\b|\bfeat\.?|\bft\.?|\bwith\b|\bvs\.?)\s*/i).map(_amNorm).filter(Boolean).concat(_amNorm(artistName));
+}
+function _amTargets(billed) {
+  var look = typeof _lookupName === "function" ? _lookupName : x => x;
+  var parts = typeof _b2bParts === "function" ? _b2bParts(billed) : [billed];
+  return [...new Set([billed, look(billed), ...parts, ...parts.map(look)].map(_amNorm).filter(Boolean))];
+}
+function _amCredited(song, billed) {
+  var targets = _amTargets(billed);
+  if (!targets.length) return false;
+  var credits = _amCredits(song?.attributes?.artistName);
+  return credits.some(c => targets.includes(c));
+}
+function _amBaseTitle(t) {
+  return _amNorm(String(t || "").replace(/\s*[\(\[][^\)\]]*[\)\]]/g, "").replace(/\s+-\s+.*$/, ""));
+}
+function _amPickArtistSongs(songs, billed, limit) {
+  return (songs || []).filter(s => s?.id && _amCredited(s, billed)).slice(0, limit);
+}
+function _amPickMomentSong(songs, title, artist) {
+  if (!artist || !title) return null;
+  var credited = (songs || []).filter(s => s?.id && _amCredited(s, artist));
+  var t = _amNorm(title),
+    bt = _amBaseTitle(title);
+  return credited.find(s => _amNorm(s.attributes?.name) === t) || credited.find(s => _amBaseTitle(s.attributes?.name) === bt) || null;
+}
+function _amLog(event, detail) {
+  try {
+    console.warn(`[plursky:applemusic] ${event}`, detail === undefined ? "" : JSON.stringify(detail));
+  } catch {}
+}
+function appleMusicFailureMessage(r) {
+  if (!r || r.ok) return "";
+  switch (r.reason) {
+    case "not_configured":
+      return "Apple Music isn't set up in this build.";
+    case "not_connected":
+      return r.message || "Apple Music isn't connected. Tap to connect.";
+    case "empty":
+      return r.source === "attended" ? "No sets marked as caught at this festival yet." : "Save sets first.";
+    case "no_tracks":
+      return r.searchFailed ? "Couldn't reach Apple Music's catalog. Check your connection and try again." : `Apple Music has no songs credited to ${r.skipped?.length === 1 ? r.skipped[0].name : `your ${r.skipped?.length || 0} acts`}.`;
+    case "reconnect":
+      return "Apple Music sign-in expired. Tap to reconnect.";
+    case "create_fail":
+      return `Apple Music refused the playlist (${r.status || "network"})${r.message ? `: ${r.message}` : ""}.`;
+    default:
+      return `Apple Music playlist failed (${r.reason || "unknown"}).`;
+  }
+}
 async function createAppleMusicPlaylist(state, opts = {}) {
+  var r = await _createAppleMusicPlaylist(state, opts);
+  if (!r.ok) r.userMessage = appleMusicFailureMessage(r);
+  _amLog(r.ok ? "created" : "failed", {
+    reason: r.reason,
+    status: r.status,
+    message: r.message,
+    added: r.added,
+    skipped: r.skipped,
+    url: r.url
+  });
+  return r;
+}
+async function _createAppleMusicPlaylist(state, opts = {}) {
   var prog = m => {
     if (opts.onProgress) opts.onProgress(m);
   };
@@ -201,7 +268,8 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   var saved = sourceIds.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean);
   if (!saved.length) return {
     ok: false,
-    reason: "empty"
+    reason: "empty",
+    source
   };
   var timeKey = hhmm => {
     var h = parseInt(hhmm);
@@ -217,23 +285,53 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     if (sr.ok) {
       var sj = await sr.json();
       storefront = sj.data?.[0]?.id || "us";
-    }
-  } catch {}
+    } else _amLog("storefront_fallback_us", {
+      status: sr.status
+    });
+  } catch (e) {
+    _amLog("storefront_fallback_us", {
+      error: String(e?.message || e)
+    });
+  }
+  var search = async (term, limit) => {
+    var r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=${limit}&term=${encodeURIComponent(term)}`, {
+      headers: devHeaders
+    });
+    if (!r.ok) throw Object.assign(new Error(`search ${r.status}`), {
+      status: r.status
+    });
+    return (await r.json()).results?.songs?.data || [];
+  };
   var tracks = [];
   var seen = new Set();
-  var missed = 0;
+  var skipped = [];
+  var searchErrors = 0,
+    searches = 0;
   var songsMatched = 0;
   if (opts.soundtrack) {
     for (var ms of _collectMomentSongs()) {
       prog(`Finding ${ms.title}…`);
-      try {
-        var term = encodeURIComponent(`${ms.title} ${ms.artist}`.trim());
-        var r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=5&term=${term}`, {
-          headers: devHeaders
+      var label = ms.artist ? `${ms.artist} — ${ms.title}` : ms.title;
+      if (!ms.artist) {
+        skipped.push({
+          name: label,
+          kind: "song",
+          reason: "no_artist"
         });
-        if (!r.ok) continue;
-        var s = ((await r.json()).results?.songs?.data || [])[0];
-        if (s?.id && !seen.has(s.id)) {
+        continue;
+      }
+      searches++;
+      try {
+        var s = _amPickMomentSong(await search(`${ms.title} ${ms.artist}`, 10), ms.title, ms.artist);
+        if (!s) {
+          skipped.push({
+            name: label,
+            kind: "song",
+            reason: "no_match"
+          });
+          continue;
+        }
+        if (!seen.has(s.id)) {
           seen.add(s.id);
           tracks.push({
             id: s.id,
@@ -241,28 +339,26 @@ async function createAppleMusicPlaylist(state, opts = {}) {
           });
           songsMatched++;
         }
-      } catch {}
+      } catch (e) {
+        searchErrors++;
+        skipped.push({
+          name: label,
+          kind: "song",
+          reason: `search_fail:${e.status || "network"}`
+        });
+      }
     }
   }
-  var _loop2 = async function () {
+  for (var a of sorted) {
     prog(`Finding ${a.name}…`);
+    searches++;
     try {
-      var _r = await fetch(`https://api.music.apple.com/v1/catalog/${storefront}/search?types=songs&limit=15&term=${encodeURIComponent(a.name)}`, {
-        headers: devHeaders
-      });
-      if (!_r.ok) {
-        missed++;
-        return 1;
-      }
-      var _j = await _r.json();
-      var songs = _j.results?.songs?.data || [];
-      var ln = a.name.toLowerCase();
-      var byArtist = songs.filter(s => (s.attributes?.artistName || "").toLowerCase().includes(ln));
-      var pool = byArtist.length ? byArtist : songs.slice(0, 1);
+      var term = typeof _lookupName === "function" ? _lookupName(a.name) : a.name;
+      var pool = _amPickArtistSongs(await search(term, 25), a.name, 25);
       var added = 0;
       for (var _s of pool) {
         if (added >= trackLimit(a.tier)) break;
-        if (_s.id && !seen.has(_s.id)) {
+        if (!seen.has(_s.id)) {
           seen.add(_s.id);
           tracks.push({
             id: _s.id,
@@ -271,17 +367,26 @@ async function createAppleMusicPlaylist(state, opts = {}) {
           added++;
         }
       }
-      if (!added) missed++;
-    } catch {
-      missed++;
+      if (!added) skipped.push({
+        name: a.name,
+        kind: "act",
+        reason: pool.length ? "duplicates_only" : "no_match"
+      });
+    } catch (e) {
+      searchErrors++;
+      skipped.push({
+        name: a.name,
+        kind: "act",
+        reason: `search_fail:${e.status || "network"}`
+      });
     }
-  };
-  for (var a of sorted) {
-    if (await _loop2()) continue;
   }
+  var missed = skipped.filter(x => x.kind === "act").length;
   if (!tracks.length) return {
     ok: false,
-    reason: "no_tracks"
+    reason: "no_tracks",
+    skipped,
+    searchFailed: searches > 0 && searchErrors === searches
   };
   prog("Creating playlist…");
   var CFG = window.FESTIVAL_CONFIG || {};
@@ -289,25 +394,40 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     month: "short",
     day: "numeric"
   });
-  var res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
-    method: "POST",
-    headers: {
-      ...userHeaders,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      attributes: {
-        name: opts.soundtrack ? `${CFG.shortName || "Festival"} — Your Weekend` : `${CFG.shortName || "Festival"} — Plursky`,
-        description: opts.soundtrack ? `${songsMatched} song${songsMatched === 1 ? "" : "s"} you were there for + ${saved.length} sets · built with Plursky · ${dateStr}` : `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`
+  var res;
+  try {
+    res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
+      method: "POST",
+      headers: {
+        ...userHeaders,
+        "Content-Type": "application/json"
       },
-      relationships: {
-        tracks: {
-          data: tracks
+      body: JSON.stringify({
+        attributes: {
+          name: opts.soundtrack ? `${CFG.shortName || "Festival"} — Your Weekend` : `${CFG.shortName || "Festival"} — Plursky`,
+          description: opts.soundtrack ? `${songsMatched} song${songsMatched === 1 ? "" : "s"} you were there for + ${saved.length} sets · built with Plursky · ${dateStr}` : `${saved.length} sets · headliners deep · FRI→SAT→SUN · built with Plursky · ${dateStr}`
+        },
+        relationships: {
+          tracks: {
+            data: tracks
+          }
         }
-      }
-    })
-  });
+      })
+    });
+  } catch (e) {
+    return {
+      ok: false,
+      reason: "create_fail",
+      message: String(e?.message || e),
+      skipped
+    };
+  }
   if (!res.ok) {
+    var detail = "";
+    try {
+      var j = await res.json();
+      detail = j.errors?.[0]?.detail || j.errors?.[0]?.title || "";
+    } catch {}
     if (res.status === 401 || res.status === 403) {
       try {
         localStorage.removeItem("am_user_token");
@@ -315,19 +435,23 @@ async function createAppleMusicPlaylist(state, opts = {}) {
       return {
         ok: false,
         reason: "reconnect",
-        status: res.status
+        status: res.status,
+        message: detail,
+        skipped
       };
     }
     return {
       ok: false,
       reason: "create_fail",
-      status: res.status
+      status: res.status,
+      message: detail,
+      skipped
     };
   }
   var id = null;
   try {
-    var j = await res.json();
-    id = j.data?.[0]?.id || null;
+    var _j = await res.json();
+    id = _j.data?.[0]?.id || null;
   } catch {}
   var url = id ? `https://music.apple.com/library/playlist/${id}` : null;
   return {
@@ -335,6 +459,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     service: "apple",
     added: tracks.length,
     missed,
+    skipped,
     songsMatched,
     id,
     url
@@ -789,7 +914,7 @@ function _hasPlaylistWriteScope() {
 }
 async function _findPlurskyPlaylist(token, profileId) {
   var fetchWithRetry = async url => {
-    var _loop3 = async function () {
+    var _loop2 = async function () {
         var r = await fetch(url, {
           headers: {
             Authorization: "Bearer " + token
@@ -804,7 +929,7 @@ async function _findPlurskyPlaylist(token, profileId) {
       },
       _ret2;
     for (var attempt = 0; attempt < 3; attempt++) {
-      _ret2 = await _loop3();
+      _ret2 = await _loop2();
       if (_ret2) return _ret2.v;
     }
     return null;
@@ -828,15 +953,15 @@ async function _findPlurskyPlaylist(token, profileId) {
     } catch {}
   }
   for (var offset = 0; offset < 200; offset += 50) {
-    var _r2 = await fetchWithRetry(`https://api.spotify.com/v1/me/playlists?limit=50&offset=${offset}`);
-    if (!_r2) return {
+    var _r = await fetchWithRetry(`https://api.spotify.com/v1/me/playlists?limit=50&offset=${offset}`);
+    if (!_r) return {
       error: "rate_limited"
     };
-    if (!_r2.ok) return {
+    if (!_r.ok) return {
       error: "fetch_failed",
-      status: _r2.status
+      status: _r.status
     };
-    var j = await _r2.json();
+    var j = await _r.json();
     var items = j.items || [];
     var found = items.find(p => p?.owner?.id === profileId && typeof p?.name === "string" && p.name.trim().toLowerCase().startsWith("plursky"));
     if (found) return {
@@ -1018,7 +1143,7 @@ async function createSetsPlaylist(state, opts = {}) {
   var missed = 0;
   var missedNames = [];
   var fetchWithRetry = async (url, init) => {
-    var _loop4 = async function () {
+    var _loop3 = async function () {
         var r = await fetch(url, init);
         if (r.status !== 429) return {
           v: r
@@ -1029,7 +1154,7 @@ async function createSetsPlaylist(state, opts = {}) {
       },
       _ret3;
     for (var attempt = 0; attempt < 3; attempt++) {
-      _ret3 = await _loop4();
+      _ret3 = await _loop3();
       if (_ret3) return _ret3.v;
     }
     return null;
@@ -1086,14 +1211,14 @@ async function createSetsPlaylist(state, opts = {}) {
       missedNames.push(entry.artist.name);
     }
   };
-  var _loop5 = async function (i) {
+  var _loop4 = async function (i) {
     try {
       opts.onProgress?.(`${Math.min(i + 4, entries.length)}/${entries.length} ARTISTS`);
     } catch {}
     await Promise.all(entries.slice(i, i + 4).map((e, j) => search(e, i + j)));
   };
   for (var i = 0; i < entries.length; i += 4) {
-    await _loop5(i);
+    await _loop4(i);
   }
   var soundtrackUris = [];
   var songsMatched = 0;
@@ -1479,7 +1604,7 @@ async function fetchSpotifyTopArtists(onProgress) {
     var _playlistCount = 0;
     var _playlistScanOk = _missingScopeRecord ? false : false;
     var fetchPlaylistsWithRetry = async url => {
-      var _loop6 = async function () {
+      var _loop5 = async function () {
           var r = await fetch(url, {
             headers: {
               Authorization: "Bearer " + token
@@ -1494,7 +1619,7 @@ async function fetchSpotifyTopArtists(onProgress) {
         },
         _ret4;
       for (var attempt = 0; attempt < 3; attempt++) {
-        _ret4 = await _loop6();
+        _ret4 = await _loop5();
         if (_ret4) return _ret4.v;
       }
       return null;
@@ -1772,10 +1897,10 @@ function planBoardPlaylist({
   for (var _s2 of seeds) if (_s2.artist.stage) stageCounts[_s2.artist.stage] = (stageCounts[_s2.artist.stage] || 0) + 1;
   var gaps = [];
   var seedSets = seeds.map(s => s.artist).filter(scheduled);
-  var _loop7 = function (day) {
+  var _loop6 = function (day) {
     var onDay = seedSets.filter(a => a.day === day);
     var split = onDay.some(a => a.weekend === "W1" || a.weekend === "W2");
-    var _loop9 = function (wk) {
+    var _loop8 = function (wk) {
       var spans = onDay.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk).map(span).sort((x, y) => x[0] - y[0]);
       var reach = null;
       for (var [_s3, e] of spans) {
@@ -1789,11 +1914,11 @@ function planBoardPlaylist({
       }
     };
     for (var wk of split ? ["W1", "W2"] : [null]) {
-      _loop9(wk);
+      _loop8(wk);
     }
   };
   for (var day of [...new Set(seedSets.map(a => a.day))]) {
-    _loop7(day);
+    _loop6(day);
   }
   var excluded = {
     saved: 0,
@@ -1802,7 +1927,7 @@ function planBoardPlaylist({
     dupName: 0
   };
   var best = new Map();
-  var _loop8 = function (_a) {
+  var _loop7 = function (_a) {
       if (savedIdSet.has(_a.id)) {
         excluded.saved++;
         return 0;
@@ -1853,7 +1978,7 @@ function planBoardPlaylist({
     },
     _ret5;
   for (var _a of artists) {
-    _ret5 = _loop8(_a);
+    _ret5 = _loop7(_a);
     if (_ret5 === 0) continue;
   }
   var cap = seeds.length ? Math.min(maxDiscovery, Math.max(2, Math.ceil(seeds.length / 2))) : 0;
@@ -1907,6 +2032,9 @@ Object.assign(window, {
   connectAppleMusic,
   disconnectAppleMusic,
   createAppleMusicPlaylist,
+  appleMusicFailureMessage,
+  _amPickArtistSongs,
+  _amPickMomentSong,
   _appleMusicConfigured,
   _ensureMusicKitConfigured,
   _collectMomentSongs,
