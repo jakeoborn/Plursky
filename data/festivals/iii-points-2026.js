@@ -671,6 +671,9 @@
 
   const CONFIG = {
     id:        "iii-points-2026",
+    officialEvent: { website: "https://www.iiipoints.com/", tickets: "https://iiipoints.frontgatetickets.com/", observedAt: "2026-09-26" },
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"camping": {"url": "https://www.iiipoints.com/guide/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://iiipoints.frontgatetickets.com/", "state": "on-sale", "observedAt": "2026-10-13", "edition": "2026"}},
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
@@ -746,7 +749,7 @@
     // waiver — there is genuinely nothing to register.
     mapArtIsGeoregistered: false,
     // Published policy, drives FAQ copy only.
-    policies: { reentry: false, alcoholAge: 21 },
+    policies: { reentry: false, alcoholAge: 21, camping: false },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};

@@ -31,13 +31,13 @@ import {
 } from './lib/sitemap-fingerprint.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const { REG, DS, scheduleActs, eventDates } = loadRegistry(root);
+const { REG, DS, scheduleActs, eventDates, festivalEssentials } = loadRegistry(root);
 
 // Pinned, not `new Date()`: the fingerprint's only clock-sensitive field is
 // isPast, and a regression test that changes its verdict with the calendar is
 // the exact wolf this whole design exists to avoid.
 const TODAY = '2026-09-16';
-const deps = (ds) => ({ DS: ds || DS, scheduleActs, eventDates, TODAY });
+const deps = (ds) => ({ DS: ds || DS, scheduleActs, eventDates, TODAY, festivalEssentials });
 
 let failures = 0;
 const fail = (msg) => { console.error(`  ✗ ${msg}`); failures++; };

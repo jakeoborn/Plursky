@@ -300,6 +300,8 @@
 
   const CONFIG = {
     id:        "hard-summer-2026",
+    // Entry age, camping and ticket state: first-party, per edition (festivalEssentials).
+    essentialsSources: {"minimumAge": {"url": "https://www.hardsummer.com/info/", "observedAt": "2026-09-26", "edition": "2026"}, "camping": {"url": "https://www.hardsummer.com/info/", "observedAt": "2026-09-26", "edition": "2026"}, "tickets": {"url": "https://www.hardsummer.com/tickets/", "state": "ended", "observedAt": "2026-09-26", "edition": "2026"}},
     // From the SOURCE note above: hardsummer.com/lineup/set-times/day-1/ + /day-2/, read 2026-09-06. Feeds /f/<id>/schedule.json.
     scheduleSource: { url: "https://hardsummer.com/lineup/set-times/day-1/", observedAt: "2026-09-06", official: true },
     name:      "HARD Summer 2026",
@@ -413,7 +415,7 @@
     mapArtIsGeoregistered: false,
     // Published policy: 18+ entry, 21+ alcohol/VIP, no re-entry, no camping,
     // cashless, rain or shine.
-    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: true },
+    policies: { minimumAge: 18, alcoholAge: 21, reentry: false, cashless: true, camping: false },
   };
 
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
