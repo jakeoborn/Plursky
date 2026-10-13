@@ -182,5 +182,13 @@
       "billings": 0
     }
   ],
-  "dropped": []
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Beatbox Boombox Art Car",
+      "billing": "Line Dancing With The Redheaded Cowgirl",
+      "category": "activity",
+      "reason": "non-music Bonus Tracks activity"
+    }
+  ]
 }

@@ -194,31 +194,32 @@ function NightWizard({ state, setState, onClose }) {
     <div style={{ position: "fixed", inset: 0, zIndex: 90, background: "var(--paper)", display: "flex", flexDirection: "column" }}>
       {/* Header */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
+        columnGap: 10, rowGap: 8,
         padding: "16px 18px 12px",
         paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
         borderBottom: "1px solid var(--line)",
       }}>
         <button onClick={onClose} aria-label="Close Build My Night" style={{
-          width: 36, height: 36, borderRadius: 36, background: "var(--paper-2)",
-          border: "1px solid var(--line-2)", fontSize: 18, cursor: "pointer",
+          width: 44, height: 44, borderRadius: 44, background: "var(--s2)", boxShadow: "var(--e1)",
+          border: "none", color: "var(--ink)", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-        }}>←</button>
-        <div>
-          <div className="mono" style={{ fontSize: 10, letterSpacing: 1.8, fontWeight: 700, textAlign: "center" }}>BUILD MY NIGHT</div>
-          <div className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", textAlign: "center", marginTop: 2 }}>
+        }}><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg></button>
+        <div style={{ flex: "1 1 auto", minWidth: 0 }}>
+          <div className="duo-label" style={{ whiteSpace: "nowrap" }}>My night</div>
+          <div className="duo-data-s duo-ink3" style={{ marginTop: 4, whiteSpace: "nowrap" }}>
             {liveLocalIds.length} SETS SAVED
           </div>
         </div>
-        <div style={{ display: "flex", gap: 6 }}>
+        <div style={{ display: "flex", gap: 6, marginLeft: "auto" }}>
           {liveLocalIds.length > 0 && (<>
             <button
               onClick={() => exportSavedSetsICS(liveLocalIds)}
               aria-label="Export to calendar"
               title="Export to calendar"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -235,8 +236,8 @@ function NightWizard({ state, setState, onClose }) {
               aria-label="Share lineup"
               title="Share lineup"
               style={{
-                width: 36, height: 36, borderRadius: 36,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
+                width: 44, height: 44, borderRadius: 44,
+                background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -245,16 +246,8 @@ function NightWizard({ state, setState, onClose }) {
               </svg>
             </button>
           </>)}
-          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" style={{
-            background: "var(--signal)", color: "var(--on-signal)", border: "none",
-            borderRadius: 999, padding: "8px 13px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>✦ AUTO</button>
-          <button onClick={handleSave} style={{
-            background: "var(--ember)", color: "var(--on-ember)", border: "none",
-            borderRadius: 999, padding: "8px 16px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-          }}>SAVE ✓</button>
+          <button onClick={autoFill} title="Auto-fill best non-clashing sets for this day" className="duo-chip"><span>Auto</span></button>
+          <button onClick={handleSave} className="duo-btn pri" style={{ minHeight: 44, padding: "0 16px", fontSize: 15 }}>Save</button>
         </div>
       </div>
 
@@ -263,19 +256,20 @@ function NightWizard({ state, setState, onClose }) {
         {dayStats.map(d => {
           const on = d.n === activeDay;
           return (
-            <button key={d.n} onClick={() => setActiveDay(d.n)} style={{
-              flex: 1, padding: "8px 6px", borderRadius: 12, cursor: "pointer", textAlign: "center",
-              background: on ? "var(--ink)" : "var(--paper-2)",
-              border: on ? "none" : "1px solid var(--line)",
-              transition: "all .15s",
+            <button key={d.n} onClick={() => setActiveDay(d.n)} aria-pressed={on} style={{
+              flex: 1, padding: "10px 6px", borderRadius: "var(--rad-sm)", cursor: "pointer", textAlign: "center",
+              background: "var(--s2)", border: "none", color: "var(--ink)",
+              boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)",
             }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)" }}>{d.short}</div>
-              <div className="mono" style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.5, color: on ? "var(--paper)" : "var(--ink)", lineHeight: 1.15 }}>{d.count}</div>
+              {/* DAYS rows carry `label` (FRI); `short` never existed, so these
+                  tiles printed no day at all. */}
+              <div className="duo-label" style={{ color: on ? "var(--ink)" : "var(--ink-3)" }}>{d.label}</div>
+              <div className="duo-clock" style={{ fontSize: 24, marginTop: 6 }}>{d.count}</div>
               {d.clashes > 0
-                ? <div className="mono" style={{ fontSize: 8, color: "var(--ember-ink)", letterSpacing: 0.8, marginTop: 1 }}>⚠ {d.clashes} CLASH</div>
+                ? <div className="duo-data-s" style={{ color: "var(--clash)", marginTop: 4 }}>{d.clashes} CLASH</div>
                 : d.count > 0
-                  ? <div className="mono" style={{ fontSize: 8, color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)", letterSpacing: 0.8, marginTop: 1 }}>● CLEAN</div>
-                  : <div style={{ height: 12 }} />
+                  ? <div className="duo-data-s duo-ink3" style={{ marginTop: 4 }}>CLEAN</div>
+                  : <div style={{ height: 15, marginTop: 4 }} />
               }
             </button>
           );
@@ -286,11 +280,8 @@ function NightWizard({ state, setState, onClose }) {
       <div style={{ flex: 1, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "14px 16px 40px" }}>
         {sorted.length === 0 ? (
           <div style={{ textAlign: "center", paddingTop: 60 }}>
-            <div style={{ fontSize: 28, opacity: 0.25, marginBottom: 6 }}>★</div>
-            <div className="serif" style={{ fontSize: 24, fontStyle: "italic", color: "var(--muted)" }}>Nothing saved</div>
-            <div className="mono" style={{ fontSize: 10, letterSpacing: 1.3, color: "var(--muted)", marginTop: 8 }}>
-              SAVE SETS IN LINEUP FIRST
-            </div>
+            <div className="duo-headline">Nothing saved for this day</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 6 }}>Save sets in the lineup first.</div>
           </div>
         ) : (
           <>
@@ -300,37 +291,29 @@ function NightWizard({ state, setState, onClose }) {
                 const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
                 const clash = conflictIds.has(a.id);
                 return (
-                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 7, alignItems: "flex-start" }}>
+                  <div key={a.id} style={{ display: "flex", gap: 10, marginBottom: 8, alignItems: "flex-start" }}>
                     {/* Time */}
-                    <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, letterSpacing: 0.5, color: "var(--muted)", textAlign: "right", paddingTop: 11 }}>
+                    <div className="duo-data-s duo-ink3" style={{ width: 52, flexShrink: 0, textAlign: "right", paddingTop: 14 }}>
                       {fmt12(a.start)}
                     </div>
-                    {/* Block */}
+                    {/* Block: on your plan = the accent wash; a clash takes the
+                        clash edge. The name is whole: it wraps, never "…". */}
                     <div style={{
-                      flex: 1,
-                      background: clash ? "var(--ink)" : "var(--paper-2)",
-                      border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-                      borderLeft: "4px solid var(--line-2)",
-                      borderRadius: 12, padding: "9px 12px",
+                      flex: 1, minWidth: 0,
+                      background: "var(--acc-wash)", "--ring-bg": "var(--acc-wash)",
+                      boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+                      borderRadius: "var(--rad-sm)", padding: "8px 6px 8px 10px",
+                      display: "flex", alignItems: "center", gap: 10,
                     }}>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
-                        <div style={{ minWidth: 0 }}>
-                          <div style={{ fontSize: 14, fontWeight: 600, color: clash ? "var(--paper)" : "var(--ink)", lineHeight: 1.2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                            {a.name}
-                          </div>
-                          <div className="mono" style={{ fontSize: 9, letterSpacing: 0.9, color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)", marginTop: 3 }}>
-                            {stage.short} · {fmt12(a.start)}–{fmt12(a.end)}
-                          </div>
-                        </div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
-                          {clash && <span className="mono" style={{ fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)", fontWeight: 700 }}>⚠ CLASH</span>}
-                          <button onClick={() => drop(a.id)} style={{
-                            background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.25)",
-                            borderRadius: 999, padding: "3px 9px", cursor: "pointer",
-                            fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1, color: "var(--ember-ink)",
-                          }}>DROP</button>
+                      <DuoAvatar name={a.name} size={34} ring={clash ? "cl" : "on"} />
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="duo-headline duo-name" style={{ fontSize: 15 }}>{actDisplayName(a.name)}</div>
+                        <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>
+                          {clash && <span style={{ color: "var(--clash)", fontWeight: 650 }}>Clash · </span>}
+                          {stage.name} · <span style={{ whiteSpace: "nowrap" }}>{fmt12(a.start)}–{fmt12(a.end)}</span>
                         </div>
                       </div>
+                      <button onClick={() => drop(a.id)} className="duo-chip" aria-label={`Drop ${a.name}`}><span>Drop</span></button>
                     </div>
                   </div>
                 );
@@ -345,7 +328,7 @@ function NightWizard({ state, setState, onClose }) {
                     <div style={{ flex: 1 }}>
                       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 0" }}>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-                        <span className="mono" style={{ fontSize: 8, letterSpacing: 1.2, color: "var(--muted)", whiteSpace: "nowrap" }}>
+                        <span className="duo-data-s duo-ink3" style={{ whiteSpace: "nowrap" }}>
                           FREE · {fmtGap(item.gapMin)}
                         </span>
                         <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
@@ -355,13 +338,8 @@ function NightWizard({ state, setState, onClose }) {
                           {item.fits.map(f => {
                             const fs = (STAGES.find(s => s.id === f.stage) || UNPLACED_STAGE);
                             return (
-                              <button key={f.id} onClick={() => add(f.id)} style={{
-                                background: "transparent", border: "1px dashed var(--line-2)",
-                                borderRadius: 999, padding: "4px 10px", cursor: "pointer",
-                                fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
-                                color: "var(--ink)",
-                              }}>
-                                + {f.name} {fmt12(f.start)} {fs.short}
+                              <button key={f.id} onClick={() => add(f.id)} className="duo-chip" aria-label={`Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`}>
+                                <span style={{ borderStyle: "dashed" }}>+ {actDisplayName(f.name)} <b>{fmt12(f.start)}</b> {fs.name}</span>
                               </button>
                             );
                           })}
@@ -377,10 +355,10 @@ function NightWizard({ state, setState, onClose }) {
             {/* Sunrise */}
             {sunrise && (
               <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 6 }}>
-                <div className="mono" style={{ width: 36, flexShrink: 0, fontSize: 9, color: "var(--flare)", textAlign: "right", letterSpacing: 0.5 }}>{sunrise}</div>
+                <div className="duo-data-s duo-sun" style={{ width: 52, flexShrink: 0, textAlign: "right" }}>{sunrise}</div>
                 <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 8 }}>
-                  <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, var(--flare), transparent)` }} />
-                  <span className="mono" style={{ fontSize: 8, letterSpacing: 1.4, color: "var(--flare)", fontWeight: 700 }}>☀ SUNRISE</span>
+                  <div style={{ flex: 1, height: 1, background: "var(--sun)", opacity: 0.6 }} />
+                  <span className="duo-label duo-sun">Sunrise</span>
                 </div>
               </div>
             )}
@@ -397,6 +375,73 @@ function NightWizard({ state, setState, onClose }) {
 // commits via onApply or wipes via onReset. Live count on the
 // primary CTA so users see how many sets they'll land on before
 // they tap Apply.
+// The board's stage overview: every stage that plays this day, by its full
+// name, on one shared time axis, so the whole night reads at a glance on a
+// phone without panning (ruling 2026-09-15: all stages visible, full names,
+// never a horizontally panning view). The grid keeps its 96px columns for
+// reading sets; this strip is the overview the grid cannot be at that width.
+// Your plan is the accent bar, a set playing now is ink, the rest is a quiet
+// line. A stage name is a button: in LIST it narrows to that stage (tap again
+// for all), in GRID it brings that stage's column into view.
+function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
+  const lanes = React.useMemo(() => {
+    const by = new Map();
+    for (const a of sets) {
+      const s = toNightMin(a.start), e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({ a, s, e: Number.isFinite(e) && e > s ? e : s + 60 });
+    }
+    // Map order, as the grid and the Filters sheet list stages.
+    return STAGES.filter(st => by.has(st.id)).map(st => ({ stage: st, sets: by.get(st.id) }));
+  }, [sets]);
+  if (lanes.length < 2) return null;
+  const all = lanes.flatMap(l => l.sets);
+  const t0 = Math.floor(Math.min(...all.map(x => x.s)) / 60) * 60;
+  const t1 = Math.ceil(Math.max(...all.map(x => x.e)) / 60) * 60;
+  const span = Math.max(60, t1 - t0);
+  const pct = m => `${((m - t0) / span) * 100}%`;
+  const nowMin = liveNight && NOW.time ? toNightMin(NOW.time) : null;
+  const showNow = nowMin != null && nowMin >= t0 && nowMin <= t1;
+  const step = span > 8 * 60 ? 120 : 60;
+  const ticks = []; for (let m = Math.ceil(t0 / step) * step; m <= t1; m += step) ticks.push(m);
+  const tick = m => { const h = Math.floor(m / 60) % 24; return `${h % 12 || 12}${h >= 12 ? "P" : "A"}`; };
+  return (
+    <div data-lineup-overview role="group" aria-label="Every stage tonight" style={{ padding: "4px 20px 8px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)", columnGap: 12, alignItems: "center" }}>
+        {lanes.map(({ stage, sets }) => {
+          const on = stageFilter === stage.id;
+          const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+          return (
+            <React.Fragment key={stage.id}>
+              <button type="button" data-overview-stage={stage.id} aria-pressed={on}
+                aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
+                onClick={() => onStage(stage.id)}
+                style={{ border: 0, background: "none", padding: "1px 0", minHeight: 16, cursor: "pointer", textAlign: "left",
+                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere" }}>
+                {stage.name}
+              </button>
+              <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+                {sets.map(({ a, s, e }) => {
+                  const mineSet = savedSet.has(a.id), live = isSetLive(a);
+                  return <span key={a.id} style={{ position: "absolute", left: pct(s), width: `calc(${((e - s) / span) * 100}% - 2px)`,
+                    top: mineSet ? 5.5 : 7, height: mineSet ? 5 : 2, borderRadius: 3, minWidth: 2,
+                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)" }} />;
+                })}
+                {showNow && <span style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
+              </div>
+            </React.Fragment>
+          );
+        })}
+        <span />
+        <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+          {ticks.map(m => <span key={m} className="duo-data-s duo-ink3" style={{ position: "absolute", left: pct(m), top: 4, transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)", fontSize: 11, lineHeight: "12px", whiteSpace: "nowrap" }}>{tick(m)}</span>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LineupFilterSheet({
   onClose, day, dayGenres, savedIds = [], weekendFilter = "all",
   initial,           // { filter, tierFilter, stageFilter, genreFilter, sortBy }
@@ -425,30 +470,21 @@ function LineupFilterSheet({
       }).length;
   }, [f, day, savedSet, weekendFilter]);
 
-  // Field Mode: 44pt chips, 18pt radius, selection = signal outline + weight.
-  const chip = (on) => ({
-    flexShrink: 0, minHeight: 44, padding: "0 16px", borderRadius: 18,
-    background: on ? "var(--paper-2)" : "transparent",
-    color: on ? "var(--ink)" : "var(--text-2)",
-    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
-    fontSize: 15, lineHeight: "20px", fontWeight: on ? 600 : 500,
-    cursor: "pointer", whiteSpace: "nowrap",
-    display: "inline-flex", alignItems: "center", gap: 6,
-  });
-  const sectionLabel = { ..._fieldEyebrow, color: "var(--text-2)", margin: "20px 0 8px" };
-  const row = { display: "flex", gap: 8, flexWrap: "wrap" };
+  // The board's chips: a 34pt pill in a 44pt target, selected = ink fill.
+  const sectionLabel = { margin: "20px 0 4px" };
+  const row = { display: "flex", columnGap: 8, flexWrap: "wrap" };
   const opt = (key, id, label, extra) => (
-    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} style={chip(f[key] === id)}>{extra}{label}</button>
+    <button key={id} aria-pressed={f[key] === id} onClick={() => set(key, id)} className="duo-chip"><span>{extra}{label}</span></button>
   );
   return (
     <FieldSheet title="Filters" onClose={onClose}>
-      <div style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
+      <div className="duo-sect" style={{ ...sectionLabel, marginTop: 4 }}>Show</div>
       <div style={row}>
         {opt("filter", "all", "All")}
         {opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`)}
         {opt("filter", "now", "Now")}
       </div>
-      <div style={sectionLabel}>Tier</div>
+      <div className="duo-sect" style={sectionLabel}>Tier</div>
       <div style={row}>
         {opt("tierFilter", "all", "All tiers")}
         {opt("tierFilter", "legend", "Legendary")}
@@ -456,21 +492,21 @@ function LineupFilterSheet({
         {opt("tierFilter", "prime", "Prime time")}
         {opt("tierFilter", "open", "Openers")}
       </div>
-      <div style={sectionLabel}>Stage</div>
+      <div className="duo-sect" style={sectionLabel}>Stage</div>
       <div style={row}>
         {opt("stageFilter", "all", "All stages")}
         {STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))}
       </div>
       {dayGenres.length > 0 && (
         <>
-          <div style={sectionLabel}>Genre</div>
+          <div className="duo-sect" style={sectionLabel}>Genre</div>
           <div style={row}>
             {opt("genreFilter", "all", "All genres")}
             {dayGenres.map(g => opt("genreFilter", g, g))}
           </div>
         </>
       )}
-      <div style={sectionLabel}>Sort by</div>
+      <div className="duo-sect" style={sectionLabel}>Sort by</div>
       <div style={row}>
         {opt("sortBy", "time", "Time")}
         {opt("sortBy", "tier", "Tier")}
@@ -521,6 +557,8 @@ function LineupScreen({ state, setState }) {
   const [tierFilter, setTierFilter] = React.useState("all"); // all | head | prime | open | legend
   const [wizardOpen, setWizardOpen] = React.useState(false);
   const [genreFilter, setGenreFilter] = React.useState("all");
+  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
+  const [sortBy, setSortBy] = React.useState("time");
   const hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   // Two-weekend festivals: pick a weekend (no "Both" — it stacked W1/W2 acts in
   // the same slot and read as clutter). Single-weekend festivals stay "all" so
@@ -537,6 +575,9 @@ function LineupScreen({ state, setState }) {
   const [weekendFilter, setWeekendFilter] = React.useState(
     () => hasWeekends ? (_weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1") : "all"); // W1 | W2 (| "all" only when no weekends)
   const [q, setQ] = React.useState(""); // artist/stage/genre search
+  // Search is one icon in the header (the board's), not a standing field: the
+  // field opens on a tap and stays while it holds a term.
+  const [searchOpen, setSearchOpen] = React.useState(false);
 
   // After the screen renders, scroll the highlighted card/block into view and
   // let the CSS flash play. Then clear the highlight so re-mounts don't fire
@@ -581,6 +622,16 @@ function LineupScreen({ state, setState }) {
   const [collapsed, setCollapsed] = React.useState(false);
   const collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
+  // Opening at the current hour HOLDS the hour while the page settles: until
+  // the user's first input (touch, wheel, pointer, key) or 1.5 s, whichever
+  // comes first. Until then nothing the page does moves the
+  // list off it, the fold, a late font, a row that resizes, and no scroll
+  // event folds or unfolds the header, because none of them is the user.
+  const openHoldRef = React.useRef(false);
+  // A fold or unfold the user asked for by a tap (the bar, search) resizes the
+  // list and nudges its scroll; for a moment that is not a drag either.
+  const tapLockRef = React.useRef(0);
+  const unfoldByTap = () => { tapLockRef.current = performance.now() + 400; setCollapsed(false); };
   // The whole filter header folds, so its height is measured, not guessed:
   // max-height animates to the real number and the list never jumps.
   const filtersRef = React.useRef(null);
@@ -600,15 +651,24 @@ function LineupScreen({ state, setState }) {
   React.useEffect(() => {
     // The scrolling element differs by mode: LIST scrolls the page body,
     // GRID scrolls the grid itself (it owns the only scroll region there).
-    let el = null, lastY = 0, lockUntil = 0, lastH = 0;
+    let el = null, lastY = 0, lockUntil = 0, lastH = 0, lastInput = -1e9;
+    // Only scrolling the user drives folds or unfolds the header. The page
+    // moves the list too (opening at the hour, scroll anchoring after a
+    // resize, Jump to now), and none of that may toggle it.
+    const onInput = () => { lastInput = performance.now(); };
+    const onKey = (e) => { if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput(); };
     const attach = () => {
       const next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
       el = next;
       lastY = el ? el.scrollTop : 0;
       lastH = el ? el.clientHeight : 0;
-      if (el) el.addEventListener("scroll", onScroll, { passive: true });
+      if (el) {
+        el.addEventListener("scroll", onScroll, { passive: true });
+        el.addEventListener("wheel", onInput, { passive: true });
+        el.addEventListener("touchmove", onInput, { passive: true });
+      }
     };
     // Read straight through — no rAF. The handler only reads scrollTop and
     // may set one boolean, and coalescing it behind a frame made the collapse
@@ -622,7 +682,7 @@ function LineupScreen({ state, setState }) {
       // makes the scroller taller, which CLAMPS scrollTop upward near the
       // end of the list: read as "the user scrolled up", that reopened the
       // header, the list re-clamped, and GRID oscillated every ~500ms.
-      if (t < lockUntil || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) { lastY = y; lastH = el.clientHeight; return; }
       // Hysteresis: collapse only after a real downward drag, expand on any
       // meaningful upward move. Without the gap the header flickers on the
       // momentum bounce.
@@ -638,18 +698,91 @@ function LineupScreen({ state, setState }) {
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     // The grid mounts a beat after a mode switch, so retry once.
     const t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) { el.removeEventListener("scroll", onScroll); el.removeEventListener("wheel", onInput); el.removeEventListener("touchmove", onInput); }
     };
   }, [viewMode, day]);
   // GRID opens collapsed: the grid IS the content there, and an expanded
-  // header left it ~390px of an 812px screen. LIST opens expanded — the title
-  // is the first thing you read on a list. Scrolling up restores the header in
-  // either mode.
-  React.useEffect(() => { setCollapsed(viewMode === "grid"); }, [day, viewMode, weekendFilter]);
+  // header left it ~390px of an 812px screen. LIST opens expanded, the title
+  // first, EXCEPT on the night that is running: there it opens at the current
+  // hour (Jake, 2026-10-06), scrolled to the first set of this hour or the
+  // earliest one still playing ([data-open-anchor]), with the header folded
+  // as GRID's is. Scrolling up, or a tap on the bar, restores the header.
+  // Late on the running night the sets after the hour are shorter than the
+  // screen, so scrollTop maxes out with the hour still far down the list
+  // (ACL Fri 20:30: 407px). The tail after the last set takes up exactly the
+  // difference, never more; it exists only on the running night.
+  const fitOpenTail = (sc) => {
+    const a = sc.querySelector("[data-open-anchor]"), tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    const base = sc.scrollHeight - tail.offsetHeight;
+    const need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
+  // The tail is the open's alone: a filter, search or sort on the running
+  // night is a new list that does not scroll to the hour, so the tail goes
+  // back to 0 rather than end it in blank space. Declared before the open
+  // effect, so a change that also reopens (day, weekend) is sized after it.
+  React.useLayoutEffect(() => {
+    const tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
+    if (tail) tail.style.height = "0px";
+  }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      const sc = document.querySelector("[data-lineup-scroll]");
+      const anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        fitOpenTail(sc);
+        const top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        // Near the top already (the night's first hour), or a list too short
+        // to scroll once folded: open as any other day.
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openHoldRef.current = true;
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
+    openHoldRef.current = false;
+    setCollapsed(viewMode === "grid");
+  }, [day, viewMode, weekendFilter]);
+  // The hold: re-anchor whenever the list box or anything above the hour
+  // resizes (the fold shrinks the plan actions; Chrome's scroll anchoring
+  // compensates, WebKit's does not), and let go on the first input.
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
+    const sc = document.querySelector("[data-lineup-scroll]");
+    if (!sc) return undefined;
+    const reanchor = () => {
+      if (!openHoldRef.current) return;
+      const a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      fitOpenTail(sc);
+      const top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (const c of sc.children) { if (c.hasAttribute("data-open-anchor")) break; ro.observe(c); }
+    }
+    const INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    const settle = setTimeout(() => release(), 1500);
+    const stop = () => { clearTimeout(settle); if (ro) ro.disconnect(); INPUT.forEach(e => window.removeEventListener(e, release, true)); };
+    // The fold may still be settling when the hold lets go: size the tail to
+    // the final box once more, so it never adds more room than the hour needs.
+    function release() { openHoldRef.current = false; stop(); fitOpenTail(sc); }
+    INPUT.forEach(e => window.addEventListener(e, release, { capture: true, passive: true }));
+    reanchor();
+    return stop;
+  }, [day, viewMode, weekendFilter]);
   // v138: per-day section refs (kept for potential future use).
   const gridSectionRefs = React.useRef({});
 
@@ -666,8 +799,6 @@ function LineupScreen({ state, setState }) {
 
   // (v165: grid now shows one day at a time like list, so the scroll-to-
   // section listener and sessionStorage position restore are no longer needed.)
-  // Sort: time (chronological), tier (headliners first), stage (grouped by stage order)
-  const [sortBy, setSortBy] = React.useState("time");
   // Active-filter count powers the badge on the FILTERS trigger button — replaces
   // the old in-page dismissable-chip strip. "filter !== all" (Mine vs All) and
   // sortBy counted because they're meaningful state diverging from defaults.
@@ -888,7 +1019,8 @@ function LineupScreen({ state, setState }) {
   // The compact bar's search button: unfold, then focus the one search input
   // (in GRID it rides the grid's own scroller, so bring that to the top).
   const openSearch = () => {
-    setCollapsed(false);
+    setSearchOpen(true);
+    unfoldByTap();
     if (viewMode === "grid") {
       const g = document.querySelector("[data-grid-scroll]");
       if (g) try { g.scrollTo({ top: 0 }); } catch {}
@@ -901,7 +1033,7 @@ function LineupScreen({ state, setState }) {
     const d = dayStats.find(x => x.n === day);
     const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     const stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    const show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
+    const show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     const extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [
       dayText,
@@ -911,29 +1043,40 @@ function LineupScreen({ state, setState }) {
       q.trim() ? `“${q.trim()}”` : null,
     ].filter(Boolean).join(" · ");
   })();
-  const searchRow = (
-    <div style={{ padding: gridLead ? "12px 12px 0" : "12px 20px 4px" }}>
+  const surpriseMe = () => {
+    const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    const savedGenres = new Set(savedArtists.map(a => a.genre));
+    const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    const pool = savedGenres.size
+      ? unsaved.filter(a => savedGenres.has(a.genre))
+      : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({ ...state, artist: pick.id });
+  };
+  const searchRow = !(searchOpen || q) ? null : (
+    <div data-lineup-search style={{ padding: gridLead ? "8px 12px 0" : "4px 20px 4px" }}>
       <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" strokeWidth="2" strokeLinecap="round"
-          style={{ position: "absolute", left: 14, pointerEvents: "none" }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round"
+          style={{ position: "absolute", left: 14, pointerEvents: "none", zIndex: 1 }}><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         <input
           ref={searchInputRef}
           value={q}
           onChange={e => setQ(e.target.value)}
           placeholder="Search artists, stages, genres…"
           aria-label="Search the lineup"
-          style={{
-            width: "100%", boxSizing: "border-box", height: 44,
-            padding: "0 44px 0 40px", borderRadius: 14,
-            border: "none", background: "var(--paper-2)",
-            color: "var(--ink)", fontSize: 15, outline: "none", fontFamily: "inherit",
-          }}
+          className="duo-input"
+          style={{ padding: "0 44px 0 40px" }}
         />
         {q && (
           <button onClick={() => setQ("")} aria-label="Clear search" style={{ ...fieldIconBtn, position: "absolute", right: 0, color: "var(--text-2)" }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
         )}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0 -8px" }}>
+        <button onClick={surpriseMe} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
+        <button onClick={() => { setQ(""); setSearchOpen(false); }} style={textBtn}>Done</button>
       </div>
     </div>
   );
@@ -952,39 +1095,37 @@ function LineupScreen({ state, setState }) {
     );
   })() : null;
 
-  // Set count, then quiet text actions: My night, Share, Calendar, Surprise me.
-  const actionsRow = (
-    <div style={{
-      display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap",
-      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px", gap: 4,
+  // Plan actions belong to the plan: Share, Calendar and schedule Updates
+  // show under My plan. With nothing saved for this day the one
+  // header action is "Save top picks". Everything else is search (Surprise
+  // me) or Filters, one tap away, so scanning sets is what the screen is for.
+  // My night stays in the header in every view: it is the plan's entry
+  // point and carries the plan-wide clash signal.
+  const myNight = totalSaved >= 2 ? (() => {
+    const clash = dayStats.some(d => d.clashes > 0);
+    return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--clash)" : "var(--acc-ink)", fontWeight: 650 }}>{clash && <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4, background: "var(--clash)", marginRight: 6, verticalAlign: "1px" }} />}My night</button>;
+  })() : null;
+  const planActions = filter === "saved" ? (
+    <>
+      {liveSavedCount > 0 && <ShareLineupButton state={state} />}
+      {liveSavedCount > 0 && (
+        <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
+      )}
+      {hasFeed && (
+        <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
+      )}
+    </>
+  ) : null;
+  const actionsRow = (saveDayCard || myNight || planActions) ? (
+    <div data-lineup-actions style={{
+      display: "flex", alignItems: "center", flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px", gap: 4,
     }}>
-      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
-        {dayArtists.length} {dayArtists.length === 1 ? "set" : "sets"}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-        {saveDayCard}
-        {totalSaved >= 2 && (() => {
-          const clash = dayStats.some(d => d.clashes > 0);
-          return <button onClick={() => setWizardOpen(true)} style={{ ...textBtn, color: clash ? "var(--warn)" : "var(--ink)", fontWeight: 600 }}>{clash ? "⚠ My night" : "My night"}</button>;
-        })()}
-        {liveSavedCount > 0 && <ShareLineupButton state={state} />}
-        {liveSavedCount > 0 && (
-          <button onClick={() => { window.plurskyHaptic?.("LIGHT"); exportSavedSetsICS(savedInLineup(state.saved)); }} style={textBtn}>Calendar</button>
-        )}
-        <button onClick={() => {
-          const savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-          const savedGenres = new Set(savedArtists.map(a => a.genre));
-          const unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-          const pool = savedGenres.size
-            ? unsaved.filter(a => savedGenres.has(a.genre))
-            : unsaved;
-          if (!(pool.length ? pool : unsaved).length) return;
-          const pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-          setState({ ...state, artist: pick.id });
-        }} title="Discover a random artist that matches your taste" style={textBtn}>Surprise me</button>
-      </div>
+      {saveDayCard}
+      {myNight}
+      {planActions}
     </div>
-  );
+  ) : null;
 
   const conflictCard = conflicts.length > 0 && filter === "saved" ? (
     <ConflictResolver
@@ -1008,6 +1149,7 @@ function LineupScreen({ state, setState }) {
         </div>
         {stage.desc && <div style={{ marginTop: 4, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.desc}</div>}
         {stage.vibeNote && <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px" }}>{stage.vibeNote}</div>}
+        <button onClick={() => setState({ ...state, tab: "map", focusStage: stage.id })} style={{ ...textBtn, margin: "4px 0 -8px -8px", color: "var(--acc-ink)" }}>Show on map</button>
       </div>
     );
   })() : null;
@@ -1031,7 +1173,7 @@ function LineupScreen({ state, setState }) {
         }}>
       <div ref={filtersRef}>
       <div data-lineup-header style={{
-        padding: "4px 8px 4px 20px",
+        padding: "8px 8px 4px 20px",
         display: "flex", alignItems: "center", gap: 4,
       }}>
         {state._navStack?.length > 0 && (
@@ -1040,62 +1182,37 @@ function LineupScreen({ state, setState }) {
           </button>
         )}
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>{FESTIVAL_CONFIG.brand} · {FESTIVAL_CONFIG.dates}</div>
-          <h1 style={{ margin: "2px 0 0", fontSize: 28, lineHeight: "34px", fontWeight: 700, letterSpacing: "-0.01em" }}>Lineup</h1>
+          <h1 className="duo-title" style={{ margin: 0 }}>Lineup</h1>
         </div>
-        {hasFeed && (
-          <button data-sched-check onClick={() => setSyncOpen(true)} aria-label="Check for schedule changes" style={textBtn}>Updates</button>
-        )}
-        <button onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}
-          aria-label={viewMode === "grid" ? "Show as list" : "Show as stage grid"}
-          // A timetable is a picture of TIME. With no set times published there
-          // is nothing to draw one from, so the grid is not offered rather than
-          // offered-and-empty: every act would stack on the same default hour.
-          //
-          // `hidden` alone does NOT hide this: fieldIconBtn sets an inline
-          // display, and an inline display beats the UA stylesheet's
-          // [hidden]{display:none}. The attribute stays for semantics; the
-          // style is what actually removes it. (Measured: the button was still
-          // on screen while `el.hidden` read true.)
-          hidden={_schedTBA || undefined}
-          style={_schedTBA ? { ...fieldIconBtn, display: "none" } : fieldIconBtn}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            {viewMode === "grid"
-              ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/>
-              : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
-          </svg>
+        {/* The board's two header actions: search and Filters. */}
+        <button data-lineup-search-toggle onClick={() => (searchOpen || q) ? (setQ(""), setSearchOpen(false)) : openSearch()}
+          aria-label="Search" aria-expanded={!!(searchOpen || q)} style={{ ...fieldIconBtn, color: "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
         </button>
-        <button onClick={() => setState({ ...state, tab: "map", focusStage: stageFilter !== "all" ? stageFilter : undefined })} aria-label="Open map" style={fieldIconBtn}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"/></svg>
+        <button data-lineup-filters-open onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`}
+          style={{ ...fieldIconBtn, position: "relative", color: otherFilterCount ? "var(--acc-ink)" : "var(--ink-2)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H13 M17 7 H20 M4 17 H7 M11 17 H20"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg>
+          {otherFilterCount > 0 && <b aria-hidden="true" className="duo-data-s" style={{ position: "absolute", top: 6, right: 4, minWidth: 16, height: 16, borderRadius: 8, background: "var(--acc)", color: "var(--on-acc)", fontSize: 11, lineHeight: "16px", textAlign: "center" }}>{otherFilterCount}</b>}
         </button>
       </div>
 
       {/* Day selector: stays on screen while the list scrolls. Per-day saved
           and clash counts ride on each day, in words for assistive tech. */}
       <div role="tablist" aria-label="Festival day" style={{
-        display: "flex", gap: 8, flexShrink: 0,
-        padding: "4px 20px 12px",
+        display: "flex", gap: 22, flexShrink: 0, flexWrap: "wrap",
+        padding: "6px 20px 8px",
       }}>
         {dayStats.map(d => {
           const on = d.n === day;
           return (
-            <button key={d.n} role="tab" aria-selected={on}
+            <button key={d.n} role="tab" aria-selected={on} className="duo-tab"
               aria-label={`${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`}
-              onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}
-              style={{
-                flex: 1, minWidth: 0, minHeight: 64,
-                padding: "6px 2px", borderRadius: 14,
-                background: on ? "var(--paper-3)" : "transparent",
-                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-                color: "var(--ink)", cursor: "pointer",
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", gap: 1,
-              }}>
-              <span style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", color: on ? "var(--ink)" : "var(--text-2)" }}>{d.label}</span>
-              <span style={{ fontSize: 20, lineHeight: "25px", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{d.date.split(" ")[1]}</span>
+              onClick={() => { setDay(d.n); setState(s => ({ ...s, lineupDay: d.n })); }}>
+              <span className="duo-label" style={{ fontSize: 12 }}>{d.label}</span>
+              <span className="duo-data-s" style={{ color: on ? "var(--ink-2)" : "var(--ink-3)" }}>{d.date.split(" ")[1]}</span>
               {d.count > 0 && (
-                <span aria-hidden="true" style={{ fontSize: 12, lineHeight: "16px", color: d.clashes ? "var(--warn)" : "var(--text-2)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
-                  {d.clashes ? `${d.count} · ⚠` : `${d.count} saved`}
+                <span aria-hidden="true" className="duo-data-s" style={{ color: d.clashes ? "var(--clash)" : "var(--acc-ink)", whiteSpace: "nowrap" }}>
+                  {d.count}
                 </span>
               )}
             </button>
@@ -1105,53 +1222,61 @@ function LineupScreen({ state, setState }) {
 
       {/* Weekend toggle, only for multi-weekend festivals like ACL. */}
       {hasWeekends && (
-        <div role="tablist" aria-label="Weekend" style={{ display: "flex", gap: 8, padding: "0 20px 12px" }}>
+        <div role="tablist" aria-label="Weekend" className="duo-seg" style={{ margin: "0 20px 8px" }}>
           {[{ value: "W1", label: "Weekend 1" }, { value: "W2", label: "Weekend 2" }].map(w => {
             const on = weekendFilter === w.value;
             return (
-              <button key={w.value} role="tab" aria-selected={on} onClick={() => setWeekendFilter(w.value)} style={{
-                flex: 1, minHeight: 44, borderRadius: 14, cursor: "pointer",
-                background: on ? "var(--paper-3)" : "transparent",
-                border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-                color: on ? "var(--ink)" : "var(--text-2)",
-                fontSize: 15, lineHeight: "20px", fontWeight: 600,
-              }}>{w.label}</button>
+              <button key={w.value} role="tab" aria-selected={on} aria-pressed={on} onClick={() => setWeekendFilter(w.value)}>{w.label}</button>
             );
           })}
         </div>
       )}
 
-      {/* All stages / Saved / Now, one thumb away. Tier, stage, genre and
-          sort live in the Filters sheet. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 12px", borderBottom: "1px solid var(--line)" }}>
-        <div role="radiogroup" aria-label="Show" style={{ flex: 1, minWidth: 0, display: "flex", background: "var(--paper-2)", borderRadius: 14 }}>
-          {[{ id: "all", label: "All stages" }, { id: "saved", label: "Saved" }, { id: "now", label: "Now" }].map(o => {
-            const on = o.id === "all" ? (filter === "all" && stageFilter === "all") : filter === o.id;
-            return (
-              <button key={o.id} role="radio" aria-checked={on}
-                onClick={() => { setFilter(o.id); if (o.id === "all") setStageFilter("all"); }}
-                style={{
-                  flex: o.id === "all" ? 1.4 : 1, minWidth: 0, minHeight: 44,
-                  borderRadius: 14, border: "none", cursor: "pointer",
-                  background: on ? "var(--paper-3)" : "transparent",
-                  boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-                  color: on ? "var(--ink)" : "var(--text-2)",
-                  fontSize: 15, lineHeight: "20px", fontWeight: 600, whiteSpace: "nowrap",
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
-                }}>
-                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--signal)" : "var(--text-3)" }} />}
-                {o.label}
+      {!_schedTBA && (
+        <LineupOverview
+          sets={lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"))}
+          savedSet={savedSetIds}
+          liveNight={NOW.night === day}
+          stageFilter={viewMode === "list" ? stageFilter : "all"}
+          onStage={id => {
+            if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
+            setStageFilter(stageFilter === id ? "all" : id);
+          }} />
+      )}
+
+      {/* The board's mode row: List or Grid, then My plan and Live as
+          toggles (both off = every set). Tier, stage, genre and sort live in
+          the Filters sheet behind the header's Filters button. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 6px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", rowGap: 0 }}>
+        {!_schedTBA && (
+          <div role="radiogroup" aria-label="View" style={{ display: "flex", gap: 8 }}>
+            {[{ id: "list", label: "List" }, { id: "grid", label: "Grid" }].map(o => (
+              <button key={o.id} role="radio" aria-checked={viewMode === o.id} aria-label={o.label} className="duo-chip duo-viewchip"
+                onClick={() => setViewMode(o.id)}>
+                <span>
+                  <span className="lbl">{o.label}</span>
+                  {/* Under 360pt the pair is two icons, so the row fits on one line. */}
+                  <svg className="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    {o.id === "list" ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/> : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
+                  </svg>
+                </span>
               </button>
-            );
-          })}
-        </div>
-        <button onClick={() => setFilterSheetOpen(true)} aria-label={`Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`} style={{
-          ...fieldIconBtn, width: "auto", minWidth: 44, padding: "0 12px", gap: 6,
-          background: "var(--paper-2)", fontSize: 15, fontWeight: 600,
-        }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7 H20 M7 12 H17 M10 17 H14"/></svg>
-          {otherFilterCount > 0 && <span style={{ fontVariantNumeric: "tabular-nums" }}>{otherFilterCount}</span>}
-        </button>
+            ))}
+          </div>
+        )}
+        {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
+          const on = filter === o.id;
+          return (
+            <button key={o.id} aria-pressed={on} className="duo-chip" data-lineup-show={o.id}
+              onClick={() => setFilter(on ? "all" : o.id)}>
+              <span>
+                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
+                {o.label}
+                {o.n > 0 && <b>{o.n}</b>}
+              </span>
+            </button>
+          );
+        })}
       </div>
       {/* LIST: the utility stack folds with the header. GRID: the same
           elements ride INSIDE the grid's one scroller (TimelineGrid lead),
@@ -1172,7 +1297,7 @@ function LineupScreen({ state, setState }) {
           transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
         }}>
         <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "2px 8px 2px 20px", minHeight: 48 }}>
-          <button data-lineup-expand onClick={() => setCollapsed(false)}
+          <button data-lineup-expand onClick={unfoldByTap}
             aria-label={`Show days and filters. Showing ${compactSummary}`}
             style={{
               flex: 1, minWidth: 0, minHeight: 44, padding: 0, border: "none", background: "transparent",
@@ -1189,7 +1314,8 @@ function LineupScreen({ state, setState }) {
         </div>
       </div>
       {!online && (
-        <div role="status" style={{ padding: "8px 20px", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", borderBottom: "1px solid var(--line)" }}>
+        <div role="status" className="duo-card duo-body-s" style={{ margin: "8px 16px 0", padding: "10px 14px", display: "flex", alignItems: "center", gap: 10, color: "var(--ink-2)", fontWeight: 400 }}>
+          <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--ink-3)", flexShrink: 0 }} />
           Offline · showing the schedule saved on this phone
         </div>
       )}
@@ -1198,9 +1324,9 @@ function LineupScreen({ state, setState }) {
           list of acts whose every time reads "—", which looks like the app
           failed to load them rather than like the festival hasn't said yet. */}
       {_schedTBA && (
-        <div role="status" style={{ padding: "10px 20px", borderBottom: "1px solid var(--line)" }}>
-          <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>Set times pending from the festival</div>
-          <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+        <div role="status" className="duo-card" style={{ margin: "8px 16px 0", padding: "12px 16px" }}>
+          <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
+          <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
             The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
           </div>
         </div>
@@ -1218,7 +1344,7 @@ function LineupScreen({ state, setState }) {
           only scrolling element on the screen. Two nested scroll regions was
           the whole "tough to navigate" complaint — a drag on iOS would pick
           whichever one it liked. LIST mode is unchanged. */}
-      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`)} style={
+      <ScrollBody data-lineup-scroll ref={useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time")} style={
         viewMode === "grid"
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
@@ -1280,16 +1406,16 @@ function LineupScreen({ state, setState }) {
                 action: filter !== "all" ? "Show all sets" : null, onAction: () => setFilter("all") };
           return (
             <div style={{ padding: "40px 0" }}>
-              <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{empty.title}</div>
-              <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>{empty.sub}</div>
+              <div className="duo-headline">{empty.title}</div>
+              <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>{empty.sub}</div>
               {empty.action && <FieldButton kind="secondary" onClick={empty.onAction} style={{ marginTop: 16 }}>{empty.action}</FieldButton>}
             </div>
           );
         })()}
         {viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && (
           <div style={{ padding: "40px 20px" }}>
-            <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>No sets saved yet</div>
-            <div style={{ marginTop: 4, fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>Switch to All stages and tap any set to save it.</div>
+            <div className="duo-headline">No sets saved yet</div>
+            <div className="duo-body duo-ink2" style={{ marginTop: 4, fontSize: 15 }}>Switch to All stages and tap any set to save it.</div>
             <FieldButton kind="secondary" onClick={() => setFilter("all")} style={{ marginTop: 16 }}>Show all sets</FieldButton>
           </div>
         )}
@@ -1297,73 +1423,97 @@ function LineupScreen({ state, setState }) {
           // One NOW rule, before the first set that hasn't started: only on the
           // night that is actually running, and only in time order.
           const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
-          const rows = dayArtists.map(a => {
+          const renderRow = (a, pinned) => {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
             const clashWith = conflictById[a.id];
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
+            const ring = saved || isLive ? (clashWith ? "cl" : "on") : "";
             // Dot: neutral in the main list; the stage colour in Saved/Now,
             // which interleave stages. One dot, never coloured text.
-            const dotColor = filter === "all" ? "var(--text-3)" : (stage.color || "var(--text-3)");
+            const dotColor = filter === "all" ? "var(--ink-3)" : (stage.color || "var(--ink-3)");
+            // The board's list row: time, face, name over stage, circled add.
+            // On your plan = a faint accent wash; playing now = the lifted card.
             return (
-              <div key={a.id}
+              <div key={pinned ? `pin-${a.id}` : a.id}
                 data-animate
-                data-lineup-highlight={isHighlighted ? "true" : undefined}
-                style={{
-                  display: "flex", alignItems: "center", gap: 12, minHeight: 56,
-                  padding: "6px 8px", margin: "0 -8px",
-                  borderBottom: "1px solid var(--line)",
-                  borderRadius: isHighlighted ? 14 : 0,
-                  animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
-                }}>
-                <div data-set-time style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap",
-                  fontSize: 15, lineHeight: "20px", fontWeight: 600, color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)" }}>
+                data-now-on-plan={pinned ? a.id : undefined}
+                data-lineup-highlight={isHighlighted && !pinned ? "true" : undefined}
+                className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
+                style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
+                <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
+                  style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
                   {fmt12(a.start)}
                 </div>
+                <DuoAvatar name={a.name} size={42} ring={ring} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
                   display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "stretch",
                 }}>
-                  <span data-set-name data-fit-name data-fit-min="16" style={{ fontSize: 17, lineHeight: "22px", fontWeight: 700, color: "var(--ink)",
-                    whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
-                  <span data-set-meta style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)",
+                  <span data-set-name data-fit-name data-fit-min="14" className="duo-headline"
+                    style={{ fontWeight: 700, color: "var(--ink)", whiteSpace: "nowrap", overflowWrap: "break-word" }}>{actDisplayName(a.name)}</span>
+                  <span data-set-meta style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)",
                     whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     <span aria-hidden="true" style={{ display: "inline-block", width: 7, height: 7, borderRadius: 4,
-                      background: isLive && filter === "all" ? "var(--signal)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
-                    {isLive && filter !== "now" && <span style={{ color: "var(--signal-ink)", fontWeight: 600 }}>Live · </span>}
-                    {clashWith && <span style={{ color: "var(--warn)", fontWeight: 600 }}>Clash · </span>}
+                      background: isLive && filter === "all" ? "var(--live)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
+                    {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
+                    {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
                   {/* A clash names the other side (lane ruling 2026-09-26), so
                       choosing between them means something. It wraps: a name
                       is never truncated. */}
-                  {clashWith && clashWith.map(o => (
-                    <span key={o.id} data-clash-with={o.id} style={{ fontSize: 13, lineHeight: "18px", color: "var(--warn)", fontWeight: 600 }}>
+                  {clashWith && !pinned && clashWith.map(o => (
+                    <span key={o.id} data-clash-with={o.id} style={{ font: "600 13px/1.385 var(--f-ui)", color: "var(--clash)" }}>
                       vs {actDisplayName(o.name)} · {fmt12(o.start)} · {(STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name}
                     </span>
                   ))}
                 </button>
-                <button onClick={() => toggleSave(state, setState, a.id)}
-                  aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}
-                  style={{ ...fieldIconBtn, alignSelf: "center", color: saved ? "var(--signal-ink)" : "var(--text-2)" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill={saved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-                  </svg>
+                <button onClick={() => toggleSave(state, setState, a.id)} className="duo-add"
+                  aria-label={saved ? `Unsave ${a.name}` : `Save ${a.name}`} aria-pressed={saved}>
+                  <span aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      {saved ? <path d="M5 12.5 L10 17.5 L19 7"/> : <path d="M12 5 V19 M5 12 H19"/>}
+                    </svg>
+                  </span>
                 </button>
               </div>
             );
-          });
+          };
+          const rows = dayArtists.map(a => renderRow(a));
           if (nowMin != null && dayArtists.length) {
             const i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
             rows.splice(i === -1 ? rows.length : i, 0, (
-              <div key="__now" data-now-rule style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 0" }}>
-                <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 4, background: "var(--signal)", flexShrink: 0 }} />
-                <span style={{ ..._fieldEyebrow, color: "var(--signal-ink)", fontVariantNumeric: "tabular-nums" }}>Now · {fmt12(NOW.time)}</span>
-                <span aria-hidden="true" style={{ flex: 1, height: 1, background: "var(--signal)" }} />
+              <div key="__now" data-now-rule style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 0 8px" }}>
+                <span className="duo-sect" style={{ color: "var(--acc-ink)" }}>Now</span>
+                <span className="duo-data-s duo-acc">{fmt12(NOW.time)}</span>
+                <span aria-hidden="true" style={{ flex: 1, height: 1.5, background: "var(--acc)", boxShadow: "0 0 10px var(--acc-55)" }} />
               </div>
             ));
+          }
+          // Where the list opens on the running night: the first set of this
+          // hour, or the earliest one still playing if it started before.
+          // Now on your plan, the one lifted card (only while a set you saved
+          // is actually playing; empty means absent, never a placeholder),
+          // sits right there, so it is the first thing in view.
+          if (nowMin != null) {
+            const hour = Math.floor(nowMin / 60) * 60;
+            const at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+            const nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+            if (at !== -1) rows.splice(at, 0,
+              <div key="__open" data-open-anchor aria-hidden="true" style={{ height: 0 }} />,
+              ...(nowMine.length ? [
+                <div key="__nowmine" data-now-on-plan-card style={{ padding: "8px 0 12px" }}>
+                  <div className="duo-sect" style={{ padding: "4px 0 8px" }}>Now on your plan</div>
+                  {nowMine.map(a => renderRow(a, true))}
+                </div>
+              ] : []));
+            // Late in the night too few sets follow the hour to scroll it to
+            // the top; this tail (sized by fitOpenTail, 0 when not needed)
+            // gives the list the room. Running night only.
+            if (at !== -1) rows.push(<div key="__tail" data-open-tail aria-hidden="true" />);
           }
           return rows;
         })()}
@@ -1594,7 +1744,11 @@ function ScheduleReviewSheet({ saved, onClose }) {
 }
 
 // Treat times before 08:00 as "next day" so 23:00 < 01:30 etc. compares correctly.
+// An act with a day but no published set time has start null: NaN, never a
+// throw, so it compares false everywhere (never live, never next). Home's
+// stage board threw here on a live night and took the whole screen down.
 function toNightMin(hhmm) {
+  if (typeof hhmm !== "string") return NaN;
   const [h, m] = hhmm.split(":").map(Number);
   return (h < 8 ? h + 24 : h) * 60 + m;
 }
@@ -1825,6 +1979,7 @@ function GridSetBlock({
   const isHeadliner = a.tier === 3;
   // One accent: the rail marks what you saved; the stage is its column header.
   const _saved = (state.saved || []).includes(a.id);
+  const _live = typeof isSetLive === "function" && isSetLive(a);
   const _store = refStore;
   const _resetHold = (e) => {
     const el = e.currentTarget, fill = el.querySelector("[data-lpfill]");
@@ -1854,26 +2009,41 @@ function GridSetBlock({
       onPointerCancel={_resetHold}
       style={{
         position: "absolute", top, left, width, height,
-        background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
-        borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
-        borderRadius: 6,
-        padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+        // The board's timetable block: your plan is an accent wash with an
+        // accent edge (the clash colour when it clashes); everything else is
+        // a plain card. No side rail and no star: one accent, one meaning.
+        background: _saved ? "var(--acc-wash)" : "var(--s2)",
+        borderRadius: narrow ? 8 : 10,
+        padding: narrow ? "3px 4px" : "5px 6px 5px 7px",
         cursor: "pointer", overflow: "hidden",
         opacity: active || isHighlighted ? 1 : 0.32,
-        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
+        transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease",
         boxShadow: dueMins != null
-          ? "0 0 0 2px var(--signal)"
-          : clash && active
-            ? "inset 0 0 0 1.5px var(--ember)"
-            : "none",
+          ? "var(--glow)"
+          : _saved
+            ? `inset 0 0 0 1.5px ${clash && active ? "var(--clash)" : "var(--acc)"}`
+            : "inset 0 0 0 1px var(--line)",
+        "--ring-bg": _saved ? "var(--acc-wash)" : "var(--s2)",
         zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
         animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
         display: "flex", flexDirection: "column",
       }}>
+      {/* Face + status, the first thing to go when a short block overflows
+          (fitGridBlocks hides [data-grid-time]). Below `narrow` there is no
+          room for either and the hour gutter carries the time. */}
+      {!narrow && (
+        <div data-grid-time className="duo-gb-head">
+          {height > 40 && <DuoAvatar name={a.name} size={22} ring={_saved ? (clash && active ? "cl" : "on") : ""} />}
+          <span className="duo-data-s" style={{ fontSize: 11, whiteSpace: "nowrap", marginLeft: "auto",
+            color: clash && active ? "var(--clash)" : _live ? "var(--live)" : "var(--ink-3)" }}>
+            {clash && active ? "CLASH" : _live ? "LIVE" : fmt12(a.start)}
+          </span>
+        </div>
+      )}
       <div data-grid-name style={{
         fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-        fontWeight: isHeadliner ? 800 : 700,
-        lineHeight: narrow ? 1.05 : 1.1, color: "var(--ink)",
+        fontWeight: _saved ? 700 : isHeadliner ? 650 : 550,
+        lineHeight: narrow ? 1.05 : 1.15, color: _saved ? "var(--ink)" : "var(--ink-2)",
         // The whole name, always: no clamp, no ellipsis (a name is never
         // truncated). Hyphenation splits a long word at a syllable instead of
         // "Interplanetar / y".
@@ -1884,44 +2054,20 @@ function GridSetBlock({
         // tokens only when they would otherwise overflow, so short names wrap
         // at their spaces and only genuinely-too-long words get split.
         overflowWrap: "break-word",
-        paddingRight: saved ? (clash ? (narrow ? 19 : 23) : (narrow ? 9 : 12)) : 0,
-        fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif",
+        fontFamily: "var(--f-ui)",
       }}>{actDisplayName(a.name)}</div>
-      {/* Time label. The range only renders where it FITS — a 94px column
-          clipped "2:45 PM - 3:30 P" mid-string, so narrow layouts show the
-          start time alone rather than a truncated lie. Below `narrow` even the
-          start does not fit, and the hour gutter already carries it. */}
-      {!narrow && (
-        <div data-grid-time className="mono" style={{
-          fontSize: 8, letterSpacing: 0.3, color: "var(--muted)",
-          marginTop: 2, whiteSpace: "nowrap",
-        }}>{fmt12(a.start)}{showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""}</div>
-      )}
       {dueMins != null && height > 46 && (
-        <div className="mono" style={{
-          marginTop: "auto", fontSize: 8, letterSpacing: 1, fontWeight: 800,
-          color: "var(--ember-ink)",
-        }}>YOU'RE DUE HERE · {dueMins} MIN</div>
+        <div className="duo-data-s" style={{ marginTop: "auto", fontSize: 11, color: "var(--acc-ink)" }}>DUE · {dueMins} MIN</div>
       )}
-      {saved && (
-        <span style={{
-          position: "absolute", top: 3, right: 5,
-          fontSize: 10, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
-        }}>★</span>
-      )}
-      {/* The conflict mark. conflictById is built from SAVED sets only, so
-          a clash always carries a ★ too — the ⚠ sits just inside it. Same
-          ⚠ language the LIST rows use, and the reason this view shows every
-          stage at once: you cannot dodge a collision you cannot see. */}
-      {clash && (
+      {/* Narrow blocks have no status row, so a clash keeps a mark of its own. */}
+      {clash && narrow && (
         <span title="Overlaps another saved set" aria-label="clash" style={{
-          position: "absolute", top: 2.5, right: narrow ? 13 : 16,
-          fontSize: 9, color: "var(--ember-ink)", fontWeight: 800, lineHeight: 1,
-        }}>⚠</span>
+          position: "absolute", top: 3, right: 3, width: 6, height: 6, borderRadius: 3, background: "var(--clash)",
+        }} />
       )}
       {!saved && matched && height > 30 && (
-        <span style={{
-          position: "absolute", top: 4, right: 5,
+        <span aria-hidden="true" style={{
+          position: "absolute", bottom: 4, right: 5,
           fontSize: 9, color: "var(--spotify)", fontWeight: 800, lineHeight: 1,
         }}>♫</span>
       )}
@@ -2046,6 +2192,13 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
     // i * COL_W — that lands it flush against the gutter, not under it.
     el.scrollTo({ left: i * COL_W, behavior: "smooth" });
   };
+  // The header's stage overview names a stage; bring its column into view.
+  const _toStage = React.useRef(scrollToStage); _toStage.current = scrollToStage;
+  React.useEffect(() => {
+    const on = (e) => _toStage.current(e.detail);
+    window.addEventListener("plursky:grid-stage", on);
+    return () => window.removeEventListener("plursky:grid-stage", on);
+  }, []);
 
   // Open on the current hour (or the next saved set) instead of at the top of
   // a 12-hour day.
@@ -2118,7 +2271,7 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                 cannot slide out from under the headers. */}
             <div style={{
               width: GUTTER_W, flexShrink: 0, position: "sticky", left: 0, zIndex: 2,
-              background: "var(--paper)",
+              background: "var(--bg)",
               borderRight: "1px solid var(--line)",
               borderBottom: "1px solid var(--line-2)",
             }}/>
@@ -2130,20 +2283,18 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
                   data-stage-head={s.id}
                   onClick={() => { try { window.plurskyHaptic?.("LIGHT"); } catch {} scrollToStage(s.id); }}
                   title={s.name}
-                  className="mono"
                   style={{
                     width: COL_W, flexShrink: 0, height: HEAD_H,
                     border: "none", borderLeft: "1px solid var(--line)",
                     borderBottom: "1px solid var(--line-2)",
-                    background: "var(--paper)", color: "var(--ink)",
+                    background: "var(--bg)", color: n > 0 ? "var(--ink)" : "var(--ink-2)",
                     padding: "3px 5px 0", cursor: "pointer", position: "relative",
-                    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
-                    fontSize: 10, letterSpacing: 1.1, fontWeight: 800,
-                    fontFamily: "inherit",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
+                    font: "600 12px/1.15 var(--f-ui)",
                   }}>
-                  <span style={{ lineHeight: "12px", textAlign: "center", letterSpacing: 0.4 }}>{s.short}</span>
+                  <span style={{ textAlign: "center" }}>{s.short}</span>
                   {n > 0 && (
-                    <span style={{ flexShrink: 0, color: "var(--ember-ink)", fontSize: 8.5, fontWeight: 800 }}>★{n}</span>
+                    <span aria-label={`${n} on your plan`} className="duo-data-s" style={{ flexShrink: 0, fontSize: 11, color: "var(--acc-ink)" }}>{n}</span>
                   )}
                 </button>
               );
@@ -2158,24 +2309,31 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               borderRight: "1px solid var(--line)",
             }}>
               {HOURS.map(h => (
-                <div key={h.label} className="mono" style={{
-                  position: "absolute", top: minToTop(h.mins) - 6, right: 6,
-                  fontSize: 9, letterSpacing: 0.3,
-                  color: "var(--muted)", fontWeight: 700,
+                <div key={h.label} className="duo-data-s duo-ink3" style={{
+                  position: "absolute", top: minToTop(h.mins) - 7, right: 6, fontSize: 11, whiteSpace: "nowrap",
                 }}>{h.label}</div>
               ))}
               {/* NOW docks to the gutter and stays there. It used to be
                   positioned in content space, so scrolling sideways slid it
                   over the set blocks. */}
               {nowTop != null && (
-                <span className="mono" style={{
-                  position: "absolute", left: 2, top: nowTop - 7, zIndex: 6,
-                  fontSize: 8, letterSpacing: 0.6, color: "var(--on-ember)", fontWeight: 800,
-                  background: "var(--ember)", padding: "1px 4px", borderRadius: 3,
+                <span className="duo-data-s" style={{
+                  position: "absolute", left: 2, top: nowTop - 9, zIndex: 6, fontSize: 11,
+                  color: "var(--on-acc)", background: "var(--acc)", padding: "2px 5px", borderRadius: 5,
                 }}>NOW</span>
               )}
             </div>
 
+            {/* The now line sits UNDER the blocks (earlier in the DOM, no
+                z-index): it shows in the gaps and never strikes a name. */}
+            {nowTop != null && (
+              <div style={{
+                position: "absolute", left: GUTTER_W, right: 0, top: nowTop, height: 0,
+                borderTop: "1.5px solid var(--acc)",
+                boxShadow: "0 0 10px var(--acc-55)",
+                pointerEvents: "none",
+              }}/>
+            )}
             {cols.map(({ stage, artists: stageArtists }, si) => {
               const lanes = layoutLanes(stageArtists);
               return (
@@ -2216,14 +2374,6 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               );
             })}
 
-            {nowTop != null && (
-              <div style={{
-                position: "absolute", left: GUTTER_W, right: 0, top: nowTop, height: 0,
-                borderTop: "2px solid var(--ember)",
-                boxShadow: "0 0 8px rgba(var(--signal-rgb),0.55)",
-                zIndex: 3, pointerEvents: "none",
-              }}/>
-            )}
           </div>
           </>) : (
             <div className="mono" style={{ position: "sticky", left: 0, width: boxW, padding: "28px 16px", textAlign: "center", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)" }}>

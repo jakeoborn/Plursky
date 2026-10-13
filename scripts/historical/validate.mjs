@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, dropReason } from "./editions.mjs";
+import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { dayMinutes, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -18,6 +18,7 @@ export const OFFICIAL_HOSTS = {
   "escape-halloween": ["escapehalloween.com"],
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
   "dreamstate-socal": ["socal.dreamstateusa.com"],
+  "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
 };
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -157,7 +158,10 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
 
 // Letters only: symbols in a stylized billing are real ("€URO TRA$H").
 const nonLatin = e => [...e.artists, ...e.stages]
-  .filter(x => /(?=\p{L})\P{Script=Latin}/u.test(x.name))
+  // Letters only: symbols in a stylized billing are real ("€URO TRA$H"), and
+  // a name the source itself printed in another script is listed in
+  // PRINTED_NON_LATIN.
+  .filter(x => /(?=\p{L})\P{Script=Latin}/u.test(x.name) && !(PRINTED_NON_LATIN[e.id] || []).includes(x.name))
   .map(x => `${e.id}: "${x.name}" contains a non-Latin look-alike character`);
 
 // A lineup_only edition: artists as the official lineup page billed them,

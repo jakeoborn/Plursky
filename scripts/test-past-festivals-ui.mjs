@@ -170,7 +170,7 @@ try {
     await page.getByRole("button", { name: "Back" }).click();
     await page.getByRole("button", { name: new RegExp(`^${name}`) }).click();
     await page.getByText(`Official ${ED[id].year} lineup · archived`, { exact: true }).waitFor({ timeout: 10000 });
-    await page.getByText(/No official set times survive/).waitFor({ timeout: 10000 });
+    await page.getByText(/^Set times not verified for this edition: no official set times survive/).waitFor({ timeout: 10000 });
   };
   const onDay = (e, d) => e.artists.filter(a => a.appearances.some(x => x.day === d));
   {
