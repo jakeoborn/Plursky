@@ -98,7 +98,11 @@ check(items.every(i => ['ready_for_editor_review', 'needs_source', 'conflict', '
 check(items.every(i => i.readiness < 3 || i.bioEvidence === 'official_profile'), 'nothing reaches 3 without an official profile');
 check(!items.some(i => i.bioEvidence === 'unsourced_prose' && i.choice === 'ready_for_editor_review'), 'no unsourced prose is ready for review');
 const sj = items.filter(i => i.edition === 'summerfest-2026' && /^Stephan Jenkins/.test(i.name));
-check(sj.length >= 2 && sj.every(i => i.choice === 'conflict'), 'positive control: the same act on two Summerfest stages at 14:00 is a conflict');
+check(sj.length === 1 && sj[0].billingId === 'su45' && sj[0].choice !== 'conflict', 'live removal control: su24 absent; su45 retained and not a duplicate conflict');
+const restored = structuredClone(DS['summerfest-2026']);
+const retained = restored.artists.find(a => a.id === 'su45');
+restored.artists.push({ ...retained, id: 'su24', stage: 'bmo' });
+check(buildItems('summerfest-2026', restored, { showcases }).filter(i => /^Stephan Jenkins/.test(i.name)).every(i => i.choice === 'conflict'), 'mutation control: restoring a same-time cross-stage row is a conflict');
 const sor = items.filter(i => i.edition === 'summerfest-2026' && i.name === 'School of Rock');
 check(sor.filter(i => i.day === 5).length === 5 && sor.filter(i => i.day === 5).every(i => i.choice !== 'conflict'), 'positive control: June 26 School of Rock rows are a sourced showcase, not conflicts');
 check(sor.filter(i => i.day === 4).length === 5 && sor.filter(i => i.day === 4).every(i => i.choice === 'conflict' && /does not cover/.test(i.reasons[0])), 'June 25 School of Rock stays flagged: the release prints June 26-27');
