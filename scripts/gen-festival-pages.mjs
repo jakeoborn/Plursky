@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours } from './lib/festival-page-data.mjs';
+import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -153,11 +153,7 @@ function eventDaySet(cfg) {
 function statusOf(cfg, today) {
   const dates = eventDates(cfg);
   if (!dates) return null;
-  if (today > dates.end) return 'past';
-  const days = [...eventDaySet(cfg)].filter(d => d >= dates.start && d <= dates.end).sort();
-  if (days.includes(today) || (!days.length && today >= dates.start)) return 'live';
-  const next = days.find(d => d > today) || dates.start;
-  return (Date.parse(next) - Date.parse(today)) / DAY_MS <= 6 ? 'soon' : 'upcoming';
+  return pageStatus(dates, [...eventDaySet(cfg)], today, Object.keys(cfg.dayDates || {}).length);
 }
 
 // The schedule grid: the same acts schedule.json ships, grouped (weekend,)
@@ -204,6 +200,41 @@ function scheduleGrid(entry, dates, blocks) {
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
     <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
 ${body}
+  </section>`;
+}
+
+// Only a page that renders the section carries its styles, so the other
+// festival pages (and their sitemap lastmod) do not move.
+const STAGE_PROGRAMMING_CSS = `  details.program-stage { margin:10px 0; border:1px solid var(--line); border-radius:10px; padding:0 14px; }
+  details.program-stage summary { cursor:pointer; font-weight:650; min-height:44px; padding:12px 0; overflow-wrap:anywhere; }
+  details.program-stage ol { padding-left:24px; }
+  details.program-stage li { padding:6px 0; overflow-wrap:anywhere; }
+  details.program-stage time { font-variant-numeric:tabular-nums; font-weight:650; }
+`;
+
+// Official stage/day running order is not a full clock-time schedule.
+function stageProgrammingSection(entry) {
+  const data = stageProgrammingFor(entry.config.id);
+  if (!data) return '';
+  const localClock = hm => { const [h,m] = hm.split(':').map(Number); return `${h % 12 || 12}:${String(m).padStart(2,'0')} ${h < 12 ? 'AM' : 'PM'}`; };
+  return `
+  <section aria-labelledby="stage-programming-h" class="stage-programming">
+    <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
+    <p class="note">Set times from the III Points-branded grids supplied on October 5. Both days, 13 stages and 231 intervals. The source is the supplied screenshot, not a clock-time page on the official website.</p>
+    <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
+    <p class="note"><a href="${esc(data.source.url)}">III Points official site</a> · source: attendee-supplied III Points-branded set-time grid · checked ${esc(data.source.observedAt)}</p>
+${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
+` + data.stages.map(stage => {
+    const block = stage.days.find(d => d.day === day);
+    if (!block) return '';
+    const timed = block.rows.some(r => r.start);
+    return `    <details class="program-stage"${stage.id === '444' ? ' open' : ''}>
+      <summary>${esc(stage.name)} · ${timed ? 'Set times' : 'Running order'} · ${block.rows.length} sets</summary>
+      <ol>
+` + block.rows.map(row => `        <li>${row.start ? `<time>${esc(localClock(row.start))}${row.end ? ' - '+esc(localClock(row.end)) : ''}</time> · ` : ''}${esc(row.name)}</li>`).join('\n') + `
+      </ol>
+    </details>`;
+  }).join('\n')).join('\n')}
   </section>`;
 }
 
@@ -370,16 +401,50 @@ ${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href
 
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
+// Each link opens that edition in Plursky (?tab=past&edition=<id>).
+const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function ymdLabel(a, b) {
+  if (!a) return '';
+  const [ya, ma, da] = a.split('-').map(Number), [yb, mb, db] = (b || a).split('-').map(Number);
+  if (a === (b || a)) return `${MON[ma - 1]} ${da}, ${ya}`;
+  if (ya === yb && ma === mb) return `${MON[ma - 1]} ${da}–${db}, ${ya}`;
+  return ya === yb ? `${MON[ma - 1]} ${da} – ${MON[mb - 1]} ${db}, ${ya}` : `${MON[ma - 1]} ${da}, ${ya} – ${MON[mb - 1]} ${db}, ${yb}`;
+}
+const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
+function editionSummary(e) {
+  return e.lineupOnly
+    ? `${e.artists} artists from the official lineup. Set times not verified for this edition.`
+    : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.`;
+}
+
+// A festival not open in Plursky yet (a gated entry, usually next year's)
+// leads with its newest past edition instead of an empty page: clearly a
+// past edition, with its own dates and the date its source was archived, and
+// kept apart from everything this page says about the upcoming edition.
+function lookBackSection(entry, editions) {
+  if (entry.available || !editions.length) return '';
+  const e = editions[0];
+  return `
+  <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
+    <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
+    <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
+    <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
+  </section>`;
+}
+
 function pastSection(entry, editions) {
-  if (!editions.length) return '';
+  const rest = entry.available ? editions : editions.slice(1);
+  if (!rest.length) return '';
   const cfg = entry.config;
   return `
   <section aria-labelledby="past-h">
-    <h2 id="past-h">Past editions of ${esc(cfg.brand || cfg.name)}</h2>
+    <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${editions.map(e => `      <li><a href="/?tab=past">${esc(e.name)}</a> — ${e.year}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}</li>`).join('\n')}
+${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a> — ${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${e.artists} artists` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}</li>`).join('\n')}
     </ul>
-    <p class="note">Each link opens Past Festivals in Plursky.</p>
+    <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
   </section>`;
 }
 
@@ -416,7 +481,9 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // The schedule answer is gated on the SAME `hasTimes` the page renders from,
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
-  if (hasTimes) {
+  if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+  } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
@@ -630,10 +697,21 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
 <meta name="twitter:image" content="${ORIGIN}/og-card.png">
 <link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <style>
-  :root { --ink:#f7ede0; --bg:#12100e; --muted:rgba(247,237,224,0.62); --line:rgba(247,237,224,0.14); --ember:#e85d2e; --panel:#1c1916; }
+  /* The app's board tokens (index.html), both modes: Dark by default, Light when
+     the reader's system asks for it. --ember is kept as the name of the link /
+     accent-text role so the rules below did not have to move. */
+  :root { color-scheme:dark light;
+          --ink:#F3F0FA; --bg:#07060B; --muted:#ABA4BB; --line:#221E2B; --ember:#B7A3FF; --panel:#19161F;
+          --acc:#9474FF; --on-acc:#0B0816; --target:rgba(148,116,255,.16); }
+  @media (prefers-color-scheme: light) {
+    :root { --ink:#14121C; --bg:#F4F3F8; --muted:#565266; --line:#E6E3EE; --ember:#4A2BFF; --panel:#FFFFFF;
+            --acc:#4A2BFF; --on-acc:#FFFFFF; --target:rgba(74,43,255,.10); }
+  }
+  @font-face { font-family:"Martian Mono"; font-style:normal; font-weight:300 600; font-display:swap;
+               src:url(/fonts/martian-mono-latin.woff2) format("woff2"); unicode-range:U+0000-00FF; }
   * { box-sizing:border-box; }
   body { margin:0; padding:32px 20px 64px; background:var(--bg); color:var(--ink);
-         font-family:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+         font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,'Segoe UI',sans-serif; line-height:1.6; }
   main { max-width:760px; margin:0 auto; }
   nav.crumbs { font-size:13px; color:var(--muted); margin:0 0 16px; }
   nav.crumbs a { color:var(--muted); }
@@ -648,12 +726,12 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:12px; background:var(--panel); }
   .platebox { position:relative; max-width:520px; }
   .pin { position:absolute; transform:translate(-50%,-50%); width:20px; height:20px; border-radius:50%;
-         display:flex; align-items:center; justify-content:center; background:rgba(18,16,14,0.82);
+         display:flex; align-items:center; justify-content:center; background:var(--bg);
          border:1px solid var(--ink); color:var(--ink); font-size:11px; font-weight:700; pointer-events:none; }
   ol.platekey { margin:8px 0 0; padding-left:22px; font-size:13px; columns:2; column-gap:20px; }
   figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
   .cta { display:inline-block; margin:20px 0 8px; padding:12px 22px; border-radius:12px;
-         background:linear-gradient(135deg,#6D28D9,var(--ember)); color:#fff; text-decoration:none; font-weight:700; }
+         background:var(--acc); color:var(--on-acc); text-decoration:none; font-weight:700; }
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:5px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
@@ -663,8 +741,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h5 { font-size:12px; margin:12px 0 4px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; }
   ul.sets li { padding:3px 0; border-bottom:1px solid var(--line); font-size:14px; display:flex; gap:12px; scroll-margin-top:16px; }
-  ul.sets li:target { background:rgba(232,93,46,0.14); }
-  ul.sets li time { color:var(--muted); font-variant-numeric:tabular-nums; min-width:96px; flex:none; }
+  ul.sets li:target { background:var(--target); }
+  ul.sets li time { color:var(--muted); font-family:"Martian Mono",ui-monospace,'SF Mono',Menlo,monospace; font-size:13px; letter-spacing:-0.01em; font-variant-numeric:tabular-nums; min-width:116px; flex:none; }
   ul.stagelist { list-style:none; padding:0; margin:8px 0 0; }
   ul.stagelist li { padding:6px 0; border-bottom:1px solid var(--line); font-size:14px; }
   ul.stagelist .counts { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
@@ -676,7 +754,7 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   a.cta-secondary { font-weight:600; white-space:nowrap; }
   nav.other { margin-top:40px; }
   nav.other a { color:var(--ink); }
-  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
+${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.sources ul { padding-left:18px; font-size:13px; color:var(--muted); overflow-wrap:anywhere; }
   footer { margin-top:40px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
   a { color:var(--ember); }
   details.more { margin:4px 0 0; }
@@ -723,10 +801,10 @@ ${JSON.stringify(crumbLd, null, 2)}
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Plursky</a> › <a href="/#festivals">Festivals</a> › <span aria-current="page">${esc(cfg.name)}</span></nav>
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
-  <p>${esc(cfg.tagline || '')}</p>
+  <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
 ${answersSection(entry, answers)}${watchHtml}
 ${mapHtml}
-${scheduleGrid(entry, dates, blocks)}
+${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
 ${planSection(entry, amenities)}
@@ -741,7 +819,7 @@ ${pastSection(entry, editions)}
     <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 
@@ -809,10 +887,20 @@ const drift = [];
 // A festival ending moves its page's content, and so its fingerprint, with no
 // commit behind it; comparing that in --check would fail an unrelated PR for
 // the calendar, which is the exact wolf the two-mode split exists to avoid.
-// So --check still normalises lastmod away, and --check-strict — the scheduled
-// job that owns the clock — is where the date has to actually be current.
-// A page's "Last updated" line IS its sitemap lastmod, so it is normalised by
-// the same rule and for the same reason.
+// So --check still normalises lastmod away here, and --check-strict — the
+// scheduled job that owns the clock — is where the festival dates have to
+// actually be current. A page's "Last updated" line IS its sitemap lastmod,
+// so it is normalised by the same rule and for the same reason.
+//
+// The homepage, terms and privacy rows are different: their fingerprints are
+// of committed files only (index.html, terms.html, privacy.html), with no
+// calendar input, so only a commit can move them. --check holds those rows'
+// ledger entries AND their sitemap <lastmod> to the committed values (see
+// COMMIT_ROWS, after the sitemap is built). Before that, a cache-bust in
+// index.html moved the homepage fingerprint, passed every PR's verify, and
+// turned the scheduled strict job red on main after the merge. That check
+// lives outside this render slice on purpose: code here feeds
+// templateFingerprint, and moving it would re-date every festival page.
 const norm = (t, f) => CHECK_STRICT ? t
   : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
@@ -1004,6 +1092,23 @@ ${urls.map(u => `  <url>
 </urlset>
 `);
 emit(LEDGER, JSON.stringify(ledger, null, 2) + '\n', null, true);
+// The rows no calendar can move. --check holds each one to what is committed:
+// its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
+// festival rows stay strict-only (see norm above).
+const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
+if (CHECK && !CHECK_STRICT) {
+  const committed = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {};
+  const published = {};
+  if (existsSync(SITEMAP)) for (const m of readFileSync(SITEMAP, 'utf8')
+       .matchAll(/<loc>([^<]*)<\/loc>\s*<lastmod>([^<]*)<\/lastmod>/g)) published[m[1]] = m[2];
+  for (const loc of COMMIT_ROWS) {
+    const was = committed[loc], now = ledger[loc], path_ = loc.slice(ORIGIN.length);
+    if (!was || was.fp !== now.fp || was.lastmod !== now.lastmod)
+      drift.push(`sitemap-lastmod.json (${path_}: fingerprint ${was ? was.fp : 'missing'}, content is ${now.fp})`);
+    if (published[loc] !== now.lastmod)
+      drift.push(`sitemap.xml (${path_}: <lastmod> ${published[loc] || 'missing'}, should be ${now.lastmod})`);
+  }
+}
 if (!CHECK) console.log(`[gen] sitemap.xml  ${urls.length} urls  (${urls.filter(u => u.lastmod === TODAY).length} dated ${TODAY})`);
 
 // A festival retired from the registry leaves its directory behind. The

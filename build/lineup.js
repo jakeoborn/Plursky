@@ -108,6 +108,7 @@ function NightWizard({
   });
   var [local, setLocal] = React.useState(() => new Set(state.saved));
   var localIds = Array.from(local);
+  var liveLocalIds = savedInLineup(localIds);
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
@@ -195,6 +196,9 @@ function NightWizard({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
+      flexWrap: "wrap",
+      columnGap: 10,
+      rowGap: 8,
       padding: "16px 18px 12px",
       paddingTop: "calc(16px + env(safe-area-inset-top, 0px))",
       borderBottom: "1px solid var(--line)"
@@ -203,49 +207,63 @@ function NightWizard({
     onClick: onClose,
     "aria-label": "Close Build My Night",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      fontSize: 18,
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
+      color: "var(--ink)",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
     }
-  }, "←"), React.createElement("div", null, React.createElement("div", {
-    className: "mono",
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M15 6 L9 12 L15 18"
+  }))), React.createElement("div", {
     style: {
-      fontSize: 10,
-      letterSpacing: 1.8,
-      fontWeight: 700,
-      textAlign: "center"
+      flex: "1 1 auto",
+      minWidth: 0
     }
-  }, "BUILD MY NIGHT"), React.createElement("div", {
-    className: "mono",
+  }, React.createElement("div", {
+    className: "duo-label",
     style: {
-      fontSize: 8,
-      letterSpacing: 1.2,
-      color: "var(--muted)",
-      textAlign: "center",
-      marginTop: 2
+      whiteSpace: "nowrap"
     }
-  }, Array.from(local).length, " SETS SAVED")), React.createElement("div", {
+  }, "My night"), React.createElement("div", {
+    className: "duo-data-s duo-ink3",
+    style: {
+      marginTop: 4,
+      whiteSpace: "nowrap"
+    }
+  }, liveLocalIds.length, " SETS SAVED")), React.createElement("div", {
     style: {
       display: "flex",
-      gap: 6
+      gap: 6,
+      marginLeft: "auto"
     }
-  }, Array.from(local).length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
-    onClick: () => exportSavedSetsICS(Array.from(local)),
+  }, liveLocalIds.length > 0 && React.createElement(React.Fragment, null, React.createElement("button", {
+    onClick: () => exportSavedSetsICS(liveLocalIds),
     "aria-label": "Export to calendar",
     title: "Export to calendar",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -274,7 +292,7 @@ function NightWizard({
     stroke: "none"
   }))), React.createElement("button", {
     onClick: () => {
-      var text = _nightShareText(Array.from(local));
+      var text = _nightShareText(liveLocalIds);
       if (navigator.share) {
         navigator.share({
           title: `My ${FESTIVAL_CONFIG.shortName || "festival"} lineup`,
@@ -289,11 +307,12 @@ function NightWizard({
     "aria-label": "Share lineup",
     title: "Share lineup",
     style: {
-      width: 36,
-      height: 36,
-      borderRadius: 36,
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
+      width: 44,
+      height: 44,
+      borderRadius: 44,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      border: "none",
       cursor: "pointer",
       display: "flex",
       alignItems: "center",
@@ -325,33 +344,16 @@ function NightWizard({
   })))), React.createElement("button", {
     onClick: autoFill,
     title: "Auto-fill best non-clashing sets for this day",
-    style: {
-      background: "var(--horizon)",
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 13px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, "✦ AUTO"), React.createElement("button", {
+    className: "duo-chip"
+  }, React.createElement("span", null, "Auto")), React.createElement("button", {
     onClick: handleSave,
+    className: "duo-btn pri",
     style: {
-      background: "var(--ember)",
-      color: "var(--ink)",
-      border: "none",
-      borderRadius: 999,
-      padding: "8px 16px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700
+      minHeight: 44,
+      padding: "0 16px",
+      fontSize: 15
     }
-  }, "SAVE ✓"))), React.createElement("div", {
+  }, "Save"))), React.createElement("div", {
     style: {
       display: "flex",
       gap: 6,
@@ -363,51 +365,44 @@ function NightWizard({
     return React.createElement("button", {
       key: d.n,
       onClick: () => setActiveDay(d.n),
+      "aria-pressed": on,
       style: {
         flex: 1,
-        padding: "8px 6px",
-        borderRadius: 12,
+        padding: "10px 6px",
+        borderRadius: "var(--rad-sm)",
         cursor: "pointer",
         textAlign: "center",
-        background: on ? "var(--ink)" : "var(--paper-2)",
-        border: on ? "none" : "1px solid var(--line)",
-        transition: "all .15s"
+        background: "var(--s2)",
+        border: "none",
+        color: "var(--ink)",
+        boxShadow: on ? "inset 0 0 0 1.5px var(--acc)" : "var(--e1)"
       }
     }, React.createElement("div", {
-      className: "mono",
+      className: "duo-label",
       style: {
-        fontSize: 9,
-        letterSpacing: 1.2,
-        color: on ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)"
+        color: on ? "var(--ink)" : "var(--ink-3)"
       }
-    }, d.short), React.createElement("div", {
-      className: "mono",
+    }, d.label), React.createElement("div", {
+      className: "duo-clock",
       style: {
-        fontSize: 20,
-        fontWeight: 700,
-        letterSpacing: -0.5,
-        color: on ? "var(--paper)" : "var(--ink)",
-        lineHeight: 1.15
+        fontSize: 24,
+        marginTop: 6
       }
     }, d.count), d.clashes > 0 ? React.createElement("div", {
-      className: "mono",
+      className: "duo-data-s",
       style: {
-        fontSize: 8,
-        color: "var(--ember-ink)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        color: "var(--clash)",
+        marginTop: 4
       }
-    }, "⚠ ", d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
-      className: "mono",
+    }, d.clashes, " CLASH") : d.count > 0 ? React.createElement("div", {
+      className: "duo-data-s duo-ink3",
       style: {
-        fontSize: 8,
-        color: on ? "rgba(var(--ink-rgb),0.4)" : "var(--muted)",
-        letterSpacing: 0.8,
-        marginTop: 1
+        marginTop: 4
       }
-    }, "● CLEAN") : React.createElement("div", {
+    }, "CLEAN") : React.createElement("div", {
       style: {
-        height: 12
+        height: 15,
+        marginTop: 4
       }
     }));
   })), React.createElement("div", {
@@ -423,27 +418,13 @@ function NightWizard({
       paddingTop: 60
     }
   }, React.createElement("div", {
+    className: "duo-headline"
+  }, "Nothing saved for this day"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
-      fontSize: 28,
-      opacity: 0.25,
-      marginBottom: 6
+      marginTop: 6
     }
-  }, "★"), React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 24,
-      fontStyle: "italic",
-      color: "var(--muted)"
-    }
-  }, "Nothing saved"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.3,
-      color: "var(--muted)",
-      marginTop: 8
-    }
-  }, "SAVE SETS IN LINEUP FIRST")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
+  }, "Save sets in the lineup first.")) : React.createElement(React.Fragment, null, items.map((item, idx) => {
     if (item.type === "set") {
       var a = item.artist;
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
@@ -453,87 +434,64 @@ function NightWizard({
         style: {
           display: "flex",
           gap: 10,
-          marginBottom: 7,
+          marginBottom: 8,
           alignItems: "flex-start"
         }
       }, React.createElement("div", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          width: 36,
+          width: 52,
           flexShrink: 0,
-          fontSize: 9,
-          letterSpacing: 0.5,
-          color: "var(--muted)",
           textAlign: "right",
-          paddingTop: 11
+          paddingTop: 14
         }
       }, fmt12(a.start)), React.createElement("div", {
         style: {
           flex: 1,
-          background: clash ? "var(--ink)" : "var(--paper-2)",
-          border: `1px solid ${clash ? "var(--ember)" : "var(--line)"}`,
-          borderLeft: "4px solid var(--line-2)",
-          borderRadius: 12,
-          padding: "9px 12px"
-        }
-      }, React.createElement("div", {
-        style: {
+          minWidth: 0,
+          background: "var(--acc-wash)",
+          "--ring-bg": "var(--acc-wash)",
+          boxShadow: `inset 0 0 0 1.5px ${clash ? "var(--clash)" : "var(--acc)"}`,
+          borderRadius: "var(--rad-sm)",
+          padding: "8px 6px 8px 10px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          gap: 8
+          gap: 10
         }
-      }, React.createElement("div", {
+      }, React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 34,
+        ring: clash ? "cl" : "on"
+      }), React.createElement("div", {
         style: {
+          flex: 1,
           minWidth: 0
         }
       }, React.createElement("div", {
+        className: "duo-headline duo-name",
         style: {
-          fontSize: 14,
-          fontWeight: 600,
-          color: clash ? "var(--paper)" : "var(--ink)",
-          lineHeight: 1.2,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          fontSize: 15
         }
-      }, a.name), React.createElement("div", {
-        className: "mono",
+      }, actDisplayName(a.name)), React.createElement("div", {
         style: {
-          fontSize: 9,
-          letterSpacing: 0.9,
-          color: clash ? "rgba(var(--ink-rgb),0.5)" : "var(--muted)",
-          marginTop: 3
-        }
-      }, stage.short, " · ", fmt12(a.start), "–", fmt12(a.end))), React.createElement("div", {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-          flexShrink: 0
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
+          marginTop: 2
         }
       }, clash && React.createElement("span", {
-        className: "mono",
         style: {
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)",
-          fontWeight: 700
+          color: "var(--clash)",
+          fontWeight: 650
         }
-      }, "⚠ CLASH"), React.createElement("button", {
+      }, "Clash · "), stage.name, " · ", React.createElement("span", {
+        style: {
+          whiteSpace: "nowrap"
+        }
+      }, fmt12(a.start), "–", fmt12(a.end)))), React.createElement("button", {
         onClick: () => drop(a.id),
-        style: {
-          background: "rgba(var(--signal-rgb),0.12)",
-          border: "1px solid rgba(var(--signal-rgb),0.25)",
-          borderRadius: 999,
-          padding: "3px 9px",
-          cursor: "pointer",
-          fontFamily: "Geist Mono, monospace",
-          fontSize: 8,
-          letterSpacing: 1,
-          color: "var(--ember-ink)"
-        }
-      }, "DROP")))));
+        className: "duo-chip",
+        "aria-label": `Drop ${a.name}`
+      }, React.createElement("span", null, "Drop"))));
     }
     if (item.type === "gap") {
       return React.createElement("div", {
@@ -576,11 +534,8 @@ function NightWizard({
           background: "var(--line)"
         }
       }), React.createElement("span", {
-        className: "mono",
+        className: "duo-data-s duo-ink3",
         style: {
-          fontSize: 8,
-          letterSpacing: 1.2,
-          color: "var(--muted)",
           whiteSpace: "nowrap"
         }
       }, "FREE · ", fmtGap(item.gapMin)), React.createElement("div", {
@@ -601,18 +556,13 @@ function NightWizard({
         return React.createElement("button", {
           key: f.id,
           onClick: () => add(f.id),
+          className: "duo-chip",
+          "aria-label": `Add ${f.name}, ${fmt12(f.start)}, ${fs.name}`
+        }, React.createElement("span", {
           style: {
-            background: "transparent",
-            border: "1px dashed var(--line-2)",
-            borderRadius: 999,
-            padding: "4px 10px",
-            cursor: "pointer",
-            fontFamily: "Geist Mono, monospace",
-            fontSize: 8,
-            letterSpacing: 0.8,
-            color: "var(--ink)"
+            borderStyle: "dashed"
           }
-        }, "+ ", f.name, " ", fmt12(f.start), " ", fs.short);
+        }, "+ ", actDisplayName(f.name), " ", React.createElement("b", null, fmt12(f.start)), " ", fs.name));
       }))));
     }
     return null;
@@ -624,14 +574,11 @@ function NightWizard({
       marginTop: 6
     }
   }, React.createElement("div", {
-    className: "mono",
+    className: "duo-data-s duo-sun",
     style: {
-      width: 36,
+      width: 52,
       flexShrink: 0,
-      fontSize: 9,
-      color: "var(--flare)",
-      textAlign: "right",
-      letterSpacing: 0.5
+      textAlign: "right"
     }
   }, sunrise), React.createElement("div", {
     style: {
@@ -644,17 +591,147 @@ function NightWizard({
     style: {
       flex: 1,
       height: 1,
-      background: `linear-gradient(90deg, var(--flare), transparent)`
+      background: "var(--sun)",
+      opacity: 0.6
     }
   }), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 1.4,
-      color: "var(--flare)",
-      fontWeight: 700
+    className: "duo-label duo-sun"
+  }, "Sunrise"))))));
+}
+function LineupOverview({
+  sets,
+  savedSet,
+  liveNight,
+  stageFilter,
+  onStage
+}) {
+  var lanes = React.useMemo(() => {
+    var by = new Map();
+    for (var a of sets) {
+      var s = toNightMin(a.start),
+        e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({
+        a,
+        s,
+        e: Number.isFinite(e) && e > s ? e : s + 60
+      });
     }
-  }, "☀ SUNRISE"))))));
+    return STAGES.filter(st => by.has(st.id)).map(st => ({
+      stage: st,
+      sets: by.get(st.id)
+    }));
+  }, [sets]);
+  if (lanes.length < 2) return null;
+  var all = lanes.flatMap(l => l.sets);
+  var t0 = Math.floor(Math.min(...all.map(x => x.s)) / 60) * 60;
+  var t1 = Math.ceil(Math.max(...all.map(x => x.e)) / 60) * 60;
+  var span = Math.max(60, t1 - t0);
+  var pct = m => `${(m - t0) / span * 100}%`;
+  var nowMin = liveNight && NOW.time ? toNightMin(NOW.time) : null;
+  var showNow = nowMin != null && nowMin >= t0 && nowMin <= t1;
+  var step = span > 8 * 60 ? 120 : 60;
+  var ticks = [];
+  for (var m = Math.ceil(t0 / step) * step; m <= t1; m += step) ticks.push(m);
+  var tick = m => {
+    var h = Math.floor(m / 60) % 24;
+    return `${h % 12 || 12}${h >= 12 ? "P" : "A"}`;
+  };
+  return React.createElement("div", {
+    "data-lineup-overview": true,
+    role: "group",
+    "aria-label": "Every stage tonight",
+    style: {
+      padding: "4px 20px 8px"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)",
+      columnGap: 12,
+      alignItems: "center"
+    }
+  }, lanes.map(({
+    stage,
+    sets
+  }) => {
+    var on = stageFilter === stage.id;
+    var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    return React.createElement(React.Fragment, {
+      key: stage.id
+    }, React.createElement("button", {
+      type: "button",
+      "data-overview-stage": stage.id,
+      "aria-pressed": on,
+      "aria-label": `${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`,
+      onClick: () => onStage(stage.id),
+      style: {
+        border: 0,
+        background: "none",
+        padding: "1px 0",
+        minHeight: 16,
+        cursor: "pointer",
+        textAlign: "left",
+        font: `${on ? 650 : 500} 11px/14px var(--f-ui)`,
+        color: on ? "var(--acc-ink)" : "var(--ink-2)",
+        overflowWrap: "anywhere"
+      }
+    }, stage.name), React.createElement("div", {
+      "aria-hidden": "true",
+      style: {
+        position: "relative",
+        height: 16
+      }
+    }, sets.map(({
+      a,
+      s,
+      e
+    }) => {
+      var mineSet = savedSet.has(a.id),
+        live = isSetLive(a);
+      return React.createElement("span", {
+        key: a.id,
+        style: {
+          position: "absolute",
+          left: pct(s),
+          width: `calc(${(e - s) / span * 100}% - 2px)`,
+          top: mineSet ? 5.5 : 7,
+          height: mineSet ? 5 : 2,
+          borderRadius: 3,
+          minWidth: 2,
+          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)"
+        }
+      });
+    }), showNow && React.createElement("span", {
+      style: {
+        position: "absolute",
+        left: pct(nowMin),
+        top: 0,
+        bottom: 0,
+        width: 1,
+        background: "var(--ink)"
+      }
+    })));
+  }), React.createElement("span", null), React.createElement("div", {
+    "aria-hidden": "true",
+    style: {
+      position: "relative",
+      height: 16
+    }
+  }, ticks.map(m => React.createElement("span", {
+    key: m,
+    className: "duo-data-s duo-ink3",
+    style: {
+      position: "absolute",
+      left: pct(m),
+      top: 4,
+      transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)",
+      fontSize: 11,
+      lineHeight: "12px",
+      whiteSpace: "nowrap"
+    }
+  }, tick(m))))));
 }
 function LineupFilterSheet({
   onClose,
@@ -683,43 +760,25 @@ function LineupFilterSheet({
       return true;
     }).length;
   }, [f, day, savedSet, weekendFilter]);
-  var chip = on => ({
-    flexShrink: 0,
-    minHeight: 44,
-    padding: "0 16px",
-    borderRadius: 18,
-    background: on ? "var(--paper-2)" : "transparent",
-    color: on ? "var(--ink)" : "var(--text-2)",
-    border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
-    fontSize: 15,
-    lineHeight: "20px",
-    fontWeight: on ? 600 : 500,
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6
-  });
   var sectionLabel = {
-    ..._fieldEyebrow,
-    color: "var(--text-2)",
-    margin: "20px 0 8px"
+    margin: "20px 0 4px"
   };
   var row = {
     display: "flex",
-    gap: 8,
+    columnGap: 8,
     flexWrap: "wrap"
   };
   var opt = (key, id, label, extra) => React.createElement("button", {
     key: id,
     "aria-pressed": f[key] === id,
     onClick: () => set(key, id),
-    style: chip(f[key] === id)
-  }, extra, label);
+    className: "duo-chip"
+  }, React.createElement("span", null, extra, label));
   return React.createElement(FieldSheet, {
     title: "Filters",
     onClose: onClose
   }, React.createElement("div", {
+    className: "duo-sect",
     style: {
       ...sectionLabel,
       marginTop: 4
@@ -727,18 +786,22 @@ function LineupFilterSheet({
   }, "Show"), React.createElement("div", {
     style: row
   }, opt("filter", "all", "All"), opt("filter", "saved", `Saved${savedCount ? ` · ${savedCount}` : ""}`), opt("filter", "now", "Now")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
   }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
     style: row
   }, opt("stageFilter", "all", "All stages"), STAGES.map(s => opt("stageFilter", s.id, s.short || s.name))), dayGenres.length > 0 && React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Genre"), React.createElement("div", {
     style: row
   }, opt("genreFilter", "all", "All genres"), dayGenres.map(g => opt("genreFilter", g, g)))), React.createElement("div", {
+    className: "duo-sect",
     style: sectionLabel
   }, "Sort by"), React.createElement("div", {
     style: row
@@ -775,6 +838,7 @@ function LineupScreen({
   state,
   setState
 }) {
+  useFitNames(() => document.querySelector("[data-lineup-scroll]"));
   var highlightId = state.lineupHighlight || null;
   var [day, setDay] = React.useState(() => {
     if (highlightId) {
@@ -789,9 +853,11 @@ function LineupScreen({
   var [tierFilter, setTierFilter] = React.useState("all");
   var [wizardOpen, setWizardOpen] = React.useState(false);
   var [genreFilter, setGenreFilter] = React.useState("all");
+  var [sortBy, setSortBy] = React.useState("time");
   var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
   var [q, setQ] = React.useState("");
+  var [searchOpen, setSearchOpen] = React.useState(false);
   React.useEffect(() => {
     if (!highlightId) return;
     var scroller = setTimeout(() => {
@@ -831,6 +897,12 @@ function LineupScreen({
   var [collapsed, setCollapsed] = React.useState(false);
   var collapsedRef = React.useRef(false);
   collapsedRef.current = collapsed;
+  var openHoldRef = React.useRef(false);
+  var tapLockRef = React.useRef(0);
+  var unfoldByTap = () => {
+    tapLockRef.current = performance.now() + 400;
+    setCollapsed(false);
+  };
   var filtersRef = React.useRef(null);
   var [filtersH, setFiltersH] = React.useState(0);
   var filtersHRef = React.useRef(0);
@@ -851,23 +923,42 @@ function LineupScreen({
     var el = null,
       lastY = 0,
       lockUntil = 0,
-      lastH = 0;
+      lastH = 0,
+      lastInput = -1e9;
+    var onInput = () => {
+      lastInput = performance.now();
+    };
+    var onKey = e => {
+      if (/^(Arrow(Up|Down)|Page(Up|Down)|Home|End| )$/.test(e.key)) onInput();
+    };
     var attach = () => {
       var next = document.querySelector(viewMode === "grid" ? "[data-grid-scroll]" : "[data-lineup-scroll]");
       if (next === el) return;
-      if (el) el.removeEventListener("scroll", onScroll);
+      if (el) {
+        el.removeEventListener("scroll", onScroll);
+        el.removeEventListener("wheel", onInput);
+        el.removeEventListener("touchmove", onInput);
+      }
       el = next;
       lastY = el ? el.scrollTop : 0;
       lastH = el ? el.clientHeight : 0;
-      if (el) el.addEventListener("scroll", onScroll, {
-        passive: true
-      });
+      if (el) {
+        el.addEventListener("scroll", onScroll, {
+          passive: true
+        });
+        el.addEventListener("wheel", onInput, {
+          passive: true
+        });
+        el.addEventListener("touchmove", onInput, {
+          passive: true
+        });
+      }
     };
     function onScroll() {
       if (!el) return;
       var y = el.scrollTop;
       var t = performance.now();
-      if (t < lockUntil || el.clientHeight !== lastH) {
+      if (t < lockUntil || t < tapLockRef.current || openHoldRef.current || t - lastInput > 1500 || el.clientHeight !== lastH) {
         lastY = y;
         lastH = el.clientHeight;
         return;
@@ -884,14 +975,87 @@ function LineupScreen({
       lastY = y;
     }
     attach();
+    window.addEventListener("keydown", onKey, true);
     var t = setTimeout(attach, 120);
     return () => {
       clearTimeout(t);
-      if (el) el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKey, true);
+      if (el) {
+        el.removeEventListener("scroll", onScroll);
+        el.removeEventListener("wheel", onInput);
+        el.removeEventListener("touchmove", onInput);
+      }
     };
   }, [viewMode, day]);
-  React.useEffect(() => {
+  var fitOpenTail = sc => {
+    var a = sc.querySelector("[data-open-anchor]"),
+      tail = sc.querySelector("[data-open-tail]");
+    if (!a || !tail) return;
+    var top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+    var base = sc.scrollHeight - tail.offsetHeight;
+    var need = Math.max(0, Math.ceil(top + sc.clientHeight - base));
+    if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
+  };
+  React.useLayoutEffect(() => {
+    var tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
+    if (tail) tail.style.height = "0px";
+  }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
+  React.useLayoutEffect(() => {
+    if (viewMode === "list") {
+      var sc = document.querySelector("[data-lineup-scroll]");
+      var anchor = sc && sc.querySelector("[data-open-anchor]");
+      if (anchor) {
+        fitOpenTail(sc);
+        var top = anchor.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+        if (top > 56 && sc.scrollHeight - sc.clientHeight - filtersHRef.current > 80) {
+          openHoldRef.current = true;
+          setCollapsed(true);
+          sc.scrollTop = top;
+          return;
+        }
+      }
+    }
+    openHoldRef.current = false;
     setCollapsed(viewMode === "grid");
+  }, [day, viewMode, weekendFilter]);
+  React.useEffect(() => {
+    if (!openHoldRef.current) return undefined;
+    var sc = document.querySelector("[data-lineup-scroll]");
+    if (!sc) return undefined;
+    var reanchor = () => {
+      if (!openHoldRef.current) return;
+      var a = sc.querySelector("[data-open-anchor]");
+      if (!a) return;
+      fitOpenTail(sc);
+      var top = a.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop;
+      if (Math.abs(sc.scrollTop - top) > 1) sc.scrollTop = top;
+    };
+    var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(reanchor) : null;
+    if (ro) {
+      ro.observe(sc);
+      for (var c of sc.children) {
+        if (c.hasAttribute("data-open-anchor")) break;
+        ro.observe(c);
+      }
+    }
+    var INPUT = ["wheel", "touchstart", "pointerdown", "keydown"];
+    var settle = setTimeout(() => release(), 1500);
+    var stop = () => {
+      clearTimeout(settle);
+      if (ro) ro.disconnect();
+      INPUT.forEach(e => window.removeEventListener(e, release, true));
+    };
+    function release() {
+      openHoldRef.current = false;
+      stop();
+      fitOpenTail(sc);
+    }
+    INPUT.forEach(e => window.addEventListener(e, release, {
+      capture: true,
+      passive: true
+    }));
+    reanchor();
+    return stop;
   }, [day, viewMode, weekendFilter]);
   var gridSectionRefs = React.useRef({});
   var [, _tickT] = React.useReducer(x => x + 1, 0);
@@ -899,7 +1063,6 @@ function LineupScreen({
     var id = setInterval(_tickT, 30000);
     return () => clearInterval(id);
   }, []);
-  var [sortBy, setSortBy] = React.useState("time");
   var activeFilterCount = (tierFilter !== "all" ? 1 : 0) + (stageFilter !== "all" ? 1 : 0) + (genreFilter !== "all" ? 1 : 0) + (filter !== "all" ? 1 : 0) + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
   var _chipFilterActive = tierFilter !== "all" || stageFilter !== "all" || genreFilter !== "all";
@@ -1015,8 +1178,8 @@ function LineupScreen({
           if (!ackedPairs.has(_pairKey(a.id, b.id))) {
             _conflicts.push([a, b]);
           }
-          (_byId[a.id] = _byId[a.id] || []).push(b.name);
-          (_byId[b.id] = _byId[b.id] || []).push(a.name);
+          (_byId[a.id] = _byId[a.id] || []).push(b);
+          (_byId[b.id] = _byId[b.id] || []).push(a);
         }
       }
     }
@@ -1025,7 +1188,8 @@ function LineupScreen({
       conflictById: _byId
     };
   }, [savedToday, ackedPairs]);
-  var gridLead = viewMode === "grid" && !(filter === "saved" && state.saved.length === 0);
+  var liveSavedCount = savedInLineup(state.saved).length;
+  var gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   React.useEffect(() => {
     var g = viewMode === "grid";
     setState(s => !!s.lineupGrid === g ? s : {
@@ -1060,7 +1224,8 @@ function LineupScreen({
   }, [viewMode, day, dayArtists, filter, sortBy]);
   var searchInputRef = React.useRef(null);
   var openSearch = () => {
-    setCollapsed(false);
+    setSearchOpen(true);
+    unfoldByTap();
     if (viewMode === "grid") {
       var g = document.querySelector("[data-grid-scroll]");
       if (g) try {
@@ -1081,13 +1246,26 @@ function LineupScreen({
     var d = dayStats.find(x => x.n === day);
     var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
     var stageName = stageFilter !== "all" ? (STAGES.find(x => x.id === stageFilter) || {}).name : null;
-    var show = [stageName, filter === "saved" ? "Saved" : filter === "now" ? "Now" : null].filter(Boolean).join(" · ") || "All stages";
+    var show = [stageName, filter === "saved" ? "My plan" : filter === "now" ? "Live" : null].filter(Boolean).join(" · ") || "All stages";
     var extra = otherFilterCount - (stageFilter !== "all" ? 1 : 0);
     return [dayText, hasWeekends ? weekendFilter === "W2" ? "Weekend 2" : "Weekend 1" : null, show, extra > 0 ? `+${extra} filter${extra === 1 ? "" : "s"}` : null, q.trim() ? `“${q.trim()}”` : null].filter(Boolean).join(" · ");
   })();
-  var searchRow = React.createElement("div", {
+  var surpriseMe = () => {
+    var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
+    var savedGenres = new Set(savedArtists.map(a => a.genre));
+    var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
+    var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
+    if (!(pool.length ? pool : unsaved).length) return;
+    var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
+    setState({
+      ...state,
+      artist: pick.id
+    });
+  };
+  var searchRow = !(searchOpen || q) ? null : React.createElement("div", {
+    "data-lineup-search": true,
     style: {
-      padding: gridLead ? "12px 12px 0" : "12px 20px 4px"
+      padding: gridLead ? "8px 12px 0" : "4px 20px 4px"
     }
   }, React.createElement("div", {
     style: {
@@ -1101,13 +1279,14 @@ function LineupScreen({
     height: "16",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "var(--text-2)",
+    stroke: "var(--ink-3)",
     strokeWidth: "2",
     strokeLinecap: "round",
     style: {
       position: "absolute",
       left: 14,
-      pointerEvents: "none"
+      pointerEvents: "none",
+      zIndex: 1
     }
   }, React.createElement("circle", {
     cx: "11",
@@ -1121,18 +1300,9 @@ function LineupScreen({
     onChange: e => setQ(e.target.value),
     placeholder: "Search artists, stages, genres…",
     "aria-label": "Search the lineup",
+    className: "duo-input",
     style: {
-      width: "100%",
-      boxSizing: "border-box",
-      height: 44,
-      padding: "0 44px 0 40px",
-      borderRadius: 14,
-      border: "none",
-      background: "var(--paper-2)",
-      color: "var(--ink)",
-      fontSize: 15,
-      outline: "none",
-      fontFamily: "inherit"
+      padding: "0 44px 0 40px"
     }
   }), q && React.createElement("button", {
     onClick: () => setQ(""),
@@ -1153,7 +1323,24 @@ function LineupScreen({
     strokeLinecap: "round"
   }, React.createElement("path", {
     d: "M6 6 L18 18 M18 6 L6 18"
-  })))));
+  })))), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      margin: "0 -8px"
+    }
+  }, React.createElement("button", {
+    onClick: surpriseMe,
+    title: "Discover a random artist that matches your taste",
+    style: textBtn
+  }, "Surprise me"), React.createElement("button", {
+    onClick: () => {
+      setQ("");
+      setSearchOpen(false);
+    },
+    style: textBtn
+  }, "Done")));
   var saveDayCard = savedToday.length === 0 ? (() => {
     var dayTopPicks = lineupFor(weekendFilter).filter(a => a.day === day && a.tier === 3);
     if (dayTopPicks.length === 0) return null;
@@ -1174,62 +1361,52 @@ function LineupScreen({
       }
     }, "Save top picks · ", dayTopPicks.length);
   })() : null;
-  var actionsRow = React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-      padding: gridLead ? "4px 4px 8px 12px" : "4px 12px 4px 20px",
-      gap: 4
-    }
-  }, React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, dayArtists.length, " ", dayArtists.length === 1 ? "set" : "sets"), React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      flexWrap: "wrap"
-    }
-  }, saveDayCard, totalSaved >= 2 && (() => {
+  var myNight = totalSaved >= 2 ? (() => {
     var clash = dayStats.some(d => d.clashes > 0);
     return React.createElement("button", {
       onClick: () => setWizardOpen(true),
       style: {
         ...textBtn,
-        color: clash ? "var(--warn)" : "var(--ink)",
-        fontWeight: 600
+        color: clash ? "var(--clash)" : "var(--acc-ink)",
+        fontWeight: 650
       }
-    }, clash ? "⚠ My night" : "My night");
-  })(), state.saved.length > 0 && React.createElement(ShareLineupButton, {
+    }, clash && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        display: "inline-block",
+        width: 7,
+        height: 7,
+        borderRadius: 4,
+        background: "var(--clash)",
+        marginRight: 6,
+        verticalAlign: "1px"
+      }
+    }), "My night");
+  })() : null;
+  var planActions = filter === "saved" ? React.createElement(React.Fragment, null, liveSavedCount > 0 && React.createElement(ShareLineupButton, {
     state: state
-  }), state.saved.length > 0 && React.createElement("button", {
+  }), liveSavedCount > 0 && React.createElement("button", {
     onClick: () => {
       window.plurskyHaptic?.("LIGHT");
-      exportSavedSetsICS(state.saved);
+      exportSavedSetsICS(savedInLineup(state.saved));
     },
     style: textBtn
-  }, "Calendar"), React.createElement("button", {
-    onClick: () => {
-      var savedArtists = ARTISTS.filter(a => state.saved.includes(a.id));
-      var savedGenres = new Set(savedArtists.map(a => a.genre));
-      var unsaved = ARTISTS.filter(a => !state.saved.includes(a.id));
-      var pool = savedGenres.size ? unsaved.filter(a => savedGenres.has(a.genre)) : unsaved;
-      if (!(pool.length ? pool : unsaved).length) return;
-      var pick = (pool.length ? pool : unsaved)[Math.floor(Math.random() * (pool.length || unsaved.length))];
-      setState({
-        ...state,
-        artist: pick.id
-      });
-    },
-    title: "Discover a random artist that matches your taste",
+  }, "Calendar"), hasFeed && React.createElement("button", {
+    "data-sched-check": true,
+    onClick: () => setSyncOpen(true),
+    "aria-label": "Check for schedule changes",
     style: textBtn
-  }, "Surprise me")));
+  }, "Updates")) : null;
+  var actionsRow = saveDayCard || myNight || planActions ? React.createElement("div", {
+    "data-lineup-actions": true,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      flexWrap: "wrap",
+      padding: gridLead ? "4px 4px 8px 4px" : "0 12px 4px 12px",
+      gap: 4
+    }
+  }, saveDayCard, myNight, planActions) : null;
   var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
@@ -1281,7 +1458,18 @@ function LineupScreen({
         fontSize: 15,
         lineHeight: "21px"
       }
-    }, stage.vibeNote));
+    }, stage.vibeNote), React.createElement("button", {
+      onClick: () => setState({
+        ...state,
+        tab: "map",
+        focusStage: stage.id
+      }),
+      style: {
+        ...textBtn,
+        margin: "4px 0 -8px -8px",
+        color: "var(--acc-ink)"
+      }
+    }, "Show on map"));
   })() : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
@@ -1303,7 +1491,7 @@ function LineupScreen({
   }, React.createElement("div", {
     "data-lineup-header": true,
     style: {
-      padding: "4px 8px 4px 20px",
+      padding: "8px 8px 4px 20px",
       display: "flex",
       alignItems: "center",
       gap: 4
@@ -1331,32 +1519,20 @@ function LineupScreen({
       flex: 1,
       minWidth: 0
     }
-  }, React.createElement("div", {
+  }, React.createElement("h1", {
+    className: "duo-title",
     style: {
-      ..._fieldEyebrow,
-      color: "var(--text-2)"
+      margin: 0
     }
-  }, FESTIVAL_CONFIG.brand, " · ", FESTIVAL_CONFIG.dates), React.createElement("h1", {
+  }, "Lineup")), React.createElement("button", {
+    "data-lineup-search-toggle": true,
+    onClick: () => searchOpen || q ? (setQ(""), setSearchOpen(false)) : openSearch(),
+    "aria-label": "Search",
+    "aria-expanded": !!(searchOpen || q),
     style: {
-      margin: "2px 0 0",
-      fontSize: 28,
-      lineHeight: "34px",
-      fontWeight: 700,
-      letterSpacing: "-0.01em"
-    }
-  }, "Lineup")), hasFeed && React.createElement("button", {
-    "data-sched-check": true,
-    onClick: () => setSyncOpen(true),
-    "aria-label": "Check for schedule changes",
-    style: textBtn
-  }, "Updates"), React.createElement("button", {
-    onClick: () => setViewMode(viewMode === "grid" ? "list" : "grid"),
-    "aria-label": viewMode === "grid" ? "Show as list" : "Show as stage grid",
-    hidden: _schedTBA || undefined,
-    style: _schedTBA ? {
       ...fieldIconBtn,
-      display: "none"
-    } : fieldIconBtn
+      color: "var(--ink-2)"
+    }
   }, React.createElement("svg", {
     width: "20",
     height: "20",
@@ -1364,20 +1540,22 @@ function LineupScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.8",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }, viewMode === "grid" ? React.createElement("path", {
-    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
-  }) : React.createElement("path", {
-    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+    strokeLinecap: "round"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "7"
+  }), React.createElement("path", {
+    d: "M21 21 L16.65 16.65"
   }))), React.createElement("button", {
-    onClick: () => setState({
-      ...state,
-      tab: "map",
-      focusStage: stageFilter !== "all" ? stageFilter : undefined
-    }),
-    "aria-label": "Open map",
-    style: fieldIconBtn
+    "data-lineup-filters-open": true,
+    onClick: () => setFilterSheetOpen(true),
+    "aria-label": `Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`,
+    style: {
+      ...fieldIconBtn,
+      position: "relative",
+      color: otherFilterCount ? "var(--acc-ink)" : "var(--ink-2)"
+    }
   }, React.createElement("svg", {
     width: "20",
     height: "20",
@@ -1385,18 +1563,42 @@ function LineupScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "1.8",
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
+    strokeLinecap: "round"
   }, React.createElement("path", {
-    d: "M9 4 L3 6 V20 L9 18 L15 20 L21 18 V4 L15 6 Z M9 4 V18 M15 6 V20"
-  })))), React.createElement("div", {
+    d: "M4 7 H13 M17 7 H20 M4 17 H7 M11 17 H20"
+  }), React.createElement("circle", {
+    cx: "15",
+    cy: "7",
+    r: "2"
+  }), React.createElement("circle", {
+    cx: "9",
+    cy: "17",
+    r: "2"
+  })), otherFilterCount > 0 && React.createElement("b", {
+    "aria-hidden": "true",
+    className: "duo-data-s",
+    style: {
+      position: "absolute",
+      top: 6,
+      right: 4,
+      minWidth: 16,
+      height: 16,
+      borderRadius: 8,
+      background: "var(--acc)",
+      color: "var(--on-acc)",
+      fontSize: 11,
+      lineHeight: "16px",
+      textAlign: "center"
+    }
+  }, otherFilterCount))), React.createElement("div", {
     role: "tablist",
     "aria-label": "Festival day",
     style: {
       display: "flex",
-      gap: 8,
+      gap: 22,
       flexShrink: 0,
-      padding: "4px 20px 12px"
+      flexWrap: "wrap",
+      padding: "6px 20px 8px"
     }
   }, dayStats.map(d => {
     var on = d.n === day;
@@ -1404,6 +1606,7 @@ function LineupScreen({
       key: d.n,
       role: "tab",
       "aria-selected": on,
+      className: "duo-tab",
       "aria-label": `${d.label} ${d.date}${d.count ? `, ${d.count} saved` : ""}${d.clashes ? `, ${d.clashes} clash${d.clashes === 1 ? "" : "es"}` : ""}`,
       onClick: () => {
         setDay(d.n);
@@ -1411,55 +1614,31 @@ function LineupScreen({
           ...s,
           lineupDay: d.n
         }));
-      },
-      style: {
-        flex: 1,
-        minWidth: 0,
-        minHeight: 64,
-        padding: "6px 2px",
-        borderRadius: 14,
-        background: on ? "var(--paper-3)" : "transparent",
-        border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-        color: "var(--ink)",
-        cursor: "pointer",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 1
       }
     }, React.createElement("span", {
+      className: "duo-label",
       style: {
-        fontSize: 11,
-        lineHeight: "14px",
-        fontWeight: 600,
-        letterSpacing: "0.04em",
-        color: on ? "var(--ink)" : "var(--text-2)"
+        fontSize: 12
       }
     }, d.label), React.createElement("span", {
+      className: "duo-data-s",
       style: {
-        fontSize: 20,
-        lineHeight: "25px",
-        fontWeight: 600,
-        fontVariantNumeric: "tabular-nums"
+        color: on ? "var(--ink-2)" : "var(--ink-3)"
       }
     }, d.date.split(" ")[1]), d.count > 0 && React.createElement("span", {
       "aria-hidden": "true",
+      className: "duo-data-s",
       style: {
-        fontSize: 12,
-        lineHeight: "16px",
-        color: d.clashes ? "var(--warn)" : "var(--text-2)",
-        whiteSpace: "nowrap",
-        fontVariantNumeric: "tabular-nums"
+        color: d.clashes ? "var(--clash)" : "var(--acc-ink)",
+        whiteSpace: "nowrap"
       }
-    }, d.clashes ? `${d.count} · ⚠` : `${d.count} saved`));
+    }, d.count));
   })), hasWeekends && React.createElement("div", {
     role: "tablist",
     "aria-label": "Weekend",
+    className: "duo-seg",
     style: {
-      display: "flex",
-      gap: 8,
-      padding: "0 20px 12px"
+      margin: "0 20px 8px"
     }
   }, [{
     value: "W1",
@@ -1473,113 +1652,95 @@ function LineupScreen({
       key: w.value,
       role: "tab",
       "aria-selected": on,
-      onClick: () => setWeekendFilter(w.value),
-      style: {
-        flex: 1,
-        minHeight: 44,
-        borderRadius: 14,
-        cursor: "pointer",
-        background: on ? "var(--paper-3)" : "transparent",
-        border: on ? "1.5px solid var(--signal)" : "1px solid var(--line)",
-        color: on ? "var(--ink)" : "var(--text-2)",
-        fontSize: 15,
-        lineHeight: "20px",
-        fontWeight: 600
-      }
+      "aria-pressed": on,
+      onClick: () => setWeekendFilter(w.value)
     }, w.label);
-  })), React.createElement("div", {
+  })), !_schedTBA && React.createElement(LineupOverview, {
+    sets: lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")),
+    savedSet: savedSetIds,
+    liveNight: NOW.night === day,
+    stageFilter: viewMode === "list" ? stageFilter : "all",
+    onStage: id => {
+      if (viewMode === "grid") {
+        window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
+          detail: id
+        }));
+        return;
+      }
+      setStageFilter(stageFilter === id ? "all" : id);
+    }
+  }), React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
       gap: 8,
-      padding: "0 20px 12px",
-      borderBottom: "1px solid var(--line)"
+      padding: "0 20px 6px",
+      borderBottom: "1px solid var(--line)",
+      flexWrap: "wrap",
+      rowGap: 0
     }
-  }, React.createElement("div", {
+  }, !_schedTBA && React.createElement("div", {
     role: "radiogroup",
-    "aria-label": "Show",
+    "aria-label": "View",
     style: {
-      flex: 1,
-      minWidth: 0,
       display: "flex",
-      background: "var(--paper-2)",
-      borderRadius: 14
+      gap: 8
     }
   }, [{
-    id: "all",
-    label: "All stages"
+    id: "list",
+    label: "List"
   }, {
+    id: "grid",
+    label: "Grid"
+  }].map(o => React.createElement("button", {
+    key: o.id,
+    role: "radio",
+    "aria-checked": viewMode === o.id,
+    "aria-label": o.label,
+    className: "duo-chip duo-viewchip",
+    onClick: () => setViewMode(o.id)
+  }, React.createElement("span", null, React.createElement("span", {
+    className: "lbl"
+  }, o.label), React.createElement("svg", {
+    className: "ic",
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, o.id === "list" ? React.createElement("path", {
+    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
+  }) : React.createElement("path", {
+    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+  })))))), [{
     id: "saved",
-    label: "Saved"
+    label: "My plan",
+    n: dayStats.find(x => x.n === day)?.count
   }, {
     id: "now",
-    label: "Now"
+    label: "Live",
+    n: NOW.night === day ? (NOW.liveIds || []).length : 0
   }].map(o => {
-    var on = o.id === "all" ? filter === "all" && stageFilter === "all" : filter === o.id;
+    var on = filter === o.id;
     return React.createElement("button", {
       key: o.id,
-      role: "radio",
-      "aria-checked": on,
-      onClick: () => {
-        setFilter(o.id);
-        if (o.id === "all") setStageFilter("all");
-      },
-      style: {
-        flex: o.id === "all" ? 1.4 : 1,
-        minWidth: 0,
-        minHeight: 44,
-        borderRadius: 14,
-        border: "none",
-        cursor: "pointer",
-        background: on ? "var(--paper-3)" : "transparent",
-        boxShadow: on ? "inset 0 0 0 1.5px var(--signal)" : "none",
-        color: on ? "var(--ink)" : "var(--text-2)",
-        fontSize: 15,
-        lineHeight: "20px",
-        fontWeight: 600,
-        whiteSpace: "nowrap",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 6
-      }
-    }, o.id === "now" && React.createElement("span", {
+      "aria-pressed": on,
+      className: "duo-chip",
+      "data-lineup-show": o.id,
+      onClick: () => setFilter(on ? "all" : o.id)
+    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
       "aria-hidden": "true",
       style: {
         width: 7,
         height: 7,
         borderRadius: 4,
-        background: NOW.night === day ? "var(--signal)" : "var(--text-3)"
+        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
       }
-    }), o.label);
-  })), React.createElement("button", {
-    onClick: () => setFilterSheetOpen(true),
-    "aria-label": `Filters${otherFilterCount ? `, ${otherFilterCount} on` : ""}`,
-    style: {
-      ...fieldIconBtn,
-      width: "auto",
-      minWidth: 44,
-      padding: "0 12px",
-      gap: 6,
-      background: "var(--paper-2)",
-      fontSize: 15,
-      fontWeight: 600
-    }
-  }, React.createElement("svg", {
-    width: "18",
-    height: "18",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "1.8",
-    strokeLinecap: "round"
-  }, React.createElement("path", {
-    d: "M4 7 H20 M7 12 H17 M10 17 H14"
-  })), otherFilterCount > 0 && React.createElement("span", {
-    style: {
-      fontVariantNumeric: "tabular-nums"
-    }
-  }, otherFilterCount))), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
+  })), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
     "data-lineup-compact": true,
     "data-collapsed": collapsed ? "1" : "0",
     inert: collapsed ? undefined : "",
@@ -1603,7 +1764,7 @@ function LineupScreen({
     }
   }, React.createElement("button", {
     "data-lineup-expand": true,
-    onClick: () => setCollapsed(false),
+    onClick: unfoldByTap,
     "aria-label": `Show days and filters. Showing ${compactSummary}`,
     style: {
       flex: 1,
@@ -1670,31 +1831,42 @@ function LineupScreen({
     d: "M21 21 L16.65 16.65"
   }))))), !online && React.createElement("div", {
     role: "status",
+    className: "duo-card duo-body-s",
     style: {
-      padding: "8px 20px",
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      borderBottom: "1px solid var(--line)"
+      margin: "8px 16px 0",
+      padding: "10px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      color: "var(--ink-2)",
+      fontWeight: 400
     }
-  }, "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
-    role: "status",
+  }, React.createElement("i", {
+    "aria-hidden": "true",
     style: {
-      padding: "10px 20px",
-      borderBottom: "1px solid var(--line)"
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: "var(--ink-3)",
+      flexShrink: 0
+    }
+  }), "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
+    role: "status",
+    className: "duo-card",
+    style: {
+      margin: "8px 16px 0",
+      padding: "12px 16px"
     }
   }, React.createElement("div", {
+    className: "duo-headline",
     style: {
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 600
+      fontSize: 15
     }
   }, "Set times pending from the festival"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
     style: {
       marginTop: 2,
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
+      fontWeight: 400
     }
   }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
     state: state,
@@ -1702,7 +1874,7 @@ function LineupScreen({
     onClose: () => setWizardOpen(false)
   }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
     "data-lineup-scroll": true,
-    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`),
+    ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
     style: viewMode === "grid" ? {
       overflowY: "hidden",
       display: "flex",
@@ -1764,8 +1936,8 @@ function LineupScreen({
       action: "Show all sets",
       onAction: () => setFilter("all")
     } : {
-      title: state.saved.length === 0 ? "No sets saved yet" : "Nothing saved for this day",
-      sub: state.saved.length === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
+      title: liveSavedCount === 0 ? "No sets saved yet" : "Nothing saved for this day",
+      sub: liveSavedCount === 0 ? "Tap the save button on any set to add it." : "Switch to All stages to browse.",
       action: filter !== "all" ? "Show all sets" : null,
       onAction: () => setFilter("all")
     };
@@ -1774,17 +1946,12 @@ function LineupScreen({
         padding: "40px 0"
       }
     }, React.createElement("div", {
-      style: {
-        fontSize: 17,
-        lineHeight: "22px",
-        fontWeight: 600
-      }
+      className: "duo-headline"
     }, empty.title), React.createElement("div", {
+      className: "duo-body duo-ink2",
       style: {
         marginTop: 4,
-        fontSize: 15,
-        lineHeight: "21px",
-        color: "var(--text-2)"
+        fontSize: 15
       }
     }, empty.sub), empty.action && React.createElement(FieldButton, {
       kind: "secondary",
@@ -1793,22 +1960,17 @@ function LineupScreen({
         marginTop: 16
       }
     }, empty.action));
-  })(), viewMode === "grid" && filter === "saved" && state.saved.length === 0 && React.createElement("div", {
+  })(), viewMode === "grid" && filter === "saved" && liveSavedCount === 0 && React.createElement("div", {
     style: {
       padding: "40px 20px"
     }
   }, React.createElement("div", {
-    style: {
-      fontSize: 17,
-      lineHeight: "22px",
-      fontWeight: 600
-    }
+    className: "duo-headline"
   }, "No sets saved yet"), React.createElement("div", {
+    className: "duo-body duo-ink2",
     style: {
       marginTop: 4,
-      fontSize: 15,
-      lineHeight: "21px",
-      color: "var(--text-2)"
+      fontSize: 15
     }
   }, "Switch to All stages and tap any set to save it."), React.createElement(FieldButton, {
     kind: "secondary",
@@ -1818,41 +1980,37 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
-    var rows = dayArtists.map(a => {
+    var renderRow = (a, pinned) => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
-      var dotColor = filter === "all" ? "var(--text-3)" : stage.color || "var(--text-3)";
+      var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
+      var dotColor = filter === "all" ? "var(--ink-3)" : stage.color || "var(--ink-3)";
       return React.createElement("div", {
-        key: a.id,
+        key: pinned ? `pin-${a.id}` : a.id,
         "data-animate": true,
-        "data-lineup-highlight": isHighlighted ? "true" : undefined,
+        "data-now-on-plan": pinned ? a.id : undefined,
+        "data-lineup-highlight": isHighlighted && !pinned ? "true" : undefined,
+        className: `duo-lrow${isLive ? " live" : saved ? " plan" : ""}`,
         style: {
-          display: "flex",
-          alignItems: "center",
-          gap: 12,
-          minHeight: 56,
-          padding: "6px 8px",
-          margin: "0 -8px",
-          borderBottom: "1px solid var(--line)",
-          borderRadius: isHighlighted ? 14 : 0,
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
       }, React.createElement("div", {
         "data-set-time": true,
+        className: `duo-data${saved || isLive ? "" : " duo-ink2"}`,
         style: {
-          width: 76,
+          width: 72,
           flexShrink: 0,
-          fontVariantNumeric: "tabular-nums",
           whiteSpace: "nowrap",
-          fontSize: 15,
-          lineHeight: "20px",
-          fontWeight: 600,
-          color: isLive && filter !== "now" ? "var(--signal-ink)" : "var(--ink)"
+          fontSize: 13
         }
-      }, fmt12(a.start)), React.createElement("button", {
+      }, fmt12(a.start)), React.createElement(DuoAvatar, {
+        name: a.name,
+        size: 42,
+        ring: ring
+      }), React.createElement("button", {
         onClick: () => setState({
           ...state,
           artist: a.id
@@ -1874,21 +2032,20 @@ function LineupScreen({
         }
       }, React.createElement("span", {
         "data-set-name": true,
+        "data-fit-name": true,
+        "data-fit-min": "14",
+        className: "duo-headline",
         style: {
-          fontSize: 17,
-          lineHeight: "22px",
           fontWeight: 700,
           color: "var(--ink)",
           whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
+          overflowWrap: "break-word"
         }
-      }, a.name), React.createElement("span", {
+      }, actDisplayName(a.name)), React.createElement("span", {
         "data-set-meta": true,
         style: {
-          fontSize: 13,
-          lineHeight: "18px",
-          color: "var(--text-2)",
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis"
@@ -1900,42 +2057,50 @@ function LineupScreen({
           width: 7,
           height: 7,
           borderRadius: 4,
-          background: isLive && filter === "all" ? "var(--signal)" : dotColor,
+          background: isLive && filter === "all" ? "var(--live)" : dotColor,
           marginRight: 6,
           verticalAlign: "1px"
         }
       }), isLive && filter !== "now" && React.createElement("span", {
         style: {
-          color: "var(--signal-ink)",
+          color: "var(--live)",
           fontWeight: 600
         }
       }, "Live · "), clashWith && React.createElement("span", {
         style: {
-          color: "var(--warn)",
+          color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name))), React.createElement("button", {
-        onClick: () => toggleSave(state, setState, a.id),
-        "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
-        "aria-pressed": saved,
+      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
+        key: o.id,
+        "data-clash-with": o.id,
         style: {
-          ...fieldIconBtn,
-          alignSelf: "center",
-          color: saved ? "var(--signal-ink)" : "var(--text-2)"
+          font: "600 13px/1.385 var(--f-ui)",
+          color: "var(--clash)"
         }
+      }, "vs ", actDisplayName(o.name), " · ", fmt12(o.start), " · ", (STAGES.find(s => s.id === o.stage) || UNPLACED_STAGE).name))), React.createElement("button", {
+        onClick: () => toggleSave(state, setState, a.id),
+        className: "duo-add",
+        "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`,
+        "aria-pressed": saved
+      }, React.createElement("span", {
+        "aria-hidden": "true"
       }, React.createElement("svg", {
-        width: "22",
-        height: "22",
+        width: "16",
+        height: "16",
         viewBox: "0 0 24 24",
-        fill: saved ? "currentColor" : "none",
+        fill: "none",
         stroke: "currentColor",
-        strokeWidth: "1.8",
+        strokeWidth: "2.4",
         strokeLinecap: "round",
         strokeLinejoin: "round"
-      }, React.createElement("path", {
-        d: "M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
-      }))));
-    });
+      }, saved ? React.createElement("path", {
+        d: "M5 12.5 L10 17.5 L19 7"
+      }) : React.createElement("path", {
+        d: "M12 5 V19 M5 12 H19"
+      })))));
+    };
+    var rows = dayArtists.map(a => renderRow(a));
     if (nowMin != null && dayArtists.length) {
       var i = dayArtists.findIndex(a => toNightMin(a.start) > nowMin);
       rows.splice(i === -1 ? rows.length : i, 0, React.createElement("div", {
@@ -1945,31 +2110,53 @@ function LineupScreen({
           display: "flex",
           alignItems: "center",
           gap: 8,
-          padding: "10px 0"
+          padding: "12px 0 8px"
         }
       }, React.createElement("span", {
-        "aria-hidden": "true",
+        className: "duo-sect",
         style: {
-          width: 8,
-          height: 8,
-          borderRadius: 4,
-          background: "var(--signal)",
-          flexShrink: 0
+          color: "var(--acc-ink)"
         }
-      }), React.createElement("span", {
-        style: {
-          ..._fieldEyebrow,
-          color: "var(--signal-ink)",
-          fontVariantNumeric: "tabular-nums"
-        }
-      }, "Now · ", fmt12(NOW.time)), React.createElement("span", {
+      }, "Now"), React.createElement("span", {
+        className: "duo-data-s duo-acc"
+      }, fmt12(NOW.time)), React.createElement("span", {
         "aria-hidden": "true",
         style: {
           flex: 1,
-          height: 1,
-          background: "var(--signal)"
+          height: 1.5,
+          background: "var(--acc)",
+          boxShadow: "0 0 10px var(--acc-55)"
         }
       })));
+    }
+    if (nowMin != null) {
+      var hour = Math.floor(nowMin / 60) * 60;
+      var at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
+      var nowMine = filter === "all" ? dayArtists.filter(a => savedSetIds.has(a.id) && isSetLive(a)) : [];
+      if (at !== -1) rows.splice(at, 0, React.createElement("div", {
+        key: "__open",
+        "data-open-anchor": true,
+        "aria-hidden": "true",
+        style: {
+          height: 0
+        }
+      }), ...(nowMine.length ? [React.createElement("div", {
+        key: "__nowmine",
+        "data-now-on-plan-card": true,
+        style: {
+          padding: "8px 0 12px"
+        }
+      }, React.createElement("div", {
+        className: "duo-sect",
+        style: {
+          padding: "4px 0 8px"
+        }
+      }, "Now on your plan"), nowMine.map(a => renderRow(a, true)))] : []));
+      if (at !== -1) rows.push(React.createElement("div", {
+        key: "__tail",
+        "data-open-tail": true,
+        "aria-hidden": "true"
+      }));
     }
     return rows;
   })()), NOW.night === day && NOW.time && (viewMode === "grid" || nowOff && filter !== "now" && sortBy === "time") && React.createElement("button", {
@@ -2029,7 +2216,7 @@ function LineupScreen({
   }), "Now"), filterSheetOpen && React.createElement(LineupFilterSheet, {
     day: day,
     dayGenres: dayGenres,
-    savedIds: state.saved || [],
+    savedIds: savedInLineup(state.saved),
     weekendFilter: weekendFilter,
     initial: {
       filter,
@@ -2385,6 +2572,7 @@ function ScheduleReviewSheet({
   }, actions)))), document.body);
 }
 function toNightMin(hhmm) {
+  if (typeof hhmm !== "string") return NaN;
   var [h, m] = hhmm.split(":").map(Number);
   return (h < 8 ? h + 24 : h) * 60 + m;
 }
@@ -2609,6 +2797,52 @@ function SavedSidebar({
     }, "×"));
   })));
 }
+function fitGridBlocks(root) {
+  if (!root) return;
+  var cols = new Map();
+  var _loop3 = function (b) {
+      var name = b.querySelector("[data-grid-name]"),
+        time = b.querySelector("[data-grid-time]");
+      if (!name) return 0;
+      b.style.top = b.dataset.top + "px";
+      b.style.height = b.dataset.h + "px";
+      b.style.zIndex = b.dataset.z;
+      delete b.dataset.gridGrown;
+      var byLeft = cols.get(b.parentElement);
+      if (!byLeft) cols.set(b.parentElement, byLeft = new Map());
+      if (!byLeft.has(b.dataset.left)) byLeft.set(b.dataset.left, []);
+      byLeft.get(b.dataset.left).push(b);
+      if (time) time.style.display = "";
+      if (!name.dataset.base) name.dataset.base = String(parseFloat(getComputedStyle(name).fontSize));
+      var base = parseFloat(name.dataset.base);
+      name.style.fontSize = base + "px";
+      var over = () => b.scrollHeight > b.clientHeight + 1;
+      if (!over()) return 0;
+      if (time) time.style.display = "none";
+      for (var s = base; over() && s > 9;) {
+        s = Math.max(9, s - 0.5);
+        name.style.fontSize = s + "px";
+      }
+      if (over()) {
+        b.style.height = b.scrollHeight + "px";
+        b.dataset.gridGrown = "1";
+      }
+    },
+    _ret;
+  for (var b of root.querySelectorAll("[data-grid-block]")) {
+    _ret = _loop3(b);
+    if (_ret === 0) continue;
+  }
+  for (var col of [...cols.values()].flatMap(m => [...m.values()])) {
+    col.sort((a, b) => a.dataset.top - b.dataset.top);
+    for (var i = 1; i < col.length; i++) {
+      var prev = col[i - 1],
+        floor = parseFloat(prev.style.top) + parseFloat(prev.style.height) + 2;
+      var moved = prev.dataset.gridGrown || parseFloat(prev.style.top) !== parseFloat(prev.dataset.top);
+      if (moved && parseFloat(col[i].style.top) < floor) col[i].style.top = floor + "px";
+    }
+  }
+}
 function GridSetBlock({
   a,
   stage,
@@ -2629,10 +2863,8 @@ function GridSetBlock({
   narrow = false
 }) {
   var isHeadliner = a.tier === 3;
-  var _lineH = narrow ? 10.2 : isHeadliner ? 13.8 : 12.7;
-  var _chrome = narrow ? 8 : 20;
-  var nameLines = Math.max(1, Math.min(4, Math.floor((height - _chrome) / _lineH)));
   var _saved = (state.saved || []).includes(a.id);
+  var _live = typeof isSetLive === "function" && isSetLive(a);
   var _store = refStore;
   var _resetHold = e => {
     var el = e.currentTarget,
@@ -2648,6 +2880,11 @@ function GridSetBlock({
     }
   };
   return React.createElement("div", {
+    "data-grid-block": true,
+    "data-top": top,
+    "data-left": left,
+    "data-h": height,
+    "data-z": isHighlighted ? 6 : dueMins != null ? 5 : "",
     "data-lineup-highlight": isHighlighted ? "true" : undefined,
     onClick: () => {
       if (_store.fired) {
@@ -2694,80 +2931,71 @@ function GridSetBlock({
       left,
       width,
       height,
-      background: isHeadliner ? "var(--paper-3)" : "var(--paper-2)",
-      borderLeft: `3px solid ${_saved ? "var(--signal)" : "var(--line-2)"}`,
-      borderRadius: 6,
-      padding: narrow ? "3px 3px 3px 4px" : "4px 6px 4px 7px",
+      background: _saved ? "var(--acc-wash)" : "var(--s2)",
+      borderRadius: narrow ? 8 : 10,
+      padding: narrow ? "3px 4px" : "5px 6px 5px 7px",
       cursor: "pointer",
       overflow: "hidden",
       opacity: active || isHighlighted ? 1 : 0.32,
-      transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease, transform 0.12s ease",
-      boxShadow: dueMins != null ? "0 0 0 2px var(--signal)" : clash && active ? "inset 0 0 0 1.5px var(--ember)" : "none",
+      transition: "opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease",
+      boxShadow: dueMins != null ? "var(--glow)" : _saved ? `inset 0 0 0 1.5px ${clash && active ? "var(--clash)" : "var(--acc)"}` : "inset 0 0 0 1px var(--line)",
+      "--ring-bg": _saved ? "var(--acc-wash)" : "var(--s2)",
       zIndex: isHighlighted ? 6 : dueMins != null ? 5 : undefined,
       animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined,
       display: "flex",
       flexDirection: "column"
     }
-  }, React.createElement("div", {
+  }, !narrow && React.createElement("div", {
+    "data-grid-time": true,
+    className: "duo-gb-head"
+  }, height > 40 && React.createElement(DuoAvatar, {
+    name: a.name,
+    size: 22,
+    ring: _saved ? clash && active ? "cl" : "on" : ""
+  }), React.createElement("span", {
+    className: "duo-data-s",
+    style: {
+      fontSize: 11,
+      whiteSpace: "nowrap",
+      marginLeft: "auto",
+      color: clash && active ? "var(--clash)" : _live ? "var(--live)" : "var(--ink-3)"
+    }
+  }, clash && active ? "CLASH" : _live ? "LIVE" : fmt12(a.start))), React.createElement("div", {
+    "data-grid-name": true,
     style: {
       fontSize: narrow ? 9.5 : isHeadliner ? 12.5 : 11.5,
-      fontWeight: isHeadliner ? 800 : 700,
-      lineHeight: narrow ? 1.05 : 1.1,
-      color: "var(--ink)",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      display: "-webkit-box",
-      WebkitLineClamp: nameLines,
-      WebkitBoxOrient: "vertical",
+      fontWeight: _saved ? 700 : isHeadliner ? 650 : 550,
+      lineHeight: narrow ? 1.05 : 1.15,
+      color: _saved ? "var(--ink)" : "var(--ink-2)",
+      hyphens: "auto",
+      WebkitHyphens: "auto",
       overflowWrap: "break-word",
-      paddingRight: saved ? clash ? narrow ? 19 : 23 : narrow ? 9 : 12 : 0,
-      fontFamily: isHeadliner ? "Instrument Serif, Georgia, serif" : "Geist, -apple-system, sans-serif"
+      fontFamily: "var(--f-ui)"
     }
-  }, a.name), !narrow && React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 8,
-      letterSpacing: 0.3,
-      color: "var(--muted)",
-      marginTop: 2,
-      whiteSpace: "nowrap"
-    }
-  }, fmt12(a.start), showEndTime && height > 38 ? ` – ${fmt12(a.end)}` : ""), dueMins != null && height > 46 && React.createElement("div", {
-    className: "mono",
+  }, actDisplayName(a.name)), dueMins != null && height > 46 && React.createElement("div", {
+    className: "duo-data-s",
     style: {
       marginTop: "auto",
-      fontSize: 8,
-      letterSpacing: 1,
-      fontWeight: 800,
-      color: "var(--ember-ink)",
-      whiteSpace: "nowrap"
+      fontSize: 11,
+      color: "var(--acc-ink)"
     }
-  }, "YOU'RE DUE HERE · ", dueMins, " MIN"), saved && React.createElement("span", {
-    style: {
-      position: "absolute",
-      top: 3,
-      right: 5,
-      fontSize: 10,
-      color: "var(--ember-ink)",
-      fontWeight: 800,
-      lineHeight: 1
-    }
-  }, "★"), clash && React.createElement("span", {
+  }, "DUE · ", dueMins, " MIN"), clash && narrow && React.createElement("span", {
     title: "Overlaps another saved set",
     "aria-label": "clash",
     style: {
       position: "absolute",
-      top: 2.5,
-      right: narrow ? 13 : 16,
-      fontSize: 9,
-      color: "var(--ember-ink)",
-      fontWeight: 800,
-      lineHeight: 1
+      top: 3,
+      right: 3,
+      width: 6,
+      height: 6,
+      borderRadius: 3,
+      background: "var(--clash)"
     }
-  }, "⚠"), !saved && matched && height > 30 && React.createElement("span", {
+  }), !saved && matched && height > 30 && React.createElement("span", {
+    "aria-hidden": "true",
     style: {
       position: "absolute",
-      top: 4,
+      bottom: 4,
       right: 5,
       fontSize: 9,
       color: "var(--spotify)",
@@ -2824,6 +3052,14 @@ function TimelineGrid({
   var scrollRef = React.useRef(null);
   var leadRef = React.useRef(null);
   var _blockRefs = React.useRef({});
+  React.useLayoutEffect(() => {
+    fitGridBlocks(scrollRef.current);
+  });
+  React.useEffect(() => {
+    var onR = () => fitGridBlocks(scrollRef.current);
+    window.addEventListener("resize", onR);
+    return () => window.removeEventListener("resize", onR);
+  }, []);
   var HOURS = [];
   for (var h = Math.floor(GRID_START_MIN / 60); h <= Math.floor(GRID_END_MIN / 60); h++) {
     var h24 = h % 24;
@@ -2881,6 +3117,13 @@ function TimelineGrid({
       behavior: "smooth"
     });
   };
+  var _toStage = React.useRef(scrollToStage);
+  _toStage.current = scrollToStage;
+  React.useEffect(() => {
+    var on = e => _toStage.current(e.detail);
+    window.addEventListener("plursky:grid-stage", on);
+    return () => window.removeEventListener("plursky:grid-stage", on);
+  }, []);
   var didInit = React.useRef(false);
   React.useLayoutEffect(() => {
     var el = scrollRef.current;
@@ -2947,7 +3190,7 @@ function TimelineGrid({
         position: "sticky",
         left: 0,
         zIndex: 2,
-        background: "var(--paper)",
+        background: "var(--bg)",
         borderRight: "1px solid var(--line)",
         borderBottom: "1px solid var(--line-2)"
       }
@@ -2965,7 +3208,6 @@ function TimelineGrid({
           scrollToStage(s.id);
         },
         title: s.name,
-        className: "mono",
         style: {
           width: COL_W,
           flexShrink: 0,
@@ -2973,34 +3215,30 @@ function TimelineGrid({
           border: "none",
           borderLeft: "1px solid var(--line)",
           borderBottom: "1px solid var(--line-2)",
-          background: "var(--paper)",
-          color: "var(--ink)",
+          background: "var(--bg)",
+          color: n > 0 ? "var(--ink)" : "var(--ink-2)",
           padding: "3px 5px 0",
           cursor: "pointer",
           position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: 4,
-          fontSize: 10,
-          letterSpacing: 1.1,
-          fontWeight: 800,
-          fontFamily: "inherit"
+          gap: 5,
+          font: "600 12px/1.15 var(--f-ui)"
         }
       }, React.createElement("span", {
         style: {
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap"
+          textAlign: "center"
         }
       }, s.short), n > 0 && React.createElement("span", {
+        "aria-label": `${n} on your plan`,
+        className: "duo-data-s",
         style: {
           flexShrink: 0,
-          color: "var(--ember-ink)",
-          fontSize: 8.5,
-          fontWeight: 800
+          fontSize: 11,
+          color: "var(--acc-ink)"
         }
-      }, "★", n));
+      }, n));
     })), React.createElement("div", {
       style: {
         display: "flex",
@@ -3019,32 +3257,39 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
-      className: "mono",
+      className: "duo-data-s duo-ink3",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 6,
+        top: minToTop(h.mins) - 7,
         right: 6,
-        fontSize: 9,
-        letterSpacing: 0.3,
-        color: "var(--muted)",
-        fontWeight: 700
+        fontSize: 11,
+        whiteSpace: "nowrap"
       }
     }, h.label)), nowTop != null && React.createElement("span", {
-      className: "mono",
+      className: "duo-data-s",
       style: {
         position: "absolute",
         left: 2,
-        top: nowTop - 7,
+        top: nowTop - 9,
         zIndex: 6,
-        fontSize: 8,
-        letterSpacing: 0.6,
-        color: "var(--ink)",
-        fontWeight: 800,
-        background: "var(--ember)",
-        padding: "1px 4px",
-        borderRadius: 3
+        fontSize: 11,
+        color: "var(--on-acc)",
+        background: "var(--acc)",
+        padding: "2px 5px",
+        borderRadius: 5
       }
-    }, "NOW")), cols.map(({
+    }, "NOW")), nowTop != null && React.createElement("div", {
+      style: {
+        position: "absolute",
+        left: GUTTER_W,
+        right: 0,
+        top: nowTop,
+        height: 0,
+        borderTop: "1.5px solid var(--acc)",
+        boxShadow: "0 0 10px var(--acc-55)",
+        pointerEvents: "none"
+      }
+    }), cols.map(({
       stage,
       artists: stageArtists
     }, si) => {
@@ -3098,18 +3343,6 @@ function TimelineGrid({
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));
-    }), nowTop != null && React.createElement("div", {
-      style: {
-        position: "absolute",
-        left: GUTTER_W,
-        right: 0,
-        top: nowTop,
-        height: 0,
-        borderTop: "2px solid var(--ember)",
-        boxShadow: "0 0 8px rgba(var(--signal-rgb),0.55)",
-        zIndex: 3,
-        pointerEvents: "none"
-      }
     }))) : React.createElement("div", {
       className: "mono",
       style: {
@@ -3212,7 +3445,7 @@ function ConflictResolver({
         fontWeight: 600,
         overflowWrap: "anywhere"
       }
-    }, art.name), React.createElement("div", {
+    }, actDisplayName(art.name)), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: "18px",
@@ -3497,7 +3730,7 @@ function printLineupPDF(state) {
   };
 }
 async function copyScheduleText(state) {
-  var ids = state.saved;
+  var ids = savedInLineup(state.saved);
   if (!ids.length) return {
     ok: false,
     reason: "empty"
@@ -3542,7 +3775,10 @@ function ShareLineupButton({
     if (busy) return;
     setOpen(false);
     setBusy(true);
-    var r = await fn(state);
+    var r = await fn({
+      ...state,
+      saved: savedInLineup(state.saved)
+    });
     setBusy(false);
     if (r?.ok) {
       setDone(key);
@@ -3812,9 +4048,10 @@ function toggleSave(state, setState, id) {
   }));
   try {
     var label = a?.name ? a.name.toUpperCase() : "SET";
-    var isFirstSave = !has && state.saved.length === 0;
-    var isMilestone = !has && [5, 10, 15, 20].includes(next.length);
-    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${next.length} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${next.length} SETS`;
+    var liveNext = savedInLineup(next).length;
+    var isFirstSave = !has && savedInLineup(state.saved).length === 0;
+    var isMilestone = !has && [5, 10, 15, 20].includes(liveNext);
+    var msg = has ? `REMOVED · ${label}` : isFirstSave ? `✦ FIRST SET SAVED · ${label} · LET'S GO` : isMilestone ? `✦ ${liveNext} SETS · ${label} · LINEUP GROWING` : hasConflict ? `SAVED · ${label} · ⚠ CLASH` : `SAVED · ${liveNext} SETS`;
     var undo = () => {
       if (has) {
         try {
@@ -3890,7 +4127,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop3 = async function (a) {
+  var _loop4 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -3930,7 +4167,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop3(a)) break;
+    if (await _loop4(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

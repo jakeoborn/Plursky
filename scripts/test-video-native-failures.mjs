@@ -20,9 +20,9 @@ try {
  const ctx=await browser.newContext({timezoneId:'America/Los_Angeles',viewport:{width:393,height:852}});
  await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
  const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(`http://127.0.0.1:${port}/?tab=me`);
+ await page.goto(`http://127.0.0.1:${port}/?tab=memories`);
  await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
- await page.locator('button').filter({hasText:/MEMORIES/}).first().click();
+
  await page.locator('input[type=file][multiple]').first().waitFor({state:'attached'});
  const buffer=readFileSync('scripts/fixtures/video-import-h264.mp4');
  const hooked=await page.evaluate(({bytes})=>{

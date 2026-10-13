@@ -436,6 +436,20 @@ async function sbPush(artistIds, notes) {
   await _sb.from("user_data").upsert(row);
 }
 
+// Sign-in merge of the saved list: the union of local and cloud, minus any id
+// whose removal tombstone is newer than the cloud row (a device unsaved it
+// after that row was last pushed). An id the active lineup no longer carries
+// is NOT a removal: it stays in the union, so storage and the cloud row keep
+// it until an explicit data-retention decision (savedInLineup hides it).
+function mergeCloudSaved(localSaved, cloud, removedAt) {
+  const cloudUpdated = (cloud && cloud.updated_at) || new Date(0).toISOString();
+  const union = new Set([...(localSaved || []), ...((cloud && cloud.artist_ids) || [])]);
+  for (const [id, ts] of Object.entries(removedAt || {})) {
+    if (ts > cloudUpdated) union.delete(id);
+  }
+  return [...union];
+}
+
 // Moment writes have to sync too. sbPush needs the saved list + notes, which
 // only App held — so tagging a moment never pushed anything. The auto-push in
 // app.jsx is additionally gated on `state.saved.length`, so a user who imports
@@ -646,14 +660,7 @@ function AccountCard({ state, setState }) {
             });
             try { localStorage.setItem("plursky_removed_at_v1", JSON.stringify(mergedRemoved)); } catch {}
 
-            const cloudUpdated = cloud.updated_at || new Date(0).toISOString();
-            const union = new Set([...st.saved, ...(cloud.artist_ids || [])]);
-            // Drop any artist whose tombstone is newer than the cloud row
-            // (means a device unsaved them after the cloud row was last pushed)
-            for (const [id, removedAt] of Object.entries(mergedRemoved)) {
-              if (removedAt > cloudUpdated) union.delete(id);
-            }
-            const merged = [...union];
+            const merged = mergeCloudSaved(st.saved, cloud, mergedRemoved);
             let localNotes = {};
             try { localNotes = JSON.parse(localStorage.getItem("artist_notes_v1") || "{}"); } catch {}
             const mergedNotes = { ...localNotes, ...cloud.notes };
@@ -758,13 +765,13 @@ function AccountCard({ state, setState }) {
   const summary = !configured
     ? "NOT CONFIGURED"
     : sbUser
-      ? <span style={{ color: "var(--success)" }}>● SYNCED · {(sbUser.email || sbUser.user_metadata?.full_name || "signed in").toString().slice(0, 22)}</span>
+      ? <span style={{ color: "var(--acc-ink)" }}>● SYNCED · {(sbUser.email || sbUser.user_metadata?.full_name || "signed in").toString().slice(0, 22)}</span>
       : "TAP TO SIGN IN";
 
   return (
     <div style={{
       marginTop: 20,
-      background: "var(--paper)", border: "1px solid var(--line)",
+      background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       borderRadius: 16, padding: 16,
     }}>
       <button onClick={() => setExpanded(e => !e)} style={{
@@ -774,7 +781,7 @@ function AccountCard({ state, setState }) {
         textAlign: "left", color: "var(--ink)",
       }}>
         <div style={{
-          width: 34, height: 34, borderRadius: 10,
+          width: 34, height: 34, borderRadius: "var(--rad-sm)",
           background: "var(--ink)",
           display: "flex", alignItems: "center", justifyContent: "center",
           flexShrink: 0,
@@ -785,18 +792,18 @@ function AccountCard({ state, setState }) {
           </svg>
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="serif" style={{ fontSize: 18, lineHeight: 1 }}>Cloud account</div>
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+          <div className="duo-headline">Cloud account</div>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
             {expanded ? "SYNC LINEUP + NOTES ACROSS DEVICES" : summary}
           </div>
         </div>
-        <span className="mono" style={{ fontSize: 11, color: "var(--muted)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▾</span>
+        <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: expanded ? "rotate(90deg)" : "none", transition: "transform .15s" }}><path d="M9 18 L15 12 L9 6"/></svg>
       </button>
 
       {!expanded ? null : <>
 
       {!configured && (
-        <div style={{ fontSize: 12, color: "var(--muted)", lineHeight: 1.5 }}>
+        <div style={{ fontSize: 12, color: "var(--ink-2)", lineHeight: 1.5 }}>
           Add your Supabase URL and anon key to <span className="mono" style={{ fontSize: 11 }}>supabase.jsx</span> to enable cloud sync.
         </div>
       )}
@@ -813,13 +820,13 @@ function AccountCard({ state, setState }) {
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
               padding: "10px 12px", background: "var(--paper-2)",
-              borderRadius: 10, marginBottom: 12,
+              borderRadius: "var(--rad-sm)", marginBottom: 12,
             }}>
               <div style={{
                 width: 32, height: 32, borderRadius: 32, flexShrink: 0, overflow: "hidden",
                 background: "linear-gradient(135deg, var(--ember), var(--horizon))",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                color: "var(--ink)", fontFamily: "Instrument Serif, serif", fontSize: 15,
+                color: "var(--on-signal)", fontFamily: "Instrument Serif, serif", fontSize: 15,
               }}>
                 {avatar
                   ? <img src={avatar} alt={displayName} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -829,25 +836,25 @@ function AccountCard({ state, setState }) {
                 <div style={{ fontSize: 13, color: "var(--ink)", fontWeight: 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                   {displayName}
                 </div>
-                <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--success)", marginTop: 2 }}>● SIGNED IN{sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""}</div>
+                <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--acc-ink)", marginTop: 2 }}>● SIGNED IN{sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""}</div>
               </div>
             </div>
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               <button onClick={handleSync} disabled={syncing} style={{
                 flex: 1,
-                background: syncMsg ? "var(--success)" : "var(--ink)",
+                background: syncMsg ? "var(--acc)" : "var(--ink)",
                 color: "var(--paper)", border: "none",
-                borderRadius: 10, padding: "10px 14px", cursor: "pointer",
+                borderRadius: "var(--rad-sm)", padding: "10px 14px", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 600,
                 transition: "background 0.3s",
               }}>
-                {syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${state.saved.length} SETS TO CLOUD`}
+                {syncing ? "SYNCING…" : syncMsg || `↑ PUSH ${savedInLineup(state.saved).length} SETS TO CLOUD`}
               </button>
               <button onClick={handleSignOut} style={{
                 background: "transparent", border: "1px solid var(--line-2)",
-                borderRadius: 10, padding: "10px 14px", cursor: "pointer",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)",
+                borderRadius: "var(--rad-sm)", padding: "10px 14px", cursor: "pointer",
+                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--ink-2)",
               }}>SIGN OUT</button>
             </div>
 
@@ -859,7 +866,7 @@ function AccountCard({ state, setState }) {
               <button onClick={() => sbExportUserData(state)} style={{
                 background: "transparent", border: "none", padding: "4px 0", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-                color: "var(--muted)", textDecoration: "underline",
+                color: "var(--ink-2)", textDecoration: "underline",
               }}>↓ EXPORT MY DATA</button>
             </div>
 
@@ -871,13 +878,13 @@ function AccountCard({ state, setState }) {
                 <button onClick={() => { setDeletePhase("confirming"); setDeleteErr(""); }} style={{
                   background: "transparent", border: "none", padding: "4px 0", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2,
-                  color: "var(--muted)", textDecoration: "underline",
+                  color: "var(--ink-2)", textDecoration: "underline",
                 }}>DELETE ACCOUNT</button>
               )}
               {deletePhase !== "idle" && (
                 <div style={{
                   padding: "10px 12px", background: "rgba(var(--signal-rgb),0.08)",
-                  border: "1px solid rgba(var(--signal-rgb),0.35)", borderRadius: 10,
+                  border: "1px solid rgba(var(--signal-rgb),0.35)", borderRadius: "var(--rad-sm)",
                 }}>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ember-ink)", marginBottom: 4 }}>
                     DELETE ACCOUNT?
@@ -890,8 +897,8 @@ function AccountCard({ state, setState }) {
                       onClick={handleDelete}
                       disabled={deletePhase === "working"}
                       style={{
-                        flex: 1, background: "var(--ember)", color: "var(--ink)",
-                        border: "none", borderRadius: 10, padding: "9px 12px",
+                        flex: 1, background: "var(--ember)", color: "var(--on-ember)",
+                        border: "none", borderRadius: "var(--rad-sm)", padding: "9px 12px",
                         cursor: deletePhase === "working" ? "default" : "pointer",
                         fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
                       }}>
@@ -902,9 +909,9 @@ function AccountCard({ state, setState }) {
                       disabled={deletePhase === "working"}
                       style={{
                         background: "transparent", border: "1px solid var(--line-2)",
-                        borderRadius: 10, padding: "9px 14px",
+                        borderRadius: "var(--rad-sm)", padding: "9px 14px",
                         cursor: deletePhase === "working" ? "default" : "pointer",
-                        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--muted)",
+                        fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, color: "var(--ink-2)",
                       }}>CANCEL</button>
                   </div>
                   {deleteErr && (
@@ -924,14 +931,14 @@ function AccountCard({ state, setState }) {
             width: "100%", marginBottom: appleErr ? 6 : 0,
             background: appleBusy ? "var(--paper-3)" : "var(--paper)",
             color: "var(--ink)",
-            border: "none", borderRadius: 10, padding: "11px 14px",
+            border: "none", borderRadius: "var(--rad-sm)", padding: "11px 14px",
             cursor: appleBusy ? "default" : "pointer",
             display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
             fontFamily: "Geist, sans-serif", fontSize: 14, fontWeight: 500,
           }}>
             {appleBusy ? (
               <span style={{
-                width: 14, height: 14, borderRadius: 14,
+                width: 14, height: 14, borderRadius: "var(--rad-md)",
                 border: "2px solid rgba(var(--ink-rgb),0.35)",
                 borderTopColor: "var(--ink)",
                 animation: "spin 0.8s linear infinite",
@@ -948,7 +955,7 @@ function AccountCard({ state, setState }) {
             <div style={{
               background: "rgba(var(--alert-rgb),0.10)",
               border: "1px solid rgba(var(--alert-rgb),0.45)",
-              borderRadius: 10, padding: "10px 12px", marginTop: 10,
+              borderRadius: "var(--rad-sm)", padding: "10px 12px", marginTop: 10,
               fontSize: 12, color: "var(--alert)", lineHeight: 1.45,
             }}>
               <div style={{ marginBottom: 6, fontWeight: 600 }}>
@@ -1282,7 +1289,7 @@ function FriendsCard({ state, setState }) {
 
       {/* My sharing tile */}
       <div style={{
-        padding: "12px 14px", borderRadius: 12, marginBottom: 8,
+        padding: "14px 16px", borderRadius: "var(--rad-md)", marginBottom: 8,
         background: sharing ? "var(--ink)" : "var(--paper)",
         border: `1px solid ${sharing ? "transparent" : "var(--line)"}`,
         color: sharing ? "var(--paper)" : "var(--ink)",
@@ -1293,40 +1300,35 @@ function FriendsCard({ state, setState }) {
             width: 38, height: 38, borderRadius: 38, flexShrink: 0,
             background: sharing ? _presColor(_presMyId || "x") : "var(--paper-2)",
             border: sharing ? "none" : "1px solid var(--line-2)",
-            color: sharing ? "var(--ink)" : "var(--muted)",
+            color: sharing ? "var(--ink)" : "var(--ink-2)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: "Instrument Serif, serif", fontSize: 18, position: "relative",
+            fontSize: 16, fontWeight: 650, position: "relative",
           }}>
             {myName ? myName[0].toUpperCase() : "?"}
             {sharing && (
               <div style={{
                 position: "absolute", bottom: -1, right: -1,
                 width: 11, height: 11, borderRadius: 11,
-                background: "var(--success)", border: "2px solid var(--ink)",
+                background: "var(--live)", border: "2px solid var(--ink)",
               }} />
             )}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="serif" style={{ fontSize: 16, lineHeight: 1 }}>
+            <div className="duo-headline">
               {myName || "Set your name"}
             </div>
-            <div className="mono" style={{
-              fontSize: 9, letterSpacing: 1.2, marginTop: 3, textTransform: "uppercase",
-              color: sharing ? "rgba(var(--ink-rgb),0.55)" : "var(--muted)",
-            }}>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
               {sharing
-                ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · LIVE"
-                : "You · tap GO LIVE to share"}
+                ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live"
+                : "You · tap Go live to share"}
             </div>
           </div>
-          <button onClick={handleToggle} style={{
-            background: sharing ? "rgba(var(--ink-rgb),0.15)" : "var(--ember)",
-            color: "var(--ink)", border: "none", borderRadius: 999,
-            padding: "7px 12px", cursor: "pointer",
-            fontFamily: "Geist Mono, monospace",
-            fontSize: 9, letterSpacing: 1.2, fontWeight: 700, flexShrink: 0,
+          <button onClick={handleToggle} className="duo-btn" style={{
+            background: sharing ? "var(--s3)" : "var(--acc)",
+            color: sharing ? "var(--ink)" : "var(--on-acc)",
+            minHeight: 40, padding: "0 14px", fontSize: 14, flexShrink: 0,
           }}>
-            {sharing ? "STOP" : myName ? "GO LIVE" : "SET NAME"}
+            {sharing ? "Stop" : myName ? "Go live" : "Set name"}
           </button>
         </div>
 
@@ -1342,37 +1344,32 @@ function FriendsCard({ state, setState }) {
               maxLength={20}
               style={{
                 flex: 1,
-                background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                borderRadius: 10, padding: "8px 12px",
-                fontFamily: "Geist, sans-serif", fontSize: 14,
+                background: "var(--s3)", border: "none",
+                borderRadius: "var(--rad-sm)", padding: "0 12px", minHeight: 44,
+                fontFamily: "var(--f-ui)", fontSize: 16,
                 color: "var(--ink)", outline: "none",
               }}
             />
-            <button onClick={() => saveName(nameInput)} style={{
-              background: nameInput.trim() ? "var(--ember)" : "var(--paper-2)",
-              color: nameInput.trim() ? "var(--ink)" : "var(--muted)",
-              border: "none", borderRadius: 10, padding: "8px 12px",
+            <button onClick={() => saveName(nameInput)} className="duo-btn" style={{
+              background: nameInput.trim() ? "var(--acc)" : "var(--s3)",
+              color: nameInput.trim() ? "var(--on-acc)" : "var(--ink-2)",
+              minHeight: 44, padding: "0 16px",
               cursor: nameInput.trim() ? "pointer" : "default",
-              fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
             }}>OK</button>
           </div>
         )}
 
         {sharing && (
           <div style={{ marginTop: 10 }}>
-            <div className="mono" style={{
-              fontSize: 8.5, letterSpacing: 1.2,
-              color: "rgba(var(--ink-rgb),0.45)", marginBottom: 6,
-            }}>CURRENT STAGE</div>
+            <div className="duo-label duo-ink3" style={{ marginBottom: 6 }}>Current stage</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
               {STAGES?.map(s => (
-                <button key={s.id} onClick={() => handleStage(s.id)} style={{
-                  background: stageId === s.id ? s.color : "rgba(var(--ink-rgb),0.08)",
-                  color: stageId === s.id ? "var(--ink)" : "rgba(var(--ink-rgb),0.65)",
-                  border: `1px solid ${stageId === s.id ? s.color : "rgba(var(--ink-rgb),0.18)"})"}`,
-                  borderRadius: 999, padding: "4px 9px", cursor: "pointer",
-                  fontFamily: "Geist Mono, monospace",
-                  fontSize: 8, letterSpacing: 1, fontWeight: 600,
+                <button key={s.id} onClick={() => handleStage(s.id)} aria-pressed={stageId === s.id} style={{
+                  background: stageId === s.id ? "var(--acc)" : "var(--s3)",
+                  color: stageId === s.id ? "var(--on-acc)" : "var(--ink-2)",
+                  border: "none",
+                  borderRadius: 999, padding: "0 12px", minHeight: 36, cursor: "pointer",
+                  fontFamily: "var(--f-ui)", fontSize: 13, fontWeight: 600,
                   transition: "all .12s",
                 }}>{s.name}</button>
               ))}
@@ -1385,14 +1382,14 @@ function FriendsCard({ state, setState }) {
         ? <_FriendRows friends={friends} state={state} setState={setState} />
         : (
           <div style={{
-            padding: "13px 14px", borderRadius: 12,
-            background: "var(--paper)", border: "1px solid var(--line)",
+            padding: "13px 14px", borderRadius: "var(--rad-md)",
+            background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
           }}>
-            <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>
-              NO FRIENDS ONLINE YET
+            <div className="duo-headline" style={{ fontSize: 15 }}>
+              No friends online yet
             </div>
-            <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.45 }}>
-              Share Plursky with your crew — anyone who taps GO LIVE shows up here instantly.
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
+              Share Plursky with your crew — anyone who taps Go live shows up here instantly.
             </div>
           </div>
         )
@@ -1404,12 +1401,8 @@ function FriendsCard({ state, setState }) {
 function _FriendsHeader({ count, live }) {
   return (
     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
-      <div className="serif" style={{ fontSize: 22 }}>Friends at {window.FESTIVAL_CONFIG?.brand || "the festival"}</div>
-      {live && count > 0 && (
-        <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)" }}>
-          ● {count} LIVE
-        </span>
-      )}
+      <div className="duo-headline">Friends at {window.FESTIVAL_CONFIG?.brand || "the festival"}</div>
+      {live && count > 0 && <DuoLive>{count} live</DuoLive>}
     </div>
   );
 }
@@ -2550,7 +2543,7 @@ function CrewChat({ code, myPid, myName }) {
                 <button key={s.id} onClick={() => togglePollStage(s.id)} style={{
                   padding: "6px 4px", borderRadius: 8,
                   background: on ? s.color : "var(--paper)",
-                  color: on ? "var(--ink)" : "var(--ink)",
+                  color: on ? _inkOnHex(s.color) : "var(--ink)",
                   border: on ? "none" : "1px solid var(--line-2)",
                   fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 0.8,
                   fontWeight: on ? 700 : 500, cursor: "pointer",
@@ -2639,7 +2632,7 @@ function CrewCard({ state }) {
     setCode(newCode);
     try { localStorage.setItem("plursky_group_code", newCode); } catch {}
     if (leaveRef.current) leaveRef.current();
-    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: state.saved }, setMembers);
+    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) }, setMembers);
     setJoined(true);
     setJoining(false);
     setCodeInput("");
@@ -2650,7 +2643,7 @@ function CrewCard({ state }) {
   };
 
   React.useEffect(() => {
-    if (joined) sbGroupUpdate(code, { pid: myPid, name: myName, artistIds: state.saved });
+    if (joined) sbGroupUpdate(code, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) });
   }, [state.saved.join(","), joined]);
 
   // Auto-join when arriving via a `?crew=CODE` share link. App.jsx flags it,
@@ -2708,25 +2701,25 @@ function CrewCard({ state }) {
         textAlign: "left", color: "var(--ink)",
       }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-          <div className="serif" style={{ fontSize: 22 }}>Crew Mode</div>
+          <div className="duo-headline">Crew Mode</div>
           {!expanded && !joined && (
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)" }}>· TAP TO START OR JOIN</span>
+            <span className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>Tap to start or join</span>
           )}
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-          {joined && <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)" }}>● {others.length + 1} IN CREW</span>}
-          <span className="mono" style={{ fontSize: 11, color: "var(--muted)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform .15s" }}>▾</span>
+          {joined && <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--acc-ink)" }}>● {others.length + 1} IN CREW</span>}
+          <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, transform: expanded ? "rotate(90deg)" : "none", transition: "transform .15s" }}><path d="M9 18 L15 12 L9 6"/></svg>
         </div>
       </button>
 
       {!expanded ? null : !joined ? (
-        <div style={{ padding: "15px 14px", borderRadius: 14, background: "var(--paper)", border: "1px solid var(--line)" }}>
-          <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
+        <div style={{ padding: "15px 14px", borderRadius: "var(--rad-md)", background: "var(--paper)", border: "1px solid var(--line)" }}>
+          <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 14 }}>
             Share a crew code with friends. When they join, you'll see which sets overlap — and the lineup shows crew badges.
           </div>
           <button onClick={() => joinCrew(code)} style={{
             width: "100%", padding: "11px", background: "var(--ink)", color: "var(--paper)",
-            border: "none", borderRadius: 10, cursor: "pointer",
+            border: "none", borderRadius: "var(--rad-sm)", cursor: "pointer",
             fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
             marginBottom: 8,
           }}>
@@ -2741,24 +2734,24 @@ function CrewCard({ state }) {
                 placeholder="Enter crew code…" autoFocus maxLength={6}
                 style={{
                   flex: 1, padding: "9px 12px",
-                  background: "var(--paper-2)", border: "1px solid var(--line-2)",
-                  borderRadius: 10, fontFamily: "Geist Mono, monospace", fontSize: 13,
+                  background: "var(--s3)", border: "none",
+                  borderRadius: "var(--rad-sm)", fontFamily: "Geist Mono, monospace", fontSize: 13,
                   color: "var(--ink)", outline: "none", letterSpacing: 3,
                 }}
               />
               <button onClick={() => joinCrew(codeInput)} style={{
                 padding: "9px 14px",
                 background: codeInput.length >= 4 ? "var(--ember)" : "var(--paper-2)",
-                color: codeInput.length >= 4 ? "var(--ink)" : "var(--muted)",
-                border: "none", borderRadius: 10, cursor: "pointer",
+                color: codeInput.length >= 4 ? "var(--ink)" : "var(--ink-2)",
+                border: "none", borderRadius: "var(--rad-sm)", cursor: "pointer",
                 fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.1, fontWeight: 700,
               }}>JOIN</button>
             </div>
           ) : (
             <button onClick={() => setJoining(true)} style={{
               width: "100%", padding: "9px", background: "transparent",
-              border: "1px solid var(--line-2)", borderRadius: 10, cursor: "pointer",
-              color: "var(--muted)", fontFamily: "Geist Mono, monospace",
+              border: "1px solid var(--line-2)", borderRadius: "var(--rad-sm)", cursor: "pointer",
+              color: "var(--ink-2)", fontFamily: "Geist Mono, monospace",
               fontSize: 9.5, letterSpacing: 1.2,
             }}>JOIN A FRIEND'S CREW</button>
           )}
@@ -2766,7 +2759,7 @@ function CrewCard({ state }) {
       ) : (
         <div>
           <div style={{
-            padding: "12px 14px", borderRadius: 12, marginBottom: 8,
+            padding: "14px 16px", borderRadius: "var(--rad-md)", marginBottom: 8,
             background: "var(--ink)", color: "var(--paper)",
             display: "flex", alignItems: "center", gap: 12,
           }}>
@@ -2775,13 +2768,13 @@ function CrewCard({ state }) {
               border: totemUrl ? "2px solid rgba(var(--ink-rgb),0.5)" : "2px dashed rgba(var(--ink-rgb),0.3)",
               background: totemUrl ? `url(${totemUrl}) center/cover` : "rgba(var(--ink-rgb),0.08)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
-              color: "rgba(var(--ink-rgb),0.4)", fontSize: 16, padding: 0,
+              color: "var(--text-3)", fontSize: 16, padding: 0,
               animation: totemUrl ? "totem-pulse 3s ease-in-out infinite" : "none",
             }}>{totemUrl ? "" : "📷"}</button>
             <input ref={totemInputRef} type="file" accept="image/*" style={{ display: "none" }}
               onChange={e => { pickTotem(e.target.files?.[0]); e.target.value = ""; }} />
             <div style={{ flex: 1 }}>
-              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "rgba(var(--ink-rgb),0.45)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
+              <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--text-3)", marginBottom: 3 }}>{totemUrl ? "YOUR TOTEM · TAP TO CHANGE" : "TAP 📷 TO SET YOUR TOTEM"}</div>
               <div className="mono" style={{ fontSize: 28, letterSpacing: 8, fontWeight: 700, lineHeight: 1 }}>{code}</div>
             </div>
             <button onClick={async () => {
@@ -2796,27 +2789,27 @@ function CrewCard({ state }) {
             }} style={{
               background: copied ? "rgba(var(--signal-rgb),0.3)" : "rgba(var(--ink-rgb),0.12)",
               border: "none", borderRadius: 8, padding: "7px 11px", cursor: "pointer",
-              color: copied ? "var(--success)" : "var(--paper)",
+              color: copied ? "var(--acc-ink)" : "var(--paper)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
               transition: "all .15s",
             }}>{copied ? "✓" : "↗ SHARE"}</button>
             <button onClick={() => { if (leaveRef.current) leaveRef.current(); setJoined(false); setMembers(new Map()); }} style={{
               background: "rgba(var(--ink-rgb),0.08)", border: "none", borderRadius: 8,
-              padding: "7px 11px", cursor: "pointer", color: "rgba(var(--ink-rgb),0.5)",
+              padding: "7px 11px", cursor: "pointer", color: "var(--text-3)",
               fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2,
             }}>LEAVE</button>
           </div>
           {others.length === 0 ? (
-            <div style={{ padding: "13px 14px", borderRadius: 12, background: "var(--paper)", border: "1px solid var(--line)" }}>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)" }}>WAITING FOR CREW</div>
-              <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 3, lineHeight: 1.45 }}>
+            <div style={{ padding: "13px 14px", borderRadius: "var(--rad-md)", background: "var(--paper)", border: "1px solid var(--line)" }}>
+              <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--ink-2)" }}>WAITING FOR CREW</div>
+              <div style={{ fontSize: 12, color: "var(--ink-2)", marginTop: 3, lineHeight: 1.45 }}>
                 Share code <strong>{code}</strong> — friends' saved sets appear when they join.
               </div>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
               {others.map(([pid, m]) => {
-                const ids = m.artistIds || [];
+                const ids = savedInLineup(m.artistIds);
                 const inCommon = ids.filter(id => state.saved.includes(id)).length;
                 const isOpen = expandedPid === pid;
                 const ARTISTS = window.ARTISTS || [];
@@ -2828,7 +2821,7 @@ function CrewCard({ state }) {
                   .sort((a, b) => (a.day || 0) - (b.day || 0) || (a.start || "").localeCompare(b.start || ""));
                 return (
                   <div key={pid} style={{
-                    background: "var(--paper)", border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden",
+                    background: "var(--s2)", boxShadow: "var(--e1)", border: "none", borderRadius: "var(--rad-md)", overflow: "hidden",
                   }}>
                     <button onClick={() => setExpandedPid(isOpen ? null : pid)} style={{
                       width: "100%", display: "flex", alignItems: "center", gap: 12, padding: "11px 14px",
@@ -2841,11 +2834,11 @@ function CrewCard({ state }) {
                       }}>{(m.name || "?")[0].toUpperCase()}</div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="serif" style={{ fontSize: 16, color: "var(--ink)" }}>{m.name || "Friend"}</div>
-                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--muted)", marginTop: 2 }}>
+                        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)", marginTop: 2 }}>
                           {ids.length} SETS{inCommon > 0 ? ` · ${inCommon} IN COMMON` : ""}
                         </div>
                       </div>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                         style={{ flexShrink: 0, transition: "transform 0.25s var(--ease-spring)", transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}>
                         <path d="M9 18 L15 12 L9 6"/>
                       </svg>
@@ -2853,7 +2846,7 @@ function CrewCard({ state }) {
                     {isOpen && (
                       <div style={{ padding: "0 14px 12px", borderTop: "1px solid var(--line)" }}>
                         {picks.length === 0 ? (
-                          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--muted)", padding: "12px 0" }}>
+                          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)", padding: "12px 0" }}>
                             NO SETS SAVED YET
                           </div>
                         ) : picks.map(a => {
@@ -2864,12 +2857,12 @@ function CrewCard({ state }) {
                               display: "flex", alignItems: "center", gap: 8, padding: "7px 0",
                               borderBottom: "1px solid var(--line)",
                             }}>
-                              <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color || "var(--muted)", flexShrink: 0 }}/>
+                              <span style={{ width: 6, height: 6, borderRadius: 6, background: st?.color || "var(--ink-2)", flexShrink: 0 }}/>
                               <span style={{ flex: 1, minWidth: 0, fontSize: 13, color: "var(--ink)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{a.name}</span>
                               {shared && (
                                 <span className="mono" style={{ fontSize: 7.5, letterSpacing: 1, fontWeight: 800, color: "var(--horizon)", background: "rgba(var(--signal-rgb),0.12)", padding: "1px 5px", borderRadius: 999 }}>BOTH</span>
                               )}
-                              <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--muted)", flexShrink: 0 }}>
+                              <span className="mono" style={{ fontSize: 8, letterSpacing: 0.8, color: "var(--ink-2)", flexShrink: 0 }}>
                                 {(st?.short || "").toUpperCase()} · {window.fmt12 ? window.fmt12(a.start) : a.start}
                               </span>
                             </div>
@@ -2886,12 +2879,12 @@ function CrewCard({ state }) {
             const _crewShare = async (fmt) => {
               const crewNames = [myName || "Me"];
               const avs = [{ initial: (myName || "M")[0].toUpperCase(), color: _presColor(myPid) }];
-              const crewArtistIds = new Set(state.saved || []);
+              const crewArtistIds = new Set(savedInLineup(state.saved));
               const overlapIds = new Set();
               for (const [pid, m] of others) {
                 crewNames.push(m.name || "Friend");
                 avs.push({ initial: (m.name || "F")[0].toUpperCase(), color: _presColor(pid) });
-                for (const id of (m.artistIds || [])) {
+                for (const id of savedInLineup(m.artistIds)) {
                   crewArtistIds.add(id);
                   if ((state.saved || []).includes(id)) overlapIds.add(id);
                 }
@@ -2902,14 +2895,14 @@ function CrewCard({ state }) {
               <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
                 <button onClick={() => _crewShare()} style={{
                   flex: 1, padding: "11px",
-                  background: "var(--signal)", color: "var(--ink)",
-                  border: "none", borderRadius: 10, cursor: "pointer",
+                  background: "var(--signal)", color: "var(--on-signal)",
+                  border: "none", borderRadius: "var(--rad-sm)", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>📸 SHARE OUR WEEKEND</button>
                 <button onClick={() => _crewShare("gif")} style={{
                   padding: "11px 14px",
-                  background: "var(--signal)", color: "var(--ink)",
-                  border: "none", borderRadius: 10, cursor: "pointer",
+                  background: "var(--signal)", color: "var(--on-signal)",
+                  border: "none", borderRadius: "var(--rad-sm)", cursor: "pointer",
                   fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.4, fontWeight: 700,
                 }}>🎬 GIF</button>
               </div>
@@ -2920,7 +2913,7 @@ function CrewCard({ state }) {
               {others.map(([pid, m]) => (
                 <button key={pid} onClick={() => window._shareCrewComparison?.(myName, state, m.name || "Friend", m.artistIds || [])} className="mono" style={{
                   padding: "8px 11px", background: "rgba(var(--signal-rgb),0.08)", color: "var(--ink)",
-                  border: "1px solid rgba(var(--signal-rgb),0.15)", borderRadius: 10, cursor: "pointer",
+                  border: "1px solid rgba(var(--signal-rgb),0.15)", borderRadius: "var(--rad-sm)", cursor: "pointer",
                   fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textAlign: "left",
                 }}>⚔️ SHOWDOWN VS {(m.name || "FRIEND").toUpperCase()}</button>
               ))}

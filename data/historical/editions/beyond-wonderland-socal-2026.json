@@ -1,0 +1,2214 @@
+{
+ "id": "beyond-wonderland-socal-2026",
+ "festivalId": "beyond-wonderland-socal",
+ "name": "Beyond Wonderland SoCal 2026",
+ "year": 2026,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 12,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2026-03-27",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2026-03-28",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "beyond-wonderland-socal-2026:queen-s-domain",
+   "name": "Queen's Domain"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "name": "Mad Hatter's Castle"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "name": "Caterpillar's Garden"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:cheshire-woods",
+   "name": "Cheshire Woods"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:the-looking-glass",
+   "name": "The Looking Glass"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "name": "The Sea of Wonder"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:beatbox",
+   "name": "Beatbox"
+  }
+ ],
+ "artists": [
+  {
+   "id": "beyond-wonderland-socal-2026:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:it-s-murph",
+   "name": "it's murph",
+   "key": "it-s-murph",
+   "performers": [
+    "it-s-murph"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d-o-d",
+   "name": "D.O.D",
+   "key": "d-o-d",
+   "performers": [
+    "d-o-d"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chyl",
+   "name": "CHYL",
+   "key": "chyl",
+   "performers": [
+    "chyl"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:ian-asher",
+   "name": "Ian Asher",
+   "key": "ian-asher",
+   "performers": [
+    "ian-asher"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:nitti",
+   "name": "NITTI",
+   "key": "nitti",
+   "performers": [
+    "nitti"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:bear-weigle",
+   "name": "Bear Weigle",
+   "key": "bear-weigle",
+   "performers": [
+    "bear-weigle"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:mad-hatter",
+   "name": "Mad Hatter",
+   "key": "mad-hatter",
+   "performers": [
+    "mad-hatter"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:holy-priest",
+   "name": "Holy Priest",
+   "key": "holy-priest",
+   "performers": [
+    "holy-priest"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:hedex",
+   "name": "Hedex",
+   "key": "hedex",
+   "performers": [
+    "hedex"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:restricted",
+   "name": "Restricted",
+   "key": "restricted",
+   "performers": [
+    "restricted"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:mary-droppinz",
+   "name": "Mary Droppinz",
+   "key": "mary-droppinz",
+   "performers": [
+    "mary-droppinz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:phrva",
+   "name": "phrva",
+   "key": "phrva",
+   "performers": [
+    "phrva"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:skanka",
+   "name": "Skanka",
+   "key": "skanka",
+   "performers": [
+    "skanka"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:dabin",
+   "name": "Dabin",
+   "key": "dabin",
+   "performers": [
+    "dabin"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:trivecta",
+   "name": "Trivecta",
+   "key": "trivecta",
+   "performers": [
+    "trivecta"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:aszewo",
+   "name": "Łaszewo",
+   "key": "aszewo",
+   "performers": [
+    "aszewo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:yetep",
+   "name": "yetep",
+   "key": "yetep",
+   "performers": [
+    "yetep"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:hoang",
+   "name": "Hoang",
+   "key": "hoang",
+   "performers": [
+    "hoang"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:avello",
+   "name": "AVELLO",
+   "key": "avello",
+   "performers": [
+    "avello"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:conrad",
+   "name": "Conrad.",
+   "key": "conrad",
+   "performers": [
+    "conrad"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:leondis",
+   "name": "Leondis",
+   "key": "leondis",
+   "performers": [
+    "leondis"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:lil-texas",
+   "name": "Lil Texas",
+   "key": "lil-texas",
+   "performers": [
+    "lil-texas"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sub-zero-project",
+   "name": "Sub Zero Project",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d-sturb",
+   "name": "D-Sturb",
+   "key": "d-sturb",
+   "performers": [
+    "d-sturb"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:gravedgr",
+   "name": "GRAVEDGR",
+   "key": "gravedgr",
+   "performers": [
+    "gravedgr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:grave-rave",
+   "name": "Grave Rave",
+   "key": "grave-rave",
+   "performers": [
+    "grave-rave"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sihk",
+   "name": "Sihk",
+   "key": "sihk",
+   "performers": [
+    "sihk"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:ivarr",
+   "name": "Ivarr",
+   "key": "ivarr",
+   "performers": [
+    "ivarr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:klangkuenstler",
+   "name": "Klangkuenstler",
+   "key": "klangkuenstler",
+   "performers": [
+    "klangkuenstler"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:layton-giordani",
+   "name": "Layton Giordani",
+   "key": "layton-giordani",
+   "performers": [
+    "layton-giordani"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:trym",
+   "name": "Trym",
+   "key": "trym",
+   "performers": [
+    "trym"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:baugruppe90",
+   "name": "BAUGRUPPE90",
+   "key": "baugruppe90",
+   "performers": [
+    "baugruppe90"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:selective-response",
+   "name": "Selective Response",
+   "key": "selective-response",
+   "performers": [
+    "selective-response"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:ranger-trucco",
+   "name": "Ranger Trucco",
+   "key": "ranger-trucco",
+   "performers": [
+    "ranger-trucco"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:murphy-s-law",
+   "name": "Murphy's Law",
+   "key": "murphy-s-law",
+   "performers": [
+    "murphy-s-law"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:james-poole",
+   "name": "James Poole",
+   "key": "james-poole",
+   "performers": [
+    "james-poole"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:shifty",
+   "name": "Shifty",
+   "key": "shifty",
+   "performers": [
+    "shifty"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:dirty-audio-yeedm-set",
+   "name": "Dirty Audio (Yeedm Set)",
+   "key": "dirty-audio-yeedm-set",
+   "performers": [
+    "dirty-audio-yeedm-set"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chanel-west-coast",
+   "name": "Chanel West Coast",
+   "key": "chanel-west-coast",
+   "performers": [
+    "chanel-west-coast"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:madds-yeedm-set",
+   "name": "Madds (Yeedm Set)",
+   "key": "madds-yeedm-set",
+   "performers": [
+    "madds-yeedm-set"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:willie-pake",
+   "name": "Willie Pake",
+   "key": "willie-pake",
+   "performers": [
+    "willie-pake"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:pennywild",
+   "name": "Pennywild",
+   "key": "pennywild",
+   "performers": [
+    "pennywild"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:pinke",
+   "name": "Pinke",
+   "key": "pinke",
+   "performers": [
+    "pinke"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:slim-mcgraw",
+   "name": "Slim McGraw",
+   "key": "slim-mcgraw",
+   "performers": [
+    "slim-mcgraw"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:lucky-lou",
+   "name": "Lucky Lou",
+   "key": "lucky-lou",
+   "performers": [
+    "lucky-lou"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:dazy-duke",
+   "name": "Dazy Duke",
+   "key": "dazy-duke",
+   "performers": [
+    "dazy-duke"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:interplanetary-criminal",
+   "name": "Interplanetary Criminal",
+   "key": "interplanetary-criminal",
+   "performers": [
+    "interplanetary-criminal"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:notd",
+   "name": "NOTD",
+   "key": "notd",
+   "performers": [
+    "notd"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:wenzday",
+   "name": "Wenzday",
+   "key": "wenzday",
+   "performers": [
+    "wenzday"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:max-low",
+   "name": "Max Low",
+   "key": "max-low",
+   "performers": [
+    "max-low"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:dj-diesel",
+   "name": "DJ Diesel",
+   "key": "dj-diesel",
+   "performers": [
+    "dj-diesel"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:eptic-b2b-space-laces",
+   "name": "Eptic B2B Space Laces",
+   "key": "eptic-b2b-space-laces",
+   "performers": [
+    "eptic",
+    "space-laces"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:deathpact",
+   "name": "Deathpact",
+   "key": "deathpact",
+   "performers": [
+    "deathpact"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:layz",
+   "name": "LAYZ",
+   "key": "layz",
+   "performers": [
+    "layz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:reaper",
+   "name": "Reaper",
+   "key": "reaper",
+   "performers": [
+    "reaper"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:gorillat",
+   "name": "GorillaT",
+   "key": "gorillat",
+   "performers": [
+    "gorillat"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:probcause",
+   "name": "Probcause",
+   "key": "probcause",
+   "performers": [
+    "probcause"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sanzu",
+   "name": "Sanzu",
+   "key": "sanzu",
+   "performers": [
+    "sanzu"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:omnom",
+   "name": "OMNOM",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:biscits",
+   "name": "Biscits",
+   "key": "biscits",
+   "performers": [
+    "biscits"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:westend",
+   "name": "Westend",
+   "key": "westend",
+   "performers": [
+    "westend"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:tinzo-jojo",
+   "name": "Tinzo + Jojo",
+   "key": "tinzo-jojo",
+   "performers": [
+    "tinzo-jojo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:jazzy",
+   "name": "Jazzy",
+   "key": "jazzy",
+   "performers": [
+    "jazzy"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:trace",
+   "name": "Trace",
+   "key": "trace",
+   "performers": [
+    "trace"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chaney",
+   "name": "Chaney",
+   "key": "chaney",
+   "performers": [
+    "chaney"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:ian-asher-b2b-wuki",
+   "name": "Ian Asher B2B Wuki",
+   "key": "ian-asher-b2b-wuki",
+   "performers": [
+    "ian-asher",
+    "wuki"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:gareth-emery",
+   "name": "Gareth Emery",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:infected-mushroom",
+   "name": "Infected Mushroom",
+   "key": "infected-mushroom",
+   "performers": [
+    "infected-mushroom"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:giuseppe-ottaviani-ilan-bluestone",
+   "name": "Giuseppe Ottaviani + Ilan Bluestone",
+   "key": "giuseppe-ottaviani-ilan-bluestone",
+   "performers": [
+    "giuseppe-ottaviani-ilan-bluestone"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:billy-gillies",
+   "name": "Billy Gillies",
+   "key": "billy-gillies",
+   "performers": [
+    "billy-gillies"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:marie-vaunt",
+   "name": "Marie Vaunt",
+   "key": "marie-vaunt",
+   "performers": [
+    "marie-vaunt"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:david-forbes",
+   "name": "David Forbes",
+   "key": "david-forbes",
+   "performers": [
+    "david-forbes"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:cold-blue",
+   "name": "Cold Blue",
+   "key": "cold-blue",
+   "performers": [
+    "cold-blue"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chris-metcalfe",
+   "name": "Chris Metcalfe",
+   "key": "chris-metcalfe",
+   "performers": [
+    "chris-metcalfe"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:sequence-six",
+   "name": "Sequence Six",
+   "key": "sequence-six",
+   "performers": [
+    "sequence-six"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:nico-moreno",
+   "name": "Nico Moreno",
+   "key": "nico-moreno",
+   "performers": [
+    "nico-moreno"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:hi-lo",
+   "name": "HI-LO",
+   "key": "hi-lo",
+   "performers": [
+    "hi-lo"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:lilly-palmer",
+   "name": "Lilly Palmer",
+   "key": "lilly-palmer",
+   "performers": [
+    "lilly-palmer"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:novah",
+   "name": "NOVAH",
+   "key": "novah",
+   "performers": [
+    "novah"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:bad-boombox-b2b-tta",
+   "name": "Bad Boombox B2B ØTTA",
+   "key": "bad-boombox-b2b-tta",
+   "performers": [
+    "bad-boombox",
+    "tta"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:future-666",
+   "name": "future.666",
+   "key": "future-666",
+   "performers": [
+    "future-666"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:juji",
+   "name": "JUJI",
+   "key": "juji",
+   "performers": [
+    "juji"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:shy-fx",
+   "name": "Shy FX",
+   "key": "shy-fx",
+   "performers": [
+    "shy-fx"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:cntrl-alt-d-l-t",
+   "name": "Cntrl Alt DΞLΞTΞ",
+   "key": "cntrl-alt-d-l-t",
+   "performers": [
+    "cntrl-alt-d-l-t"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:skepsis-b2b-turno",
+   "name": "Skepsis B2B Turno",
+   "key": "skepsis-b2b-turno",
+   "performers": [
+    "skepsis",
+    "turno"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:grafix",
+   "name": "Grafix",
+   "key": "grafix",
+   "performers": [
+    "grafix"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:muzz",
+   "name": "MUZZ",
+   "key": "muzz",
+   "performers": [
+    "muzz"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:badger",
+   "name": "Badger",
+   "key": "badger",
+   "performers": [
+    "badger"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:justin-hawkes",
+   "name": "Justin Hawkes",
+   "key": "justin-hawkes",
+   "performers": [
+    "justin-hawkes"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:reid-speed",
+   "name": "Reid Speed",
+   "key": "reid-speed",
+   "performers": [
+    "reid-speed"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:bad-girl-bailey",
+   "name": "Bad Girl Bailey",
+   "key": "bad-girl-bailey",
+   "performers": [
+    "bad-girl-bailey"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:soup-b2b-hyfen",
+   "name": "SOUP B2B HYFEN",
+   "key": "soup-b2b-hyfen",
+   "performers": [
+    "soup",
+    "hyfen"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:alvyn",
+   "name": "Alvyn",
+   "key": "alvyn",
+   "performers": [
+    "alvyn"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:rhome-tfti",
+   "name": "RHOME, TFTI",
+   "key": "rhome-tfti",
+   "performers": [
+    "rhome-tfti"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chyl-k-speed-set",
+   "name": "CHYL (K-Speed Set)",
+   "key": "chyl-k-speed-set",
+   "performers": [
+    "chyl-k-speed-set"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:iznyrs",
+   "name": "IZNYRS",
+   "key": "iznyrs",
+   "performers": [
+    "iznyrs"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:johnny-chay",
+   "name": "Johnny Chay",
+   "key": "johnny-chay",
+   "performers": [
+    "johnny-chay"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:chassi-k-pop-set",
+   "name": "Chassi (K-Pop Set)",
+   "key": "chassi-k-pop-set",
+   "performers": [
+    "chassi-k-pop-set"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:yunify",
+   "name": "YUNIFY",
+   "key": "yunify",
+   "performers": [
+    "yunify"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:merakii",
+   "name": "MERAKII",
+   "key": "merakii",
+   "performers": [
+    "merakii"
+   ]
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:zyrok",
+   "name": "ZYROK",
+   "key": "zyrok",
+   "performers": [
+    "zyrok"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
+   "artistId": "beyond-wonderland-socal-2026:tiesto",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:2340:steve-angello",
+   "artistId": "beyond-wonderland-socal-2026:steve-angello",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "23:40",
+   "end": "00:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:2240:alison-wonderland",
+   "artistId": "beyond-wonderland-socal-2026:alison-wonderland",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "22:40",
+   "end": "23:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:2140:sidepiece",
+   "artistId": "beyond-wonderland-socal-2026:sidepiece",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "21:40",
+   "end": "22:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:2040:it-s-murph",
+   "artistId": "beyond-wonderland-socal-2026:it-s-murph",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "20:40",
+   "end": "21:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:1940:d-o-d",
+   "artistId": "beyond-wonderland-socal-2026:d-o-d",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "19:40",
+   "end": "20:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:1840:chyl",
+   "artistId": "beyond-wonderland-socal-2026:chyl",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:1740:ian-asher",
+   "artistId": "beyond-wonderland-socal-2026:ian-asher",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "17:40",
+   "end": "18:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:1640:nitti",
+   "artistId": "beyond-wonderland-socal-2026:nitti",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:1600:bear-weigle",
+   "artistId": "beyond-wonderland-socal-2026:bear-weigle",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "16:00",
+   "end": "16:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:0100:griz",
+   "artistId": "beyond-wonderland-socal-2026:griz",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:0050:mad-hatter",
+   "artistId": "beyond-wonderland-socal-2026:mad-hatter",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "00:50",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2345:atliens",
+   "artistId": "beyond-wonderland-socal-2026:atliens",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2245:troyboi",
+   "artistId": "beyond-wonderland-socal-2026:troyboi",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2140:holy-priest",
+   "artistId": "beyond-wonderland-socal-2026:holy-priest",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "21:40",
+   "end": "22:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2040:hedex",
+   "artistId": "beyond-wonderland-socal-2026:hedex",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "20:40",
+   "end": "21:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1940:restricted",
+   "artistId": "beyond-wonderland-socal-2026:restricted",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "19:40",
+   "end": "20:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1840:ydg",
+   "artistId": "beyond-wonderland-socal-2026:ydg",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1740:mary-droppinz",
+   "artistId": "beyond-wonderland-socal-2026:mary-droppinz",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "17:40",
+   "end": "18:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1640:phrva",
+   "artistId": "beyond-wonderland-socal-2026:phrva",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1600:skanka",
+   "artistId": "beyond-wonderland-socal-2026:skanka",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "16:00",
+   "end": "16:40"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:0100:dabin",
+   "artistId": "beyond-wonderland-socal-2026:dabin",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2355:armnhmr",
+   "artistId": "beyond-wonderland-socal-2026:armnhmr",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "23:55",
+   "end": "00:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2255:andy-c",
+   "artistId": "beyond-wonderland-socal-2026:andy-c",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "22:55",
+   "end": "23:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2155:trivecta",
+   "artistId": "beyond-wonderland-socal-2026:trivecta",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "21:55",
+   "end": "22:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2055:aszewo",
+   "artistId": "beyond-wonderland-socal-2026:aszewo",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "20:55",
+   "end": "21:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1955:yetep",
+   "artistId": "beyond-wonderland-socal-2026:yetep",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "19:55",
+   "end": "20:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1855:hoang",
+   "artistId": "beyond-wonderland-socal-2026:hoang",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1755:avello",
+   "artistId": "beyond-wonderland-socal-2026:avello",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "17:55",
+   "end": "18:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1655:conrad",
+   "artistId": "beyond-wonderland-socal-2026:conrad",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "16:55",
+   "end": "17:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1600:leondis",
+   "artistId": "beyond-wonderland-socal-2026:leondis",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "16:00",
+   "end": "16:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1500:valentino-khan",
+   "artistId": "beyond-wonderland-socal-2026:valentino-khan",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:0100:lil-texas",
+   "artistId": "beyond-wonderland-socal-2026:lil-texas",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:0000:brennan-heart",
+   "artistId": "beyond-wonderland-socal-2026:brennan-heart",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:2300:sub-zero-project",
+   "artistId": "beyond-wonderland-socal-2026:sub-zero-project",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:2200:coone",
+   "artistId": "beyond-wonderland-socal-2026:coone",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:2100:d-sturb",
+   "artistId": "beyond-wonderland-socal-2026:d-sturb",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:2000:lady-faith",
+   "artistId": "beyond-wonderland-socal-2026:lady-faith",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:1900:gravedgr",
+   "artistId": "beyond-wonderland-socal-2026:gravedgr",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:1800:grave-rave",
+   "artistId": "beyond-wonderland-socal-2026:grave-rave",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:1700:sihk",
+   "artistId": "beyond-wonderland-socal-2026:sihk",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:cheshire-woods:1600:ivarr",
+   "artistId": "beyond-wonderland-socal-2026:ivarr",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:0030:klangkuenstler",
+   "artistId": "beyond-wonderland-socal-2026:klangkuenstler",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:2300:layton-giordani",
+   "artistId": "beyond-wonderland-socal-2026:layton-giordani",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:2130:jstjr",
+   "artistId": "beyond-wonderland-socal-2026:jstjr",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:2000:trym",
+   "artistId": "beyond-wonderland-socal-2026:trym",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:1830:bart-skils",
+   "artistId": "beyond-wonderland-socal-2026:bart-skils",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:1700:baugruppe90",
+   "artistId": "beyond-wonderland-socal-2026:baugruppe90",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-looking-glass:1600:selective-response",
+   "artistId": "beyond-wonderland-socal-2026:selective-response",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:0020:nicole-moudaber",
+   "artistId": "beyond-wonderland-socal-2026:nicole-moudaber",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "00:20",
+   "end": "01:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:2250:loco-dice",
+   "artistId": "beyond-wonderland-socal-2026:loco-dice",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "22:50",
+   "end": "00:20"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:2120:nic-fanciulli",
+   "artistId": "beyond-wonderland-socal-2026:nic-fanciulli",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "21:20",
+   "end": "22:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1950:ranger-trucco",
+   "artistId": "beyond-wonderland-socal-2026:ranger-trucco",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "19:50",
+   "end": "21:20"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1820:murphy-s-law",
+   "artistId": "beyond-wonderland-socal-2026:murphy-s-law",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "18:20",
+   "end": "19:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1650:james-poole",
+   "artistId": "beyond-wonderland-socal-2026:james-poole",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "16:50",
+   "end": "18:20"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1600:shifty",
+   "artistId": "beyond-wonderland-socal-2026:shifty",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:0030:dirty-audio-yeedm-set",
+   "artistId": "beyond-wonderland-socal-2026:dirty-audio-yeedm-set",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:2330:chanel-west-coast",
+   "artistId": "beyond-wonderland-socal-2026:chanel-west-coast",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:2230:madds-yeedm-set",
+   "artistId": "beyond-wonderland-socal-2026:madds-yeedm-set",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:2130:willie-pake",
+   "artistId": "beyond-wonderland-socal-2026:willie-pake",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:2030:pennywild",
+   "artistId": "beyond-wonderland-socal-2026:pennywild",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:1945:pinke",
+   "artistId": "beyond-wonderland-socal-2026:pinke",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:1800:slim-mcgraw",
+   "artistId": "beyond-wonderland-socal-2026:slim-mcgraw",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:1700:lucky-lou",
+   "artistId": "beyond-wonderland-socal-2026:lucky-lou",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d1:beatbox:1600:dazy-duke",
+   "artistId": "beyond-wonderland-socal-2026:dazy-duke",
+   "day": 1,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:0100:zedd",
+   "artistId": "beyond-wonderland-socal-2026:zedd",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:2355:slander",
+   "artistId": "beyond-wonderland-socal-2026:slander",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "23:55",
+   "end": "00:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:2255:deorro",
+   "artistId": "beyond-wonderland-socal-2026:deorro",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "22:55",
+   "end": "23:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
+   "artistId": "beyond-wonderland-socal-2026:alok",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "21:55",
+   "end": "22:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:2055:benny-benassi",
+   "artistId": "beyond-wonderland-socal-2026:benny-benassi",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "20:55",
+   "end": "21:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:1955:interplanetary-criminal",
+   "artistId": "beyond-wonderland-socal-2026:interplanetary-criminal",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "19:55",
+   "end": "20:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:1855:bolo",
+   "artistId": "beyond-wonderland-socal-2026:bolo",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:1755:notd",
+   "artistId": "beyond-wonderland-socal-2026:notd",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "17:55",
+   "end": "18:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:1655:wenzday",
+   "artistId": "beyond-wonderland-socal-2026:wenzday",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "16:55",
+   "end": "17:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:queen-s-domain:1600:max-low",
+   "artistId": "beyond-wonderland-socal-2026:max-low",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:queen-s-domain",
+   "start": "16:00",
+   "end": "16:55"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:0100:dj-diesel",
+   "artistId": "beyond-wonderland-socal-2026:dj-diesel",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:0050:mad-hatter",
+   "artistId": "beyond-wonderland-socal-2026:mad-hatter",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "00:50",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2345:black-tiger-sex-machine",
+   "artistId": "beyond-wonderland-socal-2026:black-tiger-sex-machine",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2245:sullivan-king",
+   "artistId": "beyond-wonderland-socal-2026:sullivan-king",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2145:eptic-b2b-space-laces",
+   "artistId": "beyond-wonderland-socal-2026:eptic-b2b-space-laces",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2045:deathpact",
+   "artistId": "beyond-wonderland-socal-2026:deathpact",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1945:layz",
+   "artistId": "beyond-wonderland-socal-2026:layz",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1845:reaper",
+   "artistId": "beyond-wonderland-socal-2026:reaper",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1745:gorillat",
+   "artistId": "beyond-wonderland-socal-2026:gorillat",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1645:probcause",
+   "artistId": "beyond-wonderland-socal-2026:probcause",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1600:sanzu",
+   "artistId": "beyond-wonderland-socal-2026:sanzu",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:mad-hatter-s-castle",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:0100:matroda",
+   "artistId": "beyond-wonderland-socal-2026:matroda",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:0000:sonny-fodera",
+   "artistId": "beyond-wonderland-socal-2026:sonny-fodera",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2300:noizu",
+   "artistId": "beyond-wonderland-socal-2026:noizu",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2200:omnom",
+   "artistId": "beyond-wonderland-socal-2026:omnom",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2100:biscits",
+   "artistId": "beyond-wonderland-socal-2026:biscits",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2000:westend",
+   "artistId": "beyond-wonderland-socal-2026:westend",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
+   "artistId": "beyond-wonderland-socal-2026:tinzo-jojo",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1800:jazzy",
+   "artistId": "beyond-wonderland-socal-2026:jazzy",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1700:trace",
+   "artistId": "beyond-wonderland-socal-2026:trace",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1600:chaney",
+   "artistId": "beyond-wonderland-socal-2026:chaney",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki",
+   "artistId": "beyond-wonderland-socal-2026:ian-asher-b2b-wuki",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:caterpillar-s-garden",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:0100:vini-vici",
+   "artistId": "beyond-wonderland-socal-2026:vini-vici",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:0000:gareth-emery",
+   "artistId": "beyond-wonderland-socal-2026:gareth-emery",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:2300:infected-mushroom",
+   "artistId": "beyond-wonderland-socal-2026:infected-mushroom",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:2200:giuseppe-ottaviani-ilan-bluestone",
+   "artistId": "beyond-wonderland-socal-2026:giuseppe-ottaviani-ilan-bluestone",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:2100:billy-gillies",
+   "artistId": "beyond-wonderland-socal-2026:billy-gillies",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:2000:marie-vaunt",
+   "artistId": "beyond-wonderland-socal-2026:marie-vaunt",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:1900:david-forbes",
+   "artistId": "beyond-wonderland-socal-2026:david-forbes",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:1800:cold-blue",
+   "artistId": "beyond-wonderland-socal-2026:cold-blue",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:1700:chris-metcalfe",
+   "artistId": "beyond-wonderland-socal-2026:chris-metcalfe",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:cheshire-woods:1600:sequence-six",
+   "artistId": "beyond-wonderland-socal-2026:sequence-six",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:cheshire-woods",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:0030:nico-moreno",
+   "artistId": "beyond-wonderland-socal-2026:nico-moreno",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:2300:hi-lo",
+   "artistId": "beyond-wonderland-socal-2026:hi-lo",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer",
+   "artistId": "beyond-wonderland-socal-2026:lilly-palmer",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah",
+   "artistId": "beyond-wonderland-socal-2026:novah",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:1830:bad-boombox-b2b-tta",
+   "artistId": "beyond-wonderland-socal-2026:bad-boombox-b2b-tta",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:1700:future-666",
+   "artistId": "beyond-wonderland-socal-2026:future-666",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-looking-glass:1600:juji",
+   "artistId": "beyond-wonderland-socal-2026:juji",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-looking-glass",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:0050:shy-fx",
+   "artistId": "beyond-wonderland-socal-2026:shy-fx",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "00:50",
+   "end": "01:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2350:delta-heavy",
+   "artistId": "beyond-wonderland-socal-2026:delta-heavy",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "23:50",
+   "end": "00:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2250:cntrl-alt-d-l-t",
+   "artistId": "beyond-wonderland-socal-2026:cntrl-alt-d-l-t",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "22:50",
+   "end": "23:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2150:skepsis-b2b-turno",
+   "artistId": "beyond-wonderland-socal-2026:skepsis-b2b-turno",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "21:50",
+   "end": "22:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2050:grafix",
+   "artistId": "beyond-wonderland-socal-2026:grafix",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "20:50",
+   "end": "21:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1950:muzz",
+   "artistId": "beyond-wonderland-socal-2026:muzz",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1850:badger",
+   "artistId": "beyond-wonderland-socal-2026:badger",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1750:justin-hawkes",
+   "artistId": "beyond-wonderland-socal-2026:justin-hawkes",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1650:reid-speed",
+   "artistId": "beyond-wonderland-socal-2026:reid-speed",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1600:bad-girl-bailey",
+   "artistId": "beyond-wonderland-socal-2026:bad-girl-bailey",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:the-sea-of-wonder",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:0100:soup-b2b-hyfen",
+   "artistId": "beyond-wonderland-socal-2026:soup-b2b-hyfen",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:0000:alvyn",
+   "artistId": "beyond-wonderland-socal-2026:alvyn",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:2300:rhome-tfti",
+   "artistId": "beyond-wonderland-socal-2026:rhome-tfti",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:2200:chyl-k-speed-set",
+   "artistId": "beyond-wonderland-socal-2026:chyl-k-speed-set",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:2100:iznyrs",
+   "artistId": "beyond-wonderland-socal-2026:iznyrs",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:2000:johnny-chay",
+   "artistId": "beyond-wonderland-socal-2026:johnny-chay",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:1900:chassi-k-pop-set",
+   "artistId": "beyond-wonderland-socal-2026:chassi-k-pop-set",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:1800:yunify",
+   "artistId": "beyond-wonderland-socal-2026:yunify",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:1700:merakii",
+   "artistId": "beyond-wonderland-socal-2026:merakii",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "beyond-wonderland-socal-2026:d2:beatbox:1600:zyrok",
+   "artistId": "beyond-wonderland-socal-2026:zyrok",
+   "day": 2,
+   "stageId": "beyond-wonderland-socal-2026:beatbox",
+   "start": "16:00",
+   "end": "17:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "structured_html",
+  "official": "https://socal.beyondwonderland.com/lineup/set-times",
+  "captures": [
+   {
+    "day": 1,
+    "archivedUrl": "https://web.archive.org/web/20260627051346/https://socal.beyondwonderland.com/lineup/set-times/day-1/",
+    "captureTimestamp": "20260627051346",
+    "sha256": "8eeeeed1d335157910b0dd9cd8ed34ab968d32a076672686ae7df7d9b8ce2dcb"
+   },
+   {
+    "day": 2,
+    "archivedUrl": "https://web.archive.org/web/20260627051349/https://socal.beyondwonderland.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20260627051349",
+    "sha256": "ad2f5139a6d824b2717cfc1ffc48d62114fd285e5263c13cb986c19eebc3bc82"
+   }
+  ]
+ }
+}

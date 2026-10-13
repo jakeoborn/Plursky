@@ -23,6 +23,10 @@ const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
   .filter(f => f.endsWith(".js")).sort();
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
+execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
+
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
 // 2026-08-29: `git add -A` picked up a `node_modules` symlink because
@@ -2176,6 +2180,14 @@ const REGISTRATION_TOL_M = 25;
   }
 }
 
+console.log("▸ ACL September30 stable-identity and source gate");
+try { console.log(execFileSync(process.execPath, ["scripts/test-acl-september30.mjs"], {cwd:ROOT,encoding:"utf8"})); }
+catch(e) { fail("ACL September30 regression: " + (e.stdout || e.message)); }
+console.log("▸ ACL programming readiness - independent event identities and source-only vendor map");
+try {
+  console.log(execFileSync(process.execPath, ["scripts/test-acl-programming-readiness.mjs"], { cwd: ROOT }).toString().trim());
+} catch (e) { fail("ACL programming readiness: " + (e.stdout || e.message)); }
+
 if (process.argv.includes("--parse-only")) process.exit(0);
 
 // ── 1z. Mixed-import toast regression ─────────────────────────────────────
@@ -2289,6 +2301,17 @@ for (const [script, label] of [
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`ACL W2 now-playing failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 {
@@ -2407,6 +2430,24 @@ for (const [script, label] of [
   }
 }
 
+// ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
+// The homepage, terms and privacy fingerprints come from committed files only,
+// so plain --check (the freshness gate above) must hold them to the committed
+// ledger and <lastmod>. A cache-bust that skipped the regenerate used to pass
+// here and turn the scheduled --check-strict job red after the merge. Runs the
+// real generator in scratch copies, with festival-row controls.
+{
+  console.log("▸ Sitemap commit-row gate — a stale homepage/terms/privacy fingerprint fails plain --check");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-sitemap-commit-rows.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`sitemap commit rows failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6. Memories grouping reachability ─────────────────────────────────
 // Every moment the TIMELINE lens COUNTS must be REACHABLE, exactly once, in
 // exactly one rendered group. Before this gate, a truthy artistId the ACTIVE
@@ -2473,6 +2514,135 @@ for (const [script, label] of [
   }
 }
 
+// ── Memories film strip names ─────────────────────────────────────────────
+// Every frame names its artist in full (wrapped to the frame, never sliced);
+// same class as #247's chip names. Real renderer, recorded fillText.
+{
+  console.log("▸ Film strip names — every frame's artist in full, within the frame's width");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-film-strip-names.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`film strip names failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist screen: an act with no day ─────────────────────────────────────
+// A billed act no official schedule has placed renders ("DAY + SET TIME NOT
+// PUBLISHED") instead of crashing on DAYS.find(...).label. Fixture acts, so
+// the gate survives Escape's set times publishing.
+{
+  console.log("▸ Artist no-day — a billed, unplaced act renders instead of crashing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-no-day.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── /f/ page status chip ─────────────────────────────────────────────────
+// A festival whose day split is unpublished (one dayDates bucket, a two-day
+// printed range) is "Happening now" on every printed day; a festival that
+// runs in blocks is not in its gap. Real registry festivals at pinned dates.
+{
+  console.log("▸ Page status — single-bucket festivals stay live through their last day; gaps are not live");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-page-status.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`page status failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Map: HTML labels sit on the SVG points they name ─────────────────────
+// The YOU label and the stage pills are HTML over an SVG map. In a portrait
+// container the HTML layer applied the map's vertical centring twice, so the
+// YOU label rendered ~85 px off its dot. Measured against the SVG's own
+// transform; pills come from a fixture so the gate does not depend on which
+// live festival's art prints its own stage names.
+{
+  console.log("▸ Map overlay registration — the YOU label and stage pills sit on their points");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-overlay-registration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map overlay registration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── III Points 2026: each act's day is the official day graphic's ─────────
+// The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
+// day-split/graphic.tsv; the list page is the lineup. Both directions of the
+// join, B2B order as billed, and no stage or time anywhere.
+{
+  console.log("▸ III Points day split — every act on the official graphic's day, B2B as billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iii-points-days.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Saved sets the lineup still carries ──────────────────────────────────
+// Every saved-set surface reads savedInLineup(); storage, cloud push and the
+// sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
+// data-retention decision). Removed, removed-then-readded, union merge, zero
+// live; plus a detector for raw saved-list counts.
+{
+  console.log("▸ Saved-set view — counts and screens read the lineup; storage keeps every id");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-saved-set-lineup-view.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`saved-set view failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// CRSSD Fall 2026's flip drops Skepta Más Tiempo (Codex P2 on #249): the REAL
+// orphan id against the REAL flipped lineup. Counts, Search, Build My Night and
+// its share, crew showdown read zero for it; storage and the cloud push keep
+// it; re-billing the act brings it back saved.
+{
+  console.log("▸ CRSSD saved orphan — Skepta Más Tiempo reads zero, stays stored, returns if re-billed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crssd-saved-orphan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`CRSSD saved orphan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Summerfest 2026 pulls su24, the wrong-stage copy of Stephan Jenkins (su45):
+// a saved su24 reads zero but stays stored and pushed, a moment tagged su24
+// lands in Needs Review, and re-adding the row brings both back.
+{
+  console.log("▸ Summerfest su24 removal — saved pick reads zero, stays stored; its moment goes to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-su24-removal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest su24 removal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
 // A downward scroll folds the WHOLE filter header into one compact bar that
 // names the selection; an upward scroll or a tap brings it back; the list
@@ -2489,6 +2659,43 @@ for (const [script, label] of [
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`lineup readability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Screen layout: the board's Me and Today (before the festival) ──
+// An empty account asks for a name (never a dash), Plan / Memories / Crew /
+// Badges are four round actions on one row with no zero counts, the
+// Plursky+ entry stays fully on screen at the top, festival rows keep their
+// title on one line at 320. Both modes, 393 and 320, empty and populated.
+{
+  console.log("▸ Screen layout gate — Me and Today before the festival, on the board");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-ap. Appearance: one system, two modes ──
+// Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
+// in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
+// checked in BOTH modes, each loaded in one and toggled into the other: text
+// contrast (WCAG AA) against what is really behind it, text on a photo keeps
+// one colour, no colour left behind by a toggle (settled pixel diff on every
+// screenful), artist names never truncated (3+ chains as "First +N"), stages
+// never shown as codes, and the resolver rules. A mode-specific break fails.
+{
+  console.log("▸ Appearance gate — every screen in Dark and Light, names in full");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-appearance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`appearance failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2658,6 +2865,7 @@ for (const [script, label] of [
 {
   console.log("▸ Festival pages gate — every section backed, nothing unbacked");
   try {
+    execFileSync(process.execPath, ["scripts/test-iii-points-stage-programming.mjs"], { cwd: ROOT, stdio: "pipe" });
     const out = execFileSync(process.execPath, ["scripts/test-festival-pages.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);
@@ -2787,6 +2995,17 @@ for (const [script, label] of [
     fail(`Past Festivals UI failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+{
+  console.log("▸ Past look-backs gate — a gated festival opens its past edition as a labelled look-back, or stays gated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-lookbacks.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
@@ -2894,6 +3113,21 @@ for (const [script, label] of [
   }
 }
 
+// ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
+// A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
+// wraps inside the row at 320px instead of cutting at 8 characters.
+{
+  console.log("▸ Map quick replies gate — smart chips name the artist in full, fit the row at 320px");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-quick-replies.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map quick replies failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c5. ACL 2026 map: art coordinates are not world coordinates ────────
 // The plate is the verified first-party 2026 patron map, every stage/amenity
 // x/y is a measured row on it, the four satellite anchors are untouched and
@@ -2907,6 +3141,22 @@ for (const [script, label] of [
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`ACL 2026 map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Georeference tool + EDC Orlando 2026 map pipeline ─────────────────────
+// scripts/georef-map.mjs re-derives the grid, scale and centroid edc-orlando
+// ships from its own anchors, and build-edco-map-2026.mjs may ship only the
+// placeholder until an official 2026 map is pinned by hash.
+{
+  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`georef failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "festivalId": "summerfest-2026",
   "source": {"url":"https://summerfest.com/lineup","observedAt":"2026-08-28","official":true},
-  "scheduleHash": "e8be6a71432c4d1b",
+  "scheduleHash": "26d4e0f5997e50b9",
   "acts": [
     {"id":"su1","name":"Solon Holt","day":1,"stage":"amph","start":"18:30","end":"19:20"},
     {"id":"su2","name":"JP Saxe","day":1,"stage":"amph","start":"19:30","end":"20:35"},
@@ -26,7 +26,6 @@
     {"id":"su21","name":"Hunny","day":1,"stage":"miller","start":"20:30","end":"21:35"},
     {"id":"su22","name":"Tash Sultana","day":1,"stage":"miller","start":"22:30","end":"00:00"},
     {"id":"su23","name":"MKE Live Groove: Summerfest Edition","day":1,"stage":"aurora","start":"12:00","end":"13:50"},
-    {"id":"su24","name":"Stephan Jenkins of Third Eye Blind","day":1,"stage":"aurora","start":"14:00","end":"15:05"},
     {"id":"su25","name":"Summerfest Opening Ceremonies","day":1,"stage":"aurora","start":"18:00","end":"18:45"},
     {"id":"su26","name":"Alejandro Escovedo","day":1,"stage":"aurora","start":"19:00","end":"20:05"},
     {"id":"su27","name":"DJ B-Lee","day":1,"stage":"aurora","start":"21:00","end":"22:30"},

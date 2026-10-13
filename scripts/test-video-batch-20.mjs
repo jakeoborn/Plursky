@@ -14,8 +14,8 @@ try {
  const ctx=await browser.newContext({timezoneId:'America/Los_Angeles',viewport:{width:393,height:852},deviceScaleFactor:1});
  await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
  const page=await ctx.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(`http://127.0.0.1:${port}/?tab=me`);await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
- await page.locator('button').filter({hasText:/MEMORIES/}).first().click();
+ await page.goto(`http://127.0.0.1:${port}/?tab=memories`);await page.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
+
  const input=page.locator('input[type=file][multiple]').first();await input.waitFor({state:'attached'});
  const source=process.env.PLURSKY_VIDEO_FIXTURE || 'scripts/fixtures/video-import-h264.mp4'; const buffer=readFileSync(source); const files=Array.from({length:20},(_,i)=>({name:`clip-${String(i+1).padStart(2,'0')}.mp4`,mimeType:'video/mp4',buffer}));
  const start=Date.now();await input.setInputFiles(files);
@@ -34,7 +34,7 @@ try {
  await nctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
  const native=await nctx.newPage();const nativeErrors=[];native.on('pageerror',e=>nativeErrors.push(e.message));
  let requests=0,maxInFlight=0;
- await native.goto(`http://127.0.0.1:${port}/?tab=me`);await native.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});await native.locator('button').filter({hasText:/MEMORIES/}).first().click();
+ await native.goto(`http://127.0.0.1:${port}/?tab=memories`);await native.waitForFunction(()=>Array.isArray(window.ARTISTS)&&window.ARTISTS.length>0,null,{timeout:30000});
  await native.locator('input[type=file][multiple]').first().waitFor({state:'attached'});
  await native.evaluate(async ({bytes})=>{const original=window.fetch.bind(window);const data=Uint8Array.from(bytes);window.__nativeFetch={inFlight:0,max:0,count:0};window.fetch=async (url,...args)=>{if(String(url).includes('/native-video/')){window.__nativeFetch.inFlight++;window.__nativeFetch.count++;window.__nativeFetch.max=Math.max(window.__nativeFetch.max,window.__nativeFetch.inFlight);await new Promise(r=>setTimeout(r,10));window.__nativeFetch.inFlight--;return new Response(new Blob([data],{type:'video/mp4'}),{status:200});}return original(url,...args)};window.__USE_NATIVE_PICKER__=true;window.Capacitor={isNativePlatform:()=>true,convertFileSrc:p=>p,Plugins:{FilePicker:{pickMedia:async()=>({files:Array.from({length:20},(_,i)=>({path:`/native-video/${i}.mp4`,name:`native-${i}.mp4`,mimeType:'video/mp4',size:data.length}))})}}};},{bytes:[...buffer]});
  await native.getByRole('button',{name:/Import from camera roll/i}).first().click();
