@@ -23,6 +23,10 @@ const FESTIVAL_MODULES = readdirSync(join(ROOT, "data", "festivals"))
   .filter(f => f.endsWith(".js")).sort();
 const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 
+execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
+
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
 // 2026-08-29: `git add -A` picked up a `node_modules` symlink because
@@ -2647,6 +2651,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Summerfest 2026 pulls su24, the wrong-stage copy of Stephan Jenkins (su45):
+// a saved su24 reads zero but stays stored and pushed, a moment tagged su24
+// lands in Needs Review, and re-adding the row brings both back.
+{
+  console.log("▸ Summerfest su24 removal — saved pick reads zero, stays stored; its moment goes to Needs Review");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-su24-removal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest su24 removal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5c3. Lineup list for humans ──────────────────────────────────────
 // A downward scroll folds the WHOLE filter header into one compact bar that
 // names the selection; an upward scroll or a tap brings it back; the list
@@ -2663,6 +2682,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`lineup readability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Screen layout: the board's Me and Today (before the festival) ──
+// An empty account asks for a name (never a dash), Plan / Memories / Crew /
+// Badges are four round actions on one row with no zero counts, the
+// Plursky+ entry stays fully on screen at the top, festival rows keep their
+// title on one line at 320. Both modes, 393 and 320, empty and populated.
+{
+  console.log("▸ Screen layout gate — Me and Today before the festival, on the board");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2852,6 +2888,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 {
   console.log("▸ Festival pages gate — every section backed, nothing unbacked");
   try {
+    execFileSync(process.execPath, ["scripts/test-iii-points-stage-programming.mjs"], { cwd: ROOT, stdio: "pipe" });
     const out = execFileSync(process.execPath, ["scripts/test-festival-pages.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);
@@ -2979,6 +3016,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Past Festivals UI failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Past look-backs gate — a gated festival opens its past edition as a labelled look-back, or stays gated");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-lookbacks.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
