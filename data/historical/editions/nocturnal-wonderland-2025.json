@@ -1,0 +1,1186 @@
+{
+ "id": "nocturnal-wonderland-2025",
+ "festivalId": "nocturnal-wonderland",
+ "name": "Nocturnal Wonderland 2025",
+ "year": 2025,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-09-13",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2025-09-14",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "nocturnal-wonderland-2025:mystic-wild",
+   "name": "Mystic Wild"
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dawn-mountain",
+   "name": "Dawn Mountain"
+  },
+  {
+   "id": "nocturnal-wonderland-2025:aurora-plains",
+   "name": "Aurora Plains"
+  },
+  {
+   "id": "nocturnal-wonderland-2025:rave-cave",
+   "name": "Rave Cave"
+  },
+  {
+   "id": "nocturnal-wonderland-2025:beatbox-boombox-art-car",
+   "name": "Beatbox Boombox Art Car"
+  }
+ ],
+ "artists": [
+  {
+   "id": "nocturnal-wonderland-2025:33-below",
+   "name": "33 Below",
+   "key": "33-below",
+   "performers": [
+    "33-below"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ivy",
+   "name": "[IVY]",
+   "key": "ivy",
+   "performers": [
+    "ivy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ac-slater-b2b-tchami",
+   "name": "AC Slater B2B Tchami",
+   "key": "ac-slater-b2b-tchami",
+   "performers": [
+    "ac-slater",
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ahee",
+   "name": "AHEE",
+   "key": "ahee",
+   "performers": [
+    "ahee"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:airglo",
+   "name": "Airglo",
+   "key": "airglo",
+   "performers": [
+    "airglo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:anabel-englund",
+   "name": "Anabel Englund",
+   "key": "anabel-englund",
+   "performers": [
+    "anabel-englund"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:andrew-lux",
+   "name": "Andrew Lux",
+   "key": "andrew-lux",
+   "performers": [
+    "andrew-lux"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:archie-hamilton",
+   "name": "Archie Hamilton",
+   "key": "archie-hamilton",
+   "performers": [
+    "archie-hamilton"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:benny-benassi-sunset-set",
+   "name": "Benny Benassi (Sunset Set)",
+   "key": "benny-benassi-sunset-set",
+   "performers": [
+    "benny-benassi-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:biscits",
+   "name": "Biscits",
+   "key": "biscits",
+   "performers": [
+    "biscits"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:blake-webber",
+   "name": "Blake Webber",
+   "key": "blake-webber",
+   "performers": [
+    "blake-webber"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:blanke",
+   "name": "Blanke",
+   "key": "blanke",
+   "performers": [
+    "blanke"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:brandon-elliot",
+   "name": "Brandon Elliot",
+   "key": "brandon-elliot",
+   "performers": [
+    "brandon-elliot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:candl",
+   "name": "Candl",
+   "key": "candl",
+   "performers": [
+    "candl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:codeko",
+   "name": "Codeko",
+   "key": "codeko",
+   "performers": [
+    "codeko"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:coolhandluke",
+   "name": "CoolHandLuke",
+   "key": "coolhandluke",
+   "performers": [
+    "coolhandluke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:cyclops-b2b-calcium",
+   "name": "Cyclops B2B Calcium",
+   "key": "cyclops-b2b-calcium",
+   "performers": [
+    "cyclops",
+    "calcium"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dennis-ferrer",
+   "name": "Dennis Ferrer",
+   "key": "dennis-ferrer",
+   "performers": [
+    "dennis-ferrer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dieselboy",
+   "name": "Dieselboy",
+   "key": "dieselboy",
+   "performers": [
+    "dieselboy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dj-mandy",
+   "name": "DJ Mandy",
+   "key": "dj-mandy",
+   "performers": [
+    "dj-mandy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dj-susan-b2b-kaleena-zanders",
+   "name": "DJ Susan B2B Kaleena Zanders",
+   "key": "dj-susan-b2b-kaleena-zanders",
+   "performers": [
+    "dj-susan",
+    "kaleena-zanders"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:donald-glaude",
+   "name": "Donald Glaude",
+   "key": "donald-glaude",
+   "performers": [
+    "donald-glaude"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:dr-apollo",
+   "name": "Dr. Apollo",
+   "key": "dr-apollo",
+   "performers": [
+    "dr-apollo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:falko",
+   "name": "Falko",
+   "key": "falko",
+   "performers": [
+    "falko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:fester",
+   "name": "Fester",
+   "key": "fester",
+   "performers": [
+    "fester"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:grabbitz",
+   "name": "Grabbitz",
+   "key": "grabbitz",
+   "performers": [
+    "grabbitz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:harvard-bass",
+   "name": "Harvard Bass",
+   "key": "harvard-bass",
+   "performers": [
+    "harvard-bass"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:hol",
+   "name": "HOL!",
+   "key": "hol",
+   "performers": [
+    "hol"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:infected-mushroom",
+   "name": "Infected Mushroom",
+   "key": "infected-mushroom",
+   "performers": [
+    "infected-mushroom"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ion-us",
+   "name": "ION (US)",
+   "key": "ion-us",
+   "performers": [
+    "ion-us"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:jesse-brooks",
+   "name": "Jesse Brooks",
+   "key": "jesse-brooks",
+   "performers": [
+    "jesse-brooks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:jessica-audiffred-b2b-riot-ten",
+   "name": "Jessica Audiffred B2B Riot Ten",
+   "key": "jessica-audiffred-b2b-riot-ten",
+   "performers": [
+    "jessica-audiffred",
+    "riot-ten"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:johnjose",
+   "name": "JOHNJOSÉ",
+   "key": "johnjose",
+   "performers": [
+    "johnjose"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:justin-hawkes",
+   "name": "Justin Hawkes",
+   "key": "justin-hawkes",
+   "performers": [
+    "justin-hawkes"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:kai-wachi",
+   "name": "Kai Wachi",
+   "key": "kai-wachi",
+   "performers": [
+    "kai-wachi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:kurei",
+   "name": "Kurei",
+   "key": "kurei",
+   "performers": [
+    "kurei"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ky-william",
+   "name": "Ky William",
+   "key": "ky-william",
+   "performers": [
+    "ky-william"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:lavern",
+   "name": "Lavern",
+   "key": "lavern",
+   "performers": [
+    "lavern"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:leisan",
+   "name": "Leisan",
+   "key": "leisan",
+   "performers": [
+    "leisan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:lenny-v",
+   "name": "Lenny V",
+   "key": "lenny-v",
+   "performers": [
+    "lenny-v"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:level-up",
+   "name": "Level Up",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:lf-system",
+   "name": "LF SYSTEM",
+   "key": "lf-system",
+   "performers": [
+    "lf-system"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ludz",
+   "name": "Ludz",
+   "key": "ludz",
+   "performers": [
+    "ludz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:malixe",
+   "name": "Malixe",
+   "key": "malixe",
+   "performers": [
+    "malixe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:mark-lewis",
+   "name": "Mark Lewis",
+   "key": "mark-lewis",
+   "performers": [
+    "mark-lewis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:metrik-b2b-grafix",
+   "name": "Metrik B2B Grafix",
+   "key": "metrik-b2b-grafix",
+   "performers": [
+    "metrik",
+    "grafix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:nar",
+   "name": "NAR",
+   "key": "nar",
+   "performers": [
+    "nar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:neon-black",
+   "name": "Neon Black",
+   "key": "neon-black",
+   "performers": [
+    "neon-black"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:nostalgix",
+   "name": "Nostalgix",
+   "key": "nostalgix",
+   "performers": [
+    "nostalgix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:not-not",
+   "name": "Not Not",
+   "key": "not-not",
+   "performers": [
+    "not-not"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:oddkidout",
+   "name": "OddKidOut",
+   "key": "oddkidout",
+   "performers": [
+    "oddkidout"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:qlank",
+   "name": "Qlank",
+   "key": "qlank",
+   "performers": [
+    "qlank"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:roy-wilkins-b2b-el-monk",
+   "name": "Roy Wilkins B2B El Monk",
+   "key": "roy-wilkins-b2b-el-monk",
+   "performers": [
+    "roy-wilkins",
+    "el-monk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ruff-hauser",
+   "name": "Ruff Hauser",
+   "key": "ruff-hauser",
+   "performers": [
+    "ruff-hauser"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:san-pacho",
+   "name": "San Pacho",
+   "key": "san-pacho",
+   "performers": [
+    "san-pacho"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:shaded",
+   "name": "Shaded",
+   "key": "shaded",
+   "performers": [
+    "shaded"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:skanka",
+   "name": "Skanka",
+   "key": "skanka",
+   "performers": [
+    "skanka"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:skream",
+   "name": "Skream",
+   "key": "skream",
+   "performers": [
+    "skream"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:theconnect-b2b-skonka",
+   "name": "TheConnect B2B Skonka",
+   "key": "theconnect-b2b-skonka",
+   "performers": [
+    "theconnect",
+    "skonka"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:tom-and-collins",
+   "name": "Tom & Collins",
+   "key": "tom-and-collins",
+   "performers": [
+    "tom-and-collins"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:aurora-plains"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:trice",
+   "name": "Trice",
+   "key": "trice",
+   "performers": [
+    "trice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:rave-cave"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:waxtroda-matroda-b2b-wax-motif",
+   "name": "Waxtroda (Matroda B2B Wax Motif)",
+   "key": "waxtroda-matroda-b2b-wax-motif",
+   "performers": [
+    "waxtroda-matroda",
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:wilkinson-sunset-set",
+   "name": "Wilkinson (Sunset Set)",
+   "key": "wilkinson-sunset-set",
+   "performers": [
+    "wilkinson-sunset-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:wooli",
+   "name": "Wooli",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:dawn-mountain"
+    }
+   ]
+  },
+  {
+   "id": "nocturnal-wonderland-2025:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "nocturnal-wonderland-2025:mystic-wild"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.nocturnalwonderland.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20250912223717/https://www.nocturnalwonderland.com/lineup/",
+    "captureTimestamp": "20250912223717",
+    "sha256": "765e22c4a8f04e1a0592edfbd9ef8bc6adf720ad5fff5c0346584ad5bea3c4db"
+   }
+  ]
+ }
+}

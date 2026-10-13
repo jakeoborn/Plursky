@@ -1,0 +1,1882 @@
+{
+ "id": "escape-halloween-2025",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2025",
+ "year": 2025,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-10-31",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-11-01",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2025:the-big-top",
+   "name": "The Big Top"
+  },
+  {
+   "id": "escape-halloween-2025:sewer-district",
+   "name": "Sewer District"
+  },
+  {
+   "id": "escape-halloween-2025:feeding-grounds",
+   "name": "Feeding Grounds"
+  },
+  {
+   "id": "escape-halloween-2025:the-cage",
+   "name": "The Cage"
+  },
+  {
+   "id": "escape-halloween-2025:the-warehouse",
+   "name": "The Warehouse"
+  },
+  {
+   "id": "escape-halloween-2025:beatbox-boombox-art-car",
+   "name": "Beatbox Boombox Art Car"
+  },
+  {
+   "id": "escape-halloween-2025:casa-bacardi",
+   "name": "Casa Bacardi"
+  },
+  {
+   "id": "escape-halloween-2025:danse-macabre",
+   "name": "Danse Macabre"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2025:aaron-hiro",
+   "name": "Aaron Hiro",
+   "key": "aaron-hiro",
+   "performers": [
+    "aaron-hiro"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:airrica",
+   "name": "Airrica",
+   "key": "airrica",
+   "performers": [
+    "airrica"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:alignment",
+   "name": "Alignment",
+   "key": "alignment",
+   "performers": [
+    "alignment"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:all-rise",
+   "name": "All Rise",
+   "key": "all-rise",
+   "performers": [
+    "all-rise"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:alyssa-jolee",
+   "name": "Alyssa Jolee",
+   "key": "alyssa-jolee",
+   "performers": [
+    "alyssa-jolee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:ana-valdes-b2b-who-is-hush",
+   "name": "Ana Valdes B2B Who Is Hush",
+   "key": "ana-valdes-b2b-who-is-hush",
+   "performers": [
+    "ana-valdes",
+    "who-is-hush"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:angerfist",
+   "name": "Angerfist",
+   "key": "angerfist",
+   "performers": [
+    "angerfist"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:angrybaby",
+   "name": "Angrybaby",
+   "key": "angrybaby",
+   "performers": [
+    "angrybaby"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:armnhmr-presents-passport",
+   "name": "ARMNHMR Presents Passport",
+   "key": "armnhmr-presents-passport",
+   "performers": [
+    "armnhmr-presents-passport"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:audien",
+   "name": "Audien",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:bad-boombox",
+   "name": "Bad Boombox",
+   "key": "bad-boombox",
+   "performers": [
+    "bad-boombox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:brandon-elliot",
+   "name": "Brandon Elliot",
+   "key": "brandon-elliot",
+   "performers": [
+    "brandon-elliot"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:clawz-b2b-luca-lush-b2b-casska",
+   "name": "Clawz B2B Luca Lush B2B Casska",
+   "key": "clawz-b2b-luca-lush-b2b-casska",
+   "performers": [
+    "clawz",
+    "luca-lush",
+    "casska"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:control-freak",
+   "name": "Control Freak",
+   "key": "control-freak",
+   "performers": [
+    "control-freak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:crayzo",
+   "name": "CRAYZO",
+   "key": "crayzo",
+   "performers": [
+    "crayzo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:d-zeledon-b2b-redtape",
+   "name": "D. Zeledon B2B Redtape",
+   "key": "d-zeledon-b2b-redtape",
+   "performers": [
+    "d-zeledon",
+    "redtape"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dani-thorne",
+   "name": "Dani Thorne",
+   "key": "dani-thorne",
+   "performers": [
+    "dani-thorne"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dax-j-b2b-spfdj",
+   "name": "Dax J B2B SPFDJ",
+   "key": "dax-j-b2b-spfdj",
+   "performers": [
+    "dax-j",
+    "spfdj"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dea-magna",
+   "name": "Dea Magna",
+   "key": "dea-magna",
+   "performers": [
+    "dea-magna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:deadmau5",
+   "name": "deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dimitri-vegas",
+   "name": "Dimitri Vegas",
+   "key": "dimitri-vegas",
+   "performers": [
+    "dimitri-vegas"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dj-fantasyboi",
+   "name": "DJ Fantasyboi",
+   "key": "dj-fantasyboi",
+   "performers": [
+    "dj-fantasyboi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dj-irene",
+   "name": "DJ Irene",
+   "key": "dj-irene",
+   "performers": [
+    "dj-irene"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dj-isaac",
+   "name": "DJ Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:d-mina",
+   "name": "DØMINA",
+   "key": "d-mina",
+   "performers": [
+    "d-mina"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:don-jamal",
+   "name": "Don Jamal",
+   "key": "don-jamal",
+   "performers": [
+    "don-jamal"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:doozie",
+   "name": "Doozie",
+   "key": "doozie",
+   "performers": [
+    "doozie"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dr-apollo",
+   "name": "Dr. Apollo",
+   "key": "dr-apollo",
+   "performers": [
+    "dr-apollo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dual-damage",
+   "name": "Dual Damage",
+   "key": "dual-damage",
+   "performers": [
+    "dual-damage"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:dzma-b2b-lost-wolves",
+   "name": "DZMA B2B Lost Wolves",
+   "key": "dzma-b2b-lost-wolves",
+   "performers": [
+    "dzma",
+    "lost-wolves"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:eater",
+   "name": "Eater",
+   "key": "eater",
+   "performers": [
+    "eater"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:ely-oaks",
+   "name": "Ely Oaks",
+   "key": "ely-oaks",
+   "performers": [
+    "ely-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:etari",
+   "name": "Etari",
+   "key": "etari",
+   "performers": [
+    "etari"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:godlands",
+   "name": "Godlands",
+   "key": "godlands",
+   "performers": [
+    "godlands"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:haavi",
+   "name": "Haavi",
+   "key": "haavi",
+   "performers": [
+    "haavi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:hannah-laing",
+   "name": "Hannah Laing",
+   "key": "hannah-laing",
+   "performers": [
+    "hannah-laing"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:heart-of-gold",
+   "name": "Heart of Gold",
+   "key": "heart-of-gold",
+   "performers": [
+    "heart-of-gold"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:hex-cougar",
+   "name": "Hex Cougar",
+   "key": "hex-cougar",
+   "performers": [
+    "hex-cougar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    },
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:hntr",
+   "name": "HNTR",
+   "key": "hntr",
+   "performers": [
+    "hntr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:insical",
+   "name": "Insical",
+   "key": "insical",
+   "performers": [
+    "insical"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:iznyrs",
+   "name": "IZNYRS",
+   "key": "iznyrs",
+   "performers": [
+    "iznyrs"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:j-worra",
+   "name": "J. Worra",
+   "key": "j-worra",
+   "performers": [
+    "j-worra"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:j-patron",
+   "name": "J.Patron",
+   "key": "j-patron",
+   "performers": [
+    "j-patron"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:jaden-bojsen",
+   "name": "Jaden Bojsen",
+   "key": "jaden-bojsen",
+   "performers": [
+    "jaden-bojsen"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:jawns",
+   "name": "Jawns",
+   "key": "jawns",
+   "performers": [
+    "jawns"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:jessica-audiffred",
+   "name": "Jessica Audiffred",
+   "key": "jessica-audiffred",
+   "performers": [
+    "jessica-audiffred"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:jev",
+   "name": "Jev",
+   "key": "jev",
+   "performers": [
+    "jev"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    },
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:john-bryars",
+   "name": "John Bryars",
+   "key": "john-bryars",
+   "performers": [
+    "john-bryars"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:johnny-chay",
+   "name": "Johnny Chay",
+   "key": "johnny-chay",
+   "performers": [
+    "johnny-chay"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:juos",
+   "name": "Juos",
+   "key": "juos",
+   "performers": [
+    "juos"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:justin-jay",
+   "name": "Justin Jay",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:keenan-mathias",
+   "name": "Keenan Mathias",
+   "key": "keenan-mathias",
+   "performers": [
+    "keenan-mathias"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:klangkuenstler",
+   "name": "Klangkuenstler",
+   "key": "klangkuenstler",
+   "performers": [
+    "klangkuenstler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:korolova",
+   "name": "Korolova",
+   "key": "korolova",
+   "performers": [
+    "korolova"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:kshmr-b2b-r3hab",
+   "name": "KSHMR B2B R3HAB",
+   "key": "kshmr-b2b-r3hab",
+   "performers": [
+    "kshmr",
+    "r3hab"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:kstko",
+   "name": "Kstko",
+   "key": "kstko",
+   "performers": [
+    "kstko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:layz",
+   "name": "LAYZ",
+   "key": "layz",
+   "performers": [
+    "layz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:lyon-808",
+   "name": "Lyon 808",
+   "key": "lyon-808",
+   "performers": [
+    "lyon-808"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:madgrrl",
+   "name": "MADGRRL",
+   "key": "madgrrl",
+   "performers": [
+    "madgrrl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:malone",
+   "name": "Malóne",
+   "key": "malone",
+   "performers": [
+    "malone"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    },
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:maneki",
+   "name": "Maneki",
+   "key": "maneki",
+   "performers": [
+    "maneki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:mango-and-ginger",
+   "name": "Mango & Ginger",
+   "key": "mango-and-ginger",
+   "performers": [
+    "mango-and-ginger"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:manolo",
+   "name": "Manolo",
+   "key": "manolo",
+   "performers": [
+    "manolo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:marco-strous",
+   "name": "Marco Strous",
+   "key": "marco-strous",
+   "performers": [
+    "marco-strous"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:mark-lizaola",
+   "name": "Mark Lizaola",
+   "key": "mark-lizaola",
+   "performers": [
+    "mark-lizaola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:marshmello-b2b-dj-snake",
+   "name": "Marshmello B2B DJ Snake",
+   "key": "marshmello-b2b-dj-snake",
+   "performers": [
+    "marshmello",
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:mena-e",
+   "name": "Mena¢e",
+   "key": "mena-e",
+   "performers": [
+    "mena-e"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:mischluft",
+   "name": "mischluft",
+   "key": "mischluft",
+   "performers": [
+    "mischluft"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:mish",
+   "name": "Mish",
+   "key": "mish",
+   "performers": [
+    "mish"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:moody-good",
+   "name": "Moody Good",
+   "key": "moody-good",
+   "performers": [
+    "moody-good"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:moore-kismet",
+   "name": "Moore Kismet",
+   "key": "moore-kismet",
+   "performers": [
+    "moore-kismet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:morelia",
+   "name": "Morelia",
+   "key": "morelia",
+   "performers": [
+    "morelia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:nghtmre-b2b-peekaboo",
+   "name": "NGHTMRE B2B Peekaboo",
+   "key": "nghtmre-b2b-peekaboo",
+   "performers": [
+    "nghtmre",
+    "peekaboo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:nic-vans",
+   "name": "Nic Vans",
+   "key": "nic-vans",
+   "performers": [
+    "nic-vans"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:nicole-moudaber-b2b-ilario-alicante",
+   "name": "Nicole Moudaber B2B Ilario Alicante",
+   "key": "nicole-moudaber-b2b-ilario-alicante",
+   "performers": [
+    "nicole-moudaber",
+    "ilario-alicante"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:nikita-the-wicked",
+   "name": "Nikita, the Wicked",
+   "key": "nikita-the-wicked",
+   "performers": [
+    "nikita-the-wicked"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    },
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:noms",
+   "name": "NOMS",
+   "key": "noms",
+   "performers": [
+    "noms"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:ollie-lishman",
+   "name": "Ollie Lishman",
+   "key": "ollie-lishman",
+   "performers": [
+    "ollie-lishman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:onyvaa",
+   "name": "ONYVAA",
+   "key": "onyvaa",
+   "performers": [
+    "onyvaa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:nyx",
+   "name": "Ønyx",
+   "key": "nyx",
+   "performers": [
+    "nyx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:the-outlaw",
+   "name": "The Outlaw",
+   "key": "the-outlaw",
+   "performers": [
+    "the-outlaw"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:panteros666",
+   "name": "Panteros666",
+   "key": "panteros666",
+   "performers": [
+    "panteros666"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:papa-lu",
+   "name": "Papa Lu",
+   "key": "papa-lu",
+   "performers": [
+    "papa-lu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    },
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:pegassi",
+   "name": "Pegassi",
+   "key": "pegassi",
+   "performers": [
+    "pegassi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:porter-robinson-dj-set",
+   "name": "Porter Robinson (DJ Set)",
+   "key": "porter-robinson-dj-set",
+   "performers": [
+    "porter-robinson-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:ray-volpe",
+   "name": "Ray Volpe",
+   "key": "ray-volpe",
+   "performers": [
+    "ray-volpe"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:reza",
+   "name": "Reza",
+   "key": "reza",
+   "performers": [
+    "reza"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:rhome",
+   "name": "RHOME",
+   "key": "rhome",
+   "performers": [
+    "rhome"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:rossy-b2b-pauline-herr",
+   "name": "Rossy B2B Pauline Herr",
+   "key": "rossy-b2b-pauline-herr",
+   "performers": [
+    "rossy",
+    "pauline-herr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:sacha-robotti",
+   "name": "Sacha Robotti",
+   "key": "sacha-robotti",
+   "performers": [
+    "sacha-robotti"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:san-holo-wholesome-riddim-set",
+   "name": "San Holo (Wholesome Riddim Set)",
+   "key": "san-holo-wholesome-riddim-set",
+   "performers": [
+    "san-holo-wholesome-riddim-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:secret-guest",
+   "name": "Secret Guest",
+   "key": "secret-guest",
+   "performers": [
+    "secret-guest"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:senza",
+   "name": "SENZA",
+   "key": "senza",
+   "performers": [
+    "senza"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:sota",
+   "name": "Sota",
+   "key": "sota",
+   "performers": [
+    "sota"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:southstar",
+   "name": "southstar",
+   "key": "southstar",
+   "performers": [
+    "southstar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:tattoopudge-b2b-death-simulator",
+   "name": "TATTOOPUDGE B2B Death Simulator",
+   "key": "tattoopudge-b2b-death-simulator",
+   "performers": [
+    "tattoopudge",
+    "death-simulator"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:danse-macabre"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:tavatli",
+   "name": "Tavatli",
+   "key": "tavatli",
+   "performers": [
+    "tavatli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:tej",
+   "name": "Tej",
+   "key": "tej",
+   "performers": [
+    "tej"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:tfti",
+   "name": "TFTI",
+   "key": "tfti",
+   "performers": [
+    "tfti"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:tiffy-vera",
+   "name": "Tiffy Vera",
+   "key": "tiffy-vera",
+   "performers": [
+    "tiffy-vera"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    },
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:casa-bacardi"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:virtual-riot",
+   "name": "Virtual Riot",
+   "key": "virtual-riot",
+   "performers": [
+    "virtual-riot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:wakyin",
+   "name": "Wakyin",
+   "key": "wakyin",
+   "performers": [
+    "wakyin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-cage"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:walker-and-royce",
+   "name": "Walker & Royce",
+   "key": "walker-and-royce",
+   "performers": [
+    "walker-and-royce"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:wavedash",
+   "name": "Wavedash",
+   "key": "wavedash",
+   "performers": [
+    "wavedash"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:wes-mills",
+   "name": "wes mills",
+   "key": "wes-mills",
+   "performers": [
+    "wes-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:whethan",
+   "name": "Whethan",
+   "key": "whethan",
+   "performers": [
+    "whethan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-warehouse"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:yeong",
+   "name": "Yeong",
+   "key": "yeong",
+   "performers": [
+    "yeong"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:the-big-top"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:zen-selekta",
+   "name": "Zen Selekta",
+   "key": "zen-selekta",
+   "performers": [
+    "zen-selekta"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:zoey808",
+   "name": "Zoey808",
+   "key": "zoey808",
+   "performers": [
+    "zoey808"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "escape-halloween-2025:sewer-district"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  },
+  {
+   "id": "escape-halloween-2025:san-holo-dj-set",
+   "name": "San Holo (DJ Set)",
+   "key": "san-holo-dj-set",
+   "performers": [
+    "san-holo-dj-set"
+   ],
+   "appearances": [
+    {
+     "stageId": "escape-halloween-2025:feeding-grounds"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://escapehalloween.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20251119200121/https://escapehalloween.com/lineup/",
+    "captureTimestamp": "20251119200121",
+    "sha256": "5fba7d9926e4522a837badcbe00cec97737ab2ef4650a775444070f8b3de6811"
+   }
+  ]
+ }
+}

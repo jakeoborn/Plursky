@@ -1,0 +1,167 @@
+{
+  "id": "nocturnal-wonderland-2025",
+  "method": "official_lineup_html",
+  "official": "https://www.nocturnalwonderland.com/lineup/",
+  "chosen": "20250912223717",
+  "archivedUrl": "https://web.archive.org/web/20250912223717/https://www.nocturnalwonderland.com/lineup/",
+  "sha256": "765e22c4a8f04e1a0592edfbd9ef8bc6adf720ad5fff5c0346584ad5bea3c4db",
+  "title": "Lineup – Nocturnal Wonderland 2025",
+  "tabs": [
+    "Alphabetical 80",
+    "By Day 80",
+    "By Stage 80"
+  ],
+  "stageOrder": [
+    "Mystic Wild",
+    "Dawn Mountain",
+    "Aurora Plains",
+    "Rave Cave",
+    "Beatbox Boombox Art Car"
+  ],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20250124065404",
+      "archivedUrl": "https://web.archive.org/web/20250124065404/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "628d2476b85e959ef29c0e1e4985db089394ee3b533fd7632b04bc2f992cbe9f",
+      "bytes": 122836,
+      "title": "Lineup – Nocturnal Wonderland 2024",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [
+        "Saturday, September 14 ✗",
+        "Sunday, September 15 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250215102044",
+      "archivedUrl": "https://web.archive.org/web/20250215102044/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "481e5f0e4e064733e1019adf8d3a0ccd9532102db57fb6a40789565d489e089a",
+      "bytes": 119510,
+      "title": "Lineup – Nocturnal Wonderland 2024",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [
+        "Saturday, September 14 ✗",
+        "Sunday, September 15 ✗"
+      ],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250319000312",
+      "archivedUrl": "https://web.archive.org/web/20250319000312/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "a1fd3c162c51f48c2d57eb3eb45ccad7d99421b7b7459197bf891850c6cf222a",
+      "bytes": 86278,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250402200310",
+      "archivedUrl": "https://web.archive.org/web/20250402200310/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "170a7b3364d54feea6a76a878eef48f12d1b55537e00a1663e64ecce62c9e590",
+      "bytes": 86431,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250422101120",
+      "archivedUrl": "https://web.archive.org/web/20250422101120/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "5b889a82b398f55fcddbf7a6f49356a6dbb0488caf9f2e757079297b33201140",
+      "bytes": 79467,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250602032027",
+      "archivedUrl": "https://web.archive.org/web/20250602032027/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "52063fd0e514bd31ad26112d0eafe3dbc7ab8b283ac35259ea6e45daf7e77170",
+      "bytes": 79513,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250613195140",
+      "archivedUrl": "https://web.archive.org/web/20250613195140/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "0815e1a56f877ccf975d9d8b014bc9c910b3485d8ca34f01a2a1e673f31c09f1",
+      "bytes": 94173,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250912223717",
+      "archivedUrl": "https://web.archive.org/web/20250912223717/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "765e22c4a8f04e1a0592edfbd9ef8bc6adf720ad5fff5c0346584ad5bea3c4db",
+      "bytes": 193562,
+      "title": "Lineup – Nocturnal Wonderland 2025",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, September 13",
+        "Sunday, September 14"
+      ],
+      "billings": 80,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20251008022947",
+      "archivedUrl": "https://web.archive.org/web/20251008022947/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "064c6efb8286a2ebd253435e6f267613c81bd454354bb72fcc75151022155e66",
+      "bytes": 103084,
+      "title": "Lineup – Nocturnal Wonderland 2026",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20251116004320",
+      "archivedUrl": "https://web.archive.org/web/20251116004320/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "c52efdab0f94f96cb6c20cc02a0f37decbbdfbaa746759d40b343cea431bb011",
+      "bytes": 104505,
+      "title": "Lineup – Nocturnal Wonderland 2026",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20251213225203",
+      "archivedUrl": "https://web.archive.org/web/20251213225203/https://www.nocturnalwonderland.com/lineup/",
+      "sha256": "2933315b0afd300590d1d25dd8aac093eab1040dff864889ae74a6bbbc98a7ce",
+      "bytes": 104639,
+      "title": "Lineup – Nocturnal Wonderland 2026",
+      "valid": false,
+      "titled": false,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

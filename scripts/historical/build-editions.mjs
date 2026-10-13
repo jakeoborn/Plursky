@@ -5,9 +5,9 @@
 //
 // Reads data/historical/sheets/<id>.tsv (the reviewed source sheet) and
 // data/historical/ledger/<id>.json (where every row came from), and writes
-// data/historical/editions/<id>.json. An edition with no sheet is emitted as
-// lineup_only only if a lineup sheet exists; otherwise it is skipped and
-// reported, never guessed. --check rebuilds in memory and fails if a checked-in
+// data/historical/editions/<id>.json. An edition with no set sheet is emitted
+// as lineup_only only if a lineup sheet (sheets/<id>.lineup.tsv) exists;
+// otherwise it is skipped and reported, never guessed. --check rebuilds in memory and fails if a checked-in
 // edition file differs (so a hand edit to generated data cannot pass).
 //
 // These files live apart from data/festivals/ and _DATA_SETS on purpose: a
@@ -77,6 +77,46 @@ export function buildEdition(id, rows, ledger) {
   };
 }
 
+// A lineup sheet (extract-insomniac-lineup.mjs: one row per billing and
+// appearance) → a lineup_only edition. Each artist carries the day and stage
+// its official lineup page printed, where it printed them; there are no sets
+// and no times, because none were archived.
+export function buildLineupEdition(id, rows, ledger) {
+  const ed = EDITIONS[id];
+  const stages = [], artists = [];
+  for (const r of rows) {
+    if (dropReason(r.artist, r.stage)) continue;
+    let a = artists.find(x => x.name === r.artist);
+    if (!a) artists.push(a = { id: `${id}:${slug(r.artist)}`, name: r.artist, key: artistKey(r.artist), performers: performerKeys(r.artist), appearances: [] });
+    let stageId;
+    if (r.stage) {
+      let s = stages.find(x => x.name === r.stage);
+      if (!s) stages.push(s = { id: `${id}:${slug(r.stage)}`, name: r.stage });
+      stageId = s.id;
+    }
+    const day = +r.day || undefined;
+    if (day || stageId) a.appearances.push({ ...(day ? { day } : {}), ...(stageId ? { stageId } : {}) });
+  }
+  // Stages in the order the page's By Stage tab printed them, not the order
+  // their first billing happens to appear in the alphabetical sheet.
+  const order = ledger.stageOrder || [];
+  stages.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+  return {
+    id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
+    completeness: "lineup_only",
+    days: ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday })),
+    stages, artists, sets: [],
+    provenance: { extractionMethod: ed.method, official: ledger.official,
+      captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
+  };
+}
+
+// Printed lineup rows the library does not keep, with the reason.
+export const droppedLineupRows = rows => rows.flatMap(r => {
+  const why = dropReason(r.artist, r.stage);
+  return why ? [{ day: +r.day || null, stage: r.stage || null, billing: r.artist, ...why }] : [];
+});
+
 // The library's table of contents: what the Past Festivals list needs to draw
 // every edition row without fetching every edition file. Generated, and
 // --check fails on drift like the editions themselves.
@@ -98,13 +138,14 @@ if (isMain) {
   const built = [];
   mkdirSync(H("editions"), { recursive: true });
   for (const id of Object.keys(EDITIONS)) {
-    const sheet = H(`sheets/${id}.tsv`), led = H(`ledger/${id}.json`);
-    if (!existsSync(sheet) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
-    const rows = readSheet(sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
-    const edition = buildEdition(id, rows, ledger);
+    const sheet = H(`sheets/${id}.tsv`), lineupSheet = H(`sheets/${id}.lineup.tsv`), led = H(`ledger/${id}.json`);
+    const lineup = !existsSync(sheet) && existsSync(lineupSheet);
+    if ((!existsSync(sheet) && !lineup) || !existsSync(led)) { console.log(`  · ${id}: no reviewed sheet yet — not emitted`); continue; }
+    const rows = readSheet(lineup ? lineupSheet : sheet), ledger = JSON.parse(readFileSync(led, "utf8"));
+    const edition = lineup ? buildLineupEdition(id, rows, ledger) : buildEdition(id, rows, ledger);
     built.push(edition);
     const out = JSON.stringify(edition, null, 1) + "\n";
-    const ledOut = JSON.stringify({ ...ledger, dropped: droppedRows(rows) }, null, 2) + "\n";
+    const ledOut = JSON.stringify({ ...ledger, dropped: lineup ? droppedLineupRows(rows) : droppedRows(rows) }, null, 2) + "\n";
     const file = H(`editions/${id}.json`);
     if (check) {
       const same = existsSync(file) && readFileSync(file, "utf8") === out;

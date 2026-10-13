@@ -46,7 +46,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const port = () => new Promise((res, rej) => { const s = createServer(); s.once("error", rej); s.listen(0, "127.0.0.1", () => { const p = s.address().port; s.close(() => res(p)); }); });
 
 // The registry, read the way the generator reads it.
-const { REG } = loadRegistry(ROOT);
+const { REG, DS } = loadRegistry(ROOT);
 const stubs = REG.filter(f => !f.available && !f.previewOnly);
 const yearOf = id => +(/-(\d{4})$/.exec(id) || [])[1];
 const baseOf = id => id.replace(/-\d{4}$/, "");
@@ -77,7 +77,10 @@ for (const f of REG) {
   // performer list names none of the edition's artists.
   const ed = H(`editions/${lb.id}.json`);
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m => m[1]).join("\n");
-  ok(!ed.artists.slice(0, 20).some(a => ld.includes(JSON.stringify(a.name))), `/f/${id}/ JSON-LD carries ${lb.year} artists under the ${yearOf(id)} event`);
+  // An act billed again in the stub's own announced lineup is a real performer
+  // of that event, so it is not evidence of a leak.
+  const own = new Set((DS[id]?.artists || []).map(a => a.name));
+  ok(!ed.artists.filter(a => !own.has(a.name)).slice(0, 20).some(a => ld.includes(JSON.stringify(a.name))), `/f/${id}/ JSON-LD carries ${lb.year} artists under the ${yearOf(id)} event`);
 }
 
 // A lineup-only look-back and a same-year/later edition, injected: the app
@@ -92,7 +95,10 @@ const FX = U && {
 };
 const FX_META = FX && { id: FX.id, festivalId: FX.festivalId, festivalName: FX.name.replace(/\s+\d{4}$/, ""), name: FX.name, year: FX.year, timezone: FX.timezone,
   completeness: "lineup_only", days: FX.days, counts: { stages: 0, artists: 2, sets: 0 } };
-const Q = qualified[0]?.config;
+// The in-app look-back checks read sets, so they need a look-back with a full
+// schedule; lineup-only look-backs are covered by the injected fixture (FX).
+const Q = qualified.find(f => lookBackOf(f.config.id).completeness !== "lineup_only")?.config;
+ok(!!Q, "no gated stub has a full-schedule look-back; the in-app checks would pass vacuously");
 const SAME_YEAR = Q && { ...INDEX.editions.find(e => e.id === lookBackOf(Q.id).id), id: `${baseOf(Q.id)}-${yearOf(Q.id)}`, name: `${Q.brand} ${yearOf(Q.id)}`, year: yearOf(Q.id) };
 
 const PORT = await port();
