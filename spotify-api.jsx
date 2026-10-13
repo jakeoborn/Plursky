@@ -202,8 +202,12 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   if (!saved.length) return { ok: false, reason: "empty" };
 
   const timeKey = hhmm => { const h = parseInt(hhmm); return h < 6 ? h + 24 : h; };
+  // Timed sets keep their hour order; an untimed one (NaN here before, an
+  // inconsistent comparator) goes after them via the shared rule.
   const sorted = [...saved].sort((a, b) =>
-    a.day !== b.day ? a.day - b.day : timeKey(a.start) - timeKey(b.start)
+    a.day !== b.day ? a.day - b.day
+      : window.setTimingMin?.(a) && window.setTimingMin?.(b) ? timeKey(a.start) - timeKey(b.start)
+      : window.compareSetsByTime(a, b, STAGES)
   );
   const trackLimit = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
 

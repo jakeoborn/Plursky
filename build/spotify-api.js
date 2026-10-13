@@ -207,7 +207,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     var h = parseInt(hhmm);
     return h < 6 ? h + 24 : h;
   };
-  var sorted = [...saved].sort((a, b) => a.day !== b.day ? a.day - b.day : timeKey(a.start) - timeKey(b.start));
+  var sorted = [...saved].sort((a, b) => a.day !== b.day ? a.day - b.day : window.setTimingMin?.(a) && window.setTimingMin?.(b) ? timeKey(a.start) - timeKey(b.start) : window.compareSetsByTime(a, b, STAGES));
   var trackLimit = tier => tier === 3 ? 5 : tier === 2 ? 4 : 3;
   var storefront = "us";
   try {
