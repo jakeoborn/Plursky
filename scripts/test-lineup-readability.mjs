@@ -397,6 +397,43 @@ try {
     check(t.tail > 0 && Math.abs(t.spare) <= 2, `ACL late: the end-of-night tail is ${t.tail}px and leaves ${t.spare}px of scroll past the hour (want 0)`);
     await ctx.close();
   } catch (err) { check(false, `ACL late tail block threw: ${String(err.message || err).split("\n")[0]}`); }
+  // The tail is for the open only. Switching to My plan or Live on the
+  // running night gives a new, shorter list; the tail must not stay at its
+  // open size there (it left ~221px of blank list after the last set). The
+  // open itself is unchanged: back on All, leaving the night and returning
+  // opens at the hour again.
+  for (const show of ['saved', 'now']) {
+    try {
+      const pre = await open({ at: '2026-10-03T01:30:00Z' });
+      const ids = await pre.page.evaluate(() => (window.ARTISTS || []).filter(a => a.day === 1 && a.weekend !== 'W2' && a.start != null).map(a => a.id));
+      await pre.ctx.close();
+      const { ctx, page } = await open({ at: '2026-10-03T01:30:00Z', height: 852, reduced: true, saved: ids.slice(0, 6).concat(ids.slice(-3)) });
+      await page.clock.runFor(1500); await page.waitForTimeout(300);
+      const end = () => page.evaluate(() => {
+        const sc = document.querySelector('[data-lineup-scroll]'), r0 = sc.getBoundingClientRect(), tl = sc.querySelector('[data-open-tail]'), a = sc.querySelector('[data-open-anchor]');
+        // Scroll room past the last row, beyond the list's bottom padding (a
+        // list shorter than the screen has none to give).
+        const names = [...sc.querySelectorAll('[data-set-name]')], kids = [...sc.children].filter(c => c !== tl && c.getBoundingClientRect().height > 0 && !c.hasAttribute('aria-hidden'));
+        const lastBottom = kids.length ? Math.max(...kids.map(c => c.getBoundingClientRect().bottom - r0.top + sc.scrollTop)) : null;
+        return { tail: tl ? tl.offsetHeight : 0, rows: names.length, blank: lastBottom === null ? null : Math.round(sc.scrollHeight - Math.max(sc.clientHeight, lastBottom + parseFloat(getComputedStyle(sc).paddingBottom))),
+          anchorDy: a ? Math.round(a.getBoundingClientRect().top - r0.top) : null };
+      });
+      const before = await end();
+      check(before.tail > 0, `control (${show}): the late open carries a tail (${before.tail}px)`);
+      await page.click('[data-lineup-expand]'); await page.clock.runFor(400);
+      await page.click(`[data-lineup-show=${show}]`); await page.clock.runFor(600); await page.waitForTimeout(200);
+      const after = await end();
+      check(after.rows > 0 && after.rows < before.rows, `control (${show}): the filter narrows the list (${before.rows} → ${after.rows} rows)`);
+      check(after.tail <= 1 && after.blank !== null && after.blank <= 2, `${show}: the open tail stays ${after.tail}px after the filter change, ${after.blank}px of blank scroll past the last set`);
+      // Back to All, then away from the night and back: it opens at the hour.
+      await page.click(`[data-lineup-show=${show}]`); await page.clock.runFor(400);
+      await page.locator('[data-lineup-filters] [role=tab]').nth(1).click(); await page.clock.runFor(600);
+      await page.locator('[data-lineup-filters] [role=tab]').nth(0).click(); await page.clock.runFor(1500); await page.waitForTimeout(300);
+      const back = await end();
+      check(back.anchorDy !== null && Math.abs(back.anchorDy) <= 2 && back.tail > 0, `${show}: after the filter, reopening the night puts the hour ${back.anchorDy}px from the top (tail ${back.tail}px)`);
+      await ctx.close();
+    } catch (err) { check(false, `ACL late ${show} filter block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
 
   // Nothing saved is live (empty plan): no lifted card, never a placeholder.
   try {

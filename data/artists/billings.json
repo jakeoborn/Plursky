@@ -22739,30 +22739,6 @@
   "mainStage": null
  },
  {
-  "id": "summerfest-2026:su24",
-  "source": "live",
-  "festivalId": "summerfest-2026",
-  "festivalBrand": "summerfest",
-  "year": 2026,
-  "date": "2026-06-18",
-  "day": 1,
-  "stage": "Aurora Pavilion",
-  "start": "14:00",
-  "end": "15:05",
-  "printed": "Stephan Jenkins of Third Eye Blind",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "stephan-jenkins-of-third-eye-blind",
-    "role": "performer"
-   }
-  ],
-  "act": "stephan-jenkins-of-third-eye-blind",
-  "closing": false,
-  "stageLineage": "summerfest:aurora-pavilion",
-  "mainStage": null
- },
- {
   "id": "summerfest-2026:su25",
   "source": "live",
   "festivalId": "summerfest-2026",

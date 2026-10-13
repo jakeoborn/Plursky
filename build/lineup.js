@@ -853,6 +853,7 @@ function LineupScreen({
   var [tierFilter, setTierFilter] = React.useState("all");
   var [wizardOpen, setWizardOpen] = React.useState(false);
   var [genreFilter, setGenreFilter] = React.useState("all");
+  var [sortBy, setSortBy] = React.useState("time");
   var hasWeekends = ARTISTS.some(a => a.weekend && a.weekend !== "both");
   var [weekendFilter, setWeekendFilter] = React.useState(() => hasWeekends ? _weekendShiftMs(FESTIVAL_CONFIG) ? "W2" : "W1" : "all");
   var [q, setQ] = React.useState("");
@@ -996,6 +997,10 @@ function LineupScreen({
     if (Math.abs(need - tail.offsetHeight) > 1) tail.style.height = need + "px";
   };
   React.useLayoutEffect(() => {
+    var tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
+    if (tail) tail.style.height = "0px";
+  }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
+  React.useLayoutEffect(() => {
     if (viewMode === "list") {
       var sc = document.querySelector("[data-lineup-scroll]");
       var anchor = sc && sc.querySelector("[data-open-anchor]");
@@ -1058,7 +1063,6 @@ function LineupScreen({
     var id = setInterval(_tickT, 30000);
     return () => clearInterval(id);
   }, []);
-  var [sortBy, setSortBy] = React.useState("time");
   var activeFilterCount = (tierFilter !== "all" ? 1 : 0) + (stageFilter !== "all" ? 1 : 0) + (genreFilter !== "all" ? 1 : 0) + (filter !== "all" ? 1 : 0) + (sortBy !== "time" ? 1 : 0);
   React.useEffect(() => setGenreFilter("all"), [day]);
   var _chipFilterActive = tierFilter !== "all" || stageFilter !== "all" || genreFilter !== "all";
