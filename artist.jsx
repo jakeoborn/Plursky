@@ -1148,7 +1148,9 @@ function ArtistScreen({ state, setState }) {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}>←</button>
 
-      <div style={{ position: "absolute", top: 14, right: 14, zIndex: 10, display: "flex", gap: 6, alignItems: "center" }}>
+      {/* left: 60 keeps the group clear of the back button; a long pill
+          ("DAY 4 · SET TIMES UNCONFIRMED") wraps instead of sliding under it. */}
+      <div style={{ position: "absolute", top: 14, right: 14, left: 60, zIndex: 10, display: "flex", gap: 6, alignItems: "center", justifyContent: "flex-end" }}>
         {connected && preview !== "none" && (
           <button onClick={handlePreview} style={{
             display: "inline-flex", alignItems: "center", gap: 5,
@@ -1170,12 +1172,12 @@ function ArtistScreen({ state, setState }) {
             PREVIEW
           </button>
         )}
-        <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)" }}>
+        <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)", whiteSpace: "normal", minWidth: 0, textAlign: "right" }}>
           {/* The time joins only when there is one: fmt12("") is an em dash, and
               "DAY TBA · —" reads as a time that exists. One text node, so the
               gate can assert the exact string. */}
           <span data-artist-day-pill>
-            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
           </span>
         </Pill>
         <ShareArtistButton artist={a} />
@@ -1384,7 +1386,7 @@ function ArtistScreen({ state, setState }) {
               </div>
               <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
               {a.day == null || !a.start
-                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED"}</div>
+                ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED"}</div>
                 : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
               {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
               {saveCount != null && saveCount >= 2 && (

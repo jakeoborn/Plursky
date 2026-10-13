@@ -87,7 +87,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | Ultra Miami 2026 | `ultra-miami-2026` | Mar 27–29, 2026 | 166 | 166 | 0 | 7 | live |
 | EDC Las Vegas 2026 | `edc-lv-2026` | May 15–17, 2026 | 241 | 241 | 0 | 9 | live |
 | Governors Ball 2026 | `governors-ball-2026` | Jun 5–7, 2026 | 58 | 58 | 0 | 3 | live |
-| Summerfest 2026 | `summerfest-2026` | Jun 18–20, Jun 25–27 & Jul 2–4, 2026 | 446 | 446 | 0 | 10 | live |
+| Summerfest 2026 | `summerfest-2026` | Jun 18–20, Jun 25–27 & Jul 2–4, 2026 | 446 | 436 | 0 | 10 | live |
 | Lollapalooza 2026 | `lollapalooza-2026` | Jul 30 – Aug 2, 2026 | 195 | 195 | 0 | 9 | live |
 | HARD Summer 2026 | `hard-summer-2026` | Aug 1–2, 2026 | 91 | 91 | 0 | 7 | live |
 | Outside Lands 2026 | `outside-lands-2026` | Aug 7–9, 2026 | 139 | 139 | 0 | 7 | live |
