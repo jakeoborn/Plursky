@@ -880,6 +880,179 @@
     }
    ]
   },
+  "iii-points": {
+   "lineages": [
+    {
+     "id": "iii-points:mind-melt",
+     "names": [
+      {
+       "printed": "MIND MELT",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:rc95",
+     "names": [
+      {
+       "printed": "RC95",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:grand-central",
+     "names": [
+      {
+       "printed": "GRAND CENTRAL",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:iii-points-radio",
+     "names": [
+      {
+       "printed": "III POINTS RADIO",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:unforeseen",
+     "names": [
+      {
+       "printed": "UNFORESEEN",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:door-iv",
+     "names": [
+      {
+       "printed": "DOOR IV",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:isotropic",
+     "names": [
+      {
+       "printed": "ISOTROPIC",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:halo-88",
+     "names": [
+      {
+       "printed": "HALO 88",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:players-club",
+     "names": [
+      {
+       "printed": "PLAYERS CLUB",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:sector-3",
+     "names": [
+      {
+       "printed": "SECTOR 3",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:vertex",
+     "names": [
+      {
+       "printed": "VERTEX",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:s3quenc3",
+     "names": [
+      {
+       "printed": "S3QUENC3",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:444",
+     "names": [
+      {
+       "printed": "444",
+       "editions": [
+        "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "lollapalooza": {
    "lineages": [
     {

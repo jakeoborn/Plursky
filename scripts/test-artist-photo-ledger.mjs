@@ -64,4 +64,12 @@ for (const n of ['TEST ARTIST','Test Artist (Sunrise Set)','Tést Artist (live)'
 for (const n of ['Test Artist b2b Other','Other presents Test Artist (Test Artist + Other)','Test Artist (Classics)']) assert.equal(sandbox.get(n),null,n);
 sandbox.window.PLURSKY_ARTIST_PHOTOS['bad']={...permanent,url:'https://instagram.com/download.jpg'};
 assert.equal(sandbox.get('bad'),null);
-console.log('Artist photo runtime: 13 checks passed');
+// The VM above loads artist-key.js by hand, so it cannot see the page. In the
+// app chrome.jsx reads window.PlurskyArtistKey at call time: index.html must
+// load the key before build/chrome.js, and sw.js must precache it. A merge
+// once dropped the tag while every check above stayed green.
+const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+const keyAt = html.search(/<script src="data\/artist-key\.js\?v=/);
+assert.ok(keyAt > 0 && keyAt < html.search(/<script src="build\/chrome\.js\?v=/), 'index.html loads data/artist-key.js before build/chrome.js');
+assert.match(readFileSync(new URL('../sw.js', import.meta.url), 'utf8'), /\.\/data\/artist-key\.js\?v=/, 'sw.js precaches data/artist-key.js');
+console.log('Artist photo runtime: 15 checks passed');

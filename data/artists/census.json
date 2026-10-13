@@ -1,7 +1,7 @@
 {
  "festivalsInRegistry": 25,
  "festivalsWithLineup": 19,
- "billingRows2026": 2582,
+ "billingRows2026": 2583,
  "distinctBillingStrings2026": 2071,
  "distinctFolded2026": 1967,
  "spellingGroups": [
@@ -414,15 +414,15 @@
   ]
  ],
  "separators2026": {
-  "b2b": 214,
+  "b2b": 213,
   "amp": 42,
   "x": 7,
   "presents": 6,
-  "paren": 58
+  "paren": 59
  },
  "performers2026": 2009,
- "timedPerformers2026": 1581,
- "untimedRows2026": 604,
+ "timedPerformers2026": 1821,
+ "untimedRows2026": 375,
  "archivedEditions": [
   {
    "id": "acl-2025",
@@ -464,8 +464,8 @@
  "performersAll": 2575,
  "performersArchivedAnd2026": 305,
  "billingsPerPerformer": {
-  "1": 1936,
-  "2": 351,
+  "1": 1935,
+  "2": 352,
   "3": 151,
   "4": 76,
   "5": 38,
