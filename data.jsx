@@ -1484,7 +1484,7 @@ const ARTISTS = [
   mk("c12", "Hannah Laing",            "Hard House / Techno",    "cosmic",  2, "20:15", "21:25"),
   mk("c13", "Snow Strippers",          "Hyperpop / Electronic",  "cosmic",  2, "21:25", "22:15"),
   mk("c14", "VTSS (In The Round)",     "Techno",                 "cosmic",  2, "22:15", "23:30"),
-  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "The electronic act behind \"Firestarter\"."),
+  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "The act behind \"Firestarter\"."),
   mk("c16", "BUNT. (In The Round)",    "Folktronica",            "cosmic",  2, "00:40", "02:10"),
   mk("c17", "Interplanetary Criminal", "UK Bass",                "cosmic",  2, "02:10", "03:30"),
   mk("c18", "Malugi",                  "Techno",                 "cosmic",  2, "03:30", "04:30"),
