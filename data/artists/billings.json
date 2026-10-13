@@ -37874,8 +37874,8 @@
   "setTag": null,
   "performers": [
    {
-    "key": "55-odd-mob-and-omnom-present-hyperbeam",
-    "role": "performer"
+    "key": "hyperbeam",
+    "role": "project"
    }
   ],
   "act": "55-odd-mob-and-omnom-present-hyperbeam",
@@ -62559,8 +62559,8 @@
   "setTag": null,
   "performers": [
    {
-    "key": "finneas-and-ashe-present-the-favors",
-    "role": "performer"
+    "key": "the-favors",
+    "role": "project"
    }
   ],
   "act": "finneas-and-ashe-present-the-favors",
@@ -64935,8 +64935,8 @@
   "setTag": null,
   "performers": [
    {
-    "key": "finneas-and-ashe-present-the-favors",
-    "role": "performer"
+    "key": "the-favors",
+    "role": "project"
    }
   ],
   "act": "finneas-and-ashe-present-the-favors",
@@ -75369,8 +75369,8 @@
   "setTag": null,
   "performers": [
    {
-    "key": "bicep-present-chroma",
-    "role": "performer"
+    "key": "chroma",
+    "role": "project"
    }
   ],
   "act": "bicep-present-chroma",

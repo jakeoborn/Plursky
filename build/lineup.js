@@ -1345,7 +1345,17 @@ function LineupScreen({
     onClick: surpriseMe,
     title: "Discover a random artist that matches your taste",
     style: textBtn
-  }, "Surprise me"), React.createElement("button", {
+  }, "Surprise me"), typeof ArtistsDirectoryScreen === "function" && React.createElement("button", {
+    "data-lineup-artists-entry": true,
+    style: textBtn,
+    onClick: () => (window._pushNav || (() => {}))({
+      tab: "artists",
+      artist: null,
+      artistsQuery: q.trim(),
+      artistsFestival: FESTIVAL_CONFIG.id,
+      artistsFrom: "lineup"
+    })
+  }, "Artist history"), React.createElement("button", {
     onClick: () => {
       setQ("");
       setSearchOpen(false);
