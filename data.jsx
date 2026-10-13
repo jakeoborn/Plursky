@@ -1390,7 +1390,7 @@ const ARTISTS = [
   mk("k6",  "The Chainsmokers",        "Electro Pop",            "kinetic", 1, "00:32", "01:42"),
   mk("k7",  "FISHER",                  "Tech House",             "kinetic", 1, "01:47", "02:57"),
   mk("k8",  "Porter Robinson (DJ Set)","Electronic",             "kinetic", 1, "03:01", "04:11"),
-  mk("k9",  "Charlotte de Witte",      "Techno",                 "kinetic", 1, "04:14", "05:29", "Belgian techno queen, mainstage rarity."),
+  mk("k9",  "Charlotte de Witte",      "Techno",                 "kinetic", 1, "04:14", "05:29", "Techno DJ and producer who started KNTXT as a club night at Fuse in Brussels in 2015."),
   // SAT
   mk("k10", "AR/CO",                   "Live Electronic",        "kinetic", 2, "19:00", "20:00"),
   mk("k11", "Hayla",                   "DnB Vocalist",           "kinetic", 2, "20:00", "21:00"),
@@ -1400,7 +1400,7 @@ const ARTISTS = [
   mk("k15", "John Summit",             "Tech House",             "kinetic", 2, "00:32", "01:42"),
   mk("k16", "Subtronics",              "Dubstep",                "kinetic", 2, "01:47", "02:57"),
   mk("k17", "Kaskade",                 "Progressive House",      "kinetic", 2, "03:01", "04:11"),
-  mk("k18", "Above & Beyond (Sunrise Set)","Trance",             "kinetic", 2, "04:14", "05:29", "Group therapy under the desert dawn."),
+  mk("k18", "Above & Beyond (Sunrise Set)","Trance",             "kinetic", 2, "04:14", "05:29", "Jono, Tony and Paavo: the trio behind Anjunabeats and the weekly Group Therapy radio show."),
   // SUN
   mk("k19", "Trace",                   "DnB",                    "kinetic", 3, "19:00", "20:00"),
   mk("k20", "Ship Wrek",               "Bass",                   "kinetic", 3, "20:00", "21:00"),
@@ -1408,9 +1408,9 @@ const ARTISTS = [
   mk("k22", "Funk Tribu",              "Hard Techno",            "kinetic", 3, "22:07", "23:15"),
   mk("k23", "GRiZ b2b Wooli",          "Bass / Funk",            "kinetic", 3, "23:19", "00:29"),
   mk("k24", "Zedd",                    "Electro House",          "kinetic", 3, "00:32", "01:42"),
-  mk("k25", "Martin Garrix",           "Big Room / Progressive", "kinetic", 3, "01:47", "02:57", "Dutch headliner. Animals-era anthems to melodic trance."),
+  mk("k25", "Martin Garrix",           "Big Room / Progressive", "kinetic", 3, "01:47", "02:57", "DJ and producer whose 2013 single \"Animals\" launched him to mainstream prominence."),
   mk("k26", "Cloonee",                 "Tech House",             "kinetic", 3, "03:01", "04:11"),
-  mk("k27", "Armin van Buuren (Sunrise Set)","Trance",           "kinetic", 3, "04:14", "05:29", "ASOT captain. Sunrise trance ceremony."),
+  mk("k27", "Armin van Buuren (Sunrise Set)","Trance",           "kinetic", 3, "04:14", "05:29", "Dutch DJ and producer who hosts the weekly A State of Trance show."),
 
   // ─────────────────────────── CIRCUIT GROUNDS ─────────────────────────
   // FRI
@@ -1474,7 +1474,7 @@ const ARTISTS = [
   mk("c3",  "Roddy Lima",              "House",                  "cosmic",  1, "19:55", "20:55"),
   mk("c4",  "Westend",                 "Tech House",             "cosmic",  1, "20:55", "21:55"),
   mk("c5",  "Walker & Royce b2b VNSSA","Tech House",             "cosmic",  1, "21:55", "22:55"),
-  mk("c6",  "Underworld",              "Electronica",            "cosmic",  1, "23:10", "00:10", "Born Slippy. Two decks, a mic, a legacy."),
+  mk("c6",  "Underworld",              "Electronica",            "cosmic",  1, "23:10", "00:10", "Electronic duo of Rick Smith and Karl Hyde."),
   mk("c7",  "MEDUZA",                  "House",                  "cosmic",  1, "00:25", "01:45"),
   mk("c8",  "Notion",                  "Bass",                   "cosmic",  1, "01:47", "02:47"),
   mk("c9",  "MPH",                     "Bass House",             "cosmic",  1, "02:47", "04:02"),
@@ -1484,7 +1484,7 @@ const ARTISTS = [
   mk("c12", "Hannah Laing",            "Hard House / Techno",    "cosmic",  2, "20:15", "21:25"),
   mk("c13", "Snow Strippers",          "Hyperpop / Electronic",  "cosmic",  2, "21:25", "22:15"),
   mk("c14", "VTSS (In The Round)",     "Techno",                 "cosmic",  2, "22:15", "23:30"),
-  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "Firestarters. Legendary live set."),
+  mk("c15", "The Prodigy",             "Breakbeat / Big Beat",   "cosmic",  2, "23:35", "00:35", "The electronic act behind \"Firestarter\"."),
   mk("c16", "BUNT. (In The Round)",    "Folktronica",            "cosmic",  2, "00:40", "02:10"),
   mk("c17", "Interplanetary Criminal", "UK Bass",                "cosmic",  2, "02:10", "03:30"),
   mk("c18", "Malugi",                  "Techno",                 "cosmic",  2, "03:30", "04:30"),
@@ -1508,7 +1508,7 @@ const ARTISTS = [
   mk("b4",  "Massimiliano Pagliara",   "House",                  "bionic",  1, "21:30", "23:00"),
   mk("b5",  "Paramida",                "Disco / House",          "bionic",  1, "23:00", "00:30"),
   mk("b6",  "Salute b2b Chloé Caillet","UK Garage",              "bionic",  1, "00:30", "02:30"),
-  mk("b7",  "Robert Hood",             "Detroit Techno",         "bionic",  1, "02:30", "04:00", "Detroit techno originator."),
+  mk("b7",  "Robert Hood",             "Detroit Techno",         "bionic",  1, "02:30", "04:00", "Detroit techno producer and a founding member of Underground Resistance."),
   mk("b8",  "Avalon Emerson",          "Electro / House",        "bionic",  1, "04:00", "05:30"),
   // SAT
   mk("b9",  "Spray",                   "House",                  "bionic",  2, "20:00", "21:00"),
@@ -1552,7 +1552,7 @@ const ARTISTS = [
   mk("q20", "Thomas Schumacher",       "Techno",                 "quantum", 2, "04:30", "05:30"),
   // SUN
   mk("q21", "Warung",                  "Melodic House",          "quantum", 3, "19:00", "20:00"),
-  mk("q22", "Shingo Nakamura",         "Progressive",            "quantum", 3, "20:00", "21:00", "Melodic progressive. Sunset specialist."),
+  mk("q22", "Shingo Nakamura",         "Progressive",            "quantum", 3, "20:00", "21:00", "Tokyo-based producer known for melodic house and progressive house."),
   mk("q23", "Rebūke",                  "Techno",                 "quantum", 3, "21:00", "22:00"),
   mk("q24", "Cristoph",                "Progressive House",      "quantum", 3, "22:00", "23:00"),
   mk("q25", "Eli & Fur",               "Melodic House",          "quantum", 3, "23:00", "00:00"),
