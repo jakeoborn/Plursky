@@ -253,6 +253,7 @@ try {
     // A code that is also an ordinary UI word is not a stage reference:
     // BIO is Bionic Jungle's code AND the artist page's Bio tab.
     const WORDS = new Set(['BIO']);
+    const fullNames = (window.STAGES || []).map(s => s.name).filter(Boolean).sort((a, b) => b.length - a.length);
     const codes = new Set((window.STAGES || []).map(s => s.code).filter(c => c && !WORDS.has(c) && !(window.STAGES || []).some(s => s.name === c)));
     const isName = (t) => { const l = t.toLowerCase(); return lower.some(n => l.includes(n)); };
     for (const el of document.querySelectorAll('body *')) {
@@ -286,7 +287,9 @@ try {
       const cut = t.match(/([^·•|]{3,}?)…/);
       if (cut) { const pre = cut[1].trim().replace(/^[★•·\s]+/, '').toLowerCase(); if (pre.length >= 3 && lower.some(n => n.startsWith(pre) && n !== pre)) out.push(`artist name cut with "…": "${t.slice(0, 40)}"`); }
       if ((t.match(/\bb\d+b\b/gi) || []).length >= 2) out.push(`3+ artist chain shown in full (use the first artist + N): "${t.slice(0, 40)}"`);
-      for (const n of own) for (const w of n.textContent.split(/[^A-Za-z0-9]+/)) if (w && codes.has(w)) out.push(`stage shown as its code "${w}": "${t.slice(0, 40)}"`);
+      // A full stage name can contain its own code ("BMI Stage"): strip full
+      // names first, so only a code standing in for a name is flagged.
+      for (const n of own) for (const w of fullNames.reduce((x, f) => x.split(f).join(' '), n.textContent).split(/[^A-Za-z0-9]+/)) if (w && codes.has(w)) out.push(`stage shown as its code "${w}": "${t.slice(0, 40)}"`);
     }
     return out;
   });

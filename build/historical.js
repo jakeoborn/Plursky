@@ -216,14 +216,9 @@ function PastEditionsSection({
     }
   }, React.createElement("h2", {
     id: "past-editions-h",
+    className: "duo-sect",
     style: {
-      margin: "0 0 4px",
-      fontSize: 11,
-      lineHeight: "14px",
-      fontWeight: 600,
-      letterSpacing: "0.04em",
-      textTransform: "uppercase",
-      color: "var(--text-2)"
+      marginBottom: 4
     }
   }, "Past editions"), editions.map(e => React.createElement("button", {
     key: e.id,

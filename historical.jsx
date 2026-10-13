@@ -149,7 +149,7 @@ function PastEditionsSection({ festivalId }) {
   if (!editions.length) return null;
   return (
     <section aria-labelledby="past-editions-h" style={{ padding: "0 20px" }}>
-      <h2 id="past-editions-h" style={{ margin: "0 0 4px", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>Past editions</h2>
+      <h2 id="past-editions-h" className="duo-sect" style={{ marginBottom: 4 }}>Past editions</h2>
       {editions.map(e => (
         <button key={e.id} onClick={() => openPastEdition(e.id)} style={{
           width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "10px 0",
