@@ -934,7 +934,7 @@ function PostFestivalRecap({
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
-    artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
+    artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES))
   })).filter(d => d.artists.length);
   return React.createElement("div", {
     style: {
@@ -979,7 +979,7 @@ function PostFestivalRecap({
         tab: "home",
         artist: a.id
       }),
-      "aria-label": `${a.name}, ${stage.name}, ${fmt12(a.start)} to ${fmt12(a.end)}`,
+      "aria-label": setTimesUnconfirmed(a) ? `${a.name}, ${stage.name}, set times unconfirmed` : `${a.name}, ${stage.name}, ${fmt12(a.start)} to ${fmt12(a.end)}`,
       style: {
         display: "flex",
         alignItems: "center",
@@ -1006,7 +1006,7 @@ function PostFestivalRecap({
         display: "block",
         marginTop: 3
       }
-    }, stage.name.toUpperCase(), " · ", fmt12(a.start), "–", fmt12(a.end))));
+    }, stage.name.toUpperCase(), " · ", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED.toUpperCase() : React.createElement(React.Fragment, null, fmt12(a.start), "–", fmt12(a.end)))));
   })))), savedIds.length === 0 && React.createElement("div", {
     className: "duo-card",
     style: {
@@ -1118,7 +1118,7 @@ function F1TonightHero({
     return Math.max(0, Math.min(1, (now - from) / span));
   })();
   var firstSetMs = dayMeta && !isPreEvent && !isPostEvent ? (() => {
-    var todays = activeLineup().filter(a => a.day === day).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    var todays = activeLineup().filter(a => a.day === day && setTimingMin(a)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
     var first = todays[0];
     if (!first) return null;
     return festivalNightDate(day, first.start).getTime();
@@ -1888,7 +1888,7 @@ function UpcomingTeaser({
           color: "var(--muted)",
           marginTop: 1
         }
-      }, stage?.short, " · ", fmt12(a.start), "–", fmt12(a.end))));
+      }, stage?.short, " · ", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED.toUpperCase() : React.createElement(React.Fragment, null, fmt12(a.start), "–", fmt12(a.end)))));
     }));
   }));
 }
@@ -2096,7 +2096,7 @@ function HomeScreen({
   }].filter(Boolean);
   var savedRow = (() => {
     if (isPostFestival || isLive) return null;
-    var rows = activeLineup(savedIds).filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night)).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+    var rows = activeLineup(savedIds).filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
     if (!rows.length) return null;
     var SHOW = 5;
     return React.createElement("section", {
@@ -2487,7 +2487,7 @@ function SavedByDay({
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
-    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start))
+    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES))
   })).filter(d => d.artists.length);
   if (!byDay.length) return React.createElement("div", null, React.createElement("p", {
     style: {
@@ -2574,7 +2574,7 @@ function SavedByDay({
         fontVariantNumeric: "tabular-nums",
         whiteSpace: "nowrap"
       }
-    }, React.createElement("div", {
+    }, !setTimesUnconfirmed(a) && React.createElement(React.Fragment, null, React.createElement("div", {
       style: {
         fontSize: 15,
         lineHeight: "21px",
@@ -2586,7 +2586,7 @@ function SavedByDay({
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, fmt12(a.end))), React.createElement("div", {
+    }, fmt12(a.end)))), React.createElement("div", {
       style: {
         flex: 1,
         minWidth: 0
@@ -2605,7 +2605,15 @@ function SavedByDay({
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, stage.name), conflict && React.createElement("div", {
+    }, stage.name), setTimesUnconfirmed(a) && React.createElement("div", {
+      "data-set-time-status": true,
+      style: {
+        marginTop: 2,
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, SET_TIMES_UNCONFIRMED), conflict && React.createElement("div", {
       style: {
         marginTop: 2,
         fontSize: 13,
@@ -3259,7 +3267,7 @@ function SavedRow({
   return React.createElement("button", {
     className: "duo-press",
     onClick: onOpen,
-    "aria-label": `${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`,
+    "aria-label": `${a.name}, ${dd?.name || day}, ${setTimesUnconfirmed(a) ? "set times unconfirmed" : fmt12(a.start)}${stage ? `, ${stage}` : ""}`,
     style: {
       display: "flex",
       alignItems: "center",
@@ -3282,7 +3290,7 @@ function SavedRow({
       color: "var(--ink-2)",
       whiteSpace: "nowrap"
     }
-  }, a.start ? fmt12(a.start) : "TBA"), React.createElement(DuoAvatar, {
+  }, setTimesUnconfirmed(a) ? null : a.start ? fmt12(a.start) : "TBA"), React.createElement(DuoAvatar, {
     name: a.name,
     size: 36
   }), React.createElement("span", {
@@ -3302,7 +3310,13 @@ function SavedRow({
       font: "400 13px/1.385 var(--f-ui)",
       color: "var(--ink-2)"
     }
-  }, [dd?.name || day, stage].filter(Boolean).join(" · "))));
+  }, [dd?.name || day, stage].filter(Boolean).join(" · ")), setTimesUnconfirmed(a) && React.createElement("span", {
+    "data-set-time-status": true,
+    style: {
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, SET_TIMES_UNCONFIRMED)));
 }
 function EssentialTile({
   label,

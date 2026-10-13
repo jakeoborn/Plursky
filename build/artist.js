@@ -1314,10 +1314,12 @@ function ArtistScreen({
       position: "absolute",
       top: 14,
       right: 14,
+      left: 60,
       zIndex: 10,
       display: "flex",
       gap: 6,
-      alignItems: "center"
+      alignItems: "center",
+      justifyContent: "flex-end"
     }
   }, connected && preview !== "none" && React.createElement("button", {
     onClick: handlePreview,
@@ -1378,11 +1380,14 @@ function ArtistScreen({
       background: "rgba(var(--ink-rgb),0.15)",
       color: "var(--ink)",
       backdropFilter: "blur(8px)",
-      borderColor: "rgba(var(--ink-rgb),0.3)"
+      borderColor: "rgba(var(--ink-rgb),0.3)",
+      whiteSpace: "normal",
+      minWidth: 0,
+      textAlign: "right"
     }
   }, React.createElement("span", {
     "data-artist-day-pill": true
-  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
+  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a
   })));
   var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
@@ -1642,7 +1647,7 @@ function ArtistScreen({
       style: {
         marginTop: 6
       }
-    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : "SET TIME NOT PUBLISHED") : React.createElement("div", {
+    }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED") : React.createElement("div", {
       className: "duo-clock",
       style: {
         fontSize: "clamp(20px, 7vw, 28px)",
