@@ -60,29 +60,37 @@ export function entryProblems(key, entry, renderedBio, actName) {
 let pass = 0, fail = 0;
 const check = (ok, msg) => { if (ok) pass++; else { fail++; console.error(`  ✗ ${msg}`); } };
 
-// Negative controls on a fixture: each bad entry must be refused.
+// Negative controls on a fixture. Each bad entry must be refused BY THE RULE
+// IT TESTS: `only` demands that rule's message be the sole problem, so a
+// fixture another rule also rejects cannot mask a deleted rule (round 2: the
+// social fixtures used to fail the act-name check too, so deleting SOCIAL
+// still passed). `refused` is for fixtures that are bad in two ways at once.
 const B = 'Founder of Kestrel Records since 2015.', ACT = 'Fixture Act (Sunrise Set)';
 const good = { bio: B, classification: 'reviewed_synthesis', reviewedAt: '2026-10-12', sources: [{ url: 'https://label.example/artists/fixture-act', kind: 'label', observedAt: '2026-10-12', excerpt: 'Fixture Act, founder of Kestrel Records, has run the label since 2015.' }] };
 const ep = (e, bio = B, act = ACT) => entryProblems('fx', e, bio, act);
 const withSrc = patch => ({ ...good, sources: [{ ...good.sources[0], ...patch }] });
+const only = (probs, re, msg) => check(probs.length === 1 && re.test(probs[0]), `${msg} (got: ${probs.join('; ') || 'no problem'})`);
+const refused = (probs, re, msg) => check(probs.some(p => re.test(p)), `${msg} (got: ${probs.join('; ') || 'no problem'})`);
 check(ep(good).length === 0, `a bound entry passes (${ep(good).join('; ')})`);
-check(ep(good, 'C').length > 0, 'a bio that drifted from its ledger text is refused');
-check(ep(withSrc({ url: 'https://unrelated.example/', excerpt: 'Welcome to our homepage, browse the full catalogue.' })).length > 0, 'an unrelated https homepage with an unrelated excerpt is refused');
-check(ep(withSrc({ url: 'https://unrelated.example/' })).length > 0, 'a source URL that does not name the act is refused, even with a fitting excerpt');
-check(ep(withSrc({ excerpt: 'Fixture Act toured widely and released several records.' })).length > 0, 'an excerpt on the right page that names none of the bio\'s specifics is refused');
-check(ep(withSrc({ excerpt: 'Fixture Act, founder of Kestrel Records, has run the label since 2016.' })).length > 0, 'a year the excerpts do not state is refused');
-check(ep({ ...good, bio: 'The act behind "Kestrel Song".' }, 'The act behind "Kestrel Song".').length > 0, 'a quoted title the excerpts do not state is refused');
-check(ep(good, B, 'Other Act').length > 0, 'a ledger row checked against a different billing is refused');
-check(ep({ ...good, sources: [] }).length > 0, 'an entry with no source is refused');
-check(ep(withSrc({ url: 'https://www.instagram.com/someone' })).length > 0, 'an Instagram link cannot certify prose');
-check(ep(withSrc({ url: 'https://open.spotify.com/artist/1' })).length > 0, 'a Spotify page cannot certify prose');
-check(ep(withSrc({ url: 'http://label.example/artist' })).length > 0, 'plain http is refused');
-check(ep(withSrc({ kind: 'fan wiki' })).length > 0, 'an unnamed source kind is refused');
-check(ep(withSrc({ excerpt: '' })).length > 0, 'a source without the passage it supports is refused');
-check(ep(withSrc({ excerpt: 'founded ... in 2015' })).length > 0, 'an elided excerpt is refused');
-check(ep({ ...good, classification: 'official_profile' }).length > 0, 'a paraphrase cannot be classed as official copy');
-check(ep(withSrc({ observedAt: '' })).length > 0, 'an undated source is refused');
-check(ep({ ...good, reviewedAt: 'today' }).length > 0, 'an unreviewed entry is refused');
+only(ep(good, 'C'), /differs from the rendered bio/, 'a bio that drifted from its ledger text is refused');
+refused(ep(withSrc({ url: 'https://unrelated.example/', excerpt: 'Welcome to our homepage, browse the full catalogue.' })), /does not name the act/, 'an unrelated https homepage with an unrelated excerpt is refused');
+only(ep(withSrc({ url: 'https://unrelated.example/' })), /does not name the act/, 'a source URL that does not name the act is refused, even with a fitting excerpt');
+refused(ep(withSrc({ excerpt: 'Fixture Act toured widely and released several records.' })), /appears in no excerpt/, 'an excerpt on the right page that names none of the bio\'s specifics is refused');
+only(ep(withSrc({ excerpt: 'Fixture Act, founder of Kestrel Records, has run the label since 2016.' })), /"2015" in the bio appears in no excerpt/, 'a year the excerpts do not state is refused');
+only(ep({ ...good, bio: 'Kestrel Records, the label behind "Kestrel Song".' }, 'Kestrel Records, the label behind "Kestrel Song".'), /"Kestrel Song" in the bio appears in no excerpt/, 'a quoted title the excerpts do not state is refused');
+only(ep(good, B, 'Other Act'), /does not name the act "Other Act"/, 'a ledger row checked against a different billing is refused');
+refused(ep({ ...good, sources: [] }), /no sources/, 'an entry with no source is refused');
+// Social and stream pages that DO name the act, with a fitting excerpt: only the social rule can refuse them.
+only(ep(withSrc({ url: 'https://www.instagram.com/fixtureact/' })), /social\/stream link/, 'an Instagram page naming the act cannot certify prose');
+only(ep(withSrc({ url: 'https://open.spotify.com/artist/fixture-act' })), /social\/stream link/, 'a Spotify page naming the act cannot certify prose');
+only(ep(withSrc({ url: 'https://www.youtube.com/@fixtureact' })), /social\/stream link/, 'a YouTube page naming the act cannot certify prose');
+only(ep(withSrc({ url: 'http://label.example/artists/fixture-act' })), /is not https/, 'plain http is refused');
+only(ep(withSrc({ kind: 'fan wiki' })), /source kind "fan wiki"/, 'an unnamed source kind is refused');
+refused(ep(withSrc({ excerpt: '' })), /exact, unelided excerpt/, 'a source without the passage it supports is refused');
+only(ep(withSrc({ excerpt: 'Fixture Act, founder of Kestrel Records ... since 2015.' })), /exact, unelided excerpt/, 'an elided excerpt is refused');
+only(ep({ ...good, classification: 'official_profile' }), /classification must be reviewed_synthesis/, 'a paraphrase cannot be classed as official copy');
+only(ep(withSrc({ observedAt: '' })), /source observedAt is not a date/, 'an undated source is refused');
+only(ep({ ...good, reviewedAt: 'today' }), /reviewedAt is not a date/, 'an unreviewed entry is refused');
 
 // The real data.
 const ledger = JSON.parse(readFileSync('data/artist-bios/sources.json', 'utf8'));
