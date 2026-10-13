@@ -302,11 +302,11 @@ function useModalOpen() {
   }, []);
   return n > 0;
 }
-function useStaggerFade(depKey) {
+function useStaggerFade(depKey, skip = false) {
   var ref = React.useRef(null);
   React.useEffect(() => {
     var el = ref.current;
-    if (!el || !window.IntersectionObserver) return;
+    if (!el || skip || !window.IntersectionObserver) return;
     var targets = el.querySelectorAll("[data-animate]");
     if (!targets.length) return;
     targets.forEach(t => {

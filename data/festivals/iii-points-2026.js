@@ -1,199 +1,380 @@
-// ═══════════════════════════════════════════════════════════════════════
-// III POINTS 2026 — Mana Wynwood · Miami, FL
-// Oct 16–17, 2026
-// ═══════════════════════════════════════════════════════════════════════
-// OPEN ON ITS LINEUP, set times pending. The LINEUP and the DAY SPLIT are
-// official; stages and set times are NOT PUBLISHED, and nothing here invents
-// them.
-//
-// SOURCE lineup: iiipoints.com/lineup-2026/ (official), re-read 2026-09-30
-//   17:04 UTC (Last-Modified 2026-09-29 19:22:52 UTC). 229 rows of the
-//   page's `ul.lineup__list`, 78 of them printing B2B. Earlier reads:
-//   2026-08-29 (218), Internet Archive 2026-09-02 (216), 2026-09-25 (215).
-//   The page is the lineup of record: an act is in ARTISTS if and only if
-//   today's page bills it.
-// SOURCE day split: the official lineup-by-day graphic on that same page,
-//   https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg
-//   2560 x 1600, sha256 bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7,
-//   Last-Modified 2026-07-15 18:42:09 UTC. The Internet Archive's copy of
-//   2026-09-02 is byte-identical, so it has not changed since at least then.
-//   FRIDAY OCTOBER 16 on the left, SATURDAY OCTOBER 17 on the right: the
-//   centre, four rings, a "444 · 4-hour extended sets" box and a local-act
-//   panel per day. All 217 entries transcribed by hand and the two local
-//   panels checked against a macOS Vision OCR; the transcription is
-//   docs/qa/reports/iii-points-2026-day-split/graphic.tsv.
-//   Every billed act, reconciled row by row (list text, structured name,
-//   graphic billing and day, shipped day, evidence), is in
-//   docs/qa/reports/iii-points-2026-day-split/reconciliation.tsv.
-//   The graphic carries NO stage and NO set time. "4PM-4AM" under each panel
-//   is event hours; the 444 box names extended sets, not a stage.
-//
-// ── HOW THE TWO SOURCES ARE JOINED (2026-09-30) ──
-// The graphic is older than the list and neither is a superset of the
-// other, so each answers one question:
-//   · WHO plays, and each member's spelling: today's list.
-//   · WHICH DAY: the graphic.
-//   · B2B ORDER: the graphic. The list prints B2B members alphabetically
-//     ("Artime B2B Mystic Bill"); the graphic bills the set ("MYSTIC BILL
-//     B2B ARTIME"). 12 acts reordered; ids unchanged, so saved picks survive.
-//   · Where a row's display text and its structured name disagree, the
-//     graphic breaks the tie: "1-800-305" (row text and graphic; structured
-//     name "1-800-Lolita&Xana") and "Santiago Villu" (structured name and
-//     graphic; row text "Villu").
-// Recorded, each one, and NOT resolved by guessing:
-//   · Same act, spelled differently. Day from the graphic, name from the list:
-//       graphic "MALÓNE MOREZ B2B MILUHSKA"  list "Malóne B2B Miluhska"
-//       graphic "MACCABIII B2B PEZLO MD"     list "Maccabi B2B Pezlo MD"
-//       graphic "ITBSP"                      list "1tbsp"
-//       graphic "BOYGIRL", "TECH GIRLS", "VIFRO", "¥UKIMAT$U": the display
-//       face has no leet digits; the list's B0YG1RL, Tech G1rls, V1FRO and
-//       ¥UK1MAT$U are the artists' own styling and are kept.
-//   · The graphic bills ONE member where the list bills a B2B including
-//     them. No first-party source puts the billed B2B SET on a day, so these
-//     three are DAY TBA (mkUnscheduled), billed as the list bills them.
-//     Correction 2026-09-30 (Instinct / Jake): #267 first gave each the
-//     member's day, which the evidence does not support. The member-only
-//     graphic entries are recorded in GRAPHIC_MEMBER_ONLY below:
-//       graphic "FIUZA" (Fri)    list "FIUZA B2B Madison Kay"
-//       graphic "SEL.6" (Sat)    list "SEL.6 B2B Playshado"
-//       graphic "DAY/DEM" (Sat)  list "Bricolage B2B DAY/DEM"
-//   · On the graphic, not on today's list: NOT added (GRAPHIC_ONLY below).
-//       Underscores (Fri): on no list read, ever.
-//       GZA performing Liquid Swords (Fri): billed 2026-09-25, gone today,
-//         so it moves to REMOVED_FROM_LINEUP. Today's list bills "Ghostface
-//         Killah presents Supreme Clientele", which the graphic does not carry.
-//       Mr. Brown (Fri), Jencarlos (Sat): already removed on 2026-09-25.
-//   · On today's list, not on the graphic at all: 16 acts, billed, so in the
-//     lineup, DAY TBA (mkUnscheduled), the way Escape Halloween carries its
-//     lineup-card acts. With the three B2Bs above, 19 acts are DAY TBA: amar · Blind Fish · Canela · Crespi Drum Syndicate
-//     (Live) · Cumbiamba · DJ Ahamed · Emily Afre · Ghostface Killah presents
-//     Supreme Clientele · GodBlessJai · Huracán · iiry? · Lylac · Nikole ·
-//     P1no B2B Trippie Hippie · Scotty Sobek · serafitz B2B SOL Discos
-//   · New on the list since 2026-09-25: 15 rows (14 of the 16 above, plus
-//     1tbsp, which the graphic puts on Friday). Renamed by the list: "Jump
-//     Source (Live)", "Rental Snakes (Live)", "Saint & Romero (Hybrid)".
-//
-// ── LINEUP DRIFT, recorded 2026-09-25 (kept for the record) ──
-// Three reads of the same page: ours 2026-08-29 (218), the Wayback Machine
-// capture 2026-09-02 01:51 UTC (216), and today (215).
-//   1. REMOVED, gone from today's page. Each is in REMOVED_FROM_LINEUP
-//      below, out of the lineup, with a one-line re-add:
-//        JENCARLOS · Mr. Brown · Mila Gama B2B X3BUTTERFLY  (on 09-02, gone today)
-//        Ultrathem (solo)                                   (already gone 09-02)
-//      The 09-02 read is the Internet Archive's capture (timestamp
-//      20260902015146); it is cited here only, never linked from a live
-//      module. Every record cites the official page as read today.
-//      Mila Gama and Ultrathem are still billed in other B2Bs
-//      ("Elias Garcia B2B Mila Gama", "Dr. Rubinstein B2B Ultrathem").
-//   2. ADDED: "GZA performing Liquid Swords" (on neither earlier read). The
-//      row's data-artist-name is "GZA"; the billing is what we show, and
-//      artist.jsx's _lookupName drops the "performing …" note for lookups.
-//   3. CASING: "SEL.6 B2B PLAYSHADO" now prints "SEL.6 B2B Playshado".
-//   4. Dude Skywalker is on 08-29 and today, but not in the 09-02 capture.
-//      Kept: today's page bills it.
-//   5. DISPLAY ≠ NAME, one row contradicts itself, NOT resolved by guessing:
-//      the row that used to print "1-800-Lolita B2B Xana" now prints
-//      "1-800-305", while its data-artist-name is still "1-800-Lolita&Xana"
-//      and its data-artist-id is the same pair (440360-440357) as 09-02.
-//      Kept as "1-800-Lolita B2B Xana": the row's own structured name, which
-//      names two artists the "1-800-305" text does not. Re-check at the flip.
-//      Two older display/name gaps are benign billing notes, also kept as
-//      printed: "Daizy" (name "Daizy (US)") and "res_ (live)" (name "res_").
-// SOURCE venue + dates + policies: iiipoints.com/guide/, accessed 2026-08-29
-//   — "Mana Wynwood, 2217 NW 5th Ave, Miami, FL 33127", "October 16+17, 2026",
-//   no re-entry, 21+ for alcohol, "asphalt and grass terrain".
-// SOURCE venue geometry: OpenStreetMap way 435880991 "Mana Wynwood Convention
-//   Center", fetched via Overpass 2026-08-29.
-// SOURCE sun times: api.sunrise-sunset.org at the OSM centroid, per day,
-//   2026-09-30.
-//
-// ⛔ DO NOT SOURCE ANYTHING FROM THIS SITE'S JSON-LD. The lineup page still
-// serves `"name": "III Points Music Festival 2021", "startDate": "2021-10-22",
-// "location": "DMANA WYNWOOD"` — five years stale. The human-readable guide
-// page is correct; the structured data is not. Same trap for
-// iiipoints.com/experience/stages/, which 404s but is still linked from the
-// site's own popup config.
-//
-// ── WHAT IS NOT PUBLISHED (re-checked 2026-09-30, do not fabricate) ──
-// STAGES and SET TIMES are absent. The DAY SPLIT is published now, on the
-// lineup-by-day graphic (see SOURCE day split); until 2026-09-30 this
-// festival carried every act in one "Oct 16–17" bucket because no split had
-// been read. The guide FAQ: "Maps showing stage locations, food, bathrooms,
-// etc. WILL BE AVAILABLE PRIOR TO THE EVENT" and "DURING THE DAYS LEADING UP
-// TO THE FESTIVAL, set times will be posted." So every artist carries
-// stage: null and start/end "", and 19 of them also carry day: null.
-//
-// ── SPATIAL MODEL ──
-// There is none, deliberately, and that is the point. Every other festival in
-// this repo authors each stage's real lat/lng and DERIVES its 0-100 grid x/y
-// from that. Here there are no stages to author, so there is no grid, no
-// gpsAnchors, and no map art. Inventing a ground plate to fill the Map tab
-// would be exactly the defect PR #36 removed from EDC LV, where poster-space
-// coordinates had been laundered into world coordinates and left the main
-// stage sitting on a racetrack.
-//
-// `mapMode: "real"` is the answer instead: real street tiles centred on the
-// surveyed venue, the live blue dot, and the venue outline — all of it true,
-// none of it drawn by us. Wynwood is a street grid, so a real map is also
-// genuinely the better wayfinding tool here; at EDC the poster IS the
-// wayfinding artifact, which is why that one stays image-overlay.
-//
-// ── ANCHOR PROVENANCE (SPEC-add-festivals tiering) ──
-// venue.footprint is T1 VERIFIED — surveyed OSM geometry, not eyeballed.
-// gpsAnchors: NONE. Not T3, not provisional, ABSENT. A stage anchor cannot be
-// tiered before the stage exists.
-//
-// ⚠ venue.footprint is the CONVENTION CENTER BUILDING (184 × 149 m), not the
-// festival perimeter. The site is billed as "5 city blocks", but no surveyed
-// perimeter is published, so the building is what can be drawn honestly.
-// Widen it at the flip, from the official map — never by estimating.
-//
-// ── FLIP CHECKLIST (official map + set times, ~early Oct) ──
-//   1. STAGES with real lat/lng; derive x/y from them (never the reverse).
-//   2. start/end per act (and a day for the 19 unscheduled acts, from the
-//      official schedule only); drop the `provisional` flag.
-//   3. gpsAnchors re-measured to T1 against the official map.
-//   4. Widen venue.footprint to the real perimeter.
-//   5. amenities from the official map's legend.
-//   6. registry.available → true.
+// III Points 2026 - supplied set-time screenshot received October 5, 2026.
+// SOURCE: attendee-supplied III Points-branded screenshot. It prints Friday
+// October 16 and Saturday October 17, 13 stages and 231 intervals. SHA256:
+// 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
+// Public site at receipt: https://www.iiipoints.com/experience/ still carried
+// running order and only six 444 starts; /set-times/ returned 404. The official
+// site link below identifies the publisher, not a public full-clock receipt.
+// Transcription: docs/qa/reports/iii-points-2026-set-times/official.tsv.
+// All intervals read from the screenshot; a third-party structured schedule
+// served only as a cross-check. It omitted Homicide Jenny and incorrectly
+// ended Loukeman at 18:15; this source prints 19:00-19:30 and 17:15-18:05.
+// Prior lineup source: official list read September 30 (229 acts), joined
+// with July lineup-by-day graphic. Preserved archived reconciliation files
+// document that old snapshot; the current schedule supersedes those days.
+// The new grid bills Nettspend, solo Nick Leon, and Homicide Jenny. It does
+// not bill fakemink or Nick Leon B2B Safety Trance. These distinct acts get
+// distinct IDs. Existing IDs survive spelling, order and day corrections.
+// Dude Skywalker is now Friday; Jeremy Ismael is now Saturday. All 19 prior
+// DAY TBA billings have screenshot-grounded days. Villu is the grid's printed billing.
+// SPATIAL BOUNDARY: real street basemap, surveyed convention-center building
+// outline, no official perimeter/map inferred. Stage names are real but
+// positions are unknown: no stage x/y, lat/lng, GPS anchors or amenities.
 (function () {
   "use strict";
 
-  // No stages published — see the header. This is intentionally empty, and
-  // the app must stay correct with it empty.
-  //
-  // ⚠ This comment used to claim scripts/verify.mjs's mount probe boots this
-  // festival active and asserts that. It does not — the probe loads the real
-  // index.html with an empty localStorage, so it always boots whatever the
-  // resolver picks (acl-2026 today), and it cannot pick a gated festival at
-  // all: getActiveFestivalId requires `f.available`. Booting a gated
-  // festival needs a local flip; that is how this one and crssd-fall-2026
-  // were actually rendered. Do not trust the empty-STAGES path to a gate
-  // that is not there.
-  const STAGES = [];
+  // Official named stages with unknown positions. Schedule is not a map.
+  const STAGES = [
+  {
+    "id": "mind-melt",
+    "name": "MIND MELT",
+    "short": "MIND MELT",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "sec3",
+    "name": "SECTOR 3",
+    "short": "SECTOR 3",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "rc95",
+    "name": "RC95",
+    "short": "RC95",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "s3qu3nce",
+    "name": "S3QUENC3",
+    "short": "S3QUENC3",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "vertex",
+    "name": "VERTEX",
+    "short": "VERTEX",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "players-club",
+    "name": "PLAYERS CLUB",
+    "short": "PLAYERS CLUB",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "halo-88",
+    "name": "HALO 88",
+    "short": "HALO 88",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "grand-central",
+    "name": "GRAND CENTRAL",
+    "short": "GRAND CENTRAL",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "door-iv",
+    "name": "DOOR IV",
+    "short": "DOOR IV",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "iii-points-radio",
+    "name": "III POINTS RADIO",
+    "short": "III POINTS RADIO",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "isotropic",
+    "name": "ISOTROPIC",
+    "short": "ISOTROPIC",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "unforeseen",
+    "name": "UNFORESEEN",
+    "short": "UNFORESEEN",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  },
+  {
+    "id": "444",
+    "name": "444",
+    "short": "444",
+    "color": "#22d3ee",
+    "size": 1,
+    "desc": "Official stage; position not published"
+  }
+];
 
   // No amenity map published.
   const AMENITIES = [];
 
-  // Every act is unplaced and untimed; 210 have an official day for the
-  // full billed set, 19 are DAY TBA.
-  // `tier` drives lineup card weighting
-  // elsewhere; with no set times there is no basis to rank, so all acts sit
-  // at the same tier rather than being silently ordered by a guess.
-  // `provisional: true` marks the whole set for the flip session.
-  // The flip fills this block from the OFFICIAL schedule, after STAGES and
-  // real Fri/Sat dayDates come from the same source:
-  //   node scripts/fetch-insomniac-settimes.mjs https://www.iiipoints.com/lineup/set-times --days 2 --out sheet.tsv
-  //   node scripts/import-set-times.mjs iii-points-2026 sheet.tsv --days-from-sheet --source <official-url>
-  // id → [stageId, start, end, day]. Empty until then: every act unplaced.
+  // Verified intervals. Times before 08:00 belong to the preceding festival night.
   const SCHEDULE = {
     // SCHEDULE:BEGIN iii-points-2026
+    // Attendee-supplied III Points-branded screenshot grid received 2026-10-05; sha256 8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9
+    "iiip-ackdaddy": ["mind-melt", "16:00", "17:00", 1],
+    "iiip-vania-junco": ["mind-melt", "17:05", "17:35", 1],
+    "iiip-connan-mockasin": ["mind-melt", "18:00", "19:00", 1],
+    "iiip-men-i-trust": ["mind-melt", "19:25", "20:15", 1],
+    "iiip-parcels": ["mind-melt", "20:45", "22:00", 1],
+    "iiip-tokischa": ["mind-melt", "22:30", "23:15", 1],
+    "iiip-cloonee": ["mind-melt", "23:30", "01:00", 1],
+    "iiip-beltran-b2b-ben-sterling": ["mind-melt", "01:00", "02:30", 1],
+    "iiip-pawsa": ["mind-melt", "02:30", "04:00", 1],
+    "iiip-kumi": ["sec3", "16:00", "17:00", 1],
+    "iiip-cumbiamba": ["sec3", "17:05", "17:45", 1],
+    "iiip-amar": ["sec3", "18:10", "18:40", 1],
+    "iiip-ghostface-killah-presents": ["sec3", "19:00", "19:55", 1],
+    "iiip-bone-thugs-n-harmony": ["sec3", "20:15", "21:00", 1],
+    "iiip-lil-kim": ["sec3", "21:15", "22:00", 1],
+    "iiip-mind-enterprises": ["sec3", "22:20", "23:10", 1],
+    "iiip-purity-ring": ["sec3", "23:35", "00:25", 1],
+    "iiip-danny-brown": ["sec3", "00:45", "01:30", 1],
+    "iiip-jane-remover": ["sec3", "01:50", "02:35", 1],
+    "iiip-flying-lotus": ["sec3", "03:00", "04:00", 1],
+    "iiip-fiin": ["isotropic", "16:00", "17:15", 1],
+    "iiip-daizy": ["isotropic", "17:15", "18:30", 1],
+    "iiip-maher-daniel-b2b-mai-iache": ["isotropic", "18:30", "20:00", 1],
+    "iiip-malone-b2b-miluhska": ["isotropic", "20:00", "21:30", 1],
+    "iiip-miguelle-tons-b2b-saraga": ["isotropic", "21:30", "23:00", 1],
+    "iiip-brunello-b2b-rafael": ["isotropic", "23:00", "00:30", 1],
+    "iiip-ahmed-spins-b2b-omri": ["isotropic", "00:30", "02:00", 1],
+    "iiip-max-styler-b2b-vintage-cul": ["isotropic", "02:00", "04:00", 1],
+    "iiip-mason-norris-b2b-mia-vende": ["rc95", "16:00", "17:15", 1],
+    "iiip-proletar-b2b-zamurai": ["rc95", "17:15", "18:15", 1],
+    "iiip-v1fro": ["rc95", "18:15", "19:15", 1],
+    "iiip-1tbsp": ["rc95", "19:15", "20:15", 1],
+    "iiip-jigitz": ["rc95", "20:15", "21:15", 1],
+    "iiip-mary-droppinz": ["rc95", "21:15", "22:15", 1],
+    "iiip-ivy-lab": ["rc95", "22:15", "23:15", 1],
+    "iiip-hamdi": ["rc95", "23:15", "00:15", 1],
+    "iiip-levity-b2b-taiki-nulight": ["rc95", "00:15", "01:30", 1],
+    "iiip-odd-mob": ["rc95", "01:30", "02:45", 1],
+    "iiip-disco-lines": ["rc95", "02:45", "04:00", 1],
+    "iiip-heidi-lawden": ["444", "16:00", "20:00", 1],
+    "iiip-dj-harvey": ["444", "20:00", "00:00", 1],
+    "iiip-floating-points": ["444", "00:00", "04:00", 1],
+    "iiip-duun-b2b-sleepy-c": ["s3qu3nce", "16:00", "18:00", 1],
+    "iiip-r-v-calypso": ["s3qu3nce", "18:00", "19:15", 1],
+    "iiip-jump-source": ["s3qu3nce", "19:15", "20:45", 1],
+    "iiip-jacques-greene": ["s3qu3nce", "20:45", "22:00", 1],
+    "iiip-eli-escobar-b2b-jubilee": ["s3qu3nce", "22:00", "23:30", 1],
+    "iiip-danny-daze-b2b-dj-godfathe": ["s3qu3nce", "23:30", "01:00", 1],
+    "iiip-peach-b2b-shanti-celeste": ["s3qu3nce", "01:00", "02:30", 1],
+    "iiip-honey-dijon": ["s3qu3nce", "02:30", "04:00", 1],
+    "iiip-lylac": ["grand-central", "16:30", "17:00", 1],
+    "iiip-iiry": ["grand-central", "17:25", "17:55", 1],
+    "iiip-blind-fish": ["grand-central", "18:15", "19:00", 1],
+    "iiip-nicholas-g-padilla": ["grand-central", "19:15", "20:00", 1],
+    "iiip-rental-snakes": ["grand-central", "20:15", "21:00", 1],
+    "iiip-corridos-ketamina": ["grand-central", "21:15", "21:55", 1],
+    "iiip-patch": ["grand-central", "22:10", "22:55", 1],
+    "iiip-nate-sib": ["grand-central", "23:15", "00:00", 1],
+    "iiip-b0yg1rl": ["grand-central", "00:20", "00:50", 1],
+    "iiip-mgna-crrrta": ["grand-central", "01:10", "01:55", 1],
+    "iiip-zep": ["grand-central", "02:15", "03:00", 1],
+    "iiip-megusta-b2b-migs": ["vertex", "16:00", "17:30", 1],
+    "iiip-grace-arribas-b2b-marte": ["vertex", "17:30", "19:00", 1],
+    "iiip-rello": ["vertex", "19:00", "20:15", 1],
+    "iiip-dan-molinari": ["vertex", "20:15", "21:30", 1],
+    "iiip-raje-b2b-slugg": ["vertex", "21:30", "23:00", 1],
+    "iiip-roddy-lima": ["vertex", "23:00", "00:15", 1],
+    "iiip-discip": ["vertex", "00:15", "01:30", 1],
+    "iiip-ragie-ban": ["vertex", "01:30", "02:45", 1],
+    "iiip-invt": ["vertex", "02:45", "04:00", 1],
+    "iiip-feph-b2b-mr-tron": ["door-iv", "16:00", "18:00", 1],
+    "iiip-adam-at-the-door": ["door-iv", "18:00", "19:15", 1],
+    "iiip-uchi": ["door-iv", "19:15", "20:30", 1],
+    "iiip-lotusoph-b2b-julia-saturno": ["door-iv", "20:30", "22:00", 1],
+    "iiip-gio-elia-b2b-meghan-lee": ["door-iv", "22:00", "23:30", 1],
+    "iiip-bill-patrick-b2b-bort": ["door-iv", "23:30", "01:00", 1],
+    "iiip-oma-totem-b2b-true-vine": ["door-iv", "01:00", "02:45", 1],
+    "iiip-eco-sistema": ["door-iv", "02:45", "04:00", 1],
+    "iiip-aphex-twink-b2b-foreseer": ["halo-88", "16:00", "17:30", 1],
+    "iiip-dj-sabi-b2b-grue5ome": ["halo-88", "17:30", "19:00", 1],
+    "iiip-alejo": ["halo-88", "19:00", "20:00", 1],
+    "iiip-miguel-clark-b2b-naim-zarz": ["halo-88", "20:00", "21:15", 1],
+    "iiip-fiuza-b2b-madison-kay": ["halo-88", "21:15", "22:30", 1],
+    "iiip-elias-garcia-b2b-mila-gama": ["halo-88", "22:30", "00:00", 1],
+    "iiip-dr-rubinstein-b2b-ultrathe": ["halo-88", "00:00", "01:30", 1],
+    "iiip-joanna-kuchta-b2b-robyn-si": ["halo-88", "01:30", "03:00", 1],
+    "iiip-tech-g1rls": ["halo-88", "03:00", "04:00", 1],
+    "iiip-katie-ox-b2b-nat-siriani": ["unforeseen", "16:00", "18:00", 1],
+    "iiip-tiffy-vera-b2b-thunderpony": ["unforeseen", "18:00", "19:30", 1],
+    "iiip-aabel-b2b-siegel": ["unforeseen", "19:30", "21:00", 1],
+    "iiip-maccabi-b2b-pezlo-md": ["unforeseen", "21:00", "22:30", 1],
+    "iiip-moscoman": ["unforeseen", "22:30", "23:45", 1],
+    "iiip-eveava-b2b-jovigibs": ["unforeseen", "23:45", "01:15", 1],
+    "iiip-bakke": ["unforeseen", "01:15", "02:30", 1],
+    "iiip-lousy-lover-b2b-lucaz": ["unforeseen", "02:30", "04:00", 1],
+    "iiip-sportswax": ["iii-points-radio", "16:00", "18:00", 1],
+    "iiip-extra-andrew-b2b-mutant-pe": ["iii-points-radio", "18:00", "19:30", 1],
+    "iiip-nicole-gallamini-b2b-nikit": ["iii-points-radio", "19:30", "21:00", 1],
+    "iiip-rimaye-b2b-inbal": ["iii-points-radio", "21:00", "22:30", 1],
+    "iiip-will-renuart": ["iii-points-radio", "22:30", "23:45", 1],
+    "iiip-will-buck-b2b-taimur": ["iii-points-radio", "23:45", "01:15", 1],
+    "iiip-godisound": ["iii-points-radio", "01:15", "02:30", 1],
+    "iiip-alexx-in-chainss-b2b-solte": ["iii-points-radio", "02:30", "04:00", 1],
+    "iiip-scotty-sobek": ["players-club", "16:00", "17:30", 1],
+    "iiip-lauren-palma": ["players-club", "17:30", "18:45", 1],
+    "iiip-lagrimas-de-oro": ["players-club", "18:45", "20:00", 1],
+    "iiip-deep-cleansing": ["players-club", "20:00", "21:15", 1],
+    "iiip-baby-jesus-b2b-chaos": ["players-club", "21:15", "22:45", 1],
+    "iiip-puma": ["players-club", "22:45", "00:00", 1],
+    "iiip-cami-di-marzo": ["players-club", "00:00", "01:15", 1],
+    "iiip-dude-skywalker": ["players-club", "01:15", "02:45", 1],
+    "iiip-differ": ["players-club", "02:45", "04:00", 1],
+    "iiip-carter-jackson-brown": ["mind-melt", "16:00", "17:00", 2],
+    "iiip-loukeman": ["mind-melt", "17:15", "18:05", 2],
+    "iiip-ear": ["mind-melt", "18:20", "19:00", 2],
+    "iiip-nettspend": ["mind-melt", "19:25", "20:10", 2],
+    "iiip-blood-orange": ["mind-melt", "20:40", "21:50", 2],
+    "iiip-adam-port": ["mind-melt", "22:15", "23:30", 2],
+    "iiip-underworld": ["mind-melt", "00:00", "01:00", 2],
+    "iiip-four-tet": ["mind-melt", "01:30", "02:45", 2],
+    "iiip-kettama": ["mind-melt", "02:45", "04:00", 2],
+    "iiip-nikole": ["sec3", "16:15", "16:45", 2],
+    "iiip-doris-dana": ["sec3", "17:00", "17:30", 2],
+    "iiip-res-live": ["sec3", "17:45", "18:30", 2],
+    "iiip-ml-buch": ["sec3", "18:45", "19:30", 2],
+    "iiip-tricky": ["sec3", "19:55", "20:45", 2],
+    "iiip-rusowsky": ["sec3", "21:10", "21:55", 2],
+    "iiip-kelela": ["sec3", "22:20", "23:05", 2],
+    "iiip-horsegiirl": ["sec3", "23:30", "00:20", 2],
+    "iiip-bassvictim": ["sec3", "00:40", "01:25", 2],
+    "iiip-machine-girl": ["sec3", "01:45", "02:35", 2],
+    "iiip-sunn-o": ["sec3", "03:00", "04:00", 2],
+    "iiip-la-bb": ["isotropic", "16:00", "17:15", 2],
+    "iiip-godblessjai": ["isotropic", "17:15", "18:30", 2],
+    "iiip-silvie-loto-b2b-ms-mada": ["isotropic", "18:30", "20:00", 2],
+    "iiip-marsolo": ["isotropic", "20:00", "21:15", 2],
+    "iiip-omar": ["isotropic", "21:15", "22:30", 2],
+    "iiip-chasewest": ["isotropic", "22:30", "23:45", 2],
+    "iiip-sosa": ["isotropic", "23:45", "01:00", 2],
+    "iiip-max-dean-b2b-luke-dean": ["isotropic", "01:00", "02:30", 2],
+    "iiip-marco-carola-b2b-franky-ri": ["isotropic", "02:30", "04:00", 2],
+    "iiip-domnrob": ["rc95", "16:00", "17:00", 2],
+    "iiip-generous-b-b2b-hakuna": ["rc95", "17:00", "18:15", 2],
+    "iiip-cole-knight-b2b-dreya-v": ["rc95", "18:15", "19:30", 2],
+    "iiip-coffintexts-b2b-dj-fuckoff": ["rc95", "19:30", "20:45", 2],
+    "iiip-nick-leon": ["rc95", "20:45", "22:00", 2],
+    "iiip-ki-ki": ["rc95", "22:00", "23:15", 2],
+    "iiip-u-uk-uk1mat-u": ["rc95", "23:15", "00:30", 2],
+    "iiip-vtss": ["rc95", "00:30", "01:30", 2],
+    "iiip-999999999": ["rc95", "01:30", "02:45", 2],
+    "iiip-charlotte-de-witte": ["rc95", "02:45", "04:00", 2],
+    "iiip-willikens-ivkovic": ["444", "16:00", "20:00", 2],
+    "iiip-red-axes": ["444", "20:00", "00:00", 2],
+    "iiip-seth-troxler": ["444", "00:00", "04:00", 2],
+    "iiip-grant-sabadash-b2b-shir-mi": ["s3qu3nce", "16:00", "17:45", 2],
+    "iiip-natalia-roth-b2b-max-stern": ["s3qu3nce", "17:45", "19:15", 2],
+    "iiip-rebolledo": ["s3qu3nce", "19:15", "20:30", 2],
+    "iiip-whitesquare": ["s3qu3nce", "20:30", "21:45", 2],
+    "iiip-roman-flugel": ["s3qu3nce", "21:45", "23:00", 2],
+    "iiip-daphni": ["s3qu3nce", "23:00", "00:15", 2],
+    "iiip-interplanetary-criminal": ["s3qu3nce", "00:15", "01:30", 2],
+    "iiip-haai": ["s3qu3nce", "01:30", "02:45", 2],
+    "iiip-tiga": ["s3qu3nce", "02:45", "04:00", 2],
+    "iiip-huracan": ["grand-central", "16:15", "16:45", 2],
+    "iiip-vvilhelm": ["grand-central", "17:10", "17:40", 2],
+    "iiip-camp-blu": ["grand-central", "18:05", "18:35", 2],
+    "iiip-homicide-jenny": ["grand-central", "19:00", "19:30", 2],
+    "iiip-ladyboy": ["grand-central", "19:55", "20:25", 2],
+    "iiip-emily-afre": ["grand-central", "20:50", "21:20", 2],
+    "iiip-fine": ["grand-central", "21:45", "22:30", 2],
+    "iiip-chanel-beads": ["grand-central", "22:55", "23:40", 2],
+    "iiip-velora": ["grand-central", "00:05", "00:35", 2],
+    "iiip-yhwh-nailgun": ["grand-central", "01:00", "01:45", 2],
+    "iiip-crespi-drum-syndicate-live": ["grand-central", "02:00", "03:00", 2],
+    "iiip-allnightkev-b2b-lo-g": ["vertex", "16:00", "17:30", 2],
+    "iiip-alezsandro-b2b-dalva": ["vertex", "17:30", "19:00", 2],
+    "iiip-idriss-d-b2b-danyelino": ["vertex", "19:00", "20:30", 2],
+    "iiip-joss-dean": ["vertex", "20:30", "21:45", 2],
+    "iiip-kinahau": ["vertex", "21:45", "23:00", 2],
+    "iiip-dean-turnley": ["vertex", "23:00", "00:15", 2],
+    "iiip-sam-alfred": ["vertex", "00:15", "01:30", 2],
+    "iiip-mph": ["vertex", "01:30", "02:45", 2],
+    "iiip-2up": ["vertex", "02:45", "04:00", 2],
+    "iiip-vsyana": ["door-iv", "16:00", "17:15", 2],
+    "iiip-serafitz-b2b-sol-discos": ["door-iv", "17:15", "18:45", 2],
+    "iiip-dj-ray-b2b-ez-dee": ["door-iv", "18:45", "20:15", 2],
+    "iiip-artime-b2b-mystic-bill": ["door-iv", "20:15", "21:45", 2],
+    "iiip-david-vunk": ["door-iv", "21:45", "23:45", 2],
+    "iiip-terence-tabeau": ["door-iv", "23:45", "01:00", 2],
+    "iiip-dj-three-b2b-sister-system": ["door-iv", "01:00", "02:30", 2],
+    "iiip-ashley-venom-b2b-souls-dep": ["door-iv", "02:30", "04:00", 2],
+    "iiip-khami": ["halo-88", "16:00", "17:00", 2],
+    "iiip-d-luxe-b2b-dennis-baker": ["halo-88", "17:00", "18:00", 2],
+    "iiip-bricolage-b2b-day-dem": ["halo-88", "18:00", "19:15", 2],
+    "iiip-lupreme-b2b-santo": ["halo-88", "19:15", "20:30", 2],
+    "iiip-bonita-applebumz-b2b-toni-": ["halo-88", "20:30", "21:45", 2],
+    "iiip-sel-6-b2b-playshado": ["halo-88", "21:45", "23:00", 2],
+    "iiip-mr-bitch": ["halo-88", "23:00", "00:00", 2],
+    "iiip-pressure-point-b2b-berrakk": ["halo-88", "00:00", "01:15", 2],
+    "iiip-faith-leazae": ["halo-88", "01:15", "01:45", 2],
+    "iiip-lady-narcisse-b2b-racci": ["halo-88", "01:45", "03:00", 2],
+    "iiip-duality-b2b-gumthewrapper": ["halo-88", "03:00", "04:00", 2],
+    "iiip-p1no-b2b-trippie-hippie": ["unforeseen", "16:00", "17:30", 2],
+    "iiip-bozito-b2b-gabo-escalona": ["unforeseen", "17:30", "18:45", 2],
+    "iiip-spice-crime-b2b-violeta": ["unforeseen", "18:45", "20:00", 2],
+    "iiip-ale-acosta-b2b-hazon": ["unforeseen", "20:00", "21:15", 2],
+    "iiip-jinn-pr": ["unforeseen", "21:15", "22:15", 2],
+    "iiip-619": ["unforeseen", "22:15", "23:30", 2],
+    "iiip-1-800-lolita-b2b-xana": ["unforeseen", "23:30", "00:45", 2],
+    "iiip-saturnsarii-b2b-suz": ["unforeseen", "00:45", "02:15", 2],
+    "iiip-liquid-dinosaurs": ["unforeseen", "02:15", "02:45", 2],
+    "iiip-kujo-b2b-rara": ["unforeseen", "02:45", "04:00", 2],
+    "iiip-nxtel": ["iii-points-radio", "16:00", "17:00", 2],
+    "iiip-shinobi": ["iii-points-radio", "17:00", "18:00", 2],
+    "iiip-jinks-b2b-romulo-del-casti": ["iii-points-radio", "18:00", "19:30", 2],
+    "iiip-milo-ziro-b2b-xilla": ["iii-points-radio", "19:30", "21:00", 2],
+    "iiip-marie-qrie-b2b-viva-vidal": ["iii-points-radio", "21:00", "22:30", 2],
+    "iiip-rude-boy-b2b-sdrv": ["iii-points-radio", "22:30", "00:00", 2],
+    "iiip-phiphi-b2b-winter-wrong": ["iii-points-radio", "00:00", "01:30", 2],
+    "iiip-lizzie-mcguire": ["iii-points-radio", "01:30", "02:30", 2],
+    "iiip-mango-b2b-mister-lo": ["iii-points-radio", "02:30", "04:00", 2],
+    "iiip-dj-ahamed": ["players-club", "16:00", "17:30", 2],
+    "iiip-jbz": ["players-club", "17:30", "18:30", 2],
+    "iiip-santiago-villu": ["players-club", "18:30", "19:45", 2],
+    "iiip-canela": ["players-club", "19:45", "20:45", 2],
+    "iiip-ellynora": ["players-club", "20:45", "22:00", 2],
+    "iiip-saint-romero": ["players-club", "22:00", "23:00", 2],
+    "iiip-jeremy-ismael": ["players-club", "23:00", "00:15", 2],
+    "iiip-jason-rault": ["players-club", "00:15", "01:30", 2],
+    "iiip-nii-tei": ["players-club", "01:30", "02:45", 2],
+    "iiip-monoky": ["players-club", "02:45", "04:00", 2],
     // SCHEDULE:END
   };
   const scheduled = act => {
     const s = SCHEDULE[act.id];
     if (!s) return act;
-    const { provisional, ...rest } = act;
+    const { provisional, unscheduled, ...rest } = act;
     return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing III Points 2026." };
   };
 
@@ -202,12 +383,11 @@
     stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
     bio: `Playing III Points 2026 on ${day === 1 ? "Friday, October 16" : "Saturday, October 17"}. ` +
-         "Stage and set time are not published yet — the official schedule drops in the days before the festival.",
+         "See the supplied set-time grid for this edition.",
     provisional: true,
   });
 
-  // Billed on today's official list, absent from the lineup-by-day graphic
-  // (see the header). No day, stage or time is inferred for them.
+  // Historical unscheduled billings. The supplied timetable now supplies their slots.
   const mkUnscheduled = (id, name, why) => scheduled({
     id, name, genre: "—", country: "—", stage: null, day: null,
     start: "", end: "", tier: 2,
@@ -217,10 +397,14 @@
     provisional: true, unscheduled: true,
   });
 
-  // Day from the official lineup-by-day graphic; billing from today's list,
-  // in the graphic's B2B order. Ids never change with billing.
+  // Historical lineup identities, mapped to the current screenshot timetable.
+  // Array groups below are historical; the schedule determines current days.
   const ARTISTS = [
-    // ─────────── Friday, October 16 (104 acts) ───────────
+    mk("iiip-nettspend", "Nettspend", 2),
+    mk("iiip-nick-leon", "Nick León", 2),
+    mk("iiip-homicide-jenny", "Homicide Jenny", 2),
+    mk("iiip-nxtel", "nxtel", 2),
+    // ─────────── Historical Friday group ───────────
     mk("iiip-1tbsp",                         "1tbsp", 1),
     mk("iiip-aabel-b2b-siegel",              "Aabel B2B Siegel", 1),
     mk("iiip-ackdaddy",                      "Ackdaddy", 1),
@@ -272,7 +456,7 @@
     mk("iiip-ivy-lab",                       "Ivy Lab", 1),
     mk("iiip-jacques-greene",                "Jacques Greene", 1),
     mk("iiip-jane-remover",                  "Jane Remover", 1),
-    mk("iiip-jeremy-ismael",                 "Jeremy Ismael", 1),
+    mk("iiip-jeremy-ismael",                 "Jeremy Ismael", 2),
     mk("iiip-jigitz",                        "Jigitz", 1),
     mk("iiip-joanna-kuchta-b2b-robyn-si",    "Joanna Kuchta B2B Robyn Sin Love", 1),
     mk("iiip-lotusoph-b2b-julia-saturno",    "Julia Saturno B2B Lotusoph", 1),
@@ -354,13 +538,12 @@
     mk("iiip-dj-ray-b2b-ez-dee",             "DJ Ray B2B EZ Dee", 2),
     mk("iiip-dj-three-b2b-sister-system",    "DJ Three B2B Sister System", 2),
     mk("iiip-domnrob",                       "DomnRob", 2),
-    mk("iiip-doris-dana",                    "doris dana", 2),
+    mk("iiip-doris-dana",                    "doris dana (Live)", 2),
     mk("iiip-duality-b2b-gumthewrapper",     "Duality B2B GumtheWrapper", 2),
-    mk("iiip-dude-skywalker",                "Dude Skywalker", 2),
+    mk("iiip-dude-skywalker",                "Dude Skywalker", 1),
     mk("iiip-ear",                           "ear", 2),
     mk("iiip-ellynora",                      "Ellynora", 2),
     mk("iiip-faith-leazae",                  "Faith Leazae", 2),
-    mk("iiip-fakemink",                      "fakemink", 2),
     mk("iiip-fine",                          "Fine", 2),
     mk("iiip-four-tet",                      "Four Tet", 2),
     mk("iiip-generous-b-b2b-hakuna",         "Generous B B2B Hakuna", 2),
@@ -398,24 +581,23 @@
     mk("iiip-mr-bitch",                      "Mr. Bitch", 2),
     mk("iiip-artime-b2b-mystic-bill",        "Mystic Bill B2B Artime", 2),
     mk("iiip-natalia-roth-b2b-max-stern",    "Natalia Roth B2B Max Stern", 2),
-    mk("iiip-nick-leon-b2b-safety-tranc",    "Nick León B2B Safety Trance", 2),
     mk("iiip-nii-tei",                       "Nii Tei", 2),
     mk("iiip-omar",                          "Omar+", 2),
     mk("iiip-phiphi-b2b-winter-wrong",       "phiphi B2B Winter Wrong", 2),
     mk("iiip-rebolledo",                     "Rebolledo", 2),
     mk("iiip-red-axes",                      "Red Axes", 2),
-    mk("iiip-res-live",                      "res_ (live)", 2),
+    mk("iiip-res-live",                      "res_ (Live)", 2),
     mk("iiip-roman-flugel",                  "Roman Flügel", 2),
-    mk("iiip-jinks-b2b-romulo-del-casti",    "Romulo Del Castillo B2B Jinks", 2),
+    mk("iiip-jinks-b2b-romulo-del-casti",    "Jinks B2B Romulo Del Castillo", 2),
     mk("iiip-rude-boy-b2b-sdrv",             "Rude Boy B2B SDRV", 2),
     mk("iiip-rusowsky",                      "rusowsky", 2),
     mk("iiip-saint-romero",                  "Saint & Romero (Hybrid)", 2),
     mk("iiip-sam-alfred",                    "Sam Alfred", 2),
-    mk("iiip-santiago-villu",                "Santiago Villu", 2),
+    mk("iiip-santiago-villu",                "Villu", 2),
     mk("iiip-saturnsarii-b2b-suz",           "SATURNSARii B2B SUZ", 2),
     mk("iiip-seth-troxler",                  "Seth Troxler", 2),
     mk("iiip-shinobi",                       "Shinobi", 2),
-    mk("iiip-grant-sabadash-b2b-shir-mi",    "Shir Miya B2B Grant Sabadash", 2),
+    mk("iiip-grant-sabadash-b2b-shir-mi",    "Grant Sabadash B2B Shir Miya", 2),
     mk("iiip-silvie-loto-b2b-ms-mada",       "Silvie Loto B2B Ms. Mada", 2),
     mk("iiip-sosa",                          "Sosa", 2),
     mk("iiip-spice-crime-b2b-violeta",       "Spice Crime B2B Violeta", 2),
@@ -434,7 +616,7 @@
     mk("iiip-u-uk-uk1mat-u",                 "¥ØU$UK€ ¥UK1MAT$U", 2),
     // ─────────── DAY TBA: on the lineup, no day for the billed set (19 acts) ───────────
     mkUnscheduled("iiip-bricolage-b2b-day-dem", "Bricolage B2B DAY/DEM", "the lineup-by-day graphic bills DAY/DEM alone on Saturday, not this set."),
-    mkUnscheduled("iiip-sel-6-b2b-playshado", "SEL.6 B2B Playshado", "the lineup-by-day graphic bills SEL.6 alone on Saturday, not this set."),
+    mkUnscheduled("iiip-sel-6-b2b-playshado", "Playshado B2B SEL.6", "the lineup-by-day graphic bills SEL.6 alone on Saturday, not this set."),
     mkUnscheduled("iiip-fiuza-b2b-madison-kay", "FIUZA B2B Madison Kay", "the lineup-by-day graphic bills FIUZA alone on Friday, not this set."),
     mkUnscheduled("iiip-amar",               "amar"),
     mkUnscheduled("iiip-blind-fish",         "Blind Fish"),
@@ -460,6 +642,8 @@
   // which brings any saved pick back with it.
   const LINEUP = "https://www.iiipoints.com/lineup-2026/";
   const REMOVED_FROM_LINEUP = [
+    { id: "iiip-fakemink", name: "fakemink", lastSeen: "2026-09-30", removedFrom: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", evidence: "Not billed on attendee-supplied III Points-branded screenshot set-time grid" } },
+    { id: "iiip-nick-leon-b2b-safety-tranc", name: "Nick Leon B2B Safety Trance", lastSeen: "2026-09-30", removedFrom: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", evidence: "Grid bills Nick Leon solo, not this B2B" } },
     { id: "iiip-jencarlos", name: "JENCARLOS", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mr-brown", name: "Mr. Brown", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
     { id: "iiip-mila-gama-b2b-x3butterfly", name: "Mila Gama B2B X3BUTTERFLY", lastSeen: "2026-09-02", removedFrom: { url: LINEUP, observedAt: "2026-09-25" } },
@@ -489,6 +673,7 @@
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
+    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",
@@ -550,7 +735,7 @@
       ],
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
-    mainStageId: null,
+    mainStageId: "mind-melt",
     // ── THE MAP ──
     // No mapImage, no mapStyle: "image-overlay", no gpsAnchors. This festival
     // opens straight into the real basemap. See the header for why that is
@@ -570,7 +755,7 @@
     removedFromLineup: REMOVED_FROM_LINEUP,
     graphicOnly: GRAPHIC_ONLY,
     graphicMemberOnly: GRAPHIC_MEMBER_ONLY,
-    // GATED: set times, stages and the official map are all unpublished.
-    registry: { available: true, scheduleTBA: true, accent: "#22d3ee", emoji: "🔺", region: "North America" },
+    // Set times published; spatial map remains pending.
+    registry: { available: true, scheduleTBA: false, accent: "#22d3ee", emoji: "🔺", region: "North America" },
   };
 })();

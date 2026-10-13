@@ -331,15 +331,23 @@ try {
     const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
     // The first search answers with an image; later ones find nothing, so a
     // refetch after expiry cannot put the old image back.
-    let served = 0;
-    await ctx.route(/api\.spotify\.com\/v1\/search/, r => r.fulfill({ status: 200, contentType: 'application/json',
-      body: JSON.stringify(served++ ? {} : { artists: { items: [{ name: artist.name, id: 'FETCHED1', images: [{ url: img }] }] } }) }));
+    // Only THIS artist's first search gets the image: other faces on the page
+    // (the stage-night neighbours) search too, and must not take it.
+    let served = 0, hit = false;
+    await ctx.route(/api\.spotify\.com\/v1\/search/, r => {
+      served++;
+      const q = (new URL(r.request().url()).searchParams.get('q') || '').toLowerCase();
+      const mine = !hit && q.includes(artist.name.toLowerCase());
+      if (mine) hit = true;
+      return r.fulfill({ status: 200, contentType: 'application/json',
+        body: JSON.stringify(mine ? { artists: { items: [{ name: artist.name, id: 'FETCHED1', images: [{ url: img }] }] } } : {}) });
+    });
     await page.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
     await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => !!document.querySelector('[aria-label="Back"]'), null, { timeout: 60000 });
     await page.clock.runFor(2000);
     const before = await page.evaluate(() => !!document.querySelector('[data-hero="spotify"]'));
-    check(before && served >= 1, `[expiry, fetched] control: the fetched Spotify image was not showing (searches served: ${served})`);
+    check(before && hit, `[expiry, fetched] control: the fetched Spotify image was not showing (searches served: ${served}, this artist's: ${hit})`);
     await page.clock.fastForward(DAY + 60000);
     await page.clock.runFor(1000);
     const after = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length }));
