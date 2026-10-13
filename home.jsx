@@ -795,7 +795,7 @@ function PostFestivalRecap({ state, setState }) {
     // the moment Weekend 2 begins it answers W2 for good — filtering here
     // would blank a Weekend 1 attendee's recap of the festival they attended.
     artists: ARTISTS.filter(a => a.day === day && savedIds.includes(a.id))
-      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
+      .sort((a, b) => compareSetsByTime(a, b, STAGES)),
   })).filter(d => d.artists.length);
 
   return (
@@ -819,12 +819,12 @@ function PostFestivalRecap({ state, setState }) {
                 return (
                   <button key={a.id} className={`duo-press${i ? " duo-hair" : ""}`}
                     onClick={() => setState({ ...state, tab: "home", artist: a.id })}
-                    aria-label={`${a.name}, ${stage.name}, ${fmt12(a.start)} to ${fmt12(a.end)}`}
+                    aria-label={setTimesUnconfirmed(a) ? `${a.name}, ${stage.name}, set times unconfirmed` : `${a.name}, ${stage.name}, ${fmt12(a.start)} to ${fmt12(a.end)}`}
                     style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", minHeight: 44 }}>
                     <DuoAvatar name={a.name} size={40} />
                     <span style={{ flex: 1, minWidth: 0 }}>
                       <span className="duo-headline duo-name" style={{ display: "block" }}>{actDisplayName(a.name)}</span>
-                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · {fmt12(a.start)}–{fmt12(a.end)}</span>
+                      <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 3 }}>{stage.name.toUpperCase()} · {setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED.toUpperCase() : <>{fmt12(a.start)}–{fmt12(a.end)}</>}</span>
                     </span>
                   </button>
                 );
@@ -966,7 +966,8 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
   // Tonight-but-pre-doors: first set of day hasn't started yet
   const firstSetMs = dayMeta && !isPreEvent && !isPostEvent
     ? (() => {
-        const todays = activeLineup().filter(a => a.day === day)
+        // The first TIMED set: an untimed one has no doors time to count to.
+        const todays = activeLineup().filter(a => a.day === day && setTimingMin(a))
           .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
         const first = todays[0];
         if (!first) return null;
@@ -1463,7 +1464,7 @@ function UpcomingTeaser({ state, setState }) {
                       <div className="mono" style={{
                         fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 1,
                       }}>
-                        {stage?.short} · {fmt12(a.start)}–{fmt12(a.end)}
+                        {stage?.short} · {setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED.toUpperCase() : <>{fmt12(a.start)}–{fmt12(a.end)}</>}
                       </div>
                     </div>
                   </button>
@@ -1643,7 +1644,7 @@ function HomeScreen({ state, setState }) {
     if (isPostFestival || isLive) return null;
     const rows = activeLineup(savedIds)
       .filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night))
-      .sort((a, b) => (a.day - b.day) || (toNightMin(a.start) - toNightMin(b.start)));
+      .sort((a, b) => (a.day - b.day) || compareSetsByTime(a, b, STAGES));
     if (!rows.length) return null;
     // The board's list rows, not 132px tiles in a sideways rail: time,
     // face, the name in full, day and stage. The first five; the rest are
@@ -1865,7 +1866,7 @@ function SavedByDay({ state, setState }) {
   const byDay = festivalDayNums().map(day => ({
     day, meta: FESTIVAL_CONFIG.dayDates[day],
     artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
-      .sort((a, b) => toNightMin(a.start) - toNightMin(b.start)),
+      .sort((a, b) => compareSetsByTime(a, b, STAGES)),
   })).filter(d => d.artists.length);
   if (!byDay.length) return (
     <div>
@@ -1909,12 +1910,15 @@ function SavedByDay({ state, setState }) {
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
                 }}>
                   <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-                    <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
-                    <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                    {!setTimesUnconfirmed(a) && <>
+                      <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
+                      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
+                    </>}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</div>
                     {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
+                    {setTimesUnconfirmed(a) && <div data-set-time-status style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{SET_TIMES_UNCONFIRMED}</div>}
                     {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {actDisplayName(prev.name)} · {fmt12(prev.start)} · {(STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"}</div>}
                   </div>
                 </button>
@@ -2167,13 +2171,14 @@ function SavedRow({ a, onOpen }) {
   const day = dd?.short || `Day ${a.day}`;
   const stage = (STAGES.find(s => s.id === a.stage) || {}).name;
   return (
-    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
+    <button className="duo-press" onClick={onOpen} aria-label={`${a.name}, ${dd?.name || day}, ${setTimesUnconfirmed(a) ? "set times unconfirmed" : fmt12(a.start)}${stage ? `, ${stage}` : ""}`}
       style={{ display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "6px 0", border: "none", background: "none", color: "var(--ink)", textAlign: "left", cursor: "pointer", width: "100%" }}>
-      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{a.start ? fmt12(a.start) : "TBA"}</span>
+      <span className="duo-data" style={{ width: 72, flexShrink: 0, fontSize: 13, color: "var(--ink-2)", whiteSpace: "nowrap" }}>{setTimesUnconfirmed(a) ? null : a.start ? fmt12(a.start) : "TBA"}</span>
       <DuoAvatar name={a.name} size={36} />
       <span style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column" }}>
         <span className="duo-name" style={{ font: "650 15px/1.33 var(--f-ui)" }}>{actDisplayName(a.name)}</span>
         <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{[dd?.name || day, stage].filter(Boolean).join(" · ")}</span>
+        {setTimesUnconfirmed(a) && <span data-set-time-status style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{SET_TIMES_UNCONFIRMED}</span>}
       </span>
     </button>
   );
