@@ -7,7 +7,7 @@
 // Reads bundled festival data through load-registry.mjs, scores every billing
 // with scripts/lib/content-readiness.mjs and reports the editor queue. No
 // network, no writes outside --out, and nothing the app renders changes.
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { loadRegistry } from './lib/load-registry.mjs';
@@ -18,7 +18,8 @@ const outAt = process.argv.indexOf('--out');
 const out = outAt > 0 ? process.argv[outAt + 1] : null;
 
 const { DS } = loadRegistry(ROOT);
-const items = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id]));
+const showcases = JSON.parse(readFileSync(`${ROOT}/data/content-readiness/showcases.json`, 'utf8'));
+const items = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id], { showcases }));
 const inputHash = createHash('sha256').update(JSON.stringify(items)).digest('hex');
 let sourceSha = null;
 try { sourceSha = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim(); } catch {}

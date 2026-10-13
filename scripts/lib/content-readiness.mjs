@@ -11,6 +11,12 @@
 // items `semanticEligible` marks, and only after a dedupe pass: a billing is
 // keyed by edition + weekend + id, and a duplicate printed row is a conflict,
 // never merged.
+//
+// One act billed at the same start on several stages is an identity conflict
+// UNLESS a showcase entry (data/content-readiness/showcases.json) covers that
+// edition, name and date with a dated first-party source. A showcase is many
+// groups under one label (School of Rock: 75+ bands, six stages); the entry is
+// evidence for one edition and its printed dates, never a blanket name pass.
 
 export const RUBRIC_VERSION = 'content-readiness/1';
 
@@ -89,7 +95,21 @@ export function scoreItem(f) {
   return 4;
 }
 
-export function buildItems(editionId, data) {
+// The dates a source-backed showcase entry covers for this edition and name.
+function showcaseDates(showcases, editionId, name) {
+  const hit = (showcases || []).find(s => s && s.edition === editionId
+    && normName(s.name) === normName(name)
+    && /^https:\/\//.test(s.source || '') && s.publishedAt && Array.isArray(s.dates));
+  return hit ? new Set(hit.dates) : null;
+}
+
+function isoDay(config, day) {
+  const d = config && config.dayDates && config.dayDates[day];
+  if (!d) return null;
+  return `${d.y}-${String(d.m + 1).padStart(2, '0')}-${String(d.d).padStart(2, '0')}`;
+}
+
+export function buildItems(editionId, data, { showcases = [] } = {}) {
   const artists = Array.isArray(data && data.artists) ? data.artists : [];
   const config = (data && data.config) || {};
   const n = artists.length;
@@ -119,9 +139,15 @@ export function buildItems(editionId, data) {
       profileLinks: profileLinks(a),
     };
     const reasons = [];
-    const duplicate = rowCounts.get(rowKey(a)) > 1;
-    if (exactCounts.get(exactKey(a)) > 1) reasons.push('duplicate printed row: same name, stage and start');
-    else if (duplicate) reasons.push('same name billed at the same start on another stage: identity unresolved');
+    const exactDup = exactCounts.get(exactKey(a)) > 1;
+    const crossStage = !exactDup && rowCounts.get(rowKey(a)) > 1;
+    const covered = crossStage && showcaseDates(showcases, editionId, a.name);
+    const showcase = !!(covered && covered.has(isoDay(config, a.day)));
+    const duplicate = exactDup || (crossStage && !showcase);
+    if (exactDup) reasons.push('duplicate printed row: same name, stage and start');
+    else if (showcase) reasons.push('source-backed concurrent showcase: one label, several groups and stages');
+    else if (covered) reasons.push('same name on several stages at once, on a date the showcase source does not cover');
+    else if (crossStage) reasons.push('same name billed at the same start on another stage: identity unresolved');
     if (a.provisional) reasons.push('edition marks this billing provisional');
     if (f.bioEvidence === 'unsourced_prose') reasons.push('bio prose has no source');
     if (!f.scheduleOfficial) reasons.push('schedule source is not official');
@@ -134,7 +160,7 @@ export function buildItems(editionId, data) {
       : 'ready_for_editor_review';
     // A semantic judgment only has something to read when there is prose,
     // and is only safe on a billing nothing else in the edition shares a row with.
-    const semanticEligible = !duplicate && (f.bioEvidence === 'official_profile' || f.bioEvidence === 'unsourced_prose');
+    const semanticEligible = !duplicate && !showcase && (f.bioEvidence === 'official_profile' || f.bioEvidence === 'unsourced_prose');
     return { ...f, readiness, choice, reasons, semanticEligible };
   });
 }

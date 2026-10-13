@@ -2,6 +2,7 @@
 // Gate for scripts/lib/content-readiness.mjs: the rubric levels, the choice
 // precedence, duplicate/identity handling, the field allow-list, and the
 // baseline over today's bundled lineups. Offline; no network.
+import { readFileSync } from 'node:fs';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { ITEM_FIELDS, buildItems, summarize } from './lib/content-readiness.mjs';
 
@@ -61,6 +62,22 @@ const wk = { config: OFFICIAL, artists: [
 check(buildItems('fx', wk).every(i => i.choice !== 'conflict'), 'another weekend or day is a repeat billing, not a conflict');
 check(new Set(buildItems('fx', wk).map(i => i.key)).size === 3, 'keys stay unique per edition + weekend + id');
 
+// ── Showcases: one label, many groups, only where a source says so ──
+const DATES = { 1: { y: 2026, m: 5, d: 26 }, 2: { y: 2026, m: 5, d: 27 } };
+const show = (day = 1) => ({ config: { ...OFFICIAL, dayDates: DATES }, artists: ['a', 'b', 'c'].map(st => (
+  { id: `s-${st}`, name: 'Rock Camp', bio: `Rock Camp's ${st} band covers the classics.`, stage: st, day, start: '12:00' })) });
+const SC = { edition: 'fx', name: 'Rock Camp', dates: ['2026-06-26'], source: 'https://example.org/release', publishedAt: '2026-05-18' };
+const sc = (d, showcases) => buildItems('fx', d, { showcases });
+check(sc(show(), []).every(i => i.choice === 'conflict'), 'no showcase entry: concurrent same-name rows are conflicts');
+check(sc(show(), [SC]).every(i => i.choice !== 'conflict' && /showcase/.test(i.reasons[0])), 'a sourced showcase covering the date clears the cross-stage conflict');
+check(sc(show(), [SC]).every(i => !i.semanticEligible), 'a showcase label is never semantic-eligible');
+check(sc(show(2), [SC]).every(i => i.choice === 'conflict' && /does not cover/.test(i.reasons[0])), 'a date the source does not print stays a conflict');
+check(sc(show(), [{ ...SC, edition: 'other' }]).every(i => i.choice === 'conflict'), 'another edition\'s entry is not evidence');
+check(sc(show(), [{ ...SC, source: 'http://example.org' }]).every(i => i.choice === 'conflict'), 'an entry without an https source is ignored');
+check(sc(show(), [{ ...SC, publishedAt: '' }]).every(i => i.choice === 'conflict'), 'an undated entry is ignored');
+const showDup = show(); showDup.artists.push({ ...showDup.artists[0], id: 's-a2' });
+check(sc(showDup, [SC]).filter(i => i.stage === 'a').every(i => i.choice === 'conflict'), 'a showcase never excuses a duplicate row on the same stage');
+
 // ── Allow-list: user data can never ride along ──
 const leaky = base({ exif: { gps: [30, -97] }, savedBy: 'u1', userId: 'u1', notes: 'private', attended: true });
 const keys = new Set(buildItems('fx', leaky).flatMap(Object.keys));
@@ -69,7 +86,8 @@ check(!ITEM_FIELDS.some(k => /exif|gps|lat|lng|user|account|email|note|saved|att
 
 // ── Baseline over today's bundled lineups ──
 const { DS } = loadRegistry(process.cwd());
-const items = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id]));
+const showcases = JSON.parse(readFileSync('data/content-readiness/showcases.json', 'utf8'));
+const items = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id], { showcases }));
 const s = summarize(items);
 check(items.length >= 2000, `baseline covers every billing (${items.length})`);
 check(Object.keys(s.editions).length === Object.keys(DS).length, 'every edition is scored');
@@ -78,8 +96,12 @@ check(items.every(i => i.readiness < 3 || i.bioEvidence === 'official_profile'),
 check(!items.some(i => i.bioEvidence === 'unsourced_prose' && i.choice === 'ready_for_editor_review'), 'no unsourced prose is ready for review');
 const sj = items.filter(i => i.edition === 'summerfest-2026' && /^Stephan Jenkins/.test(i.name));
 check(sj.length >= 2 && sj.every(i => i.choice === 'conflict'), 'positive control: the same act on two Summerfest stages at 14:00 is a conflict');
+const sor = items.filter(i => i.edition === 'summerfest-2026' && i.name === 'School of Rock');
+check(sor.filter(i => i.day === 5).length === 5 && sor.filter(i => i.day === 5).every(i => i.choice !== 'conflict'), 'positive control: June 26 School of Rock rows are a sourced showcase, not conflicts');
+check(sor.filter(i => i.day === 4).length === 5 && sor.filter(i => i.day === 4).every(i => i.choice === 'conflict' && /does not cover/.test(i.reasons[0])), 'June 25 School of Rock stays flagged: the release prints June 26-27');
+check(showcases.every(s => /^https:\/\//.test(s.source) && s.publishedAt && s.observedAt && s.statement), 'every showcase entry carries a dated https source and its statement');
 check(items.filter(i => i.edition === 'nocturnal-wonderland-2026' && i.bioEvidence === 'official_profile').length >= 60, 'positive control: Nocturnal official profiles are read');
-const again = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id]));
+const again = Object.keys(DS).sort().flatMap(id => buildItems(id, DS[id], { showcases }));
 check(JSON.stringify(again) === JSON.stringify(items), 'deterministic: a second run is identical');
 
 console.log(`content readiness: ${pass} passed, ${fail} failed`);
