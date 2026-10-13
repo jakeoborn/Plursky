@@ -286,7 +286,7 @@ try {
   });
   await step("agent-device-doctor", async () => {
     await run(join(ROOT, "node_modules", ".bin", "agent-device"), ["doctor"], { log: "agent-device-doctor.log" });
-    await run(join(ROOT, "node_modules", ".bin", "agent-device"), ["capabilities", "--platform", "ios"], { log: "agent-device-capabilities-ios.log" });
+    await run(join(ROOT, "node_modules", ".bin", "agent-device"), ["capabilities", "--platform", "ios", "--udid", udid], { log: "agent-device-capabilities-ios.log" });
   });
   await step("boot-simulator", async () => {
     if (!simulatorWasBooted) await run("xcrun", ["simctl", "boot", udid]);
