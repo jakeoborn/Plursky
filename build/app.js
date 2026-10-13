@@ -754,7 +754,7 @@ function SearchModal({
         color: "var(--muted)",
         marginTop: 2
       }
-    }, st?.short, " · DAY ", a.day, " · ", fmt12(a.start))), React.createElement("span", {
+    }, st?.short, " · DAY ", a.day, " · ", setTimeLabel(a))), React.createElement("span", {
       style: {
         fontSize: 10,
         color: "var(--ember-ink)"
@@ -896,7 +896,7 @@ function SearchModal({
         letterSpacing: 1,
         color: "var(--muted)"
       }
-    }, DAY_LABEL[a.day], " ", fmt12(a.start), "–", fmt12(a.end)), React.createElement("span", {
+    }, DAY_LABEL[a.day], " ", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : React.createElement(React.Fragment, null, fmt12(a.start), "–", fmt12(a.end))), React.createElement("span", {
       style: {
         color: "var(--muted)"
       }
@@ -1451,7 +1451,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v414"
+        version: "v415"
       }));
     } catch {}
   }
@@ -1503,7 +1503,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v414"))
+      }, "Plursky · v415"))
     );
   }
 }

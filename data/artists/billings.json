@@ -24721,8 +24721,8 @@
   "date": "2026-06-25",
   "day": 4,
   "stage": "Big Backyard",
-  "start": "12:00",
-  "end": "15:50",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -24732,7 +24732,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -24836,8 +24836,8 @@
   "date": "2026-06-25",
   "day": 4,
   "stage": "Generac Power Stage",
-  "start": "12:00",
-  "end": "15:50",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -24847,7 +24847,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -25089,8 +25089,8 @@
   "date": "2026-06-25",
   "day": 4,
   "stage": "Aurora Pavilion",
-  "start": "12:00",
-  "end": "15:50",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -25100,7 +25100,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -25204,8 +25204,8 @@
   "date": "2026-06-25",
   "day": 4,
   "stage": "T-Mobile Stage",
-  "start": "12:00",
-  "end": "15:50",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -25215,7 +25215,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -25342,8 +25342,8 @@
   "date": "2026-06-25",
   "day": 4,
   "stage": "Uline Warehouse",
-  "start": "12:00",
-  "end": "15:50",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -25353,7 +25353,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -25779,8 +25779,8 @@
   "date": "2026-06-26",
   "day": 5,
   "stage": "Big Backyard",
-  "start": "12:00",
-  "end": "15:35",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -25790,7 +25790,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -25894,8 +25894,8 @@
   "date": "2026-06-26",
   "day": 5,
   "stage": "Generac Power Stage",
-  "start": "12:00",
-  "end": "15:35",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -25905,7 +25905,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -26147,8 +26147,8 @@
   "date": "2026-06-26",
   "day": 5,
   "stage": "Aurora Pavilion",
-  "start": "12:00",
-  "end": "15:35",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -26158,7 +26158,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -26262,8 +26262,8 @@
   "date": "2026-06-26",
   "day": 5,
   "stage": "T-Mobile Stage",
-  "start": "12:00",
-  "end": "15:35",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -26273,7 +26273,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
@@ -26377,8 +26377,8 @@
   "date": "2026-06-26",
   "day": 5,
   "stage": "Uline Warehouse",
-  "start": "12:00",
-  "end": "15:35",
+  "start": null,
+  "end": null,
   "printed": "School of Rock",
   "setTag": null,
   "performers": [
@@ -26388,7 +26388,7 @@
    }
   ],
   "act": "school-of-rock",
-  "closing": false,
+  "closing": null,
   "mainStage": null
  },
  {
