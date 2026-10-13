@@ -21791,29 +21791,6 @@
   "mainStage": null
  },
  {
-  "id": "summerfest-2026:su24",
-  "source": "live",
-  "festivalId": "summerfest-2026",
-  "festivalBrand": "summerfest",
-  "year": 2026,
-  "date": "2026-06-18",
-  "day": 1,
-  "stage": "Aurora Pavilion",
-  "start": "14:00",
-  "end": "15:05",
-  "printed": "Stephan Jenkins of Third Eye Blind",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "stephan-jenkins-of-third-eye-blind",
-    "role": "performer"
-   }
-  ],
-  "act": "stephan-jenkins-of-third-eye-blind",
-  "closing": false,
-  "mainStage": null
- },
- {
   "id": "summerfest-2026:su25",
   "source": "live",
   "festivalId": "summerfest-2026",
@@ -38726,6 +38703,98 @@
   "mainStage": null
  },
  {
+  "id": "iii-points-2026:iiip-nettspend",
+  "source": "live",
+  "festivalId": "iii-points-2026",
+  "festivalBrand": "iii-points",
+  "year": 2026,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "MIND MELT",
+  "start": "19:25",
+  "end": "20:10",
+  "printed": "Nettspend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nettspend",
+    "role": "performer"
+   }
+  ],
+  "act": "nettspend",
+  "closing": false,
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2026:iiip-nick-leon",
+  "source": "live",
+  "festivalId": "iii-points-2026",
+  "festivalBrand": "iii-points",
+  "year": 2026,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "RC95",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Nick León",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-leon",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-leon",
+  "closing": false,
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2026:iiip-homicide-jenny",
+  "source": "live",
+  "festivalId": "iii-points-2026",
+  "festivalBrand": "iii-points",
+  "year": 2026,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "GRAND CENTRAL",
+  "start": "19:00",
+  "end": "19:30",
+  "printed": "Homicide Jenny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "homicide-jenny",
+    "role": "performer"
+   }
+  ],
+  "act": "homicide-jenny",
+  "closing": false,
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2026:iiip-nxtel",
+  "source": "live",
+  "festivalId": "iii-points-2026",
+  "festivalBrand": "iii-points",
+  "year": 2026,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "III POINTS RADIO",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "nxtel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nxtel",
+    "role": "performer"
+   }
+  ],
+  "act": "nxtel",
+  "closing": false,
+  "mainStage": null
+ },
+ {
   "id": "iii-points-2026:iiip-1tbsp",
   "source": "live",
   "festivalId": "iii-points-2026",
@@ -38733,9 +38802,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "19:15",
+  "end": "20:15",
   "printed": "1tbsp",
   "setTag": null,
   "performers": [
@@ -38745,7 +38814,7 @@
    }
   ],
   "act": "1tbsp",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38756,9 +38825,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Aabel B2B Siegel",
   "setTag": null,
   "performers": [
@@ -38772,7 +38841,7 @@
    }
   ],
   "act": "aabel-b2b-siegel",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38783,9 +38852,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Ackdaddy",
   "setTag": null,
   "performers": [
@@ -38795,7 +38864,7 @@
    }
   ],
   "act": "ackdaddy",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38806,9 +38875,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "18:00",
+  "end": "19:15",
   "printed": "Adam At The Door",
   "setTag": null,
   "performers": [
@@ -38818,7 +38887,7 @@
    }
   ],
   "act": "adam-at-the-door",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38829,9 +38898,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "00:30",
+  "end": "02:00",
   "printed": "Ahmed Spins B2B OMRI.",
   "setTag": null,
   "performers": [
@@ -38845,7 +38914,7 @@
    }
   ],
   "act": "ahmed-spins-b2b-omri",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38856,9 +38925,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "ALEJO",
   "setTag": null,
   "performers": [
@@ -38868,7 +38937,7 @@
    }
   ],
   "act": "alejo",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38879,9 +38948,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Alexx in Chainss B2B Soltek",
   "setTag": null,
   "performers": [
@@ -38895,7 +38964,7 @@
    }
   ],
   "act": "alexx-in-chainss-b2b-soltek",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -38906,9 +38975,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Aphex Twink B2B FORESEER",
   "setTag": null,
   "performers": [
@@ -38922,7 +38991,7 @@
    }
   ],
   "act": "aphex-twink-b2b-foreseer",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38933,9 +39002,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "00:20",
+  "end": "00:50",
   "printed": "B0YG1RL",
   "setTag": null,
   "performers": [
@@ -38945,7 +39014,7 @@
    }
   ],
   "act": "b0yg1rl",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38956,9 +39025,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "21:15",
+  "end": "22:45",
   "printed": "Baby Jesus B2B CHAOS!",
   "setTag": null,
   "performers": [
@@ -38972,7 +39041,7 @@
    }
   ],
   "act": "baby-jesus-b2b-chaos",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -38983,9 +39052,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "01:15",
+  "end": "02:30",
   "printed": "Bakke",
   "setTag": null,
   "performers": [
@@ -38995,7 +39064,7 @@
    }
   ],
   "act": "bakke",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39006,9 +39075,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "01:00",
+  "end": "02:30",
   "printed": "Beltran B2B Ben Sterling",
   "setTag": null,
   "performers": [
@@ -39022,7 +39091,7 @@
    }
   ],
   "act": "beltran-b2b-ben-sterling",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39033,9 +39102,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "23:30",
+  "end": "01:00",
   "printed": "Bill Patrick B2B Bort",
   "setTag": null,
   "performers": [
@@ -39049,7 +39118,7 @@
    }
   ],
   "act": "bill-patrick-b2b-bort",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39060,9 +39129,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "20:15",
+  "end": "21:00",
   "printed": "Bone Thugs-N-Harmony",
   "setTag": null,
   "performers": [
@@ -39072,7 +39141,7 @@
    }
   ],
   "act": "bone-thugs-n-harmony",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39083,9 +39152,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "23:00",
+  "end": "00:30",
   "printed": "Brunello B2B Rafael",
   "setTag": null,
   "performers": [
@@ -39099,7 +39168,7 @@
    }
   ],
   "act": "brunello-b2b-rafael",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39110,9 +39179,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "00:00",
+  "end": "01:15",
   "printed": "Cami di Marzo",
   "setTag": null,
   "performers": [
@@ -39122,7 +39191,7 @@
    }
   ],
   "act": "cami-di-marzo",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39133,9 +39202,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "23:30",
+  "end": "01:00",
   "printed": "Cloonee",
   "setTag": null,
   "performers": [
@@ -39145,7 +39214,7 @@
    }
   ],
   "act": "cloonee",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39156,9 +39225,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Connan Mockasin",
   "setTag": null,
   "performers": [
@@ -39168,7 +39237,7 @@
    }
   ],
   "act": "connan-mockasin",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39179,9 +39248,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "21:15",
+  "end": "21:55",
   "printed": "Corridos Ketamina",
   "setTag": null,
   "performers": [
@@ -39191,7 +39260,7 @@
    }
   ],
   "act": "corridos-ketamina",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39202,9 +39271,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "17:15",
+  "end": "18:30",
   "printed": "Daizy",
   "setTag": null,
   "performers": [
@@ -39214,7 +39283,7 @@
    }
   ],
   "act": "daizy",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39225,9 +39294,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "20:15",
+  "end": "21:30",
   "printed": "Dan Molinari",
   "setTag": null,
   "performers": [
@@ -39237,7 +39306,7 @@
    }
   ],
   "act": "dan-molinari",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39248,9 +39317,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "00:45",
+  "end": "01:30",
   "printed": "Danny Brown",
   "setTag": null,
   "performers": [
@@ -39260,7 +39329,7 @@
    }
   ],
   "act": "danny-brown",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39271,9 +39340,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "23:30",
+  "end": "01:00",
   "printed": "Danny Daze B2B DJ Godfather",
   "setTag": null,
   "performers": [
@@ -39287,7 +39356,7 @@
    }
   ],
   "act": "danny-daze-b2b-dj-godfather",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39298,9 +39367,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Deep Cleansing",
   "setTag": null,
   "performers": [
@@ -39310,7 +39379,7 @@
    }
   ],
   "act": "deep-cleansing",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39321,9 +39390,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Differ",
   "setTag": null,
   "performers": [
@@ -39333,7 +39402,7 @@
    }
   ],
   "act": "differ",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39344,9 +39413,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "00:15",
+  "end": "01:30",
   "printed": "Discip",
   "setTag": null,
   "performers": [
@@ -39356,7 +39425,7 @@
    }
   ],
   "act": "discip",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39367,9 +39436,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Disco Lines",
   "setTag": null,
   "performers": [
@@ -39379,7 +39448,7 @@
    }
   ],
   "act": "disco-lines",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39390,9 +39459,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "20:00",
+  "end": "00:00",
   "printed": "DJ Harvey",
   "setTag": null,
   "performers": [
@@ -39402,7 +39471,7 @@
    }
   ],
   "act": "dj-harvey",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39413,9 +39482,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "17:30",
+  "end": "19:00",
   "printed": "DJ Sabi B2B GRUE5OME",
   "setTag": null,
   "performers": [
@@ -39429,7 +39498,7 @@
    }
   ],
   "act": "dj-sabi-b2b-grue5ome",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39440,9 +39509,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "00:00",
+  "end": "01:30",
   "printed": "Dr. Rubinstein B2B Ultrathem",
   "setTag": null,
   "performers": [
@@ -39456,7 +39525,7 @@
    }
   ],
   "act": "dr-rubinstein-b2b-ultrathem",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39467,9 +39536,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "16:00",
+  "end": "18:00",
   "printed": "duun B2B Sleepy C",
   "setTag": null,
   "performers": [
@@ -39483,7 +39552,7 @@
    }
   ],
   "act": "duun-b2b-sleepy-c",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39494,9 +39563,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "eco-sistema",
   "setTag": null,
   "performers": [
@@ -39506,7 +39575,7 @@
    }
   ],
   "act": "eco-sistema",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39517,9 +39586,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "22:00",
+  "end": "23:30",
   "printed": "Eli Escobar B2B Jubilee",
   "setTag": null,
   "performers": [
@@ -39533,7 +39602,7 @@
    }
   ],
   "act": "eli-escobar-b2b-jubilee",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39544,9 +39613,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Elias Garcia B2B Mila Gama",
   "setTag": null,
   "performers": [
@@ -39560,7 +39629,7 @@
    }
   ],
   "act": "elias-garcia-b2b-mila-gama",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39571,9 +39640,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "23:45",
+  "end": "01:15",
   "printed": "eveava B2B Jovigibs",
   "setTag": null,
   "performers": [
@@ -39587,7 +39656,7 @@
    }
   ],
   "act": "eveava-b2b-jovigibs",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39598,9 +39667,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Extra Andrew B2B Mutant Pete",
   "setTag": null,
   "performers": [
@@ -39614,7 +39683,7 @@
    }
   ],
   "act": "extra-andrew-b2b-mutant-pete",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39625,9 +39694,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "16:00",
+  "end": "18:00",
   "printed": "Feph B2B Mr. Tron",
   "setTag": null,
   "performers": [
@@ -39641,7 +39710,7 @@
    }
   ],
   "act": "feph-b2b-mr-tron",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39652,9 +39721,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "Fiin",
   "setTag": null,
   "performers": [
@@ -39664,7 +39733,7 @@
    }
   ],
   "act": "fiin",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39675,9 +39744,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "00:00",
+  "end": "04:00",
   "printed": "Floating Points",
   "setTag": null,
   "performers": [
@@ -39687,7 +39756,7 @@
    }
   ],
   "act": "floating-points",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39698,9 +39767,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "03:00",
+  "end": "04:00",
   "printed": "Flying Lotus",
   "setTag": null,
   "performers": [
@@ -39710,7 +39779,7 @@
    }
   ],
   "act": "flying-lotus",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39721,9 +39790,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "22:00",
+  "end": "23:30",
   "printed": "Gio Elia B2B Meghan Lee",
   "setTag": null,
   "performers": [
@@ -39737,7 +39806,7 @@
    }
   ],
   "act": "gio-elia-b2b-meghan-lee",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39748,9 +39817,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "01:15",
+  "end": "02:30",
   "printed": "Godisound",
   "setTag": null,
   "performers": [
@@ -39760,7 +39829,7 @@
    }
   ],
   "act": "godisound",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39771,9 +39840,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Grace Arribas B2B MARTE",
   "setTag": null,
   "performers": [
@@ -39787,7 +39856,7 @@
    }
   ],
   "act": "grace-arribas-b2b-marte",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39798,9 +39867,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "23:15",
+  "end": "00:15",
   "printed": "Hamdi",
   "setTag": null,
   "performers": [
@@ -39810,7 +39879,7 @@
    }
   ],
   "act": "hamdi",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39821,9 +39890,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "16:00",
+  "end": "20:00",
   "printed": "Heidi Lawden",
   "setTag": null,
   "performers": [
@@ -39833,7 +39902,7 @@
    }
   ],
   "act": "heidi-lawden",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39844,9 +39913,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Honey Dijon",
   "setTag": null,
   "performers": [
@@ -39856,7 +39925,7 @@
    }
   ],
   "act": "honey-dijon",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39867,9 +39936,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Inbal B2B Rimaye",
   "setTag": null,
   "performers": [
@@ -39883,7 +39952,7 @@
    }
   ],
   "act": "inbal-b2b-rimaye",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39894,9 +39963,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "INVT",
   "setTag": null,
   "performers": [
@@ -39906,7 +39975,7 @@
    }
   ],
   "act": "invt",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -39917,9 +39986,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "22:15",
+  "end": "23:15",
   "printed": "Ivy Lab",
   "setTag": null,
   "performers": [
@@ -39929,7 +39998,7 @@
    }
   ],
   "act": "ivy-lab",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39940,9 +40009,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "20:45",
+  "end": "22:00",
   "printed": "Jacques Greene",
   "setTag": null,
   "performers": [
@@ -39952,7 +40021,7 @@
    }
   ],
   "act": "jacques-greene",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39963,9 +40032,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "01:50",
+  "end": "02:35",
   "printed": "Jane Remover",
   "setTag": null,
   "performers": [
@@ -39975,7 +40044,7 @@
    }
   ],
   "act": "jane-remover",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -39984,11 +40053,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": "2026-10-16",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "PLAYERS CLUB",
+  "start": "23:00",
+  "end": "00:15",
   "printed": "Jeremy Ismael",
   "setTag": null,
   "performers": [
@@ -39998,7 +40067,7 @@
    }
   ],
   "act": "jeremy-ismael",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40009,9 +40078,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "20:15",
+  "end": "21:15",
   "printed": "Jigitz",
   "setTag": null,
   "performers": [
@@ -40021,7 +40090,7 @@
    }
   ],
   "act": "jigitz",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40032,9 +40101,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "01:30",
+  "end": "03:00",
   "printed": "Joanna Kuchta B2B Robyn Sin Love",
   "setTag": null,
   "performers": [
@@ -40048,7 +40117,7 @@
    }
   ],
   "act": "joanna-kuchta-b2b-robyn-sin-love",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40059,9 +40128,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "20:30",
+  "end": "22:00",
   "printed": "Julia Saturno B2B Lotusoph",
   "setTag": null,
   "performers": [
@@ -40075,7 +40144,7 @@
    }
   ],
   "act": "julia-saturno-b2b-lotusoph",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40086,9 +40155,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "19:15",
+  "end": "20:45",
   "printed": "Jump Source (Live)",
   "setTag": "Live",
   "performers": [
@@ -40098,7 +40167,7 @@
    }
   ],
   "act": "jump-source",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40109,9 +40178,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "16:00",
+  "end": "18:00",
   "printed": "Katie Ox B2B Nat Siriani",
   "setTag": null,
   "performers": [
@@ -40125,7 +40194,7 @@
    }
   ],
   "act": "katie-ox-b2b-nat-siriani",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40136,9 +40205,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Kumi",
   "setTag": null,
   "performers": [
@@ -40148,7 +40217,7 @@
    }
   ],
   "act": "kumi",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40159,9 +40228,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "18:45",
+  "end": "20:00",
   "printed": "Lagrimas de Oro",
   "setTag": null,
   "performers": [
@@ -40171,7 +40240,7 @@
    }
   ],
   "act": "lagrimas-de-oro",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40182,9 +40251,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "17:30",
+  "end": "18:45",
   "printed": "Lauren Palma",
   "setTag": null,
   "performers": [
@@ -40194,7 +40263,7 @@
    }
   ],
   "act": "lauren-palma",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40205,9 +40274,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "00:15",
+  "end": "01:30",
   "printed": "Levity B2B Taiki Nulight",
   "setTag": null,
   "performers": [
@@ -40221,7 +40290,7 @@
    }
   ],
   "act": "levity-b2b-taiki-nulight",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40232,9 +40301,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "21:15",
+  "end": "22:00",
   "printed": "Lil' Kim",
   "setTag": null,
   "performers": [
@@ -40244,7 +40313,7 @@
    }
   ],
   "act": "lil-kim",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40255,9 +40324,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Lousy Lover B2B Lucaz",
   "setTag": null,
   "performers": [
@@ -40271,7 +40340,7 @@
    }
   ],
   "act": "lousy-lover-b2b-lucaz",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -40282,9 +40351,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Maccabi B2B Pezlo MD",
   "setTag": null,
   "performers": [
@@ -40298,7 +40367,7 @@
    }
   ],
   "act": "maccabi-b2b-pezlo-md",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40309,9 +40378,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "18:30",
+  "end": "20:00",
   "printed": "Maher Daniel B2B Mai Iachetti",
   "setTag": null,
   "performers": [
@@ -40325,7 +40394,7 @@
    }
   ],
   "act": "maher-daniel-b2b-mai-iachetti",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40336,9 +40405,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "20:00",
+  "end": "21:30",
   "printed": "Malóne B2B Miluhska",
   "setTag": null,
   "performers": [
@@ -40352,7 +40421,7 @@
    }
   ],
   "act": "malone-b2b-miluhska",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40363,9 +40432,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "21:15",
+  "end": "22:15",
   "printed": "Mary Droppinz",
   "setTag": null,
   "performers": [
@@ -40375,7 +40444,7 @@
    }
   ],
   "act": "mary-droppinz",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40386,9 +40455,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "Mason Norris B2B Mia Vendetta",
   "setTag": null,
   "performers": [
@@ -40402,7 +40471,7 @@
    }
   ],
   "act": "mason-norris-b2b-mia-vendetta",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40413,9 +40482,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Megusta B2B MIGS",
   "setTag": null,
   "performers": [
@@ -40429,7 +40498,7 @@
    }
   ],
   "act": "megusta-b2b-migs",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40440,9 +40509,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "19:25",
+  "end": "20:15",
   "printed": "Men I Trust",
   "setTag": null,
   "performers": [
@@ -40452,7 +40521,7 @@
    }
   ],
   "act": "men-i-trust",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40463,9 +40532,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "01:10",
+  "end": "01:55",
   "printed": "MGNA Crrrta",
   "setTag": null,
   "performers": [
@@ -40475,7 +40544,7 @@
    }
   ],
   "act": "mgna-crrrta",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40486,9 +40555,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Miguel Clark B2B Naim Zarzour",
   "setTag": null,
   "performers": [
@@ -40502,7 +40571,7 @@
    }
   ],
   "act": "miguel-clark-b2b-naim-zarzour",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40513,9 +40582,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "21:30",
+  "end": "23:00",
   "printed": "Miguelle & Tons B2B Saraga",
   "setTag": null,
   "performers": [
@@ -40529,7 +40598,7 @@
    }
   ],
   "act": "miguelle-and-tons-b2b-saraga",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40540,9 +40609,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "22:20",
+  "end": "23:10",
   "printed": "Mind Enterprises",
   "setTag": null,
   "performers": [
@@ -40552,7 +40621,7 @@
    }
   ],
   "act": "mind-enterprises",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40563,9 +40632,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "22:30",
+  "end": "23:45",
   "printed": "Moscoman",
   "setTag": null,
   "performers": [
@@ -40575,7 +40644,7 @@
    }
   ],
   "act": "moscoman",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40586,9 +40655,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "23:15",
+  "end": "00:00",
   "printed": "nate sib",
   "setTag": null,
   "performers": [
@@ -40598,7 +40667,7 @@
    }
   ],
   "act": "nate-sib",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40609,9 +40678,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "19:15",
+  "end": "20:00",
   "printed": "Nicholas G. Padilla",
   "setTag": null,
   "performers": [
@@ -40621,7 +40690,7 @@
    }
   ],
   "act": "nicholas-g-padilla",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40632,9 +40701,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Nicole Gallamini B2B Nikita Green",
   "setTag": null,
   "performers": [
@@ -40648,7 +40717,7 @@
    }
   ],
   "act": "nicole-gallamini-b2b-nikita-green",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40659,9 +40728,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Odd Mob",
   "setTag": null,
   "performers": [
@@ -40671,7 +40740,7 @@
    }
   ],
   "act": "odd-mob",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40682,9 +40751,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "01:00",
+  "end": "02:45",
   "printed": "oma totem B2B True Vine",
   "setTag": null,
   "performers": [
@@ -40698,7 +40767,7 @@
    }
   ],
   "act": "oma-totem-b2b-true-vine",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40709,9 +40778,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "20:45",
+  "end": "22:00",
   "printed": "Parcels",
   "setTag": null,
   "performers": [
@@ -40721,7 +40790,7 @@
    }
   ],
   "act": "parcels",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40732,9 +40801,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "22:10",
+  "end": "22:55",
   "printed": "Patch+",
   "setTag": null,
   "performers": [
@@ -40744,7 +40813,7 @@
    }
   ],
   "act": "patch",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40755,9 +40824,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "PAWSA",
   "setTag": null,
   "performers": [
@@ -40767,7 +40836,7 @@
    }
   ],
   "act": "pawsa",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -40778,9 +40847,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "17:15",
+  "end": "18:15",
   "printed": "Proletar B2B Zamurai",
   "setTag": null,
   "performers": [
@@ -40794,7 +40863,7 @@
    }
   ],
   "act": "proletar-b2b-zamurai",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40805,9 +40874,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "22:45",
+  "end": "00:00",
   "printed": "Puma",
   "setTag": null,
   "performers": [
@@ -40817,7 +40886,7 @@
    }
   ],
   "act": "puma",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40828,9 +40897,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "23:35",
+  "end": "00:25",
   "printed": "Purity Ring",
   "setTag": null,
   "performers": [
@@ -40840,7 +40909,7 @@
    }
   ],
   "act": "purity-ring",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40851,9 +40920,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "18:00",
+  "end": "19:15",
   "printed": "R/V Calypso",
   "setTag": null,
   "performers": [
@@ -40863,7 +40932,7 @@
    }
   ],
   "act": "r-v-calypso",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40874,9 +40943,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Ragie Ban",
   "setTag": null,
   "performers": [
@@ -40886,7 +40955,7 @@
    }
   ],
   "act": "ragie-ban",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40897,9 +40966,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "19:00",
+  "end": "20:15",
   "printed": "Rello",
   "setTag": null,
   "performers": [
@@ -40909,7 +40978,7 @@
    }
   ],
   "act": "rello",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40920,9 +40989,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "20:15",
+  "end": "21:00",
   "printed": "Rental Snakes (Live)",
   "setTag": "Live",
   "performers": [
@@ -40932,7 +41001,7 @@
    }
   ],
   "act": "rental-snakes",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40943,9 +41012,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "23:00",
+  "end": "00:15",
   "printed": "Roddy Lima",
   "setTag": null,
   "performers": [
@@ -40955,7 +41024,7 @@
    }
   ],
   "act": "roddy-lima",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40966,9 +41035,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "01:00",
+  "end": "02:30",
   "printed": "Shanti Celeste B2B Peach",
   "setTag": null,
   "performers": [
@@ -40982,7 +41051,7 @@
    }
   ],
   "act": "shanti-celeste-b2b-peach",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -40993,9 +41062,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "21:30",
+  "end": "23:00",
   "printed": "Slugg B2B RAJE",
   "setTag": null,
   "performers": [
@@ -41009,7 +41078,7 @@
    }
   ],
   "act": "slugg-b2b-raje",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41020,9 +41089,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "16:00",
+  "end": "18:00",
   "printed": "Sportswax",
   "setTag": null,
   "performers": [
@@ -41032,7 +41101,7 @@
    }
   ],
   "act": "sportswax",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41043,9 +41112,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "23:45",
+  "end": "01:15",
   "printed": "Taimur B2B Will Buck",
   "setTag": null,
   "performers": [
@@ -41059,7 +41128,7 @@
    }
   ],
   "act": "taimur-b2b-will-buck",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41070,9 +41139,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "03:00",
+  "end": "04:00",
   "printed": "Tech G1rls",
   "setTag": null,
   "performers": [
@@ -41082,7 +41151,7 @@
    }
   ],
   "act": "tech-g1rls",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41093,9 +41162,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Thunderpony B2B Tiffy Vera",
   "setTag": null,
   "performers": [
@@ -41109,7 +41178,7 @@
    }
   ],
   "act": "thunderpony-b2b-tiffy-vera",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41120,9 +41189,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "22:30",
+  "end": "23:15",
   "printed": "Tokischa",
   "setTag": null,
   "performers": [
@@ -41132,7 +41201,7 @@
    }
   ],
   "act": "tokischa",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41143,9 +41212,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "19:15",
+  "end": "20:30",
   "printed": "Uchi",
   "setTag": null,
   "performers": [
@@ -41155,7 +41224,7 @@
    }
   ],
   "act": "uchi",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41166,9 +41235,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "18:15",
+  "end": "19:15",
   "printed": "V1FRO",
   "setTag": null,
   "performers": [
@@ -41178,7 +41247,7 @@
    }
   ],
   "act": "v1fro",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41189,9 +41258,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "17:05",
+  "end": "17:35",
   "printed": "Vania Junco",
   "setTag": null,
   "performers": [
@@ -41201,7 +41270,7 @@
    }
   ],
   "act": "vania-junco",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41212,9 +41281,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "02:00",
+  "end": "04:00",
   "printed": "Vintage Culture B2B Max Styler",
   "setTag": null,
   "performers": [
@@ -41228,7 +41297,7 @@
    }
   ],
   "act": "vintage-culture-b2b-max-styler",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41239,9 +41308,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "22:30",
+  "end": "23:45",
   "printed": "Will Renuart",
   "setTag": null,
   "performers": [
@@ -41251,7 +41320,7 @@
    }
   ],
   "act": "will-renuart",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41262,9 +41331,9 @@
   "year": 2026,
   "date": "2026-10-16",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "02:15",
+  "end": "03:00",
   "printed": "ZEP",
   "setTag": null,
   "performers": [
@@ -41274,7 +41343,7 @@
    }
   ],
   "act": "zep",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41285,9 +41354,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "23:30",
+  "end": "00:45",
   "printed": "1-800-305",
   "setTag": null,
   "performers": [
@@ -41297,7 +41366,7 @@
    }
   ],
   "act": "1-800-305",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41308,9 +41377,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "2UP!",
   "setTag": null,
   "performers": [
@@ -41320,7 +41389,7 @@
    }
   ],
   "act": "2up",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41331,9 +41400,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "22:15",
+  "end": "23:30",
   "printed": "619!",
   "setTag": null,
   "performers": [
@@ -41343,7 +41412,7 @@
    }
   ],
   "act": "619",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41354,9 +41423,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "999999999",
   "setTag": null,
   "performers": [
@@ -41366,7 +41435,7 @@
    }
   ],
   "act": "999999999",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41377,9 +41446,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "22:15",
+  "end": "23:30",
   "printed": "Adam Port",
   "setTag": null,
   "performers": [
@@ -41389,7 +41458,7 @@
    }
   ],
   "act": "adam-port",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41400,9 +41469,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Ale Acosta B2B Hazón",
   "setTag": null,
   "performers": [
@@ -41416,7 +41485,7 @@
    }
   ],
   "act": "ale-acosta-b2b-hazon",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41427,9 +41496,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Alezsandro B2B Dalva",
   "setTag": null,
   "performers": [
@@ -41443,7 +41512,7 @@
    }
   ],
   "act": "alezsandro-b2b-dalva",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41454,9 +41523,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Allnightkev B2B Lo-G",
   "setTag": null,
   "performers": [
@@ -41470,7 +41539,7 @@
    }
   ],
   "act": "allnightkev-b2b-lo-g",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41481,9 +41550,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Ashley Venom B2B Souls Departed",
   "setTag": null,
   "performers": [
@@ -41497,7 +41566,7 @@
    }
   ],
   "act": "ashley-venom-b2b-souls-departed",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41508,9 +41577,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "00:40",
+  "end": "01:25",
   "printed": "Bassvictim",
   "setTag": null,
   "performers": [
@@ -41520,7 +41589,7 @@
    }
   ],
   "act": "bassvictim",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41531,9 +41600,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "00:00",
+  "end": "01:15",
   "printed": "Berrakka B2B Pressure Point",
   "setTag": null,
   "performers": [
@@ -41547,7 +41616,7 @@
    }
   ],
   "act": "berrakka-b2b-pressure-point",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41558,9 +41627,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "20:40",
+  "end": "21:50",
   "printed": "Blood Orange",
   "setTag": null,
   "performers": [
@@ -41570,7 +41639,7 @@
    }
   ],
   "act": "blood-orange",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41581,9 +41650,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "20:30",
+  "end": "21:45",
   "printed": "Bonita Applebumz B2B Toni Shardai",
   "setTag": null,
   "performers": [
@@ -41597,7 +41666,7 @@
    }
   ],
   "act": "bonita-applebumz-b2b-toni-shardai",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41608,9 +41677,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "17:30",
+  "end": "18:45",
   "printed": "Bozito B2B Gabo Escalona",
   "setTag": null,
   "performers": [
@@ -41624,7 +41693,7 @@
    }
   ],
   "act": "bozito-b2b-gabo-escalona",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41635,9 +41704,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "18:05",
+  "end": "18:35",
   "printed": "Camp Blu",
   "setTag": null,
   "performers": [
@@ -41647,7 +41716,7 @@
    }
   ],
   "act": "camp-blu",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41658,9 +41727,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Carter Jackson-Brown",
   "setTag": null,
   "performers": [
@@ -41670,7 +41739,7 @@
    }
   ],
   "act": "carter-jackson-brown",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41681,9 +41750,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "22:55",
+  "end": "23:40",
   "printed": "Chanel Beads",
   "setTag": null,
   "performers": [
@@ -41693,7 +41762,7 @@
    }
   ],
   "act": "chanel-beads",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41704,9 +41773,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Charlotte de Witte",
   "setTag": null,
   "performers": [
@@ -41716,7 +41785,7 @@
    }
   ],
   "act": "charlotte-de-witte",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41727,9 +41796,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "22:30",
+  "end": "23:45",
   "printed": "ChaseWest",
   "setTag": null,
   "performers": [
@@ -41739,7 +41808,7 @@
    }
   ],
   "act": "chasewest",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41750,9 +41819,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "19:30",
+  "end": "20:45",
   "printed": "Coffintexts B2B DJ Fuckoff",
   "setTag": null,
   "performers": [
@@ -41766,7 +41835,7 @@
    }
   ],
   "act": "coffintexts-b2b-dj-fuckoff",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41777,9 +41846,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "18:15",
+  "end": "19:30",
   "printed": "Cole Knight B2B DREYA V",
   "setTag": null,
   "performers": [
@@ -41793,7 +41862,7 @@
    }
   ],
   "act": "cole-knight-b2b-dreya-v",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41804,9 +41873,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "23:00",
+  "end": "00:15",
   "printed": "Daphni",
   "setTag": null,
   "performers": [
@@ -41816,7 +41885,7 @@
    }
   ],
   "act": "daphni",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41827,9 +41896,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "21:45",
+  "end": "23:45",
   "printed": "David Vunk",
   "setTag": null,
   "performers": [
@@ -41839,7 +41908,7 @@
    }
   ],
   "act": "david-vunk",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41850,9 +41919,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "23:00",
+  "end": "00:15",
   "printed": "Dean Turnley",
   "setTag": null,
   "performers": [
@@ -41862,7 +41931,7 @@
    }
   ],
   "act": "dean-turnley",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41873,9 +41942,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Dennis Baker B2B D.Luxe",
   "setTag": null,
   "performers": [
@@ -41889,7 +41958,7 @@
    }
   ],
   "act": "dennis-baker-b2b-d-luxe",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41900,9 +41969,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "18:45",
+  "end": "20:15",
   "printed": "DJ Ray B2B EZ Dee",
   "setTag": null,
   "performers": [
@@ -41916,7 +41985,7 @@
    }
   ],
   "act": "dj-ray-b2b-ez-dee",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41927,9 +41996,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "01:00",
+  "end": "02:30",
   "printed": "DJ Three B2B Sister System",
   "setTag": null,
   "performers": [
@@ -41943,7 +42012,7 @@
    }
   ],
   "act": "dj-three-b2b-sister-system",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41954,9 +42023,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "DomnRob",
   "setTag": null,
   "performers": [
@@ -41966,7 +42035,7 @@
    }
   ],
   "act": "domnrob",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -41977,11 +42046,11 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "doris dana",
-  "setTag": null,
+  "stage": "SECTOR 3",
+  "start": "17:00",
+  "end": "17:30",
+  "printed": "doris dana (Live)",
+  "setTag": "Live",
   "performers": [
    {
     "key": "doris-dana",
@@ -41989,7 +42058,7 @@
    }
   ],
   "act": "doris-dana",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42000,9 +42069,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "03:00",
+  "end": "04:00",
   "printed": "Duality B2B GumtheWrapper",
   "setTag": null,
   "performers": [
@@ -42016,7 +42085,7 @@
    }
   ],
   "act": "duality-b2b-gumthewrapper",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42025,11 +42094,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": "2026-10-17",
-  "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "PLAYERS CLUB",
+  "start": "01:15",
+  "end": "02:45",
   "printed": "Dude Skywalker",
   "setTag": null,
   "performers": [
@@ -42039,7 +42108,7 @@
    }
   ],
   "act": "dude-skywalker",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42050,9 +42119,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "18:20",
+  "end": "19:00",
   "printed": "ear",
   "setTag": null,
   "performers": [
@@ -42062,7 +42131,7 @@
    }
   ],
   "act": "ear",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42073,9 +42142,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "20:45",
+  "end": "22:00",
   "printed": "Ellynora",
   "setTag": null,
   "performers": [
@@ -42085,7 +42154,7 @@
    }
   ],
   "act": "ellynora",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42096,9 +42165,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "01:15",
+  "end": "01:45",
   "printed": "Faith Leazae",
   "setTag": null,
   "performers": [
@@ -42108,30 +42177,7 @@
    }
   ],
   "act": "faith-leazae",
-  "closing": null,
-  "mainStage": null
- },
- {
-  "id": "iii-points-2026:iiip-fakemink",
-  "source": "live",
-  "festivalId": "iii-points-2026",
-  "festivalBrand": "iii-points",
-  "year": 2026,
-  "date": "2026-10-17",
-  "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "fakemink",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "fakemink",
-    "role": "performer"
-   }
-  ],
-  "act": "fakemink",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42142,9 +42188,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "21:45",
+  "end": "22:30",
   "printed": "Fine",
   "setTag": null,
   "performers": [
@@ -42154,7 +42200,7 @@
    }
   ],
   "act": "fine",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42165,9 +42211,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Four Tet",
   "setTag": null,
   "performers": [
@@ -42177,7 +42223,7 @@
    }
   ],
   "act": "four-tet",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42188,9 +42234,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "17:00",
+  "end": "18:15",
   "printed": "Generous B B2B Hakuna",
   "setTag": null,
   "performers": [
@@ -42204,7 +42250,7 @@
    }
   ],
   "act": "generous-b-b2b-hakuna",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42215,9 +42261,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "HAAi",
   "setTag": null,
   "performers": [
@@ -42227,7 +42273,7 @@
    }
   ],
   "act": "haai",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42238,9 +42284,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "23:30",
+  "end": "00:20",
   "printed": "horsegiirL",
   "setTag": null,
   "performers": [
@@ -42250,7 +42296,7 @@
    }
   ],
   "act": "horsegiirl",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42261,9 +42307,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "19:00",
+  "end": "20:30",
   "printed": "Idriss D B2B Danyelino",
   "setTag": null,
   "performers": [
@@ -42277,7 +42323,7 @@
    }
   ],
   "act": "idriss-d-b2b-danyelino",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42288,9 +42334,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "00:15",
+  "end": "01:30",
   "printed": "Interplanetary Criminal",
   "setTag": null,
   "performers": [
@@ -42300,7 +42346,7 @@
    }
   ],
   "act": "interplanetary-criminal",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42311,9 +42357,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "00:15",
+  "end": "01:30",
   "printed": "Jason Rault",
   "setTag": null,
   "performers": [
@@ -42323,7 +42369,7 @@
    }
   ],
   "act": "jason-rault",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42334,9 +42380,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "17:30",
+  "end": "18:30",
   "printed": "JBZ",
   "setTag": null,
   "performers": [
@@ -42346,7 +42392,7 @@
    }
   ],
   "act": "jbz",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42357,9 +42403,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "21:15",
+  "end": "22:15",
   "printed": "JINN_PR",
   "setTag": null,
   "performers": [
@@ -42369,7 +42415,7 @@
    }
   ],
   "act": "jinn-pr",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42380,9 +42426,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "20:30",
+  "end": "21:45",
   "printed": "Joss Dean",
   "setTag": null,
   "performers": [
@@ -42392,7 +42438,7 @@
    }
   ],
   "act": "joss-dean",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42403,9 +42449,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "22:20",
+  "end": "23:05",
   "printed": "Kelela",
   "setTag": null,
   "performers": [
@@ -42415,7 +42461,7 @@
    }
   ],
   "act": "kelela",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42426,9 +42472,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "KETTAMA",
   "setTag": null,
   "performers": [
@@ -42438,7 +42484,7 @@
    }
   ],
   "act": "kettama",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42449,9 +42495,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Khami",
   "setTag": null,
   "performers": [
@@ -42461,7 +42507,7 @@
    }
   ],
   "act": "khami",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42472,9 +42518,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "22:00",
+  "end": "23:15",
   "printed": "KI/KI",
   "setTag": null,
   "performers": [
@@ -42484,7 +42530,7 @@
    }
   ],
   "act": "ki-ki",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42495,9 +42541,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "21:45",
+  "end": "23:00",
   "printed": "KinAhau",
   "setTag": null,
   "performers": [
@@ -42507,7 +42553,7 @@
    }
   ],
   "act": "kinahau",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42518,9 +42564,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Kujo B2B RARA",
   "setTag": null,
   "performers": [
@@ -42534,7 +42580,7 @@
    }
   ],
   "act": "kujo-b2b-rara",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42545,9 +42591,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "La BB",
   "setTag": null,
   "performers": [
@@ -42557,7 +42603,7 @@
    }
   ],
   "act": "la-bb",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42568,9 +42614,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "01:45",
+  "end": "03:00",
   "printed": "Lady Narcisse B2B Racci",
   "setTag": null,
   "performers": [
@@ -42584,7 +42630,7 @@
    }
   ],
   "act": "lady-narcisse-b2b-racci",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42595,9 +42641,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "19:55",
+  "end": "20:25",
   "printed": "LADYBOY",
   "setTag": null,
   "performers": [
@@ -42607,7 +42653,7 @@
    }
   ],
   "act": "ladyboy",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42618,9 +42664,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "02:15",
+  "end": "02:45",
   "printed": "Liquid Dinosaurs",
   "setTag": null,
   "performers": [
@@ -42630,7 +42676,7 @@
    }
   ],
   "act": "liquid-dinosaurs",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42641,9 +42687,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "01:30",
+  "end": "02:30",
   "printed": "Lizzie_mcguire",
   "setTag": null,
   "performers": [
@@ -42653,7 +42699,7 @@
    }
   ],
   "act": "lizzie-mcguire",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42664,9 +42710,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "17:15",
+  "end": "18:05",
   "printed": "Loukeman",
   "setTag": null,
   "performers": [
@@ -42676,7 +42722,7 @@
    }
   ],
   "act": "loukeman",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42687,9 +42733,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "19:15",
+  "end": "20:30",
   "printed": "Lupreme B2B SANTO",
   "setTag": null,
   "performers": [
@@ -42703,7 +42749,7 @@
    }
   ],
   "act": "lupreme-b2b-santo",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42714,9 +42760,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "01:45",
+  "end": "02:35",
   "printed": "Machine Girl",
   "setTag": null,
   "performers": [
@@ -42726,7 +42772,7 @@
    }
   ],
   "act": "machine-girl",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42737,9 +42783,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Mango B2B Mister Lo",
   "setTag": null,
   "performers": [
@@ -42753,7 +42799,7 @@
    }
   ],
   "act": "mango-b2b-mister-lo",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42764,9 +42810,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "02:30",
+  "end": "04:00",
   "printed": "Marco Carola B2B Franky Rizardo",
   "setTag": null,
   "performers": [
@@ -42780,7 +42826,7 @@
    }
   ],
   "act": "marco-carola-b2b-franky-rizardo",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42791,9 +42837,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "21:00",
+  "end": "22:30",
   "printed": "Marie Qrie B2B Viva Vidal",
   "setTag": null,
   "performers": [
@@ -42807,7 +42853,7 @@
    }
   ],
   "act": "marie-qrie-b2b-viva-vidal",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42818,9 +42864,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Marsolo",
   "setTag": null,
   "performers": [
@@ -42830,7 +42876,7 @@
    }
   ],
   "act": "marsolo",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42841,9 +42887,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "01:00",
+  "end": "02:30",
   "printed": "Max Dean B2B Luke Dean",
   "setTag": null,
   "performers": [
@@ -42857,7 +42903,7 @@
    }
   ],
   "act": "max-dean-b2b-luke-dean",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42868,9 +42914,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Milo Ziro B2B Xilla",
   "setTag": null,
   "performers": [
@@ -42884,7 +42930,7 @@
    }
   ],
   "act": "milo-ziro-b2b-xilla",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42895,9 +42941,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "18:45",
+  "end": "19:30",
   "printed": "ML Buch",
   "setTag": null,
   "performers": [
@@ -42907,7 +42953,7 @@
    }
   ],
   "act": "ml-buch",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42918,9 +42964,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Monoky",
   "setTag": null,
   "performers": [
@@ -42930,7 +42976,7 @@
    }
   ],
   "act": "monoky",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -42941,9 +42987,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "MPH",
   "setTag": null,
   "performers": [
@@ -42953,7 +42999,7 @@
    }
   ],
   "act": "mph",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42964,9 +43010,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "HALO 88",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Mr. Bitch",
   "setTag": null,
   "performers": [
@@ -42976,7 +43022,7 @@
    }
   ],
   "act": "mr-bitch",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -42987,9 +43033,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "20:15",
+  "end": "21:45",
   "printed": "Mystic Bill B2B Artime",
   "setTag": null,
   "performers": [
@@ -43003,7 +43049,7 @@
    }
   ],
   "act": "mystic-bill-b2b-artime",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43014,9 +43060,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "17:45",
+  "end": "19:15",
   "printed": "Natalia Roth B2B Max Stern",
   "setTag": null,
   "performers": [
@@ -43030,34 +43076,7 @@
    }
   ],
   "act": "natalia-roth-b2b-max-stern",
-  "closing": null,
-  "mainStage": null
- },
- {
-  "id": "iii-points-2026:iiip-nick-leon-b2b-safety-tranc",
-  "source": "live",
-  "festivalId": "iii-points-2026",
-  "festivalBrand": "iii-points",
-  "year": 2026,
-  "date": "2026-10-17",
-  "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Nick León B2B Safety Trance",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "nick-leon",
-    "role": "b2b"
-   },
-   {
-    "key": "safety-trance",
-    "role": "b2b"
-   }
-  ],
-  "act": "nick-leon-b2b-safety-trance",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43068,9 +43087,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Nii Tei",
   "setTag": null,
   "performers": [
@@ -43080,7 +43099,7 @@
    }
   ],
   "act": "nii-tei",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43091,9 +43110,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "21:15",
+  "end": "22:30",
   "printed": "Omar+",
   "setTag": null,
   "performers": [
@@ -43103,7 +43122,7 @@
    }
   ],
   "act": "omar",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43114,9 +43133,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "00:00",
+  "end": "01:30",
   "printed": "phiphi B2B Winter Wrong",
   "setTag": null,
   "performers": [
@@ -43130,7 +43149,7 @@
    }
   ],
   "act": "phiphi-b2b-winter-wrong",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43141,9 +43160,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "19:15",
+  "end": "20:30",
   "printed": "Rebolledo",
   "setTag": null,
   "performers": [
@@ -43153,7 +43172,7 @@
    }
   ],
   "act": "rebolledo",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43164,9 +43183,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "20:00",
+  "end": "00:00",
   "printed": "Red Axes",
   "setTag": null,
   "performers": [
@@ -43176,7 +43195,7 @@
    }
   ],
   "act": "red-axes",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43187,11 +43206,11 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "res_ (live)",
-  "setTag": "live",
+  "stage": "SECTOR 3",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "res_ (Live)",
+  "setTag": "Live",
   "performers": [
    {
     "key": "res",
@@ -43199,7 +43218,7 @@
    }
   ],
   "act": "res",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43210,9 +43229,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "21:45",
+  "end": "23:00",
   "printed": "Roman Flügel",
   "setTag": null,
   "performers": [
@@ -43222,7 +43241,7 @@
    }
   ],
   "act": "roman-flugel",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43233,23 +43252,23 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Romulo Del Castillo B2B Jinks",
+  "stage": "III POINTS RADIO",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Jinks B2B Romulo Del Castillo",
   "setTag": null,
   "performers": [
    {
-    "key": "romulo-del-castillo",
+    "key": "jinks",
     "role": "b2b"
    },
    {
-    "key": "jinks",
+    "key": "romulo-del-castillo",
     "role": "b2b"
    }
   ],
-  "act": "romulo-del-castillo-b2b-jinks",
-  "closing": null,
+  "act": "jinks-b2b-romulo-del-castillo",
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43260,9 +43279,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Rude Boy B2B SDRV",
   "setTag": null,
   "performers": [
@@ -43276,7 +43295,7 @@
    }
   ],
   "act": "rude-boy-b2b-sdrv",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43287,9 +43306,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "21:10",
+  "end": "21:55",
   "printed": "rusowsky",
   "setTag": null,
   "performers": [
@@ -43299,7 +43318,7 @@
    }
   ],
   "act": "rusowsky",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43310,9 +43329,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "PLAYERS CLUB",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Saint & Romero (Hybrid)",
   "setTag": "Hybrid",
   "performers": [
@@ -43322,7 +43341,7 @@
    }
   ],
   "act": "saint-and-romero",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43333,9 +43352,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "VERTEX",
+  "start": "00:15",
+  "end": "01:30",
   "printed": "Sam Alfred",
   "setTag": null,
   "performers": [
@@ -43345,7 +43364,7 @@
    }
   ],
   "act": "sam-alfred",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43356,19 +43375,19 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Santiago Villu",
+  "stage": "PLAYERS CLUB",
+  "start": "18:30",
+  "end": "19:45",
+  "printed": "Villu",
   "setTag": null,
   "performers": [
    {
-    "key": "santiago-villu",
+    "key": "villu",
     "role": "performer"
    }
   ],
-  "act": "santiago-villu",
-  "closing": null,
+  "act": "villu",
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43379,9 +43398,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "00:45",
+  "end": "02:15",
   "printed": "SATURNSARii B2B SUZ",
   "setTag": null,
   "performers": [
@@ -43395,7 +43414,7 @@
    }
   ],
   "act": "saturnsarii-b2b-suz",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43406,9 +43425,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "00:00",
+  "end": "04:00",
   "printed": "Seth Troxler",
   "setTag": null,
   "performers": [
@@ -43418,7 +43437,7 @@
    }
   ],
   "act": "seth-troxler",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -43429,9 +43448,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "III POINTS RADIO",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Shinobi",
   "setTag": null,
   "performers": [
@@ -43441,7 +43460,7 @@
    }
   ],
   "act": "shinobi",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43452,23 +43471,23 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Shir Miya B2B Grant Sabadash",
+  "stage": "S3QUENC3",
+  "start": "16:00",
+  "end": "17:45",
+  "printed": "Grant Sabadash B2B Shir Miya",
   "setTag": null,
   "performers": [
    {
-    "key": "shir-miya",
+    "key": "grant-sabadash",
     "role": "b2b"
    },
    {
-    "key": "grant-sabadash",
+    "key": "shir-miya",
     "role": "b2b"
    }
   ],
-  "act": "shir-miya-b2b-grant-sabadash",
-  "closing": null,
+  "act": "grant-sabadash-b2b-shir-miya",
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43479,9 +43498,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "18:30",
+  "end": "20:00",
   "printed": "Silvie Loto B2B Ms. Mada",
   "setTag": null,
   "performers": [
@@ -43495,7 +43514,7 @@
    }
   ],
   "act": "silvie-loto-b2b-ms-mada",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43506,9 +43525,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "ISOTROPIC",
+  "start": "23:45",
+  "end": "01:00",
   "printed": "Sosa",
   "setTag": null,
   "performers": [
@@ -43518,7 +43537,7 @@
    }
   ],
   "act": "sosa",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43529,9 +43548,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "UNFORESEEN",
+  "start": "18:45",
+  "end": "20:00",
   "printed": "Spice Crime B2B Violeta",
   "setTag": null,
   "performers": [
@@ -43545,7 +43564,7 @@
    }
   ],
   "act": "spice-crime-b2b-violeta",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43556,9 +43575,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "03:00",
+  "end": "04:00",
   "printed": "Sunn O)))",
   "setTag": null,
   "performers": [
@@ -43568,7 +43587,7 @@
    }
   ],
   "act": "sunn-o",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -43579,9 +43598,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "23:45",
+  "end": "01:00",
   "printed": "Terence Tabeau",
   "setTag": null,
   "performers": [
@@ -43591,7 +43610,7 @@
    }
   ],
   "act": "terence-tabeau",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43602,9 +43621,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "Tiga",
   "setTag": null,
   "performers": [
@@ -43614,7 +43633,7 @@
    }
   ],
   "act": "tiga",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -43625,9 +43644,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "SECTOR 3",
+  "start": "19:55",
+  "end": "20:45",
   "printed": "Tricky",
   "setTag": null,
   "performers": [
@@ -43637,7 +43656,7 @@
    }
   ],
   "act": "tricky",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43648,9 +43667,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "MIND MELT",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Underworld",
   "setTag": null,
   "performers": [
@@ -43660,7 +43679,7 @@
    }
   ],
   "act": "underworld",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43671,9 +43690,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "00:05",
+  "end": "00:35",
   "printed": "Velora",
   "setTag": null,
   "performers": [
@@ -43683,7 +43702,7 @@
    }
   ],
   "act": "velora",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43694,9 +43713,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "DOOR IV",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "vsyana",
   "setTag": null,
   "performers": [
@@ -43706,7 +43725,7 @@
    }
   ],
   "act": "vsyana",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43717,9 +43736,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "00:30",
+  "end": "01:30",
   "printed": "VTSS",
   "setTag": null,
   "performers": [
@@ -43729,7 +43748,7 @@
    }
   ],
   "act": "vtss",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43740,9 +43759,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "17:10",
+  "end": "17:40",
   "printed": "VVilhelm",
   "setTag": null,
   "performers": [
@@ -43752,7 +43771,7 @@
    }
   ],
   "act": "vvilhelm",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43763,9 +43782,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "S3QUENC3",
+  "start": "20:30",
+  "end": "21:45",
   "printed": "Whitesquare",
   "setTag": null,
   "performers": [
@@ -43775,7 +43794,7 @@
    }
   ],
   "act": "whitesquare",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43786,9 +43805,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "444",
+  "start": "16:00",
+  "end": "20:00",
   "printed": "Willikens & Ivkovic",
   "setTag": null,
   "performers": [
@@ -43798,7 +43817,7 @@
    }
   ],
   "act": "willikens-and-ivkovic",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43809,9 +43828,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "GRAND CENTRAL",
+  "start": "01:00",
+  "end": "01:45",
   "printed": "YHWH Nailgun",
   "setTag": null,
   "performers": [
@@ -43821,7 +43840,7 @@
    }
   ],
   "act": "yhwh-nailgun",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43832,9 +43851,9 @@
   "year": 2026,
   "date": "2026-10-17",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "RC95",
+  "start": "23:15",
+  "end": "00:30",
   "printed": "¥ØU$UK€ ¥UK1MAT$U",
   "setTag": null,
   "performers": [
@@ -43844,7 +43863,7 @@
    }
   ],
   "act": "u-uk-uk1mat-u",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43853,11 +43872,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "HALO 88",
+  "start": "18:00",
+  "end": "19:15",
   "printed": "Bricolage B2B DAY/DEM",
   "setTag": null,
   "performers": [
@@ -43871,7 +43890,7 @@
    }
   ],
   "act": "bricolage-b2b-day-dem",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43880,25 +43899,25 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "SEL.6 B2B Playshado",
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "HALO 88",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Playshado B2B SEL.6",
   "setTag": null,
   "performers": [
    {
-    "key": "sel-6",
+    "key": "playshado",
     "role": "b2b"
    },
    {
-    "key": "playshado",
+    "key": "sel-6",
     "role": "b2b"
    }
   ],
-  "act": "sel-6-b2b-playshado",
-  "closing": null,
+  "act": "playshado-b2b-sel-6",
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43907,11 +43926,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "HALO 88",
+  "start": "21:15",
+  "end": "22:30",
   "printed": "FIUZA B2B Madison Kay",
   "setTag": null,
   "performers": [
@@ -43925,7 +43944,7 @@
    }
   ],
   "act": "fiuza-b2b-madison-kay",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43934,11 +43953,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "SECTOR 3",
+  "start": "18:10",
+  "end": "18:40",
   "printed": "amar",
   "setTag": null,
   "performers": [
@@ -43948,7 +43967,7 @@
    }
   ],
   "act": "amar",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43957,11 +43976,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "GRAND CENTRAL",
+  "start": "18:15",
+  "end": "19:00",
   "printed": "Blind Fish",
   "setTag": null,
   "performers": [
@@ -43971,7 +43990,7 @@
    }
   ],
   "act": "blind-fish",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -43980,11 +43999,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "PLAYERS CLUB",
+  "start": "19:45",
+  "end": "20:45",
   "printed": "Canela",
   "setTag": null,
   "performers": [
@@ -43994,7 +44013,7 @@
    }
   ],
   "act": "canela",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44003,11 +44022,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "GRAND CENTRAL",
+  "start": "02:00",
+  "end": "03:00",
   "printed": "Crespi Drum Syndicate (Live)",
   "setTag": "Live",
   "performers": [
@@ -44017,7 +44036,7 @@
    }
   ],
   "act": "crespi-drum-syndicate",
-  "closing": null,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -44026,11 +44045,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "SECTOR 3",
+  "start": "17:05",
+  "end": "17:45",
   "printed": "Cumbiamba",
   "setTag": null,
   "performers": [
@@ -44040,7 +44059,7 @@
    }
   ],
   "act": "cumbiamba",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44049,11 +44068,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "PLAYERS CLUB",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "DJ Ahamed",
   "setTag": null,
   "performers": [
@@ -44063,7 +44082,7 @@
    }
   ],
   "act": "dj-ahamed",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44072,11 +44091,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "GRAND CENTRAL",
+  "start": "20:50",
+  "end": "21:20",
   "printed": "Emily Afre",
   "setTag": null,
   "performers": [
@@ -44086,7 +44105,7 @@
    }
   ],
   "act": "emily-afre",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44095,11 +44114,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "SECTOR 3",
+  "start": "19:00",
+  "end": "19:55",
   "printed": "Ghostface Killah presents Supreme Clientele",
   "setTag": null,
   "performers": [
@@ -44109,7 +44128,7 @@
    }
   ],
   "act": "ghostface-killah-presents-supreme-clientele",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44118,11 +44137,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "ISOTROPIC",
+  "start": "17:15",
+  "end": "18:30",
   "printed": "GodBlessJai",
   "setTag": null,
   "performers": [
@@ -44132,7 +44151,7 @@
    }
   ],
   "act": "godblessjai",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44141,11 +44160,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "GRAND CENTRAL",
+  "start": "16:15",
+  "end": "16:45",
   "printed": "Huracán",
   "setTag": null,
   "performers": [
@@ -44155,7 +44174,7 @@
    }
   ],
   "act": "huracan",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44164,11 +44183,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "GRAND CENTRAL",
+  "start": "17:25",
+  "end": "17:55",
   "printed": "iiry?",
   "setTag": null,
   "performers": [
@@ -44178,7 +44197,7 @@
    }
   ],
   "act": "iiry",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44187,11 +44206,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "GRAND CENTRAL",
+  "start": "16:30",
+  "end": "17:00",
   "printed": "Lylac",
   "setTag": null,
   "performers": [
@@ -44201,7 +44220,7 @@
    }
   ],
   "act": "lylac",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44210,11 +44229,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "SECTOR 3",
+  "start": "16:15",
+  "end": "16:45",
   "printed": "Nikole",
   "setTag": null,
   "performers": [
@@ -44224,7 +44243,7 @@
    }
   ],
   "act": "nikole",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44233,11 +44252,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "UNFORESEEN",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "P1no B2B Trippie Hippie",
   "setTag": null,
   "performers": [
@@ -44251,7 +44270,7 @@
    }
   ],
   "act": "p1no-b2b-trippie-hippie",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44260,11 +44279,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-16",
+  "day": 1,
+  "stage": "PLAYERS CLUB",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Scotty Sobek",
   "setTag": null,
   "performers": [
@@ -44274,7 +44293,7 @@
    }
   ],
   "act": "scotty-sobek",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {
@@ -44283,11 +44302,11 @@
   "festivalId": "iii-points-2026",
   "festivalBrand": "iii-points",
   "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-10-17",
+  "day": 2,
+  "stage": "DOOR IV",
+  "start": "17:15",
+  "end": "18:45",
   "printed": "serafitz B2B SOL Discos",
   "setTag": null,
   "performers": [
@@ -44301,7 +44320,7 @@
    }
   ],
   "act": "serafitz-b2b-sol-discos",
-  "closing": null,
+  "closing": false,
   "mainStage": null
  },
  {

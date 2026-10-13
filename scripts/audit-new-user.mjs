@@ -194,8 +194,8 @@ async function audit() {
     await pageA.screenshot({ path: '/tmp/audit-07-me.png', fullPage: true });
     // Check core sections: identity card, 4-card grid (SAVED/MEMORIES/CREW/BADGES)
     const grid = [
-      ['SAVED tile', await pageA.locator('button:has-text("SAVED")').count() >= 1],
-      ['MEMORIES tile', await pageA.locator('button:has-text("MEMORIES")').count() >= 1],
+      ['SAVED tile', await pageA.locator('button', { hasText: /^(SAVED|Plan)/i }).count() >= 1],
+      ['MEMORIES tile', await pageA.locator('button', { hasText: /MEMORIES/i }).count() >= 1],
       ['CREW tile', await pageA.locator('button:has-text("CREW")').count() >= 1],
       ['BADGES tile', await pageA.locator('button:has-text("BADGES")').count() >= 1],
     ];
@@ -343,7 +343,7 @@ async function audit() {
   // Dismiss any open transient sheets/toasts before clicking the tile.
   try { await pageA.keyboard.press('Escape'); } catch {}
   await pageA.waitForTimeout(300);
-  const memoriesTile = pageA.locator('button').filter({ hasText: /MEMORIES/ }).first();
+  const memoriesTile = pageA.locator('button').filter({ hasText: /MEMORIES/i }).first();
   let memoriesOk = false;
   if (await memoriesTile.count() > 0) {
     try {
