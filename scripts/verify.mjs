@@ -822,17 +822,22 @@ if (fdata.length) {
     const id = f.id || (f.config && f.config.id);
     const acts = ((SDS[id] || {}).artists) || [];
     if (!acts.length) { console.log(`  ok ${String(id).padEnd(26)} no acts yet`); continue; }
-    let blank = 0;
+    // A DECLARED blank is an act whose module records why its times are
+    // withheld (timeEvidence, status "unresolved": the sources disagree) and
+    // which is blank on BOTH sides. It is honest, not half-filled. Anything
+    // else blank — including a half-timed act that has a record — still counts.
+    let blank = 0, declared = 0;
     const pairs = new Set();
     for (const a of acts) {
       const st = a.start || "", en = a.end || "";
+      if (!st && !en && a.timeEvidence && a.timeEvidence.status === "unresolved") { declared++; continue; }
       if (!st || !en) blank++;
       pairs.add(st + "→" + en);
     }
     const ratio = pairs.size / acts.length;
     const live  = f.available === true;
     const label = String(id).padEnd(26);
-    if (blank === acts.length) {
+    if (blank + declared === acts.length) {
       // Schedule not published. There are now TWO honest shapes here, and the
       // difference must be DECLARED, never inferred:
       //   gated          — the festival is simply waiting its turn.
@@ -883,7 +888,7 @@ if (fdata.length) {
       ssbad++;
       continue;
     }
-    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})${ss ? (ss.official ? "" : " · secondary source") : ""}`);
+    console.log(`  ok ${label} real schedule (${acts.length} acts, ${pairs.size} distinct times, ${ratio.toFixed(3)})${ss ? (ss.official ? "" : " · secondary source") : ""}${declared ? ` · ${declared} declared unconfirmed` : ""}`);
   }
   if (sbad) fail(`${sbad} festival(s) carry fabricated or half-filled set times — blank them, or fill them from the official schedule`);
   if (ssbad) fail(`${ssbad} live festival(s) have no scheduleSource — add { url, observedAt, official } from the module's SOURCE note`);
@@ -2621,6 +2626,30 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Summerfest su24 removal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+{
+  console.log("▸ Summerfest time evidence — ten disputed showcase times ship blank, pinned, edition-scoped, tier 1");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-time-evidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest time evidence failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+{
+  console.log("▸ Summerfest School of Rock runtime — no surface leaks a disputed time; star, notice and saved data hold");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-summerfest-sor-runtime.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Summerfest School of Rock runtime failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

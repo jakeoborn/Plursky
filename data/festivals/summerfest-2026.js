@@ -5,6 +5,14 @@
 // RETROSPECTIVE BUILD. This festival is in the past, so every field below is
 // published historical fact rather than a forecast — hence available: true and
 // no provisional set-time flags. Sources are cited per block.
+// EXCEPTION — the ten School of Rock youth-showcase billings on Jun 25 and Jun 26.
+// Their sources disagree (stages, days, block structure, end times) and the final
+// daily graphics they were read from are not retained, so their start and end are
+// BLANK and the app says "Set times unconfirmed". The old readings and every source
+// with its role live in TIME_EVIDENCE below. Keeping the billings is a product
+// ruling (2026-10-12), not first-party proof. Only a source-reviewed change that
+// edits TIME_EVIDENCE, this list and the row together can give one a time back.
+// UNRESOLVED SET TIMES: su152 su157 su168 su173 su179 su198 su203 su214 su219 su224
 //
 // SOURCE lineup + set times: the nine official daily schedule graphics linked from
 //   summerfest.com/lineup ("view daily schedules"), hosted at
@@ -106,9 +114,15 @@
   ];
 
   // tier: 3 = headline slot (21:00+), 2 = prime (18:00–20:59), 1 = earlier.
+  // No valid start+end pair → tier 1, decided BEFORE any numeric comparison: a
+  // blank start parses to NaN (or null), and `null < 6` is true — that would bill
+  // an untimed showcase as a headliner. A half-timed row is not valid here either;
+  // scripts/test-summerfest-time-evidence.mjs rejects it rather than this throwing
+  // at load (one bad row would blank the whole app).
+  const hhmm = t => typeof t === "string" && /^([01]?\d|2[0-3]):[0-5]\d$/.test(t);
   const mk = (id, name, genre, stage, day, start, end) => {
-    const h = parseInt(start.split(":")[0], 10);
-    const tier = h >= 21 || h < 6 ? 3 : h >= 18 ? 2 : 1;
+    const h = hhmm(start) && hhmm(end) ? parseInt(start, 10) : null;
+    const tier = h === null ? 1 : h >= 21 || h < 6 ? 3 : h >= 18 ? 2 : 1;
     return { id, name, genre, country: "—", stage, day, start, end, tier,
       img: `linear-gradient(135deg, ${(STAGES.find(s => s.id === stage) || STAGES[0]).color}, #1a0a28)`,
       bio: `Played Summerfest 2026.` };
@@ -309,13 +323,13 @@
     mk("su150",  "Gabriel Jacoby",                                    "—",                   "bmo",           4, "19:15", "20:15"),
     mk("su151",  "Common",                                            "Hip-Hop",             "bmo",           4, "21:00", "22:35"),
     // Big Backyard
-    mk("su152",  "School of Rock",                                    "Youth Showcase",      "briggs",        4, "12:00", "15:50"),
+    mk("su152",  "School of Rock",                                    "Youth Showcase",      "briggs",        4, "", ""),
     mk("su153",  "Robert Randolph & The Family Band",                 "Rock",                "briggs",        4, "16:30", "17:35"),
     mk("su154",  "The Handcuffs",                                     "—",                   "briggs",        4, "18:30", "19:35"),
     mk("su155",  "Sincere Engineer",                                  "Punk / Hardcore",     "briggs",        4, "20:30", "21:35"),
     mk("su156",  "Kim Gordon",                                        "Rock",                "briggs",        4, "22:30", "00:00"),
     // Generac Power Stage
-    mk("su157",  "School of Rock",                                    "Youth Showcase",      "generac",       4, "12:00", "15:50"),
+    mk("su157",  "School of Rock",                                    "Youth Showcase",      "generac",       4, "", ""),
     mk("su158",  "Booker T. Jones",                                   "Jazz / Blues",        "generac",       4, "16:15", "17:20"),
     mk("su159",  "Pat McCurdy",                                       "Comedy",              "generac",       4, "17:45", "18:55"),
     mk("su160",  "Grabbitz",                                          "—",                   "generac",       4, "20:00", "21:05"),
@@ -328,20 +342,20 @@
     mk("su166",  "Hazlett",                                           "—",                   "miller",        4, "20:30", "21:35"),
     mk("su167",  "Kaleo",                                             "Rock",                "miller",        4, "22:30", "00:00"),
     // Aurora Pavilion
-    mk("su168",  "School of Rock",                                    "Youth Showcase",      "aurora",        4, "12:00", "15:50"),
+    mk("su168",  "School of Rock",                                    "Youth Showcase",      "aurora",        4, "", ""),
     mk("su169",  "Abby Moeller",                                      "—",                   "aurora",        4, "16:30", "17:15"),
     mk("su170",  "Boy Golden",                                        "—",                   "aurora",        4, "17:45", "18:30"),
     mk("su171",  "The Mountain Goats",                                "Rock",                "aurora",        4, "19:00", "20:05"),
     mk("su172",  "DJ Gemini Gilly",                                   "—",                   "aurora",        4, "21:00", "22:30"),
     // T-Mobile Stage
-    mk("su173",  "School of Rock",                                    "Youth Showcase",      "tmobile",       4, "12:00", "15:50"),
+    mk("su173",  "School of Rock",                                    "Youth Showcase",      "tmobile",       4, "", ""),
     mk("su174",  "Wire & Nail",                                       "—",                   "tmobile",       4, "16:15", "16:55"),
     mk("su175",  "Old 97's",                                          "Rock",                "tmobile",       4, "17:15", "18:25"),
     mk("su176",  "Elijah Scott",                                      "—",                   "tmobile",       4, "18:45", "19:50"),
     mk("su177",  "Lanie Gardner",                                     "Country",             "tmobile",       4, "20:15", "21:20"),
     mk("su178",  "Tucker Wetmore",                                    "Country",             "tmobile",       4, "22:15", "23:45"),
     // Uline Warehouse
-    mk("su179",  "School of Rock",                                    "Youth Showcase",      "uline",         4, "12:00", "15:50"),
+    mk("su179",  "School of Rock",                                    "Youth Showcase",      "uline",         4, "", ""),
     mk("su180",  "10,000 Maniacs",                                    "Rock",                "uline",         4, "16:15", "17:20"),
     mk("su181",  "Lisa Loeb",                                         "Rock",                "uline",         4, "17:45", "18:50"),
     mk("su182",  "Walk Off The Earth",                                "—",                   "uline",         4, "19:30", "20:35"),
@@ -366,13 +380,13 @@
     mk("su196",  "The Aces",                                          "—",                   "bmo",           5, "19:15", "20:20"),
     mk("su197",  "Louis Tomlinson",                                   "Pop",                 "bmo",           5, "21:00", "22:30"),
     // Big Backyard
-    mk("su198",  "School of Rock",                                    "Youth Showcase",      "briggs",        5, "12:00", "15:35"),
+    mk("su198",  "School of Rock",                                    "Youth Showcase",      "briggs",        5, "", ""),
     mk("su199",  "Blonde",                                            "—",                   "briggs",        5, "16:30", "17:35"),
     mk("su200",  "KSP",                                               "—",                   "briggs",        5, "18:15", "19:20"),
     mk("su201",  "Henrik",                                            "—",                   "briggs",        5, "20:00", "21:05"),
     mk("su202",  "Petey USA",                                         "—",                   "briggs",        5, "22:00", "23:30"),
     // Generac Power Stage
-    mk("su203",  "School of Rock",                                    "Youth Showcase",      "generac",       5, "12:00", "15:35"),
+    mk("su203",  "School of Rock",                                    "Youth Showcase",      "generac",       5, "", ""),
     mk("su204",  "7th Heaven",                                        "Rock",                "generac",       5, "16:15", "17:20"),
     mk("su205",  "Bobby Friss",                                       "—",                   "generac",       5, "17:45", "18:50"),
     mk("su206",  "Big Wild",                                          "Electronic",          "generac",       5, "19:30", "20:40"),
@@ -385,19 +399,19 @@
     mk("su212",  "Lucky Boys Confusion",                              "Punk / Hardcore",     "miller",        5, "20:30", "21:35"),
     mk("su213",  "Goldfinger",                                        "Punk / Hardcore",     "miller",        5, "22:30", "00:00"),
     // Aurora Pavilion
-    mk("su214",  "School of Rock",                                    "Youth Showcase",      "aurora",        5, "12:00", "15:35"),
+    mk("su214",  "School of Rock",                                    "Youth Showcase",      "aurora",        5, "", ""),
     mk("su215",  "Siobhan Bodrug",                                    "—",                   "aurora",        5, "16:30", "17:20"),
     mk("su216",  "Harper O'Neill",                                    "—",                   "aurora",        5, "17:45", "18:30"),
     mk("su217",  "Sudan Archives",                                    "—",                   "aurora",        5, "19:00", "20:05"),
     mk("su218",  "Mr. New York",                                      "—",                   "aurora",        5, "21:00", "22:30"),
     // T-Mobile Stage
-    mk("su219",  "School of Rock",                                    "Youth Showcase",      "tmobile",       5, "12:00", "15:35"),
+    mk("su219",  "School of Rock",                                    "Youth Showcase",      "tmobile",       5, "", ""),
     mk("su220",  "Sugo",                                              "—",                   "tmobile",       5, "16:15", "17:20"),
     mk("su221",  "Greg Koch & The Koch Marshall Trio",                "—",                   "tmobile",       5, "18:15", "19:20"),
     mk("su222",  "The Band Loula",                                    "—",                   "tmobile",       5, "20:15", "21:25"),
     mk("su223",  "Marcus King Band",                                  "—",                   "tmobile",       5, "22:15", "23:45"),
     // Uline Warehouse
-    mk("su224",  "School of Rock",                                    "Youth Showcase",      "uline",         5, "12:00", "15:35"),
+    mk("su224",  "School of Rock",                                    "Youth Showcase",      "uline",         5, "", ""),
     mk("su225",  "Sons Of The Silent Age",                            "Rock",                "uline",         5, "16:15", "17:20"),
     mk("su226",  "Two Feet",                                          "Rock",                "uline",         5, "17:45", "18:50"),
     mk("su227",  "Grouplove",                                         "Rock",                "uline",         5, "19:30", "20:35"),
@@ -763,9 +777,60 @@
     mapPrintsStageNames: false,
   };
 
+  // ── TIME_EVIDENCE: why ten School of Rock billings carry no set time ──────────
+  // A billing listed here ships with start "" / end "" and reads "Set times
+  // unconfirmed" everywhere. data.jsx pins those blanks against any schedule feed
+  // or stored overlay, so only a source-reviewed edit of THIS record (with the
+  // header list and the row, in one diff) can give one a time back.
+  // `observed` is what our build read off the final daily graphic on 2026-08-28;
+  // that graphic is not retained, so it is an observation, never a published fact.
+  // Every source below was read by hand; `role` is the publisher's, not ours.
+  const SOR_SOURCES = {
+    ulineRelease: { url: "https://www.summerfest.com/press-releases/2026/05/12/uline-warehouse-stage-at-summerfest-delivers-big-lineup-over-three-weekends/",
+      role: "first-party", published: "2026-05-12", observedAt: "2026-10-12" },
+    experiencesRelease: { url: "https://www.summerfest.com/press-releases/2026/05/18/summerfest-reveals-experiences-activities-and-events-taking-center-stage-throughout-the-festivals-three-weekends/",
+      role: "first-party", published: "2026-05-18", observedAt: "2026-10-13" },
+    milwaukeeRecord: { url: "https://milwaukeerecord.com/music/heres-the-2026-summerfest-lineup-date-time-stage/",
+      role: "secondary", published: "2026-02-19", observedAt: "2026-10-13" },
+    stateTrunkTour: { url: "https://statetrunktour.com/summerfest-2026-the-summerfest-lineup-for-weekend-2/",
+      role: "secondary", published: "2026-06-24", observedAt: "2026-10-13" },
+  };
+  const sorSays = (day, stage) => {
+    const thu = day === 4, out = [];
+    if (stage === "uline") out.push({ ...SOR_SOURCES.ulineRelease, says: thu
+      ? "Thursday, June 25: 12:00 – 3:00 p.m. – School of Rock (Uline Warehouse)."
+      : "Friday, June 26: the Uline Warehouse lineup starts at 4:15 p.m.; no School of Rock." });
+    out.push({ ...SOR_SOURCES.experiencesRelease, says: thu
+      ? "Names School of Rock on Friday, June 26 and Saturday, June 27 (\"six different stages\"); not June 25. No stages or times."
+      : "\"Friday, June 26 and Saturday, June 27 - School of Rock … on six different stages.\" No stages or times." });
+    out.push({ ...SOR_SOURCES.milwaukeeRecord, says:
+      stage === "uline" ? "12 p.m. School Of Rock; 2 p.m. School Of Rock (Uline Warehouse). Start times only."
+      : stage === "tmobile" ? "2:30 p.m. School Of Rock (T-Mobile Stage). Start time only."
+      : "No School of Rock on this stage this day." });
+    out.push({ ...SOR_SOURCES.stateTrunkTour, says: stage === "aurora"
+      ? "12:00pm, 2:00pm and 3:15pm School of Rock (Aurora Pavilion). Start times only."
+      : "12:00pm and 2:00pm School of Rock on this stage. Start times only." });
+    return out;
+  };
+  const sorEvidence = (day, stage, end) => ({
+    status: "unresolved",
+    disputed: ["start", "end"],
+    observed: { start: "12:00", end, from: "final daily schedule graphic, read 2026-08-28; not retained" },
+    sources: sorSays(day, stage),
+    reason: "Sources disagree on stages, days and block structure, and none prints an end time we can check; the graphic our times came from is not retained.",
+  });
+  const TIME_EVIDENCE = {
+    su152: sorEvidence(4, "briggs", "15:50"),  su157: sorEvidence(4, "generac", "15:50"),
+    su168: sorEvidence(4, "aurora", "15:50"),  su173: sorEvidence(4, "tmobile", "15:50"),
+    su179: sorEvidence(4, "uline", "15:50"),
+    su198: sorEvidence(5, "briggs", "15:35"),  su203: sorEvidence(5, "generac", "15:35"),
+    su214: sorEvidence(5, "aurora", "15:35"),  su219: sorEvidence(5, "tmobile", "15:35"),
+    su224: sorEvidence(5, "uline", "15:35"),
+  };
+
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["summerfest-2026"] = {
-    config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
+    config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES, timeEvidence: TIME_EVIDENCE,
     registry: { available: true, accent: "#fbbf24", emoji: "🎡", region: "North America" },
   };
 })();

@@ -15,9 +15,18 @@ function _msToIcsDate(ms) {
 function _artistMs(artist, hhmm) {
   return _wallMs(artistDayDate(artist), hhmm, FESTIVAL_CONFIG && FESTIVAL_CONFIG.tz);
 }
+function _noteLeftOutOfCalendar(n) {
+  try {
+    window.plurskyToast?.(`${n} saved set${n === 1 ? "" : "s"} left out: set times unconfirmed`, {
+      duration: 4000
+    });
+  } catch {}
+}
 async function exportSavedSetsICS(savedIds) {
-  var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || (a.start < b.start ? -1 : 1));
+  var artists = activeLineup(savedIds).filter(a => savedIds.includes(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (!artists.length) return;
+  var leftUnconfirmed = artists.filter(setTimesUnconfirmed).length;
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
   var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", `PRODID:-//Plursky//${FESTIVAL_CONFIG.name}//EN`, "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
   artists.forEach(a => {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
@@ -85,9 +94,9 @@ async function exportSavedSetsICS(savedIds) {
 function _nightShareText(ids) {
   var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
-    var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    var dayArtists = activeLineup(ids).filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!dayArtists.length) return [];
-    return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => `  ${fmt12(a.start)}  ${a.name}`), ""];
+    return [`${d.short} · ${d.name.toUpperCase()}`, ...dayArtists.map(a => setTimesUnconfirmed(a) ? `  ${a.name} (${SET_TIMES_UNCONFIRMED.toLowerCase()})` : `  ${fmt12(a.start)}  ${a.name}`), ""];
   });
   return [`My ${FESTIVAL_CONFIG.name} lineup (${ids.length} sets):`, "", ...lines].join("\n").trim();
 }
@@ -119,7 +128,7 @@ function NightWizard({
       clashes
     };
   });
-  var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var conflictIds = new Set();
   for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (overlaps(sorted[i], sorted[j])) {
     conflictIds.add(sorted[i].id);
@@ -131,9 +140,11 @@ function NightWizard({
       type: "set",
       artist: sorted[_i]
     });
-    if (_i < sorted.length - 1) {
-      var gS = toNightMin(sorted[_i].end),
-        gE = toNightMin(sorted[_i + 1].start);
+    var t0 = setTimingMin(sorted[_i]),
+      t1 = _i < sorted.length - 1 ? setTimingMin(sorted[_i + 1]) : null;
+    if (t0 && t1 && t0.end != null) {
+      var gS = t0.end,
+        gE = t1.start;
       if (gE > gS + 5) {
         var gapMin = gE - gS;
         var fits = activeLineup(localIds).filter(a => a.day === activeDay && !local.has(a.id) && toNightMin(a.start) >= gS && toNightMin(a.start) < gE - 14).sort((a, b) => b.tier - a.tier).slice(0, 3);
@@ -164,7 +175,7 @@ function NightWizard({
     onClose();
   };
   var autoFill = () => {
-    var candidates = activeLineup(localIds).filter(a => a.day === activeDay).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
+    var candidates = activeLineup(localIds).filter(a => a.day === activeDay && !setTimesUnconfirmed(a)).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
     var picked = [];
     var _loop2 = function (a) {
       if (picked.length >= 8) return 1;
@@ -445,7 +456,7 @@ function NightWizard({
           textAlign: "right",
           paddingTop: 14
         }
-      }, fmt12(a.start)), React.createElement("div", {
+      }, setTimesUnconfirmed(a) ? null : fmt12(a.start)), React.createElement("div", {
         style: {
           flex: 1,
           minWidth: 0,
@@ -487,7 +498,7 @@ function NightWizard({
         style: {
           whiteSpace: "nowrap"
         }
-      }, fmt12(a.start), "–", fmt12(a.end)))), React.createElement("button", {
+      }, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : React.createElement(React.Fragment, null, fmt12(a.start), "–", fmt12(a.end))))), React.createElement("button", {
         onClick: () => drop(a.id),
         className: "duo-chip",
         "aria-label": `Drop ${a.name}`
@@ -1119,7 +1130,7 @@ function LineupScreen({
         var bi = STAGES.findIndex(s => s.id === b.stage);
         if (ai !== bi) return ai - bi;
       }
-      return toNightMin(a.start) - toNightMin(b.start);
+      return compareSetsByTime(a, b, STAGES);
     });
   }, [day, weekendFilter, filter, stageFilter, genreFilter, tierFilter, sortBy, q, savedSetIds, _nowBucket]);
   var _otherDayHits = React.useMemo(() => {
@@ -2016,7 +2027,7 @@ function LineupScreen({
           whiteSpace: "nowrap",
           fontSize: 13
         }
-      }, fmt12(a.start)), React.createElement(DuoAvatar, {
+      }, setTimesUnconfirmed(a) ? null : fmt12(a.start)), React.createElement(DuoAvatar, {
         name: a.name,
         size: 42,
         ring: ring
@@ -2081,7 +2092,13 @@ function LineupScreen({
           color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
+      }, "Clash · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
+        "data-set-time-status": true,
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)"
+        }
+      }, SET_TIMES_UNCONFIRMED), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
         key: o.id,
         "data-clash-with": o.id,
         style: {
@@ -2671,7 +2688,7 @@ function SavedSidebar({
   state,
   setState
 }) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day).sort((a, b) => a.start.localeCompare(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.day === day && setTimingMin(a)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var unsave = (id, e) => {
     e.stopPropagation();
     setState(s => ({
@@ -3086,9 +3103,14 @@ function TimelineGrid({
     nowMin = toNightMin(NOW.time);
     if (nowMin >= GRID_START_MIN && nowMin <= GRID_END_MIN) nowTop = minToTop(nowMin);
   }
+  var placed = allDayArtists.filter(a => {
+    var t = setTimingMin(a);
+    return t && t.end != null;
+  });
+  var unplaced = allDayArtists.filter(a => !placed.includes(a)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var cols = STAGES.map(s => ({
     stage: s,
-    artists: allDayArtists.filter(a => a.stage === s.id)
+    artists: placed.filter(a => a.stage === s.id)
   })).filter(c => c.artists.length > 0);
   var due = React.useMemo(() => {
     if (nowMin == null) return null;
@@ -3353,7 +3375,7 @@ function TimelineGrid({
           dueMins: due && due.id === a.id ? due.mins : null
         });
       }));
-    }))) : React.createElement("div", {
+    }))) : !unplaced.length && React.createElement("div", {
       className: "mono",
       style: {
         position: "sticky",
@@ -3365,8 +3387,102 @@ function TimelineGrid({
         letterSpacing: 1.2,
         color: "var(--muted)"
       }
-    }, "NO SETS ON THIS DAY"))))
+    }, "NO SETS ON THIS DAY"), unplaced.length > 0 && React.createElement(GridUnplacedGroup, {
+      width: boxW,
+      sets: unplaced,
+      state: state,
+      setState: setState
+    }))))
   );
+}
+function GridUnplacedGroup({
+  width,
+  sets,
+  state,
+  setState
+}) {
+  var groups = [{
+    key: "unconfirmed",
+    title: "Times unconfirmed",
+    sets: sets.filter(setTimesUnconfirmed)
+  }, {
+    key: "tba",
+    title: "Times TBA",
+    sets: sets.filter(a => !setTimesUnconfirmed(a))
+  }].filter(g => g.sets.length);
+  return React.createElement("div", {
+    "data-grid-unplaced": true,
+    style: {
+      position: "sticky",
+      left: 0,
+      width,
+      padding: "12px 16px 20px",
+      boxSizing: "border-box"
+    }
+  }, groups.map(g => React.createElement("section", {
+    key: g.key,
+    "data-grid-unplaced-group": g.key,
+    "aria-label": g.title,
+    style: {
+      marginTop: 8
+    }
+  }, React.createElement("h3", {
+    style: {
+      margin: "0 0 4px",
+      font: "650 15px/20px var(--f-ui)",
+      color: "var(--ink)"
+    }
+  }, g.title), g.sets.map(a => {
+    var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+    var saved = state.saved.includes(a.id);
+    return React.createElement("div", {
+      key: a.id,
+      "data-grid-unplaced-set": a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 52,
+        borderTop: "1px solid var(--line)"
+      }
+    }, React.createElement("button", {
+      onClick: () => setState({
+        ...state,
+        artist: a.id
+      }),
+      style: {
+        flex: 1,
+        minWidth: 0,
+        minHeight: 44,
+        padding: 0,
+        background: "transparent",
+        border: "none",
+        color: "var(--ink)",
+        textAlign: "left",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
+      }
+    }, React.createElement("span", {
+      className: "duo-headline",
+      style: {
+        fontSize: 15,
+        overflowWrap: "anywhere"
+      }
+    }, actDisplayName(a.name)), React.createElement("span", {
+      style: {
+        font: "400 13px/1.385 var(--f-ui)",
+        color: "var(--ink-2)",
+        overflowWrap: "anywhere"
+      }
+    }, st.name, setTimesUnconfirmed(a) ? ` · ${SET_TIMES_UNCONFIRMED}` : "")), React.createElement("button", {
+      onClick: () => toggleSave(state, setState, a.id),
+      className: "duo-chip",
+      "aria-pressed": saved,
+      "aria-label": saved ? `Unsave ${a.name}` : `Save ${a.name}`
+    }, React.createElement("span", null, saved ? "Saved" : "Save")));
+  }))));
 }
 function ConflictResolver({
   conflicts,
@@ -3564,17 +3680,28 @@ function _icsEscape(s) {
   return String(s || "").replace(/[\\,;]/g, m => "\\" + m).replace(/\n/g, "\\n");
 }
 async function exportLineupICS(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
+  };
+  var leftUnconfirmed = saved.filter(setTimesUnconfirmed).length;
+  var timed = saved.filter(a => {
+    var t = setTimingMin(a);
+    return t && t.end != null;
+  });
+  if (leftUnconfirmed) _noteLeftOutOfCalendar(leftUnconfirmed);
+  if (!timed.length) return {
+    ok: false,
+    reason: "no_times",
+    leftUnconfirmed
   };
   var tz = FESTIVAL_CONFIG.tz;
   var fid = FESTIVAL_CONFIG.id;
   var fname = FESTIVAL_CONFIG.shortName;
   var venue = FESTIVAL_CONFIG.locationShort;
   var dtstamp = _icsLocal(new Date());
-  var events = saved.map(a => {
+  var events = timed.map(a => {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     var start = _icsLocal(_setTimeToLocalDate(a.day, a.start));
     var end = _icsLocal(_setTimeToLocalDate(a.day, a.end));
@@ -3602,7 +3729,8 @@ async function exportLineupICS(state) {
       return {
         ok: true,
         mode: "share",
-        count: saved.length
+        count: timed.length,
+        leftUnconfirmed
       };
     } catch (e) {
       if (e.name === "AbortError") return {
@@ -3617,7 +3745,8 @@ async function exportLineupICS(state) {
     return {
       ok: true,
       mode: "download",
-      count: saved.length
+      count: timed.length,
+      leftUnconfirmed
     };
   }
   var url = URL.createObjectURL(blob);
@@ -3631,23 +3760,20 @@ async function exportLineupICS(state) {
   return {
     ok: true,
     mode: "download",
-    count: saved.length
+    count: timed.length,
+    leftUnconfirmed
   };
 }
 function printLineupPDF(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
   };
   var dayLabel = Object.fromEntries(DAYS.map(d => [d.n, `${d.label} · ${d.date.toUpperCase()}`]));
   var stages = [...new Set(saved.map(a => a.stage))].length;
-  var grouped = {
-    1: [],
-    2: [],
-    3: []
-  };
-  saved.forEach(a => grouped[a.day].push(a));
+  var grouped = {};
+  saved.forEach(a => (grouped[a.day] = grouped[a.day] || []).push(a));
   var dayBlock = (day, list) => list.length === 0 ? "" : `
     <section class="day">
       <h2>${dayLabel[day]}<span class="cnt">${list.length} sets</span></h2>
@@ -3656,7 +3782,7 @@ function printLineupPDF(state) {
         ${list.map(a => {
     var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return `<tr>
-            <td class="time">${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span></td>
+            <td class="time">${setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : `${fmt12(a.start)}<span class="end">${fmt12(a.end)}</span>`}</td>
             <td>
               <div class="name">${a.name.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</div>
               <div class="genre">${a.genre}</div>
@@ -3714,9 +3840,7 @@ function printLineupPDF(state) {
       ${FESTIVAL_CONFIG.dates.toUpperCase()} · ${FESTIVAL_CONFIG.year}
     </div>
   </div>
-  ${dayBlock(1, grouped[1])}
-  ${dayBlock(2, grouped[2])}
-  ${dayBlock(3, grouped[3])}
+  ${Object.keys(grouped).map(Number).sort((x, y) => x - y).map(d => dayBlock(d, grouped[d])).join("")}
   <footer>
     <span>plursky.com</span>
     <em>Three nights under the electric sky</em>
@@ -3747,10 +3871,11 @@ async function copyScheduleText(state) {
   };
   var lines = festivalDayNums().flatMap(day => {
     var d = FESTIVAL_CONFIG.dayDates[day];
-    var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    var artists = activeLineup().filter(a => a.day === day && ids.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
     if (!artists.length) return [];
     return [`${d.short} · ${d.name.toUpperCase()}`, ...artists.map(a => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
+      if (setTimesUnconfirmed(a)) return `  ${a.name}  @  ${stage ? stage.name : a.stage}  (${SET_TIMES_UNCONFIRMED.toLowerCase()})`;
       return `  ${fmt12(a.start)}  ${a.name}  @  ${stage ? stage.name : a.stage}`;
     }), ""];
   });
@@ -4092,7 +4217,7 @@ function toggleSave(state, setState, id) {
   } catch {}
 }
 async function shareLineupImage(state) {
-  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
+  var saved = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(Boolean).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   if (saved.length === 0) return {
     ok: false,
     reason: "empty"
@@ -4156,12 +4281,15 @@ async function shareLineupImage(state) {
     var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     ctx.fillStyle = stage.color;
     ctx.fillRect(80, y, 6, 78);
-    ctx.fillStyle = "#1a120d";
-    ctx.font = '500 28px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.start), 110, y + 32);
-    ctx.fillStyle = "rgba(26,18,13,0.45)";
-    ctx.font = '400 20px "Geist Mono", monospace';
-    ctx.fillText(fmt12(a.end), 110, y + 60);
+    var unconfirmed = setTimesUnconfirmed(a);
+    if (!unconfirmed) {
+      ctx.fillStyle = "#1a120d";
+      ctx.font = '500 28px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.start), 110, y + 32);
+      ctx.fillStyle = "rgba(26,18,13,0.45)";
+      ctx.font = '400 20px "Geist Mono", monospace';
+      ctx.fillText(fmt12(a.end), 110, y + 60);
+    }
     ctx.fillStyle = "#1a120d";
     ctx.font = '46px "Instrument Serif", serif';
     var name = a.name;
@@ -4172,7 +4300,7 @@ async function shareLineupImage(state) {
     ctx.fillText(name, 250, y + 38);
     ctx.fillStyle = stage.color;
     ctx.font = '600 18px "Geist Mono", monospace';
-    ctx.fillText(stage.name.toUpperCase() + " · " + a.genre.toUpperCase(), 250, y + 64);
+    ctx.fillText(stage.name.toUpperCase() + " · " + (unconfirmed ? SET_TIMES_UNCONFIRMED : a.genre).toUpperCase(), 250, y + 64);
     y += 92;
     if (y > H - 180) return 1;
   };
