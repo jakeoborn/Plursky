@@ -2098,7 +2098,10 @@ function HomeScreen({
     if (isPostFestival || isLive) return null;
     var rows = activeLineup(savedIds).filter(a => savedIds.includes(a.id) && (!isLive || a.day === NOW.night)).sort((a, b) => a.day - b.day || toNightMin(a.start) - toNightMin(b.start));
     if (!rows.length) return null;
-    return React.createElement("section", null, React.createElement(DuoSect, {
+    var SHOW = 5;
+    return React.createElement("section", {
+      "data-today-saved": true
+    }, React.createElement(DuoSect, {
       title: isLive ? "Saved tonight" : "Your saved sets",
       right: React.createElement(ShareLineupButton, {
         state: state
@@ -2107,14 +2110,33 @@ function HomeScreen({
         padding: "0 20px",
         minHeight: 44
       }
-    }), React.createElement(FieldMediaRow, null, rows.map(a => React.createElement(SavedTile, {
+    }), React.createElement("div", {
+      style: {
+        padding: "0 20px",
+        display: "grid",
+        gap: 2
+      }
+    }, rows.slice(0, SHOW).map(a => React.createElement(SavedRow, {
       key: a.id,
       a: a,
       onOpen: () => setState({
         ...state,
         artist: a.id
       })
-    }))));
+    })), rows.length > SHOW && React.createElement("button", {
+      className: "duo-link",
+      onClick: () => setSheet("night"),
+      style: {
+        justifySelf: "start",
+        minHeight: 44,
+        padding: 0,
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        font: "600 15px/1.33 var(--f-ui)",
+        color: "var(--acc-ink)"
+      }
+    }, "All ", rows.length, " saved sets")));
   })();
   var sheetView = (() => {
     switch (sheet) {
@@ -2257,7 +2279,15 @@ function HomeScreen({
       padding: "0 20px",
       minHeight: 44
     }
-  }), React.createElement(FieldMediaRow, null, essentials.map(({
+  }), React.createElement("div", {
+    "data-today-essentials": true,
+    style: {
+      padding: "0 20px",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fill, minmax(124px, 1fr))",
+      gap: 8
+    }
+  }, essentials.map(({
     id,
     ...e
   }) => React.createElement(EssentialTile, {
@@ -3153,64 +3183,60 @@ function DuoStageBoard({
     }
   }, cell(on, on ? `TO ${duoClock(on.end)}` : "", on ? `until ${fmt12(on.end)}` : "", "Now"), cell(next, next ? duoClock(next.start) : "", next ? `next at ${fmt12(next.start)}` : "", "Next"))))));
 }
-function SavedTile({
+function SavedRow({
   a,
   onOpen
 }) {
-  var photo = useArtistPhoto(a.name);
   var dd = FESTIVAL_CONFIG.dayDates?.[a.day];
   var day = dd?.short || `Day ${a.day}`;
+  var stage = (STAGES.find(s => s.id === a.stage) || {}).name;
   return React.createElement("button", {
     className: "duo-press",
     onClick: onOpen,
-    "aria-label": `${a.name}, ${dd?.name || day}, ${fmt12(a.start)}`,
+    "aria-label": `${a.name}, ${dd?.name || day}, ${fmt12(a.start)}${stage ? `, ${stage}` : ""}`,
     style: {
-      width: 132,
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 56,
+      padding: "6px 0",
+      border: "none",
+      background: "none",
+      color: "var(--ink)",
+      textAlign: "left",
+      cursor: "pointer",
+      width: "100%"
+    }
+  }, React.createElement("span", {
+    className: "duo-data",
+    style: {
+      width: 72,
       flexShrink: 0,
-      scrollSnapAlign: "start"
+      fontSize: 13,
+      color: "var(--ink-2)",
+      whiteSpace: "nowrap"
     }
-  }, React.createElement("div", {
-    className: "duo-card",
+  }, a.start ? fmt12(a.start) : "TBA"), React.createElement(DuoAvatar, {
+    name: a.name,
+    size: 36
+  }), React.createElement("span", {
     style: {
-      width: 132,
-      height: 132,
-      overflow: "hidden",
-      position: "relative",
-      display: "grid",
-      placeItems: "center"
+      flex: 1,
+      minWidth: 0,
+      display: "flex",
+      flexDirection: "column"
     }
-  }, photo ? React.createElement("img", {
-    src: photo,
-    alt: "",
-    style: {
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("span", {
-    "aria-hidden": "true",
-    className: "duo-ink3",
-    style: {
-      font: "650 30px/1 var(--f-ui)",
-      letterSpacing: ".02em"
-    }
-  }, _duoInitials(a.name))), React.createElement("div", {
+  }, React.createElement("span", {
     className: "duo-name",
     style: {
-      marginTop: 8,
-      fontWeight: 600,
-      fontSize: 15,
-      lineHeight: 1.4,
-      fontFamily: "var(--f-ui)"
+      font: "650 15px/1.33 var(--f-ui)"
     }
-  }, actDisplayName(a.name)), React.createElement("div", {
-    className: "duo-data-s duo-ink3",
+  }, actDisplayName(a.name)), React.createElement("span", {
     style: {
-      marginTop: 2
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
     }
-  }, day, " · ", fmt12(a.start)));
+  }, [dd?.name || day, stage].filter(Boolean).join(" · "))));
 }
 function EssentialTile({
   label,
@@ -3222,27 +3248,27 @@ function EssentialTile({
     className: "duo-press duo-card",
     onClick: onClick,
     style: {
-      width: 112,
-      minHeight: 96,
-      flexShrink: 0,
-      scrollSnapAlign: "start",
+      minWidth: 0,
+      minHeight: 52,
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      gap: 12,
-      padding: 14,
+      alignItems: "center",
+      gap: 10,
+      padding: "10px 12px",
       color: "var(--ink)",
-      background: "var(--s2)"
+      background: "var(--s2)",
+      textAlign: "left"
     }
   }, React.createElement("span", {
     "aria-hidden": "true",
     style: {
       display: "flex",
+      flexShrink: 0,
       color: "var(--ink-2)"
     }
   }, icon), React.createElement("span", {
     style: {
-      font: "600 15px/1.4 var(--f-ui)"
+      font: "600 15px/1.33 var(--f-ui)",
+      minWidth: 0
     }
   }, label, sub && React.createElement("span", {
     className: "duo-data-s duo-acc",

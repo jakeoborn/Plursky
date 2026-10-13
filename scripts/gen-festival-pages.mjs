@@ -220,18 +220,18 @@ function stageProgrammingSection(entry) {
   return `
   <section aria-labelledby="stage-programming-h" class="stage-programming">
     <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
-    <p class="note">Official stage and day billings, in the order printed by the festival. Only the six 444 extended sets have published clock times here. All other rows are running order, not set times. End times are not supplied.</p>
+    <p class="note">Set times from the III Points-branded grids supplied on October 5. Both days, 13 stages and 231 intervals. The source is the supplied screenshot, not a clock-time page on the official website.</p>
     <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
-    <p class="note"><a href="${esc(data.source.url)}">Official stage schedule</a> · checked ${esc(data.source.observedAt)}</p>
+    <p class="note"><a href="${esc(data.source.url)}">III Points official site</a> · source: attendee-supplied III Points-branded set-time grid · checked ${esc(data.source.observedAt)}</p>
 ${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
 ` + data.stages.map(stage => {
     const block = stage.days.find(d => d.day === day);
     if (!block) return '';
     const timed = block.rows.some(r => r.start);
     return `    <details class="program-stage"${stage.id === '444' ? ' open' : ''}>
-      <summary>${esc(stage.name)} · ${timed ? 'Published start times' : 'Running order'} · ${block.rows.length} sets</summary>
+      <summary>${esc(stage.name)} · ${timed ? 'Set times' : 'Running order'} · ${block.rows.length} sets</summary>
       <ol>
-` + block.rows.map(row => `        <li>${row.start ? `<time>${esc(localClock(row.start))}</time> · ` : ''}${esc(row.name)}</li>`).join('\n') + `
+` + block.rows.map(row => `        <li>${row.start ? `<time>${esc(localClock(row.start))}${row.end ? ' - '+esc(localClock(row.end)) : ''}</time> · ` : ''}${esc(row.name)}</li>`).join('\n') + `
       </ol>
     </details>`;
   }).join('\n')).join('\n')}
@@ -481,7 +481,9 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // The schedule answer is gated on the SAME `hasTimes` the page renders from,
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
-  if (hasTimes) {
+  if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+  } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({
       q: `Have the ${cfg.name} set times been announced?`,
@@ -817,7 +819,7 @@ ${pastSection(entry, editions)}
     <p class="note">Plursky is a free festival companion — build a personal schedule from the official lineup, ${mapBacked ? 'find stages on a live map, ' : ''}meet your crew, and turn the weekend into a shareable recap.</p>
 ${entry.available
   ? (entry.scheduleTBA
-      ? `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`
+      ? (cfg.id === 'iii-points-2026' ? `    <p class="note">The full stage timetable is on this website. The app uses the same stage timetable.</p>\n` : `    <p class="note">${esc(cfg.name)} is open in the app — the full lineup is in. Set times appear as soon as the festival publishes them.</p>\n`)
       : '')
   : `    <p class="note">${esc(cfg.name)} is not switchable in the app yet — it goes live once the official schedule is published. The links above open Plursky on the current festival.</p>\n`}${isPast && entry.available ? `    <p><a href="/?f=${esc(id)}&amp;tab=memories">Your ${esc(cfg.name)} Memories in Plursky</a>${next ? ` · Next edition: <a href="/f/${esc(next.config.id)}/">${esc(next.config.name)}</a>` : ''}</p>\n` : ''}  </section>
 

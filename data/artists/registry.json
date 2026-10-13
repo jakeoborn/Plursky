@@ -1830,8 +1830,8 @@
   "billings": [
    "iii-points-2026:iiip-amar"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -4534,8 +4534,8 @@
   "billings": [
    "iii-points-2026:iiip-blind-fish"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -5306,8 +5306,8 @@
   "billings": [
    "iii-points-2026:iiip-bricolage-b2b-day-dem"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -5870,8 +5870,8 @@
   "billings": [
    "iii-points-2026:iiip-canela"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -7921,8 +7921,8 @@
   "billings": [
    "iii-points-2026:iiip-crespi-drum-syndicate-live"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -8075,8 +8075,8 @@
   "billings": [
    "iii-points-2026:iiip-cumbiamba"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -8874,8 +8874,8 @@
   "billings": [
    "iii-points-2026:iiip-bricolage-b2b-day-dem"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -9797,8 +9797,8 @@
   "billings": [
    "iii-points-2026:iiip-dj-ahamed"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -11078,8 +11078,8 @@
   "billings": [
    "iii-points-2026:iiip-dude-skywalker"
   ],
-  "firstSeen": "2026-10-17",
-  "lastSeen": "2026-10-17",
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -11828,8 +11828,8 @@
   "billings": [
    "iii-points-2026:iiip-emily-afre"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -12281,21 +12281,6 @@
   "links": []
  },
  {
-  "key": "fakemink",
-  "name": "fakemink",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "iii-points-2026:iiip-fakemink"
-  ],
-  "firstSeen": "2026-10-17",
-  "lastSeen": "2026-10-17",
-  "photo": null,
-  "links": []
- },
- {
   "key": "fallen",
   "name": "Fallen",
   "aliases": [],
@@ -12701,8 +12686,8 @@
   "billings": [
    "iii-points-2026:iiip-fiuza-b2b-madison-kay"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -14160,8 +14145,8 @@
   "billings": [
    "iii-points-2026:iiip-godblessjai"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -15610,6 +15595,21 @@
   "links": []
  },
  {
+  "key": "homicide-jenny",
+  "name": "Homicide Jenny",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2026:iiip-homicide-jenny"
+  ],
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "honestav",
   "name": "HONESTAV",
   "aliases": [],
@@ -15981,8 +15981,8 @@
   "billings": [
    "iii-points-2026:iiip-huracan"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -16252,8 +16252,8 @@
   "billings": [
    "iii-points-2026:iiip-iiry"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -17337,8 +17337,8 @@
   "billings": [
    "iii-points-2026:iiip-jeremy-ismael"
   ],
-  "firstSeen": "2026-10-16",
-  "lastSeen": "2026-10-16",
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -22129,8 +22129,8 @@
   "billings": [
    "iii-points-2026:iiip-lylac"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -22410,8 +22410,8 @@
   "billings": [
    "iii-points-2026:iiip-fiuza-b2b-madison-kay"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -25821,10 +25821,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2026:lo74"
+   "lollapalooza-2026:lo74",
+   "iii-points-2026:iiip-nettspend"
   ],
   "firstSeen": "2026-07-31",
-  "lastSeen": "2026-07-31",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -26011,7 +26012,7 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-nick-leon-b2b-safety-tranc",
+   "iii-points-2026:iiip-nick-leon",
    "hard-summer-2026:hs1-nick-leon"
   ],
   "firstSeen": "2026-08-01",
@@ -26270,8 +26271,8 @@
   "billings": [
    "iii-points-2026:iiip-nikole"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -26681,6 +26682,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nxtel",
+  "name": "nxtel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2026:iiip-nxtel"
+  ],
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -27525,8 +27541,8 @@
   "billings": [
    "iii-points-2026:iiip-p1no-b2b-trippie-hippie"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -28512,8 +28528,8 @@
   "billings": [
    "iii-points-2026:iiip-sel-6-b2b-playshado"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -30865,21 +30881,6 @@
   "links": []
  },
  {
-  "key": "safety-trance",
-  "name": "Safety Trance",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "iii-points-2026:iiip-nick-leon-b2b-safety-tranc"
-  ],
-  "firstSeen": "2026-10-17",
-  "lastSeen": "2026-10-17",
-  "photo": null,
-  "links": []
- },
- {
   "key": "sahbabii",
   "name": "SahBabii",
   "aliases": [],
@@ -31157,21 +31158,6 @@
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-10-31",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "santiago-villu",
-  "name": "Santiago Villu",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "iii-points-2026:iiip-santiago-villu"
-  ],
-  "firstSeen": "2026-10-17",
-  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -31513,8 +31499,8 @@
   "billings": [
    "iii-points-2026:iiip-scotty-sobek"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -31666,8 +31652,8 @@
   "billings": [
    "iii-points-2026:iiip-sel-6-b2b-playshado"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -31731,8 +31717,8 @@
   "billings": [
    "iii-points-2026:iiip-serafitz-b2b-sol-discos"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -33248,8 +33234,8 @@
   "billings": [
    "iii-points-2026:iiip-serafitz-b2b-sol-discos"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -34134,7 +34120,6 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su24",
    "summerfest-2026:su45"
   ],
   "firstSeen": "2026-06-18",
@@ -34810,8 +34795,8 @@
   "billings": [
    "iii-points-2026:iiip-ghostface-killah-presents"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-16",
+  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
@@ -37289,8 +37274,8 @@
   "billings": [
    "iii-points-2026:iiip-p1no-b2b-trippie-hippie"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },
@@ -38253,6 +38238,21 @@
   ],
   "firstSeen": "2026-06-06",
   "lastSeen": "2026-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "villu",
+  "name": "Villu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2026:iiip-santiago-villu"
+  ],
+  "firstSeen": "2026-10-17",
+  "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
  },

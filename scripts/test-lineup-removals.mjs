@@ -27,7 +27,7 @@ const { DS } = loadRegistry(process.cwd());
 
 const removed = Object.entries(mods).flatMap(([fid, m]) => (m.removedFromLineup || []).map(r => ({ fid, r, m })));
 const iii = removed.filter(x => x.fid === 'iii-points-2026').map(x => x.r.id).sort();
-const want = ['iiip-gza', 'iiip-jencarlos', 'iiip-mila-gama-b2b-x3butterfly', 'iiip-mr-brown', 'iiip-ultrathem'];
+const want = ['iiip-fakemink', 'iiip-nick-leon-b2b-safety-tranc', 'iiip-gza', 'iiip-jencarlos', 'iiip-mila-gama-b2b-x3butterfly', 'iiip-mr-brown', 'iiip-ultrathem'].sort();
 check(JSON.stringify(iii) === JSON.stringify(want), `control: iii-points-2026 removedFromLineup is ${JSON.stringify(iii)}, expected ${JSON.stringify(want)}`);
 
 const DATE = /^\d{4}-\d\d-\d\d$/;
