@@ -96,15 +96,24 @@ function checkPage(entry, html, { verified }) {
   if (hasMap !== wantMap) out.push(`map section present=${hasMap}, expected ${wantMap} (plate=${!!plate}, mapSource=${!!cfg.mapSource})`);
   const mapSec = section(html, 'map-h') || '';
 
-  // Past editions: one line per library edition of this festival, read from
-  // data/historical/index.json. A lineup_only edition says "lineup only" and
-  // never "0 sets": it has no sets because none were archived.
+  // Past editions, read from data/historical/index.json. A gated festival
+  // shows its newest edition as the "Look back" section and the rest under
+  // "Earlier editions"; an open one lists every edition under "Past editions".
+  // Each edition reads its own artist and set counts, and a lineup_only
+  // edition says "set times not verified", never "0 sets": none were archived.
   const past = HIST.filter(e => e.festivalId === id.replace(/-\d{4}$/, ''));
-  const pastText = visibleText(section(html, 'past-h') || '');
-  if (!!past.length !== /id="past-h"/.test(html)) out.push(`past-editions section present=${/id="past-h"/.test(html)}, library has ${past.length}`);
+  const lookText = visibleText(section(html, 'lookback-h') || '');
+  const pastLines = (section(html, 'past-h') || '').split('</li>').map(visibleText);
+  const pastText = [lookText, ...pastLines].join(' ');
+  const shown = /id="(past|lookback)-h"/.test(html);
+  if (!!past.length !== shown) out.push(`past-editions section present=${shown}, library has ${past.length}`);
   for (const e of past) {
-    const want = `${e.name} — ${e.year}, ${e.counts.artists} artists, ${e.completeness === 'lineup_only' ? 'lineup only' : `${e.counts.sets} sets`}`;
-    if (!pastText.includes(want)) out.push(`past editions do not read "${want}"`);
+    const look = lookText.includes(`${e.name} ·`);
+    const line = look ? lookText : pastLines.find(l => l.includes(`${e.name} —`));
+    if (!line) { out.push(`past editions do not list "${e.name}"`); continue; }
+    if (!look && !line.includes(`, ${e.counts.artists} artists`)) out.push(`past editions do not read "${e.name}" with ${e.counts.artists} artists`);
+    if (e.completeness === 'lineup_only' ? !/set times not verified/i.test(line) : !line.includes(`${e.counts.sets} sets`))
+      out.push(`past editions do not read "${e.name}" as ${e.completeness === 'lineup_only' ? 'set times not verified' : `${e.counts.sets} sets`}`);
   }
   if (/\b0 sets\b/.test(pastText)) out.push('past editions claim "0 sets"');
   if (/\bmap of\b/i.test(visibleText(mapSec))) out.push('map section says "map of"');
@@ -249,7 +258,7 @@ const mutants = [
   ['an acts page with both source rows dropped', byId('iii-points-2026'), (h) => h.replace(/\n\s*<li>(?:Lineup|Set times): [^\n]*<\/li>/g, ''), false],
   ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/[^"]*"[^>]*>[^<]*<\/a>/g, 'coachella'), false], // site AND maps page
   // A lineup-only past edition relabelled with the zero its sets list happens to hold.
-  ['a lineup-only past edition shown as "0 sets"', byId('nocturnal-wonderland-2026'), (h) => h.replace(', lineup only</li>', ', 0 sets</li>'), false],
+  ['a lineup-only past edition shown as "0 sets"', byId('nocturnal-wonderland-2026'), (h) => h.replace(', set times not verified</li>', ', 0 sets</li>'), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
 ];
