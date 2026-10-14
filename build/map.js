@@ -649,23 +649,29 @@ function formatLastSeen(ts) {
     color: "var(--text-3)"
   };
 }
+var GPS_STALE_MS = 60000,
+  GPS_STALE_MS_SAVER = 120000;
 function useGeolocation(enabled) {
   var [pos, setPos] = React.useState(null);
   var [status, setStatus] = React.useState("idle");
   var {
     active: bsActive
   } = useBatterySaver();
+  var staleMs = bsActive ? GPS_STALE_MS_SAVER : GPS_STALE_MS;
   React.useEffect(() => {
     if (!enabled) {
+      setPos(null);
       setStatus("idle");
       return;
     }
     if (!navigator.geolocation) {
+      setPos(null);
       setStatus("unavailable");
       return;
     }
     setStatus("locating");
-    var alive = true;
+    var alive = true,
+      lastTs = 0;
     var opts = bsActive ? {
       enableHighAccuracy: false,
       maximumAge: 30000,
@@ -679,11 +685,12 @@ function useGeolocation(enabled) {
       if (!alive) return;
       var lat = p.coords.latitude,
         lng = p.coords.longitude;
+      lastTs = Date.now();
       setPos({
         lat,
         lng,
         accuracy: p.coords.accuracy,
-        ts: Date.now()
+        ts: lastTs
       });
       setStatus("live");
       try {
@@ -695,16 +702,23 @@ function useGeolocation(enabled) {
       } catch {}
     }, e => {
       if (!alive) return;
+      setPos(null);
       setStatus(e.code === 1 ? "denied" : "unavailable");
     }, opts);
+    var tick = setInterval(() => {
+      if (alive && lastTs && Date.now() - lastTs > staleMs) setStatus(s => s === "live" ? "stale" : s);
+    }, 5000);
     return () => {
       alive = false;
+      clearInterval(tick);
       navigator.geolocation.clearWatch(id);
     };
-  }, [enabled, bsActive]);
+  }, [enabled, bsActive, staleMs]);
+  var live = !!enabled && status === "live" && _validGps(pos) && Date.now() - (pos.ts || 0) <= staleMs;
   return {
     pos,
-    status
+    status,
+    live
   };
 }
 var WALK_PAIRS = {
@@ -1632,7 +1646,7 @@ function ShareLocationSheet({
       color: "var(--muted)",
       marginTop: 2
     }
-  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
+  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO RECENT FIX" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -2724,9 +2738,12 @@ function MapScreen({
     };
   }, [compass]);
   var {
-    pos: gpsPos,
-    status: gpsStatus
+    pos: _gpsRaw,
+    status: _gpsStatus,
+    live: _gpsFresh
   } = useGeolocation(gpsLive);
+  var gpsPos = _gpsFresh ? _gpsRaw : null;
+  var gpsStatus = _gpsStatus === "live" && !_gpsFresh ? "stale" : _gpsStatus;
   var liveAvatar = React.useMemo(() => {
     if (!gpsPos) return null;
     var mi = distMiles(gpsPos.lat, gpsPos.lng, FESTIVAL_LAT, FESTIVAL_LNG);
@@ -3015,7 +3032,7 @@ function MapScreen({
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
   return React.createElement(Screen, {
     bg: "var(--paper)",
@@ -4403,7 +4420,7 @@ function MapScreen({
       background: "var(--ink)",
       animation: "pulse 1.4s infinite"
     }
-  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
+  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
     onClick: () => {
       var ok = sbBroadcastRally({
         x: meetTarget.x,
@@ -9198,7 +9215,7 @@ function BottomSheet({
     var knownEtas = [youMins, ...fEtas.map(e => e.mins)].filter(m => m != null);
     var eta = knownEtas.length ? Math.max(...knownEtas) : null;
     var title = groupFriends.length === 0 ? "Pinned spot" : groupFriends.length === 1 ? `You + ${groupFriends[0].name}` : `Group · ${groupFriends.length + 1} people`;
-    var routingLabel = !avatar?.live ? "ROUTE PREVIEW" : groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    var routingLabel = !avatar?.live ? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";
     return React.createElement("div", {
       style: {
         background: "var(--s1)",

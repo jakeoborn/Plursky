@@ -34,6 +34,11 @@ try {
   await ctx.addInitScript(fid => {
     localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
     localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    // Lets the test fire a position error into the page's live watchers.
+    const g = navigator.geolocation, w = g.watchPosition.bind(g), errs = new Map();
+    g.watchPosition = (ok, err, o) => { const id = w(ok, err, o); errs.set(id, err); return id; };
+    const c = g.clearWatch.bind(g); g.clearWatch = (id) => { errs.delete(id); c(id); };
+    window.__geoFail = (code) => errs.forEach((e) => e && e({ code, message: "e2e" }));
   }, FID);
   const page = await ctx.newPage();
   const errors = []; page.on("pageerror", e => errors.push(e.message));
@@ -80,6 +85,30 @@ try {
   const gotPin = await settle(PIN, 22);
   if (!gotPin || meters(gotPin, PIN) >= TOL_M) console.log("    diag:", JSON.stringify(await page.evaluate(() => { const m = window.__plurskyRealMap; return { moving: m.isMoving(), zoom: m.getZoom(), center: m.getCenter(), pitch: m.getPitch(), bearing: m.getBearing(), markers: [...document.querySelectorAll(".maplibregl-marker")].map(e => { const r = e.getBoundingClientRect(); return [Math.round(r.width), Math.round(r.left), Math.round(r.top), e.style.transform.slice(0, 80)]; }) }; })));
   check(!!gotPin && meters(gotPin, PIN) < TOL_M, `meet pin rendered ${gotPin ? meters(gotPin, PIN).toFixed(1) : "—"} m from where it was dropped (≤ ${TOL_M} m)`);
+  // LIVE only while the fix is: GPS OFF, a position error and a stale fix all
+  // drop the meet card to ROUTE PREVIEW (#310 review: OFF kept "ROUTING LIVE").
+  const card = () => page.evaluate(() => { const t = document.body.innerText; return /YOUR LOCATION LIVE/.test(t) ? "live" : /ROUTE PREVIEW/.test(t) ? "preview" : /ROUTING LIVE/.test(t) ? "old-live" : "none"; });
+  const until = async (want) => { let got; for (let i = 0; i < 20; i++) { got = await card(); if (got === want) break; await page.waitForTimeout(250); } return got; };
+  const gpsPill = () => page.evaluate(() => { const b = document.querySelector('button[aria-label="Toggle GPS"]'); b?.click(); return !!b; });
+  let st = await until("live");
+  check(st === "live", `live fix + meet pin: card says YOUR LOCATION LIVE (${st})`);
+  check(await gpsPill(), "GPS toggle found");
+  st = await until("preview");
+  const offPill = await page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
+  check(st === "preview" && offPill === "OFF", `live fix -> GPS OFF: card ${st}, pill ${offPill}`);
+  await gpsPill();
+  st = await until("live");
+  check(st === "live", `GPS back ON: card ${st}`);
+  await page.evaluate(() => window.__geoFail(2));
+  st = await until("preview");
+  check(st === "preview", `live fix -> position error: card ${st}`);
+  await ctx.setGeolocation({ latitude: A[0], longitude: A[1], accuracy: 8 });
+  st = await until("live");
+  check(st === "live", `a new fix after the error: card ${st}`);
+  await page.clock.fastForward(65000);
+  st = await until("preview");
+  const stalePill = await page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
+  check(st === "preview" && stalePill === "NO FIX", `live fix -> 65 s with no update: card ${st}, pill ${stalePill}`);
   check(errors.length === 0, `no page errors${errors.length ? `: ${errors.slice(0, 2).join(" | ")}` : ""}`);
   await page.screenshot({ path: process.env.SHOT || "/dev/null" }).catch(() => {});
   await browser.close();

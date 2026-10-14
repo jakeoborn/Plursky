@@ -549,15 +549,22 @@ function formatLastSeen(ts) {
 // Watch the user's real position. Returns { pos, status, lastUpdate }.
 // In battery-saver mode, drops high-accuracy GPS and lets the browser cache
 // fixes for 30s — saves a meaningful chunk of battery on long late-night sessions.
+// A fix older than this is not LIVE. watchPosition keeps firing while the
+// phone holds a signal (maximumAge 4s; 30s in battery saver), so silence this
+// long means the signal is gone, not that the user stood still.
+const GPS_STALE_MS = 60000, GPS_STALE_MS_SAVER = 120000;
 function useGeolocation(enabled) {
   const [pos, setPos] = React.useState(null);
-  const [status, setStatus] = React.useState("idle"); // idle | locating | live | denied | unavailable
+  const [status, setStatus] = React.useState("idle"); // idle | locating | live | stale | denied | unavailable
   const { active: bsActive } = useBatterySaver();
+  const staleMs = bsActive ? GPS_STALE_MS_SAVER : GPS_STALE_MS;
   React.useEffect(() => {
-    if (!enabled) { setStatus("idle"); return; }
-    if (!navigator.geolocation) { setStatus("unavailable"); return; }
+    // OFF, an error or a denial drops the fix. A retained position read as
+    // "where you are" after the user turned GPS off (#310 review).
+    if (!enabled) { setPos(null); setStatus("idle"); return; }
+    if (!navigator.geolocation) { setPos(null); setStatus("unavailable"); return; }
     setStatus("locating");
-    let alive = true;
+    let alive = true, lastTs = 0;
     const opts = bsActive
       ? { enableHighAccuracy: false, maximumAge: 30000, timeout: 30000 }
       : { enableHighAccuracy: true,  maximumAge: 4000,  timeout: 15000 };
@@ -565,7 +572,8 @@ function useGeolocation(enabled) {
       (p) => {
         if (!alive) return;
         const lat = p.coords.latitude, lng = p.coords.longitude;
-        setPos({ lat, lng, accuracy: p.coords.accuracy, ts: Date.now() });
+        lastTs = Date.now();
+        setPos({ lat, lng, accuracy: p.coords.accuracy, ts: lastTs });
         setStatus("live");
         // v137: live attendance auto-detect — silently marks the user as
         // "caught" the current set when GPS confirms they're inside a stage's
@@ -581,13 +589,20 @@ function useGeolocation(enabled) {
       },
       (e) => {
         if (!alive) return;
+        setPos(null);
         setStatus(e.code === 1 ? "denied" : "unavailable");
       },
       opts
     );
-    return () => { alive = false; navigator.geolocation.clearWatch(id); };
-  }, [enabled, bsActive]);
-  return { pos, status };
+    const tick = setInterval(() => {
+      if (alive && lastTs && Date.now() - lastTs > staleMs) setStatus((s) => (s === "live" ? "stale" : s));
+    }, 5000);
+    return () => { alive = false; clearInterval(tick); navigator.geolocation.clearWatch(id); };
+  }, [enabled, bsActive, staleMs]);
+  // The one LIVE predicate: on, live, and a fresh in-range fix. Every caller
+  // reads this; none re-derives it from pos alone.
+  const live = !!enabled && status === "live" && _validGps(pos) && Date.now() - (pos.ts || 0) <= staleMs;
+  return { pos, status, live };
 }
 
 // ── Walking time model ─────────────────────────────────────
@@ -1269,6 +1284,7 @@ function ShareLocationSheet({
                 {gpsStatus === "live" && gpsPos
                   ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m`
                   : gpsStatus === "locating" ? "FINDING…"
+                  : gpsStatus === "stale"    ? "NO RECENT FIX"
                   : gpsStatus === "denied"   ? "DENIED IN BROWSER"
                   : gpsStatus === "unavailable" ? "UNSUPPORTED"
                   : "OFF"}
@@ -2089,7 +2105,13 @@ function MapScreen({ state, setState }) {
   }, [compass]);
 
   // Real GPS → on-site map coords, off-site distance, or null
-  const { pos: gpsPos, status: gpsStatus } = useGeolocation(gpsLive);
+  // gpsPos is the fix only while it is LIVE (on, live, fresh). Off, an error
+  // or a stale fix leaves null, so nothing downstream (avatar, crew share,
+  // routing label) can keep presenting a last-known position as current.
+  const { pos: _gpsRaw, status: _gpsStatus, live: _gpsFresh } = useGeolocation(gpsLive);
+  const gpsPos = _gpsFresh ? _gpsRaw : null;
+  // "live" with an aged fix reads as stale until the hook's tick catches up.
+  const gpsStatus = _gpsStatus === "live" && !_gpsFresh ? "stale" : _gpsStatus;
   const liveAvatar = React.useMemo(() => {
     if (!gpsPos) return null;
     const mi = distMiles(gpsPos.lat, gpsPos.lng, FESTIVAL_LAT, FESTIVAL_LNG);
@@ -2382,6 +2404,7 @@ function MapScreen({ state, setState }) {
   const gpsLabel = !gpsLive ? "OFF"
     : gpsStatus === "live"        ? (isLiveOnSite ? "LIVE" : "OFF-SITE")
     : gpsStatus === "locating"    ? "FINDING…"
+    : gpsStatus === "stale"       ? "NO FIX"
     : gpsStatus === "denied"      ? "OFF"
     : gpsStatus === "unavailable" ? "N/A"
     : "DEMO";
@@ -3081,7 +3104,10 @@ function MapScreen({ state, setState }) {
                   <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.4s infinite" }}/>
                   {meetTarget.isAmenity
                     ? `→ ${meetTarget.label.toUpperCase()}`
-                    : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`}
+                    // Who the meetup is for, never what they are doing:
+                    // "WALKING" was shown with no friend selected, and no
+                    // friend's fix is checked here (#310 review).
+                    : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`}
                 </>
               ) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"}
             </span>
@@ -6680,10 +6706,11 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     const title = groupFriends.length === 0 ? "Pinned spot"
       : groupFriends.length === 1 ? `You + ${groupFriends[0].name}`
       : `Group · ${groupFriends.length + 1} people`;
-    // LIVE only when YOUR dot is a real on-site fix. The demo avatar (off-site,
-    // no permission, before the festival) is a simulation and is never LIVE.
-    const routingLabel = !avatar?.live ? "ROUTE PREVIEW"
-      : groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    // LIVE only when YOUR dot is a real, fresh on-site fix. The demo avatar
+    // (off-site, no permission, GPS off, stale) is never LIVE. It names YOUR
+    // location only: a friend's dot carries no freshness this sheet checks,
+    // so no "ALL/BOTH" crew claim (#310 review).
+    const routingLabel = !avatar?.live ? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";
     return (
       <div style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>

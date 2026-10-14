@@ -155,10 +155,101 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   check(!/\]\.forEach\(\(id\) => \{\s*try \{ if \(map\.getLayer\(id\)\) map\.moveLayer\(id\)/.test(body), "the unconditional moveLayer loop is gone");
   check(/const \{ lat, lng \} = _lngLatOf\(f\);/.test(body), "crew friend markers go through the range-checked _lngLatOf");
   check(/\.\.\.\(_validGps\(incomingRally\.gps\)/.test(src), "an accepted rally's gps is range-checked");
-  check(/const routingLabel = !avatar\?\.live \? "ROUTE PREVIEW"/.test(src), "the meet sheet never says ROUTING LIVE for the demo avatar");
+  check(/const routingLabel = !avatar\?\.live \? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";/.test(src), "the meet sheet says YOUR LOCATION LIVE only for a live avatar, else ROUTE PREVIEW");
+  check(!/WALKING`/.test(src) && /\$\{meetGroup\.length \? ` · YOU \+ \$\{meetGroup\.length\}` : ""\}/.test(src), "the meet banner names who the meetup is for, never claims anyone is WALKING");
+  check(!/(ALL|BOTH) ROUTING LIVE/.test(src), "no ALL/BOTH ROUTING LIVE crew claim (friends' freshness is not checked there)");
+  check(/const gpsPos = _gpsFresh \? _gpsRaw : null;/.test(src), "MapScreen reads the fix only while useGeolocation says it is live");
+  check(/live: _gpsFresh \} = useGeolocation\(gpsLive\)/.test(src), "MapScreen takes the live flag from useGeolocation");
   const sb = readFileSync(join(ROOT, "supabase.jsx"), "utf8");
   check(/Math\.abs\(gps\.lat\) <= 90 && Math\.abs\(gps\.lng\) <= 180/.test(sb), "sbBroadcastRally range-checks the pin's lat/lng");
   check(/function sbBroadcastRally\(\{ x, y, label, stageId, gps \}\)/.test(sb) && /\.\.\.\(g \? \{ gps: g \} : \{\}\)/.test(sb), "sbBroadcastRally sends the pin's lat/lng");
+}
+
+// ── 4. useGeolocation: OFF, an error and a stale fix are never LIVE ─────────
+// Runs the real hook from build/map.js under a minimal one-component hook
+// runner, with a scripted navigator.geolocation and a hand-driven clock.
+{
+  const A = { lat: 25.7980, lng: -80.2027 }, B = { lat: 25.7980, lng: -80.2005 };
+  const runHook = () => {
+    let now = Date.parse("2026-10-17T02:00:00Z");
+    const watchers = new Map(); let nextId = 1; const intervals = new Map(); let nextT = 1;
+    const slots = []; let effects = []; let dirty = false; let i = 0;
+    const R = {
+      useState(init) { const k = i++; if (!(k in slots)) slots[k] = { v: typeof init === "function" ? init() : init };
+        const sl = slots[k]; return [sl.v, (v) => { const nv = typeof v === "function" ? v(sl.v) : v; if (nv !== sl.v) { sl.v = nv; dirty = true; } }]; },
+      useReducer(f, init) { const [v, set] = R.useState(init); return [v, (a) => set((x) => f(x, a))]; },
+      useEffect(fn, deps) { const k = i++; const sl = slots[k]; const changed = !sl || !deps || deps.some((d, j) => d !== sl.deps[j]);
+        if (changed) effects.push(() => { sl?.cleanup?.(); slots[k] = { deps, cleanup: fn() }; }); },
+      useRef(v) { const k = i++; if (!(k in slots)) slots[k] = { current: v }; return slots[k]; },
+      useMemo(fn) { return fn(); }, useCallback(fn) { return fn; },
+    };
+    const geo = {
+      watchPosition(ok, err) { const id = nextId++; watchers.set(id, { ok, err }); return id; },
+      clearWatch(id) { watchers.delete(id); },
+    };
+    const ctx = {};
+    const store = { onboarded: "v1", active_festival_id: "iii-points-2026", active_festival_explicit: "1" };
+    Object.assign(ctx, {
+      console: { log: noop, warn: noop, error: noop }, Math, JSON, Object, Array, Promise, String, Number, Boolean, Set, Map, WeakMap, Symbol, Proxy, Reflect, RegExp, Error, isNaN, parseInt, parseFloat, isFinite, Intl,
+      Date: class extends Date { constructor(...a) { super(...(a.length ? a : [now])); } static now() { return now; } },
+      setTimeout: noop, clearTimeout: noop, requestAnimationFrame: noop,
+      setInterval: (f, ms) => { const id = nextT++; intervals.set(id, { f, ms }); return id; }, clearInterval: (id) => intervals.delete(id),
+      fetch: () => new Promise(noop), URLSearchParams, URL, location: { search: "", hash: "", pathname: "/", href: "http://x/", protocol: "http:" },
+      localStorage: { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } },
+      sessionStorage: { getItem: () => null, setItem: noop, removeItem: noop },
+      navigator: { userAgent: "node", geolocation: geo, vibrate: noop, onLine: true },
+      document: { addEventListener: noop, removeEventListener: noop, documentElement: { style: {} }, body: el(), createElement: el, getElementById: () => null, querySelector: () => null, querySelectorAll: () => [], head: { appendChild: noop } },
+      React: R, ReactDOM: { createRoot: () => ({ render: noop }), createPortal: () => null },
+      matchMedia: () => ({ matches: false, addEventListener: noop, addListener: noop }), addEventListener: noop, removeEventListener: noop,
+    });
+    ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
+    vm.createContext(ctx);
+    vm.runInContext(MODS, ctx);
+    for (const [n, src] of BUILD) vm.runInContext(src, ctx, { filename: `build/${n}.js` });
+    ctx.useBatterySaver = () => ({ active: false });
+    const hook = vm.runInContext("useGeolocation", ctx);
+    let enabled = true, out;
+    const render = () => { for (let n = 0; n < 20; n++) { i = 0; dirty = false; effects = []; out = hook(enabled); const fx = effects; fx.forEach(f => f()); if (!dirty && !fx.length) return out; } return out; };
+    return {
+      render, get out() { return out; }, setEnabled(v) { enabled = v; return render(); },
+      // The first render after a change, before any effect runs: what the
+      // screen shows in that frame.
+      firstFrame(v) { enabled = v; i = 0; effects = []; const o = hook(enabled); effects = []; return o; },
+      // Time passes with no interval tick (a backgrounded phone throttles timers).
+      sleep(ms) { now += ms; i = 0; effects = []; const o = hook(enabled); effects = []; return o; },
+      fix(lat, lng) { for (const w of watchers.values()) w.ok({ coords: { latitude: lat, longitude: lng, accuracy: 8 } }); return render(); },
+      fail(code) { for (const w of watchers.values()) w.err({ code }); return render(); },
+      advance(ms) { const end = now + ms; while (now < end) { now += 5000; for (const t of intervals.values()) t.f(); } return render(); },
+      watchers: () => watchers.size,
+    };
+  };
+  let h = runHook(); h.render();
+  let o = h.fix(A.lat, A.lng);
+  check(o.live === true && o.status === "live" && o.pos?.lat === A.lat, `a fresh fix is live (live=${o.live}, status=${o.status})`);
+  o = h.firstFrame(false);
+  check(o.live === false, "the very frame GPS turns OFF is not live (before the effect drops the fix)");
+  h.render();
+  o = h.setEnabled(false);
+  check(o.live === false && o.pos === null && o.status === "idle", `live fix -> GPS OFF: not live, fix dropped (live=${o.live}, pos=${JSON.stringify(o.pos)}, status=${o.status})`);
+  check(h.watchers() === 0, "GPS OFF stops the watch");
+  o = h.setEnabled(true); o = h.fix(A.lat, A.lng);
+  check(o.live === true, "GPS back ON with a new fix is live again");
+  o = h.fail(2);
+  check(o.live === false && o.pos === null && o.status === "unavailable", `live fix -> position error: not live, fix dropped (status=${o.status})`);
+  o = h.fix(B.lat, B.lng); o = h.fail(1);
+  check(o.live === false && o.pos === null && o.status === "denied", `live fix -> permission denied: not live, fix dropped (status=${o.status})`);
+  h = runHook(); h.render(); h.fix(A.lat, A.lng);
+  o = h.sleep(65000);
+  check(o.live === false, "a 65 s old fix read before any tick fires is not live");
+  h = runHook(); h.render(); h.fix(A.lat, A.lng);
+  o = h.advance(55000);
+  check(o.live === true, "a fix 55 s old is still live");
+  o = h.advance(10000);
+  check(o.live === false && o.status === "stale", `live fix -> no update for 65 s: stale, not live (live=${o.live}, status=${o.status})`);
+  o = h.fix(B.lat, B.lng);
+  check(o.live === true && o.status === "live", "a new fix after stale is live again");
+  o = h.fix(91, B.lng);
+  check(o.live === false, "an out-of-range fix is never live");
 }
 
 if (failed) { console.log(`✗ real map raw GPS: ${failed} of ${checks} checks failed`); process.exit(1); }
