@@ -638,8 +638,8 @@ var FESTIVALS_REGISTRY = [{
       }
     },
     gps: {
-      lat: 30.2630,
-      lng: -97.7730,
+      lat: 30.268090,
+      lng: -97.767611,
       onSiteRadiusMi: 0.4
     },
     gpsAnchors: [{

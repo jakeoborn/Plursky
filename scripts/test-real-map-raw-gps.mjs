@@ -131,7 +131,7 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   check(m(P, dA, A) < 0.5 && m(P, dB, B) < 0.5 && m(P, dA, dB) > 200, "on a zero-anchor festival two live fixes are drawn apart at their raw positions");
 }
 
-// ── 3. Source: every RealMap placement of avatar / meet pin / route goes via _lngLatOf ──
+// ── 3. Source: RealMap places the avatar via _lngLatOf, targets via _realMapTarget ──
 {
   const src = readFileSync(join(ROOT, "map.jsx"), "utf8");
   const start = src.indexOf("function RealMap(");
@@ -140,8 +140,11 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   check(start > 0 && end > start, "RealMap body found");
   for (const bad of ["mapToGps(avatar.x", "mapToGps(meetTarget.x", "mapToGps(target.x"])
     check(!body.includes(bad), `RealMap still places a point with ${bad}, …) instead of _lngLatOf()`);
-  check((body.match(/_lngLatOf\(avatar\)/g) || []).length >= 2 && /_lngLatOf\(avatarRef\.current\)/.test(body), "RealMap draws the avatar via _lngLatOf (create from the latest avatar, follow, route)");
-  check(/_lngLatOf\(meetTarget\)/.test(body), "RealMap draws the meet pin via _lngLatOf(meetTarget)");
+  check(/_lngLatOf\(avatar\)/.test(body) && /_lngLatOf\(avatarRef\.current\)/.test(body), "RealMap draws the avatar via _lngLatOf (create from the latest avatar, follow)");
+  // #313 item 7: targets (meet pin, route ends, crew) go through _realMapTarget,
+  // which keeps raw GPS and refuses a poster x/y on an unchecked festival.
+  check(/_realMapTarget\(avatar\)/.test(body) && /_realMapTarget\(target\)/.test(body), "RealMap draws the route between two placeable ends (_realMapTarget)");
+  check(/_realMapTarget\(meetTarget\)/.test(body), "RealMap draws the meet pin via _realMapTarget(meetTarget)");
   check(/onMapClickRef\.current\(\{[^}]*gps: \{ lat: ll\.lat, lng: ll\.lng \}/.test(body), "a basemap click hands its lat/lng to onMapClick");
   check(/avatar\.gps\?\.lat, avatar\.gps\?\.lng\]/.test(body), "the avatar follow effect re-runs when the raw fix moves");
   check(/gps: \{ lat: gpsPos\.lat, lng: gpsPos\.lng/.test(src), "the live avatar carries the raw fix");
@@ -153,7 +156,7 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   // stage marker was ever added (measured on III Points and ACL, main c0b8b3e).
   check(/if \(_top\.some\(\(id, i\) => _tail\[i\] !== id\)\) _top\.forEach/.test(body), "RealMap re-stacks its overlay layers only when they are out of order (no styledata loop)");
   check(!/\]\.forEach\(\(id\) => \{\s*try \{ if \(map\.getLayer\(id\)\) map\.moveLayer\(id\)/.test(body), "the unconditional moveLayer loop is gone");
-  check(/const \{ lat, lng \} = _lngLatOf\(f\);/.test(body), "crew friend markers go through the range-checked _lngLatOf");
+  check(/const ll = _realMapTarget\(f\);/.test(body), "crew friend markers go through the range-checked _realMapTarget");
   check(/\.\.\.\(_validGps\(incomingRally\.gps\)/.test(src), "an accepted rally's gps is range-checked");
   check(/const routingLabel = !avatar\?\.live \? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";/.test(src), "the meet sheet says YOUR LOCATION LIVE only for a live avatar, else ROUTE PREVIEW");
   check(!/WALKING`/.test(src) && /\$\{meetGroup\.length \? ` · YOU \+ \$\{meetGroup\.length\}` : ""\}/.test(src), "the meet banner names who the meetup is for, never claims anyone is WALKING");

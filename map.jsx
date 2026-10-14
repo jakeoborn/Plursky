@@ -505,6 +505,54 @@ const POSTER_OPACITY_UNCHECKED = 0.35;
 const REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
 const REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
 const REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
+// Where the real map may put a TARGET: a meet pin, a crew marker, either end
+// of a route (#313 item 7). Raw GPS always places (a pin dropped on the
+// basemap, a live fix, a rally that carries its lat/lng); a grid x/y only
+// through checked geometry, because on an unchecked festival x/y traces to
+// poster art. null means nothing honest places it: no marker and no route,
+// never a fallback point. (_lngLatOf, below, still draws YOUR dot.)
+function _realMapTarget(p) {
+  if (!p) return null;
+  if (_validGps(p.gps)) return { lat: p.gps.lat, lng: p.gps.lng };
+  if (!REAL_MAP_PLACES_CHECKED || !Number.isFinite(p.x) || !Number.isFinite(p.y)) return null;
+  const ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : null;
+}
+// YOUR dot follows the same rule (Instinct's ruling on f73, no exceptions):
+// a live fix always shows; the demo position (GPS off, off-site, stale) shows
+// only where checked geometry places it. On an unchecked festival it would sit
+// at a poster x/y or the venue centre, a fake "you" the user learns to trust,
+// so it is hidden. The marker stays mounted so a real fix can show it at once.
+function _showYou(el, avatar) {
+  if (!el) return;
+  const shown = !!_realMapTarget(avatar);
+  el.style.display = shown ? "" : "none";
+  el.setAttribute("data-realmap-you", shown ? "shown" : "hidden");
+}
+// The same rule where a meet target is BUILT. On the real map a target the
+// real map cannot place keeps its words and drops its position: meet at a
+// stage, a midpoint, a rally or ping with no lat/lng become text only, so no
+// pin, route, ETA or "Unsurveyed" cell is ever made from them. On the drawn
+// map x/y is a point on the art itself, which that map can honestly show.
+function _meetTargetFor(t, onRealMap) {
+  if (!t || t.textOnly || !onRealMap || _realMapTarget(t)) return t;
+  return { label: t.label, stageId: t.stageId || null, isRally: !!t.isRally, isAmenity: !!t.isAmenity, textOnly: true };
+}
+// The grounds, from real-world sources only, for the opening camera when no
+// stage is pinned (#313 item 8: ACL opened on FESTIVAL_CONFIG.gps, ~600 m
+// south-west of the stages, with all three surveyed anchors off screen).
+// Surveyed footprint first, then the venue box, then the anchors' own lat/lng
+// (measured points, never projected art). [lng, lat] pairs, or [] when the
+// config has none of them.
+function _groundsLngLats(cfg) {
+  const ok = (la, lo) => _validGps({ lat: la, lng: lo });
+  const fp = (cfg && cfg.venue && cfg.venue.footprint) || (cfg && cfg.footprint);
+  if (Array.isArray(fp) && fp.length >= 3) return fp.filter(([la, lo]) => ok(la, lo)).map(([la, lo]) => [lo, la]);
+  const fb = cfg && cfg.venue && cfg.venue.festivalBounds;
+  if (fb && ok(fb.north, fb.east) && ok(fb.south, fb.west)) return [[fb.west, fb.south], [fb.east, fb.north]];
+  const an = ((cfg && cfg.gpsAnchors) || []).filter(a => a && ok(a.lat, a.lng));
+  return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
+}
 
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
@@ -2015,6 +2063,14 @@ function MapScreen({ state, setState }) {
       return localStorage.getItem("plursky_use_realmap") !== "0";
     } catch { return true; }
   });
+  // Every meet target is built through _meetTargetFor (#313 item 7), and an
+  // existing one is re-built when the map on screen changes.
+  const setMeet = (t) => setMeetTarget(_meetTargetFor(t, useRealMap));
+  React.useEffect(() => { setMeetTarget(t => _meetTargetFor(t, useRealMap)); }, [useRealMap]);
+  // What the maps may draw: a text-only target has no position.
+  const meetPin = meetTarget && !meetTarget.textOnly ? meetTarget : null;
+  // GO HERE routes to a stage only where the map on screen can place it.
+  const canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   // The posture label says what the map on screen can claim (POSTER_TIER).
   // Unchecked art is drawn faded AND its stages are pending, so it says both.
   const mapPostureLabel = REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
@@ -2206,7 +2262,7 @@ function MapScreen({ state, setState }) {
   React.useEffect(() => {
     if (!useDemo) return;
     const id = setInterval(() => {
-      const goal = meetMode && meetTarget ? meetTarget
+      const goal = meetMode && meetPin ? meetPin
                  : selectedStage ? STAGES.find(s => s.id === selectedStage)
                  : null;
       setDemoAvatar(a => {
@@ -2224,8 +2280,8 @@ function MapScreen({ state, setState }) {
         };
       });
       setFriends(prev => prev.map(f => {
-        if (meetMode && meetTarget && meetGroup.includes(f.id)) {
-          const dx = meetTarget.x - f.x, dy = meetTarget.y - f.y;
+        if (meetMode && meetPin && meetGroup.includes(f.id)) {
+          const dx = meetPin.x - f.x, dy = meetPin.y - f.y;
           const d = Math.hypot(dx, dy);
           if (d < 1.2) return f;
           return { ...f, x: f.x + (dx/d) * 0.32, y: f.y + (dy/d) * 0.32 };
@@ -2239,17 +2295,17 @@ function MapScreen({ state, setState }) {
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
+  }, [useDemo, selectedStage, meetMode, meetPin, meetGroup, bsActive, reduceMotion]);
 
   // Heading derivation when real GPS is on-site and walking toward a goal
   React.useEffect(() => {
     if (!isLiveOnSite) return;
-    const goal = meetMode && meetTarget ? meetTarget
+    const goal = meetMode && meetPin ? meetPin
                : selectedStage ? STAGES.find(s => s.id === selectedStage)
                : null;
     if (!goal) return;
     setHeading(Math.atan2(goal.y - avatar.y, goal.x - avatar.x));
-  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetTarget]);
+  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetPin]);
 
   // Subscribe to Supabase Realtime presence — crew members broadcasting their stage
   React.useEffect(() => sbOnPresenceChange(s => setCrewSnap({ ...s })), []);
@@ -2453,7 +2509,7 @@ function MapScreen({ state, setState }) {
     const allY = [avatar.y, ...selected.map(f => f.y)];
     const cx = allX.reduce((s, v) => s + v, 0) / allX.length;
     const cy = allY.reduce((s, v) => s + v, 0) / allY.length;
-    setMeetTarget({ x: cx, y: cy, label: `Meet ${selected.map(f => f.name).join(" + ")}` });
+    setMeet({ x: cx, y: cy, label: `Meet ${selected.map(f => f.name).join(" + ")}` });
   };
 
   // GPS pill label — reflects real status
@@ -2973,7 +3029,7 @@ function MapScreen({ state, setState }) {
                           const nearest = matches
                             .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
                             .sort((a, b) => a._d - b._d)[0];
-                          setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
+                          setMeet({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
                           setMeetMode(true);
                           setSearchSheetExpanded(false);
                         }} className="mono" style={{
@@ -3107,12 +3163,12 @@ function MapScreen({ state, setState }) {
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage}
-            meetMode={meetMode} meetTarget={meetTarget}
+            meetMode={meetMode} meetTarget={meetPin}
             onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
             onMapClick={(xy) => {
               if (!meetMode) return;
               const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-              setMeetTarget({ x: xy.x, y: xy.y, ...(xy.gps ? { gps: xy.gps } : {}), label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
+              setMeet({ x: xy.x, y: xy.y, ...(xy.gps ? { gps: xy.gps } : {}), label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
             }}
             onFatal={_disableRealMap}
           />
@@ -3124,7 +3180,7 @@ function MapScreen({ state, setState }) {
             amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
-            selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
+            selected={selectedStage} meetMode={meetMode} meetTarget={meetPin} meetGroup={meetGroup}
             crewFriends={crewFriends}
             zoom={mapZoom} pan={mapPan} zoomMin={MAP_ZOOM_MIN} zoomMax={MAP_ZOOM_MAX}
             onZoomChange={setMapZoom} onPanChange={setMapPan}
@@ -3176,7 +3232,7 @@ function MapScreen({ state, setState }) {
                 </>
               ) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"}
             </span>
-            {meetTarget && isSharing && (
+            {meetPin && isSharing && (
               <button onClick={() => {
                 const ok = sbBroadcastRally({
                   x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
@@ -3223,7 +3279,7 @@ function MapScreen({ state, setState }) {
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
+              setMeet({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -3243,7 +3299,7 @@ function MapScreen({ state, setState }) {
           if (sig === clusterDismissed) return null;
           const headOver = () => {
             setMeetMode(true);
-            setMeetTarget({ x: crewCluster.stage.x, y: crewCluster.stage.y, label: crewCluster.stage.name, stageId: crewCluster.stage.id });
+            setMeet({ x: crewCluster.stage.x, y: crewCluster.stage.y, label: crewCluster.stage.name, stageId: crewCluster.stage.id });
             setClusterDismissed(sig);
           };
           return (
@@ -3287,7 +3343,7 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 6,
           }}>
-            {stage && navigating ? (
+            {stage && navigating && canRouteToStage ? (
               <StageNavBar
                 stage={stage} walk={walk}
                 onDetails={() => setNavigating(false)}
@@ -3301,7 +3357,7 @@ function MapScreen({ state, setState }) {
                 onClose={() => setSelectedStage(null)}
                 onCancelMeet={clearMeet}
                 onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
-                onGoHere={goToStage}
+                onGoHere={canRouteToStage ? goToStage : null}
                 stageSaved={stage ? savedStages.has(stage.id) : false}
                 onToggleSave={toggleSavedStage}
                 state={state} setState={setState}
@@ -3417,7 +3473,7 @@ function MapScreen({ state, setState }) {
             setMeetMode(true);
             setMeetGroup([chatFriend.id]);
             const f = friends.find(fr => fr.id === chatFriend.id);
-            if (f) setMeetTarget({ x: (avatar.x + f.x) / 2, y: (avatar.y + f.y) / 2, label: `Meet ${f.name}` });
+            if (f) setMeet({ x: (avatar.x + f.x) / 2, y: (avatar.y + f.y) / 2, label: `Meet ${f.name}` });
             setChatFriend(null);
           }}
         />
@@ -3437,7 +3493,7 @@ function MapScreen({ state, setState }) {
           onClose={() => setPingOpen(false)}
           onDropPin={(target) => {
             setMeetMode(true);
-            setMeetTarget(target);
+            setMeet(target);
           }}
         />
       )}
@@ -5290,11 +5346,14 @@ function RealMap({
         // style switch). Frame the pinned stages inside the chrome — the
         // battery pill and style switch on top, the control column on the
         // right, the search sheet below — with room for a pill above each
-        // point. With no pins it stays on the venue centre.
+        // point. With no pins it frames the grounds from real-world sources
+        // (_groundsLngLats), never the configured centre alone (#313 item 8).
         const home = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: 0 };
-        if (stages.length >= 2) {
+        const grounds = stages.length >= 2 ? [] : _groundsLngLats(FESTIVAL_CONFIG);
+        if (stages.length >= 2 || grounds.length >= 2) {
           const b = new maplibregl.LngLatBounds();
-          stages.forEach((s) => { const { lat, lng } = mapToGps(s.x, s.y); b.extend([lng, lat]); });
+          if (stages.length >= 2) stages.forEach((s) => { const { lat, lng } = mapToGps(s.x, s.y); b.extend([lng, lat]); });
+          else grounds.forEach((ll) => b.extend(ll));
           const box = containerRef.current?.getBoundingClientRect();
           // Sides leave half a pill's width (~90 px) so an edge stage's name fits.
           const pad = { top: 150, bottom: 150, left: 95, right: 105 };
@@ -5306,7 +5365,7 @@ function RealMap({
         if (FESTIVAL_CONFIG.venue?.festivalBounds) {
           const fb = FESTIVAL_CONFIG.venue.festivalBounds;
           const lim = new maplibregl.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
-          if (stages.length >= 2) lim.extend(map.getBounds());
+          lim.extend(map.getBounds());
           map.setMaxBounds(lim);
         }
         // Home is the camera as placed, so Reset (and "at home") match it exactly.
@@ -5377,6 +5436,7 @@ function RealMap({
         avWrap.appendChild(halo);
         avWrap.appendChild(avDot);
         const avLatLng = _lngLatOf(avatarRef.current);
+        _showYou(avWrap, avatarRef.current);
         avatarMarkerRef.current = new maplibregl.Marker({ element: avWrap })
           .setLngLat([avLatLng.lng, avLatLng.lat])
           .addTo(map);
@@ -5456,6 +5516,7 @@ function RealMap({
     if (!loaded || !avatarMarkerRef.current) return;
     const { lat, lng } = _lngLatOf(avatar);
     avatarMarkerRef.current.setLngLat([lng, lat]);
+    _showYou(avatarMarkerRef.current.getElement(), avatar);
   }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng]);
 
   // Crew friend markers — Instagram-style avatar circles. Reconcile diffs on
@@ -5468,9 +5529,12 @@ function RealMap({
     const seenIds = new Set();
 
     crewFriends.forEach(f => {
+      // A friend sharing only a stage is that stage's poster x/y on an
+      // unchecked festival: no marker (#313 item 7). Not seen → removed below.
+      const ll = _realMapTarget(f);
+      if (!ll) return;
       seenIds.add(f.id);
-      const { lat, lng } = _lngLatOf(f);
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      const { lat, lng } = ll;
       const seen = formatLastSeen(f.ts);
       const initial = (f.name?.[0] || "?").toUpperCase();
       // Signature changes when display-affecting fields change — avoid
@@ -5564,8 +5628,12 @@ function RealMap({
       }
       return;
     }
-    const { lat, lng } = _lngLatOf(meetTarget);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    const ll = _realMapTarget(meetTarget);
+    if (!ll) {
+      if (meetMarkerRef.current) { try { meetMarkerRef.current.remove(); } catch {} meetMarkerRef.current = null; }
+      return;
+    }
+    const { lat, lng } = ll;
     if (!meetMarkerRef.current) {
       const wrap = document.createElement("div");
       wrap.style.cssText = "position:relative;width:22px;height:22px;pointer-events:none;";
@@ -5585,7 +5653,7 @@ function RealMap({
     } else {
       meetMarkerRef.current.setLngLat([lng, lat]);
     }
-  }, [loaded, meetTarget?.x, meetTarget?.y]);
+  }, [loaded, meetTarget?.x, meetTarget?.y, meetTarget?.gps?.lat, meetTarget?.gps?.lng]);
 
   // Saved-set gold ★ markers — small star DOM pin floating above each
   // stage pillar whose lineup has an upcoming saved set tonight. Same
@@ -5686,8 +5754,14 @@ function RealMap({
       src.setData({ type: "Feature", geometry: { type: "LineString", coordinates: [] } });
       return;
     }
-    const a = _lngLatOf(avatar);
-    const t = _lngLatOf(target);
+    // Both ends must be placeable: a poster-derived target, or the demo dot
+    // on an unchecked festival, draws no route (#313 item 7).
+    const a = _realMapTarget(avatar);
+    const t = _realMapTarget(target);
+    if (!a || !t) {
+      src.setData({ type: "Feature", geometry: { type: "LineString", coordinates: [] } });
+      return;
+    }
     src.setData({
       type: "Feature",
       geometry: { type: "LineString", coordinates: [[a.lng, a.lat], [t.lng, t.lat]] },
@@ -6893,6 +6967,25 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
 }
 
 function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, meetTarget, friends, meetGroup = [], avatar, onClose, onCancelMeet, onOpenArtist, onGoHere, stageSaved, onToggleSave, state, setState }) {
+  // A target this map cannot place (#313 item 7): the words only. No ETA, no
+  // routing label, no "Unsurveyed" cell, because there is no target to measure.
+  if (meetMode && meetTarget && meetTarget.textOnly) {
+    const who = meetGroup.map(id => friends.find(fr => fr.id === id)?.name).filter(Boolean);
+    return (
+      <div data-meet-text-only="" style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="duo-label duo-acc">Meeting</div>
+            <div className="duo-headline duo-name" style={{ marginTop: 2 }}>{meetTarget.label}</div>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 4 }}>
+              {who.length ? `You + ${who.join(" + ")} · ` : ""}Stage positions are pending on this map, so there is no pin or route. Meet by name.
+            </div>
+          </div>
+          <button onClick={onCancelMeet} className="duo-chip"><span>End</span></button>
+        </div>
+      </div>
+    );
+  }
   if (meetMode && meetTarget) {
     const groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     const youDist = Math.sqrt((meetTarget.x-avatar.x)**2 + (meetTarget.y-avatar.y)**2);
@@ -7109,10 +7202,15 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
 
       {/* Go here (route + live ETA) · Peek · Save. */}
       <div style={{ display: "flex", gap: 8, padding: "10px 16px 0" }}>
-        <button onClick={() => onGoHere?.(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-          Go here
-        </button>
+        {onGoHere ? (
+          <button onClick={() => onGoHere(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            Go here
+          </button>
+        ) : (
+          // No route to a stage this map cannot place (#313 item 7).
+          <div data-stage-no-route="" className="duo-data-s duo-ink2" style={{ flex: 2, minHeight: 48, display: "flex", alignItems: "center" }}>Position pending · no route</div>
+        )}
         <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="duo-btn" style={{
           flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
           background: peek ? "var(--acc-14)" : "var(--s3)", color: peek ? "var(--acc-ink)" : "var(--ink)",
@@ -7589,5 +7687,5 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 Object.assign(window, {
   MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
   geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
-  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES,
+  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
 });

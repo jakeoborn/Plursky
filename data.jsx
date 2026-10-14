@@ -794,7 +794,13 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "07:20", set: "19:08" },
         3: { rise: "07:21", set: "19:07" },
       },
-      gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
+      // Centre = the centroid of the three satellite-measured anchors below
+      // (amex, miller, tmobile; Esri Wayback 2024-11-18 at z19), so the
+      // on-site radius covers every measured stage: 431 m to the farthest
+      // (amex). The old centre (30.2630, -97.7730) sat south-west of the
+      // grounds, 616–1049 m from them, so a real fix at AMEX or Miller Lite
+      // read OFF-SITE and the real map opened off the park (#313 item 8, #314).
+      gps: { lat: 30.268090, lng: -97.767611, onSiteRadiusMi: 0.4 },
       // ⚠ GPS anchors for Zilker Park — RE-SURVEYED 2026-09-06.
       //
       // The old trio (amex/miller/beatbox) was read off the ACL patron map

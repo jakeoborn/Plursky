@@ -23,6 +23,15 @@
 //      opacity follows the tier; the posture label names it.
 //   4. The real map is on unless the user chose the art map ("0"), or it
 //      failed this session; a failure never erases the user's own choice.
+//   5. (#313 item 7) No TARGET from poster art on the real map: every stage's
+//      x/y on an unchecked festival gives _realMapTarget() null (no meet pin,
+//      crew marker or route end), and _meetTargetFor() turns a stage / midpoint
+//      / rally without lat/lng into a text-only target with no position. Raw
+//      GPS still places; checked festivals still place their stages.
+//   6. (#313 item 8) The no-pin opening camera frames the grounds from
+//      real-world sources (_groundsLngLats), and every festival's centre +
+//      on-site radius covers its measured anchors (ACL's did not, #314).
+//   f73: the demo "you" dot shows only where checked geometry places it.
 //
 // Runs the REAL compiled code (build/data.js + build/map.js) in a vm, plus
 // source checks on MapScreen, each proven live by a mutation of the compiled
@@ -67,7 +76,8 @@ function load(fid, mapSrc = MAP) {
   return vm.runInContext(`({ id: FESTIVAL_CONFIG.id, DS: _DATA_SETS, tier: POSTER_TIER, affine: MAP_AFFINE,
     realStages: REAL_MAP_STAGES, placed: PLACED_STAGES, posterTierFor, _solveMapAffine, geometryVerifiedFor,
     placesChecked: REAL_MAP_PLACES_CHECKED, realAmenities: REAL_MAP_AMENITIES, amenities: AMENITIES,
-    unchecked: POSTER_OPACITY_UNCHECKED })`, ctx);
+    unchecked: POSTER_OPACITY_UNCHECKED, cfg: FESTIVAL_CONFIG, stagesAll: STAGES,
+    _realMapTarget, _meetTargetFor, _groundsLngLats, _showYou, distMiles })`, ctx);
 }
 
 // Today's answer. A festival moves up ONLY by measured anchors (first-party
@@ -133,15 +143,94 @@ const SRC = [
   // MapLibre cannot decode SVG (createImageBitmap); six festivals ship SVG art.
   ["an SVG map is rasterised before MapLibre sees it", /toDataURL\("image\/png"\)/],
   ["the image source loads the rasterised URL", /(?:const|var) src = dims\.url \|\| FESTIVAL_CONFIG\.mapImage/],
+  ["both maps get only a placeable meet pin", s => (s.match(/meetTarget:\s*meetPin/g) || []).length === 2],
+  ["every meet target is built through _meetTargetFor (only the drawn map's own click sets one raw)", s => (s.match(/setMeetTarget\(\{/g) || []).length === 1 && !/setMeetTarget\(target\)/.test(s) && /setMeet = t => setMeetTarget\(_meetTargetFor\(t, useRealMap\)\)/.test(s)],
+  ["GO HERE only where the map can place the stage", /onGoHere:\s*canRouteToStage \? goToStage : null/],
+  ["a text-only target is never rallied", /meetPin && isSharing/],
   ["a failed map overlay is dropped, not an error card", /e\.sourceId === "official-map"\)[\s\S]{0,240}removeSource\("official-map"\)[\s\S]{0,40}return;/],
 ];
 function source(s) {
   return SRC.filter(([, t]) => !(typeof t === "function" ? t(s) : t.test(s))).map(([n]) => `source: ${n}`);
 }
 
+// 5 + 6: targets and grounds, on the real compiled code.
+function targets(mapSrc = MAP) {
+  const out = [];
+  const T = { lat: 25.7765, lng: -80.1866 };     // a raw fix (Bayfront Park)
+  for (const fid of ["ultra-miami-2026", "acl-2026", "iii-points-2026", "governors-ball-2026"]) {
+    const P = load(fid, mapSrc);
+    if (P.id !== fid) { out.push(`${fid}: loaded ${P.id}`); continue; }
+    // III Points has no stage x/y at all: force a grid point (it would land on the venue centre).
+    let st = P.stagesAll.filter(s => Number.isFinite(s.x) && Number.isFinite(s.y));
+    if (!st.length) st = [{ id: "grid-centre", name: "Main Room", x: 50, y: 50 }];
+    const leaked = st.filter(s => P._realMapTarget({ x: s.x, y: s.y }) || P._realMapTarget({ x: s.x, y: s.y, stageId: s.id, label: s.name }));
+    if (leaked.length) out.push(`${fid}: poster x/y reaches a real-map target (${leaked.map(s => s.id).join(",")})`);
+    if (st[0]) {
+      const m = P._meetTargetFor({ x: st[0].x, y: st[0].y, label: st[0].name, stageId: st[0].id }, true);
+      if (!m || !m.textOnly || "x" in m || "y" in m || m.label !== st[0].name) out.push(`${fid}: meet at a stage is not text-only on the real map (${JSON.stringify(m)})`);
+      const mid = P._meetTargetFor({ x: 50, y: 50, label: "Meet Ava" }, true);
+      if (!mid?.textOnly) out.push(`${fid}: a grid midpoint keeps a position on the real map`);
+      const drawn = P._meetTargetFor({ x: st[0].x, y: st[0].y, label: st[0].name }, false);
+      if (drawn?.textOnly || drawn?.x !== st[0].x) out.push(`${fid}: the drawn map lost its own art target`);
+    }
+    const raw = P._realMapTarget({ x: 1, y: 1, gps: T });
+    if (!raw || raw.lat !== T.lat || raw.lng !== T.lng) out.push(`${fid}: raw GPS no longer places (${JSON.stringify(raw)})`);
+    const rally = P._meetTargetFor({ x: 1, y: 1, gps: T, label: "Rally" }, true);
+    if (rally?.textOnly) out.push(`${fid}: a rally that carries lat/lng was stripped`);
+    if (P._realMapTarget({ x: 50, y: 50, gps: { lat: 91, lng: 0 } })) out.push(`${fid}: an out-of-range fix placed`);
+  }
+  // Positive control: checked geometry still places stages (else the above is vacuous).
+  for (const fid of ["summerfest-2026", "lollapalooza-2026"]) {
+    const P = load(fid, mapSrc);
+    const st = P.stagesAll.filter(s => Number.isFinite(s.x));
+    const placed = st.filter(s => P._realMapTarget({ x: s.x, y: s.y }));
+    if (!P.placesChecked || placed.length !== st.length || !st.length) out.push(`${fid}: control — checked stages place ${placed.length}/${st.length}`);
+    const m = P._meetTargetFor({ x: st[0].x, y: st[0].y, label: st[0].name }, true);
+    if (m?.textOnly) out.push(`${fid}: control — a checked stage meet went text-only`);
+  }
+  // 6: grounds. ACL frames its three surveyed anchors, and its configured
+  // centre lies outside them (what made the old camera open off the grounds).
+  {
+    const P = load("acl-2026", mapSrc);
+    const g = P._groundsLngLats(P.cfg);
+    if (g.length < 3) out.push(`acl-2026: grounds from ${g.length} point(s), expected its 3 anchors`);
+    const inBox = (lng, lat) => g.length && lat >= Math.min(...g.map(p => p[1])) && lat <= Math.max(...g.map(p => p[1])) && lng >= Math.min(...g.map(p => p[0])) && lng <= Math.max(...g.map(p => p[0]));
+    // #314: the centre was 616–1049 m off its grounds; it is now their measured centroid.
+    if (!inBox(P.cfg.gps.lng, P.cfg.gps.lat)) out.push(`acl-2026: configured centre ${P.cfg.gps.lat},${P.cfg.gps.lng} is off the grounds`);
+  }
+  for (const fid of ["iii-points-2026", "ultra-miami-2026"]) {
+    const P = load(fid, mapSrc);
+    if (P._groundsLngLats(P.cfg).length < 2) out.push(`${fid}: no grounds to frame`);
+  }
+  // 8 (root cause, #314): every festival's on-site radius covers every
+  // measured anchor, so a real fix on a measured stage reads on-site.
+  {
+    const P0 = load("acl-2026", mapSrc);
+    for (const [fid, ds] of Object.entries(P0.DS)) {
+      const c = ds.FESTIVAL_CONFIG || ds.config || ds, g = c && c.gps;
+      if (!g) continue;
+      const far = (c.gpsAnchors || []).filter(a => Number.isFinite(a.lat) && P0.distMiles(g.lat, g.lng, a.lat, a.lng) > (g.onSiteRadiusMi || 0));
+      if (far.length) out.push(`${fid}: anchors outside the on-site radius: ${far.map(a => a.stageId).join(",")}`);
+    }
+  }
+  // f73 ruling: the demo dot shows only where checked geometry places it.
+  {
+    const el = () => { const e = { style: {}, attrs: {}, setAttribute(k, v) { this.attrs[k] = v; } }; return e; };
+    const U = load("ultra-miami-2026", mapSrc), Sf = load("summerfest-2026", mapSrc);
+    const a = el(); U._showYou(a, { x: 40, y: 60 });
+    if (a.style.display !== "none") out.push("ultra: the demo dot shows at a poster position");
+    const b = el(); U._showYou(b, { x: 40, y: 60, live: true, gps: { lat: 25.7765, lng: -80.1866 } });
+    if (b.style.display === "none") out.push("ultra: a live fix is hidden");
+    const c = el(); Sf._showYou(c, { x: 40, y: 60 });
+    if (c.style.display === "none") out.push("summerfest: control — the demo dot hides on checked geometry");
+  }
+  return out;
+}
+
 let checks = 0, failed = 0;
 const report = (fails, label) => { checks++; if (fails.length) { failed++; console.log(`  ✗  ${label}:\n     ` + fails.join("\n     ")); } };
 report(fleet(MAP), "fleet table");
+report(targets(MAP), "targets and grounds (#313 items 7, 8)");
 for (const [n] of SRC) { checks++; }
 const srcFails = source(MAP);
 if (srcFails.length) { failed++; console.log("  ✗  " + srcFails.join("\n  ✗  ")); }
@@ -164,6 +253,13 @@ const MUT = [
   ["opt-in default restored", "localStorage.getItem(\"plursky_use_realmap\") !== \"0\"", "localStorage.getItem(\"plursky_use_realmap\") === \"1\"", "src"],
   ["landmarks on unchecked anchors", "SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ?", "SUB_LANDMARKS = MAP_AFFINE ?", "src"],
   ["SVG handed to MapLibre raw", "src = dims.url || FESTIVAL_CONFIG.mapImage", "src = FESTIVAL_CONFIG.mapImage", "src"],
+  ["poster x/y reaches a real-map target", "if (!REAL_MAP_PLACES_CHECKED || !Number.isFinite(p.x)", "if (!Number.isFinite(p.x)", "targets"],
+  ["meet target keeps its art position", "if (!t || t.textOnly || !onRealMap || _realMapTarget(t)) return t;", "return t;", "targets"],
+  ["grounds ignore the anchors", "return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];", "return [];", "targets"],
+  ["demo dot always shown", "el.style.display = shown ? \"\" : \"none\";", "el.style.display = \"\";", "targets"],
+  ["maps draw a text-only target", "meetTarget: meetPin", "meetTarget: meetTarget", "src"],
+  ["GO HERE on every map", "canRouteToStage ? goToStage : null", "goToStage", "src"],
+  ["stage meet built raw", "setMeet({", "setMeetTarget({", "src"],
   ["overlay failure becomes the error card", "e.sourceId === \"official-map\"", "e.sourceId === \"never\"", "src"],
 ];
 let caught = 0;
@@ -171,7 +267,7 @@ for (const [name, a, b, kind] of MUT) {
   checks++;
   if (!MAP.includes(a)) { failed++; console.log(`  ✗  mutation "${name}" did not apply (needle missing from build/map.js)`); continue; }
   const m = MAP.split(a).join(b);
-  const red = kind === "fleet" ? fleet(m).length > 0 : source(m).length > 0;
+  const red = kind === "fleet" ? fleet(m).length > 0 : kind === "targets" ? targets(m).length > 0 : source(m).length > 0;
   if (red) caught++; else { failed++; console.log(`  ✗  mutation "${name}" was NOT caught`); }
 }
 if (failed) { console.log(`✗ poster over real map: ${failed} of ${checks} checks failed`); process.exit(1); }
