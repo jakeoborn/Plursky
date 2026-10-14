@@ -527,7 +527,7 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
   );
 }
 
-function ShareArtistButton({ artist }) {
+function ShareArtistButton({ artist, backed }) {
   const [copied, setCopied] = React.useState(false);
   const handleShare = () => {
     const url = `${window.location.origin}${window.location.pathname}?artist=${artist.id}`;
@@ -543,7 +543,7 @@ function ShareArtistButton({ artist }) {
   return (
     <button onClick={handleShare} aria-label={copied ? "Link copied" : "Share artist"} style={{
       width: 32, height: 32, borderRadius: 32,
-      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)", cursor: "pointer", fontSize: 14,
@@ -888,7 +888,7 @@ function PyroStarburst({ color }) {
 
 // "CC-BY-SA-3.0" → "CC BY-SA 3.0": the ledger's SPDX-style id, as printed.
 function _licenseLabel(id) {
-  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
 }
 const _creditLink = { color: "inherit", textDecoration: "underline", textUnderlineOffset: 2 };
 
@@ -1137,12 +1137,18 @@ function ArtistScreen({ state, setState }) {
   const spotifyArtistUrl = spotifyArtistId
     ? "https://open.spotify.com/artist/" + spotifyArtistId
     : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
-  const heroControls = (
+  // `backed`: the controls sit on art (the full-bleed hero), so each carries its
+  // own shade backing. Over a bright photo the old ink-tinted glass read 2.4 to
+  // 4.1:1 (Instinct's round-8 sample on the ledger portraits); a shade at 0.85
+  // holds white ink above 4.5:1 over any pixels, in both modes (.media-scope
+  // keeps the ink white; --shade is black in Dark, a deep violet in Light). On
+  // the Spotify hero the controls sit on paper and keep the light glass.
+  const heroControls = (backed) => (
     <>
-      <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" style={{
+      <button onClick={() => window._popNav ? window._popNav() : setState({ ...state, artist: null })} aria-label="Back" data-artist-hero-label="back" style={{
         position: "absolute", top: 14, left: 14, zIndex: 10,
         width: 38, height: 38, borderRadius: 38,
-        background: "rgba(var(--ink-rgb),0.18)", backdropFilter: "blur(8px)",
+        background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)", backdropFilter: "blur(8px)",
         border: "1px solid rgba(var(--ink-rgb),0.3)",
         color: "var(--ink)", cursor: "pointer", fontSize: 18,
         display: "flex", alignItems: "center", justifyContent: "center",
@@ -1154,7 +1160,7 @@ function ArtistScreen({ state, setState }) {
         {connected && preview !== "none" && (
           <button onClick={handlePreview} style={{
             display: "inline-flex", alignItems: "center", gap: 5,
-            background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
+            background: playing ? "var(--ember)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)",
             backdropFilter: "blur(8px)",
             border: "1px solid rgba(var(--ink-rgb),0.3)",
             color: "var(--ink)", cursor: "pointer",
@@ -1172,26 +1178,37 @@ function ArtistScreen({ state, setState }) {
             PREVIEW
           </button>
         )}
-        <Pill tone="outline" style={{ background: "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)", whiteSpace: "normal", minWidth: 0, textAlign: "right" }}>
+        <Pill tone="outline" style={{ background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)", color: "var(--ink)", backdropFilter: "blur(8px)", borderColor: "rgba(var(--ink-rgb),0.3)", whiteSpace: "normal", minWidth: 0, textAlign: "right" }}>
           {/* The time joins only when there is one: fmt12("") is an em dash, and
               "DAY TBA · —" reads as a time that exists. One text node, so the
               gate can assert the exact string. */}
-          <span data-artist-day-pill>
+          <span data-artist-day-pill data-artist-hero-label="day">
             {[a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
           </span>
         </Pill>
-        <ShareArtistButton artist={a} />
+        <ShareArtistButton artist={a} backed={backed} />
       </div>
     </>
   );
   const heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
-  const heroNameInner = (
+  // `backed`: the eyebrow sits on art (the full-bleed hero), so it carries
+  // its own backing. The Chainsmokers' sunset sky left the violet stage label
+  // unreadable at 320; the backing sits behind the label, not in the scrim,
+  // so it holds over any photo without darkening the photo itself. On the
+  // Spotify hero the eyebrow is on paper and needs none.
+  const heroNameInner = (backed) => (
     <>
       {/* 12px clears the name's cap height: at lineHeight 0.88 a two-line
           name (Amyl And The Sniffers at 320) put its first line into the
           eyebrow at 8px. A placeholder genre ("—") prints nothing. */}
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-        {heroGenre && <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
+      <div data-artist-hero-eyebrow style={{
+        display: backed ? "inline-flex" : "flex", alignItems: "center", gap: 8, marginBottom: 12,
+        ...(backed ? {
+          background: "rgba(var(--shade-rgb),0.85)", backdropFilter: "blur(8px)",
+          borderRadius: 999, padding: "4px 9px",
+        } : null),
+      }}>
+        {heroGenre && <div className="mono" data-artist-hero-label="genre" style={{ fontSize: 10, letterSpacing: 1.6, opacity: 0.85, fontWeight: 600 }}>
           {heroGenre.toUpperCase()}
         </div>}
         {heroGenre && stage && (
@@ -1201,20 +1218,19 @@ function ArtistScreen({ state, setState }) {
           }}/>
         )}
         {stage && (
-          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
+          <div className="mono" data-artist-hero-label="stage" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--signal-ink)", fontWeight: 700 }}>
             {stage.name.toUpperCase()}
           </div>
         )}
       </div>
-      <div className="serif" style={{
-        fontSize: isB2B ? 34 : 52, lineHeight: 0.88, letterSpacing: -1.5,
-        textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)",
+      <div className="serif" data-artist-hero-name data-artist-hero-label="name" style={{
+        fontSize: isB2B ? 32 : 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: "-0.05em",
       }}>{a.name}</div>
     </>
   );
 
   return (
-    <Screen bg="var(--paper)">
+    <Screen bg="var(--paper)" scope="artist">
       <ScrollBody ref={scrollBodyRef} onScroll={(e) => {
         const y = e.currentTarget.scrollTop;
         setHeroParallax(Math.min(60, y * 0.3));
@@ -1233,7 +1249,7 @@ function ArtistScreen({ state, setState }) {
           position: "relative", color: "var(--ink)", background: "var(--paper)",
           padding: "64px 18px 16px",
         }}>
-          {heroControls}
+          {heroControls(false)}
           <figure style={{ margin: 0, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <img src={heroPhoto} alt={activeName + " (photo from Spotify)"} data-spotify-image="1" style={{
               display: "block", width: "min(60vw, 236px)", maxWidth: "100%", height: "auto", borderRadius: 4,
@@ -1246,11 +1262,11 @@ function ArtistScreen({ state, setState }) {
             </a>
           </figure>
           <div style={{ marginTop: 6 }}>
-            {heroNameInner}
+            {heroNameInner(false)}
           </div>
         </div>
       ) : (
-      <div className="media-scope" style={{
+      <div className="media-scope" data-artist-hero={heroPhoto ? "photo" : "gradient"} style={{
         height: 300, position: "relative",
         overflow: "hidden",
         color: "var(--ink)",
@@ -1296,7 +1312,7 @@ function ArtistScreen({ state, setState }) {
             ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)`
             : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`,
         }} />
-        {heroControls}
+        {heroControls(true)}
 
         {/* zIndex 3 puts the name/genre ABOVE the scrim. Without it the text
             sat UNDER the gradient (scrim is zIndex 2) and every attempt to
@@ -1304,7 +1320,7 @@ function ArtistScreen({ state, setState }) {
             same amount — proven by painting the scrim solid green and
             watching the name go green with it. */}
         <div style={{ position: "absolute", bottom: 16, left: 18, right: 18, zIndex: 3 }}>
-          {heroNameInner}
+          {heroNameInner(true)}
         </div>
       </div>
       )}
@@ -1334,7 +1350,7 @@ function ArtistScreen({ state, setState }) {
               background: "transparent", border: "none",
               borderBottom: `2px solid ${activeB2B === i ? ("var(--signal)") : "transparent"}`,
               cursor: "pointer",
-              font: "500 11px/1.273 var(--f-display)", letterSpacing: ".12em", minHeight: 44,
+              font: "500 11px/1.273 var(--f-ui)", letterSpacing: ".12em", minHeight: 44,
               color: activeB2B === i ? ("var(--signal-ink)") : "var(--ink-3)",
               fontWeight: activeB2B === i ? 700 : 400,
               transition: "color 0.15s, border-color 0.15s",
@@ -1373,7 +1389,7 @@ function ArtistScreen({ state, setState }) {
               <div className="duo-headline" style={{ marginTop: 8 }}>{stage.name}</div>
               {a.day == null || !a.start
                 ? <div className="duo-data-s duo-ink2" style={{ marginTop: 6 }}>{a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED"}</div>
-                : <div className="duo-clock" style={{ fontSize: "clamp(20px, 7vw, 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
+                : <div className="duo-clock" style={{ fontSize: "clamp(22px, calc(22px + (100vw - 320px) * 0.0857), 28px)", marginTop: 6 }}>{fmt12(a.start)}<span className="duo-ink3" style={{ fontSize: "0.65em" }}> → </span>{fmt12(a.end)}</div>}
               {live && <div className="duo-track" style={{ marginTop: 12 }}><b style={{ width: `${pct}%` }} /></div>}
               {saveCount != null && saveCount >= 2 && (
                 <div className="duo-data-s duo-acc" style={{ marginTop: 10 }}>{saveCount} FANS GOING</div>
@@ -2339,7 +2355,7 @@ function ArtistScreen({ state, setState }) {
             </div>
             {/* The card is inverted (ink ground), so the status line takes the
                 card's own text colour; --ink here drew it invisible. */}
-            <div className="mono" data-preview-status style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--paper)", opacity: 0.6, marginTop: 3 }}>
+            <div className="mono" data-preview-status style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--paper)", opacity: 0.72, marginTop: 3 }}>
               {!connected     ? "CONNECT SPOTIFY TO PREVIEW"
                : preview === "none"    ? "NO PREVIEW AVAILABLE"
                : preview === "loading" ? "LOADING…"

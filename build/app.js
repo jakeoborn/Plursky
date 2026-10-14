@@ -1317,6 +1317,7 @@ function App() {
   return React.createElement(IOSDevice, {
     dark: statusBarStyle === "light"
   }, React.createElement("div", {
+    className: state.tab === "home" && !state.artist ? "np" : undefined,
     style: {
       position: "absolute",
       inset: 0,
@@ -1451,7 +1452,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v431"
+        version: "v432"
       }));
     } catch {}
   }
@@ -1503,7 +1504,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v431"))
+      }, "Plursky · v432"))
     );
   }
 }

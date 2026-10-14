@@ -30,6 +30,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 
@@ -81,6 +82,7 @@ try {
 
   const newCtx = async (width, seed) => {
     const ctx = await browser.newContext({ viewport: { width, height: 800 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.addInitScript(({ FEST, seed }) => {
       localStorage.setItem('onboarded', 'v1');
       localStorage.setItem('active_festival_id', FEST);
@@ -329,15 +331,19 @@ try {
     const page = await ctx.newPage(); await boot(page);
     const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name)); return { id: a.id, name: a.name }; });
     const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
-    // The first search answers with an image; later ones find nothing, so a
-    // refetch after expiry cannot put the old image back.
-    // Only THIS artist's first search gets the image: other faces on the page
-    // (the stage-night neighbours) search too, and must not take it.
-    let served = 0, hit = false;
+    // Every search for THIS artist answers with the image until the clock
+    // passes the expiry below; after that every search finds nothing, so a
+    // refetch cannot put the old image back. Other faces on the page (the
+    // stage-night neighbours) search too and never get it. Two consumers
+    // search for the artist: the hero's own fetch and the strip's photo
+    // queue (useArtistPhoto for the artist's own face), and which asks
+    // first depends on which neighbours already hold a ledger portrait, so
+    // the stub must not assume the hero's search is the first one.
+    let served = 0, hit = false, expired = false;
     await ctx.route(/api\.spotify\.com\/v1\/search/, r => {
       served++;
       const q = (new URL(r.request().url()).searchParams.get('q') || '').toLowerCase();
-      const mine = !hit && q.includes(artist.name.toLowerCase());
+      const mine = !expired && q.includes(artist.name.toLowerCase());
       if (mine) hit = true;
       return r.fulfill({ status: 200, contentType: 'application/json',
         body: JSON.stringify(mine ? { artists: { items: [{ name: artist.name, id: 'FETCHED1', images: [{ url: img }] }] } } : {}) });
@@ -348,6 +354,7 @@ try {
     await page.clock.runFor(2000);
     const before = await page.evaluate(() => !!document.querySelector('[data-hero="spotify"]'));
     check(before && hit, `[expiry, fetched] control: the fetched Spotify image was not showing (searches served: ${served}, this artist's: ${hit})`);
+    expired = true;
     await page.clock.fastForward(DAY + 60000);
     await page.clock.runFor(1000);
     const after = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length }));

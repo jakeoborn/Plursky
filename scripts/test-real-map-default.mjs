@@ -35,6 +35,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -68,6 +69,7 @@ try {
   for (const C of CASES.filter(c => !process.env.ONLY || c.fid === process.env.ONLY)) {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: C.w || 393, height: 852 },
       ...(C.fix ? { geolocation: { latitude: C.fix.latitude, longitude: C.fix.longitude, accuracy: 8 }, permissions: ["geolocation"] } : {}) });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(C.at) });
     // Nothing pins the map mode: this is the default a new user gets.
     await ctx.addInitScript(fid => {
@@ -97,6 +99,7 @@ try {
     if (!up) { await ctx.close(); continue; }
     if (C.overlay !== "none") await page.waitForFunction(() => !!window.__plurskyRealMap.getLayer("official-map"), null, { timeout: 20000 }).catch(() => {});
     await page.waitForTimeout(1200);
+    await page.clock.runFor(100);   // the opening declutter frame runs on the fake clock too
     const r = await page.evaluate(() => {
       const map = window.__plurskyRealMap, stages = (window.STAGES || []).filter(s => typeof s.x === "number");
       const box = el => { const b = el.getBoundingClientRect(); return { l: b.left, t: b.top, r: b.right, b: b.bottom }; };
@@ -220,8 +223,19 @@ try {
     }
     // 2. zoom column drives the real map
     const z = () => page.evaluate(() => window.__plurskyRealMap.getZoom());
+    // A camera move animates on requestAnimationFrame, and this context runs
+    // on the FAKE clock (ctx.clock.install above): the page's rAF fires only
+    // when Playwright's clock ticks, which lags real time when this Mac is
+    // loaded. A real-time wait after the move then reads the pills before the
+    // declutter frame the last move queued has run (verify on this Mac:
+    // Outside Lands 4 → 4, Summerfest 6 → 6, both green alone; a calm probe
+    // showed the count still moving only when the fake clock advanced). So:
+    // wait until the map says it has stopped (bounded, so a map that never
+    // settles still fails), then advance the fake clock itself so the queued
+    // frame runs, whatever the wall clock is doing.
+    const settled = async () => { await page.waitForFunction(() => !window.__plurskyRealMap.isMoving(), null, { timeout: 15000 }).catch(() => {}); await page.clock.runFor(100); };
     const z0 = await z();
-    await page.click('button[aria-label="Zoom in"]'); await page.waitForTimeout(900);
+    await page.click('button[aria-label="Zoom in"]'); await settled();
     const z1 = await z();
     check(z1 > z0 + 0.5, `${tag}: + zooms the real map (${z0.toFixed(2)} → ${z1.toFixed(2)})`);
     if (C.pins) {
@@ -231,11 +245,11 @@ try {
     const resetShown = await page.locator('button[aria-label="Reset zoom"]').count();
     check(resetShown === 1, `${tag}: Reset appears once the camera moved`);
     // Two steps out (each animates, so wait between): one past the opening zoom.
-    await page.click('button[aria-label="Zoom out"]'); await page.waitForTimeout(900);
-    await page.click('button[aria-label="Zoom out"]'); await page.waitForTimeout(900);
+    await page.click('button[aria-label="Zoom out"]'); await settled();
+    await page.click('button[aria-label="Zoom out"]'); await settled();
     const z2 = await z();
     check(z2 < z1 - 0.5, `${tag}: − zooms the real map out (${z1.toFixed(2)} → ${z2.toFixed(2)})`);
-    if (await page.locator('button[aria-label="Reset zoom"]').count()) { await page.click('button[aria-label="Reset zoom"]'); await page.waitForTimeout(1200); }
+    if (await page.locator('button[aria-label="Reset zoom"]').count()) { await page.click('button[aria-label="Reset zoom"]'); await settled(); }
     else check(false, `${tag}: Reset missing after zooming out past the opening view`);
     const z3 = await z();
     check(Math.abs(z3 - z0) < 0.06, `${tag}: Reset returns to the opening view (${z0.toFixed(2)} vs ${z3.toFixed(2)})`);

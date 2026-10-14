@@ -23,6 +23,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 import { tokenPairFailures, stageFillFailures } from './lib/token-pairs.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
@@ -109,6 +110,7 @@ try {
   const open = async ({ scheme = 'dark', pick = null, query = 'tab=home', extra = {}, ready = '#root > *', noSignal = false, width = 393, fid = FID, font = null, go = null, photo = null, tape = null, net = null } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: scheme });
     if (tape) await wireNet(ctx, tape, net);
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID, pick, extra }) => {
       if (sessionStorage.getItem('__seeded')) return;   // seed once: a reload must see what the app stored
@@ -165,11 +167,14 @@ try {
   const modeOf = (page) => page.evaluate(() => document.documentElement.getAttribute('data-mode'));
   // What the mounted screen actually shows, checked against what it claims.
   const isScreen = (page, is) => page.evaluate((is) => {
-    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.trim());
+    // A heading set as stacked poster words (Today's print) reads back with
+    // line breaks and in caps; it is still the festival's name.
+    const norm = (t) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+    const h1 = [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => norm(h.innerText));
     const tab = (document.querySelector('[aria-current=page]')?.innerText || '').trim();
     const artist = is.artist ? (window.ARTISTS || []).find(a => a.id === is.artist)?.name : null;
     const photo = [...document.querySelectorAll('body *')].some(e => /url\("?blob:/.test(getComputedStyle(e).backgroundImage));
-    const ok = (!is.h1 || h1.includes(is.h1)) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
+    const ok = (!is.h1 || h1.includes(norm(is.h1))) && (!is.tab || tab === is.tab) && (!is.artist || (!!artist && document.body.innerText.includes(artist)))
       && (!is.text || document.body.innerText.includes(is.text)) && (!is.photo || photo);
     return { ok, saw: `h1 ${JSON.stringify(h1)}, tab "${tab}"${is.text ? `, ${is.text} ${document.body.innerText.includes(is.text) ? 'shown' : 'missing'}` : ''}${is.photo ? `, photo ${photo ? 'painted' : 'missing'}` : ''}` };
   }, is);
@@ -227,9 +232,19 @@ try {
         mediaBoxes.push({ t, color: cs.color, op, large: px >= 24 || (px >= 18.66 && wt >= 700), x: Math.max(0, r.left), y: Math.max(0, r.top), w: Math.min(W, r.right) - Math.max(0, r.left), h: Math.min(H, r.bottom) - Math.max(0, r.top) });
         continue;
       }
+      // What is painted under the text, in real paint order (elementsFromPoint):
+      // its ancestors AND anything else beneath it, from the first opaque fill
+      // up. Today's Step 3 ticket paints its tilted plate as a sibling under
+      // the row (the hit area stays unrotated), and the ancestor walk alone read
+      // ink on ink there. The ancestor walk above still owns opacity and media.
+      const under = [];
+      { const own = parse(cs.backgroundColor); if (own && own.a > 0) under.push(own); }
+      { const stack = document.elementsFromPoint(x, y), i0 = stack.findIndex(u => u === el || el.contains(u));
+        for (const u of stack.slice(Math.max(0, i0) + 1)) { if (el.contains(u)) continue; const ub = parse(getComputedStyle(u).backgroundColor); if (ub && ub.a > 0) { under.push(ub); if (ub.a >= 0.999) break; } } }
       let bg = { r: 255, g: 255, b: 255, a: 1 };
       const root = parse(getComputedStyle(document.documentElement).backgroundColor); if (root && root.a > 0) bg = over(root, bg);
-      for (let i = layers.length - 1; i >= 0; i--) bg = over(layers[i], bg);
+      const fills = under.length ? under : layers;
+      for (let i = fills.length - 1; i >= 0; i--) bg = over(fills[i], bg);
       let fg = parse(cs.color); if (!fg) continue;
       fg = { ...fg, a: fg.a * op };
       if (fg.a < 0.02) continue;
@@ -540,6 +555,7 @@ try {
   // (seen on the #275 Simulator: iOS Light, System picked, app stayed Dark).
   {
     const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce', colorScheme: 'dark' });
+    await wireVendor(ctx);
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID }) => {
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1');
@@ -703,6 +719,8 @@ try {
   // at the real size, in whatever face loaded, so it fits at 12px everywhere.
   for (const pick of ['dark', 'light']) {
     const { ctx, page } = await open({ pick, query: 'tab=home', ready: '[data-duo-stages]' });
+    // The board opens folded to the stages that matter; this reads a name on any stage.
+    if (await page.$('[data-duo-stages-toggle][aria-expanded="false"]')) { await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(300); }
     const made = await page.evaluate(() => {
       const el = [...document.querySelectorAll('[data-duo-stages] [data-fit-words], [data-duo-stages] .duo-name')].find(n => n.textContent.trim() === 'Interplanetary Criminal');
       if (!el) return null;

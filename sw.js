@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v431';
+﻿const CACHE      = 'plursky-v432';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v431';
+const APP_VER    = 'v432';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -17,11 +17,20 @@ const LOCAL = [
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png',
-  // The board's label and data faces: offline, a missing one falls back to SF.
-  './fonts/michroma-latin.woff2',
-  './fonts/michroma-latin-ext.woff2',
+  // The board's faces: offline, a missing one falls back to the system stack.
+  './fonts/anton-latin.woff2',
+  './fonts/anton-latin-ext.woff2',
+  './fonts/space-grotesk-latin.woff2',
+  './fonts/space-grotesk-latin-ext.woff2',
+  './fonts/instrument-serif-latin.woff2',
+  './fonts/instrument-serif-latin-ext.woff2',
+  './fonts/instrument-serif-italic-latin.woff2',
+  './fonts/instrument-serif-italic-latin-ext.woff2',
   './fonts/martian-mono-latin.woff2',
   './fonts/martian-mono-latin-ext.woff2',
+  // The print's and the artist screen's face: Sora (OFL), one variable family.
+  './fonts/sora-latin.woff2',
+  './fonts/sora-latin-ext.woff2',
   // Wave-1 festival data modules. Must be cached alongside data.jsx and must
   // load before it — index.html enforces the order; this list only has to make
   // sure they are all present offline. A missing one drops that festival from

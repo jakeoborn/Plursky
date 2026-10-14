@@ -22,6 +22,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -43,6 +44,7 @@ try {
   const measure = async (width, height, { pills = false, geo = null } = {}) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height },
       ...(geo ? { geolocation: { latitude: geo[0], longitude: geo[1], accuracy: 8 }, permissions: ["geolocation"] } : {}) });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
@@ -121,6 +123,7 @@ try {
   // positions come from the image, not from the layout.
   {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 }, hasTouch: true, reducedMotion: "reduce" });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
