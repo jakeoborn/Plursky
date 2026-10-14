@@ -46,7 +46,7 @@ try {
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
     }, FID);
     const page = await ctx.newPage();
     const errors = []; page.on("pageerror", e => errors.push(e.message));
@@ -124,7 +124,7 @@ try {
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
     }, FID);
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=lineup`, { waitUntil: "domcontentloaded" });

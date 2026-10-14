@@ -2395,6 +2395,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3c. Poster over the real map ──────────────────────────────────────
+// The real map is the default; the festival's art shows at full strength only
+// where geometryVerifiedFor() passes, faded and labelled NOT TO SCALE where
+// anchors place it unchecked, and not at all where nothing places it. Stage
+// pins, landmarks and Water/Medical dots only where geometry is checked (#313
+// review: pins off, full stop); SVG art is rasterised for MapLibre; a failed
+// overlay stays off; the zoom column drives the real map. Fleet table pinned.
+{
+  console.log("▸ Poster over real map gate — art strength follows checked alignment");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-poster-over-real-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`poster over real map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b4. Schedule Sync review + overlay ─────────────────────────────────
 // Every committed feed reviews as current; a mutated feed names exactly the
 // changed saved sets, new clashes, moved reminders and cancelled saves; the
@@ -2579,6 +2598,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`map overlay registration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Map: the DEFAULT real map, rendered ──────────────────────────────────
+// The visual map gates above pin the drawn art map, so this is the one that
+// renders what a user opens: pins only where geometry is checked (Summerfest
+// pins; Ultra and III Points read STAGES PENDING), the +/−/Reset column moves
+// the real map, a failed overlay stays off, Summerfest's opening pills never
+// overlap or sit under the style switch, Water/Medical chips show their dots.
+// MapLibre from unpkg (pinned); basemap tiles stubbed.
+{
+  console.log("▸ Real map default — the map a user opens, rendered");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-real-map-default.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`real map default failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
