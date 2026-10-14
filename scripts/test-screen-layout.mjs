@@ -46,7 +46,7 @@ try {
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme, populated }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         if (populated) { localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8'])); localStorage.setItem('plursky_display_name', 'Test Raver'); }
       }, { FID, scheme, populated });
@@ -95,7 +95,7 @@ try {
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8', 'k9', 'n4', 'k1']));
       }, { FID, scheme });
@@ -134,7 +134,7 @@ try {
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
       }, { FID, scheme });
       const page = await ctx.newPage();
@@ -185,7 +185,7 @@ try {
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
       }, { FID, scheme });
       const page = await ctx.newPage();
@@ -204,7 +204,7 @@ try {
           bg: getComputedStyle(h).backgroundColor, overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
       });
       check(r.title === 'Map', `${tag}: map header title is "${r.title}"`);
-      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
+      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'POSTER NOT TO SCALE', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
       check(r.dup === 0, `${tag}: the posture label also floats over the map (${r.dup})`);
       check(!/rgba\(0, 0, 0, 0\)|transparent/.test(r.bg), `${tag}: the map header has no solid ground (${r.bg})`);
       check(!r.overflowX, `${tag}: Map scrolls sideways`);
@@ -245,7 +245,7 @@ try {
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
       await ctx.clock.install({ time: new Date(AT) });
-      await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1'); });
+      await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1'); });
       const page = await ctx.newPage();
       await page.goto(`http://127.0.0.1:${PORT}/index.html?f=hard-summer-2026&tab=map`, { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => document.querySelector('[data-map-chips]') && window.FESTIVAL_CONFIG?.id === 'hard-summer-2026', null, { timeout: 60000 });
@@ -265,7 +265,7 @@ try {
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         localStorage.setItem('plursky_switcher_view_v1', 'grid');
       }, { FID, scheme });

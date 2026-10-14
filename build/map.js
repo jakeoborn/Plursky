@@ -555,6 +555,14 @@ var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_
 function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
+function posterTierFor(cfg, affine, verified) {
+  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
+  return verified ? "checked" : "unchecked";
+}
+var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+var POSTER_OPACITY_UNCHECKED = 0.35;
+var REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -2600,15 +2608,16 @@ function MapScreen({
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var [mapCat, setMapCat] = React.useState("stages");
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
-      return localStorage.getItem("plursky_use_realmap") === "1";
+      if (sessionStorage.getItem("plursky_realmap_failed") === "1") return false;
+      return localStorage.getItem("plursky_use_realmap") !== "0";
     } catch {
-      return false;
+      return true;
     }
   });
+  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !MAP_AFFINE ? "VENUE MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "POSTER NOT TO SCALE" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
     if (REAL_MAP_ONLY) {
@@ -2617,7 +2626,7 @@ function MapScreen({
       return;
     }
     try {
-      localStorage.removeItem("plursky_use_realmap");
+      sessionStorage.setItem("plursky_realmap_failed", "1");
     } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
@@ -3373,12 +3382,13 @@ function MapScreen({
     onToggle: () => setShowLabels(s => !s)
   }, ...(REAL_MAP_ONLY ? [] : [{
     id: "realmap",
-    label: "Real map (beta)",
+    label: "Real map",
     active: useRealMap,
     onToggle: () => {
       var v = !useRealMap;
       try {
-        if (v) localStorage.setItem("plursky_use_realmap", "1");else localStorage.removeItem("plursky_use_realmap");
+        localStorage.setItem("plursky_use_realmap", v ? "1" : "0");
+        if (v) sessionStorage.removeItem("plursky_realmap_failed");
       } catch {}
       setRealMapNote(null);
       setUseRealMap(v);
@@ -4303,8 +4313,8 @@ function MapScreen({
     })))));
   })(), useRealMap ? React.createElement(RealMap, {
     avatar: avatar,
-    stages: PLACED_STAGES,
-    officialMap: !!FESTIVAL_CONFIG.mapImage,
+    stages: REAL_MAP_STAGES,
+    officialMap: POSTER_TIER !== "none",
     crewFriends: crewFriends,
     saved: state.saved,
     showHeat: showHeat,
@@ -6040,15 +6050,42 @@ function _officialMapExtent(natW, natH) {
     y1: y0 + h
   };
 }
+var _OFFICIAL_MAP_RASTER_PX = 2048;
 var _imgDimsCache = {};
 function _officialMapDims(src) {
   if (_imgDimsCache[src]) return _imgDimsCache[src];
   _imgDimsCache[src] = new Promise(resolve => {
     var im = new Image();
-    im.onload = () => resolve({
-      w: im.naturalWidth,
-      h: im.naturalHeight
-    });
+    im.onload = () => {
+      var w = im.naturalWidth,
+        h = im.naturalHeight;
+      if (!w || !h) {
+        resolve(null);
+        return;
+      }
+      if (!/\.svg(\?|#|$)/i.test(src)) {
+        resolve({
+          w,
+          h,
+          url: src
+        });
+        return;
+      }
+      try {
+        var k = _OFFICIAL_MAP_RASTER_PX / Math.max(w, h);
+        var c = document.createElement("canvas");
+        c.width = Math.round(w * k);
+        c.height = Math.round(h * k);
+        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        resolve({
+          w,
+          h,
+          url: c.toDataURL("image/png")
+        });
+      } catch {
+        resolve(null);
+      }
+    };
     im.onerror = () => resolve(null);
     im.src = src;
   });
@@ -6326,7 +6363,7 @@ function RealMap({
           };
         })
       });
-      var SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
+      var SUB_LANDMARKS = MAP_AFFINE ? FESTIVAL_CONFIG.landmarks || [] : [];
       var STAGE_3D_DESIGN = {
         kinetic: {
           sides: 16,
@@ -6649,7 +6686,7 @@ function RealMap({
           if (!MAP_AFFINE) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
-          var src = FESTIVAL_CONFIG.mapImage;
+          var src = dims.url || FESTIVAL_CONFIG.mapImage;
           var coordinates = _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", {
@@ -6672,7 +6709,7 @@ function RealMap({
                 visibility: officialMapRef.current ? "visible" : "none"
               },
               paint: {
-                "raster-opacity": FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78,
+                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear"
               }
@@ -6733,6 +6770,7 @@ function RealMap({
           }
         });
         _safeLayer("plaza", () => {
+          if (!stages.length) return;
           if (!map.getSource("plaza")) {
             map.addSource("plaza", {
               type: "geojson",
@@ -6974,6 +7012,15 @@ function RealMap({
         if (cancelled) return;
         var msg = e && e.error && e.error.message || "tile load failed";
         console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
+        if (e && e.sourceId === "official-map") {
+          try {
+            if (map.getLayer("official-map")) map.removeLayer("official-map");
+          } catch {}
+          try {
+            if (map.getSource("official-map")) map.removeSource("official-map");
+          } catch {}
+          return;
+        }
         setErr(prev => prev || msg);
         tileErrRef.current += 1;
         if (tileErrRef.current >= 6 && !loadedRef.current) _fatal("Real map tiles are failing");
@@ -7256,8 +7303,8 @@ function RealMap({
     className: "duo-code",
     style: {
       position: "absolute",
-      top: 108,
-      right: 10,
+      top: 58,
+      left: 10,
       zIndex: 4,
       background: "rgba(var(--shade-rgb),0.78)",
       color: "var(--ink)",
@@ -7269,8 +7316,8 @@ function RealMap({
   }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
     style: {
       position: "absolute",
-      top: 108,
-      right: 10,
+      top: 58,
+      left: 10,
       zIndex: 4,
       display: "flex",
       background: "rgba(var(--shade-rgb),0.78)",
@@ -10416,5 +10463,8 @@ Object.assign(window, {
   geometryVerifiedFor,
   _geomVerifiedMemo,
   MAP_REGISTRATION_SOURCED,
-  readoutHonest
+  readoutHonest,
+  posterTierFor,
+  POSTER_TIER,
+  POSTER_OPACITY_UNCHECKED
 });

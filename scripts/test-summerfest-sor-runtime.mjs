@@ -59,7 +59,7 @@ try {
       if (sessionStorage.getItem("seeded")) return;
       sessionStorage.setItem("seeded", "1");
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", FID);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
       localStorage.setItem("plursky_lineup_view", view);
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(saved));
       if (moments) localStorage.setItem("plursky_moments_v1", moments);

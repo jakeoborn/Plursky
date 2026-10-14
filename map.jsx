@@ -470,6 +470,34 @@ function readoutHonest(avatar) {
     typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 
+// ── How the festival's map sits on the real map (Jake, 2026-10-13) ──
+// The real map is the default map everywhere, with the festival's own map laid
+// over it. How strongly that art shows is a claim about how well it matches the
+// ground, so it follows the predicate above rather than a second rule:
+//   "checked"   geometryVerifiedFor() passes (Summerfest, Lollapalooza, Outside
+//               Lands today): full strength, posture "OFFICIAL MAP".
+//   "unchecked" anchors place the art but nothing independent corroborates
+//               them (ACL, Gov Ball, Ultra, EDC LV, EDC Orlando): faded, posture
+//               "POSTER NOT TO SCALE". Ultra's art draws its own OSM-anchored
+//               stages up to 387 m off; a confident wrong poster is worse than
+//               no poster.
+//   "none"      fewer than three anchors (Escape, Nocturnal, HARD) or no art at
+//               all (mapMode "real"). Nothing places the art, so it is not
+//               drawn, and neither are stage pins: mapToGps() with no affine
+//               returns the venue centre, which would stack every stage on one
+//               point. Stages read as pending until anchors are measured.
+// Measuring anchors (first-party evidence per anchor) is what moves a festival
+// up a tier; nothing here does.
+function posterTierFor(cfg, affine, verified) {
+  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
+  return verified ? "checked" : "unchecked";
+}
+const POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+const POSTER_OPACITY_UNCHECKED = 0.35;
+// What the real map may pin: only stages something can place on the ground.
+const REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];
+
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
@@ -1957,10 +1985,14 @@ function MapScreen({ state, setState }) {
   // exist only where the festival's map carries it, on the drawn map (the
   // real map draws no amenities). Crew shows real presence, never a sample.
   const [mapCat, setMapCat] = React.useState("stages");
-  // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
-  // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
+  // Real map — the DEFAULT since 2026-10-13 (Jake: "real map + poster overlay
+  // becomes the default everywhere"); it was an opt-in BETA from 2026-08-22.
+  // Never again a broken festival-night map (EDC 2026-05-15 revert 139b50e):
   // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
-  // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure.
+  // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure, and a
+  // fallback holds for the rest of the session (sessionStorage) so a bad
+  // network is not retried on every visit to the tab. "plursky_use_realmap" =
+  // "0" is the user's own choice of the festival art map, and sticks.
   // `mapMode: "real"` festivals have no map art and no stage grid to draw —
   // III Points 2026 is the first. For them the real basemap is not the BETA
   // alternative to a festival map, it IS the festival map, so it opens on and
@@ -1968,15 +2000,21 @@ function MapScreen({ state, setState }) {
   // SVG ground plate for a venue whose layout nobody has published would be
   // the poster-space-as-world-space defect PR #36 removed from EDC LV.
   const REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  const mapPostureLabel = REAL_MAP_ONLY
-    ? "VENUE MAP · STAGES PENDING"
-    : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
-      ? "OFFICIAL MAP"
-      : "LAYOUT ONLY";
   const [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
-    try { return localStorage.getItem("plursky_use_realmap") === "1"; } catch { return false; }
+    try {
+      if (sessionStorage.getItem("plursky_realmap_failed") === "1") return false;
+      return localStorage.getItem("plursky_use_realmap") !== "0";
+    } catch { return true; }
   });
+  // The posture label says what the map on screen can claim (POSTER_TIER).
+  const mapPostureLabel = REAL_MAP_ONLY || (useRealMap && !MAP_AFFINE)
+    ? "VENUE MAP · STAGES PENDING"
+    : useRealMap && POSTER_TIER === "unchecked"
+      ? "POSTER NOT TO SCALE"
+      : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
+        ? "OFFICIAL MAP"
+        : "LAYOUT ONLY";
   const [realMapNote, setRealMapNote] = React.useState(null);
   const _disableRealMap = (why) => {
     // On a REAL_MAP_ONLY festival there is no festival map to fall back TO —
@@ -1989,7 +2027,7 @@ function MapScreen({ state, setState }) {
       setTimeout(() => setRealMapNote(null), 7000);
       return;
     }
-    try { localStorage.removeItem("plursky_use_realmap"); } catch {}
+    try { sessionStorage.setItem("plursky_realmap_failed", "1"); } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
@@ -2572,12 +2610,12 @@ function MapScreen({ state, setState }) {
                 { id: "amenity", label: "Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
                 { id: "labels", label: "Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map (beta)",  active: useRealMap,
+                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
                     try {
-                      if (v) localStorage.setItem("plursky_use_realmap", "1");
-                      else localStorage.removeItem("plursky_use_realmap");
+                      localStorage.setItem("plursky_use_realmap", v ? "1" : "0");
+                      if (v) sessionStorage.removeItem("plursky_realmap_failed");
                     } catch {}
                     setRealMapNote(null);
                     setUseRealMap(v);
@@ -3033,8 +3071,8 @@ function MapScreen({ state, setState }) {
 
         {useRealMap ? (
           <RealMap
-            avatar={avatar} stages={PLACED_STAGES}
-            officialMap={!!FESTIVAL_CONFIG.mapImage}
+            avatar={avatar} stages={REAL_MAP_STAGES}
+            officialMap={POSTER_TIER !== "none"}
             crewFriends={crewFriends}
             saved={state.saved}
             showHeat={showHeat}
@@ -4229,12 +4267,32 @@ function _officialMapExtent(natW, natH) {
 // rather than hardcoded so replacing a provisional poster with the official
 // one (the flip-session ritual) needs no code change — drop the file in and
 // the anchoring retunes itself.
+//
+// It also hands back the URL MapLibre should load. MapLibre decodes an image
+// source with createImageBitmap, which cannot decode SVG: every SVG map
+// (Summerfest, Lollapalooza, Outside Lands, Ultra, Gov Ball, Nocturnal) raised
+// "The source image could not be decoded" and the error card covered the map.
+// An <img> CAN load SVG, so an SVG is drawn once to a canvas (longest side
+// _OFFICIAL_MAP_RASTER_PX, aspect kept, so the extent math is unchanged) and
+// passed on as a PNG data URL. Raster assets pass through untouched.
+const _OFFICIAL_MAP_RASTER_PX = 2048;
 const _imgDimsCache = {};
 function _officialMapDims(src) {
   if (_imgDimsCache[src]) return _imgDimsCache[src];
   _imgDimsCache[src] = new Promise((resolve) => {
     const im = new Image();
-    im.onload  = () => resolve({ w: im.naturalWidth, h: im.naturalHeight });
+    im.onload  = () => {
+      const w = im.naturalWidth, h = im.naturalHeight;
+      if (!w || !h) { resolve(null); return; }
+      if (!/\.svg(\?|#|$)/i.test(src)) { resolve({ w, h, url: src }); return; }
+      try {
+        const k = _OFFICIAL_MAP_RASTER_PX / Math.max(w, h);
+        const c = document.createElement("canvas");
+        c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        resolve({ w, h, url: c.toDataURL("image/png") });
+      } catch { resolve(null); }
+    };
     im.onerror = () => resolve(null);
     im.src = src;
   });
@@ -4252,7 +4310,7 @@ function _officialMapCorners(natW, natH) {
 // MapLibre-based festival map. Real LVMS geography, native pinch-zoom
 // and pan, tilted pitch for a 3D feel. Stage markers + avatar + route
 // line are overlay layers projected from the existing 100-space x/y
-// via mapToGps(). Behind the "Real map (BETA)" toggle in the More menu;
+// via mapToGps(). The default map since 2026-10-13 ("Real map" in More);
 // when off, MapScreen falls back to the SVG TopDownMap.
 function RealMap({
   avatar, stages, crewFriends = [], saved = [],
@@ -4492,7 +4550,9 @@ function RealMap({
       // are now FESTIVAL_CONFIG.landmarks, so ACL no longer gets "KINETIC
       // TRAIL" drawn across Zilker Park. A festival with no landmarks key
       // renders none, which is the correct empty state rather than a bug.
-      const SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
+      // Landmark x/y are poster positions too: with no affine they would all
+      // land on the venue centre, so they need the same placement stages do.
+      const SUB_LANDMARKS = MAP_AFFINE ? (FESTIVAL_CONFIG.landmarks || []) : [];
 
       // Stage heights tuned for Snapchat-style isometric overlay — building
       // scale (12-32m), NOT the prior 80-220m skyscrapers. At the 55°
@@ -4848,7 +4908,7 @@ function RealMap({
           if (!MAP_AFFINE) return;   // no anchors -> no defensible placement
           const dims = officialMapDimsRef.current;
           if (!dims) return;         // still loading; the .then() below re-runs us
-          const src = FESTIVAL_CONFIG.mapImage;
+          const src = dims.url || FESTIVAL_CONFIG.mapImage;
           const coordinates = _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", { type: "image", url: src, coordinates });
@@ -4866,10 +4926,14 @@ function RealMap({
               source: "official-map",
               layout: { visibility: officialMapRef.current ? "visible" : "none" },
               paint: {
-                // Park maps (ACL) are clean line art and read best near-opaque;
-                // the poster-style ones (EDC) are dense and busy, so they sit
-                // back far enough for the basemap and the dots to stay legible.
-                "raster-opacity": FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78,
+                // Checked art: park maps are clean line art and read best
+                // near-opaque; poster-style ones (EDC) are dense and busy, so
+                // they sit back far enough for the basemap and the dots to stay
+                // legible. Unchecked art is faded whatever its style — it is
+                // not to scale, and the ground under it is the truth (POSTER_TIER).
+                "raster-opacity": POSTER_TIER === "checked"
+                  ? (FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78)
+                  : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear",
               },
@@ -4931,6 +4995,7 @@ function RealMap({
           },
         });
         _safeLayer("plaza", () => {
+          if (!stages.length) return;   // no stages, no centroid (it would be NaN)
           if (!map.getSource("plaza")) {
             map.addSource("plaza", { type: "geojson", data: plazaData() });
           }
@@ -5228,6 +5293,14 @@ function RealMap({
         if (cancelled) return;
         const msg = (e && e.error && e.error.message) || "tile load failed";
         console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
+        // The festival's map is an overlay on a working basemap. If it cannot
+        // load, drop it and keep the map; it is not a map failure and must not
+        // put an error card over the ground the user is standing on.
+        if (e && e.sourceId === "official-map") {
+          try { if (map.getLayer("official-map")) map.removeLayer("official-map"); } catch {}
+          try { if (map.getSource("official-map")) map.removeSource("official-map"); } catch {}
+          return;
+        }
         // Tile fetch errors fire constantly while panning out-of-bounds;
         // only surface the first one.
         setErr(prev => prev || msg);
@@ -5508,20 +5581,22 @@ function RealMap({
     }}>
       <div ref={containerRef} style={{ position: "absolute", inset: 0 }}/>
 
-      {/* Style switcher — Stylized / Satellite. Positioned below the
-          MapScreen's top-right icon column (GPS + Layers) so they don't stack. */}
+      {/* Style switcher — Stylized / Satellite. Top-left, under the
+          battery pill: at top:108 on the right it sat on MapScreen's control
+          column (GPS, layers, zoom), which since the 2026-10-06 board runs
+          past it and covered the zoom-in button. */}
       {/* Style toggle — always visible (was gated on `loaded`, which never
           flipped true for some users → toggle was hidden). */}
       {packMode ? (
         <div role="status" className="duo-code" style={{
-          position: "absolute", top: 108, right: 10, zIndex: 4,
+          position: "absolute", top: 58, left: 10, zIndex: 4,
           background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
           borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
         }}>OFFLINE · SAVED STREET MAP</div>
       ) : (
       <div style={{
-        position: "absolute", top: 108, right: 10, zIndex: 4,
+        position: "absolute", top: 58, left: 10, zIndex: 4,
         display: "flex", background: "rgba(var(--shade-rgb),0.78)",
         border: "1px solid rgba(var(--ink-rgb),0.18)",
         borderRadius: 999, padding: 3, gap: 2,
@@ -7389,4 +7464,5 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 Object.assign(window, {
   MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
   geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
+  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED,
 });

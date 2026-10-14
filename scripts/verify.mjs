@@ -2395,6 +2395,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3c. Poster over the real map ──────────────────────────────────────
+// The real map is the default; the festival's art shows at full strength only
+// where geometryVerifiedFor() passes, faded and labelled NOT TO SCALE where
+// anchors place it unchecked, and not at all (with no stage pins) where nothing
+// places it; SVG art is rasterised for MapLibre. Fleet table pinned; 9 mutations.
+{
+  console.log("▸ Poster over real map gate — art strength follows checked alignment");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-poster-over-real-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`poster over real map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b4. Schedule Sync review + overlay ─────────────────────────────────
 // Every committed feed reviews as current; a mutated feed names exactly the
 // changed saved sets, new clashes, moved reminders and cancelled saves; the
