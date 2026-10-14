@@ -1280,15 +1280,23 @@ function sbBroadcastRally({
   x,
   y,
   label,
-  stageId
+  stageId,
+  gps
 }) {
   if (!_presCh) return false;
+  var g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? {
+    lat: gps.lat,
+    lng: gps.lng
+  } : null;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
     x,
     y,
     label,
     stageId: stageId || null,
+    ...(g ? {
+      gps: g
+    } : {}),
     fromPid: _presMyId,
     fromName: _myLoc && _myLoc.name || "Someone"
   };
