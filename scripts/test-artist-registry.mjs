@@ -4,7 +4,7 @@
 // them, review rows are flagged and never guessed, and the generated files
 // are current. No network.
 import { readFileSync } from 'node:fs';
-import { build, parseBilling } from './build-artist-registry.mjs';
+import { build, parseBilling, keyOf } from './build-artist-registry.mjs';
 
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
@@ -38,6 +38,10 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
   check(/"x"/.test(parseBilling('Wave X Nile', new Set()).review || ''), '"x" with unknown sides goes to review');
 }
 
+// ── Letters the slug cannot decompose fold into keys (M2) ─────────────────
+check(keyOf('RØZ') === 'roz' && keyOf('ØTTA') === 'otta' && keyOf('BØRNS') === 'borns' && keyOf('Æon:Mode') === keyOf('AEON:MODE'), `Ø / Æ fold: ${keyOf('RØZ')} ${keyOf('ØTTA')} ${keyOf('BØRNS')}`);
+check(keyOf('¥ØU$UK€ ¥UK1MAT$U') === keyOf('YØU$UK€ ¥UK1MAT$U'), 'a stylised ¥ is a Y');
+
 // ── The whole build ───────────────────────────────────────────────────────
 const out = build();
 {
@@ -61,6 +65,10 @@ const out = build();
   // The genre trigger on its own (klo is also a short name): a key whose only
   // flag is a genre-family conflict.
   check(review.some(r => r.id.startsWith('key:') && /^genre families conflict/.test(r.reason)), 'the genre-family trigger flagged nothing');
+  // Stage-level labels (every Ultra stage carries one or two) and b2b-row
+  // labels never trigger; per-artist labels still do.
+  for (const k of ['armin-van-buuren', 'lilly-palmer', 'laidback-luke', 'bolo', 'bullet-tooth', 'chris-lorenzo'])
+    check(!review.some(r => r.id === `key:${k}`), `${k} is flagged by a stage-level or b2b label`);
   check(review.length <= 100, `review queue is ${review.length} rows (> 100 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
@@ -71,6 +79,37 @@ const out = build();
   check(lasership && lasership.kind === 'project' && lasership.parents.includes('levity'), `Lasership is not Levity's project: ${JSON.stringify(lasership)}`);
   const cl = billings.find(b => /Cloonee/i.test(b.printed) && b.source === 'live');
   check(cl && cl.closing !== null && cl.date, `control: a timed live billing has no closing flag or date: ${JSON.stringify(cl)}`);
+}
+
+// ── M2: every review row is ruled or explicitly pending ───────────────────
+{
+  const { review, billings, registry, sources, overrides: ov, counts } = out;
+  check(counts.unruled === 0, `${counts.unruled} review rows are neither ruled nor pending: ${review.filter(r => !r.pending).slice(0, 3).map(r => r.printed)}`);
+  check(review.every(r => !r.pending || r.why), 'a pending row without its why');
+  check((ov.billing || []).length >= 30 && (ov.pending || []).length >= 10, `control: overrides not read (${(ov.billing || []).length} rulings, ${(ov.pending || []).length} pending)`);
+  // A ruling cites the page its billing was recorded from, and matches a row.
+  for (const o of ov.billing || []) {
+    const rec = sources.get(o.printed);
+    check(rec, `ruling matches no billing: "${o.printed}"`);
+    for (const u of [].concat(o.source)) check(rec && rec.has(u), `ruling "${o.printed}" cites ${u}, not a page that billing was recorded from`);
+  }
+  const ids = new Set(review.map(r => r.id)), printed = new Set(review.map(r => r.printed));
+  for (const o of ov.pending || []) check(o.key ? ids.has(`key:${o.key}`) : printed.has(o.printed), `stale pending entry: ${o.key || o.printed}`);
+  const by = t => billings.find(b => b.printed === t);
+  const roles = b => b && b.performers.map(x => `${x.key}:${x.role}`).join(' ');
+  check(roles(by('Fallen with MC Dino')) === 'fallen:performer mc-dino:mc', `MC ruling: ${roles(by('Fallen with MC Dino'))}`);
+  check(roles(by('BT + Matt Fax')) === 'bt:cobilled matt-fax:cobilled', `co-billed ruling: ${roles(by('BT + Matt Fax'))}`);
+  const a = by('Above & Beyond (Anjunabeats Classics)');
+  check(roles(a) === 'above-and-beyond:performer' && a.setTag === 'Anjunabeats Classics', `set-tag ruling: ${JSON.stringify(a && { p: roles(a), t: a.setTag })}`);
+  const key = registry.find(r => r.key === 'key4050'), bk = registry.find(r => r.key === 'bryan-kearney');
+  check(key && key.kind === 'project' && key.parents.includes('bryan-kearney') && bk && bk.projects.includes('key4050'), `project ruling: ${JSON.stringify({ key, bk })}`);
+  const regKeys = new Set(registry.map(r => r.key));
+  check(registry.every(r => r.parents.every(p => regKeys.has(p))), 'a parent without a registry record');
+  check(review.some(r => r.id === 'key:klo' && r.pending), 'klo is not pending');
+  check(!billings.some(b => b.printed === 'Sultan + Shepard' && b.performers.length > 1), '"+" split without a ruling');
+  // An unbuilt override kind throws instead of being ignored.
+  let threw = false; try { build(undefined, { merge: [{ into: 'a', from: ['b'], why: 'w', source: 's' }] }); } catch { threw = true; }
+  check(threw, 'a merge override was silently ignored');
 }
 
 // ── Overrides need a why and a source ─────────────────────────────────────
@@ -94,4 +133,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ artist registry: ${checks} checks — ${out.counts.rows} rows → ${out.counts.billings} billings, ${out.counts.artists} artists, ${out.counts.review} in review, ${out.counts.excluded} excluded`);
+console.log(`  ✓ artist registry: ${checks} checks — ${out.counts.rows} rows → ${out.counts.billings} billings (${out.counts.ruled} by ruling), ${out.counts.artists} artists, ${out.counts.review} in review (${out.counts.pending} pending, ${out.counts.unruled} unruled), ${out.counts.excluded} excluded`);

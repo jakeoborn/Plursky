@@ -27,12 +27,27 @@
 //      key is the default, review is a flag, never an automatic split.
 // A review row still maps, to its printed act as one key ("leave separate":
 // a wrong merge is worse than a split), with the reason attached.
+//
+// Rulings (M2) live in data/artists/overrides.json, the only hand-written file:
+//   billing  a sourced reading of one printed billing: who is on it and in what
+//            role (performer, b2b, cobilled, mc, guest, project with parents).
+//            Its source is the page the billing was recorded from.
+//   pending  a review row left as printed, with why. No claim; the billings
+//            render separately until a source rules it.
+//   display / notAnAct as in the spec. merge / split / project are not built:
+//            an entry there throws instead of being silently ignored.
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { slug } from './historical/lib.mjs';
 import { dropReason } from './historical/editions.mjs';
 
 const ROOT = process.cwd();
+
+// The historical slug drops letters NFKD cannot decompose ("RØZ" → "r-z",
+// "ØTTA" → "tta"; "¥" is a stylised Y). Registry keys fold them first; billing
+// text stays verbatim.
+const LETTERS = { '¥': 'Y', 'Ø': 'O', 'ø': 'o', 'Æ': 'AE', 'æ': 'ae', 'Œ': 'OE', 'œ': 'oe', 'ß': 'ss', 'Ł': 'L', 'ł': 'l', 'Đ': 'D', 'đ': 'd', 'Þ': 'Th', 'þ': 'th', 'ð': 'd' };
+export const keyOf = s => slug(String(s).replace(/[¥ØøÆæŒœßŁłĐđÞþð]/g, c => LETTERS[c]));
 const OUT = `${ROOT}/data/artists`;
 
 // ── Parsing one printed billing ───────────────────────────────────────────
@@ -49,25 +64,25 @@ export function parseBilling(printed, known = null) {
     if (SET_TAG.test(inner) && !PEOPLE_IN_PARENS.test(inner)) { setTag = inner; name = paren[1].trim(); }
     else review = PEOPLE_IN_PARENS.test(inner) ? 'parenthetical names people' : 'parenthetical is not a known set tag';
   }
-  const act = slug(name);
-  if (review) return { act: slug(printed), setTag, kind: 'performer', performers: [{ key: slug(printed), role: 'act' }], review };
+  const act = keyOf(name);
+  if (review) return { act: keyOf(printed), setTag, kind: 'performer', performers: [{ key: keyOf(printed), role: 'act' }], review };
   // b2b / b3b first: one set, several performers.
   const parts = name.split(/\s+b[23]b\s+/i);
   if (parts.length > 1) {
     const named = parts.map(p => p.trim()).filter(p => p && !UNNAMED.test(p));
-    return { act, setTag, kind: 'performer', performers: named.map(p => ({ key: slug(p), role: 'b2b' })), review: null };
+    return { act, setTag, kind: 'performer', performers: named.map(p => ({ key: keyOf(p), role: 'b2b' })), review: null };
   }
   if (/\s\+\s/.test(name)) return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'act' }], review: '"+" billing' };
   if (/\b(feat\.?|ft\.?|with|w\/)\s/i.test(name)) return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'act' }], review: 'feat / with billing' };
   const pres = name.match(/^(.*?)\s+(?:presents|pres\.?)\s*:?\s+(.*)$/i);
   if (pres) {
-    const parent = slug(pres[1]), project = slug(pres[2]);
-    return { act, setTag, kind: 'project', performers: [{ key: project, role: 'project', parents: [parent] }], review: null };
+    const parent = keyOf(pres[1]), project = keyOf(pres[2]);
+    return { act, setTag, kind: 'project', performers: [{ key: project, role: 'project', parents: [parent], parentNames: [pres[1].trim()] }], review: null };
   }
   const x = name.match(/^(.*?)\s+[x×]\s+(.*)$/i);
   if (x) {
-    const a = slug(x[1]), b = slug(x[2]);
-    if (known && known.has(a) && known.has(b)) return { act, setTag, kind: 'collab', performers: [{ key: act, role: 'collab', parents: [a, b] }], review: null };
+    const a = keyOf(x[1]), b = keyOf(x[2]);
+    if (known && known.has(a) && known.has(b)) return { act, setTag, kind: 'collab', performers: [{ key: act, role: 'collab', parents: [a, b], parentNames: [x[1].trim(), x[2].trim()] }], review: null };
     return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'act' }], review: '"x" billing whose sides are not both known acts' };
   }
   return { act, setTag, kind: 'performer', performers: [{ key: act, role: 'performer' }], review: null };
@@ -79,6 +94,7 @@ function family(genre) {
   if (!g || g === '—' || /^electronic$|^edm$|^dance$/.test(g)) return null;
   if (/drum|dnb|jungle/.test(g)) return 'dnb';
   if (/hardstyle|hard dance|hardcore|hard techno/.test(g)) return 'hard';
+  if (/bass house/.test(g)) return 'basshouse';
   if (/dubstep|bass|riddim|trap|wave/.test(g)) return 'bass';
   if (/techno/.test(g)) return 'techno';
   if (/trance|progressive/.test(g)) return 'trance';
@@ -89,9 +105,9 @@ function family(genre) {
 }
 
 // Crossover pairs that the same act plays all the time are not a conflict:
-// house/techno, techno/hard, bass/hard, trance/hard, bass/dnb. A conflict is
+// bass house next to bass and to house, house/techno, techno/hard, bass/hard, trance/hard, bass/dnb. A conflict is
 // two families outside those pairs (klo: tech house at EDC, bass at Lost Lands).
-const NEAR = new Set(['house|techno', 'hard|techno', 'bass|hard', 'hard|trance', 'bass|dnb', 'techno|trance']);
+const NEAR = new Set(['bass|basshouse', 'basshouse|house', 'house|techno', 'hard|techno', 'bass|hard', 'hard|trance', 'bass|dnb', 'techno|trance']);
 export function conflicts(families) {
   const f = [...families].sort();
   for (let i = 0; i < f.length; i++) for (let j = i + 1; j < f.length; j++) if (!NEAR.has(`${f[i]}|${f[j]}`)) return true;
@@ -101,9 +117,15 @@ export function conflicts(families) {
 export function build(root = ROOT, overrides = null) {
   const { REG, DS } = loadRegistry(root);
   const ov = overrides || (existsSync(`${root}/data/artists/overrides.json`) ? JSON.parse(readFileSync(`${root}/data/artists/overrides.json`, 'utf8')) : {});
-  for (const kind of ['merge', 'split', 'display', 'project', 'notAnAct'])
+  for (const kind of ['merge', 'split', 'project']) if ((ov[kind] || []).length) throw new Error(`override kind "${kind}" is not built yet; its entries would be ignored`);
+  for (const kind of ['display', 'notAnAct', 'billing'])
     for (const o of ov[kind] || []) if (!o.why || !o.source) throw new Error(`override ${kind} ${JSON.stringify(o).slice(0, 80)} needs a why and a source`);
-  const notAnAct = new Set((ov.notAnAct || []).map(o => slug(o.printed)));
+  for (const o of ov.pending || []) if (!o.why || !(o.key || o.printed)) throw new Error(`pending ${JSON.stringify(o).slice(0, 80)} needs a key or printed, and a why`);
+  const ROLES = new Set(['performer', 'b2b', 'cobilled', 'mc', 'guest', 'project']);
+  for (const o of ov.billing || []) for (const x of o.performers || []) if (!x.name || !ROLES.has(x.role)) throw new Error(`billing ${o.printed}: performer ${JSON.stringify(x)} needs a name and a role in ${[...ROLES]}`);
+  const billingOv = new Map((ov.billing || []).map(o => [o.printed, o]));
+  const pendingOv = new Map((ov.pending || []).map(o => [o.key ? `key:${o.key}` : o.printed, o]));
+  const notAnAct = new Set((ov.notAnAct || []).map(o => keyOf(o.printed)));
   const displayOv = new Map((ov.display || []).map(o => [o.key, o.name]));
 
   // Every printed row, live then archived.
@@ -113,13 +135,14 @@ export function build(root = ROOT, overrides = null) {
     const cfg = e.config || {}; const fid = cfg.id || e.id; const ds = DS[fid];
     if (!ds?.artists?.length) continue;
     const stageName = new Map((ds.stages || []).map(s => [s.id, s.name]));
+    const src = (cfg.scheduleSource || cfg.lineupSource || {}).url || null;
     for (const a of ds.artists) {
       const dd = cfg.dayDates?.[a.day];
       let date = dd ? new Date(Date.UTC(dd.y, dd.m, dd.d)) : null;
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null });
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src });
     }
   }
   const H = `${root}/data/historical/editions`;
@@ -130,9 +153,28 @@ export function build(root = ROOT, overrides = null) {
       const a = art.get(s.artistId);
       rows.push({ id: s.id, source: 'edition', festivalId: ed.id, festivalBrand: brandOf(ed.festivalId || ed.id), year: ed.year,
         date: days.get(s.day) || null, day: s.day ?? null, stage: st.get(s.stageId) || null,
-        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null });
+        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null });
     }
   }
+
+  // A stage whose acts all carry one or two labels is labelled by STAGE, not by
+  // artist (Ultra: Worldwide Stage 27 of 28 "Bass", UMF Radio 27 of 27 "Hard
+  // Dance"), so its label says nothing about the act and never triggers review.
+  const stageLabels = new Map();
+  for (const r of rows) if (r.source === 'live') { const k = `${r.festivalId}|${r.stage}`; if (!stageLabels.has(k)) stageLabels.set(k, { n: 0, labels: new Set() }); const v = stageLabels.get(k); v.n++; v.labels.add(r.genre || '—'); }
+  const stageLabelled = r => { const v = stageLabels.get(`${r.festivalId}|${r.stage}`); return !!v && v.n >= 10 && v.labels.size <= 2; };
+
+  // Where each printed billing was recorded from (rulings must cite one of these).
+  const sources = new Map();
+  for (const r of rows) { if (!sources.has(r.printed)) sources.set(r.printed, new Set()); if (r.src) sources.get(r.printed).add(r.src); }
+
+  // A sourced ruling replaces the parser's reading of that printing.
+  const ruled = (o, printed) => {
+    const tagless = o.setTag ? printed.replace(/\s*\([^()]*\)\s*$/, '') : printed;
+    const project = o.performers.some(x => x.role === 'project');
+    return { act: keyOf(tagless), setTag: o.setTag || null, kind: project ? 'project' : 'performer', ruled: true,
+      performers: o.performers.map(x => ({ key: keyOf(x.name), role: x.role, name: x.name, ...(x.parents ? { parents: x.parents.map(keyOf), parentNames: x.parents } : {}) })), review: null };
+  };
 
   // Keys billed on their own (for "x" collabs).
   const standalone = new Set();
@@ -145,11 +187,11 @@ export function build(root = ROOT, overrides = null) {
 
   const billings = [], review = [], excluded = [];
   const reg = new Map();
-  const touch = (key, kind) => { if (!reg.has(key)) reg.set(key, { key, kind, parents: new Set(), printings: new Map(), billings: [], dates: [], families: new Set(), festivals: new Set() }); return reg.get(key); };
+  const touch = (key, kind) => { if (!reg.has(key)) reg.set(key, { key, kind, parents: new Set(), projects: new Set(), printings: new Map(), billings: [], dates: [], families: new Set(), festivals: new Set() }); return reg.get(key); };
   for (const r of rows) {
-    const drop = dropReason(r.printed, r.stage || '') || (notAnAct.has(slug(r.printed)) ? { category: 'not-an-act', reason: 'override: not an act' } : null);
+    const drop = dropReason(r.printed, r.stage || '') || (notAnAct.has(keyOf(r.printed)) ? { category: 'not-an-act', reason: 'override: not an act' } : null);
     if (drop) { excluded.push({ id: r.id, printed: r.printed, stage: r.stage, ...drop }); continue; }
-    const p = parseBilling(r.printed, standalone);
+    const p = billingOv.has(r.printed) ? ruled(billingOv.get(r.printed), r.printed) : parseBilling(r.printed, standalone);
     if (p.review) review.push({ id: r.id, printed: r.printed, reason: p.review });
     const k = `${r.festivalId}|${r.date || r.day}|${r.stage}`;
     billings.push({ id: r.id, source: r.source, festivalId: r.festivalId, festivalBrand: r.festivalBrand, year: r.year, date: r.date, day: r.day,
@@ -157,15 +199,21 @@ export function build(root = ROOT, overrides = null) {
       performers: p.performers.map(({ key, role }) => ({ key, role })), act: p.act,
       closing: r.start && r.stage ? nightMin(r.start) === lastStart.get(k) : null, mainStage: null, ...(p.review ? { review: p.review } : {}) });
     for (const perf of p.performers) {
-      const rec = touch(perf.key, p.kind === 'project' ? 'project' : p.kind === 'collab' ? 'collab' : 'performer');
+      const rec = touch(perf.key, perf.role === 'project' || (!p.ruled && p.kind === 'project') ? 'project' : p.kind === 'collab' ? 'collab' : 'performer');
       for (const par of perf.parents || []) rec.parents.add(par);
+      // A parent named only inside a billing ("Bryan Kearney + John O'Callaghan
+      // pres Key4050", "Brody Jenner presents Brosa") still gets a record, so it
+      // can be found; the set counts on its arc as a project, never as the
+      // parent billed alone.
+      (perf.parentNames || []).forEach((n, i) => { const pr = touch(perf.parents[i], 'performer'); if (!pr.printings.size) pr.printings.set(n, 0); });
       // A review row is keyed by its whole printing, so it is named by it too.
-      const shown = p.review ? r.printed : p.performers.length > 1 ? null : r.printed.replace(/\s*\([^()]*\)\s*$/, '').replace(/^.*?\s+(?:presents|pres\.?)\s*:?\s+/i, '');
+      const shown = perf.name ? perf.name : p.review ? r.printed : p.performers.length > 1 ? null : r.printed.replace(/\s*\([^()]*\)\s*$/, '').replace(/^.*?\s+(?:presents|pres\.?)\s*:?\s+/i, '');
       // b2b members are named by their own segment of the printing.
-      const seg = shown ?? (r.printed.replace(/\s*\([^()]*\)\s*$/, '').split(/\s+b[23]b\s+/i).find(s => slug(s) === perf.key) || perf.key);
+      const seg = shown ?? (r.printed.replace(/\s*\([^()]*\)\s*$/, '').split(/\s+b[23]b\s+/i).find(s => keyOf(s) === perf.key) || perf.key);
       rec.printings.set(seg, (rec.printings.get(seg) || 0) + 1);
       rec.billings.push(r.id); if (r.date) rec.dates.push(r.date);
-      const fam = family(r.genre); if (fam) rec.families.add(fam);
+      // A label on a b2b row is one label for several acts, so only solo rows count.
+      const fam = stageLabelled(r) || p.performers.length > 1 ? null : family(r.genre); if (fam) rec.families.add(fam);
       rec.festivals.add(r.festivalBrand);
     }
   }
@@ -174,16 +222,21 @@ export function build(root = ROOT, overrides = null) {
     if (conflicts(rec.families)) review.push({ id: `key:${rec.key}`, printed: [...rec.printings.keys()][0], reason: `genre families conflict across festivals: ${[...rec.families].sort().join(', ')}` });
     else if (rec.key.replace(/-/g, '').length <= 3 && rec.festivals.size > 1) review.push({ id: `key:${rec.key}`, printed: [...rec.printings.keys()][0], reason: 'very short name billed at more than one festival brand' });
   }
+  // Pending: left as printed, no claim, with why. Everything else in review is unruled.
+  for (const row of review) { const o = pendingOv.get(row.id) || pendingOv.get(row.printed); if (o) { row.pending = true; row.why = o.why; } }
+  for (const rec of reg.values()) for (const par of rec.parents) reg.get(par)?.projects.add(rec.key);
   const isMixed = s => /[a-z]/.test(s) && /[A-Z]/.test(s);
   const registry = [...reg.values()].sort((a, b) => a.key.localeCompare(b.key)).map(rec => {
     const printings = [...rec.printings.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     const mixed = printings.find(([s]) => isMixed(s));
     const name = displayOv.get(rec.key) || (mixed ? mixed[0] : printings[0][0]);
     const dates = rec.dates.sort();
-    return { key: rec.key, name, aliases: printings.map(([s]) => s).filter(s => s !== name), kind: rec.kind, parents: [...rec.parents].sort(),
+    return { key: rec.key, name, aliases: printings.map(([s]) => s).filter(s => s !== name), kind: rec.kind, parents: [...rec.parents].sort(), projects: [...rec.projects].sort(),
       billings: rec.billings, firstSeen: dates[0] || null, lastSeen: dates[dates.length - 1] || null, photo: null, links: [] };
   });
-  return { registry, billings, review, excluded, counts: { rows: rows.length, billings: billings.length, excluded: excluded.length, review: review.length, artists: registry.length } };
+  const unruled = review.filter(r => !r.pending).length;
+  return { registry, billings, review, excluded, sources, overrides: ov,
+    counts: { rows: rows.length, billings: billings.length, excluded: excluded.length, review: review.length, pending: review.length - unruled, unruled, ruled: billings.filter(b => billingOv.has(b.printed)).length, artists: registry.length } };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -197,6 +250,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   } else {
     mkdirSync(OUT, { recursive: true });
     for (const [f, v] of Object.entries(files)) writeFileSync(`${OUT}/${f}`, text(v));
-    console.log(`[artists] ${out.counts.rows} rows → ${out.counts.billings} billings, ${out.counts.artists} artists, ${out.counts.review} in review, ${out.counts.excluded} excluded`);
+    console.log(`[artists] ${out.counts.rows} rows → ${out.counts.billings} billings (${out.counts.ruled} by ruling), ${out.counts.artists} artists, ${out.counts.review} in review (${out.counts.pending} pending, ${out.counts.unruled} unruled), ${out.counts.excluded} excluded`);
   }
 }
