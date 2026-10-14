@@ -204,7 +204,7 @@ try {
           bg: getComputedStyle(h).backgroundColor, overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
       });
       check(r.title === 'Map', `${tag}: map header title is "${r.title}"`);
-      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'POSTER NOT TO SCALE', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
+      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'NOT TO SCALE · STAGES PENDING', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
       check(r.dup === 0, `${tag}: the posture label also floats over the map (${r.dup})`);
       check(!/rgba\(0, 0, 0, 0\)|transparent/.test(r.bg), `${tag}: the map header has no solid ground (${r.bg})`);
       check(!r.overflowX, `${tag}: Map scrolls sideways`);

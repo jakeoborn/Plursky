@@ -562,7 +562,9 @@ function posterTierFor(cfg, affine, verified) {
 }
 var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
 var POSTER_OPACITY_UNCHECKED = 0.35;
-var REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];
+var REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
+var REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
+var REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -2617,7 +2619,8 @@ function MapScreen({
       return true;
     }
   });
-  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !MAP_AFFINE ? "VENUE MAP · STAGES PENDING" : useRealMap && POSTER_TIER === "unchecked" ? "POSTER NOT TO SCALE" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
     if (REAL_MAP_ONLY) {
@@ -2639,15 +2642,28 @@ function MapScreen({
   });
   var MAP_ZOOM_MIN = 0.7,
     MAP_ZOOM_MAX = 3.5;
-  var zoomIn = () => setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
-  var zoomOut = () => setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
+  var realMapCtl = React.useRef(null);
+  var [realView, setRealView] = React.useState({
+    atMin: false,
+    atMax: false,
+    atHome: true
+  });
+  var zoomIn = () => useRealMap ? realMapCtl.current?.zoomIn() : setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
+  var zoomOut = () => useRealMap ? realMapCtl.current?.zoomOut() : setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
   var zoomReset = () => {
+    if (useRealMap) {
+      realMapCtl.current?.reset();
+      return;
+    }
     setMapZoom(1);
     setMapPan({
       x: 0,
       y: 0
     });
   };
+  var zoomInOff = useRealMap ? realView.atMax : mapZoom >= MAP_ZOOM_MAX;
+  var zoomOutOff = useRealMap ? realView.atMin : mapZoom <= MAP_ZOOM_MIN;
+  var zoomMoved = useRealMap ? !realView.atHome : mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0;
   var [pingOpen, setPingOpen] = React.useState(false);
   var [iAmAtOpen, setIAmAtOpen] = React.useState(false);
   var [shareOpen, setShareOpen] = React.useState(false);
@@ -3080,14 +3096,13 @@ function MapScreen({
     className: "duo-title",
     style: {
       margin: 0,
-      flex: 1,
-      minWidth: 0
+      flex: "1 0 auto"
     }
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
     className: "duo-code"
   }, mapPostureLabel), (() => {
-    var has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+    var has = t => mapAmenities.some(a => a.type === t);
     var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
     var cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
     return React.createElement("div", {
@@ -3248,7 +3263,7 @@ function MapScreen({
     d: "M3 16 L12 21 L21 16"
   }))), React.createElement("button", {
     onClick: zoomIn,
-    disabled: mapZoom >= MAP_ZOOM_MAX,
+    disabled: zoomInOff,
     "aria-label": "Zoom in",
     style: {
       width: 46,
@@ -3257,8 +3272,8 @@ function MapScreen({
       background: "transparent",
       border: "none",
       borderBottom: "1px solid var(--line)",
-      cursor: mapZoom >= MAP_ZOOM_MAX ? "default" : "pointer",
-      opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
+      cursor: zoomInOff ? "default" : "pointer",
+      opacity: zoomInOff ? 0.35 : 1,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -3270,7 +3285,7 @@ function MapScreen({
     }
   }, "+"), React.createElement("button", {
     onClick: zoomOut,
-    disabled: mapZoom <= MAP_ZOOM_MIN,
+    disabled: zoomOutOff,
     "aria-label": "Zoom out",
     style: {
       width: 46,
@@ -3278,8 +3293,8 @@ function MapScreen({
       padding: 0,
       background: "transparent",
       border: "none",
-      cursor: mapZoom <= MAP_ZOOM_MIN ? "default" : "pointer",
-      opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
+      cursor: zoomOutOff ? "default" : "pointer",
+      opacity: zoomOutOff ? 0.35 : 1,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -3289,7 +3304,7 @@ function MapScreen({
       fontWeight: 500,
       lineHeight: 1
     }
-  }, "−"), (mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && React.createElement("button", {
+  }, "−"), zoomMoved && React.createElement("button", {
     onClick: zoomReset,
     "aria-label": "Reset zoom",
     style: {
@@ -3499,7 +3514,7 @@ function MapScreen({
     }
   }, AMENITY_KEY.map(a => {
     var on = amenityFilter === a.type;
-    var present = (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(x => x.type === a.type);
+    var present = mapAmenities.some(x => x.type === a.type);
     if (!present) return null;
     return React.createElement("div", {
       key: a.type,
@@ -4043,10 +4058,10 @@ function MapScreen({
       label: "Locker",
       emoji: "🔒",
       color: "var(--signal-ink)"
-    }].map(c => React.createElement("button", {
+    }].filter(c => mapAmenities.some(a => a.type === c.type)).map(c => React.createElement("button", {
       key: c.type,
       onClick: () => {
-        var matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
+        var matches = mapAmenities.filter(a => a.type === c.type);
         if (!matches.length) return;
         var nearest = matches.map(a => ({
           ...a,
@@ -4315,6 +4330,11 @@ function MapScreen({
     avatar: avatar,
     stages: REAL_MAP_STAGES,
     officialMap: POSTER_TIER !== "none",
+    amenities: REAL_MAP_AMENITIES,
+    showAmenities: searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med",
+    amenityFilter: mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null,
+    controlRef: realMapCtl,
+    onViewChange: setRealView,
     crewFriends: crewFriends,
     saved: state.saved,
     showHeat: showHeat,
@@ -5219,6 +5239,7 @@ function StageIcon({
     fill: W
   }));
 }
+var OPENING_PITCH_PINNED = 40;
 var REAL_MAP_STYLES = {
   stylized: {
     label: "STYLIZED",
@@ -6117,7 +6138,12 @@ function RealMap({
   meetTarget,
   onPickStage,
   onMapClick,
-  onFatal
+  onFatal,
+  amenities = [],
+  showAmenities = false,
+  amenityFilter = null,
+  controlRef,
+  onViewChange
 }) {
   var containerRef = React.useRef(null);
   var mapRef = React.useRef(null);
@@ -6130,6 +6156,19 @@ function RealMap({
   var friendMarkersRef = React.useRef({});
   var landmarkElsRef = React.useRef([]);
   var officialMapDimsRef = React.useRef(null);
+  var officialMapFailedRef = React.useRef(false);
+  var amenityElsRef = React.useRef([]);
+  var amenityViewRef = React.useRef({
+    show: showAmenities,
+    filter: amenityFilter
+  });
+  var onViewChangeRef = React.useRef(onViewChange);
+  onViewChangeRef.current = onViewChange;
+  var selectedRef = React.useRef(selected);
+  selectedRef.current = selected;
+  var homeRef = React.useRef(null);
+  var declutterRef = React.useRef(null);
+  var styleSwitchRef = React.useRef(null);
   var officialMapRef = React.useRef(officialMap);
   var showLabelsRef = React.useRef(showLabels);
   var onPickStageRef = React.useRef(onPickStage);
@@ -6196,6 +6235,28 @@ function RealMap({
       map.setLayoutProperty("official-map", "visibility", officialMap ? "visible" : "none");
     } catch {}
   }, [officialMap]);
+  var _applyAmenityVisibility = React.useCallback(() => {
+    var {
+      show,
+      filter,
+      meet
+    } = amenityViewRef.current;
+    amenityElsRef.current.forEach(({
+      el,
+      type
+    }) => {
+      el.style.display = show && !meet && (!filter || type === filter) ? "" : "none";
+    });
+  }, []);
+  React.useEffect(() => {
+    amenityViewRef.current = {
+      show: showAmenities,
+      filter: amenityFilter,
+      meet: meetMode
+    };
+    _applyAmenityVisibility();
+    declutterRef.current?.();
+  }, [showAmenities, amenityFilter, meetMode, _applyAmenityVisibility]);
   React.useEffect(() => {
     onPickStageRef.current = onPickStage;
   }, [onPickStage]);
@@ -6281,89 +6342,7 @@ function RealMap({
         }
         return [out];
       };
-      var AMENITY_DESIGN = {
-        water: {
-          color: "var(--signal-ink)",
-          height: 14,
-          radius: 5,
-          sides: 8
-        },
-        food: {
-          color: "var(--signal-ink)",
-          height: 16,
-          radius: 6,
-          sides: 4,
-          rot: 45
-        },
-        med: {
-          color: "var(--alert)",
-          height: 18,
-          radius: 6,
-          sides: 4
-        },
-        toilet: {
-          color: "var(--signal-ink)",
-          height: 12,
-          radius: 5,
-          sides: 6
-        },
-        art: {
-          color: "var(--signal-ink)",
-          height: 22,
-          radius: 7,
-          sides: 12,
-          altInner: 0.5
-        },
-        info: {
-          color: "var(--signal-ink)",
-          height: 14,
-          radius: 5,
-          sides: 24
-        },
-        charge: {
-          color: "var(--signal-ink)",
-          height: 16,
-          radius: 5,
-          sides: 4,
-          rot: 22.5
-        },
-        locker: {
-          color: "var(--signal-ink)",
-          height: 13,
-          radius: 5,
-          sides: 4
-        }
-      };
-      var amenitiesExtrusionData = () => ({
-        type: "FeatureCollection",
-        features: (window.AMENITIES || []).map(a => {
-          var {
-            lat,
-            lng
-          } = mapToGps(a.x, a.y);
-          var d = AMENITY_DESIGN[a.type] || AMENITY_DESIGN.info;
-          return {
-            type: "Feature",
-            properties: {
-              id: a.id,
-              type: a.type,
-              label: a.label,
-              color: d.color,
-              height: d.height
-            },
-            geometry: {
-              type: "Polygon",
-              coordinates: _shapePolygon(lat, lng, {
-                sides: d.sides,
-                radius: d.radius,
-                rot: d.rot || 0,
-                altInner: d.altInner
-              })
-            }
-          };
-        })
-      });
-      var SUB_LANDMARKS = MAP_AFFINE ? FESTIVAL_CONFIG.landmarks || [] : [];
+      var SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ? FESTIVAL_CONFIG.landmarks || [] : [];
       var STAGE_3D_DESIGN = {
         kinetic: {
           sides: 16,
@@ -6684,6 +6663,7 @@ function RealMap({
         var _addOfficialMap = () => {
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
           if (!MAP_AFFINE) return;
+          if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
           var src = dims.url || FESTIVAL_CONFIG.mapImage;
@@ -6937,10 +6917,6 @@ function RealMap({
       map.on("load", () => {
         _mapLog("[plursky-map] map.on('load') fired");
         if (cancelled) return;
-        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
-          var b = FESTIVAL_CONFIG.venue.festivalBounds;
-          map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
-        }
         SUB_LANDMARKS.forEach(lm => {
           var {
             lat,
@@ -6956,6 +6932,30 @@ function RealMap({
           }).setLngLat([lng, lat]).addTo(map);
         });
         _applyLandmarkVisibility();
+        amenities.forEach(a => {
+          var {
+            lat,
+            lng
+          } = mapToGps(a.x, a.y);
+          var cfg = AMENITY_STYLE[a.type] || {
+            color: "var(--paper)",
+            ink: "var(--ink)",
+            letter: ""
+          };
+          var el = document.createElement("div");
+          el.setAttribute("data-realmap-amenity", a.type);
+          el.style.cssText = "width:22px;height:22px;border-radius:999px;box-sizing:border-box;" + "display:flex;align-items:center;justify-content:center;" + `background:${cfg.color};color:${cfg.ink || "var(--paper)"};` + "border:2.5px solid #fff;font:900 12px/1 'Geist Mono',monospace;" + "box-shadow:0 0 0 1px rgba(0,0,0,0.55),0 2px 6px rgba(0,0,0,0.5);pointer-events:none;";
+          el.textContent = cfg.letter || "";
+          amenityElsRef.current.push({
+            el,
+            type: a.type
+          });
+          new maplibregl.Marker({
+            element: el,
+            anchor: "center"
+          }).setLngLat([lng, lat]).addTo(map);
+        });
+        _applyAmenityVisibility();
         stages.forEach(s => {
           var {
             lat,
@@ -6964,6 +6964,7 @@ function RealMap({
           var pill = document.createElement("div");
           pill.style.cssText = "background:rgba(247,237,224,0.96);color:#1a120d;" + `border:2px solid ${s.color};` + "padding:4px 11px;border-radius:999px;" + "font-family:'Geist Mono',monospace;font-size:10.5px;" + "letter-spacing:1.1px;font-weight:800;white-space:nowrap;" + "box-shadow:0 4px 12px rgba(0,0,0,0.45);" + "pointer-events:auto;cursor:pointer;" + "transform:translate(0,-44px);";
           pill.textContent = s.name.toUpperCase();
+          pill.setAttribute("data-realmap-stage", s.id);
           pill.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
           stageMarkersRef.current[s.id] = new maplibregl.Marker({
             element: pill,
@@ -6971,6 +6972,111 @@ function RealMap({
           }).setLngLat([lng, lat]).addTo(map);
         });
         _mapLog("[plursky-map] stage name pills added:", stages.length);
+        var home = {
+          center: map.getCenter(),
+          zoom: map.getZoom(),
+          pitch: map.getPitch(),
+          bearing: 0
+        };
+        if (stages.length >= 2) {
+          var b = new maplibregl.LngLatBounds();
+          stages.forEach(s => {
+            var {
+              lat,
+              lng
+            } = mapToGps(s.x, s.y);
+            b.extend([lng, lat]);
+          });
+          var box = containerRef.current?.getBoundingClientRect();
+          var pad = {
+            top: 150,
+            bottom: 150,
+            left: 95,
+            right: 105
+          };
+          var cam = box && box.width > pad.left + pad.right + 40 && box.height > pad.top + pad.bottom + 40 ? map.cameraForBounds(b, {
+            padding: pad,
+            bearing: 0
+          }) : null;
+          if (cam) {
+            home.center = cam.center;
+            home.zoom = Math.min(cam.zoom, 17.5);
+            home.pitch = OPENING_PITCH_PINNED;
+          }
+          map.jumpTo(home);
+        }
+        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
+          var fb = FESTIVAL_CONFIG.venue.festivalBounds;
+          var lim = new maplibregl.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+          if (stages.length >= 2) lim.extend(map.getBounds());
+          map.setMaxBounds(lim);
+        }
+        homeRef.current = {
+          center: map.getCenter(),
+          zoom: map.getZoom(),
+          pitch: map.getPitch(),
+          bearing: 0
+        };
+        var _declutter = () => {
+          var av = amenityViewRef.current;
+          if (av.show && av.filter && !av.meet && amenities.some(a => a.type === av.filter)) {
+            Object.values(stageMarkersRef.current).forEach(m => {
+              m.getElement().style.visibility = "hidden";
+            });
+            return;
+          }
+          var taken = [];
+          var sw = styleSwitchRef.current?.getBoundingClientRect();
+          if (sw && sw.width) taken.push(sw);
+          var sel = selectedRef.current;
+          var order = stages.filter(s => s.id === sel).concat(stages.filter(s => s.id !== sel));
+          var GAP = 4;
+          order.forEach(s => {
+            var el = stageMarkersRef.current[s.id]?.getElement();
+            if (!el) return;
+            var r = el.getBoundingClientRect();
+            var hit = taken.some(t => r.left < t.right + GAP && r.right > t.left - GAP && r.top < t.bottom + GAP && r.bottom > t.top - GAP);
+            el.style.visibility = hit ? "hidden" : "";
+            if (!hit) taken.push(r);
+          });
+        };
+        var _declutterQueued = false;
+        declutterRef.current = () => {
+          if (_declutterQueued) return;
+          _declutterQueued = true;
+          requestAnimationFrame(() => {
+            _declutterQueued = false;
+            if (!cancelled) _declutter();
+          });
+        };
+        map.on("move", declutterRef.current);
+        declutterRef.current();
+        var _reportView = () => {
+          var h = homeRef.current,
+            z = map.getZoom(),
+            c = map.getCenter();
+          var atHome = !!h && Math.abs(z - h.zoom) < 0.05 && Math.abs(map.getPitch() - h.pitch) < 1 && Math.abs(map.getBearing()) < 1 && distMiles(c.lat, c.lng, h.center.lat, h.center.lng) * 1609.34 < 5;
+          try {
+            onViewChangeRef.current?.({
+              atMin: z <= map.getMinZoom() + 0.01,
+              atMax: z >= map.getMaxZoom() - 0.01,
+              atHome
+            });
+          } catch {}
+        };
+        map.on("moveend", _reportView);
+        _reportView();
+        if (controlRef) controlRef.current = {
+          zoomIn: () => map.zoomIn(),
+          zoomOut: () => map.zoomOut(),
+          reset: () => {
+            if (homeRef.current) map.flyTo({
+              ...homeRef.current,
+              duration: 600,
+              essential: true
+            });
+          }
+        };
         var avWrap = document.createElement("div");
         avWrap.style.cssText = "position:relative;width:18px;height:18px;pointer-events:none;";
         var halo = document.createElement("div");
@@ -7013,6 +7119,7 @@ function RealMap({
         var msg = e && e.error && e.error.message || "tile load failed";
         console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
         if (e && e.sourceId === "official-map") {
+          officialMapFailedRef.current = true;
           try {
             if (map.getLayer("official-map")) map.removeLayer("official-map");
           } catch {}
@@ -7035,6 +7142,7 @@ function RealMap({
     return () => {
       clearTimeout(bootTimer);
       cancelled = true;
+      if (controlRef) controlRef.current = null;
       if (mapRef.current) {
         try {
           mapRef.current.remove();
@@ -7042,6 +7150,8 @@ function RealMap({
         mapRef.current = null;
       }
       stageMarkersRef.current = {};
+      amenityElsRef.current = [];
+      declutterRef.current = null;
       avatarMarkerRef.current = null;
       friendMarkersRef.current = {};
       savedStarMarkersRef.current = {};
@@ -7106,6 +7216,7 @@ function RealMap({
     if (src && mapRef.current._plurskyExtrusionData) {
       src.setData(mapRef.current._plurskyExtrusionData(selected));
     }
+    declutterRef.current?.();
     if (!selected) return;
     var s = stages.find(st => st.id === selected);
     if (!s) return;
@@ -7314,6 +7425,8 @@ function RealMap({
       WebkitBackdropFilter: "blur(8px)"
     }
   }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
+    ref: styleSwitchRef,
+    "data-realmap-style-switch": true,
     style: {
       position: "absolute",
       top: 58,
@@ -10466,5 +10579,7 @@ Object.assign(window, {
   readoutHonest,
   posterTierFor,
   POSTER_TIER,
-  POSTER_OPACITY_UNCHECKED
+  POSTER_OPACITY_UNCHECKED,
+  REAL_MAP_PLACES_CHECKED,
+  REAL_MAP_AMENITIES
 });

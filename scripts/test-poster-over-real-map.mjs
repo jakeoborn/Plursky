@@ -12,9 +12,13 @@
 //      one geometry predicate decides "checked", not a second list. The fleet
 //      table below pins today's answer so a festival changing tier is a diff
 //      somebody reads, never a silent drift.
-//   2. "none" (no affine, or no art): no poster, and NO stage pins or landmark
-//      labels on the real map. Without an affine mapToGps() returns the venue
-//      centre, so every stage would stack on one point.
+//   2. Pins (stages, landmarks, Water/Medical dots) only where the geometry is
+//      CHECKED (REAL_MAP_PLACES_CHECKED = affine + geometryVerifiedFor). #313
+//      review, Instinct's lane: "Stage pins OFF on unchecked festivals ... pins
+//      off, full stop." An unchecked affine still turns poster art into
+//      coordinates (Ultra's land up to 387 m off), so ACL, Gov Ball, Ultra,
+//      EDC LV and EDC Orlando read STAGES PENDING exactly like III Points. With
+//      no affine at all mapToGps() returns the venue centre.
 //   3. MapScreen hands RealMap the tier's stages and poster; the poster's
 //      opacity follows the tier; the posture label names it.
 //   4. The real map is on unless the user chose the art map ("0"), or it
@@ -62,6 +66,7 @@ function load(fid, mapSrc = MAP) {
   vm.runInContext(mapSrc, ctx, { filename: "build/map.js" });
   return vm.runInContext(`({ id: FESTIVAL_CONFIG.id, DS: _DATA_SETS, tier: POSTER_TIER, affine: MAP_AFFINE,
     realStages: REAL_MAP_STAGES, placed: PLACED_STAGES, posterTierFor, _solveMapAffine, geometryVerifiedFor,
+    placesChecked: REAL_MAP_PLACES_CHECKED, realAmenities: REAL_MAP_AMENITIES, amenities: AMENITIES,
     unchecked: POSTER_OPACITY_UNCHECKED })`, ctx);
 }
 
@@ -89,12 +94,22 @@ function fleet(mapSrc) {
     if (cfg.mapMode === "real") ok(t === "none", `${id}: mapMode "real" has no art to lay over (tier ${t})`);
   }
   // The active-festival constants agree with the function (one policy).
-  for (const id of ["summerfest-2026", "ultra-miami-2026", "acl-2026", "escape-halloween-2026", "iii-points-2026", "hard-summer-2026"]) {
+  // EDC Orlando is gated (it cannot be the active festival); its tier is pinned above.
+  for (const id of ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "ultra-miami-2026", "acl-2026", "governors-ball-2026",
+                    "edc-lv-2026", "escape-halloween-2026", "iii-points-2026", "hard-summer-2026"]) {
     const A = load(id, mapSrc);
     ok(A.id === id, `active festival is ${A.id}, not ${id} (a gated id silently loads the default)`);
     ok(A.tier === expectedTier(id), `${id} active: POSTER_TIER "${A.tier}", expected "${expectedTier(id)}"`);
-    if (A.affine) ok(A.realStages.length === A.placed.length && A.placed.length > 0, `${id}: has an affine, so the real map pins all ${A.placed.length} placed stages (got ${A.realStages.length})`);
-    else ok(A.realStages.length === 0, `${id}: no affine, so the real map pins NO stages (got ${A.realStages.length}; they would stack on the venue centre)`);
+    const checked = expectedTier(id) === "checked";
+    ok(A.placesChecked === checked, `${id}: pins placed=${A.placesChecked}, expected ${checked} (only checked geometry places pins)`);
+    if (checked) {
+      ok(A.realStages.length === A.placed.length && A.placed.length > 0, `${id}: checked, so the real map pins all ${A.placed.length} placed stages (got ${A.realStages.length})`);
+      ok(A.realAmenities.length === A.amenities.length && A.amenities.some(a => a.type === "water") && A.amenities.some(a => a.type === "med"),
+        `${id}: checked, so Water and Medical are on the real map (${A.realAmenities.length}/${A.amenities.length} amenities)`);
+    } else {
+      ok(A.realStages.length === 0, `${id}: ${A.affine ? "unchecked anchors" : "no affine"}, so the real map pins NO stages (got ${A.realStages.length})`);
+      ok(A.realAmenities.length === 0, `${id}: not checked, so no amenity dots from poster positions (got ${A.realAmenities.length})`);
+    }
   }
   ok(P.unchecked > 0 && P.unchecked <= 0.5, `unchecked poster opacity ${P.unchecked} must read as faded (0 < o <= 0.5)`);
   return fails;
@@ -109,9 +124,12 @@ const SRC = [
   ["a failed real map holds for the session", /sessionStorage\.getItem\("plursky_realmap_failed"\) === "1"\) return false/],
   ["a failure does not erase the user's choice", s => !/removeItem\("plursky_use_realmap"\)/.test(s)],
   ["the toggle records both choices", /setItem\("plursky_use_realmap", v \? "1" : "0"\)/],
-  ["posture: no affine on the real map reads STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !MAP_AFFINE \? "VENUE MAP · STAGES PENDING"/],
-  ["posture: unchecked art on the real map reads NOT TO SCALE", /useRealMap && POSTER_TIER === "unchecked" \? "POSTER NOT TO SCALE"/],
-  ["landmarks need an affine", /SUB_LANDMARKS = MAP_AFFINE \?/],
+  ["posture: unplaced pins on the real map read STAGES PENDING", /REAL_MAP_ONLY \|\| useRealMap && !REAL_MAP_PLACES_CHECKED \? useRealMap && POSTER_TIER === "unchecked" \? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING"/],
+  ["landmarks need checked placement", /SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED \?/],
+  ["RealMap gets the checked amenities", /amenities:\s*REAL_MAP_AMENITIES/],
+  ["Water/Medical chips follow the map on screen", /has = t => mapAmenities\.some/],
+  ["the real map's zoom buttons drive the real map", s => /zoomIn = \(\) => useRealMap \? realMapCtl\.current\?\.zoomIn\(\)/.test(s) && /zoomOut = \(\) => useRealMap \? realMapCtl\.current\?\.zoomOut\(\)/.test(s) && /controlRef:\s*realMapCtl/.test(s)],
+  ["a failed overlay is latched off", s => /if \(officialMapFailedRef\.current\) return;/.test(s) && /sourceId === "official-map"\) \{\s*officialMapFailedRef\.current = true;/.test(s)],
   // MapLibre cannot decode SVG (createImageBitmap); six festivals ship SVG art.
   ["an SVG map is rasterised before MapLibre sees it", /toDataURL\("image\/png"\)/],
   ["the image source loads the rasterised URL", /(?:const|var) src = dims\.url \|\| FESTIVAL_CONFIG\.mapImage/],
@@ -133,11 +151,18 @@ if (srcFails.length) { failed++; console.log("  ✗  " + srcFails.join("\n  ✗ 
 const MUT = [
   ["tier ignores verification", "return verified ? \"checked\" : \"unchecked\";", "return \"checked\";", "fleet"],
   ["tier ignores the affine", "!affine) return \"none\";", "false) return \"none\";", "fleet"],
-  ["no-affine festivals pin every stage", "REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];", "REAL_MAP_STAGES = PLACED_STAGES;", "fleet"],
+  ["no-affine festivals pin every stage", "REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];", "REAL_MAP_STAGES = PLACED_STAGES;", "fleet"],
+  ["unchecked anchors pin stages (the #313 head)", "REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];", "REAL_MAP_STAGES = MAP_AFFINE ? PLACED_STAGES : [];", "fleet"],
+  ["placement ignores verification", "REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;", "REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE;", "fleet"],
+  ["amenities pinned from unchecked art", "REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED &&", "REAL_MAP_AMENITIES = true &&", "fleet"],
+  ["RealMap gets no amenities", "amenities: REAL_MAP_AMENITIES", "amenities: []", "src"],
+  ["chips art-map only again", "has = t => mapAmenities.some", "has = t => !useRealMap && mapAmenities.some", "src"],
+  ["zoom drives the art map only", "useRealMap ? realMapCtl.current?.zoomIn()", "false ? realMapCtl.current?.zoomIn()", "src"],
+  ["overlay failure not latched", "if (officialMapFailedRef.current) return;", "", "src"],
   ["RealMap back on all placed stages", "stages: REAL_MAP_STAGES", "stages: PLACED_STAGES", "src"],
   ["poster whenever there is art", "officialMap: POSTER_TIER !== \"none\"", "officialMap: !!FESTIVAL_CONFIG.mapImage", "src"],
   ["opt-in default restored", "localStorage.getItem(\"plursky_use_realmap\") !== \"0\"", "localStorage.getItem(\"plursky_use_realmap\") === \"1\"", "src"],
-  ["landmarks ungated", "SUB_LANDMARKS = MAP_AFFINE ?", "SUB_LANDMARKS = true ?", "src"],
+  ["landmarks on unchecked anchors", "SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ?", "SUB_LANDMARKS = MAP_AFFINE ?", "src"],
   ["SVG handed to MapLibre raw", "src = dims.url || FESTIVAL_CONFIG.mapImage", "src = FESTIVAL_CONFIG.mapImage", "src"],
   ["overlay failure becomes the error card", "e.sourceId === \"official-map\"", "e.sourceId === \"never\"", "src"],
 ];
