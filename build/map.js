@@ -649,23 +649,29 @@ function formatLastSeen(ts) {
     color: "var(--text-3)"
   };
 }
+var GPS_STALE_MS = 60000,
+  GPS_STALE_MS_SAVER = 120000;
 function useGeolocation(enabled) {
   var [pos, setPos] = React.useState(null);
   var [status, setStatus] = React.useState("idle");
   var {
     active: bsActive
   } = useBatterySaver();
+  var staleMs = bsActive ? GPS_STALE_MS_SAVER : GPS_STALE_MS;
   React.useEffect(() => {
     if (!enabled) {
+      setPos(null);
       setStatus("idle");
       return;
     }
     if (!navigator.geolocation) {
+      setPos(null);
       setStatus("unavailable");
       return;
     }
     setStatus("locating");
-    var alive = true;
+    var alive = true,
+      lastTs = 0;
     var opts = bsActive ? {
       enableHighAccuracy: false,
       maximumAge: 30000,
@@ -679,11 +685,12 @@ function useGeolocation(enabled) {
       if (!alive) return;
       var lat = p.coords.latitude,
         lng = p.coords.longitude;
+      lastTs = Date.now();
       setPos({
         lat,
         lng,
         accuracy: p.coords.accuracy,
-        ts: Date.now()
+        ts: lastTs
       });
       setStatus("live");
       try {
@@ -695,16 +702,23 @@ function useGeolocation(enabled) {
       } catch {}
     }, e => {
       if (!alive) return;
+      setPos(null);
       setStatus(e.code === 1 ? "denied" : "unavailable");
     }, opts);
+    var tick = setInterval(() => {
+      if (alive && lastTs && Date.now() - lastTs > staleMs) setStatus(s => s === "live" ? "stale" : s);
+    }, 5000);
     return () => {
       alive = false;
+      clearInterval(tick);
       navigator.geolocation.clearWatch(id);
     };
-  }, [enabled, bsActive]);
+  }, [enabled, bsActive, staleMs]);
+  var live = !!enabled && status === "live" && _validGps(pos) && Date.now() - (pos.ts || 0) <= staleMs;
   return {
     pos,
-    status
+    status,
+    live
   };
 }
 var WALK_PAIRS = {
@@ -1632,7 +1646,7 @@ function ShareLocationSheet({
       color: "var(--muted)",
       marginTop: 2
     }
-  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
+  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO RECENT FIX" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -2724,9 +2738,12 @@ function MapScreen({
     };
   }, [compass]);
   var {
-    pos: gpsPos,
-    status: gpsStatus
+    pos: _gpsRaw,
+    status: _gpsStatus,
+    live: _gpsFresh
   } = useGeolocation(gpsLive);
+  var gpsPos = _gpsFresh ? _gpsRaw : null;
+  var gpsStatus = _gpsStatus === "live" && !_gpsFresh ? "stale" : _gpsStatus;
   var liveAvatar = React.useMemo(() => {
     if (!gpsPos) return null;
     var mi = distMiles(gpsPos.lat, gpsPos.lng, FESTIVAL_LAT, FESTIVAL_LNG);
@@ -2742,7 +2759,13 @@ function MapScreen({
       onSite: true,
       x: Math.max(2, Math.min(98, x)),
       y: Math.max(2, Math.min(98, y)),
-      accuracy: gpsPos.accuracy
+      accuracy: gpsPos.accuracy,
+      gps: {
+        lat: gpsPos.lat,
+        lng: gpsPos.lng,
+        accuracy: gpsPos.accuracy ?? null,
+        ts: gpsPos.ts ?? Date.now()
+      }
     };
   }, [gpsPos]);
   var isLiveOnSite = !!liveAvatar?.onSite;
@@ -2750,7 +2773,8 @@ function MapScreen({
   var avatar = isLiveOnSite ? {
     x: liveAvatar.x,
     y: liveAvatar.y,
-    live: true
+    live: true,
+    gps: liveAvatar.gps
   } : demoAvatar;
   var {
     active: bsActive
@@ -3008,7 +3032,7 @@ function MapScreen({
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
   return React.createElement(Screen, {
     bg: "var(--paper)",
@@ -4300,6 +4324,9 @@ function MapScreen({
       setMeetTarget({
         x: xy.x,
         y: xy.y,
+        ...(xy.gps ? {
+          gps: xy.gps
+        } : {}),
         label: names.length ? `Meet ${names.join(" + ")}` : "Meet here"
       });
     },
@@ -4393,13 +4420,14 @@ function MapScreen({
       background: "var(--ink)",
       animation: "pulse 1.4s infinite"
     }
-  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
+  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
     onClick: () => {
       var ok = sbBroadcastRally({
         x: meetTarget.x,
         y: meetTarget.y,
         label: meetTarget.label,
-        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y)
+        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
+        gps: meetTarget.gps || null
       });
       if (ok) setRallySent(true);
     },
@@ -4482,6 +4510,12 @@ function MapScreen({
       setMeetTarget({
         x: incomingRally.x,
         y: incomingRally.y,
+        ...(_validGps(incomingRally.gps) ? {
+          gps: {
+            lat: incomingRally.gps.lat,
+            lng: incomingRally.gps.lng
+          }
+        } : {}),
         label: incomingRally.label,
         isRally: true
       });
@@ -5957,6 +5991,21 @@ function OfflinePacksSheet({
     onClose: () => setPlusOpen(false)
   })), document.body);
 }
+function _validGps(g) {
+  return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng) && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
+}
+function _lngLatOf(p) {
+  var g = p && p.gps;
+  if (_validGps(g)) return {
+    lat: g.lat,
+    lng: g.lng
+  };
+  var ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : {
+    lat: FESTIVAL_CONFIG.gps.lat,
+    lng: FESTIVAL_CONFIG.gps.lng
+  };
+}
 function mapToGps(x, y) {
   if (!MAP_AFFINE) return {
     lat: FESTIVAL_CONFIG.gps.lat,
@@ -6037,6 +6086,8 @@ function RealMap({
   var mapRef = React.useRef(null);
   var stageMarkersRef = React.useRef({});
   var avatarMarkerRef = React.useRef(null);
+  var avatarRef = React.useRef(avatar);
+  avatarRef.current = avatar;
   var meetMarkerRef = React.useRef(null);
   var savedStarMarkersRef = React.useRef({});
   var friendMarkersRef = React.useRef({});
@@ -6138,6 +6189,9 @@ function RealMap({
       loadedRef.current = true;
       clearTimeout(bootTimer);
       setLoaded(true);
+      try {
+        window.__plurskyRealMap = mapRef.current;
+      } catch {}
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then(async maplibregl => {
@@ -6784,9 +6838,18 @@ function RealMap({
             });
           }
         });
-        ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].forEach(id => {
+        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter(id => map.getLayer(id));
+        var _order = (() => {
           try {
-            if (map.getLayer(id)) map.moveLayer(id);
+            return (map.getStyle().layers || []).map(l => l.id);
+          } catch {
+            return [];
+          }
+        })();
+        var _tail = _order.slice(_order.length - _top.length);
+        if (_top.some((id, i) => _tail[i] !== id)) _top.forEach(id => {
+          try {
+            map.moveLayer(id);
           } catch (e) {
             console.error(`[plursky-map] moveLayer "${id}" failed:`, e);
           }
@@ -6878,7 +6941,7 @@ function RealMap({
         avDot.style.cssText = "position:absolute;inset:0;border-radius:999px;" + "background:#f59a36;border:2px solid rgba(255,255,255,0.95);" + "box-shadow:0 0 16px rgba(245,154,54,0.9),0 2px 6px rgba(0,0,0,0.5);";
         avWrap.appendChild(halo);
         avWrap.appendChild(avDot);
-        var avLatLng = mapToGps(avatar.x, avatar.y);
+        var avLatLng = _lngLatOf(avatarRef.current);
         avatarMarkerRef.current = new maplibregl.Marker({
           element: avWrap
         }).setLngLat([avLatLng.lng, avLatLng.lat]).addTo(map);
@@ -6900,7 +6963,11 @@ function RealMap({
         if (!xy) return;
         onMapClickRef.current({
           x: Math.max(2, Math.min(98, xy.x)),
-          y: Math.max(2, Math.min(98, xy.y))
+          y: Math.max(2, Math.min(98, xy.y)),
+          gps: {
+            lat: ll.lat,
+            lng: ll.lng
+          }
         });
       });
       map.on("error", e => {
@@ -6939,9 +7006,9 @@ function RealMap({
     var {
       lat,
       lng
-    } = mapToGps(avatar.x, avatar.y);
+    } = _lngLatOf(avatar);
     avatarMarkerRef.current.setLngLat([lng, lat]);
-  }, [loaded, avatar.x, avatar.y]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng]);
   React.useEffect(() => {
     if (!loaded || !mapRef.current || !window.maplibregl) return;
     var map = mapRef.current;
@@ -6949,8 +7016,10 @@ function RealMap({
     var seenIds = new Set();
     crewFriends.forEach(f => {
       seenIds.add(f.id);
-      var lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
-      var lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
+      var {
+        lat,
+        lng
+      } = _lngLatOf(f);
       if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
       var seen = formatLastSeen(f.ts);
       var initial = (f.name?.[0] || "?").toUpperCase();
@@ -7028,7 +7097,7 @@ function RealMap({
     var {
       lat,
       lng
-    } = mapToGps(meetTarget.x, meetTarget.y);
+    } = _lngLatOf(meetTarget);
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
     if (!meetMarkerRef.current) {
       var wrap = document.createElement("div");
@@ -7153,8 +7222,8 @@ function RealMap({
       });
       return;
     }
-    var a = mapToGps(avatar.x, avatar.y);
-    var t = mapToGps(target.x, target.y);
+    var a = _lngLatOf(avatar);
+    var t = _lngLatOf(target);
     src.setData({
       type: "Feature",
       geometry: {
@@ -7162,7 +7231,7 @@ function RealMap({
         coordinates: [[a.lng, a.lat], [t.lng, t.lat]]
       }
     });
-  }, [loaded, avatar.x, avatar.y, selected, meetTarget, stages]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng, selected, meetTarget, stages]);
   var pickStyle = k => {
     setStyleKey(k);
     try {
@@ -9146,7 +9215,7 @@ function BottomSheet({
     var knownEtas = [youMins, ...fEtas.map(e => e.mins)].filter(m => m != null);
     var eta = knownEtas.length ? Math.max(...knownEtas) : null;
     var title = groupFriends.length === 0 ? "Pinned spot" : groupFriends.length === 1 ? `You + ${groupFriends[0].name}` : `Group · ${groupFriends.length + 1} people`;
-    var routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    var routingLabel = !avatar?.live ? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";
     return React.createElement("div", {
       style: {
         background: "var(--s1)",
