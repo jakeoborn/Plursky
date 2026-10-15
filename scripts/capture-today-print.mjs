@@ -38,6 +38,7 @@ export const STATES = [
 ].filter(([k]) => !ONLY.length || ONLY.includes(k));
 const HEROES = !ONLY.length || ONLY.includes('heroes');
 const heroes = [];
+const shotNames = new Set();
 
 const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once('error', rej); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
 const PORT = await reservePort();
@@ -142,8 +143,14 @@ try {
         if (a.part > 0) { await page.evaluate((name) => { const b = [...document.querySelectorAll('[data-screen="artist"] button')].find(b => b.textContent.trim().toLowerCase() === name.toLowerCase()); if (b) b.click(); }, a.name); await page.waitForTimeout(400); }
         await page.waitForFunction(() => document.querySelector('[data-artist-hero]')?.dataset.artistHero === 'photo', null, { timeout: 15000 }).catch(() => {});
         await page.waitForTimeout(800);
-        const slug = a.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const slugOf = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        // An act billed twice at one festival (Ki/Ki solo and as half of
+        // "Peggy Gou b2b Ki/Ki" at EDC) is two shots: the half carries its
+        // billing in the name, and a second shot on one name is a fault.
+        const slug = slugOf(a.name) + (a.billing && a.billing !== a.name ? `-of-${slugOf(a.billing)}` : '');
         const file = join(out, `hero-${slug}-${a.fid}-${pick}-${width}.png`);
+        if (shotNames.has(file)) throw new Error(`capture: two hero shots named ${file} (${a.name} / ${a.billing} at ${a.fid})`);
+        shotNames.add(file);
         const ev = await heroEvidence(page, cmp);
         await page.screenshot({ path: file, fullPage: false });
         heroes.push({ shot: `hero-${slug}-${a.fid}-${pick}-${width}.png`, act: a.name, billing: a.billing, id: a.id, festival: a.fid, mode: pick, width, hero: ev ? ev.kind : 'none', asset: a.asset, labels: ev ? ev.labels : [], type: ev ? ev.type : null, errors });
