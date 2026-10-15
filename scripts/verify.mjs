@@ -2761,6 +2761,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-tp. Today print: the ticket / journey Today and the artist hero under
+// the approved Sora + chalk/charcoal direction (2026-10-12). Every lifecycle
+// state at 390 and 320 in both modes: chalk/charcoal sheet, the verified accent
+// a thin rule, Sora rendered at the approved scale, AA on real pixels, the
+// stamp upright, every control 44px, the four steps routed, every ledger hero.
+{
+  console.log("▸ Today print gate — chalk/charcoal, Sora, every state, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-today-print.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`today print failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is

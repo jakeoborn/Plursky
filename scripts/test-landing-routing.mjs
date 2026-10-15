@@ -10,6 +10,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => {
   const s = createServer(); s.once('error', reject);
@@ -40,6 +41,7 @@ const seed = (festivalId, artistId) => JSON.stringify({
 const AT = '2026-10-10T23:00:00Z';
 async function open(browser, { url = BASE, init = {}, width = 393 } = {}) {
   const ctx = await browser.newContext({ timezoneId: 'America/Los_Angeles', viewport: { width, height: 800 } });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.clock.install({ time: new Date(AT) });
   await ctx.addInitScript((kv) => {
     // Seed ONCE. addInitScript runs on EVERY navigation, including the reload

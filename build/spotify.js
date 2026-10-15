@@ -6455,7 +6455,7 @@ function ImportReview({
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
   var mono = {
-    fontFamily: "var(--f-display)",
+    fontFamily: "var(--f-ui)",
     letterSpacing: "0.14em",
     fontWeight: 400,
     textTransform: "uppercase",

@@ -13,6 +13,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; console.log(`  ${ok ? "✓" : "✗"}  ${msg}`); if (!ok) failed++; }
@@ -30,6 +31,7 @@ try {
   const browser = await chromium.launch({ channel: "chrome", headless: true });
   const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 844 },
     geolocation: { latitude: A[0], longitude: A[1], accuracy: 8 }, permissions: ["geolocation"] });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.clock.install({ time: new Date(AT) });
   await ctx.addInitScript(fid => {
     localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);

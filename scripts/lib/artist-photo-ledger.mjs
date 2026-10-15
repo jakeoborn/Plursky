@@ -1,7 +1,9 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
-const licenses = new Set(['CC0-1.0', 'Public-Domain', 'CC-BY-4.0', 'CC-BY-3.0', 'CC-BY-2.0', 'CC-BY-SA-4.0', 'CC-BY-SA-3.0', 'CC-BY-SA-2.0', 'Press-Grant']);
+// CC-BY-SA-3.0-DE (the German port of 3.0) admitted 2026-10-12 by Jake's delegated f13 ruling
+// (Chuckie, Electric Love 2013 portraits); the credit names the port.
+const licenses = new Set(['CC0-1.0', 'Public-Domain', 'CC-BY-4.0', 'CC-BY-3.0', 'CC-BY-2.0', 'CC-BY-SA-4.0', 'CC-BY-SA-3.0', 'CC-BY-SA-3.0-DE', 'CC-BY-SA-2.0', 'Press-Grant']);
 const cleanText = v => typeof v === 'string' && !!v.trim() && !/[<>\u0000-\u001f]/.test(v);
 const https = v => { try { return new URL(v).protocol === 'https:'; } catch { return false; } };
 // A press grant is either published on the granting party's press page (preferred: the page is

@@ -37,6 +37,7 @@ import { createServer } from 'node:net';
 import { mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const OUT = process.env.PIXEL_OUT || '/tmp/pixels-v341';
 mkdirSync(OUT, { recursive: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -63,6 +64,7 @@ async function open(browser, { url, width, big, reduced, themePref, font }) {
     viewport: { width, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block',
     reducedMotion: reduced ? 'reduce' : 'no-preference', timezoneId: 'America/Los_Angeles',
   });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(([rich, pref]) => {
     localStorage.setItem('onboarded', 'v1'); localStorage.setItem('user_name', 'Jake');
     for (const k of ['cloud_nudge_seen', 'ft_guide_seen', 'notif_nudge_dismissed', 'plursky_recap_seen_v1']) localStorage.setItem(k, '1');
