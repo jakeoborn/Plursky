@@ -12,6 +12,7 @@
 // Exits non-zero on the first failure.
 
 import { readFileSync, writeFileSync, unlinkSync, existsSync, readdirSync } from "node:fs";
+import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync, spawn } from "node:child_process";
@@ -3283,11 +3284,36 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // COMMENTS, hoisting app.jsx ahead of data.jsx and reporting a false root=0 on
 // perfectly healthy code. Loading the real document can't get the order wrong,
 // because it isn't guessing at it.
+// Playwright's headless shell first: it is the browser every other browser
+// gate here already runs on, it has no component updater, no extensions, no
+// first-run work and no display dependency. The Google Chrome app came
+// second on 2026-10-15: with --headless=new it logged the request for
+// index.html and never sent it (0 requests reached the local server) on two
+// full runs and six direct launches on this Mac, with and without a fresh
+// --user-data-dir and with background networking off, while the shell
+// mounted the same page in 1.5 s. A gate must not depend on the user's
+// Chrome app being in a mood to navigate.
+const headlessShell = () => {
+  const roots = [join(homedir(), "Library", "Caches", "ms-playwright"), join(homedir(), ".cache", "ms-playwright")];
+  const found = [];
+  for (const root of roots) {
+    if (!existsSync(root)) continue;
+    for (const d of readdirSync(root)) {
+      if (!d.startsWith("chromium_headless_shell-")) continue;
+      for (const rel of ["chrome-headless-shell-mac-arm64/chrome-headless-shell", "chrome-headless-shell-mac-x64/chrome-headless-shell", "chrome-headless-shell-linux64/chrome-headless-shell"]) {
+        const p = join(root, d, rel);
+        if (existsSync(p)) found.push({ p, n: Number(d.split("-")[1]) || 0 });
+      }
+    }
+  }
+  return found.sort((a, b) => b.n - a.n)[0]?.p;
+};
 const CHROME = [
+  headlessShell(),
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable",
   "/usr/bin/chromium-browser", "/usr/bin/chromium",
-].find(existsSync);
+].filter(Boolean).find(existsSync);
 if (!CHROME) fail("no Chrome/Chromium found — run with --parse-only to skip the mount probe");
 
 const TYPES = { html:"text/html", js:"text/javascript", jsx:"text/babel",
