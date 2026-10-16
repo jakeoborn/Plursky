@@ -75,6 +75,7 @@ const LOCAL = [
   './hard-summer-2026.webp',
   './escape-2025-map.webp',
   './acl-park-2026.webp',
+  './iiip-map-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
   './artist-photos/amyl-and-the-sniffers.webp',
