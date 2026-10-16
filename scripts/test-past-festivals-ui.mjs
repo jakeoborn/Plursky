@@ -19,6 +19,7 @@ import { createServer } from "node:net";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 
 const ROOT = process.cwd();
 const H = p => JSON.parse(readFileSync(join(ROOT, "data/historical", p), "utf8"));
@@ -67,6 +68,7 @@ try {
   });
   await ctx.route(`**/data/historical/editions/${FIXTURE.id}.json`, r => r.fulfill({ json: FIXTURE }));
   await ctx.route("**/data/historical/editions/*.json", r => failEdition && r.request().url().includes(failEdition) ? r.abort() : r.fallback());
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
 
   const page = await ctx.newPage();
   const errors = [];
