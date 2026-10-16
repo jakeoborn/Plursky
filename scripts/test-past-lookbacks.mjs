@@ -30,6 +30,7 @@ import { createServer } from "node:net";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from "./lib/server-ready.mjs";
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 import { pastEditionsFor } from "./lib/festival-page-data.mjs";
 import { loadRegistry } from "./lib/load-registry.mjs";
 
@@ -104,6 +105,7 @@ try {
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const newCtx = async (active = "edc-lv-2026") => {
     const c = await browser.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: 2, timezoneId: "America/Chicago", serviceWorkers: "block" });
+    await wireVendor(c);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await c.addInitScript(a => {
       if (sessionStorage.getItem("__seeded")) return;
       sessionStorage.setItem("__seeded", "1");
