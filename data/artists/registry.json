@@ -22212,8 +22212,8 @@
   "links": []
  },
  {
-  "key": "maccabi",
-  "name": "Maccabi",
+  "key": "maccabiii",
+  "name": "MACCABIII",
   "aliases": [],
   "kind": "performer",
   "parents": [],
@@ -22626,10 +22626,24 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul141",
-   "iii-points-2026:iiip-malone-b2b-miluhska"
+   "ultra-miami-2026:ul141"
   ],
   "firstSeen": "2026-03-29",
+  "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "malone-morez",
+  "name": "Malóne Morez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2026:iiip-malone-b2b-miluhska"
+  ],
+  "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -31208,21 +31222,6 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-03-29",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "saraga",
-  "name": "Saraga",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "iii-points-2026:iiip-miguelle-tons-b2b-saraga"
-  ],
-  "firstSeen": "2026-10-16",
-  "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
  },
