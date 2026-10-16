@@ -14,7 +14,7 @@ for(const stage of data.stages)for(const day of stage.days){const sets=[...day.r
 assert.match(data.source.sha256,/^[a-f0-9]{64}$/);assert.match(data.source.evidence,/screenshot/);
 const section=page.split('<section aria-labelledby="stage-programming-h"')[1].split('</section>')[0];
 assert.equal((section.match(/<time>/g)||[]).length,231);assert.equal((section.match(/<li>/g)||[]).length,231);assert.equal((section.match(/<details class="program-stage"/g)||[]).length,26);
-assert.doesNotMatch(section,/running order, not set times|End times are not supplied|Club Space/);assert.match(section,/Friday 12:00 AM is early Saturday/);assert.match(section,/supplied screenshot/);
+assert.doesNotMatch(section,/running order, not set times|End times are not supplied|Club Space/);assert.match(section,/Friday 12:00 AM is early Saturday/);assert.match(section,/Official set times from the III Points set-times grid/);assert.match(section,/href="https:\/\/www\.iiipoints\.com\/set-times\/"/);assert.doesNotMatch(section,/supplied screenshot|community source/);assert.equal(data.source.url,'https://www.iiipoints.com/set-times/');
 assert.ok(rows.some(r=>r.name==='Homicide Jenny'&&r.day===2&&r.start==='19:00'&&r.end==='19:30'));
 assert.equal(rows.find(r=>r.name==='Loukeman').end,'18:05');
 assert.equal(rows.find(r=>r.name==='Dude Skywalker').day,1);assert.equal(rows.find(r=>r.name==='Jeremy Ismael').day,2);

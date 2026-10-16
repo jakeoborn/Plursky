@@ -17,6 +17,9 @@
 // distinct IDs. Existing IDs survive spelling, order and day corrections.
 // Dude Skywalker is now Friday; Jeremy Ismael is now Saturday. All 19 prior
 // DAY TBA billings have screenshot-grounded days. Villu is the grid's printed billing.
+// Oct 15: the official grid is live at https://www.iiipoints.com/set-times/ and is now
+// the receipt (scheduleSource). It matches all 231 intervals; Malóne Morez B2B Miluhska,
+// Miguelle & Tons and MACCABIII B2B Pezlo MD follow its billing (IDs unchanged).
 // SPATIAL BOUNDARY: real street basemap, surveyed convention-center building
 // outline, no official perimeter/map inferred. Stage names are real but
 // positions are unknown: no stage x/y, lat/lng, GPS anchors or amenities.
@@ -468,16 +471,16 @@
     mk("iiip-levity-b2b-taiki-nulight",      "Levity B2B Taiki Nulight", 1),
     mk("iiip-lil-kim",                       "Lil' Kim", 1),
     mk("iiip-lousy-lover-b2b-lucaz",         "Lousy Lover B2B Lucaz", 1),
-    mk("iiip-maccabi-b2b-pezlo-md",          "Maccabi B2B Pezlo MD", 1),
+    mk("iiip-maccabi-b2b-pezlo-md",          "MACCABIII B2B Pezlo MD", 1),
     mk("iiip-maher-daniel-b2b-mai-iache",    "Maher Daniel B2B Mai Iachetti", 1),
-    mk("iiip-malone-b2b-miluhska",           "Malóne B2B Miluhska", 1),
+    mk("iiip-malone-b2b-miluhska",           "Malóne Morez B2B Miluhska", 1),
     mk("iiip-mary-droppinz",                 "Mary Droppinz", 1),
     mk("iiip-mason-norris-b2b-mia-vende",    "Mason Norris B2B Mia Vendetta", 1),
     mk("iiip-megusta-b2b-migs",              "Megusta B2B MIGS", 1),
     mk("iiip-men-i-trust",                   "Men I Trust", 1),
     mk("iiip-mgna-crrrta",                   "MGNA Crrrta", 1),
     mk("iiip-miguel-clark-b2b-naim-zarz",    "Miguel Clark B2B Naim Zarzour", 1),
-    mk("iiip-miguelle-tons-b2b-saraga",      "Miguelle & Tons B2B Saraga", 1),
+    mk("iiip-miguelle-tons-b2b-saraga",      "Miguelle & Tons", 1),
     mk("iiip-mind-enterprises",              "Mind Enterprises", 1),
     mk("iiip-moscoman",                      "Moscoman", 1),
     mk("iiip-nate-sib",                      "nate sib", 1),
@@ -673,7 +676,7 @@
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
+    scheduleSource: { url: "https://www.iiipoints.com/set-times/", observedAt: "2026-10-15", official: true, evidence: "Official III Points set-times grid. It carries the same 231 intervals first transcribed from the attendee-supplied screenshot received October 5 (sha256 below); Friday re-read from the served HTML on October 15", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",

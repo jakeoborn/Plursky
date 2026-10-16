@@ -2,10 +2,10 @@
   "festivalId": "iii-points-2026",
   "scope": "official-set-times",
   "source": {
-    "url": "https://www.iiipoints.com/",
-    "observedAt": "2026-10-05",
+    "url": "https://www.iiipoints.com/set-times/",
+    "observedAt": "2026-10-15",
     "sha256": "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9",
-    "evidence": "Attendee-supplied III Points-branded screenshot supplied by attendee; not a clock-time page on the website"
+    "evidence": "Official III Points set-times grid. It carries the same 231 intervals first transcribed from the attendee-supplied screenshot received October 5 (sha256 below); Friday re-read from the served HTML on October 15"
   },
   "stages": [
     {
@@ -1376,13 +1376,13 @@
               "actId": "iiip-maher-daniel-b2b-mai-iache"
             },
             {
-              "name": "Malóne B2B Miluhska",
+              "name": "Malóne Morez B2B Miluhska",
               "start": "20:00",
               "end": "21:30",
               "actId": "iiip-malone-b2b-miluhska"
             },
             {
-              "name": "Miguelle & Tons B2B Saraga",
+              "name": "Miguelle & Tons",
               "start": "21:30",
               "end": "23:00",
               "actId": "iiip-miguelle-tons-b2b-saraga"
@@ -1498,7 +1498,7 @@
               "actId": "iiip-aabel-b2b-siegel"
             },
             {
-              "name": "Maccabi B2B Pezlo MD",
+              "name": "MACCABIII B2B Pezlo MD",
               "start": "21:00",
               "end": "22:30",
               "actId": "iiip-maccabi-b2b-pezlo-md"
