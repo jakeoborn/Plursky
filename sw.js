@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v433';
+﻿const CACHE      = 'plursky-v436';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v433';
+const APP_VER    = 'v436';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -115,6 +115,12 @@ const CDN = [
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js',
   'https://unpkg.com/react@18.3.1/umd/react.production.min.js',
   'https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js',
+  // The real map's library (map.jsx PACK_LIB, same pinned URLs). It used to
+  // load on first Map open only, which failed on festival 5G and left
+  // III Points with no map surface (M1, Oct 16). test-maplibre-field-load.mjs
+  // fails if PACK_LIB names a URL that is not in this list.
+  'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js',
+  'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css',
   'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap',
 ];
 

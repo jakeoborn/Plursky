@@ -782,6 +782,9 @@
         [25.80085, -80.20535], [25.79720, -80.20535],
         [25.79720, -80.19880], [25.80085, -80.19880],
       ],
+      // The real map pans and zooms only over this site (+ ~160 m): no
+      // festivalBounds box here, so without it the map had no pan limit at all.
+      lockToFootprint: true,
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
     mainStageId: "mind-melt",

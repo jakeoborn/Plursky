@@ -2613,6 +2613,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// M1: the SW precaches MapLibre (PACK_LIB), and on a mapMode:"real" festival a
+// failed load keeps a persistent error card whose RETRY really reloads the map.
+{
+  console.log("▸ MapLibre field load — precache + persistent card + RETRY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-maplibre-field-load.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maplibre field load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the

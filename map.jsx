@@ -553,6 +553,26 @@ function _groundsLngLats(cfg) {
   const an = ((cfg && cfg.gpsAnchors) || []).filter(a => a && ok(a.lat, a.lng));
   return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
 }
+// RealMap's pan limit, before it is widened to contain the opening view.
+// The venue box keeps its ±0.004° (~440 m) margin. A festival that sets
+// `venue.lockToFootprint` (III Points 2026, Item 1 of the Oct 16 spec) is held
+// to its surveyed footprint's box plus ~160 m instead: the map is the festival,
+// not Wynwood or downtown Miami. null = no limit.
+const FOOTPRINT_LOCK_PAD = 0.0015;
+function _realMapPanLimit(cfg, lib) {
+  const v = cfg && cfg.venue;
+  if (v && v.festivalBounds) {
+    const fb = v.festivalBounds;
+    return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+  }
+  if (!v || !v.lockToFootprint) return null;
+  const g = _groundsLngLats(cfg);
+  if (g.length < 3) return null;
+  const lngs = g.map(p => p[0]), lats = g.map(p => p[1]);
+  return new lib.LngLatBounds(
+    [Math.min(...lngs) - FOOTPRINT_LOCK_PAD, Math.min(...lats) - FOOTPRINT_LOCK_PAD],
+    [Math.max(...lngs) + FOOTPRINT_LOCK_PAD, Math.max(...lats) + FOOTPRINT_LOCK_PAD]);
+}
 
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
@@ -2088,11 +2108,9 @@ function MapScreen({ state, setState }) {
     // reads as a broken app rather than as "not published yet". Keep the real
     // map mounted so its own error surface (and the venue card under it) is
     // what the user sees.
-    if (REAL_MAP_ONLY) {
-      setRealMapNote((why || "Map unavailable") + " — check your connection");
-      setTimeout(() => setRealMapNote(null), 7000);
-      return;
-    }
+    // RealMap holds its own persistent error card + RETRY for this case (M1);
+    // the 7-second note that used to show here vanished and left nothing.
+    if (REAL_MAP_ONLY) return;
     try { sessionStorage.setItem("plursky_realmap_failed", "1"); } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
@@ -4442,6 +4460,9 @@ function RealMap({
   const meetModeRef = React.useRef(meetMode);
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
+  // Bumped by RETRY: the init effect keys on it, so a retry really re-runs the
+  // library load and map setup (it used to clear the card and leave a blank map).
+  const [attempt, setAttempt] = React.useState(0);
   // Fatal-fallback wiring (2026-08-22): one-shot; MapScreen flips back to the
   // SVG TopDownMap and clears the BETA flag so a bad network/failing tiles
   // can never trap the map again at festival time.
@@ -4451,6 +4472,11 @@ function RealMap({
   const _fatalNow = React.useCallback((why) => {
     if (fatalRef.current) return; fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
+    // A mapMode:"real" festival has no SVG map to fall back to, so every fatal
+    // path (offline at mount, boot timeout, library or tiles failing) keeps the
+    // error card + RETRY on screen. Offline-at-mount and the timeout set no
+    // card before, which left a page with no map surface at all (M1).
+    if (FESTIVAL_CONFIG.mapMode === "real") setErr(prev => prev || (typeof why === "string" ? why : "Map unavailable"));
     try { onFatal?.(typeof why === "string" ? why : null); } catch {}
   }, [onFatal]);
   // Pack mode: the map draws from this festival's saved offline pack. Entered
@@ -5362,11 +5388,16 @@ function RealMap({
           if (cam) { home.center = cam.center; home.zoom = Math.min(cam.zoom, 17.5); home.pitch = OPENING_PITCH_PINNED; }
           map.jumpTo(home);
         }
-        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
-          const fb = FESTIVAL_CONFIG.venue.festivalBounds;
-          const lim = new maplibregl.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+        const lim = _realMapPanLimit(FESTIVAL_CONFIG, maplibregl);
+        if (lim) {
           lim.extend(map.getBounds());
           map.setMaxBounds(lim);
+          // A footprint lock also stops zooming out past the whole limit box,
+          // so the site never shrinks to a speck (and never below the opening).
+          if (FESTIVAL_CONFIG.venue?.lockToFootprint) {
+            const fit = map.cameraForBounds(lim, { padding: 0, bearing: 0 });
+            if (fit && Number.isFinite(fit.zoom)) map.setMinZoom(Math.min(map.getZoom(), fit.zoom));
+          }
         }
         // Home is the camera as placed, so Reset (and "at home") match it exactly.
         homeRef.current = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: 0 };
@@ -5508,8 +5539,11 @@ function RealMap({
       friendMarkersRef.current = {};
       savedStarMarkersRef.current = {};
       meetMarkerRef.current = null;
+      // A RETRY re-runs this effect on the same mount: start it clean.
+      landmarkElsRef.current = [];
+      loadedRef.current = false;
     };
-  }, []);
+  }, [attempt]);
 
   // Avatar follows GPS / demo position
   React.useEffect(() => {
@@ -5851,7 +5885,7 @@ function RealMap({
                 The official festival map publishes before doors. Until then this
                 screen needs a connection.
               </div>
-              <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; }} style={{
+              <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; setAttempt(a => a + 1); }} style={{
                 marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
                 background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,

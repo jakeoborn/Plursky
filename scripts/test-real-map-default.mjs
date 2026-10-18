@@ -56,7 +56,7 @@ const CASES = [
   // Ultra's is the longest posture label; at 393 pt it is the one that fits
   // beside a shrinking title and printed over it. III Points runs at 320 pt.
   { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "unchecked" },
-  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "unchecked", w: 320 },
+  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "unchecked", w: 320, lock: true },
   // ACL: no venue box or footprint, and its configured centre is off the park.
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "amex",   latitude: 30.267233, longitude: -97.763236 } },
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "miller", latitude: 30.269017, longitude: -97.769316 }, only: "fix" },
@@ -341,6 +341,29 @@ try {
         const s2 = await state();
         check(want ? s2.route === 2 : s2.route === 0, `${tag}: selected stage route has ${s2.route} points (want ${want ? 2 : 0})`);
       }
+    }
+    // Item 1 (Oct 16 spec): a lockToFootprint festival's map cannot leave the
+    // site. A pan to downtown Miami (~2.7 km south) is refused, a zoom out to
+    // the whole region is held, and a pan inside the site still moves (control).
+    if (C.lock) {
+      const lk = await page.evaluate(() => {
+        const map = window.__plurskyRealMap, fp = window.FESTIVAL_CONFIG.venue.footprint;
+        const lats = fp.map(p => p[0]), lngs = fp.map(p => p[1]);
+        const box = { s: Math.min(...lats), n: Math.max(...lats), w: Math.min(...lngs), e: Math.max(...lngs) };
+        // jumpTo applies maxBounds/minZoom synchronously; no wait (the page clock is fake).
+        const inner = { lng: (box.w + box.e) / 2, lat: (box.s + box.n) / 2 };
+        map.jumpTo({ center: { lng: -80.1937, lat: 25.7743 } });   // downtown Miami
+        const c1 = map.getCenter();
+        map.jumpTo({ center: inner });                               // back to the site's centre
+        const c0 = map.getCenter();
+        map.jumpTo({ zoom: 3 });
+        return { box, inner, c0: { lng: c0.lng, lat: c0.lat }, c1: { lng: c1.lng, lat: c1.lat }, zoom: map.getZoom(), minZoom: map.getMinZoom() };
+      });
+      const m = (a, b) => Math.hypot((a.lat - b.lat) * 111320, (a.lng - b.lng) * 111320 * Math.cos(a.lat * Math.PI / 180));
+      check(m(lk.c0, lk.inner) < 30 && m(lk.c0, lk.c1) > 50, `${tag}: control — a pan to the site's centre moves the map there (${Math.round(m(lk.c0, lk.inner))} m off target, moved ${Math.round(m(lk.c0, lk.c1))} m)`);
+      const nearest = { lat: Math.min(Math.max(lk.c1.lat, lk.box.s), lk.box.n), lng: Math.min(Math.max(lk.c1.lng, lk.box.w), lk.box.e) };
+      check(m(lk.c1, nearest) < 400, `${tag}: a pan to downtown Miami is refused (centre ${Math.round(m(lk.c1, nearest))} m from the site, limit 400 m)`);
+      check(lk.minZoom > 10 && lk.zoom >= lk.minZoom, `${tag}: zooming out to the region is held at minZoom ${lk.minZoom.toFixed(2)} (got ${lk.zoom.toFixed(2)})`);
     }
     check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
