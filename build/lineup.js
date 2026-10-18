@@ -609,6 +609,13 @@ function NightWizard({
     className: "duo-label duo-sun"
   }, "Sunrise"))))));
 }
+function stageLaneHue(stageId) {
+  var i = (typeof STAGES !== "undefined" ? STAGES : []).findIndex(s => s.id === stageId);
+  if (i < 0) return null;
+  return {
+    stroke: `var(--lane-${i % 6 + 1})`
+  };
+}
 function LineupOverview({
   sets,
   savedSet,
@@ -669,6 +676,7 @@ function LineupOverview({
   }) => {
     var on = stageFilter === stage.id;
     var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    var hue = stageLaneHue(stage.id);
     return React.createElement(React.Fragment, {
       key: stage.id
     }, React.createElement("button", {
@@ -686,10 +694,27 @@ function LineupOverview({
         textAlign: "left",
         font: `${on ? 650 : 500} 11px/14px var(--f-ui)`,
         color: on ? "var(--acc-ink)" : "var(--ink-2)",
-        overflowWrap: "anywhere"
+        overflowWrap: "anywhere",
+        ...(hue ? {
+          display: "flex",
+          alignItems: "baseline",
+          gap: 6
+        } : {})
       }
-    }, stage.name), React.createElement("div", {
+    }, hue && React.createElement("span", {
+      "data-lane-chip": true,
       "aria-hidden": "true",
+      style: {
+        flex: "none",
+        width: 8,
+        height: 8,
+        borderRadius: 2,
+        background: hue.stroke,
+        alignSelf: "center"
+      }
+    }), React.createElement("span", null, stage.name)), React.createElement("div", {
+      "aria-hidden": "true",
+      "data-overview-lane": stage.id,
       style: {
         position: "relative",
         height: 16
@@ -701,20 +726,23 @@ function LineupOverview({
     }) => {
       var mineSet = savedSet.has(a.id),
         live = isSetLive(a);
+      var left = pct(s),
+        width = `calc(${(e - s) / span * 100}% - 2px)`;
       return React.createElement("span", {
         key: a.id,
         style: {
           position: "absolute",
-          left: pct(s),
-          width: `calc(${(e - s) / span * 100}% - 2px)`,
-          top: mineSet ? 5.5 : 7,
-          height: mineSet ? 5 : 2,
+          left,
+          width,
+          top: mineSet ? 5.5 : hue ? 6.5 : 7,
+          height: mineSet ? 5 : hue ? 3 : 2,
           borderRadius: 3,
           minWidth: 2,
-          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)"
+          background: mineSet ? "var(--acc)" : live ? "var(--ink)" : hue ? hue.stroke : "var(--line-2)"
         }
       });
     }), showNow && React.createElement("span", {
+      "aria-hidden": "true",
       style: {
         position: "absolute",
         left: pct(nowMin),

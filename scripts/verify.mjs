@@ -2734,6 +2734,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Lineup stage hues (Item 3a, Jake's pick A) ──
+// Six lane tokens >= 3:1 on paper and s3 in both modes, one door
+// (stageLaneHue), and the capture-only options B and C stay deleted.
+{
+  console.log("▸ Lineup stage-hue gate — six lanes >= 3:1, one door, B and C gone");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-stage-hues.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`lineup stage hues failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Screen layout: the board's Me and Today (before the festival) ──
 // An empty account asks for a name (never a dash), Plan / Memories / Crew /
 // Badges are four round actions on one row with no zero counts, the
