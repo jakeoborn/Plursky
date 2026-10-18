@@ -553,25 +553,15 @@ function _groundsLngLats(cfg) {
   const an = ((cfg && cfg.gpsAnchors) || []).filter(a => a && ok(a.lat, a.lng));
   return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
 }
-// RealMap's pan limit, before it is widened to contain the opening view.
-// The venue box keeps its ±0.004° (~440 m) margin. A festival that sets
-// `venue.lockToFootprint` (III Points 2026, Item 1 of the Oct 16 spec) is held
-// to its surveyed footprint's box plus ~160 m instead: the map is the festival,
-// not Wynwood or downtown Miami. null = no limit.
-const FOOTPRINT_LOCK_PAD = 0.0015;
+// RealMap's pan limit, before it is widened to contain the opening view: the
+// venue box with its ±0.004° (~440 m) margin. null = no limit. A lock to the
+// footprint waits on a SURVEYED perimeter; an estimated one never limits the
+// map (Item 1, held 2026-10-18).
 function _realMapPanLimit(cfg, lib) {
   const v = cfg && cfg.venue;
-  if (v && v.festivalBounds) {
-    const fb = v.festivalBounds;
-    return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
-  }
-  if (!v || !v.lockToFootprint) return null;
-  const g = _groundsLngLats(cfg);
-  if (g.length < 3) return null;
-  const lngs = g.map(p => p[0]), lats = g.map(p => p[1]);
-  return new lib.LngLatBounds(
-    [Math.min(...lngs) - FOOTPRINT_LOCK_PAD, Math.min(...lats) - FOOTPRINT_LOCK_PAD],
-    [Math.max(...lngs) + FOOTPRINT_LOCK_PAD, Math.max(...lats) + FOOTPRINT_LOCK_PAD]);
+  if (!v || !v.festivalBounds) return null;
+  const fb = v.festivalBounds;
+  return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 
 function gpsToMap(lat, lng) {
@@ -5392,12 +5382,6 @@ function RealMap({
         if (lim) {
           lim.extend(map.getBounds());
           map.setMaxBounds(lim);
-          // A footprint lock also stops zooming out past the whole limit box,
-          // so the site never shrinks to a speck (and never below the opening).
-          if (FESTIVAL_CONFIG.venue?.lockToFootprint) {
-            const fit = map.cameraForBounds(lim, { padding: 0, bearing: 0 });
-            if (fit && Number.isFinite(fit.zoom)) map.setMinZoom(Math.min(map.getZoom(), fit.zoom));
-          }
         }
         // Home is the camera as placed, so Reset (and "at home") match it exactly.
         homeRef.current = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: 0 };

@@ -1683,6 +1683,14 @@ const REGISTRATION_TOL_M = 25;
       }
       continue;
     }
+    // An ESTIMATED footprint (`venue.footprintInferred`) is not a survey: one
+    // drawn around the anchors would pass them by construction (#326 review).
+    // It guards nothing, so the anchors read as unguarded, never as checked.
+    if (poly?.length && an.length && cfg.venue?.footprintInferred) {
+      fpUnbounded++;
+      console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
+      continue;
+    }
     if (!poly?.length && an.length) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);

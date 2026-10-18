@@ -603,19 +603,11 @@ function _groundsLngLats(cfg) {
   var an = (cfg && cfg.gpsAnchors || []).filter(a => a && ok(a.lat, a.lng));
   return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
 }
-var FOOTPRINT_LOCK_PAD = 0.0015;
 function _realMapPanLimit(cfg, lib) {
   var v = cfg && cfg.venue;
-  if (v && v.festivalBounds) {
-    var fb = v.festivalBounds;
-    return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
-  }
-  if (!v || !v.lockToFootprint) return null;
-  var g = _groundsLngLats(cfg);
-  if (g.length < 3) return null;
-  var lngs = g.map(p => p[0]),
-    lats = g.map(p => p[1]);
-  return new lib.LngLatBounds([Math.min(...lngs) - FOOTPRINT_LOCK_PAD, Math.min(...lats) - FOOTPRINT_LOCK_PAD], [Math.max(...lngs) + FOOTPRINT_LOCK_PAD, Math.max(...lats) + FOOTPRINT_LOCK_PAD]);
+  if (!v || !v.festivalBounds) return null;
+  var fb = v.festivalBounds;
+  return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
@@ -7066,13 +7058,6 @@ function RealMap({
         if (lim) {
           lim.extend(map.getBounds());
           map.setMaxBounds(lim);
-          if (FESTIVAL_CONFIG.venue?.lockToFootprint) {
-            var fit = map.cameraForBounds(lim, {
-              padding: 0,
-              bearing: 0
-            });
-            if (fit && Number.isFinite(fit.zoom)) map.setMinZoom(Math.min(map.getZoom(), fit.zoom));
-          }
         }
         homeRef.current = {
           center: map.getCenter(),

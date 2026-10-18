@@ -756,10 +756,15 @@
       // This is the BUILDING, not the festival perimeter — the site is billed
       // as 5 city blocks. See the header before widening it.
       //
-      // WIDENED 2026-10-15 (the flip): venue.footprint is now the festival
-      // SITE — the footprint gate needs every anchor inside the real venue,
-      // and the map's framing/saved-area readers need the grounds, not one
-      // building. The site polygon is street-grounded: NW 25th St (north) to
+      // WIDENED 2026-10-15 (the flip), and INFERRED (review 2026-10-18):
+      // venue.footprint is now an estimate of the festival SITE, because the
+      // map's framing/saved-area readers need the grounds, not one building.
+      // It is NOT a survey: its south and east edges were placed from where
+      // the poster art puts stages, and it was sized to contain all 13 poster
+      // anchors. So `footprintInferred` is set and the footprint gate does not
+      // count it (an estimate drawn around the anchors would pass them by
+      // construction), and nothing locks the map to it. Replace it with a
+      // surveyed or official perimeter, then drop the flag. The site polygon is street-grounded: NW 25th St (north) to
       // ~NW 21st St (south — the art places 444, UNFORESEEN, VERTEX and GRAND
       // CENTRAL south of NW 22nd St) and NW 6th Ave (west) to ~NW 2nd Ave
       // (east — the NW 22nd Lane segment and the MIND MELT/VIP+ block),
@@ -775,16 +780,13 @@
         [25.79870, -80.20249], [25.79881, -80.20250], [25.79892, -80.20250],
         [25.79892, -80.20273], [25.79907, -80.20273],
       ],
-      // Festival SITE (see the note above): N ~25th St, S ~21st St,
-      // W ~6th Ave, E ~2nd Ave. Contains all 13 poster anchors with >=20 m
-      // of margin on every side.
+      // Festival SITE, estimated (see the note above): N ~25th St, S ~21st
+      // St, W ~6th Ave, E ~2nd Ave.
       footprint: [
         [25.80085, -80.20535], [25.79720, -80.20535],
         [25.79720, -80.19880], [25.80085, -80.19880],
       ],
-      // The real map pans and zooms only over this site (+ ~160 m): no
-      // festivalBounds box here, so without it the map had no pan limit at all.
-      lockToFootprint: true,
+      footprintInferred: true,
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
     mainStageId: "mind-melt",
