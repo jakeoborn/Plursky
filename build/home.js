@@ -2040,7 +2040,7 @@ function HomeScreen({
     onClick: () => setSheet("dontmiss")
   }, countdown && {
     id: "headliners",
-    label: "Headliners",
+    label: topTierLabel(true),
     icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
     onClick: () => setSheet("headliners")
   }, isLive && NOW.day > 1 && {
@@ -2106,7 +2106,7 @@ function HomeScreen({
         };
       case "headliners":
         return {
-          title: "Headliners",
+          title: topTierLabel(true),
           body: React.createElement(HeadlinerHighlights, {
             state: state,
             setState: setState
@@ -2396,13 +2396,13 @@ function HeadlinerHighlights({
   state,
   setState
 }) {
-  var headliners = ARTISTS.filter(a => a.tier >= 2).sort((a, b) => b.tier - a.tier || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 9);
-  if (!headliners.length) return null;
+  var top = ARTISTS.filter(a => a.tier >= 2).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
   var dayGroups = festivalDayNums().map(d => ({
     day: d,
     meta: FESTIVAL_CONFIG.dayDates[d],
-    artists: headliners.filter(a => a.day === d).slice(0, 3)
+    artists: top.filter(a => a.day === d).slice(0, 3)
   })).filter(g => g.artists.length);
+  if (!dayGroups.length) return null;
   return React.createElement("div", {
     style: {
       marginTop: 18
