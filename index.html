@@ -246,6 +246,18 @@
     --shadow-pop:0 10px 30px rgba(15,21,22,0.18);
     --field-glow:linear-gradient(#F5F3ED,#F5F3ED);
   }
+  /* Stage hues (Item 3a): six lanes, assigned in map order by stageLaneHue()
+     in lineup.jsx. Each --lane-N is ≥3:1 on --paper and --s3 (non-text);
+     --lane-Nw is the wash behind initials, with --ink-2 on it ≥4.5:1.
+     Lane 1 is the accent; the rest are its siblings in the same weight. */
+  :root[data-mode="dark"]{
+    --lane-1:#88D7C8;--lane-2:#FFC545;--lane-3:#FF9EC4;--lane-4:#9DB7FF;--lane-5:#C9A6FF;--lane-6:#B6E36F;
+    --lane-1w:#1F3D39;--lane-2w:#3D3216;--lane-3w:#45222F;--lane-4w:#232F4A;--lane-5w:#33284A;--lane-6w:#2D3A1A;
+  }
+  :root[data-mode="light"]{
+    --lane-1:#14685F;--lane-2:#A84300;--lane-3:#B0306A;--lane-4:#2F55C4;--lane-5:#6D3FC0;--lane-6:#4F7A12;
+    --lane-1w:#D3EBE6;--lane-2w:#F6E3CC;--lane-3w:#F5D9E5;--lane-4w:#DCE4F7;--lane-5w:#E7DDF6;--lane-6w:#E1EDCF;
+  }
   html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
   /* ── The duo board as a component system ──
      Source: design/system-exploration @ 6524ccb (shared/duo-tokens.js,
