@@ -1500,22 +1500,27 @@ const REGISTRATION_TOL_M = 25;
     // art by up to 53 grid units, which is ART_WAIVERS above, not this.
     "governors-ball-2026": {
       excuses: ["blind"],
-      expires: "2026-10-19",
+      // Re-dated 2026-10-18 (was 2026-10-19): the dated-out half of the
+      // problem is solved, what remains is structural. The snapchat
+      // north/south conflict (737 m) is SETTLED — the official 2026 patron
+      // map (GOV26-PatronMap-5.26, support.govball.com, updated 2026-06-02;
+      // plate map-sources/govball-2026-patron-map.png) puts snapchat on the
+      // south lawn by Meadow Lake Bridge, agreeing with the 2025-map-fitted
+      // anchor and the satellite-measured grove. Esri Wayback re-checked the
+      // same day: no in-event capture exists (all four 2026 releases carry
+      // byte-identical NYC tiles), so no satellite measurement can clear this.
       // `blind` here is structural and re-sourcing cannot fix it: Governor's
       // Ball has three stages, so all three anchors ARE the basis and no
-      // fourth anchor exists to disagree with them. The 2026-09-06 survey
-      // measured `grove` off satellite and fitted the other two to the
-      // official 2025 map, which is a real improvement — verizon moved 390 m
-      // out of woods that cannot hold a main stage — but it cannot add a
-      // fourth stage that does not exist.
-      //
-      // Two ways out: the 2026 patron map (which would also settle the
-      // snapchat north/south conflict, currently 737 m wide), or a non-stage
-      // landmark tie point such as the Unisphere. The latter needs a schema
-      // change, since gpsAnchors are stageId-keyed.
+      // fourth anchor exists to disagree with them. The one way out is a
+      // non-stage landmark tie point (the Unisphere, 40.746396/-73.845074),
+      // which needs a schema change, since gpsAnchors are stageId-keyed.
+      // The expiry forces that schema work into the same quiet-window batch
+      // as the art waivers above.
+      expires: "2026-12-01",
       note: "3 anchors, all of them the basis — structurally uncheckable " +
-            "until a fourth tie point exists. grove is satellite-measured; " +
-            "verizon and snapchat are fitted to the official 2025 map",
+            "until a landmark tie point exists. grove is satellite-measured; " +
+            "verizon and snapchat agree with the official 2026 patron map " +
+            "(snapchat N/S conflict settled 2026-10-18)",
     },
   };
   const regProblems = [];
