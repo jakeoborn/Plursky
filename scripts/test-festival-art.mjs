@@ -24,11 +24,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 
-const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 160 * 1024;
-// Festivals in the 90-day window that ship the tinted fallback, and why.
-const FALLBACK = {
-  "decadence-colorado-2026": "the only official image is a wide wordmark poster; a 56 px square crop cuts the name",
-};
+const TILE_BUDGET = 16 * 1024, TOTAL_BUDGET = 256 * 1024;   // 25 tiles at ~8 KB
+// Every listed festival carries art (Jake 2026-10-18: "a visual based app,
+// lots of photos"). A festival allowed the tinted letter tile goes here, with
+// why. None today.
+const FALLBACK = {};
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
 
@@ -145,7 +145,7 @@ try {
       check(r.nameWhole, `${tag}: ${r.id}: the name is whole`);
       check(r.nameLines >= 1 && r.nameLines <= 2, `${tag}: ${r.id}: the name takes one or two lines (${r.nameLines})`);
       check(r.chipLines >= 1 && r.chipLines <= 2, `${tag}: ${r.id}: the chip takes one or two lines (${r.chipLines})`);
-      if (r.window) check(r.hasLedger || FALLBACK[r.id], `${tag}: ${r.id}: live or within 90 days, so it has a tile or a named fallback`);
+      check(r.hasLedger || FALLBACK[r.id], `${tag}: ${r.id}: every listed festival has its art (or a named fallback)`);
     }
     const st = (chip) => res.rows.find(r => r.chip === chip);
     check(res.rows.some(r => r.chipText === "Lineup in · set times TBA" && r.chip === "accent"), `${tag}: "Lineup in · set times TBA" draws as the accent outline`);
