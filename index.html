@@ -249,12 +249,13 @@
   /* Stage hues (Item 3a): six lanes, assigned in map order by stageLaneHue()
      in lineup.jsx. Each --lane-N is ≥3:1 on --paper and --s3 (non-text).
      Plan (accent) and live (ink) sets keep their own fill.
-     Lane 1 is the accent; the rest are its siblings in the same weight. */
+     No lane is the accent (--signal): a saved set is the accent, so a lane
+     in that hue would read as saved. Each sits >= 25° of hue from it. */
   :root[data-mode="dark"]{
-    --lane-1:#88D7C8;--lane-2:#FFC545;--lane-3:#FF9EC4;--lane-4:#9DB7FF;--lane-5:#C9A6FF;--lane-6:#B6E36F;
+    --lane-1:#FF9A5C;--lane-2:#FFC545;--lane-3:#FF9EC4;--lane-4:#9DB7FF;--lane-5:#C9A6FF;--lane-6:#B6E36F;
   }
   :root[data-mode="light"]{
-    --lane-1:#14685F;--lane-2:#A84300;--lane-3:#B0306A;--lane-4:#2F55C4;--lane-5:#6D3FC0;--lane-6:#4F7A12;
+    --lane-1:#B5470F;--lane-2:#7A6200;--lane-3:#B0306A;--lane-4:#2F55C4;--lane-5:#6D3FC0;--lane-6:#4F7A12;
   }
   html.theme-field,.theme-field body{background:var(--paper);color:var(--ink)}
   /* ── The duo board as a component system ──
