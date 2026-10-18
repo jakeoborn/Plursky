@@ -228,8 +228,9 @@ function _LandingFestivalCard({
     style: {
       width: "100%",
       display: "flex",
+      flexWrap: "wrap",
       alignItems: "center",
-      gap: 12,
+      gap: "8px 12px",
       minHeight: 72,
       padding: "10px 0",
       background: "transparent",
@@ -250,7 +251,7 @@ function _LandingFestivalCard({
     entry: entry
   })) : null, React.createElement("div", {
     style: {
-      flex: 1,
+      flex: "1 1 150px",
       minWidth: 0
     }
   }, React.createElement("div", {
@@ -298,7 +299,10 @@ function _LandingFestivalCard({
     }
   }, memoryCount, " ", memoryCount === 1 ? "memory" : "memories")), React.createElement("span", {
     "data-landing-chip": st.chip,
-    className: `landing-chip landing-chip-${st.chip}`
+    className: `landing-chip landing-chip-${st.chip}`,
+    style: {
+      marginLeft: "auto"
+    }
   }, st.label));
 }
 function useFittedPlaceholder(full, short) {
