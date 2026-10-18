@@ -978,7 +978,7 @@ function ToastHost() {
       pointerEvents: "none",
       padding: "0 16px"
     }
-  }, "// Board toast: an elevated card in SF that WRAPS. The old one-line // pill ellipsised every long message (\"No photos received — pick a // few at a time; if they're in iCloud…\" lost its instruction).", React.createElement("div", {
+  }, React.createElement("div", {
     key: msg.id,
     role: "status",
     "aria-live": "polite",
@@ -1452,7 +1452,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v440"
+        version: "v444"
       }));
     } catch {}
   }
@@ -1504,7 +1504,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v440"))
+      }, "Plursky · v444"))
     );
   }
 }
