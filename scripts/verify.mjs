@@ -2613,6 +2613,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 5: Today's saved rows carry the act's face (ledger, pair, initials).
+{
+  console.log("▸ Set row faces — Today's saved rows, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-row-faces.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set row faces failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the
