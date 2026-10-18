@@ -101,6 +101,19 @@ try {
     check(ok, `${tag}: General Home lists festival rows`);
     if (!ok) { await ctx.close(); continue; }
     await page.clock.runFor(1200); await page.waitForTimeout(600);
+    // Measure the face users get: the app's faces are bundled (font-display:
+    // swap), and a line count taken while the runner's wider fallback still
+    // shows is a count of the wrong font (CI read 3 lines where the app's face
+    // sets 2). Read the name's own first family and wait for it.
+    const face = await page.evaluate(async () => {
+      await document.fonts.ready;
+      const n = document.querySelector("[data-landing-row] [data-fit-words]");
+      const cs = n && getComputedStyle(n);
+      const fam = cs ? cs.fontFamily.split(",")[0].trim().replace(/^["']|["']$/g, "") : "";
+      return { fam, loaded: !!fam && document.fonts.check(`${cs.fontWeight} ${cs.fontSize} "${fam}"`) };
+    });
+    check(face.loaded, `${tag}: the names' face (${face.fam}) is loaded before the rows are measured`);
+    await page.clock.runFor(400); await page.waitForTimeout(300);
     const res = await page.evaluate(({ AT, FALLBACK }) => {
       const now = Date.parse(AT), horizon = now + 90 * 864e5;
       const rgb = (s) => (s.match(/[\d.]+/g) || []).slice(0, 3).map(Number);
