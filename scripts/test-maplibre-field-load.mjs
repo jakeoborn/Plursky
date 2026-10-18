@@ -95,10 +95,61 @@ try {
     check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
   }
+  // ── 3. Failure AFTER the map was usable: RETRY re-adds loaded-keyed markers ─
+  // The map loads, a saved set puts a ★ on its stage, then a tile error raises
+  // the card. RETRY builds a new map; the ★ (an effect keyed on `loaded`) must
+  // come back on it. With `loaded` left true across the retry it never did.
+  {
+    const F3 = "lollapalooza-2026", AT3 = "2026-08-01T01:00:00Z";   // checked geometry: the real map draws its stages
+    const tag = `${F3} (error after load)`;
+    const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 } });
+    await ctx.route(/server\.arcgisonline\.com|tiles\.openfreemap\.org\/planet/, r => r.fulfill({ status: 200, contentType: "image/png", body: TILE }));
+    await ctx.route(/tiles\.openfreemap\.org\/styles\//, r => r.fulfill({ status: 200, contentType: "application/json", body: BLANK_STYLE }));
+    await wireVendor(ctx);
+    await ctx.clock.install({ time: new Date(AT3) });
+    await ctx.addInitScript(fid => {
+      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    }, F3);
+    const page = await ctx.newPage();
+    const errors = []; page.on("pageerror", e => errors.push(e.message));
+    const URL = `http://127.0.0.1:${PORT}/index.html?f=${F3}&tab=lineup`;
+    await page.goto(URL, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, F3, { timeout: 60000 });
+    const pick = await page.evaluate(fid => {
+      // The ★ needs a stage the real map draws (REAL_MAP_STAGES), not just a set.
+      const drawn = new Set((REAL_MAP_STAGES || []).map(st => st.id));
+      const a = ARTISTS.find(x => Object.keys(savedStarsByStage([x.id])).some(id => drawn.has(id)));
+      if (a) localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([a.id]));
+      return a?.id || null;
+    }, F3);
+    check(!!pick, `${tag}: fixture has a saved set that earns a ★ tonight`);
+    await page.goto(URL, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, F3, { timeout: 60000 });
+    // RETRY lives on mapMode "real" festivals; none has checked stages yet
+    // (III Points' are pending), so this fixture flips Lollapalooza in-page.
+    await page.evaluate(() => { window.FESTIVAL_CONFIG.mapMode = "real"; });
+    await page.evaluate(() => [...document.querySelectorAll("button")].find(b => b.innerText.trim() === "Map")?.click());
+    const stars = () => page.evaluate(() => [...document.querySelectorAll(".maplibregl-marker")].filter(m => m.textContent === "★").length);
+    const starUp = () => page.waitForFunction(() => [...document.querySelectorAll(".maplibregl-marker")].some(m => m.textContent === "★"),
+      null, { timeout: 30000, polling: 250 }).then(() => true, () => false);
+    check(await starUp(), `${tag}: the map loads with the saved set's ★`);
+    await page.evaluate(() => window.__plurskyRealMap.fire("error", { error: new Error("tile load failed") }));
+    const card = await page.waitForFunction(() => [...document.querySelectorAll("button")].some(b => b.innerText.trim() === "RETRY"),
+      null, { timeout: 10000 }).then(() => true, () => false);
+    check(card, `${tag}: a tile error after load raises the card with RETRY`);
+    await page.evaluate(() => { window.__oldMap = window.__plurskyRealMap; [...document.querySelectorAll("button")].find(b => b.innerText.trim() === "RETRY")?.click(); });
+    const fresh = await page.waitForFunction(() => window.__plurskyRealMap && window.__plurskyRealMap !== window.__oldMap,
+      null, { timeout: 30000, polling: 250 }).then(() => true, () => false);
+    check(fresh, `${tag}: RETRY builds a new map`);
+    check(await starUp(), `${tag}: the ★ is back on the new map after RETRY (got ${await stars()})`);
+    check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
+    await ctx.close();
+  }
   await browser.close();
 } finally {
   server.kill();
 }
 
 if (failed) { console.log(`✗ maplibre field load: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`✓ maplibre field load: ${checks} checks (SW precaches PACK_LIB; REAL_MAP_ONLY failure keeps a card, RETRY recovers)`);
+console.log(`✓ maplibre field load: ${checks} checks (SW precaches PACK_LIB; REAL_MAP_ONLY failure keeps a card, RETRY recovers, re-adds loaded-keyed markers)`);

@@ -5542,6 +5542,10 @@ function RealMap({
       // A RETRY re-runs this effect on the same mount: start it clean.
       landmarkElsRef.current = [];
       loadedRef.current = false;
+      // And the state: the new map's setLoaded(true) must be a change, or every
+      // effect keyed on `loaded` (stars, crew, meet pin, route) never re-adds
+      // its markers to the replacement map.
+      setLoaded(false);
     };
   }, [attempt]);
 

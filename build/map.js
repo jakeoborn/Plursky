@@ -7222,6 +7222,7 @@ function RealMap({
       meetMarkerRef.current = null;
       landmarkElsRef.current = [];
       loadedRef.current = false;
+      setLoaded(false);
     };
   }, [attempt]);
   React.useEffect(() => {
