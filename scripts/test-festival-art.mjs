@@ -85,7 +85,7 @@ try {
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const kindsSeen = new Set();
-  for (const mode of ["dark", "light"]) for (const w of [390, 320]) {
+  for (const mode of ["dark", "light"]) for (const w of [390, 320, 1280]) {
     const tag = `${mode} ${w}`;
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: w, height: 900 } });
     await wireVendor(ctx);
@@ -121,6 +121,9 @@ try {
           chipRight: cb ? rb.right - cb.right <= 1 : false, chipInside: cb ? cb.left >= (tb?.right || 0) : false,
           chipFg: cs ? rgb(cs.color) : null, chipBg: chip ? bgOf(chip) : null,
           nameWhole: name ? name.scrollWidth <= name.clientWidth + 1 : false,
+          // Jake 2026-10-18: one line, or at most two, at 320 / 390 / desktop.
+          nameLines: name ? Math.round(name.getBoundingClientRect().height / parseFloat(getComputedStyle(name).lineHeight)) : 0,
+          chipLines: cs ? Math.round((cb.height - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - parseFloat(cs.borderTopWidth) - parseFloat(cs.borderBottomWidth)) / parseFloat(cs.lineHeight)) : 0,
           accent: entry?.accent || null,
           window: !!entry && (entry.config.startMs <= horizon && entry.config.endMs >= now),
           hasLedger: !!window.PLURSKY_FESTIVAL_ART?.[id],
@@ -140,6 +143,8 @@ try {
       const cr = r.chipFg && r.chipBg ? ratio(r.chipFg, r.chipBg) : 0;
       check(cr >= 4.5, `${tag}: ${r.id}: chip text is AA (${cr.toFixed(2)}:1)`);
       check(r.nameWhole, `${tag}: ${r.id}: the name is whole`);
+      check(r.nameLines >= 1 && r.nameLines <= 2, `${tag}: ${r.id}: the name takes one or two lines (${r.nameLines})`);
+      check(r.chipLines >= 1 && r.chipLines <= 2, `${tag}: ${r.id}: the chip takes one or two lines (${r.chipLines})`);
       if (r.window) check(r.hasLedger || FALLBACK[r.id], `${tag}: ${r.id}: live or within 90 days, so it has a tile or a named fallback`);
     }
     const st = (chip) => res.rows.find(r => r.chip === chip);
@@ -152,4 +157,4 @@ try {
   await browser.close();
 } finally { server.kill(); }
 if (failed) { console.log(`✗ festival art: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`✓ festival art: ${checks} checks (official tiles from the ledger, tinted fallbacks, state chips AA, 390 and 320, both modes)`);
+console.log(`✓ festival art: ${checks} checks (official tiles from the ledger, tinted fallbacks, state chips AA, names and chips at most two lines, 390, 320 and 1280, both modes)`);
