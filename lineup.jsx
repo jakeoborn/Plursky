@@ -396,40 +396,18 @@ function NightWizard({ state, setState, onClose }) {
 // Your plan is the accent bar, a set playing now is ink, the rest is a quiet
 // line. A stage name is a button: in LIST it narrows to that stage (tap again
 // for all), in GRID it brings that stage's column into view.
-// Item 3a (Oct 16 spec) — Jake picks A/B/C from captures; until then the
-// shipped overview is unchanged and the options render only for captures:
-//   localStorage "plursky_lineup_overview" = "a" | "b" | "c"
-//   A  each stage gets a stable hue: a chip by its name, its sets in that hue
-//   B  A, plus the act's name on any set wide enough to hold it (≥64px)
-//   C  A, plus list faces without a photo tinted in their stage's hue
-// The losing options are deleted before merge.
-const LINEUP_OVERVIEW_VARIANT = (() => {
-  try { const v = localStorage.getItem("plursky_lineup_overview"); return /^[abc]$/.test(v || "") ? v : ""; }
-  catch { return ""; }
-})();
-// A stage's hue: six mode tokens (--lane-1..6, ≥3:1 on paper in both modes;
-// --lane-Nw is the wash behind initials), assigned in map order so a stage
-// keeps its hue across days and screens. null for a stage not on the map.
-// The one door for every surface that colours by stage.
+// Each stage keeps a stable hue (Item 3a, Jake's pick A, Oct 18): a chip by
+// its name and its sets drawn in that hue; plan and live keep their own fill.
+// Six mode tokens (--lane-1..6, each >= 3:1 on --paper and --s3), assigned in
+// map order so a stage keeps its hue across days. null for a stage not on the
+// map. The one door for every surface that colours by stage.
 function stageLaneHue(stageId) {
   const i = (typeof STAGES !== "undefined" ? STAGES : []).findIndex(s => s.id === stageId);
   if (i < 0) return null;
-  const n = (i % 6) + 1;
-  return { stroke: `var(--lane-${n})`, wash: `var(--lane-${n}w)` };
+  return { stroke: `var(--lane-${(i % 6) + 1})` };
 }
-const OVERVIEW_NAME_MIN_PX = 64;
 
-function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage, onSet }) {
-  const variant = LINEUP_OVERVIEW_VARIANT;
-  // B needs the lane's width in px to know which sets can carry a name.
-  const laneRef = React.useRef(null);
-  const [laneW, setLaneW] = React.useState(0);
-  React.useEffect(() => {
-    if (variant !== "b" || !laneRef.current || typeof ResizeObserver === "undefined") return;
-    const ro = new ResizeObserver(([e]) => setLaneW(e.contentRect.width));
-    ro.observe(laneRef.current);
-    return () => ro.disconnect();
-  }, [variant]);
+function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
   const lanes = React.useMemo(() => {
     const by = new Map();
     for (const a of sets) {
@@ -455,10 +433,10 @@ function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage, onSet
   return (
     <div data-lineup-overview role="group" aria-label="Every stage tonight" style={{ padding: "4px 20px 8px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "minmax(0, max-content) minmax(96px, 1fr)", columnGap: 12, alignItems: "center" }}>
-        {lanes.map(({ stage, sets }, li) => {
+        {lanes.map(({ stage, sets }) => {
           const on = stageFilter === stage.id;
           const mine = sets.filter(x => savedSet.has(x.a.id)).length;
-          const hue = variant ? stageLaneHue(stage.id) : null;
+          const hue = stageLaneHue(stage.id);
           return (
             <React.Fragment key={stage.id}>
               <button type="button" data-overview-stage={stage.id} aria-pressed={on}
@@ -470,26 +448,11 @@ function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage, onSet
                 {hue && <span data-lane-chip aria-hidden="true" style={{ flex: "none", width: 8, height: 8, borderRadius: 2, background: hue.stroke, alignSelf: "center" }} />}
                 <span>{stage.name}</span>
               </button>
-              <div ref={li === 0 ? laneRef : undefined} data-overview-lane={stage.id} style={{ position: "relative", height: 16 }}>
+              <div aria-hidden="true" data-overview-lane={stage.id} style={{ position: "relative", height: 16 }}>
                 {sets.map(({ a, s, e }) => {
                   const mineSet = savedSet.has(a.id), live = isSetLive(a);
                   const left = pct(s), width = `calc(${((e - s) / span) * 100}% - 2px)`;
-                  const px = laneW * ((e - s) / span) - 2;
-                  if (variant === "b" && px >= OVERVIEW_NAME_MIN_PX) {
-                    // The name rides the set: plan = accent fill, live = ink fill,
-                    // the rest a wash edged in the stage's hue. Full name for VoiceOver.
-                    const bg = mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--s3)";
-                    const fg = mineSet ? "var(--on-acc)" : live ? "var(--on-ink)" : "var(--ink)";
-                    return <button key={a.id} type="button" data-overview-set={a.id}
-                      aria-label={`${actDisplayName(a.name)}, ${stage.name}, ${fmt12(a.start)}${mineSet ? ", on your plan" : ""}${live ? ", playing now" : ""}`}
-                      onClick={() => onSet && onSet(a.id)}
-                      style={{ position: "absolute", left, width, top: 1, height: 14, padding: "0 4px", border: 0, borderRadius: 3,
-                        borderLeft: `3px solid ${hue ? hue.stroke : "var(--line-2)"}`, background: bg, color: fg, cursor: "pointer",
-                        font: "600 10px/14px var(--f-ui)", textAlign: "left", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {actDisplayName(a.name)}
-                    </button>;
-                  }
-                  return <span key={a.id} aria-hidden="true" style={{ position: "absolute", left, width,
+                  return <span key={a.id} style={{ position: "absolute", left, width,
                     top: mineSet ? 5.5 : hue ? 6.5 : 7, height: mineSet ? 5 : hue ? 3 : 2, borderRadius: 3, minWidth: 2,
                     background: mineSet ? "var(--acc)" : live ? "var(--ink)" : hue ? hue.stroke : "var(--line-2)" }} />;
                 })}
@@ -1303,7 +1266,6 @@ function LineupScreen({ state, setState }) {
           savedSet={savedSetIds}
           liveNight={NOW.night === day}
           stageFilter={viewMode === "list" ? stageFilter : "all"}
-          onSet={id => setState({ ...state, artist: id })}
           onStage={id => {
             if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
             setStageFilter(stageFilter === id ? "all" : id);
@@ -1512,7 +1474,7 @@ function LineupScreen({ state, setState }) {
                   style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
                   {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
                 </div>
-                <DuoAvatar name={a.name} size={42} ring={ring} tint={LINEUP_OVERVIEW_VARIANT === "c" ? stageLaneHue(a.stage) : null} />
+                <DuoAvatar name={a.name} size={42} ring={ring} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",
                   color: "var(--ink)", textAlign: "left", cursor: "pointer",
