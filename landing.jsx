@@ -295,7 +295,7 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
           which nobody saw while the gate's "landing" screen was really Today.
           Only the picture keeps the dim. */}
       {typeof FestivalThumb === "function" ? <span style={{ flexShrink: 0, display: "flex", opacity: dead ? 0.55 : st.upsell ? 0.8 : 1 }}><FestivalThumb entry={entry} /></span> : null}
-      <div style={{ flex: "1 1 150px", minWidth: 0 }}>
+      <div style={{ flex: "1 1 200px", minWidth: 0 }}>
         {/* Everything on this row WRAPS. At 320px "Henry Maier Festival Park ·
             Milwaukee, WI" pushed the row 42px wide and the card panned
             sideways; a clipped festival name or venue is also an ambiguous
@@ -323,9 +323,11 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
       </div>
       {/* The state, right-aligned (Item 6): filled = open, accent outline =
           lineup in with times to come, neutral outline = closed or over. The
-          name column keeps a 150px basis: when the chip would squeeze it below
-          that (320, or large text), the chip drops to its own line, still at
-          the right edge, instead of breaking the name mid-word. */}
+          name column keeps a 200px basis: when the chip would squeeze it below
+          that (phones, or large text), the chip drops to its own line, still
+          at the right edge, so a name takes at most two lines. 150px held on
+          this Mac but not on CI, where a classic scrollbar and the runner's
+          glyphs left "Beyond Wonderland at The Gorge 2027" three lines at 390. */}
       <span data-landing-chip={st.chip} className={`landing-chip landing-chip-${st.chip}`} style={{ marginLeft: "auto" }}>{st.label}</span>
     </button>
   );

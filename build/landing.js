@@ -251,7 +251,7 @@ function _LandingFestivalCard({
     entry: entry
   })) : null, React.createElement("div", {
     style: {
-      flex: "1 1 150px",
+      flex: "1 1 200px",
       minWidth: 0
     }
   }, React.createElement("div", {
