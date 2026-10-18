@@ -24,3 +24,16 @@ Website implementation requested October 5, clarified to include app set times O
 Generator note: template-source fingerprinting intentionally updates all 25 generated page dates; the ACL status moves from Happening now to This weekend on October 5. No other festival dataset changes.
 
 October 6 public-source reconciliation: https://www.iiipoints.com/experience/ now bills Homicide Jenny and no longer bills fakemink, but has no Nettspend billing or full clocks. The supplied screenshot controls the complete timetable; do not silently swap in this still-different running order.
+
+## First-party update, received October 18
+
+On October 16 the festival published "UPDATED SET TIMES FOR THE WEEKEND" as an Instagram carousel from the official @iiipoints account (https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/). The README above asked for exactly this reconciliation once first-party public grids became available.
+
+Every cell of both Saturday grid slides (slide 3: Mind Melt, Sector 3, Isotropic, RC95, 444, S3QU3NCE, Grand Central; slide 4: Vertex, Sector IV, Halo 88, Unforeseen, III Points Radio, Players Club) was re-read against the record. All 231 intervals are unchanged except one Saturday RC95 swap:
+
+- Charlotte de Witte: 02:45-04:00 -> 01:30-02:45
+- 999999999: 01:30-02:45 -> 02:45-04:00 (now closes RC95)
+
+`official.tsv`, the programming payload, and the dataset scheduleSource now track this first-party source. Slide 3 (carries the RC95 swap) SHA256: `f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4`. Slide 4 SHA256: `67828ad7b5c7b6f8f938ee96199271c03f28d2e00b476829fb41e26386a0941a`. The October 5 attendee screenshot (sha `8922970c...`) is superseded as the live source and stays in this file as history. The festival website's /set-times/ bundle still printed the pre-swap RC95 order when last checked October 18; the Instagram post is the newer first-party word.
+
+Friday rows: the same carousel's slides 1-2 (Friday grids) have not yet been re-read against this record; Friday provenance remains the October 5 attendee screenshot until that check lands.

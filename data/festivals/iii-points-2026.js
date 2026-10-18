@@ -287,8 +287,8 @@
     "iiip-ki-ki": ["rc95", "22:00", "23:15", 2],
     "iiip-u-uk-uk1mat-u": ["rc95", "23:15", "00:30", 2],
     "iiip-vtss": ["rc95", "00:30", "01:30", 2],
-    "iiip-999999999": ["rc95", "01:30", "02:45", 2],
-    "iiip-charlotte-de-witte": ["rc95", "02:45", "04:00", 2],
+    "iiip-999999999": ["rc95", "02:45", "04:00", 2],
+    "iiip-charlotte-de-witte": ["rc95", "01:30", "02:45", 2],
     "iiip-willikens-ivkovic": ["444", "16:00", "20:00", 2],
     "iiip-red-axes": ["444", "20:00", "00:00", 2],
     "iiip-seth-troxler": ["444", "00:00", "04:00", 2],
@@ -673,7 +673,7 @@
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
+    scheduleSource: { url: "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/", observedAt: "2026-10-18", official: true, evidence: "III Points official Instagram carousel post 'UPDATED SET TIMES FOR THE WEEKEND' (posted 2026-10-16), Saturday grid slides 3-4; supersedes the attendee screenshot of 2026-10-05 (RC95 close swapped)", sha256: "f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4" },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",

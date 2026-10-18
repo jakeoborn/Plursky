@@ -41480,8 +41480,8 @@
   "date": "2026-10-17",
   "day": 2,
   "stage": "RC95",
-  "start": "01:30",
-  "end": "02:45",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "999999999",
   "setTag": null,
   "performers": [
@@ -41491,7 +41491,7 @@
    }
   ],
   "act": "999999999",
-  "closing": false,
+  "closing": true,
   "mainStage": null
  },
  {
@@ -41830,8 +41830,8 @@
   "date": "2026-10-17",
   "day": 2,
   "stage": "RC95",
-  "start": "02:45",
-  "end": "04:00",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Charlotte de Witte",
   "setTag": null,
   "performers": [
@@ -41841,7 +41841,7 @@
    }
   ],
   "act": "charlotte-de-witte",
-  "closing": true,
+  "closing": false,
   "mainStage": null
  },
  {
