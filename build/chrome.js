@@ -881,8 +881,10 @@ function DuoFace({
   style,
   className = ""
 }) {
-  var photo = useArtistPhoto(name);
+  var resolved = useArtistPhoto(name);
   var rec = getArtistImage(name);
+  var [failed, setFailed] = React.useState(null);
+  var photo = resolved && resolved !== failed ? resolved : null;
   return React.createElement("span", {
     className: `duo-av ${ring} ${className}`.trim(),
     "aria-hidden": "true",
@@ -898,7 +900,8 @@ function DuoFace({
     }
   }, photo ? React.createElement("img", {
     src: photo,
-    alt: ""
+    alt: "",
+    onError: () => setFailed(photo)
   }) : _duoInitials(name));
 }
 function DuoAvatar({

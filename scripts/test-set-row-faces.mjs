@@ -29,10 +29,12 @@ try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
-  const open = async (w, mode, saved) => {
+  const open = async (w, mode, saved, blockUrl = null) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: w, height: 900 } });
     await wireVendor(ctx);
     await ctx.route(/api\.spotify\.com|i\.scdn\.co/, r => r.abort());   // no Spotify: photos are ledger or initials
+    // Offline before the portrait was ever fetched: its bytes never arrive.
+    if (blockUrl) await ctx.route(u => u.href.endsWith(blockUrl), r => r.abort());
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(([fid, mode, saved]) => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
@@ -53,7 +55,7 @@ try {
     const ledger = acts.find(a => getPermanentArtistImage(a.name));
     const pair = acts.find(a => _duoMembers(a.name).length === 2);
     const plain = acts.find(a => _duoMembers(a.name).length === 1 && !getPermanentArtistImage(a.name) && a !== ledger);
-    return { ledger: ledger?.id, pair: pair?.id, pairName: pair?.name, plain: plain?.id, ledgerName: ledger?.name, plainName: plain?.name };
+    return { ledgerUrl: ledger ? String(getPermanentArtistImage(ledger.name)?.url || getPermanentArtistImage(ledger.name)).replace(/^\.?\//, "").split("?")[0] : null, ledger: ledger?.id, pair: pair?.id, pairName: pair?.name, plain: plain?.id, ledgerName: ledger?.name, plainName: plain?.name };
   });
   await pre.ctx.close();
   check(pick.ledger && pick.pair && pick.plain, `fixture acts found in ${FID} (ledger ${pick.ledgerName}, pair ${pick.pairName}, plain ${pick.plainName})`);
@@ -92,6 +94,23 @@ try {
     check(P && P.faces.length === 2 && P.faces[0].who !== P.faces[1].who, `${tag}: ${pick.pairName} shows a face per member (${P?.faces.map(f => f.who).join(" + ")})`);
     const N = rows.find(r => r.label?.startsWith(pick.plainName));
     check(N && N.faces[0]?.src === "initials" && !N.faces[0].img, `${tag}: ${pick.plainName} (no photo) shows initials`);
+    check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
+    await ctx.close();
+  }
+  // #329 review: a ledger URL is not bytes. With the portrait unreachable the
+  // row must fall back to initials, never a broken image.
+  {
+    const tag = "offline portrait";
+    check(!!pick.ledgerUrl, `${tag}: the ledger act has a portrait path (${pick.ledgerUrl})`);
+    const { ctx, page, errors } = await open(390, "dark", saved, pick.ledgerUrl);
+    await page.waitForSelector("[data-np-saved] .np-srow", { timeout: 60000 }).catch(() => {});
+    await page.clock.runFor(1000); await page.waitForTimeout(600);
+    const f = await page.evaluate(n => {
+      const row = [...document.querySelectorAll("[data-np-saved] .np-srow")].find(r => r.getAttribute("aria-label")?.startsWith(n));
+      const face = row?.querySelector("[data-face]");
+      return face ? { src: face.getAttribute("data-photo-source"), img: !!face.querySelector("img"), text: face.textContent.trim() } : null;
+    }, pick.ledgerName);
+    check(f && f.src === "initials" && !f.img && f.text.length > 0, `${tag}: ${pick.ledgerName} falls back to initials (${JSON.stringify(f)})`);
     check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
   }
