@@ -501,7 +501,7 @@ function LineupFilterSheet({
       <div style={row}>
         {opt("tierFilter", "all", "All tiers")}
         {opt("tierFilter", "legend", "Legendary")}
-        {opt("tierFilter", "head", "Headliners")}
+        {opt("tierFilter", "head", topTierLabel(true))}
         {opt("tierFilter", "prime", "Prime time")}
         {opt("tierFilter", "open", "Openers")}
       </div>
@@ -1103,7 +1103,7 @@ function LineupScreen({ state, setState }) {
     const topPickIds = dayTopPicks.map(a => a.id);
     const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
     return (
-      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} headliners for ${dayLabel}`}
+      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} ${posterBilled() ? "top-billed acts" : "headliners"} for ${dayLabel}`}
         style={{ ...textBtn, color: "var(--ink)", fontWeight: 600 }}>Save top picks · {dayTopPicks.length}</button>
     );
   })() : null;

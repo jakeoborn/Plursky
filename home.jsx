@@ -1149,7 +1149,8 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
-                    {savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"}
+                    {isTopBilled(featured) ? (savedIds.includes(featured.id) ? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT")
+                      : savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"}
                   </div>
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
@@ -1606,7 +1607,7 @@ function HomeScreen({ state, setState }) {
       onClick: () => setSheet("tonight") },
     !isPostFestival && { id: "dontmiss", label: "Don't miss", icon: icon("M12 3 L14.6 8.6 L20.5 9.3 L16.1 13.4 L17.3 19.3 L12 16.3 L6.7 19.3 L7.9 13.4 L3.5 9.3 L9.4 8.6 Z"),
       onClick: () => setSheet("dontmiss") },
-    countdown && { id: "headliners", label: "Headliners", icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
+    countdown && { id: "headliners", label: topTierLabel(true), icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
       onClick: () => setSheet("headliners") },
     isLive && NOW.day > 1 && { id: "lastnight", label: "Last night", icon: icon("M3 12 A9 9 0 1 0 6 5.3 M3 4 V9 H8 M12 7 V12 L15 14"),
       onClick: () => setSheet("lastnight") },
@@ -1625,7 +1626,7 @@ function HomeScreen({ state, setState }) {
         : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
       case "tonight":    return { title: "Sun & weather", eyebrow: tonightEyebrow(), body: <TonightCard state={state} setState={setState} /> };
       case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
-      case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
+      case "headliners": return { title: topTierLabel(true),    body: <HeadlinerHighlights state={state} setState={setState} /> };
       case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
       case "upcoming":   return { title: "Coming up",     body: <UpcomingTeaser state={state} setState={setState} /> };
       default: return null;

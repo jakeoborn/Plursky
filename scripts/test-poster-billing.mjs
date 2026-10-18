@@ -54,5 +54,22 @@ check(top.some(a => /PAWSA/i.test(a.name)) && top.some(a => /Four Tet/i.test(a.n
 check(!isTopBilled({ tier: 3 }) && !isTopBilled({ tier: 3, tierSource: null }), "a set-time tier 3 is never Top billed");
 check(!isTopBilled({ tier: 2, tierSource: "poster" }), "a poster ring act (tier 2) is not Top billed");
 
+
+// 4. Wording (Jake, Oct 18): "Top billed" wherever the tier comes from the
+// poster. topTierLabel() answers for the festival; every tier-3 label calls it.
+const lab = src.match(/function posterBilled\(\) \{[^\n]*\}\nfunction topTierLabel\(plural = false\) \{[^\n]*\}/);
+check(!!lab, "data.jsx defines posterBilled + topTierLabel");
+if (lab) {
+  const at = cfg => vm.runInNewContext(`const TOP_BILLED = "Top billed"; ${lab[0]}; [topTierLabel(), topTierLabel(true)]`, { FESTIVAL_CONFIG: cfg });
+  const p = at({ posterBilling: { url: "x" } }), t = at({});
+  check(p[0] === "Top billed" && p[1] === "Top billed", `a poster-tiered festival says "Top billed" (got ${p.join(" / ")})`);
+  check(t[0] === "Headliner" && t[1] === "Headliners", `a set-time-tiered festival keeps "Headliner" (got ${t.join(" / ")})`);
+}
+check(!!mod?.config?.posterBilling?.url, "III Points carries posterBilling (so it says Top billed)");
+const home = readFileSync(join(ROOT, "home.jsx"), "utf8"), lineup = readFileSync(join(ROOT, "lineup.jsx"), "utf8");
+check(/isTopBilled\(featured\) \? \(savedIds\.includes\(featured\.id\) \? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT"\)/.test(home), "Today's featured set reads TOP BILLED for a poster tier 3");
+check(/id: "headliners", label: topTierLabel\(true\)/.test(home) && /case "headliners": return \{ title: topTierLabel\(true\)/.test(home), "the essentials sheet is named by topTierLabel");
+check(/opt\("tierFilter", "head", topTierLabel\(true\)\)/.test(lineup), "Lineup's tier filter is named by topTierLabel");
+check(!/"Headliners?"/.test(lineup.replace(/topTierLabel[^\n]*/g, "")), "lineup.jsx has no other hardcoded Headliner label");
 if (failed) { console.log(`✗ poster billing: ${failed} of ${checks} checks failed`); process.exit(1); }
 console.log(`✓ poster billing: ${checks} checks (III Points tiers match the official graphic row by row; Top billed only from the poster)`);

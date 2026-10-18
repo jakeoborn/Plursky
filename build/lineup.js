@@ -801,7 +801,7 @@ function LineupFilterSheet({
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
-  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", topTierLabel(true)), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
     className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
@@ -1364,7 +1364,7 @@ function LineupScreen({
     return React.createElement("button", {
       "data-save-day": true,
       onClick: save,
-      title: `Save the ${dayTopPicks.length} headliners for ${dayLabel}`,
+      title: `Save the ${dayTopPicks.length} ${posterBilled() ? "top-billed acts" : "headliners"} for ${dayLabel}`,
       style: {
         ...textBtn,
         color: "var(--ink)",

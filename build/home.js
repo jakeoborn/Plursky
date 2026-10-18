@@ -1399,7 +1399,7 @@ function F1TonightHero({
       color: accent,
       fontWeight: 700
     }
-  }, savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"), React.createElement("div", {
+  }, isTopBilled(featured) ? savedIds.includes(featured.id) ? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT" : savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 22,
@@ -2040,7 +2040,7 @@ function HomeScreen({
     onClick: () => setSheet("dontmiss")
   }, countdown && {
     id: "headliners",
-    label: "Headliners",
+    label: topTierLabel(true),
     icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
     onClick: () => setSheet("headliners")
   }, isLive && NOW.day > 1 && {
@@ -2106,7 +2106,7 @@ function HomeScreen({
         };
       case "headliners":
         return {
-          title: "Headliners",
+          title: topTierLabel(true),
           body: React.createElement(HeadlinerHighlights, {
             state: state,
             setState: setState
