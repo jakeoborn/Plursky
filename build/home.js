@@ -1399,7 +1399,7 @@ function F1TonightHero({
       color: accent,
       fontWeight: 700
     }
-  }, isTopBilled(featured) ? savedIds.includes(featured.id) ? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT" : savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"), React.createElement("div", {
+  }, savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"), React.createElement("div", {
     className: "serif",
     style: {
       fontSize: 22,
@@ -2396,13 +2396,13 @@ function HeadlinerHighlights({
   state,
   setState
 }) {
-  var headliners = ARTISTS.filter(a => a.tier >= 2).sort((a, b) => b.tier - a.tier || a.day - b.day || toNightMin(a.start) - toNightMin(b.start)).slice(0, 9);
-  if (!headliners.length) return null;
+  var top = ARTISTS.filter(a => a.tier >= 2).sort((a, b) => b.tier - a.tier || toNightMin(a.start) - toNightMin(b.start));
   var dayGroups = festivalDayNums().map(d => ({
     day: d,
     meta: FESTIVAL_CONFIG.dayDates[d],
-    artists: headliners.filter(a => a.day === d).slice(0, 3)
+    artists: top.filter(a => a.day === d).slice(0, 3)
   })).filter(g => g.artists.length);
+  if (!dayGroups.length) return null;
   return React.createElement("div", {
     style: {
       marginTop: 18

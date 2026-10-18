@@ -1149,8 +1149,7 @@ function F1TonightHero({ state, setState, parallax = 0 }) {
                 <div style={{ width: 3, alignSelf: "stretch", background: accent, borderRadius: 3, minHeight: 36 }}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.4, color: accent, fontWeight: 700 }}>
-                    {isTopBilled(featured) ? (savedIds.includes(featured.id) ? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT")
-                      : savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"}
+                    {savedIds.includes(featured.id) ? "YOUR HEADLINER" : "TONIGHT'S HEADLINER"}
                   </div>
                   <div className="serif" style={{ fontSize: 22, lineHeight: 1.05, marginTop: 2 }}>
                     {featured.name}
@@ -1774,14 +1773,16 @@ function HomeScreen({ state, setState }) {
 // Pre-festival headliners by night (moved verbatim out of the old Home body;
 // Field Home opens it from the essentials row).
 function HeadlinerHighlights({ state, setState }) {
-          const headliners = ARTISTS.filter(a => a.tier >= 2)
-            .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
-            .slice(0, 9);
-          if (!headliners.length) return null;
+          // Top three per night. (A festival-wide top nine, grouped after, gave
+          // every slot to night one once poster billing put 22+ acts a night
+          // in the top tier, and the other nights vanished.)
+          const top = ARTISTS.filter(a => a.tier >= 2)
+            .sort((a, b) => (b.tier - a.tier) || toNightMin(a.start) - toNightMin(b.start));
           const dayGroups = festivalDayNums().map(d => ({
             day: d, meta: FESTIVAL_CONFIG.dayDates[d],
-            artists: headliners.filter(a => a.day === d).slice(0, 3),
+            artists: top.filter(a => a.day === d).slice(0, 3),
           })).filter(g => g.artists.length);
+          if (!dayGroups.length) return null;
           return (
             <div style={{ marginTop: 18 }}>
               <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 10 }}>

@@ -67,9 +67,14 @@ if (lab) {
 }
 check(!!mod?.config?.posterBilling?.url, "III Points carries posterBilling (so it says Top billed)");
 const home = readFileSync(join(ROOT, "home.jsx"), "utf8"), lineup = readFileSync(join(ROOT, "lineup.jsx"), "utf8");
-check(/isTopBilled\(featured\) \? \(savedIds\.includes\(featured\.id\) \? "YOUR TOP-BILLED SET" : "TOP BILLED TONIGHT"\)/.test(home), "Today's featured set reads TOP BILLED for a poster tier 3");
 check(/id: "headliners", label: topTierLabel\(true\)/.test(home) && /case "headliners": return \{ title: topTierLabel\(true\)/.test(home), "the essentials sheet is named by topTierLabel");
 check(/opt\("tierFilter", "head", topTierLabel\(true\)\)/.test(lineup), "Lineup's tier filter is named by topTierLabel");
 check(!/"Headliners?"/.test(lineup.replace(/topTierLabel[^\n]*/g, "")), "lineup.jsx has no other hardcoded Headliner label");
+// The tier sheet picks its top three PER NIGHT: a festival-wide top nine
+// gave every slot to night one once 22+ acts a night are poster tier 3.
+const hh = home.slice(home.indexOf("function HeadlinerHighlights("), home.indexOf("function HeadlinerHighlights(") + 2500);
+check(!/\.slice\(0, 9\)/.test(hh) && /top\.filter\(a => a\.day === d\)\.slice\(0, 3\)/.test(hh), "the Top billed sheet takes three per night, not nine festival-wide");
+const perNight = [1, 2].map(d => [...acts.values()].filter(a => a.day === d && a.tier === 3).length);
+check(perNight.every(n => n >= 3), `every night has >= 3 poster tier-3 acts to show (got ${perNight.join(" / ")})`);
 if (failed) { console.log(`✗ poster billing: ${failed} of ${checks} checks failed`); process.exit(1); }
 console.log(`✓ poster billing: ${checks} checks (III Points tiers match the official graphic row by row; Top billed only from the poster)`);
