@@ -899,8 +899,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
         { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
         { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        // Independent evidence, NOT in the basis: the grove-footprint stage
+        // structure, measured on the same Esri Wayback 2024-11-18 capture at
+        // z19. The official patron maps run that footprint T-Mobile (2024) ->
+        // Lady Bird (2025) -> Snapchat (2026), so the 2024 capture's structure
+        // is the stage the 2026 lineup brands Snapchat. First read by the
+        // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
+        // 2026-10-18 after the 2024/2025 archived patron maps settled the
+        // footprint. Centre of the main stage roof.
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
         //
-        // ⛔ NOT ANCHORED, deliberately — four reasons:
+        // ⛔ NOT ANCHORED, deliberately — three reasons:
         //
         // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
         // tree cover and teardown hid it in the capture, so it was derived
@@ -917,12 +926,10 @@ const FESTIVALS_REGISTRY = [
         // declines to geo-match a stage it cannot place, which is the correct
         // failure mode.
         //
-        // `snapchat`: new for 2026 (15 sets). The official 2026 patron map
-        // (2026-09-22) now places it on the ART, in the middle of the park by
-        // The Grove, and ACL_STAGES x/y is measured there. That is still not
-        // a world position: the poster is not a survey, so no anchor is read
-        // or projected off it. It also must not inherit Lady Bird's old
-        // coords. A guessed anchor mis-tags photos silently.
+        // `snapchat`: ANCHORED 2026-10-18 (see above), so no longer in this
+        // list. The 2026 patron map places it on the art by The Grove; the
+        // world anchor is the satellite measurement of that footprint's
+        // stage structure, not a poster read — the poster stays art-only.
         //
         // `ladybird` / `bonus`: not stages in the current app model. Bonus
         // Tracks now has September 30 programming in its separate readiness
@@ -930,8 +937,11 @@ const FESTIVALS_REGISTRY = [
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
-        // carry ACL's case. That is why the 2026-10-19 registration waiver
-        // STAYS: the basis is now measured, but nothing independent checks it.
+        // carry ACL's case then. Settled 2026-10-18: the archived 2024 and
+        // 2025 patron maps show the same grove footprint (T-Mobile 2024,
+        // Lady Bird 2025, Snapchat 2026), so that survey's structure
+        // measurement is Snapchat's anchor and the registration waiver is
+        // gone.
         // ⚠ For whoever reconciles this next: the comment replaced here (dated
         // 2026-09-04) recorded both as real park stages with zero programmed
         // sets, while Instinct records `ladybird` as 2024-only and `bonus` as

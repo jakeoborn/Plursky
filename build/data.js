@@ -745,6 +745,11 @@ var FESTIVALS_REGISTRY = [{
       lat: 30.268021,
       lng: -97.770282,
       src: "osm"
+    }, {
+      stageId: "snapchat",
+      lat: 30.266712,
+      lng: -97.766540,
+      src: "osm"
     }],
     mainStageId: "amex",
     mapImage: "acl-park-2026.webp",

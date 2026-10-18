@@ -1340,6 +1340,22 @@ const REGISTRATION_TOL_M = 25;
   // naming a festival that now PASSES is fatal too — so this entry cannot
   // outlive the redraw it is standing in for.
   const ART_WAIVERS = {
+    // ACL joined 2026-10-18, when the snapchat anchor landed: the basis is
+    // satellite-measured and snapchat is an independent osm measurement, so
+    // the registration findings are gone — and what they reveal is that the
+    // 2026 patron art is not an affine image of Zilker Park around The
+    // Grove. The measured stage structure sits 5.19 grid units (~35 m) from
+    // where the basis affine draws SNAPCHAT; the desk survey found the same
+    // 34 m on 2026-09-06. The defect is in the ART, not the anchors, so
+    // this is the same kind of waiver as Ultra's. Distance readouts stay
+    // off either way: snapchat is 35 m out, past the 25 m readout gate.
+    // Clears by re-measuring the plate (a redraw is not ours to make — the
+    // art is the festival's own patron map) or by re-deriving stage x/y so
+    // the shipped art coordinates agree with the measured world.
+    "acl-2026": {
+      expires: "2026-12-01",
+      note: "acl-park-2026.webp art is locally distorted near The Grove; the satellite-measured snapchat anchor sits 5.19 grid units (~35 m) off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
+    },
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
       // festival roll, rather than into Ultra flip week.
@@ -1446,8 +1462,8 @@ const REGISTRATION_TOL_M = 25;
   //     the data can contradict the affine even when it is wrong
   // Both are now fatal for a LIVE festival (founder call 2026-09-05). A
   // festival flipping available:true from here on gets NO waiver and has to
-  // arrive with a sourced basis — which is the point: the three below are
-  // grandfathered breakage, and everything after them is a choice.
+  // arrive with a sourced basis — which is the point: what remains below is
+  // grandfathered breakage, and everything after it is a choice.
   //
   // THE EXPIRY IS THE MECHANISM. The footprint waiver above has none and has
   // already outlived several sessions; a waiver without a date is a quieter
@@ -1465,35 +1481,6 @@ const REGISTRATION_TOL_M = 25;
     // is measured now. What survives is `blind`: a basis can be perfectly
     // sourced and still have nothing independent to check it against, and
     // that is the condition that keeps distance readouts off.
-    "acl-2026": {
-      excuses: ["blind"],
-      expires: "2026-10-19",
-      // ⚠️ The 2026-09-06 desk survey ASKED for this waiver to be deleted, on
-      // the strength of a 34 m independent cross-check against `ladybird`.
-      // Retracted by Instinct 2026-09-06 once the reconciliation landed:
-      // `ladybird` is a 2024 stage that the 2026 lineup replaced with the
-      // Snapchat Stage, so the cross-check was real geometry against a stage
-      // this app does not have. `bonus` was a label borrowed from the
-      // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
-      // satellite-measured now, and it is the whole anchor set: `bmi`, which
-      // was derived through that same basis and so could never disagree with
-      // it, was dropped on 2026-09-23 after it measured 57 m off the 2026 fit.
-      //
-      // The official 2026 patron map published on 2026-09-22 and now places
-      // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
-      // waiver: a poster is not a survey, so it yields no world anchor, and
-      // test-acl-map-2026.mjs fails if one is read off it. Clears when
-      // `snapchat` (the one 2026 stage with no anchor) is measured on the
-      // ground or on satellite. That is the independent anchor still missing.
-      //
-      // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
-      // clear this. A crowd anchor answers "where does a person STAND"; a
-      // gpsAnchor answers "where did the artist DRAW it". EDC's measured
-      // kinetic centroid is 438 m from its own poster pin.
-      note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
-            "independent checks it (the derived bmi anchor was dropped 2026-09-23). " +
-            "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
-    },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
     // four independent osm anchors, so it has neither registration finding.
     // Its problem moved up a gate: those four anchors DISAGREE with the drawn
