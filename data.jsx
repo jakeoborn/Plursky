@@ -1507,6 +1507,17 @@ function setTimeStatus(a) {
   return _hhmmNightMin(a.start) != null ? "confirmed" : "tba";
 }
 function setTimesUnconfirmed(a) { return setTimeStatus(a) === "unconfirmed"; }
+// Item 4: "Top billed" is a claim about the festival's own poster, so it is
+// made only where the tier came from it (a module's BILLING block, see
+// scripts/build-poster-billing.mjs) — never from the set-time tier guess.
+const TOP_BILLED = "Top billed";
+function isTopBilled(a) { return !!a && a.tierSource === "poster" && a.tier === 3; }
+// Jake, Oct 18: "Top billed" wherever the tier comes from the poster. A
+// festival tiered from its official graphic names tier 3 that way on every
+// surface (23 acts a night share the top size at III Points: none is "the"
+// headliner); a set-time-tiered festival keeps "Headliner".
+function posterBilled() { return !!(typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.posterBilling); }
+function topTierLabel(plural = false) { return posterBilled() ? TOP_BILLED : plural ? "Headliners" : "Headliner"; }
 // A row's start, as text: the words for an unconfirmed set, otherwise exactly
 // what fmt12(a.start) printed before (an em dash for TBA).
 function setTimeLabel(a) { return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start); }

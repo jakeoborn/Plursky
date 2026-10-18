@@ -829,7 +829,7 @@ function LineupFilterSheet({
     style: sectionLabel
   }, "Tier"), React.createElement("div", {
     style: row
-  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", "Headliners"), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
+  }, opt("tierFilter", "all", "All tiers"), opt("tierFilter", "legend", "Legendary"), opt("tierFilter", "head", topTierLabel(true)), opt("tierFilter", "prime", "Prime time"), opt("tierFilter", "open", "Openers")), React.createElement("div", {
     className: "duo-sect",
     style: sectionLabel
   }, "Stage"), React.createElement("div", {
@@ -1392,7 +1392,7 @@ function LineupScreen({
     return React.createElement("button", {
       "data-save-day": true,
       onClick: save,
-      title: `Save the ${dayTopPicks.length} headliners for ${dayLabel}`,
+      title: `Save the ${dayTopPicks.length} ${posterBilled() ? "top-billed acts" : "headliners"} for ${dayLabel}`,
       style: {
         ...textBtn,
         color: "var(--ink)",
@@ -2110,7 +2110,13 @@ function LineupScreen({
           color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
+      }, "Clash · "), isTopBilled(a) && React.createElement("span", {
+        "data-top-billed": true,
+        style: {
+          color: "var(--ink)",
+          fontWeight: 600
+        }
+      }, TOP_BILLED, " · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
         "data-set-time-status": true,
         style: {
           font: "400 13px/1.385 var(--f-ui)",
