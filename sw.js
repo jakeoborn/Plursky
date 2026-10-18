@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v439';
+﻿const CACHE      = 'plursky-v441';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v439';
+const APP_VER    = 'v441';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -52,6 +52,8 @@ const LOCAL = [
   `./data/festivals/countdown-nye-2026.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
+  // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
+  `./data/festival-art.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
@@ -89,6 +91,15 @@ const LOCAL = [
   './festival-art/iii-points-2026.webp',
   './festival-art/edc-lv-2026.webp',
   './festival-art/countdown-nye-2026.webp',
+  './festival-art/tiles/acl-2026.webp',
+  './festival-art/tiles/countdown-nye-2026.webp',
+  './festival-art/tiles/crssd-fall-2026.webp',
+  './festival-art/tiles/dreamstate-socal-2026.webp',
+  './festival-art/tiles/edc-lv-2026.webp',
+  './festival-art/tiles/edc-orlando-2026.webp',
+  './festival-art/tiles/escape-halloween-2026.webp',
+  './festival-art/tiles/iii-points-2026.webp',
+  './festival-art/tiles/portola-2026.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,

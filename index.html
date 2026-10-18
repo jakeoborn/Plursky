@@ -356,6 +356,11 @@
   .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 3.5px var(--line-2)}
   .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--acc)}
   .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--clash)}
+  /* Landing row state chip (Item 6): filled = open, accent outline = lineup in with times to come, neutral = closed or over. Wraps in its own box, never squeezes the name. */
+  .landing-chip{flex:none;max-width:118px;box-sizing:border-box;padding:4px 10px;border-radius:999px;font:600 12px/1.3 var(--f-ui);text-align:center;letter-spacing:0}
+  .landing-chip-fill{background:var(--acc);color:var(--on-acc);border:1.5px solid var(--acc)}
+  .landing-chip-accent{background:transparent;color:var(--acc-ink);border:1.5px solid var(--acc)}
+  .landing-chip-neutral{background:transparent;color:var(--ink-2);border:1px solid var(--line-2)}
   .duo-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:var(--rad-sm);font:650 16px/1.2 var(--f-ui);letter-spacing:-.01em;border:0;cursor:pointer;transition:transform var(--t-tap) var(--ease-decay)}
   .duo-btn:active{transform:scale(.98)}
   .duo-btn.pri{background:var(--acc);color:var(--on-acc);box-shadow:0 10px 28px -12px var(--acc-55)}
@@ -835,51 +840,52 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v439"></script>
+  <script src="build/ios-frame.js?v=v441"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v439"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v439"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v439"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v439"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v439"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v439"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v439"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v439"></script>
-  <script src="data/festivals/portola-2026.js?v=v439"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v439"></script>
-  <script src="data/festivals/arc-2026.js?v=v439"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v439"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v439"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v439"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v439"></script>
-  <script src="build/data.js?v=v439"></script>
-  <script src="build/supabase.js?v=v439"></script>
-  <script src="data/artist-photos.js?v=v439"></script>
-  <script src="build/chrome.js?v=v439"></script>
-  <script src="build/home.js?v=v439"></script>
-  <script src="build/map.js?v=v439"></script>
-  <script src="build/survey.js?v=v439"></script>
-  <script src="build/lineup.js?v=v439"></script>
-  <script src="build/artist.js?v=v439"></script>
-  <script src="build/photo-tag.js?v=v439"></script>
-  <script src="build/spotify-api.js?v=v439"></script>
-  <script src="build/recap-engine.js?v=v439"></script>
-  <script src="build/historical.js?v=v439"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v441"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v441"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v441"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v441"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v441"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v441"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v441"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v441"></script>
+  <script src="data/festivals/portola-2026.js?v=v441"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v441"></script>
+  <script src="data/festivals/arc-2026.js?v=v441"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v441"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v441"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v441"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v441"></script>
+  <script src="build/data.js?v=v441"></script>
+  <script src="build/supabase.js?v=v441"></script>
+  <script src="data/artist-photos.js?v=v441"></script>
+  <script src="data/festival-art.js?v=v441"></script>
+  <script src="build/chrome.js?v=v441"></script>
+  <script src="build/home.js?v=v441"></script>
+  <script src="build/map.js?v=v441"></script>
+  <script src="build/survey.js?v=v441"></script>
+  <script src="build/lineup.js?v=v441"></script>
+  <script src="build/artist.js?v=v441"></script>
+  <script src="build/photo-tag.js?v=v441"></script>
+  <script src="build/spotify-api.js?v=v441"></script>
+  <script src="build/recap-engine.js?v=v441"></script>
+  <script src="build/historical.js?v=v441"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v439"></script>
-  <script src="build/spotify.js?v=v439"></script>
-  <script src="build/app.js?v=v439"></script>
+  <script src="build/landing.js?v=v441"></script>
+  <script src="build/spotify.js?v=v441"></script>
+  <script src="build/app.js?v=v441"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v439';
+    const APP_VERSION = 'v441';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -900,11 +906,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v439' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v441' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v439', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v441', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

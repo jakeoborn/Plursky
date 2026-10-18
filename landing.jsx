@@ -230,17 +230,20 @@ function writeFestivalView(festivalId, patch) {
 // `plus` is passed in rather than read here so the pure gate can drive it.
 function _landingFestivalState(entry, now, plus) {
   const phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
-  if (!entry.available && !entry.previewOnly) return { label: "Not open yet", tone: "muted", locked: true };
+  // chip: how the row's state chip draws (Item 6). "fill" = open to walk
+  // into, "accent" = in, with something still to come, "neutral" = closed
+  // or over.
+  if (!entry.available && !entry.previewOnly) return { label: "Not open yet", tone: "muted", locked: true, chip: "neutral" };
   if (!entry.available && entry.previewOnly) {
     return plus
-      ? { label: "Early access", tone: "signal" }
-      : { label: "Early access · Plursky+", tone: "muted", locked: true, upsell: true };
+      ? { label: "Early access", tone: "signal", chip: "fill" }
+      : { label: "Early access · Plursky+", tone: "muted", locked: true, upsell: true, chip: "neutral" };
   }
-  if (phase === "live")  return { label: "Happening now", tone: "signal" };
-  if (phase === "ended") return { label: "Ended", tone: "muted" };
-  if (phase === "tba")   return { label: "Dates TBA", tone: "muted" };
-  if (entry.scheduleTBA) return { label: "Lineup in · set times TBA", tone: "muted" };
-  return { label: "Upcoming", tone: "muted" };
+  if (phase === "live")  return { label: "Happening now", tone: "signal", chip: "fill" };
+  if (phase === "ended") return { label: "Ended", tone: "muted", chip: "neutral" };
+  if (phase === "tba")   return { label: "Dates TBA", tone: "muted", chip: "accent" };
+  if (entry.scheduleTBA) return { label: "Lineup in · set times TBA", tone: "muted", chip: "accent" };
+  return { label: "Open", tone: "muted", chip: "fill" };
 }
 
 // ONE eligibility policy, used by the row, the primary button and the enter
@@ -270,7 +273,6 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
   const now = Date.now();
   const st = _landingFestivalState(entry, now, plus);
   const c = entry.config;
-  const toneColor = st.tone === "signal" ? "var(--signal-ink)" : "var(--text-2)";
   // An upsell row is locked as a DESTINATION and live as an OFFER: disabling
   // it is what made the row a dead end with nothing to tap.
   const dead = st.locked && !st.upsell;
@@ -278,6 +280,7 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
     <button
       onClick={() => { if (st.upsell) onUpsell?.(c.id, entry); else if (!st.locked) onEnter(c.id, entry); }}
       disabled={dead}
+      data-landing-row={c.id}
       aria-label={`${c.name}. ${st.label}.${st.upsell ? " Opens the Plursky+ offer." : ""}${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`}
       style={{
         width: "100%", display: "flex", alignItems: "center", gap: 12,
@@ -310,19 +313,18 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
         <div data-fit-words data-fit-min="11" style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0 }}>
           {c.location}{c.dates ? " · " : ""}{c.dates || null}
         </div>
-        <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: toneColor, fontVariantNumeric: "tabular-nums" }}>
-          {st.label}
-          {/* EXACT-festival count only. Absent means "none for this festival",
-              never "none anywhere" and never another festival's total. */}
-          {memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : ""}
-        </div>
+        {/* EXACT-festival count only. Absent means "none for this festival",
+            never "none anywhere" and never another festival's total. */}
+        {memoryCount > 0 && (
+          <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+            {memoryCount} {memoryCount === 1 ? "memory" : "memories"}
+          </div>
+        )}
       </div>
-      {!dead && (
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)"
-             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M9 6 L15 12 L9 18"/>
-        </svg>
-      )}
+      {/* The state, right-aligned (Item 6): filled = open, accent outline =
+          lineup in with times to come, neutral outline = closed or over. It
+          wraps inside its own box rather than squeeze the name. */}
+      <span data-landing-chip={st.chip} className={`landing-chip landing-chip-${st.chip}`}>{st.label}</span>
     </button>
   );
 }
