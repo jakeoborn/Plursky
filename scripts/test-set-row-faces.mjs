@@ -70,16 +70,19 @@ try {
       const faces = [...r.querySelectorAll("[data-face]")];
       const name = r.querySelector(".np-sname"), face = r.querySelector(".np-sface");
       const nb = name.getBoundingClientRect(), fb = face?.getBoundingClientRect();
+      // Every drawn face, not just the slot: a pair laid out wider than its
+      // slot ran under the name while the slot itself measured clean.
+      const faceRight = Math.max(fb ? fb.right : 0, ...faces.map(f => f.getBoundingClientRect().right));
       return {
         label: r.getAttribute("aria-label"),
         faces: faces.map(f => ({ who: f.getAttribute("data-face"), src: f.getAttribute("data-photo-source"), img: !!f.querySelector("img") })),
-        faceW: fb ? Math.round(fb.width) : 0, overlap: fb ? fb.right > nb.left + 0.5 : true,
+        faceW: fb ? Math.round(fb.width) : 0, overlap: fb ? faceRight > nb.left + 0.5 : true,
         truncated: name.scrollWidth > name.clientWidth + 1 || getComputedStyle(name).textOverflow === "ellipsis",
       };
     }));
     check(rows.length === 3, `${tag}: three saved rows (got ${rows.length})`);
     for (const r of rows) {
-      check(r.faces.length >= 1 && r.faceW >= 38 && r.faceW <= 42, `${tag}: ${r.label}: a 40 px face (${r.faceW} px, ${r.faces.length} face)`);
+      check(r.faces.length >= 1 && r.faceW >= 38 && (r.faces.length > 1 || r.faceW <= 42), `${tag}: ${r.label}: a 40 px face, or a whole face per member (${r.faceW} px, ${r.faces.length} face)`);
       check(!r.overlap, `${tag}: ${r.label}: the face sits beside the name, not over it`);
       check(!r.truncated, `${tag}: ${r.label}: the name is not truncated`);
     }
