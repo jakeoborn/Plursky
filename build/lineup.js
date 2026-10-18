@@ -2082,7 +2082,13 @@ function LineupScreen({
           color: "var(--clash)",
           fontWeight: 600
         }
-      }, "Clash · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
+      }, "Clash · "), isTopBilled(a) && React.createElement("span", {
+        "data-top-billed": true,
+        style: {
+          color: "var(--ink)",
+          fontWeight: 600
+        }
+      }, TOP_BILLED, " · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
         "data-set-time-status": true,
         style: {
           font: "400 13px/1.385 var(--f-ui)",

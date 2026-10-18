@@ -1473,6 +1473,7 @@ function LineupScreen({ state, setState }) {
                       background: isLive && filter === "all" ? "var(--live)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
                     {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
                     {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
+                    {isTopBilled(a) && <span data-top-billed style={{ color: "var(--ink)", fontWeight: 600 }}>{TOP_BILLED} · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
                   {/* The time column is 72px and cannot hold the words, so the

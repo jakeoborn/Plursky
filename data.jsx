@@ -1507,6 +1507,11 @@ function setTimeStatus(a) {
   return _hhmmNightMin(a.start) != null ? "confirmed" : "tba";
 }
 function setTimesUnconfirmed(a) { return setTimeStatus(a) === "unconfirmed"; }
+// Item 4: "Top billed" is a claim about the festival's own poster, so it is
+// made only where the tier came from it (a module's BILLING block, see
+// scripts/build-poster-billing.mjs) — never from the set-time tier guess.
+const TOP_BILLED = "Top billed";
+function isTopBilled(a) { return !!a && a.tierSource === "poster" && a.tier === 3; }
 // A row's start, as text: the words for an unconfirmed set, otherwise exactly
 // what fmt12(a.start) printed before (an em dash for TBA).
 function setTimeLabel(a) { return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start); }
