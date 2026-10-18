@@ -1404,6 +1404,16 @@ function setTimeStatus(a) {
 function setTimesUnconfirmed(a) {
   return setTimeStatus(a) === "unconfirmed";
 }
+var TOP_BILLED = "Top billed";
+function isTopBilled(a) {
+  return !!a && a.tierSource === "poster" && a.tier === 3;
+}
+function posterBilled() {
+  return !!(typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.posterBilling);
+}
+function topTierLabel(plural = false) {
+  return posterBilled() ? TOP_BILLED : plural ? "Headliners" : "Headliner";
+}
 function setTimeLabel(a) {
   return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start);
 }

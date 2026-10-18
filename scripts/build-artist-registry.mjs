@@ -142,7 +142,9 @@ export function build(root = ROOT, overrides = null) {
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src });
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src,
+        // Item 4: a tier read off the festival's own poster carries that poster.
+        ...(a.tierSource === 'poster' && cfg.posterBilling ? { posterTier: a.tier, posterSource: cfg.posterBilling } : {}) });
     }
   }
   const H = `${root}/data/historical/editions`;
@@ -197,7 +199,8 @@ export function build(root = ROOT, overrides = null) {
     billings.push({ id: r.id, source: r.source, festivalId: r.festivalId, festivalBrand: r.festivalBrand, year: r.year, date: r.date, day: r.day,
       stage: r.stage, start: r.start, end: r.end, printed: r.printed, setTag: p.setTag,
       performers: p.performers.map(({ key, role }) => ({ key, role })), act: p.act,
-      closing: r.start && r.stage ? nightMin(r.start) === lastStart.get(k) : null, mainStage: null, ...(p.review ? { review: p.review } : {}) });
+      closing: r.start && r.stage ? nightMin(r.start) === lastStart.get(k) : null, mainStage: null, ...(p.review ? { review: p.review } : {}),
+      ...(r.posterTier ? { posterTier: r.posterTier, posterSource: r.posterSource } : {}) });
     for (const perf of p.performers) {
       const rec = touch(perf.key, perf.role === 'project' || (!p.ruled && p.kind === 'project') ? 'project' : p.kind === 'collab' ? 'collab' : 'performer');
       for (const par of perf.parents || []) rec.parents.add(par);
