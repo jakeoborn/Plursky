@@ -396,6 +396,17 @@ function NightWizard({ state, setState, onClose }) {
 // Your plan is the accent bar, a set playing now is ink, the rest is a quiet
 // line. A stage name is a button: in LIST it narrows to that stage (tap again
 // for all), in GRID it brings that stage's column into view.
+// Each stage keeps a stable hue (Item 3a, Jake's pick A, Oct 18): a chip by
+// its name and its sets drawn in that hue; plan and live keep their own fill.
+// Six mode tokens (--lane-1..6, each >= 3:1 on --paper and --s3), assigned in
+// map order so a stage keeps its hue across days. null for a stage not on the
+// map. The one door for every surface that colours by stage.
+function stageLaneHue(stageId) {
+  const i = (typeof STAGES !== "undefined" ? STAGES : []).findIndex(s => s.id === stageId);
+  if (i < 0) return null;
+  return { stroke: `var(--lane-${(i % 6) + 1})` };
+}
+
 function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
   const lanes = React.useMemo(() => {
     const by = new Map();
@@ -425,23 +436,27 @@ function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
         {lanes.map(({ stage, sets }) => {
           const on = stageFilter === stage.id;
           const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+          const hue = stageLaneHue(stage.id);
           return (
             <React.Fragment key={stage.id}>
               <button type="button" data-overview-stage={stage.id} aria-pressed={on}
                 aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
                 onClick={() => onStage(stage.id)}
                 style={{ border: 0, background: "none", padding: "1px 0", minHeight: 16, cursor: "pointer", textAlign: "left",
-                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere" }}>
-                {stage.name}
+                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere",
+                  ...(hue ? { display: "flex", alignItems: "baseline", gap: 6 } : {}) }}>
+                {hue && <span data-lane-chip aria-hidden="true" style={{ flex: "none", width: 8, height: 8, borderRadius: 2, background: hue.stroke, alignSelf: "center" }} />}
+                <span>{stage.name}</span>
               </button>
-              <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+              <div aria-hidden="true" data-overview-lane={stage.id} style={{ position: "relative", height: 16 }}>
                 {sets.map(({ a, s, e }) => {
                   const mineSet = savedSet.has(a.id), live = isSetLive(a);
-                  return <span key={a.id} style={{ position: "absolute", left: pct(s), width: `calc(${((e - s) / span) * 100}% - 2px)`,
-                    top: mineSet ? 5.5 : 7, height: mineSet ? 5 : 2, borderRadius: 3, minWidth: 2,
-                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)" }} />;
+                  const left = pct(s), width = `calc(${((e - s) / span) * 100}% - 2px)`;
+                  return <span key={a.id} style={{ position: "absolute", left, width,
+                    top: mineSet ? 5.5 : hue ? 6.5 : 7, height: mineSet ? 5 : hue ? 3 : 2, borderRadius: 3, minWidth: 2,
+                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : hue ? hue.stroke : "var(--line-2)" }} />;
                 })}
-                {showNow && <span style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
+                {showNow && <span aria-hidden="true" style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
               </div>
             </React.Fragment>
           );
