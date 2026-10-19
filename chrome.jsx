@@ -696,13 +696,18 @@ function _duoInitials(name) {
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
 function DuoFace({ name, size, ring = "", style, className = "" }) {
-  const photo = useArtistPhoto(name);
+  const resolved = useArtistPhoto(name);
   const rec = getArtistImage(name);
+  // A URL is not bytes: offline, a ledger portrait the SW never cached (or a
+  // Spotify URL, which it never persists) fails to load. Remember the src that
+  // failed and show initials for it, never a broken image (#329 review).
+  const [failed, setFailed] = React.useState(null);
+  const photo = resolved && resolved !== failed ? resolved : null;
   return (
     <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
       data-photo-source={photo ? (rec?.source || "") : "initials"}
       style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
-      {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
+      {photo ? <img src={photo} alt="" onError={() => setFailed(photo)} /> : _duoInitials(name)}
     </span>
   );
 }
