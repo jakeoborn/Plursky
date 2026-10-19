@@ -356,6 +356,11 @@
   .duo-avp>.duo-av+.duo-av{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 3.5px var(--line-2)}
   .duo-avp>.duo-av.on+.duo-av.on{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--acc)}
   .duo-avp>.duo-av.cl+.duo-av.cl{box-shadow:0 0 0 2px var(--ring-bg,var(--bg)),0 0 0 4px var(--clash)}
+  /* Landing row state chip (Item 6): filled = open, accent outline = lineup in with times to come, neutral = closed or over. Wraps in its own box, never squeezes the name. */
+  .landing-chip{flex:none;max-width:118px;box-sizing:border-box;padding:4px 10px;border-radius:999px;font:600 12px/1.3 var(--f-ui);text-align:center;letter-spacing:0}
+  .landing-chip-fill{background:var(--acc);color:var(--on-acc);border:1.5px solid var(--acc)}
+  .landing-chip-accent{background:transparent;color:var(--acc-ink);border:1.5px solid var(--acc)}
+  .landing-chip-neutral{background:transparent;color:var(--ink-2);border:1px solid var(--line-2)}
   .duo-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:var(--rad-sm);font:650 16px/1.2 var(--f-ui);letter-spacing:-.01em;border:0;cursor:pointer;transition:transform var(--t-tap) var(--ease-decay)}
   .duo-btn:active{transform:scale(.98)}
   .duo-btn.pri{background:var(--acc);color:var(--on-acc);box-shadow:0 10px 28px -12px var(--acc-55)}
@@ -858,6 +863,7 @@
   <script src="build/data.js?v=v444"></script>
   <script src="build/supabase.js?v=v444"></script>
   <script src="data/artist-photos.js?v=v444"></script>
+  <script src="data/festival-art.js?v=v444"></script>
   <script src="build/chrome.js?v=v444"></script>
   <script src="build/home.js?v=v444"></script>
   <script src="build/map.js?v=v444"></script>
