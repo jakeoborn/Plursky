@@ -483,8 +483,10 @@
   /* The claim block and the saved list under the fold. */
   .np-block{padding:25px 18px;border-bottom:1px solid var(--np-ink)}
   .np-block .np-body{margin-top:20px;max-width:288px}
-  .np-srow{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:baseline;width:100%;min-height:56px;padding:12px 0;border:0;border-bottom:1px solid var(--np-line-2);background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
+  .np-srow{display:grid;grid-template-columns:72px auto 1fr;gap:12px;align-items:baseline;width:100%;min-height:56px;padding:12px 0;border:0;border-bottom:1px solid var(--np-line-2);background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
   .np-srow:last-of-type{border-bottom:0}
+  /* The face column takes the face's own width: 40 for one act, two whole faces side by side for a b2b (the print's rule), so a pair never runs under the name. */
+  .np-srow>.np-sface{align-self:center;display:flex;min-width:40px}
   .np-srow .np-sname{display:block;font:600 17px/1.25 var(--f-ui);letter-spacing:-.02em}
   .np-srow .np-ssub{display:block;margin-top:4px}
   /* The journey: type as the interface. Rows are buttons; the index, the

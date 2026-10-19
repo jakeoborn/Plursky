@@ -3009,6 +3009,9 @@ function NpSaved({ rows, state, setState, onAll }) {
               aria-label={`${a.name}, ${day}, ${setTimesUnconfirmed(a) ? "set times unconfirmed" : a.start ? fmt12(a.start) : "time to be announced"}${stage ? `, ${stage}` : ""}`}>
               {/* A disputed slot prints the words, never a time (the School of Rock contract). */}
               <span className="np-mono-m" style={{ fontWeight: 500, whiteSpace: setTimesUnconfirmed(a) ? "normal" : "nowrap" }}>{setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : "TBA"}</span>
+              {/* Item 5: the act's face — licensed portrait, else the Spotify
+                  photo (in-app, 24 h), else initials; a B2B shows each member. */}
+              <span className="np-sface"><DuoAvatar name={a.name} size={40} /></span>
               <span style={{ minWidth: 0 }}>
                 <span className="np-sname duo-name">{actDisplayName(a.name)}</span>
                 <span className="np-ssub np-mono">{[day, stage].filter(Boolean).join(" · ")}</span>
