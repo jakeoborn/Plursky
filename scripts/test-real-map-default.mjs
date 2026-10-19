@@ -56,7 +56,7 @@ const CASES = [
   // Ultra's is the longest posture label; at 393 pt it is the one that fits
   // beside a shrinking title and printed over it. III Points runs at 320 pt.
   { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "unchecked" },
-  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "none", w: 320 },
+  { fid: "iii-points-2026",  at: "2026-10-17T02:00:00Z", pins: false, overlay: "unchecked", w: 320 },
   // ACL: no venue box or footprint, and its configured centre is off the park.
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "amex",   latitude: 30.267233, longitude: -97.763236 } },
   { fid: "acl-2026",         at: "2026-10-10T22:00:00Z", pins: false, overlay: "unchecked", fix: { stage: "miller", latitude: 30.269017, longitude: -97.769316 }, only: "fix" },
