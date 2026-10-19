@@ -721,7 +721,10 @@ function buildTonightsPlan(state) {
   return sets.map((a, i) => {
     const prev      = sets[i - 1];
     const walk      = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    const startMin  = toNightMin(a.start);
+    // L3: arrival, leave-by and tight read the ATTEND windows — after a split
+    // you arrive at the switch time and leave the earlier set at it.
+    const win       = attendWindow(a);
+    const startMin  = toNightMin(win.start);
     const endMin    = toNightMin(a.end);
     const minsUntil = startMin - nowMin;
     const isLive    = isSetLive(a);
@@ -732,10 +735,11 @@ function buildTonightsPlan(state) {
     const known     = walk != null && walk > 0;
     const leaveBy   = known ? startMin - walk : null;
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
-    const prevEnd   = prev ? toNightMin(prev.end) : null;
+    const prevEnd   = prev ? toNightMin(attendWindow(prev).end) : null;
     const tight     = !!prev && known && (startMin - prevEnd) < walk;
-    const conflict  = prev && overlaps(prev, a);
-    return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict };
+    const conflict  = !!prev && setsClash(prev, a);
+    const accepted  = !!prev && setsOverlapAccepted(prev, a);
+    return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict, accepted, win };
   });
 }
 
@@ -766,7 +770,7 @@ function computeAlerts(savedIds, day, timeStr) {
 
   for (let i = 0; i < todaySaved.length - 1; i++) {
     const a = todaySaved[i], b = todaySaved[i + 1];
-    if (overlaps(a, b)) {
+    if (setsClash(a, b)) {
       out.push({
         id: `conflict_${a.id}_${b.id}`, kind: "conflict",
         title: "Schedule conflict",
@@ -1513,6 +1517,8 @@ function HomeScreen({ state, setState }) {
   const next    = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
   const stageOf = id => STAGES.find(s => s.id === id);
   const currentPhoto = useArtistPhoto(current?.name || "");
+  // L3: a split or a kept-both pair re-renders Tonight's plan and its banner.
+  useAttendVersion();
 
   const totalMin = current ? Math.max(1, toNightMin(current.end) - toNightMin(current.start)) : 90;
   const progress = current ? Math.min(1, NOW.elapsedMin / totalMin) : 0;
@@ -1872,8 +1878,8 @@ function SavedByDay({ state, setState }) {
           {artists.map((a, i) => {
             const prev = artists[i - 1];
             const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-            const tight = !!prev && walk != null && walk > 0 && (toNightMin(a.start) - toNightMin(prev.end)) < walk;
-            const conflict = prev && overlaps(prev, a);
+            const tight = !!prev && walk != null && walk > 0 && (toNightMin(attendWindow(a).start) - toNightMin(attendWindow(prev).end)) < walk;
+            const conflict = prev && setsClash(prev, a);
             const stage = STAGES.find(s => s.id === a.stage);
             const prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
             return (
@@ -2313,9 +2319,16 @@ function LiveAcrossStrip({ strip, state, setState }) {
 }
 
 function TonightsPlan({ plan, state, setState }) {
-  const tightCount = plan.filter(p => p.tight || p.conflict).length;
+  // A full overlap is a CLASH, not a "tight transition" (it used to be counted
+  // and worded as one). The banner composes the two counts it actually has.
   const conflicts = plan.filter(p => p.conflict).map(p => [p.prev, p.artist]);
+  const clashN = conflicts.length;
+  const tightN = plan.filter(p => p.tight && !p.conflict).length;
+  const bannerText = clashN && tightN ? `${clashN} clash${clashN > 1 ? "es" : ""} · ${tightN} tight transition${tightN > 1 ? "s" : ""}`
+    : clashN ? `${clashN} clash${clashN > 1 ? "es" : ""}`
+    : `${tightN} tight transition${tightN > 1 ? "s" : ""} · check leave-by times`;
   const [resolverOpen, setResolverOpen] = React.useState(false);
+  const [splitPair, setSplitPair] = React.useState(null);
   return (
     <>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 10 }}>
@@ -2332,14 +2345,14 @@ function TonightsPlan({ plan, state, setState }) {
         </div>
       ) : (
         <>
-          {tightCount > 0 && (
+          {(clashN > 0 || tightN > 0) && (
             <div className="duo-card" style={{
               display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               padding: "6px 6px 6px 14px", marginBottom: 10, minHeight: 52,
             }}>
               <span className="duo-body-s" style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0, fontWeight: 400 }}>
-                <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--clash)", flexShrink: 0 }} />
-                {tightCount} tight transition{tightCount > 1 ? "s" : ""} · check leave-by times
+                <i aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: clashN ? "var(--clash)" : "var(--sun)", flexShrink: 0 }} />
+                <span data-plan-banner>{bannerText}</span>
               </span>
               {conflicts.length > 0 && (
                 <button onClick={() => setResolverOpen(r => !r)} aria-expanded={resolverOpen} className="duo-chip">
@@ -2348,7 +2361,12 @@ function TonightsPlan({ plan, state, setState }) {
               )}
             </div>
           )}
-          {resolverOpen && conflicts.length > 0 && (
+          {splitPair && (
+            <div style={{ margin: "0 -4px 10px" }}>
+              <SplitNightSheet pair={splitPair} onDone={() => { setSplitPair(null); setResolverOpen(false); }} onCancel={() => setSplitPair(null)} />
+            </div>
+          )}
+          {!splitPair && resolverOpen && conflicts.length > 0 && (
             <div style={{ margin: "0 -4px 10px" }}>
               <ConflictResolver
                 conflicts={conflicts}
@@ -2356,19 +2374,20 @@ function TonightsPlan({ plan, state, setState }) {
                   setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
                   setResolverOpen(false);
                 }}
-                onSplit={() => setResolverOpen(false)}
+                onKeepBoth={(pair) => acceptClash(pair[0], pair[1])}
+                onSplit={(pair) => setSplitPair(pair)}
               />
             </div>
           )}
-          {plan.map(p => <PlanRow key={p.artist.id} entry={p} state={state} setState={setState} />)}
+          {plan.map(p => <PlanRow key={p.artist.id} entry={p} state={state} setState={setState} onEditSplit={setSplitPair} />)}
         </>
       )}
     </>
   );
 }
 
-function PlanRow({ entry, state, setState }) {
-  const { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict } = entry;
+function PlanRow({ entry, state, setState, onEditSplit }) {
+  const { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict, accepted, win } = entry;
   // stage is null when a lineup is published before stage assignments
   // (Escape Halloween 2026, III Points 2026). See UNPLACED_STAGE in data.jsx.
   const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
@@ -2406,7 +2425,9 @@ function PlanRow({ entry, state, setState }) {
         className={"duo-lrow" + (isLive ? " live" : "")}
         style={{ cursor: "pointer", margin: 0, paddingLeft: 4 }}>
         <div style={{ width: 72, flexShrink: 0 }}>
-          <div className="duo-data" style={{ fontSize: 13, color: isPast ? "var(--ink-3)" : "var(--ink)" }}>{fmt12(a.start)}</div>
+          {/* L3: after a split the row leads with when you ARRIVE, the time its
+              countdown counts to, not the published start you skip. */}
+          <div className="duo-data" style={{ fontSize: 13, color: isPast ? "var(--ink-3)" : "var(--ink)" }}>{fmt12(win && win.partial ? win.start : a.start)}</div>
           <div className="duo-data-s" style={{ color: isLive ? "var(--live)" : "var(--ink-2)", marginTop: 1 }}>
             {isLive ? "Live" : isPast ? "Done" : minsUntil < 60 ? `${minsUntil}m` : `${Math.floor(minsUntil/60)}h${(minsUntil%60).toString().padStart(2,"0")}`}
           </div>
@@ -2415,8 +2436,19 @@ function PlanRow({ entry, state, setState }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="duo-headline duo-name" style={{ fontWeight: 700, color: isPast ? "var(--ink-2)" : "var(--ink)" }}>{actDisplayName(a.name)}</div>
           <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
-            {stage.name}{conflict ? <span style={{ color: "var(--clash)" }}> · clash</span> : ""}
+            {stage.name}{conflict ? <span style={{ color: "var(--clash)" }}> · clash</span> : accepted ? <span data-overlap-accepted> · overlap accepted</span> : ""}
           </div>
+          {/* L3: the attend window, editable (reopens the split against the
+              set it was split with) and resettable to the whole set. */}
+          {win && win.partial && (
+            <div data-attend-window={a.id} className="duo-body-s duo-ink2" style={{ fontWeight: 400, display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 10 }}>
+              <span>{attendWindowLabel(a, win)}</span>
+              {win.with && ARTISTS.find(x => x.id === win.with) && (
+                <button type="button" className="duo-link" data-attend-edit onClick={e => { e.stopPropagation(); onEditSplit?.([a, ARTISTS.find(x => x.id === win.with)]); }}>Edit</button>
+              )}
+              <button type="button" className="duo-link" data-attend-reset onClick={e => { e.stopPropagation(); resetAttendWindow(a.id); if (win.with) resetAttendWindow(win.with); }}>Reset</button>
+            </div>
+          )}
         </div>
         <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
           <path d="M9 6 L15 12 L9 18" />

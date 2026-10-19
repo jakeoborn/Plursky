@@ -2015,6 +2015,116 @@ function savedInLineup(savedIds) {
   return savedIds.filter(id => known.has(id));
 }
 
+// ── Split the night (L3, Oct 16 spec) ─────────────────────────────────────
+// A saved set can carry an ATTEND WINDOW: the part of it the user plans to be
+// there for ("Vintage Culture 2:00–3:00, then PAWSA 3:00–4:00"). Clashes are
+// computed over those windows, so a split that removes the overlap clears the
+// clash everywhere. "Keep both" accepts a pair: it still overlaps, but it is a
+// choice, not an alarm. ONE predicate (setsClash) answers "is this a clash?"
+// for every door: Lineup chips and day counts, Tonight's plan, its banner and
+// resolver, alerts, the switcher's per-festival count.
+// Stores: `${fid}_attend_v1` = { setId: { start, end, with } } (with = the set
+// it was split against, so the row can reopen that split); accepted pairs keep
+// the v141 key plursky_conflicts_kept_both_v1 so earlier "Keep both" taps hold.
+// v1 scope: device only — no share card, crew, recap or server sync.
+const CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+const SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key) || "null"); return v == null ? fallback : v; } catch { return fallback; }
+}
+function _l3Changed() { try { window.dispatchEvent(new CustomEvent("plursky:attend-change")); } catch {} }
+function _attendKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_attend_v1`; }
+function attendWindows(fid) {
+  const v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+// Minutes on the festival night → "HH:MM" (folds past midnight back to 00–07).
+function nightMinToHHMM(m) {
+  const h = Math.floor(m / 60) % 24, mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+// The part of `a` the user will be at: their window while it still sits inside
+// the set's published time, else the whole set. A schedule change that moves
+// the set out from under a window drops the window rather than trusting it.
+function attendWindow(a, fid) {
+  const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
+  if (!a || !a.start || !a.end) return whole;
+  const w = attendWindows(fid)[a.id];
+  if (!w) return whole;
+  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
+  if (!(ws >= s && we <= e && ws < we) || (ws === s && we === e)) return whole;
+  // A split only means something while the set it was split against is still
+  // saved: drop "Keep this", an unsave or a sync of the partner, and the window
+  // goes with it (every removal path, not just one button).
+  if (w.with) {
+    const saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+  }
+  return { start: w.start, end: w.end, partial: true, with: w.with || null };
+}
+// The row line for a partial window: "2:00 AM → you leave 3:00 AM" (you leave
+// early), "you arrive 3:00 AM" (you come late), or both ends when it is both.
+function attendWindowLabel(a, win) {
+  const w = win || attendWindow(a);
+  if (!w.partial) return "";
+  const late = w.start !== a.start, early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  const all = attendWindows(fid);
+  all[id] = { start, end, ...(withId ? { with: withId } : {}) };
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  const all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) { return [idA, idB].sort().join("|"); }
+function _acceptedPairs() { const v = _l3Read(CLASH_KEPT_BOTH_KEY, []); return new Set(Array.isArray(v) ? v : []); }
+function clashAccepted(a, b) { return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id)); }
+function acceptClash(a, b) {
+  const s = _acceptedPairs(); s.add(clashPairKey(a.id, b.id));
+  try { localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s])); } catch {}
+  _l3Changed();
+}
+// Overlap of what the user will actually attend.
+function attendOverlaps(a, b, fid) { return overlaps(attendWindow(a, fid), attendWindow(b, fid)); }
+// THE clash predicate: the attend windows overlap and the pair is not accepted.
+function setsClash(a, b, fid) { return attendOverlaps(a, b, fid) && !clashAccepted(a, b); }
+// Kept both: they still overlap, by the user's choice.
+function setsOverlapAccepted(a, b, fid) { return attendOverlaps(a, b, fid) && clashAccepted(a, b); }
+// The split of an overlapping pair at `switchMin`: the set that starts first
+// keeps [its start, switch), the other keeps [switch, its end]. The control's
+// range is [later start, earlier end] in 5-minute steps; the default switch is
+// the later set's start.
+function splitRange(a, b) {
+  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  const lo = toNightMin(second.start), hi = Math.min(toNightMin(first.end), toNightMin(second.end));
+  return { first, second, lo, hi, def: lo };
+}
+function splitNight(a, b, switchMin, fid) {
+  const { first, second, lo, hi } = splitRange(a, b);
+  const sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+}
+// Re-renders a screen when a window or an accepted pair changes (any screen,
+// any tab). Read it into a memo's deps so counts recompute.
+function useAttendVersion() {
+  const [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    const f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
 // is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a

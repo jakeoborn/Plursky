@@ -140,7 +140,7 @@ function NightWizard({ state, setState, onClose }) {
     let clashes = 0;
     for (let i = 0; i < sets.length; i++)
       for (let j = i + 1; j < sets.length; j++)
-        if (overlaps(sets[i], sets[j])) clashes++;
+        if (setsClash(sets[i], sets[j])) clashes++;
     return { ...d, count: sets.length, clashes };
   });
 
@@ -151,7 +151,7 @@ function NightWizard({ state, setState, onClose }) {
   const conflictIds = new Set();
   for (let i = 0; i < sorted.length; i++)
     for (let j = i + 1; j < sorted.length; j++)
-      if (overlaps(sorted[i], sorted[j])) { conflictIds.add(sorted[i].id); conflictIds.add(sorted[j].id); }
+      if (setsClash(sorted[i], sorted[j])) { conflictIds.add(sorted[i].id); conflictIds.add(sorted[j].id); }
 
   // Build interleaved timeline: sets + gap items
   const items = [];
@@ -951,14 +951,16 @@ function LineupScreen({ state, setState }) {
   // weekend being shown (was an O(n²)-per-day overlap loop on every render,
   // report-card #8; without weekendFilter the chips kept the first weekend's
   // counts after the toggle flipped, round 5).
+  // L3: windows and kept-both pairs change clash counts on any screen.
+  const attendV = useAttendVersion();
   const dayStats = React.useMemo(() => DAYS.map(d => {
     const savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     let clashes = 0;
     for (let i = 0; i < savedThisDay.length; i++)
       for (let j = i + 1; j < savedThisDay.length; j++)
-        if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
+        if (setsClash(savedThisDay[i], savedThisDay[j])) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
-  }), [savedSetIds, weekendFilter]);
+  }), [savedSetIds, weekendFilter, attendV]);
   const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
 
   // conflicts: 2+ saved sets overlap in time
@@ -971,44 +973,39 @@ function LineupScreen({ state, setState }) {
   // skip them in the top-level ConflictResolver card so it stops nagging.
   const [syncOpen, setSyncOpen] = React.useState(false);
   const hasFeed = FESTIVALS_REGISTRY.some(e => e.available && e.config.id === FESTIVAL_CONFIG.id);
-  const CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
-  const _pairKey = (idA, idB) => [idA, idB].sort().join("|");
-  const [ackedPairs, setAckedPairs] = React.useState(() => {
-    try { return new Set(JSON.parse(localStorage.getItem(CONFLICT_ACK_KEY) || "[]")); }
-    catch { return new Set(); }
-  });
+  // Kept-both pairs and attend windows live in data.jsx (L3): one store, one
+  // predicate (setsClash) for every screen. attendV re-runs the counts.
+  const [splitPair, setSplitPair] = React.useState(null);
   const ackPair = (idA, idB) => {
-    setAckedPairs(prev => {
-      const next = new Set(prev);
-      next.add(_pairKey(idA, idB));
-      try { localStorage.setItem(CONFLICT_ACK_KEY, JSON.stringify([...next])); } catch {}
-      return next;
-    });
+    const a = ARTISTS.find(x => x.id === idA), b = ARTISTS.find(x => x.id === idB);
+    if (a && b) acceptClash(a, b);
   };
   // conflictById: artist.id → the saved SETS (whole acts) this artist clashes
   // with, so a row can name the other side: who, when and where.
   // Powers the per-card ⚠ chip so users can spot WHICH saved sets clash, not
   // just the day-tab total. Memoized — was an O(n²) overlap loop on every
   // render (report-card #8); now only recomputes when saved/day/acks change.
-  const { conflicts, conflictById } = React.useMemo(() => {
+  // L3: a clash is setsClash (attend windows overlap, not kept both). A kept-
+  // both pair is not an alarm any more: its rows get a quiet "Overlap
+  // accepted" (acceptedById) instead of the clash red.
+  const { conflicts, conflictById, acceptedById } = React.useMemo(() => {
     const _conflicts = [];
-    const _byId = {};
+    const _byId = {}, _acc = {};
     for (let i = 0; i < savedToday.length; i++) {
       for (let j = i + 1; j < savedToday.length; j++) {
-        if (overlaps(savedToday[i], savedToday[j])) {
-          const a = savedToday[i], b = savedToday[j];
-          if (!ackedPairs.has(_pairKey(a.id, b.id))) {
-            _conflicts.push([a, b]);
-          }
-          // Per-card chip stays even after KEEP BOTH so the warning info
-          // doesn't disappear — the only thing that hides is the resolver card.
+        const a = savedToday[i], b = savedToday[j];
+        if (setsClash(a, b)) {
+          _conflicts.push([a, b]);
           (_byId[a.id] = _byId[a.id] || []).push(b);
           (_byId[b.id] = _byId[b.id] || []).push(a);
+        } else if (setsOverlapAccepted(a, b)) {
+          (_acc[a.id] = _acc[a.id] || []).push(b);
+          (_acc[b.id] = _acc[b.id] || []).push(a);
         }
       }
     }
-    return { conflicts: _conflicts, conflictById: _byId };
-  }, [savedToday, ackedPairs]);
+    return { conflicts: _conflicts, conflictById: _byId, acceptedById: _acc };
+  }, [savedToday, attendV]);
 
   // ── The utility stack (#116) ─────────────────────────────────────────────
   // Search, actions, conflict and stage-vibe cards, and Save-the-Day. LIST
@@ -1155,14 +1152,16 @@ function LineupScreen({ state, setState }) {
     </div>
   ) : null;
 
-  const conflictCard = conflicts.length > 0 && filter === "saved" ? (
+  const conflictCard = splitPair ? (
+    <SplitNightSheet pair={splitPair} onDone={() => setSplitPair(null)} onCancel={() => setSplitPair(null)} />
+  ) : conflicts.length > 0 && filter === "saved" ? (
     <ConflictResolver
       conflicts={conflicts}
       onKeep={(keepId, dropId) => {
         setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
       }}
       onKeepBoth={(pair) => ackPair(pair[0].id, pair[1].id)}
-      onSplit={(pair) => setState({ ...state, tab: "map", focusStage: pair[0].stage })}
+      onSplit={(pair) => setSplitPair(pair)}
     />
   ) : null;
 
@@ -1455,6 +1454,8 @@ function LineupScreen({ state, setState }) {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
             const clashWith = conflictById[a.id];
+            const acceptedWith = !clashWith && acceptedById[a.id];
+            const win = saved ? attendWindow(a) : null;
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
             const ring = saved || isLive ? (clashWith ? "cl" : "on") : "";
@@ -1489,6 +1490,7 @@ function LineupScreen({ state, setState }) {
                     {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
                     {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
                     {isTopBilled(a) && <span data-top-billed style={{ color: "var(--ink)", fontWeight: 600 }}>{TOP_BILLED} · </span>}
+                    {acceptedWith && <span data-overlap-accepted style={{ color: "var(--ink-2)", fontWeight: 600 }}>Overlap accepted · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
                   {/* The time column is 72px and cannot hold the words, so the
@@ -1496,6 +1498,7 @@ function LineupScreen({ state, setState }) {
                   {setTimesUnconfirmed(a) && (
                     <span data-set-time-status style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{SET_TIMES_UNCONFIRMED}</span>
                   )}
+                  {win && win.partial && <span data-attend-window={a.id} style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{attendWindowLabel(a, win)}</span>}
                   {/* A clash names the other side (lane ruling 2026-09-26), so
                       choosing between them means something. It wraps: a name
                       is never truncated. */}
@@ -2519,6 +2522,46 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
   );
 }
 
+// "Split the night" (L3): one switch time over the overlap, 5-minute steps,
+// range [later start, earlier end]; the set that starts first keeps everything
+// before the switch, the other everything after. Live preview, then Confirm.
+// Default: the later set's start (you leave the first one as the second begins).
+function SplitNightSheet({ pair, onDone, onCancel }) {
+  const { first, second, lo, hi, def } = splitRange(pair[0], pair[1]);
+  // Reopened from a row: start from the switch the user already chose.
+  const cur = attendWindow(first);
+  const startAt = cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
+  const [sw, setSw] = React.useState(Math.min(hi, Math.max(lo, startAt)));
+  const t = nightMinToHHMM(sw);
+  const fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
+  const sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;
+  const crBtn = { ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
+  return (
+    <div role="group" aria-label="Split the night" data-split-sheet style={{ margin: "4px 20px 12px", padding: "12px 14px 6px", borderRadius: 14, background: "var(--paper-2)" }}>
+      <div style={{ ..._fieldEyebrow, color: "var(--ink-2)" }}>Split the night</div>
+      <label htmlFor="split-switch" style={{ display: "block", marginTop: 8, fontSize: 15, lineHeight: "20px" }}>
+        Switch at <b data-split-time style={{ fontVariantNumeric: "tabular-nums" }}>{fmt12(t)}</b>
+      </label>
+      <input id="split-switch" type="range" min={lo} max={hi} step={SPLIT_STEP_MIN} value={sw}
+        onChange={e => setSw(Number(e.target.value))}
+        aria-valuetext={`Switch at ${fmt12(t)}`}
+        style={{ width: "100%", minHeight: 44, accentColor: "var(--acc)" }} />
+      <div data-split-preview style={{ display: "grid", gap: 6, padding: "4px 0 8px" }}>
+        {[[first, first.start, t, fS], [second, t, second.end, sS]].map(([art, s, e, stg]) => (
+          <div key={art.id} style={{ display: "flex", justifyContent: "space-between", gap: 10, fontSize: 15, lineHeight: "20px" }}>
+            <span style={{ fontWeight: 600, overflowWrap: "anywhere", minWidth: 0 }}>{actDisplayName(art.name)}<span style={{ fontWeight: 400, color: "var(--text-2)" }}> · {stg}</span></span>
+            <span style={{ flexShrink: 0, fontVariantNumeric: "tabular-nums", color: "var(--text-2)" }}>{fmt12(s)}–{fmt12(e)}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", borderTop: "1px solid var(--line)" }}>
+        <button onClick={onCancel} style={crBtn}>Cancel</button>
+        <button data-split-confirm onClick={() => { splitNight(first, second, sw); onDone?.(); }} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Split here</button>
+      </div>
+    </div>
+  );
+}
+
 function TierStars({ tier }) {
   // Tokens, not literal ink: literal dark fills vanish on the black shell.
   const colors = { 3: "#f59a36", 2: "var(--muted)", 1: "var(--text-3)" };
@@ -2881,7 +2924,7 @@ function toggleSave(state, setState, id) {
   const hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;
     const b = ARTISTS.find(x => x.id === sid);
-    return b && b.day === a.day && overlaps(a, b);
+    return b && b.day === a.day && setsClash(a, b);
   });
   if (hasConflict) {
     try { navigator.vibrate([50, 30, 50]); } catch {}

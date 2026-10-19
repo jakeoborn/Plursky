@@ -1537,6 +1537,149 @@ function savedInLineup(savedIds) {
   var known = new Set(lineupFor("all").map(a => a.id));
   return savedIds.filter(id => known.has(id));
 }
+var CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+var SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try {
+    var v = JSON.parse(localStorage.getItem(key) || "null");
+    return v == null ? fallback : v;
+  } catch {
+    return fallback;
+  }
+}
+function _l3Changed() {
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:attend-change"));
+  } catch {}
+}
+function _attendKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_attend_v1`;
+}
+function attendWindows(fid) {
+  var v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+function nightMinToHHMM(m) {
+  var h = Math.floor(m / 60) % 24,
+    mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+function attendWindow(a, fid) {
+  var whole = {
+    start: a && a.start,
+    end: a && a.end,
+    partial: false,
+    with: null
+  };
+  if (!a || !a.start || !a.end) return whole;
+  var w = attendWindows(fid)[a.id];
+  if (!w) return whole;
+  var s = toNightMin(a.start),
+    e = toNightMin(a.end),
+    ws = toNightMin(w.start),
+    we = toNightMin(w.end);
+  if (!(ws >= s && we <= e && ws < we) || ws === s && we === e) return whole;
+  if (w.with) {
+    var saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+  }
+  return {
+    start: w.start,
+    end: w.end,
+    partial: true,
+    with: w.with || null
+  };
+}
+function attendWindowLabel(a, win) {
+  var w = win || attendWindow(a);
+  if (!w.partial) return "";
+  var late = w.start !== a.start,
+    early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  var all = attendWindows(fid);
+  all[id] = {
+    start,
+    end,
+    ...(withId ? {
+      with: withId
+    } : {})
+  };
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  var all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) {
+  return [idA, idB].sort().join("|");
+}
+function _acceptedPairs() {
+  var v = _l3Read(CLASH_KEPT_BOTH_KEY, []);
+  return new Set(Array.isArray(v) ? v : []);
+}
+function clashAccepted(a, b) {
+  return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id));
+}
+function acceptClash(a, b) {
+  var s = _acceptedPairs();
+  s.add(clashPairKey(a.id, b.id));
+  try {
+    localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s]));
+  } catch {}
+  _l3Changed();
+}
+function attendOverlaps(a, b, fid) {
+  return overlaps(attendWindow(a, fid), attendWindow(b, fid));
+}
+function setsClash(a, b, fid) {
+  return attendOverlaps(a, b, fid) && !clashAccepted(a, b);
+}
+function setsOverlapAccepted(a, b, fid) {
+  return attendOverlaps(a, b, fid) && clashAccepted(a, b);
+}
+function splitRange(a, b) {
+  var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  var lo = toNightMin(second.start),
+    hi = Math.min(toNightMin(first.end), toNightMin(second.end));
+  return {
+    first,
+    second,
+    lo,
+    hi,
+    def: lo
+  };
+}
+function splitNight(a, b, switchMin, fid) {
+  var {
+    first,
+    second,
+    lo,
+    hi
+  } = splitRange(a, b);
+  var sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+}
+function useAttendVersion() {
+  var [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    var f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;

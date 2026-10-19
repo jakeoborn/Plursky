@@ -834,16 +834,18 @@ function buildTonightsPlan(state) {
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var startMin = toNightMin(a.start);
+    var win = attendWindow(a);
+    var startMin = toNightMin(win.start);
     var endMin = toNightMin(a.end);
     var minsUntil = startMin - nowMin;
     var isLive = isSetLive(a);
     var isPast = nowMin >= endMin;
     var known = walk != null && walk > 0;
     var leaveBy = known ? startMin - walk : null;
-    var prevEnd = prev ? toNightMin(prev.end) : null;
+    var prevEnd = prev ? toNightMin(attendWindow(prev).end) : null;
     var tight = !!prev && known && startMin - prevEnd < walk;
-    var conflict = prev && overlaps(prev, a);
+    var conflict = !!prev && setsClash(prev, a);
+    var accepted = !!prev && setsOverlapAccepted(prev, a);
     return {
       artist: a,
       prev,
@@ -853,7 +855,9 @@ function buildTonightsPlan(state) {
       isPast,
       leaveBy,
       tight,
-      conflict
+      conflict,
+      accepted,
+      win
     };
   });
 }
@@ -883,7 +887,7 @@ function computeAlerts(savedIds, day, timeStr) {
   for (var i = 0; i < todaySaved.length - 1; i++) {
     var _a = todaySaved[i],
       b = todaySaved[i + 1];
-    if (overlaps(_a, b)) {
+    if (setsClash(_a, b)) {
       out.push({
         id: `conflict_${_a.id}_${b.id}`,
         kind: "conflict",
@@ -1916,6 +1920,7 @@ function HomeScreen({
   var next = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
   var stageOf = id => STAGES.find(s => s.id === id);
   var currentPhoto = useArtistPhoto(current?.name || "");
+  useAttendVersion();
   var totalMin = current ? Math.max(1, toNightMin(current.end) - toNightMin(current.start)) : 90;
   var progress = current ? Math.min(1, NOW.elapsedMin / totalMin) : 0;
   var minsLeft = current ? Math.max(0, totalMin - NOW.elapsedMin) : 0;
@@ -2572,8 +2577,8 @@ function SavedByDay({
   }, meta?.name || `Day ${day}`), artists.map((a, i) => {
     var prev = artists[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var tight = !!prev && walk != null && walk > 0 && toNightMin(a.start) - toNightMin(prev.end) < walk;
-    var conflict = prev && overlaps(prev, a);
+    var tight = !!prev && walk != null && walk > 0 && toNightMin(attendWindow(a).start) - toNightMin(attendWindow(prev).end) < walk;
+    var conflict = prev && setsClash(prev, a);
     var stage = STAGES.find(s => s.id === a.stage);
     var prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
     return React.createElement("div", {
@@ -3539,9 +3544,12 @@ function TonightsPlan({
   state,
   setState
 }) {
-  var tightCount = plan.filter(p => p.tight || p.conflict).length;
   var conflicts = plan.filter(p => p.conflict).map(p => [p.prev, p.artist]);
+  var clashN = conflicts.length;
+  var tightN = plan.filter(p => p.tight && !p.conflict).length;
+  var bannerText = clashN && tightN ? `${clashN} clash${clashN > 1 ? "es" : ""} · ${tightN} tight transition${tightN > 1 ? "s" : ""}` : clashN ? `${clashN} clash${clashN > 1 ? "es" : ""}` : `${tightN} tight transition${tightN > 1 ? "s" : ""} · check leave-by times`;
   var [resolverOpen, setResolverOpen] = React.useState(false);
+  var [splitPair, setSplitPair] = React.useState(null);
   return React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
@@ -3571,7 +3579,7 @@ function TonightsPlan({
       marginTop: 4,
       fontWeight: 400
     }
-  }, "Tap + on any set in the Lineup to add it.")) : React.createElement(React.Fragment, null, tightCount > 0 && React.createElement("div", {
+  }, "Tap + on any set in the Lineup to add it.")) : React.createElement(React.Fragment, null, (clashN > 0 || tightN > 0) && React.createElement("div", {
     className: "duo-card",
     style: {
       display: "flex",
@@ -3597,14 +3605,27 @@ function TonightsPlan({
       width: 8,
       height: 8,
       borderRadius: "50%",
-      background: "var(--clash)",
+      background: clashN ? "var(--clash)" : "var(--sun)",
       flexShrink: 0
     }
-  }), tightCount, " tight transition", tightCount > 1 ? "s" : "", " · check leave-by times"), conflicts.length > 0 && React.createElement("button", {
+  }), React.createElement("span", {
+    "data-plan-banner": true
+  }, bannerText)), conflicts.length > 0 && React.createElement("button", {
     onClick: () => setResolverOpen(r => !r),
     "aria-expanded": resolverOpen,
     className: "duo-chip"
-  }, React.createElement("span", null, resolverOpen ? "Close" : "Resolve"))), resolverOpen && conflicts.length > 0 && React.createElement("div", {
+  }, React.createElement("span", null, resolverOpen ? "Close" : "Resolve"))), splitPair && React.createElement("div", {
+    style: {
+      margin: "0 -4px 10px"
+    }
+  }, React.createElement(SplitNightSheet, {
+    pair: splitPair,
+    onDone: () => {
+      setSplitPair(null);
+      setResolverOpen(false);
+    },
+    onCancel: () => setSplitPair(null)
+  })), !splitPair && resolverOpen && conflicts.length > 0 && React.createElement("div", {
     style: {
       margin: "0 -4px 10px"
     }
@@ -3617,18 +3638,21 @@ function TonightsPlan({
       });
       setResolverOpen(false);
     },
-    onSplit: () => setResolverOpen(false)
+    onKeepBoth: pair => acceptClash(pair[0], pair[1]),
+    onSplit: pair => setSplitPair(pair)
   })), plan.map(p => React.createElement(PlanRow, {
     key: p.artist.id,
     entry: p,
     state: state,
-    setState: setState
+    setState: setState,
+    onEditSplit: setSplitPair
   }))));
 }
 function PlanRow({
   entry,
   state,
-  setState
+  setState,
+  onEditSplit
 }) {
   var {
     artist: a,
@@ -3639,7 +3663,9 @@ function PlanRow({
     isPast,
     leaveBy,
     tight,
-    conflict
+    conflict,
+    accepted,
+    win
   } = entry;
   var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
   var leaveByLabel = leaveBy != null ? (() => {
@@ -3690,7 +3716,7 @@ function PlanRow({
       fontSize: 13,
       color: isPast ? "var(--ink-3)" : "var(--ink)"
     }
-  }, fmt12(a.start)), React.createElement("div", {
+  }, fmt12(win && win.partial ? win.start : a.start)), React.createElement("div", {
     className: "duo-data-s",
     style: {
       color: isLive ? "var(--live)" : "var(--ink-2)",
@@ -3720,7 +3746,36 @@ function PlanRow({
     style: {
       color: "var(--clash)"
     }
-  }, " · clash") : "")), React.createElement("svg", {
+  }, " · clash") : accepted ? React.createElement("span", {
+    "data-overlap-accepted": true
+  }, " · overlap accepted") : ""), win && win.partial && React.createElement("div", {
+    "data-attend-window": a.id,
+    className: "duo-body-s duo-ink2",
+    style: {
+      fontWeight: 400,
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      columnGap: 10
+    }
+  }, React.createElement("span", null, attendWindowLabel(a, win)), win.with && ARTISTS.find(x => x.id === win.with) && React.createElement("button", {
+    type: "button",
+    className: "duo-link",
+    "data-attend-edit": true,
+    onClick: e => {
+      e.stopPropagation();
+      onEditSplit?.([a, ARTISTS.find(x => x.id === win.with)]);
+    }
+  }, "Edit"), React.createElement("button", {
+    type: "button",
+    className: "duo-link",
+    "data-attend-reset": true,
+    onClick: e => {
+      e.stopPropagation();
+      resetAttendWindow(a.id);
+      if (win.with) resetAttendWindow(win.with);
+    }
+  }, "Reset"))), React.createElement("svg", {
     "aria-hidden": "true",
     width: "14",
     height: "14",

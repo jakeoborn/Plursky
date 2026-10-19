@@ -2664,6 +2664,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L3: Split the night — a split clears the clash everywhere, persists and
+// resets; Keep both accepts; the banner counts clashes and tight transitions apart.
+{
+  console.log("▸ Split the night — attend windows, kept-both, banner");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-split-the-night.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`split the night failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the

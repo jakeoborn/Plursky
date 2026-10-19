@@ -1135,8 +1135,12 @@ function scheduleReminders(state, showLocal) {
   const lineup = activeLineup(state.saved);
 
   state.saved.forEach(id => {
-    const a = lineup.find(x => x.id === id);
-    if (!a) return;
+    const found = lineup.find(x => x.id === id);
+    if (!found) return;
+    // L3: after a split the reminder is for when you ARRIVE (the switch time),
+    // not the set's published start you are deliberately skipping.
+    const win = typeof attendWindow === "function" ? attendWindow(found) : null;
+    const a = win && win.partial ? { ...found, start: win.start } : found;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
     const fireMs = startMs - leadMin * 60000;
@@ -1504,7 +1508,7 @@ function _festivalPlanStatus(id) {
   let conflicts = 0;
   for (let i = 0; i < arts.length; i++)
     for (let j = i + 1; j < arts.length; j++)
-      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof setsClash === "function" && setsClash(arts[i], arts[j], id)) conflicts++;
   return { saved: arts.length, conflicts };
 }
 
