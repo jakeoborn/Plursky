@@ -2538,6 +2538,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 6: festival list rows carry official art from the festival-art ledger
+// (or a tile in the festival's own accent) and a right-aligned state chip.
+{
+  console.log("▸ Festival art — ledger tiles, tinted fallbacks, state chips, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-art.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival art failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Memories film strip names ─────────────────────────────────────────────
 // Every frame names its artist in full (wrapped to the frame, never sliced);
 // same class as #247's chip names. Real renderer, recorded fillText.
