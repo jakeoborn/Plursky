@@ -153,38 +153,46 @@ function _landingFestivalState(entry, now, plus) {
   if (!entry.available && !entry.previewOnly) return {
     label: "Not open yet",
     tone: "muted",
-    locked: true
+    locked: true,
+    chip: "neutral"
   };
   if (!entry.available && entry.previewOnly) {
     return plus ? {
       label: "Early access",
-      tone: "signal"
+      tone: "signal",
+      chip: "fill"
     } : {
       label: "Early access · Plursky+",
       tone: "muted",
       locked: true,
-      upsell: true
+      upsell: true,
+      chip: "neutral"
     };
   }
   if (phase === "live") return {
     label: "Happening now",
-    tone: "signal"
+    tone: "signal",
+    chip: "fill"
   };
   if (phase === "ended") return {
     label: "Ended",
-    tone: "muted"
+    tone: "muted",
+    chip: "neutral"
   };
   if (phase === "tba") return {
     label: "Dates TBA",
-    tone: "muted"
+    tone: "muted",
+    chip: "accent"
   };
   if (entry.scheduleTBA) return {
     label: "Lineup in · set times TBA",
-    tone: "muted"
+    tone: "muted",
+    chip: "accent"
   };
   return {
-    label: "Upcoming",
-    tone: "muted"
+    label: "Open",
+    tone: "muted",
+    chip: "fill"
   };
 }
 function landingCanEnter(entry, now, plus) {
@@ -209,19 +217,20 @@ function _LandingFestivalCard({
   var now = Date.now();
   var st = _landingFestivalState(entry, now, plus);
   var c = entry.config;
-  var toneColor = st.tone === "signal" ? "var(--signal-ink)" : "var(--text-2)";
   var dead = st.locked && !st.upsell;
   return React.createElement("button", {
     onClick: () => {
       if (st.upsell) onUpsell?.(c.id, entry);else if (!st.locked) onEnter(c.id, entry);
     },
     disabled: dead,
+    "data-landing-row": c.id,
     "aria-label": `${c.name}. ${st.label}.${st.upsell ? " Opens the Plursky+ offer." : ""}${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`,
     style: {
       width: "100%",
       display: "flex",
+      flexWrap: "wrap",
       alignItems: "center",
-      gap: 12,
+      gap: "8px 12px",
       minHeight: 72,
       padding: "10px 0",
       background: "transparent",
@@ -242,7 +251,7 @@ function _LandingFestivalCard({
     entry: entry
   })) : null, React.createElement("div", {
     style: {
-      flex: 1,
+      flex: "1 1 200px",
       minWidth: 0
     }
   }, React.createElement("div", {
@@ -280,30 +289,21 @@ function _LandingFestivalCard({
       color: "var(--text-2)",
       minWidth: 0
     }
-  }, c.location, c.dates ? " · " : "", c.dates || null), React.createElement("div", {
+  }, c.location, c.dates ? " · " : "", c.dates || null), memoryCount > 0 && React.createElement("div", {
     style: {
       marginTop: 2,
       fontSize: 13,
       lineHeight: 1.38,
-      color: toneColor,
+      color: "var(--text-2)",
       fontVariantNumeric: "tabular-nums"
     }
-  }, st.label, memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : "")), !dead && React.createElement("svg", {
-    "aria-hidden": "true",
-    width: "16",
-    height: "16",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "var(--text-3)",
-    strokeWidth: "2",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
+  }, memoryCount, " ", memoryCount === 1 ? "memory" : "memories")), React.createElement("span", {
+    "data-landing-chip": st.chip,
+    className: `landing-chip landing-chip-${st.chip}`,
     style: {
-      flexShrink: 0
+      marginLeft: "auto"
     }
-  }, React.createElement("path", {
-    d: "M9 6 L15 12 L9 18"
-  })));
+  }, st.label));
 }
 function useFittedPlaceholder(full, short) {
   var [text, setText] = React.useState(full);
