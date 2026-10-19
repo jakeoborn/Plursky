@@ -4768,6 +4768,11 @@ function NpSaved({
         whiteSpace: setTimesUnconfirmed(a) ? "normal" : "nowrap"
       }
     }, setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : "TBA"), React.createElement("span", {
+      className: "np-sface"
+    }, React.createElement(DuoAvatar, {
+      name: a.name,
+      size: 40
+    })), React.createElement("span", {
       style: {
         minWidth: 0
       }

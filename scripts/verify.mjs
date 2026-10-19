@@ -2636,6 +2636,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 5: Today's saved rows carry the act's face (ledger, pair, initials).
+{
+  console.log("▸ Set row faces — Today's saved rows, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-row-faces.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set row faces failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // M1: the SW precaches MapLibre (PACK_LIB), and on a mapMode:"real" festival a
 // failed load keeps a persistent error card whose RETRY really reloads the map.
 {
