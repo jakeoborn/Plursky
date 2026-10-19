@@ -978,7 +978,7 @@ function ToastHost() {
       pointerEvents: "none",
       padding: "0 16px"
     }
-  }, "// Board toast: an elevated card in SF that WRAPS. The old one-line // pill ellipsised every long message (\"No photos received — pick a // few at a time; if they're in iCloud…\" lost its instruction).", React.createElement("div", {
+  }, React.createElement("div", {
     key: msg.id,
     role: "status",
     "aria-live": "polite",

@@ -523,9 +523,9 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      // Board toast: an elevated card in SF that WRAPS. The old one-line
-      // pill ellipsised every long message ("No photos received — pick a
-      // few at a time; if they're in iCloud…" lost its instruction).
+      {/* Board toast: an elevated card in SF that WRAPS. The old one-line
+          pill ellipsised every long message ("No photos received — pick a
+          few at a time; if they're in iCloud…" lost its instruction). */}
       <div key={msg.id} role="status" aria-live="polite" style={{
         background: "var(--s1)", color: "var(--ink)",
         padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
