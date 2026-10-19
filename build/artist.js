@@ -1437,6 +1437,8 @@ function ArtistScreen({
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
     className: "serif",
+    "data-fit-words": true,
+    "data-fit-min": "28",
     "data-artist-hero-name": true,
     "data-artist-hero-label": "name",
     style: {

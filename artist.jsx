@@ -1223,7 +1223,10 @@ function ArtistScreen({ state, setState }) {
           </div>
         )}
       </div>
-      <div className="serif" data-artist-hero-name data-artist-hero-label="name" style={{
+      {/* data-fit-words: a single word too wide for the box steps the size
+          down (fitWords, chrome.jsx) instead of clipping; "UNDERWORLD" at 40px
+          ran past the 320 hero. */}
+      <div className="serif" data-fit-words data-fit-min="28" data-artist-hero-name data-artist-hero-label="name" style={{
         fontSize: isB2B ? 32 : 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: "-0.05em",
       }}>{a.name}</div>
     </>
