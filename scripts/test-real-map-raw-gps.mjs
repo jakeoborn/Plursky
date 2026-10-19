@@ -2,6 +2,7 @@
 // Real basemap: a live GPS fix is drawn where it is, with or without an affine.
 //
 // The defect (main c0b8b3e): on a festival with no gpsAnchors (III Points,
+// pre-flip; it now carries a poster-class affine — see section 1),
 // mapMode "real") MAP_AFFINE is null, gpsToMap() returns the grid centre for
 // every fix and RealMap drew the user through mapToGps(x, y), which then
 // returns the venue centroid. Two real fixes 220 m apart both rendered on the
@@ -54,27 +55,32 @@ function load(fid) {
   vm.createContext(ctx);
   vm.runInContext(MODS, ctx);
   for (const [n, src] of BUILD) vm.runInContext(src, ctx, { filename: `build/${n}.js` });
-  return vm.runInContext("({ id: FESTIVAL_CONFIG.id, cfg: FESTIVAL_CONFIG, affine: MAP_AFFINE, placed: PLACED_STAGES, gpsToMap, mapToGps, _lngLatOf, distMiles })", ctx);
+  return vm.runInContext("({ id: FESTIVAL_CONFIG.id, cfg: FESTIVAL_CONFIG, affine: MAP_AFFINE, placed: PLACED_STAGES, placesChecked: REAL_MAP_PLACES_CHECKED, gpsToMap, mapToGps, _lngLatOf, distMiles })", ctx);
 }
 
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
 const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
 
-// ── 1. III Points: no affine; raw fixes are drawn where they are ─────────────
+// ── 1. III Points: poster-class affine; raw fixes are drawn where they are ──
+// FLIP 2026-10-15: III Points now has 13 poster gpsAnchors, so MAP_AFFINE is
+// solved — but the registration is UNCHECKED (no osm/crowd evidence), so
+// placesChecked stays false and stage pins still do not render on the real
+// map. The raw-GPS contract below is unchanged: fixes draw where they are.
 {
   const P = load("iii-points-2026");
   check(P.id === "iii-points-2026", `active festival is ${P.id}, not iii-points-2026 (a gated id silently loads the default)`);
-  check(P.affine === null, "III Points has no gpsAnchors, so MAP_AFFINE must be null (fixture premise)");
+  check(!!P.affine, "III Points has 13 poster gpsAnchors, so MAP_AFFINE is solved (flip premise)");
+  check(P.placesChecked === false, "all anchors are poster-class, so the real map must NOT place stage pins (flip premise)");
   const C = P.cfg.gps;
   // Two fixes inside the geofence, 220 m apart east-west across the site.
   const A = { lat: 25.7980, lng: -80.2027 }, B = { lat: 25.7980, lng: -80.2005 };
   const onSite = p => P.distMiles(p.lat, p.lng, C.lat, C.lng) <= C.onSiteRadiusMi;
   check(onSite(A) && onSite(B), "fixture fixes must both be inside the on-site radius");
   check(m(P, A, B) > 200, `fixture fixes must be >200 m apart (are ${m(P, A, B).toFixed(0)} m)`);
-  // The defect's cause, kept visible: the grid cannot tell these apart.
+  // With an affine, the grid tells the two fixes apart too.
   const gA = P.gpsToMap(A.lat, A.lng), gB = P.gpsToMap(B.lat, B.lng);
-  check(gA.x === 50 && gA.y === 50 && gB.x === 50 && gB.y === 50, "without an affine gpsToMap returns the grid centre (premise)");
+  check(!(gA.x === gB.x && gA.y === gB.y), "with an affine gpsToMap no longer collapses distinct fixes to one grid point");
   // The fix: the live avatar shape MapScreen builds, drawn by _lngLatOf.
   const av = p => ({ x: 50, y: 50, live: true, gps: { lat: p.lat, lng: p.lng, accuracy: 8, ts: 1 } });
   const dA = P._lngLatOf(av(A)), dB = P._lngLatOf(av(B));
@@ -86,20 +92,25 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   const T = { lat: 25.7985, lng: -80.2010 };
   const pin = P._lngLatOf({ x: 50, y: 50, gps: T, label: "Meet here" });
   check(m(P, pin, T) < 0.5, `meet pin drawn ${m(P, pin, T).toFixed(1)} m from where it was dropped`);
-  // Demo avatar: no gps, so it stays on the grid path and is not a real fix.
+  // Demo avatar: no gps, so it goes through the affine's grid path — finite,
+  // in range, and never presented as a real fix.
   const demo = P._lngLatOf({ x: 30, y: 70 });
-  check(m(P, demo, C) < 0.5, "a point without gps on a no-affine festival resolves to the centroid, as before");
+  const viaAffine = P.mapToGps(30, 70);
+  check(demo.lat === viaAffine.lat && demo.lng === viaAffine.lng, "a point without gps resolves through the affine, as before");
   // Broken gps falls back instead of drawing NaN.
   const bad = P._lngLatOf({ x: 50, y: 50, gps: { lat: NaN, lng: -80.2 } });
   check(Number.isFinite(bad.lat) && Number.isFinite(bad.lng), "a non-finite gps must fall back, never draw NaN");
   // A gps from another phone (crew location, rally) is untrusted: finite but
   // out of range would make MapLibre throw and take the map down.
+  const fallback = P.mapToGps(50, 50);
   for (const g of [{ lat: 1e308, lng: 0 }, { lat: 91, lng: -80.2 }, { lat: 25.8, lng: -181 }, { lat: "25.8", lng: -80.2 }, null]) {
     const r = P._lngLatOf({ x: 50, y: 50, gps: g });
-    check(Math.abs(r.lat) <= 90 && Math.abs(r.lng) <= 180 && m(P, r, C) < 0.5, `gps ${JSON.stringify(g)} must be rejected and fall back to the grid path`);
+    check(Math.abs(r.lat) <= 90 && Math.abs(r.lng) <= 180 && r.lat === fallback.lat && r.lng === fallback.lng, `gps ${JSON.stringify(g)} must be rejected and fall back to the grid path`);
   }
-  // Stage pins: none can render today, because none has a published position.
-  check(P.placed.length === 0, `III Points has ${P.placed.length} placed stages; pins need sourced coordinates first`);
+  // Stage pins: 13 stages carry poster x/y now, but the real map pins none
+  // until an osm/crowd anchor corroborates the registration.
+  check(P.placed.length === 13, `III Points has ${P.placed.length} placed stages, expected 13 poster reads`);
+  check(P.placesChecked === false, "poster anchors cannot place real-map pins — corroboration first");
 }
 
 // ── 2. A festival with a registered affine: grid points unchanged ───────────

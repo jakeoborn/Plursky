@@ -603,6 +603,12 @@ function _groundsLngLats(cfg) {
   var an = (cfg && cfg.gpsAnchors || []).filter(a => a && ok(a.lat, a.lng));
   return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
 }
+function _realMapPanLimit(cfg, lib) {
+  var v = cfg && cfg.venue;
+  if (!v || !v.festivalBounds) return null;
+  var fb = v.festivalBounds;
+  return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+}
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -2667,11 +2673,7 @@ function MapScreen({
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
-    if (REAL_MAP_ONLY) {
-      setRealMapNote((why || "Map unavailable") + " — check your connection");
-      setTimeout(() => setRealMapNote(null), 7000);
-      return;
-    }
+    if (REAL_MAP_ONLY) return;
     try {
       sessionStorage.setItem("plursky_realmap_failed", "1");
     } catch {}
@@ -6220,6 +6222,7 @@ function RealMap({
   var meetModeRef = React.useRef(meetMode);
   var [loaded, setLoaded] = React.useState(false);
   var [err, setErr] = React.useState(null);
+  var [attempt, setAttempt] = React.useState(0);
   var fatalRef = React.useRef(false);
   var loadedRef = React.useRef(false);
   var tileErrRef = React.useRef(0);
@@ -6227,6 +6230,7 @@ function RealMap({
     if (fatalRef.current) return;
     fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
+    if (FESTIVAL_CONFIG.mapMode === "real") setErr(prev => prev || (typeof why === "string" ? why : "Map unavailable"));
     try {
       onFatal?.(typeof why === "string" ? why : null);
     } catch {}
@@ -7050,9 +7054,8 @@ function RealMap({
           }
           map.jumpTo(home);
         }
-        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
-          var fb = FESTIVAL_CONFIG.venue.festivalBounds;
-          var lim = new maplibregl.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+        var lim = _realMapPanLimit(FESTIVAL_CONFIG, maplibregl);
+        if (lim) {
           lim.extend(map.getBounds());
           map.setMaxBounds(lim);
         }
@@ -7202,8 +7205,11 @@ function RealMap({
       friendMarkersRef.current = {};
       savedStarMarkersRef.current = {};
       meetMarkerRef.current = null;
+      landmarkElsRef.current = [];
+      loadedRef.current = false;
+      setLoaded(false);
     };
-  }, []);
+  }, [attempt]);
   React.useEffect(() => {
     if (!loaded || !avatarMarkerRef.current) return;
     var {
@@ -7574,6 +7580,7 @@ function RealMap({
       setErr(null);
       fatalRef.current = false;
       tileErrRef.current = 0;
+      setAttempt(a => a + 1);
     },
     style: {
       marginTop: 10,

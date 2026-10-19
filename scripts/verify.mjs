@@ -1684,6 +1684,14 @@ const REGISTRATION_TOL_M = 25;
       }
       continue;
     }
+    // An ESTIMATED footprint (`venue.footprintInferred`) is not a survey: one
+    // drawn around the anchors would pass them by construction (#326 review).
+    // It guards nothing, so the anchors read as unguarded, never as checked.
+    if (poly?.length && an.length && cfg.venue?.footprintInferred) {
+      fpUnbounded++;
+      console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
+      continue;
+    }
     if (!poly?.length && an.length) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);
@@ -2624,6 +2632,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set row faces failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// M1: the SW precaches MapLibre (PACK_LIB), and on a mapMode:"real" festival a
+// failed load keeps a persistent error card whose RETRY really reloads the map.
+{
+  console.log("▸ MapLibre field load — precache + persistent card + RETRY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-maplibre-field-load.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maplibre field load failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
