@@ -17,13 +17,17 @@
 // distinct IDs. Existing IDs survive spelling, order and day corrections.
 // Dude Skywalker is now Friday; Jeremy Ismael is now Saturday. All 19 prior
 // DAY TBA billings have screenshot-grounded days. Villu is the grid's printed billing.
-// SPATIAL BOUNDARY: real street basemap, surveyed convention-center building
-// outline, no official perimeter/map inferred. Stage names are real but
-// positions are unknown: no stage x/y, lat/lng, GPS anchors or amenities.
+// SPATIAL FLIP 2026-10-15: the official 2026 festival map is pinned
+// (map-sources/iiip-map-2026-source.webp) and measured. The 13 stages carry
+// x/y reads off that art and gpsAnchors carry the same reads as lat/lng,
+// all src "poster" (homography over 8 OSM street control points, RMS 12.6 m —
+// the art is oblique, no affine fits it). Registration is UNCHECKED: overlay
+// draws at unchecked strength, real-map pins and distance readouts stay off
+// until an osm/crowd anchor lands. See scripts/build-iiip-map-2026.mjs.
 (function () {
   "use strict";
 
-  // Official named stages with unknown positions. Schedule is not a map.
+  // Official named stages, positions read off the pinned 2026 map (see header).
   const STAGES = [
   {
     "id": "mind-melt",
@@ -31,7 +35,9 @@
     "short": "MIND MELT",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 63.0,
+      "y": 27.3,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "sec3",
@@ -39,7 +45,9 @@
     "short": "SECTOR 3",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 58.1,
+      "y": 62.9,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "rc95",
@@ -47,7 +55,9 @@
     "short": "RC95",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 33.4,
+      "y": 82.3,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "s3qu3nce",
@@ -55,7 +65,9 @@
     "short": "S3QUENC3",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 32.1,
+      "y": 45.7,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "vertex",
@@ -63,7 +75,9 @@
     "short": "VERTEX",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 73.3,
+      "y": 61.1,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "players-club",
@@ -71,7 +85,9 @@
     "short": "PLAYERS CLUB",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 48.2,
+      "y": 35.8,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "halo-88",
@@ -79,7 +95,9 @@
     "short": "HALO 88",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 24.5,
+      "y": 69.4,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "grand-central",
@@ -87,7 +105,9 @@
     "short": "GRAND CENTRAL",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 75.5,
+      "y": 76.6,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "door-iv",
@@ -95,7 +115,9 @@
     "short": "DOOR IV",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 51.1,
+      "y": 52.0,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "iii-points-radio",
@@ -103,7 +125,9 @@
     "short": "III POINTS RADIO",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 31.6,
+      "y": 60.5,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "isotropic",
@@ -111,7 +135,9 @@
     "short": "ISOTROPIC",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 12.8,
+      "y": 64.1,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "unforeseen",
@@ -119,7 +145,9 @@
     "short": "UNFORESEEN",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 72.6,
+      "y": 42.8,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "444",
@@ -127,7 +155,9 @@
     "short": "444",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 76.0,
+      "y": 39.0,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   }
 ];
 
@@ -947,7 +977,22 @@
       //
       // This is the BUILDING, not the festival perimeter — the site is billed
       // as 5 city blocks. See the header before widening it.
-      footprint: [
+      //
+      // WIDENED 2026-10-15 (the flip), and INFERRED (review 2026-10-18):
+      // venue.footprint is now an estimate of the festival SITE, because the
+      // map's framing/saved-area readers need the grounds, not one building.
+      // It is NOT a survey: its south and east edges were placed from where
+      // the poster art puts stages, and it was sized to contain all 13 poster
+      // anchors. So `footprintInferred` is set and the footprint gate does not
+      // count it (an estimate drawn around the anchors would pass them by
+      // construction), and nothing locks the map to it. Replace it with a
+      // surveyed or official perimeter, then drop the flag. The site polygon is street-grounded: NW 25th St (north) to
+      // ~NW 21st St (south — the art places 444, UNFORESEEN, VERTEX and GRAND
+      // CENTRAL south of NW 22nd St) and NW 6th Ave (west) to ~NW 2nd Ave
+      // (east — the NW 22nd Lane segment and the MIND MELT/VIP+ block),
+      // padded ~20-30 m past the surveyed street lines. The building survey
+      // is preserved VERBATIM below as buildingFootprint.
+      buildingFootprint: [
         [25.79907, -80.20245], [25.79882, -80.20245], [25.79870, -80.20244],
         [25.79870, -80.20241], [25.79848, -80.20240], [25.79835, -80.20253],
         [25.79813, -80.20227], [25.79827, -80.20212], [25.79827, -80.20199],
@@ -957,18 +1002,54 @@
         [25.79870, -80.20249], [25.79881, -80.20250], [25.79892, -80.20250],
         [25.79892, -80.20273], [25.79907, -80.20273],
       ],
+      // Festival SITE, estimated (see the note above): N ~25th St, S ~21st
+      // St, W ~6th Ave, E ~2nd Ave.
+      footprint: [
+        [25.80085, -80.20535], [25.79720, -80.20535],
+        [25.79720, -80.19880], [25.80085, -80.19880],
+      ],
+      footprintInferred: true,
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
     mainStageId: "mind-melt",
     // ── THE MAP ──
-    // No mapImage, no mapStyle: "image-overlay", no gpsAnchors. This festival
-    // opens straight into the real basemap. See the header for why that is
-    // the honest choice rather than a fallback.
-    mapMode: "real",
-    mapPrintsStageNames: false,
-    // The affine-vs-poster gate has no poster to check against here. Not a
-    // waiver — there is genuinely nothing to register.
+    // FLIP 2026-10-15: the official 2026 festival map is pinned and measured.
+    // The 13 stage pins are reads off that art, registered through 8 street
+    // control points (NW 22nd-25th St × NW 5th/6th Ave + the NW 22nd Lane
+    // segment, all OSM-surveyed) — homography RMS 12.6 m. Every anchor stays
+    // src: "poster": an art read is not a measurement, so the registration is
+    // UNCHECKED, the overlay draws at the unchecked strength, real-map stage
+    // pins stay suppressed and distance readouts stay off until an osm/crowd
+    // anchor lands (map.jsx geometryVerifiedFor owns that promotion).
+    mapImage: "iiip-map-2026.webp",
+    mapStyle: "image-overlay",
+    mapSource: { url: "https://www.iiipoints.com/assets/campaign/festival-map-2026-1080.webp", observedAt: "2026-10-15", mapYear: 2026 },
+    // The art prints every stage name as signage (verified on the pinned
+    // source, 2026-10-15), so Plursky must not echo them a few pixels away.
+    mapPrintsStageNames: true,
+    // Poster-class registration, not a survey: the art is oblique perspective
+    // (its streets converge), so no affine registers it exactly. false keeps
+    // the distance readout honest; it is not a waiver.
     mapArtIsGeoregistered: false,
+    // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx) reads
+    // only the first three. Triple spans the largest well-read triangle:
+    // mind-melt (east end), isotropic (NW 25th St side), grand-central
+    // (south-west end). Lat/lng are homography reads off the pinned art.
+    gpsAnchors: [
+      { stageId: "mind-melt",        lat: 25.798446, lng: -80.200767, src: "poster" },
+      { stageId: "isotropic",        lat: 25.800299, lng: -80.203764, src: "poster" },
+      { stageId: "grand-central",    lat: 25.797381, lng: -80.204174, src: "poster" },
+      { stageId: "444",              lat: 25.797565, lng: -80.201491, src: "poster" },
+      { stageId: "vertex",           lat: 25.797590, lng: -80.203184, src: "poster" },
+      { stageId: "s3qu3nce",         lat: 25.799774, lng: -80.202564, src: "poster" },
+      { stageId: "rc95",             lat: 25.799310, lng: -80.204624, src: "poster" },
+      { stageId: "halo-88",          lat: 25.799799, lng: -80.203992, src: "poster" },
+      { stageId: "door-iv",          lat: 25.798834, lng: -80.202778, src: "poster" },
+      { stageId: "players-club",     lat: 25.799149, lng: -80.201694, src: "poster" },
+      { stageId: "unforeseen",       lat: 25.797749, lng: -80.201856, src: "poster" },
+      { stageId: "iii-points-radio", lat: 25.799615, lng: -80.203459, src: "poster" },
+      { stageId: "sec3",             lat: 25.798389, lng: -80.203423, src: "poster" },
+    ],
     // Published policy, drives FAQ copy only.
     policies: { reentry: false, alcoholAge: 21 },
   };
