@@ -2314,18 +2314,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── 1z-b. Board playlist planner ──────────────────────────────────────────
-// Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
-// carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
+// ── 1z-b. Spotify is read-only ────────────────────────────────────────────
+// Spotify can't build playlists for Plursky: no playlist-modify scope is
+// requested and no source writes to the Spotify Web API. Apple Music keeps its
+// playlist builder, and the read scopes the listening import needs stay.
 {
-  console.log("▸ Board playlist gate — seeds guaranteed, picks capped and truly reasoned");
+  console.log("▸ Spotify read-only gate — no playlist-modify scope, no Spotify write call");
   try {
-    const out = execFileSync(process.execPath, ["scripts/test-board-playlist.mjs"],
+    const out = execFileSync(process.execPath, ["scripts/test-no-spotify-playlist-write.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`board playlist planner failed${detail ? ` — ${detail}` : ""}`);
+    fail(`spotify read-only gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
