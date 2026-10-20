@@ -772,6 +772,115 @@ function LineupOverview({
     }
   }, tick(m))))));
 }
+function LineupMiniStrip({
+  sets,
+  savedSet,
+  stageFilter,
+  onStage,
+  children
+}) {
+  var lanes = React.useMemo(() => {
+    var by = new Map();
+    for (var a of sets) {
+      var s = toNightMin(a.start),
+        e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({
+        a,
+        s,
+        e: Number.isFinite(e) && e > s ? e : s + 60
+      });
+    }
+    return STAGES.filter(st => by.has(st.id)).map(st => ({
+      stage: st,
+      sets: by.get(st.id)
+    }));
+  }, [sets]);
+  var all = lanes.flatMap(l => l.sets);
+  var t0 = all.length ? Math.min(...all.map(x => x.s)) : 0;
+  var span = all.length ? Math.max(60, Math.max(...all.map(x => x.e)) - t0) : 60;
+  return React.createElement("div", {
+    "data-lineup-mini": true,
+    role: "group",
+    "aria-label": "View, plan and stages",
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "0 20px 8px",
+      overflowX: "auto",
+      overscrollBehaviorX: "contain",
+      scrollbarWidth: "none"
+    }
+  }, children, lanes.length > 1 && React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      flex: "none",
+      width: 1,
+      height: 20,
+      background: "var(--line)"
+    }
+  }), lanes.length > 1 && lanes.map(({
+    stage,
+    sets
+  }) => {
+    var on = stageFilter === stage.id,
+      hue = stageLaneHue(stage.id);
+    var mine = sets.filter(x => savedSet.has(x.a.id)).length;
+    return React.createElement("button", {
+      key: stage.id,
+      type: "button",
+      className: "duo-chip",
+      "data-mini-stage": stage.id,
+      "aria-pressed": on,
+      "aria-label": `${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`,
+      onClick: () => onStage(stage.id),
+      style: {
+        flex: "none"
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        whiteSpace: "nowrap"
+      }
+    }, hue && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 8,
+        height: 8,
+        borderRadius: 2,
+        background: hue.stroke
+      }
+    }), stage.name, React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        position: "relative",
+        width: 40,
+        height: 6,
+        flex: "none"
+      }
+    }, sets.map(({
+      a,
+      s,
+      e
+    }) => React.createElement("span", {
+      key: a.id,
+      style: {
+        position: "absolute",
+        left: `${(s - t0) / span * 100}%`,
+        width: `${(e - s) / span * 100}%`,
+        minWidth: 1,
+        top: savedSet.has(a.id) ? 0 : 2,
+        height: savedSet.has(a.id) ? 6 : 2,
+        borderRadius: 2,
+        background: savedSet.has(a.id) ? "var(--acc)" : hue ? hue.stroke : "var(--line-2)"
+      }
+    })))));
+  }));
+}
 function LineupFilterSheet({
   onClose,
   day,
@@ -1281,6 +1390,85 @@ function LineupScreen({
       } catch {}
     }, reduceMotion ? 0 : 260);
   };
+  var overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"));
+  var onOverviewStage = id => {
+    if (viewMode === "grid") {
+      window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
+        detail: id
+      }));
+      return;
+    }
+    setStageFilter(stageFilter === id ? "all" : id);
+  };
+  var modeChips = mini => React.createElement(React.Fragment, null, !_schedTBA && React.createElement("div", {
+    role: "radiogroup",
+    "aria-label": "View",
+    style: {
+      display: "flex",
+      gap: 8,
+      flex: "none"
+    }
+  }, [{
+    id: "list",
+    label: "List"
+  }, {
+    id: "grid",
+    label: "Grid"
+  }].map(o => React.createElement("button", {
+    key: o.id,
+    role: "radio",
+    "aria-checked": viewMode === o.id,
+    "aria-label": o.label,
+    className: "duo-chip duo-viewchip",
+    "data-mini-view": mini ? o.id : undefined,
+    onClick: () => setViewMode(o.id)
+  }, React.createElement("span", null, React.createElement("span", {
+    className: "lbl"
+  }, o.label), React.createElement("svg", {
+    className: "ic",
+    "aria-hidden": "true",
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  }, o.id === "list" ? React.createElement("path", {
+    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
+  }) : React.createElement("path", {
+    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
+  })))))), [{
+    id: "saved",
+    label: "My plan",
+    n: dayStats.find(x => x.n === day)?.count
+  }, {
+    id: "now",
+    label: "Live",
+    n: NOW.night === day ? (NOW.liveIds || []).length : 0
+  }].map(o => {
+    var on = filter === o.id;
+    return React.createElement("button", {
+      key: o.id,
+      "aria-pressed": on,
+      className: "duo-chip",
+      style: {
+        flex: "none"
+      },
+      "data-lineup-show": mini ? undefined : o.id,
+      "data-mini-show": mini ? o.id : undefined,
+      onClick: () => setFilter(on ? "all" : o.id)
+    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
+      "aria-hidden": "true",
+      style: {
+        width: 7,
+        height: 7,
+        borderRadius: 4,
+        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
+      }
+    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
+  }));
+  var showMini = !_schedTBA;
   var compactSummary = (() => {
     var d = dayStats.find(x => x.n === day);
     var dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
@@ -1695,19 +1883,11 @@ function LineupScreen({
       onClick: () => setWeekendFilter(w.value)
     }, w.label);
   })), !_schedTBA && React.createElement(LineupOverview, {
-    sets: lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both")),
+    sets: overviewSets,
     savedSet: savedSetIds,
     liveNight: NOW.night === day,
     stageFilter: viewMode === "list" ? stageFilter : "all",
-    onStage: id => {
-      if (viewMode === "grid") {
-        window.dispatchEvent(new CustomEvent("plursky:grid-stage", {
-          detail: id
-        }));
-        return;
-      }
-      setStageFilter(stageFilter === id ? "all" : id);
-    }
+    onStage: onOverviewStage
   }), React.createElement("div", {
     style: {
       display: "flex",
@@ -1718,68 +1898,7 @@ function LineupScreen({
       flexWrap: "wrap",
       rowGap: 0
     }
-  }, !_schedTBA && React.createElement("div", {
-    role: "radiogroup",
-    "aria-label": "View",
-    style: {
-      display: "flex",
-      gap: 8
-    }
-  }, [{
-    id: "list",
-    label: "List"
-  }, {
-    id: "grid",
-    label: "Grid"
-  }].map(o => React.createElement("button", {
-    key: o.id,
-    role: "radio",
-    "aria-checked": viewMode === o.id,
-    "aria-label": o.label,
-    className: "duo-chip duo-viewchip",
-    onClick: () => setViewMode(o.id)
-  }, React.createElement("span", null, React.createElement("span", {
-    className: "lbl"
-  }, o.label), React.createElement("svg", {
-    className: "ic",
-    "aria-hidden": "true",
-    width: "16",
-    height: "16",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  }, o.id === "list" ? React.createElement("path", {
-    d: "M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"
-  }) : React.createElement("path", {
-    d: "M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"
-  })))))), [{
-    id: "saved",
-    label: "My plan",
-    n: dayStats.find(x => x.n === day)?.count
-  }, {
-    id: "now",
-    label: "Live",
-    n: NOW.night === day ? (NOW.liveIds || []).length : 0
-  }].map(o => {
-    var on = filter === o.id;
-    return React.createElement("button", {
-      key: o.id,
-      "aria-pressed": on,
-      className: "duo-chip",
-      "data-lineup-show": o.id,
-      onClick: () => setFilter(on ? "all" : o.id)
-    }, React.createElement("span", null, o.id === "now" && React.createElement("span", {
-      "aria-hidden": "true",
-      style: {
-        width: 7,
-        height: 7,
-        borderRadius: 4,
-        background: NOW.night === day ? "var(--live)" : "var(--ink-3)"
-      }
-    }), o.label, o.n > 0 && React.createElement("b", null, o.n)));
-  })), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
+  }, modeChips(false)), !gridLead && searchRow, !gridLead && actionsRow)), React.createElement("div", {
     "data-lineup-compact": true,
     "data-collapsed": collapsed ? "1" : "0",
     inert: collapsed ? undefined : "",
@@ -1788,7 +1907,7 @@ function LineupScreen({
       flexShrink: 0,
       minHeight: 0,
       overflow: "hidden",
-      maxHeight: collapsed ? 56 : 0,
+      maxHeight: collapsed ? showMini ? 104 : 56 : 0,
       opacity: collapsed ? 1 : 0,
       borderBottom: collapsed ? "1px solid var(--line)" : "none",
       transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease"
@@ -1868,7 +1987,12 @@ function LineupScreen({
     r: "7"
   }), React.createElement("path", {
     d: "M21 21 L16.65 16.65"
-  }))))), !online && React.createElement("div", {
+  })))), showMini && React.createElement(LineupMiniStrip, {
+    sets: overviewSets,
+    savedSet: savedSetIds,
+    stageFilter: viewMode === "list" ? stageFilter : "all",
+    onStage: onOverviewStage
+  }, modeChips(true))), !online && React.createElement("div", {
     role: "status",
     className: "duo-card duo-body-s",
     style: {
