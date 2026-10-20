@@ -2145,12 +2145,32 @@ function snapSplitSwitch(v, lo, hi) {
   const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
   return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
 }
+// One split per act (Jake's ruling on Codex P1, #335): each act stores one
+// window with one partner, so splitting it again with a different act would
+// overwrite the first split and bring its cleared clash back. The new split is
+// refused instead and the first one kept. "Paired" is attendWindow's answer, so
+// a partner that was unsaved or left the lineup locks nothing; re-splitting
+// the same pair adjusts it. Returns { act, partner } for the blocking split,
+// or null when the pair may be split.
+function splitBlocker(a, b, fid) {
+  for (const [x, other] of [[a, b], [b, a]]) {
+    if (!x || !other) continue;
+    const w = attendWindow(x, fid);
+    if (w.partial && w.with && w.with !== other.id) {
+      const partner = _attendLineup(fid).find(p => p.id === w.with);
+      if (partner) return { act: x, partner };
+    }
+  }
+  return null;
+}
+// Writes both halves or nothing; true when the split was saved.
 function splitNight(a, b, switchMin, fid) {
   const { first, second, lo, hi, ok } = splitRange(a, b);
-  if (!ok) return;
+  if (!ok || splitBlocker(a, b, fid)) return false;
   const sw = snapSplitSwitch(switchMin, lo, hi);
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
 }
 // Re-renders a screen when a window or an accepted pair changes (any screen,
 // any tab). Read it into a memo's deps so counts recompute.

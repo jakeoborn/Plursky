@@ -1327,6 +1327,16 @@ function setReminderLeadMin(mins) {
     localStorage.setItem(_REMINDER_LEAD_KEY, String(mins));
   } catch {}
 }
+function _reminderText(p) {
+  var lead = p.leadMin || 15;
+  return p.late ? {
+    title: `${p.name}: you arrive in ${lead} min`,
+    body: `${p.stageName} · you arrive ${fmt12(p.start)}`
+  } : {
+    title: `${p.name} starts in ${lead} min`,
+    body: `${p.stageName} · ${fmt12(p.start)}`
+  };
+}
 function scheduleReminders(state, showLocal) {
   var ln = _capLocalNotifications();
   var now = Date.now();
@@ -1353,6 +1363,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs,
       leadMin
     });
@@ -1374,8 +1385,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id: p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body: `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body: _reminderText(p).body,
           schedule: {
             at: new Date(p.fireMs),
             allowWhileIdle: true
@@ -1399,8 +1410,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: {
           url: "/"
@@ -1424,10 +1435,9 @@ function loadAndReschedule(showLocal) {
     var live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      var lead = r.leadMin || 15;
       var handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: {
             url: "/"

@@ -3784,6 +3784,45 @@ function SplitNightSheet({
     fontSize: 15,
     fontWeight: 500
   };
+  var blocked = splitBlocker(first, second);
+  if (blocked) return React.createElement("div", {
+    role: "group",
+    "aria-label": "Split the night",
+    "data-split-sheet": true,
+    "data-split-refused": true,
+    style: {
+      margin: "4px 20px 12px",
+      padding: "12px 14px 6px",
+      borderRadius: 14,
+      background: "var(--paper-2)"
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--ink-2)"
+    }
+  }, "Split the night"), React.createElement("p", {
+    style: {
+      margin: "8px 0",
+      fontSize: 15,
+      lineHeight: "20px",
+      overflowWrap: "anywhere"
+    }
+  }, React.createElement("b", null, actDisplayName(blocked.act.name)), " is already split with ", React.createElement("b", null, actDisplayName(blocked.partner.name)), ". An act can be in one split at a time. To split it with another set, tap Reset on its row in your night first."), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("button", {
+    onClick: onCancel,
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "OK")));
   return React.createElement("div", {
     role: "group",
     "aria-label": "Split the night",
@@ -3872,8 +3911,7 @@ function SplitNightSheet({
   }, "Cancel"), React.createElement("button", {
     "data-split-confirm": true,
     onClick: () => {
-      splitNight(first, second, sw);
-      onDone?.();
+      if (splitNight(first, second, sw)) onDone?.();
     },
     style: {
       ...crBtn,

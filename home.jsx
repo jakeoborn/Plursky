@@ -713,10 +713,14 @@ function buildTonightsPlan(state) {
   const nowMin = toNightMin(NOW.time);
   const saved = savedInLineup(state.saved);
   const lineup = activeLineup(saved);
+  // Ordered by when the user is THERE (Codex P2 on #335): a split that moves
+  // an arrival past another saved set's start must move the row too, or prev,
+  // walk, leave-by and tight describe the wrong neighbours. Published start
+  // breaks a tie.
   const sets = saved
     .map(id => lineup.find(a => a.id === id))
     .filter(a => a && a.day === night && a.start)
-    .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+    .sort((x, y) => toNightMin(attendWindow(x).start) - toNightMin(attendWindow(y).start) || toNightMin(x.start) - toNightMin(y.start));
 
   return sets.map((a, i) => {
     const prev      = sets[i - 1];
@@ -2440,7 +2444,7 @@ function PlanRow({ entry, state, setState, onEditSplit }) {
       {/* The set row: the board's list row. A past set reads quieter by
           colour (opacity took its labels under AA); live = the lifted card;
           a clash = the clash ring and the word. */}
-      <div onClick={() => setState({ ...state, tab: "home", artist: a.id })}
+      <div data-plan-row={a.id} onClick={() => setState({ ...state, tab: "home", artist: a.id })}
         className={"duo-lrow" + (isLive ? " live" : "")}
         style={{ cursor: "pointer", margin: 0, paddingLeft: 4 }}>
         <div style={{ width: 72, flexShrink: 0 }}>

@@ -392,8 +392,112 @@ try {
   check(rule.mid === "00:02" && rule.midTop === "00:57", `midnight rollover: a 23:57 grid steps to 00:02 and tops out at 00:57 (${rule.mid}, ${rule.midTop})`);
   await ectx.close();
 
+  // Codex P1/P2s on d35f737, reproduced on ARC 2026 Friday: AZZECCA 16:00–17:30
+  // (Grid) and TIGA B2B BRUNELLO 16:00–17:30 (Expansions) split at 17:25 leave
+  // TIGA 17:25–17:30, still over ZULAN 17:00–18:00 (area909).
+  //   one split per act  (Jake's ruling) splitting TIGA/ZULAN used to overwrite
+  //                      TIGA's partner, so AZZECCA's clash came back and TIGA
+  //                      read 16:00–17:15. It is refused, atomically, and the
+  //                      sheet names the split holding it;
+  //   plan order         rows follow the arrival, so ZULAN 17:00 sits above
+  //                      TIGA's 17:25 and prev/walk/tight read true neighbours;
+  //   reminder wording   a delayed arrival is "you arrive in", web and native.
+  const AFID = "arc-2026", AZ = "arc-azzecca-grid-d1", TI = "arc-tiga-b2b-brunello-expansions-d1", ZU = "arc-zulan-area909-d1";
+  const actx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 900 } });
+  await wireVendor(actx);
+  await actx.clock.install({ time: new Date("2026-09-04T21:30:00Z") });   // Fri Sep 4, 4:30 PM CDT
+  await actx.addInitScript(([fid, ids]) => {
+    if (sessionStorage.getItem("__seeded")) return;
+    sessionStorage.setItem("__seeded", "1");
+    localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+    localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(ids));
+  }, [AFID, [AZ, TI, ZU]]);
+  const ap = await actx.newPage(); ap.on("pageerror", e => errors.push(e.message));
+  const aboot = async () => {
+    await ap.goto(`http://127.0.0.1:${PORT}/index.html?f=${AFID}&tab=home`, { waitUntil: "domcontentloaded" });
+    await ap.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, AFID, { timeout: 60000 });
+    await ap.clock.runFor(1200);
+  };
+  await aboot();
+  const arc = await ap.evaluate(([fid, az, ti, zu]) => {
+    const A = id => ARTISTS.find(a => a.id === id), key = `${fid}_attend_v1`;
+    const raw = () => localStorage.getItem(key);
+    const w = id => { const x = attendWindow(A(id)); return `${x.start}-${x.end}${x.with ? ">" + x.with : ""}`; };
+    const blockerOf = (a, b) => typeof splitBlocker === "function" ? splitBlocker(a, b) : null;   // absent before the fix
+    const r = { pre: setsClash(A(az), A(ti)) && setsClash(A(ti), A(zu)) };
+    r.first = splitNight(A(az), A(ti), toNightMin("17:25")) !== false;
+    r.afterFirst = { az: w(az), ti: w(ti), clearedAzTi: !setsClash(A(az), A(ti)), tiZu: setsClash(A(ti), A(zu)) };
+    // Refused, both orders and both acts already paired: nothing is written.
+    const before = raw();
+    r.blocker = (b => b && [b.act.id, b.partner.id])(blockerOf(A(ti), A(zu)));
+    r.refused = [splitNight(A(ti), A(zu), toNightMin("17:15")), splitNight(A(zu), A(ti), toNightMin("17:15")), splitNight(A(az), A(zu), toNightMin("17:10"))];
+    r.unchanged = raw() === before && !setsClash(A(az), A(ti)) && w(ti) === `17:25-17:30>${az}`;
+    // The plan follows the arrival.
+    r.plan = buildTonightsPlan({ saved: [az, ti, zu] }).map(p => [p.artist.id, p.win.start, p.prev ? p.prev.id : null]);
+    // The same pair can still be adjusted.
+    r.adjust = (splitNight(A(az), A(ti), toNightMin("17:10")) !== false) && w(az) === `16:00-17:10>${ti}` && w(ti) === `17:10-17:30>${az}`;
+    // Reset, then the other pair splits.
+    resetAttendWindow(az); resetAttendWindow(ti);
+    r.resplit = (splitNight(A(ti), A(zu), toNightMin("17:15")) !== false) && w(ti) === `16:00-17:15>${zu}` && w(zu) === `17:15-18:00>${ti}` && w(az) === "16:00-17:30";
+    // A partner that is no longer saved, or no longer in the lineup, locks
+    // nothing: the act it pointed at may join a new split. Stored windows are
+    // left alone (no repair of old saved plans).
+    resetAttendWindow(ti); resetAttendWindow(zu);
+    splitNight(A(az), A(ti), toNightMin("17:25"));
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([ti, zu]));
+    r.unsavedFree = !blockerOf(A(ti), A(zu)) && (splitNight(A(ti), A(zu), toNightMin("17:15")) !== false) && w(ti) === `16:00-17:15>${zu}`;
+    r.orphanKept = JSON.parse(raw())[az]?.with === ti;
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([az, ti, zu]));
+    localStorage.setItem(key, JSON.stringify({ [ti]: { start: "17:25", end: "17:30", with: "arc-gone-d1" }, "arc-gone-d1": { start: "16:00", end: "17:25", with: ti } }));
+    r.goneFree = !blockerOf(A(ti), A(zu)) && splitNight(A(ti), A(zu), toNightMin("17:15")) !== false;
+    r.goneKept = !!JSON.parse(raw())["arc-gone-d1"];
+    // Back to the ruled case for the UI and the reminders below.
+    localStorage.setItem(key, "{}");
+    splitNight(A(az), A(ti), toNightMin("17:25"));
+    return r;
+  }, [AFID, AZ, TI, ZU]);
+  check(arc.pre && arc.first && arc.afterFirst.clearedAzTi && arc.afterFirst.tiZu, `fixture: AZZECCA/TIGA split at 17:25 clears that clash and leaves TIGA over ZULAN (${JSON.stringify(arc.afterFirst)})`);
+  check(arc.blocker?.[0] === TI && arc.blocker?.[1] === AZ, `TIGA/ZULAN is blocked by TIGA's split with AZZECCA (${arc.blocker})`);
+  check(arc.refused.every(x => x === false) && arc.unchanged, `a second split is refused in either order and writes nothing: both first-split windows unchanged, AZZECCA/TIGA still clear (${arc.refused})`);
+  check(arc.plan.map(p => p[0]).join() === [AZ, ZU, TI].join() && arc.plan[2][2] === ZU && arc.plan[1][2] === AZ, `plan ordered by arrival: AZZECCA 16:00, ZULAN 17:00, TIGA 17:25, each prev its true neighbour (${JSON.stringify(arc.plan)})`);
+  check(arc.adjust, "the same pair can be re-split at a new time");
+  check(arc.resplit, "after Reset, TIGA/ZULAN splits and AZZECCA is whole");
+  check(arc.unsavedFree && arc.orphanKept, `an unsaved partner does not lock the act out of a new split, and its stored window is kept (${arc.unsavedFree}, ${arc.orphanKept})`);
+  check(arc.goneFree && arc.goneKept, `a partner gone from the lineup does not lock the act out, and its stored window is kept (${arc.goneFree}, ${arc.goneKept})`);
+
+  // The refusal through the real sheet, then the reminders.
+  await aboot();
+  await ap.locator('[aria-label="Follow your night: open my night"]').first().click({ timeout: 20000 }); await ap.clock.runFor(600); await ap.waitForTimeout(200);
+  const order = await ap.evaluate(() => [...document.querySelectorAll("[data-plan-row]")].map(e => e.getAttribute("data-plan-row")));
+  check(order.indexOf(ZU) >= 0 && order.indexOf(ZU) < order.indexOf(TI), `rendered night lists ZULAN above TIGA (${order.join(", ")})`);
+  await ap.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-night-order-390.png` : "/dev/null" }).catch(() => {});
+  await ap.locator("button", { hasText: /^Resolve$/ }).first().click(); await ap.clock.runFor(300);
+  await ap.locator("button", { hasText: /^Split the night$/ }).first().click(); await ap.clock.runFor(300);
+  const ref = await ap.evaluate(() => ({ text: document.querySelector("[data-split-refused]")?.innerText || "", slider: !!document.querySelector("#split-switch"), confirm: !!document.querySelector("[data-split-confirm]") }));
+  await ap.locator("[data-split-refused]").scrollIntoViewIfNeeded().catch(() => {});
+  await ap.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-second-split-refused-390.png` : "/dev/null" }).catch(() => {});
+  check(/^(AZZECCA is already split with TIGA B2B BRUNELLO|TIGA B2B BRUNELLO is already split with AZZECCA)\./m.test(ref.text) && /Reset/.test(ref.text) && !ref.slider && !ref.confirm, `the sheet refuses, names the existing partner and says how to Reset, with no slider or Split here ("${ref.text.replace(/\n/g, " | ")}")`);
+  const rem = await ap.evaluate(([az, ti, zu]) => {
+    const state = { saved: [az, ti, zu] };
+    let sched = null; const keep = window.Capacitor;
+    window.Capacitor = { isNativePlatform: () => true, Plugins: { LocalNotifications: { cancel: () => Promise.resolve(), schedule: o => { sched = o.notifications.map(n => `${n.title} | ${n.body}`); return Promise.resolve(); } } } };
+    try { scheduleReminders(state, () => {}); } finally { if (keep === undefined) delete window.Capacitor; else window.Capacitor = keep; }
+    window.__web = [];
+    scheduleReminders(state, (t, o) => window.__web.push(`${t} | ${o.body}`));
+    return { sched, pend: JSON.parse(localStorage.getItem("reminders_v1") || "[]").map(p => `${p.id}:${p.late}`) };
+  }, [AZ, TI, ZU]);
+  await ap.clock.runFor(41 * 60000);   // 4:30 → 5:11 PM, past both fire times (4:45, 5:10)
+  const web = await ap.evaluate(() => window.__web);
+  const want = { ti: "TIGA B2B BRUNELLO: you arrive in 15 min | Expansions · you arrive 5:25 PM", zu: /^ZULAN starts in 15 min \| .+ · 5:00 PM$/ };
+  const firstOf = (xs, n) => (xs || []).find(x => x.startsWith(n)) || "";
+  check(firstOf(rem.sched, "TIGA") === want.ti && want.zu.test(firstOf(rem.sched, "ZULAN")), `native payload: the delayed arrival says "you arrive in", a whole set still "starts in" (${JSON.stringify(rem.sched)})`);
+  check(firstOf(web, "TIGA") === want.ti && want.zu.test(firstOf(web, "ZULAN")) && web.length === 2, `web reminders fire with the same wording (${JSON.stringify(web)})`);
+  check(rem.pend.includes(`${TI}:true`) && rem.pend.includes(`${ZU}:false`), `the persisted slate carries late, so a reload rehydrates the same wording (${rem.pend})`);
+  await actx.close();
+
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);
   await browser.close();
 } finally { server.kill(); }
 if (failed) { console.log(`✗ split the night: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`✓ split the night: ${checks} checks (split clears the clash everywhere, persists, resets; keep-both accepts; banner counts clashes)`);
+console.log(`✓ split the night: ${checks} checks (split clears the clash everywhere, persists, resets; one split per act; plan by arrival; keep-both accepts; banner counts clashes)`);

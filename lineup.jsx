@@ -2612,6 +2612,19 @@ function SplitNightSheet({ pair, onDone, onCancel }) {
   const fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
   const sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;
   const crBtn = { ...fieldIconBtn, width: "auto", padding: "0 12px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
+  // One split per act: name the split already holding it and the way out.
+  const blocked = splitBlocker(first, second);
+  if (blocked) return (
+    <div role="group" aria-label="Split the night" data-split-sheet data-split-refused style={{ margin: "4px 20px 12px", padding: "12px 14px 6px", borderRadius: 14, background: "var(--paper-2)" }}>
+      <div style={{ ..._fieldEyebrow, color: "var(--ink-2)" }}>Split the night</div>
+      <p style={{ margin: "8px 0", fontSize: 15, lineHeight: "20px", overflowWrap: "anywhere" }}>
+        <b>{actDisplayName(blocked.act.name)}</b> is already split with <b>{actDisplayName(blocked.partner.name)}</b>. An act can be in one split at a time. To split it with another set, tap Reset on its row in your night first.
+      </p>
+      <div style={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", borderTop: "1px solid var(--line)" }}>
+        <button onClick={onCancel} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>OK</button>
+      </div>
+    </div>
+  );
   return (
     <div role="group" aria-label="Split the night" data-split-sheet style={{ margin: "4px 20px 12px", padding: "12px 14px 6px", borderRadius: 14, background: "var(--paper-2)" }}>
       <div style={{ ..._fieldEyebrow, color: "var(--ink-2)" }}>Split the night</div>
@@ -2632,7 +2645,7 @@ function SplitNightSheet({ pair, onDone, onCancel }) {
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", borderTop: "1px solid var(--line)" }}>
         <button onClick={onCancel} style={crBtn}>Cancel</button>
-        <button data-split-confirm onClick={() => { splitNight(first, second, sw); onDone?.(); }} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Split here</button>
+        <button data-split-confirm onClick={() => { if (splitNight(first, second, sw)) onDone?.(); }} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>Split here</button>
       </div>
     </div>
   );

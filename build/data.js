@@ -1688,6 +1688,28 @@ function snapSplitSwitch(v, lo, hi) {
   var top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
   return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
 }
+function splitBlocker(a, b, fid) {
+  var _loop2 = function () {
+      if (!x || !other) return 0;
+      var w = attendWindow(x, fid);
+      if (w.partial && w.with && w.with !== other.id) {
+        var partner = _attendLineup(fid).find(p => p.id === w.with);
+        if (partner) return {
+          v: {
+            act: x,
+            partner
+          }
+        };
+      }
+    },
+    _ret;
+  for (var [x, other] of [[a, b], [b, a]]) {
+    _ret = _loop2();
+    if (_ret === 0) continue;
+    if (_ret) return _ret.v;
+  }
+  return null;
+}
 function splitNight(a, b, switchMin, fid) {
   var {
     first,
@@ -1696,10 +1718,11 @@ function splitNight(a, b, switchMin, fid) {
     hi,
     ok
   } = splitRange(a, b);
-  if (!ok) return;
+  if (!ok || splitBlocker(a, b, fid)) return false;
   var sw = snapSplitSwitch(switchMin, lo, hi);
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
 }
 function useAttendVersion() {
   var [v, setV] = React.useState(0);
@@ -1848,7 +1871,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop2 = function () {
+  var _loop3 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -1881,10 +1904,10 @@ function diffSchedule(oldActs, newActs, cfg) {
         startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null
       });
     },
-    _ret;
+    _ret2;
   for (var [id, o] of before) {
-    _ret = _loop2();
-    if (_ret === 0) continue;
+    _ret2 = _loop3();
+    if (_ret2 === 0) continue;
   }
   for (var [_id2, n] of after) {
     if (before.has(_id2)) continue;
@@ -2005,7 +2028,7 @@ function _pinUnresolvedTimes(acts, ev, attach) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop3 = function () {
+  var _loop4 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -2023,7 +2046,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop3()) continue;
+    if (_loop4()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }

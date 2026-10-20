@@ -830,7 +830,7 @@ function buildTonightsPlan(state) {
   var nowMin = toNightMin(NOW.time);
   var saved = savedInLineup(state.saved);
   var lineup = activeLineup(saved);
-  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(attendWindow(x).start) - toNightMin(attendWindow(y).start) || toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
@@ -3716,6 +3716,7 @@ function PlanRow({
       color: tight ? "var(--clash)" : "var(--ink-2)"
     }
   }, walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "Same stage" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · leave by ${leaveByLabel}`)), React.createElement("div", {
+    "data-plan-row": a.id,
     onClick: () => setState({
       ...state,
       tab: "home",

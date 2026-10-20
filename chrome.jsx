@@ -1123,6 +1123,15 @@ function setReminderLeadMin(mins) {
 //
 // Web path: setTimeout each pending reminder and persist to localStorage
 // so a reload can rehydrate any that haven't fired yet.
+// One wording for every reminder path (native, web, rehydrate). A split that
+// moves the arrival past the published start is an arrival, not a start
+// (Codex P2 on #335), as the in-app reminder already says.
+function _reminderText(p) {
+  const lead = p.leadMin || 15;
+  return p.late
+    ? { title: `${p.name}: you arrive in ${lead} min`, body: `${p.stageName} · you arrive ${fmt12(p.start)}` }
+    : { title: `${p.name} starts in ${lead} min`, body: `${p.stageName} · ${fmt12(p.start)}` };
+}
 function scheduleReminders(state, showLocal) {
   const ln = _capLocalNotifications();
   const now = Date.now();
@@ -1153,6 +1162,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs, leadMin,
     });
   });
@@ -1175,8 +1185,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id:    p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body:  `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body:  _reminderText(p).body,
           schedule: { at: new Date(p.fireMs), allowWhileIdle: true },
           extra: { artistId: p.id, url: "/" },
         })),
@@ -1192,8 +1202,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     const handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: { url: "/" },
       });
@@ -1220,10 +1230,9 @@ function loadAndReschedule(showLocal) {
     const live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      const lead = r.leadMin || 15;
       const handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: { url: "/" },
         });
