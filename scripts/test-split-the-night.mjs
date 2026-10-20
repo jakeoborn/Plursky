@@ -187,12 +187,46 @@ try {
     const plan = buildTonightsPlan({ saved: [x.id, y.id, z.id] });
     const rowZ = plan.find(p => p.artist.id === z.id);
     const pairs = plan.flatMap(p => (p.clashes || []).map(b => [b.id, p.artist.id].join(">")));
+    const alertXZ = computeAlerts([x.id, y.id, z.id], night, "00:00").some(o => o.kind === "conflict" && o.id === `conflict_${x.id}_${z.id}`);
     if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
     if (kb == null) localStorage.removeItem(CLASH_KEPT_BOTH_KEY); else localStorage.setItem(CLASH_KEPT_BOTH_KEY, kb);
-    return { names: t.map(a => `${a.name} ${a.start}-${a.end}`), zConflict: !!rowZ?.conflict, xz: pairs.includes(`${x.id}>${z.id}`), xy: pairs.includes(`${x.id}>${y.id}`), n: pairs.length };
+    return { names: t.map(a => `${a.name} ${a.start}-${a.end}`), zConflict: !!rowZ?.conflict, xz: pairs.includes(`${x.id}>${z.id}`), xy: pairs.includes(`${x.id}>${y.id}`), n: pairs.length, alertXZ };
   }, FID);
   check(!!tri, "a real Friday triple (first spans third, middle clear of third) exists to test");
   check(tri && tri.zConflict && tri.xz && !tri.xy, `accepting the first pair leaves the first/third clash reported (${tri ? tri.names.join(" · ") : "none"}; pairs ${tri?.n})`);
+  check(tri && tri.alertXZ, "the in-app alerts report the same first/third clash (every pair, not neighbours)");
+
+  // Codex P2s (#335): after Jake's split at 3:00 (VC keeps 2:00–3:00, PAWSA
+  // 3:00–4:00), Today's row status and the in-app reminder follow the attend
+  // window, not the published set.
+  // NOW is a Proxy over the clock, so the clock moves (AT = 1:00 AM ET).
+  const keepP2 = await page.evaluate(([fid, vc, pw]) => {
+    const key = `${fid}_saved_v1`, keep = localStorage.getItem(key);
+    localStorage.setItem(key, JSON.stringify([vc, pw]));
+    const L = activeLineup();
+    splitNight(L.find(a => a.id === vc), L.find(a => a.id === pw), toNightMin("03:00"));
+    return keep;
+  }, [FID, VC, PW]);
+  const rowsAt = async iso => { await page.clock.setSystemTime(new Date(iso)); return page.evaluate(([vc, pw]) => {
+    const plan = buildTonightsPlan({ saved: [vc, pw] });
+    const v = plan.find(p => p.artist.id === vc), p = plan.find(p => p.artist.id === pw);
+    return { now: NOW.time, v: { live: v.isLive, past: v.isPast }, p: { live: p.isLive, mins: p.minsUntil } };
+  }, [VC, PW]); };
+  const r1 = await rowsAt("2026-10-17T06:40:00Z"), r2 = await rowsAt("2026-10-17T07:10:00Z");
+  await page.clock.setSystemTime(new Date(AT));
+  const p2 = await page.evaluate(([fid, vc, pw, keep]) => {
+    const a1 = computeAlerts([vc, pw], NOW.night, "02:40").find(o => o.id === `remind_${pw}`);
+    const a0 = computeAlerts([vc, pw], NOW.night, "02:10").find(o => o.id === `remind_${pw}`);
+    resetAttendWindow(vc); resetAttendWindow(pw);
+    const key = `${fid}_saved_v1`;
+    if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
+    return { a1: a1 ? a1.title + " | " + a1.body : null, a0: !!a0 };
+  }, [FID, VC, PW, keepP2]);
+  Object.assign(p2, { pw240: r1.p, vc240: r1.v.live, vc310: r2.v, pw310: r2.p.live, t: [r1.now, r2.now] });
+  check(!p2.pw240.live && p2.pw240.mins === 20 && p2.vc240, `2:40, before the switch: PAWSA counts down 20 min (at ${p2.t[0]}: live ${p2.pw240.live}, ${p2.pw240.mins}m), VC is Live`);
+  check(!p2.vc310.live && p2.vc310.past && p2.pw310, `3:10, after the switch: VC is Done, PAWSA is Live (vc live ${p2.vc310.live}, past ${p2.vc310.past})`);
+  check(p2.a1 && /you arrive in 20 min/.test(p2.a1) && /3:00 AM/.test(p2.a1), `the in-app reminder counts to the arrival (${p2.a1})`);
+  check(!p2.a0, "at 2:10 the published 2:30 start raises no reminder: the arrival is 50 min out");
 
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);
   await browser.close();

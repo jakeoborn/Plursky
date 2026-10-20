@@ -725,9 +725,12 @@ function buildTonightsPlan(state) {
     // you arrive at the switch time and leave the earlier set at it.
     const win       = attendWindow(a);
     const startMin  = toNightMin(win.start);
-    const endMin    = toNightMin(a.end);
+    const endMin    = toNightMin(win.end);
     const minsUntil = startMin - nowMin;
-    const isLive    = isSetLive(a);
+    // Live/past follow the attend window too (Codex P2 on #335): a late
+    // arrival counts down until the switch, an early leave stops being Live
+    // at it. A whole set keeps isSetLive, which owns the real-date checks.
+    const isLive    = win.partial ? nowMin >= startMin && nowMin < endMin : isSetLive(a);
     const isPast    = nowMin >= endMin;
     // walk is null when the pair is unmeasured. A LEAVE BY time and a "tight"
     // warning are both distance claims, so neither may be inferred from an
@@ -759,21 +762,26 @@ function computeAlerts(savedIds, day, timeStr) {
   const out = [];
 
   for (const a of todaySaved) {
-    const s = toNightMin(a.start);
-    const minsAway = s - nowMin;
+    // The attend start, not the published one (Codex P2 on #335): after a
+    // split the reminder fires before the user's arrival, the way the native
+    // reminders already do.
+    const win = attendWindow(a);
+    const late = win.partial && win.start !== a.start;
+    const minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
       const stage = STAGES.find(st => st.id === a.stage);
       out.push({
         id: `remind_${a.id}`, kind: "reminder",
-        title: `${a.name} in ${minsAway} min`,
-        body: `${stage?.name || a.stage} · ${fmt12(a.start)}`,
+        title: late ? `${a.name}: you arrive in ${minsAway} min` : `${a.name} in ${minsAway} min`,
+        body: `${stage?.name || a.stage} · ${late ? `you arrive ${fmt12(win.start)}` : fmt12(a.start)}`,
         time: timeStr, unread: true,
       });
     }
   }
 
-  for (let i = 0; i < todaySaved.length - 1; i++) {
-    const a = todaySaved[i], b = todaySaved[i + 1];
+  // Every pair, not only neighbours: same reason as buildTonightsPlan.
+  for (let i = 0; i < todaySaved.length; i++) for (let j = i + 1; j < todaySaved.length; j++) {
+    const a = todaySaved[i], b = todaySaved[j];
     if (setsClash(a, b)) {
       out.push({
         id: `conflict_${a.id}_${b.id}`, kind: "conflict",

@@ -836,9 +836,9 @@ function buildTonightsPlan(state) {
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
     var win = attendWindow(a);
     var startMin = toNightMin(win.start);
-    var endMin = toNightMin(a.end);
+    var endMin = toNightMin(win.end);
     var minsUntil = startMin - nowMin;
-    var isLive = isSetLive(a);
+    var isLive = win.partial ? nowMin >= startMin && nowMin < endMin : isSetLive(a);
     var isPast = nowMin >= endMin;
     var known = walk != null && walk > 0;
     var leaveBy = known ? startMin - walk : null;
@@ -869,15 +869,16 @@ function computeAlerts(savedIds, day, timeStr) {
   var todaySaved = activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var out = [];
   var _loop = function (a) {
-    var s = toNightMin(a.start);
-    var minsAway = s - nowMin;
+    var win = attendWindow(a);
+    var late = win.partial && win.start !== a.start;
+    var minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
       var stage = STAGES.find(st => st.id === a.stage);
       out.push({
         id: `remind_${a.id}`,
         kind: "reminder",
-        title: `${a.name} in ${minsAway} min`,
-        body: `${stage?.name || a.stage} · ${fmt12(a.start)}`,
+        title: late ? `${a.name}: you arrive in ${minsAway} min` : `${a.name} in ${minsAway} min`,
+        body: `${stage?.name || a.stage} · ${late ? `you arrive ${fmt12(win.start)}` : fmt12(a.start)}`,
         time: timeStr,
         unread: true
       });
@@ -886,9 +887,9 @@ function computeAlerts(savedIds, day, timeStr) {
   for (var a of todaySaved) {
     _loop(a);
   }
-  for (var i = 0; i < todaySaved.length - 1; i++) {
+  for (var i = 0; i < todaySaved.length; i++) for (var j = i + 1; j < todaySaved.length; j++) {
     var _a = todaySaved[i],
-      b = todaySaved[i + 1];
+      b = todaySaved[j];
     if (setsClash(_a, b)) {
       out.push({
         id: `conflict_${_a.id}_${b.id}`,
