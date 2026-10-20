@@ -121,7 +121,7 @@ function NightWizard({
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
-    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (setsClash(sets[i], sets[j])) clashes++;
+    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (setsClash(sets[i], sets[j], undefined, localIds)) clashes++;
     return {
       ...d,
       count: sets.length,
@@ -130,7 +130,7 @@ function NightWizard({
   });
   var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var conflictIds = new Set();
-  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (setsClash(sorted[i], sorted[j])) {
+  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (setsClash(sorted[i], sorted[j], undefined, localIds)) {
     conflictIds.add(sorted[i].id);
     conflictIds.add(sorted[j].id);
   }

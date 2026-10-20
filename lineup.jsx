@@ -127,7 +127,8 @@ function NightWizard({ state, setState, onClose }) {
 
   const [local, setLocal] = React.useState(() => new Set(state.saved));
   // Every read below acts on `local`, the in-progress selection, so the
-  // weekend is resolved from `local` too. The ICS export already did; the
+  // weekend is resolved from `local` too, and so are clashes: a split whose
+  // partner is deselected here previews as the whole set Save will leave. The ICS export already did; the
   // counts, the list, the gap fits and Auto-fill resolved from storage and
   // hid other-weekend picks until Save (round 5, same defect as the share).
   const localIds = Array.from(local);
@@ -140,7 +141,7 @@ function NightWizard({ state, setState, onClose }) {
     let clashes = 0;
     for (let i = 0; i < sets.length; i++)
       for (let j = i + 1; j < sets.length; j++)
-        if (setsClash(sets[i], sets[j])) clashes++;
+        if (setsClash(sets[i], sets[j], undefined, localIds)) clashes++;
     return { ...d, count: sets.length, clashes };
   });
 
@@ -151,7 +152,7 @@ function NightWizard({ state, setState, onClose }) {
   const conflictIds = new Set();
   for (let i = 0; i < sorted.length; i++)
     for (let j = i + 1; j < sorted.length; j++)
-      if (setsClash(sorted[i], sorted[j])) { conflictIds.add(sorted[i].id); conflictIds.add(sorted[j].id); }
+      if (setsClash(sorted[i], sorted[j], undefined, localIds)) { conflictIds.add(sorted[i].id); conflictIds.add(sorted[j].id); }
 
   // Build interleaved timeline: sets + gap items
   const items = [];

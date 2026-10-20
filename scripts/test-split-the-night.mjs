@@ -494,6 +494,77 @@ try {
   check(firstOf(rem.sched, "TIGA") === want.ti && want.zu.test(firstOf(rem.sched, "ZULAN")), `native payload: the delayed arrival says "you arrive in", a whole set still "starts in" (${JSON.stringify(rem.sched)})`);
   check(firstOf(web, "TIGA") === want.ti && want.zu.test(firstOf(web, "ZULAN")) && web.length === 2, `web reminders fire with the same wording (${JSON.stringify(web)})`);
   check(rem.pend.includes(`${TI}:true`) && rem.pend.includes(`${ZU}:false`), `the persisted slate carries late, so a reload rehydrates the same wording (${rem.pend})`);
+
+  // Codex P2 on 5774e37, a stored split and the festival night. A schedule
+  // update that moves a partner to another night or weekend ends the split
+  // even when its clock times still contain the old half; festival night is
+  // the app's identity (day + a weekend both play), so a 01:00 set is still
+  // the night before. A same-night time change that still fits keeps it.
+  const night = await ap.evaluate(([fid, az, ti]) => {
+    const A = id => ARTISTS.find(a => a.id === id), key = `${fid}_attend_v1`;
+    const w = id => { const x = attendWindow(A(id)); return x.partial ? `${x.start}-${x.end}` : "whole"; };
+    const r = {};
+    localStorage.setItem(key, "{}"); splitNight(A(az), A(ti), toNightMin("17:25"));
+    const t = A(ti), keep = { day: t.day, end: t.end, wk: t.weekend, azwk: A(az).weekend };
+    t.day = keep.day + 1; r.movedDay = [w(az), w(ti)]; t.day = keep.day;
+    t.weekend = "W2"; A(az).weekend = "W1"; r.movedWeekend = [w(az), w(ti)];
+    A(az).weekend = "both"; r.bothWeekend = [w(az), w(ti)];
+    if (keep.wk === undefined) delete t.weekend; else t.weekend = keep.wk;
+    if (keep.azwk === undefined) delete A(az).weekend; else A(az).weekend = keep.azwk;
+    t.end = "17:45"; r.adjusted = [w(az), w(ti)]; t.end = keep.end;
+    r.restored = [w(az), w(ti)];
+    // An overnight pair on one festival night: 23:30-01:30 and 00:30-02:30.
+    const mk = (id, start, end) => ({ ...A(az), id, name: id.toUpperCase(), start, end });
+    ARTISTS.push(mk("zz-late-a", "23:30", "01:30"), mk("zz-late-b", "00:30", "02:30"));
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([...JSON.parse(localStorage.getItem(`${fid}_saved_v1`)), "zz-late-a", "zz-late-b"]));
+    r.overnightSplit = splitNight(A("zz-late-a"), A("zz-late-b"), toNightMin("01:00")) !== false;
+    r.overnight = [w("zz-late-a"), w("zz-late-b"), setsClash(A("zz-late-a"), A("zz-late-b"))];
+    ARTISTS.splice(ARTISTS.findIndex(a => a.id === "zz-late-a"), 2);
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(JSON.parse(localStorage.getItem(`${fid}_saved_v1`)).filter(id => !id.startsWith("zz-"))));
+    return r;
+  }, [AFID, AZ, TI]);
+  check(night.movedDay.join() === "whole,whole", `a partner moved to another night: both read as whole sets (${night.movedDay})`);
+  check(night.movedWeekend.join() === "whole,whole", `partners on different weekends: both whole (${night.movedWeekend})`);
+  check(night.bothWeekend.join() === "16:00-17:25,17:25-17:30", `a partner playing both weekends keeps the split (${night.bothWeekend})`);
+  check(night.adjusted.join() === "16:00-17:25,17:25-17:30", `a same-night time change that still fits keeps the split (${night.adjusted})`);
+  check(night.restored.join() === "16:00-17:25,17:25-17:30", `restoring the schedule restores the split, stored data untouched (${night.restored})`);
+  check(night.overnightSplit && night.overnight.join() === "23:30-01:00,01:00-02:30,false", `an overnight pair across midnight keeps its split on one festival night (${night.overnight})`);
+
+  // Codex P2 on 5774e37, Build My Night previews the selection Save will
+  // write. AZZECCA/TIGA split at 17:00; dropping TIGA in the wizard leaves
+  // AZZECCA whole (16:00-17:30) over ZULAN (17:00), and the wizard must say so
+  // before Save, as the saved plan does after. With TIGA kept, the split holds.
+  await ap.evaluate(([fid, az, ti, zu]) => {
+    const A = id => ARTISTS.find(a => a.id === id);
+    localStorage.setItem(`${fid}_attend_v1`, "{}");
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([az, ti, zu]));
+    splitNight(A(az), A(ti), toNightMin("17:00"));
+    localStorage.setItem("plursky_lineup_view", "list");
+  }, [AFID, AZ, TI, ZU]);
+  await ap.goto(`http://127.0.0.1:${PORT}/index.html?f=${AFID}&tab=lineup`, { waitUntil: "domcontentloaded" });
+  await ap.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, AFID, { timeout: 60000 });
+  await ap.clock.runFor(4000);
+  // Lineup scrolls to "now", under its sticky clock; the header button is
+  // clicked in place rather than scrolled back up to.
+  await ap.locator("[data-lineup-actions] button", { hasText: /^My night$/ }).first().evaluate(b => b.click()); await ap.clock.runFor(500);
+  const wiz = () => ap.evaluate(() => ({
+    day: (document.body.innerText.match(/(\d+) CLASH/) || [])[1] || "0",
+    marked: [...document.querySelectorAll("button[aria-label^='Drop ']")].filter(b => /Clash ·/.test(b.parentElement.innerText)).map(b => b.getAttribute("aria-label").slice(5)),
+  }));
+  const kept = await wiz();
+  check(kept.day === "1" && kept.marked.sort().join() === "TIGA B2B BRUNELLO,ZULAN", `wizard with TIGA kept: the split holds, only TIGA/ZULAN clash (${JSON.stringify(kept)})`);
+  await ap.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-wizard-tiga-kept-390.png` : "/dev/null" }).catch(() => {});
+  await ap.getByRole("button", { name: "Drop TIGA B2B BRUNELLO" }).click(); await ap.clock.runFor(300);
+  const dropped = await wiz();
+  await ap.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-wizard-tiga-dropped-390.png` : "/dev/null" }).catch(() => {});
+  check(dropped.day === "1" && dropped.marked.sort().join() === "AZZECCA,ZULAN", `wizard after dropping TIGA, before Save: AZZECCA (now whole) clashes ZULAN (${JSON.stringify(dropped)})`);
+  await ap.getByRole("button", { name: "Save" }).first().click(); await ap.clock.runFor(500);
+  const after = await ap.evaluate(([fid, az, ti, zu]) => {
+    const A = id => ARTISTS.find(a => a.id === id);
+    return { saved: JSON.parse(localStorage.getItem(`${fid}_saved_v1`)), azZu: setsClash(A(az), A(zu)), az: attendWindow(A(az)).partial };
+  }, [AFID, AZ, TI, ZU]);
+  check(!after.saved.includes(TI) && after.azZu && !after.az, `after Save the plan matches the preview: TIGA gone, AZZECCA whole, AZZECCA/ZULAN clash (${JSON.stringify(after)})`);
+
   await actx.close();
 
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);

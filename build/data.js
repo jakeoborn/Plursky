@@ -1578,7 +1578,13 @@ function _attendFits(a, w) {
     we = toNightMin(w.end);
   return ws >= s && we <= e && ws < we && !(ws === s && we === e);
 }
-function attendWindow(a, fid) {
+function _attendSameNight(a, b) {
+  if (a.day !== b.day) return false;
+  var wa = a.weekend,
+    wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+function attendWindow(a, fid, savedIds) {
   var whole = {
     start: a && a.start,
     end: a && a.end,
@@ -1590,11 +1596,11 @@ function attendWindow(a, fid) {
     w = all[a.id];
   if (!_attendFits(a, w)) return whole;
   if (w.with) {
-    var saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    var saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
     if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
     var partner = _attendLineup(fid).find(x => x.id === w.with);
     var back = all[w.with];
-    if (!partner || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
   }
   return {
     start: w.start,
@@ -1652,11 +1658,11 @@ function acceptClash(a, b) {
   } catch {}
   _l3Changed();
 }
-function attendOverlaps(a, b, fid) {
-  return overlaps(attendWindow(a, fid), attendWindow(b, fid));
+function attendOverlaps(a, b, fid, savedIds) {
+  return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds));
 }
-function setsClash(a, b, fid) {
-  return attendOverlaps(a, b, fid) && !clashAccepted(a, b);
+function setsClash(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b);
 }
 function setsOverlapAccepted(a, b, fid) {
   return attendOverlaps(a, b, fid) && clashAccepted(a, b);

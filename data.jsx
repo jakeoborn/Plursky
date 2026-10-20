@@ -2060,10 +2060,20 @@ function _attendFits(a, w) {
   const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
   return ws >= s && we <= e && ws < we && !(ws === s && we === e);
 }
+// Same festival night: the act's festival day (its night, so a 01:00 set
+// belongs to the evening before) and a weekend both play, the rule
+// _schedClash and the plan status use. Not calendar dates.
+function _attendSameNight(a, b) {
+  if (a.day !== b.day) return false;
+  const wa = a.weekend, wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
 // The part of `a` the user will be at: their window while it still sits inside
 // the set's published time, else the whole set. A schedule change that moves
 // the set out from under a window drops the window rather than trusting it.
-function attendWindow(a, fid) {
+// `savedIds` stands in for the stored saves when a screen previews a selection
+// it has not written yet (Build My Night: Codex P2 on #335).
+function attendWindow(a, fid, savedIds) {
   const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
   if (!a || !a.start || !a.end) return whole;
   const all = attendWindows(fid), w = all[a.id];
@@ -2071,16 +2081,18 @@ function attendWindow(a, fid) {
   // A split only holds while BOTH halves do. The partner must still be saved
   // (drop "Keep this", an unsave or a sync of the partner, and the window goes
   // with it), still in this festival's lineup (a schedule update can drop the
-  // act while its raw saved id stays, see savedInLineup), and still carry its
-  // own valid half pointing back here. Otherwise the user's plan for this set
+  // act while its raw saved id stays, see savedInLineup), still on the same
+  // festival night (an update can move it to another night or weekend while
+  // its clock times still contain the old half: Codex P2 on #335), and still
+  // carry its own valid half pointing back here. Otherwise the user's plan for this set
   // is the whole set again: clash, status and reminders follow it. The stored
   // windows are kept, not deleted, the way an orphan saved id is kept.
   if (w.with) {
-    const saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    const saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
     if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
     const partner = _attendLineup(fid).find(x => x.id === w.with);
     const back = all[w.with];
-    if (!partner || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
   }
   return { start: w.start, end: w.end, partial: true, with: w.with || null };
 }
@@ -2115,9 +2127,9 @@ function acceptClash(a, b) {
   _l3Changed();
 }
 // Overlap of what the user will actually attend.
-function attendOverlaps(a, b, fid) { return overlaps(attendWindow(a, fid), attendWindow(b, fid)); }
+function attendOverlaps(a, b, fid, savedIds) { return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds)); }
 // THE clash predicate: the attend windows overlap and the pair is not accepted.
-function setsClash(a, b, fid) { return attendOverlaps(a, b, fid) && !clashAccepted(a, b); }
+function setsClash(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b); }
 // Kept both: they still overlap, by the user's choice.
 function setsOverlapAccepted(a, b, fid) { return attendOverlaps(a, b, fid) && clashAccepted(a, b); }
 // The split of an overlapping pair at `switchMin`: the set that starts first
@@ -2145,10 +2157,11 @@ function snapSplitSwitch(v, lo, hi) {
   const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
   return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
 }
-// One split per act (Jake's ruling on Codex P1, #335): each act stores one
-// window with one partner, so splitting it again with a different act would
-// overwrite the first split and bring its cleared clash back. The new split is
-// refused instead and the first one kept. "Paired" is attendWindow's answer, so
+// One split per act: each act stores one window with one partner, so
+// splitting it again with a different act would overwrite the first split and
+// bring its cleared clash back (Codex P1 on #335). The new split is refused
+// instead and the first one kept; the user resets the first split to choose
+// another partner. "Paired" is attendWindow's answer, so
 // a partner that was unsaved or left the lineup locks nothing; re-splitting
 // the same pair adjusts it. Returns { act, partner } for the blocking split,
 // or null when the pair may be split.
