@@ -814,10 +814,12 @@ function App() {
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
 
-  // Auto-schedule push reminders whenever saves change (if permission already granted)
+  // Auto-schedule push reminders whenever saves change (if permission already
+  // granted), and when a split moves an arrival time (L3).
+  const attendV = useAttendVersion();
   React.useEffect(() => {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
 
   // Cloud-backup auto-push: when the user is signed in to Supabase, push their
   // saved lineup + notes 1s after the most recent change. Silent — the cloud

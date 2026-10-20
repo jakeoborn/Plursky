@@ -1330,6 +1330,16 @@ function setReminderLeadMin(mins) {
     localStorage.setItem(_REMINDER_LEAD_KEY, String(mins));
   } catch {}
 }
+function _reminderText(p) {
+  var lead = p.leadMin || 15;
+  return p.late ? {
+    title: `${p.name}: you arrive in ${lead} min`,
+    body: `${p.stageName} · you arrive ${fmt12(p.start)}`
+  } : {
+    title: `${p.name} starts in ${lead} min`,
+    body: `${p.stageName} · ${fmt12(p.start)}`
+  };
+}
 function scheduleReminders(state, showLocal) {
   var ln = _capLocalNotifications();
   var now = Date.now();
@@ -1337,8 +1347,13 @@ function scheduleReminders(state, showLocal) {
   var pending = [];
   var lineup = activeLineup(state.saved);
   state.saved.forEach(id => {
-    var a = lineup.find(x => x.id === id);
-    if (!a) return;
+    var found = lineup.find(x => x.id === id);
+    if (!found) return;
+    var win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    var a = win && win.partial ? {
+      ...found,
+      start: win.start
+    } : found;
     var startMs = _artistStartMs(a);
     if (!startMs) return;
     var fireMs = startMs - leadMin * 60000;
@@ -1351,6 +1366,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs,
       leadMin
     });
@@ -1372,8 +1388,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id: p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body: `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body: _reminderText(p).body,
           schedule: {
             at: new Date(p.fireMs),
             allowWhileIdle: true
@@ -1397,8 +1413,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: {
           url: "/"
@@ -1422,10 +1438,9 @@ function loadAndReschedule(showLocal) {
     var live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      var lead = r.leadMin || 15;
       var handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: {
             url: "/"
@@ -1814,7 +1829,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id, ids)) conflicts++;
   return {
     saved: arts.length,
     conflicts

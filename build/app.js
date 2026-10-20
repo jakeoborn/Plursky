@@ -1242,9 +1242,10 @@ function App() {
     window._pushNav = _pushNav;
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
+  var attendV = useAttendVersion();
   React.useEffect(() => {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
   React.useEffect(() => {
     var cancelled = false;
     var t = setTimeout(async () => {
