@@ -57,7 +57,9 @@ try {
     return {
       collapsed: f?.dataset.collapsed === '1', filtersH: f ? f.getBoundingClientRect().height : -1, compactH: c ? c.getBoundingClientRect().height : -1,
       filtersInert: f?.hasAttribute('inert'), compactInert: c?.hasAttribute('inert'),
-      summary: c?.querySelector('[data-lineup-expand]')?.textContent.trim(), scrollTop: sc ? sc.scrollTop : -1,
+      summary: c?.querySelector('[data-lineup-expand]')?.textContent.trim(),
+      summaryRowH: c?.querySelector('[data-lineup-expand]') ? c.querySelector('[data-lineup-expand]').parentElement.getBoundingClientRect().height : -1,
+      miniH: c?.querySelector('[data-lineup-mini]') ? c.querySelector('[data-lineup-mini]').getBoundingClientRect().height : 0, scrollTop: sc ? sc.scrollTop : -1,
       transition: f ? getComputedStyle(f).transitionDuration : null,
     };
   });
@@ -109,7 +111,10 @@ try {
     s = await state(page);
     check(s.collapsed, 'a downward scroll past the threshold does not fold the header');
     check(s.filtersH < 1, `folded header still takes ${s.filtersH}px`);
-    check(s.compactH >= 44 && s.compactH <= 56, `compact bar is ${s.compactH}px, spec says ~44–52px`);
+    // The summary row is ~44–52px; L1 adds the mini strip (chips + stages)
+    // under it, and the bar is exactly the two, never more.
+    check(s.summaryRowH >= 44 && s.summaryRowH <= 56, `compact bar's summary row is ${s.summaryRowH}px, spec says ~44–52px`);
+    check(s.miniH > 0 && s.miniH <= 52 && Math.abs(s.compactH - (s.summaryRowH + s.miniH)) <= 2, `compact bar is ${s.compactH}px for a ${s.summaryRowH}px summary row and a ${s.miniH}px mini strip`);
     check(s.filtersInert && !s.compactInert, `folded controls are not inert (filters inert=${s.filtersInert}, bar inert=${s.compactInert})`);
     check(s.summary === 'Fri 2 · Weekend 1 · All stages', `compact bar reads "${s.summary}", expected "Fri 2 · Weekend 1 · All stages"`);
     // No jump: the list's own scroll position only ever moved the way the thumb did.
@@ -175,6 +180,53 @@ try {
     check(!(await state(page)).collapsed, 'grid: an upward scroll does not bring the header back');
     await ctx.close();
   } catch (err) { check(false, `GRID block threw: ${String(err.message || err).split("\n")[0]}`); }
+
+  // ── L1: the folded bar keeps the way around ─────────────────────────────
+  // Folded (GRID opens folded), the bar still carries List/Grid, My plan and
+  // Live and a mini strip with one pill per stage; a pill brings that stage's
+  // column into view in GRID and narrows the list in LIST; the strip scrolls
+  // inside itself, never the page. 393 and 320.
+  for (const width of [393, 320]) {
+    try {
+      const { ctx, page } = await open({ view: 'grid', width });
+      await page.waitForFunction(() => !!document.querySelector('[data-grid-scroll]'), null, { timeout: 20000 });
+      await page.waitForTimeout(500);
+      const mini = () => page.evaluate(() => {
+        const m = document.querySelector('[data-lineup-compact] [data-lineup-mini]');
+        const r = m && m.getBoundingClientRect();
+        return { shown: !!r && r.height > 0 && r.bottom <= (document.querySelector('[data-lineup-compact]').getBoundingClientRect().bottom + 0.5),
+          views: m ? m.querySelectorAll('[data-mini-view]').length : 0, shows: m ? [...m.querySelectorAll('[data-mini-show]')].map(b => b.dataset.miniShow).join(',') : '',
+          pills: m ? m.querySelectorAll('[data-mini-stage]').length : 0, sideways: document.documentElement.scrollWidth > innerWidth,
+          pillH: m ? Math.min(...[...m.querySelectorAll('button')].map(b => b.getBoundingClientRect().height)) : 0 };
+      });
+      const s0 = await state(page), m0 = await mini();
+      check(s0.collapsed && m0.shown, `L1 ${width}: folded grid has no mini strip under the bar`);
+      check(m0.views === 2 && m0.shows === 'saved,now', `L1 ${width}: folded bar chips are views=${m0.views} shows="${m0.shows}" (want List/Grid, My plan, Live)`);
+      check(m0.pills >= 2, `L1 ${width}: folded bar has ${m0.pills} stage pill(s)`);
+      check(!m0.sideways, `L1 ${width}: the page scrolls sideways with the mini strip`);
+      check(m0.pillH >= 32, `L1 ${width}: a mini strip control is ${m0.pillH}px tall`);
+      const left0 = await page.evaluate(() => document.querySelector('[data-grid-scroll]').scrollLeft);
+      await page.locator('[data-lineup-mini] [data-mini-stage]').last().click();
+      await page.clock.runFor(800); await page.waitForTimeout(500);
+      const left1 = await page.evaluate(() => document.querySelector('[data-grid-scroll]').scrollLeft);
+      check(left1 > left0 + 40, `L1 ${width}: the last stage pill did not bring its column into view (scrollLeft ${left0} → ${left1})`);
+      check((await state(page)).collapsed, `L1 ${width}: a stage pill unfolded the header`);
+      await page.locator('[data-lineup-mini] [data-mini-view="list"]').click();
+      await page.clock.runFor(800); await page.waitForTimeout(500);
+      check(await page.evaluate(() => localStorage.getItem('plursky_lineup_view')) === 'list', `L1 ${width}: the folded List chip did not switch the view`);
+      if ((await state(page)).collapsed) {
+        const id = await page.locator('[data-lineup-mini] [data-mini-stage]').first().getAttribute('data-mini-stage');
+        await page.locator('[data-lineup-mini] [data-mini-stage]').first().click();
+        await page.clock.runFor(600); await page.waitForTimeout(300);
+        const pill = page.locator(`[data-lineup-mini] [data-mini-stage="${id}"]`);
+        const name = (await pill.getAttribute('aria-label')).split(',')[0];
+        check(await pill.getAttribute('aria-pressed') === 'true', `L1 ${width}: a folded stage pill does not narrow the list`);
+        const sum = (await state(page)).summary || '';
+        check(sum.includes(name), `L1 ${width}: after the ${name} pill the bar reads "${sum}" (want the stage named)`);
+      }
+      await ctx.close();
+    } catch (err) { check(false, `L1 ${width} block threw: ${String(err.message || err).split("\n")[0]}`); }
+  }
 
   // ── Rows ─────────────────────────────────────────────────────────────────
   for (const width of [320, 393]) {

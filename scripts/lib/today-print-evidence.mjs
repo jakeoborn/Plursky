@@ -130,7 +130,7 @@ export async function heroEvidence(page, cmp) {
     const ccs = clock && getComputedStyle(clock);
     const credit = document.querySelector('[data-artist-photo-credit]');
     const type = {
-      name: name ? { px: parseFloat(ncs.fontSize), weight: parseInt(ncs.fontWeight, 10), family: ncs.fontFamily, shadow: ncs.textShadow, color: ncs.color, lines: Math.round(name.getBoundingClientRect().height / parseFloat(ncs.lineHeight)), clipped: name.scrollWidth > name.clientWidth + 1 } : null,
+      name: name ? { px: parseFloat(ncs.fontSize), weight: parseInt(ncs.fontWeight, 10), family: ncs.fontFamily, shadow: ncs.textShadow, color: ncs.color, lines: Math.round(name.getBoundingClientRect().height / parseFloat(ncs.lineHeight)), clipped: name.scrollWidth > name.clientWidth + 1, fitted: name.dataset.fitSet != null } : null,
       backing: back ? { bg: bcs.backgroundColor, rgba: parse(bcs.backgroundColor), ink: bcs.color } : null,
       shadeVar: getComputedStyle(hero).getPropertyValue('--shade-rgb').trim(),
       clock: clock ? { px: parseFloat(ccs.fontSize), family: ccs.fontFamily, text: clock.textContent.trim(), lines: Math.round(clock.getBoundingClientRect().height / (parseFloat(ccs.lineHeight) || parseFloat(ccs.fontSize) * 1.2)), clipped: clock.scrollWidth > clock.clientWidth + 1 } : null,

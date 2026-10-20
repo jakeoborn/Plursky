@@ -179,9 +179,6 @@ function SpotifyScreen({ state, setState }) {
             </div>
           )}
 
-          {connected && (savedInLineup(state.saved).length > 0 || (window._collectMomentSongs?.() || []).length > 0) && (
-            <div style={{ marginBottom: 8 }}><PlaylistVisibilityToggle /></div>
-          )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
@@ -194,17 +191,13 @@ function SpotifyScreen({ state, setState }) {
                 {saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`}
               </button>
             )}
-            {connected && savedInLineup(state.saved).length > 0 && (
-              <BuildPlaylistButton state={state} />
-            )}
             {savedInLineup(state.saved).length > 0 && <AppleMusicPlaylistButton state={state} />}
             {/* "Your Weekend Soundtrack" — appears once Shazam has confirmed
                 songs in your moments: the real tracks you were there for,
-                exportable to either service. */}
-            {(window._collectMomentSongs?.() || []).length > 0 && (<>
-              {connected && <BuildPlaylistButton state={state} soundtrack />}
+                built as an Apple Music playlist. */}
+            {(window._collectMomentSongs?.() || []).length > 0 && (
               <AppleMusicPlaylistButton state={state} soundtrack />
-            </>)}
+            )}
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
@@ -220,18 +213,14 @@ function SpotifyScreen({ state, setState }) {
               {connected && spotifyArtists === null ? "Loading…" : connected ? "Connected" : "Connect Spotify"}
             </button>
           </div>
-          {/* #6 service-agnostic framing: your saved sets are the source;
-              export to whichever service you have. Lets non-Spotify users
-              (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
+          {/* Your saved sets are the source; Apple Music is where a playlist
+              gets built. Spotify is read-only: it brings your listening in. */}
           {APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && (
             <div style={{ marginTop: 10, font: "400 13px/1.45 var(--f-ui)", color: "var(--ink-2)" }}>
-              Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
+              Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Apple Music</span>. Spotify brings your listening in; it doesn't build playlists.
             </div>
           )}
         </div>
-
-        {/* ── Board playlist — preview, then create ─────── */}
-        <BoardPlaylistCard state={state} spotifyArtists={spotifyArtists} connected={connected} />
 
         {/* ── Followed artists nudge ────────────────────── */}
         {connected && <FollowedNudge state={state} setState={setState} />}
@@ -7840,7 +7829,7 @@ function MeScreen({ state, setState }) {
                     {state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"}
                   </div>
                   <div className="duo-body-s duo-ink2" style={{ marginTop: 2 }}>
-                    {state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect"}
+                    {state.spotifyConnected ? "Top artists and discoveries" : "Tap to connect"}
                   </div>
                 </div>
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -8054,272 +8043,8 @@ function FollowedNudge({ state, setState }) {
   );
 }
 
-// ── Board playlist: preview, then create ──────────────────────
-// Nothing is written until the user has seen the plan (planBoardPlaylist,
-// spotify-api.jsx): every saved set is in, and each discovery pick shows why
-// it is there and can be dropped. CREATE writes exactly the plan on screen.
-// Spotify only for now; Apple Music follows once its certificate is in.
-function BoardPlaylistCard({ state, spotifyArtists, connected }) {
-  // Coming back from Spotify OAuth mid-create: reopen so the resume can run.
-  const [open, setOpen] = React.useState(() => { try { return localStorage.getItem("plursky_pending_build") === "board"; } catch { return false; } });
-  const [dropped, setDropped] = React.useState(() => new Set());
-  const [showDiag, setShowDiag] = React.useState(false);
-  const [lastResult, setLastResult] = React.useState(null);
-  const CFG = FESTIVAL_CONFIG;
-  const affinity = React.useMemo(() => (spotifyArtists || []).map(a => a.name), [spotifyArtists]);
-  const plan = React.useMemo(() => planBoardPlaylist({
-    artists: ARTISTS, savedIds: state.saved, stages: STAGES,
-    affinityNames: affinity, affinityLabel: "your Spotify",
-    dayLabel: d => CFG.dayDates?.[d]?.short || `Day ${d}`,
-  }), [state.saved.join(","), affinity, CFG.id]);
-  const kept = React.useMemo(() => {
-    const picks = plan.picks.filter(p => !dropped.has(p.artist.id));
-    const keep = new Set(picks.map(p => p.artist.id));
-    return { ...plan, picks, order: plan.order.filter(o => o.role === "seed" || keep.has(o.artist.id)) };
-  }, [plan, dropped]);
-  React.useEffect(() => { window.__plurskyBoardPlaylist = { plan: kept, result: lastResult }; }, [kept, lastResult]);
-  if (!plan.seeds.length) return null;
-
-  const toggle = id => setDropped(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const tracks = kept.order.reduce((n, o) => n + o.trackLimit * Math.max(1, _b2bParts(o.artist.name).length), 0);
-  const card = {
-    borderRadius: 20, padding: 20, marginBottom: 14,
-    background: "var(--paper-2)", border: "1px solid var(--line)", color: "var(--ink)",
-  };
-  // The board's meta line (13px SF, quiet ink), not 8-9px tracked caps.
-  const mono = { font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" };
-
-  if (!open) {
-    return (
-      <button onClick={() => { window.plurskyHaptic?.("LIGHT"); setOpen(true); }}
-        style={{ ...card, display: "block", width: "100%", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-          <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
-          <div style={{ ...mono, color: "var(--acc-ink)", fontWeight: 600, flexShrink: 0 }}>Preview →</div>
-        </div>
-        <div style={{ ...mono, marginTop: 4 }}>
-          {plan.seeds.length} saved set{plan.seeds.length === 1 ? "" : "s"}{plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : ""} · nothing is built until you say so
-        </div>
-      </button>
-    );
-  }
-
-  const names = plan.seeds.map(s => s.artist.name);
-  const d = plan.diagnostics, e = d.excluded;
-  return (
-    <div style={card}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-        <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
-        <button onClick={() => setOpen(false)} aria-label="Close preview"
-          style={{ background: "transparent", border: "none", color: "var(--muted)", fontSize: 18, cursor: "pointer", padding: 4 }}>×</button>
-      </div>
-      <div style={{ ...mono, marginTop: 2, marginBottom: 14 }}>
-        {kept.seeds.length} saved · {kept.picks.length} pick{kept.picks.length === 1 ? "" : "s"} · ≈{tracks} tracks · in set order
-      </div>
-
-      <div style={{ ...mono, color: "var(--ink)", marginBottom: 4 }}>Your saved sets · always in</div>
-      <div style={{ fontSize: 13, lineHeight: 1.45, marginBottom: 16 }}>
-        {names.slice(0, 6).join(" · ")}{names.length > 6 ? ` · +${names.length - 6} more` : ""}
-      </div>
-
-      <div style={{ ...mono, color: "var(--ink)", marginBottom: 2 }}>Picks from the same lineup</div>
-      {plan.picks.length === 0 ? (
-        <div style={{ fontSize: 12, lineHeight: 1.5, color: "var(--muted)", padding: "6px 0 12px" }}>
-          Nothing on the lineup ties to your board yet. {connected ? "Save a few more sets and picks will show up here." : "Save a few more sets, or connect Spotify so picks can come from what you listen to."}
-        </div>
-      ) : plan.picks.map(p => {
-        const a = p.artist, off = dropped.has(a.id);
-        const stg = STAGES.find(s => s.id === a.stage);
-        const when = a.day != null && setTimesUnconfirmed(a) ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${SET_TIMES_UNCONFIRMED}`
-          : a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
-        return (
-          <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", opacity: off ? 0.45 : 1 }}>
-            <ArtistSwatch artist={a} size={40} />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, textDecoration: off ? "line-through" : "none" }}>{a.name}</div>
-              <div style={{ ...mono, marginTop: 2 }}>{stg?.short || stg?.name || "Stage TBA"} · {when}</div>
-              <div style={{ fontSize: 11, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>{p.reason}</div>
-            </div>
-            <button onClick={() => toggle(a.id)} aria-label={off ? `Add ${a.name} back` : `Drop ${a.name}`}
-              style={{
-                width: 34, height: 34, borderRadius: 34, flexShrink: 0,
-                background: off ? "transparent" : "var(--ember)", color: off ? "var(--ink)" : "var(--ink)",
-                border: off ? "1px solid var(--line-2)" : "none",
-                cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
-              }}>{off ? "+" : "✓"}</button>
-          </div>
-        );
-      })}
-
-      <div style={{ marginTop: 12 }}><PlaylistVisibilityToggle /></div>
-      <div style={{ marginTop: 8, display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {/* Keyed on the plan so toggling a pick resets a finished build. */}
-        <BuildPlaylistButton key={kept.order.map(o => o.artist.id).join(",")}
-          state={state} plan={kept} label="CREATE IN SPOTIFY" onResult={setLastResult} />
-      </div>
-
-      <button onClick={() => setShowDiag(v => !v)}
-        style={{ ...mono, background: "transparent", border: "none", padding: "14px 0 0", cursor: "pointer" }}>
-        Diagnostics {showDiag ? "▴" : "▾"}
-      </button>
-      {showDiag && (
-        <div style={{ ...mono, lineHeight: 1.7, textTransform: "none", letterSpacing: 0.4, marginTop: 6 }}>
-          <div>lineup {d.lineup} · saved {d.saved} · seeds {d.seeds}{d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : ""}{d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""}</div>
-          <div>candidates {d.candidates} · cap {plan.cap} · left out by the cap {d.capped} · dropped by you {plan.picks.length - kept.picks.length}</div>
-          <div>skipped: saved {e.saved} · same act {e.sameAct} · no reason {e.noSignal}</div>
-          <div>picks by reason: {Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none"} · listening names {d.affinityNames}</div>
-          {lastResult && (lastResult.ok
-            ? <div>written {lastResult.added} track(s){lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found"}</div>
-            : <div>last build: {lastResult.reason}{lastResult.status ? ` (${lastResult.status})` : ""}</div>)}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// "Public playlist": off by default, so a built playlist stays private on
-// Spotify until the user chooses otherwise. Flipping it re-applies to the
-// playlist already built; if that write fails the next build applies it.
-function PlaylistVisibilityToggle() {
-  const [on, setOn] = React.useState(() => _playlistPublicPref());
-  const [note, setNote] = React.useState("");
-  const flip = async () => {
-    const next = !on;
-    setOn(next); setNote("");
-    _setPlaylistPublicPref(next);
-    const r = await _applyPlaylistVisibility(next);
-    if (!r.ok && r.reason !== "no_playlist") setNote("Spotify didn't update. It applies on your next build.");
-  };
-  return (
-    <div>
-      <button type="button" role="switch" aria-checked={on} onClick={flip} style={{
-        display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 44, padding: "8px 0",
-        background: "transparent", border: "none", color: "var(--ink)", textAlign: "left",
-        fontFamily: "inherit", cursor: "pointer",
-      }}>
-        <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: "block", fontSize: 15, lineHeight: "20px", fontWeight: 500 }}>Public playlist</span>
-          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-            {on ? "Anyone can find and play it on Spotify." : "Private. Only you see it on Spotify."}
-          </span>
-        </span>
-        <span aria-hidden="true" style={{
-          position: "relative", width: 44, height: 26, borderRadius: 26, flexShrink: 0,
-          background: on ? "var(--signal)" : "var(--paper-3)", border: "1px solid var(--line-2)",
-          transition: "background .2s",
-        }}>
-          <span style={{
-            position: "absolute", top: 2, left: on ? 20 : 2, width: 20, height: 20, borderRadius: 20,
-            background: on ? "var(--on-signal)" : "var(--text-2)", transition: "left .2s",
-          }} />
-        </span>
-      </button>
-      {note && <div role="status" style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", paddingBottom: 4 }}>{note}</div>}
-    </div>
-  );
-}
-
-function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResult }) {
-  // plan: a previewed board plan (BoardPlaylistCard), written exactly as shown.
-  // Its OAuth resume flag is its own, so a plain build never resumes as a
-  // board build or the other way round.
-  const pendingKind = plan ? "board" : "1";
-  const [status, setStatus] = React.useState("idle"); // idle | working | done | err
-  const [result, setResult] = React.useState(null);
-  const [buildProgress, setBuildProgress] = React.useState("");
-
-  const run = async () => {
-    setStatus("working");
-    setBuildProgress("");
-    try {
-      const r = await createSetsPlaylist(state, { soundtrack, plan, onProgress: (msg) => setBuildProgress(msg) });
-      setResult(r);
-      onResult?.(r);
-      if (r.ok) {
-        setStatus("done");
-      } else {
-        setStatus("err");
-        // Persist actionable errors (reconnect, missing target playlist) so the
-        // user has time to read + click. Auto-clear only transient failures.
-        if (r.reason !== "reconnect" && r.reason !== "no_target_playlist") {
-          setTimeout(() => setStatus("idle"), 4500);
-        }
-      }
-    } catch (e) {
-      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
-      setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
-    }
-  };
-
-  // After the user reconnects via OAuth and returns to the app, resume the
-  // build automatically if they were mid-flow. Removes the otherwise required
-  // third click ("connect", "back", "build again").
-  React.useEffect(() => {
-    let pending = null;
-    try { pending = localStorage.getItem("plursky_pending_build"); } catch {}
-    if (pending === pendingKind && state.spotifyConnected && _hasPlaylistWriteScope()) {
-      try { localStorage.removeItem("plursky_pending_build"); } catch {}
-      run();
-    }
-  }, []); // mount-only — pending flag is one-shot
-
-  const onClick = async () => {
-    if (status === "working") return;
-    if (status === "err" && (result?.reason === "reconnect" || result?.reason === "not_connected")) {
-      // Mark intent so we auto-resume after the OAuth round-trip.
-      try { localStorage.setItem("plursky_pending_build", pendingKind); } catch {}
-      startSpotifyAuth(); return;
-    }
-    if (status === "err" && result?.reason === "no_target_playlist") {
-      window.open("https://open.spotify.com/", "_blank", "noopener"); return;
-    }
-    // When done, clicking opens the playlist (user-initiated — not blocked)
-    if (status === "done" && result?.url) {
-      window.open(result.url, "_blank", "noopener"); return;
-    }
-    window.plurskyHaptic?.("MEDIUM");
-    run();
-  };
-
-  // Readable ink on the brand tint: brand green as text on its own tint
-  // falls under AA in Light (the Apple Music button learned the same).
-  let label, bg = "rgba(var(--spotify-rgb),0.14)", color = "var(--ink)", border = "1px solid var(--spotify)";
-  if (status === "working") {
-    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
-  } else if (status === "done") {
-    const sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0
-      ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗`
-      : `✓ ${result?.added} tracks · in set order — open ↗`;
-    bg = "var(--spotify)"; color = "var(--on-spotify)"; border = "none";
-  } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";
-    else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";
-    else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";
-    else if (result?.reason === "empty") label = "Save sets first";
-    else if (result?.reason === "create_fail") {
-      const msg = (result?.message || "").slice(0, 28);
-      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
-    } else label = "Try again";
-    bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
-  } else {
-    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
-  }
-
-  return (
-    <button onClick={onClick} disabled={status === "working"} style={{
-      background: bg, color, border,
-      borderRadius: 999, padding: "10px 16px",
-      cursor: status === "working" ? "wait" : "pointer",
-      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-      transition: "all .2s",
-    }}>{label}</button>
-  );
-}
-
-// Apple Music playlist builder — sibling of BuildPlaylistButton. Apple Music
-// has no Dev-Mode user cap or creation block, so this is the unblocked path.
+// Apple Music playlist builder. The only playlist Plursky builds: Spotify is
+// read-only here (listening import and artist photos).
 // Renders nothing until APPLE_DEV_TOKEN is configured (see spotify-api.jsx),
 // so it's invisible until Apple Music is wired up.
 function AppleMusicPlaylistButton({ state, soundtrack }) {
@@ -8342,8 +8067,8 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   };
   const onClick = () => {
     if (status === "working") return;
-    // When done, clicking opens the playlist in Apple Music (parity with
-    // the Spotify button) — user-initiated, so popup-safe.
+    // When done, clicking opens the playlist in Apple Music (user-initiated,
+    // so popup-safe).
     if (status === "done" && result?.url) { window.open(result.url, "_blank", "noopener"); return; }
     window.plurskyHaptic?.("MEDIUM"); run();
   };
@@ -10321,31 +10046,6 @@ function RecapScreen({ state, setState }) {
     return () => { cancelled = true; };
   }, []);
 
-  // v147: build a Spotify playlist of what the user actually CAUGHT (attended)
-  // — separate from the existing build-playlist flow which uses saved sets.
-  const [playlistState, setPlaylistState] = React.useState({ status: "idle" });
-  const buildAttendedPlaylist = async () => {
-    setPlaylistState({ status: "building" });
-    try {
-      const result = await createSetsPlaylist(state, { source: "attended" });
-      if (result.ok) {
-        setPlaylistState({ status: "done", url: result.url, added: result.added });
-      } else {
-        const reason = result.reason || "fail";
-        const msg = {
-          not_connected:     "Connect Spotify on the Me tab first.",
-          empty:             "Mark sets you caught in Memories first.",
-          reconnect:         "Reconnect Spotify (needs playlist permission).",
-          no_target_playlist: "Create an empty Spotify playlist named 'Plursky' first.",
-          rate_limited:      "Spotify is throttling — wait 30s and retry.",
-        }[reason] || (result.message || "Couldn't build playlist.");
-        setPlaylistState({ status: "error", msg });
-      }
-    } catch (e) {
-      setPlaylistState({ status: "error", msg: e?.message || "Couldn't build playlist." });
-    }
-  };
-
   // Empty-state guard — nothing to recap (for the current festival).
   // Still show past festival archives if any exist.
   if (recap.setsCount === 0 && recap.momentsCount === 0) {
@@ -11138,50 +10838,7 @@ function RecapScreen({ state, setState }) {
           );
         })()}
 
-        {/* WEEKEND PLAYLIST */}
-        {state.spotifyConnected && recap.setsCount > 0 && (
-          <RecapCard kicker="YOUR SOUNDTRACK" paper="var(--paper)">
-            <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 14 }}>
-              Take the weekend <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>home</span> with you.
-            </div>
-            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
-              Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order.
-            </div>
-            <div style={{ marginBottom: 12 }}><PlaylistVisibilityToggle /></div>
-            {playlistState.status === "done" ? (
-              <div style={{
-                padding: "10px 12px", borderRadius: 10,
-                background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.4)",
-              }}>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginBottom: 6 }}>
-                  ✓ {playlistState.added} TRACKS ADDED
-                </div>
-                {playlistState.url && (
-                  <a href={playlistState.url} target="_blank" rel="noopener noreferrer" className="mono" style={{
-                    fontSize: 10, letterSpacing: 1.1, color: "var(--ink)", fontWeight: 700,
-                    textDecoration: "underline",
-                  }}>OPEN IN SPOTIFY ↗</a>
-                )}
-              </div>
-            ) : (
-              <button onClick={buildAttendedPlaylist} disabled={playlistState.status === "building"} style={{
-                background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-                color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
-                border: "none", borderRadius: 999, padding: "11px 18px",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-                cursor: playlistState.status === "building" ? "default" : "pointer",
-                alignSelf: "flex-start",
-              }}>
-                {playlistState.status === "building" ? "BUILDING…" : "↗ BUILD WEEKEND PLAYLIST"}
-              </button>
-            )}
-            {playlistState.status === "error" && (
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--alert)", marginTop: 8, fontWeight: 600 }}>
-                {playlistState.msg}
-              </div>
-            )}
-          </RecapCard>
-        )}
+
 
         {/* DISCOVERY — saved but didn't catch */}
         {recap.missedSaved.length > 0 && (
@@ -12033,7 +11690,7 @@ Object.assign(window, {
   _isPlusSub, _setPlusSub, PlusGate, _purchasePlus, _restorePurchases, RC_PRODUCT_IDS, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
   _getTracklistForArtist,
   // Spotify/Apple-Music API moved to spotify-api.jsx (startSpotifyAuth,
-  // ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
+  // ensureSpotifyProfile, getSpotifyProfileSync, createAppleMusicPlaylist,
   // fetchPreviewUrl). recap/share engine moved to recap-engine.jsx
   // (_renderCollage/_shareRecapVideo/_share*Collage/DNA/Passport/etc.).
 });
