@@ -27,6 +27,8 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -1340,6 +1342,22 @@ const REGISTRATION_TOL_M = 25;
   // naming a festival that now PASSES is fatal too — so this entry cannot
   // outlive the redraw it is standing in for.
   const ART_WAIVERS = {
+    // ACL joined 2026-10-18, when the snapchat anchor landed: the basis is
+    // satellite-measured and snapchat is an independent osm measurement, so
+    // the registration findings are gone — and what they reveal is that the
+    // 2026 patron art is not an affine image of Zilker Park around The
+    // Grove. The measured stage structure sits 5.19 grid units (~35 m) from
+    // where the basis affine draws SNAPCHAT; the desk survey found the same
+    // 34 m on 2026-09-06. The defect is in the ART, not the anchors, so
+    // this is the same kind of waiver as Ultra's. Distance readouts stay
+    // off either way: snapchat is 35 m out, past the 25 m readout gate.
+    // Clears by re-measuring the plate (a redraw is not ours to make — the
+    // art is the festival's own patron map) or by re-deriving stage x/y so
+    // the shipped art coordinates agree with the measured world.
+    "acl-2026": {
+      expires: "2026-12-01",
+      note: "acl-park-2026.webp art is locally distorted near The Grove; the satellite-measured snapchat anchor sits 5.19 grid units (~35 m) off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
+    },
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
       // festival roll, rather than into Ultra flip week.
@@ -1446,8 +1464,8 @@ const REGISTRATION_TOL_M = 25;
   //     the data can contradict the affine even when it is wrong
   // Both are now fatal for a LIVE festival (founder call 2026-09-05). A
   // festival flipping available:true from here on gets NO waiver and has to
-  // arrive with a sourced basis — which is the point: the three below are
-  // grandfathered breakage, and everything after them is a choice.
+  // arrive with a sourced basis — which is the point: what remains below is
+  // grandfathered breakage, and everything after it is a choice.
   //
   // THE EXPIRY IS THE MECHANISM. The footprint waiver above has none and has
   // already outlived several sessions; a waiver without a date is a quieter
@@ -1465,57 +1483,33 @@ const REGISTRATION_TOL_M = 25;
     // is measured now. What survives is `blind`: a basis can be perfectly
     // sourced and still have nothing independent to check it against, and
     // that is the condition that keeps distance readouts off.
-    "acl-2026": {
-      excuses: ["blind"],
-      expires: "2026-10-19",
-      // ⚠️ The 2026-09-06 desk survey ASKED for this waiver to be deleted, on
-      // the strength of a 34 m independent cross-check against `ladybird`.
-      // Retracted by Instinct 2026-09-06 once the reconciliation landed:
-      // `ladybird` is a 2024 stage that the 2026 lineup replaced with the
-      // Snapchat Stage, so the cross-check was real geometry against a stage
-      // this app does not have. `bonus` was a label borrowed from the
-      // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
-      // satellite-measured now, and it is the whole anchor set: `bmi`, which
-      // was derived through that same basis and so could never disagree with
-      // it, was dropped on 2026-09-23 after it measured 57 m off the 2026 fit.
-      //
-      // The official 2026 patron map published on 2026-09-22 and now places
-      // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
-      // waiver: a poster is not a survey, so it yields no world anchor, and
-      // test-acl-map-2026.mjs fails if one is read off it. Clears when
-      // `snapchat` (the one 2026 stage with no anchor) is measured on the
-      // ground or on satellite. That is the independent anchor still missing.
-      //
-      // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
-      // clear this. A crowd anchor answers "where does a person STAND"; a
-      // gpsAnchor answers "where did the artist DRAW it". EDC's measured
-      // kinetic centroid is 438 m from its own poster pin.
-      note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
-            "independent checks it (the derived bmi anchor was dropped 2026-09-23). " +
-            "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
-    },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
     // four independent osm anchors, so it has neither registration finding.
     // Its problem moved up a gate: those four anchors DISAGREE with the drawn
     // art by up to 53 grid units, which is ART_WAIVERS above, not this.
     "governors-ball-2026": {
       excuses: ["blind"],
-      expires: "2026-10-19",
+      // Re-dated 2026-10-18 (was 2026-10-19): the dated-out half of the
+      // problem is solved, what remains is structural. The snapchat
+      // north/south conflict (737 m) is SETTLED — the official 2026 patron
+      // map (GOV26-PatronMap-5.26, support.govball.com, updated 2026-06-02;
+      // plate map-sources/govball-2026-patron-map.png) puts snapchat on the
+      // south lawn by Meadow Lake Bridge, agreeing with the 2025-map-fitted
+      // anchor and the satellite-measured grove. Esri Wayback re-checked the
+      // same day: no in-event capture exists (all four 2026 releases carry
+      // byte-identical NYC tiles), so no satellite measurement can clear this.
       // `blind` here is structural and re-sourcing cannot fix it: Governor's
       // Ball has three stages, so all three anchors ARE the basis and no
-      // fourth anchor exists to disagree with them. The 2026-09-06 survey
-      // measured `grove` off satellite and fitted the other two to the
-      // official 2025 map, which is a real improvement — verizon moved 390 m
-      // out of woods that cannot hold a main stage — but it cannot add a
-      // fourth stage that does not exist.
-      //
-      // Two ways out: the 2026 patron map (which would also settle the
-      // snapchat north/south conflict, currently 737 m wide), or a non-stage
-      // landmark tie point such as the Unisphere. The latter needs a schema
-      // change, since gpsAnchors are stageId-keyed.
+      // fourth anchor exists to disagree with them. The one way out is a
+      // non-stage landmark tie point (the Unisphere, 40.746396/-73.845074),
+      // which needs a schema change, since gpsAnchors are stageId-keyed.
+      // The expiry forces that schema work into the same quiet-window batch
+      // as the art waivers above.
+      expires: "2026-12-01",
       note: "3 anchors, all of them the basis — structurally uncheckable " +
-            "until a fourth tie point exists. grove is satellite-measured; " +
-            "verizon and snapchat are fitted to the official 2025 map",
+            "until a landmark tie point exists. grove is satellite-measured; " +
+            "verizon and snapchat agree with the official 2026 patron map " +
+            "(snapchat N/S conflict settled 2026-10-18)",
     },
   };
   const regProblems = [];
@@ -1689,6 +1683,14 @@ const REGISTRATION_TOL_M = 25;
         console.log(`  ·  ${cfg.id.padEnd(22)} footprint declared (${poly.length} vertices), 0 anchors — ARMED, unmeasured`);
         console.log(`     layout only — no registration until the flip adds anchors`);
       }
+      continue;
+    }
+    // An ESTIMATED footprint (`venue.footprintInferred`) is not a survey: one
+    // drawn around the anchors would pass them by construction (#326 review).
+    // It guards nothing, so the anchors read as unguarded, never as checked.
+    if (poly?.length && an.length && cfg.venue?.footprintInferred) {
+      fpUnbounded++;
+      console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
       continue;
     }
     if (!poly?.length && an.length) {
@@ -2313,18 +2315,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── 1z-b. Board playlist planner ──────────────────────────────────────────
-// Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
-// carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
+// ── 1z-b. Spotify is read-only ────────────────────────────────────────────
+// Spotify can't build playlists for Plursky: no playlist-modify scope is
+// requested and no source writes to the Spotify Web API. Apple Music keeps its
+// playlist builder, and the read scopes the listening import needs stay.
 {
-  console.log("▸ Board playlist gate — seeds guaranteed, picks capped and truly reasoned");
+  console.log("▸ Spotify read-only gate — no playlist-modify scope, no Spotify write call");
   try {
-    const out = execFileSync(process.execPath, ["scripts/test-board-playlist.mjs"],
+    const out = execFileSync(process.execPath, ["scripts/test-no-spotify-playlist-write.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`board playlist planner failed${detail ? ` — ${detail}` : ""}`);
+    fail(`spotify read-only gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2537,6 +2540,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 6: festival list rows carry official art from the festival-art ledger
+// (or a tile in the festival's own accent) and a right-aligned state chip.
+{
+  console.log("▸ Festival art — ledger tiles, tinted fallbacks, state chips, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-art.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival art failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Memories film strip names ─────────────────────────────────────────────
 // Every frame names its artist in full (wrapped to the frame, never sliced);
 // same class as #247's chip names. Real renderer, recorded fillText.
@@ -2618,6 +2635,33 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`real map default failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Item 5: Today's saved rows carry the act's face (ledger, pair, initials).
+{
+  console.log("▸ Set row faces — Today's saved rows, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-row-faces.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set row faces failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// M1: the SW precaches MapLibre (PACK_LIB), and on a mapMode:"real" festival a
+// failed load keeps a persistent error card whose RETRY really reloads the map.
+{
+  console.log("▸ MapLibre field load — precache + persistent card + RETRY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-maplibre-field-load.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maplibre field load failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2725,6 +2769,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`lineup readability failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Lineup stage hues (Item 3a, Jake's pick A) ──
+// Six lane tokens >= 3:1 on paper and s3 in both modes, one door
+// (stageLaneHue), and the capture-only options B and C stay deleted.
+{
+  console.log("▸ Lineup stage-hue gate — six lanes >= 3:1, one door, B and C gone");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-stage-hues.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`lineup stage hues failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

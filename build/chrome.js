@@ -881,8 +881,10 @@ function DuoFace({
   style,
   className = ""
 }) {
-  var photo = useArtistPhoto(name);
+  var resolved = useArtistPhoto(name);
   var rec = getArtistImage(name);
+  var [failed, setFailed] = React.useState(null);
+  var photo = resolved && resolved !== failed ? resolved : null;
   return React.createElement("span", {
     className: `duo-av ${ring} ${className}`.trim(),
     "aria-hidden": "true",
@@ -898,7 +900,8 @@ function DuoFace({
     }
   }, photo ? React.createElement("img", {
     src: photo,
-    alt: ""
+    alt: "",
+    onError: () => setFailed(photo)
   }) : _duoInitials(name));
 }
 function DuoAvatar({
@@ -1748,38 +1751,33 @@ function FestivalChip({
     onClose: () => setOpen(false)
   }));
 }
-var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
-function _festivalArt(cfg) {
-  var img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+function festivalArtFor(id) {
+  var rec = id && window.PLURSKY_FESTIVAL_ART?.[id];
+  return rec && /^festival-art\/tiles\/[a-z0-9-]+\.webp$/.test(rec.tile || "") && rec.sourcePage ? rec : null;
 }
-var _FESTIVAL_EDITORIAL_ART = Object.freeze({
-  "acl-2026": "festival-art/acl-2026.webp",
-  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
-  "portola-2026": "festival-art/portola-2026.webp",
-  "iii-points-2026": "festival-art/iii-points-2026.webp",
-  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
-  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
-});
 function FestivalThumb({
   entry,
   size = 56,
   editorial = false
 }) {
-  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
-  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  var rec = festivalArtFor(entry?.config?.id);
+  var art = editorial ? rec?.card || null : rec?.tile || null;
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   var brand = String(entry?.config?.brand || "").trim();
   var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  var accent = /^#[0-9a-f]{6}$/i.test(entry?.accent || "") ? entry.accent : null;
   return React.createElement("div", {
     "aria-hidden": "true",
+    "data-festival-thumb": entry?.config?.id || "",
+    "data-art": art ? "ledger" : accent ? "tinted" : "plain",
     style: {
       width: size,
       height: size,
-      borderRadius: "var(--rad-sm)",
+      borderRadius: editorial ? "var(--rad-sm)" : 12,
       overflow: "hidden",
       flexShrink: 0,
-      background: "var(--s3)",
+      background: art ? "#1C1B19" : accent ? `color-mix(in srgb, ${accent} 26%, var(--s3))` : "var(--s3)",
+      boxShadow: !art && accent ? `inset 0 0 0 1px color-mix(in srgb, ${accent} 45%, transparent)` : undefined,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -1787,7 +1785,7 @@ function FestivalThumb({
       fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
       fontWeight: 400,
       letterSpacing: "0.12em",
-      color: "var(--ink-2)",
+      color: "var(--ink)",
       lineHeight: 1
     }
   }, art ? React.createElement("img", {

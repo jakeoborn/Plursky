@@ -523,9 +523,9 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      // Board toast: an elevated card in SF that WRAPS. The old one-line
-      // pill ellipsised every long message ("No photos received — pick a
-      // few at a time; if they're in iCloud…" lost its instruction).
+      {/* Board toast: an elevated card in SF that WRAPS. The old one-line
+          pill ellipsised every long message ("No photos received — pick a
+          few at a time; if they're in iCloud…" lost its instruction). */}
       <div key={msg.id} role="status" aria-live="polite" style={{
         background: "var(--s1)", color: "var(--ink)",
         padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
@@ -1008,7 +1008,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v432",
+        version: "v447",
       }));
     } catch {}
   }
@@ -1039,7 +1039,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v432
+          Plursky · v447
         </div>
       </div>
     );

@@ -396,6 +396,17 @@ function NightWizard({ state, setState, onClose }) {
 // Your plan is the accent bar, a set playing now is ink, the rest is a quiet
 // line. A stage name is a button: in LIST it narrows to that stage (tap again
 // for all), in GRID it brings that stage's column into view.
+// Each stage keeps a stable hue (Item 3a, Jake's pick A, Oct 18): a chip by
+// its name and its sets drawn in that hue; plan and live keep their own fill.
+// Six mode tokens (--lane-1..6, each >= 3:1 on --paper and --s3), assigned in
+// map order so a stage keeps its hue across days. null for a stage not on the
+// map. The one door for every surface that colours by stage.
+function stageLaneHue(stageId) {
+  const i = (typeof STAGES !== "undefined" ? STAGES : []).findIndex(s => s.id === stageId);
+  if (i < 0) return null;
+  return { stroke: `var(--lane-${(i % 6) + 1})` };
+}
+
 function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
   const lanes = React.useMemo(() => {
     const by = new Map();
@@ -425,23 +436,27 @@ function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
         {lanes.map(({ stage, sets }) => {
           const on = stageFilter === stage.id;
           const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+          const hue = stageLaneHue(stage.id);
           return (
             <React.Fragment key={stage.id}>
               <button type="button" data-overview-stage={stage.id} aria-pressed={on}
                 aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
                 onClick={() => onStage(stage.id)}
                 style={{ border: 0, background: "none", padding: "1px 0", minHeight: 16, cursor: "pointer", textAlign: "left",
-                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere" }}>
-                {stage.name}
+                  font: `${on ? 650 : 500} 11px/14px var(--f-ui)`, color: on ? "var(--acc-ink)" : "var(--ink-2)", overflowWrap: "anywhere",
+                  ...(hue ? { display: "flex", alignItems: "baseline", gap: 6 } : {}) }}>
+                {hue && <span data-lane-chip aria-hidden="true" style={{ flex: "none", width: 8, height: 8, borderRadius: 2, background: hue.stroke, alignSelf: "center" }} />}
+                <span>{stage.name}</span>
               </button>
-              <div aria-hidden="true" style={{ position: "relative", height: 16 }}>
+              <div aria-hidden="true" data-overview-lane={stage.id} style={{ position: "relative", height: 16 }}>
                 {sets.map(({ a, s, e }) => {
                   const mineSet = savedSet.has(a.id), live = isSetLive(a);
-                  return <span key={a.id} style={{ position: "absolute", left: pct(s), width: `calc(${((e - s) / span) * 100}% - 2px)`,
-                    top: mineSet ? 5.5 : 7, height: mineSet ? 5 : 2, borderRadius: 3, minWidth: 2,
-                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : "var(--line-2)" }} />;
+                  const left = pct(s), width = `calc(${((e - s) / span) * 100}% - 2px)`;
+                  return <span key={a.id} style={{ position: "absolute", left, width,
+                    top: mineSet ? 5.5 : hue ? 6.5 : 7, height: mineSet ? 5 : hue ? 3 : 2, borderRadius: 3, minWidth: 2,
+                    background: mineSet ? "var(--acc)" : live ? "var(--ink)" : hue ? hue.stroke : "var(--line-2)" }} />;
                 })}
-                {showNow && <span style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
+                {showNow && <span aria-hidden="true" style={{ position: "absolute", left: pct(nowMin), top: 0, bottom: 0, width: 1, background: "var(--ink)" }} />}
               </div>
             </React.Fragment>
           );
@@ -451,6 +466,54 @@ function LineupOverview({ sets, savedSet, liveNight, stageFilter, onStage }) {
           {ticks.map(m => <span key={m} className="duo-data-s duo-ink3" style={{ position: "absolute", left: pct(m), top: 4, transform: m === t0 ? "none" : m === t1 ? "translateX(-100%)" : "translateX(-50%)", fontSize: 11, lineHeight: "12px", whiteSpace: "nowrap" }}>{tick(m)}</span>)}
         </div>
       </div>
+    </div>
+  );
+}
+
+// The folded header's mini strip (L1): the mode chips, then one pill per
+// stage in map order — its hue, its name and a 40px sliver of the night with
+// your plan in the accent. One row that scrolls sideways inside itself; the
+// page never pans. A pill does what the full strip's stage name does.
+function LineupMiniStrip({ sets, savedSet, stageFilter, onStage, children }) {
+  const lanes = React.useMemo(() => {
+    const by = new Map();
+    for (const a of sets) {
+      const s = toNightMin(a.start), e = toNightMin(a.end);
+      if (!Number.isFinite(s)) continue;
+      if (!by.has(a.stage)) by.set(a.stage, []);
+      by.get(a.stage).push({ a, s, e: Number.isFinite(e) && e > s ? e : s + 60 });
+    }
+    return STAGES.filter(st => by.has(st.id)).map(st => ({ stage: st, sets: by.get(st.id) }));
+  }, [sets]);
+  const all = lanes.flatMap(l => l.sets);
+  const t0 = all.length ? Math.min(...all.map(x => x.s)) : 0;
+  const span = all.length ? Math.max(60, Math.max(...all.map(x => x.e)) - t0) : 60;
+  return (
+    <div data-lineup-mini role="group" aria-label="View, plan and stages"
+      style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 8px", overflowX: "auto", overscrollBehaviorX: "contain", scrollbarWidth: "none" }}>
+      {children}
+      {lanes.length > 1 && <span aria-hidden="true" style={{ flex: "none", width: 1, height: 20, background: "var(--line)" }} />}
+      {lanes.length > 1 && lanes.map(({ stage, sets }) => {
+        const on = stageFilter === stage.id, hue = stageLaneHue(stage.id);
+        const mine = sets.filter(x => savedSet.has(x.a.id)).length;
+        return (
+          <button key={stage.id} type="button" className="duo-chip" data-mini-stage={stage.id} aria-pressed={on}
+            aria-label={`${stage.name}, ${sets.length} set${sets.length === 1 ? "" : "s"}${mine ? `, ${mine} on your plan` : ""}`}
+            onClick={() => onStage(stage.id)} style={{ flex: "none" }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}>
+              {hue && <span aria-hidden="true" style={{ width: 8, height: 8, borderRadius: 2, background: hue.stroke }} />}
+              {stage.name}
+              <span aria-hidden="true" style={{ position: "relative", width: 40, height: 6, flex: "none" }}>
+                {sets.map(({ a, s, e }) => (
+                  <span key={a.id} style={{ position: "absolute", left: `${((s - t0) / span) * 100}%`, width: `${((e - s) / span) * 100}%`,
+                    minWidth: 1, top: savedSet.has(a.id) ? 0 : 2, height: savedSet.has(a.id) ? 6 : 2, borderRadius: 2,
+                    background: savedSet.has(a.id) ? "var(--acc)" : hue ? hue.stroke : "var(--line-2)" }} />
+                ))}
+              </span>
+            </span>
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -501,7 +564,7 @@ function LineupFilterSheet({
       <div style={row}>
         {opt("tierFilter", "all", "All tiers")}
         {opt("tierFilter", "legend", "Legendary")}
-        {opt("tierFilter", "head", "Headliners")}
+        {opt("tierFilter", "head", topTierLabel(true))}
         {opt("tierFilter", "prime", "Prime time")}
         {opt("tierFilter", "open", "Openers")}
       </div>
@@ -1040,8 +1103,57 @@ function LineupScreen({ state, setState }) {
     }
     setTimeout(() => { try { searchInputRef.current?.focus({ preventScroll: true }); } catch {} }, reduceMotion ? 0 : 260);
   };
+  // The night's sets for the stage strip, and what a stage tap does: LIST
+  // narrows to that stage (tap again for all), GRID brings its column into
+  // view. The full strip and the folded bar's mini strip share both.
+  const overviewSets = lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"));
+  const onOverviewStage = id => {
+    if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
+    setStageFilter(stageFilter === id ? "all" : id);
+  };
+  // The mode row's chips, in the header and again in the folded bar (L1): the
+  // way between the plan and the grid never scrolls away. `mini` marks the
+  // folded copy so a query for the header's chip finds the header's.
+  const modeChips = (mini) => (
+    <>
+      {!_schedTBA && (
+        <div role="radiogroup" aria-label="View" style={{ display: "flex", gap: 8, flex: "none" }}>
+          {[{ id: "list", label: "List" }, { id: "grid", label: "Grid" }].map(o => (
+            <button key={o.id} role="radio" aria-checked={viewMode === o.id} aria-label={o.label} className="duo-chip duo-viewchip"
+              data-mini-view={mini ? o.id : undefined}
+              onClick={() => setViewMode(o.id)}>
+              <span>
+                <span className="lbl">{o.label}</span>
+                {/* Under 360pt the pair is two icons, so the row fits on one line. */}
+                <svg className="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  {o.id === "list" ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/> : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
+                </svg>
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+      {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
+        const on = filter === o.id;
+        return (
+          <button key={o.id} aria-pressed={on} className="duo-chip" style={{ flex: "none" }}
+            data-lineup-show={mini ? undefined : o.id} data-mini-show={mini ? o.id : undefined}
+            onClick={() => setFilter(on ? "all" : o.id)}>
+            <span>
+              {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
+              {o.label}
+              {o.n > 0 && <b>{o.n}</b>}
+            </span>
+          </button>
+        );
+      })}
+    </>
+  );
   // What the folded bar says: "Fri 2 · Weekend 1 · All stages", plus a stage
   // or Saved/Now, extra filters and a search term when they narrow the list.
+  // L1: folded, the bar keeps the mode chips and a mini stage strip. Not
+  // while the schedule is pending (no strip, no grid to jump in).
+  const showMini = !_schedTBA;
   const compactSummary = (() => {
     const d = dayStats.find(x => x.n === day);
     const dayText = d ? `${_lineupDayWord(d.label)} ${String(d.date).split(" ")[1] || ""}`.trim() : "";
@@ -1103,7 +1215,7 @@ function LineupScreen({ state, setState }) {
     const topPickIds = dayTopPicks.map(a => a.id);
     const save = () => setState(s => ({ ...s, saved: [...new Set([...s.saved, ...topPickIds])] }));
     return (
-      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} headliners for ${dayLabel}`}
+      <button data-save-day onClick={save} title={`Save the ${dayTopPicks.length} ${posterBilled() ? "top-billed acts" : "headliners"} for ${dayLabel}`}
         style={{ ...textBtn, color: "var(--ink)", fontWeight: 600 }}>Save top picks · {dayTopPicks.length}</button>
     );
   })() : null;
@@ -1247,49 +1359,18 @@ function LineupScreen({ state, setState }) {
 
       {!_schedTBA && (
         <LineupOverview
-          sets={lineupFor(weekendFilter).filter(a => a.day === day && (weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both"))}
+          sets={overviewSets}
           savedSet={savedSetIds}
           liveNight={NOW.night === day}
           stageFilter={viewMode === "list" ? stageFilter : "all"}
-          onStage={id => {
-            if (viewMode === "grid") { window.dispatchEvent(new CustomEvent("plursky:grid-stage", { detail: id })); return; }
-            setStageFilter(stageFilter === id ? "all" : id);
-          }} />
+          onStage={onOverviewStage} />
       )}
 
       {/* The board's mode row: List or Grid, then My plan and Live as
           toggles (both off = every set). Tier, stage, genre and sort live in
           the Filters sheet behind the header's Filters button. */}
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 20px 6px", borderBottom: "1px solid var(--line)", flexWrap: "wrap", rowGap: 0 }}>
-        {!_schedTBA && (
-          <div role="radiogroup" aria-label="View" style={{ display: "flex", gap: 8 }}>
-            {[{ id: "list", label: "List" }, { id: "grid", label: "Grid" }].map(o => (
-              <button key={o.id} role="radio" aria-checked={viewMode === o.id} aria-label={o.label} className="duo-chip duo-viewchip"
-                onClick={() => setViewMode(o.id)}>
-                <span>
-                  <span className="lbl">{o.label}</span>
-                  {/* Under 360pt the pair is two icons, so the row fits on one line. */}
-                  <svg className="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    {o.id === "list" ? <path d="M8 6 H20 M8 12 H20 M8 18 H20 M4 6 H4.5 M4 12 H4.5 M4 18 H4.5"/> : <path d="M4 4 H10 V10 H4 Z M14 4 H20 V10 H14 Z M4 14 H10 V20 H4 Z M14 14 H20 V20 H14 Z"/>}
-                  </svg>
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-        {[{ id: "saved", label: "My plan", n: dayStats.find(x => x.n === day)?.count }, { id: "now", label: "Live", n: NOW.night === day ? (NOW.liveIds || []).length : 0 }].map(o => {
-          const on = filter === o.id;
-          return (
-            <button key={o.id} aria-pressed={on} className="duo-chip" data-lineup-show={o.id}
-              onClick={() => setFilter(on ? "all" : o.id)}>
-              <span>
-                {o.id === "now" && <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 4, background: NOW.night === day ? "var(--live)" : "var(--ink-3)" }} />}
-                {o.label}
-                {o.n > 0 && <b>{o.n}</b>}
-              </span>
-            </button>
-          );
-        })}
+        {modeChips(false)}
       </div>
       {/* LIST: the utility stack folds with the header. GRID: the same
           elements ride INSIDE the grid's one scroller (TimelineGrid lead),
@@ -1305,7 +1386,7 @@ function LineupScreen({ state, setState }) {
         inert={collapsed ? undefined : ""} aria-hidden={collapsed ? undefined : true}
         style={{
           flexShrink: 0, minHeight: 0, overflow: "hidden",
-          maxHeight: collapsed ? 56 : 0, opacity: collapsed ? 1 : 0,
+          maxHeight: collapsed ? (showMini ? 104 : 56) : 0, opacity: collapsed ? 1 : 0,
           borderBottom: collapsed ? "1px solid var(--line)" : "none",
           transition: reduceMotion ? "none" : "max-height 240ms ease, opacity 180ms ease",
         }}>
@@ -1325,6 +1406,12 @@ function LineupScreen({ state, setState }) {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21 L16.65 16.65"/></svg>
           </button>
         </div>
+        {showMini && (
+          <LineupMiniStrip sets={overviewSets} savedSet={savedSetIds}
+            stageFilter={viewMode === "list" ? stageFilter : "all"} onStage={onOverviewStage}>
+            {modeChips(true)}
+          </LineupMiniStrip>
+        )}
       </div>
       {!online && (
         <div role="status" className="duo-card duo-body-s" style={{ margin: "8px 16px 0", padding: "10px 14px", display: "flex", alignItems: "center", gap: 10, color: "var(--ink-2)", fontWeight: 400 }}>
@@ -1473,6 +1560,7 @@ function LineupScreen({ state, setState }) {
                       background: isLive && filter === "all" ? "var(--live)" : dotColor, marginRight: 6, verticalAlign: "1px" }} />
                     {isLive && filter !== "now" && <span style={{ color: "var(--live)", fontWeight: 600 }}>Live · </span>}
                     {clashWith && <span style={{ color: "var(--clash)", fontWeight: 600 }}>Clash · </span>}
+                    {isTopBilled(a) && <span data-top-billed style={{ color: "var(--ink)", fontWeight: 600 }}>{TOP_BILLED} · </span>}
                     {_lineupMetaValue(stage.name)}
                   </span>
                   {/* The time column is 72px and cannot hold the words, so the

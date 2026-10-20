@@ -10,8 +10,12 @@ const rows=data.stages.flatMap(s=>s.days.flatMap(d=>d.rows.map(r=>({...r,day:d.d
 function validate(acts){assert.equal(acts.length,231);for(const r of rows){let a=acts.find(a=>a.id===r.actId);assert.ok(a,r.name);for(const f of ['name','day','stage','start','end'])assert.equal(a[f],r[f],r.name+' '+f);assert.ok(!a.provisional&&!a.unscheduled,r.name);}}
 validate(m.artists);
 for(const field of ['start','end','day','stage']){let acts=JSON.parse(JSON.stringify(m.artists));acts[0][field]=field==='day'?3:field==='stage'?'invented':'05:00';assert.throws(()=>validate(acts),field+' mutant');}
-assert.equal(m.stages.length,13);assert.ok(m.stages.every(s=>!['x','y','lat','lng'].some(k=>k in s)));
-assert.equal(m.config.mapMode,'real');assert.equal(m.amenities.length,0);assert.equal(m.registry.scheduleTBA,false);
+assert.equal(m.stages.length,13);assert.ok(m.stages.every(s=>Number.isFinite(s.x)&&Number.isFinite(s.y)&&s.x>=0&&s.x<=100&&s.y>=0&&s.y<=100));
+// Spatial flip 2026-10-15: the pinned official map is measured; every anchor
+// is a poster read, so registration stays unchecked (no osm/crowd evidence).
+assert.equal(m.config.mapMode,undefined);assert.equal(m.config.mapImage,'iiip-map-2026.webp');
+assert.equal(m.config.gpsAnchors.length,13);assert.ok(m.config.gpsAnchors.every(a=>a.src==='poster'));
+assert.equal(m.amenities.length,0);assert.equal(m.registry.scheduleTBA,false);
 assert.equal(m.artists.find(a=>a.id==='iiip-dude-skywalker').day,1);assert.equal(m.artists.find(a=>a.id==='iiip-jeremy-ismael').day,2);
 assert.equal(m.artists.find(a=>a.id==='iiip-loukeman').end,'18:05');
 assert.ok(!m.artists.some(a=>['iiip-fakemink','iiip-nick-leon-b2b-safety-tranc'].includes(a.id)));
@@ -35,4 +39,4 @@ for(const iso of ['2026-10-16T22:30:00Z','2026-10-17T04:15:00Z','2026-10-17T08:3
  }
 }
 console.log('✓ III clock: seven date/overnight scenarios; all 26,565 pairwise clashes match independent interval math');
-console.log('✓ III Points app231 intervals, four mutants, no invented map, stable surviving IDs');
+console.log('✓ III Points app231 intervals, four mutants, pinned poster map (13 poster anchors, unchecked tier), stable surviving IDs');

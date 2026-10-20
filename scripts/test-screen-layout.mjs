@@ -21,6 +21,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 const problems = []; let checks = 0;
@@ -43,6 +44,7 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme, populated }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
@@ -92,6 +94,7 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
@@ -131,6 +134,7 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
@@ -182,6 +186,7 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
@@ -244,6 +249,7 @@ try {
     const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1'); });
       const page = await ctx.newPage();
@@ -262,6 +268,7 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');

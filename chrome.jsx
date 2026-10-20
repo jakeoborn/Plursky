@@ -696,13 +696,18 @@ function _duoInitials(name) {
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
 function DuoFace({ name, size, ring = "", style, className = "" }) {
-  const photo = useArtistPhoto(name);
+  const resolved = useArtistPhoto(name);
   const rec = getArtistImage(name);
+  // A URL is not bytes: offline, a ledger portrait the SW never cached (or a
+  // Spotify URL, which it never persists) fails to load. Remember the src that
+  // failed and show initials for it, never a broken image (#329 review).
+  const [failed, setFailed] = React.useState(null);
+  const photo = resolved && resolved !== failed ? resolved : null;
   return (
     <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
       data-photo-source={photo ? (rec?.source || "") : "initials"}
       style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
-      {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
+      {photo ? <img src={photo} alt="" onError={() => setFailed(photo)} /> : _duoInitials(name)}
     </span>
   );
 }
@@ -1446,45 +1451,38 @@ function FestivalChip({ compact = false, accent = "var(--ink)", title = null }) 
   );
 }
 
-// Real festival art only: raster official maps. SVG plates and the one raster
-// placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
-// their emoji on a plain surface instead.
-const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
-function _festivalArt(cfg) {
-  const img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+// Festival art comes from ONE door: the festival-art ledger
+// (data/festival-art.js), official key art and logos only. Map art never
+// reaches a tile: an official map at 56 px read as a tiny screenshot, and the
+// tile is an identifier, not a map (Item 6, Oct 16 spec).
+function festivalArtFor(id) {
+  const rec = id && window.PLURSKY_FESTIVAL_ART?.[id];
+  return rec && /^festival-art\/tiles\/[a-z0-9-]+\.webp$/.test(rec.tile || "") && rec.sourcePage ? rec : null;
 }
-const _FESTIVAL_EDITORIAL_ART = Object.freeze({
-  "acl-2026": "festival-art/acl-2026.webp",
-  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
-  "portola-2026": "festival-art/portola-2026.webp",
-  "iii-points-2026": "festival-art/iii-points-2026.webp",
-  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
-  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp",
-});
 function FestivalThumb({ entry, size = 56, editorial = false }) {
-  // The switcher's cards are discovery surfaces, not maps. Festival map art
-  // looked like a tiny screenshot and generated/no-art festivals fell back to
-  // platform-dependent emoji (empty boxes on iOS/headless Chrome). Until each
-  // festival has licensed editorial photography, use a deterministic film
-  // gradient + wordmark. Compact list rows still use real raster art where it
-  // exists because there it reads as a useful identifier, not a hero photo.
-  const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
-  const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  // editorial: the switcher's grid card, the ledger's full frame when it has
+  // one. Compact (list rows): the ledger's 168 px tile, cover-fit on a
+  // charcoal well so light or transparent art never floats on the page.
+  const rec = festivalArtFor(entry?.config?.id);
+  const art = editorial ? (rec?.card || null) : (rec?.tile || null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   // The brand when it is already a code (EDC, ACL, CRSSD); else the
   // initials of the name's words, the year left out.
   const brand = String(entry?.config?.brand || "").trim();
   const mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand
     : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
-  // No art: the festival's initials as a board code on a well, in both
-  // modes (the old pink film gradient was a Dark-only look).
+  // No art: the festival's initials on a well tinted with its OWN registry
+  // accent (never another palette); the letters stay ink so they read in
+  // both modes.
+  const accent = /^#[0-9a-f]{6}$/i.test(entry?.accent || "") ? entry.accent : null;
   return (
-    <div aria-hidden="true" style={{
-      width: size, height: size, borderRadius: "var(--rad-sm)", overflow: "hidden", flexShrink: 0,
-      background: "var(--s3)", display: "flex", alignItems: "center", justifyContent: "center",
+    <div aria-hidden="true" data-festival-thumb={entry?.config?.id || ""} data-art={art ? "ledger" : accent ? "tinted" : "plain"} style={{
+      width: size, height: size, borderRadius: editorial ? "var(--rad-sm)" : 12, overflow: "hidden", flexShrink: 0,
+      background: art ? "#1C1B19" : accent ? `color-mix(in srgb, ${accent} 26%, var(--s3))` : "var(--s3)",
+      boxShadow: !art && accent ? `inset 0 0 0 1px color-mix(in srgb, ${accent} 45%, transparent)` : undefined,
+      display: "flex", alignItems: "center", justifyContent: "center",
       fontFamily: "var(--f-display)", fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))), fontWeight: 400, letterSpacing: "0.12em",
-      color: "var(--ink-2)",
+      color: "var(--ink)",
       // lineHeight 1 keeps the wordmark fallback inside its box: the default
       // ~1.2 line box grows past the tile at 200% text and is clipped.
       lineHeight: 1,

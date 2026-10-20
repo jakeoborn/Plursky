@@ -1606,7 +1606,7 @@ function HomeScreen({ state, setState }) {
       onClick: () => setSheet("tonight") },
     !isPostFestival && { id: "dontmiss", label: "Don't miss", icon: icon("M12 3 L14.6 8.6 L20.5 9.3 L16.1 13.4 L17.3 19.3 L12 16.3 L6.7 19.3 L7.9 13.4 L3.5 9.3 L9.4 8.6 Z"),
       onClick: () => setSheet("dontmiss") },
-    countdown && { id: "headliners", label: "Headliners", icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
+    countdown && { id: "headliners", label: topTierLabel(true), icon: icon("M4 18 H20 M6 18 L7 8 L10.5 11 L12 5 L13.5 11 L17 8 L18 18"),
       onClick: () => setSheet("headliners") },
     isLive && NOW.day > 1 && { id: "lastnight", label: "Last night", icon: icon("M3 12 A9 9 0 1 0 6 5.3 M3 4 V9 H8 M12 7 V12 L15 14"),
       onClick: () => setSheet("lastnight") },
@@ -1625,7 +1625,7 @@ function HomeScreen({ state, setState }) {
         : { title: "My saved sets", body: <SavedByDay state={state} setState={setState} /> };
       case "tonight":    return { title: "Sun & weather", eyebrow: tonightEyebrow(), body: <TonightCard state={state} setState={setState} /> };
       case "dontmiss":   return { title: "Don't miss",    body: <DontMissStrip day={countdown ? 1 : NOW.day} state={state} setState={setState} /> };
-      case "headliners": return { title: "Headliners",    body: <HeadlinerHighlights state={state} setState={setState} /> };
+      case "headliners": return { title: topTierLabel(true),    body: <HeadlinerHighlights state={state} setState={setState} /> };
       case "lastnight":  return { title: "Last night",    body: <LastNightRecap state={state} setState={setState} /> };
       case "upcoming":   return { title: "Coming up",     body: <UpcomingTeaser state={state} setState={setState} /> };
       default: return null;
@@ -1773,14 +1773,16 @@ function HomeScreen({ state, setState }) {
 // Pre-festival headliners by night (moved verbatim out of the old Home body;
 // Field Home opens it from the essentials row).
 function HeadlinerHighlights({ state, setState }) {
-          const headliners = ARTISTS.filter(a => a.tier >= 2)
-            .sort((a, b) => (b.tier - a.tier) || a.day - b.day || toNightMin(a.start) - toNightMin(b.start))
-            .slice(0, 9);
-          if (!headliners.length) return null;
+          // Top three per night. (A festival-wide top nine, grouped after, gave
+          // every slot to night one once poster billing put 22+ acts a night
+          // in the top tier, and the other nights vanished.)
+          const top = ARTISTS.filter(a => a.tier >= 2)
+            .sort((a, b) => (b.tier - a.tier) || toNightMin(a.start) - toNightMin(b.start));
           const dayGroups = festivalDayNums().map(d => ({
             day: d, meta: FESTIVAL_CONFIG.dayDates[d],
-            artists: headliners.filter(a => a.day === d).slice(0, 3),
+            artists: top.filter(a => a.day === d).slice(0, 3),
           })).filter(g => g.artists.length);
+          if (!dayGroups.length) return null;
           return (
             <div style={{ marginTop: 18 }}>
               <div className="mono" style={{ fontSize: 10, letterSpacing: 1.6, color: "var(--muted)", fontWeight: 600, marginBottom: 10 }}>
@@ -3007,6 +3009,9 @@ function NpSaved({ rows, state, setState, onAll }) {
               aria-label={`${a.name}, ${day}, ${setTimesUnconfirmed(a) ? "set times unconfirmed" : a.start ? fmt12(a.start) : "time to be announced"}${stage ? `, ${stage}` : ""}`}>
               {/* A disputed slot prints the words, never a time (the School of Rock contract). */}
               <span className="np-mono-m" style={{ fontWeight: 500, whiteSpace: setTimesUnconfirmed(a) ? "normal" : "nowrap" }}>{setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : "TBA"}</span>
+              {/* Item 5: the act's face — licensed portrait, else the Spotify
+                  photo (in-app, 24 h), else initials; a B2B shows each member. */}
+              <span className="np-sface"><DuoAvatar name={a.name} size={40} /></span>
               <span style={{ minWidth: 0 }}>
                 <span className="np-sname duo-name">{actDisplayName(a.name)}</span>
                 <span className="np-ssub np-mono">{[day, stage].filter(Boolean).join(" · ")}</span>

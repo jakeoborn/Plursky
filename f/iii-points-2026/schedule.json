@@ -1,7 +1,7 @@
 {
   "festivalId": "iii-points-2026",
-  "source": {"url":"https://www.iiipoints.com/set-times/","observedAt":"2026-10-15","official":true,"evidence":"Official III Points set-times grid. It carries the same 231 intervals first transcribed from the attendee-supplied screenshot received October 5 (sha256 below); Friday re-read from the served HTML on October 15","sha256":"8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9"},
-  "scheduleHash": "642bf22172c6db88",
+  "source": {"url":"https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/","observedAt":"2026-10-18","official":true,"evidence":"III Points official Instagram carousel post 'UPDATED SET TIMES FOR THE WEEKEND' (posted 2026-10-16), Saturday grid slides 3-4; supersedes the attendee screenshot of 2026-10-05 (RC95 close swapped)","sha256":"f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4"},
+  "scheduleHash": "1f7c7f00549bb934",
   "acts": [
     {"id":"iiip-nettspend","name":"Nettspend","day":2,"stage":"mind-melt","start":"19:25","end":"20:10"},
     {"id":"iiip-nick-leon","name":"Nick León","day":2,"stage":"rc95","start":"20:45","end":"22:00"},
@@ -114,7 +114,7 @@
     {"id":"iiip-1-800-lolita-b2b-xana","name":"1-800-305","day":2,"stage":"unforeseen","start":"23:30","end":"00:45"},
     {"id":"iiip-2up","name":"2UP!","day":2,"stage":"vertex","start":"02:45","end":"04:00"},
     {"id":"iiip-619","name":"619!","day":2,"stage":"unforeseen","start":"22:15","end":"23:30"},
-    {"id":"iiip-999999999","name":"999999999","day":2,"stage":"rc95","start":"01:30","end":"02:45"},
+    {"id":"iiip-999999999","name":"999999999","day":2,"stage":"rc95","start":"02:45","end":"04:00"},
     {"id":"iiip-adam-port","name":"Adam Port","day":2,"stage":"mind-melt","start":"22:15","end":"23:30"},
     {"id":"iiip-ale-acosta-b2b-hazon","name":"Ale Acosta B2B Hazón","day":2,"stage":"unforeseen","start":"20:00","end":"21:15"},
     {"id":"iiip-alezsandro-b2b-dalva","name":"Alezsandro B2B Dalva","day":2,"stage":"vertex","start":"17:30","end":"19:00"},
@@ -128,7 +128,7 @@
     {"id":"iiip-camp-blu","name":"Camp Blu","day":2,"stage":"grand-central","start":"18:05","end":"18:35"},
     {"id":"iiip-carter-jackson-brown","name":"Carter Jackson-Brown","day":2,"stage":"mind-melt","start":"16:00","end":"17:00"},
     {"id":"iiip-chanel-beads","name":"Chanel Beads","day":2,"stage":"grand-central","start":"22:55","end":"23:40"},
-    {"id":"iiip-charlotte-de-witte","name":"Charlotte de Witte","day":2,"stage":"rc95","start":"02:45","end":"04:00"},
+    {"id":"iiip-charlotte-de-witte","name":"Charlotte de Witte","day":2,"stage":"rc95","start":"01:30","end":"02:45"},
     {"id":"iiip-chasewest","name":"ChaseWest","day":2,"stage":"isotropic","start":"22:30","end":"23:45"},
     {"id":"iiip-coffintexts-b2b-dj-fuckoff","name":"Coffintexts B2B DJ Fuckoff","day":2,"stage":"rc95","start":"19:30","end":"20:45"},
     {"id":"iiip-cole-knight-b2b-dreya-v","name":"Cole Knight B2B DREYA V","day":2,"stage":"rc95","start":"18:15","end":"19:30"},

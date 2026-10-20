@@ -38871,7 +38871,13 @@
   ],
   "act": "1tbsp",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-aabel-b2b-siegel",
@@ -38898,7 +38904,13 @@
   ],
   "act": "aabel-b2b-siegel",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ackdaddy",
@@ -38921,7 +38933,13 @@
   ],
   "act": "ackdaddy",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-adam-at-the-door",
@@ -38944,7 +38962,13 @@
   ],
   "act": "adam-at-the-door",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ahmed-spins-b2b-omri",
@@ -38971,7 +38995,13 @@
   ],
   "act": "ahmed-spins-b2b-omri",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-alejo",
@@ -38994,7 +39024,13 @@
   ],
   "act": "alejo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-alexx-in-chainss-b2b-solte",
@@ -39021,7 +39057,13 @@
   ],
   "act": "alexx-in-chainss-b2b-soltek",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-aphex-twink-b2b-foreseer",
@@ -39048,7 +39090,13 @@
   ],
   "act": "aphex-twink-b2b-foreseer",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-b0yg1rl",
@@ -39071,7 +39119,13 @@
   ],
   "act": "b0yg1rl",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-baby-jesus-b2b-chaos",
@@ -39098,7 +39152,13 @@
   ],
   "act": "baby-jesus-b2b-chaos",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bakke",
@@ -39121,7 +39181,13 @@
   ],
   "act": "bakke",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-beltran-b2b-ben-sterling",
@@ -39148,7 +39214,13 @@
   ],
   "act": "beltran-b2b-ben-sterling",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bill-patrick-b2b-bort",
@@ -39175,7 +39247,13 @@
   ],
   "act": "bill-patrick-b2b-bort",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bone-thugs-n-harmony",
@@ -39198,7 +39276,13 @@
   ],
   "act": "bone-thugs-n-harmony",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-brunello-b2b-rafael",
@@ -39225,7 +39309,13 @@
   ],
   "act": "brunello-b2b-rafael",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-cami-di-marzo",
@@ -39248,7 +39338,13 @@
   ],
   "act": "cami-di-marzo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-cloonee",
@@ -39271,7 +39367,13 @@
   ],
   "act": "cloonee",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-connan-mockasin",
@@ -39294,7 +39396,13 @@
   ],
   "act": "connan-mockasin",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-corridos-ketamina",
@@ -39317,7 +39425,13 @@
   ],
   "act": "corridos-ketamina",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-daizy",
@@ -39340,7 +39454,13 @@
   ],
   "act": "daizy",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dan-molinari",
@@ -39363,7 +39483,13 @@
   ],
   "act": "dan-molinari",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-danny-brown",
@@ -39386,7 +39512,13 @@
   ],
   "act": "danny-brown",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-danny-daze-b2b-dj-godfathe",
@@ -39413,7 +39545,13 @@
   ],
   "act": "danny-daze-b2b-dj-godfather",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-deep-cleansing",
@@ -39436,7 +39574,13 @@
   ],
   "act": "deep-cleansing",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-differ",
@@ -39459,7 +39603,13 @@
   ],
   "act": "differ",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-discip",
@@ -39482,7 +39632,13 @@
   ],
   "act": "discip",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-disco-lines",
@@ -39505,7 +39661,13 @@
   ],
   "act": "disco-lines",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dj-harvey",
@@ -39528,7 +39690,13 @@
   ],
   "act": "dj-harvey",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dj-sabi-b2b-grue5ome",
@@ -39555,7 +39723,13 @@
   ],
   "act": "dj-sabi-b2b-grue5ome",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dr-rubinstein-b2b-ultrathe",
@@ -39582,7 +39756,13 @@
   ],
   "act": "dr-rubinstein-b2b-ultrathem",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-duun-b2b-sleepy-c",
@@ -39609,7 +39789,13 @@
   ],
   "act": "duun-b2b-sleepy-c",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-eco-sistema",
@@ -39632,7 +39818,13 @@
   ],
   "act": "eco-sistema",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-eli-escobar-b2b-jubilee",
@@ -39659,7 +39851,13 @@
   ],
   "act": "eli-escobar-b2b-jubilee",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-elias-garcia-b2b-mila-gama",
@@ -39686,7 +39884,13 @@
   ],
   "act": "elias-garcia-b2b-mila-gama",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-eveava-b2b-jovigibs",
@@ -39713,7 +39917,13 @@
   ],
   "act": "eveava-b2b-jovigibs",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-extra-andrew-b2b-mutant-pe",
@@ -39740,7 +39950,13 @@
   ],
   "act": "extra-andrew-b2b-mutant-pete",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-feph-b2b-mr-tron",
@@ -39767,7 +39983,13 @@
   ],
   "act": "feph-b2b-mr-tron",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-fiin",
@@ -39790,7 +40012,13 @@
   ],
   "act": "fiin",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-floating-points",
@@ -39813,7 +40041,13 @@
   ],
   "act": "floating-points",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-flying-lotus",
@@ -39836,7 +40070,13 @@
   ],
   "act": "flying-lotus",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-gio-elia-b2b-meghan-lee",
@@ -39863,7 +40103,13 @@
   ],
   "act": "gio-elia-b2b-meghan-lee",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-godisound",
@@ -39886,7 +40132,13 @@
   ],
   "act": "godisound",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-grace-arribas-b2b-marte",
@@ -39913,7 +40165,13 @@
   ],
   "act": "grace-arribas-b2b-marte",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-hamdi",
@@ -39936,7 +40194,13 @@
   ],
   "act": "hamdi",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-heidi-lawden",
@@ -39959,7 +40223,13 @@
   ],
   "act": "heidi-lawden",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-honey-dijon",
@@ -39982,7 +40252,13 @@
   ],
   "act": "honey-dijon",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rimaye-b2b-inbal",
@@ -40009,7 +40285,13 @@
   ],
   "act": "inbal-b2b-rimaye",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-invt",
@@ -40032,7 +40314,13 @@
   ],
   "act": "invt",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ivy-lab",
@@ -40055,7 +40343,13 @@
   ],
   "act": "ivy-lab",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jacques-greene",
@@ -40078,7 +40372,13 @@
   ],
   "act": "jacques-greene",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jane-remover",
@@ -40101,7 +40401,13 @@
   ],
   "act": "jane-remover",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jeremy-ismael",
@@ -40124,7 +40430,13 @@
   ],
   "act": "jeremy-ismael",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jigitz",
@@ -40147,7 +40459,13 @@
   ],
   "act": "jigitz",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-joanna-kuchta-b2b-robyn-si",
@@ -40174,7 +40492,13 @@
   ],
   "act": "joanna-kuchta-b2b-robyn-sin-love",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lotusoph-b2b-julia-saturno",
@@ -40201,7 +40525,13 @@
   ],
   "act": "julia-saturno-b2b-lotusoph",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jump-source",
@@ -40224,7 +40554,13 @@
   ],
   "act": "jump-source",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-katie-ox-b2b-nat-siriani",
@@ -40251,7 +40587,13 @@
   ],
   "act": "katie-ox-b2b-nat-siriani",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-kumi",
@@ -40274,7 +40616,13 @@
   ],
   "act": "kumi",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lagrimas-de-oro",
@@ -40297,7 +40645,13 @@
   ],
   "act": "lagrimas-de-oro",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lauren-palma",
@@ -40320,7 +40674,13 @@
   ],
   "act": "lauren-palma",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-levity-b2b-taiki-nulight",
@@ -40347,7 +40707,13 @@
   ],
   "act": "levity-b2b-taiki-nulight",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lil-kim",
@@ -40370,7 +40736,13 @@
   ],
   "act": "lil-kim",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lousy-lover-b2b-lucaz",
@@ -40397,7 +40769,13 @@
   ],
   "act": "lousy-lover-b2b-lucaz",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-maccabi-b2b-pezlo-md",
@@ -40424,7 +40802,13 @@
   ],
   "act": "maccabiii-b2b-pezlo-md",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-maher-daniel-b2b-mai-iache",
@@ -40451,7 +40835,13 @@
   ],
   "act": "maher-daniel-b2b-mai-iachetti",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-malone-b2b-miluhska",
@@ -40478,7 +40868,13 @@
   ],
   "act": "malone-morez-b2b-miluhska",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mary-droppinz",
@@ -40501,7 +40897,13 @@
   ],
   "act": "mary-droppinz",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mason-norris-b2b-mia-vende",
@@ -40528,7 +40930,13 @@
   ],
   "act": "mason-norris-b2b-mia-vendetta",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-megusta-b2b-migs",
@@ -40555,7 +40963,13 @@
   ],
   "act": "megusta-b2b-migs",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-men-i-trust",
@@ -40578,7 +40992,13 @@
   ],
   "act": "men-i-trust",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mgna-crrrta",
@@ -40601,7 +41021,13 @@
   ],
   "act": "mgna-crrrta",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-miguel-clark-b2b-naim-zarz",
@@ -40628,7 +41054,13 @@
   ],
   "act": "miguel-clark-b2b-naim-zarzour",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-miguelle-tons-b2b-saraga",
@@ -40651,7 +41083,13 @@
   ],
   "act": "miguelle-and-tons",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mind-enterprises",
@@ -40674,7 +41112,13 @@
   ],
   "act": "mind-enterprises",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-moscoman",
@@ -40697,7 +41141,13 @@
   ],
   "act": "moscoman",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-nate-sib",
@@ -40720,7 +41170,13 @@
   ],
   "act": "nate-sib",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-nicholas-g-padilla",
@@ -40743,7 +41199,13 @@
   ],
   "act": "nicholas-g-padilla",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-nicole-gallamini-b2b-nikit",
@@ -40770,7 +41232,13 @@
   ],
   "act": "nicole-gallamini-b2b-nikita-green",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-odd-mob",
@@ -40793,7 +41261,13 @@
   ],
   "act": "odd-mob",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-oma-totem-b2b-true-vine",
@@ -40820,7 +41294,13 @@
   ],
   "act": "oma-totem-b2b-true-vine",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-parcels",
@@ -40843,7 +41323,13 @@
   ],
   "act": "parcels",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-patch",
@@ -40866,7 +41352,13 @@
   ],
   "act": "patch",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-pawsa",
@@ -40889,7 +41381,13 @@
   ],
   "act": "pawsa",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-proletar-b2b-zamurai",
@@ -40916,7 +41414,13 @@
   ],
   "act": "proletar-b2b-zamurai",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-puma",
@@ -40939,7 +41443,13 @@
   ],
   "act": "puma",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-purity-ring",
@@ -40962,7 +41472,13 @@
   ],
   "act": "purity-ring",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-r-v-calypso",
@@ -40985,7 +41501,13 @@
   ],
   "act": "r-v-calypso",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ragie-ban",
@@ -41008,7 +41530,13 @@
   ],
   "act": "ragie-ban",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rello",
@@ -41031,7 +41559,13 @@
   ],
   "act": "rello",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rental-snakes",
@@ -41054,7 +41588,13 @@
   ],
   "act": "rental-snakes",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-roddy-lima",
@@ -41077,7 +41617,13 @@
   ],
   "act": "roddy-lima",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-peach-b2b-shanti-celeste",
@@ -41104,7 +41650,13 @@
   ],
   "act": "shanti-celeste-b2b-peach",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-raje-b2b-slugg",
@@ -41131,7 +41683,13 @@
   ],
   "act": "slugg-b2b-raje",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-sportswax",
@@ -41154,7 +41712,13 @@
   ],
   "act": "sportswax",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-will-buck-b2b-taimur",
@@ -41181,7 +41745,13 @@
   ],
   "act": "taimur-b2b-will-buck",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-tech-g1rls",
@@ -41204,7 +41774,13 @@
   ],
   "act": "tech-g1rls",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-tiffy-vera-b2b-thunderpony",
@@ -41231,7 +41807,13 @@
   ],
   "act": "thunderpony-b2b-tiffy-vera",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-tokischa",
@@ -41254,7 +41836,13 @@
   ],
   "act": "tokischa",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-uchi",
@@ -41277,7 +41865,13 @@
   ],
   "act": "uchi",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-v1fro",
@@ -41300,7 +41894,13 @@
   ],
   "act": "v1fro",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-vania-junco",
@@ -41323,7 +41923,13 @@
   ],
   "act": "vania-junco",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-max-styler-b2b-vintage-cul",
@@ -41350,7 +41956,13 @@
   ],
   "act": "vintage-culture-b2b-max-styler",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-will-renuart",
@@ -41373,7 +41985,13 @@
   ],
   "act": "will-renuart",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-zep",
@@ -41396,7 +42014,13 @@
   ],
   "act": "zep",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-1-800-lolita-b2b-xana",
@@ -41419,7 +42043,13 @@
   ],
   "act": "1-800-305",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-2up",
@@ -41442,7 +42072,13 @@
   ],
   "act": "2up",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-619",
@@ -41465,7 +42101,13 @@
   ],
   "act": "619",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-999999999",
@@ -41476,8 +42118,8 @@
   "date": "2026-10-17",
   "day": 2,
   "stage": "RC95",
-  "start": "01:30",
-  "end": "02:45",
+  "start": "02:45",
+  "end": "04:00",
   "printed": "999999999",
   "setTag": null,
   "performers": [
@@ -41487,8 +42129,14 @@
    }
   ],
   "act": "999999999",
-  "closing": false,
-  "mainStage": null
+  "closing": true,
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-adam-port",
@@ -41511,7 +42159,13 @@
   ],
   "act": "adam-port",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ale-acosta-b2b-hazon",
@@ -41538,7 +42192,13 @@
   ],
   "act": "ale-acosta-b2b-hazon",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-alezsandro-b2b-dalva",
@@ -41565,7 +42225,13 @@
   ],
   "act": "alezsandro-b2b-dalva",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-allnightkev-b2b-lo-g",
@@ -41592,7 +42258,13 @@
   ],
   "act": "allnightkev-b2b-lo-g",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ashley-venom-b2b-souls-dep",
@@ -41619,7 +42291,13 @@
   ],
   "act": "ashley-venom-b2b-souls-departed",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bassvictim",
@@ -41642,7 +42320,13 @@
   ],
   "act": "bassvictim",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-pressure-point-b2b-berrakk",
@@ -41669,7 +42353,13 @@
   ],
   "act": "berrakka-b2b-pressure-point",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-blood-orange",
@@ -41692,7 +42382,13 @@
   ],
   "act": "blood-orange",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bonita-applebumz-b2b-toni-",
@@ -41719,7 +42415,13 @@
   ],
   "act": "bonita-applebumz-b2b-toni-shardai",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bozito-b2b-gabo-escalona",
@@ -41746,7 +42448,13 @@
   ],
   "act": "bozito-b2b-gabo-escalona",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-camp-blu",
@@ -41769,7 +42477,13 @@
   ],
   "act": "camp-blu",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-carter-jackson-brown",
@@ -41792,7 +42506,13 @@
   ],
   "act": "carter-jackson-brown",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-chanel-beads",
@@ -41815,7 +42535,13 @@
   ],
   "act": "chanel-beads",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-charlotte-de-witte",
@@ -41826,8 +42552,8 @@
   "date": "2026-10-17",
   "day": 2,
   "stage": "RC95",
-  "start": "02:45",
-  "end": "04:00",
+  "start": "01:30",
+  "end": "02:45",
   "printed": "Charlotte de Witte",
   "setTag": null,
   "performers": [
@@ -41837,8 +42563,14 @@
    }
   ],
   "act": "charlotte-de-witte",
-  "closing": true,
-  "mainStage": null
+  "closing": false,
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-chasewest",
@@ -41861,7 +42593,13 @@
   ],
   "act": "chasewest",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-coffintexts-b2b-dj-fuckoff",
@@ -41888,7 +42626,13 @@
   ],
   "act": "coffintexts-b2b-dj-fuckoff",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-cole-knight-b2b-dreya-v",
@@ -41915,7 +42659,13 @@
   ],
   "act": "cole-knight-b2b-dreya-v",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-daphni",
@@ -41938,7 +42688,13 @@
   ],
   "act": "daphni",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-david-vunk",
@@ -41961,7 +42717,13 @@
   ],
   "act": "david-vunk",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dean-turnley",
@@ -41984,7 +42746,13 @@
   ],
   "act": "dean-turnley",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-d-luxe-b2b-dennis-baker",
@@ -42011,7 +42779,13 @@
   ],
   "act": "dennis-baker-b2b-d-luxe",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dj-ray-b2b-ez-dee",
@@ -42038,7 +42812,13 @@
   ],
   "act": "dj-ray-b2b-ez-dee",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dj-three-b2b-sister-system",
@@ -42065,7 +42845,13 @@
   ],
   "act": "dj-three-b2b-sister-system",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-domnrob",
@@ -42088,7 +42874,13 @@
   ],
   "act": "domnrob",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-doris-dana",
@@ -42111,7 +42903,13 @@
   ],
   "act": "doris-dana",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-duality-b2b-gumthewrapper",
@@ -42138,7 +42936,13 @@
   ],
   "act": "duality-b2b-gumthewrapper",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-dude-skywalker",
@@ -42161,7 +42965,13 @@
   ],
   "act": "dude-skywalker",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ear",
@@ -42184,7 +42994,13 @@
   ],
   "act": "ear",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ellynora",
@@ -42207,7 +43023,13 @@
   ],
   "act": "ellynora",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-faith-leazae",
@@ -42230,7 +43052,13 @@
   ],
   "act": "faith-leazae",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-fine",
@@ -42253,7 +43081,13 @@
   ],
   "act": "fine",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-four-tet",
@@ -42276,7 +43110,13 @@
   ],
   "act": "four-tet",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-generous-b-b2b-hakuna",
@@ -42303,7 +43143,13 @@
   ],
   "act": "generous-b-b2b-hakuna",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-haai",
@@ -42326,7 +43172,13 @@
   ],
   "act": "haai",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-horsegiirl",
@@ -42349,7 +43201,13 @@
   ],
   "act": "horsegiirl",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-idriss-d-b2b-danyelino",
@@ -42376,7 +43234,13 @@
   ],
   "act": "idriss-d-b2b-danyelino",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-interplanetary-criminal",
@@ -42399,7 +43263,13 @@
   ],
   "act": "interplanetary-criminal",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jason-rault",
@@ -42422,7 +43292,13 @@
   ],
   "act": "jason-rault",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jbz",
@@ -42445,7 +43321,13 @@
   ],
   "act": "jbz",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jinn-pr",
@@ -42468,7 +43350,13 @@
   ],
   "act": "jinn-pr",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-joss-dean",
@@ -42491,7 +43379,13 @@
   ],
   "act": "joss-dean",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-kelela",
@@ -42514,7 +43408,13 @@
   ],
   "act": "kelela",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-kettama",
@@ -42537,7 +43437,13 @@
   ],
   "act": "kettama",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-khami",
@@ -42560,7 +43466,13 @@
   ],
   "act": "khami",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ki-ki",
@@ -42583,7 +43495,13 @@
   ],
   "act": "ki-ki",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-kinahau",
@@ -42606,7 +43524,13 @@
   ],
   "act": "kinahau",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-kujo-b2b-rara",
@@ -42633,7 +43557,13 @@
   ],
   "act": "kujo-b2b-rara",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-la-bb",
@@ -42656,7 +43586,13 @@
   ],
   "act": "la-bb",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lady-narcisse-b2b-racci",
@@ -42683,7 +43619,13 @@
   ],
   "act": "lady-narcisse-b2b-racci",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ladyboy",
@@ -42706,7 +43648,13 @@
   ],
   "act": "ladyboy",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-liquid-dinosaurs",
@@ -42729,7 +43677,13 @@
   ],
   "act": "liquid-dinosaurs",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lizzie-mcguire",
@@ -42752,7 +43706,13 @@
   ],
   "act": "lizzie-mcguire",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-loukeman",
@@ -42775,7 +43735,13 @@
   ],
   "act": "loukeman",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-lupreme-b2b-santo",
@@ -42802,7 +43768,13 @@
   ],
   "act": "lupreme-b2b-santo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-machine-girl",
@@ -42825,7 +43797,13 @@
   ],
   "act": "machine-girl",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mango-b2b-mister-lo",
@@ -42852,7 +43830,13 @@
   ],
   "act": "mango-b2b-mister-lo",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-marco-carola-b2b-franky-ri",
@@ -42879,7 +43863,13 @@
   ],
   "act": "marco-carola-b2b-franky-rizardo",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-marie-qrie-b2b-viva-vidal",
@@ -42906,7 +43896,13 @@
   ],
   "act": "marie-qrie-b2b-viva-vidal",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-marsolo",
@@ -42929,7 +43925,13 @@
   ],
   "act": "marsolo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-max-dean-b2b-luke-dean",
@@ -42956,7 +43958,13 @@
   ],
   "act": "max-dean-b2b-luke-dean",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-milo-ziro-b2b-xilla",
@@ -42983,7 +43991,13 @@
   ],
   "act": "milo-ziro-b2b-xilla",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-ml-buch",
@@ -43006,7 +44020,13 @@
   ],
   "act": "ml-buch",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-monoky",
@@ -43029,7 +44049,13 @@
   ],
   "act": "monoky",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mph",
@@ -43052,7 +44078,13 @@
   ],
   "act": "mph",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-mr-bitch",
@@ -43075,7 +44107,13 @@
   ],
   "act": "mr-bitch",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-artime-b2b-mystic-bill",
@@ -43102,7 +44140,13 @@
   ],
   "act": "mystic-bill-b2b-artime",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-natalia-roth-b2b-max-stern",
@@ -43129,7 +44173,13 @@
   ],
   "act": "natalia-roth-b2b-max-stern",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-nii-tei",
@@ -43152,7 +44202,13 @@
   ],
   "act": "nii-tei",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-omar",
@@ -43175,7 +44231,13 @@
   ],
   "act": "omar",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-phiphi-b2b-winter-wrong",
@@ -43202,7 +44264,13 @@
   ],
   "act": "phiphi-b2b-winter-wrong",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rebolledo",
@@ -43225,7 +44293,13 @@
   ],
   "act": "rebolledo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-red-axes",
@@ -43248,7 +44322,13 @@
   ],
   "act": "red-axes",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-res-live",
@@ -43271,7 +44351,13 @@
   ],
   "act": "res",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-roman-flugel",
@@ -43294,7 +44380,13 @@
   ],
   "act": "roman-flugel",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-jinks-b2b-romulo-del-casti",
@@ -43321,7 +44413,13 @@
   ],
   "act": "jinks-b2b-romulo-del-castillo",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rude-boy-b2b-sdrv",
@@ -43348,7 +44446,13 @@
   ],
   "act": "rude-boy-b2b-sdrv",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-rusowsky",
@@ -43371,7 +44475,13 @@
   ],
   "act": "rusowsky",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-saint-romero",
@@ -43394,7 +44504,13 @@
   ],
   "act": "saint-and-romero",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-sam-alfred",
@@ -43417,7 +44533,13 @@
   ],
   "act": "sam-alfred",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-santiago-villu",
@@ -43440,7 +44562,13 @@
   ],
   "act": "villu",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-saturnsarii-b2b-suz",
@@ -43467,7 +44595,13 @@
   ],
   "act": "saturnsarii-b2b-suz",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-seth-troxler",
@@ -43490,7 +44624,13 @@
   ],
   "act": "seth-troxler",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-shinobi",
@@ -43513,7 +44653,13 @@
   ],
   "act": "shinobi",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-grant-sabadash-b2b-shir-mi",
@@ -43540,7 +44686,13 @@
   ],
   "act": "grant-sabadash-b2b-shir-miya",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-silvie-loto-b2b-ms-mada",
@@ -43567,7 +44719,13 @@
   ],
   "act": "silvie-loto-b2b-ms-mada",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-sosa",
@@ -43590,7 +44748,13 @@
   ],
   "act": "sosa",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-spice-crime-b2b-violeta",
@@ -43617,7 +44781,13 @@
   ],
   "act": "spice-crime-b2b-violeta",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-sunn-o",
@@ -43640,7 +44810,13 @@
   ],
   "act": "sunn-o",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-terence-tabeau",
@@ -43663,7 +44839,13 @@
   ],
   "act": "terence-tabeau",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-tiga",
@@ -43686,7 +44868,13 @@
   ],
   "act": "tiga",
   "closing": true,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-tricky",
@@ -43709,7 +44897,13 @@
   ],
   "act": "tricky",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-underworld",
@@ -43732,7 +44926,13 @@
   ],
   "act": "underworld",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-velora",
@@ -43755,7 +44955,13 @@
   ],
   "act": "velora",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-vsyana",
@@ -43778,7 +44984,13 @@
   ],
   "act": "vsyana",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-vtss",
@@ -43801,7 +45013,13 @@
   ],
   "act": "vtss",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-vvilhelm",
@@ -43824,7 +45042,13 @@
   ],
   "act": "vvilhelm",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-whitesquare",
@@ -43847,7 +45071,13 @@
   ],
   "act": "whitesquare",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-willikens-ivkovic",
@@ -43870,7 +45100,13 @@
   ],
   "act": "willikens-and-ivkovic",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-yhwh-nailgun",
@@ -43893,7 +45129,13 @@
   ],
   "act": "yhwh-nailgun",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 2,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-u-uk-uk1mat-u",
@@ -43916,7 +45158,13 @@
   ],
   "act": "you-uk-yuk1mat-u",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 3,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-bricolage-b2b-day-dem",
@@ -43943,7 +45191,13 @@
   ],
   "act": "bricolage-b2b-day-dem",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-sel-6-b2b-playshado",
@@ -43970,7 +45224,13 @@
   ],
   "act": "playshado-b2b-sel-6",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-fiuza-b2b-madison-kay",
@@ -43997,7 +45257,13 @@
   ],
   "act": "fiuza-b2b-madison-kay",
   "closing": false,
-  "mainStage": null
+  "mainStage": null,
+  "posterTier": 1,
+  "posterSource": {
+   "url": "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg",
+   "sha256": "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7",
+   "transcribed": "2026-09-30"
+  }
  },
  {
   "id": "iii-points-2026:iiip-amar",

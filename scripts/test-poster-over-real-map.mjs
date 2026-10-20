@@ -84,7 +84,7 @@ function load(fid, mapSrc = MAP) {
 // evidence per anchor); edit this table in the same PR that registers them.
 const EXPECTED = {
   checked:   ["summerfest-2026", "lollapalooza-2026", "outside-lands-2026"],
-  unchecked: ["edc-lv-2026", "acl-2026", "edc-orlando-2026", "ultra-miami-2026", "governors-ball-2026"],
+  unchecked: ["edc-lv-2026", "acl-2026", "edc-orlando-2026", "ultra-miami-2026", "governors-ball-2026", "iii-points-2026"],
 };
 const expectedTier = id => EXPECTED.checked.includes(id) ? "checked" : EXPECTED.unchecked.includes(id) ? "unchecked" : "none";
 
@@ -160,7 +160,7 @@ function targets(mapSrc = MAP) {
   for (const fid of ["ultra-miami-2026", "acl-2026", "iii-points-2026", "governors-ball-2026"]) {
     const P = load(fid, mapSrc);
     if (P.id !== fid) { out.push(`${fid}: loaded ${P.id}`); continue; }
-    // III Points has no stage x/y at all: force a grid point (it would land on the venue centre).
+    // A festival with no stage x/y at all gets a forced grid point (it would land on the venue centre).
     let st = P.stagesAll.filter(s => Number.isFinite(s.x) && Number.isFinite(s.y));
     if (!st.length) st = [{ id: "grid-centre", name: "Main Room", x: 50, y: 50 }];
     const leaked = st.filter(s => P._realMapTarget({ x: s.x, y: s.y }) || P._realMapTarget({ x: s.x, y: s.y, stageId: s.id, label: s.name }));
