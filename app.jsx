@@ -814,10 +814,12 @@ function App() {
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
 
-  // Auto-schedule push reminders whenever saves change (if permission already granted)
+  // Auto-schedule push reminders whenever saves change (if permission already
+  // granted), and when a split moves an arrival time (L3).
+  const attendV = useAttendVersion();
   React.useEffect(() => {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
 
   // Cloud-backup auto-push: when the user is signed in to Supabase, push their
   // saved lineup + notes 1s after the most recent change. Silent — the cloud
@@ -1008,7 +1010,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v448",
+        version: "v449",
       }));
     } catch {}
   }
@@ -1039,7 +1041,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v448
+          Plursky · v449
         </div>
       </div>
     );

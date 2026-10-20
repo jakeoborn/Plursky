@@ -1123,6 +1123,15 @@ function setReminderLeadMin(mins) {
 //
 // Web path: setTimeout each pending reminder and persist to localStorage
 // so a reload can rehydrate any that haven't fired yet.
+// One wording for every reminder path (native, web, rehydrate). A split that
+// moves the arrival past the published start is an arrival, not a start
+// (Codex P2 on #335), as the in-app reminder already says.
+function _reminderText(p) {
+  const lead = p.leadMin || 15;
+  return p.late
+    ? { title: `${p.name}: you arrive in ${lead} min`, body: `${p.stageName} · you arrive ${fmt12(p.start)}` }
+    : { title: `${p.name} starts in ${lead} min`, body: `${p.stageName} · ${fmt12(p.start)}` };
+}
 function scheduleReminders(state, showLocal) {
   const ln = _capLocalNotifications();
   const now = Date.now();
@@ -1135,8 +1144,12 @@ function scheduleReminders(state, showLocal) {
   const lineup = activeLineup(state.saved);
 
   state.saved.forEach(id => {
-    const a = lineup.find(x => x.id === id);
-    if (!a) return;
+    const found = lineup.find(x => x.id === id);
+    if (!found) return;
+    // L3: after a split the reminder is for when you ARRIVE (the switch time),
+    // not the set's published start you are deliberately skipping.
+    const win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    const a = win && win.partial ? { ...found, start: win.start } : found;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
     const fireMs = startMs - leadMin * 60000;
@@ -1149,6 +1162,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs, leadMin,
     });
   });
@@ -1171,8 +1185,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id:    p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body:  `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body:  _reminderText(p).body,
           schedule: { at: new Date(p.fireMs), allowWhileIdle: true },
           extra: { artistId: p.id, url: "/" },
         })),
@@ -1188,8 +1202,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     const handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: { url: "/" },
       });
@@ -1216,10 +1230,9 @@ function loadAndReschedule(showLocal) {
     const live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      const lead = r.leadMin || 15;
       const handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: { url: "/" },
         });
@@ -1504,7 +1517,7 @@ function _festivalPlanStatus(id) {
   let conflicts = 0;
   for (let i = 0; i < arts.length; i++)
     for (let j = i + 1; j < arts.length; j++)
-      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof setsClash === "function" && setsClash(arts[i], arts[j], id, ids)) conflicts++;
   return { saved: arts.length, conflicts };
 }
 
