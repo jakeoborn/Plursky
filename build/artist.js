@@ -1437,6 +1437,8 @@ function ArtistScreen({
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
     className: "serif",
+    "data-fit-words": true,
+    "data-fit-min": "28",
     "data-artist-hero-name": true,
     "data-artist-hero-label": "name",
     style: {
@@ -1476,8 +1478,9 @@ function ArtistScreen({
     "data-spotify-image": "1",
     style: {
       display: "block",
-      width: "min(60vw, 236px)",
-      maxWidth: "100%",
+      width: "calc(100% + 36px)",
+      maxWidth: "none",
+      margin: "0 -18px",
       height: "auto",
       borderRadius: 4
     }

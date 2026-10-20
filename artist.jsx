@@ -1223,7 +1223,10 @@ function ArtistScreen({ state, setState }) {
           </div>
         )}
       </div>
-      <div className="serif" data-artist-hero-name data-artist-hero-label="name" style={{
+      {/* data-fit-words: a single word too wide for the box steps the size
+          down (fitWords, chrome.jsx) instead of clipping; "UNDERWORLD" at 40px
+          ran past the 320 hero. */}
+      <div className="serif" data-fit-words data-fit-min="28" data-artist-hero-name data-artist-hero-label="name" style={{
         fontSize: isB2B ? 32 : 40, fontWeight: 600, lineHeight: 1.05, letterSpacing: "-0.05em",
       }}>{a.name}</div>
     </>
@@ -1251,8 +1254,11 @@ function ArtistScreen({ state, setState }) {
         }}>
           {heroControls(false)}
           <figure style={{ margin: 0, display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            {/* L2: edge to edge at the image's own aspect (it was
+                min(60vw, 236px), leaving the right half of the hero dead).
+                Still whole: no crop, no overlay, 4px corners, logo below. */}
             <img src={heroPhoto} alt={activeName + " (photo from Spotify)"} data-spotify-image="1" style={{
-              display: "block", width: "min(60vw, 236px)", maxWidth: "100%", height: "auto", borderRadius: 4,
+              display: "block", width: "calc(100% + 36px)", maxWidth: "none", margin: "0 -18px", height: "auto", borderRadius: 4,
             }}/>
             <a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer" data-spotify-attribution="1"
               aria-label={"Photo from Spotify. Open " + activeName + " on Spotify"} style={{
