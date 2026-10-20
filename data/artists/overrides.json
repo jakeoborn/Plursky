@@ -588,6 +588,36 @@
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Kaufmann\".",
    "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "Malóne Morez B2B Miluhska",
+   "performers": [
+    {
+     "name": "Malóne",
+     "role": "b2b"
+    },
+    {
+     "name": "Miluhska",
+     "role": "b2b"
+    }
+   ],
+   "why": "Billing and identity are separate here. The official set grids (this carousel's Friday slide 1 and https://www.iiipoints.com/set-times/) print the set as \"MALÓNE MOREZ B2B MILUHSKA\"; the festival's own A-Z (https://www.iiipoints.com/lineup/) lists the performers individually as \"Malóne\" and \"Miluhska\". The printed billing follows the grid; the performers stay on their existing keys, because a spelling difference between two official pages is not evidence of a different artist. Whether \"Malóne Morez\" and \"Malóne\" are one name is unresolved; no alias is claimed.",
+   "source": "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/"
+  },
+  {
+   "printed": "MACCABIII B2B Pezlo MD",
+   "performers": [
+    {
+     "name": "Maccabi",
+     "role": "b2b"
+    },
+    {
+     "name": "Pezlo MD",
+     "role": "b2b"
+    }
+   ],
+   "why": "Billing and identity are separate here. The official set grids (this carousel's Friday slide 2 and https://www.iiipoints.com/set-times/) print the set as \"MACCABIII B2B PEZLO MD\"; the festival's own A-Z (https://www.iiipoints.com/lineup/) lists the performers individually as \"Maccabi\" and \"Pezlo MD\". The printed billing follows the grid; the performers stay on their existing keys, because a spelling difference between two official pages is not evidence of a different artist. Whether \"MACCABIII\" and \"Maccabi\" are one name is unresolved; no alias is claimed.",
+   "source": "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/"
   }
  ],
  "pending": [

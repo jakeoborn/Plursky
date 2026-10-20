@@ -22212,8 +22212,8 @@
   "links": []
  },
  {
-  "key": "maccabiii",
-  "name": "MACCABIII",
+  "key": "maccabi",
+  "name": "Maccabi",
   "aliases": [],
   "kind": "performer",
   "parents": [],
@@ -22626,24 +22626,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul141"
-  ],
-  "firstSeen": "2026-03-29",
-  "lastSeen": "2026-03-29",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "malone-morez",
-  "name": "Malóne Morez",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
+   "ultra-miami-2026:ul141",
    "iii-points-2026:iiip-malone-b2b-miluhska"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2026-03-29",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
