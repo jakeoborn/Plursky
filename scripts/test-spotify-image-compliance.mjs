@@ -256,6 +256,8 @@ try {
         check(r.img.fit !== 'cover', `${at} image uses object-fit: cover`);
         check(r.img.radius === '4px', `${at} artwork corner radius is ${r.img.radius}, guidelines say 4px on small devices`);
         check(r.img.right <= r.img.vw, `${at} image runs off the screen`);
+        // Design, not compliance (L2): the whole image spans the screen.
+        check(r.img.w >= r.img.vw - 1, `${at} the Spotify hero is ${Math.round(r.img.w)}px of a ${r.img.vw}px screen (want edge to edge)`);
         check(r.overlaps.length === 0, `${at} something is drawn over the Spotify image: ${r.overlaps.join(' | ')}`);
         check(!r.parallax, `${at} the Spotify image sits in a translated (parallax) layer`);
       }
