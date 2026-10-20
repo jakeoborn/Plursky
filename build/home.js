@@ -844,8 +844,9 @@ function buildTonightsPlan(state) {
     var leaveBy = known ? startMin - walk : null;
     var prevEnd = prev ? toNightMin(attendWindow(prev).end) : null;
     var tight = !!prev && known && startMin - prevEnd < walk;
-    var conflict = !!prev && setsClash(prev, a);
-    var accepted = !!prev && setsOverlapAccepted(prev, a);
+    var clashes = sets.slice(0, i).filter(b => setsClash(b, a));
+    var conflict = clashes.length > 0;
+    var accepted = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a));
     return {
       artist: a,
       prev,
@@ -856,6 +857,7 @@ function buildTonightsPlan(state) {
       leaveBy,
       tight,
       conflict,
+      clashes,
       accepted,
       win
     };
@@ -2931,7 +2933,7 @@ function DuoPlanCard({
   var pct = live ? Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100))) : 0;
   var minsUntil = Math.round((startMs - now) / 60000);
   var until = minsUntil < 60 ? `In ${Math.max(1, minsUntil)} min` : minsUntil < 12 * 60 ? `In ${Math.floor(minsUntil / 60)} hr ${minsUntil % 60} min` : FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`;
-  var clash = (plan || []).find(p => p.conflict && !p.isPast && p.prev) || null;
+  var clash = (plan || []).find(p => p.conflict && !p.isPast) || null;
   var side = a => {
     var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return React.createElement("button", {
@@ -3122,7 +3124,7 @@ function DuoPlanCard({
       gap: 4,
       marginTop: 4
     }
-  }, side(clash.prev), side(clash.artist)))));
+  }, side(clash.clashes[0]), side(clash.artist)))));
 }
 function duoStageNowNext() {
   var night = NOW.night;
@@ -3544,7 +3546,7 @@ function TonightsPlan({
   state,
   setState
 }) {
-  var conflicts = plan.filter(p => p.conflict).map(p => [p.prev, p.artist]);
+  var conflicts = plan.flatMap(p => p.clashes.map(b => [b, p.artist]));
   var clashN = conflicts.length;
   var tightN = plan.filter(p => p.tight && !p.conflict).length;
   var bannerText = clashN && tightN ? `${clashN} clash${clashN > 1 ? "es" : ""} · ${tightN} tight transition${tightN > 1 ? "s" : ""}` : clashN ? `${clashN} clash${clashN > 1 ? "es" : ""}` : `${tightN} tight transition${tightN > 1 ? "s" : ""} · check leave-by times`;

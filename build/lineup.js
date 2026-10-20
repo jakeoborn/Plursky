@@ -3624,7 +3624,7 @@ function ConflictResolver({
   }, React.createElement("button", {
     onClick: () => onKeepBoth?.(pair),
     style: crBtn
-  }, "Keep both"), React.createElement("button", {
+  }, "Keep both"), splitRange(a, b).ok && React.createElement("button", {
     onClick: () => onSplit(pair),
     style: crBtn
   }, "Split the night"), conflicts.length > 1 && React.createElement("button", {
@@ -3642,11 +3642,13 @@ function SplitNightSheet({
     second,
     lo,
     hi,
-    def
+    def,
+    ok
   } = splitRange(pair[0], pair[1]);
   var cur = attendWindow(first);
   var startAt = cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
   var [sw, setSw] = React.useState(Math.min(hi, Math.max(lo, startAt)));
+  if (!ok) return null;
   var t = nightMinToHHMM(sw);
   var fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
   var sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;

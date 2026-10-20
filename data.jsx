@@ -2099,16 +2099,21 @@ function setsClash(a, b, fid) { return attendOverlaps(a, b, fid) && !clashAccept
 // Kept both: they still overlap, by the user's choice.
 function setsOverlapAccepted(a, b, fid) { return attendOverlaps(a, b, fid) && clashAccepted(a, b); }
 // The split of an overlapping pair at `switchMin`: the set that starts first
-// keeps [its start, switch), the other keeps [switch, its end]. The control's
-// range is [later start, earlier end] in 5-minute steps; the default switch is
-// the later set's start.
+// keeps [its start, switch), the other keeps [switch, its end]. Both halves
+// must be non-empty or attendWindow drops the window and the clash survives
+// the confirm (Codex P1 on #335: two sets starting together made a zero-length
+// first half). So the range is [max(later start, first start + step),
+// min(earlier end, second end - step)]; `ok` is false when no such split
+// exists and no split is offered. Default: the low end.
 function splitRange(a, b) {
   const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
-  const lo = toNightMin(second.start), hi = Math.min(toNightMin(first.end), toNightMin(second.end));
-  return { first, second, lo, hi, def: lo };
+  const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return { first, second, lo, hi, def: lo, ok: lo <= hi };
 }
 function splitNight(a, b, switchMin, fid) {
-  const { first, second, lo, hi } = splitRange(a, b);
+  const { first, second, lo, hi, ok } = splitRange(a, b);
+  if (!ok) return;
   const sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);

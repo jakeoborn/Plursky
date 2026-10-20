@@ -737,9 +737,13 @@ function buildTonightsPlan(state) {
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
     const prevEnd   = prev ? toNightMin(attendWindow(prev).end) : null;
     const tight     = !!prev && known && (startMin - prevEnd) < walk;
-    const conflict  = !!prev && setsClash(prev, a);
-    const accepted  = !!prev && setsOverlapAccepted(prev, a);
-    return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict, accepted, win };
+    // Every earlier saved set, not just `prev`: a long first set can span the
+    // third after the first pair is accepted (Codex P1 on #335). Each pair is
+    // counted once, on its later row.
+    const clashes   = sets.slice(0, i).filter(b => setsClash(b, a));
+    const conflict  = clashes.length > 0;
+    const accepted  = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a));
+    return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict, clashes, accepted, win };
   });
 }
 
@@ -2068,7 +2072,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
   const until = minsUntil < 60 ? `In ${Math.max(1, minsUntil)} min`
     : minsUntil < 12 * 60 ? `In ${Math.floor(minsUntil / 60)} hr ${minsUntil % 60} min`
     : (FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`);
-  const clash = (plan || []).find(p => p.conflict && !p.isPast && p.prev) || null;
+  const clash = (plan || []).find(p => p.conflict && !p.isPast) || null;
   const side = (a) => {
     const st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return (
@@ -2111,7 +2115,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
               <span className="duo-label duo-clash">Clash<span className="duo-wide" style={{ display: "inline" }}> · pick one</span></span>
               <button className="duo-link" onClick={onOpenNight}>Choose</button>
             </div>
-            <div style={{ display: "grid", gap: 4, marginTop: 4 }}>{side(clash.prev)}{side(clash.artist)}</div>
+            <div style={{ display: "grid", gap: 4, marginTop: 4 }}>{side(clash.clashes[0])}{side(clash.artist)}</div>
           </div>
         )}
       </div>
@@ -2321,7 +2325,7 @@ function LiveAcrossStrip({ strip, state, setState }) {
 function TonightsPlan({ plan, state, setState }) {
   // A full overlap is a CLASH, not a "tight transition" (it used to be counted
   // and worded as one). The banner composes the two counts it actually has.
-  const conflicts = plan.filter(p => p.conflict).map(p => [p.prev, p.artist]);
+  const conflicts = plan.flatMap(p => p.clashes.map(b => [b, p.artist]));
   const clashN = conflicts.length;
   const tightN = plan.filter(p => p.tight && !p.conflict).length;
   const bannerText = clashN && tightN ? `${clashN} clash${clashN > 1 ? "es" : ""} · ${tightN} tight transition${tightN > 1 ? "s" : ""}`

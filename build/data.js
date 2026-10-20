@@ -1650,14 +1650,15 @@ function setsOverlapAccepted(a, b, fid) {
 }
 function splitRange(a, b) {
   var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
-  var lo = toNightMin(second.start),
-    hi = Math.min(toNightMin(first.end), toNightMin(second.end));
+  var lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  var hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
   return {
     first,
     second,
     lo,
     hi,
-    def: lo
+    def: lo,
+    ok: lo <= hi
   };
 }
 function splitNight(a, b, switchMin, fid) {
@@ -1665,8 +1666,10 @@ function splitNight(a, b, switchMin, fid) {
     first,
     second,
     lo,
-    hi
+    hi,
+    ok
   } = splitRange(a, b);
+  if (!ok) return;
   var sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);

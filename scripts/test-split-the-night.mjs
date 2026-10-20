@@ -145,6 +145,55 @@ try {
     const [x, y] = day1; return x && y ? { clash: setsClash(x, y), raw: overlaps(x, y) } : null;
   });
   check(ctl && !ctl.raw && !ctl.clash, "control: back-to-back sets on one stage are not a clash");
+  // Codex P1 (#335): two sets that START TOGETHER (ARC's AZZECCA 16:00–17:30 /
+  // CAMOUFLY 16:00–17:00 shape). The old default switch was the shared start,
+  // a zero-length first half that attendWindow drops, so confirming the
+  // untouched picker left the clash standing.
+  const zero = await page.evaluate(fid => {
+    const a = { id: "t-zl-a", start: "16:00", end: "17:30", day: 1 }, b = { id: "t-zl-b", start: "16:00", end: "17:00", day: 1 };
+    const key = `${fid}_saved_v1`, keep = localStorage.getItem(key);
+    localStorage.setItem(key, JSON.stringify([...(JSON.parse(keep || "[]")), a.id, b.id]));
+    const r = splitRange(a, b);
+    const before = setsClash(a, b);
+    splitNight(a, b, r.def);
+    const after = setsClash(a, b), wa = attendWindow(a), wb = attendWindow(b);
+    resetAttendWindow(a.id); resetAttendWindow(b.id);
+    // No non-empty split exists: both 16:00–16:05.
+    const c = { id: "t-zl-c", start: "16:00", end: "16:05", day: 1 }, d = { id: "t-zl-d", start: "16:00", end: "16:05", day: 1 };
+    const none = splitRange(c, d);
+    splitNight(c, d, none.def);
+    const wrote = c.id in attendWindows() || d.id in attendWindows();
+    if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
+    return { ok: r.ok, lo: r.lo, startMin: toNightMin("16:00"), before, after, pa: wa.partial, pb: wb.partial, noneOk: none.ok, wrote };
+  }, FID);
+  check(zero.ok && zero.lo > zero.startMin, `same-start pair: the default switch is strictly after the shared start (lo ${zero.lo} > ${zero.startMin})`);
+  check(zero.before && !zero.after && zero.pa && zero.pb, `same-start pair: confirming the default split clears the clash with two non-empty halves (before ${zero.before}, after ${zero.after})`);
+  check(!zero.noneOk && !zero.wrote, "a pair with no non-empty 5-minute split offers none and writes nothing");
+
+  // Codex P1 (#335): Today's plan checks EVERY earlier saved set, not only the
+  // adjacent one. A real Friday triple where x spans z, y sits between: accept
+  // x/y and the x/z clash must still be reported.
+  const tri = await page.evaluate(fid => {
+    const night = NOW.night, L = activeLineup().filter(a => a.day === night && a.start && a.end);
+    const m = s => toNightMin(s);
+    let t = null;
+    for (const x of L) { for (const y of L) { if (y === x || m(y.start) < m(x.start) || !overlaps(x, y)) continue;
+      for (const z of L) { if (z === x || z === y || m(z.start) <= m(y.start) || overlaps(y, z) || !overlaps(x, z)) continue; t = [x, y, z]; break; }
+      if (t) break; } if (t) break; }
+    if (!t) return null;
+    const [x, y, z] = t, key = `${fid}_saved_v1`, keep = localStorage.getItem(key), kb = localStorage.getItem(CLASH_KEPT_BOTH_KEY);
+    localStorage.setItem(key, JSON.stringify([x.id, y.id, z.id]));
+    acceptClash(x, y);
+    const plan = buildTonightsPlan({ saved: [x.id, y.id, z.id] });
+    const rowZ = plan.find(p => p.artist.id === z.id);
+    const pairs = plan.flatMap(p => (p.clashes || []).map(b => [b.id, p.artist.id].join(">")));
+    if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
+    if (kb == null) localStorage.removeItem(CLASH_KEPT_BOTH_KEY); else localStorage.setItem(CLASH_KEPT_BOTH_KEY, kb);
+    return { names: t.map(a => `${a.name} ${a.start}-${a.end}`), zConflict: !!rowZ?.conflict, xz: pairs.includes(`${x.id}>${z.id}`), xy: pairs.includes(`${x.id}>${y.id}`), n: pairs.length };
+  }, FID);
+  check(!!tri, "a real Friday triple (first spans third, middle clear of third) exists to test");
+  check(tri && tri.zConflict && tri.xz && !tri.xy, `accepting the first pair leaves the first/third clash reported (${tri ? tri.names.join(" · ") : "none"}; pairs ${tri?.n})`);
+
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);
   await browser.close();
 } finally { server.kill(); }

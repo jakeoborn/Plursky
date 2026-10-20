@@ -2515,7 +2515,7 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
       })}
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         <button onClick={() => onKeepBoth?.(pair)} style={crBtn}>Keep both</button>
-        <button onClick={() => onSplit(pair)} style={crBtn}>Split the night</button>
+        {splitRange(a, b).ok && <button onClick={() => onSplit(pair)} style={crBtn}>Split the night</button>}
         {conflicts.length > 1 && <button onClick={next} style={crBtn}>Next clash</button>}
       </div>
     </div>
@@ -2527,11 +2527,12 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
 // before the switch, the other everything after. Live preview, then Confirm.
 // Default: the later set's start (you leave the first one as the second begins).
 function SplitNightSheet({ pair, onDone, onCancel }) {
-  const { first, second, lo, hi, def } = splitRange(pair[0], pair[1]);
+  const { first, second, lo, hi, def, ok } = splitRange(pair[0], pair[1]);
   // Reopened from a row: start from the switch the user already chose.
   const cur = attendWindow(first);
   const startAt = cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
   const [sw, setSw] = React.useState(Math.min(hi, Math.max(lo, startAt)));
+  if (!ok) return null; // no non-empty split exists; the clash card hides the button too
   const t = nightMinToHHMM(sw);
   const fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
   const sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;
