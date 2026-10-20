@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v448';
+﻿const CACHE      = 'plursky-v452';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v448';
+const APP_VER    = 'v452';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -80,33 +80,56 @@ const LOCAL = [
   './iiip-map-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
+  './artist-photos/afrojack.webp',
+  './artist-photos/alan-walker.webp',
+  './artist-photos/alesso.webp',
+  './artist-photos/alison-wonderland.webp',
+  './artist-photos/alok.webp',
   './artist-photos/amyl-and-the-sniffers.webp',
   './artist-photos/bone-thugs-n-harmony.webp',
+  './artist-photos/boys-noize.webp',
+  './artist-photos/cascada.webp',
   './artist-photos/charli-xcx.webp',
   './artist-photos/charlotte-de-witte.webp',
   './artist-photos/connan-mockasin.webp',
   './artist-photos/danny-brown.webp',
+  './artist-photos/deorro.webp',
+  './artist-photos/dimitri-vegas-and-like-mike.webp',
   './artist-photos/dj-harvey.webp',
+  './artist-photos/dj-snake.webp',
+  './artist-photos/excision.webp',
   './artist-photos/floating-points.webp',
   './artist-photos/flying-lotus.webp',
   './artist-photos/four-tet.webp',
+  './artist-photos/galantis.webp',
+  './artist-photos/hardwell.webp',
   './artist-photos/honey-dijon.webp',
+  './artist-photos/ice-cube.webp',
   './artist-photos/jane-remover.webp',
+  './artist-photos/kaskade.webp',
   './artist-photos/kelela.webp',
   './artist-photos/kings-of-leon.webp',
+  './artist-photos/lane-8.webp',
   './artist-photos/lil-kim.webp',
   './artist-photos/lorde.webp',
   './artist-photos/marco-carola.webp',
+  './artist-photos/marshmello.webp',
+  './artist-photos/martin-garrix.webp',
   './artist-photos/men-i-trust.webp',
+  './artist-photos/nina-kraviz.webp',
   './artist-photos/parcels.webp',
   './artist-photos/purity-ring.webp',
+  './artist-photos/richie-hawtin.webp',
   './artist-photos/rusowsky.webp',
   './artist-photos/seth-troxler.webp',
   './artist-photos/skrillex.webp',
+  './artist-photos/slander.webp',
+  './artist-photos/steve-aoki.webp',
   './artist-photos/the-war-on-drugs.webp',
   './artist-photos/tokischa.webp',
   './artist-photos/tricky.webp',
   './artist-photos/underworld.webp',
+  './artist-photos/zedd.webp',
   './festival-art/acl-2026.webp',
   './festival-art/arc-2026.webp',
   './festival-art/beyond-wonderland-gorge-2027.webp',

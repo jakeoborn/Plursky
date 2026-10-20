@@ -2585,6 +2585,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Artist photo reach ────────────────────────────────────────────────────
+// The batch 5 licensed portraits resolve by printed act name (the artist
+// screen's lookup), decode, are precached and show on their artist screen.
+// That every ledger row is shown by a reachable lineup is today print's job.
+{
+  console.log("▸ Artist photo reach — batch 5 portraits resolve, decode, precache and show");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-reach.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo reach failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── /f/ page status chip ─────────────────────────────────────────────────
 // A festival whose day split is unpublished (one dayDates bucket, a two-day
 // printed range) is "Happening now" on every printed day; a festival that
