@@ -511,7 +511,7 @@ async function _spotifyExchangeCode(code, redirectUri) {
         const p = await profRes.json();
         localStorage.setItem("spotify_profile", JSON.stringify({
           id: p.id,
-          name: p.display_name || p.id,
+          name: p.display_name || null,
           email: p.email || null,
           image: p.images?.[0]?.url || null,
           country: p.country || null,
@@ -724,7 +724,11 @@ async function getValidToken() {
 function getSpotifyProfileSync() {
   try {
     const raw = localStorage.getItem("spotify_profile");
-    return raw ? JSON.parse(raw) : null;
+    const prof = raw ? JSON.parse(raw) : null;
+    // Profiles cached before the fix stored the raw Spotify id as the name
+    // when the account had no display name. An id is not a name.
+    if (prof && prof.name && prof.name === prof.id) prof.name = null;
+    return prof;
   } catch { return null; }
 }
 async function ensureSpotifyProfile() {
@@ -740,7 +744,7 @@ async function ensureSpotifyProfile() {
     const p = await res.json();
     const prof = {
       id: p.id,
-      name: p.display_name || p.id,
+      name: p.display_name || null,
       email: p.email || null,
       image: p.images?.[0]?.url || null,
       country: p.country || null,

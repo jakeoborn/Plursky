@@ -2162,7 +2162,7 @@ function MapScreen({ state, setState }) {
                     (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   const [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   const crewName = React.useMemo(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
+    return plurskyLocalName();
   }, []);
   // Push-style reminders for saved sets — see useSavedSetReminders below.
   const [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
@@ -7392,13 +7392,7 @@ function _crewRowToThreadItem(row, myPid) {
 }
 function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
   const isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  const myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "Me";
-    } catch { return "Me"; }
-  })();
+  const myName = plurskyLocalName() || "Me";
 
   const [thread, setThread] = React.useState(() => loadThread(friend.id));
   const [draft, setDraft] = React.useState("");

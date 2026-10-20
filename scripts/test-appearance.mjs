@@ -117,6 +117,7 @@ try {
       sessionStorage.setItem('__seeded', '1');
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
       localStorage.setItem('cloud_nudge_seen', '1');
+      localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: Me opens unobstructed
       // A real plan: John Summit live, Subtronics and Mathame clashing next, a b2b.
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8']));
       localStorage.setItem('ping_code', 'ECHO'); localStorage.setItem('plursky_pid', 'appearance-test');   // per-install randoms, pinned
@@ -559,6 +560,7 @@ try {
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(({ FID }) => {
       localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1');
+      localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: Me opens unobstructed
       window.__nativeStyles = [];
       window.Capacitor = { isNativePlatform: () => false, Plugins: { Appearance: { setStyle: (o) => { window.__nativeStyles.push(o && o.style); return Promise.resolve(); } } } };
     }, { FID });
