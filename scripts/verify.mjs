@@ -2665,6 +2665,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L7: "Show me on the map" + "Works with no signal" only where the festival's
+// map is on the device (plate in the worker's cache, or a saved pack), and the
+// offline notes say offline. Real service worker, context.setOffline.
+{
+  console.log("▸ Map no signal — locate affordance + honest offline copy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-no-signal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map no signal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the

@@ -158,7 +158,7 @@ try {
   });
   await ctx.setOffline(true);
   await page.getByRole("button", { name: /^Map$/ }).first().click();
-  await page.getByText("OFFLINE · SAVED STREET MAP").waitFor({ timeout: 20000 });
+  await page.getByText("OFFLINE — SHOWING CACHED MAP").waitFor({ timeout: 20000 });
   await page.waitForTimeout(4000);
   const log = await page.evaluate(() => window.__packLog || []);
   const of = re => log.filter(([k]) => re.test(k));

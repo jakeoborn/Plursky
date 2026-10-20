@@ -2678,7 +2678,8 @@ function MapScreen({
       sessionStorage.setItem("plursky_realmap_failed", "1");
     } catch {}
     setUseRealMap(false);
-    setRealMapNote((why || "Real map unavailable") + " — festival map shown");
+    var offline = typeof navigator !== "undefined" && navigator.onLine === false || why === "No network connection";
+    setRealMapNote((offline ? "Offline" : why || "Real map unavailable") + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
   };
   var [mapZoom, setMapZoom] = React.useState(1);
@@ -3105,6 +3106,7 @@ function MapScreen({
   };
   var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
+  var mapCachedOffline = useMapCachedOffline(FESTIVAL_CONFIG);
   return React.createElement(Screen, {
     bg: "var(--paper)",
     ink: "var(--ink)"
@@ -3193,7 +3195,15 @@ function MapScreen({
       className: "duo-chip",
       onClick: () => setShareOpen(true)
     }, React.createElement("span", null, "Share with crew"))));
-  })(), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+  })(), realMapNote && React.createElement("div", {
+    "data-map-fallback-note": true,
+    role: "status",
+    style: {
+      flexBasis: "100%",
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, realMapNote), gpsLive && gpsStatus === "denied" && React.createElement("div", {
     "data-map-gps-denied": true,
     style: {
       flexBasis: "100%",
@@ -3215,16 +3225,19 @@ function MapScreen({
       zIndex: 4,
       display: "flex",
       flexDirection: "column",
+      alignItems: "flex-end",
       gap: 6
     }
   }, React.createElement("button", {
+    "data-map-locate": gpsLive ? "on" : "off",
     onClick: () => setGpsLive(g => !g),
-    "aria-label": "Toggle GPS",
+    "aria-label": "Show me on the map",
     "aria-pressed": gpsActive,
     style: {
+      alignSelf: "flex-end",
       minWidth: 46,
       minHeight: 44,
-      padding: "6px 8px",
+      padding: gpsLive ? "6px 8px" : "7px 12px 7px 10px",
       borderRadius: "var(--rad-sm)",
       background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
       color: gpsActive ? "var(--on-acc)" : "var(--ink)",
@@ -3233,9 +3246,10 @@ function MapScreen({
       WebkitBackdropFilter: "blur(10px)",
       cursor: "pointer",
       display: "flex",
-      flexDirection: "column",
+      flexDirection: gpsLive ? "column" : "row",
       alignItems: "center",
-      gap: 2,
+      gap: gpsLive ? 2 : 8,
+      textAlign: "left",
       boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)"
     }
   }, React.createElement("svg", {
@@ -3245,7 +3259,10 @@ function MapScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "2",
-    strokeLinecap: "round"
+    strokeLinecap: "round",
+    style: {
+      flexShrink: 0
+    }
   }, React.createElement("path", {
     d: "M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"
   }), React.createElement("circle", {
@@ -3258,12 +3275,30 @@ function MapScreen({
     r: "2.5",
     fill: "currentColor",
     stroke: "none"
-  })), React.createElement("span", {
+  })), gpsLive ? React.createElement("span", {
     style: {
       font: "500 10px/1 var(--f-data)",
       letterSpacing: "-0.01em"
     }
-  }, gpsLabel)), React.createElement("div", {
+  }, gpsLabel) : React.createElement("span", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2
+    }
+  }, React.createElement("span", {
+    style: {
+      font: "500 13px/1.2 var(--f-ui)",
+      whiteSpace: "nowrap"
+    }
+  }, "Show me on the map"), mapCachedOffline && React.createElement("span", {
+    "data-map-no-signal": true,
+    style: {
+      font: "400 11px/1.2 var(--f-ui)",
+      color: "var(--ink-2)",
+      whiteSpace: "nowrap"
+    }
+  }, "Works with no signal"))), React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
@@ -4435,29 +4470,7 @@ function MapScreen({
       setPeek(false);
     },
     onClick: handleMapClick
-  }), realMapNote && React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 12,
-      left: "50%",
-      transform: "translateX(-50%)",
-      zIndex: 4,
-      padding: "4px 10px",
-      borderRadius: 999,
-      background: "rgba(var(--signal-rgb),0.95)",
-      color: "var(--ink)",
-      backdropFilter: "blur(8px)",
-      maxWidth: "88%",
-      textAlign: "center"
-    }
-  }, React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, realMapNote.toUpperCase())), stage && peek && React.createElement(GroundPeek, {
+  }), stage && peek && React.createElement(GroundPeek, {
     stage: stage,
     onClose: () => setPeek(false)
   }), meetMode && React.createElement("div", {
@@ -5373,6 +5386,42 @@ function _packMirrorWrite(all) {
   try {
     localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all));
   } catch {}
+}
+function _mapPlateFor(cfg) {
+  return cfg && cfg.mapMode !== "real" && typeof cfg.mapImage === "string" && cfg.mapImage ? cfg.mapImage : null;
+}
+async function _mapCachedOffline(cfg) {
+  if (!cfg || !cfg.id) return false;
+  if (_packMirror()[cfg.id]) return true;
+  var plate = _mapPlateFor(cfg);
+  if (!plate) return false;
+  try {
+    if (window.Capacitor?.isNativePlatform?.()) return true;
+  } catch {}
+  if (typeof caches === "undefined") return false;
+  try {
+    return !!(await caches.match(new URL(plate, location.href).href));
+  } catch {
+    return false;
+  }
+}
+function useMapCachedOffline(cfg) {
+  var fid = cfg && cfg.id;
+  var [cached, setCached] = React.useState(false);
+  React.useEffect(() => {
+    var alive = true;
+    var check = () => _mapCachedOffline(cfg).then(v => {
+      if (alive) setCached(!!v);
+    }, () => {});
+    check();
+    try {
+      navigator.serviceWorker?.ready?.then(check, () => {});
+    } catch {}
+    return () => {
+      alive = false;
+    };
+  }, [fid]);
+  return cached;
 }
 function _packEntry(fid) {
   var reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
@@ -7497,7 +7546,7 @@ function RealMap({
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)"
     }
-  }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
+  }, "OFFLINE — SHOWING CACHED MAP") : React.createElement("div", {
     ref: styleSwitchRef,
     "data-realmap-style-switch": true,
     style: {
@@ -7550,12 +7599,13 @@ function RealMap({
       textAlign: "center"
     }
   }, React.createElement("div", null, "MAP ERROR"), React.createElement("div", {
+    "data-realmap-err": true,
     style: {
       color: "var(--text-3)",
       fontSize: 9,
       maxWidth: 240
     }
-  }, err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, err === "No network connection" ? "Offline — no cached map for this festival yet" : err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       color: "var(--text-2)",
       fontSize: 10,

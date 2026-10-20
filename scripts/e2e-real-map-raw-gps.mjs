@@ -91,13 +91,13 @@ try {
   // drop the meet card to ROUTE PREVIEW (#310 review: OFF kept "ROUTING LIVE").
   const card = () => page.evaluate(() => { const t = document.body.innerText; return /YOUR LOCATION LIVE/.test(t) ? "live" : /ROUTE PREVIEW/.test(t) ? "preview" : /ROUTING LIVE/.test(t) ? "old-live" : "none"; });
   const until = async (want) => { let got; for (let i = 0; i < 20; i++) { got = await card(); if (got === want) break; await page.waitForTimeout(250); } return got; };
-  const gpsPill = () => page.evaluate(() => { const b = document.querySelector('button[aria-label="Toggle GPS"]'); b?.click(); return !!b; });
+  const gpsPill = () => page.evaluate(() => { const b = document.querySelector('button[data-map-locate]'); b?.click(); return !!b; });
   let st = await until("live");
   check(st === "live", `live fix + meet pin: card says YOUR LOCATION LIVE (${st})`);
   check(await gpsPill(), "GPS toggle found");
   st = await until("preview");
-  const offPill = await page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
-  check(st === "preview" && offPill === "OFF", `live fix -> GPS OFF: card ${st}, pill ${offPill}`);
+  const offPill = await page.evaluate(() => document.querySelector('button[data-map-locate]')?.innerText.trim());
+  check(st === "preview" && /^Show me on the map/.test(offPill || ""), `live fix -> GPS OFF: card ${st}, pill ${offPill}`);
   await gpsPill();
   st = await until("live");
   check(st === "live", `GPS back ON: card ${st}`);
@@ -109,7 +109,7 @@ try {
   check(st === "live", `a new fix after the error: card ${st}`);
   await page.clock.fastForward(65000);
   st = await until("preview");
-  const stalePill = await page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
+  const stalePill = await page.evaluate(() => document.querySelector('button[data-map-locate]')?.innerText.trim());
   check(st === "preview" && stalePill === "NO FIX", `live fix -> 65 s with no update: card ${st}, pill ${stalePill}`);
   check(errors.length === 0, `no page errors${errors.length ? `: ${errors.slice(0, 2).join(" | ")}` : ""}`);
   await page.screenshot({ path: process.env.SHOT || "/dev/null" }).catch(() => {});
