@@ -470,9 +470,12 @@ try {
           check(!low.length, `${tag}: below AA over the photo: ${low.map(l => `${l.label} "${l.text}" ${l.ratio}:1 on rgb(${l.bg.join(',')}) (floor ${l.floor})`).join('; ')}`);
           const t = ev.type;
           // The name: Sora 600 at 40px (32 on a b2b), no text shadow, white, whole.
+          // A single word too wide for the box is fitted down (fitWords, to 28px)
+          // rather than clipped: "UNDERWORLD" at 320.
           const wantPx = a.parts > 1 ? 32 : 40;
-          check(!!t.name && t.name.px === wantPx && t.name.weight === 600 && /^Sora\b/.test(t.name.family) && t.name.shadow === 'none' && !t.name.clipped,
-            `${tag}: the name is ${t.name ? `${t.name.px}px/${t.name.weight} ${t.name.family.split(',')[0]} shadow ${t.name.shadow}${t.name.clipped ? ' clipped' : ''}` : 'missing'} (want Sora 600 ${wantPx}px, no shadow)`);
+          const sizeOk = n => n.px === wantPx || (n.fitted && n.px >= 28 && n.px < wantPx);
+          check(!!t.name && sizeOk(t.name) && t.name.weight === 600 && /^Sora\b/.test(t.name.family) && t.name.shadow === 'none' && !t.name.clipped,
+            `${tag}: the name is ${t.name ? `${t.name.px}px/${t.name.weight} ${t.name.family.split(',')[0]} shadow ${t.name.shadow}${t.name.clipped ? ' clipped' : ''}` : 'missing'} (want Sora 600 ${wantPx}px, or fitted to no less than 28px, no shadow)`);
           check(!!t.name && /^rgb\(255, 255, 255\)$/.test(t.name.color), `${tag}: the name's ink is ${t.name?.color} (want white in both modes)`);
           // The backing: the neutral shade (spec: no purple cast), white controls.
           const sh = t.backing?.rgba;
@@ -484,7 +487,7 @@ try {
             `${tag}: the schedule range is ${t.clock.px}px, ${t.clock.lines} line(s)${t.clock.clipped ? ', clipped' : ''}, ${t.clock.family.split(',')[0]} "${t.clock.text}" (want one line at ${width === 390 ? 28 : 22}px, start → end)`);
           // The credit: author and licence visible under the hero.
           const row = await o.page.evaluate((n) => (window.PLURSKY_ARTIST_PHOTOS || {})[n.toLowerCase()] || null, a.name);
-          check(!!t.credit && !!row && t.credit.includes(row.author) && /CC |Public|Press/.test(t.credit), `${tag}: the credit reads "${t.credit}" (want ${row?.author} and the licence)`);
+          check(!!t.credit && !!row && t.credit.includes(row.author) && /CC[0 ]|Public|Press/.test(t.credit), `${tag}: the credit reads "${t.credit}" (want ${row?.author} and the licence)`);
           const hf = await fontEvidence(o.page, HERO_FONT_SAMPLES);
           const wrong = hf.samples.filter(s => !s.absent && !s.ok);
           check(!wrong.length, `${tag}: hero type rendered with the wrong face: ${wrong.map(s => `${s.sel} → ${s.rendered}`).join('; ')}`);
