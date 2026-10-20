@@ -119,7 +119,7 @@ async function sbSignInWithSpotify() {
   const { error } = await _sb.auth.signInWithOAuth({
     provider: "spotify",
     options: {
-      scopes: "user-top-read user-read-recently-played user-library-read user-read-private user-read-email user-follow-read playlist-read-private playlist-modify-public playlist-modify-private",
+      scopes: "user-top-read user-read-recently-played user-library-read user-read-private user-read-email user-follow-read playlist-read-private",
       redirectTo: window.location.origin,
     },
   });
