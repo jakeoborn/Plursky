@@ -3768,10 +3768,10 @@ function SplitNightSheet({
     hi,
     def,
     ok
-  } = splitRange(pair[0], pair[1]);
-  var cur = attendWindow(first);
-  var startAt = cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
-  var [sw, setSw] = React.useState(Math.min(hi, Math.max(lo, startAt)));
+  } = splitRange(pair && pair[0], pair && pair[1]);
+  var cur = ok ? attendWindow(first) : null;
+  var startAt = cur && cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
+  var [sw, setSw] = React.useState(snapSplitSwitch(startAt, lo, hi));
   if (!ok) return null;
   var t = nightMinToHHMM(sw);
   var fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
@@ -3819,7 +3819,7 @@ function SplitNightSheet({
     max: hi,
     step: SPLIT_STEP_MIN,
     value: sw,
-    onChange: e => setSw(Number(e.target.value)),
+    onChange: e => setSw(snapSplitSwitch(e.target.value, lo, hi)),
     "aria-valuetext": `Switch at ${fmt12(t)}`,
     style: {
       width: "100%",

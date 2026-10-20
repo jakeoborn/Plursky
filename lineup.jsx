@@ -2597,13 +2597,16 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
 // "Split the night" (L3): one switch time over the overlap, 5-minute steps,
 // range [later start, earlier end]; the set that starts first keeps everything
 // before the switch, the other everything after. Live preview, then Confirm.
-// Default: the later set's start (you leave the first one as the second begins).
+// Default: the later set's start (you leave the first one as the second begins);
+// the steps count from there (snapSplitSwitch), so preview and save agree.
 function SplitNightSheet({ pair, onDone, onCancel }) {
-  const { first, second, lo, hi, def, ok } = splitRange(pair[0], pair[1]);
+  // A pair from persisted state can hold a missing set; splitRange answers ok:
+  // false for it and the sheet renders nothing rather than throw.
+  const { first, second, lo, hi, def, ok } = splitRange(pair && pair[0], pair && pair[1]);
   // Reopened from a row: start from the switch the user already chose.
-  const cur = attendWindow(first);
-  const startAt = cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
-  const [sw, setSw] = React.useState(Math.min(hi, Math.max(lo, startAt)));
+  const cur = ok ? attendWindow(first) : null;
+  const startAt = cur && cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
+  const [sw, setSw] = React.useState(snapSplitSwitch(startAt, lo, hi));
   if (!ok) return null; // no non-empty split exists; the clash card hides the button too
   const t = nightMinToHHMM(sw);
   const fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
@@ -2616,7 +2619,7 @@ function SplitNightSheet({ pair, onDone, onCancel }) {
         Switch at <b data-split-time style={{ fontVariantNumeric: "tabular-nums" }}>{fmt12(t)}</b>
       </label>
       <input id="split-switch" type="range" min={lo} max={hi} step={SPLIT_STEP_MIN} value={sw}
-        onChange={e => setSw(Number(e.target.value))}
+        onChange={e => setSw(snapSplitSwitch(e.target.value, lo, hi))}
         aria-valuetext={`Switch at ${fmt12(t)}`}
         style={{ width: "100%", minHeight: 44, accentColor: "var(--acc)" }} />
       <div data-split-preview style={{ display: "grid", gap: 6, padding: "4px 0 8px" }}>

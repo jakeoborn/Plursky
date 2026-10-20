@@ -2051,9 +2051,17 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
   const savedIds = savedInLineup(state.saved);
   const saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   const now = Date.now();
-  const live = saved.find(a => isSetLive(a)) || null;
+  // L3: the card follows the attend windows, as Tonight's plan rows do. After
+  // a split at 3:00 the earlier set is Live until the switch and the later one
+  // is Next at it, not Live from its published start; whole sets keep
+  // isSetLive, which owns the real-date checks.
+  const winMs = a => {
+    const w = attendWindow(a), s = festivalNightDate(a.day, w.start).getTime();
+    return { w, s, e: s + Math.max(1, toNightMin(w.end) - toNightMin(w.start)) * 60000 };
+  };
+  const live = saved.find(a => { const { w, s, e } = winMs(a); return w.partial ? now >= s && now < e : isSetLive(a); }) || null;
   const next = live ? null : (saved
-    .map(a => ({ a, t: festivalNightDate(a.day, a.start).getTime() }))
+    .map(a => ({ a, t: winMs(a).s }))
     .filter(x => x.t > now)
     .sort((x, y) => x.t - y.t)[0] || {}).a || null;
   const set = live || next;
@@ -2072,8 +2080,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
     );
   }
   const stage = STAGES.find(s => s.id === set.stage) || UNPLACED_STAGE;
-  const startMs = festivalNightDate(set.day, set.start).getTime();
-  const endMs = startMs + Math.max(1, toNightMin(set.end) - toNightMin(set.start)) * 60000;
+  const { w: win, s: startMs, e: endMs } = winMs(set);
   const minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
   const pct = live ? Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100))) : 0;
   const minsUntil = Math.round((startMs - now) / 60000);
@@ -2099,13 +2106,13 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
       <div className="duo-card duo-lift" data-duo-plan style={{ padding: "14px 16px" }}>
         <DuoSect title={<button className="duo-press" onClick={onOpenNight} aria-label="Your plan, open my night" style={{ display: "inline-flex", alignItems: "center", gap: 6, width: "auto", minHeight: 32, color: "inherit", font: "inherit", letterSpacing: "inherit", textTransform: "inherit" }}>Your plan<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>}
           right={live ? <DuoLive /> : <span className="duo-label duo-ink3">Next · {until}</span>} />
-        <button className="duo-press" onClick={() => open(set.id)} aria-label={`${set.name}, ${stage.name}, ${live ? `live until ${fmt12(set.end)}` : `${until}, ${fmt12(set.start)}`}`}
+        <button className="duo-press" onClick={() => open(set.id)} aria-label={`${set.name}, ${stage.name}, ${live ? `live until ${fmt12(win.end)}` : `${until}, ${fmt12(win.start)}`}`}
           style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 14, marginTop: 12 }}>
           <span style={{ display: "flex", alignItems: "flex-start", gap: 12, minWidth: 0 }}>
             <DuoAvatar name={set.name} size={52} ring="on" />
             <span style={{ minWidth: 0, paddingTop: 3 }}>
               <span className="duo-name" style={{ display: "block", fontWeight: 700, fontSize: 18, lineHeight: 1.222, fontFamily: "var(--f-ui)" }}>{actDisplayName(set.name)}</span>
-              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{live ? `TO ${duoClock(set.end)}` : duoClock(set.start)}</span></span></span>
+              <span className="duo-data-s duo-ink3" style={{ display: "block", marginTop: 4 }}><span className="np-pair"><span>{stage.name.toUpperCase()}</span><span>{live ? `TO ${duoClock(win.end)}` : duoClock(win.start)}</span></span></span>
             </span>
           </span>
           {live && (

@@ -2043,22 +2043,44 @@ function nightMinToHHMM(m) {
   const h = Math.floor(m / 60) % 24, mm = m % 60;
   return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
 }
+// The lineup a festival carries now (identity, every weekend): the active
+// festival's from window ARTISTS, any other from its own data set (bare
+// ARTISTS is always the ACTIVE festival's, CLAUDE.md §5).
+function _attendLineup(fid) {
+  const id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) || {};
+  return (ds[id] && Array.isArray(ds[id].artists)) ? ds[id].artists : [];
+}
+// A stored window is usable for `a` when it is a non-empty part of the set's
+// published time and not the whole of it. Malformed state (null, a string,
+// missing or non-"HH:MM" ends) reads NaN and fails every comparison.
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
 // The part of `a` the user will be at: their window while it still sits inside
 // the set's published time, else the whole set. A schedule change that moves
 // the set out from under a window drops the window rather than trusting it.
 function attendWindow(a, fid) {
   const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
   if (!a || !a.start || !a.end) return whole;
-  const w = attendWindows(fid)[a.id];
-  if (!w) return whole;
-  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
-  if (!(ws >= s && we <= e && ws < we) || (ws === s && we === e)) return whole;
-  // A split only means something while the set it was split against is still
-  // saved: drop "Keep this", an unsave or a sync of the partner, and the window
-  // goes with it (every removal path, not just one button).
+  const all = attendWindows(fid), w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  // A split only holds while BOTH halves do. The partner must still be saved
+  // (drop "Keep this", an unsave or a sync of the partner, and the window goes
+  // with it), still in this festival's lineup (a schedule update can drop the
+  // act while its raw saved id stays, see savedInLineup), and still carry its
+  // own valid half pointing back here. Otherwise the user's plan for this set
+  // is the whole set again: clash, status and reminders follow it. The stored
+  // windows are kept, not deleted, the way an orphan saved id is kept.
   if (w.with) {
     const saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
     if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    const partner = _attendLineup(fid).find(x => x.id === w.with);
+    const back = all[w.with];
+    if (!partner || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
   }
   return { start: w.start, end: w.end, partial: true, with: w.with || null };
 }
@@ -2104,17 +2126,29 @@ function setsOverlapAccepted(a, b, fid) { return attendOverlaps(a, b, fid) && cl
 // the confirm (Codex P1 on #335: two sets starting together made a zero-length
 // first half). So the range is [max(later start, first start + step),
 // min(earlier end, second end - step)]; `ok` is false when no such split
-// exists and no split is offered. Default: the low end.
+// exists (or either set is missing or untimed) and no split is offered.
+// Default: the low end.
 function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return { first: null, second: null, lo: 0, hi: -1, def: 0, ok: false };
   const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
   const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
   const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
   return { first, second, lo, hi, def: lo, ok: lo <= hi };
 }
+// THE switch grid, one rule for the slider, its preview, the confirm and what
+// is saved: 5-minute steps anchored at `lo` (the range input's own step base),
+// never past `hi`. Rounding from midnight instead saved 22:10 for a previewed
+// 22:12 when lo was 22:07 (Codex P2 on #335). Anything unreadable is `lo`.
+function snapSplitSwitch(v, lo, hi) {
+  const n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
 function splitNight(a, b, switchMin, fid) {
   const { first, second, lo, hi, ok } = splitRange(a, b);
   if (!ok) return;
-  const sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+  const sw = snapSplitSwitch(switchMin, lo, hi);
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
 }

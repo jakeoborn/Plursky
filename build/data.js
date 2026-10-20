@@ -1564,6 +1564,20 @@ function nightMinToHHMM(m) {
     mm = m % 60;
   return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
 }
+function _attendLineup(fid) {
+  var id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  var ds = typeof window !== "undefined" && window._DATA_SETS || {};
+  return ds[id] && Array.isArray(ds[id].artists) ? ds[id].artists : [];
+}
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  var s = toNightMin(a.start),
+    e = toNightMin(a.end),
+    ws = toNightMin(w.start),
+    we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
 function attendWindow(a, fid) {
   var whole = {
     start: a && a.start,
@@ -1572,16 +1586,15 @@ function attendWindow(a, fid) {
     with: null
   };
   if (!a || !a.start || !a.end) return whole;
-  var w = attendWindows(fid)[a.id];
-  if (!w) return whole;
-  var s = toNightMin(a.start),
-    e = toNightMin(a.end),
-    ws = toNightMin(w.start),
-    we = toNightMin(w.end);
-  if (!(ws >= s && we <= e && ws < we) || ws === s && we === e) return whole;
+  var all = attendWindows(fid),
+    w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
   if (w.with) {
     var saved = _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
     if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    var partner = _attendLineup(fid).find(x => x.id === w.with);
+    var back = all[w.with];
+    if (!partner || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
   }
   return {
     start: w.start,
@@ -1649,6 +1662,14 @@ function setsOverlapAccepted(a, b, fid) {
   return attendOverlaps(a, b, fid) && clashAccepted(a, b);
 }
 function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return {
+    first: null,
+    second: null,
+    lo: 0,
+    hi: -1,
+    def: 0,
+    ok: false
+  };
   var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
   var lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
   var hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
@@ -1661,6 +1682,12 @@ function splitRange(a, b) {
     ok: lo <= hi
   };
 }
+function snapSplitSwitch(v, lo, hi) {
+  var n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  var top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
 function splitNight(a, b, switchMin, fid) {
   var {
     first,
@@ -1670,7 +1697,7 @@ function splitNight(a, b, switchMin, fid) {
     ok
   } = splitRange(a, b);
   if (!ok) return;
-  var sw = Math.min(hi, Math.max(lo, Math.round(switchMin / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+  var sw = snapSplitSwitch(switchMin, lo, hi);
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
 }

@@ -22,6 +22,7 @@ import { wireVendor } from "./lib/vendor-cdn.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
+const toMin = hhmm => { const [h, m] = hhmm.split(":").map(Number); return (h < 8 ? h + 24 : h) * 60 + m; };
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once("error", rej); s.listen(0, "127.0.0.1", () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
 const PORT = await reservePort();
@@ -151,6 +152,9 @@ try {
   // untouched picker left the clash standing.
   const zero = await page.evaluate(fid => {
     const a = { id: "t-zl-a", start: "16:00", end: "17:30", day: 1 }, b = { id: "t-zl-b", start: "16:00", end: "17:00", day: 1 };
+    // A split holds only while its partner is in the lineup, so the synthetic
+    // pair joins it for the duration of the check.
+    window.ARTISTS.push(a, b);
     const key = `${fid}_saved_v1`, keep = localStorage.getItem(key);
     localStorage.setItem(key, JSON.stringify([...(JSON.parse(keep || "[]")), a.id, b.id]));
     const r = splitRange(a, b);
@@ -164,6 +168,7 @@ try {
     splitNight(c, d, none.def);
     const wrote = c.id in attendWindows() || d.id in attendWindows();
     if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
+    window.ARTISTS.splice(window.ARTISTS.indexOf(a), 1); window.ARTISTS.splice(window.ARTISTS.indexOf(b), 1);
     return { ok: r.ok, lo: r.lo, startMin: toNightMin("16:00"), before, after, pa: wa.partial, pb: wb.partial, noneOk: none.ok, wrote };
   }, FID);
   check(zero.ok && zero.lo > zero.startMin, `same-start pair: the default switch is strictly after the shared start (lo ${zero.lo} > ${zero.startMin})`);
@@ -212,6 +217,14 @@ try {
     const v = plan.find(p => p.artist.id === vc), p = plan.find(p => p.artist.id === pw);
     return { now: NOW.time, v: { live: v.isLive, past: v.isPast }, p: { live: p.isLive, mins: p.minsUntil } };
   }, [VC, PW]); };
+  // Home's "Your plan" card is another door onto the same windows: at 2:40 it
+  // must lift Vintage Culture (Live, to 3:00), at 3:10 PAWSA (Live, to 4:00),
+  // never PAWSA Live from its published 2:30 while the plan has you elsewhere.
+  const cardAt = async iso => { await page.clock.setSystemTime(new Date(Date.parse(iso) - 61000)); await page.keyboard.press("Escape").catch(() => {}); await page.clock.runFor(61000);
+    return page.evaluate(() => { const c = document.querySelector("[data-duo-plan]"); return c ? c.innerText.replace(/\s+/g, " ") : ""; }); };
+  const c240 = await cardAt("2026-10-17T06:40:00Z"), c310 = await cardAt("2026-10-17T07:10:00Z");
+  check(/Vintage Culture/i.test(c240) && /TO 3:00/.test(c240) && /20 MIN LEFT/.test(c240) && !/PAWSA/i.test(c240), `2:40: Your plan lifts Vintage Culture, Live to 3:00, 20 min left (${c240})`);
+  check(/PAWSA/i.test(c310) && /TO 4:00/.test(c310) && !/Vintage/i.test(c310), `3:10: Your plan lifts PAWSA, Live to 4:00 (${c310})`);
   const r1 = await rowsAt("2026-10-17T06:40:00Z"), r2 = await rowsAt("2026-10-17T07:10:00Z");
   await page.clock.setSystemTime(new Date(AT));
   const p2 = await page.evaluate(([fid, vc, pw, keep]) => {
@@ -227,6 +240,157 @@ try {
   check(!p2.vc310.live && p2.vc310.past && p2.pw310, `3:10, after the switch: VC is Done, PAWSA is Live (vc live ${p2.vc310.live}, past ${p2.vc310.past})`);
   check(p2.a1 && /you arrive in 20 min/.test(p2.a1) && /3:00 AM/.test(p2.a1), `the in-app reminder counts to the arrival (${p2.a1})`);
   check(!p2.a0, "at 2:10 the published 2:30 start raises no reminder: the arrival is 50 min out");
+
+
+  // Codex P1 (#335, r4325845282): a split whose partner LEFT THE LINEUP. A
+  // schedule update can drop an act while its raw saved id stays (orphans are
+  // kept, savedInLineup). The surviving half used to keep its partial window:
+  // "You arrive 3:00 AM", a reminder timed to that arrival, and a clash
+  // computed on half a set. Every case below is read from persisted state.
+  const stale = await page.evaluate(([fid, vc, pw]) => {
+    const sk = `${fid}_saved_v1`, ak = `${fid}_attend_v1`;
+    const keepS = localStorage.getItem(sk), keepA = localStorage.getItem(ak);
+    const L = window.ARTISTS, va = L.find(a => a.id === vc), pa = L.find(a => a.id === pw);
+    const split = { [vc]: { start: "02:00", end: "03:00", with: pw }, [pw]: { start: "03:00", end: "04:00", with: vc } };
+    const put = (saved, att) => { localStorage.setItem(sk, JSON.stringify(saved)); localStorage.setItem(ak, JSON.stringify(att)); };
+    const win = () => attendWindow(pa);
+    const out = {};
+    put([vc, pw], split);
+    out.present = win().partial && setsClash(va, pa) === false;
+    // The partner leaves the lineup; its saved id and both stored halves stay.
+    L.splice(L.indexOf(va), 1);
+    out.removed = win();
+    out.removedReminder = (computeAlerts([vc, pw], 1, "02:10").find(o => o.id === `remind_${pw}`) || {}).body || null;
+    out.keptStored = Object.keys(attendWindows()).length === 2 && JSON.parse(localStorage.getItem(sk)).includes(vc);
+    L.push(va);
+    out.back = win().partial;                       // the act returns: so does the split
+    put([pw], split);  out.unsaved = win().partial;
+    put([vc, pw], { [pw]: split[pw] });                       out.noReciprocal = win().partial;
+    put([vc, pw], { ...split, [vc]: { ...split[vc], with: "someone-else" } }); out.wrongWith = win().partial;
+    put([vc, pw], { ...split, [vc]: { start: "05:00", end: "06:00", with: pw } }); out.outside = win().partial;
+    put([vc, pw], { ...split, [vc]: "garbage" });            out.garbage = win().partial;
+    put([vc, pw], { ...split, [vc]: { start: null, end: 3, with: pw } }); out.nulls = win().partial;
+    // Another festival's split resolves against THAT festival's lineup, not the
+    // active one (the switcher's per-festival clash count reads it).
+    const ofid = "edc-lv-2026", O = window._DATA_SETS[ofid].artists;
+    const oa = O.find(a => a.id === "cg4"), ob = O.find(a => a.id === "k4");
+    const osk = `${ofid}_saved_v1`, oak = `${ofid}_attend_v1`, ko = [localStorage.getItem(osk), localStorage.getItem(oak)];
+    localStorage.setItem(osk, JSON.stringify([oa.id, ob.id])); localStorage.removeItem(oak);
+    out.otherBefore = _festivalPlanStatus(ofid).conflicts;
+    splitNight(oa, ob, toNightMin("22:32"), ofid);
+    out.otherAfter = _festivalPlanStatus(ofid).conflicts;
+    out.otherPartial = attendWindow(oa, ofid).partial && attendWindow(ob, ofid).partial;
+    [[osk, ko[0]], [oak, ko[1]]].forEach(([k, v]) => v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v));
+    // The edit/split boundary never throws on a missing set.
+    let boundary = "ok";
+    try {
+      const r = splitRange(pa, undefined); if (r.ok) boundary = "splitRange offered a split with a missing set";
+      splitNight(pa, undefined, 180);
+      const host = document.createElement("div"); document.body.appendChild(host);
+      ReactDOM.flushSync(() => ReactDOM.createRoot(host).render(React.createElement(SplitNightSheet, { pair: [pa, undefined] })));
+      if (host.childElementCount) boundary = "sheet rendered for a missing set";
+      host.remove();
+    } catch (e) { boundary = "THREW: " + e.message; }
+    out.boundary = boundary;
+    if (keepS == null) localStorage.removeItem(sk); else localStorage.setItem(sk, keepS);
+    if (keepA == null) localStorage.removeItem(ak); else localStorage.setItem(ak, keepA);
+    return out;
+  }, [FID, VC, PW]);
+  check(stale.present, "partner present: the split holds and clears the clash");
+  check(!stale.removed.partial && stale.removed.start === "02:30", `partner removed from the lineup (id still saved): PAWSA is its whole set again (partial ${stale.removed.partial}, start ${stale.removed.start})`);
+  check(stale.removedReminder && /2:30 AM/.test(stale.removedReminder) && !/arrive/.test(stale.removedReminder), `…and its reminder counts to the published 2:30 start (${stale.removedReminder})`);
+  check(stale.keptStored, "…and the orphan saved id and both stored halves are kept, not deleted");
+  check(stale.back, "the partner returns to the lineup: the kept split holds again");
+  check(!stale.unsaved, "partner unsaved: whole set");
+  check(!stale.noReciprocal, "partner's half missing: whole set");
+  check(!stale.wrongWith, "partner's half points at another set: whole set");
+  check(!stale.outside, "partner's half no longer inside its set: whole set");
+  check(!stale.garbage && !stale.nulls, "malformed stored halves (a string, null/number ends): whole set, no throw");
+  check(stale.otherBefore === 1 && stale.otherAfter === 0 && stale.otherPartial, `another festival's split resolves against its own lineup (EDC LV clash count ${stale.otherBefore} → ${stale.otherAfter})`);
+  check(stale.boundary === "ok", `a missing set at the edit/split boundary offers nothing and throws nothing (${stale.boundary})`);
+
+  // Persisted stale state through the real UI: reload with the partner gone,
+  // open the night, the row reads whole and offers no Edit.
+  await page.evaluate(([fid, vc, pw]) => {
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([vc, pw]));
+    localStorage.setItem(`${fid}_attend_v1`, JSON.stringify({ [vc]: { start: "02:00", end: "03:00", with: pw }, [pw]: { start: "03:00", end: "04:00", with: vc } }));
+    sessionStorage.setItem("__drop", vc);
+  }, [FID, VC, PW]);
+  await ctx.addInitScript(() => {
+    const vc = sessionStorage.getItem("__drop"); if (!vc) return;
+    const iv = setInterval(() => { if (window._DATA_SETS && window.ARTISTS && window.FESTIVAL_CONFIG) {
+      for (const L of [window.ARTISTS, ...Object.values(window._DATA_SETS).map(d => d.artists)]) { const i = L.findIndex(a => a.id === vc); if (i >= 0) L.splice(i, 1); }
+      clearInterval(iv); } }, 1);
+  });
+  await boot(); await openNight();
+  const staleUi = await page.evaluate(([vc, pw]) => ({
+    gone: !ARTISTS.some(a => a.id === vc),
+    row: document.querySelector(`[data-attend-window="${pw}"]`)?.innerText || "",
+    edit: document.querySelectorAll("[data-attend-edit]").length,
+  }), [VC, PW]);
+  await page.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/stale-partner-390.png` : "/dev/null" }).catch(() => {});
+  check(staleUi.gone && staleUi.row === "" && staleUi.edit === 0, `reloaded with the partner gone: PAWSA's row is the whole set, no Edit (row "${staleUi.row}", edit ×${staleUi.edit})`);
+  await page.evaluate(() => sessionStorage.removeItem("__drop"));
+
+  // Codex P2 (#335, r4325845294): ONE switch grid. EDC LV 2026's shipped
+  // I Hate Models 22:00–23:15 / Chris Lorenzo 22:07–23:15: lo is 22:07, so the
+  // slider steps 22:07, 22:12, …; confirm used to round from midnight and save
+  // 22:10 for a previewed 22:12. Driven through the real Resolve → Split sheet.
+  const EFID = "edc-lv-2026", IHM = "cg4", CL = "k4";
+  const ectx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 900 } });
+  await wireVendor(ectx);
+  await ectx.clock.install({ time: new Date("2026-05-16T04:30:00Z") });   // Fri May 15, 9:30 PM PDT
+  await ectx.addInitScript(([fid, ids]) => {
+    if (sessionStorage.getItem("__seeded")) return;
+    sessionStorage.setItem("__seeded", "1");
+    localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+    localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(ids));
+  }, [EFID, [IHM, CL]]);
+  const ep = await ectx.newPage(); ep.on("pageerror", e => errors.push(e.message));
+  await ep.goto(`http://127.0.0.1:${PORT}/index.html?f=${EFID}&tab=home`, { waitUntil: "domcontentloaded" });
+  await ep.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, EFID, { timeout: 60000 });
+  await ep.clock.runFor(1200);
+  await ep.locator('[aria-label="Follow your night: open my night"]').first().click({ timeout: 20000 }); await ep.clock.runFor(600);
+  await ep.locator("button", { hasText: /^Resolve$/ }).first().click(); await ep.clock.runFor(300);
+  await ep.locator("button", { hasText: /^Split the night$/ }).first().click(); await ep.clock.runFor(300);
+  const slide = async v => { await ep.locator("#split-switch").evaluate((el, v) => {
+    const set = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+    set.call(el, String(v)); el.dispatchEvent(new Event("input", { bubbles: true })); el.dispatchEvent(new Event("change", { bubbles: true }));
+  }, v); await ep.clock.runFor(200); return { t: await ep.locator("[data-split-time]").innerText(), v: Number(await ep.locator("#split-switch").inputValue()) }; };
+  const g = await ep.evaluate(() => { const r = splitRange(ARTISTS.find(a => a.id === "cg4"), ARTISTS.find(a => a.id === "k4")); return { lo: r.lo, hi: r.hi, min: Number(document.querySelector("#split-switch").min) }; });
+  const d0 = await ep.locator("[data-split-time]").innerText();
+  check(g.lo === toMin("22:07") && g.min === g.lo && d0 === "10:07 PM", `fixture: lo is 22:07, off the midnight 5-minute grid, and the default reads 10:07 PM (lo ${g.lo}, "${d0}")`);
+  const top = await slide(9999), bot = await slide(-50);
+  check(top.t === "11:07 PM" && top.v === toMin("23:07"), `top endpoint: the slider stops on the grid at 11:07 PM, not hi 11:10 (got "${top.t}", ${top.v})`);
+  check(bot.t === "10:07 PM" && bot.v === g.lo, `bottom endpoint: 10:07 PM (got "${bot.t}")`);
+  const pick = await slide(toMin("22:12"));
+  await ep.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/offgrid-preview-390.png` : "/dev/null" }).catch(() => {});
+  const pv = await ep.locator("[data-split-preview]").innerText();
+  check(pick.t === "10:12 PM" && /10:00 PM–10:12 PM/.test(pv) && /10:12 PM–11:15 PM/.test(pv), `preview at 10:12 PM (${pv.replace(/\n/g, " | ")})`);
+  await ep.locator("[data-split-confirm]").click(); await ep.clock.runFor(500); await ep.waitForTimeout(200);
+  const saved = await ep.evaluate(([fid, ihm, cl]) => {
+    const w = attendWindows(fid), L = ARTISTS;
+    const rem = computeAlerts([ihm, cl], 1, "21:50").find(o => o.id === `remind_${cl}`);
+    return { ihm: w[ihm], cl: w[cl], lab: attendWindowLabel(L.find(a => a.id === cl)), labI: attendWindowLabel(L.find(a => a.id === ihm)),
+      row: document.querySelector(`[data-attend-window="${cl}"]`)?.innerText || "", rem: rem ? rem.title + " | " + rem.body : null };
+  }, [EFID, IHM, CL]);
+  await ep.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/offgrid-saved-row-390.png` : "/dev/null" }).catch(() => {});
+  check(saved.ihm?.end === "22:12" && saved.cl?.start === "22:12", `saved window is the previewed 22:12, not 22:10 (I Hate Models ends ${saved.ihm?.end}, Chris Lorenzo starts ${saved.cl?.start})`);
+  check(/You arrive 10:12 PM/.test(saved.lab) && /you leave 10:12 PM/.test(saved.labI) && /10:12 PM/.test(saved.row), `labels match the preview ("${saved.lab}" / "${saved.labI}")`);
+  check(saved.rem && /you arrive in 22 min/.test(saved.rem) && /10:12 PM/.test(saved.rem), `the reminder counts to 10:12 PM (${saved.rem})`);
+  // The grid rule itself: out of bounds, malformed, off-step, midnight.
+  const rule = await ep.evaluate(() => {
+    if (typeof snapSplitSwitch !== "function") return { missing: true };
+    const lo = toNightMin("22:07"), hi = toNightMin("23:10");
+    const m = toNightMin("23:57"), mh = toNightMin("01:00");
+    return { neg: snapSplitSwitch(-5, lo, hi), big: snapSplitSwitch(1e9, lo, hi), nan: snapSplitSwitch(NaN, lo, hi), str: snapSplitSwitch("abc", lo, hi),
+      num: snapSplitSwitch("1337", lo, hi), off: snapSplitSwitch(lo + 3, lo, hi), mid: nightMinToHHMM(snapSplitSwitch(m + 5, m, mh)), midTop: nightMinToHHMM(snapSplitSwitch(1e9, m, mh)), lo, hi };
+  });
+  check(rule.neg === rule.lo && rule.big === rule.lo + 60 && rule.nan === rule.lo && rule.str === rule.lo, `out-of-bounds and malformed switches land on the grid (${rule.neg}, ${rule.big}, ${rule.nan}, ${rule.str})`);
+  check(rule.num === 1337 && rule.off === rule.lo + 5, `a numeric string keeps its grid value; an off-step value rounds along the grid from lo (${rule.num}, ${rule.off})`);
+  check(rule.mid === "00:02" && rule.midTop === "00:57", `midnight rollover: a 23:57 grid steps to 00:02 and tops out at 00:57 (${rule.mid}, ${rule.midTop})`);
+  await ectx.close();
 
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);
   await browser.close();

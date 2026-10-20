@@ -2889,10 +2889,26 @@ function DuoPlanCard({
   var savedIds = savedInLineup(state.saved);
   var saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   var now = Date.now();
-  var live = saved.find(a => isSetLive(a)) || null;
+  var winMs = a => {
+    var w = attendWindow(a),
+      s = festivalNightDate(a.day, w.start).getTime();
+    return {
+      w,
+      s,
+      e: s + Math.max(1, toNightMin(w.end) - toNightMin(w.start)) * 60000
+    };
+  };
+  var live = saved.find(a => {
+    var {
+      w,
+      s,
+      e
+    } = winMs(a);
+    return w.partial ? now >= s && now < e : isSetLive(a);
+  }) || null;
   var next = live ? null : (saved.map(a => ({
     a,
-    t: festivalNightDate(a.day, a.start).getTime()
+    t: winMs(a).s
   })).filter(x => x.t > now).sort((x, y) => x.t - y.t)[0] || {}).a || null;
   var set = live || next;
   var open = id => setState({
@@ -2928,8 +2944,11 @@ function DuoPlanCard({
     }, "Browse lineup")));
   }
   var stage = STAGES.find(s => s.id === set.stage) || UNPLACED_STAGE;
-  var startMs = festivalNightDate(set.day, set.start).getTime();
-  var endMs = startMs + Math.max(1, toNightMin(set.end) - toNightMin(set.start)) * 60000;
+  var {
+    w: win,
+    s: startMs,
+    e: endMs
+  } = winMs(set);
   var minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
   var pct = live ? Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100))) : 0;
   var minsUntil = Math.round((startMs - now) / 60000);
@@ -3018,7 +3037,7 @@ function DuoPlanCard({
   }), React.createElement("button", {
     className: "duo-press",
     onClick: () => open(set.id),
-    "aria-label": `${set.name}, ${stage.name}, ${live ? `live until ${fmt12(set.end)}` : `${until}, ${fmt12(set.start)}`}`,
+    "aria-label": `${set.name}, ${stage.name}, ${live ? `live until ${fmt12(win.end)}` : `${until}, ${fmt12(win.start)}`}`,
     style: {
       display: "flex",
       alignItems: "flex-start",
@@ -3059,7 +3078,7 @@ function DuoPlanCard({
     }
   }, React.createElement("span", {
     className: "np-pair"
-  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(set.end)}` : duoClock(set.start)))))), live && React.createElement("span", {
+  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(win.end)}` : duoClock(win.start)))))), live && React.createElement("span", {
     className: "duo-wide",
     style: {
       textAlign: "right",
