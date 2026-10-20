@@ -1346,7 +1346,7 @@ function scheduleReminders(state, showLocal) {
   state.saved.forEach(id => {
     var found = lineup.find(x => x.id === id);
     if (!found) return;
-    var win = typeof attendWindow === "function" ? attendWindow(found) : null;
+    var win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
     var a = win && win.partial ? {
       ...found,
       start: win.start
@@ -1826,7 +1826,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id)) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id, ids)) conflicts++;
   return {
     saved: arts.length,
     conflicts

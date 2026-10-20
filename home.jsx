@@ -720,14 +720,14 @@ function buildTonightsPlan(state) {
   const sets = saved
     .map(id => lineup.find(a => a.id === id))
     .filter(a => a && a.day === night && a.start)
-    .sort((x, y) => toNightMin(attendWindow(x).start) - toNightMin(attendWindow(y).start) || toNightMin(x.start) - toNightMin(y.start));
+    .sort((x, y) => toNightMin(attendWindow(x, undefined, state.saved).start) - toNightMin(attendWindow(y, undefined, state.saved).start) || toNightMin(x.start) - toNightMin(y.start));
 
   return sets.map((a, i) => {
     const prev      = sets[i - 1];
     const walk      = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
     // L3: arrival, leave-by and tight read the ATTEND windows — after a split
     // you arrive at the switch time and leave the earlier set at it.
-    const win       = attendWindow(a);
+    const win       = attendWindow(a, undefined, state.saved);
     const startMin  = toNightMin(win.start);
     const endMin    = toNightMin(win.end);
     const minsUntil = startMin - nowMin;
@@ -742,14 +742,14 @@ function buildTonightsPlan(state) {
     const known     = walk != null && walk > 0;
     const leaveBy   = known ? startMin - walk : null;
     // Tight transition flag — only meaningful if previous set actually overlaps walk window
-    const prevEnd   = prev ? toNightMin(attendWindow(prev).end) : null;
+    const prevEnd   = prev ? toNightMin(attendWindow(prev, undefined, state.saved).end) : null;
     const tight     = !!prev && known && (startMin - prevEnd) < walk;
     // Every earlier saved set, not just `prev`: a long first set can span the
     // third after the first pair is accepted (Codex P1 on #335). Each pair is
     // counted once, on its later row.
-    const clashes   = sets.slice(0, i).filter(b => setsClash(b, a));
+    const clashes   = sets.slice(0, i).filter(b => setsClash(b, a, undefined, state.saved));
     const conflict  = clashes.length > 0;
-    const accepted  = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a));
+    const accepted  = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a, undefined, state.saved));
     return { artist: a, prev, walk, minsUntil, isLive, isPast, leaveBy, tight, conflict, clashes, accepted, win };
   });
 }
@@ -769,7 +769,7 @@ function computeAlerts(savedIds, day, timeStr) {
     // The attend start, not the published one (Codex P2 on #335): after a
     // split the reminder fires before the user's arrival, the way the native
     // reminders already do.
-    const win = attendWindow(a);
+    const win = attendWindow(a, undefined, savedIds);
     const late = win.partial && win.start !== a.start;
     const minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
@@ -786,11 +786,14 @@ function computeAlerts(savedIds, day, timeStr) {
   // Every pair, not only neighbours: same reason as buildTonightsPlan.
   for (let i = 0; i < todaySaved.length; i++) for (let j = i + 1; j < todaySaved.length; j++) {
     const a = todaySaved[i], b = todaySaved[j];
-    if (setsClash(a, b)) {
+    if (setsClash(a, b, undefined, savedIds)) {
+      // Where the attend windows meet: after a split that can be later than
+      // b's published start.
+      const wa = attendWindow(a, undefined, savedIds).start, wb = attendWindow(b, undefined, savedIds).start;
       out.push({
         id: `conflict_${a.id}_${b.id}`, kind: "conflict",
         title: "Schedule conflict",
-        body: `${a.name} and ${b.name} overlap at ${b.start}.`,
+        body: `${a.name} and ${b.name} overlap at ${toNightMin(wb) >= toNightMin(wa) ? wb : wa}.`,
         time: timeStr, unread: true,
       });
     }
@@ -1871,8 +1874,11 @@ function SavedByDay({ state, setState }) {
   const savedIds = savedInLineup(state.saved);
   const byDay = festivalDayNums().map(day => ({
     day, meta: FESTIVAL_CONFIG.dayDates[day],
+    // By arrival, as buildTonightsPlan orders the night (Codex P2 on #335):
+    // a split can put a set's arrival after a later-published one, and the
+    // walk and clash below are worked out against the row above.
     artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id))
-      .sort((a, b) => compareSetsByTime(a, b, STAGES)),
+      .sort((a, b) => toNightMin(attendWindow(a, undefined, state.saved).start) - toNightMin(attendWindow(b, undefined, state.saved).start) || compareSetsByTime(a, b, STAGES)),
   })).filter(d => d.artists.length);
   if (!byDay.length) return (
     <div>
@@ -1894,8 +1900,9 @@ function SavedByDay({ state, setState }) {
           {artists.map((a, i) => {
             const prev = artists[i - 1];
             const walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-            const tight = !!prev && walk != null && walk > 0 && (toNightMin(attendWindow(a).start) - toNightMin(attendWindow(prev).end)) < walk;
-            const conflict = prev && setsClash(prev, a);
+            const win = attendWindow(a, undefined, state.saved);
+            const tight = !!prev && walk != null && walk > 0 && (toNightMin(win.start) - toNightMin(attendWindow(prev, undefined, state.saved).end)) < walk;
+            const conflict = prev && setsClash(prev, a, undefined, state.saved);
             const stage = STAGES.find(s => s.id === a.stage);
             const prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
             return (
@@ -1905,11 +1912,11 @@ function SavedByDay({ state, setState }) {
                     is the only part nobody can honestly state. walk === 0 is a
                     same-stage back-to-back, which needs no row at all. */}
                 {prev && walk !== 0 && (
-                  <div style={{ padding: "4px 0 4px 88px", fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-3)" }}>
+                  <div data-saved-transition={a.id} style={{ padding: "4px 0 4px 88px", fontSize: 13, lineHeight: "18px", color: tight ? "var(--warn)" : "var(--text-3)" }}>
                     {tight ? "Tight · " : ""}{walk != null ? `${walk} min walk · ` : ""}{prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`}
                   </div>
                 )}
-                <button onClick={() => setState({ ...state, artist: a.id })} style={{
+                <button data-saved-row={a.id} onClick={() => setState({ ...state, artist: a.id })} style={{
                   width: "100%", minHeight: 64, padding: "12px 0",
                   display: "flex", alignItems: "flex-start", gap: 12,
                   background: "transparent", border: "none", borderBottom: "1px solid var(--line)",
@@ -1917,13 +1924,15 @@ function SavedByDay({ state, setState }) {
                 }}>
                   <div style={{ width: 76, flexShrink: 0, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
                     {!setTimesUnconfirmed(a) && <>
-                      <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(a.start)}</div>
+                      {/* When you get there, as Tonight's plan rows show it. */}
+                      <div style={{ fontSize: 15, lineHeight: "21px", fontWeight: 600 }}>{fmt12(win.partial ? win.start : a.start)}</div>
                       <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{fmt12(a.end)}</div>
                     </>}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, overflowWrap: "anywhere" }}>{actDisplayName(a.name)}</div>
                     {stage && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{stage.name}</div>}
+                    {win.partial && <div data-attend-window={a.id} style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{attendWindowLabel(a, win)}</div>}
                     {setTimesUnconfirmed(a) && <div data-set-time-status style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{SET_TIMES_UNCONFIRMED}</div>}
                     {conflict && <div style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--warn)" }}>⚠ Clashes with {actDisplayName(prev.name)} · {fmt12(prev.start)} · {(STAGES.find(s => s.id === prev.stage) || {}).name || "stage TBA"}</div>}
                   </div>
@@ -2060,7 +2069,7 @@ function DuoPlanCard({ state, setState, plan, onOpenNight }) {
   // is Next at it, not Live from its published start; whole sets keep
   // isSetLive, which owns the real-date checks.
   const winMs = a => {
-    const w = attendWindow(a), s = festivalNightDate(a.day, w.start).getTime();
+    const w = attendWindow(a, undefined, state.saved), s = festivalNightDate(a.day, w.start).getTime();
     return { w, s, e: s + Math.max(1, toNightMin(w.end) - toNightMin(w.start)) * 60000 };
   };
   const live = saved.find(a => { const { w, s, e } = winMs(a); return w.partial ? now >= s && now < e : isSetLive(a); }) || null;

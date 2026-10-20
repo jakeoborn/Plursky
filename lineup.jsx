@@ -1007,7 +1007,7 @@ function LineupScreen({ state, setState }) {
     let clashes = 0;
     for (let i = 0; i < savedThisDay.length; i++)
       for (let j = i + 1; j < savedThisDay.length; j++)
-        if (setsClash(savedThisDay[i], savedThisDay[j])) clashes++;
+        if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
     return { ...d, count: savedThisDay.length, clashes };
   }), [savedSetIds, weekendFilter, attendV]);
   const totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
@@ -1043,11 +1043,11 @@ function LineupScreen({ state, setState }) {
     for (let i = 0; i < savedToday.length; i++) {
       for (let j = i + 1; j < savedToday.length; j++) {
         const a = savedToday[i], b = savedToday[j];
-        if (setsClash(a, b)) {
+        if (setsClash(a, b, undefined, state.saved)) {
           _conflicts.push([a, b]);
           (_byId[a.id] = _byId[a.id] || []).push(b);
           (_byId[b.id] = _byId[b.id] || []).push(a);
-        } else if (setsOverlapAccepted(a, b)) {
+        } else if (setsOverlapAccepted(a, b, undefined, state.saved)) {
           (_acc[a.id] = _acc[a.id] || []).push(b);
           (_acc[b.id] = _acc[b.id] || []).push(a);
         }
@@ -1528,7 +1528,7 @@ function LineupScreen({ state, setState }) {
             const saved = state.saved.includes(a.id);
             const clashWith = conflictById[a.id];
             const acceptedWith = !clashWith && acceptedById[a.id];
-            const win = saved ? attendWindow(a) : null;
+            const win = saved ? attendWindow(a, undefined, state.saved) : null;
             const isHighlighted = highlightId === a.id;
             const isLive = isSetLive(a);
             const ring = saved || isLive ? (clashWith ? "cl" : "on") : "";
@@ -3014,7 +3014,7 @@ function toggleSave(state, setState, id) {
   const hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;
     const b = ARTISTS.find(x => x.id === sid);
-    return b && b.day === a.day && setsClash(a, b);
+    return b && b.day === a.day && setsClash(a, b, undefined, next);
   });
   if (hasConflict) {
     try { navigator.vibrate([50, 30, 50]); } catch {}

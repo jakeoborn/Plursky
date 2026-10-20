@@ -2131,7 +2131,7 @@ function attendOverlaps(a, b, fid, savedIds) { return overlaps(attendWindow(a, f
 // THE clash predicate: the attend windows overlap and the pair is not accepted.
 function setsClash(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b); }
 // Kept both: they still overlap, by the user's choice.
-function setsOverlapAccepted(a, b, fid) { return attendOverlaps(a, b, fid) && clashAccepted(a, b); }
+function setsOverlapAccepted(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b); }
 // The split of an overlapping pair at `switchMin`: the set that starts first
 // keeps [its start, switch), the other keeps [switch, its end]. Both halves
 // must be non-empty or attendWindow drops the window and the clash survives

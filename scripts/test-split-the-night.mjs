@@ -530,6 +530,27 @@ try {
   check(night.restored.join() === "16:00-17:25,17:25-17:30", `restoring the schedule restores the split, stored data untouched (${night.restored})`);
   check(night.overnightSplit && night.overnight.join() === "23:30-01:00,01:00-02:30,false", `an overnight pair across midnight keeps its split on one festival night (${night.overnight})`);
 
+  // The conflict alert names the time the two attend windows start to
+  // overlap. With P/Q split at 17:00, Q is attended from 17:00, so a third set
+  // R published at 16:45 overlaps Q from 17:00, not R's 16:45.
+  const alertAt = await ap.evaluate(([fid, az]) => {
+    const A = id => ARTISTS.find(a => a.id === id), key = `${fid}_saved_v1`, keep = localStorage.getItem(key);
+    const mk = (id, start, end) => ({ ...A(az), id, name: id.toUpperCase(), start, end });
+    ARTISTS.push(mk("zz-p", "16:00", "18:00"), mk("zz-q", "16:30", "18:30"), mk("zz-r", "16:45", "17:30"));
+    localStorage.setItem(`${fid}_attend_v1`, "{}");
+    localStorage.setItem(key, JSON.stringify(["zz-p", "zz-q", "zz-r"]));
+    splitNight(A("zz-p"), A("zz-q"), toNightMin("17:00"));
+    const body = (a, b) => (computeAlerts(["zz-p", "zz-q", "zz-r"], A(az).day, "12:00").find(o => o.id === `conflict_${a}_${b}`) || {}).body || null;
+    const r = { qr: body("zz-q", "zz-r"), pr: body("zz-p", "zz-r"), pq: body("zz-p", "zz-q") };
+    ARTISTS.splice(ARTISTS.findIndex(a => a.id === "zz-p"), 3);
+    localStorage.setItem(`${fid}_attend_v1`, "{}");
+    if (keep == null) localStorage.removeItem(key); else localStorage.setItem(key, keep);
+    return r;
+  }, [AFID, AZ]);
+  check(alertAt.qr === "ZZ-Q and ZZ-R overlap at 17:00.", `conflict alert names where the attend windows meet, after a split (${alertAt.qr})`);
+  check(alertAt.pr === "ZZ-P and ZZ-R overlap at 16:45.", `conflict alert with the earlier half: the later start, as before (${alertAt.pr})`);
+  check(alertAt.pq === null, `the split pair itself raises no conflict alert (${alertAt.pq})`);
+
   // Codex P2 on 5774e37, Build My Night previews the selection Save will
   // write. AZZECCA/TIGA split at 17:00; dropping TIGA in the wizard leaves
   // AZZECCA whole (16:00-17:30) over ZULAN (17:00), and the wizard must say so
@@ -565,7 +586,85 @@ try {
   }, [AFID, AZ, TI, ZU]);
   check(!after.saved.includes(TI) && after.azZu && !after.az, `after Save the plan matches the preview: TIGA gone, AZZECCA whole, AZZECCA/ZULAN clash (${JSON.stringify(after)})`);
 
+  // Codex P2 on 114cb4e, an unsave and the very next render. AZZECCA/TIGA
+  // split at 17:00, ZULAN saved: TIGA/ZULAN clash. "Keep this" on ZULAN drops
+  // TIGA, so AZZECCA is whole again (16:00-17:30) and clashes ZULAN (the row
+  // below it carries the flag). The plan
+  // must say so on the render the drop causes, before any timer or tap.
+  await ap.evaluate(([fid, az, ti, zu]) => {
+    const A = id => ARTISTS.find(a => a.id === id);
+    localStorage.setItem(`${fid}_attend_v1`, "{}");
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify([az, ti, zu]));
+    splitNight(A(az), A(ti), toNightMin("17:00"));
+  }, [AFID, AZ, TI, ZU]);
+  await aboot();
+  await ap.locator('[aria-label="Follow your night: open my night"]').first().click({ timeout: 20000 }); await ap.clock.runFor(600); await ap.waitForTimeout(200);
+  await ap.locator("button", { hasText: /^Resolve$/ }).first().click(); await ap.clock.runFor(300);
+  const planRow = id => `[data-plan-row="${id}"]`;
+  const readAz = () => ap.evaluate(([az, sel]) => {
+    const row = document.querySelector(sel);
+    return { rows: [...document.querySelectorAll("[data-plan-row]")].map(e => e.getAttribute("data-plan-row")), azWindow: !!document.querySelector(`[data-attend-window="${az}"]`), zuClash: !!row && / · clash/.test(row.innerText), banner: document.querySelector("[data-plan-banner]")?.innerText || "" };
+  }, [AZ, planRow(ZU)]);
+  const unsavePre = await readAz();
+  // Click in the page and read the DOM in the same task: no clock advance, no
+  // second interaction between the drop and the read.
+  const unsave = await ap.evaluate(([az, zu, sel]) => new Promise(done => {
+    const group = [...document.querySelectorAll('[aria-label="Schedule clash"]')].find(g => /ZULAN/.test(g.innerText) && /TIGA/.test(g.innerText));
+    const keep = group && [...group.querySelectorAll("button")].find(b => b.innerText === "Keep this" && /ZULAN/.test(b.parentElement.innerText));
+    if (!keep) return done({ found: false });
+    keep.click();
+    // React commits a click's update before the task ends; read after its microtasks.
+    Promise.resolve().then(() => Promise.resolve()).then(() => {
+      const row = document.querySelector(sel);
+      done({ found: true, saved: JSON.parse(localStorage.getItem(`arc-2026_saved_v1`)), rows: [...document.querySelectorAll("[data-plan-row]")].map(e => e.getAttribute("data-plan-row")), azWindow: !!document.querySelector(`[data-attend-window="${az}"]`), zuClash: !!row && / · clash/.test(row.innerText), banner: document.querySelector("[data-plan-banner]")?.innerText || "" });
+    });
+  }), [AZ, ZU, planRow(ZU)]);
+  await ap.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-unsave-next-render-390.png` : "/dev/null" }).catch(() => {});
+  check(unsavePre.azWindow && unsavePre.rows.includes(TI), `before the drop, TIGA is in the plan and AZZECCA shows its split window (${JSON.stringify(unsavePre)})`);
+  check(unsave.found && !unsave.rows.includes(TI), `"Keep this" on ZULAN drops TIGA from the plan (${JSON.stringify(unsave)})`);
+  check(unsave.found && !unsave.azWindow && unsave.zuClash && /1 clash/.test(unsave.banner), `on the very next render AZZECCA is whole again, ZULAN is flagged and the banner counts 1 clash, with no timer or tap in between (${JSON.stringify(unsave)})`);
+
   await actx.close();
+
+  // Codex P2 on 114cb4e, "My saved sets" before the festival. AZZECCA/TIGA
+  // split at 17:25 with ZULAN at 17:00: the sheet lists by arrival, AZZECCA,
+  // ZULAN, TIGA, each transition from the row above, and TIGA's late arrival.
+  const sctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 900 } });
+  await wireVendor(sctx);
+  await sctx.clock.install({ time: new Date("2026-08-28T18:00:00Z") });   // a week before ARC
+  await sctx.addInitScript(([fid, ids, attend]) => {
+    if (sessionStorage.getItem("__seeded")) return;
+    sessionStorage.setItem("__seeded", "1");
+    localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+    localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+    localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(ids));
+    localStorage.setItem(`${fid}_attend_v1`, JSON.stringify(attend));
+  }, [AFID, [AZ, TI, ZU], { [AZ]: { start: "16:00", end: "17:25", with: TI }, [TI]: { start: "17:25", end: "17:30", with: AZ } }]);
+  const sp = await sctx.newPage(); sp.on("pageerror", e => errors.push(e.message));
+  await sp.goto(`http://127.0.0.1:${PORT}/index.html?f=${AFID}&tab=home`, { waitUntil: "domcontentloaded" });
+  await sp.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid, AFID, { timeout: 60000 });
+  await sp.clock.runFor(1200);
+  await sp.locator('[aria-label="Follow your night: open my night"]').first().click({ timeout: 20000 }); await sp.clock.runFor(600); await sp.waitForTimeout(200);
+  const savedSheet = await sp.evaluate(([az, ti, zu]) => {
+    const name = id => ARTISTS.find(a => a.id === id);
+    const stageShort = id => (STAGES.find(s => s.id === name(id).stage) || {}).short || "";
+    return {
+      title: [...document.querySelectorAll("h1,h2,h3")].some(h => /My saved sets/.test(h.innerText)),
+      rows: [...document.querySelectorAll("[data-saved-row]")].map(e => e.getAttribute("data-saved-row")),
+      trans: Object.fromEntries([...document.querySelectorAll("[data-saved-transition]")].map(e => [e.getAttribute("data-saved-transition"), e.innerText])),
+      want: { zu: `${stageShort(az)} → ${stageShort(zu)}`, ti: `${stageShort(zu)} → ${stageShort(ti)}`, sameAzZu: name(az).stage === name(zu).stage, sameZuTi: name(zu).stage === name(ti).stage },
+      tiLate: document.querySelector(`[data-attend-window="${ti}"]`)?.innerText || "",
+      times: Object.fromEntries([az, zu, ti].map(id => [id, (document.querySelector(`[data-saved-row="${id}"]`)?.innerText || "").split("\n")[0]])),
+      azEarly: document.querySelector(`[data-attend-window="${az}"]`)?.innerText || "",
+    };
+  }, [AZ, TI, ZU]);
+  await sp.screenshot({ path: process.env.SPLIT_PIXELS ? `${process.env.SPLIT_PIXELS}/arc-saved-sets-390.png` : "/dev/null" }).catch(() => {});
+  check(savedSheet.title && savedSheet.rows.join() === [AZ, ZU, TI].join(), `"My saved sets" lists by arrival: AZZECCA, ZULAN, TIGA (${savedSheet.rows.join(", ")})`);
+  const transOk = (id, want, same) => same ? /same stage/.test(savedSheet.trans[id] || "") : (savedSheet.trans[id] || "").endsWith(want);
+  check(transOk(ZU, savedSheet.want.zu, savedSheet.want.sameAzZu) && transOk(TI, savedSheet.want.ti, savedSheet.want.sameZuTi), `each transition is from the row above: ZULAN from AZZECCA, TIGA from ZULAN (${JSON.stringify(savedSheet.trans)}; want ${JSON.stringify(savedSheet.want)})`);
+  check(savedSheet.tiLate === "You arrive 5:25 PM → 5:30 PM" && savedSheet.azEarly === "4:00 PM → you leave 5:25 PM", `the sheet shows TIGA's late arrival and AZZECCA's early leave ("${savedSheet.tiLate}", "${savedSheet.azEarly}")`);
+  check(savedSheet.times[AZ] === "4:00 PM" && savedSheet.times[ZU] === "5:00 PM" && savedSheet.times[TI] === "5:25 PM", `the time column reads when you get there: 4:00, 5:00, then TIGA at 5:25, not its published 4:00 (${JSON.stringify(savedSheet.times)})`);
+  await sctx.close();
 
   check(!errors.length, `no page errors (${errors.slice(0, 2).join(" | ")})`);
   await browser.close();

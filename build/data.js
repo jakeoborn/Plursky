@@ -1664,8 +1664,8 @@ function attendOverlaps(a, b, fid, savedIds) {
 function setsClash(a, b, fid, savedIds) {
   return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b);
 }
-function setsOverlapAccepted(a, b, fid) {
-  return attendOverlaps(a, b, fid) && clashAccepted(a, b);
+function setsOverlapAccepted(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b);
 }
 function splitRange(a, b) {
   if (!a || !b || !a.start || !a.end || !b.start || !b.end) return {

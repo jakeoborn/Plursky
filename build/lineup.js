@@ -1283,7 +1283,7 @@ function LineupScreen({
   var dayStats = React.useMemo(() => DAYS.map(d => {
     var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
-    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (setsClash(savedThisDay[i], savedThisDay[j])) clashes++;
+    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
     return {
       ...d,
       count: savedThisDay.length,
@@ -1312,11 +1312,11 @@ function LineupScreen({
       for (var j = i + 1; j < savedToday.length; j++) {
         var a = savedToday[i],
           b = savedToday[j];
-        if (setsClash(a, b)) {
+        if (setsClash(a, b, undefined, state.saved)) {
           _conflicts.push([a, b]);
           (_byId[a.id] = _byId[a.id] || []).push(b);
           (_byId[b.id] = _byId[b.id] || []).push(a);
-        } else if (setsOverlapAccepted(a, b)) {
+        } else if (setsOverlapAccepted(a, b, undefined, state.saved)) {
           (_acc[a.id] = _acc[a.id] || []).push(b);
           (_acc[b.id] = _acc[b.id] || []).push(a);
         }
@@ -2140,7 +2140,7 @@ function LineupScreen({
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
       var acceptedWith = !clashWith && acceptedById[a.id];
-      var win = saved ? attendWindow(a) : null;
+      var win = saved ? attendWindow(a, undefined, state.saved) : null;
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
@@ -4479,7 +4479,7 @@ function toggleSave(state, setState, id) {
   var hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;
     var b = ARTISTS.find(x => x.id === sid);
-    return b && b.day === a.day && setsClash(a, b);
+    return b && b.day === a.day && setsClash(a, b, undefined, next);
   });
   if (hasConflict) {
     try {

@@ -830,11 +830,11 @@ function buildTonightsPlan(state) {
   var nowMin = toNightMin(NOW.time);
   var saved = savedInLineup(state.saved);
   var lineup = activeLineup(saved);
-  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(attendWindow(x).start) - toNightMin(attendWindow(y).start) || toNightMin(x.start) - toNightMin(y.start));
+  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(attendWindow(x, undefined, state.saved).start) - toNightMin(attendWindow(y, undefined, state.saved).start) || toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var win = attendWindow(a);
+    var win = attendWindow(a, undefined, state.saved);
     var startMin = toNightMin(win.start);
     var endMin = toNightMin(win.end);
     var minsUntil = startMin - nowMin;
@@ -842,11 +842,11 @@ function buildTonightsPlan(state) {
     var isPast = nowMin >= endMin;
     var known = walk != null && walk > 0;
     var leaveBy = known ? startMin - walk : null;
-    var prevEnd = prev ? toNightMin(attendWindow(prev).end) : null;
+    var prevEnd = prev ? toNightMin(attendWindow(prev, undefined, state.saved).end) : null;
     var tight = !!prev && known && startMin - prevEnd < walk;
-    var clashes = sets.slice(0, i).filter(b => setsClash(b, a));
+    var clashes = sets.slice(0, i).filter(b => setsClash(b, a, undefined, state.saved));
     var conflict = clashes.length > 0;
-    var accepted = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a));
+    var accepted = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a, undefined, state.saved));
     return {
       artist: a,
       prev,
@@ -869,7 +869,7 @@ function computeAlerts(savedIds, day, timeStr) {
   var todaySaved = activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var out = [];
   var _loop = function (a) {
-    var win = attendWindow(a);
+    var win = attendWindow(a, undefined, savedIds);
     var late = win.partial && win.start !== a.start;
     var minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
@@ -890,12 +890,14 @@ function computeAlerts(savedIds, day, timeStr) {
   for (var i = 0; i < todaySaved.length; i++) for (var j = i + 1; j < todaySaved.length; j++) {
     var _a = todaySaved[i],
       b = todaySaved[j];
-    if (setsClash(_a, b)) {
+    if (setsClash(_a, b, undefined, savedIds)) {
+      var wa = attendWindow(_a, undefined, savedIds).start,
+        wb = attendWindow(b, undefined, savedIds).start;
       out.push({
         id: `conflict_${_a.id}_${b.id}`,
         kind: "conflict",
         title: "Schedule conflict",
-        body: `${_a.name} and ${b.name} overlap at ${b.start}.`,
+        body: `${_a.name} and ${b.name} overlap at ${toNightMin(wb) >= toNightMin(wa) ? wb : wa}.`,
         time: timeStr,
         unread: true
       });
@@ -2532,7 +2534,7 @@ function SavedByDay({
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
-    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES))
+    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(attendWindow(a, undefined, state.saved).start) - toNightMin(attendWindow(b, undefined, state.saved).start) || compareSetsByTime(a, b, STAGES))
   })).filter(d => d.artists.length);
   if (!byDay.length) return React.createElement("div", null, React.createElement("p", {
     style: {
@@ -2580,13 +2582,15 @@ function SavedByDay({
   }, meta?.name || `Day ${day}`), artists.map((a, i) => {
     var prev = artists[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var tight = !!prev && walk != null && walk > 0 && toNightMin(attendWindow(a).start) - toNightMin(attendWindow(prev).end) < walk;
-    var conflict = prev && setsClash(prev, a);
+    var win = attendWindow(a, undefined, state.saved);
+    var tight = !!prev && walk != null && walk > 0 && toNightMin(win.start) - toNightMin(attendWindow(prev, undefined, state.saved).end) < walk;
+    var conflict = prev && setsClash(prev, a, undefined, state.saved);
     var stage = STAGES.find(s => s.id === a.stage);
     var prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
     return React.createElement("div", {
       key: a.id
     }, prev && walk !== 0 && React.createElement("div", {
+      "data-saved-transition": a.id,
       style: {
         padding: "4px 0 4px 88px",
         fontSize: 13,
@@ -2594,6 +2598,7 @@ function SavedByDay({
         color: tight ? "var(--warn)" : "var(--text-3)"
       }
     }, tight ? "Tight · " : "", walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`), React.createElement("button", {
+      "data-saved-row": a.id,
       onClick: () => setState({
         ...state,
         artist: a.id
@@ -2625,7 +2630,7 @@ function SavedByDay({
         lineHeight: "21px",
         fontWeight: 600
       }
-    }, fmt12(a.start)), React.createElement("div", {
+    }, fmt12(win.partial ? win.start : a.start)), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: "18px",
@@ -2650,7 +2655,15 @@ function SavedByDay({
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, stage.name), setTimesUnconfirmed(a) && React.createElement("div", {
+    }, stage.name), win.partial && React.createElement("div", {
+      "data-attend-window": a.id,
+      style: {
+        marginTop: 2,
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, attendWindowLabel(a, win)), setTimesUnconfirmed(a) && React.createElement("div", {
       "data-set-time-status": true,
       style: {
         marginTop: 2,
@@ -2890,7 +2903,7 @@ function DuoPlanCard({
   var saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   var now = Date.now();
   var winMs = a => {
-    var w = attendWindow(a),
+    var w = attendWindow(a, undefined, state.saved),
       s = festivalNightDate(a.day, w.start).getTime();
     return {
       w,
