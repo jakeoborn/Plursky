@@ -2554,6 +2554,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L4: the artist page's colour pops. Accent stat numbers (AA on their card),
+// brand dots on unchanged link pills, accent-outline genre chips, and an empty
+// moments row that invites without showing fake content. Both modes, 390/320.
+{
+  console.log("▸ Artist pop — accent stats, brand dots, accent chips, empty-moments invitation");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pop.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pop failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Memories film strip names ─────────────────────────────────────────────
 // Every frame names its artist in full (wrapped to the frame, never sliced);
 // same class as #247's chip names. Real renderer, recorded fillText.
