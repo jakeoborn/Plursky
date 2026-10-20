@@ -1055,8 +1055,13 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   // 438 m from its crowd, a user standing at the main stage was 279 m from the
   // NEAREST anchor and this returned null every time. Live stage detection was
   // silently dead at the biggest stage on site.
-  const anchors = (typeof resolvedStageAnchors === "function")
-    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []);
+  // Evidence only (osm / crowd). This is a geofence: a hit auto-marks a set
+  // attended with no tap. A poster read, a provisional pin or a derived point
+  // is a guess about where a stage is, and a guess must not fire it. EDC
+  // Orlando 2026 ships five poster reads off 2025 art (founder, 2026-10-20).
+  const anchors = ((typeof resolvedStageAnchors === "function")
+    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []))
+    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
   if (anchors.length === 0) return null;
   const radius = opts.radiusM || 140;
   const now = window.NOW;

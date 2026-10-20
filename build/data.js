@@ -586,27 +586,32 @@ var FESTIVALS_REGISTRY = [{
       stageId: "kinetic",
       lat: 28.53700,
       lng: -81.40040,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "circuit",
       lat: 28.53999,
       lng: -81.40219,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "neon",
       lat: 28.53900,
       lng: -81.39850,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "stereo",
       lat: 28.53730,
       lng: -81.40310,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "bacardi",
       lat: 28.53660,
       lng: -81.40240,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.jpg",
@@ -2503,49 +2508,57 @@ var EDCO_AMENITIES = [{
   type: "water",
   label: "Hydration",
   x: 44,
-  y: 30
+  y: 30,
+  src: "unsourced"
 }, {
   id: "eoa2",
   type: "water",
   label: "Hydration",
   x: 60,
-  y: 62
+  y: 62,
+  src: "unsourced"
 }, {
   id: "eoa3",
   type: "food",
   label: "Vendor Village",
   x: 50,
-  y: 50
+  y: 50,
+  src: "unsourced"
 }, {
   id: "eoa4",
   type: "food",
   label: "Westside Eats",
   x: 22,
-  y: 58
+  y: 58,
+  src: "unsourced"
 }, {
   id: "eoa5",
   type: "med",
   label: "Medical",
   x: 54,
-  y: 40
+  y: 40,
+  src: "unsourced"
 }, {
   id: "eoa6",
   type: "toilet",
   label: "Restrooms",
   x: 30,
-  y: 40
+  y: 40,
+  src: "unsourced"
 }, {
   id: "eoa7",
   type: "toilet",
   label: "Restrooms",
   x: 70,
-  y: 56
+  y: 56,
+  src: "unsourced"
 }, {
   id: "eoa8",
   type: "info",
   label: "Info & Guest Services",
   x: 48,
-  y: 18
+  y: 18,
+  src: "unsourced"
 }];
 var LL_STAGES = [{
   id: "prehistoric",

@@ -15,10 +15,13 @@
 // here, not outputs.
 
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import vm from "node:vm";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fitAffine, applyAffine, deriveGrid, distanceM, metresPerDegree, outsideBoundsM, worstPairwiseError, festivalById } from "./georef-map.mjs";
 import { EDCO_MAP_2026, checkEdcoMap, isPinned } from "./build-edco-map-2026.mjs";
+import { loadRegistry } from "./lib/load-registry.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fails = [];
@@ -150,6 +153,45 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   ok(/placeholder edco-tinker-2026\.jpg still ships/.test(cli), `--check exits 0 while unpinned (${cli.trim()})`);
   try { execFileSync(process.execPath, ["scripts/build-edco-map-2026.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); } catch { buildRefused = true; }
   ok(buildRefused, "a build with nothing pinned refuses to run");
+}
+
+// ── 4. poster reads and unsourced pins cannot fire a geofence ─────────────
+// Founder, 2026-10-20: Insomniac has no 2026 map, so the five anchors stay as
+// poster reads and say so in the data, every amenity names its source, and
+// nothing geofence-triggered fires off either.
+{
+  const BASIS = "poster-read, 2025 art, unsurveyed";
+  const anchors = config.gpsAnchors || [];
+  ok(anchors.length === 5 && anchors.every(a => a.src === "poster" && a.basis === BASIS),
+    `all five anchors are labelled "${BASIS}" (${anchors.filter(a => a.basis === BASIS).length} of ${anchors.length})`);
+  const am = loadRegistry(ROOT).DS[FID].amenities || [];
+  ok(am.length === 8 && am.every(a => typeof a.src === "string" && a.src.length > 0),
+    `every amenity pin names its source (${am.filter(a => a.src).length} of ${am.length})`);
+
+  // detectCurrentArtist is the GPS auto-attend geofence. Run the shipped
+  // function, not a copy: stand ON the kinetic anchor during a live kinetic set.
+  const src = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
+  const from = src.indexOf("function _gpsDistMeters(");
+  const to = src.indexOf("// Called from the GPS effect in MapScreen");
+  ok(from > 0 && to > from, "detectCurrentArtist is found in chrome.jsx");
+  const detect = cfg => {
+    const ctx = {
+      window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math,
+      activeLineup: () => [{ id: "act1", stage: "kinetic" }], isSetLive: () => true,
+    };
+    vm.createContext(ctx);
+    vm.runInContext(`${src.slice(from, to)}\n;__hit = detectCurrentArtist(${cfg.gpsAnchors[0].lat}, ${cfg.gpsAnchors[0].lng});`, ctx);
+    return ctx.__hit;
+  };
+  ok(detect(clone(config)) === null, "standing on a poster-read anchor during its live set marks nothing attended");
+  const surveyed = clone(config); surveyed.gpsAnchors[0].src = "osm";
+  caught(detect(surveyed) === null, "the same spot on a surveyed (osm) anchor no longer fires, so the guard is not just dead code");
+
+  // Crew nudge: inferring a friend's stage from their GPS dot needs sourced
+  // registration. Source check (the cluster lives inside a component).
+  const mapSrc = readFileSync(join(ROOT, "map.jsx"), "utf8");
+  ok(/f\.stageId \|\| \(MAP_REGISTRATION_SOURCED \? _nearestStageId\(f\.x, f\.y\) : null\)/.test(mapSrc),
+    "the crew-cluster nudge infers a stage from GPS only on sourced registration");
 }
 
 for (const f of fails) console.log(`  ✗  ${f}`);

@@ -1277,7 +1277,10 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   var cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || [];
+  var anchors = (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || []).filter(a => {
+    var s = a.anchorSource || a.src;
+    return s === "osm" || s === "crowd";
+  });
   if (anchors.length === 0) return null;
   var radius = opts.radiusM || 140;
   var now = window.NOW;

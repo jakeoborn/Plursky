@@ -763,12 +763,17 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
       // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
       // you do — the two are derived together.
+      // basis: every anchor here is a POSTER READ off the official 2025 map art,
+      // never surveyed. Insomniac has not published a 2026 map (checked
+      // 2026-10-20). The basis string is DATA so a gate can read it, and
+      // detectCurrentArtist (chrome.jsx) refuses any non-evidence anchor, so
+      // none of these five can trigger GPS auto-attend.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
-        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
-        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
+        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // SE of the stadium, N of W Anderson, W of Nashville
+        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // Tinker Field mowed rectangle, NE part
+        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // field S of W South St, E of Tampa
+        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
       // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
@@ -785,7 +790,7 @@ const FESTIVALS_REGISTRY = [
     // that axis — but opening it makes it LIVE, and a live festival has to
     // clear the map-registration gate. EDCO has no sourced registration by
     // design: no OSM polygon matches the fence, so it carries no footprint and
-    // waits on the official 2026 map (the same map the hourly watch probes).
+    // waits on the official 2026 map (edco-map-watch.yml checks for it every Monday).
     // Verify says it plainly: "unsourced, blind with no waiver".
     //
     // A waiver here would be a judgement about map accuracy with no evidence
@@ -3048,15 +3053,20 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
 ];
 
+// Every pin below is UNSOURCED (checked 2026-10-20). They came in with the
+// 2026-08-22 scaffold (2779c72) over the generated plasma overlay, before the
+// 2025 art was georeferenced, and no official map places them. `src` is DATA
+// so test-georef-map.mjs can refuse an amenity that loses its label. Replace
+// them from the official 2026 map at the flip; never move them by eye.
 const EDCO_AMENITIES = [
-  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
-  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
-  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
-  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
-  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
-  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
-  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
-  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
 ];
 
 // ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──
