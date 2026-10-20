@@ -187,6 +187,42 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   const surveyed = clone(config); surveyed.gpsAnchors[0].src = "osm";
   caught(detect(surveyed) === null, "the same spot on a surveyed (osm) anchor no longer fires, so the guard is not just dead code");
 
+  // GLOBAL (founder, 2026-10-20): every festival, through the real
+  // resolvedStageAnchors. Stand on each anchor during a live set on every
+  // stage. An osm/crowd point must fire for its stage; a poster, provisional,
+  // derived or unsourced point must never resolve to its own stage (a hit on a
+  // neighbouring EVIDENCE anchor inside 140 m is allowed — that one is real).
+  const dataSrc = readFileSync(join(ROOT, "data.jsx"), "utf8");
+  const rFrom = dataSrc.indexOf("function resolvedStageAnchors(cfg)");
+  const rTo = dataSrc.indexOf("function resolvedStageAnchor(cfg, stageId)");
+  ok(rFrom > 0 && rTo > rFrom, "resolvedStageAnchors is found in data.jsx");
+  const EVIDENCE = new Set(["osm", "crowd"]);
+  let fired = 0, refused = 0;
+  const leaks = [], dead = [];
+  for (const { config: cfg } of loadRegistry(ROOT).REG) {
+    if (!cfg || !((cfg.gpsAnchors || []).length || (cfg.crowdAnchors || []).length)) continue;
+    const crowdIds = new Set((cfg.crowdAnchors || []).map(c => c.stageId));
+    const points = [
+      ...(cfg.gpsAnchors || []).filter(a => !crowdIds.has(a.stageId)).map(a => ({ ...a, kind: a.src || "unsourced" })),
+      ...(cfg.crowdAnchors || []).map(c => ({ ...c, kind: "crowd" })),
+    ];
+    const stageIds = [...new Set(points.map(p => p.stageId))];
+    for (const p of points) {
+      const ctx = {
+        window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math,
+        activeLineup: () => stageIds.map(s => ({ id: `act-${s}`, stage: s })), isSetLive: () => true,
+      };
+      vm.createContext(ctx);
+      vm.runInContext(`${dataSrc.slice(rFrom, rTo)}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${p.lat}, ${p.lng});`, ctx);
+      const own = ctx.__hit && ctx.__hit.stageId === p.stageId;
+      if (EVIDENCE.has(p.kind)) { if (own) fired++; else dead.push(`${cfg.id}:${p.stageId}(${p.kind})`); }
+      else { if (own) leaks.push(`${cfg.id}:${p.stageId}(${p.kind})`); else refused++; }
+    }
+  }
+  ok(leaks.length === 0, `no poster/prov/derived/unsourced point fires auto-attend, any festival (${refused} refused${leaks.length ? `; LEAK ${leaks.join(", ")}` : ""})`);
+  ok(dead.length === 0 && fired > 0, `every osm/crowd point still fires for its own stage (${fired} fired${dead.length ? `; DEAD ${dead.join(", ")}` : ""})`);
+  ok(refused > 0, `the sweep met non-evidence points to refuse (${refused})`);
+
   // Crew nudge: inferring a friend's stage from their GPS dot needs sourced
   // registration. Source check (the cluster lives inside a component).
   const mapSrc = readFileSync(join(ROOT, "map.jsx"), "utf8");
