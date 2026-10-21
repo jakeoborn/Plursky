@@ -403,6 +403,7 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   }
   return changed;
 }
+var ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 function putArtistImages(entries, {
   ifAbsent = false
 } = {}) {
@@ -410,6 +411,7 @@ function putArtistImages(entries, {
     var store = _readArtistImageStore();
     var changed = _pruneArtistImageStore(store);
     var now = Date.now();
+    var written = [];
     for (var e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -421,9 +423,15 @@ function putArtistImages(entries, {
         fetchedAt: now
       };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try {
+      window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, {
+        detail: written
+      }));
+    } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -472,6 +480,18 @@ function useArtistImageExpiry() {
     window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
     return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
   }, []);
+  return n;
+}
+function useArtistImageWritten(name) {
+  var [n, setN] = React.useState(0);
+  var ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    var on = e => {
+      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) setN(x => x + 1);
+    };
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
+  }, [ln]);
   return n;
 }
 try {
@@ -582,6 +602,10 @@ function useArtistPhoto(name) {
   React.useEffect(() => {
     if (expiry) setPhoto(getArtistImage(name)?.url || null);
   }, [expiry]);
+  var written = useArtistImageWritten(name);
+  React.useEffect(() => {
+    if (written) setPhoto(p => getArtistImage(name)?.url || p);
+  }, [written]);
   React.useEffect(() => {
     if (photo) return;
     var live = true;
@@ -2981,6 +3005,7 @@ Object.assign(window, {
   Wordmark,
   useArtistPhoto,
   useArtistImageExpiry,
+  useArtistImageWritten,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,

@@ -917,7 +917,10 @@ function ArtistScreen({ state, setState }) {
   // expiry ticks when a Spotify entry turns 24 h while this page is open: the
   // cached record is re-read and the fetched Spotify URL is let go.
   const artistImageExpiry = useArtistImageExpiry();
-  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
+  // written ticks when this artist's entry is written after mount (f24): the
+  // strip's photo queue can cache the photo before the hero's own search.
+  const artistImageWritten = useArtistImageWritten(activeName);
+  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry, artistImageWritten]);
   // On-demand photo: use cached image or fetch from Spotify search
   const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
   React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);

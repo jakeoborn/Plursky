@@ -364,6 +364,47 @@ try {
     check(!after.hero, '[expiry, fetched] the hero still shows an image fetched from Spotify a day ago');
     await ctx.close();
   }
+  // (c) f24: the strip's photo queue caches the artist AFTER the hero mounted
+  // and the hero's own search came back empty. The hero and a mounted
+  // useArtistPhoto must re-read the store and show the entry, with no second
+  // search for the artist; a write for another artist must not reach them.
+  {
+    const ctx = await newCtx(393, null);
+    await ctx.addInitScript(DAY => { localStorage.setItem('spotify_token', 'test-token'); localStorage.setItem('spotify_expires', String(Date.now() + 10 * DAY)); }, DAY);
+    const page = await ctx.newPage(); await boot(page);
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name) && !getPermanentArtistImage(x.name)); return { id: a.id, name: a.name }; });
+    const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
+    // Every search answers empty; count the ones for this artist.
+    let mine = 0;
+    await ctx.route(/api\.spotify\.com\/v1\//, r => {
+      const q = (new URL(r.request().url()).searchParams.get('q') || '').toLowerCase();
+      if (q && q.includes(artist.name.toLowerCase())) mine++;
+      return r.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+    await page.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => !!document.querySelector('[aria-label="Back"]') && typeof putArtistImage === 'function', null, { timeout: 60000 });
+    await page.evaluate(name => {
+      const el = document.createElement('div'); el.id = 'photo-probe-root'; document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(React.createElement(function Probe() { const p = useArtistPhoto(name); return React.createElement('i', { id: 'photo-probe', 'data-p': p ? 'img' : '' }); }));
+    }, artist.name);
+    await sleep(1500);
+    const read = () => page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), probe: document.getElementById('photo-probe')?.dataset.p }));
+    const before = await read();
+    check(!before.hero && before.probe === '' && mine > 0, `[f24] control: an image showed before any entry existed, or no search ran for the artist (searches: ${mine})`);
+    await page.evaluate(img => putArtistImage('Plursky Not This Artist', img, 'spotify', { spotifyId: 'OTHER1' }), img);
+    await sleep(300);
+    const other = await read();
+    check(!other.hero && other.probe === '', '[f24] another artist\'s cache write put an image on this artist');
+    const searched = mine;
+    await page.evaluate(({ name, img }) => putArtistImage(name, img, 'spotify', { spotifyId: 'QUEUE1' }), { name: artist.name, img });
+    await sleep(300);
+    const after = await read();
+    check(after.hero, '[f24] the hero ignores a cache entry written after it mounted (the strip queue asked first)');
+    check(after.probe === 'img', '[f24] a mounted useArtistPhoto ignores a cache entry written after it mounted');
+    check(mine === searched, `[f24] the write set off another search for the artist (${searched} → ${mine})`);
+    await ctx.close();
+  }
   // ── 5. Song previews: Spotify only ────────────────────────────────────────
   {
     const SP = 'https://p.scdn.co/mp3-preview/plursky-test';

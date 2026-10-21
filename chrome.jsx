@@ -354,6 +354,9 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   return changed;
 }
 
+// Tells mounted readers (the hero, useArtistPhoto) which names were just
+// written: the strip's photo queue can cache an artist after they mounted.
+const ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 // entries: [{ name, url, source, spotifyId? }]. ifAbsent: keep a showable
 // entry already there.
 function putArtistImages(entries, { ifAbsent = false } = {}) {
@@ -361,6 +364,7 @@ function putArtistImages(entries, { ifAbsent = false } = {}) {
     const store = _readArtistImageStore();
     let changed = _pruneArtistImageStore(store);
     const now = Date.now();
+    const written = [];
     for (const e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -368,9 +372,11 @@ function putArtistImages(entries, { ifAbsent = false } = {}) {
       if (ifAbsent && store[ln]) continue;
       store[ln] = { url: e.url, source: e.source, fetchedAt: now };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try { window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, { detail: written })); } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -418,6 +424,19 @@ function useArtistImageExpiry() {
     window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
     return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
   }, []);
+  return n;
+}
+// Re-renders a component when an entry for `name` is written after mount;
+// returns a counter to key memos and effects on. Other names' writes are
+// ignored, so a lineup of swatches does not re-read on every queued write.
+function useArtistImageWritten(name) {
+  const [n, setN] = React.useState(0);
+  const ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    const on = e => { if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) setN(x => x + 1); };
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
+    return () => window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
+  }, [ln]);
   return n;
 }
 try {
@@ -519,6 +538,12 @@ function useArtistPhoto(name) {
   React.useEffect(() => {
     if (expiry) setPhoto(getArtistImage(name)?.url || null);
   }, [expiry]);
+  // An entry written for this name after mount (f24): show it. The held URL
+  // stays if the store gives nothing showable back.
+  const written = useArtistImageWritten(name);
+  React.useEffect(() => {
+    if (written) setPhoto(p => getArtistImage(name)?.url || p);
+  }, [written]);
   React.useEffect(() => {
     if (photo) return;
     let live = true;
@@ -2357,7 +2382,7 @@ function plurskyHaptic(style = "LIGHT") {
 
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
-  useArtistPhoto, useArtistImageExpiry, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
+  useArtistPhoto, useArtistImageExpiry, useArtistImageWritten, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
   SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,
