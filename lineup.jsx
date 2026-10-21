@@ -1256,12 +1256,18 @@ function LineupScreen({ state, setState }) {
     <ConflictResolver
       conflicts={conflicts}
       onKeep={(keepId, dropId) => {
+        noteClashLoser(dropId);
         setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
       }}
       onKeepBoth={(pair) => ackPair(pair[0].id, pair[1].id)}
       onSplit={(pair) => setSplitPair(pair)}
     />
   ) : null;
+
+  // L5: the night's clash losers and alerts-only sets, under the resolver.
+  const keepAlertsCard = filter === "saved"
+    ? <KeepAlertsRows acts={lineupFor(weekendFilter).filter(a => a.day === day)} saved={state.saved} />
+    : null;
 
   const vibeCard = stageFilter !== "all" ? (() => {
     const stage = STAGES.find(s => s.id === stageFilter);
@@ -1438,6 +1444,7 @@ function LineupScreen({ state, setState }) {
       )}
 
       {!gridLead && conflictCard}
+      {!gridLead && keepAlertsCard}
       {!gridLead && vibeCard}
 
       {/* In GRID mode this stops being a scroll container: the grid owns the
@@ -1471,7 +1478,7 @@ function LineupScreen({ state, setState }) {
                   the full width so more stages are visible at once. */}
               <div style={{ display: "flex", flexDirection: "column", flex: 1, minHeight: 0 }}>
                 <TimelineGrid
-                  lead={<>{searchRow}{actionsRow}{conflictCard}{vibeCard}</>}
+                  lead={<>{searchRow}{actionsRow}{conflictCard}{keepAlertsCard}{vibeCard}</>}
                   day={day}
                   allDayArtists={dayArt}
                   state={state}
@@ -2591,6 +2598,60 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
         {splitRange(a, b).ok && <button onClick={() => onSplit(pair)} style={crBtn}>Split the night</button>}
         {conflicts.length > 1 && <button onClick={next} style={crBtn}>Next clash</button>}
       </div>
+    </div>
+  );
+}
+
+// Keep alerts (L5): sets that lost a clash this session, and sets the user
+// kept alerts for, on the night being shown and not saved. A loser offers a
+// quiet "Keep alerts"; a kept set shows only the bell, and one tap on it
+// cancels. No saved styling: these are not in the plan and never count in it.
+function _BellIcon({ on }) {
+  return (
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill={on ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 0 1-3.46 0" fill="none" />
+    </svg>
+  );
+}
+function KeepAlertsRows({ acts, saved, style }) {
+  useAttendVersion();
+  const savedSet = new Set(saved || []);
+  const kept = new Set(alertsKeptIds());
+  const want = new Set([...clashLoserIds(), ...kept]);
+  const rows = (acts || []).filter(a => want.has(a.id) && !savedSet.has(a.id))
+    .sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  if (!rows.length) return null;
+  return (
+    <div data-keep-alerts-list role="group" aria-label="Not in your plan" style={{ margin: "4px 20px 12px", padding: "10px 14px 2px", borderRadius: 14, background: "var(--paper-2)", ...style }}>
+      <div style={{ ..._fieldEyebrow, color: "var(--text-2)" }}>Not in your plan</div>
+      {rows.map((a, i) => {
+        const on = kept.has(a.id);
+        const stg = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+        const name = actDisplayName(a.name);
+        return (
+          <div key={a.id} data-keep-alerts-row={a.id} style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 52, borderTop: i ? "1px solid var(--line)" : "none" }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 500, color: "var(--text-2)", overflowWrap: "anywhere" }}>{name}</div>
+              <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>{stg} · {fmt12(a.start)}–{fmt12(a.end)}{on ? " · reminder only" : ""}</div>
+            </div>
+            {on ? (
+              <button type="button" data-alerts-kept={a.id} aria-pressed="true" aria-label={`Reminder on for ${name}. Tap to cancel`}
+                onClick={() => { window.plurskyHaptic?.("LIGHT"); setAlertsKept(a.id, false); }}
+                style={{ ...fieldIconBtn, color: "var(--ink)" }}>
+                <_BellIcon on />
+              </button>
+            ) : (
+              <button type="button" data-keep-alerts={a.id} aria-label={`Keep alerts for ${name}`}
+                onClick={() => { window.plurskyHaptic?.("LIGHT"); setAlertsKept(a.id, true); }}
+                style={{ ...fieldIconBtn, width: "auto", padding: "0 10px", gap: 6, color: "var(--text-2)", fontSize: 15, fontWeight: 500 }}>
+                <_BellIcon />
+                <span>Keep alerts</span>
+              </button>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

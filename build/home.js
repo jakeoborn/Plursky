@@ -864,12 +864,21 @@ function buildTonightsPlan(state) {
   });
 }
 function computeAlerts(savedIds, day, timeStr) {
-  if (!savedIds?.length) return [];
+  var remindIds = reminderSetIds(savedIds || []);
+  if (!remindIds.length) return [];
+  savedIds = savedIds || [];
   var nowMin = toNightMin(timeStr);
-  var todaySaved = activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+  var byTime = (a, b) => toNightMin(a.start) - toNightMin(b.start);
+  var lineup = activeLineup(savedIds);
+  var todaySaved = lineup.filter(a => a.day === day && savedIds.includes(a.id)).sort(byTime);
+  var todayRemind = lineup.filter(a => a.day === day && remindIds.includes(a.id)).sort(byTime);
   var out = [];
   var _loop = function (a) {
-    var win = attendWindow(a, undefined, savedIds);
+    var win = savedIds.includes(a.id) ? attendWindow(a, undefined, savedIds) : {
+      start: a.start,
+      end: a.end,
+      partial: false
+    };
     var late = win.partial && win.start !== a.start;
     var minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
@@ -884,7 +893,7 @@ function computeAlerts(savedIds, day, timeStr) {
       });
     }
   };
-  for (var a of todaySaved) {
+  for (var a of todayRemind) {
     _loop(a);
   }
   for (var i = 0; i < todaySaved.length; i++) for (var j = i + 1; j < todaySaved.length; j++) {
@@ -1932,7 +1941,7 @@ function HomeScreen({
   var upNextMin = next ? Math.max(0, toNightMin(next.start) - toNightMin(NOW.time)) : 0;
   var tonight = buildTonightsPlan(state);
   var liveStrip = liveAcrossStages();
-  var _dynAlerts = !countdown && liveSaved.length ? computeAlerts(liveSaved, NOW.night, NOW.time) : [];
+  var _dynAlerts = !countdown && reminderSetIds(liveSaved).length ? computeAlerts(liveSaved, NOW.night, NOW.time) : [];
   var alerts = _dynAlerts.length ? _dynAlerts : state.alerts || ALERTS;
   var unread = alerts.filter(a => a.unread).length;
   var [heroParallax, setHeroParallax] = React.useState(0);
@@ -3667,6 +3676,7 @@ function TonightsPlan({
   }, React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
+      noteClashLoser(dropId);
       setState({
         ...state,
         saved: state.saved.filter(id => id !== dropId)
@@ -3681,7 +3691,13 @@ function TonightsPlan({
     state: state,
     setState: setState,
     onEditSplit: setSplitPair
-  }))));
+  }))), NOW.night != null && React.createElement(KeepAlertsRows, {
+    acts: activeLineup(state.saved).filter(a => a.day === NOW.night),
+    saved: state.saved,
+    style: {
+      margin: "10px 0 0"
+    }
+  }));
 }
 function PlanRow({
   entry,

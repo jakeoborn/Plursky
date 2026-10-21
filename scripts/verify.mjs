@@ -2679,6 +2679,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L5: Keep alerts — a clash loser can keep its reminder without being saved;
+// it fires at the lead, one tap cancels, a reload keeps it, Keep both adds none.
+{
+  console.log("▸ Keep alerts — reminders for unpicked sets, opt-in per set");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-keep-alerts.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`keep alerts failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the

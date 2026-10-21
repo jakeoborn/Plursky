@@ -1739,6 +1739,46 @@ function useAttendVersion() {
   }, []);
   return v;
 }
+function _alertsKeptKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_alerts_kept_v1`;
+}
+function alertsKeptIds(fid) {
+  var v = _l3Read(_alertsKeptKey(fid), []);
+  return Array.isArray(v) ? v.filter(x => typeof x === "string") : [];
+}
+function setAlertsKept(id, on, fid) {
+  var cur = alertsKeptIds(fid);
+  var next = on ? cur.includes(id) ? cur : [...cur, id] : cur.filter(x => x !== id);
+  if (next.length === cur.length && next.every((x, i) => x === cur[i])) return;
+  try {
+    localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(next));
+  } catch {}
+  _l3Changed();
+}
+function pruneAlertsKept(savedIds, fid) {
+  var saved = new Set(savedIds || []);
+  var cur = alertsKeptIds(fid);
+  if (cur.some(id => saved.has(id))) {
+    try {
+      localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(cur.filter(id => !saved.has(id))));
+    } catch {}
+    _l3Changed();
+  }
+}
+function reminderSetIds(savedIds, fid) {
+  var saved = Array.isArray(savedIds) ? savedIds : [];
+  return [...saved, ...alertsKeptIds(fid).filter(id => !saved.includes(id))];
+}
+var _CLASH_LOSERS = new Set();
+function noteClashLoser(id) {
+  if (id && !_CLASH_LOSERS.has(id)) {
+    _CLASH_LOSERS.add(id);
+    _l3Changed();
+  }
+}
+function clashLoserIds() {
+  return [..._CLASH_LOSERS];
+}
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;

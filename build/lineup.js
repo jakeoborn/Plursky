@@ -1633,6 +1633,7 @@ function LineupScreen({
   }) : conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
+      noteClashLoser(dropId);
       setState({
         ...state,
         saved: state.saved.filter(id => id !== dropId)
@@ -1640,6 +1641,10 @@ function LineupScreen({
     },
     onKeepBoth: pair => ackPair(pair[0].id, pair[1].id),
     onSplit: pair => setSplitPair(pair)
+  }) : null;
+  var keepAlertsCard = filter === "saved" ? React.createElement(KeepAlertsRows, {
+    acts: lineupFor(weekendFilter).filter(a => a.day === day),
+    saved: state.saved
   }) : null;
   var vibeCard = stageFilter !== "all" ? (() => {
     var stage = STAGES.find(s => s.id === stageFilter);
@@ -2027,7 +2032,7 @@ function LineupScreen({
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
-  }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
+  }), !gridLead && conflictCard, !gridLead && keepAlertsCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
     "data-lineup-scroll": true,
     ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
     style: viewMode === "grid" ? {
@@ -2059,7 +2064,7 @@ function LineupScreen({
         minHeight: 0
       }
     }, React.createElement(TimelineGrid, {
-      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard),
+      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, keepAlertsCard, vibeCard),
       day: day,
       allDayArtists: dayArt,
       state: state,
@@ -3755,6 +3760,122 @@ function ConflictResolver({
     onClick: next,
     style: crBtn
   }, "Next clash")));
+}
+function _BellIcon({
+  on
+}) {
+  return React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: on ? "currentColor" : "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"
+  }), React.createElement("path", {
+    d: "M13.73 21a2 2 0 0 1-3.46 0",
+    fill: "none"
+  }));
+}
+function KeepAlertsRows({
+  acts,
+  saved,
+  style
+}) {
+  useAttendVersion();
+  var savedSet = new Set(saved || []);
+  var kept = new Set(alertsKeptIds());
+  var want = new Set([...clashLoserIds(), ...kept]);
+  var rows = (acts || []).filter(a => want.has(a.id) && !savedSet.has(a.id)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  if (!rows.length) return null;
+  return React.createElement("div", {
+    "data-keep-alerts-list": true,
+    role: "group",
+    "aria-label": "Not in your plan",
+    style: {
+      margin: "4px 20px 12px",
+      padding: "10px 14px 2px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      ...style
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--text-2)"
+    }
+  }, "Not in your plan"), rows.map((a, i) => {
+    var on = kept.has(a.id);
+    var stg = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+    var name = actDisplayName(a.name);
+    return React.createElement("div", {
+      key: a.id,
+      "data-keep-alerts-row": a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 52,
+        borderTop: i ? "1px solid var(--line)" : "none"
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 500,
+        color: "var(--text-2)",
+        overflowWrap: "anywhere"
+      }
+    }, name), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, stg, " · ", fmt12(a.start), "–", fmt12(a.end), on ? " · reminder only" : "")), on ? React.createElement("button", {
+      type: "button",
+      "data-alerts-kept": a.id,
+      "aria-pressed": "true",
+      "aria-label": `Reminder on for ${name}. Tap to cancel`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, false);
+      },
+      style: {
+        ...fieldIconBtn,
+        color: "var(--ink)"
+      }
+    }, React.createElement(_BellIcon, {
+      on: true
+    })) : React.createElement("button", {
+      type: "button",
+      "data-keep-alerts": a.id,
+      "aria-label": `Keep alerts for ${name}`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, true);
+      },
+      style: {
+        ...fieldIconBtn,
+        width: "auto",
+        padding: "0 10px",
+        gap: 6,
+        color: "var(--text-2)",
+        fontSize: 15,
+        fontWeight: 500
+      }
+    }, React.createElement(_BellIcon, null), React.createElement("span", null, "Keep alerts")));
+  }));
 }
 function SplitNightSheet({
   pair,
