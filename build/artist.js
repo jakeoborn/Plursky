@@ -1069,7 +1069,8 @@ function ArtistScreen({
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
   var artistImageExpiry = useArtistImageExpiry();
-  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
+  var artistImageWritten = useArtistImageWritten(activeName);
+  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry, artistImageWritten]);
   var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
   React.useEffect(() => {
     if (artistImageExpiry) setFetchedPhoto(null);
