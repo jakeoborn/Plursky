@@ -2359,7 +2359,10 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      // A friend's declared stage always counts. Inferring one from their GPS
+      // dot needs sourced registration: on poster-read anchors the dot's
+      // position on the art is a guess, and the nudge would fire off it.
+      const sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
