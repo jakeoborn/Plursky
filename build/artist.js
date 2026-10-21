@@ -1068,13 +1068,11 @@ function ArtistScreen({
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
-  var artistImageExpiry = useArtistImageExpiry();
-  var artistImageWritten = useArtistImageWritten(activeName);
-  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry, artistImageWritten]);
-  var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  React.useEffect(() => {
-    if (artistImageExpiry) setFetchedPhoto(null);
-  }, [artistImageExpiry]);
+  var heroPhotoMachine = useArtistPhotoMachine(activeName, {
+    key: a.id + "|" + activeName,
+    canFetch: reason => reason === "mount" && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token"))
+  });
+  var heroCacheRec = heroPhotoMachine.rec;
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
   var handleSave = () => {
@@ -1109,8 +1107,8 @@ function ArtistScreen({
   var [tmError, setTmError] = React.useState(false);
   var [mcTracks, setMcTracks] = React.useState(undefined);
   var [mcPlaying, setMcPlaying] = React.useState(null);
-  var heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
-  var heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
+  var heroPhoto = heroPhotoMachine.url;
+  var heroSource = heroPhoto ? heroPhotoMachine.source : null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1153,7 +1151,6 @@ function ArtistScreen({
     }
   }, [a.id]);
   React.useEffect(() => {
-    setFetchedPhoto(null);
     var hasCachedStats = false;
     try {
       var cache = JSON.parse(localStorage.getItem("spotify_artist_data_v1") || "{}");
@@ -1170,7 +1167,10 @@ function ArtistScreen({
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     var ctrl = new AbortController();
     getValidToken().then(token => {
-      if (!token) return;
+      if (!token) {
+        if (!heroCacheRec) heroPhotoMachine.noLookup();
+        return;
+      }
       fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
         headers: {
           Authorization: "Bearer " + token
@@ -1180,15 +1180,16 @@ function ArtistScreen({
         var ln = activeName.toLowerCase();
         var items = d?.artists?.items || [];
         var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
-        if (!match) return;
+        if (!match) {
+          if (!heroCacheRec) heroPhotoMachine.report(null);
+          return;
+        }
         if (!heroCacheRec) {
-          var img = match?.images?.[0]?.url;
-          if (img) {
-            setFetchedPhoto(img);
-            putArtistImage(activeName, img, "spotify", {
-              spotifyId: match.id
-            });
-          }
+          var img = match?.images?.[0]?.url || null;
+          heroPhotoMachine.report(img);
+          if (img) putArtistImage(activeName, img, "spotify", {
+            spotifyId: match.id
+          });
         }
         var topTrackNames = [];
         try {
@@ -1216,7 +1217,9 @@ function ArtistScreen({
           _cache[ln] = stats;
           localStorage.setItem("spotify_artist_data_v1", JSON.stringify(_cache));
         } catch {}
-      }).catch(() => {});
+      }).catch(e => {
+        if (e?.name !== "AbortError") heroPhotoMachine.fail();
+      });
     });
     return () => ctrl.abort();
   }, [a.id, activeB2B]);
@@ -1505,6 +1508,7 @@ function ArtistScreen({
   }, heroNameInner(false))) : React.createElement("div", {
     className: "media-scope",
     "data-artist-hero": heroPhoto ? "photo" : "gradient",
+    "data-photo-status": heroPhotoMachine.status,
     style: {
       height: 300,
       position: "relative",

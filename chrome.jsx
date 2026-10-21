@@ -415,30 +415,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
 }
-// Re-renders a component when Spotify entries expire; returns a counter to
-// key memos and effects on.
-function useArtistImageExpiry() {
-  const [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    const on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
-}
-// Re-renders a component when an entry for `name` is written after mount;
-// returns a counter to key memos and effects on. Other names' writes are
-// ignored, so a lineup of swatches does not re-read on every queued write.
-function useArtistImageWritten(name) {
-  const [n, setN] = React.useState(0);
-  const ln = String(name || "").toLowerCase();
-  React.useEffect(() => {
-    const on = e => { if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) setN(x => x + 1); };
-    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
-  }, [ln]);
-  return n;
-}
 try {
   _expireArtistImagesNow();
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") _expireArtistImagesNow(); });
@@ -528,35 +504,173 @@ function _queuePhoto(name) {
   return new Promise(resolve => { _photoQueue.push({ name, resolve }); _drainPhotoQueue(); });
 }
 
-function useArtistPhoto(name) {
-  const [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
-  });
-  // A Spotify URL held in state expires with its cache entry: re-read, and
-  // the effect below refetches when nothing showable is left.
-  const expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  // An entry written for this name after mount (f24): show it. The held URL
-  // stays if the store gives nothing showable back.
-  const written = useArtistImageWritten(name);
-  React.useEffect(() => {
-    if (written) setPhoto(p => getArtistImage(name)?.url || p);
-  }, [written]);
-  React.useEffect(() => {
-    if (photo) return;
-    let live = true;
-    const token   = localStorage.getItem("spotify_token");
-    const expires = localStorage.getItem("spotify_expires");
-    // Spotify (connected users, 24 h rule) is the only photo source; with no
-    // photo the swatch keeps its gradient and initials.
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => { if (live && img) setPhoto(img); });
+// ── Artist photo machine ─────────────────────────────────────────────────────
+// One table for the swatch/strip hook and the artist hero, in useMomentMedia's
+// vocabulary (spotify.jsx):
+//   none        no photo asked for: no name, or no way to look one up (no
+//               Spotify token, or a consumer that only looks up on mount).
+//               Settled with no photo; not a recovery.
+//   loading     the store is being read, or a lookup is in flight.
+//   ready       a showable URL is held (ctx.url / ctx.source / ctx.rec).
+//   unavailable asked and answered: nothing to show. Not retried on its own;
+//               the source said it lacks the photo, so don't ask it again.
+//   offline     the lookup was REJECTED (not navigator.onLine). Retries on
+//               the browser's online event. The hero's search reaches it when
+//               the request itself fails; a missing token is not offline, it
+//               is none. The photo queue resolves null on a failed request,
+//               so the swatch ends in unavailable.
+//   error       the store itself threw. Leaves on RETRY or a param change.
+// The machine subscribes to the cache's own events (ARTIST_IMAGES_WRITTEN for
+// this name, ARTIST_IMAGES_EXPIRED); a consumer never wires them. A lookup
+// result carries the request number it answers, so a late answer for an old
+// name or an old request is dropped by the table, not by a closure flag.
+const ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS",
+  "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+const _apEmpty = ctx => ({ ...ctx, url: null, source: null, rec: null });
+const _apReady = (ctx, rec) => ["ready", { ...ctx, url: rec.url, source: rec.source, rec }];
+// MOUNT and PARAM_CHANGE: read the store first ("read" runs synchronously).
+const _apAsk = (ctx, p) => {
+  const next = _apEmpty({ ...ctx, key: p.key ?? ctx.key, name: p.name ?? ctx.name, ask: "mount" });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+// RETRY and ONLINE: read again. ctx.ask carries why, so canFetch can refuse a
+// lookup the consumer cannot run (the hero searches on mount only) and the
+// machine settles in none instead of waiting in loading for no one.
+const _apReread = ask => ctx => ["loading", { ..._apEmpty(ctx), ask }, "read"];
+// A write for this artist is new information in any state: show it.
+const _apWritten = (ctx, p) => (p.rec ? _apReady(ctx, p.rec) : null);
+const _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", { ...ctx, url: p.url, source: p.source || "spotify", rec: null }] : ["unavailable", _apEmpty(ctx)];
+  // A lookup that could not be made at all (no token) is none, not offline.
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+const _apStop = () => MACHINE_STOP;
+const ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: (ctx, p) => (ctx.name ? _apReread("retry")(ctx, p) : null), ONLINE: null, UNMOUNT: _apStop,
+    },
+    loading: {
+      MOUNT: null, PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx]
+        : p.canFetch ? ["loading", { ...ctx, req: ctx.req + 1 }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"), FETCH_MISS: _apAnswer("unavailable"), FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      // Already asking: an expiry elsewhere changes nothing here.
+      CACHE_EXPIRED: null, RETRY: null, ONLINE: null, UNMOUNT: _apStop,
+    },
+    ready: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      // A late answer to a request this state already outran (f24: the
+      // queue wrote first) is dropped.
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      // Same artist, new entry: re-read, without re-entering loading. The held
+      // URL stays if the store gives nothing showable back.
+      CACHE_WRITTEN: _apWritten,
+      // A Spotify URL held here expires with its entry (24 h): re-read, and
+      // look the artist up again when nothing showable is left.
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec)
+        : p.canFetch ? ["loading", { ..._apEmpty(ctx), req: ctx.req + 1 }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null, ONLINE: null, UNMOUNT: _apStop,
+    },
+    unavailable: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"),
+      // Not a network problem: the answer was no.
+      ONLINE: null, UNMOUNT: _apStop,
+    },
+    offline: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"), ONLINE: _apReread("online"), UNMOUNT: _apStop,
+    },
+    error: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"),
+      // The store threw; the network coming back does not fix that.
+      ONLINE: null, UNMOUNT: _apStop,
+    },
+  },
+});
+
+function _readArtistPhoto(name) {
+  try { return { rec: getArtistImage(name) }; } catch (error) { return { rec: null, error }; }
+}
+// Steps the synchronous "read" effect: the store answers CACHE_HIT or
+// CACHE_MISS on the spot, so the first paint for a name already has its photo.
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  const { rec, error } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS",
+    rec ? { rec } : { error, canFetch: !error && canFetch(snap.ctx.ask || "mount") });
+}
+function _spotifyTokenValid() {
+  const token   = localStorage.getItem("spotify_token");
+  const expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+
+// The machine-backed photo for one artist name. lookup(name) -> Promise of a
+// URL or null runs on "fetch"; a consumer that looks the photo up itself
+// passes no lookup and calls report(url | null), fail() when its request
+// failed, or noLookup() when it could not make one (no token). canFetch(reason) says whether to look up at all ("mount",
+// "expired", "retry", "online"). key re-asks when it changes (the hero keys
+// on the act and the B2B tab, not only the name).
+// Returns { url, status, retry, rec, source, report, fail, noLookup }.
+function useArtistPhotoMachine(name, { key = name, lookup = null, canFetch = () => false } = {}) {
+  const canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  const can = reason => !!canFetchRef.current(reason);
+  const [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(
+    ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({ key, name, url: null, source: null, rec: null, req: 0 }),
+      prev ? "PARAM_CHANGE" : "MOUNT", { key, name }), can),
+  (effect, s, send) => {
+    if (effect === "read") {
+      const { rec, error } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? { rec } : { error, canFetch: !error && can(s.ctx.ask || "mount") });
+    } else if (effect === "fetch" && lookup) {
+      const req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", { req, url, source: "spotify" }),
+        () => send("FETCH_REJECT", { req }));
     }
-    return () => { live = false; };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  });
+  const ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    const onExpired = () => send("CACHE_EXPIRED", { rec: _readArtistPhoto(name).rec, canFetch: can("expired") });
+    const onWritten = e => { if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", { rec: _readArtistPhoto(name).rec }); };
+    const onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  const req = snap.ctx.req;
+  const report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", { req, url, source: "spotify" }), [req, send]);
+  const fail = React.useCallback(() => send("FETCH_REJECT", { req }), [req, send]);
+  const noLookup = React.useCallback(() => send("FETCH_REJECT", { req, noLookup: true }), [req, send]);
+  const retry = React.useCallback(() => send("RETRY"), [send]);
+  return { url: snap.ctx.url, status: snap.state, retry, rec: snap.ctx.rec, source: snap.ctx.source, report, fail, noLookup };
+}
+
+// The swatch/strip photo: a URL string or null, as its four callers expect.
+// Spotify (connected users, 24 h rule) is the only lookup, through the photo
+// queue; with no photo the swatch keeps its gradient and initials.
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, { lookup: _queuePhoto, canFetch: _spotifyTokenValid }).url;
 }
 
 // Artist color swatch — shows Spotify headshot when available,
@@ -2382,7 +2496,7 @@ function plurskyHaptic(style = "LIGHT") {
 
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
-  useArtistPhoto, useArtistImageExpiry, useArtistImageWritten, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
+  useArtistPhoto, useArtistPhotoMachine, ARTIST_PHOTO_MACHINE, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
   SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,
