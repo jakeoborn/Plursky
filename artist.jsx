@@ -912,18 +912,19 @@ function ArtistScreen({ state, setState }) {
   // activeName, so the note still shows and other screens still hit the cache.
   const lookupName = _lookupName(activeName);
 
-  // The cached entry for the tab on screen, or null when it is missing,
-  // expired (Spotify, 24 h) or of unknown source — see getArtistImage.
-  // expiry ticks when a Spotify entry turns 24 h while this page is open: the
-  // cached record is re-read and the fetched Spotify URL is let go.
-  const artistImageExpiry = useArtistImageExpiry();
-  // written ticks when this artist's entry is written after mount (f24): the
-  // strip's photo queue can cache the photo before the hero's own search.
-  const artistImageWritten = useArtistImageWritten(activeName);
-  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry, artistImageWritten]);
-  // On-demand photo: use cached image or fetch from Spotify search
-  const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);
+  // The hero photo, through the artist photo machine (chrome.jsx): the cached
+  // entry for the tab on screen (heroPhoto.rec, null when it is missing,
+  // expired or of unknown source — see getArtistImage), else this screen's own
+  // Spotify search, reported below. The machine re-reads on a write for this
+  // artist (f24: the strip's photo queue can cache it first) and lets an
+  // expired Spotify URL go (24 h); the hero does not search again on expiry.
+  // Keyed on the act and the B2B tab, as the search effect is.
+  const heroPhotoMachine = useArtistPhotoMachine(activeName, {
+    key: a.id + "|" + activeName,
+    canFetch: reason => reason === "mount"
+      && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token")),
+  });
+  const heroCacheRec = heroPhotoMachine.rec;
   // heroPhoto is computed further down, with the rest of the hero's state.
   const saved = state.saved.includes(a.id);
   const [saveFlash, setSaveFlash] = React.useState(false);
@@ -970,8 +971,8 @@ function ArtistScreen({ state, setState }) {
   // connection sees the gradient: TheAudioDB and the iTunes Search API are not
   // sources (lane ruling 2026-09-24, on their terms), and api.deezer.com sends
   // no access-control-allow-origin (measured 2026-09-05; removed in v254).
-  const heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
-  const heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
+  const heroPhoto = heroPhotoMachine.url;
+  const heroSource = heroPhoto ? heroPhotoMachine.source : null;
   const [slError,   setSlError]   = React.useState(false);
   const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1002,7 +1003,6 @@ function ArtistScreen({ state, setState }) {
   }, [a.id]);
 
   React.useEffect(() => {
-    setFetchedPhoto(null);
     // Load stats from cache immediately (no network needed)
     let hasCachedStats = false;
     try {
@@ -1018,7 +1018,9 @@ function ArtistScreen({ state, setState }) {
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     const ctrl = new AbortController();
     getValidToken().then(token => {
-    if (!token) return;
+    // The hero machine must not wait in loading: no token means no lookup
+    // could be made (none); a failed request below is offline.
+    if (!token) { if (!heroCacheRec) heroPhotoMachine.noLookup(); return; }
     fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
       headers: { Authorization: "Bearer " + token }, signal: ctrl.signal,
     }).then(r => r.ok ? r.json() : null).then(async d => {
@@ -1026,14 +1028,12 @@ function ArtistScreen({ state, setState }) {
       const items = d?.artists?.items || [];
       const match = items.find(x => x.name.toLowerCase() === ln)
         || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
-      if (!match) return;
+      if (!match) { if (!heroCacheRec) heroPhotoMachine.report(null); return; }
       // Photo
       if (!heroCacheRec) {
-        const img = match?.images?.[0]?.url;
-        if (img) {
-          setFetchedPhoto(img);
-          putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
-        }
+        const img = match?.images?.[0]?.url || null;
+        heroPhotoMachine.report(img);
+        if (img) putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
       }
       // Stats + top track names (for setlist highlighting)
       let topTrackNames = [];
@@ -1063,7 +1063,7 @@ function ArtistScreen({ state, setState }) {
         cache[ln] = stats;
         localStorage.setItem("spotify_artist_data_v1", JSON.stringify(cache));
       } catch {}
-    }).catch(() => {});
+    }).catch(e => { if (e?.name !== "AbortError") heroPhotoMachine.fail(); });
     }); // getValidToken
     return () => ctrl.abort();
   }, [a.id, activeB2B]);
@@ -1275,7 +1275,7 @@ function ArtistScreen({ state, setState }) {
           </div>
         </div>
       ) : (
-      <div className="media-scope" data-artist-hero={heroPhoto ? "photo" : "gradient"} style={{
+      <div className="media-scope" data-artist-hero={heroPhoto ? "photo" : "gradient"} data-photo-status={heroPhotoMachine.status} style={{
         height: 300, position: "relative",
         overflow: "hidden",
         color: "var(--ink)",
