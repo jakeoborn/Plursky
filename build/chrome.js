@@ -473,27 +473,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
 }
-function useArtistImageExpiry() {
-  var [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    var on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
-}
-function useArtistImageWritten(name) {
-  var [n, setN] = React.useState(0);
-  var ln = String(name || "").toLowerCase();
-  React.useEffect(() => {
-    var on = e => {
-      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) setN(x => x + 1);
-    };
-    window.addEventListener(ARTIST_IMAGES_WRITTEN, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_WRITTEN, on);
-  }, [ln]);
-  return n;
-}
 try {
   _expireArtistImagesNow();
   document.addEventListener("visibilitychange", () => {
@@ -594,33 +573,264 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function useArtistPhoto(name) {
-  var [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
+var ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS", "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+var _apEmpty = ctx => ({
+  ...ctx,
+  url: null,
+  source: null,
+  rec: null
+});
+var _apReady = (ctx, rec) => ["ready", {
+  ...ctx,
+  url: rec.url,
+  source: rec.source,
+  rec
+}];
+var _apAsk = (ctx, p) => {
+  var next = _apEmpty({
+    ...ctx,
+    key: p.key ?? ctx.key,
+    name: p.name ?? ctx.name,
+    ask: "mount"
   });
-  var expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  var written = useArtistImageWritten(name);
-  React.useEffect(() => {
-    if (written) setPhoto(p => getArtistImage(name)?.url || p);
-  }, [written]);
-  React.useEffect(() => {
-    if (photo) return;
-    var live = true;
-    var token = localStorage.getItem("spotify_token");
-    var expires = localStorage.getItem("spotify_expires");
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => {
-        if (live && img) setPhoto(img);
-      });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+var _apReread = ask => ctx => ["loading", {
+  ..._apEmpty(ctx),
+  ask
+}, "read"];
+var _apWritten = (ctx, p) => p.rec ? _apReady(ctx, p.rec) : null;
+var _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", {
+    ...ctx,
+    url: p.url,
+    source: p.source || "spotify",
+    rec: null
+  }] : ["unavailable", _apEmpty(ctx)];
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+var _apStop = () => MACHINE_STOP;
+var ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: (ctx, p) => ctx.name ? _apReread("retry")(ctx, p) : null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    loading: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx] : p.canFetch ? ["loading", {
+        ...ctx,
+        req: ctx.req + 1
+      }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"),
+      FETCH_MISS: _apAnswer("unavailable"),
+      FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    ready: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec) : p.canFetch ? ["loading", {
+        ..._apEmpty(ctx),
+        req: ctx.req + 1
+      }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    unavailable: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    offline: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: _apReread("online"),
+      UNMOUNT: _apStop
+    },
+    error: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
     }
-    return () => {
-      live = false;
+  }
+});
+function _readArtistPhoto(name) {
+  try {
+    return {
+      rec: getArtistImage(name)
     };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  } catch (error) {
+    return {
+      rec: null,
+      error
+    };
+  }
+}
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  var {
+    rec,
+    error
+  } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+    rec
+  } : {
+    error,
+    canFetch: !error && canFetch(snap.ctx.ask || "mount")
+  });
+}
+function _spotifyTokenValid() {
+  var token = localStorage.getItem("spotify_token");
+  var expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+function useArtistPhotoMachine(name, {
+  key = name,
+  lookup = null,
+  canFetch = () => false
+} = {}) {
+  var canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  var can = reason => !!canFetchRef.current(reason);
+  var [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({
+    key,
+    name,
+    url: null,
+    source: null,
+    rec: null,
+    req: 0
+  }), prev ? "PARAM_CHANGE" : "MOUNT", {
+    key,
+    name
+  }), can), (effect, s, send) => {
+    if (effect === "read") {
+      var {
+        rec,
+        error
+      } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+        rec
+      } : {
+        error,
+        canFetch: !error && can(s.ctx.ask || "mount")
+      });
+    } else if (effect === "fetch" && lookup) {
+      var _req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+        req: _req,
+        url,
+        source: "spotify"
+      }), () => send("FETCH_REJECT", {
+        req: _req
+      }));
+    }
+  });
+  var ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    var onExpired = () => send("CACHE_EXPIRED", {
+      rec: _readArtistPhoto(name).rec,
+      canFetch: can("expired")
+    });
+    var onWritten = e => {
+      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", {
+        rec: _readArtistPhoto(name).rec
+      });
+    };
+    var onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  var req = snap.ctx.req;
+  var report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+    req,
+    url,
+    source: "spotify"
+  }), [req, send]);
+  var fail = React.useCallback(() => send("FETCH_REJECT", {
+    req
+  }), [req, send]);
+  var noLookup = React.useCallback(() => send("FETCH_REJECT", {
+    req,
+    noLookup: true
+  }), [req, send]);
+  var retry = React.useCallback(() => send("RETRY"), [send]);
+  return {
+    url: snap.ctx.url,
+    status: snap.state,
+    retry,
+    rec: snap.ctx.rec,
+    source: snap.ctx.source,
+    report,
+    fail,
+    noLookup
+  };
+}
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, {
+    lookup: _queuePhoto,
+    canFetch: _spotifyTokenValid
+  }).url;
 }
 function ArtistSwatch({
   artist,
@@ -3004,8 +3214,8 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
-  useArtistImageExpiry,
-  useArtistImageWritten,
+  useArtistPhotoMachine,
+  ARTIST_PHOTO_MACHINE,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,

@@ -165,6 +165,7 @@ const LOCAL = [
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
+  `./build/machine.js?v=${APP_VER}`,
   `./build/chrome.js?v=${APP_VER}`,
   `./build/home.js?v=${APP_VER}`,
   `./build/map.js?v=${APP_VER}`,

@@ -2892,6 +2892,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Artist photo machine (machine.jsx): the swatch hook and the artist hero
+// share one table. Exhaustive (every state × event pair handled or a written-
+// down no-op), every rule stepped, a write during a lookup comes up with no
+// second lookup and the late answer is dropped, a name change re-asks, and
+// the app runs with no machine warnings.
+{
+  console.log("▸ Artist photo machine — one table for the swatch and the hero");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-machine.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo machine failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5d. Media state machine, in the running app ───────────────────────
 // useMomentPhoto used to hold `url = null` forever when the local lookup AND
 // the cloud restore both came back empty, and every thumbnail reads "no url
