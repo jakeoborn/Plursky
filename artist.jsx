@@ -2209,7 +2209,7 @@ function ArtistScreen({ state, setState }) {
                 background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
-                <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
+                <div style={{ fontSize: 20, color: "var(--ink-2)", marginBottom: 4 }}>♫</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
                 </div>

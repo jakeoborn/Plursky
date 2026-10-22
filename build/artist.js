@@ -3164,7 +3164,7 @@ function ArtistScreen({
   }, React.createElement("div", {
     style: {
       fontSize: 20,
-      opacity: 0.3,
+      color: "var(--ink-2)",
       marginBottom: 4
     }
   }, "♫"), React.createElement("div", {
