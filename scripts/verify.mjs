@@ -2867,6 +2867,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 3 option B: III Points accent pops. The ledger accent fills the Today
+// hero's fold band and stamp, rules the section headers, marks the map header
+// and the picked stage chip, for a festival whose print row opts in; AA on
+// every fill in both modes at 390/320; EDC Las Vegas (no opt-in) stays the base.
+{
+  console.log("▸ III Points accent pops — ledger-gated, AA both modes, non-opted festival unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iiip-accent-pops.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points accent pops failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
