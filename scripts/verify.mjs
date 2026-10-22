@@ -2680,6 +2680,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L3: Split the night — a split clears the clash everywhere, persists and
+// resets; Keep both accepts; the banner counts clashes and tight transitions apart.
+{
+  console.log("▸ Split the night — attend windows, kept-both, banner");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-split-the-night.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`split the night failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the
@@ -2890,6 +2904,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist photo machine (machine.jsx): the swatch hook and the artist hero
+// share one table. Exhaustive (every state × event pair handled or a written-
+// down no-op), every rule stepped, a write during a lookup comes up with no
+// second lookup and the late answer is dropped, a name change re-asks, and
+// the app runs with no machine warnings.
+{
+  console.log("▸ Artist photo machine — one table for the swatch and the hero");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-machine.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo machine failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3331,6 +3362,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── EDC Orlando map watch: candidates, negatives and UNKNOWN are separate ──
+// The weekly watcher (edco-map-watch.yml) resolves relative, protocol-relative
+// and <base>-relative map links against each page's final URL; an unreadable
+// page is exit 2 (UNKNOWN), never a green "no map". Local fixtures only.
+{
+  console.log("▸ EDC Orlando map watch gate — every URL form found, negatives exit 0, unreadable exit 2");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-watch-edco-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC Orlando map watch failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

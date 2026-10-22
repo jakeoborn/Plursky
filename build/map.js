@@ -2944,7 +2944,7 @@ function MapScreen({
     if (!crewFriends.length) return null;
     var byStage = {};
     for (var f of crewFriends) {
-      var sid = f.stageId || _nearestStageId(f.x, f.y);
+      var sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }

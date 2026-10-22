@@ -763,12 +763,17 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
       // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
       // you do — the two are derived together.
+      // basis: every anchor here is a POSTER READ off the official 2025 map art,
+      // never surveyed. Insomniac has not published a 2026 map (checked
+      // 2026-10-20). The basis string is DATA so a gate can read it, and
+      // detectCurrentArtist (chrome.jsx) refuses any non-evidence anchor, so
+      // none of these five can trigger GPS auto-attend.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
-        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
-        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
+        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // SE of the stadium, N of W Anderson, W of Nashville
+        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // Tinker Field mowed rectangle, NE part
+        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // field S of W South St, E of Tampa
+        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
       // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
@@ -785,7 +790,7 @@ const FESTIVALS_REGISTRY = [
     // that axis — but opening it makes it LIVE, and a live festival has to
     // clear the map-registration gate. EDCO has no sourced registration by
     // design: no OSM polygon matches the fence, so it carries no footprint and
-    // waits on the official 2026 map (the same map the hourly watch probes).
+    // waits on the official 2026 map (edco-map-watch.yml checks for it every Monday).
     // Verify says it plainly: "unsourced, blind with no waiver".
     //
     // A waiver here would be a judgement about map accuracy with no evidence
@@ -2015,6 +2020,188 @@ function savedInLineup(savedIds) {
   return savedIds.filter(id => known.has(id));
 }
 
+// ── Split the night (L3, Oct 16 spec) ─────────────────────────────────────
+// A saved set can carry an ATTEND WINDOW: the part of it the user plans to be
+// there for ("Vintage Culture 2:00–3:00, then PAWSA 3:00–4:00"). Clashes are
+// computed over those windows, so a split that removes the overlap clears the
+// clash everywhere. "Keep both" accepts a pair: it still overlaps, but it is a
+// choice, not an alarm. ONE predicate (setsClash) answers "is this a clash?"
+// for every door: Lineup chips and day counts, Tonight's plan, its banner and
+// resolver, alerts, the switcher's per-festival count.
+// Stores: `${fid}_attend_v1` = { setId: { start, end, with } } (with = the set
+// it was split against, so the row can reopen that split); accepted pairs keep
+// the v141 key plursky_conflicts_kept_both_v1 so earlier "Keep both" taps hold.
+// v1 scope: device only — no share card, crew, recap or server sync.
+const CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+const SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key) || "null"); return v == null ? fallback : v; } catch { return fallback; }
+}
+function _l3Changed() { try { window.dispatchEvent(new CustomEvent("plursky:attend-change")); } catch {} }
+function _attendKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_attend_v1`; }
+function attendWindows(fid) {
+  const v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+// Minutes on the festival night → "HH:MM" (folds past midnight back to 00–07).
+function nightMinToHHMM(m) {
+  const h = Math.floor(m / 60) % 24, mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+// The lineup a festival carries now (identity, every weekend): the active
+// festival's from window ARTISTS, any other from its own data set (bare
+// ARTISTS is always the ACTIVE festival's, CLAUDE.md §5).
+function _attendLineup(fid) {
+  const id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) || {};
+  return (ds[id] && Array.isArray(ds[id].artists)) ? ds[id].artists : [];
+}
+// A stored window is usable for `a` when it is a non-empty part of the set's
+// published time and not the whole of it. Malformed state (null, a string,
+// missing or non-"HH:MM" ends) reads NaN and fails every comparison.
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
+// Same festival night: the act's festival day (its night, so a 01:00 set
+// belongs to the evening before) and a weekend both play, the rule
+// _schedClash and the plan status use. Not calendar dates.
+function _attendSameNight(a, b) {
+  if (a.day !== b.day) return false;
+  const wa = a.weekend, wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+// The part of `a` the user will be at: their window while it still sits inside
+// the set's published time, else the whole set. A schedule change that moves
+// the set out from under a window drops the window rather than trusting it.
+// `savedIds` stands in for the stored saves when a screen previews a selection
+// it has not written yet (Build My Night: Codex P2 on #335).
+function attendWindow(a, fid, savedIds) {
+  const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
+  if (!a || !a.start || !a.end) return whole;
+  const all = attendWindows(fid), w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  // A split only holds while BOTH halves do. The partner must still be saved
+  // (drop "Keep this", an unsave or a sync of the partner, and the window goes
+  // with it), still in this festival's lineup (a schedule update can drop the
+  // act while its raw saved id stays, see savedInLineup), still on the same
+  // festival night (an update can move it to another night or weekend while
+  // its clock times still contain the old half: Codex P2 on #335), and still
+  // carry its own valid half pointing back here. Otherwise the user's plan for this set
+  // is the whole set again: clash, status and reminders follow it. The stored
+  // windows are kept, not deleted, the way an orphan saved id is kept.
+  if (w.with) {
+    const saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    const partner = _attendLineup(fid).find(x => x.id === w.with);
+    const back = all[w.with];
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+  }
+  return { start: w.start, end: w.end, partial: true, with: w.with || null };
+}
+// The row line for a partial window: "2:00 AM → you leave 3:00 AM" (you leave
+// early), "you arrive 3:00 AM" (you come late), or both ends when it is both.
+function attendWindowLabel(a, win) {
+  const w = win || attendWindow(a);
+  if (!w.partial) return "";
+  const late = w.start !== a.start, early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  const all = attendWindows(fid);
+  all[id] = { start, end, ...(withId ? { with: withId } : {}) };
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  const all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) { return [idA, idB].sort().join("|"); }
+function _acceptedPairs() { const v = _l3Read(CLASH_KEPT_BOTH_KEY, []); return new Set(Array.isArray(v) ? v : []); }
+function clashAccepted(a, b) { return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id)); }
+function acceptClash(a, b) {
+  const s = _acceptedPairs(); s.add(clashPairKey(a.id, b.id));
+  try { localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s])); } catch {}
+  _l3Changed();
+}
+// Overlap of what the user will actually attend.
+function attendOverlaps(a, b, fid, savedIds) { return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds)); }
+// THE clash predicate: the attend windows overlap and the pair is not accepted.
+function setsClash(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b); }
+// Kept both: they still overlap, by the user's choice.
+function setsOverlapAccepted(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b); }
+// The split of an overlapping pair at `switchMin`: the set that starts first
+// keeps [its start, switch), the other keeps [switch, its end]. Both halves
+// must be non-empty or attendWindow drops the window and the clash survives
+// the confirm (Codex P1 on #335: two sets starting together made a zero-length
+// first half). So the range is [max(later start, first start + step),
+// min(earlier end, second end - step)]; `ok` is false when no such split
+// exists (or either set is missing or untimed) and no split is offered.
+// Default: the low end.
+function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return { first: null, second: null, lo: 0, hi: -1, def: 0, ok: false };
+  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return { first, second, lo, hi, def: lo, ok: lo <= hi };
+}
+// THE switch grid, one rule for the slider, its preview, the confirm and what
+// is saved: 5-minute steps anchored at `lo` (the range input's own step base),
+// never past `hi`. Rounding from midnight instead saved 22:10 for a previewed
+// 22:12 when lo was 22:07 (Codex P2 on #335). Anything unreadable is `lo`.
+function snapSplitSwitch(v, lo, hi) {
+  const n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
+// One split per act: each act stores one window with one partner, so
+// splitting it again with a different act would overwrite the first split and
+// bring its cleared clash back (Codex P1 on #335). The new split is refused
+// instead and the first one kept; the user resets the first split to choose
+// another partner. "Paired" is attendWindow's answer, so
+// a partner that was unsaved or left the lineup locks nothing; re-splitting
+// the same pair adjusts it. Returns { act, partner } for the blocking split,
+// or null when the pair may be split.
+function splitBlocker(a, b, fid) {
+  for (const [x, other] of [[a, b], [b, a]]) {
+    if (!x || !other) continue;
+    const w = attendWindow(x, fid);
+    if (w.partial && w.with && w.with !== other.id) {
+      const partner = _attendLineup(fid).find(p => p.id === w.with);
+      if (partner) return { act: x, partner };
+    }
+  }
+  return null;
+}
+// Writes both halves or nothing; true when the split was saved.
+function splitNight(a, b, switchMin, fid) {
+  const { first, second, lo, hi, ok } = splitRange(a, b);
+  if (!ok || splitBlocker(a, b, fid)) return false;
+  const sw = snapSplitSwitch(switchMin, lo, hi);
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
+}
+// Re-renders a screen when a window or an accepted pair changes (any screen,
+// any tab). Read it into a memo's deps so counts recompute.
+function useAttendVersion() {
+  const [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    const f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
 // is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a
@@ -3048,15 +3235,20 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
 ];
 
+// Every pin below is UNSOURCED (checked 2026-10-20). They came in with the
+// 2026-08-22 scaffold (2779c72) over the generated plasma overlay, before the
+// 2025 art was georeferenced, and no official map places them. `src` is DATA
+// so test-georef-map.mjs can refuse an amenity that loses its label. Replace
+// them from the official 2026 map at the flip; never move them by eye.
 const EDCO_AMENITIES = [
-  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
-  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
-  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
-  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
-  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
-  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
-  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
-  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
 ];
 
 // ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──

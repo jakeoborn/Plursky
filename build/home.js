@@ -830,20 +830,23 @@ function buildTonightsPlan(state) {
   var nowMin = toNightMin(NOW.time);
   var saved = savedInLineup(state.saved);
   var lineup = activeLineup(saved);
-  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  var sets = saved.map(id => lineup.find(a => a.id === id)).filter(a => a && a.day === night && a.start).sort((x, y) => toNightMin(attendWindow(x, undefined, state.saved).start) - toNightMin(attendWindow(y, undefined, state.saved).start) || toNightMin(x.start) - toNightMin(y.start));
   return sets.map((a, i) => {
     var prev = sets[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var startMin = toNightMin(a.start);
-    var endMin = toNightMin(a.end);
+    var win = attendWindow(a, undefined, state.saved);
+    var startMin = toNightMin(win.start);
+    var endMin = toNightMin(win.end);
     var minsUntil = startMin - nowMin;
-    var isLive = isSetLive(a);
+    var isLive = win.partial ? nowMin >= startMin && nowMin < endMin : isSetLive(a);
     var isPast = nowMin >= endMin;
     var known = walk != null && walk > 0;
     var leaveBy = known ? startMin - walk : null;
-    var prevEnd = prev ? toNightMin(prev.end) : null;
+    var prevEnd = prev ? toNightMin(attendWindow(prev, undefined, state.saved).end) : null;
     var tight = !!prev && known && startMin - prevEnd < walk;
-    var conflict = prev && overlaps(prev, a);
+    var clashes = sets.slice(0, i).filter(b => setsClash(b, a, undefined, state.saved));
+    var conflict = clashes.length > 0;
+    var accepted = !conflict && sets.slice(0, i).some(b => setsOverlapAccepted(b, a, undefined, state.saved));
     return {
       artist: a,
       prev,
@@ -853,7 +856,10 @@ function buildTonightsPlan(state) {
       isPast,
       leaveBy,
       tight,
-      conflict
+      conflict,
+      clashes,
+      accepted,
+      win
     };
   });
 }
@@ -863,15 +869,16 @@ function computeAlerts(savedIds, day, timeStr) {
   var todaySaved = activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
   var out = [];
   var _loop = function (a) {
-    var s = toNightMin(a.start);
-    var minsAway = s - nowMin;
+    var win = attendWindow(a, undefined, savedIds);
+    var late = win.partial && win.start !== a.start;
+    var minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
       var stage = STAGES.find(st => st.id === a.stage);
       out.push({
         id: `remind_${a.id}`,
         kind: "reminder",
-        title: `${a.name} in ${minsAway} min`,
-        body: `${stage?.name || a.stage} · ${fmt12(a.start)}`,
+        title: late ? `${a.name}: you arrive in ${minsAway} min` : `${a.name} in ${minsAway} min`,
+        body: `${stage?.name || a.stage} · ${late ? `you arrive ${fmt12(win.start)}` : fmt12(a.start)}`,
         time: timeStr,
         unread: true
       });
@@ -880,15 +887,17 @@ function computeAlerts(savedIds, day, timeStr) {
   for (var a of todaySaved) {
     _loop(a);
   }
-  for (var i = 0; i < todaySaved.length - 1; i++) {
+  for (var i = 0; i < todaySaved.length; i++) for (var j = i + 1; j < todaySaved.length; j++) {
     var _a = todaySaved[i],
-      b = todaySaved[i + 1];
-    if (overlaps(_a, b)) {
+      b = todaySaved[j];
+    if (setsClash(_a, b, undefined, savedIds)) {
+      var wa = attendWindow(_a, undefined, savedIds).start,
+        wb = attendWindow(b, undefined, savedIds).start;
       out.push({
         id: `conflict_${_a.id}_${b.id}`,
         kind: "conflict",
         title: "Schedule conflict",
-        body: `${_a.name} and ${b.name} overlap at ${b.start}.`,
+        body: `${_a.name} and ${b.name} overlap at ${toNightMin(wb) >= toNightMin(wa) ? wb : wa}.`,
         time: timeStr,
         unread: true
       });
@@ -1916,6 +1925,7 @@ function HomeScreen({
   var next = ARTISTS.find(a => a.id === NOW.nextArtistId) || null;
   var stageOf = id => STAGES.find(s => s.id === id);
   var currentPhoto = useArtistPhoto(current?.name || "");
+  useAttendVersion();
   var totalMin = current ? Math.max(1, toNightMin(current.end) - toNightMin(current.start)) : 90;
   var progress = current ? Math.min(1, NOW.elapsedMin / totalMin) : 0;
   var minsLeft = current ? Math.max(0, totalMin - NOW.elapsedMin) : 0;
@@ -2524,7 +2534,7 @@ function SavedByDay({
   var byDay = festivalDayNums().map(day => ({
     day,
     meta: FESTIVAL_CONFIG.dayDates[day],
-    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES))
+    artists: activeLineup(savedIds).filter(a => a.day === day && savedIds.includes(a.id)).sort((a, b) => toNightMin(attendWindow(a, undefined, state.saved).start) - toNightMin(attendWindow(b, undefined, state.saved).start) || compareSetsByTime(a, b, STAGES))
   })).filter(d => d.artists.length);
   if (!byDay.length) return React.createElement("div", null, React.createElement("p", {
     style: {
@@ -2572,13 +2582,15 @@ function SavedByDay({
   }, meta?.name || `Day ${day}`), artists.map((a, i) => {
     var prev = artists[i - 1];
     var walk = prev ? stageWalkMinutes(prev.stage, a.stage) : 0;
-    var tight = !!prev && walk != null && walk > 0 && toNightMin(a.start) - toNightMin(prev.end) < walk;
-    var conflict = prev && overlaps(prev, a);
+    var win = attendWindow(a, undefined, state.saved);
+    var tight = !!prev && walk != null && walk > 0 && toNightMin(win.start) - toNightMin(attendWindow(prev, undefined, state.saved).end) < walk;
+    var conflict = prev && setsClash(prev, a, undefined, state.saved);
     var stage = STAGES.find(s => s.id === a.stage);
     var prevStage = prev ? STAGES.find(s => s.id === prev.stage) : null;
     return React.createElement("div", {
       key: a.id
     }, prev && walk !== 0 && React.createElement("div", {
+      "data-saved-transition": a.id,
       style: {
         padding: "4px 0 4px 88px",
         fontSize: 13,
@@ -2586,6 +2598,7 @@ function SavedByDay({
         color: tight ? "var(--warn)" : "var(--text-3)"
       }
     }, tight ? "Tight · " : "", walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "same stage" : `${prevStage?.short || ""} → ${stage?.short || ""}`), React.createElement("button", {
+      "data-saved-row": a.id,
       onClick: () => setState({
         ...state,
         artist: a.id
@@ -2617,7 +2630,7 @@ function SavedByDay({
         lineHeight: "21px",
         fontWeight: 600
       }
-    }, fmt12(a.start)), React.createElement("div", {
+    }, fmt12(win.partial ? win.start : a.start)), React.createElement("div", {
       style: {
         fontSize: 13,
         lineHeight: "18px",
@@ -2642,7 +2655,15 @@ function SavedByDay({
         lineHeight: "18px",
         color: "var(--text-2)"
       }
-    }, stage.name), setTimesUnconfirmed(a) && React.createElement("div", {
+    }, stage.name), win.partial && React.createElement("div", {
+      "data-attend-window": a.id,
+      style: {
+        marginTop: 2,
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)"
+      }
+    }, attendWindowLabel(a, win)), setTimesUnconfirmed(a) && React.createElement("div", {
       "data-set-time-status": true,
       style: {
         marginTop: 2,
@@ -2881,10 +2902,26 @@ function DuoPlanCard({
   var savedIds = savedInLineup(state.saved);
   var saved = activeLineup(savedIds).filter(a => savedIds.includes(a.id));
   var now = Date.now();
-  var live = saved.find(a => isSetLive(a)) || null;
+  var winMs = a => {
+    var w = attendWindow(a, undefined, state.saved),
+      s = festivalNightDate(a.day, w.start).getTime();
+    return {
+      w,
+      s,
+      e: s + Math.max(1, toNightMin(w.end) - toNightMin(w.start)) * 60000
+    };
+  };
+  var live = saved.find(a => {
+    var {
+      w,
+      s,
+      e
+    } = winMs(a);
+    return w.partial ? now >= s && now < e : isSetLive(a);
+  }) || null;
   var next = live ? null : (saved.map(a => ({
     a,
-    t: festivalNightDate(a.day, a.start).getTime()
+    t: winMs(a).s
   })).filter(x => x.t > now).sort((x, y) => x.t - y.t)[0] || {}).a || null;
   var set = live || next;
   var open = id => setState({
@@ -2920,13 +2957,16 @@ function DuoPlanCard({
     }, "Browse lineup")));
   }
   var stage = STAGES.find(s => s.id === set.stage) || UNPLACED_STAGE;
-  var startMs = festivalNightDate(set.day, set.start).getTime();
-  var endMs = startMs + Math.max(1, toNightMin(set.end) - toNightMin(set.start)) * 60000;
+  var {
+    w: win,
+    s: startMs,
+    e: endMs
+  } = winMs(set);
   var minsLeft = Math.max(0, Math.round((endMs - now) / 60000));
   var pct = live ? Math.min(100, Math.max(0, Math.round((now - startMs) / (endMs - startMs) * 100))) : 0;
   var minsUntil = Math.round((startMs - now) / 60000);
   var until = minsUntil < 60 ? `In ${Math.max(1, minsUntil)} min` : minsUntil < 12 * 60 ? `In ${Math.floor(minsUntil / 60)} hr ${minsUntil % 60} min` : FESTIVAL_CONFIG.dayDates?.[set.day]?.name || `Day ${set.day}`;
-  var clash = (plan || []).find(p => p.conflict && !p.isPast && p.prev) || null;
+  var clash = (plan || []).find(p => p.conflict && !p.isPast) || null;
   var side = a => {
     var st = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
     return React.createElement("button", {
@@ -3010,7 +3050,7 @@ function DuoPlanCard({
   }), React.createElement("button", {
     className: "duo-press",
     onClick: () => open(set.id),
-    "aria-label": `${set.name}, ${stage.name}, ${live ? `live until ${fmt12(set.end)}` : `${until}, ${fmt12(set.start)}`}`,
+    "aria-label": `${set.name}, ${stage.name}, ${live ? `live until ${fmt12(win.end)}` : `${until}, ${fmt12(win.start)}`}`,
     style: {
       display: "flex",
       alignItems: "flex-start",
@@ -3051,7 +3091,7 @@ function DuoPlanCard({
     }
   }, React.createElement("span", {
     className: "np-pair"
-  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(set.end)}` : duoClock(set.start)))))), live && React.createElement("span", {
+  }, React.createElement("span", null, stage.name.toUpperCase()), React.createElement("span", null, live ? `TO ${duoClock(win.end)}` : duoClock(win.start)))))), live && React.createElement("span", {
     className: "duo-wide",
     style: {
       textAlign: "right",
@@ -3117,7 +3157,7 @@ function DuoPlanCard({
       gap: 4,
       marginTop: 4
     }
-  }, side(clash.prev), side(clash.artist)))));
+  }, side(clash.clashes[0]), side(clash.artist)))));
 }
 function duoStageNowNext() {
   var night = NOW.night;
@@ -3539,9 +3579,12 @@ function TonightsPlan({
   state,
   setState
 }) {
-  var tightCount = plan.filter(p => p.tight || p.conflict).length;
-  var conflicts = plan.filter(p => p.conflict).map(p => [p.prev, p.artist]);
+  var conflicts = plan.flatMap(p => p.clashes.map(b => [b, p.artist]));
+  var clashN = conflicts.length;
+  var tightN = plan.filter(p => p.tight && !p.conflict).length;
+  var bannerText = clashN && tightN ? `${clashN} clash${clashN > 1 ? "es" : ""} · ${tightN} tight transition${tightN > 1 ? "s" : ""}` : clashN ? `${clashN} clash${clashN > 1 ? "es" : ""}` : `${tightN} tight transition${tightN > 1 ? "s" : ""} · check leave-by times`;
   var [resolverOpen, setResolverOpen] = React.useState(false);
+  var [splitPair, setSplitPair] = React.useState(null);
   return React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       display: "flex",
@@ -3571,7 +3614,7 @@ function TonightsPlan({
       marginTop: 4,
       fontWeight: 400
     }
-  }, "Tap + on any set in the Lineup to add it.")) : React.createElement(React.Fragment, null, tightCount > 0 && React.createElement("div", {
+  }, "Tap + on any set in the Lineup to add it.")) : React.createElement(React.Fragment, null, (clashN > 0 || tightN > 0) && React.createElement("div", {
     className: "duo-card",
     style: {
       display: "flex",
@@ -3597,14 +3640,27 @@ function TonightsPlan({
       width: 8,
       height: 8,
       borderRadius: "50%",
-      background: "var(--clash)",
+      background: clashN ? "var(--clash)" : "var(--sun)",
       flexShrink: 0
     }
-  }), tightCount, " tight transition", tightCount > 1 ? "s" : "", " · check leave-by times"), conflicts.length > 0 && React.createElement("button", {
+  }), React.createElement("span", {
+    "data-plan-banner": true
+  }, bannerText)), conflicts.length > 0 && React.createElement("button", {
     onClick: () => setResolverOpen(r => !r),
     "aria-expanded": resolverOpen,
     className: "duo-chip"
-  }, React.createElement("span", null, resolverOpen ? "Close" : "Resolve"))), resolverOpen && conflicts.length > 0 && React.createElement("div", {
+  }, React.createElement("span", null, resolverOpen ? "Close" : "Resolve"))), splitPair && React.createElement("div", {
+    style: {
+      margin: "0 -4px 10px"
+    }
+  }, React.createElement(SplitNightSheet, {
+    pair: splitPair,
+    onDone: () => {
+      setSplitPair(null);
+      setResolverOpen(false);
+    },
+    onCancel: () => setSplitPair(null)
+  })), !splitPair && resolverOpen && conflicts.length > 0 && React.createElement("div", {
     style: {
       margin: "0 -4px 10px"
     }
@@ -3617,18 +3673,21 @@ function TonightsPlan({
       });
       setResolverOpen(false);
     },
-    onSplit: () => setResolverOpen(false)
+    onKeepBoth: pair => acceptClash(pair[0], pair[1]),
+    onSplit: pair => setSplitPair(pair)
   })), plan.map(p => React.createElement(PlanRow, {
     key: p.artist.id,
     entry: p,
     state: state,
-    setState: setState
+    setState: setState,
+    onEditSplit: setSplitPair
   }))));
 }
 function PlanRow({
   entry,
   state,
-  setState
+  setState,
+  onEditSplit
 }) {
   var {
     artist: a,
@@ -3639,7 +3698,9 @@ function PlanRow({
     isPast,
     leaveBy,
     tight,
-    conflict
+    conflict,
+    accepted,
+    win
   } = entry;
   var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
   var leaveByLabel = leaveBy != null ? (() => {
@@ -3668,6 +3729,7 @@ function PlanRow({
       color: tight ? "var(--clash)" : "var(--ink-2)"
     }
   }, walk != null ? `${walk} min walk · ` : "", prev.stage === a.stage ? "Same stage" : `${STAGES.find(s => s.id === prev.stage)?.short || "TBA"} → ${stage?.short || "TBA"}`, leaveByLabel && ` · leave by ${leaveByLabel}`)), React.createElement("div", {
+    "data-plan-row": a.id,
     onClick: () => setState({
       ...state,
       tab: "home",
@@ -3690,7 +3752,7 @@ function PlanRow({
       fontSize: 13,
       color: isPast ? "var(--ink-3)" : "var(--ink)"
     }
-  }, fmt12(a.start)), React.createElement("div", {
+  }, fmt12(win && win.partial ? win.start : a.start)), React.createElement("div", {
     className: "duo-data-s",
     style: {
       color: isLive ? "var(--live)" : "var(--ink-2)",
@@ -3720,7 +3782,36 @@ function PlanRow({
     style: {
       color: "var(--clash)"
     }
-  }, " · clash") : "")), React.createElement("svg", {
+  }, " · clash") : accepted ? React.createElement("span", {
+    "data-overlap-accepted": true
+  }, " · overlap accepted") : ""), win && win.partial && React.createElement("div", {
+    "data-attend-window": a.id,
+    className: "duo-body-s duo-ink2",
+    style: {
+      fontWeight: 400,
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      columnGap: 10
+    }
+  }, React.createElement("span", null, attendWindowLabel(a, win)), win.with && ARTISTS.find(x => x.id === win.with) && React.createElement("button", {
+    type: "button",
+    className: "duo-link",
+    "data-attend-edit": true,
+    onClick: e => {
+      e.stopPropagation();
+      onEditSplit?.([a, ARTISTS.find(x => x.id === win.with)]);
+    }
+  }, "Edit"), React.createElement("button", {
+    type: "button",
+    className: "duo-link",
+    "data-attend-reset": true,
+    onClick: e => {
+      e.stopPropagation();
+      resetAttendWindow(a.id);
+      if (win.with) resetAttendWindow(win.with);
+    }
+  }, "Reset"))), React.createElement("svg", {
     "aria-hidden": "true",
     width: "14",
     height: "14",
