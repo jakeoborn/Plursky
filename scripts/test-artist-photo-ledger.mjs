@@ -73,3 +73,22 @@ const keyAt = html.search(/<script src="data\/artist-key\.js\?v=/);
 assert.ok(keyAt > 0 && keyAt < html.search(/<script src="build\/chrome\.js\?v=/), 'index.html loads data/artist-key.js before build/chrome.js');
 assert.match(readFileSync(new URL('../sw.js', import.meta.url), 'utf8'), /\.\/data\/artist-key\.js\?v=/, 'sw.js precaches data/artist-key.js');
 console.log('Artist photo runtime: 15 checks passed');
+// The shipped ledger and the SW precache agree: every reviewed portrait is on
+// disk and in the versioned precache (so it is there offline before a first
+// online load), and the precache lists no portrait the ledger does not cover.
+{
+  const { existsSync } = await import('node:fs');
+  const repo = new URL('..', import.meta.url).pathname;
+  const ledger = JSON.parse(readFileSync(join(repo, 'data/artist-photos/ledger.json'), 'utf8'));
+  const sw = readFileSync(join(repo, 'sw.js'), 'utf8');
+  const precached = new Set([...sw.matchAll(/'\.\/(artist-photos\/[^'?]+)'/g)].map(m => m[1]));
+  const assets = new Set(ledger.map(r => r.asset));
+  assert.ok(ledger.length > 0 && precached.size > 0, 'ledger and precache both read');
+  const missingFile = ledger.filter(r => !existsSync(join(repo, r.asset))).map(r => r.asset);
+  const notPrecached = ledger.filter(r => !precached.has(r.asset)).map(r => r.asset);
+  const orphans = [...precached].filter(p => !assets.has(p));
+  assert.deepEqual(missingFile, [], `ledger assets missing on disk: ${missingFile.join(', ')}`);
+  assert.deepEqual(notPrecached, [], `ledger assets missing from the sw.js precache: ${notPrecached.join(', ')}`);
+  assert.deepEqual(orphans, [], `sw.js precaches portraits with no ledger row: ${orphans.join(', ')}`);
+  console.log(`Artist photo precache: ${ledger.length} ledger portraits on disk and precached, no orphans`);
+}

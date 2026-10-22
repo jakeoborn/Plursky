@@ -523,9 +523,9 @@ function ToastHost() {
       position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
-      // Board toast: an elevated card in SF that WRAPS. The old one-line
-      // pill ellipsised every long message ("No photos received — pick a
-      // few at a time; if they're in iCloud…" lost its instruction).
+      {/* Board toast: an elevated card in SF that WRAPS. The old one-line
+          pill ellipsised every long message ("No photos received — pick a
+          few at a time; if they're in iCloud…" lost its instruction). */}
       <div key={msg.id} role="status" aria-live="polite" style={{
         background: "var(--s1)", color: "var(--ink)",
         padding: hasAction ? "6px 6px 6px 16px" : "11px 16px", borderRadius: "var(--rad-md)",
@@ -814,10 +814,12 @@ function App() {
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
 
-  // Auto-schedule push reminders whenever saves change (if permission already granted)
+  // Auto-schedule push reminders whenever saves change (if permission already
+  // granted), and when a split moves an arrival time (L3).
+  const attendV = useAttendVersion();
   React.useEffect(() => {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
 
   // Cloud-backup auto-push: when the user is signed in to Supabase, push their
   // saved lineup + notes 1s after the most recent change. Silent — the cloud
@@ -874,7 +876,9 @@ function App() {
     <IOSDevice dark={statusBarStyle === "light"}>
       {/* Field Mode Home runs its hero under the safe area and carries its
           own live/offline status, so it skips the top inset and the strip. */}
-      <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+      {/* On Today the frame carries the print scope, so the tab bar takes the sheet
+          (cream / ink, an ink rule and indicator) instead of the board's chrome. */}
+      <div className={state.tab === "home" && !state.artist ? "np" : undefined} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
         {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
             is festival-scoped chrome and stays off General Home. */}
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
@@ -896,13 +900,12 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
+          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
           return (
             <TabBar
-              // The directory belongs to the tab it was entered from: Lineup's
-              // "Artist history" keeps Lineup lit; Me's row (or a deep link) Me.
-              active={state.tab === "artists" && state.artistsFrom === "lineup" ? "lineup"
-                : meFold.includes(state.tab) ? "me" : state.tab}
+              // The Artists directory (?tab=artists) lights no tab: where it is
+              // entered from is still Jake's call (B6 spec section 5).
+              active={meFold.includes(state.tab) ? "me" : state.tab}
               onChange={t => setState({ ...state, tab: t })}
             />
           );
@@ -1010,7 +1013,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v424",
+        version: "v463",
       }));
     } catch {}
   }
@@ -1041,7 +1044,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v424
+          Plursky · v463
         </div>
       </div>
     );

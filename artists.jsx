@@ -92,22 +92,13 @@ function _ArtFace({ name, size = 40 }) {
 
 function ArtistsDirectoryScreen({ state, setState }) {
   const [res, retry] = useArtistDirectory();
-  const [q, setQ] = React.useState(state.artistsQuery || "");
+  const [q, setQ] = React.useState("");
   const [playing, setPlaying] = React.useState(false);
   const [fest, setFest] = React.useState("");
   const [open, setOpen] = React.useState(null);
   const today = _artToday(), year = today.slice(0, 4);
   const data = res.status === "ready" ? res.data : null;
   const fests = data ? data.festivals : [];
-  // Lineup's search opens the directory scoped to the festival you have
-  // open (Me's row opens it across every festival); the chip widens it.
-  const scoped = React.useRef(false);
-  React.useLayoutEffect(() => {
-    if (!data || scoped.current) return;
-    scoped.current = true;
-    const i = state.artistsFestival ? data.festivals.findIndex(f => f.id === state.artistsFestival) : -1;
-    if (i >= 0) setFest(String(i));
-  }, [data]);
 
   const list = React.useMemo(() => {
     if (!data) return [];
@@ -325,20 +316,5 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
         ))}
       </div>
     </FieldSheet>
-  );
-}
-
-// The entry on Me, under All festivals.
-function ArtistsDirectoryRow() {
-  return (
-    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null, artistsQuery: "", artistsFestival: null, artistsFrom: "me" })}
-      className="duo-card" style={{
-        width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
-        display: "flex", alignItems: "center", gap: 12, border: "none",
-        color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
-      }}>
-      <span className="duo-headline" style={{ flex: 1, minWidth: 0 }}>All artists</span>
-      <span className="duo-body-s duo-ink2" style={{ flexShrink: 0 }}>Every festival</span>
-    </button>
   );
 }

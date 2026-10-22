@@ -7,6 +7,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const requestedPort=process.env.PLURSKY_IMPORT_TOAST_PORT;
 if(requestedPort&&!/^\d+$/.test(requestedPort))throw new Error('PLURSKY_IMPORT_TOAST_PORT must be a numeric TCP port');
@@ -18,6 +19,7 @@ try {
   const executablePath=['/opt/google/chrome/chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({timezoneId:'America/Los_Angeles'});
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('user_name','Test');localStorage.setItem('active_festival_id','edc-lv-2026');localStorage.setItem('active_festival_explicit','1');localStorage.setItem('edc-lv-2026_saved_v1',JSON.stringify(['n4']));localStorage.removeItem('plursky_moments_v1');indexedDB.deleteDatabase('plursky_memories');});
   // Every text any [role=status] region shows, with ms since load. The toast
   // wait below still timed out on GitHub CI after #193 while passing locally,

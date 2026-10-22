@@ -107,7 +107,7 @@ function ArtistsDirectoryScreen({
   setState
 }) {
   var [res, retry] = useArtistDirectory();
-  var [q, setQ] = React.useState(state.artistsQuery || "");
+  var [q, setQ] = React.useState("");
   var [playing, setPlaying] = React.useState(false);
   var [fest, setFest] = React.useState("");
   var [open, setOpen] = React.useState(null);
@@ -115,13 +115,6 @@ function ArtistsDirectoryScreen({
     year = today.slice(0, 4);
   var data = res.status === "ready" ? res.data : null;
   var fests = data ? data.festivals : [];
-  var scoped = React.useRef(false);
-  React.useLayoutEffect(() => {
-    if (!data || scoped.current) return;
-    scoped.current = true;
-    var i = state.artistsFestival ? data.festivals.findIndex(f => f.id === state.artistsFestival) : -1;
-    if (i >= 0) setFest(String(i));
-  }, [data]);
   var list = React.useMemo(() => {
     if (!data) return [];
     var fq = q.trim() ? _artFold(q.trim()) : "";
@@ -652,42 +645,4 @@ function _ArtistBillingsSheet({
       }
     }, body);
   })))));
-}
-function ArtistsDirectoryRow() {
-  return React.createElement("button", {
-    "data-artists-entry": true,
-    onClick: () => (window._pushNav || (() => {}))({
-      tab: "artists",
-      artist: null,
-      artistsQuery: "",
-      artistsFestival: null,
-      artistsFrom: "me"
-    }),
-    className: "duo-card",
-    style: {
-      width: "100%",
-      minHeight: 52,
-      marginBottom: 14,
-      padding: "10px 16px",
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      border: "none",
-      color: "var(--ink)",
-      cursor: "pointer",
-      textAlign: "left",
-      fontFamily: "inherit"
-    }
-  }, React.createElement("span", {
-    className: "duo-headline",
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, "All artists"), React.createElement("span", {
-    className: "duo-body-s duo-ink2",
-    style: {
-      flexShrink: 0
-    }
-  }, "Every festival"));
 }

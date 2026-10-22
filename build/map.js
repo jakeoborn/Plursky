@@ -555,6 +555,60 @@ var MAP_REGISTRATION_SOURCED = geometryVerifiedFor(FESTIVAL_CONFIG.id, FESTIVAL_
 function readoutHonest(avatar) {
   return geometryVerifiedFor(typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
+function posterTierFor(cfg, affine, verified) {
+  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
+  return verified ? "checked" : "unchecked";
+}
+var POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+var POSTER_OPACITY_UNCHECKED = 0.35;
+var REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
+var REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
+var REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
+function _realMapTarget(p) {
+  if (!p) return null;
+  if (_validGps(p.gps)) return {
+    lat: p.gps.lat,
+    lng: p.gps.lng
+  };
+  if (!REAL_MAP_PLACES_CHECKED || !Number.isFinite(p.x) || !Number.isFinite(p.y)) return null;
+  var ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : null;
+}
+function _showYou(el, avatar) {
+  if (!el) return;
+  var shown = !!_realMapTarget(avatar);
+  el.style.display = shown ? "" : "none";
+  el.setAttribute("data-realmap-you", shown ? "shown" : "hidden");
+}
+function _meetTargetFor(t, onRealMap) {
+  if (!t || t.textOnly || !onRealMap || _realMapTarget(t)) return t;
+  return {
+    label: t.label,
+    stageId: t.stageId || null,
+    isRally: !!t.isRally,
+    isAmenity: !!t.isAmenity,
+    textOnly: true
+  };
+}
+function _groundsLngLats(cfg) {
+  var ok = (la, lo) => _validGps({
+    lat: la,
+    lng: lo
+  });
+  var fp = cfg && cfg.venue && cfg.venue.footprint || cfg && cfg.footprint;
+  if (Array.isArray(fp) && fp.length >= 3) return fp.filter(([la, lo]) => ok(la, lo)).map(([la, lo]) => [lo, la]);
+  var fb = cfg && cfg.venue && cfg.venue.festivalBounds;
+  if (fb && ok(fb.north, fb.east) && ok(fb.south, fb.west)) return [[fb.west, fb.south], [fb.east, fb.north]];
+  var an = (cfg && cfg.gpsAnchors || []).filter(a => a && ok(a.lat, a.lng));
+  return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
+}
+function _realMapPanLimit(cfg, lib) {
+  var v = cfg && cfg.venue;
+  if (!v || !v.festivalBounds) return null;
+  var fb = v.festivalBounds;
+  return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+}
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -649,23 +703,29 @@ function formatLastSeen(ts) {
     color: "var(--text-3)"
   };
 }
+var GPS_STALE_MS = 60000,
+  GPS_STALE_MS_SAVER = 120000;
 function useGeolocation(enabled) {
   var [pos, setPos] = React.useState(null);
   var [status, setStatus] = React.useState("idle");
   var {
     active: bsActive
   } = useBatterySaver();
+  var staleMs = bsActive ? GPS_STALE_MS_SAVER : GPS_STALE_MS;
   React.useEffect(() => {
     if (!enabled) {
+      setPos(null);
       setStatus("idle");
       return;
     }
     if (!navigator.geolocation) {
+      setPos(null);
       setStatus("unavailable");
       return;
     }
     setStatus("locating");
-    var alive = true;
+    var alive = true,
+      lastTs = 0;
     var opts = bsActive ? {
       enableHighAccuracy: false,
       maximumAge: 30000,
@@ -679,11 +739,12 @@ function useGeolocation(enabled) {
       if (!alive) return;
       var lat = p.coords.latitude,
         lng = p.coords.longitude;
+      lastTs = Date.now();
       setPos({
         lat,
         lng,
         accuracy: p.coords.accuracy,
-        ts: Date.now()
+        ts: lastTs
       });
       setStatus("live");
       try {
@@ -695,16 +756,23 @@ function useGeolocation(enabled) {
       } catch {}
     }, e => {
       if (!alive) return;
+      setPos(null);
       setStatus(e.code === 1 ? "denied" : "unavailable");
     }, opts);
+    var tick = setInterval(() => {
+      if (alive && lastTs && Date.now() - lastTs > staleMs) setStatus(s => s === "live" ? "stale" : s);
+    }, 5000);
     return () => {
       alive = false;
+      clearInterval(tick);
       navigator.geolocation.clearWatch(id);
     };
-  }, [enabled, bsActive]);
+  }, [enabled, bsActive, staleMs]);
+  var live = !!enabled && status === "live" && _validGps(pos) && Date.now() - (pos.ts || 0) <= staleMs;
   return {
     pos,
-    status
+    status,
+    live
   };
 }
 var WALK_PAIRS = {
@@ -1632,7 +1700,7 @@ function ShareLocationSheet({
       color: "var(--muted)",
       marginTop: 2
     }
-  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
+  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO RECENT FIX" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -2586,24 +2654,28 @@ function MapScreen({
   var [amenityFilter, setAmenityFilter] = React.useState(null);
   var [mapCat, setMapCat] = React.useState("stages");
   var REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  var mapPostureLabel = REAL_MAP_ONLY ? "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
   var [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
     try {
-      return localStorage.getItem("plursky_use_realmap") === "1";
+      if (sessionStorage.getItem("plursky_realmap_failed") === "1") return false;
+      return localStorage.getItem("plursky_use_realmap") !== "0";
     } catch {
-      return false;
+      return true;
     }
   });
+  var setMeet = t => setMeetTarget(_meetTargetFor(t, useRealMap));
+  React.useEffect(() => {
+    setMeetTarget(t => _meetTargetFor(t, useRealMap));
+  }, [useRealMap]);
+  var meetPin = meetTarget && !meetTarget.textOnly ? meetTarget : null;
+  var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
+  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
-    if (REAL_MAP_ONLY) {
-      setRealMapNote((why || "Map unavailable") + " — check your connection");
-      setTimeout(() => setRealMapNote(null), 7000);
-      return;
-    }
+    if (REAL_MAP_ONLY) return;
     try {
-      localStorage.removeItem("plursky_use_realmap");
+      sessionStorage.setItem("plursky_realmap_failed", "1");
     } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
@@ -2616,15 +2688,28 @@ function MapScreen({
   });
   var MAP_ZOOM_MIN = 0.7,
     MAP_ZOOM_MAX = 3.5;
-  var zoomIn = () => setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
-  var zoomOut = () => setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
+  var realMapCtl = React.useRef(null);
+  var [realView, setRealView] = React.useState({
+    atMin: false,
+    atMax: false,
+    atHome: true
+  });
+  var zoomIn = () => useRealMap ? realMapCtl.current?.zoomIn() : setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
+  var zoomOut = () => useRealMap ? realMapCtl.current?.zoomOut() : setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
   var zoomReset = () => {
+    if (useRealMap) {
+      realMapCtl.current?.reset();
+      return;
+    }
     setMapZoom(1);
     setMapPan({
       x: 0,
       y: 0
     });
   };
+  var zoomInOff = useRealMap ? realView.atMax : mapZoom >= MAP_ZOOM_MAX;
+  var zoomOutOff = useRealMap ? realView.atMin : mapZoom <= MAP_ZOOM_MIN;
+  var zoomMoved = useRealMap ? !realView.atHome : mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0;
   var [pingOpen, setPingOpen] = React.useState(false);
   var [iAmAtOpen, setIAmAtOpen] = React.useState(false);
   var [shareOpen, setShareOpen] = React.useState(false);
@@ -2724,9 +2809,12 @@ function MapScreen({
     };
   }, [compass]);
   var {
-    pos: gpsPos,
-    status: gpsStatus
+    pos: _gpsRaw,
+    status: _gpsStatus,
+    live: _gpsFresh
   } = useGeolocation(gpsLive);
+  var gpsPos = _gpsFresh ? _gpsRaw : null;
+  var gpsStatus = _gpsStatus === "live" && !_gpsFresh ? "stale" : _gpsStatus;
   var liveAvatar = React.useMemo(() => {
     if (!gpsPos) return null;
     var mi = distMiles(gpsPos.lat, gpsPos.lng, FESTIVAL_LAT, FESTIVAL_LNG);
@@ -2742,7 +2830,13 @@ function MapScreen({
       onSite: true,
       x: Math.max(2, Math.min(98, x)),
       y: Math.max(2, Math.min(98, y)),
-      accuracy: gpsPos.accuracy
+      accuracy: gpsPos.accuracy,
+      gps: {
+        lat: gpsPos.lat,
+        lng: gpsPos.lng,
+        accuracy: gpsPos.accuracy ?? null,
+        ts: gpsPos.ts ?? Date.now()
+      }
     };
   }, [gpsPos]);
   var isLiveOnSite = !!liveAvatar?.onSite;
@@ -2750,7 +2844,8 @@ function MapScreen({
   var avatar = isLiveOnSite ? {
     x: liveAvatar.x,
     y: liveAvatar.y,
-    live: true
+    live: true,
+    gps: liveAvatar.gps
   } : demoAvatar;
   var {
     active: bsActive
@@ -2765,7 +2860,7 @@ function MapScreen({
   React.useEffect(() => {
     if (!useDemo) return;
     var id = setInterval(() => {
-      var goal = meetMode && meetTarget ? meetTarget : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
+      var goal = meetMode && meetPin ? meetPin : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
       setDemoAvatar(a => {
         if (goal) {
           var _dx = goal.x - a.x,
@@ -2785,9 +2880,9 @@ function MapScreen({
         };
       });
       setFriends(prev => prev.map(f => {
-        if (meetMode && meetTarget && meetGroup.includes(f.id)) {
-          var _dx2 = meetTarget.x - f.x,
-            _dy2 = meetTarget.y - f.y;
+        if (meetMode && meetPin && meetGroup.includes(f.id)) {
+          var _dx2 = meetPin.x - f.x,
+            _dy2 = meetPin.y - f.y;
           var d = Math.hypot(_dx2, _dy2);
           if (d < 1.2) return f;
           return {
@@ -2805,13 +2900,13 @@ function MapScreen({
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
+  }, [useDemo, selectedStage, meetMode, meetPin, meetGroup, bsActive, reduceMotion]);
   React.useEffect(() => {
     if (!isLiveOnSite) return;
-    var goal = meetMode && meetTarget ? meetTarget : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
+    var goal = meetMode && meetPin ? meetPin : selectedStage ? STAGES.find(s => s.id === selectedStage) : null;
     if (!goal) return;
     setHeading(Math.atan2(goal.y - avatar.y, goal.x - avatar.x));
-  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetTarget]);
+  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetPin]);
   React.useEffect(() => sbOnPresenceChange(s => setCrewSnap({
     ...s
   })), []);
@@ -2849,7 +2944,7 @@ function MapScreen({
     if (!crewFriends.length) return null;
     var byStage = {};
     for (var f of crewFriends) {
-      var sid = f.stageId || _nearestStageId(f.x, f.y);
+      var sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -3002,13 +3097,13 @@ function MapScreen({
     var allY = [avatar.y, ...selected.map(f => f.y)];
     var cx = allX.reduce((s, v) => s + v, 0) / allX.length;
     var cy = allY.reduce((s, v) => s + v, 0) / allY.length;
-    setMeetTarget({
+    setMeet({
       x: cx,
       y: cy,
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
   return React.createElement(Screen, {
     bg: "var(--paper)",
@@ -3047,14 +3142,13 @@ function MapScreen({
     className: "duo-title",
     style: {
       margin: 0,
-      flex: 1,
-      minWidth: 0
+      flex: "1 0 auto"
     }
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
     className: "duo-code"
   }, mapPostureLabel), (() => {
-    var has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+    var has = t => mapAmenities.some(a => a.type === t);
     var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
     var cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
     return React.createElement("div", {
@@ -3215,7 +3309,7 @@ function MapScreen({
     d: "M3 16 L12 21 L21 16"
   }))), React.createElement("button", {
     onClick: zoomIn,
-    disabled: mapZoom >= MAP_ZOOM_MAX,
+    disabled: zoomInOff,
     "aria-label": "Zoom in",
     style: {
       width: 46,
@@ -3224,8 +3318,8 @@ function MapScreen({
       background: "transparent",
       border: "none",
       borderBottom: "1px solid var(--line)",
-      cursor: mapZoom >= MAP_ZOOM_MAX ? "default" : "pointer",
-      opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
+      cursor: zoomInOff ? "default" : "pointer",
+      opacity: zoomInOff ? 0.35 : 1,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -3237,7 +3331,7 @@ function MapScreen({
     }
   }, "+"), React.createElement("button", {
     onClick: zoomOut,
-    disabled: mapZoom <= MAP_ZOOM_MIN,
+    disabled: zoomOutOff,
     "aria-label": "Zoom out",
     style: {
       width: 46,
@@ -3245,8 +3339,8 @@ function MapScreen({
       padding: 0,
       background: "transparent",
       border: "none",
-      cursor: mapZoom <= MAP_ZOOM_MIN ? "default" : "pointer",
-      opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
+      cursor: zoomOutOff ? "default" : "pointer",
+      opacity: zoomOutOff ? 0.35 : 1,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -3256,7 +3350,7 @@ function MapScreen({
       fontWeight: 500,
       lineHeight: 1
     }
-  }, "−"), (mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && React.createElement("button", {
+  }, "−"), zoomMoved && React.createElement("button", {
     onClick: zoomReset,
     "aria-label": "Reset zoom",
     style: {
@@ -3349,12 +3443,13 @@ function MapScreen({
     onToggle: () => setShowLabels(s => !s)
   }, ...(REAL_MAP_ONLY ? [] : [{
     id: "realmap",
-    label: "Real map (beta)",
+    label: "Real map",
     active: useRealMap,
     onToggle: () => {
       var v = !useRealMap;
       try {
-        if (v) localStorage.setItem("plursky_use_realmap", "1");else localStorage.removeItem("plursky_use_realmap");
+        localStorage.setItem("plursky_use_realmap", v ? "1" : "0");
+        if (v) sessionStorage.removeItem("plursky_realmap_failed");
       } catch {}
       setRealMapNote(null);
       setUseRealMap(v);
@@ -3465,7 +3560,7 @@ function MapScreen({
     }
   }, AMENITY_KEY.map(a => {
     var on = amenityFilter === a.type;
-    var present = (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(x => x.type === a.type);
+    var present = mapAmenities.some(x => x.type === a.type);
     if (!present) return null;
     return React.createElement("div", {
       key: a.type,
@@ -4009,16 +4104,16 @@ function MapScreen({
       label: "Locker",
       emoji: "🔒",
       color: "var(--signal-ink)"
-    }].map(c => React.createElement("button", {
+    }].filter(c => mapAmenities.some(a => a.type === c.type)).map(c => React.createElement("button", {
       key: c.type,
       onClick: () => {
-        var matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
+        var matches = mapAmenities.filter(a => a.type === c.type);
         if (!matches.length) return;
         var nearest = matches.map(a => ({
           ...a,
           _d: Math.hypot(a.x - avatar.x, a.y - avatar.y)
         })).sort((a, b) => a._d - b._d)[0];
-        setMeetTarget({
+        setMeet({
           x: nearest.x,
           y: nearest.y,
           label: nearest.label,
@@ -4279,8 +4374,13 @@ function MapScreen({
     })))));
   })(), useRealMap ? React.createElement(RealMap, {
     avatar: avatar,
-    stages: PLACED_STAGES,
-    officialMap: !!FESTIVAL_CONFIG.mapImage,
+    stages: REAL_MAP_STAGES,
+    officialMap: POSTER_TIER !== "none",
+    amenities: REAL_MAP_AMENITIES,
+    showAmenities: searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med",
+    amenityFilter: mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null,
+    controlRef: realMapCtl,
+    onViewChange: setRealView,
     crewFriends: crewFriends,
     saved: state.saved,
     showHeat: showHeat,
@@ -4289,7 +4389,7 @@ function MapScreen({
     compassHeading: compassHeading,
     selected: selectedStage,
     meetMode: meetMode,
-    meetTarget: meetTarget,
+    meetTarget: meetPin,
     onPickStage: id => {
       setSelectedStage(id);
       setPeek(false);
@@ -4297,9 +4397,12 @@ function MapScreen({
     onMapClick: xy => {
       if (!meetMode) return;
       var names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-      setMeetTarget({
+      setMeet({
         x: xy.x,
         y: xy.y,
+        ...(xy.gps ? {
+          gps: xy.gps
+        } : {}),
         label: names.length ? `Meet ${names.join(" + ")}` : "Meet here"
       });
     },
@@ -4318,7 +4421,7 @@ function MapScreen({
     compassHeading: compassHeading,
     selected: selectedStage,
     meetMode: meetMode,
-    meetTarget: meetTarget,
+    meetTarget: meetPin,
     meetGroup: meetGroup,
     crewFriends: crewFriends,
     zoom: mapZoom,
@@ -4393,13 +4496,14 @@ function MapScreen({
       background: "var(--ink)",
       animation: "pulse 1.4s infinite"
     }
-  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetTarget && isSharing && React.createElement("button", {
+  }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetPin && isSharing && React.createElement("button", {
     onClick: () => {
       var ok = sbBroadcastRally({
         x: meetTarget.x,
         y: meetTarget.y,
         label: meetTarget.label,
-        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y)
+        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
+        gps: meetTarget.gps || null
       });
       if (ok) setRallySent(true);
     },
@@ -4479,9 +4583,15 @@ function MapScreen({
     onClick: () => {
       dismissedRallyRef.current.add(incomingRally.rallyId);
       setMeetMode(true);
-      setMeetTarget({
+      setMeet({
         x: incomingRally.x,
         y: incomingRally.y,
+        ...(_validGps(incomingRally.gps) ? {
+          gps: {
+            lat: incomingRally.gps.lat,
+            lng: incomingRally.gps.lng
+          }
+        } : {}),
         label: incomingRally.label,
         isRally: true
       });
@@ -4523,7 +4633,7 @@ function MapScreen({
     if (sig === clusterDismissed) return null;
     var headOver = () => {
       setMeetMode(true);
-      setMeetTarget({
+      setMeet({
         x: crewCluster.stage.x,
         y: crewCluster.stage.y,
         label: crewCluster.stage.name,
@@ -4632,7 +4742,7 @@ function MapScreen({
       bottom: 0,
       zIndex: 6
     }
-  }, stage && navigating ? React.createElement(StageNavBar, {
+  }, stage && navigating && canRouteToStage ? React.createElement(StageNavBar, {
     stage: stage,
     walk: walk,
     onDetails: () => setNavigating(false),
@@ -4659,7 +4769,7 @@ function MapScreen({
       tab: "home",
       artist: id
     }),
-    onGoHere: goToStage,
+    onGoHere: canRouteToStage ? goToStage : null,
     stageSaved: stage ? savedStages.has(stage.id) : false,
     onToggleSave: toggleSavedStage,
     state: state,
@@ -4929,7 +5039,7 @@ function MapScreen({
       setMeetMode(true);
       setMeetGroup([chatFriend.id]);
       var f = friends.find(fr => fr.id === chatFriend.id);
-      if (f) setMeetTarget({
+      if (f) setMeet({
         x: (avatar.x + f.x) / 2,
         y: (avatar.y + f.y) / 2,
         label: `Meet ${f.name}`
@@ -4946,7 +5056,7 @@ function MapScreen({
     onClose: () => setPingOpen(false),
     onDropPin: target => {
       setMeetMode(true);
-      setMeetTarget(target);
+      setMeet(target);
     }
   }), iAmAtOpen && React.createElement(IAmAtSheet, {
     initialStage: myStatusStage,
@@ -5175,6 +5285,7 @@ function StageIcon({
     fill: W
   }));
 }
+var OPENING_PITCH_PINNED = 40;
 var REAL_MAP_STYLES = {
   stylized: {
     label: "STYLIZED",
@@ -5957,6 +6068,21 @@ function OfflinePacksSheet({
     onClose: () => setPlusOpen(false)
   })), document.body);
 }
+function _validGps(g) {
+  return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng) && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
+}
+function _lngLatOf(p) {
+  var g = p && p.gps;
+  if (_validGps(g)) return {
+    lat: g.lat,
+    lng: g.lng
+  };
+  var ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : {
+    lat: FESTIVAL_CONFIG.gps.lat,
+    lng: FESTIVAL_CONFIG.gps.lng
+  };
+}
 function mapToGps(x, y) {
   if (!MAP_AFFINE) return {
     lat: FESTIVAL_CONFIG.gps.lat,
@@ -5991,15 +6117,42 @@ function _officialMapExtent(natW, natH) {
     y1: y0 + h
   };
 }
+var _OFFICIAL_MAP_RASTER_PX = 2048;
 var _imgDimsCache = {};
 function _officialMapDims(src) {
   if (_imgDimsCache[src]) return _imgDimsCache[src];
   _imgDimsCache[src] = new Promise(resolve => {
     var im = new Image();
-    im.onload = () => resolve({
-      w: im.naturalWidth,
-      h: im.naturalHeight
-    });
+    im.onload = () => {
+      var w = im.naturalWidth,
+        h = im.naturalHeight;
+      if (!w || !h) {
+        resolve(null);
+        return;
+      }
+      if (!/\.svg(\?|#|$)/i.test(src)) {
+        resolve({
+          w,
+          h,
+          url: src
+        });
+        return;
+      }
+      try {
+        var k = _OFFICIAL_MAP_RASTER_PX / Math.max(w, h);
+        var c = document.createElement("canvas");
+        c.width = Math.round(w * k);
+        c.height = Math.round(h * k);
+        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        resolve({
+          w,
+          h,
+          url: c.toDataURL("image/png")
+        });
+      } catch {
+        resolve(null);
+      }
+    };
     im.onerror = () => resolve(null);
     im.src = src;
   });
@@ -6031,17 +6184,37 @@ function RealMap({
   meetTarget,
   onPickStage,
   onMapClick,
-  onFatal
+  onFatal,
+  amenities = [],
+  showAmenities = false,
+  amenityFilter = null,
+  controlRef,
+  onViewChange
 }) {
   var containerRef = React.useRef(null);
   var mapRef = React.useRef(null);
   var stageMarkersRef = React.useRef({});
   var avatarMarkerRef = React.useRef(null);
+  var avatarRef = React.useRef(avatar);
+  avatarRef.current = avatar;
   var meetMarkerRef = React.useRef(null);
   var savedStarMarkersRef = React.useRef({});
   var friendMarkersRef = React.useRef({});
   var landmarkElsRef = React.useRef([]);
   var officialMapDimsRef = React.useRef(null);
+  var officialMapFailedRef = React.useRef(false);
+  var amenityElsRef = React.useRef([]);
+  var amenityViewRef = React.useRef({
+    show: showAmenities,
+    filter: amenityFilter
+  });
+  var onViewChangeRef = React.useRef(onViewChange);
+  onViewChangeRef.current = onViewChange;
+  var selectedRef = React.useRef(selected);
+  selectedRef.current = selected;
+  var homeRef = React.useRef(null);
+  var declutterRef = React.useRef(null);
+  var styleSwitchRef = React.useRef(null);
   var officialMapRef = React.useRef(officialMap);
   var showLabelsRef = React.useRef(showLabels);
   var onPickStageRef = React.useRef(onPickStage);
@@ -6049,6 +6222,7 @@ function RealMap({
   var meetModeRef = React.useRef(meetMode);
   var [loaded, setLoaded] = React.useState(false);
   var [err, setErr] = React.useState(null);
+  var [attempt, setAttempt] = React.useState(0);
   var fatalRef = React.useRef(false);
   var loadedRef = React.useRef(false);
   var tileErrRef = React.useRef(0);
@@ -6056,6 +6230,7 @@ function RealMap({
     if (fatalRef.current) return;
     fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
+    if (FESTIVAL_CONFIG.mapMode === "real") setErr(prev => prev || (typeof why === "string" ? why : "Map unavailable"));
     try {
       onFatal?.(typeof why === "string" ? why : null);
     } catch {}
@@ -6108,6 +6283,28 @@ function RealMap({
       map.setLayoutProperty("official-map", "visibility", officialMap ? "visible" : "none");
     } catch {}
   }, [officialMap]);
+  var _applyAmenityVisibility = React.useCallback(() => {
+    var {
+      show,
+      filter,
+      meet
+    } = amenityViewRef.current;
+    amenityElsRef.current.forEach(({
+      el,
+      type
+    }) => {
+      el.style.display = show && !meet && (!filter || type === filter) ? "" : "none";
+    });
+  }, []);
+  React.useEffect(() => {
+    amenityViewRef.current = {
+      show: showAmenities,
+      filter: amenityFilter,
+      meet: meetMode
+    };
+    _applyAmenityVisibility();
+    declutterRef.current?.();
+  }, [showAmenities, amenityFilter, meetMode, _applyAmenityVisibility]);
   React.useEffect(() => {
     onPickStageRef.current = onPickStage;
   }, [onPickStage]);
@@ -6138,6 +6335,9 @@ function RealMap({
       loadedRef.current = true;
       clearTimeout(bootTimer);
       setLoaded(true);
+      try {
+        window.__plurskyRealMap = mapRef.current;
+      } catch {}
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then(async maplibregl => {
@@ -6190,89 +6390,7 @@ function RealMap({
         }
         return [out];
       };
-      var AMENITY_DESIGN = {
-        water: {
-          color: "var(--signal-ink)",
-          height: 14,
-          radius: 5,
-          sides: 8
-        },
-        food: {
-          color: "var(--signal-ink)",
-          height: 16,
-          radius: 6,
-          sides: 4,
-          rot: 45
-        },
-        med: {
-          color: "var(--alert)",
-          height: 18,
-          radius: 6,
-          sides: 4
-        },
-        toilet: {
-          color: "var(--signal-ink)",
-          height: 12,
-          radius: 5,
-          sides: 6
-        },
-        art: {
-          color: "var(--signal-ink)",
-          height: 22,
-          radius: 7,
-          sides: 12,
-          altInner: 0.5
-        },
-        info: {
-          color: "var(--signal-ink)",
-          height: 14,
-          radius: 5,
-          sides: 24
-        },
-        charge: {
-          color: "var(--signal-ink)",
-          height: 16,
-          radius: 5,
-          sides: 4,
-          rot: 22.5
-        },
-        locker: {
-          color: "var(--signal-ink)",
-          height: 13,
-          radius: 5,
-          sides: 4
-        }
-      };
-      var amenitiesExtrusionData = () => ({
-        type: "FeatureCollection",
-        features: (window.AMENITIES || []).map(a => {
-          var {
-            lat,
-            lng
-          } = mapToGps(a.x, a.y);
-          var d = AMENITY_DESIGN[a.type] || AMENITY_DESIGN.info;
-          return {
-            type: "Feature",
-            properties: {
-              id: a.id,
-              type: a.type,
-              label: a.label,
-              color: d.color,
-              height: d.height
-            },
-            geometry: {
-              type: "Polygon",
-              coordinates: _shapePolygon(lat, lng, {
-                sides: d.sides,
-                radius: d.radius,
-                rot: d.rot || 0,
-                altInner: d.altInner
-              })
-            }
-          };
-        })
-      });
-      var SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
+      var SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ? FESTIVAL_CONFIG.landmarks || [] : [];
       var STAGE_3D_DESIGN = {
         kinetic: {
           sides: 16,
@@ -6593,9 +6711,10 @@ function RealMap({
         var _addOfficialMap = () => {
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
           if (!MAP_AFFINE) return;
+          if (officialMapFailedRef.current) return;
           var dims = officialMapDimsRef.current;
           if (!dims) return;
-          var src = FESTIVAL_CONFIG.mapImage;
+          var src = dims.url || FESTIVAL_CONFIG.mapImage;
           var coordinates = _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", {
@@ -6618,7 +6737,7 @@ function RealMap({
                 visibility: officialMapRef.current ? "visible" : "none"
               },
               paint: {
-                "raster-opacity": FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78,
+                "raster-opacity": POSTER_TIER === "checked" ? FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78 : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear"
               }
@@ -6679,6 +6798,7 @@ function RealMap({
           }
         });
         _safeLayer("plaza", () => {
+          if (!stages.length) return;
           if (!map.getSource("plaza")) {
             map.addSource("plaza", {
               type: "geojson",
@@ -6784,9 +6904,18 @@ function RealMap({
             });
           }
         });
-        ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].forEach(id => {
+        var _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter(id => map.getLayer(id));
+        var _order = (() => {
           try {
-            if (map.getLayer(id)) map.moveLayer(id);
+            return (map.getStyle().layers || []).map(l => l.id);
+          } catch {
+            return [];
+          }
+        })();
+        var _tail = _order.slice(_order.length - _top.length);
+        if (_top.some((id, i) => _tail[i] !== id)) _top.forEach(id => {
+          try {
+            map.moveLayer(id);
           } catch (e) {
             console.error(`[plursky-map] moveLayer "${id}" failed:`, e);
           }
@@ -6836,10 +6965,6 @@ function RealMap({
       map.on("load", () => {
         _mapLog("[plursky-map] map.on('load') fired");
         if (cancelled) return;
-        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
-          var b = FESTIVAL_CONFIG.venue.festivalBounds;
-          map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
-        }
         SUB_LANDMARKS.forEach(lm => {
           var {
             lat,
@@ -6855,6 +6980,30 @@ function RealMap({
           }).setLngLat([lng, lat]).addTo(map);
         });
         _applyLandmarkVisibility();
+        amenities.forEach(a => {
+          var {
+            lat,
+            lng
+          } = mapToGps(a.x, a.y);
+          var cfg = AMENITY_STYLE[a.type] || {
+            color: "var(--paper)",
+            ink: "var(--ink)",
+            letter: ""
+          };
+          var el = document.createElement("div");
+          el.setAttribute("data-realmap-amenity", a.type);
+          el.style.cssText = "width:22px;height:22px;border-radius:999px;box-sizing:border-box;" + "display:flex;align-items:center;justify-content:center;" + `background:${cfg.color};color:${cfg.ink || "var(--paper)"};` + "border:2.5px solid #fff;font:900 12px/1 'Geist Mono',monospace;" + "box-shadow:0 0 0 1px rgba(0,0,0,0.55),0 2px 6px rgba(0,0,0,0.5);pointer-events:none;";
+          el.textContent = cfg.letter || "";
+          amenityElsRef.current.push({
+            el,
+            type: a.type
+          });
+          new maplibregl.Marker({
+            element: el,
+            anchor: "center"
+          }).setLngLat([lng, lat]).addTo(map);
+        });
+        _applyAmenityVisibility();
         stages.forEach(s => {
           var {
             lat,
@@ -6863,6 +7012,7 @@ function RealMap({
           var pill = document.createElement("div");
           pill.style.cssText = "background:rgba(247,237,224,0.96);color:#1a120d;" + `border:2px solid ${s.color};` + "padding:4px 11px;border-radius:999px;" + "font-family:'Geist Mono',monospace;font-size:10.5px;" + "letter-spacing:1.1px;font-weight:800;white-space:nowrap;" + "box-shadow:0 4px 12px rgba(0,0,0,0.45);" + "pointer-events:auto;cursor:pointer;" + "transform:translate(0,-44px);";
           pill.textContent = s.name.toUpperCase();
+          pill.setAttribute("data-realmap-stage", s.id);
           pill.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
           stageMarkersRef.current[s.id] = new maplibregl.Marker({
             element: pill,
@@ -6870,6 +7020,111 @@ function RealMap({
           }).setLngLat([lng, lat]).addTo(map);
         });
         _mapLog("[plursky-map] stage name pills added:", stages.length);
+        var home = {
+          center: map.getCenter(),
+          zoom: map.getZoom(),
+          pitch: map.getPitch(),
+          bearing: 0
+        };
+        var grounds = stages.length >= 2 ? [] : _groundsLngLats(FESTIVAL_CONFIG);
+        if (stages.length >= 2 || grounds.length >= 2) {
+          var b = new maplibregl.LngLatBounds();
+          if (stages.length >= 2) stages.forEach(s => {
+            var {
+              lat,
+              lng
+            } = mapToGps(s.x, s.y);
+            b.extend([lng, lat]);
+          });else grounds.forEach(ll => b.extend(ll));
+          var box = containerRef.current?.getBoundingClientRect();
+          var pad = {
+            top: 150,
+            bottom: 150,
+            left: 95,
+            right: 105
+          };
+          var cam = box && box.width > pad.left + pad.right + 40 && box.height > pad.top + pad.bottom + 40 ? map.cameraForBounds(b, {
+            padding: pad,
+            bearing: 0
+          }) : null;
+          if (cam) {
+            home.center = cam.center;
+            home.zoom = Math.min(cam.zoom, 17.5);
+            home.pitch = OPENING_PITCH_PINNED;
+          }
+          map.jumpTo(home);
+        }
+        var lim = _realMapPanLimit(FESTIVAL_CONFIG, maplibregl);
+        if (lim) {
+          lim.extend(map.getBounds());
+          map.setMaxBounds(lim);
+        }
+        homeRef.current = {
+          center: map.getCenter(),
+          zoom: map.getZoom(),
+          pitch: map.getPitch(),
+          bearing: 0
+        };
+        var _declutter = () => {
+          var av = amenityViewRef.current;
+          if (av.show && av.filter && !av.meet && amenities.some(a => a.type === av.filter)) {
+            Object.values(stageMarkersRef.current).forEach(m => {
+              m.getElement().style.visibility = "hidden";
+            });
+            return;
+          }
+          var taken = [];
+          var sw = styleSwitchRef.current?.getBoundingClientRect();
+          if (sw && sw.width) taken.push(sw);
+          var sel = selectedRef.current;
+          var order = stages.filter(s => s.id === sel).concat(stages.filter(s => s.id !== sel));
+          var GAP = 4;
+          order.forEach(s => {
+            var el = stageMarkersRef.current[s.id]?.getElement();
+            if (!el) return;
+            var r = el.getBoundingClientRect();
+            var hit = taken.some(t => r.left < t.right + GAP && r.right > t.left - GAP && r.top < t.bottom + GAP && r.bottom > t.top - GAP);
+            el.style.visibility = hit ? "hidden" : "";
+            if (!hit) taken.push(r);
+          });
+        };
+        var _declutterQueued = false;
+        declutterRef.current = () => {
+          if (_declutterQueued) return;
+          _declutterQueued = true;
+          requestAnimationFrame(() => {
+            _declutterQueued = false;
+            if (!cancelled) _declutter();
+          });
+        };
+        map.on("move", declutterRef.current);
+        declutterRef.current();
+        var _reportView = () => {
+          var h = homeRef.current,
+            z = map.getZoom(),
+            c = map.getCenter();
+          var atHome = !!h && Math.abs(z - h.zoom) < 0.05 && Math.abs(map.getPitch() - h.pitch) < 1 && Math.abs(map.getBearing()) < 1 && distMiles(c.lat, c.lng, h.center.lat, h.center.lng) * 1609.34 < 5;
+          try {
+            onViewChangeRef.current?.({
+              atMin: z <= map.getMinZoom() + 0.01,
+              atMax: z >= map.getMaxZoom() - 0.01,
+              atHome
+            });
+          } catch {}
+        };
+        map.on("moveend", _reportView);
+        _reportView();
+        if (controlRef) controlRef.current = {
+          zoomIn: () => map.zoomIn(),
+          zoomOut: () => map.zoomOut(),
+          reset: () => {
+            if (homeRef.current) map.flyTo({
+              ...homeRef.current,
+              duration: 600,
+              essential: true
+            });
+          }
+        };
         var avWrap = document.createElement("div");
         avWrap.style.cssText = "position:relative;width:18px;height:18px;pointer-events:none;";
         var halo = document.createElement("div");
@@ -6878,7 +7133,8 @@ function RealMap({
         avDot.style.cssText = "position:absolute;inset:0;border-radius:999px;" + "background:#f59a36;border:2px solid rgba(255,255,255,0.95);" + "box-shadow:0 0 16px rgba(245,154,54,0.9),0 2px 6px rgba(0,0,0,0.5);";
         avWrap.appendChild(halo);
         avWrap.appendChild(avDot);
-        var avLatLng = mapToGps(avatar.x, avatar.y);
+        var avLatLng = _lngLatOf(avatarRef.current);
+        _showYou(avWrap, avatarRef.current);
         avatarMarkerRef.current = new maplibregl.Marker({
           element: avWrap
         }).setLngLat([avLatLng.lng, avLatLng.lat]).addTo(map);
@@ -6900,13 +7156,27 @@ function RealMap({
         if (!xy) return;
         onMapClickRef.current({
           x: Math.max(2, Math.min(98, xy.x)),
-          y: Math.max(2, Math.min(98, xy.y))
+          y: Math.max(2, Math.min(98, xy.y)),
+          gps: {
+            lat: ll.lat,
+            lng: ll.lng
+          }
         });
       });
       map.on("error", e => {
         if (cancelled) return;
         var msg = e && e.error && e.error.message || "tile load failed";
         console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
+        if (e && e.sourceId === "official-map") {
+          officialMapFailedRef.current = true;
+          try {
+            if (map.getLayer("official-map")) map.removeLayer("official-map");
+          } catch {}
+          try {
+            if (map.getSource("official-map")) map.removeSource("official-map");
+          } catch {}
+          return;
+        }
         setErr(prev => prev || msg);
         tileErrRef.current += 1;
         if (tileErrRef.current >= 6 && !loadedRef.current) _fatal("Real map tiles are failing");
@@ -6921,6 +7191,7 @@ function RealMap({
     return () => {
       clearTimeout(bootTimer);
       cancelled = true;
+      if (controlRef) controlRef.current = null;
       if (mapRef.current) {
         try {
           mapRef.current.remove();
@@ -6928,30 +7199,39 @@ function RealMap({
         mapRef.current = null;
       }
       stageMarkersRef.current = {};
+      amenityElsRef.current = [];
+      declutterRef.current = null;
       avatarMarkerRef.current = null;
       friendMarkersRef.current = {};
       savedStarMarkersRef.current = {};
       meetMarkerRef.current = null;
+      landmarkElsRef.current = [];
+      loadedRef.current = false;
+      setLoaded(false);
     };
-  }, []);
+  }, [attempt]);
   React.useEffect(() => {
     if (!loaded || !avatarMarkerRef.current) return;
     var {
       lat,
       lng
-    } = mapToGps(avatar.x, avatar.y);
+    } = _lngLatOf(avatar);
     avatarMarkerRef.current.setLngLat([lng, lat]);
-  }, [loaded, avatar.x, avatar.y]);
+    _showYou(avatarMarkerRef.current.getElement(), avatar);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng]);
   React.useEffect(() => {
     if (!loaded || !mapRef.current || !window.maplibregl) return;
     var map = mapRef.current;
     var live = friendMarkersRef.current;
     var seenIds = new Set();
     crewFriends.forEach(f => {
+      var ll = _realMapTarget(f);
+      if (!ll) return;
       seenIds.add(f.id);
-      var lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
-      var lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      var {
+        lat,
+        lng
+      } = ll;
       var seen = formatLastSeen(f.ts);
       var initial = (f.name?.[0] || "?").toUpperCase();
       var sig = `${initial}|${f.color}|${seen.color}|${seen.freshness}|${seen.label}|${f.name}`;
@@ -6990,6 +7270,7 @@ function RealMap({
     if (src && mapRef.current._plurskyExtrusionData) {
       src.setData(mapRef.current._plurskyExtrusionData(selected));
     }
+    declutterRef.current?.();
     if (!selected) return;
     var s = stages.find(st => st.id === selected);
     if (!s) return;
@@ -7025,11 +7306,20 @@ function RealMap({
       }
       return;
     }
+    var ll = _realMapTarget(meetTarget);
+    if (!ll) {
+      if (meetMarkerRef.current) {
+        try {
+          meetMarkerRef.current.remove();
+        } catch {}
+        meetMarkerRef.current = null;
+      }
+      return;
+    }
     var {
       lat,
       lng
-    } = mapToGps(meetTarget.x, meetTarget.y);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    } = ll;
     if (!meetMarkerRef.current) {
       var wrap = document.createElement("div");
       wrap.style.cssText = "position:relative;width:22px;height:22px;pointer-events:none;";
@@ -7046,7 +7336,7 @@ function RealMap({
     } else {
       meetMarkerRef.current.setLngLat([lng, lat]);
     }
-  }, [loaded, meetTarget?.x, meetTarget?.y]);
+  }, [loaded, meetTarget?.x, meetTarget?.y, meetTarget?.gps?.lat, meetTarget?.gps?.lng]);
   var starTick = useTick(60000);
   React.useEffect(() => {
     if (!loaded || !mapRef.current || !window.maplibregl) return;
@@ -7153,8 +7443,18 @@ function RealMap({
       });
       return;
     }
-    var a = mapToGps(avatar.x, avatar.y);
-    var t = mapToGps(target.x, target.y);
+    var a = _realMapTarget(avatar);
+    var t = _realMapTarget(target);
+    if (!a || !t) {
+      src.setData({
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: []
+        }
+      });
+      return;
+    }
     src.setData({
       type: "Feature",
       geometry: {
@@ -7162,7 +7462,7 @@ function RealMap({
         coordinates: [[a.lng, a.lat], [t.lng, t.lat]]
       }
     });
-  }, [loaded, avatar.x, avatar.y, selected, meetTarget, stages]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng, selected, meetTarget, stages]);
   var pickStyle = k => {
     setStyleKey(k);
     try {
@@ -7187,8 +7487,8 @@ function RealMap({
     className: "duo-code",
     style: {
       position: "absolute",
-      top: 108,
-      right: 10,
+      top: 58,
+      left: 10,
       zIndex: 4,
       background: "rgba(var(--shade-rgb),0.78)",
       color: "var(--ink)",
@@ -7198,10 +7498,12 @@ function RealMap({
       WebkitBackdropFilter: "blur(8px)"
     }
   }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
+    ref: styleSwitchRef,
+    "data-realmap-style-switch": true,
     style: {
       position: "absolute",
-      top: 108,
-      right: 10,
+      top: 58,
+      left: 10,
       zIndex: 4,
       display: "flex",
       background: "rgba(var(--shade-rgb),0.78)",
@@ -7278,6 +7580,7 @@ function RealMap({
       setErr(null);
       fatalRef.current = false;
       tileErrRef.current = 0;
+      setAttempt(a => a + 1);
     },
     style: {
       marginTop: 10,
@@ -9135,6 +9438,46 @@ function BottomSheet({
   state,
   setState
 }) {
+  if (meetMode && meetTarget && meetTarget.textOnly) {
+    var who = meetGroup.map(id => friends.find(fr => fr.id === id)?.name).filter(Boolean);
+    return React.createElement("div", {
+      "data-meet-text-only": "",
+      style: {
+        background: "var(--s1)",
+        color: "var(--ink)",
+        padding: "14px 16px 12px",
+        borderTopLeftRadius: "var(--rad-lg)",
+        borderTopRightRadius: "var(--rad-lg)",
+        boxShadow: "var(--e2)"
+      }
+    }, React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      className: "duo-label duo-acc"
+    }, "Meeting"), React.createElement("div", {
+      className: "duo-headline duo-name",
+      style: {
+        marginTop: 2
+      }
+    }, meetTarget.label), React.createElement("div", {
+      className: "duo-body-s duo-ink2",
+      style: {
+        marginTop: 4
+      }
+    }, who.length ? `You + ${who.join(" + ")} · ` : "", "Stage positions are pending on this map, so there is no pin or route. Meet by name.")), React.createElement("button", {
+      onClick: onCancelMeet,
+      className: "duo-chip"
+    }, React.createElement("span", null, "End"))));
+  }
   if (meetMode && meetTarget) {
     var groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     var youDist = Math.sqrt((meetTarget.x - avatar.x) ** 2 + (meetTarget.y - avatar.y) ** 2);
@@ -9146,7 +9489,7 @@ function BottomSheet({
     var knownEtas = [youMins, ...fEtas.map(e => e.mins)].filter(m => m != null);
     var eta = knownEtas.length ? Math.max(...knownEtas) : null;
     var title = groupFriends.length === 0 ? "Pinned spot" : groupFriends.length === 1 ? `You + ${groupFriends[0].name}` : `Group · ${groupFriends.length + 1} people`;
-    var routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    var routingLabel = !avatar?.live ? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";
     return React.createElement("div", {
       style: {
         background: "var(--s1)",
@@ -9569,8 +9912,8 @@ function StageLineupSheet({
       gap: 8,
       padding: "10px 16px 0"
     }
-  }, React.createElement("button", {
-    onClick: () => onGoHere?.(stage),
+  }, onGoHere ? React.createElement("button", {
+    onClick: () => onGoHere(stage),
     className: "duo-btn pri",
     style: {
       flex: 2,
@@ -9590,7 +9933,16 @@ function StageLineupSheet({
     strokeLinejoin: "round"
   }, React.createElement("path", {
     d: "M3 11l19-9-9 19-2-8-8-2z"
-  })), "Go here"), React.createElement("button", {
+  })), "Go here") : React.createElement("div", {
+    "data-stage-no-route": "",
+    className: "duo-data-s duo-ink2",
+    style: {
+      flex: 2,
+      minHeight: 48,
+      display: "flex",
+      alignItems: "center"
+    }
+  }, "Position pending · no route"), React.createElement("button", {
     onClick: () => setPeek(p => !p),
     "aria-pressed": peek,
     className: "duo-btn",
@@ -10347,5 +10699,13 @@ Object.assign(window, {
   geometryVerifiedFor,
   _geomVerifiedMemo,
   MAP_REGISTRATION_SOURCED,
-  readoutHonest
+  readoutHonest,
+  posterTierFor,
+  POSTER_TIER,
+  POSTER_OPACITY_UNCHECKED,
+  REAL_MAP_PLACES_CHECKED,
+  REAL_MAP_AMENITIES,
+  _realMapTarget,
+  _meetTargetFor,
+  _groundsLngLats
 });

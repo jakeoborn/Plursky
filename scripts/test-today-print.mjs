@@ -1,0 +1,540 @@
+// Today print gate: the ticket / journey Today and the artist hero under the
+// approved Sora + chalk/charcoal direction (claude-plur-sora-palette-20261012,
+// Jake's Oct 12 approvals), proved in the running app on labelled fixtures,
+// in both modes, at 390 and 320, under Reduce Motion (the app's default test
+// posture). New to this branch; written to the Oct 12 contract.
+//   · the fixture's festival is the one that mounted, and the page threw nothing
+//   · the sheet is chalk (Light) or charcoal (Dark): the poster's fill IS the
+//     paper; the verified festival accent is a thin edition rule (≤ 4px) on
+//     the poster, never a fill; a festival without a verified accent rules in ink
+//   · one Sora family, rendered (platform fonts via CDP), 400/500/600 loaded;
+//     the festival word 44–56px, the claim 36–44px, journey titles 27–33px,
+//     body 14px/1.55; the countdown stamp upright, ~80px, 1px border; the
+//     barcode light; block rules 1px
+//   · every text pair inside the print is WCAG AA for its size, against what
+//     is really behind it (layers composited, opacity included)
+//   · nothing scrolls sideways; the stamp covers no text; display words never
+//     break inside themselves; every print control is a 44px target
+//   · the four steps carry their phrases and route where they say; the
+//     essentials survive as type links by state; the drawers are named, 44px,
+//     above the bar, closed by Escape; the weather values read AA
+//   · the stamp's night and date resolve to the session's weekend; Basics
+//     prints the festival's own guide
+//   · portraits come from the reviewed ledger, initials otherwise, never an
+//     invented image; b2b pairs print two whole faces
+//   · every ledger portrait a reachable lineup can show (each b2b half too):
+//     the hero paints that asset; every label on it reads AA against the
+//     pixels behind it; the name is Sora 600 at 40px (32 b2b) with no shadow,
+//     white, on a neutral shade (no violet cast); the schedule range is one
+//     line at 28px (390) / 22px (320); the credit is visible with the licence
+//   · the print accent ledger covers the whole roster, each row sourced and dated
+// Usage: NP_ROOT=dist node scripts/test-today-print.mjs [fixtureKey ... | heroes]
+import { chromium } from 'playwright';
+import { spawn } from 'node:child_process';
+import { createServer } from 'node:net';
+import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
+import { fontEvidence, faceEvidence, heroEvidence, ledgerActs, HERO_FONT_SAMPLES } from './lib/today-print-evidence.mjs';
+import { existsSync } from 'node:fs';
+
+const ONLY = process.argv.slice(2);
+const problems = []; let checks = 0;
+let fontSamples = 0, portraits = 0, pairsSeen = 0, heroesSeen = 0, heroLabels = 0; const initialsFaces = new Set();
+const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
+const reservePort = () => new Promise((res, rej) => { const s = createServer(); s.once('error', rej); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? rej(e) : res(a.port)); }); });
+
+// The approved tokens (spec): paper and ink per mode.
+const TOKENS = { light: { paper: 'rgb(245, 243, 237)', ink: 'rgb(32, 35, 35)' }, dark: { paper: 'rgb(21, 28, 29)', ink: 'rgb(242, 243, 235)' } };
+
+// key, festival, clock, saved ids, extra storage, widths, expected essentials, phase
+const FIXTURES = [
+  ['pre-empty', 'edc-lv-2026', '2026-05-01T18:00:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  ['pre-saved', 'edc-lv-2026', '2026-05-01T18:00:00Z', ['k15', 'k16', 'q17', 'bp8', 'n4', 'k1', 'k9'], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  ['day-empty', 'edc-lv-2026', '2026-05-17T07:50:00Z', [], {}, [390], ['map', 'tonight', 'dontmiss', 'lastnight', 'upcoming', 'basics', 'alerts'], 'live'],
+  ['day-saved', 'edc-lv-2026', '2026-05-17T07:50:00Z', ['k15', 'k16', 'q17', 'bp8'], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'lastnight', 'upcoming', 'basics', 'alerts'], 'live'],
+  ['post', 'edc-lv-2026', '2026-06-01T18:00:00Z', ['k15', 'k16', 'q17', 'bp8'], { plursky_attended_v1: JSON.stringify({ 1: ['k15'] }) }, [390], ['map', 'basics', 'alerts'], 'post'],
+  ['iii-pre', 'iii-points-2026', '2026-10-09T18:00:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  ['nocturnal', 'nocturnal-wonderland-2026', '2026-08-01T18:00:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  ['neutral', 'summerfest-2026', '2026-06-01T18:00:00Z', [], {}, [390], ['map', 'tonight', 'dontmiss', 'headliners', 'basics', 'alerts'], 'pre'],
+  // ACL on Weekend 2's last night (Sun Oct 11, 8:30pm CDT): the stamp carries that date, not Weekend 1's.
+  ['acl-w2', 'acl-2026', '2026-10-12T01:30:00Z', [], {}, [390, 320], ['map', 'tonight', 'dontmiss', 'lastnight', 'basics', 'alerts'], 'live'],
+].filter(([k]) => !ONLY.length || ONLY.includes(k));
+const HEROES = !ONLY.length || ONLY.includes('heroes');
+
+const PORT = await reservePort();
+// NP_ROOT=dist audits the production app target (webDir=dist) instead of the source page.
+const server = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], { cwd: process.env.NP_ROOT || process.cwd(), stdio: 'ignore' });
+let browser;
+try {
+  await serverReady(`http://127.0.0.1:${PORT}/index.html`);
+  const executablePath = ['/opt/google/chrome/chrome', '/usr/bin/google-chrome', '/usr/bin/chromium'].find(existsSync);
+  browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+
+  const open = async ({ fid, at, saved, extra, width, pick, motion = 'reduce', query = 'tab=home', ready = '[data-night-print]' }) => {
+    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick });
+    // Nothing leaves the box: the app's CDN scripts come from scripts/vendor/ and every other
+    // outside call is refused, so the print is measured on fixture data alone.
+    await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`), r => r.abort());
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/; nothing else leaves the box
+    await ctx.clock.install({ time: new Date(at) });
+    // A forecast in the app's own cache, dated at the pinned clock, so the Sun & weather
+    // sheet prints real values (the live fetch is refused) and their inks can be measured.
+    const forecast = { fetchedAt: Date.parse(at), data: [{ name: 'Tonight', startTime: new Date(Date.parse(at)).toISOString(), endTime: new Date(Date.parse(at) + 12 * 3600000).toISOString(), temperature: 71, temperatureUnit: 'F', windSpeed: '10 mph', windDirection: 'SW', shortForecast: 'Clear', detailedForecast: 'Clear' }] };
+    const hourly = { fetchedAt: Date.parse(at), data: Array.from({ length: 12 }, (_, i) => ({ startTime: new Date(Date.parse(at) + i * 3600000).toISOString(), temperature: 70 + i, temperatureUnit: 'F', shortForecast: 'Clear', windSpeed: '5 mph', probabilityOfPrecipitation: 0 })) };
+    await ctx.addInitScript(({ fid, pick, saved, extra, forecast, hourly }) => {
+      if (sessionStorage.getItem('__seeded')) return; sessionStorage.setItem('__seeded', '1');
+      localStorage.setItem(`forecast_${fid}`, JSON.stringify(forecast)); localStorage.setItem(`forecast_hourly_${fid}`, JSON.stringify(hourly));
+      localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid); localStorage.setItem('active_festival_explicit', '1');
+      localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('setup_banner_dismissed', '1'); localStorage.setItem('notif_nudge_dismissed', '1');
+      localStorage.setItem(`${fid}_saved_v1`, JSON.stringify(saved));
+      localStorage.setItem('ping_code', 'ECHO'); localStorage.setItem('plursky_pid', 'today-print-gate');
+      localStorage.setItem('plursky.appearance', pick);
+      for (const [k, v] of Object.entries(extra)) localStorage.setItem(k, v);
+      if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} });
+    }, { fid, pick, saved, extra, forecast, hourly });
+    const page = await ctx.newPage();
+    const errors = [];
+    page.on('pageerror', e => errors.push(String(e.message || e)));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?${query}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector(ready, { timeout: 60000 });
+    await page.clock.runFor(1500); await page.waitForTimeout(400);
+    return { ctx, page, errors };
+  };
+
+  // A drawer (the first-timer guide, the alerts drawer): measured by its dialog name.
+  const drawerAudit = (page, label) => page.evaluate((label) => {
+    const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === label);
+    if (!dlg) return null;
+    const bar = document.querySelector('button[aria-current="page"]')?.parentElement;
+    const br = bar && bar.getBoundingClientRect();
+    const under = br && document.elementFromPoint(br.left + br.width / 2, br.top + br.height / 2);
+    const covered = !!(under && !bar.contains(under));
+    const tabTop = bar && !covered ? br.top : window.innerHeight;
+    const btn = (b) => { const q = b.getBoundingClientRect(); return { text: b.textContent.trim().slice(0, 24), label: b.getAttribute('aria-label'), w: q.width, h: q.height, bottom: q.bottom }; };
+    const buttons = [...dlg.querySelectorAll('button')].map(btn);
+    const scroller = [...dlg.querySelectorAll('div')].find(d => /auto|scroll/.test(getComputedStyle(d).overflowY));
+    let scrolled = null;
+    if (scroller) { scroller.scrollTop = scroller.scrollHeight; scrolled = [...dlg.querySelectorAll('button')].map(btn); scroller.scrollTop = 0; }
+    const content = scroller ? scroller.getBoundingClientRect().bottom : dlg.getBoundingClientRect().bottom;
+    return { tabTop, bottom: Math.max(dlg.getBoundingClientRect().bottom, content), buttons, scrolled };
+  }, label);
+  // The Sun & weather values: each number against the composited backing under it.
+  const sheetInks = (page) => page.evaluate(() => {
+    const parse = (s) => { const m = s.match(/[\d.]+/g); if (!m) return null; const [r, g, b, a = 1] = m.map(Number); return [r, g, b, a]; };
+    const lum = ([r, g, b]) => { const f = (c) => { c /= 255; return c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; }; return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); };
+    const backing = (el) => { const r = el.getBoundingClientRect(); const stack = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2); let out = [255, 255, 255]; const layers = []; for (const n of stack) { if (n === el || el.contains(n)) continue; const bg = parse(getComputedStyle(n).backgroundColor); if (bg && bg[3] > 0) { layers.push(bg); if (bg[3] >= 1) break; } } for (const l of layers.reverse()) { const a = l[3]; out = [0, 1, 2].map(i => l[i] * a + out[i] * (1 - a)); } return out; };
+    const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === 'Sun & weather');
+    if (!dlg) return null;
+    return [...dlg.querySelectorAll('div')].filter(d => !d.children.length && /^(\d+°[FC]|\d{1,2}:\d{2}(?: ?[AP]M)?)$/i.test(d.textContent.trim())).map(d => {
+      const fg = parse(getComputedStyle(d).color), bg = backing(d); const L1 = lum(fg), L2 = lum(bg);
+      return { text: d.textContent.trim(), fg: getComputedStyle(d).color, bg: bg.map(Math.round).join(','), ratio: +((Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05)).toFixed(2) };
+    });
+  });
+
+  // Everything measured in one pass, in the page.
+  const measure = (page) => page.evaluate(() => {
+    const np = document.querySelector('[data-night-print]');
+    const vis = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden'; };
+    const parse = (c) => { const m = c.match(/rgba?\(([^)]+)\)/); if (!m) return null; const [r, g, b, a = '1'] = m[1].split(',').map(s => s.trim()); return [+r, +g, +b, parseFloat(a)]; };
+    const lum = ([r, g, b]) => { const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b); };
+    const over = (top, under) => { const a = top[3]; return [0, 1, 2].map(i => Math.round(top[i] * a + under[i] * (1 - a))).concat([1]); };
+    // What is really behind an element: its ancestors' backgrounds, composited from the first opaque one up.
+    const behind = (el) => {
+      const layers = []; let n = el.parentElement;
+      while (n) {
+        // Step 3's plate is a sibling painted under the text, not an ancestor.
+        const plate = n.classList.contains('np-j3') ? n.querySelector(':scope > .np-j3-plate') : null;
+        const bg = parse(getComputedStyle(plate || n).backgroundColor);
+        if (bg && bg[3] > 0) { layers.push(bg); if (bg[3] >= 1) break; } n = n.parentElement;
+      }
+      let base = [245, 243, 237, 1];
+      if (!layers.length || layers[layers.length - 1][3] < 1) { const b = parse(getComputedStyle(document.body).backgroundColor); base = b && b[3] >= 1 ? b : base; } else base = layers.pop();
+      for (const l of layers.reverse()) base = over(l, base);
+      return base;
+    };
+    const opacityOf = (el) => { let o = 1; let n = el; while (n && n !== document.body) { o *= parseFloat(getComputedStyle(n).opacity); n = n.parentElement; } return o; };
+    const contrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+    const aa = [];
+    for (const el of np.querySelectorAll('*')) {
+      if (!vis(el)) continue;
+      const text = [...el.childNodes].filter(n => n.nodeType === 3).map(n => n.data).join('').replace(/\s+/g, ' ').trim();
+      if (!text) continue;
+      const cs = getComputedStyle(el);
+      let fg = parse(cs.color); if (!fg) continue;
+      const own = parse(cs.backgroundColor);
+      let bg = behind(el); if (own && own[3] > 0) bg = over(own, bg);
+      fg = over([fg[0], fg[1], fg[2], fg[3] * opacityOf(el)], bg);
+      const size = parseFloat(cs.fontSize), weight = parseInt(cs.fontWeight, 10) || 400;
+      const large = size >= 24 || (size >= 18.66 && weight >= 700);
+      const ratio = contrast(fg, bg);
+      if (ratio < (large ? 3 : 4.5)) aa.push(`"${text.slice(0, 40)}" ${ratio.toFixed(2)}:1 (${size}px/${weight}) fg ${cs.color} on rgb(${bg.slice(0, 3)})`);
+    }
+    const w = innerWidth;
+    const reach = [...np.querySelectorAll('.np-poster, .np-block, .np-journey, .np-util, .np-head, button')].filter(vis)
+      .map(el => ({ el, r: el.getBoundingClientRect() })).filter(({ r }) => r.right > w + 1 || r.left < -1)
+      .map(({ el, r }) => `${el.className || el.tagName} ${Math.round(r.left)}..${Math.round(r.right)}`);
+    const pans = [...np.querySelectorAll('*')].filter(el => { const cs = getComputedStyle(el); return /auto|scroll/.test(cs.overflowX) && el.scrollWidth > el.clientWidth + 1 && el.getBoundingClientRect().height > 40; }).map(el => el.className || el.tagName);
+    // Controls: every print control is 44px both ways.
+    const small = [...np.querySelectorAll('.np-tool, .np-title[data-switch], .np-act, .np-srow, .np-j, .np-j3, .np-link')].filter(vis)
+      .filter(el => !el.closest('.np-j3') || el.classList.contains('np-j3'))
+      .map(el => ({ el, r: el.getBoundingClientRect() })).filter(({ r }) => r.height < 44 || r.width < 44)
+      .map(({ el, r }) => `${el.className} ${Math.round(r.width)}×${Math.round(r.height)} "${(el.getAttribute('aria-label') || el.textContent).trim().slice(0, 30)}"`);
+    // The stamp covers no text.
+    const stamp = np.querySelector('[data-np-stamp]');
+    const sr = stamp && stamp.getBoundingClientRect();
+    const hit = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    const covered = !sr ? [] : [...np.querySelector('.np-poster').querySelectorAll('*')].filter(el => vis(el) && !stamp.contains(el) && el !== stamp)
+      .filter(el => [...el.childNodes].some(n => n.nodeType === 3 && n.data.trim())).map(el => ({ el, r: el.getBoundingClientRect() }))
+      .filter(({ r }) => hit(r, sr)).map(({ el }) => el.textContent.trim().slice(0, 30));
+    // Words: one line each, inside their box, never broken inside themselves.
+    const broken = [];
+    for (const h of np.querySelectorAll('.np-word, .np-strip-word, .np-claim, .np-jt')) {
+      if (!vis(h)) continue;
+      if (getComputedStyle(h).overflowWrap === 'anywhere') broken.push(`${h.className}: fit gave up ("${h.textContent.trim().slice(0, 30)}")`);
+      const box = h.getBoundingClientRect(); const padR = parseFloat(getComputedStyle(h).paddingRight);
+      const tw = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
+      while (tw.nextNode()) {
+        const n = tw.currentNode; const re = /[^\s]+/g; let m;
+        while ((m = re.exec(n.data))) {
+          const rg = document.createRange(); rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
+          const rs = [...rg.getClientRects()]; const r = rg.getBoundingClientRect();
+          if (rs.length > 1 && rs[rs.length - 1].top > rs[0].top + 1) broken.push(`${h.className}: "${m[0]}" wraps inside itself`);
+          if (r.right > box.right - padR + 1) broken.push(`${h.className}: "${m[0]}" runs past its box by ${Math.round(r.right - (box.right - padR))}px`);
+        }
+      }
+    }
+    const px = (sel, prop) => { const el = [...np.querySelectorAll(sel)].find(vis); return el ? parseFloat(getComputedStyle(el)[prop]) : null; };
+    const word = np.querySelector('.np-word, .np-strip-word');
+    const steps = [...np.querySelectorAll('[data-np-step]')].map(b => ({ id: b.dataset.npStep, aria: b.getAttribute('aria-label') || '', text: [...b.querySelectorAll('h3 > span, p')].map(e => e.textContent.trim()).join(' '), r: b.getBoundingClientRect() }));
+    const links = [...np.querySelectorAll('[data-np-link]')].map(b => b.dataset.npLink);
+    const poster = np.querySelector('[data-np-poster], [data-np-strip]');
+    const toRgb = (hex) => { const n = parseInt(hex.slice(1), 16); return `rgb(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255})`; };
+    const acc = window.FESTIVAL_CONFIG?.print?.accent || null;
+    const scs = stamp && getComputedStyle(stamp);
+    const barcode = np.querySelector('.np-barcode'); const bcs = barcode && getComputedStyle(barcode);
+    return {
+      fid: window.FESTIVAL_CONFIG?.id, mode: document.documentElement.getAttribute('data-mode'),
+      aa, reach, pans, small, covered, broken,
+      wordSize: word ? parseFloat(getComputedStyle(word).fontSize) : null, wordText: word ? word.innerText.replace(/\s+/g, ' ') : '',
+      // The fit observer steps a word that cannot fit its line down to data-fit-min; the clamp's own size is 44–56.
+      wordFitted: !!(word && word.dataset.fitBase && word.style.fontSize && parseFloat(word.style.fontSize) < parseFloat(word.dataset.fitBase)), wordMin: word ? parseFloat(word.dataset.fitMin || '0') : null,
+      claimSize: px('.np-claim', 'fontSize'), jtSize: px('.np-jt', 'fontSize'), bodySize: px('.np-j p', 'fontSize'), bodyLine: px('.np-j p', 'lineHeight'),
+      stamp: scs ? { transform: scs.transform, w: stamp.getBoundingClientRect().width, border: parseFloat(scs.borderTopWidth) } : null,
+      barcode: bcs ? { h: barcode.getBoundingClientRect().height, opacity: parseFloat(bcs.opacity) } : null,
+      blockRule: Math.max(0, ...[...np.querySelectorAll('.np-block')].filter(vis).map(b => parseFloat(getComputedStyle(b).borderBottomWidth))),
+      steps, links, h1: [...document.querySelectorAll('h1')].filter(vis).map(h => h.innerText.replace(/\s+/g, ' ').trim()),
+      posterAccent: poster?.dataset.npAccent, posterBg: poster ? getComputedStyle(poster).backgroundColor : null, posterRule: poster ? getComputedStyle(poster).borderTopColor : null, posterRuleW: poster ? parseFloat(getComputedStyle(poster).borderTopWidth) : null,
+      paperBg: getComputedStyle(np).backgroundColor, paperInk: getComputedStyle(np).color, accHex: acc, accRgb: acc ? toRgb(acc) : null,
+      sideways: document.documentElement.scrollWidth > innerWidth + 1 || np.scrollWidth > np.clientWidth + 1,
+      tilt: (() => { const p = np.querySelector('.np-j3-plate'); return p ? getComputedStyle(p).transform : null; })(),
+      journeyBox: (() => { const j = np.querySelector('.np-journey'); return j ? getComputedStyle(j).overflowX : null; })(),
+    };
+  });
+
+  const tabTo = async (page) => { await page.goto(`http://127.0.0.1:${PORT}/index.html?tab=home`, { waitUntil: 'domcontentloaded' }); await page.waitForSelector('[data-night-print]', { timeout: 60000 }); await page.clock.runFor(1500); await page.waitForTimeout(300); };
+  const h1s = (page) => page.evaluate(() => [...document.querySelectorAll('h1')].filter(h => h.getClientRects().length).map(h => h.innerText.replace(/\s+/g, ' ').trim()));
+  const tab = (page) => page.evaluate(() => (document.querySelector('[aria-current=page]')?.innerText || '').trim());
+  const dialogs = (page) => page.evaluate(() => [...document.querySelectorAll('[role=dialog]')].map(d => d.getAttribute('aria-label') || ''));
+  const boardState = (page) => page.evaluate(() => {
+    const b = document.querySelector('[data-duo-stages]'); if (!b) return null;
+    const t = b.querySelector('[data-duo-stages-toggle]');
+    return { rows: b.querySelectorAll('.duo-card > div.duo-hair').length, heading: (b.querySelector('.duo-sect')?.textContent || '').trim(),
+      toggle: t ? t.textContent.trim() : null, expanded: t ? t.getAttribute('aria-expanded') : null };
+  });
+  const foldAudit = async (page, cycles) => {
+    const bad = []; const s0 = await boardState(page);
+    if (!s0) return { bad: ['no stage board on a live fixture'] };
+    if (!s0.toggle) return { bad: [], total: s0.rows };
+    const total = parseInt((s0.toggle.match(/^All (\d+) stages$/) || [])[1], 10);
+    if (!total) return { bad: [`the toggle reads "${s0.toggle}" at the start`] };
+    const folded = (s, step) => { if (!(s.rows >= 3 && s.rows < total && s.heading === `${s.rows} of ${total} stages` && s.toggle === `All ${total} stages` && s.expanded === 'false')) bad.push(`${step}: folded shows ${s.rows} rows, heading "${s.heading}", toggle "${s.toggle}"`); };
+    const open = (s, step) => { if (!(s.rows === total && s.heading === 'Every stage' && s.toggle === 'Fewer stages' && s.expanded === 'true')) bad.push(`${step}: open shows ${s.rows} of ${total} rows, heading "${s.heading}", toggle "${s.toggle}"`); };
+    folded(s0, 'start');
+    for (let c = 1; c <= cycles; c++) {
+      await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150); open(await boardState(page), `cycle ${c} expand`);
+      await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150); folded(await boardState(page), `cycle ${c} collapse`);
+    }
+    return { bad, total };
+  };
+
+  for (const [key, fid, at, saved, extra, widths, essentials, phase] of FIXTURES) {
+    for (const pick of ['dark', 'light']) for (const width of widths) {
+      const tag = `${key} ${pick} ${width}`;
+      let ctx; let lastStep = 'open';
+      try {
+        const o = await open({ fid, at, saved, extra, width, pick }); ctx = o.ctx;
+        const { page, errors } = o;
+        const r = await measure(page);
+        check(r.fid === fid, `${tag}: asked for ${fid}, ${r.fid} mounted`);
+        check(r.mode === pick, `${tag}: mode is ${r.mode}`);
+        check(!errors.length, `${tag}: page errors: ${errors.join(' | ').slice(0, 200)}`);
+        check(!r.aa.length, `${tag}: ${r.aa.length} text pair(s) below AA: ${r.aa.slice(0, 4).join('; ')}`);
+        check(!r.sideways && !r.pans.length && !r.reach.length, `${tag}: sideways — ${[r.sideways && 'page scrolls', ...r.pans.map(p => 'pans: ' + p), ...r.reach.map(p => 'reaches: ' + p)].filter(Boolean).join('; ').slice(0, 200)}`);
+        check(!r.small.length, `${tag}: control(s) under 44px: ${r.small.slice(0, 4).join('; ')}`);
+        check(!r.covered.length, `${tag}: the stamp covers: ${r.covered.join(', ')}`);
+        check(!r.broken.length, `${tag}: ${r.broken.slice(0, 4).join('; ')}`);
+        check(r.steps.length === 4 && r.steps.map(s => s.id).join(',') === 'people,night,playlist,gallery', `${tag}: journey steps are ${r.steps.map(s => s.id).join(',')}`);
+        check(r.steps[2]?.text.includes('Build your playlist.') && r.steps[3]?.text.includes('Create your gallery.') && r.steps[0]?.text.includes('Pick your people.') && r.steps[1]?.text.includes('Follow your night.'),
+          `${tag}: journey phrases: ${r.steps.map(s => s.text.slice(0, 30)).join(' | ')}`);
+        check(/^Pick your people/.test(r.steps[0]?.aria || '') && /^Follow your night/.test(r.steps[1]?.aria || '') && /^Build your playlist/.test(r.steps[2]?.aria || '') && /^Create your gallery/.test(r.steps[3]?.aria || ''),
+          `${tag}: accessible step names: ${r.steps.map(s => s.aria.slice(0, 30)).join(' | ')}`);
+        // The approved sheet: chalk in Light, charcoal in Dark (the spec's ground and ink).
+        check(r.paperBg === TOKENS[pick].paper && r.paperInk === TOKENS[pick].ink, `${tag}: the sheet is ${r.paperBg} / ${r.paperInk} (want ${TOKENS[pick].paper} / ${TOKENS[pick].ink})`);
+        // One Sora family, really rendered (platform fonts), 400/500/600 loaded.
+        const fe = await fontEvidence(page);
+        check(fe.loaded.sora, `${tag}: Sora 400/500/600 not loaded: ${JSON.stringify(fe.loaded)}`);
+        const wrongFace = fe.samples.filter(s => !s.absent && !s.ok);
+        check(!wrongFace.length, `${tag}: rendered with the wrong face: ${wrongFace.map(s => `${s.sel.split(',')[0]} "${s.text}" → ${s.rendered || 'none'} (want ${s.want})`).join('; ').slice(0, 300)}`);
+        check(fe.samples.filter(s => !s.absent && s.want === 'Sora').length >= 3, `${tag}: font samples absent: ${fe.samples.filter(s => s.absent).map(s => s.sel.split(',')[0]).join(', ')}`);
+        fontSamples += fe.samples.filter(s => !s.absent).length;
+        // The type scale (spec): festival word 44–56, claim 36–44, journey titles 27–33, body 14/1.55.
+        if (phase === 'pre') check(r.wordFitted ? r.wordSize >= r.wordMin : (r.wordSize >= 44 - 0.6 && r.wordSize <= 56 + 0.6), `${tag}: the festival word is ${r.wordSize}px${r.wordFitted ? ' after the fit step (min ' + r.wordMin + ')' : ' (want 44–56)'}`);
+        if (r.claimSize != null) check(r.claimSize >= 36 - 0.6 && r.claimSize <= 44 + 0.6, `${tag}: the claim is ${r.claimSize}px (want 36–44)`);
+        check(r.jtSize != null && r.jtSize >= 27 - 0.6 && r.jtSize <= 33 + 0.6, `${tag}: journey titles are ${r.jtSize}px (want 27–33)`);
+        check(r.bodySize === 14 && r.bodyLine != null && Math.abs(r.bodyLine - 14 * 1.55) <= 0.8, `${tag}: journey body is ${r.bodySize}px/${r.bodyLine}px (want 14/1.55)`);
+        // The stamp: upright, around 80px, a 1px border; the barcode light; block rules thin.
+        if (r.stamp) check(r.stamp.transform === 'none' && r.stamp.w >= 76 && r.stamp.w <= 84 && r.stamp.border === 1, `${tag}: the stamp is ${Math.round(r.stamp.w)}px, border ${r.stamp.border}px, transform ${r.stamp.transform} (want upright, ~80px, 1px)`);
+        if (r.barcode) check(r.barcode.h <= 16 && r.barcode.opacity <= 0.6, `${tag}: the barcode is ${Math.round(r.barcode.h)}px at opacity ${r.barcode.opacity} (want light: ≤16px, ≤.6)`);
+        check(r.blockRule <= 1, `${tag}: block rules are ${r.blockRule}px (want 1px)`);
+        check(r.tilt === 'none', `${tag}: Step 3's plate is not upright (${r.tilt})`);
+        check(r.journeyBox === 'hidden', `${tag}: the journey does not clip its overhang (${r.journeyBox})`);
+        // Faces: a reviewed ledger row prints that portrait; otherwise initials, never an invented image.
+        const auditFaces = (ev, where) => {
+          const badFace = ev.faces.filter(f => !f.imgFits || (f.ledger ? !(f.loaded && f.source === 'commons' && f.src && f.src.endsWith(f.ledger.asset.replace(/^\.\//, ''))) : f.source !== 'initials'));
+          check(!badFace.length, `${tag}${where}: faces: ${badFace.map(f => `${f.name}: ${!f.imgFits ? `portrait spills its face (img ${f.imgRect.join('×')} vs face ${f.rect.join('×')})` : f.ledger ? (f.loaded ? 'src ' + f.src : 'ledger row but no loaded portrait') : 'no ledger row but ' + f.source}`).join('; ').slice(0, 300)}`);
+          const badPair = ev.pairs.filter(p => !p.a || !p.b || p.overlap > 0 || p.offscreen || p.nameClipped || !/ b\db | with |\s\+\d+$/i.test(p.nameText || ''));
+          check(!badPair.length, `${tag}${where}: pairs: ${badPair.map(p => `${p.name}: ${!p.a || !p.b ? 'a face is missing' : p.overlap > 0 ? `faces overlap (${Math.round(p.overlap)}px²)` : p.offscreen ? 'off screen' : p.nameClipped ? 'name clipped' : `name reads "${p.nameText}"`}`).join('; ').slice(0, 300)}`);
+          portraits += ev.faces.filter(f => f.loaded).length; pairsSeen += ev.pairs.length;
+          for (const f of ev.faces) if (!f.loaded) initialsFaces.add(f.name);
+        };
+        auditFaces(await faceEvidence(page), '');
+        if (await page.$('[data-duo-stages-toggle]')) {
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150);
+          auditFaces(await faceEvidence(page), ' (every stage)');
+          await page.click('[data-duo-stages-toggle]'); await page.waitForTimeout(150);
+        }
+        if (phase === 'live') { const fold = await foldAudit(page, 3); check(!fold.bad.length, `${tag}: stage board fold: ${fold.bad.join('; ').slice(0, 300)}`); }
+        // The stamp's night and date resolve to the session's weekend (ACL's dayDates describe Weekend 1 only).
+        if (phase === 'live') {
+          const st = await page.evaluate(() => {
+            const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            const n = NOW.night; const d = n == null ? null : dayDateFor(n);
+            const text = document.querySelector('[data-np-strip] .np-meta span:last-child')?.textContent.trim() || '';
+            return { text, night: n, want: d ? `NIGHT ${festivalDayNums().indexOf(n) + 1} · ${d.short} ${MON[d.m]} ${d.d}`.toUpperCase() : null };
+          });
+          check(st.night != null && st.text === st.want, `${tag}: the stamp reads "${st.text}" (want "${st.want}", night ${st.night})`);
+          if (key === 'acl-w2') check(/SUN OCT 11$/.test(st.text) && !/OCT 4\b/.test(st.text), `${tag}: Weekend 2's stamp reads "${st.text}" (want Sun Oct 11)`);
+        }
+        check(r.links.join(',') === essentials.join(','), `${tag}: essentials are ${r.links.join(',')} (want ${essentials.join(',')})`);
+        // The accent: the ledger's verified hex as a thin edition rule on the poster, never its fill.
+        const want = r.accHex && (await page.evaluate(() => { const s = window.npAccent && window.npAccent(); return s ? s.acc : 'none'; }));
+        check(r.posterAccent === (want || 'none'), `${tag}: poster accent is ${r.posterAccent}, ledger says ${want || 'none'}`);
+        if (want && want !== 'none') check(r.posterRule === r.accRgb && r.posterRuleW > 0 && r.posterRuleW <= 4, `${tag}: poster rule is ${r.posterRuleW}px ${r.posterRule}, ledger accent is ${r.accRgb}`);
+        else check(r.posterRule === TOKENS[pick].ink && r.posterRuleW > 0 && r.posterRuleW <= 4, `${tag}: neutral poster rule is ${r.posterRuleW}px ${r.posterRule} (want the ink, ≤4px)`);
+        check(r.posterBg === r.paperBg, `${tag}: the poster is ${r.posterBg}, the sheet ${r.paperBg}: the poster must be the paper, not a fill`);
+        if (key === 'neutral') check(r.posterAccent === 'none', `${tag}: Summerfest has no verified accent but prints ${r.posterAccent}`);
+        check(r.h1.some(t => t.toLowerCase() === (window_name(fid)).toLowerCase()), `${tag}: h1s are ${JSON.stringify(r.h1)}`);
+        if (key === 'iii-pre') check(await page.$eval('.np-word .np-roman', e => e.textContent) === 'III', `${tag}: III is not set as the Roman word`);
+
+        // Routing, once per fixture (390 light): every step, the first-set action, the essentials, the tools.
+        if (pick === 'light' && width === 390) {
+          lastStep = '[data-np-step=playlist]'; await page.click('[data-np-step=playlist]'); await page.waitForTimeout(400);
+          check((await h1s(page)).includes('Music'), `${tag}: Build your playlist did not open Music: ${JSON.stringify(await h1s(page))}`);
+          await tabTo(page);
+          lastStep = '[data-np-step=gallery]'; await page.click('[data-np-step=gallery]'); await page.waitForTimeout(400);
+          check((await h1s(page)).includes('Memories'), `${tag}: Create your gallery did not open Memories: ${JSON.stringify(await h1s(page))}`);
+          await tabTo(page);
+          lastStep = '[data-np-step=people]'; await page.click('[data-np-step=people]'); await page.waitForTimeout(400);
+          check((await tab(page)) === 'Lineup', `${tag}: Pick your people did not open the Lineup (tab "${await tab(page)}")`);
+          await tabTo(page);
+          lastStep = '[data-np-step=night]'; await page.click('[data-np-step=night]'); await page.waitForTimeout(400);
+          if (phase === 'post') check((await h1s(page)).includes('Recap'), `${tag}: Follow your night did not open the Recap after the festival: ${JSON.stringify(await h1s(page))}`);
+          else {
+            const d = await dialogs(page);
+            check(d.includes(phase === 'live' ? 'My night' : 'My saved sets'), `${tag}: Follow your night opened ${JSON.stringify(d)}`);
+            await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+          }
+          if (phase === 'post') { await tabTo(page); }
+          if (phase === 'live') {
+            lastStep = 'lineup save'; await page.click('[data-np-step=people]'); await page.waitForTimeout(500);
+            const saveBtn = await page.$('button[aria-label^="Save "]');
+            check(!!saveBtn, `${tag}: no Save control in the Lineup to change the saved sets with`);
+            if (saveBtn) {
+              const who = await saveBtn.getAttribute('aria-label'); await saveBtn.click(); await page.waitForTimeout(300); await tabTo(page);
+              const fold2 = await foldAudit(page, 3);
+              check(!fold2.bad.length, `${tag}: stage board after "${who}": ${fold2.bad.join('; ').slice(0, 300)}`);
+            }
+          }
+          if (await page.$('[data-np-claim] .np-act')) {
+            lastStep = '[data-np-claim] .np-act'; await page.click('[data-np-claim] .np-act'); await page.waitForTimeout(400);
+            check((await tab(page)) === 'Lineup', `${tag}: the first-set action did not open the Lineup`);
+            await tabTo(page);
+          }
+          if (await page.$('[data-np-saved] .np-act')) {
+            lastStep = '[data-np-saved] .np-act'; await page.click('[data-np-saved] .np-act'); await page.waitForTimeout(400);
+            check((await dialogs(page)).includes('My saved sets'), `${tag}: the all-saved action did not open My saved sets`);
+            await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+          }
+          lastStep = '[data-np-link=map]'; await page.click('[data-np-link=map]'); await page.waitForTimeout(400);
+          check(await page.evaluate(() => !document.querySelector('[data-night-print]')) && ((await tab(page)) === 'Map' || phase === 'post'), `${tag}: MAP did not open the map (tab "${await tab(page)}")`);
+          await tabTo(page);
+          lastStep = '[data-np-link=basics]'; await page.click('[data-np-link=basics]'); await page.waitForTimeout(400);
+          const guide = await page.evaluate(() => {
+            const secs = typeof ftSections === 'function' ? ftSections() : [];
+            const dlg = [...document.querySelectorAll('[role=dialog]')].find(d => d.getAttribute('aria-label') === 'The basics');
+            return { open: !!secs[0]?.title && document.body.innerText.includes(secs[0].title), own: Array.isArray(FESTIVAL_CONFIG.guide) && FESTIVAL_CONFIG.guide.length > 0,
+              sheet: dlg ? dlg.innerText : '', titles: secs.map(s => s.title), empty: secs.filter(s => !(s.items || []).length).map(s => s.title),
+              all: secs.flatMap(s => s.items || []).join(' '), location: FESTIVAL_CONFIG.location || '' };
+          });
+          check(guide.open, `${tag}: BASICS did not open the first-timer guide`);
+          check(guide.titles.length >= 4 && !guide.empty.length, `${tag}: Basics has ${guide.titles.length} section(s)${guide.empty.length ? ', empty: ' + guide.empty.join(', ') : ''}`);
+          const edcOnly = /desert|18\+ event|5:30|Kinetic|Strip hotels|Daisy Lane|Cosmic Meadow|Ground Control/;
+          if (fid === 'edc-lv-2026') check(guide.own && /Gates open 4[\s ]PM/.test(guide.sheet), `${tag}: EDC's Basics lost its own guide (own ${guide.own}; sheet starts "${guide.sheet.slice(0, 60)}")`);
+          else check(!guide.own && !edcOnly.test(guide.all) && guide.sheet.includes(guide.location), `${tag}: Basics for ${fid} ${guide.own ? 'claims a guide the config does not source' : edcOnly.test(guide.all) ? 'prints EDC copy: ' + guide.all.match(edcOnly)[0] : 'does not name ' + guide.location}`);
+          const drawer = async (label, actions) => {
+            const a = await drawerAudit(page, label);
+            check(!!a, `${tag}: no dialog named "${label}"`);
+            if (!a) return;
+            const small = a.buttons.filter(b => b.h < 44 || b.w < 44);
+            check(!small.length, `${tag}: ${label}: controls under 44px: ${small.map(b => `${b.text || b.label} ${Math.round(b.w)}×${Math.round(b.h)}`).join(', ')}`);
+            check(a.buttons.some(b => /^close/i.test(b.label || '')), `${tag}: ${label}: the close control has no accessible name`);
+            check(a.bottom <= a.tabTop + .5, `${tag}: ${label}: the sheet runs ${Math.round(a.bottom - a.tabTop)}px under the tab bar`);
+            for (const t of actions) {
+              const b = (a.scrolled || a.buttons).find(b => b.text === t);
+              check(!!b && b.bottom <= a.tabTop - 8, `${tag}: ${label}: ${t} ${b ? `ends ${Math.round(b.bottom - a.tabTop)}px past the tab bar once scrolled` : 'is missing'}`);
+            }
+            await page.keyboard.press('Escape'); await page.waitForTimeout(300);
+            check(!(await drawerAudit(page, label)), `${tag}: ${label}: Escape did not close it`);
+          };
+          await drawer('The basics', ['Explore map', 'Browse lineup']);
+          lastStep = '[data-np-link=alerts]'; await page.click('[data-np-link=alerts]'); await page.waitForTimeout(400);
+          check((await dialogs(page)).includes('Alerts'), `${tag}: ALERTS did not open the alerts drawer`);
+          lastStep = 'close alerts'; await drawer('Alerts', []);
+          if (phase !== 'post') {
+            lastStep = '[data-np-link=tonight]'; await page.click('[data-np-link=tonight]'); await page.waitForTimeout(600);
+            check((await dialogs(page)).includes('Sun & weather'), `${tag}: SUN & WEATHER did not open its sheet`);
+            const inks = await sheetInks(page);
+            check(!!inks && inks.length >= 2, `${tag}: Sun & weather printed ${inks ? inks.length : 'no'} value(s) (want the sun times and the temperature)`);
+            const low = (inks || []).filter(v => v.ratio < 4.5);
+            check(!low.length, `${tag}: Sun & weather values under AA: ${low.map(v => `${v.text} ${v.fg} on ${v.bg} = ${v.ratio}:1`).join('; ')}`);
+            await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+          }
+          lastStep = '.np-tool[aria-label="Offline mode"]'; await page.click('.np-tool[aria-label="Offline mode"]'); await page.waitForTimeout(300);
+          check(await page.evaluate(() => document.querySelector('.np-tool[aria-label="Offline mode"]').getAttribute('aria-pressed') === 'true' && /offline mode/i.test(document.body.innerText)), `${tag}: the offline toggle did not take`);
+          lastStep = '.np-tool[aria-label="Offline mode"]'; await page.click('.np-tool[aria-label="Offline mode"]'); await page.waitForTimeout(200);
+          lastStep = '.np-tool[aria-label^="Search"]'; await page.click('.np-tool[aria-label^="Search"]'); await page.waitForTimeout(400);
+          check(!!(await page.$('input[placeholder="Artist, stage, genre, day…"]')), `${tag}: the search tool did not open search`);
+          await page.keyboard.press('Escape'); await page.waitForTimeout(200);
+          lastStep = '.np-title[data-switch]'; await page.click('.np-title[data-switch]'); await page.waitForTimeout(400);
+          check(await page.evaluate(() => document.body.innerText.includes('Switch festival') || !!document.querySelector('[role=dialog]')), `${tag}: the festival name did not open the switcher`);
+          await page.keyboard.press('Escape');
+        }
+        // The same print with motion allowed: the fitted size must agree with the Reduce Motion one.
+        if (key === 'pre-empty' || key === 'nocturnal' || key === 'neutral') {
+          const m2 = await open({ fid, at, saved, extra, width, pick, motion: 'no-preference' });
+          const r2 = await measure(m2.page);
+          check(Math.abs((r2.wordSize || 0) - (r.wordSize || 0)) < 0.6, `${tag}: the festival word fits at ${r.wordSize}px under Reduce Motion but ${r2.wordSize}px with motion`);
+          await m2.ctx.close();
+        }
+      } catch (err) { check(false, `${tag} threw at ${lastStep}: ${String(err.message || err).split('\n')[0]}`); }
+      await ctx?.close();
+    }
+  }
+
+  // Every ledger portrait a reachable lineup can show, each b2b half too, at 320 and 390 in both modes.
+  if (HEROES) {
+    const cmp = await browser.newPage();
+    const probe = await open({ fid: 'edc-lv-2026', at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width: 390, pick: 'dark' });
+    const { acts, ledgerNames } = await ledgerActs(probe.page); await probe.ctx.close();
+    const names = [...new Set(acts.map(a => a.name))];
+    const unseen = ledgerNames.filter(n => !names.some(m => m.toLowerCase() === n.toLowerCase()));
+    check(acts.length >= ledgerNames.length && !unseen.length, `heroes: ${acts.length} hero(s) for ${names.length} of the ledger's ${ledgerNames.length} names; no reachable lineup shows: ${unseen.join(', ') || 'none'}`);
+    for (const a of acts) for (const pick of ['dark', 'light']) for (const width of [390, 320]) {
+      const tag = `hero ${a.name}${a.parts > 1 ? ` (${a.billing})` : ''} (${a.fid}) ${pick} ${width}`;
+      let ctx;
+      try {
+        const o = await open({ fid: a.fid, at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width, pick, query: `tab=lineup&artist=${encodeURIComponent(a.id)}`, ready: '[data-artist-hero]' }); ctx = o.ctx;
+        if (a.part > 0) {
+          // The artist screen shows one half of a b2b at a time: pick this half.
+          const picked = await o.page.evaluate((name) => { const b = [...document.querySelectorAll('[data-screen="artist"] button')].find(b => b.textContent.trim().toLowerCase() === name.toLowerCase()); if (b) b.click(); return !!b; }, a.name);
+          check(picked, `${tag}: no control to show this half of the billing`);
+          await o.page.waitForTimeout(400);
+        }
+        await o.page.waitForFunction(() => { const h = document.querySelector('[data-artist-hero]'); return h && h.dataset.artistHero === 'photo'; }, null, { timeout: 15000 }).catch(() => {});
+        const ev = await heroEvidence(o.page, cmp);
+        check(!!ev && ev.kind === 'photo' && ev.bgImage.includes(a.asset.replace(/^\.\//, '')), `${tag}: the hero paints ${ev ? ev.kind + ' ' + ev.bgImage.slice(0, 80) : 'nothing'} (want the ledger asset ${a.asset})`);
+        if (ev) {
+          const have = new Set(ev.labels.map(l => l.label));
+          check(['back', 'day', 'name'].every(k => have.has(k)) && (have.has('genre') || have.has('stage')), `${tag}: labels measured: ${[...have].join(', ') || 'none'}`);
+          const low = ev.labels.filter(l => l.ratio < l.floor);
+          check(!low.length, `${tag}: below AA over the photo: ${low.map(l => `${l.label} "${l.text}" ${l.ratio}:1 on rgb(${l.bg.join(',')}) (floor ${l.floor})`).join('; ')}`);
+          const t = ev.type;
+          // The name: Sora 600 at 40px (32 on a b2b), no text shadow, white, whole.
+          // A single word too wide for the box is fitted down (fitWords, to 28px)
+          // rather than clipped: "UNDERWORLD" at 320.
+          const wantPx = a.parts > 1 ? 32 : 40;
+          const sizeOk = n => n.px === wantPx || (n.fitted && n.px >= 28 && n.px < wantPx);
+          check(!!t.name && sizeOk(t.name) && t.name.weight === 600 && /^Sora\b/.test(t.name.family) && t.name.shadow === 'none' && !t.name.clipped,
+            `${tag}: the name is ${t.name ? `${t.name.px}px/${t.name.weight} ${t.name.family.split(',')[0]} shadow ${t.name.shadow}${t.name.clipped ? ' clipped' : ''}` : 'missing'} (want Sora 600 ${wantPx}px, or fitted to no less than 28px, no shadow)`);
+          check(!!t.name && /^rgb\(255, 255, 255\)$/.test(t.name.color), `${tag}: the name's ink is ${t.name?.color} (want white in both modes)`);
+          // The backing: the neutral shade (spec: no purple cast), white controls.
+          const sh = t.backing?.rgba;
+          check(!!sh && Math.abs(sh[0] - 10) <= 3 && Math.abs(sh[1] - 16) <= 3 && Math.abs(sh[2] - 17) <= 3 && sh[3] >= 0.8 && /^rgb\(255, 255, 255\)$/.test(t.backing.ink),
+            `${tag}: the controls sit on ${t.backing?.bg} in ${t.backing?.ink} (want the neutral shade rgba(10,16,17,.85) under white)`);
+          check(t.shadeVar === '10,16,17', `${tag}: the hero's shade is "${t.shadeVar}" (want the neutral 10,16,17)`);
+          // The schedule range: one line at 28px (390) / 22px (320), Sora, with both times.
+          if (t.clock) check(Math.abs(t.clock.px - (width === 390 ? 28 : 22)) <= 0.6 && t.clock.lines === 1 && !t.clock.clipped && /^Sora\b/.test(t.clock.family) && /\d.*→.*\d/.test(t.clock.text),
+            `${tag}: the schedule range is ${t.clock.px}px, ${t.clock.lines} line(s)${t.clock.clipped ? ', clipped' : ''}, ${t.clock.family.split(',')[0]} "${t.clock.text}" (want one line at ${width === 390 ? 28 : 22}px, start → end)`);
+          // The credit: author and licence visible under the hero.
+          const row = await o.page.evaluate((n) => (window.PLURSKY_ARTIST_PHOTOS || {})[window.PlurskyArtistKey.artistKey(n)] || null, a.name);
+          check(!!t.credit && !!row && t.credit.includes(row.author) && /CC[0 ]|Public|Press/.test(t.credit), `${tag}: the credit reads "${t.credit}" (want ${row?.author} and the licence)`);
+          const hf = await fontEvidence(o.page, HERO_FONT_SAMPLES);
+          const wrong = hf.samples.filter(s => !s.absent && !s.ok);
+          check(!wrong.length, `${tag}: hero type rendered with the wrong face: ${wrong.map(s => `${s.sel} → ${s.rendered}`).join('; ')}`);
+          heroLabels += ev.labels.length; heroesSeen++;
+        }
+        check(!o.errors.length, `${tag}: page errors: ${o.errors.join(' | ').slice(0, 200)}`);
+      } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
+      await ctx?.close();
+    }
+    await cmp.close();
+  }
+
+  // The print accent ledger covers the roster: every registered edition has a row with a source and a date.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
+    await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`), r => r.abort());
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/; nothing else leaves the box
+    await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'edc-lv-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1'); });
+    const page = await ctx.newPage();
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?tab=home`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('[data-night-print]', { timeout: 60000 });
+    const led = await page.evaluate(() => {
+      const cfgs = (window.FESTIVALS_REGISTRY || []).filter(f => f && f.config).map(f => f.config);
+      const ids = cfgs.map(c => c.id);
+      const rows = cfgs.map(c => { const id = c.id; const p = c.print; return { id, has: !!p, hex: p?.accent || null, src: p?.source?.url || null, at: p?.source?.observedAt || null, ok: !!p && ('accent' in p) && !!p.source?.url && /^\d{4}-\d{2}-\d{2}$/.test(p.source?.observedAt || '') && (p.accent === null || /^#[0-9A-F]{6}$/.test(p.accent)) }; });
+      const sets = Object.keys(window._DATA_SETS || {});
+      return { rows, missingFromSets: sets.filter(id => !ids.includes(id)) };
+    });
+    const bad = led.rows.filter(r => !r.ok);
+    check(led.rows.length >= 25, `ledger: only ${led.rows.length} editions registered (want the roster, 25)`);
+    check(!bad.length, `ledger: ${bad.length} edition(s) without a sourced, dated print row: ${bad.map(b => b.id).join(', ')}`);
+    check(!led.missingFromSets.length, `ledger: data sets not in the registry: ${led.missingFromSets.join(', ')}`);
+    const gaps = led.rows.filter(r => r.ok && r.hex === null).map(r => r.id);
+    console.log(`  evidence: ${fontSamples} font samples rendered with Sora; ${portraits} portrait prints from the ledger; ${pairsSeen} b2b pairs whole; initials on ${initialsFaces.size} act(s): ${[...initialsFaces].join(', ') || 'none'}`);
+    console.log(`  ledger: ${led.rows.length} editions, ${led.rows.filter(r => r.hex).length} with a first-party accent, ${gaps.length} neutral (${gaps.join(', ') || 'none'})`);
+    await ctx.close();
+  }
+} finally { await browser?.close(); server.kill(); }
+
+function window_name(fid) {
+  const names = { 'edc-lv-2026': 'EDC Las Vegas', 'iii-points-2026': 'III Points', 'nocturnal-wonderland-2026': 'Nocturnal Wonderland', 'summerfest-2026': 'Summerfest', 'acl-2026': 'Austin City Limits' };
+  return names[fid] || fid;
+}
+
+if (problems.length) {
+  console.error(`✗ today print: ${problems.length} of ${checks} checks failed`);
+  for (const p of problems) console.error('  ✗ ' + p);
+  process.exit(1);
+}
+console.log(`  ✓ today print: ${checks} checks — ${heroesSeen} artist heroes over ledger portraits, ${heroLabels} labels AA against their pixels; chalk/charcoal sheet, the accent a thin rule, Sora rendered at the approved scale, stamp upright, every state in both modes at 390 and 320: AA for size, no sideways, stamp clear of text, words whole, 44px controls, four steps routed, essentials as links, drawers named / 44px / above the bar / Escape, weather values AA, portraits from the ledger, b2b pairs whole, the fold cycled, ledger covers the roster`);

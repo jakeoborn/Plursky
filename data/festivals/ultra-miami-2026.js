@@ -283,6 +283,8 @@
     locationShort: "Bayfront Park",
     dates: "Mar 27–29, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#2CD0D6", source: { url: "https://ultramusicfestival.com/", observedAt: "2026-10-09", seenAs: "<meta name=\"theme-color\" content=\"#2cd0d6\"> for both light and dark prefers-color-scheme; the hex occurs 6 times in the homepage HTML", confidence: "high" }, note: "The site declares an explicit theme-color (preference a) and uses the same value for both colour schemes." },
     // gates day 1 (16:00 EDT) -> close of the final day (22:00 EDT)
     startMs: Date.UTC(2026, 2, 27, 20, 0, 0),
     endMs:   Date.UTC(2026, 2, 30, 2, 0, 0),

@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v424';
+﻿const CACHE      = 'plursky-v463';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v424';
+const APP_VER    = 'v463';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -17,11 +17,20 @@ const LOCAL = [
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png',
-  // The board's label and data faces: offline, a missing one falls back to SF.
-  './fonts/michroma-latin.woff2',
-  './fonts/michroma-latin-ext.woff2',
+  // The board's faces: offline, a missing one falls back to the system stack.
+  './fonts/anton-latin.woff2',
+  './fonts/anton-latin-ext.woff2',
+  './fonts/space-grotesk-latin.woff2',
+  './fonts/space-grotesk-latin-ext.woff2',
+  './fonts/instrument-serif-latin.woff2',
+  './fonts/instrument-serif-latin-ext.woff2',
+  './fonts/instrument-serif-italic-latin.woff2',
+  './fonts/instrument-serif-italic-latin-ext.woff2',
   './fonts/martian-mono-latin.woff2',
   './fonts/martian-mono-latin-ext.woff2',
+  // The print's and the artist screen's face: Sora (OFL), one variable family.
+  './fonts/sora-latin.woff2',
+  './fonts/sora-latin-ext.woff2',
   // Wave-1 festival data modules. Must be cached alongside data.jsx and must
   // load before it — index.html enforces the order; this list only has to make
   // sure they are all present offline. A missing one drops that festival from
@@ -45,6 +54,8 @@ const LOCAL = [
   `./data/artist-photos.js?v=${APP_VER}`,
   // One artist key for the photo lookup and the registry (artist repository M3).
   `./data/artist-key.js?v=${APP_VER}`,
+  // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
+  `./data/festival-art.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
   //
@@ -68,23 +79,95 @@ const LOCAL = [
   './hard-summer-2026.webp',
   './escape-2025-map.webp',
   './acl-park-2026.webp',
+  './iiip-map-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.jpg',
   './artist-photos/amyl-and-the-sniffers.webp',
+  './artist-photos/bone-thugs-n-harmony.webp',
   './artist-photos/charli-xcx.webp',
+  './artist-photos/charlotte-de-witte.webp',
+  './artist-photos/chuckie.webp',
+  './artist-photos/connan-mockasin.webp',
+  './artist-photos/da-tweekaz.webp',
+  './artist-photos/danny-brown.webp',
+  './artist-photos/dj-harvey.webp',
+  './artist-photos/floating-points.webp',
+  './artist-photos/flying-lotus.webp',
+  './artist-photos/four-tet.webp',
+  './artist-photos/honey-dijon.webp',
+  './artist-photos/jane-remover.webp',
+  './artist-photos/john-summit.webp',
+  './artist-photos/kelela.webp',
+  './artist-photos/ki-ki.webp',
   './artist-photos/kings-of-leon.webp',
+  './artist-photos/laidback-luke.webp',
+  './artist-photos/lil-kim.webp',
   './artist-photos/lorde.webp',
+  './artist-photos/luciano.webp',
+  './artist-photos/marco-carola.webp',
+  './artist-photos/men-i-trust.webp',
+  './artist-photos/parcels.webp',
+  './artist-photos/purity-ring.webp',
+  './artist-photos/rusowsky.webp',
+  './artist-photos/seth-troxler.webp',
   './artist-photos/skrillex.webp',
   './artist-photos/the-war-on-drugs.webp',
+  './artist-photos/tiesto.webp',
+  './artist-photos/tokischa.webp',
+  './artist-photos/tricky.webp',
+  './artist-photos/underworld.webp',
   './festival-art/acl-2026.webp',
-  './festival-art/crssd-fall-2026.webp',
-  './festival-art/portola-2026.webp',
-  './festival-art/iii-points-2026.webp',
-  './festival-art/edc-lv-2026.webp',
+  './festival-art/arc-2026.webp',
+  './festival-art/beyond-wonderland-gorge-2027.webp',
+  './festival-art/beyond-wonderland-socal-2027.webp',
+  './festival-art/coachella-2027.webp',
   './festival-art/countdown-nye-2026.webp',
+  './festival-art/crssd-fall-2026.webp',
+  './festival-art/dreamstate-socal-2026.webp',
+  './festival-art/edc-lv-2026.webp',
+  './festival-art/edc-mexico-2027.webp',
+  './festival-art/edc-orlando-2026.webp',
+  './festival-art/escape-halloween-2026.webp',
+  './festival-art/governors-ball-2026.webp',
+  './festival-art/hard-summer-2026.webp',
+  './festival-art/iii-points-2026.webp',
+  './festival-art/lollapalooza-2026.webp',
+  './festival-art/lost-lands-2026.webp',
+  './festival-art/nocturnal-wonderland-2026.webp',
+  './festival-art/outside-lands-2026.webp',
+  './festival-art/portola-2026.webp',
+  './festival-art/summerfest-2026.webp',
+  './festival-art/tomorrowland-2027.webp',
+  './festival-art/ultra-miami-2026.webp',
+  './festival-art/tiles/acl-2026.webp',
+  './festival-art/tiles/arc-2026.webp',
+  './festival-art/tiles/beyond-wonderland-gorge-2027.webp',
+  './festival-art/tiles/beyond-wonderland-socal-2027.webp',
+  './festival-art/tiles/coachella-2027.webp',
+  './festival-art/tiles/countdown-nye-2026.webp',
+  './festival-art/tiles/crssd-fall-2026.webp',
+  './festival-art/tiles/decadence-colorado-2026.webp',
+  './festival-art/tiles/dreamstate-socal-2026.webp',
+  './festival-art/tiles/edc-lv-2026.webp',
+  './festival-art/tiles/edc-mexico-2027.webp',
+  './festival-art/tiles/edc-orlando-2026.webp',
+  './festival-art/tiles/electric-forest-2027.webp',
+  './festival-art/tiles/escape-halloween-2026.webp',
+  './festival-art/tiles/governors-ball-2026.webp',
+  './festival-art/tiles/hard-summer-2026.webp',
+  './festival-art/tiles/iii-points-2026.webp',
+  './festival-art/tiles/lollapalooza-2026.webp',
+  './festival-art/tiles/lost-lands-2026.webp',
+  './festival-art/tiles/nocturnal-wonderland-2026.webp',
+  './festival-art/tiles/outside-lands-2026.webp',
+  './festival-art/tiles/portola-2026.webp',
+  './festival-art/tiles/summerfest-2026.webp',
+  './festival-art/tiles/tomorrowland-2027.webp',
+  './festival-art/tiles/ultra-miami-2026.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
+  `./build/machine.js?v=${APP_VER}`,
   `./build/chrome.js?v=${APP_VER}`,
   `./build/home.js?v=${APP_VER}`,
   `./build/map.js?v=${APP_VER}`,
@@ -108,6 +191,12 @@ const CDN = [
   'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js',
   'https://unpkg.com/react@18.3.1/umd/react.production.min.js',
   'https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js',
+  // The real map's library (map.jsx PACK_LIB, same pinned URLs). It used to
+  // load on first Map open only, which failed on festival 5G and left
+  // III Points with no map surface (M1, Oct 16). test-maplibre-field-load.mjs
+  // fails if PACK_LIB names a URL that is not in this list.
+  'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js',
+  'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css',
   'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap',
 ];
 

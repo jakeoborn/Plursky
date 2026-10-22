@@ -28,6 +28,7 @@ import { createServer } from "node:net";
 import { chromium } from "playwright";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -128,6 +129,7 @@ try {
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const open = async (saved, tab, extra = "") => {
     const bctx = await browser.newContext({ viewport: { width: 393, height: 844 }, serviceWorkers: "block" });
+    await wireVendor(bctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await bctx.clock.install({ time: new Date("2026-09-28T18:00:00Z") });
     await bctx.addInitScript(({ FID, saved }) => {
       if (sessionStorage.getItem("seeded")) return;

@@ -176,7 +176,9 @@ export function build(root = ROOT, overrides = null) {
         start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid,
         // ACL bills a "both" act once and plays it each weekend: the second
         // date, a week on, rides the directory slice (the billing stays one).
-        ...(date && a.weekend === 'both' ? { date2: new Date(date.getTime() + 7 * 86400000).toISOString().slice(0, 10) } : {}) });
+        ...(date && a.weekend === 'both' ? { date2: new Date(date.getTime() + 7 * 86400000).toISOString().slice(0, 10) } : {}),
+        // Item 4: a tier read off the festival's own poster carries that poster.
+        ...(a.tierSource === 'poster' && cfg.posterBilling ? { posterTier: a.tier, posterSource: cfg.posterBilling } : {}) });
     }
   }
   const H = `${root}/data/historical/editions`;
@@ -237,7 +239,8 @@ export function build(root = ROOT, overrides = null) {
       stageLineage: (() => { const l = stagesIx.lineageOf(r.festivalBrand, r.stage); if (l === undefined) unmappedStages.add(`${r.festivalBrand}|${r.stage}`); return l ?? null; })(),
       // true / false only for an edition with a sourced main-stage ruling; null means no claim.
       mainStage: r.stage == null || !stagesIx.mainByEdition.has(r.festivalId) ? null : stagesIx.mainByEdition.get(r.festivalId) === stagesIx.lineageOf(r.festivalBrand, r.stage),
-      ...(p.review ? { review: p.review } : {}) });
+      ...(p.review ? { review: p.review } : {}),
+      ...(r.posterTier ? { posterTier: r.posterTier, posterSource: r.posterSource } : {}) });
     for (const perf of p.performers) {
       const rec = touch(perf.key, perf.role === 'project' || (!p.ruled && p.kind === 'project') ? 'project' : p.kind === 'collab' ? 'collab' : 'performer');
       for (const par of perf.parents || []) rec.parents.add(par);

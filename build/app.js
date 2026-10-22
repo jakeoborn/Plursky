@@ -978,7 +978,7 @@ function ToastHost() {
       pointerEvents: "none",
       padding: "0 16px"
     }
-  }, "// Board toast: an elevated card in SF that WRAPS. The old one-line // pill ellipsised every long message (\"No photos received — pick a // few at a time; if they're in iCloud…\" lost its instruction).", React.createElement("div", {
+  }, React.createElement("div", {
     key: msg.id,
     role: "status",
     "aria-live": "polite",
@@ -1242,9 +1242,10 @@ function App() {
     window._pushNav = _pushNav;
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
+  var attendV = useAttendVersion();
   React.useEffect(() => {
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
   React.useEffect(() => {
     var cancelled = false;
     var t = setTimeout(async () => {
@@ -1320,6 +1321,7 @@ function App() {
   return React.createElement(IOSDevice, {
     dark: statusBarStyle === "light"
   }, React.createElement("div", {
+    className: state.tab === "home" && !state.artist ? "np" : undefined,
     style: {
       position: "absolute",
       inset: 0,
@@ -1340,9 +1342,9 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
+    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
     return React.createElement(TabBar, {
-      active: state.tab === "artists" && state.artistsFrom === "lineup" ? "lineup" : meFold.includes(state.tab) ? "me" : state.tab,
+      active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({
         ...state,
         tab: t
@@ -1454,7 +1456,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v424"
+        version: "v463"
       }));
     } catch {}
   }
@@ -1506,7 +1508,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v424"))
+      }, "Plursky · v463"))
     );
   }
 }
