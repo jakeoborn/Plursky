@@ -24,6 +24,8 @@
 // the art is oblique, no affine fits it). Registration is UNCHECKED: overlay
 // draws at unchecked strength, real-map pins and distance readouts stay off
 // until an osm/crowd anchor lands. See scripts/build-iiip-map-2026.mjs.
+// BILLING (PR #318, re-checked 2026-10-20 on https://www.iiipoints.com/set-times/): Malóne
+// Morez B2B Miluhska, Miguelle & Tons and MACCABIII B2B Pezlo MD follow the official grid (IDs unchanged).
 (function () {
   "use strict";
 
@@ -718,16 +720,16 @@
     mk("iiip-levity-b2b-taiki-nulight",      "Levity B2B Taiki Nulight", 1),
     mk("iiip-lil-kim",                       "Lil' Kim", 1),
     mk("iiip-lousy-lover-b2b-lucaz",         "Lousy Lover B2B Lucaz", 1),
-    mk("iiip-maccabi-b2b-pezlo-md",          "Maccabi B2B Pezlo MD", 1),
+    mk("iiip-maccabi-b2b-pezlo-md",          "MACCABIII B2B Pezlo MD", 1),
     mk("iiip-maher-daniel-b2b-mai-iache",    "Maher Daniel B2B Mai Iachetti", 1),
-    mk("iiip-malone-b2b-miluhska",           "Malóne B2B Miluhska", 1),
+    mk("iiip-malone-b2b-miluhska",           "Malóne Morez B2B Miluhska", 1),
     mk("iiip-mary-droppinz",                 "Mary Droppinz", 1),
     mk("iiip-mason-norris-b2b-mia-vende",    "Mason Norris B2B Mia Vendetta", 1),
     mk("iiip-megusta-b2b-migs",              "Megusta B2B MIGS", 1),
     mk("iiip-men-i-trust",                   "Men I Trust", 1),
     mk("iiip-mgna-crrrta",                   "MGNA Crrrta", 1),
     mk("iiip-miguel-clark-b2b-naim-zarz",    "Miguel Clark B2B Naim Zarzour", 1),
-    mk("iiip-miguelle-tons-b2b-saraga",      "Miguelle & Tons B2B Saraga", 1),
+    mk("iiip-miguelle-tons-b2b-saraga",      "Miguelle & Tons", 1),
     mk("iiip-mind-enterprises",              "Mind Enterprises", 1),
     mk("iiip-moscoman",                      "Moscoman", 1),
     mk("iiip-nate-sib",                      "nate sib", 1),
