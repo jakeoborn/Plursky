@@ -2867,6 +2867,33 @@ function npSchemeVars(cfg) {
     "--np-acc2-on-cream": a2 && _npContrast(a2, NP_CREAM) >= 4.5 ? a2 : NP_BLACK,
   };
 }
+// Accent pops (Item 3, option B): beyond the poster's thin rule, the
+// festival's own print accent fills the hero's fold band and stamp, rules the
+// section headers, and marks the map header and the picked stage chip (CSS
+// under :root[data-fest-pop] in index.html). Opt-in per festival on its print
+// ledger row (`print.pops: true`), and only when the accent reads at 4.5:1
+// under the print constant it carries; that constant is the same in Dark and
+// Light, so every fill passes AA in both. The second colour is used only
+// where it reads under the same constant. null = the festival keeps the base.
+function festivalPops(cfg) {
+  const c = cfg || FESTIVAL_CONFIG;
+  if (!c || !c.print || c.print.pops !== true) return null;
+  const sk = npAccent(c);
+  if (!sk || !sk.small) return null;
+  const acc2 = sk.acc2 && _npContrast(sk.acc2, sk.fg) >= 4.5 ? sk.acc2 : null;
+  return { acc: sk.acc, acc2, on: sk.fg };
+}
+// Set once at boot on <html>; a festival switch reloads the page.
+(function applyFestivalPops() {
+  try {
+    const root = document.documentElement, fp = festivalPops();
+    if (!fp) { root.removeAttribute("data-fest-pop"); return; }
+    root.setAttribute("data-fest-pop", "on");
+    root.style.setProperty("--fp-acc", fp.acc);
+    root.style.setProperty("--fp-on", fp.on);
+    if (fp.acc2) root.style.setProperty("--fp-acc2", fp.acc2);
+  } catch (e) {}
+})();
 // The festival's name as poster words: the edition year drops (the meta line
 // carries it), and a word that is a Roman numeral (III Points) is set in the
 // serif, as the festival sets it. Never forced on another name.
