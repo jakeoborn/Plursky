@@ -26,6 +26,7 @@ const COPY = [
   'og.svg',
   'data/artist-photos.js',
   'data/artist-key.js',
+  'data/festival-art.js',
 ];
 
 execFileSync(process.execPath, [path.join(root, 'scripts', 'build-artist-photo-ledger.mjs')],
@@ -63,6 +64,10 @@ const dataFiles = existsSync(path.join(root, 'data', 'festivals'))
 const festivalArtFiles = existsSync(path.join(root, 'festival-art'))
   ? (await readdir(path.join(root, 'festival-art')))
       .filter(f => /\.(webp|jpe?g|png)$/i.test(f)).map(f => path.join('festival-art', f))
+      // The list tiles (Item 6) live one level down; data/festival-art.js names them.
+      .concat(existsSync(path.join(root, 'festival-art', 'tiles'))
+        ? (await readdir(path.join(root, 'festival-art', 'tiles'))).filter(f => /\.webp$/i.test(f)).map(f => path.join('festival-art', 'tiles', f))
+        : [])
   : [];
 
 // Past Festivals library (historical.jsx fetches these on demand; never
@@ -115,6 +120,18 @@ for (const file of allFiles) {
   const missing = [...new Set(refs)].filter(f => !existsSync(path.join(dist, f)));
   if (missing.length) {
     console.error(`[build] index.html references files missing from dist/: ${missing.join(', ')}`);
+    process.exit(1);
+  }
+}
+// Same guard for the festival-art ledger: FestivalThumb loads every tile and
+// card it names at runtime, and the Item 6 tiles (one directory down) were
+// missed by the copy above while index.html still looked complete.
+{
+  const led = (await import('node:fs')).readFileSync(path.join(root, 'data', 'festival-art.js'), 'utf8');
+  const refs = [...led.matchAll(/(?:tile|card): "([^"]+)"/g)].map(m => m[1]);
+  const missing = [...new Set(refs)].filter(f => !existsSync(path.join(dist, f)));
+  if (!refs.length || missing.length) {
+    console.error(`[build] data/festival-art.js names files missing from dist/: ${missing.join(', ') || '(no paths parsed)'}`);
     process.exit(1);
   }
 }

@@ -310,6 +310,8 @@
     locationShort: "Hollywood Park",
     dates:     "Aug 1–2, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#0CFD0E", source: { url: "https://www.hardsummer.com/wp-content/assets/css/hardsummer.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, active nav link, blockquote, .card__category (16 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and category label to this green; no theme-color meta." },
     officialStages: ["HARD", "HARDER", "Green", "Purple", "Pink", "Ice Cream Truck", "Beatbox Art Car"],
     officialEvent: {
       website: "https://www.hardsummer.com/",

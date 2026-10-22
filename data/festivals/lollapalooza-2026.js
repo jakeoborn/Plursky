@@ -340,6 +340,8 @@
     locationShort: "Grant Park",
     dates: "Jul 30 – Aug 2, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#32C3E2", accent2: "#00AE99", source: { url: "https://cdn.prod.website-files.com/67c1632e86f99390b0516ac5/css/lollapalooza-2026.shared.7d70f0b61.min.css", observedAt: "2026-10-09", seenAs: "--swatches--blue: #32c3e2, consumed by --button-color--primary: var(--swatches--blue) (hover #22a0bb), which .button uses for background-color and border; the homepage renders 5 'button w-button' elements", confidence: "medium" }, note: "No theme-color meta; the site's own Webflow stylesheet sets the primary button colour to the blue swatch, while links default to teal #00ae99 (also the most frequent inline colour on the homepage, 6 promo billboards)." },
     // gates day 1 (12:00 CDT) -> close of the final day (22:00 CDT)
     startMs: Date.UTC(2026, 6, 30, 17, 0, 0),
     endMs:   Date.UTC(2026, 7, 3, 3, 0, 0),

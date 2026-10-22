@@ -224,6 +224,8 @@
     locationShort: "Pier 80",
     dates:     "Sep 26–27, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#253992", source: { url: "https://portolamusicfestival.com/", observedAt: "2026-10-09", seenAs: "inline <style>: body{color}, .c-button.primary{background;border}, nav links, blue title bar (39 uses)", confidence: "high" }, note: "The homepage ships all its CSS inline (only Typekit is linked) and uses this blue as body text, primary button fill and nav colour against a #dfdcdf grey background; no theme-color meta. Official site taken from the data file's scheduleSource domain." },
     // "Venue doors open at 1pm PT both days" (official general-info).
     // California is PDT (UTC-7) in September. The last set each night ends
     // at 23:00 on the official grid, so unlike the other gated builds these

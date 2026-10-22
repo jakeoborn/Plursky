@@ -1,8 +1,8 @@
 ﻿// Screen shell + bottom tab nav + shared atoms
 
-function Screen({ children, bg = "var(--paper)", pad = true, ink = "var(--ink)" }) {
+function Screen({ children, bg = "var(--paper)", pad = true, ink = "var(--ink)", scope }) {
   return (
-    <div style={{
+    <div data-screen={scope} style={{
       position: "absolute", inset: 0,
       background: bg,
       color: ink,
@@ -356,6 +356,9 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   return changed;
 }
 
+// Tells mounted readers (the hero, useArtistPhoto) which names were just
+// written: the strip's photo queue can cache an artist after they mounted.
+const ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 // entries: [{ name, url, source, spotifyId? }]. ifAbsent: keep a showable
 // entry already there.
 function putArtistImages(entries, { ifAbsent = false } = {}) {
@@ -363,6 +366,7 @@ function putArtistImages(entries, { ifAbsent = false } = {}) {
     const store = _readArtistImageStore();
     let changed = _pruneArtistImageStore(store);
     const now = Date.now();
+    const written = [];
     for (const e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -370,9 +374,11 @@ function putArtistImages(entries, { ifAbsent = false } = {}) {
       if (ifAbsent && store[ln]) continue;
       store[ln] = { url: e.url, source: e.source, fetchedAt: now };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try { window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, { detail: written })); } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -410,17 +416,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   } catch {}
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
-}
-// Re-renders a component when Spotify entries expire; returns a counter to
-// key memos and effects on.
-function useArtistImageExpiry() {
-  const [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    const on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
 }
 try {
   _expireArtistImagesNow();
@@ -511,29 +506,173 @@ function _queuePhoto(name) {
   return new Promise(resolve => { _photoQueue.push({ name, resolve }); _drainPhotoQueue(); });
 }
 
-function useArtistPhoto(name) {
-  const [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
-  });
-  // A Spotify URL held in state expires with its cache entry: re-read, and
-  // the effect below refetches when nothing showable is left.
-  const expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  React.useEffect(() => {
-    if (photo) return;
-    let live = true;
-    const token   = localStorage.getItem("spotify_token");
-    const expires = localStorage.getItem("spotify_expires");
-    // Spotify (connected users, 24 h rule) is the only photo source; with no
-    // photo the swatch keeps its gradient and initials.
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => { if (live && img) setPhoto(img); });
+// ── Artist photo machine ─────────────────────────────────────────────────────
+// One table for the swatch/strip hook and the artist hero, in useMomentMedia's
+// vocabulary (spotify.jsx):
+//   none        no photo asked for: no name, or no way to look one up (no
+//               Spotify token, or a consumer that only looks up on mount).
+//               Settled with no photo; not a recovery.
+//   loading     the store is being read, or a lookup is in flight.
+//   ready       a showable URL is held (ctx.url / ctx.source / ctx.rec).
+//   unavailable asked and answered: nothing to show. Not retried on its own;
+//               the source said it lacks the photo, so don't ask it again.
+//   offline     the lookup was REJECTED (not navigator.onLine). Retries on
+//               the browser's online event. The hero's search reaches it when
+//               the request itself fails; a missing token is not offline, it
+//               is none. The photo queue resolves null on a failed request,
+//               so the swatch ends in unavailable.
+//   error       the store itself threw. Leaves on RETRY or a param change.
+// The machine subscribes to the cache's own events (ARTIST_IMAGES_WRITTEN for
+// this name, ARTIST_IMAGES_EXPIRED); a consumer never wires them. A lookup
+// result carries the request number it answers, so a late answer for an old
+// name or an old request is dropped by the table, not by a closure flag.
+const ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS",
+  "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+const _apEmpty = ctx => ({ ...ctx, url: null, source: null, rec: null });
+const _apReady = (ctx, rec) => ["ready", { ...ctx, url: rec.url, source: rec.source, rec }];
+// MOUNT and PARAM_CHANGE: read the store first ("read" runs synchronously).
+const _apAsk = (ctx, p) => {
+  const next = _apEmpty({ ...ctx, key: p.key ?? ctx.key, name: p.name ?? ctx.name, ask: "mount" });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+// RETRY and ONLINE: read again. ctx.ask carries why, so canFetch can refuse a
+// lookup the consumer cannot run (the hero searches on mount only) and the
+// machine settles in none instead of waiting in loading for no one.
+const _apReread = ask => ctx => ["loading", { ..._apEmpty(ctx), ask }, "read"];
+// A write for this artist is new information in any state: show it.
+const _apWritten = (ctx, p) => (p.rec ? _apReady(ctx, p.rec) : null);
+const _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", { ...ctx, url: p.url, source: p.source || "spotify", rec: null }] : ["unavailable", _apEmpty(ctx)];
+  // A lookup that could not be made at all (no token) is none, not offline.
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+const _apStop = () => MACHINE_STOP;
+const ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: (ctx, p) => (ctx.name ? _apReread("retry")(ctx, p) : null), ONLINE: null, UNMOUNT: _apStop,
+    },
+    loading: {
+      MOUNT: null, PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx]
+        : p.canFetch ? ["loading", { ...ctx, req: ctx.req + 1 }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"), FETCH_MISS: _apAnswer("unavailable"), FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      // Already asking: an expiry elsewhere changes nothing here.
+      CACHE_EXPIRED: null, RETRY: null, ONLINE: null, UNMOUNT: _apStop,
+    },
+    ready: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      // A late answer to a request this state already outran (f24: the
+      // queue wrote first) is dropped.
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      // Same artist, new entry: re-read, without re-entering loading. The held
+      // URL stays if the store gives nothing showable back.
+      CACHE_WRITTEN: _apWritten,
+      // A Spotify URL held here expires with its entry (24 h): re-read, and
+      // look the artist up again when nothing showable is left.
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec)
+        : p.canFetch ? ["loading", { ..._apEmpty(ctx), req: ctx.req + 1 }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null, ONLINE: null, UNMOUNT: _apStop,
+    },
+    unavailable: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"),
+      // Not a network problem: the answer was no.
+      ONLINE: null, UNMOUNT: _apStop,
+    },
+    offline: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"), ONLINE: _apReread("online"), UNMOUNT: _apStop,
+    },
+    error: {
+      MOUNT: null, PARAM_CHANGE: _apAsk, CACHE_HIT: null, CACHE_MISS: null,
+      FETCH_RESOLVE: null, FETCH_MISS: null, FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten, CACHE_EXPIRED: null, RETRY: _apReread("retry"),
+      // The store threw; the network coming back does not fix that.
+      ONLINE: null, UNMOUNT: _apStop,
+    },
+  },
+});
+
+function _readArtistPhoto(name) {
+  try { return { rec: getArtistImage(name) }; } catch (error) { return { rec: null, error }; }
+}
+// Steps the synchronous "read" effect: the store answers CACHE_HIT or
+// CACHE_MISS on the spot, so the first paint for a name already has its photo.
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  const { rec, error } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS",
+    rec ? { rec } : { error, canFetch: !error && canFetch(snap.ctx.ask || "mount") });
+}
+function _spotifyTokenValid() {
+  const token   = localStorage.getItem("spotify_token");
+  const expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+
+// The machine-backed photo for one artist name. lookup(name) -> Promise of a
+// URL or null runs on "fetch"; a consumer that looks the photo up itself
+// passes no lookup and calls report(url | null), fail() when its request
+// failed, or noLookup() when it could not make one (no token). canFetch(reason) says whether to look up at all ("mount",
+// "expired", "retry", "online"). key re-asks when it changes (the hero keys
+// on the act and the B2B tab, not only the name).
+// Returns { url, status, retry, rec, source, report, fail, noLookup }.
+function useArtistPhotoMachine(name, { key = name, lookup = null, canFetch = () => false } = {}) {
+  const canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  const can = reason => !!canFetchRef.current(reason);
+  const [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(
+    ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({ key, name, url: null, source: null, rec: null, req: 0 }),
+      prev ? "PARAM_CHANGE" : "MOUNT", { key, name }), can),
+  (effect, s, send) => {
+    if (effect === "read") {
+      const { rec, error } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? { rec } : { error, canFetch: !error && can(s.ctx.ask || "mount") });
+    } else if (effect === "fetch" && lookup) {
+      const req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", { req, url, source: "spotify" }),
+        () => send("FETCH_REJECT", { req }));
     }
-    return () => { live = false; };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  });
+  const ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    const onExpired = () => send("CACHE_EXPIRED", { rec: _readArtistPhoto(name).rec, canFetch: can("expired") });
+    const onWritten = e => { if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", { rec: _readArtistPhoto(name).rec }); };
+    const onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  const req = snap.ctx.req;
+  const report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", { req, url, source: "spotify" }), [req, send]);
+  const fail = React.useCallback(() => send("FETCH_REJECT", { req }), [req, send]);
+  const noLookup = React.useCallback(() => send("FETCH_REJECT", { req, noLookup: true }), [req, send]);
+  const retry = React.useCallback(() => send("RETRY"), [send]);
+  return { url: snap.ctx.url, status: snap.state, retry, rec: snap.ctx.rec, source: snap.ctx.source, report, fail, noLookup };
+}
+
+// The swatch/strip photo: a URL string or null, as its four callers expect.
+// Spotify (connected users, 24 h rule) is the only lookup, through the photo
+// queue; with no photo the swatch keeps its gradient and initials.
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, { lookup: _queuePhoto, canFetch: _spotifyTokenValid }).url;
 }
 
 // Artist color swatch — shows Spotify headshot when available,
@@ -635,13 +774,21 @@ function FieldMediaRow({ children }) {
 }
 
 // One bottom sheet: one grabber, one radius, a title and a 44pt close.
-function FieldSheet({ title, onClose, children }) {
-  useDeclareModal(true);
+// Escape closes the sheet that is open. One policy for every door: the
+// field sheet, the alerts drawer and the first-timer guide all call this.
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+
+// eyebrow: a label over the title. footer: pinned under the scrolling body (actions
+// that must stay whole and reachable, like the guide's quick jumps).
+function FieldSheet({ title, eyebrow, footer, onClose, children }) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return (
     <div onClick={onClose} style={{
       position: "fixed", inset: 0, zIndex: 80, background: "var(--scrim)",
@@ -656,14 +803,18 @@ function FieldSheet({ title, onClose, children }) {
           <div style={{ width: 36, height: 5, borderRadius: 3, background: "var(--line-2)" }}/>
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "4px 8px 4px 20px" }}>
-          <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
+          <div style={{ minWidth: 0 }}>
+            {eyebrow && <div className="duo-label duo-ink3" style={{ marginBottom: 3 }}>{eyebrow}</div>}
+            <h2 style={{ margin: 0, font: "700 22px/1.25 var(--f-ui)", letterSpacing: "-0.02em" }}>{title}</h2>
+          </div>
           <button onClick={onClose} aria-label="Close" style={fieldIconBtn}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
           </button>
         </div>
-        <div style={{ overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "4px 20px 24px" }}>
           {children}
         </div>
+        {footer && <div style={{ flex: "none", padding: "10px 20px 16px", borderTop: "1px solid var(--line)" }}>{footer}</div>}
       </div>
     </div>
   );
@@ -685,23 +836,31 @@ function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
-function DuoFace({ name, size, ring = "", style }) {
-  const photo = useArtistPhoto(name);
+function DuoFace({ name, size, ring = "", style, className = "" }) {
+  const resolved = useArtistPhoto(name);
+  const rec = getArtistImage(name);
+  // A URL is not bytes: offline, a ledger portrait the SW never cached (or a
+  // Spotify URL, which it never persists) fails to load. Remember the src that
+  // failed and show initials for it, never a broken image (#329 review).
+  const [failed, setFailed] = React.useState(null);
+  const photo = resolved && resolved !== failed ? resolved : null;
   return (
-    <span className={`duo-av ${ring}`} aria-hidden="true"
-      style={{ width: size, height: size, fontSize: Math.round(size * 0.32), ...style }}>
-      {photo ? <img src={photo} alt="" /> : _duoInitials(name)}
+    <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
+      data-photo-source={photo ? (rec?.source || "") : "initials"}
+      style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
+      {photo ? <img src={photo} alt="" onError={() => setFailed(photo)} /> : _duoInitials(name)}
     </span>
   );
 }
+// A pair's layout lives in CSS (.duo-avp / .duo-avp-a / .duo-avp-b with --av as the slot):
+// the board overlaps the two faces in one slot; the print sets them side by side, whole.
 function DuoAvatar({ name, size = 40, ring = "" }) {
   const ms = _duoMembers(name);
   if (ms.length < 2) return <DuoFace name={name} size={size} ring={ring} />;
-  const d = Math.round(size * 0.66);
   return (
-    <span className="duo-avp" aria-hidden="true" style={{ width: size, height: size }}>
-      <DuoFace name={ms[0]} size={d} ring={ring} style={{ left: 0, top: 0 }} />
-      <DuoFace name={ms[1]} size={d} ring={ring} style={{ right: 0, bottom: 0 }} />
+    <span className="duo-avp" aria-hidden="true" data-pair={name} style={{ "--av": size + "px" }}>
+      <DuoFace name={ms[0]} ring={ring} className="duo-avp-a" />
+      <DuoFace name={ms[1]} ring={ring} className="duo-avp-b" />
     </span>
   );
 }
@@ -711,7 +870,7 @@ function DuoLive({ children = "Live", className = "duo-label" }) {
   return <span className={`${className} duo-live`}><i aria-hidden="true" />{children}</span>;
 }
 
-// The board's section eyebrow: Michroma caps, with an optional right slot.
+// The board's section eyebrow: Space Grotesk caps, with an optional right slot.
 function DuoSect({ title, right, style }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, minHeight: 24, ...style }}>
@@ -1037,8 +1196,13 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   // 438 m from its crowd, a user standing at the main stage was 279 m from the
   // NEAREST anchor and this returned null every time. Live stage detection was
   // silently dead at the biggest stage on site.
-  const anchors = (typeof resolvedStageAnchors === "function")
-    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []);
+  // Evidence only (osm / crowd). This is a geofence: a hit auto-marks a set
+  // attended with no tap. A poster read, a provisional pin or a derived point
+  // is a guess about where a stage is, and a guess must not fire it. EDC
+  // Orlando 2026 ships five poster reads off 2025 art (founder, 2026-10-20).
+  const anchors = ((typeof resolvedStageAnchors === "function")
+    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []))
+    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
   if (anchors.length === 0) return null;
   const radius = opts.radiusM || 140;
   const now = window.NOW;
@@ -1105,6 +1269,15 @@ function setReminderLeadMin(mins) {
 //
 // Web path: setTimeout each pending reminder and persist to localStorage
 // so a reload can rehydrate any that haven't fired yet.
+// One wording for every reminder path (native, web, rehydrate). A split that
+// moves the arrival past the published start is an arrival, not a start
+// (Codex P2 on #335), as the in-app reminder already says.
+function _reminderText(p) {
+  const lead = p.leadMin || 15;
+  return p.late
+    ? { title: `${p.name}: you arrive in ${lead} min`, body: `${p.stageName} · you arrive ${fmt12(p.start)}` }
+    : { title: `${p.name} starts in ${lead} min`, body: `${p.stageName} · ${fmt12(p.start)}` };
+}
 function scheduleReminders(state, showLocal) {
   const ln = _capLocalNotifications();
   const now = Date.now();
@@ -1117,8 +1290,12 @@ function scheduleReminders(state, showLocal) {
   const lineup = activeLineup(state.saved);
 
   state.saved.forEach(id => {
-    const a = lineup.find(x => x.id === id);
-    if (!a) return;
+    const found = lineup.find(x => x.id === id);
+    if (!found) return;
+    // L3: after a split the reminder is for when you ARRIVE (the switch time),
+    // not the set's published start you are deliberately skipping.
+    const win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    const a = win && win.partial ? { ...found, start: win.start } : found;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
     const fireMs = startMs - leadMin * 60000;
@@ -1131,6 +1308,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs, leadMin,
     });
   });
@@ -1153,8 +1331,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id:    p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body:  `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body:  _reminderText(p).body,
           schedule: { at: new Date(p.fireMs), allowWhileIdle: true },
           extra: { artistId: p.id, url: "/" },
         })),
@@ -1170,8 +1348,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     const handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: { url: "/" },
       });
@@ -1198,10 +1376,9 @@ function loadAndReschedule(showLocal) {
     const live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      const lead = r.leadMin || 15;
       const handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: { url: "/" },
         });
@@ -1433,45 +1610,38 @@ function FestivalChip({ compact = false, accent = "var(--ink)", title = null }) 
   );
 }
 
-// Real festival art only: raster official maps. SVG plates and the one raster
-// placeholder (edco-tinker-2026.jpg) are generated, so those festivals show
-// their emoji on a plain surface instead.
-const _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
-function _festivalArt(cfg) {
-  const img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+// Festival art comes from ONE door: the festival-art ledger
+// (data/festival-art.js), official key art and logos only. Map art never
+// reaches a tile: an official map at 56 px read as a tiny screenshot, and the
+// tile is an identifier, not a map (Item 6, Oct 16 spec).
+function festivalArtFor(id) {
+  const rec = id && window.PLURSKY_FESTIVAL_ART?.[id];
+  return rec && /^festival-art\/tiles\/[a-z0-9-]+\.webp$/.test(rec.tile || "") && rec.sourcePage ? rec : null;
 }
-const _FESTIVAL_EDITORIAL_ART = Object.freeze({
-  "acl-2026": "festival-art/acl-2026.webp",
-  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
-  "portola-2026": "festival-art/portola-2026.webp",
-  "iii-points-2026": "festival-art/iii-points-2026.webp",
-  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
-  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp",
-});
 function FestivalThumb({ entry, size = 56, editorial = false }) {
-  // The switcher's cards are discovery surfaces, not maps. Festival map art
-  // looked like a tiny screenshot and generated/no-art festivals fell back to
-  // platform-dependent emoji (empty boxes on iOS/headless Chrome). Until each
-  // festival has licensed editorial photography, use a deterministic film
-  // gradient + wordmark. Compact list rows still use real raster art where it
-  // exists because there it reads as a useful identifier, not a hero photo.
-  const editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
-  const art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  // editorial: the switcher's grid card, the ledger's full frame when it has
+  // one. Compact (list rows): the ledger's 168 px tile, cover-fit on a
+  // charcoal well so light or transparent art never floats on the page.
+  const rec = festivalArtFor(entry?.config?.id);
+  const art = editorial ? (rec?.card || null) : (rec?.tile || null);
   const name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   // The brand when it is already a code (EDC, ACL, CRSSD); else the
   // initials of the name's words, the year left out.
   const brand = String(entry?.config?.brand || "").trim();
   const mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand
     : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
-  // No art: the festival's initials as a board code on a well, in both
-  // modes (the old pink film gradient was a Dark-only look).
+  // No art: the festival's initials on a well tinted with its OWN registry
+  // accent (never another palette); the letters stay ink so they read in
+  // both modes.
+  const accent = /^#[0-9a-f]{6}$/i.test(entry?.accent || "") ? entry.accent : null;
   return (
-    <div aria-hidden="true" style={{
-      width: size, height: size, borderRadius: "var(--rad-sm)", overflow: "hidden", flexShrink: 0,
-      background: "var(--s3)", display: "flex", alignItems: "center", justifyContent: "center",
+    <div aria-hidden="true" data-festival-thumb={entry?.config?.id || ""} data-art={art ? "ledger" : accent ? "tinted" : "plain"} style={{
+      width: size, height: size, borderRadius: editorial ? "var(--rad-sm)" : 12, overflow: "hidden", flexShrink: 0,
+      background: art ? "#1C1B19" : accent ? `color-mix(in srgb, ${accent} 26%, var(--s3))` : "var(--s3)",
+      boxShadow: !art && accent ? `inset 0 0 0 1px color-mix(in srgb, ${accent} 45%, transparent)` : undefined,
+      display: "flex", alignItems: "center", justifyContent: "center",
       fontFamily: "var(--f-display)", fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))), fontWeight: 400, letterSpacing: "0.12em",
-      color: "var(--ink-2)",
+      color: "var(--ink)",
       // lineHeight 1 keeps the wordmark fallback inside its box: the default
       // ~1.2 line box grows past the tile at 200% text and is clipped.
       lineHeight: 1,
@@ -1493,7 +1663,7 @@ function _festivalPlanStatus(id) {
   let conflicts = 0;
   for (let i = 0; i < arts.length; i++)
     for (let j = i + 1; j < arts.length; j++)
-      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof overlaps === "function" && overlaps(arts[i], arts[j])) conflicts++;
+      if (arts[i].day === arts[j].day && sameWeekend(arts[i], arts[j]) && typeof setsClash === "function" && setsClash(arts[i], arts[j], id, ids)) conflicts++;
   return { saved: arts.length, conflicts };
 }
 
@@ -2033,9 +2203,15 @@ function fitWords(el) {
   // it, and a read through the transition took the previous FITTED size as
   // the real one, so "Interplanetary Criminal" (14px) stepped 13 → 12 → 13 on
   // successive settles and a mode switch kept whichever it was on.
-  const tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
-  const done = () => { if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]); else el.style.removeProperty("transition"); };
+  // ...and on every element INSIDE it: a child (a word on its own line, a
+  // b2b half) inherits the new font-size through its OWN transition, so with
+  // only the parent's off the child's text still measured at the old size
+  // and the fit ran to its floor (Summerfest's poster word printed at 32px
+  // where 53px fits, under Reduce Motion only).
+  const nodes = [el, ...el.querySelectorAll("*")];
+  const trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (const n of nodes) n.style.setProperty("transition", "none", "important");
+  const done = () => { nodes.forEach((n, i) => { if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]); else n.style.removeProperty("transition"); }); };
   const cs = getComputedStyle(el);
   const cur = parseFloat(cs.fontSize);
   if (el.dataset.fitSet == null || Math.abs(cur - parseFloat(el.dataset.fitSet)) > 0.1) el.dataset.fitBase = String(cur);
@@ -2322,7 +2498,7 @@ function plurskyHaptic(style = "LIGHT") {
 
 Object.assign(window, {
   Screen, ScrollBody, TopBar, TabBar, Pill, ArtistSwatch, Wordmark,
-  useArtistPhoto, useArtistImageExpiry, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
+  useArtistPhoto, useArtistPhotoMachine, ARTIST_PHOTO_MACHINE, getArtistImage, getShareableArtistImage, putArtistImage, putArtistImages,
   SpotifyFullLogo, SPOTIFY_IMAGE_TTL_MS,
   useInstallPrompt, InstallBanner,
   useNotifications, NotificationsCard, scheduleReminders,

@@ -2,9 +2,11 @@ function Screen({
   children,
   bg = "var(--paper)",
   pad = true,
-  ink = "var(--ink)"
+  ink = "var(--ink)",
+  scope
 }) {
   return React.createElement("div", {
+    "data-screen": scope,
     style: {
       position: "absolute",
       inset: 0,
@@ -401,6 +403,7 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   }
   return changed;
 }
+var ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 function putArtistImages(entries, {
   ifAbsent = false
 } = {}) {
@@ -408,6 +411,7 @@ function putArtistImages(entries, {
     var store = _readArtistImageStore();
     var changed = _pruneArtistImageStore(store);
     var now = Date.now();
+    var written = [];
     for (var e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -419,9 +423,15 @@ function putArtistImages(entries, {
         fetchedAt: now
       };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try {
+      window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, {
+        detail: written
+      }));
+    } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -462,15 +472,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   } catch {}
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
-}
-function useArtistImageExpiry() {
-  var [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    var on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
 }
 try {
   _expireArtistImagesNow();
@@ -572,29 +573,264 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function useArtistPhoto(name) {
-  var [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
+var ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS", "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+var _apEmpty = ctx => ({
+  ...ctx,
+  url: null,
+  source: null,
+  rec: null
+});
+var _apReady = (ctx, rec) => ["ready", {
+  ...ctx,
+  url: rec.url,
+  source: rec.source,
+  rec
+}];
+var _apAsk = (ctx, p) => {
+  var next = _apEmpty({
+    ...ctx,
+    key: p.key ?? ctx.key,
+    name: p.name ?? ctx.name,
+    ask: "mount"
   });
-  var expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  React.useEffect(() => {
-    if (photo) return;
-    var live = true;
-    var token = localStorage.getItem("spotify_token");
-    var expires = localStorage.getItem("spotify_expires");
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => {
-        if (live && img) setPhoto(img);
-      });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+var _apReread = ask => ctx => ["loading", {
+  ..._apEmpty(ctx),
+  ask
+}, "read"];
+var _apWritten = (ctx, p) => p.rec ? _apReady(ctx, p.rec) : null;
+var _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", {
+    ...ctx,
+    url: p.url,
+    source: p.source || "spotify",
+    rec: null
+  }] : ["unavailable", _apEmpty(ctx)];
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+var _apStop = () => MACHINE_STOP;
+var ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: (ctx, p) => ctx.name ? _apReread("retry")(ctx, p) : null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    loading: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx] : p.canFetch ? ["loading", {
+        ...ctx,
+        req: ctx.req + 1
+      }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"),
+      FETCH_MISS: _apAnswer("unavailable"),
+      FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    ready: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec) : p.canFetch ? ["loading", {
+        ..._apEmpty(ctx),
+        req: ctx.req + 1
+      }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    unavailable: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    offline: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: _apReread("online"),
+      UNMOUNT: _apStop
+    },
+    error: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
     }
-    return () => {
-      live = false;
+  }
+});
+function _readArtistPhoto(name) {
+  try {
+    return {
+      rec: getArtistImage(name)
     };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  } catch (error) {
+    return {
+      rec: null,
+      error
+    };
+  }
+}
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  var {
+    rec,
+    error
+  } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+    rec
+  } : {
+    error,
+    canFetch: !error && canFetch(snap.ctx.ask || "mount")
+  });
+}
+function _spotifyTokenValid() {
+  var token = localStorage.getItem("spotify_token");
+  var expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+function useArtistPhotoMachine(name, {
+  key = name,
+  lookup = null,
+  canFetch = () => false
+} = {}) {
+  var canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  var can = reason => !!canFetchRef.current(reason);
+  var [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({
+    key,
+    name,
+    url: null,
+    source: null,
+    rec: null,
+    req: 0
+  }), prev ? "PARAM_CHANGE" : "MOUNT", {
+    key,
+    name
+  }), can), (effect, s, send) => {
+    if (effect === "read") {
+      var {
+        rec,
+        error
+      } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+        rec
+      } : {
+        error,
+        canFetch: !error && can(s.ctx.ask || "mount")
+      });
+    } else if (effect === "fetch" && lookup) {
+      var _req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+        req: _req,
+        url,
+        source: "spotify"
+      }), () => send("FETCH_REJECT", {
+        req: _req
+      }));
+    }
+  });
+  var ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    var onExpired = () => send("CACHE_EXPIRED", {
+      rec: _readArtistPhoto(name).rec,
+      canFetch: can("expired")
+    });
+    var onWritten = e => {
+      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", {
+        rec: _readArtistPhoto(name).rec
+      });
+    };
+    var onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  var req = snap.ctx.req;
+  var report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+    req,
+    url,
+    source: "spotify"
+  }), [req, send]);
+  var fail = React.useCallback(() => send("FETCH_REJECT", {
+    req
+  }), [req, send]);
+  var noLookup = React.useCallback(() => send("FETCH_REJECT", {
+    req,
+    noLookup: true
+  }), [req, send]);
+  var retry = React.useCallback(() => send("RETRY"), [send]);
+  return {
+    url: snap.ctx.url,
+    status: snap.state,
+    retry,
+    rec: snap.ctx.rec,
+    source: snap.ctx.source,
+    report,
+    fail,
+    noLookup
+  };
+}
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, {
+    lookup: _queuePhoto,
+    canFetch: _spotifyTokenValid
+  }).url;
 }
 function ArtistSwatch({
   artist,
@@ -757,12 +993,7 @@ function FieldMediaRow({
     }
   }, children);
 }
-function FieldSheet({
-  title,
-  onClose,
-  children
-}) {
-  useDeclareModal(true);
+function useEscapeToClose(onClose) {
   React.useEffect(() => {
     var onKey = e => {
       if (e.key === "Escape") onClose();
@@ -770,6 +1001,16 @@ function FieldSheet({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
+}
+function FieldSheet({
+  title,
+  eyebrow,
+  footer,
+  onClose,
+  children
+}) {
+  useDeclareModal(true);
+  useEscapeToClose(onClose);
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -816,13 +1057,22 @@ function FieldSheet({
       justifyContent: "space-between",
       padding: "4px 8px 4px 20px"
     }
-  }, React.createElement("h2", {
+  }, React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, eyebrow && React.createElement("div", {
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 3
+    }
+  }, eyebrow), React.createElement("h2", {
     style: {
       margin: 0,
       font: "700 22px/1.25 var(--f-ui)",
       letterSpacing: "-0.02em"
     }
-  }, title), React.createElement("button", {
+  }, title)), React.createElement("button", {
     onClick: onClose,
     "aria-label": "Close",
     style: fieldIconBtn
@@ -838,11 +1088,19 @@ function FieldSheet({
     d: "M6 6 L18 18 M18 6 L6 18"
   })))), React.createElement("div", {
     style: {
+      flex: 1,
+      minHeight: 0,
       overflowY: "auto",
       WebkitOverflowScrolling: "touch",
       padding: "4px 20px 24px"
     }
-  }, children)));
+  }, children), footer && React.createElement("div", {
+    style: {
+      flex: "none",
+      padding: "10px 20px 16px",
+      borderTop: "1px solid var(--line)"
+    }
+  }, footer)));
 }
 function _duoMembers(name) {
   return String(name || "").split(/\s+b\d+b\s+|\s+with\s+/i).map(s => s.trim()).filter(Boolean);
@@ -854,21 +1112,30 @@ function DuoFace({
   name,
   size,
   ring = "",
-  style
+  style,
+  className = ""
 }) {
-  var photo = useArtistPhoto(name);
+  var resolved = useArtistPhoto(name);
+  var rec = getArtistImage(name);
+  var [failed, setFailed] = React.useState(null);
+  var photo = resolved && resolved !== failed ? resolved : null;
   return React.createElement("span", {
-    className: `duo-av ${ring}`,
+    className: `duo-av ${ring} ${className}`.trim(),
     "aria-hidden": "true",
+    "data-face": name,
+    "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
-      width: size,
-      height: size,
-      fontSize: Math.round(size * 0.32),
+      ...(size ? {
+        width: size,
+        height: size,
+        fontSize: Math.round(size * 0.32)
+      } : {}),
       ...style
     }
   }, photo ? React.createElement("img", {
     src: photo,
-    alt: ""
+    alt: "",
+    onError: () => setFailed(photo)
   }) : _duoInitials(name));
 }
 function DuoAvatar({
@@ -882,30 +1149,21 @@ function DuoAvatar({
     size: size,
     ring: ring
   });
-  var d = Math.round(size * 0.66);
   return React.createElement("span", {
     className: "duo-avp",
     "aria-hidden": "true",
+    "data-pair": name,
     style: {
-      width: size,
-      height: size
+      "--av": size + "px"
     }
   }, React.createElement(DuoFace, {
     name: ms[0],
-    size: d,
     ring: ring,
-    style: {
-      left: 0,
-      top: 0
-    }
+    className: "duo-avp-a"
   }), React.createElement(DuoFace, {
     name: ms[1],
-    size: d,
     ring: ring,
-    style: {
-      right: 0,
-      bottom: 0
-    }
+    className: "duo-avp-b"
   }));
 }
 function DuoLive({
@@ -1253,7 +1511,10 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   var cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || [];
+  var anchors = (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || []).filter(a => {
+    var s = a.anchorSource || a.src;
+    return s === "osm" || s === "crowd";
+  });
   if (anchors.length === 0) return null;
   var radius = opts.radiusM || 140;
   var now = window.NOW;
@@ -1303,6 +1564,16 @@ function setReminderLeadMin(mins) {
     localStorage.setItem(_REMINDER_LEAD_KEY, String(mins));
   } catch {}
 }
+function _reminderText(p) {
+  var lead = p.leadMin || 15;
+  return p.late ? {
+    title: `${p.name}: you arrive in ${lead} min`,
+    body: `${p.stageName} · you arrive ${fmt12(p.start)}`
+  } : {
+    title: `${p.name} starts in ${lead} min`,
+    body: `${p.stageName} · ${fmt12(p.start)}`
+  };
+}
 function scheduleReminders(state, showLocal) {
   var ln = _capLocalNotifications();
   var now = Date.now();
@@ -1310,8 +1581,13 @@ function scheduleReminders(state, showLocal) {
   var pending = [];
   var lineup = activeLineup(state.saved);
   state.saved.forEach(id => {
-    var a = lineup.find(x => x.id === id);
-    if (!a) return;
+    var found = lineup.find(x => x.id === id);
+    if (!found) return;
+    var win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    var a = win && win.partial ? {
+      ...found,
+      start: win.start
+    } : found;
     var startMs = _artistStartMs(a);
     if (!startMs) return;
     var fireMs = startMs - leadMin * 60000;
@@ -1324,6 +1600,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs,
       leadMin
     });
@@ -1345,8 +1622,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id: p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body: `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body: _reminderText(p).body,
           schedule: {
             at: new Date(p.fireMs),
             allowWhileIdle: true
@@ -1370,8 +1647,8 @@ function scheduleReminders(state, showLocal) {
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: {
           url: "/"
@@ -1395,10 +1672,9 @@ function loadAndReschedule(showLocal) {
     var live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      var lead = r.leadMin || 15;
       var handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: {
             url: "/"
@@ -1727,38 +2003,33 @@ function FestivalChip({
     onClose: () => setOpen(false)
   }));
 }
-var _GENERATED_ART = new Set(["edco-tinker-2026.jpg"]);
-function _festivalArt(cfg) {
-  var img = cfg && cfg.mapImage;
-  return img && /\.(webp|jpe?g|png)$/i.test(img) && !_GENERATED_ART.has(img) ? img : null;
+function festivalArtFor(id) {
+  var rec = id && window.PLURSKY_FESTIVAL_ART?.[id];
+  return rec && /^festival-art\/tiles\/[a-z0-9-]+\.webp$/.test(rec.tile || "") && rec.sourcePage ? rec : null;
 }
-var _FESTIVAL_EDITORIAL_ART = Object.freeze({
-  "acl-2026": "festival-art/acl-2026.webp",
-  "crssd-fall-2026": "festival-art/crssd-fall-2026.webp",
-  "portola-2026": "festival-art/portola-2026.webp",
-  "iii-points-2026": "festival-art/iii-points-2026.webp",
-  "edc-lv-2026": "festival-art/edc-lv-2026.webp",
-  "countdown-nye-2026": "festival-art/countdown-nye-2026.webp"
-});
 function FestivalThumb({
   entry,
   size = 56,
   editorial = false
 }) {
-  var editorialArt = editorial && entry ? _FESTIVAL_EDITORIAL_ART[entry.config?.id] : null;
-  var art = editorialArt || (!editorial && entry ? _festivalArt(entry.config) : null);
+  var rec = festivalArtFor(entry?.config?.id);
+  var art = editorial ? rec?.card || null : rec?.tile || null;
   var name = entry?.config?.shortName || entry?.config?.brand || entry?.config?.name || "Plur";
   var brand = String(entry?.config?.brand || "").trim();
   var mark = (/^[A-Za-z0-9]{2,6}$/.test(brand) ? brand : String(entry?.config?.name || name).split(/\s+/).filter(w => w && !/^\d+$/.test(w)).slice(0, 3).map(x => x[0]).join("")).toUpperCase();
+  var accent = /^#[0-9a-f]{6}$/i.test(entry?.accent || "") ? entry.accent : null;
   return React.createElement("div", {
     "aria-hidden": "true",
+    "data-festival-thumb": entry?.config?.id || "",
+    "data-art": art ? "ledger" : accent ? "tinted" : "plain",
     style: {
       width: size,
       height: size,
-      borderRadius: "var(--rad-sm)",
+      borderRadius: editorial ? "var(--rad-sm)" : 12,
       overflow: "hidden",
       flexShrink: 0,
-      background: "var(--s3)",
+      background: art ? "#1C1B19" : accent ? `color-mix(in srgb, ${accent} 26%, var(--s3))` : "var(--s3)",
+      boxShadow: !art && accent ? `inset 0 0 0 1px color-mix(in srgb, ${accent} 45%, transparent)` : undefined,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -1766,7 +2037,7 @@ function FestivalThumb({
       fontSize: Math.max(13, Math.round(size * (editorial ? 0.16 : 0.22))),
       fontWeight: 400,
       letterSpacing: "0.12em",
-      color: "var(--ink-2)",
+      color: "var(--ink)",
       lineHeight: 1
     }
   }, art ? React.createElement("img", {
@@ -1792,7 +2063,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id, ids)) conflicts++;
   return {
     saved: arts.length,
     conflicts
@@ -2576,10 +2847,13 @@ function _fitSize(el, px) {
   el.dataset.fitSet = String(px);
 }
 function fitWords(el) {
-  var tr = [el.style.getPropertyValue("transition"), el.style.getPropertyPriority("transition")];
-  el.style.setProperty("transition", "none", "important");
+  var nodes = [el, ...el.querySelectorAll("*")];
+  var trs = nodes.map(n => [n.style.getPropertyValue("transition"), n.style.getPropertyPriority("transition")]);
+  for (var n of nodes) n.style.setProperty("transition", "none", "important");
   var done = () => {
-    if (tr[0]) el.style.setProperty("transition", tr[0], tr[1]);else el.style.removeProperty("transition");
+    nodes.forEach((n, i) => {
+      if (trs[i][0]) n.style.setProperty("transition", trs[i][0], trs[i][1]);else n.style.removeProperty("transition");
+    });
   };
   var cs = getComputedStyle(el);
   var cur = parseFloat(cs.fontSize);
@@ -2593,10 +2867,10 @@ function fitWords(el) {
   var words = [];
   var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   while (tw.nextNode()) {
-    var n = tw.currentNode;
+    var _n = tw.currentNode;
     var re = /[^\s\-‐-—\/·]+/g;
     var m = void 0;
-    while (m = re.exec(n.data)) words.push([n, m.index, m.index + m[0].length]);
+    while (m = re.exec(_n.data)) words.push([_n, m.index, m.index + m[0].length]);
   }
   var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
   var broken = () => {
@@ -2645,7 +2919,7 @@ function fitWordGroups(r) {
   for (var n of r.querySelectorAll("[data-fit-group]")) (groups[n.dataset.fitGroup] ||= []).push(n);
   for (var g of Object.values(groups)) {
     var size = Math.min(...g.map(n => parseFloat(getComputedStyle(n).fontSize)));
-    for (var _n of g) if (Math.abs(parseFloat(getComputedStyle(_n).fontSize) - size) > 0.1) _fitSize(_n, size);
+    for (var _n2 of g) if (Math.abs(parseFloat(getComputedStyle(_n2).fontSize) - size) > 0.1) _fitSize(_n2, size);
   }
 }
 if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationObserver !== "undefined") {
@@ -2672,9 +2946,9 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
       if (n.dataset.fitSet != null && n.dataset.fitBase != null && parseFloat(n.dataset.fitSet) !== parseFloat(n.dataset.fitBase)) _fitSize(n, parseFloat(n.dataset.fitBase));
       if (n.style.overflowWrap) n.style.overflowWrap = "";
     }
-    for (var _n2 of all) {
-      fitWords(_n2);
-      ro && ro.observe(_n2);
+    for (var _n3 of all) {
+      fitWords(_n3);
+      ro && ro.observe(_n3);
     }
     fitWordGroups(document);
   };
@@ -2695,7 +2969,7 @@ if (typeof window !== "undefined" && !window._fitWordsInited && typeof MutationO
         var fit = host && host.closest && host.closest(_FIT_WORDS);
         if (fit) touched.add(fit);
       }
-      for (var _n3 of touched) if (_n3.isConnected) fitIn(_n3);
+      for (var _n4 of touched) if (_n4.isConnected) fitIn(_n4);
       if (touched.size) {
         fitWordGroups(document);
         settleSoon();
@@ -2940,7 +3214,8 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
-  useArtistImageExpiry,
+  useArtistPhotoMachine,
+  ARTIST_PHOTO_MACHINE,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,

@@ -21,6 +21,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 const problems = []; let checks = 0;
@@ -43,10 +44,11 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme, populated }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         if (populated) { localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8'])); localStorage.setItem('plursky_display_name', 'Test Raver'); }
       }, { FID, scheme, populated });
@@ -92,10 +94,11 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8', 'k9', 'n4', 'k1']));
       }, { FID, scheme });
@@ -112,13 +115,13 @@ try {
           essOver: ess.scrollWidth > ess.clientWidth + 1,
           pans, rows: rows.length,
           cut: rows.filter(b => { const n = b.querySelector('.duo-name'); return n.scrollWidth > n.clientWidth + 1; }).map(b => b.getAttribute('aria-label')),
-          more: [...sv.querySelectorAll('button')].some(b => /^All \d+ saved sets$/.test(b.textContent.trim())),
+          more: [...sv.querySelectorAll('button')].some(b => /^All \d+ saved sets/i.test(b.textContent.trim())),
           overflowX: document.documentElement.scrollWidth > innerWidth + 1,
         };
       });
       check(r.cols >= 2 && !r.essOver, `${tag}: essentials are ${r.cols} column(s)${r.essOver ? ', and overflow' : ''}`);
       check(!r.pans.length, `${tag}: something on Today scrolls sideways: ${JSON.stringify(r.pans).slice(0, 160)}`);
-      check(r.rows === 5 && r.more, `${tag}: saved sets show ${r.rows} rows${r.more ? '' : ' and no "All N saved sets"'} (want 5 of 7 and the link)`);
+      check(r.rows === 4 && r.more, `${tag}: saved sets show ${r.rows} rows${r.more ? '' : ' and no "All N saved sets"'} (want 4 of 7 and the link; six or fewer print whole)`);
       check(!r.cut.length, `${tag}: a saved set's name is cut: ${JSON.stringify(r.cut)}`);
       check(!r.overflowX, `${tag}: Today scrolls sideways`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
@@ -131,10 +134,11 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
       }, { FID, scheme });
       const page = await ctx.newPage();
@@ -182,10 +186,11 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
       }, { FID, scheme });
       const page = await ctx.newPage();
@@ -204,7 +209,7 @@ try {
           bg: getComputedStyle(h).backgroundColor, overflowX: document.documentElement.scrollWidth > innerWidth + 1 };
       });
       check(r.title === 'Map', `${tag}: map header title is "${r.title}"`);
-      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
+      check(['OFFICIAL MAP', 'LAYOUT ONLY', 'NOT TO SCALE · STAGES PENDING', 'VENUE MAP · STAGES PENDING'].includes(r.posture), `${tag}: posture label "${r.posture}" is not one of the known labels`);
       check(r.dup === 0, `${tag}: the posture label also floats over the map (${r.dup})`);
       check(!/rgba\(0, 0, 0, 0\)|transparent/.test(r.bg), `${tag}: the map header has no solid ground (${r.bg})`);
       check(!r.overflowX, `${tag}: Map scrolls sideways`);
@@ -244,8 +249,9 @@ try {
     const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, serviceWorkers: 'block', reducedMotion: 'reduce' });
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date(AT) });
-      await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('cloud_nudge_seen', '1'); });
+      await ctx.addInitScript(() => { localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'hard-summer-2026'); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0'); localStorage.setItem('cloud_nudge_seen', '1'); });
       const page = await ctx.newPage();
       await page.goto(`http://127.0.0.1:${PORT}/index.html?f=hard-summer-2026&tab=map`, { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(() => document.querySelector('[data-map-chips]') && window.FESTIVAL_CONFIG?.id === 'hard-summer-2026', null, { timeout: 60000 });
@@ -262,10 +268,11 @@ try {
     if (WIDE) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, WIDE);
     try {
       await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`) && !/unpkg\.com|cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com/.test(u.toString()), r => r.abort());
+      await wireVendor(ctx);   // after the abort-all route: Playwright tries the last-registered handler first
       await ctx.clock.install({ time: new Date('2026-05-10T18:00:00Z') });
       await ctx.addInitScript(({ FID, scheme }) => {
         if (sessionStorage.getItem('__s')) return; sessionStorage.setItem('__s', '1');
-        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1');
+        localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         localStorage.setItem('plursky_switcher_view_v1', 'grid');
       }, { FID, scheme });

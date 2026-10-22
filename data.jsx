@@ -84,6 +84,75 @@ const FESTIVAL_CONFIG = {
   locationShort:"Las Vegas Motor Speedway",
   dates:        "May 15–17, 2026",
   year:         2026,
+  // The Basics sheet's guide: gates, lingo, the desert, shuttles and a first
+  // night, from the official EDC Festival Guide and DanceSafe. Festival data,
+  // not renderer copy: home.jsx printed this for EVERY festival until round 8
+  // (ACL's Basics read "Survive the desert" and "18+ event"). A festival with
+  // no `guide` gets the neutral one in home.jsx, built from its own config.
+  guide: [
+    {
+      id: "gates",
+      icon: "🚪",
+      title: "Gates & entry",
+      items: [
+        "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
+        "Bring a valid government-issued photo ID. 18+ event.",
+        "Wristband activates online before you arrive — don't show up with it unpaired.",
+        "One re-entry per day, only between 4 PM and midnight.",
+        "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
+      ],
+    },
+    {
+      id: "lingo",
+      icon: "🗣️",
+      title: "Words you'll hear",
+      items: [
+        "PLUR — Peace, Love, Unity, Respect. The unspoken code.",
+        "Kandi — beaded bracelets. Trade them with strangers.",
+        "Totem — tall flag/sign so your group can find you in the crowd.",
+        "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.",
+        "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.",
+        "B2B — back-to-back DJ set; two artists trading on the decks.",
+      ],
+    },
+    {
+      id: "survive",
+      icon: "💧",
+      title: "Survive the desert",
+      items: [
+        "Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).",
+        "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.",
+        "Earplugs. Your future self will thank you.",
+        "Eat real food before headliners. The food halls in Daisy Lane stay open all night.",
+        "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces.",
+      ],
+    },
+    {
+      id: "travel",
+      icon: "🚌",
+      title: "Getting there & back",
+      items: [
+        "Shuttles run from Strip hotels all night. Last departure ~5:30 AM.",
+        "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.",
+        "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.",
+        "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering.",
+      ],
+    },
+    {
+      id: "day1",
+      icon: "🌅",
+      title: "Recommended Day 1",
+      items: [
+        "Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.",
+        "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.",
+        "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.",
+        "Eat at midnight. Sleep is for after the sunrise set.",
+        "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise.",
+      ],
+    },
+  ],
+  // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+  print: { accent: "#ED3895", source: { url: "https://lasvegas.edc.com/wp-content/assets/css/edc-las-vegas.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#ed3895 }`, `button { background-color:#ed3895 }`, `.button--outline` border/text; hover darkens to #db187c (10 uses, the most of any non-grey colour).", confidence: "high" }, note: "No <meta theme-color> (the only custom property is WordPress's admin default #007cba), so the first-party sheet's link + primary-button colour is the accent." },
   officialEvent: {
     // Historical record frozen: the official site has rolled to the separate 2027 cycle.
     website: "https://lasvegas.edc.com/", observedAt: "2026-09-10",
@@ -388,6 +457,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Double JJ Ranch",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#6244BB", source: { url: "https://www.electricforestfestival.com/", observedAt: "2026-10-09", seenAs: "Inline <style> in the homepage HTML: `.c-button.primary { background-color:#6244BB; border:3px solid #6244BB }`, `a:hover { color:#6244BB }`, `.c-primaryButton:hover` text/border (21 uses); the AEG template sheet style.v3.css carries no site colour.", confidence: "high" }, note: "No <meta theme-color> and no custom properties; the site-specific inline CSS makes purple #6244BB the primary button and link-hover colour (dark green #2d4031 is used for borders/pass headers, teal #02A1A9 for info bars)." },
     },
     available: false,
     accent:    "#34d399",
@@ -413,6 +484,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Legend Valley",
       dates:     "Sep 18–20, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F8D861", source: { url: "https://www.lostlandsfestival.com/wp-content/themes/lostlands-2017/css/main.min.css?v=10.349", observedAt: "2026-10-09", seenAs: "Theme stylesheet: `section h1..h4 { color:#f8d861 }`, content links `a { color:#f8d861 }`, `a:hover { color:#f8d861 }`, `.read-more { background:#f8d861 }`, ticket accordion active/price state (33 uses, the dominant non-grey colour).", confidence: "high" }, note: "data.jsx records no official website for this festival, so the well-known official domain lostlandsfestival.com was used; its <meta theme-color> is plain #ffffff, so the theme sheet's heading/link/button yellow is the accent." },
       startMs: Date.UTC(2026, 8, 16, 16, 0, 0), // Sep 16 noon EDT (early-entry Wed opens)
       endMs:   Date.UTC(2026, 8, 21, 7, 0, 0),  // Sep 21 03:00 EDT (last Sunday-night sets end)
       tz:      "America/New_York",
@@ -619,6 +692,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Tinker Field",
       dates:     "Nov 6–8, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#FF0100", accent2: "#ED3895", source: { url: "https://orlando.edc.com/wp-content/assets/css/edc-orlando.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `.custom-form button, .global-footer button { background-color:#ff0100 }`, `.button--outline` border, lineup/nav/tab hover `color:#ff0100` (8 uses); base links stay the shared EDC pink `a { color:#ed3895 }` (7 uses).", confidence: "medium" }, note: "No <meta theme-color>; the Orlando sheet overrides the shared EDC theme's buttons and hover states to red #ff0100 while leaving link text pink, so red is the edition-specific accent but the sheet is split between the two." },
       // Five published stages; "Schedule TBA" below is an app placeholder, not a sixth stage.
       officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
       officialEvent: {
@@ -688,12 +763,17 @@ const FESTIVALS_REGISTRY = [
       // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
       // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
       // you do — the two are derived together.
+      // basis: every anchor here is a POSTER READ off the official 2025 map art,
+      // never surveyed. Insomniac has not published a 2026 map (checked
+      // 2026-10-20). The basis string is DATA so a gate can read it, and
+      // detectCurrentArtist (chrome.jsx) refuses any non-evidence anchor, so
+      // none of these five can trigger GPS auto-attend.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
-        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
-        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
+        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // SE of the stadium, N of W Anderson, W of Nashville
+        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // Tinker Field mowed rectangle, NE part
+        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
+        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // field S of W South St, E of Tampa
+        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster", basis: "poster-read, 2025 art, unsurveyed" }, // N of SR-408, between Tampa and Lake Beardall
       ],
       mainStageId: "kinetic",
       // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
@@ -710,7 +790,7 @@ const FESTIVALS_REGISTRY = [
     // that axis — but opening it makes it LIVE, and a live festival has to
     // clear the map-registration gate. EDCO has no sourced registration by
     // design: no OSM polygon matches the fence, so it carries no footprint and
-    // waits on the official 2026 map (the same map the hourly watch probes).
+    // waits on the official 2026 map (edco-map-watch.yml checks for it every Monday).
     // Verify says it plainly: "unsourced, blind with no waiver".
     //
     // A waiver here would be a judgement about map accuracy with no evidence
@@ -747,6 +827,8 @@ const FESTIVALS_REGISTRY = [
       location:  "De Schorre · Boom, Belgium",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#73123A", accent2: "#D63A76", source: { url: "https://belgium.tomorrowland.com/_next/static/css/310ad92fa7d6d932.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom property `[data-theme=belgium] { --theme-color:335,73%,26% }` (HSL triplet, converted to hex #73123a); the legacy fallback sheet tml-fallback-2.x.css styles its buttons/bar with a magenta gradient #d63a76 -> #9a0b44 -> #8c0038.", confidence: "medium" }, note: "The <meta theme-color> is plain #000000 and the Next.js chunks define eight different per-section `--accent-1-base` values, so the Belgium theme's own `--theme-color` token is the one site-wide accent; the hex is a conversion of an HSL token, not a literal." },
     },
     available: false,
     accent:    "#fbbf24",
@@ -767,6 +849,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Zilker Park",
       dates:     "Oct 2–4 & 9–11, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F03250", source: { url: "https://cdn.prod.website-files.com/67456b412d0e4219d58ef6c2/css/acl-2026.shared.26bfb3548.min.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom properties: `--swatches--red:#f03250`, `--button-color--primary:var(--swatches--red)`, `--link-color--default:var(--swatches--red)`; hover `--button-color--primary-hover:#f34b66`, `--link-color--hover:#f34b66`.", confidence: "high" }, note: "No <meta theme-color>, but the Webflow sheet names a primary button colour and default link colour and both resolve to the red swatch #f03250." },
       startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
       endMs:   Date.UTC(2026, 9, 12, 5, 0, 0),
       weekendStartMs: {
@@ -794,7 +878,13 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "07:20", set: "19:08" },
         3: { rise: "07:21", set: "19:07" },
       },
-      gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
+      // Centre = the centroid of the three satellite-measured anchors below
+      // (amex, miller, tmobile; Esri Wayback 2024-11-18 at z19), so the
+      // on-site radius covers every measured stage: 431 m to the farthest
+      // (amex). The old centre (30.2630, -97.7730) sat south-west of the
+      // grounds, 616–1049 m from them, so a real fix at AMEX or Miller Lite
+      // read OFF-SITE and the real map opened off the park (#313 item 8, #314).
+      gps: { lat: 30.268090, lng: -97.767611, onSiteRadiusMi: 0.4 },
       // ⚠ GPS anchors for Zilker Park — RE-SURVEYED 2026-09-06.
       //
       // The old trio (amex/miller/beatbox) was read off the ACL patron map
@@ -814,8 +904,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
         { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
         { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        // Independent evidence, NOT in the basis: the grove-footprint stage
+        // structure, measured on the same Esri Wayback 2024-11-18 capture at
+        // z19. The official patron maps run that footprint T-Mobile (2024) ->
+        // Lady Bird (2025) -> Snapchat (2026), so the 2024 capture's structure
+        // is the stage the 2026 lineup brands Snapchat. First read by the
+        // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
+        // 2026-10-18 after the 2024/2025 archived patron maps settled the
+        // footprint. Centre of the main stage roof.
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
         //
-        // ⛔ NOT ANCHORED, deliberately — four reasons:
+        // ⛔ NOT ANCHORED, deliberately — three reasons:
         //
         // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
         // tree cover and teardown hid it in the capture, so it was derived
@@ -832,12 +931,10 @@ const FESTIVALS_REGISTRY = [
         // declines to geo-match a stage it cannot place, which is the correct
         // failure mode.
         //
-        // `snapchat`: new for 2026 (15 sets). The official 2026 patron map
-        // (2026-09-22) now places it on the ART, in the middle of the park by
-        // The Grove, and ACL_STAGES x/y is measured there. That is still not
-        // a world position: the poster is not a survey, so no anchor is read
-        // or projected off it. It also must not inherit Lady Bird's old
-        // coords. A guessed anchor mis-tags photos silently.
+        // `snapchat`: ANCHORED 2026-10-18 (see above), so no longer in this
+        // list. The 2026 patron map places it on the art by The Grove; the
+        // world anchor is the satellite measurement of that footprint's
+        // stage structure, not a poster read — the poster stays art-only.
         //
         // `ladybird` / `bonus`: not stages in the current app model. Bonus
         // Tracks now has September 30 programming in its separate readiness
@@ -845,8 +942,11 @@ const FESTIVALS_REGISTRY = [
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
-        // carry ACL's case. That is why the 2026-10-19 registration waiver
-        // STAYS: the basis is now measured, but nothing independent checks it.
+        // carry ACL's case then. Settled 2026-10-18: the archived 2024 and
+        // 2025 patron maps show the same grove footprint (T-Mobile 2024,
+        // Lady Bird 2025, Snapchat 2026), so that survey's structure
+        // measurement is Snapchat's anchor and the registration waiver is
+        // gone.
         // ⚠ For whoever reconciles this next: the comment replaced here (dated
         // 2026-09-04) recorded both as real park stages with zero programmed
         // sets, while Instinct records `ladybird` as 2024-only and `bonus` as
@@ -898,6 +998,8 @@ const FESTIVALS_REGISTRY = [
       location:  "Empire Polo Club · Indio, CA",
       dates:     "Apr 9–18, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#4E6234", accent2: "#44A1A4", source: { url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c", observedAt: "2026-10-09", seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.", confidence: "medium" }, note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token." },
     },
     available: false,
     accent:    "#ec4899",
@@ -928,6 +1030,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Autódromo Hermanos Rodríguez",
       dates:     "Feb 19–21, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
       officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -949,6 +1053,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "NOS Events Center",
       dates:     "Mar 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://socal.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the site's primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; most-used non-grey hex in the site's own stylesheet (8 of 27)", confidence: "medium" }, note: "No theme-color meta (only WP admin defaults); the site-specific stylesheet linked from the homepage paints every CTA/button teal #00babc, while the 2027 homepage's inline hero typography uses gold #fbd34d with a purple #4b1b6b stroke (key-art, not UI chrome)." },
       officialEvent: { id: 550731, url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/", website: "https://socal.beyondwonderland.com/", tickets: "https://beyondsocal.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -974,6 +1080,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Gorge Amphitheatre",
       dates:     "Jun 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://pnw.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; PNW's stylesheet is byte-identical to SoCal's (cmp)", confidence: "medium" }, note: "No theme-color meta; the shared pnw-socal-beyond.min.css is byte-identical across both Beyond sites and paints every CTA teal #00babc, with the same inline gold #fbd34d / purple #4b1b6b 2027 hero typography as SoCal." },
       officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
       officialEvent: { id: 566426, url: "https://www.insomniac.com/events/beyond-wonderland-at-the-gorge-2027-2027-06-26-george-wa/", website: "https://pnw.beyondwonderland.com/", tickets: "https://beyondpnw.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
@@ -1404,6 +1512,17 @@ function setTimeStatus(a) {
   return _hhmmNightMin(a.start) != null ? "confirmed" : "tba";
 }
 function setTimesUnconfirmed(a) { return setTimeStatus(a) === "unconfirmed"; }
+// Item 4: "Top billed" is a claim about the festival's own poster, so it is
+// made only where the tier came from it (a module's BILLING block, see
+// scripts/build-poster-billing.mjs) — never from the set-time tier guess.
+const TOP_BILLED = "Top billed";
+function isTopBilled(a) { return !!a && a.tierSource === "poster" && a.tier === 3; }
+// Jake, Oct 18: "Top billed" wherever the tier comes from the poster. A
+// festival tiered from its official graphic names tier 3 that way on every
+// surface (23 acts a night share the top size at III Points: none is "the"
+// headliner); a set-time-tiered festival keeps "Headliner".
+function posterBilled() { return !!(typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.posterBilling); }
+function topTierLabel(plural = false) { return posterBilled() ? TOP_BILLED : plural ? "Headliners" : "Headliner"; }
 // A row's start, as text: the words for an unconfirmed set, otherwise exactly
 // what fmt12(a.start) printed before (an em dash for TBA).
 function setTimeLabel(a) { return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start); }
@@ -1899,6 +2018,188 @@ function savedInLineup(savedIds) {
   if (!Array.isArray(savedIds) || !savedIds.length) return [];
   const known = new Set(lineupFor("all").map(a => a.id));
   return savedIds.filter(id => known.has(id));
+}
+
+// ── Split the night (L3, Oct 16 spec) ─────────────────────────────────────
+// A saved set can carry an ATTEND WINDOW: the part of it the user plans to be
+// there for ("Vintage Culture 2:00–3:00, then PAWSA 3:00–4:00"). Clashes are
+// computed over those windows, so a split that removes the overlap clears the
+// clash everywhere. "Keep both" accepts a pair: it still overlaps, but it is a
+// choice, not an alarm. ONE predicate (setsClash) answers "is this a clash?"
+// for every door: Lineup chips and day counts, Tonight's plan, its banner and
+// resolver, alerts, the switcher's per-festival count.
+// Stores: `${fid}_attend_v1` = { setId: { start, end, with } } (with = the set
+// it was split against, so the row can reopen that split); accepted pairs keep
+// the v141 key plursky_conflicts_kept_both_v1 so earlier "Keep both" taps hold.
+// v1 scope: device only — no share card, crew, recap or server sync.
+const CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+const SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key) || "null"); return v == null ? fallback : v; } catch { return fallback; }
+}
+function _l3Changed() { try { window.dispatchEvent(new CustomEvent("plursky:attend-change")); } catch {} }
+function _attendKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_attend_v1`; }
+function attendWindows(fid) {
+  const v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+// Minutes on the festival night → "HH:MM" (folds past midnight back to 00–07).
+function nightMinToHHMM(m) {
+  const h = Math.floor(m / 60) % 24, mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+// The lineup a festival carries now (identity, every weekend): the active
+// festival's from window ARTISTS, any other from its own data set (bare
+// ARTISTS is always the ACTIVE festival's, CLAUDE.md §5).
+function _attendLineup(fid) {
+  const id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) || {};
+  return (ds[id] && Array.isArray(ds[id].artists)) ? ds[id].artists : [];
+}
+// A stored window is usable for `a` when it is a non-empty part of the set's
+// published time and not the whole of it. Malformed state (null, a string,
+// missing or non-"HH:MM" ends) reads NaN and fails every comparison.
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
+// Same festival night: the act's festival day (its night, so a 01:00 set
+// belongs to the evening before) and a weekend both play, the rule
+// _schedClash and the plan status use. Not calendar dates.
+function _attendSameNight(a, b) {
+  if (a.day !== b.day) return false;
+  const wa = a.weekend, wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+// The part of `a` the user will be at: their window while it still sits inside
+// the set's published time, else the whole set. A schedule change that moves
+// the set out from under a window drops the window rather than trusting it.
+// `savedIds` stands in for the stored saves when a screen previews a selection
+// it has not written yet (Build My Night: Codex P2 on #335).
+function attendWindow(a, fid, savedIds) {
+  const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
+  if (!a || !a.start || !a.end) return whole;
+  const all = attendWindows(fid), w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  // A split only holds while BOTH halves do. The partner must still be saved
+  // (drop "Keep this", an unsave or a sync of the partner, and the window goes
+  // with it), still in this festival's lineup (a schedule update can drop the
+  // act while its raw saved id stays, see savedInLineup), still on the same
+  // festival night (an update can move it to another night or weekend while
+  // its clock times still contain the old half: Codex P2 on #335), and still
+  // carry its own valid half pointing back here. Otherwise the user's plan for this set
+  // is the whole set again: clash, status and reminders follow it. The stored
+  // windows are kept, not deleted, the way an orphan saved id is kept.
+  if (w.with) {
+    const saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    const partner = _attendLineup(fid).find(x => x.id === w.with);
+    const back = all[w.with];
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+  }
+  return { start: w.start, end: w.end, partial: true, with: w.with || null };
+}
+// The row line for a partial window: "2:00 AM → you leave 3:00 AM" (you leave
+// early), "you arrive 3:00 AM" (you come late), or both ends when it is both.
+function attendWindowLabel(a, win) {
+  const w = win || attendWindow(a);
+  if (!w.partial) return "";
+  const late = w.start !== a.start, early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  const all = attendWindows(fid);
+  all[id] = { start, end, ...(withId ? { with: withId } : {}) };
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  const all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) { return [idA, idB].sort().join("|"); }
+function _acceptedPairs() { const v = _l3Read(CLASH_KEPT_BOTH_KEY, []); return new Set(Array.isArray(v) ? v : []); }
+function clashAccepted(a, b) { return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id)); }
+function acceptClash(a, b) {
+  const s = _acceptedPairs(); s.add(clashPairKey(a.id, b.id));
+  try { localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s])); } catch {}
+  _l3Changed();
+}
+// Overlap of what the user will actually attend.
+function attendOverlaps(a, b, fid, savedIds) { return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds)); }
+// THE clash predicate: the attend windows overlap and the pair is not accepted.
+function setsClash(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b); }
+// Kept both: they still overlap, by the user's choice.
+function setsOverlapAccepted(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b); }
+// The split of an overlapping pair at `switchMin`: the set that starts first
+// keeps [its start, switch), the other keeps [switch, its end]. Both halves
+// must be non-empty or attendWindow drops the window and the clash survives
+// the confirm (Codex P1 on #335: two sets starting together made a zero-length
+// first half). So the range is [max(later start, first start + step),
+// min(earlier end, second end - step)]; `ok` is false when no such split
+// exists (or either set is missing or untimed) and no split is offered.
+// Default: the low end.
+function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return { first: null, second: null, lo: 0, hi: -1, def: 0, ok: false };
+  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return { first, second, lo, hi, def: lo, ok: lo <= hi };
+}
+// THE switch grid, one rule for the slider, its preview, the confirm and what
+// is saved: 5-minute steps anchored at `lo` (the range input's own step base),
+// never past `hi`. Rounding from midnight instead saved 22:10 for a previewed
+// 22:12 when lo was 22:07 (Codex P2 on #335). Anything unreadable is `lo`.
+function snapSplitSwitch(v, lo, hi) {
+  const n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
+// One split per act: each act stores one window with one partner, so
+// splitting it again with a different act would overwrite the first split and
+// bring its cleared clash back (Codex P1 on #335). The new split is refused
+// instead and the first one kept; the user resets the first split to choose
+// another partner. "Paired" is attendWindow's answer, so
+// a partner that was unsaved or left the lineup locks nothing; re-splitting
+// the same pair adjusts it. Returns { act, partner } for the blocking split,
+// or null when the pair may be split.
+function splitBlocker(a, b, fid) {
+  for (const [x, other] of [[a, b], [b, a]]) {
+    if (!x || !other) continue;
+    const w = attendWindow(x, fid);
+    if (w.partial && w.with && w.with !== other.id) {
+      const partner = _attendLineup(fid).find(p => p.id === w.with);
+      if (partner) return { act: x, partner };
+    }
+  }
+  return null;
+}
+// Writes both halves or nothing; true when the split was saved.
+function splitNight(a, b, switchMin, fid) {
+  const { first, second, lo, hi, ok } = splitRange(a, b);
+  if (!ok || splitBlocker(a, b, fid)) return false;
+  const sw = snapSplitSwitch(switchMin, lo, hi);
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
+}
+// Re-renders a screen when a window or an accepted pair changes (any screen,
+// any tab). Read it into a memo's deps so counts recompute.
+function useAttendVersion() {
+  const [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    const f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
 }
 
 // The weekend a MOMENT belongs to, read off its own capture time — the
@@ -2934,15 +3235,20 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
 ];
 
+// Every pin below is UNSOURCED (checked 2026-10-20). They came in with the
+// 2026-08-22 scaffold (2779c72) over the generated plasma overlay, before the
+// 2025 art was georeferenced, and no official map places them. `src` is DATA
+// so test-georef-map.mjs can refuse an amenity that loses its label. Replace
+// them from the official 2026 map at the flip; never move them by eye.
 const EDCO_AMENITIES = [
-  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
-  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
-  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
-  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
-  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
-  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
-  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
-  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
+  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18, src: "unsourced" }, // unsourced: placed on the 2026-08-22 scaffold over the placeholder plasma art, not read off any official map
 ];
 
 // ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──

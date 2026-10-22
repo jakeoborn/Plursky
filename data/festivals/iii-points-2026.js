@@ -17,13 +17,17 @@
 // distinct IDs. Existing IDs survive spelling, order and day corrections.
 // Dude Skywalker is now Friday; Jeremy Ismael is now Saturday. All 19 prior
 // DAY TBA billings have screenshot-grounded days. Villu is the grid's printed billing.
-// SPATIAL BOUNDARY: real street basemap, surveyed convention-center building
-// outline, no official perimeter/map inferred. Stage names are real but
-// positions are unknown: no stage x/y, lat/lng, GPS anchors or amenities.
+// SPATIAL FLIP 2026-10-15: the official 2026 festival map is pinned
+// (map-sources/iiip-map-2026-source.webp) and measured. The 13 stages carry
+// x/y reads off that art and gpsAnchors carry the same reads as lat/lng,
+// all src "poster" (homography over 8 OSM street control points, RMS 12.6 m —
+// the art is oblique, no affine fits it). Registration is UNCHECKED: overlay
+// draws at unchecked strength, real-map pins and distance readouts stay off
+// until an osm/crowd anchor lands. See scripts/build-iiip-map-2026.mjs.
 (function () {
   "use strict";
 
-  // Official named stages with unknown positions. Schedule is not a map.
+  // Official named stages, positions read off the pinned 2026 map (see header).
   const STAGES = [
   {
     "id": "mind-melt",
@@ -31,7 +35,9 @@
     "short": "MIND MELT",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 63.0,
+      "y": 27.3,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "sec3",
@@ -39,7 +45,9 @@
     "short": "SECTOR 3",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 58.1,
+      "y": 62.9,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "rc95",
@@ -47,7 +55,9 @@
     "short": "RC95",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 33.4,
+      "y": 82.3,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "s3qu3nce",
@@ -55,7 +65,9 @@
     "short": "S3QUENC3",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 32.1,
+      "y": 45.7,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "vertex",
@@ -63,7 +75,9 @@
     "short": "VERTEX",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 73.3,
+      "y": 61.1,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "players-club",
@@ -71,7 +85,9 @@
     "short": "PLAYERS CLUB",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 48.2,
+      "y": 35.8,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "halo-88",
@@ -79,7 +95,9 @@
     "short": "HALO 88",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 24.5,
+      "y": 69.4,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "grand-central",
@@ -87,7 +105,9 @@
     "short": "GRAND CENTRAL",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 75.5,
+      "y": 76.6,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "door-iv",
@@ -95,7 +115,9 @@
     "short": "DOOR IV",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 51.1,
+      "y": 52.0,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "iii-points-radio",
@@ -103,7 +125,9 @@
     "short": "III POINTS RADIO",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 31.6,
+      "y": 60.5,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "isotropic",
@@ -111,7 +135,9 @@
     "short": "ISOTROPIC",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 12.8,
+      "y": 64.1,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "unforeseen",
@@ -119,7 +145,9 @@
     "short": "UNFORESEEN",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 72.6,
+      "y": 42.8,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   },
   {
     "id": "444",
@@ -127,7 +155,9 @@
     "short": "444",
     "color": "#22d3ee",
     "size": 1,
-    "desc": "Official stage; position not published"
+      "x": 76.0,
+      "y": 39.0,
+    "desc": "Official stage; pin read off the official 2026 festival map (see gpsAnchors)"
   }
 ];
 
@@ -287,8 +317,8 @@
     "iiip-ki-ki": ["rc95", "22:00", "23:15", 2],
     "iiip-u-uk-uk1mat-u": ["rc95", "23:15", "00:30", 2],
     "iiip-vtss": ["rc95", "00:30", "01:30", 2],
-    "iiip-999999999": ["rc95", "01:30", "02:45", 2],
-    "iiip-charlotte-de-witte": ["rc95", "02:45", "04:00", 2],
+    "iiip-999999999": ["rc95", "02:45", "04:00", 2],
+    "iiip-charlotte-de-witte": ["rc95", "01:30", "02:45", 2],
     "iiip-willikens-ivkovic": ["444", "16:00", "20:00", 2],
     "iiip-red-axes": ["444", "20:00", "00:00", 2],
     "iiip-seth-troxler": ["444", "00:00", "04:00", 2],
@@ -378,9 +408,229 @@
     return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day, bio: "Playing III Points 2026." };
   };
 
+  // An act's tier is its official poster billing (Item 4): see
+  // scripts/build-poster-billing.mjs. An act the graphic does not bill keeps 2.
+  // BILLING:BEGIN — generated by scripts/build-poster-billing.mjs; do not edit.
+  // 3 = centre oval / 444 box (top billed), 2 = the rings, 1 = the local panel.
+  const BILLING_SOURCE = { url: "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/72/2026/07/15114208/IIIP26_PHASE-2-LUBD-v2-01-scaled.jpg", sha256: "bb5ddb4d45873e526a0cc846f9bbf234981e8052fe0f22815129d95417e8a8a7", transcribed: "2026-09-30" };
+  const BILLING_TIER = {
+    "iiip-1tbsp": 2,
+    "iiip-aabel-b2b-siegel": 1,
+    "iiip-ackdaddy": 1,
+    "iiip-adam-at-the-door": 1,
+    "iiip-ahmed-spins-b2b-omri": 2,
+    "iiip-alejo": 1,
+    "iiip-alexx-in-chainss-b2b-solte": 1,
+    "iiip-aphex-twink-b2b-foreseer": 1,
+    "iiip-b0yg1rl": 2,
+    "iiip-baby-jesus-b2b-chaos": 1,
+    "iiip-bakke": 2,
+    "iiip-beltran-b2b-ben-sterling": 3,
+    "iiip-bill-patrick-b2b-bort": 2,
+    "iiip-bone-thugs-n-harmony": 3,
+    "iiip-brunello-b2b-rafael": 2,
+    "iiip-cami-di-marzo": 1,
+    "iiip-cloonee": 3,
+    "iiip-connan-mockasin": 3,
+    "iiip-corridos-ketamina": 2,
+    "iiip-daizy": 1,
+    "iiip-dan-molinari": 2,
+    "iiip-danny-brown": 3,
+    "iiip-danny-daze-b2b-dj-godfathe": 2,
+    "iiip-deep-cleansing": 1,
+    "iiip-differ": 1,
+    "iiip-discip": 2,
+    "iiip-disco-lines": 3,
+    "iiip-dj-harvey": 3,
+    "iiip-dj-sabi-b2b-grue5ome": 1,
+    "iiip-dr-rubinstein-b2b-ultrathe": 2,
+    "iiip-duun-b2b-sleepy-c": 1,
+    "iiip-eco-sistema": 1,
+    "iiip-eli-escobar-b2b-jubilee": 2,
+    "iiip-elias-garcia-b2b-mila-gama": 2,
+    "iiip-eveava-b2b-jovigibs": 1,
+    "iiip-extra-andrew-b2b-mutant-pe": 1,
+    "iiip-feph-b2b-mr-tron": 1,
+    "iiip-fiin": 1,
+    "iiip-floating-points": 3,
+    "iiip-flying-lotus": 3,
+    "iiip-gio-elia-b2b-meghan-lee": 1,
+    "iiip-godisound": 1,
+    "iiip-grace-arribas-b2b-marte": 1,
+    "iiip-hamdi": 3,
+    "iiip-heidi-lawden": 3,
+    "iiip-honey-dijon": 3,
+    "iiip-rimaye-b2b-inbal": 1,
+    "iiip-invt": 2,
+    "iiip-ivy-lab": 2,
+    "iiip-jacques-greene": 2,
+    "iiip-jane-remover": 3,
+    "iiip-jeremy-ismael": 1,
+    "iiip-jigitz": 2,
+    "iiip-joanna-kuchta-b2b-robyn-si": 2,
+    "iiip-lotusoph-b2b-julia-saturno": 1,
+    "iiip-jump-source": 2,
+    "iiip-katie-ox-b2b-nat-siriani": 1,
+    "iiip-kumi": 1,
+    "iiip-lagrimas-de-oro": 1,
+    "iiip-lauren-palma": 1,
+    "iiip-levity-b2b-taiki-nulight": 3,
+    "iiip-lil-kim": 3,
+    "iiip-lousy-lover-b2b-lucaz": 1,
+    "iiip-maccabi-b2b-pezlo-md": 1,
+    "iiip-maher-daniel-b2b-mai-iache": 2,
+    "iiip-malone-b2b-miluhska": 2,
+    "iiip-mary-droppinz": 2,
+    "iiip-mason-norris-b2b-mia-vende": 1,
+    "iiip-megusta-b2b-migs": 1,
+    "iiip-men-i-trust": 3,
+    "iiip-mgna-crrrta": 2,
+    "iiip-miguel-clark-b2b-naim-zarz": 1,
+    "iiip-miguelle-tons-b2b-saraga": 2,
+    "iiip-mind-enterprises": 2,
+    "iiip-moscoman": 2,
+    "iiip-nate-sib": 2,
+    "iiip-nicholas-g-padilla": 1,
+    "iiip-nicole-gallamini-b2b-nikit": 1,
+    "iiip-odd-mob": 3,
+    "iiip-oma-totem-b2b-true-vine": 2,
+    "iiip-parcels": 3,
+    "iiip-patch": 2,
+    "iiip-pawsa": 3,
+    "iiip-proletar-b2b-zamurai": 1,
+    "iiip-puma": 1,
+    "iiip-purity-ring": 3,
+    "iiip-r-v-calypso": 2,
+    "iiip-ragie-ban": 2,
+    "iiip-rello": 2,
+    "iiip-rental-snakes": 1,
+    "iiip-roddy-lima": 2,
+    "iiip-peach-b2b-shanti-celeste": 2,
+    "iiip-raje-b2b-slugg": 2,
+    "iiip-sportswax": 1,
+    "iiip-will-buck-b2b-taimur": 1,
+    "iiip-tech-g1rls": 2,
+    "iiip-tiffy-vera-b2b-thunderpony": 1,
+    "iiip-tokischa": 3,
+    "iiip-uchi": 1,
+    "iiip-v1fro": 2,
+    "iiip-vania-junco": 2,
+    "iiip-max-styler-b2b-vintage-cul": 3,
+    "iiip-will-renuart": 1,
+    "iiip-zep": 2,
+    "iiip-1-800-lolita-b2b-xana": 1,
+    "iiip-2up": 1,
+    "iiip-619": 1,
+    "iiip-999999999": 3,
+    "iiip-adam-port": 3,
+    "iiip-ale-acosta-b2b-hazon": 1,
+    "iiip-alezsandro-b2b-dalva": 1,
+    "iiip-allnightkev-b2b-lo-g": 1,
+    "iiip-ashley-venom-b2b-souls-dep": 2,
+    "iiip-bassvictim": 3,
+    "iiip-pressure-point-b2b-berrakk": 2,
+    "iiip-blood-orange": 3,
+    "iiip-bonita-applebumz-b2b-toni-": 1,
+    "iiip-bozito-b2b-gabo-escalona": 1,
+    "iiip-camp-blu": 2,
+    "iiip-carter-jackson-brown": 1,
+    "iiip-chanel-beads": 2,
+    "iiip-charlotte-de-witte": 3,
+    "iiip-chasewest": 2,
+    "iiip-coffintexts-b2b-dj-fuckoff": 2,
+    "iiip-cole-knight-b2b-dreya-v": 2,
+    "iiip-daphni": 2,
+    "iiip-david-vunk": 2,
+    "iiip-dean-turnley": 2,
+    "iiip-d-luxe-b2b-dennis-baker": 1,
+    "iiip-dj-ray-b2b-ez-dee": 1,
+    "iiip-dj-three-b2b-sister-system": 2,
+    "iiip-domnrob": 1,
+    "iiip-doris-dana": 2,
+    "iiip-duality-b2b-gumthewrapper": 1,
+    "iiip-dude-skywalker": 1,
+    "iiip-ear": 2,
+    "iiip-ellynora": 1,
+    "iiip-faith-leazae": 2,
+    "iiip-fine": 2,
+    "iiip-four-tet": 3,
+    "iiip-generous-b-b2b-hakuna": 1,
+    "iiip-haai": 2,
+    "iiip-horsegiirl": 3,
+    "iiip-idriss-d-b2b-danyelino": 2,
+    "iiip-interplanetary-criminal": 3,
+    "iiip-jason-rault": 1,
+    "iiip-jbz": 1,
+    "iiip-jinn-pr": 1,
+    "iiip-joss-dean": 2,
+    "iiip-kelela": 3,
+    "iiip-kettama": 3,
+    "iiip-khami": 1,
+    "iiip-ki-ki": 3,
+    "iiip-kinahau": 2,
+    "iiip-kujo-b2b-rara": 1,
+    "iiip-la-bb": 1,
+    "iiip-lady-narcisse-b2b-racci": 1,
+    "iiip-ladyboy": 1,
+    "iiip-liquid-dinosaurs": 1,
+    "iiip-lizzie-mcguire": 1,
+    "iiip-loukeman": 2,
+    "iiip-lupreme-b2b-santo": 1,
+    "iiip-machine-girl": 2,
+    "iiip-mango-b2b-mister-lo": 1,
+    "iiip-marco-carola-b2b-franky-ri": 3,
+    "iiip-marie-qrie-b2b-viva-vidal": 1,
+    "iiip-marsolo": 2,
+    "iiip-max-dean-b2b-luke-dean": 3,
+    "iiip-milo-ziro-b2b-xilla": 1,
+    "iiip-ml-buch": 2,
+    "iiip-monoky": 1,
+    "iiip-mph": 2,
+    "iiip-mr-bitch": 1,
+    "iiip-artime-b2b-mystic-bill": 2,
+    "iiip-natalia-roth-b2b-max-stern": 2,
+    "iiip-nii-tei": 1,
+    "iiip-omar": 2,
+    "iiip-phiphi-b2b-winter-wrong": 1,
+    "iiip-rebolledo": 2,
+    "iiip-red-axes": 3,
+    "iiip-res-live": 2,
+    "iiip-roman-flugel": 2,
+    "iiip-jinks-b2b-romulo-del-casti": 1,
+    "iiip-rude-boy-b2b-sdrv": 1,
+    "iiip-rusowsky": 3,
+    "iiip-saint-romero": 1,
+    "iiip-sam-alfred": 2,
+    "iiip-santiago-villu": 1,
+    "iiip-saturnsarii-b2b-suz": 1,
+    "iiip-seth-troxler": 3,
+    "iiip-shinobi": 1,
+    "iiip-grant-sabadash-b2b-shir-mi": 1,
+    "iiip-silvie-loto-b2b-ms-mada": 2,
+    "iiip-sosa": 3,
+    "iiip-spice-crime-b2b-violeta": 1,
+    "iiip-sunn-o": 2,
+    "iiip-terence-tabeau": 2,
+    "iiip-tiga": 2,
+    "iiip-tricky": 3,
+    "iiip-underworld": 3,
+    "iiip-velora": 2,
+    "iiip-vsyana": 1,
+    "iiip-vtss": 3,
+    "iiip-vvilhelm": 1,
+    "iiip-whitesquare": 2,
+    "iiip-willikens-ivkovic": 3,
+    "iiip-yhwh-nailgun": 2,
+    "iiip-u-uk-uk1mat-u": 3,
+    "iiip-bricolage-b2b-day-dem": 1,
+    "iiip-sel-6-b2b-playshado": 1,
+    "iiip-fiuza-b2b-madison-kay": 1,
+  };
+  // BILLING:END
+
   const mk = (id, name, day) => scheduled({
     id, name, genre: "—", country: "—",
-    stage: null, day, start: "", end: "", tier: 2,
+    stage: null, day, start: "", end: "", tier: BILLING_TIER[id] ?? 2, tierSource: id in BILLING_TIER ? "poster" : null,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
     bio: `Playing III Points 2026 on ${day === 1 ? "Friday, October 16" : "Saturday, October 17"}. ` +
          "See the supplied set-time grid for this edition.",
@@ -390,7 +640,7 @@
   // Historical unscheduled billings. The supplied timetable now supplies their slots.
   const mkUnscheduled = (id, name, why) => scheduled({
     id, name, genre: "—", country: "—", stage: null, day: null,
-    start: "", end: "", tier: 2,
+    start: "", end: "", tier: BILLING_TIER[id] ?? 2, tierSource: id in BILLING_TIER ? "poster" : null,
     img: "linear-gradient(135deg, #22d3ee, #1a0a28)",
     bio: "On the official III Points 2026 lineup. Its day, stage and set time are not published: " +
          (why || "the official lineup-by-day graphic does not list it."),
@@ -673,7 +923,9 @@
     id:        "iii-points-2026",
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    scheduleSource: { url: "https://www.iiipoints.com/", observedAt: "2026-10-05", official: false, evidence: "Attendee-supplied III Points-branded set-time screenshot; public clocks not yet on website", sha256: "8922970c92df78dccafa6cf8288adfef9253efac3f66944a248043fccb7257b9" },
+    // The official lineup-by-day graphic every act's tier comes from (Item 4).
+    posterBilling: BILLING_SOURCE,
+    scheduleSource: { url: "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/", observedAt: "2026-10-18", official: true, evidence: "III Points official Instagram carousel post 'UPDATED SET TIMES FOR THE WEEKEND' (posted 2026-10-16), Saturday grid slides 3-4; supersedes the attendee screenshot of 2026-10-05 (RC95 close swapped)", sha256: "f79e20292fd017cb4e83a86fae8bba5f7b8efa84eb68f1441dbd687f5fd1b7d4" },
     lineupSource: { url: "https://www.iiipoints.com/lineup-2026/", observedAt: "2026-09-30", official: true },
     name:      "III Points 2026",
     shortName: "III Points",
@@ -683,6 +935,8 @@
     locationShort: "Mana Wynwood",
     dates:     "Oct 16–17, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#EDDB50", accent2: "#EA9FDA", source: { url: "https://www.iiipoints.com/", observedAt: "2026-10-09", seenAs: "CSS custom properties --c: #eddb50 and --iii-yellow: #eddb50 in the homepage's inline <style>; background of the nav CTA ([data-cta=fill] .nav-cta__a), .xp-more-cta, .hp-stages-nav button and the selected .tk-switch button; most frequent non-grey hex (29 in CSS, 23 inline in the body)", confidence: "high" }, note: "theme-color meta is plain #000000 (black, not an accent), so the stylesheet rule applies: the site's own palette variables make yellow #eddb50 the CTA/button fill, with pink #ea9fda (--iii-pink) as the a:hover and focus colour." },
     // Miami is EDT (UTC-4) in October — DST does not end until Nov 1.
     // Gate/close times are NOT published; these bound the two program days
     // generously so night-crossing timestamps resolve to the right day, and
@@ -723,7 +977,22 @@
       //
       // This is the BUILDING, not the festival perimeter — the site is billed
       // as 5 city blocks. See the header before widening it.
-      footprint: [
+      //
+      // WIDENED 2026-10-15 (the flip), and INFERRED (review 2026-10-18):
+      // venue.footprint is now an estimate of the festival SITE, because the
+      // map's framing/saved-area readers need the grounds, not one building.
+      // It is NOT a survey: its south and east edges were placed from where
+      // the poster art puts stages, and it was sized to contain all 13 poster
+      // anchors. So `footprintInferred` is set and the footprint gate does not
+      // count it (an estimate drawn around the anchors would pass them by
+      // construction), and nothing locks the map to it. Replace it with a
+      // surveyed or official perimeter, then drop the flag. The site polygon is street-grounded: NW 25th St (north) to
+      // ~NW 21st St (south — the art places 444, UNFORESEEN, VERTEX and GRAND
+      // CENTRAL south of NW 22nd St) and NW 6th Ave (west) to ~NW 2nd Ave
+      // (east — the NW 22nd Lane segment and the MIND MELT/VIP+ block),
+      // padded ~20-30 m past the surveyed street lines. The building survey
+      // is preserved VERBATIM below as buildingFootprint.
+      buildingFootprint: [
         [25.79907, -80.20245], [25.79882, -80.20245], [25.79870, -80.20244],
         [25.79870, -80.20241], [25.79848, -80.20240], [25.79835, -80.20253],
         [25.79813, -80.20227], [25.79827, -80.20212], [25.79827, -80.20199],
@@ -733,18 +1002,54 @@
         [25.79870, -80.20249], [25.79881, -80.20250], [25.79892, -80.20250],
         [25.79892, -80.20273], [25.79907, -80.20273],
       ],
+      // Festival SITE, estimated (see the note above): N ~25th St, S ~21st
+      // St, W ~6th Ave, E ~2nd Ave.
+      footprint: [
+        [25.80085, -80.20535], [25.79720, -80.20535],
+        [25.79720, -80.19880], [25.80085, -80.19880],
+      ],
+      footprintInferred: true,
     },
     weatherEndpoint: "https://api.weather.gov/points/25.7985,-80.2022",
     mainStageId: "mind-melt",
     // ── THE MAP ──
-    // No mapImage, no mapStyle: "image-overlay", no gpsAnchors. This festival
-    // opens straight into the real basemap. See the header for why that is
-    // the honest choice rather than a fallback.
-    mapMode: "real",
-    mapPrintsStageNames: false,
-    // The affine-vs-poster gate has no poster to check against here. Not a
-    // waiver — there is genuinely nothing to register.
+    // FLIP 2026-10-15: the official 2026 festival map is pinned and measured.
+    // The 13 stage pins are reads off that art, registered through 8 street
+    // control points (NW 22nd-25th St × NW 5th/6th Ave + the NW 22nd Lane
+    // segment, all OSM-surveyed) — homography RMS 12.6 m. Every anchor stays
+    // src: "poster": an art read is not a measurement, so the registration is
+    // UNCHECKED, the overlay draws at the unchecked strength, real-map stage
+    // pins stay suppressed and distance readouts stay off until an osm/crowd
+    // anchor lands (map.jsx geometryVerifiedFor owns that promotion).
+    mapImage: "iiip-map-2026.webp",
+    mapStyle: "image-overlay",
+    mapSource: { url: "https://www.iiipoints.com/assets/campaign/festival-map-2026-1080.webp", observedAt: "2026-10-15", mapYear: 2026 },
+    // The art prints every stage name as signage (verified on the pinned
+    // source, 2026-10-15), so Plursky must not echo them a few pixels away.
+    mapPrintsStageNames: true,
+    // Poster-class registration, not a survey: the art is oblique perspective
+    // (its streets converge), so no affine registers it exactly. false keeps
+    // the distance readout honest; it is not a waiver.
     mapArtIsGeoregistered: false,
+    // Calibrated basis — do NOT reorder; _solveMapAffine() (map.jsx) reads
+    // only the first three. Triple spans the largest well-read triangle:
+    // mind-melt (east end), isotropic (NW 25th St side), grand-central
+    // (south-west end). Lat/lng are homography reads off the pinned art.
+    gpsAnchors: [
+      { stageId: "mind-melt",        lat: 25.798446, lng: -80.200767, src: "poster" },
+      { stageId: "isotropic",        lat: 25.800299, lng: -80.203764, src: "poster" },
+      { stageId: "grand-central",    lat: 25.797381, lng: -80.204174, src: "poster" },
+      { stageId: "444",              lat: 25.797565, lng: -80.201491, src: "poster" },
+      { stageId: "vertex",           lat: 25.797590, lng: -80.203184, src: "poster" },
+      { stageId: "s3qu3nce",         lat: 25.799774, lng: -80.202564, src: "poster" },
+      { stageId: "rc95",             lat: 25.799310, lng: -80.204624, src: "poster" },
+      { stageId: "halo-88",          lat: 25.799799, lng: -80.203992, src: "poster" },
+      { stageId: "door-iv",          lat: 25.798834, lng: -80.202778, src: "poster" },
+      { stageId: "players-club",     lat: 25.799149, lng: -80.201694, src: "poster" },
+      { stageId: "unforeseen",       lat: 25.797749, lng: -80.201856, src: "poster" },
+      { stageId: "iii-points-radio", lat: 25.799615, lng: -80.203459, src: "poster" },
+      { stageId: "sec3",             lat: 25.798389, lng: -80.203423, src: "poster" },
+    ],
     // Published policy, drives FAQ copy only.
     policies: { reentry: false, alcoholAge: 21 },
   };
