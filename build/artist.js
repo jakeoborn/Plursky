@@ -267,6 +267,16 @@ async function fetchLastfm(artistName, lineupGenre) {
     return null;
   }
 }
+var _ACCENT_CHIP = {
+  fontSize: 9,
+  padding: "4px 10px",
+  borderRadius: 999,
+  fontWeight: 600,
+  background: "transparent",
+  border: "1.5px solid var(--acc)",
+  color: "var(--acc-ink)"
+};
+var _STAT_CARD_SHADOW = "var(--e1), inset 0 -2px 0 var(--acc-55)";
 function _fmtCount(n) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
@@ -508,7 +518,8 @@ function SpiderWeb({
   })));
 }
 function ShareArtistButton({
-  artist
+  artist,
+  backed
 }) {
   var [copied, setCopied] = React.useState(false);
   var handleShare = () => {
@@ -532,7 +543,7 @@ function ShareArtistButton({
       width: 32,
       height: 32,
       borderRadius: 32,
-      background: copied ? "rgba(var(--signal-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
+      background: copied ? "rgba(var(--signal-rgb),0.85)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -696,28 +707,52 @@ function YourPhotosStrip({
     } catch {}
   };
   if (mine.length === 0) {
-    return React.createElement("div", {
-      "data-artist-moments-empty": true,
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        marginBottom: 18,
-        padding: "10px 0",
-        borderTop: "1px solid var(--line)",
-        borderBottom: "1px solid var(--line)"
-      }
-    }, React.createElement("span", {
-      className: "duo-sect",
-      style: {
-        flexShrink: 0
-      }
-    }, "Your moments"), React.createElement("span", {
-      style: {
-        font: "400 13px/1.385 var(--f-ui)",
-        color: "var(--ink-2)"
-      }
-    }, "Photos and clips from this set will show here."));
+    return (React.createElement("div", {
+        "data-artist-moments-empty": true,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          marginBottom: 18,
+          padding: "10px 14px",
+          border: "1.5px dashed var(--acc-55)",
+          borderRadius: "var(--rad-md)"
+        }
+      }, React.createElement("svg", {
+        "data-artist-moments-glyph": true,
+        "aria-hidden": "true",
+        width: "22",
+        height: "22",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        style: {
+          flexShrink: 0,
+          color: "var(--acc-ink)"
+        }
+      }, React.createElement("path", {
+        d: "M4 8h3l2-3h6l2 3h3v11H4z"
+      }), React.createElement("circle", {
+        cx: "12",
+        cy: "13",
+        r: "3.5"
+      })), React.createElement("div", {
+        style: {
+          minWidth: 0
+        }
+      }, React.createElement("div", {
+        className: "duo-sect"
+      }, "Your moments"), React.createElement("div", {
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
+          marginTop: 2
+        }
+      }, "Photos and clips from this set will show here.")))
+    );
   }
   var preview = mine.slice(0, 8);
   var more = mine.length - preview.length;
@@ -1045,7 +1080,7 @@ function PyroStarburst({
   }));
 }
 function _licenseLabel(id) {
-  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/^(Public|Press)-/, "$1 ");
+  return String(id || "").replace(/^CC-/, "CC ").replace(/-(\d)/, " $1").replace(/-DE$/, " DE").replace(/^(Public|Press)-/, "$1 ");
 }
 var _creditLink = {
   color: "inherit",
@@ -1067,12 +1102,11 @@ function ArtistScreen({
   }, [a.id]);
   var activeName = isB2B ? b2bParts[activeB2B] : a.name;
   var lookupName = _lookupName(activeName);
-  var artistImageExpiry = useArtistImageExpiry();
-  var heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
-  var [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  React.useEffect(() => {
-    if (artistImageExpiry) setFetchedPhoto(null);
-  }, [artistImageExpiry]);
+  var heroPhotoMachine = useArtistPhotoMachine(activeName, {
+    key: a.id + "|" + activeName,
+    canFetch: reason => reason === "mount" && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token"))
+  });
+  var heroCacheRec = heroPhotoMachine.rec;
   var saved = state.saved.includes(a.id);
   var [saveFlash, setSaveFlash] = React.useState(false);
   var handleSave = () => {
@@ -1107,8 +1141,8 @@ function ArtistScreen({
   var [tmError, setTmError] = React.useState(false);
   var [mcTracks, setMcTracks] = React.useState(undefined);
   var [mcPlaying, setMcPlaying] = React.useState(null);
-  var heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
-  var heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
+  var heroPhoto = heroPhotoMachine.url;
+  var heroSource = heroPhoto ? heroPhotoMachine.source : null;
   var [slError, setSlError] = React.useState(false);
   var [ytError, setYtError] = React.useState(false);
   var [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -1151,7 +1185,6 @@ function ArtistScreen({
     }
   }, [a.id]);
   React.useEffect(() => {
-    setFetchedPhoto(null);
     var hasCachedStats = false;
     try {
       var cache = JSON.parse(localStorage.getItem("spotify_artist_data_v1") || "{}");
@@ -1168,7 +1201,10 @@ function ArtistScreen({
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     var ctrl = new AbortController();
     getValidToken().then(token => {
-      if (!token) return;
+      if (!token) {
+        if (!heroCacheRec) heroPhotoMachine.noLookup();
+        return;
+      }
       fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
         headers: {
           Authorization: "Bearer " + token
@@ -1178,15 +1214,16 @@ function ArtistScreen({
         var ln = activeName.toLowerCase();
         var items = d?.artists?.items || [];
         var match = items.find(x => x.name.toLowerCase() === ln) || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
-        if (!match) return;
+        if (!match) {
+          if (!heroCacheRec) heroPhotoMachine.report(null);
+          return;
+        }
         if (!heroCacheRec) {
-          var img = match?.images?.[0]?.url;
-          if (img) {
-            setFetchedPhoto(img);
-            putArtistImage(activeName, img, "spotify", {
-              spotifyId: match.id
-            });
-          }
+          var img = match?.images?.[0]?.url || null;
+          heroPhotoMachine.report(img);
+          if (img) putArtistImage(activeName, img, "spotify", {
+            spotifyId: match.id
+          });
         }
         var topTrackNames = [];
         try {
@@ -1214,7 +1251,9 @@ function ArtistScreen({
           _cache[ln] = stats;
           localStorage.setItem("spotify_artist_data_v1", JSON.stringify(_cache));
         } catch {}
-      }).catch(() => {});
+      }).catch(e => {
+        if (e?.name !== "AbortError") heroPhotoMachine.fail();
+      });
     });
     return () => ctrl.abort();
   }, [a.id, activeB2B]);
@@ -1285,12 +1324,13 @@ function ArtistScreen({
   var spotifyHero = !!heroPhoto && heroSource === "spotify";
   var spotifyArtistId = heroCacheRec?.spotifyId || spotifyStats?.spotifyId || null;
   var spotifyArtistUrl = spotifyArtistId ? "https://open.spotify.com/artist/" + spotifyArtistId : "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists";
-  var heroControls = React.createElement(React.Fragment, null, React.createElement("button", {
+  var heroControls = backed => React.createElement(React.Fragment, null, React.createElement("button", {
     onClick: () => window._popNav ? window._popNav() : setState({
       ...state,
       artist: null
     }),
     "aria-label": "Back",
+    "data-artist-hero-label": "back",
     style: {
       position: "absolute",
       top: 14,
@@ -1299,7 +1339,7 @@ function ArtistScreen({
       width: 38,
       height: 38,
       borderRadius: 38,
-      background: "rgba(var(--ink-rgb),0.18)",
+      background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -1327,7 +1367,7 @@ function ArtistScreen({
       display: "inline-flex",
       alignItems: "center",
       gap: 5,
-      background: playing ? "var(--ember)" : "rgba(var(--ink-rgb),0.18)",
+      background: playing ? "var(--ember)" : backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.18)",
       backdropFilter: "blur(8px)",
       border: "1px solid rgba(var(--ink-rgb),0.3)",
       color: "var(--ink)",
@@ -1377,7 +1417,7 @@ function ArtistScreen({
   })), "PREVIEW"), React.createElement(Pill, {
     tone: "outline",
     style: {
-      background: "rgba(var(--ink-rgb),0.15)",
+      background: backed ? "rgba(var(--shade-rgb),0.85)" : "rgba(var(--ink-rgb),0.15)",
       color: "var(--ink)",
       backdropFilter: "blur(8px)",
       borderColor: "rgba(var(--ink-rgb),0.3)",
@@ -1386,20 +1426,30 @@ function ArtistScreen({
       textAlign: "right"
     }
   }, React.createElement("span", {
-    "data-artist-day-pill": true
+    "data-artist-day-pill": true,
+    "data-artist-hero-label": "day"
   }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
-    artist: a
+    artist: a,
+    backed: backed
   })));
   var heroGenre = /[A-Za-z0-9]/.test(a.genre || "") ? a.genre : "";
-  var heroNameInner = React.createElement(React.Fragment, null, React.createElement("div", {
+  var heroNameInner = backed => React.createElement(React.Fragment, null, React.createElement("div", {
+    "data-artist-hero-eyebrow": true,
     style: {
-      display: "flex",
+      display: backed ? "inline-flex" : "flex",
       alignItems: "center",
       gap: 8,
-      marginBottom: 12
+      marginBottom: 12,
+      ...(backed ? {
+        background: "rgba(var(--shade-rgb),0.85)",
+        backdropFilter: "blur(8px)",
+        borderRadius: 999,
+        padding: "4px 9px"
+      } : null)
     }
   }, heroGenre && React.createElement("div", {
     className: "mono",
+    "data-artist-hero-label": "genre",
     style: {
       fontSize: 10,
       letterSpacing: 1.6,
@@ -1416,6 +1466,7 @@ function ArtistScreen({
     }
   }), stage && React.createElement("div", {
     className: "mono",
+    "data-artist-hero-label": "stage",
     style: {
       fontSize: 9,
       letterSpacing: 1.2,
@@ -1424,15 +1475,20 @@ function ArtistScreen({
     }
   }, stage.name.toUpperCase())), React.createElement("div", {
     className: "serif",
+    "data-fit-words": true,
+    "data-fit-min": "28",
+    "data-artist-hero-name": true,
+    "data-artist-hero-label": "name",
     style: {
-      fontSize: isB2B ? 34 : 52,
-      lineHeight: 0.88,
-      letterSpacing: -1.5,
-      textShadow: "0 2px 20px rgba(var(--shade-rgb),0.5)"
+      fontSize: isB2B ? 32 : 40,
+      fontWeight: 600,
+      lineHeight: 1.05,
+      letterSpacing: "-0.05em"
     }
   }, a.name));
   return React.createElement(Screen, {
-    bg: "var(--paper)"
+    bg: "var(--paper)",
+    scope: "artist"
   }, React.createElement(ScrollBody, {
     ref: scrollBodyRef,
     onScroll: e => {
@@ -1447,7 +1503,7 @@ function ArtistScreen({
       background: "var(--paper)",
       padding: "64px 18px 16px"
     }
-  }, heroControls, React.createElement("figure", {
+  }, heroControls(false), React.createElement("figure", {
     style: {
       margin: 0,
       display: "flex",
@@ -1460,8 +1516,9 @@ function ArtistScreen({
     "data-spotify-image": "1",
     style: {
       display: "block",
-      width: "min(60vw, 236px)",
-      maxWidth: "100%",
+      width: "calc(100% + 36px)",
+      maxWidth: "none",
+      margin: "0 -18px",
       height: "auto",
       borderRadius: 4
     }
@@ -1482,8 +1539,10 @@ function ArtistScreen({
     style: {
       marginTop: 6
     }
-  }, heroNameInner)) : React.createElement("div", {
+  }, heroNameInner(false))) : React.createElement("div", {
     className: "media-scope",
+    "data-artist-hero": heroPhoto ? "photo" : "gradient",
+    "data-photo-status": heroPhotoMachine.status,
     style: {
       height: 300,
       position: "relative",
@@ -1535,7 +1594,7 @@ function ArtistScreen({
       zIndex: 2,
       background: heroPhoto ? `linear-gradient(180deg, rgba(var(--shade-rgb),0.38) 0%, rgba(var(--shade-rgb),0.06) 26%, rgba(var(--signal-rgb),0.13) 52%, rgba(var(--shade-rgb),0.72) 76%, rgba(var(--shade-rgb),0.96) 100%)` : `linear-gradient(180deg, transparent 0%, rgba(var(--signal-rgb),0.08) 50%, rgba(var(--shade-rgb),0.95) 100%)`
     }
-  }), heroControls, React.createElement("div", {
+  }), heroControls(true), React.createElement("div", {
     style: {
       position: "absolute",
       bottom: 16,
@@ -1543,7 +1602,7 @@ function ArtistScreen({
       right: 18,
       zIndex: 3
     }
-  }, heroNameInner)), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
+  }, heroNameInner(true))), heroCacheRec && ["commons", "press-kit"].includes(heroCacheRec.source) && React.createElement("div", {
     "data-artist-photo-credit": "1",
     "aria-label": "Photo credit: " + heroCacheRec.author + ", " + _licenseLabel(heroCacheRec.license) + ", cropped",
     style: {
@@ -1579,7 +1638,7 @@ function ArtistScreen({
       border: "none",
       borderBottom: `2px solid ${activeB2B === i ? "var(--signal)" : "transparent"}`,
       cursor: "pointer",
-      font: "500 11px/1.273 var(--f-display)",
+      font: "500 11px/1.273 var(--f-ui)",
       letterSpacing: ".12em",
       minHeight: 44,
       color: activeB2B === i ? "var(--signal-ink)" : "var(--ink-3)",
@@ -1650,7 +1709,7 @@ function ArtistScreen({
     }, a.day == null ? "DAY + SET TIME NOT PUBLISHED" : setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : "SET TIME NOT PUBLISHED") : React.createElement("div", {
       className: "duo-clock",
       style: {
-        fontSize: "clamp(20px, 7vw, 28px)",
+        fontSize: "clamp(22px, calc(22px + (100vw - 320px) * 0.0857), 28px)",
         marginTop: 6
       }
     }, fmt12(a.start), React.createElement("span", {
@@ -1921,30 +1980,38 @@ function ArtistScreen({
     }
   }, [{
     label: "Spotify",
+    dot: "var(--spotify)",
     url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists`
   }, {
     label: "SoundCloud",
+    dot: "var(--brand-soundcloud)",
     url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}`
   }, {
     label: "RA",
+    dot: "var(--brand-ra)",
     url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}`
   }, {
     label: "Instagram",
+    dot: "var(--brand-instagram)",
     url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g, "").toLowerCase())}`
   }, {
     label: "𝕏",
+    dot: "var(--ink)",
     url: `https://x.com/search?q=${encodeURIComponent(lookupName)}`
   }].map(({
     label,
+    dot,
     url
   }) => React.createElement("a", {
     key: label,
+    "data-artist-link": label,
     href: url,
     target: "_blank",
     rel: "noopener noreferrer",
     style: {
       display: "inline-flex",
       alignItems: "center",
+      gap: 7,
       minHeight: 36,
       fontSize: 13,
       lineHeight: "18px",
@@ -1957,7 +2024,17 @@ function ArtistScreen({
       textDecoration: "none",
       transition: "background 0.15s"
     }
-  }, label, " ↗"))), React.createElement("div", {
+  }, React.createElement("span", {
+    "data-brand-dot": true,
+    "aria-hidden": "true",
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: dot,
+      flexShrink: 0
+    }
+  }), label, " ↗"))), React.createElement("div", {
     id: "artist-section-tracklist"
   }), edcTracklist && edcTracklist.source === "1001tracklists" && edcTracklist.tracks?.length > 0 && (() => {
     var tracks = edcTracklist.tracks;
@@ -2143,9 +2220,11 @@ function ArtistScreen({
       gap: 6
     }
   }, React.createElement("span", {
+    "data-artist-stat": true,
     className: "duo-headline",
     style: {
-      letterSpacing: -0.5
+      letterSpacing: -0.5,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(spotifyStats.followers)), React.createElement("span", {
     className: "mono",
@@ -2162,16 +2241,11 @@ function ArtistScreen({
     }
   }, spotifyStats.genres.slice(0, 5).map(g => React.createElement("span", {
     key: g,
+    "data-artist-chip": true,
     className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      padding: "4px 10px",
-      background: `rgba(var(--signal-rgb),0.09)`,
-      border: `1px solid rgba(var(--signal-rgb),0.22)`,
-      borderRadius: 999,
-      color: "var(--signal-ink)",
-      fontWeight: 600
+      ..._ACCENT_CHIP,
+      letterSpacing: 1
     }
   }, g.toUpperCase())))), LASTFM_KEY && lfm === undefined && React.createElement("div", {
     style: {
@@ -2255,18 +2329,21 @@ function ArtistScreen({
       marginBottom: 12
     }
   }, lfm.listeners > 0 && React.createElement("div", {
+    "data-artist-stat-card": true,
     style: {
       flex: 1,
       background: "var(--s2)",
-      boxShadow: "var(--e1)",
+      boxShadow: _STAT_CARD_SHADOW,
       border: "none",
       borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
+    "data-artist-stat": true,
     className: "duo-clock",
     style: {
-      fontSize: 26
+      fontSize: 26,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(lfm.listeners)), React.createElement("div", {
     className: "duo-label duo-ink3",
@@ -2274,18 +2351,21 @@ function ArtistScreen({
       marginTop: 6
     }
   }, "LISTENERS")), lfm.playcount > 0 && React.createElement("div", {
+    "data-artist-stat-card": true,
     style: {
       flex: 1,
       background: "var(--s2)",
-      boxShadow: "var(--e1)",
+      boxShadow: _STAT_CARD_SHADOW,
       border: "none",
       borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
+    "data-artist-stat": true,
     className: "duo-clock",
     style: {
-      fontSize: 26
+      fontSize: 26,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(lfm.playcount)), React.createElement("div", {
     className: "duo-label duo-ink3",
@@ -2301,15 +2381,11 @@ function ArtistScreen({
     }
   }, lfm.tags.map(tag => React.createElement("span", {
     key: tag,
+    "data-artist-chip": true,
     className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      padding: "4px 10px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      color: "var(--ink-2)"
+      ..._ACCENT_CHIP,
+      letterSpacing: 1.1
     }
   }, tag.toUpperCase()))), lfm.bio && lfm.bio.length > 40 && React.createElement("div", {
     style: {
@@ -2943,6 +3019,7 @@ function ArtistScreen({
       textAlign: "center"
     }
   }, React.createElement("div", {
+    "aria-hidden": "true",
     style: {
       fontSize: 20,
       opacity: 0.3,
@@ -3137,9 +3214,10 @@ function ArtistScreen({
       textAlign: "center"
     }
   }, React.createElement("div", {
+    "aria-hidden": "true",
     style: {
       fontSize: 20,
-      opacity: 0.3,
+      color: "var(--ink-2)",
       marginBottom: 4
     }
   }, "♫"), React.createElement("div", {
@@ -3428,7 +3506,7 @@ function ArtistScreen({
       fontSize: 9,
       letterSpacing: 1.2,
       color: "var(--paper)",
-      opacity: 0.6,
+      opacity: 0.72,
       marginTop: 3
     }
   }, !connected ? "CONNECT SPOTIFY TO PREVIEW" : preview === "none" ? "NO PREVIEW AVAILABLE" : preview === "loading" ? "LOADING…" : playing ? "PLAYING · VIA SPOTIFY" : "TAP TO PLAY · 30 SEC")), React.createElement("div", {

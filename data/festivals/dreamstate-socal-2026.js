@@ -284,6 +284,8 @@
     locationShort: "Queen Mary Waterfront",
     dates:     "Nov 20–21, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#4AB4EA", source: { url: "https://socal.dreamstateusa.com/wp-content/assets/css/dreamstate-sf.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color:#4AB4EA}, .button{background-color}, active nav link, blockquote, .card__category (8 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and category label to this sky blue (written uppercase in the CSS); no theme-color meta." },
     officialEvent: {
       id: 527404, url: "https://socal.dreamstateusa.com/",
       website: "https://socal.dreamstateusa.com/",

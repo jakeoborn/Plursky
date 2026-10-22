@@ -247,11 +247,7 @@ function SpotifyScreen({
       marginBottom: 10,
       letterSpacing: 0.8
     }
-  }, "Session expired — please reconnect."), connected && (savedInLineup(state.saved).length > 0 || (window._collectMomentSongs?.() || []).length > 0) && React.createElement("div", {
-    style: {
-      marginBottom: 8
-    }
-  }, React.createElement(PlaylistVisibilityToggle, null)), React.createElement("div", {
+  }, "Session expired — please reconnect."), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -272,17 +268,12 @@ function SpotifyScreen({
       fontWeight: 600,
       transition: "background 0.3s"
     }
-  }, saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`), connected && savedInLineup(state.saved).length > 0 && React.createElement(BuildPlaylistButton, {
+  }, saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`), savedInLineup(state.saved).length > 0 && React.createElement(AppleMusicPlaylistButton, {
     state: state
-  }), savedInLineup(state.saved).length > 0 && React.createElement(AppleMusicPlaylistButton, {
-    state: state
-  }), (window._collectMomentSongs?.() || []).length > 0 && React.createElement(React.Fragment, null, connected && React.createElement(BuildPlaylistButton, {
+  }), (window._collectMomentSongs?.() || []).length > 0 && React.createElement(AppleMusicPlaylistButton, {
     state: state,
     soundtrack: true
-  }), React.createElement(AppleMusicPlaylistButton, {
-    state: state,
-    soundtrack: true
-  })), React.createElement("button", {
+  }), React.createElement("button", {
     onClick: () => {
       if (!connected) window.plurskyHaptic?.("MEDIUM");
       connected ? disconnectSpotify(setState, state) : startSpotifyAuth();
@@ -313,11 +304,7 @@ function SpotifyScreen({
       color: "var(--ink)",
       fontWeight: 700
     }
-  }, "Spotify or Apple Music"), " — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.")), React.createElement(BoardPlaylistCard, {
-    state: state,
-    spotifyArtists: spotifyArtists,
-    connected: connected
-  }), connected && React.createElement(FollowedNudge, {
+  }, "Apple Music"), ". Spotify brings your listening in; it doesn't build playlists.")), connected && React.createElement(FollowedNudge, {
     state: state,
     setState: setState
   }), APPLE_DEV_TOKEN && React.createElement("div", {
@@ -6455,7 +6442,7 @@ function ImportReview({
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
   var mono = {
-    fontFamily: "var(--f-display)",
+    fontFamily: "var(--f-ui)",
     letterSpacing: "0.14em",
     fontWeight: 400,
     textTransform: "uppercase",
@@ -11606,7 +11593,7 @@ function MeScreen({
     style: {
       marginTop: 2
     }
-  }, state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect")), React.createElement("svg", {
+  }, state.spotifyConnected ? "Top artists and discoveries" : "Tap to connect")), React.createElement("svg", {
     "aria-hidden": "true",
     width: "13",
     height: "13",
@@ -12017,458 +12004,6 @@ function FollowedNudge({
       d: "M12 5v14M5 12h14"
     })))));
   })));
-}
-function BoardPlaylistCard({
-  state,
-  spotifyArtists,
-  connected
-}) {
-  var [open, setOpen] = React.useState(() => {
-    try {
-      return localStorage.getItem("plursky_pending_build") === "board";
-    } catch {
-      return false;
-    }
-  });
-  var [dropped, setDropped] = React.useState(() => new Set());
-  var [showDiag, setShowDiag] = React.useState(false);
-  var [lastResult, setLastResult] = React.useState(null);
-  var CFG = FESTIVAL_CONFIG;
-  var affinity = React.useMemo(() => (spotifyArtists || []).map(a => a.name), [spotifyArtists]);
-  var plan = React.useMemo(() => planBoardPlaylist({
-    artists: ARTISTS,
-    savedIds: state.saved,
-    stages: STAGES,
-    affinityNames: affinity,
-    affinityLabel: "your Spotify",
-    dayLabel: d => CFG.dayDates?.[d]?.short || `Day ${d}`
-  }), [state.saved.join(","), affinity, CFG.id]);
-  var kept = React.useMemo(() => {
-    var picks = plan.picks.filter(p => !dropped.has(p.artist.id));
-    var keep = new Set(picks.map(p => p.artist.id));
-    return {
-      ...plan,
-      picks,
-      order: plan.order.filter(o => o.role === "seed" || keep.has(o.artist.id))
-    };
-  }, [plan, dropped]);
-  React.useEffect(() => {
-    window.__plurskyBoardPlaylist = {
-      plan: kept,
-      result: lastResult
-    };
-  }, [kept, lastResult]);
-  if (!plan.seeds.length) return null;
-  var toggle = id => setDropped(prev => {
-    var n = new Set(prev);
-    n.has(id) ? n.delete(id) : n.add(id);
-    return n;
-  });
-  var tracks = kept.order.reduce((n, o) => n + o.trackLimit * Math.max(1, _b2bParts(o.artist.name).length), 0);
-  var card = {
-    borderRadius: 20,
-    padding: 20,
-    marginBottom: 14,
-    background: "var(--paper-2)",
-    border: "1px solid var(--line)",
-    color: "var(--ink)"
-  };
-  var mono = {
-    font: "400 13px/1.385 var(--f-ui)",
-    color: "var(--ink-2)"
-  };
-  if (!open) {
-    return React.createElement("button", {
-      onClick: () => {
-        window.plurskyHaptic?.("LIGHT");
-        setOpen(true);
-      },
-      style: {
-        ...card,
-        display: "block",
-        width: "100%",
-        textAlign: "left",
-        cursor: "pointer",
-        fontFamily: "inherit"
-      }
-    }, React.createElement("div", {
-      style: {
-        display: "flex",
-        alignItems: "baseline",
-        justifyContent: "space-between",
-        gap: 12
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 22,
-        letterSpacing: -0.3
-      }
-    }, "Board playlist"), React.createElement("div", {
-      style: {
-        ...mono,
-        color: "var(--acc-ink)",
-        fontWeight: 600,
-        flexShrink: 0
-      }
-    }, "Preview →")), React.createElement("div", {
-      style: {
-        ...mono,
-        marginTop: 4
-      }
-    }, plan.seeds.length, " saved set", plan.seeds.length === 1 ? "" : "s", plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : "", " · nothing is built until you say so"));
-  }
-  var names = plan.seeds.map(s => s.artist.name);
-  var d = plan.diagnostics,
-    e = d.excluded;
-  return React.createElement("div", {
-    style: card
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "baseline",
-      justifyContent: "space-between",
-      gap: 12
-    }
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 22,
-      letterSpacing: -0.3
-    }
-  }, "Board playlist"), React.createElement("button", {
-    onClick: () => setOpen(false),
-    "aria-label": "Close preview",
-    style: {
-      background: "transparent",
-      border: "none",
-      color: "var(--muted)",
-      fontSize: 18,
-      cursor: "pointer",
-      padding: 4
-    }
-  }, "×")), React.createElement("div", {
-    style: {
-      ...mono,
-      marginTop: 2,
-      marginBottom: 14
-    }
-  }, kept.seeds.length, " saved · ", kept.picks.length, " pick", kept.picks.length === 1 ? "" : "s", " · ≈", tracks, " tracks · in set order"), React.createElement("div", {
-    style: {
-      ...mono,
-      color: "var(--ink)",
-      marginBottom: 4
-    }
-  }, "Your saved sets · always in"), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      lineHeight: 1.45,
-      marginBottom: 16
-    }
-  }, names.slice(0, 6).join(" · "), names.length > 6 ? ` · +${names.length - 6} more` : ""), React.createElement("div", {
-    style: {
-      ...mono,
-      color: "var(--ink)",
-      marginBottom: 2
-    }
-  }, "Picks from the same lineup"), plan.picks.length === 0 ? React.createElement("div", {
-    style: {
-      fontSize: 12,
-      lineHeight: 1.5,
-      color: "var(--muted)",
-      padding: "6px 0 12px"
-    }
-  }, "Nothing on the lineup ties to your board yet. ", connected ? "Save a few more sets and picks will show up here." : "Save a few more sets, or connect Spotify so picks can come from what you listen to.") : plan.picks.map(p => {
-    var a = p.artist,
-      off = dropped.has(a.id);
-    var stg = STAGES.find(s => s.id === a.stage);
-    var when = a.day != null && setTimesUnconfirmed(a) ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${SET_TIMES_UNCONFIRMED}` : a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
-    return React.createElement("div", {
-      key: a.id,
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 12,
-        padding: "10px 0",
-        borderBottom: "1px solid var(--line)",
-        opacity: off ? 0.45 : 1
-      }
-    }, React.createElement(ArtistSwatch, {
-      artist: a,
-      size: 40
-    }), React.createElement("div", {
-      style: {
-        flex: 1,
-        minWidth: 0
-      }
-    }, React.createElement("div", {
-      className: "serif",
-      style: {
-        fontSize: 16,
-        lineHeight: 1.15,
-        textDecoration: off ? "line-through" : "none"
-      }
-    }, a.name), React.createElement("div", {
-      style: {
-        ...mono,
-        marginTop: 2
-      }
-    }, stg?.short || stg?.name || "Stage TBA", " · ", when), React.createElement("div", {
-      style: {
-        fontSize: 11,
-        fontStyle: "italic",
-        color: "var(--horizon)",
-        marginTop: 3,
-        lineHeight: 1.3
-      }
-    }, p.reason)), React.createElement("button", {
-      onClick: () => toggle(a.id),
-      "aria-label": off ? `Add ${a.name} back` : `Drop ${a.name}`,
-      style: {
-        width: 34,
-        height: 34,
-        borderRadius: 34,
-        flexShrink: 0,
-        background: off ? "transparent" : "var(--ember)",
-        color: off ? "var(--ink)" : "var(--ink)",
-        border: off ? "1px solid var(--line-2)" : "none",
-        cursor: "pointer",
-        fontSize: 16,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }
-    }, off ? "+" : "✓"));
-  }), React.createElement("div", {
-    style: {
-      marginTop: 12
-    }
-  }, React.createElement(PlaylistVisibilityToggle, null)), React.createElement("div", {
-    style: {
-      marginTop: 8,
-      display: "flex",
-      gap: 8,
-      flexWrap: "wrap"
-    }
-  }, React.createElement(BuildPlaylistButton, {
-    key: kept.order.map(o => o.artist.id).join(","),
-    state: state,
-    plan: kept,
-    label: "CREATE IN SPOTIFY",
-    onResult: setLastResult
-  })), React.createElement("button", {
-    onClick: () => setShowDiag(v => !v),
-    style: {
-      ...mono,
-      background: "transparent",
-      border: "none",
-      padding: "14px 0 0",
-      cursor: "pointer"
-    }
-  }, "Diagnostics ", showDiag ? "▴" : "▾"), showDiag && React.createElement("div", {
-    style: {
-      ...mono,
-      lineHeight: 1.7,
-      textTransform: "none",
-      letterSpacing: 0.4,
-      marginTop: 6
-    }
-  }, React.createElement("div", null, "lineup ", d.lineup, " · saved ", d.saved, " · seeds ", d.seeds, d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : "", d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""), React.createElement("div", null, "candidates ", d.candidates, " · cap ", plan.cap, " · left out by the cap ", d.capped, " · dropped by you ", plan.picks.length - kept.picks.length), React.createElement("div", null, "skipped: saved ", e.saved, " · same act ", e.sameAct, " · no reason ", e.noSignal), React.createElement("div", null, "picks by reason: ", Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none", " · listening names ", d.affinityNames), lastResult && (lastResult.ok ? React.createElement("div", null, "written ", lastResult.added, " track(s)", lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found") : React.createElement("div", null, "last build: ", lastResult.reason, lastResult.status ? ` (${lastResult.status})` : ""))));
-}
-function PlaylistVisibilityToggle() {
-  var [on, setOn] = React.useState(() => _playlistPublicPref());
-  var [note, setNote] = React.useState("");
-  var flip = async () => {
-    var next = !on;
-    setOn(next);
-    setNote("");
-    _setPlaylistPublicPref(next);
-    var r = await _applyPlaylistVisibility(next);
-    if (!r.ok && r.reason !== "no_playlist") setNote("Spotify didn't update. It applies on your next build.");
-  };
-  return React.createElement("div", null, React.createElement("button", {
-    type: "button",
-    role: "switch",
-    "aria-checked": on,
-    onClick: flip,
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      width: "100%",
-      minHeight: 44,
-      padding: "8px 0",
-      background: "transparent",
-      border: "none",
-      color: "var(--ink)",
-      textAlign: "left",
-      fontFamily: "inherit",
-      cursor: "pointer"
-    }
-  }, React.createElement("span", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("span", {
-    style: {
-      display: "block",
-      fontSize: 15,
-      lineHeight: "20px",
-      fontWeight: 500
-    }
-  }, "Public playlist"), React.createElement("span", {
-    style: {
-      display: "block",
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)"
-    }
-  }, on ? "Anyone can find and play it on Spotify." : "Private. Only you see it on Spotify.")), React.createElement("span", {
-    "aria-hidden": "true",
-    style: {
-      position: "relative",
-      width: 44,
-      height: 26,
-      borderRadius: 26,
-      flexShrink: 0,
-      background: on ? "var(--signal)" : "var(--paper-3)",
-      border: "1px solid var(--line-2)",
-      transition: "background .2s"
-    }
-  }, React.createElement("span", {
-    style: {
-      position: "absolute",
-      top: 2,
-      left: on ? 20 : 2,
-      width: 20,
-      height: 20,
-      borderRadius: 20,
-      background: on ? "var(--on-signal)" : "var(--text-2)",
-      transition: "left .2s"
-    }
-  }))), note && React.createElement("div", {
-    role: "status",
-    style: {
-      fontSize: 13,
-      lineHeight: "18px",
-      color: "var(--text-2)",
-      paddingBottom: 4
-    }
-  }, note));
-}
-function BuildPlaylistButton({
-  state,
-  soundtrack,
-  plan,
-  label: idleLabel,
-  onResult
-}) {
-  var pendingKind = plan ? "board" : "1";
-  var [status, setStatus] = React.useState("idle");
-  var [result, setResult] = React.useState(null);
-  var [buildProgress, setBuildProgress] = React.useState("");
-  var run = async () => {
-    setStatus("working");
-    setBuildProgress("");
-    try {
-      var r = await createSetsPlaylist(state, {
-        soundtrack,
-        plan,
-        onProgress: msg => setBuildProgress(msg)
-      });
-      setResult(r);
-      onResult?.(r);
-      if (r.ok) {
-        setStatus("done");
-      } else {
-        setStatus("err");
-        if (r.reason !== "reconnect" && r.reason !== "no_target_playlist") {
-          setTimeout(() => setStatus("idle"), 4500);
-        }
-      }
-    } catch (e) {
-      setResult({
-        ok: false,
-        reason: "create_fail",
-        message: String(e?.message || e)
-      });
-      setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
-    }
-  };
-  React.useEffect(() => {
-    var pending = null;
-    try {
-      pending = localStorage.getItem("plursky_pending_build");
-    } catch {}
-    if (pending === pendingKind && state.spotifyConnected && _hasPlaylistWriteScope()) {
-      try {
-        localStorage.removeItem("plursky_pending_build");
-      } catch {}
-      run();
-    }
-  }, []);
-  var onClick = async () => {
-    if (status === "working") return;
-    if (status === "err" && (result?.reason === "reconnect" || result?.reason === "not_connected")) {
-      try {
-        localStorage.setItem("plursky_pending_build", pendingKind);
-      } catch {}
-      startSpotifyAuth();
-      return;
-    }
-    if (status === "err" && result?.reason === "no_target_playlist") {
-      window.open("https://open.spotify.com/", "_blank", "noopener");
-      return;
-    }
-    if (status === "done" && result?.url) {
-      window.open(result.url, "_blank", "noopener");
-      return;
-    }
-    window.plurskyHaptic?.("MEDIUM");
-    run();
-  };
-  var label,
-    bg = "rgba(var(--spotify-rgb),0.14)",
-    color = "var(--ink)",
-    border = "1px solid var(--spotify)";
-  if (status === "working") {
-    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
-  } else if (status === "done") {
-    var sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0 ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗` : `✓ ${result?.added} tracks · in set order — open ↗`;
-    bg = "var(--spotify)";
-    color = "var(--on-spotify)";
-    border = "none";
-  } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";else if (result?.reason === "empty") label = "Save sets first";else if (result?.reason === "create_fail") {
-      var msg = (result?.message || "").slice(0, 28);
-      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
-    } else label = "Try again";
-    bg = "rgba(var(--alert-rgb),0.16)";
-    color = "var(--ink)";
-    border = "1px solid var(--alert)";
-  } else {
-    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
-  }
-  return React.createElement("button", {
-    onClick: onClick,
-    disabled: status === "working",
-    style: {
-      background: bg,
-      color,
-      border,
-      borderRadius: 999,
-      padding: "10px 16px",
-      cursor: status === "working" ? "wait" : "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.2,
-      fontWeight: 700,
-      transition: "all .2s"
-    }
-  }, label);
 }
 function AppleMusicPlaylistButton({
   state,
@@ -14977,44 +14512,6 @@ function RecapScreen({
       cancelled = true;
     };
   }, []);
-  var [playlistState, setPlaylistState] = React.useState({
-    status: "idle"
-  });
-  var buildAttendedPlaylist = async () => {
-    setPlaylistState({
-      status: "building"
-    });
-    try {
-      var result = await createSetsPlaylist(state, {
-        source: "attended"
-      });
-      if (result.ok) {
-        setPlaylistState({
-          status: "done",
-          url: result.url,
-          added: result.added
-        });
-      } else {
-        var reason = result.reason || "fail";
-        var msg = {
-          not_connected: "Connect Spotify on the Me tab first.",
-          empty: "Mark sets you caught in Memories first.",
-          reconnect: "Reconnect Spotify (needs playlist permission).",
-          no_target_playlist: "Create an empty Spotify playlist named 'Plursky' first.",
-          rate_limited: "Spotify is throttling — wait 30s and retry."
-        }[reason] || result.message || "Couldn't build playlist.";
-        setPlaylistState({
-          status: "error",
-          msg
-        });
-      }
-    } catch (e) {
-      setPlaylistState({
-        status: "error",
-        msg: e?.message || "Couldn't build playlist."
-      });
-    }
-  };
   if (recap.setsCount === 0 && recap.momentsCount === 0) {
     var archive = typeof _readArchive === "function" ? _readArchive() : {};
     var archived = Object.values(archive).filter(f => f.id !== CFG.id);
@@ -16558,87 +16055,7 @@ function RecapScreen({
         marginTop: 2
       }
     }, r.setsCount || 0, " sets · ", r.momentsCount || 0, " memories · ", r.stagesVisitedCount || 0, " stages"))));
-  })(), state.spotifyConnected && recap.setsCount > 0 && React.createElement(RecapCard, {
-    kicker: "YOUR SOUNDTRACK",
-    paper: "var(--paper)"
-  }, React.createElement("div", {
-    className: "serif",
-    style: {
-      fontSize: 28,
-      lineHeight: 1.05,
-      letterSpacing: -0.3,
-      marginBottom: 14
-    }
-  }, "Take the weekend ", React.createElement("span", {
-    style: {
-      fontStyle: "italic",
-      color: "var(--horizon)"
-    }
-  }, "home"), " with you."), React.createElement("div", {
-    style: {
-      fontSize: 13,
-      color: "var(--muted)",
-      lineHeight: 1.5,
-      marginBottom: 14
-    }
-  }, "Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order."), React.createElement("div", {
-    style: {
-      marginBottom: 12
-    }
-  }, React.createElement(PlaylistVisibilityToggle, null)), playlistState.status === "done" ? React.createElement("div", {
-    style: {
-      padding: "10px 12px",
-      borderRadius: 10,
-      background: "rgba(var(--signal-rgb),0.12)",
-      border: "1px solid rgba(var(--signal-rgb),0.4)"
-    }
-  }, React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--success)",
-      fontWeight: 700,
-      marginBottom: 6
-    }
-  }, "✓ ", playlistState.added, " TRACKS ADDED"), playlistState.url && React.createElement("a", {
-    href: playlistState.url,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.1,
-      color: "var(--ink)",
-      fontWeight: 700,
-      textDecoration: "underline"
-    }
-  }, "OPEN IN SPOTIFY ↗")) : React.createElement("button", {
-    onClick: buildAttendedPlaylist,
-    disabled: playlistState.status === "building",
-    style: {
-      background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-      color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
-      border: "none",
-      borderRadius: 999,
-      padding: "11px 18px",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 10,
-      letterSpacing: 1.3,
-      fontWeight: 700,
-      cursor: playlistState.status === "building" ? "default" : "pointer",
-      alignSelf: "flex-start"
-    }
-  }, playlistState.status === "building" ? "BUILDING…" : "↗ BUILD WEEKEND PLAYLIST"), playlistState.status === "error" && React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1,
-      color: "var(--alert)",
-      marginTop: 8,
-      fontWeight: 600
-    }
-  }, playlistState.msg)), recap.missedSaved.length > 0 && React.createElement(RecapCard, {
+  })(), recap.missedSaved.length > 0 && React.createElement(RecapCard, {
     kicker: `MISSED · ${recap.missedSaved.length}`
   }, React.createElement("div", {
     className: "serif",

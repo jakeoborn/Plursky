@@ -15,6 +15,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
@@ -27,6 +28,7 @@ try {
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const fid = 'acl-2026';
   const ctx = await browser.newContext({ viewport: { width: 320, height: 700 }, serviceWorkers: 'block' });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.clock.install({ time: new Date('2026-10-03T01:30:00Z') });
   await ctx.addInitScript(fid => {
     localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', fid);

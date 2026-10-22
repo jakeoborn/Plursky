@@ -26,6 +26,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { mkdirSync } from "node:fs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PORT = 8791, ORIGIN = `http://localhost:${PORT}`;
 const OUT = process.env.E2E_OUT || "/tmp/plursky-e2e-packs";
@@ -72,6 +73,7 @@ const closeSheet = page => page.getByRole("dialog", { name: "Offline map" }).get
 try {
   // ── A–E: service workers blocked (the native app) ─────────────────────────
   const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 844 } });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(seed({ plus: true }), [FID, true]);
   let page = await newPage(ctx, "map");
 
@@ -207,6 +209,7 @@ try {
 
   console.log("F. not Plus");
   const free = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 844 } });
+  await wireVendor(free);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await free.addInitScript(seed({ plus: false }), [FID, false]);
   page = await newPage(free, "map");
   await openSheet(page);
@@ -219,6 +222,7 @@ try {
 
   console.log("G. service workers on: every Cache API cache untouched");
   const sw = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await wireVendor(sw);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await sw.addInitScript(seed({ plus: true }), [FID, true]);
   page = await newPage(sw, "home");
   await page.evaluate(() => navigator.serviceWorker.ready);

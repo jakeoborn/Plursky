@@ -470,6 +470,100 @@ function readoutHonest(avatar) {
     typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG.id : "");
 }
 
+// ── How the festival's map sits on the real map (Jake, 2026-10-13) ──
+// The real map is the default map everywhere, with the festival's own map laid
+// over it. How strongly that art shows is a claim about how well it matches the
+// ground, so it follows the predicate above rather than a second rule:
+//   "checked"   geometryVerifiedFor() passes (Summerfest, Lollapalooza, Outside
+//               Lands today): full strength, posture "OFFICIAL MAP".
+//   "unchecked" anchors place the art but nothing independent corroborates
+//               them (ACL, Gov Ball, Ultra, EDC LV, EDC Orlando): faded, posture
+//               "POSTER NOT TO SCALE". Ultra's art draws its own OSM-anchored
+//               stages up to 387 m off; a confident wrong poster is worse than
+//               no poster.
+//   "none"      fewer than three anchors (Escape, Nocturnal, HARD) or no art at
+//               all (mapMode "real"). Nothing places the art, so it is not
+//               drawn, and neither are stage pins: mapToGps() with no affine
+//               returns the venue centre, which would stack every stage on one
+//               point. Stages read as pending until anchors are measured.
+// Measuring anchors (first-party evidence per anchor) is what moves a festival
+// up a tier; nothing here does.
+function posterTierFor(cfg, affine, verified) {
+  if (!cfg || cfg.mapMode === "real" || !affine) return "none";
+  if (cfg.mapStyle !== "image-overlay" || !cfg.mapImage) return "none";
+  return verified ? "checked" : "unchecked";
+}
+const POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+const POSTER_OPACITY_UNCHECKED = 0.35;
+// What the real map may PIN: only what checked geometry places on the ground
+// (#313 review, Instinct's lane: "pins off, full stop"). On an unchecked
+// festival the affine exists but is not corroborated, so a stage, landmark or
+// water point projected through it is still a poster position wearing
+// coordinates; Ultra's land up to 387 m off. Those festivals read STAGES
+// PENDING exactly like III Points until anchors are measured. Same predicate
+// as "checked" and as the distance readouts (geometryVerifiedFor), not a list.
+const REAL_MAP_PLACES_CHECKED = !!MAP_AFFINE && !!MAP_REGISTRATION_SOURCED;
+const REAL_MAP_STAGES = REAL_MAP_PLACES_CHECKED ? PLACED_STAGES : [];
+const REAL_MAP_AMENITIES = REAL_MAP_PLACES_CHECKED && typeof AMENITIES !== "undefined" ? AMENITIES : [];
+// Where the real map may put a TARGET: a meet pin, a crew marker, either end
+// of a route (#313 item 7). Raw GPS always places (a pin dropped on the
+// basemap, a live fix, a rally that carries its lat/lng); a grid x/y only
+// through checked geometry, because on an unchecked festival x/y traces to
+// poster art. null means nothing honest places it: no marker and no route,
+// never a fallback point. (_lngLatOf, below, still draws YOUR dot.)
+function _realMapTarget(p) {
+  if (!p) return null;
+  if (_validGps(p.gps)) return { lat: p.gps.lat, lng: p.gps.lng };
+  if (!REAL_MAP_PLACES_CHECKED || !Number.isFinite(p.x) || !Number.isFinite(p.y)) return null;
+  const ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : null;
+}
+// YOUR dot follows the same rule (Instinct's ruling on f73, no exceptions):
+// a live fix always shows; the demo position (GPS off, off-site, stale) shows
+// only where checked geometry places it. On an unchecked festival it would sit
+// at a poster x/y or the venue centre, a fake "you" the user learns to trust,
+// so it is hidden. The marker stays mounted so a real fix can show it at once.
+function _showYou(el, avatar) {
+  if (!el) return;
+  const shown = !!_realMapTarget(avatar);
+  el.style.display = shown ? "" : "none";
+  el.setAttribute("data-realmap-you", shown ? "shown" : "hidden");
+}
+// The same rule where a meet target is BUILT. On the real map a target the
+// real map cannot place keeps its words and drops its position: meet at a
+// stage, a midpoint, a rally or ping with no lat/lng become text only, so no
+// pin, route, ETA or "Unsurveyed" cell is ever made from them. On the drawn
+// map x/y is a point on the art itself, which that map can honestly show.
+function _meetTargetFor(t, onRealMap) {
+  if (!t || t.textOnly || !onRealMap || _realMapTarget(t)) return t;
+  return { label: t.label, stageId: t.stageId || null, isRally: !!t.isRally, isAmenity: !!t.isAmenity, textOnly: true };
+}
+// The grounds, from real-world sources only, for the opening camera when no
+// stage is pinned (#313 item 8: ACL opened on FESTIVAL_CONFIG.gps, ~600 m
+// south-west of the stages, with all three surveyed anchors off screen).
+// Surveyed footprint first, then the venue box, then the anchors' own lat/lng
+// (measured points, never projected art). [lng, lat] pairs, or [] when the
+// config has none of them.
+function _groundsLngLats(cfg) {
+  const ok = (la, lo) => _validGps({ lat: la, lng: lo });
+  const fp = (cfg && cfg.venue && cfg.venue.footprint) || (cfg && cfg.footprint);
+  if (Array.isArray(fp) && fp.length >= 3) return fp.filter(([la, lo]) => ok(la, lo)).map(([la, lo]) => [lo, la]);
+  const fb = cfg && cfg.venue && cfg.venue.festivalBounds;
+  if (fb && ok(fb.north, fb.east) && ok(fb.south, fb.west)) return [[fb.west, fb.south], [fb.east, fb.north]];
+  const an = ((cfg && cfg.gpsAnchors) || []).filter(a => a && ok(a.lat, a.lng));
+  return an.length >= 2 ? an.map(a => [a.lng, a.lat]) : [];
+}
+// RealMap's pan limit, before it is widened to contain the opening view: the
+// venue box with its ±0.004° (~440 m) margin. null = no limit. A lock to the
+// footprint waits on a SURVEYED perimeter; an estimated one never limits the
+// map (Item 1, held 2026-10-18).
+function _realMapPanLimit(cfg, lib) {
+  const v = cfg && cfg.venue;
+  if (!v || !v.festivalBounds) return null;
+  const fb = v.festivalBounds;
+  return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
+}
+
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
@@ -549,15 +643,22 @@ function formatLastSeen(ts) {
 // Watch the user's real position. Returns { pos, status, lastUpdate }.
 // In battery-saver mode, drops high-accuracy GPS and lets the browser cache
 // fixes for 30s — saves a meaningful chunk of battery on long late-night sessions.
+// A fix older than this is not LIVE. watchPosition keeps firing while the
+// phone holds a signal (maximumAge 4s; 30s in battery saver), so silence this
+// long means the signal is gone, not that the user stood still.
+const GPS_STALE_MS = 60000, GPS_STALE_MS_SAVER = 120000;
 function useGeolocation(enabled) {
   const [pos, setPos] = React.useState(null);
-  const [status, setStatus] = React.useState("idle"); // idle | locating | live | denied | unavailable
+  const [status, setStatus] = React.useState("idle"); // idle | locating | live | stale | denied | unavailable
   const { active: bsActive } = useBatterySaver();
+  const staleMs = bsActive ? GPS_STALE_MS_SAVER : GPS_STALE_MS;
   React.useEffect(() => {
-    if (!enabled) { setStatus("idle"); return; }
-    if (!navigator.geolocation) { setStatus("unavailable"); return; }
+    // OFF, an error or a denial drops the fix. A retained position read as
+    // "where you are" after the user turned GPS off (#310 review).
+    if (!enabled) { setPos(null); setStatus("idle"); return; }
+    if (!navigator.geolocation) { setPos(null); setStatus("unavailable"); return; }
     setStatus("locating");
-    let alive = true;
+    let alive = true, lastTs = 0;
     const opts = bsActive
       ? { enableHighAccuracy: false, maximumAge: 30000, timeout: 30000 }
       : { enableHighAccuracy: true,  maximumAge: 4000,  timeout: 15000 };
@@ -565,7 +666,8 @@ function useGeolocation(enabled) {
       (p) => {
         if (!alive) return;
         const lat = p.coords.latitude, lng = p.coords.longitude;
-        setPos({ lat, lng, accuracy: p.coords.accuracy, ts: Date.now() });
+        lastTs = Date.now();
+        setPos({ lat, lng, accuracy: p.coords.accuracy, ts: lastTs });
         setStatus("live");
         // v137: live attendance auto-detect — silently marks the user as
         // "caught" the current set when GPS confirms they're inside a stage's
@@ -581,13 +683,20 @@ function useGeolocation(enabled) {
       },
       (e) => {
         if (!alive) return;
+        setPos(null);
         setStatus(e.code === 1 ? "denied" : "unavailable");
       },
       opts
     );
-    return () => { alive = false; navigator.geolocation.clearWatch(id); };
-  }, [enabled, bsActive]);
-  return { pos, status };
+    const tick = setInterval(() => {
+      if (alive && lastTs && Date.now() - lastTs > staleMs) setStatus((s) => (s === "live" ? "stale" : s));
+    }, 5000);
+    return () => { alive = false; clearInterval(tick); navigator.geolocation.clearWatch(id); };
+  }, [enabled, bsActive, staleMs]);
+  // The one LIVE predicate: on, live, and a fresh in-range fix. Every caller
+  // reads this; none re-derives it from pos alone.
+  const live = !!enabled && status === "live" && _validGps(pos) && Date.now() - (pos.ts || 0) <= staleMs;
+  return { pos, status, live };
 }
 
 // ── Walking time model ─────────────────────────────────────
@@ -1269,6 +1378,7 @@ function ShareLocationSheet({
                 {gpsStatus === "live" && gpsPos
                   ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m`
                   : gpsStatus === "locating" ? "FINDING…"
+                  : gpsStatus === "stale"    ? "NO RECENT FIX"
                   : gpsStatus === "denied"   ? "DENIED IN BROWSER"
                   : gpsStatus === "unavailable" ? "UNSUPPORTED"
                   : "OFF"}
@@ -1941,10 +2051,14 @@ function MapScreen({ state, setState }) {
   // exist only where the festival's map carries it, on the drawn map (the
   // real map draws no amenities). Crew shows real presence, never a sample.
   const [mapCat, setMapCat] = React.useState("stages");
-  // Real map (BETA) — guarded re-enable (2026-08-22). Never again a broken
-  // festival-night map (EDC 2026-05-15 revert 139b50e): opt-in flag,
+  // Real map — the DEFAULT since 2026-10-13 (Jake: "real map + poster overlay
+  // becomes the default everywhere"); it was an opt-in BETA from 2026-08-22.
+  // Never again a broken festival-night map (EDC 2026-05-15 revert 139b50e):
   // auto-fallback to the offline-safe SVG TopDownMap on offline-at-mount,
-  // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure.
+  // 12s boot timeout, 6 tile errors pre-first-load, or lib-load failure, and a
+  // fallback holds for the rest of the session (sessionStorage) so a bad
+  // network is not retried on every visit to the tab. "plursky_use_realmap" =
+  // "0" is the user's own choice of the festival art map, and sticks.
   // `mapMode: "real"` festivals have no map art and no stage grid to draw —
   // III Points 2026 is the first. For them the real basemap is not the BETA
   // alternative to a festival map, it IS the festival map, so it opens on and
@@ -1952,15 +2066,31 @@ function MapScreen({ state, setState }) {
   // SVG ground plate for a venue whose layout nobody has published would be
   // the poster-space-as-world-space defect PR #36 removed from EDC LV.
   const REAL_MAP_ONLY = FESTIVAL_CONFIG.mapMode === "real";
-  const mapPostureLabel = REAL_MAP_ONLY
-    ? "VENUE MAP · STAGES PENDING"
-    : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
-      ? "OFFICIAL MAP"
-      : "LAYOUT ONLY";
   const [useRealMap, setUseRealMap] = React.useState(() => {
     if (REAL_MAP_ONLY) return true;
-    try { return localStorage.getItem("plursky_use_realmap") === "1"; } catch { return false; }
+    try {
+      if (sessionStorage.getItem("plursky_realmap_failed") === "1") return false;
+      return localStorage.getItem("plursky_use_realmap") !== "0";
+    } catch { return true; }
   });
+  // Every meet target is built through _meetTargetFor (#313 item 7), and an
+  // existing one is re-built when the map on screen changes.
+  const setMeet = (t) => setMeetTarget(_meetTargetFor(t, useRealMap));
+  React.useEffect(() => { setMeetTarget(t => _meetTargetFor(t, useRealMap)); }, [useRealMap]);
+  // What the maps may draw: a text-only target has no position.
+  const meetPin = meetTarget && !meetTarget.textOnly ? meetTarget : null;
+  // GO HERE routes to a stage only where the map on screen can place it.
+  const canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
+  // The posture label says what the map on screen can claim (POSTER_TIER).
+  // Unchecked art is drawn faded AND its stages are pending, so it says both.
+  const mapPostureLabel = REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
+    ? (useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
+    : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
+        ? "OFFICIAL MAP"
+        : "LAYOUT ONLY";
+  // The amenities the map on screen can place: all of them on the drawn map,
+  // only checked-geometry ones on the real map (the same rule as stage pins).
+  const mapAmenities = useRealMap ? REAL_MAP_AMENITIES : (typeof AMENITIES !== "undefined" ? AMENITIES : []);
   const [realMapNote, setRealMapNote] = React.useState(null);
   const _disableRealMap = (why) => {
     // On a REAL_MAP_ONLY festival there is no festival map to fall back TO —
@@ -1968,12 +2098,10 @@ function MapScreen({ state, setState }) {
     // reads as a broken app rather than as "not published yet". Keep the real
     // map mounted so its own error surface (and the venue card under it) is
     // what the user sees.
-    if (REAL_MAP_ONLY) {
-      setRealMapNote((why || "Map unavailable") + " — check your connection");
-      setTimeout(() => setRealMapNote(null), 7000);
-      return;
-    }
-    try { localStorage.removeItem("plursky_use_realmap"); } catch {}
+    // RealMap holds its own persistent error card + RETRY for this case (M1);
+    // the 7-second note that used to show here vanished and left nothing.
+    if (REAL_MAP_ONLY) return;
+    try { sessionStorage.setItem("plursky_realmap_failed", "1"); } catch {}
     setUseRealMap(false);
     setRealMapNote((why || "Real map unavailable") + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
@@ -1985,9 +2113,17 @@ function MapScreen({ state, setState }) {
   const [mapZoom, setMapZoom] = React.useState(1);
   const [mapPan,  setMapPan]  = React.useState({ x: 0, y: 0 });
   const MAP_ZOOM_MIN = 0.7, MAP_ZOOM_MAX = 3.5;
-  const zoomIn  = () => setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
-  const zoomOut = () => setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
-  const zoomReset = () => { setMapZoom(1); setMapPan({ x: 0, y: 0 }); };
+  // The +/− column drives whichever map is on screen. On the real map they
+  // drove the SVG map's state only and did nothing (#313 review); RealMap now
+  // hands back a small control (zoomIn/zoomOut/reset) and reports its view.
+  const realMapCtl = React.useRef(null);
+  const [realView, setRealView] = React.useState({ atMin: false, atMax: false, atHome: true });
+  const zoomIn  = () => useRealMap ? realMapCtl.current?.zoomIn() : setMapZoom(z => Math.min(MAP_ZOOM_MAX, +(z * 1.4).toFixed(3)));
+  const zoomOut = () => useRealMap ? realMapCtl.current?.zoomOut() : setMapZoom(z => Math.max(MAP_ZOOM_MIN, +(z / 1.4).toFixed(3)));
+  const zoomReset = () => { if (useRealMap) { realMapCtl.current?.reset(); return; } setMapZoom(1); setMapPan({ x: 0, y: 0 }); };
+  const zoomInOff  = useRealMap ? realView.atMax : mapZoom >= MAP_ZOOM_MAX;
+  const zoomOutOff = useRealMap ? realView.atMin : mapZoom <= MAP_ZOOM_MIN;
+  const zoomMoved  = useRealMap ? !realView.atHome : (mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0);
   const [pingOpen, setPingOpen] = React.useState(false);
   const [iAmAtOpen, setIAmAtOpen] = React.useState(false);
   const [shareOpen, setShareOpen] = React.useState(false);
@@ -2089,7 +2225,13 @@ function MapScreen({ state, setState }) {
   }, [compass]);
 
   // Real GPS → on-site map coords, off-site distance, or null
-  const { pos: gpsPos, status: gpsStatus } = useGeolocation(gpsLive);
+  // gpsPos is the fix only while it is LIVE (on, live, fresh). Off, an error
+  // or a stale fix leaves null, so nothing downstream (avatar, crew share,
+  // routing label) can keep presenting a last-known position as current.
+  const { pos: _gpsRaw, status: _gpsStatus, live: _gpsFresh } = useGeolocation(gpsLive);
+  const gpsPos = _gpsFresh ? _gpsRaw : null;
+  // "live" with an aged fix reads as stale until the hook's tick catches up.
+  const gpsStatus = _gpsStatus === "live" && !_gpsFresh ? "stale" : _gpsStatus;
   const liveAvatar = React.useMemo(() => {
     if (!gpsPos) return null;
     const mi = distMiles(gpsPos.lat, gpsPos.lng, FESTIVAL_LAT, FESTIVAL_LNG);
@@ -2100,6 +2242,11 @@ function MapScreen({ state, setState }) {
       x: Math.max(2, Math.min(98, x)),
       y: Math.max(2, Math.min(98, y)),
       accuracy: gpsPos.accuracy,
+      // The raw fix rides along. On a festival with no gpsAnchors there is no
+      // affine, gpsToMap() returns the grid centre and mapToGps() the venue
+      // centroid, so x/y above say nothing about where the user is. The real
+      // basemap places this directly (_lngLatOf); x/y stay for the SVG map.
+      gps: { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy ?? null, ts: gpsPos.ts ?? Date.now() },
     };
   }, [gpsPos]);
 
@@ -2110,7 +2257,7 @@ function MapScreen({ state, setState }) {
   // `live` marks this position as REAL, which is what makes a grid-space
   // distance taken from it a claim rather than a simulation. It rides on the
   // avatar so every consumer inherits it — see readoutHonest().
-  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true } : demoAvatar;
+  const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true, gps: liveAvatar.gps } : demoAvatar;
 
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
@@ -2123,7 +2270,7 @@ function MapScreen({ state, setState }) {
   React.useEffect(() => {
     if (!useDemo) return;
     const id = setInterval(() => {
-      const goal = meetMode && meetTarget ? meetTarget
+      const goal = meetMode && meetPin ? meetPin
                  : selectedStage ? STAGES.find(s => s.id === selectedStage)
                  : null;
       setDemoAvatar(a => {
@@ -2141,8 +2288,8 @@ function MapScreen({ state, setState }) {
         };
       });
       setFriends(prev => prev.map(f => {
-        if (meetMode && meetTarget && meetGroup.includes(f.id)) {
-          const dx = meetTarget.x - f.x, dy = meetTarget.y - f.y;
+        if (meetMode && meetPin && meetGroup.includes(f.id)) {
+          const dx = meetPin.x - f.x, dy = meetPin.y - f.y;
           const d = Math.hypot(dx, dy);
           if (d < 1.2) return f;
           return { ...f, x: f.x + (dx/d) * 0.32, y: f.y + (dy/d) * 0.32 };
@@ -2156,17 +2303,17 @@ function MapScreen({ state, setState }) {
       }));
     }, bsActive ? 2400 : 600);
     return () => clearInterval(id);
-  }, [useDemo, selectedStage, meetMode, meetTarget, meetGroup, bsActive, reduceMotion]);
+  }, [useDemo, selectedStage, meetMode, meetPin, meetGroup, bsActive, reduceMotion]);
 
   // Heading derivation when real GPS is on-site and walking toward a goal
   React.useEffect(() => {
     if (!isLiveOnSite) return;
-    const goal = meetMode && meetTarget ? meetTarget
+    const goal = meetMode && meetPin ? meetPin
                : selectedStage ? STAGES.find(s => s.id === selectedStage)
                : null;
     if (!goal) return;
     setHeading(Math.atan2(goal.y - avatar.y, goal.x - avatar.x));
-  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetTarget]);
+  }, [isLiveOnSite, avatar.x, avatar.y, selectedStage, meetMode, meetPin]);
 
   // Subscribe to Supabase Realtime presence — crew members broadcasting their stage
   React.useEffect(() => sbOnPresenceChange(s => setCrewSnap({ ...s })), []);
@@ -2212,7 +2359,10 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      // A friend's declared stage always counts. Inferring one from their GPS
+      // dot needs sourced registration: on poster-read anchors the dot's
+      // position on the art is a guess, and the nudge would fire off it.
+      const sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -2370,13 +2520,14 @@ function MapScreen({ state, setState }) {
     const allY = [avatar.y, ...selected.map(f => f.y)];
     const cx = allX.reduce((s, v) => s + v, 0) / allX.length;
     const cy = allY.reduce((s, v) => s + v, 0) / allY.length;
-    setMeetTarget({ x: cx, y: cy, label: `Meet ${selected.map(f => f.name).join(" + ")}` });
+    setMeet({ x: cx, y: cy, label: `Meet ${selected.map(f => f.name).join(" + ")}` });
   };
 
   // GPS pill label — reflects real status
   const gpsLabel = !gpsLive ? "OFF"
     : gpsStatus === "live"        ? (isLiveOnSite ? "LIVE" : "OFF-SITE")
     : gpsStatus === "locating"    ? "FINDING…"
+    : gpsStatus === "stale"       ? "NO FIX"
     : gpsStatus === "denied"      ? "OFF"
     : gpsStatus === "unavailable" ? "N/A"
     : "DEMO";
@@ -2395,10 +2546,13 @@ function MapScreen({ state, setState }) {
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6 L9 12 L15 18"/></svg>
           </button>
         )}
-        <h1 className="duo-title" style={{ margin: 0, flex: 1, minWidth: 0 }}>Map</h1>
+        {/* The title never shrinks under the posture label: a long label
+            ("NOT TO SCALE · STAGES PENDING") wraps to its own line instead
+            of printing over "Map" (#313 review, 320–393 pt). */}
+        <h1 className="duo-title" style={{ margin: 0, flex: "1 0 auto" }}>Map</h1>
         <span data-map-posture className="duo-code">{mapPostureLabel}</span>
         {(() => {
-          const has = t => !useRealMap && (typeof AMENITIES !== "undefined" ? AMENITIES : []).some(a => a.type === t);
+          const has = t => mapAmenities.some(a => a.type === t);
           const cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
           const cat = cats.some(([id]) => id === mapCat) ? mapCat : "stages";
           return (
@@ -2480,26 +2634,26 @@ function MapScreen({ state, setState }) {
                 <path d="M3 16 L12 21 L21 16"/>
               </svg>
             </button>
-            <button onClick={zoomIn} disabled={mapZoom >= MAP_ZOOM_MAX} aria-label="Zoom in" style={{
+            <button onClick={zoomIn} disabled={zoomInOff} aria-label="Zoom in" style={{
               width: 46, height: 36, padding: 0,
               background: "transparent", border: "none",
               borderBottom: "1px solid var(--line)",
-              cursor: mapZoom >= MAP_ZOOM_MAX ? "default" : "pointer",
-              opacity: mapZoom >= MAP_ZOOM_MAX ? 0.35 : 1,
+              cursor: zoomInOff ? "default" : "pointer",
+              opacity: zoomInOff ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "var(--ink)", fontFamily: "var(--f-ui)",
               fontSize: 20, fontWeight: 500, lineHeight: 1,
             }}>+</button>
-            <button onClick={zoomOut} disabled={mapZoom <= MAP_ZOOM_MIN} aria-label="Zoom out" style={{
+            <button onClick={zoomOut} disabled={zoomOutOff} aria-label="Zoom out" style={{
               width: 46, height: 36, padding: 0,
               background: "transparent", border: "none",
-              cursor: mapZoom <= MAP_ZOOM_MIN ? "default" : "pointer",
-              opacity: mapZoom <= MAP_ZOOM_MIN ? 0.35 : 1,
+              cursor: zoomOutOff ? "default" : "pointer",
+              opacity: zoomOutOff ? 0.35 : 1,
               display: "flex", alignItems: "center", justifyContent: "center",
               color: "var(--ink)", fontFamily: "var(--f-ui)",
               fontSize: 22, fontWeight: 500, lineHeight: 1,
             }}>−</button>
-            {(mapZoom !== 1 || mapPan.x !== 0 || mapPan.y !== 0) && (
+            {zoomMoved && (
               <button onClick={zoomReset} aria-label="Reset zoom" style={{
                 width: 46, minHeight: 32, padding: 0,
                 background: "var(--s3)", color: "var(--acc-ink)",
@@ -2544,12 +2698,12 @@ function MapScreen({ state, setState }) {
                 { id: "amenity", label: "Amenity key", active: amenityKey,
                   onToggle: () => { setAmenityKey(v => !v); setAmenityFilter(null); } },
                 { id: "labels", label: "Landmark labels", active: showLabels, onToggle: () => setShowLabels(s => !s) },
-                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map (beta)",  active: useRealMap,
+                ...(REAL_MAP_ONLY ? [] : [{ id: "realmap", label: "Real map",  active: useRealMap,
                   onToggle: () => {
                     const v = !useRealMap;
                     try {
-                      if (v) localStorage.setItem("plursky_use_realmap", "1");
-                      else localStorage.removeItem("plursky_use_realmap");
+                      localStorage.setItem("plursky_use_realmap", v ? "1" : "0");
+                      if (v) sessionStorage.removeItem("plursky_realmap_failed");
                     } catch {}
                     setRealMapNote(null);
                     setUseRealMap(v);
@@ -2609,7 +2763,7 @@ function MapScreen({ state, setState }) {
               // Hide a row with nothing behind it, but never print the count:
               // AMENITIES is a sample of the poster's inventory (2 restrooms
               // to its ~15), so a number here would read as "EDC has two".
-              const present = (typeof AMENITIES !== "undefined" ? AMENITIES : [])
+              const present = mapAmenities
                 .some(x => x.type === a.type);
               if (!present) return null;
               return (
@@ -2877,14 +3031,16 @@ function MapScreen({ state, setState }) {
                         { type: "toilet", label: "Toilet", emoji: "🚻", color: "var(--signal-ink)" },
                         { type: "charge", label: "Charge", emoji: "⚡", color: "var(--signal-ink)" },
                         { type: "locker", label: "Locker", emoji: "🔒", color: "var(--signal-ink)" },
-                      ].map(c => (
+                      ].filter(c => mapAmenities.some(a => a.type === c.type)).map(c => (
                         <button key={c.type} onClick={() => {
-                          const matches = (typeof AMENITIES !== "undefined" ? AMENITIES : []).filter(a => a.type === c.type);
+                          // Only amenities the map on screen can place: on the
+                          // real map an unchecked poster position is not a pin.
+                          const matches = mapAmenities.filter(a => a.type === c.type);
                           if (!matches.length) return;
                           const nearest = matches
                             .map(a => ({ ...a, _d: Math.hypot(a.x - avatar.x, a.y - avatar.y) }))
                             .sort((a, b) => a._d - b._d)[0];
-                          setMeetTarget({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
+                          setMeet({ x: nearest.x, y: nearest.y, label: nearest.label, isAmenity: true });
                           setMeetMode(true);
                           setSearchSheetExpanded(false);
                         }} className="mono" style={{
@@ -3005,8 +3161,12 @@ function MapScreen({ state, setState }) {
 
         {useRealMap ? (
           <RealMap
-            avatar={avatar} stages={PLACED_STAGES}
-            officialMap={!!FESTIVAL_CONFIG.mapImage}
+            avatar={avatar} stages={REAL_MAP_STAGES}
+            officialMap={POSTER_TIER !== "none"}
+            amenities={REAL_MAP_AMENITIES}
+            showAmenities={searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med"}
+            amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
+            controlRef={realMapCtl} onViewChange={setRealView}
             crewFriends={crewFriends}
             saved={state.saved}
             showHeat={showHeat}
@@ -3014,12 +3174,12 @@ function MapScreen({ state, setState }) {
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
             selected={selectedStage}
-            meetMode={meetMode} meetTarget={meetTarget}
+            meetMode={meetMode} meetTarget={meetPin}
             onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
             onMapClick={(xy) => {
               if (!meetMode) return;
               const names = meetGroup.map(id => friends.find(f => f.id === id)?.name).filter(Boolean);
-              setMeetTarget({ x: xy.x, y: xy.y, label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
+              setMeet({ x: xy.x, y: xy.y, ...(xy.gps ? { gps: xy.gps } : {}), label: names.length ? `Meet ${names.join(" + ")}` : "Meet here" });
             }}
             onFatal={_disableRealMap}
           />
@@ -3031,7 +3191,7 @@ function MapScreen({ state, setState }) {
             amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
             compass={compass && compassStatus === "live"}
             compassHeading={compassHeading}
-            selected={selectedStage} meetMode={meetMode} meetTarget={meetTarget} meetGroup={meetGroup}
+            selected={selectedStage} meetMode={meetMode} meetTarget={meetPin} meetGroup={meetGroup}
             crewFriends={crewFriends}
             zoom={mapZoom} pan={mapPan} zoomMin={MAP_ZOOM_MIN} zoomMax={MAP_ZOOM_MAX}
             onZoomChange={setMapZoom} onPanChange={setMapPan}
@@ -3076,15 +3236,19 @@ function MapScreen({ state, setState }) {
                   <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.4s infinite" }}/>
                   {meetTarget.isAmenity
                     ? `→ ${meetTarget.label.toUpperCase()}`
-                    : `${meetTarget.label.toUpperCase()} · ${meetGroup.length > 1 ? `GROUP (${meetGroup.length + 1})` : "BOTH"} WALKING`}
+                    // Who the meetup is for, never what they are doing:
+                    // "WALKING" was shown with no friend selected, and no
+                    // friend's fix is checked here (#310 review).
+                    : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`}
                 </>
               ) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"}
             </span>
-            {meetTarget && isSharing && (
+            {meetPin && isSharing && (
               <button onClick={() => {
                 const ok = sbBroadcastRally({
                   x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
                   stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
+                  gps: meetTarget.gps || null,
                 });
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
@@ -3126,7 +3290,7 @@ function MapScreen({ state, setState }) {
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeetTarget({ x: incomingRally.x, y: incomingRally.y, label: incomingRally.label, isRally: true });
+              setMeet({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -3146,7 +3310,7 @@ function MapScreen({ state, setState }) {
           if (sig === clusterDismissed) return null;
           const headOver = () => {
             setMeetMode(true);
-            setMeetTarget({ x: crewCluster.stage.x, y: crewCluster.stage.y, label: crewCluster.stage.name, stageId: crewCluster.stage.id });
+            setMeet({ x: crewCluster.stage.x, y: crewCluster.stage.y, label: crewCluster.stage.name, stageId: crewCluster.stage.id });
             setClusterDismissed(sig);
           };
           return (
@@ -3190,7 +3354,7 @@ function MapScreen({ state, setState }) {
           <div style={{
             position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 6,
           }}>
-            {stage && navigating ? (
+            {stage && navigating && canRouteToStage ? (
               <StageNavBar
                 stage={stage} walk={walk}
                 onDetails={() => setNavigating(false)}
@@ -3204,7 +3368,7 @@ function MapScreen({ state, setState }) {
                 onClose={() => setSelectedStage(null)}
                 onCancelMeet={clearMeet}
                 onOpenArtist={(id) => setState({ ...state, tab: "home", artist: id })}
-                onGoHere={goToStage}
+                onGoHere={canRouteToStage ? goToStage : null}
                 stageSaved={stage ? savedStages.has(stage.id) : false}
                 onToggleSave={toggleSavedStage}
                 state={state} setState={setState}
@@ -3320,7 +3484,7 @@ function MapScreen({ state, setState }) {
             setMeetMode(true);
             setMeetGroup([chatFriend.id]);
             const f = friends.find(fr => fr.id === chatFriend.id);
-            if (f) setMeetTarget({ x: (avatar.x + f.x) / 2, y: (avatar.y + f.y) / 2, label: `Meet ${f.name}` });
+            if (f) setMeet({ x: (avatar.x + f.x) / 2, y: (avatar.y + f.y) / 2, label: `Meet ${f.name}` });
             setChatFriend(null);
           }}
         />
@@ -3340,7 +3504,7 @@ function MapScreen({ state, setState }) {
           onClose={() => setPingOpen(false)}
           onDropPin={(target) => {
             setMeetMode(true);
-            setMeetTarget(target);
+            setMeet(target);
           }}
         />
       )}
@@ -3501,6 +3665,11 @@ function StageIcon({ id, cx, cy, r, on, color }) {
     <circle cx={cx} cy={cy} r={r*0.38} fill={W}/>
   </g>);
 }
+
+// Opening pitch when the real map frames pinned stages. Lower than the 55° the
+// venue-only view uses: at 55° the far stages crowd toward the horizon and
+// their pills collide at the opening zoom (Summerfest, #313 review).
+const OPENING_PITCH_PINNED = 40;
 
 // ─── Map styles (kept simple, all free / no token required) ──────
 const REAL_MAP_STYLES = {
@@ -4103,6 +4272,29 @@ function OfflinePacksSheet({ onClose }) {
   );
 }
 
+// Where the real basemap draws a point: its own raw GPS when it carries one
+// (the live avatar, a meet pin dropped on the basemap, a crew friend sharing
+// GPS), else its grid x/y through the affine. Raw GPS never needs the affine,
+// so a festival with no registered art (III Points: mapMode "real", no
+// gpsAnchors) still shows the user where they are. The demo avatar has no
+// gps, so it keeps the grid path and is never presented as a real fix.
+//
+// A gps can arrive from another phone (a crew location, a rally), so it is
+// range-checked, not just finite: MapLibre throws on |lat| > 90 or |lng| > 180,
+// and one bad payload would take the whole map down for that crew.
+function _validGps(g) {
+  return !!g && Number.isFinite(g.lat) && Number.isFinite(g.lng)
+    && Math.abs(g.lat) <= 90 && Math.abs(g.lng) <= 180;
+}
+function _lngLatOf(p) {
+  const g = p && p.gps;
+  if (_validGps(g)) return { lat: g.lat, lng: g.lng };
+  // x/y can come from another phone too (a rally): an absurd grid point would
+  // project out of range on an affine festival. Fall back to the venue.
+  const ll = mapToGps(p.x, p.y);
+  return _validGps(ll) ? ll : { lat: FESTIVAL_CONFIG.gps.lat, lng: FESTIVAL_CONFIG.gps.lng };
+}
+
 // Inverse of gpsToMap. Given a 100-space (x, y) inside the LVMS infield,
 // return (lat, lng). Same 3-point affine, solved in the other direction.
 function mapToGps(x, y) {
@@ -4174,12 +4366,32 @@ function _officialMapExtent(natW, natH) {
 // rather than hardcoded so replacing a provisional poster with the official
 // one (the flip-session ritual) needs no code change — drop the file in and
 // the anchoring retunes itself.
+//
+// It also hands back the URL MapLibre should load. MapLibre decodes an image
+// source with createImageBitmap, which cannot decode SVG: every SVG map
+// (Summerfest, Lollapalooza, Outside Lands, Ultra, Gov Ball, Nocturnal) raised
+// "The source image could not be decoded" and the error card covered the map.
+// An <img> CAN load SVG, so an SVG is drawn once to a canvas (longest side
+// _OFFICIAL_MAP_RASTER_PX, aspect kept, so the extent math is unchanged) and
+// passed on as a PNG data URL. Raster assets pass through untouched.
+const _OFFICIAL_MAP_RASTER_PX = 2048;
 const _imgDimsCache = {};
 function _officialMapDims(src) {
   if (_imgDimsCache[src]) return _imgDimsCache[src];
   _imgDimsCache[src] = new Promise((resolve) => {
     const im = new Image();
-    im.onload  = () => resolve({ w: im.naturalWidth, h: im.naturalHeight });
+    im.onload  = () => {
+      const w = im.naturalWidth, h = im.naturalHeight;
+      if (!w || !h) { resolve(null); return; }
+      if (!/\.svg(\?|#|$)/i.test(src)) { resolve({ w, h, url: src }); return; }
+      try {
+        const k = _OFFICIAL_MAP_RASTER_PX / Math.max(w, h);
+        const c = document.createElement("canvas");
+        c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
+        resolve({ w, h, url: c.toDataURL("image/png") });
+      } catch { resolve(null); }
+    };
     im.onerror = () => resolve(null);
     im.src = src;
   });
@@ -4197,24 +4409,43 @@ function _officialMapCorners(natW, natH) {
 // MapLibre-based festival map. Real LVMS geography, native pinch-zoom
 // and pan, tilted pitch for a 3D feel. Stage markers + avatar + route
 // line are overlay layers projected from the existing 100-space x/y
-// via mapToGps(). Behind the "Real map (BETA)" toggle in the More menu;
+// via mapToGps(). The default map since 2026-10-13 ("Real map" in More);
 // when off, MapScreen falls back to the SVG TopDownMap.
 function RealMap({
   avatar, stages, crewFriends = [], saved = [],
   showHeat = false, showLabels = false, officialMap = true,
   compass = false, compassHeading = 0,
   selected, meetMode = false, meetTarget, onPickStage, onMapClick,
-  onFatal,
+  onFatal, amenities = [], showAmenities = false, amenityFilter = null,
+  controlRef, onViewChange,
 }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
   const stageMarkersRef = React.useRef({});
   const avatarMarkerRef = React.useRef(null);
+  // The latest avatar, for the one-shot "load" handler below: it closes over
+  // the FIRST render's avatar (the demo position), so a fix that arrived
+  // before the map loaded was drawn at the stale spot until the next fix.
+  const avatarRef = React.useRef(avatar);
+  avatarRef.current = avatar;
   const meetMarkerRef = React.useRef(null);
   const savedStarMarkersRef = React.useRef({});
   const friendMarkersRef = React.useRef({}); // id -> { marker, lastSig }
   const landmarkElsRef = React.useRef([]);  // landmark label elements, toggled by showLabels
   const officialMapDimsRef = React.useRef(null); // natural {w,h} of the poster asset
+  // Latched when the overlay fails to load: every styledata re-runs the layer
+  // setup, which re-added the failed image at once (#313 review), so a broken
+  // overlay retried on every style event. Once failed, it stays off this mount.
+  const officialMapFailedRef = React.useRef(false);
+  const amenityElsRef = React.useRef([]);   // [{ el, type }] amenity dots
+  const amenityViewRef = React.useRef({ show: showAmenities, filter: amenityFilter });
+  const onViewChangeRef = React.useRef(onViewChange);
+  onViewChangeRef.current = onViewChange;
+  const selectedRef = React.useRef(selected);
+  selectedRef.current = selected;
+  const homeRef = React.useRef(null);        // the opening camera; Reset returns here
+  const declutterRef = React.useRef(null);   // re-runs the stage-pill collision pass
+  const styleSwitchRef = React.useRef(null);
   const officialMapRef = React.useRef(officialMap);
   const showLabelsRef = React.useRef(showLabels);
   const onPickStageRef = React.useRef(onPickStage);
@@ -4222,6 +4453,9 @@ function RealMap({
   const meetModeRef = React.useRef(meetMode);
   const [loaded, setLoaded] = React.useState(false);
   const [err, setErr] = React.useState(null);
+  // Bumped by RETRY: the init effect keys on it, so a retry really re-runs the
+  // library load and map setup (it used to clear the card and leave a blank map).
+  const [attempt, setAttempt] = React.useState(0);
   // Fatal-fallback wiring (2026-08-22): one-shot; MapScreen flips back to the
   // SVG TopDownMap and clears the BETA flag so a bad network/failing tiles
   // can never trap the map again at festival time.
@@ -4231,6 +4465,11 @@ function RealMap({
   const _fatalNow = React.useCallback((why) => {
     if (fatalRef.current) return; fatalRef.current = true;
     console.warn("[plursky-map] fatal — falling back to SVG map:", why);
+    // A mapMode:"real" festival has no SVG map to fall back to, so every fatal
+    // path (offline at mount, boot timeout, library or tiles failing) keeps the
+    // error card + RETRY on screen. Offline-at-mount and the timeout set no
+    // card before, which left a page with no map surface at all (M1).
+    if (FESTIVAL_CONFIG.mapMode === "real") setErr(prev => prev || (typeof why === "string" ? why : "Map unavailable"));
     try { onFatal?.(typeof why === "string" ? why : null); } catch {}
   }, [onFatal]);
   // Pack mode: the map draws from this festival's saved offline pack. Entered
@@ -4280,6 +4519,21 @@ function RealMap({
     } catch {}
   }, [officialMap]);
 
+  // Water / Medical / amenity dots: shown the same way the drawn map shows
+  // them (chip, key or search), never in meet mode. DOM markers, so they
+  // survive setStyle and take the palette's CSS variables directly.
+  const _applyAmenityVisibility = React.useCallback(() => {
+    const { show, filter, meet } = amenityViewRef.current;
+    amenityElsRef.current.forEach(({ el, type }) => {
+      el.style.display = show && !meet && (!filter || type === filter) ? "" : "none";
+    });
+  }, []);
+  React.useEffect(() => {
+    amenityViewRef.current = { show: showAmenities, filter: amenityFilter, meet: meetMode };
+    _applyAmenityVisibility();
+    declutterRef.current?.();   // a Water/Medical chip clears the stage names
+  }, [showAmenities, amenityFilter, meetMode, _applyAmenityVisibility]);
+
   React.useEffect(() => { onPickStageRef.current = onPickStage; }, [onPickStage]);
   React.useEffect(() => { onMapClickRef.current  = onMapClick;  }, [onMapClick]);
   React.useEffect(() => { meetModeRef.current    = meetMode;    }, [meetMode]);
@@ -4310,6 +4564,9 @@ function RealMap({
       loadedRef.current = true;
       clearTimeout(bootTimer);
       setLoaded(true);
+      // Test hook (scripts/e2e-real-map-raw-gps.mjs reads marker positions
+      // back through map.unproject); same pattern as __plurskyPackHits.
+      try { window.__plurskyRealMap = mapRef.current; } catch {}
     };
     _mapLog("[plursky-map] RealMap useEffect — calling _loadMapLibre()");
     _loadMapLibre().then(async (maplibregl) => {
@@ -4378,49 +4635,6 @@ function RealMap({
       // for Wasteland, diamond speaker for Bass Pod, hangar rectangle
       // for Circuit. Heights are exaggerated for visual impact at the
       // festival's zoom range; mainstage Kinetic dwarfs side stages.
-      // Per-amenity-type silhouette + color, matching the existing SVG
-      // amenity dot palette. Shapes chosen to evoke each type: octagon
-      // tap for water, diamond for food, square cross for medic, hex for
-      // toilets, star for art, circle info booth, diamond bolt for
-      // charging, square locker. Heights are intentionally small so
-      // amenities never compete visually with stages.
-      const AMENITY_DESIGN = {
-        water:  { color: "var(--signal-ink)", height: 14, radius: 5, sides:  8 },
-        food:   { color: "var(--signal-ink)", height: 16, radius: 6, sides:  4, rot: 45 },
-        med:    { color: "var(--alert)", height: 18, radius: 6, sides:  4 },
-        toilet: { color: "var(--signal-ink)", height: 12, radius: 5, sides:  6 },
-        art:    { color: "var(--signal-ink)", height: 22, radius: 7, sides: 12, altInner: 0.5 },
-        info:   { color: "var(--signal-ink)", height: 14, radius: 5, sides: 24 },
-        charge: { color: "var(--signal-ink)", height: 16, radius: 5, sides:  4, rot: 22.5 },
-        locker: { color: "var(--signal-ink)", height: 13, radius: 5, sides:  4 },
-      };
-      const amenitiesExtrusionData = () => ({
-        type: "FeatureCollection",
-        features: (window.AMENITIES || []).map((a) => {
-          const { lat, lng } = mapToGps(a.x, a.y);
-          const d = AMENITY_DESIGN[a.type] || AMENITY_DESIGN.info;
-          return {
-            type: "Feature",
-            properties: {
-              id: a.id,
-              type: a.type,
-              label: a.label,
-              color: d.color,
-              height: d.height,
-            },
-            geometry: {
-              type: "Polygon",
-              coordinates: _shapePolygon(lat, lng, {
-                sides: d.sides,
-                radius: d.radius,
-                rot: d.rot || 0,
-                altInner: d.altInner,
-              }),
-            },
-          };
-        }),
-      });
-
       // Sub-landmark labels — named places printed on the official patron
       // map (walkways + districts + standalone art), projected into GPS and
       // rendered as DOM markers below.
@@ -4429,7 +4643,9 @@ function RealMap({
       // are now FESTIVAL_CONFIG.landmarks, so ACL no longer gets "KINETIC
       // TRAIL" drawn across Zilker Park. A festival with no landmarks key
       // renders none, which is the correct empty state rather than a bug.
-      const SUB_LANDMARKS = FESTIVAL_CONFIG.landmarks || [];
+      // Landmark x/y are poster positions too, so they need the same checked
+      // placement stage pins do (REAL_MAP_PLACES_CHECKED).
+      const SUB_LANDMARKS = REAL_MAP_PLACES_CHECKED ? (FESTIVAL_CONFIG.landmarks || []) : [];
 
       // Stage heights tuned for Snapchat-style isometric overlay — building
       // scale (12-32m), NOT the prior 80-220m skyscrapers. At the 55°
@@ -4783,9 +4999,10 @@ function RealMap({
           // Build it always; set initial visibility from the toggle.
           if (FESTIVAL_CONFIG.mapStyle !== "image-overlay" || !FESTIVAL_CONFIG.mapImage) return;
           if (!MAP_AFFINE) return;   // no anchors -> no defensible placement
+          if (officialMapFailedRef.current) return;   // failed once: stays off
           const dims = officialMapDimsRef.current;
           if (!dims) return;         // still loading; the .then() below re-runs us
-          const src = FESTIVAL_CONFIG.mapImage;
+          const src = dims.url || FESTIVAL_CONFIG.mapImage;
           const coordinates = _officialMapCorners(dims.w, dims.h);
           if (!map.getSource("official-map")) {
             map.addSource("official-map", { type: "image", url: src, coordinates });
@@ -4803,10 +5020,14 @@ function RealMap({
               source: "official-map",
               layout: { visibility: officialMapRef.current ? "visible" : "none" },
               paint: {
-                // Park maps (ACL) are clean line art and read best near-opaque;
-                // the poster-style ones (EDC) are dense and busy, so they sit
-                // back far enough for the basemap and the dots to stay legible.
-                "raster-opacity": FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78,
+                // Checked art: park maps are clean line art and read best
+                // near-opaque; poster-style ones (EDC) are dense and busy, so
+                // they sit back far enough for the basemap and the dots to stay
+                // legible. Unchecked art is faded whatever its style — it is
+                // not to scale, and the ground under it is the truth (POSTER_TIER).
+                "raster-opacity": POSTER_TIER === "checked"
+                  ? (FESTIVAL_CONFIG.mapTheme === "park" ? 0.92 : 0.78)
+                  : POSTER_OPACITY_UNCHECKED,
                 "raster-fade-duration": 0,
                 "raster-resampling": "linear",
               },
@@ -4868,6 +5089,7 @@ function RealMap({
           },
         });
         _safeLayer("plaza", () => {
+          if (!stages.length) return;   // no stages, no centroid (it would be NaN)
           if (!map.getSource("plaza")) {
             map.addSource("plaza", { type: "geojson", data: plazaData() });
           }
@@ -4994,8 +5216,18 @@ function RealMap({
         // outside-mask FIRST so the festival-floor, zones, etc. render
         // INSIDE the festival hole on top of the satellite imagery,
         // while the mask covers everything else.
-        ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].forEach((id) => {
-          try { if (map.getLayer(id)) map.moveLayer(id); } catch (e) {
+        //
+        // Only when they are NOT already on top, in this order. moveLayer marks
+        // the style changed even when the layer is already last, which fires
+        // styledata, which runs this again: an endless loop (~60/s, measured
+        // 125 styledata in 2 s on III Points and on ACL). The style never
+        // settles, so map "load" never fires and the avatar, stage and
+        // landmark markers it adds never appear, while the GPU churns.
+        const _top = ["outside-mask", "festival-floor", "stage-zones", "plaza", "plaza-stroke", "stages-3d-base", "stages-3d", "route"].filter((id) => map.getLayer(id));
+        const _order = (() => { try { return (map.getStyle().layers || []).map((l) => l.id); } catch { return []; } })();
+        const _tail = _order.slice(_order.length - _top.length);
+        if (_top.some((id, i) => _tail[i] !== id)) _top.forEach((id) => {
+          try { map.moveLayer(id); } catch (e) {
             console.error(`[plursky-map] moveLayer "${id}" failed:`, e);
           }
         });
@@ -5050,10 +5282,8 @@ function RealMap({
         // Lock panning to the festival footprint + tiny buffer. The map
         // is for the fairgrounds exclusively (Snapchat-style focus); users
         // shouldn't be able to pan out to the Strip or surrounding Vegas.
-        if (FESTIVAL_CONFIG.venue?.festivalBounds) {
-          const b = FESTIVAL_CONFIG.venue.festivalBounds;
-          map.setMaxBounds([[b.west - 0.004, b.south - 0.004], [b.east + 0.004, b.north + 0.004]]);
-        }
+        // (Set below, after the opening view is framed: the limit must contain
+        // that view, or MapLibre shifts it and clips the edge stages.)
 
         // Sub-landmark text labels — named places/walkways printed on the
         // official patron map, projected into GPS via mapToGps + rendered as
@@ -5082,6 +5312,30 @@ function RealMap({
         });
         _applyLandmarkVisibility();
 
+        // Amenity dots (Water, First aid, ...): only the checked-placement list
+        // MapScreen hands in (REAL_MAP_AMENITIES), drawn from AMENITY_STYLE like
+        // the drawn map's dots, under the stage pills.
+        amenities.forEach((a) => {
+          const { lat, lng } = mapToGps(a.x, a.y);
+          const cfg = AMENITY_STYLE[a.type] || { color: "var(--paper)", ink: "var(--ink)", letter: "" };
+          const el = document.createElement("div");
+          el.setAttribute("data-realmap-amenity", a.type);
+          el.style.cssText =
+            "width:22px;height:22px;border-radius:999px;box-sizing:border-box;" +
+            "display:flex;align-items:center;justify-content:center;" +
+            `background:${cfg.color};color:${cfg.ink || "var(--paper)"};` +
+            // A light ring: the checked posters are dark, and a dark dot on
+            // them disappeared (Summerfest, 2026-10-14 render).
+            "border:2.5px solid #fff;font:900 12px/1 'Geist Mono',monospace;" +
+            "box-shadow:0 0 0 1px rgba(0,0,0,0.55),0 2px 6px rgba(0,0,0,0.5);pointer-events:none;";
+          el.textContent = cfg.letter || "";
+          amenityElsRef.current.push({ el, type: a.type });
+          new maplibregl.Marker({ element: el, anchor: "center" })
+            .setLngLat([lng, lat])
+            .addTo(map);
+        });
+        _applyAmenityVisibility();
+
         // Stage name pills — float ABOVE each 3D iconic shape so users
         // can read the stage name at a glance. The 3D shape itself is
         // the visual icon (Kinetic lotus, Quantum pyramid, etc.) and
@@ -5099,12 +5353,93 @@ function RealMap({
             "pointer-events:auto;cursor:pointer;" +
             "transform:translate(0,-44px);";  // float above the 3D shape
           pill.textContent = s.name.toUpperCase();
+          pill.setAttribute("data-realmap-stage", s.id);
           pill.onclick = () => onPickStageRef.current && onPickStageRef.current(s.id);
           stageMarkersRef.current[s.id] = new maplibregl.Marker({ element: pill, anchor: "center" })
             .setLngLat([lng, lat])
             .addTo(map);
         });
         _mapLog("[plursky-map] stage name pills added:", stages.length);
+
+        // Opening view (#313 review: Summerfest's pills piled up under the
+        // style switch). Frame the pinned stages inside the chrome — the
+        // battery pill and style switch on top, the control column on the
+        // right, the search sheet below — with room for a pill above each
+        // point. With no pins it frames the grounds from real-world sources
+        // (_groundsLngLats), never the configured centre alone (#313 item 8).
+        const home = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: 0 };
+        const grounds = stages.length >= 2 ? [] : _groundsLngLats(FESTIVAL_CONFIG);
+        if (stages.length >= 2 || grounds.length >= 2) {
+          const b = new maplibregl.LngLatBounds();
+          if (stages.length >= 2) stages.forEach((s) => { const { lat, lng } = mapToGps(s.x, s.y); b.extend([lng, lat]); });
+          else grounds.forEach((ll) => b.extend(ll));
+          const box = containerRef.current?.getBoundingClientRect();
+          // Sides leave half a pill's width (~90 px) so an edge stage's name fits.
+          const pad = { top: 150, bottom: 150, left: 95, right: 105 };
+          const cam = box && box.width > pad.left + pad.right + 40 && box.height > pad.top + pad.bottom + 40
+            ? map.cameraForBounds(b, { padding: pad, bearing: 0 }) : null;
+          if (cam) { home.center = cam.center; home.zoom = Math.min(cam.zoom, 17.5); home.pitch = OPENING_PITCH_PINNED; }
+          map.jumpTo(home);
+        }
+        const lim = _realMapPanLimit(FESTIVAL_CONFIG, maplibregl);
+        if (lim) {
+          lim.extend(map.getBounds());
+          map.setMaxBounds(lim);
+        }
+        // Home is the camera as placed, so Reset (and "at home") match it exactly.
+        homeRef.current = { center: map.getCenter(), zoom: map.getZoom(), pitch: map.getPitch(), bearing: 0 };
+
+        // Pills never stack: a greedy pass in priority order (the selected
+        // stage first, then festival order) hides any pill that would overlap
+        // one already shown or the style switch. The stage's 3D shape stays and
+        // is still tappable; zooming in brings its name back.
+        const _declutter = () => {
+          // A Water/Medical filter is a question about amenities: the stage
+          // names step aside (their 3D shapes stay) so the dots are readable.
+          const av = amenityViewRef.current;
+          if (av.show && av.filter && !av.meet && amenities.some(a => a.type === av.filter)) {
+            Object.values(stageMarkersRef.current).forEach(m => { m.getElement().style.visibility = "hidden"; });
+            return;
+          }
+          const taken = [];
+          const sw = styleSwitchRef.current?.getBoundingClientRect();
+          if (sw && sw.width) taken.push(sw);
+          const sel = selectedRef.current;
+          const order = stages.filter(s => s.id === sel).concat(stages.filter(s => s.id !== sel));
+          const GAP = 4;
+          order.forEach((s) => {
+            const el = stageMarkersRef.current[s.id]?.getElement();
+            if (!el) return;
+            const r = el.getBoundingClientRect();
+            const hit = taken.some(t => r.left < t.right + GAP && r.right > t.left - GAP && r.top < t.bottom + GAP && r.bottom > t.top - GAP);
+            el.style.visibility = hit ? "hidden" : "";
+            if (!hit) taken.push(r);
+          });
+        };
+        let _declutterQueued = false;
+        declutterRef.current = () => {
+          if (_declutterQueued) return;
+          _declutterQueued = true;
+          requestAnimationFrame(() => { _declutterQueued = false; if (!cancelled) _declutter(); });
+        };
+        map.on("move", declutterRef.current);
+        declutterRef.current();
+
+        // The +/− column and Reset in MapScreen drive this map through
+        // controlRef, and its enabled states follow the camera.
+        const _reportView = () => {
+          const h = homeRef.current, z = map.getZoom(), c = map.getCenter();
+          const atHome = !!h && Math.abs(z - h.zoom) < 0.05 && Math.abs(map.getPitch() - h.pitch) < 1
+            && Math.abs(map.getBearing()) < 1 && distMiles(c.lat, c.lng, h.center.lat, h.center.lng) * 1609.34 < 5;
+          try { onViewChangeRef.current?.({ atMin: z <= map.getMinZoom() + 0.01, atMax: z >= map.getMaxZoom() - 0.01, atHome }); } catch {}
+        };
+        map.on("moveend", _reportView);
+        _reportView();
+        if (controlRef) controlRef.current = {
+          zoomIn: () => map.zoomIn(),
+          zoomOut: () => map.zoomOut(),
+          reset: () => { if (homeRef.current) map.flyTo({ ...homeRef.current, duration: 600, essential: true }); },
+        };
 
         // Avatar — outer halo (pulse animation) + inner amber dot
         const avWrap = document.createElement("div");
@@ -5118,7 +5453,8 @@ function RealMap({
           "box-shadow:0 0 16px rgba(245,154,54,0.9),0 2px 6px rgba(0,0,0,0.5);";
         avWrap.appendChild(halo);
         avWrap.appendChild(avDot);
-        const avLatLng = mapToGps(avatar.x, avatar.y);
+        const avLatLng = _lngLatOf(avatarRef.current);
+        _showYou(avWrap, avatarRef.current);
         avatarMarkerRef.current = new maplibregl.Marker({ element: avWrap })
           .setLngLat([avLatLng.lng, avLatLng.lat])
           .addTo(map);
@@ -5146,13 +5482,24 @@ function RealMap({
         const ll = e.lngLat;
         const xy = mapToGps && (typeof gpsToMap === "function") ? gpsToMap(ll.lat, ll.lng) : null;
         if (!xy) return;
-        onMapClickRef.current({ x: Math.max(2, Math.min(98, xy.x)), y: Math.max(2, Math.min(98, xy.y)) });
+        // The clicked lat/lng rides along: without an affine, x/y collapse to
+        // the grid centre and the pin would land on the venue centroid.
+        onMapClickRef.current({ x: Math.max(2, Math.min(98, xy.x)), y: Math.max(2, Math.min(98, xy.y)), gps: { lat: ll.lat, lng: ll.lng } });
       });
 
       map.on("error", (e) => {
         if (cancelled) return;
         const msg = (e && e.error && e.error.message) || "tile load failed";
         console.error("[plursky-map] MapLibre error:", msg, e?.error || e);
+        // The festival's map is an overlay on a working basemap. If it cannot
+        // load, drop it and keep the map; it is not a map failure and must not
+        // put an error card over the ground the user is standing on.
+        if (e && e.sourceId === "official-map") {
+          officialMapFailedRef.current = true;
+          try { if (map.getLayer("official-map")) map.removeLayer("official-map"); } catch {}
+          try { if (map.getSource("official-map")) map.removeSource("official-map"); } catch {}
+          return;
+        }
         // Tile fetch errors fire constantly while panning out-of-bounds;
         // only surface the first one.
         setErr(prev => prev || msg);
@@ -5167,24 +5514,35 @@ function RealMap({
     return () => {
       clearTimeout(bootTimer);
       cancelled = true;
+      if (controlRef) controlRef.current = null;
       if (mapRef.current) {
         try { mapRef.current.remove(); } catch {}
         mapRef.current = null;
       }
       stageMarkersRef.current = {};
+      amenityElsRef.current = [];
+      declutterRef.current = null;
       avatarMarkerRef.current = null;
       friendMarkersRef.current = {};
       savedStarMarkersRef.current = {};
       meetMarkerRef.current = null;
+      // A RETRY re-runs this effect on the same mount: start it clean.
+      landmarkElsRef.current = [];
+      loadedRef.current = false;
+      // And the state: the new map's setLoaded(true) must be a change, or every
+      // effect keyed on `loaded` (stars, crew, meet pin, route) never re-adds
+      // its markers to the replacement map.
+      setLoaded(false);
     };
-  }, []);
+  }, [attempt]);
 
   // Avatar follows GPS / demo position
   React.useEffect(() => {
     if (!loaded || !avatarMarkerRef.current) return;
-    const { lat, lng } = mapToGps(avatar.x, avatar.y);
+    const { lat, lng } = _lngLatOf(avatar);
     avatarMarkerRef.current.setLngLat([lng, lat]);
-  }, [loaded, avatar.x, avatar.y]);
+    _showYou(avatarMarkerRef.current.getElement(), avatar);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng]);
 
   // Crew friend markers — Instagram-style avatar circles. Reconcile diffs on
   // every crewFriends change: add new, move existing, remove dropped. Stable
@@ -5196,10 +5554,12 @@ function RealMap({
     const seenIds = new Set();
 
     crewFriends.forEach(f => {
+      // A friend sharing only a stage is that stage's poster x/y on an
+      // unchecked festival: no marker (#313 item 7). Not seen → removed below.
+      const ll = _realMapTarget(f);
+      if (!ll) return;
       seenIds.add(f.id);
-      const lat = f.gps?.lat ?? mapToGps(f.x, f.y).lat;
-      const lng = f.gps?.lng ?? mapToGps(f.x, f.y).lng;
-      if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+      const { lat, lng } = ll;
       const seen = formatLastSeen(f.ts);
       const initial = (f.name?.[0] || "?").toUpperCase();
       // Signature changes when display-affecting fields change — avoid
@@ -5256,6 +5616,7 @@ function RealMap({
     if (src && mapRef.current._plurskyExtrusionData) {
       src.setData(mapRef.current._plurskyExtrusionData(selected));
     }
+    declutterRef.current?.();
     if (!selected) return;
     const s = stages.find(st => st.id === selected);
     if (!s) return;
@@ -5292,8 +5653,12 @@ function RealMap({
       }
       return;
     }
-    const { lat, lng } = mapToGps(meetTarget.x, meetTarget.y);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    const ll = _realMapTarget(meetTarget);
+    if (!ll) {
+      if (meetMarkerRef.current) { try { meetMarkerRef.current.remove(); } catch {} meetMarkerRef.current = null; }
+      return;
+    }
+    const { lat, lng } = ll;
     if (!meetMarkerRef.current) {
       const wrap = document.createElement("div");
       wrap.style.cssText = "position:relative;width:22px;height:22px;pointer-events:none;";
@@ -5313,7 +5678,7 @@ function RealMap({
     } else {
       meetMarkerRef.current.setLngLat([lng, lat]);
     }
-  }, [loaded, meetTarget?.x, meetTarget?.y]);
+  }, [loaded, meetTarget?.x, meetTarget?.y, meetTarget?.gps?.lat, meetTarget?.gps?.lng]);
 
   // Saved-set gold ★ markers — small star DOM pin floating above each
   // stage pillar whose lineup has an upcoming saved set tonight. Same
@@ -5414,13 +5779,19 @@ function RealMap({
       src.setData({ type: "Feature", geometry: { type: "LineString", coordinates: [] } });
       return;
     }
-    const a = mapToGps(avatar.x, avatar.y);
-    const t = mapToGps(target.x, target.y);
+    // Both ends must be placeable: a poster-derived target, or the demo dot
+    // on an unchecked festival, draws no route (#313 item 7).
+    const a = _realMapTarget(avatar);
+    const t = _realMapTarget(target);
+    if (!a || !t) {
+      src.setData({ type: "Feature", geometry: { type: "LineString", coordinates: [] } });
+      return;
+    }
     src.setData({
       type: "Feature",
       geometry: { type: "LineString", coordinates: [[a.lng, a.lat], [t.lng, t.lat]] },
     });
-  }, [loaded, avatar.x, avatar.y, selected, meetTarget, stages]);
+  }, [loaded, avatar.x, avatar.y, avatar.gps?.lat, avatar.gps?.lng, selected, meetTarget, stages]);
 
   const pickStyle = (k) => {
     setStyleKey(k);
@@ -5434,20 +5805,22 @@ function RealMap({
     }}>
       <div ref={containerRef} style={{ position: "absolute", inset: 0 }}/>
 
-      {/* Style switcher — Stylized / Satellite. Positioned below the
-          MapScreen's top-right icon column (GPS + Layers) so they don't stack. */}
+      {/* Style switcher — Stylized / Satellite. Top-left, under the
+          battery pill: at top:108 on the right it sat on MapScreen's control
+          column (GPS, layers, zoom), which since the 2026-10-06 board runs
+          past it and covered the zoom-in button. */}
       {/* Style toggle — always visible (was gated on `loaded`, which never
           flipped true for some users → toggle was hidden). */}
       {packMode ? (
         <div role="status" className="duo-code" style={{
-          position: "absolute", top: 108, right: 10, zIndex: 4,
+          position: "absolute", top: 58, left: 10, zIndex: 4,
           background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
           borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
         }}>OFFLINE · SAVED STREET MAP</div>
       ) : (
-      <div style={{
-        position: "absolute", top: 108, right: 10, zIndex: 4,
+      <div ref={styleSwitchRef} data-realmap-style-switch style={{
+        position: "absolute", top: 58, left: 10, zIndex: 4,
         display: "flex", background: "rgba(var(--shade-rgb),0.78)",
         border: "1px solid rgba(var(--ink-rgb),0.18)",
         borderRadius: 999, padding: 3, gap: 2,
@@ -5503,7 +5876,7 @@ function RealMap({
                 The official festival map publishes before doors. Until then this
                 screen needs a connection.
               </div>
-              <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; }} style={{
+              <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; setAttempt(a => a + 1); }} style={{
                 marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
                 background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
                 fontFamily: "'Geist Mono',monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
@@ -6619,6 +6992,25 @@ function StageNavBar({ stage, walk, onDetails, onStop }) {
 }
 
 function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, meetTarget, friends, meetGroup = [], avatar, onClose, onCancelMeet, onOpenArtist, onGoHere, stageSaved, onToggleSave, state, setState }) {
+  // A target this map cannot place (#313 item 7): the words only. No ETA, no
+  // routing label, no "Unsurveyed" cell, because there is no target to measure.
+  if (meetMode && meetTarget && meetTarget.textOnly) {
+    const who = meetGroup.map(id => friends.find(fr => fr.id === id)?.name).filter(Boolean);
+    return (
+      <div data-meet-text-only="" style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="duo-label duo-acc">Meeting</div>
+            <div className="duo-headline duo-name" style={{ marginTop: 2 }}>{meetTarget.label}</div>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 4 }}>
+              {who.length ? `You + ${who.join(" + ")} · ` : ""}Stage positions are pending on this map, so there is no pin or route. Meet by name.
+            </div>
+          </div>
+          <button onClick={onCancelMeet} className="duo-chip"><span>End</span></button>
+        </div>
+      </div>
+    );
+  }
   if (meetMode && meetTarget) {
     const groupFriends = meetGroup.map(id => friends.find(fr => fr.id === id)).filter(Boolean);
     const youDist = Math.sqrt((meetTarget.x-avatar.x)**2 + (meetTarget.y-avatar.y)**2);
@@ -6632,7 +7024,11 @@ function BottomSheet({ stage, nowAtStage, dist, walk, peek, setPeek, meetMode, m
     const title = groupFriends.length === 0 ? "Pinned spot"
       : groupFriends.length === 1 ? `You + ${groupFriends[0].name}`
       : `Group · ${groupFriends.length + 1} people`;
-    const routingLabel = groupFriends.length > 1 ? "ALL ROUTING LIVE" : groupFriends.length === 1 ? "BOTH ROUTING LIVE" : "ROUTING LIVE";
+    // LIVE only when YOUR dot is a real, fresh on-site fix. The demo avatar
+    // (off-site, no permission, GPS off, stale) is never LIVE. It names YOUR
+    // location only: a friend's dot carries no freshness this sheet checks,
+    // so no "ALL/BOTH" crew claim (#310 review).
+    const routingLabel = !avatar?.live ? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";
     return (
       <div style={{ background: "var(--s1)", color: "var(--ink)", padding: "14px 16px 12px", borderTopLeftRadius: "var(--rad-lg)", borderTopRightRadius: "var(--rad-lg)", boxShadow: "var(--e2)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
@@ -6831,10 +7227,15 @@ function StageLineupSheet({ stage, walk, dist, distM, peek, setPeek, onClose, on
 
       {/* Go here (route + live ETA) · Peek · Save. */}
       <div style={{ display: "flex", gap: 8, padding: "10px 16px 0" }}>
-        <button onClick={() => onGoHere?.(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
-          Go here
-        </button>
+        {onGoHere ? (
+          <button onClick={() => onGoHere(stage)} className="duo-btn pri" style={{ flex: 2, minHeight: 48, fontSize: 15, padding: "0 10px" }}>
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            Go here
+          </button>
+        ) : (
+          // No route to a stage this map cannot place (#313 item 7).
+          <div data-stage-no-route="" className="duo-data-s duo-ink2" style={{ flex: 2, minHeight: 48, display: "flex", alignItems: "center" }}>Position pending · no route</div>
+        )}
         <button onClick={() => setPeek(p => !p)} aria-pressed={peek} className="duo-btn" style={{
           flex: 1, minHeight: 48, fontSize: 15, padding: "0 8px",
           background: peek ? "var(--acc-14)" : "var(--s3)", color: peek ? "var(--acc-ink)" : "var(--ink)",
@@ -7311,4 +7712,5 @@ function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onS
 Object.assign(window, {
   MapScreen, getMyPingCode, WALK_PAIRS, _pairKey,
   geometryVerifiedFor, _geomVerifiedMemo, MAP_REGISTRATION_SOURCED, readoutHonest,
+  posterTierFor, POSTER_TIER, POSTER_OPACITY_UNCHECKED, REAL_MAP_PLACES_CHECKED, REAL_MAP_AMENITIES, _realMapTarget, _meetTargetFor, _groundsLngLats,
 });
