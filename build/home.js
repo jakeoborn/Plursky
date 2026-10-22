@@ -4452,6 +4452,32 @@ function npSchemeVars(cfg) {
     "--np-acc2-on-cream": a2 && _npContrast(a2, NP_CREAM) >= 4.5 ? a2 : NP_BLACK
   };
 }
+function festivalPops(cfg) {
+  var c = cfg || FESTIVAL_CONFIG;
+  if (!c || !c.print || c.print.pops !== true) return null;
+  var sk = npAccent(c);
+  if (!sk || !sk.small) return null;
+  var acc2 = sk.acc2 && _npContrast(sk.acc2, sk.fg) >= 4.5 ? sk.acc2 : null;
+  return {
+    acc: sk.acc,
+    acc2,
+    on: sk.fg
+  };
+}
+(function applyFestivalPops() {
+  try {
+    var root = document.documentElement,
+      fp = festivalPops();
+    if (!fp) {
+      root.removeAttribute("data-fest-pop");
+      return;
+    }
+    root.setAttribute("data-fest-pop", "on");
+    root.style.setProperty("--fp-acc", fp.acc);
+    root.style.setProperty("--fp-on", fp.on);
+    if (fp.acc2) root.style.setProperty("--fp-acc2", fp.acc2);
+  } catch (e) {}
+})();
 function npWords(name) {
   return duoFestivalName(name).split(/\s+/).filter(Boolean).map(w => ({
     w,

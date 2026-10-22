@@ -2554,6 +2554,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// L4: the artist page's colour pops. Accent stat numbers (AA on their card),
+// brand dots on unchanged link pills, accent-outline genre chips, and an empty
+// moments row that invites without showing fake content. Both modes, 390/320.
+{
+  console.log("▸ Artist pop — accent stats, brand dots, accent chips, empty-moments invitation");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pop.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pop failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Memories film strip names ─────────────────────────────────────────────
 // Every frame names its artist in full (wrapped to the frame, never sliced);
 // same class as #247's chip names. Real renderer, recorded fillText.
@@ -2866,6 +2881,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 3 option B: III Points accent pops. The ledger accent fills the Today
+// hero's fold band and stamp, rules the section headers, marks the map header
+// and the picked stage chip, for a festival whose print row opts in; AA on
+// every fill in both modes at 390/320; EDC Las Vegas (no opt-in) stays the base.
+{
+  console.log("▸ III Points accent pops — ledger-gated, AA both modes, non-opted festival unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iiip-accent-pops.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points accent pops failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-ap. Appearance: one system, two modes ──
 // Lane ruling 2026-09-26: Dark by default, System follows the iPhone, a pick
 // in Me (System / Dark / Light) wins and sticks; colours only. Every screen is
@@ -2903,6 +2934,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist photo machine (machine.jsx): the swatch hook and the artist hero
+// share one table. Exhaustive (every state × event pair handled or a written-
+// down no-op), every rule stepped, a write during a lookup comes up with no
+// second lookup and the late answer is dropped, a name change re-asks, and
+// the app runs with no machine warnings.
+{
+  console.log("▸ Artist photo machine — one table for the swatch and the hero");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-machine.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo machine failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3344,6 +3392,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`georef failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── EDC Orlando map watch: candidates, negatives and UNKNOWN are separate ──
+// The weekly watcher (edco-map-watch.yml) resolves relative, protocol-relative
+// and <base>-relative map links against each page's final URL; an unreadable
+// page is exit 2 (UNKNOWN), never a green "no map". Local fixtures only.
+{
+  console.log("▸ EDC Orlando map watch gate — every URL form found, negatives exit 0, unreadable exit 2");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-watch-edco-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC Orlando map watch failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
