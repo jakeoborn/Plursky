@@ -267,6 +267,16 @@ async function fetchLastfm(artistName, lineupGenre) {
     return null;
   }
 }
+var _ACCENT_CHIP = {
+  fontSize: 9,
+  padding: "4px 10px",
+  borderRadius: 999,
+  fontWeight: 600,
+  background: "transparent",
+  border: "1.5px solid var(--acc)",
+  color: "var(--acc-ink)"
+};
+var _STAT_CARD_SHADOW = "var(--e1), inset 0 -2px 0 var(--acc-55)";
 function _fmtCount(n) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000) return `${Math.round(n / 1_000)}K`;
@@ -697,28 +707,52 @@ function YourPhotosStrip({
     } catch {}
   };
   if (mine.length === 0) {
-    return React.createElement("div", {
-      "data-artist-moments-empty": true,
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        marginBottom: 18,
-        padding: "10px 0",
-        borderTop: "1px solid var(--line)",
-        borderBottom: "1px solid var(--line)"
-      }
-    }, React.createElement("span", {
-      className: "duo-sect",
-      style: {
-        flexShrink: 0
-      }
-    }, "Your moments"), React.createElement("span", {
-      style: {
-        font: "400 13px/1.385 var(--f-ui)",
-        color: "var(--ink-2)"
-      }
-    }, "Photos and clips from this set will show here."));
+    return (React.createElement("div", {
+        "data-artist-moments-empty": true,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          marginBottom: 18,
+          padding: "10px 14px",
+          border: "1.5px dashed var(--acc-55)",
+          borderRadius: "var(--rad-md)"
+        }
+      }, React.createElement("svg", {
+        "data-artist-moments-glyph": true,
+        "aria-hidden": "true",
+        width: "22",
+        height: "22",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        style: {
+          flexShrink: 0,
+          color: "var(--acc-ink)"
+        }
+      }, React.createElement("path", {
+        d: "M4 8h3l2-3h6l2 3h3v11H4z"
+      }), React.createElement("circle", {
+        cx: "12",
+        cy: "13",
+        r: "3.5"
+      })), React.createElement("div", {
+        style: {
+          minWidth: 0
+        }
+      }, React.createElement("div", {
+        className: "duo-sect"
+      }, "Your moments"), React.createElement("div", {
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)",
+          marginTop: 2
+        }
+      }, "Photos and clips from this set will show here.")))
+    );
   }
   var preview = mine.slice(0, 8);
   var more = mine.length - preview.length;
@@ -1946,30 +1980,38 @@ function ArtistScreen({
     }
   }, [{
     label: "Spotify",
+    dot: "var(--spotify)",
     url: spotifyStats?.spotifyId ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}` : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists`
   }, {
     label: "SoundCloud",
+    dot: "var(--brand-soundcloud)",
     url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}`
   }, {
     label: "RA",
+    dot: "var(--brand-ra)",
     url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}`
   }, {
     label: "Instagram",
+    dot: "var(--brand-instagram)",
     url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g, "").toLowerCase())}`
   }, {
     label: "𝕏",
+    dot: "var(--ink)",
     url: `https://x.com/search?q=${encodeURIComponent(lookupName)}`
   }].map(({
     label,
+    dot,
     url
   }) => React.createElement("a", {
     key: label,
+    "data-artist-link": label,
     href: url,
     target: "_blank",
     rel: "noopener noreferrer",
     style: {
       display: "inline-flex",
       alignItems: "center",
+      gap: 7,
       minHeight: 36,
       fontSize: 13,
       lineHeight: "18px",
@@ -1982,7 +2024,17 @@ function ArtistScreen({
       textDecoration: "none",
       transition: "background 0.15s"
     }
-  }, label, " ↗"))), React.createElement("div", {
+  }, React.createElement("span", {
+    "data-brand-dot": true,
+    "aria-hidden": "true",
+    style: {
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      background: dot,
+      flexShrink: 0
+    }
+  }), label, " ↗"))), React.createElement("div", {
     id: "artist-section-tracklist"
   }), edcTracklist && edcTracklist.source === "1001tracklists" && edcTracklist.tracks?.length > 0 && (() => {
     var tracks = edcTracklist.tracks;
@@ -2168,9 +2220,11 @@ function ArtistScreen({
       gap: 6
     }
   }, React.createElement("span", {
+    "data-artist-stat": true,
     className: "duo-headline",
     style: {
-      letterSpacing: -0.5
+      letterSpacing: -0.5,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(spotifyStats.followers)), React.createElement("span", {
     className: "mono",
@@ -2187,16 +2241,11 @@ function ArtistScreen({
     }
   }, spotifyStats.genres.slice(0, 5).map(g => React.createElement("span", {
     key: g,
+    "data-artist-chip": true,
     className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      padding: "4px 10px",
-      background: `rgba(var(--signal-rgb),0.09)`,
-      border: `1px solid rgba(var(--signal-rgb),0.22)`,
-      borderRadius: 999,
-      color: "var(--signal-ink)",
-      fontWeight: 600
+      ..._ACCENT_CHIP,
+      letterSpacing: 1
     }
   }, g.toUpperCase())))), LASTFM_KEY && lfm === undefined && React.createElement("div", {
     style: {
@@ -2280,18 +2329,21 @@ function ArtistScreen({
       marginBottom: 12
     }
   }, lfm.listeners > 0 && React.createElement("div", {
+    "data-artist-stat-card": true,
     style: {
       flex: 1,
       background: "var(--s2)",
-      boxShadow: "var(--e1)",
+      boxShadow: _STAT_CARD_SHADOW,
       border: "none",
       borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
+    "data-artist-stat": true,
     className: "duo-clock",
     style: {
-      fontSize: 26
+      fontSize: 26,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(lfm.listeners)), React.createElement("div", {
     className: "duo-label duo-ink3",
@@ -2299,18 +2351,21 @@ function ArtistScreen({
       marginTop: 6
     }
   }, "LISTENERS")), lfm.playcount > 0 && React.createElement("div", {
+    "data-artist-stat-card": true,
     style: {
       flex: 1,
       background: "var(--s2)",
-      boxShadow: "var(--e1)",
+      boxShadow: _STAT_CARD_SHADOW,
       border: "none",
       borderRadius: "var(--rad-md)",
       padding: "10px 14px"
     }
   }, React.createElement("div", {
+    "data-artist-stat": true,
     className: "duo-clock",
     style: {
-      fontSize: 26
+      fontSize: 26,
+      color: "var(--acc-ink)"
     }
   }, _fmtCount(lfm.playcount)), React.createElement("div", {
     className: "duo-label duo-ink3",
@@ -2326,15 +2381,11 @@ function ArtistScreen({
     }
   }, lfm.tags.map(tag => React.createElement("span", {
     key: tag,
+    "data-artist-chip": true,
     className: "mono",
     style: {
-      fontSize: 9,
-      letterSpacing: 1.1,
-      padding: "4px 10px",
-      background: "var(--paper-2)",
-      border: "1px solid var(--line-2)",
-      borderRadius: 999,
-      color: "var(--ink-2)"
+      ..._ACCENT_CHIP,
+      letterSpacing: 1.1
     }
   }, tag.toUpperCase()))), lfm.bio && lfm.bio.length > 40 && React.createElement("div", {
     style: {
@@ -2968,6 +3019,7 @@ function ArtistScreen({
       textAlign: "center"
     }
   }, React.createElement("div", {
+    "aria-hidden": "true",
     style: {
       fontSize: 20,
       opacity: 0.3,
@@ -3162,6 +3214,7 @@ function ArtistScreen({
       textAlign: "center"
     }
   }, React.createElement("div", {
+    "aria-hidden": "true",
     style: {
       fontSize: 20,
       color: "var(--ink-2)",
