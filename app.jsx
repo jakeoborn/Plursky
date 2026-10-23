@@ -662,7 +662,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past","artists"].includes(dlTab) ? dlTab : null;
     // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
     // shape is checked here; HistoricalEditionView opens an id only if the
     // library index lists it, so a bad id reads "not in the library".
@@ -762,7 +762,7 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
+        if (["home","map","lineup","spotify","me","memories","past","artists"].includes(tab)) {
           const edition = params.get("edition");
           const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
@@ -867,6 +867,7 @@ function App() {
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
   else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
+  else if (state.tab === "artists")  body = <ArtistsDirectoryScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -902,6 +903,8 @@ function App() {
           const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
           return (
             <TabBar
+              // The Artists directory (?tab=artists) lights no tab: where it is
+              // entered from is still Jake's call (B6 spec section 5).
               active={meFold.includes(state.tab) ? "me" : state.tab}
               onChange={t => setState({ ...state, tab: t })}
             />
@@ -1010,7 +1013,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v462",
+        version: "v463",
       }));
     } catch {}
   }
@@ -1041,7 +1044,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v462
+          Plursky · v463
         </div>
       </div>
     );
