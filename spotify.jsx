@@ -7802,6 +7802,7 @@ function MeScreen({ state, setState }) {
                   <span style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>Your plan is kept</span>
                 </span>
               </button>
+              {typeof ArtistsDirectoryRow === "function" && <ArtistsDirectoryRow />}
               <HistoryRecordsSection state={state} setState={setState} />
               <div style={{ marginTop: 14 }}/>
               <div id="plursky-badges-anchor"/>

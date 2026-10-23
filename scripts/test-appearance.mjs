@@ -49,6 +49,8 @@ const RECAP_DATA = {
   plursky_moments_v1: JSON.stringify({ 1: [{ kind: 'photo', festivalId: FID, createdAt: 1, id: 'appearance-m1', night: 1, photoId: 'appearance-hero', _fingerprint: 'appearance-m1', artistId: 'n4', takenAt: '2026-05-16T05:30:00.000Z' }] }),
 };
 const RECAP_PLAIN = { plursky_attended_v1: RECAP_DATA.plursky_attended_v1 };
+const ARTIST_LFM = { lfm_charlotte_de_witte_v2: JSON.stringify({ fetchedAt: Date.parse(AT), data: {
+  listeners: 412345, playcount: 9876543, tags: ['techno', 'belgian', 'electronic'], bio: '', similar: [], topTrackNames: [], url: null } }) };
 const SCREENS = [
   ['home',     'tab=home',            {},                                   '#root > *', null, { h1: 'EDC Las Vegas', tab: 'Today' }],
   ['lineup',   'tab=lineup',          { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
@@ -63,7 +65,10 @@ const SCREENS = [
   ['lineup-wide', 'tab=lineup',       { plursky_lineup_view: 'list' },      '[data-lineup-scroll]', 'Verdana', { h1: 'Lineup', tab: 'Lineup' }],
   ['grid',     'tab=lineup',          { plursky_lineup_view: 'grid' },      '[data-grid-scroll]', null, { h1: 'Lineup', tab: 'Lineup' }],
   ['map',      'tab=map',             {},                                   '#root > *', null, { tab: 'Map' }],
-  ['artist',   'tab=lineup&artist=k9', {},                                  '#root > *', null, { artist: 'k9' }],
+  // Last.fm from the app's own cache (fixture values), so the accent stat
+  // numbers and accent-outline genre chips (L4) are on screen in every run,
+  // not only when the live API answers.
+  ['artist',   'tab=lineup&artist=k9', ARTIST_LFM,                          '#root > *', null, { artist: 'k9' }],
   ['me',       'tab=me',              {},                                   '[data-appearance-row]', null, { h1: 'Me', tab: 'Me' }],
   ['memories', 'tab=memories',        {},                                   '#root > *', null, { h1: 'Memories' }],
   ['recap',    'tab=home',            {},                                   '#root > *', null, { h1: 'Recap' }, { tab: 'recap' }],

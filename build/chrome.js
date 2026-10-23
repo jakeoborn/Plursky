@@ -378,7 +378,7 @@ function _artistImageShowable(rec, now = Date.now()) {
   return false;
 }
 function getPermanentArtistImage(name) {
-  var rec = window.PLURSKY_ARTIST_PHOTOS?.[String(name || "").trim().toLowerCase()];
+  var rec = window.PLURSKY_ARTIST_PHOTOS?.[window.PlurskyArtistKey.artistKey(name || "")];
   if (!rec || !["commons", "press-kit"].includes(rec.source) || !/^\.\/artist-photos\/[a-z0-9][a-z0-9_-]*\.(webp|png|jpg)$/.test(rec.url || "") || !rec.author || !rec.license || !rec.sourceUrl || !rec.licenseUrl) return null;
   return rec;
 }
@@ -403,6 +403,7 @@ function _pruneArtistImageStore(store, now = Date.now()) {
   }
   return changed;
 }
+var ARTIST_IMAGES_WRITTEN = "plursky:artist-images-written";
 function putArtistImages(entries, {
   ifAbsent = false
 } = {}) {
@@ -410,6 +411,7 @@ function putArtistImages(entries, {
     var store = _readArtistImageStore();
     var changed = _pruneArtistImageStore(store);
     var now = Date.now();
+    var written = [];
     for (var e of entries || []) {
       if (!e || !e.name || typeof e.url !== "string" || !e.url) continue;
       if (!_ARTIST_IMAGE_SOURCES.includes(e.source)) continue;
@@ -421,9 +423,15 @@ function putArtistImages(entries, {
         fetchedAt: now
       };
       if (e.source === "spotify" && e.spotifyId) store[ln].spotifyId = e.spotifyId;
+      written.push(ln);
       changed = true;
     }
     if (changed) localStorage.setItem(ARTIST_IMAGES_KEY, JSON.stringify(store));
+    if (written.length) try {
+      window.dispatchEvent(new CustomEvent(ARTIST_IMAGES_WRITTEN, {
+        detail: written
+      }));
+    } catch {}
   } catch {}
   _scheduleArtistImageExpiry();
 }
@@ -464,15 +472,6 @@ function _scheduleArtistImageExpiry(now = Date.now()) {
   } catch {}
   if (next === Infinity) return;
   _artistImageTimer = setTimeout(() => _expireArtistImagesNow(), Math.max(0, next - now) + 50);
-}
-function useArtistImageExpiry() {
-  var [n, setN] = React.useState(0);
-  React.useEffect(() => {
-    var on = () => setN(x => x + 1);
-    window.addEventListener(ARTIST_IMAGES_EXPIRED, on);
-    return () => window.removeEventListener(ARTIST_IMAGES_EXPIRED, on);
-  }, []);
-  return n;
 }
 try {
   _expireArtistImagesNow();
@@ -574,29 +573,264 @@ function _queuePhoto(name) {
     _drainPhotoQueue();
   });
 }
-function useArtistPhoto(name) {
-  var [photo, setPhoto] = React.useState(() => {
-    return getArtistImage(name)?.url || null;
+var ARTIST_PHOTO_EVENTS = ["MOUNT", "PARAM_CHANGE", "CACHE_HIT", "CACHE_MISS", "FETCH_RESOLVE", "FETCH_MISS", "FETCH_REJECT", "CACHE_WRITTEN", "CACHE_EXPIRED", "RETRY", "ONLINE", "UNMOUNT"];
+var _apEmpty = ctx => ({
+  ...ctx,
+  url: null,
+  source: null,
+  rec: null
+});
+var _apReady = (ctx, rec) => ["ready", {
+  ...ctx,
+  url: rec.url,
+  source: rec.source,
+  rec
+}];
+var _apAsk = (ctx, p) => {
+  var next = _apEmpty({
+    ...ctx,
+    key: p.key ?? ctx.key,
+    name: p.name ?? ctx.name,
+    ask: "mount"
   });
-  var expiry = useArtistImageExpiry();
-  React.useEffect(() => {
-    if (expiry) setPhoto(getArtistImage(name)?.url || null);
-  }, [expiry]);
-  React.useEffect(() => {
-    if (photo) return;
-    var live = true;
-    var token = localStorage.getItem("spotify_token");
-    var expires = localStorage.getItem("spotify_expires");
-    if (token && expires && Date.now() < parseInt(expires)) {
-      _queuePhoto(name).then(img => {
-        if (live && img) setPhoto(img);
-      });
+  return next.name ? ["loading", next, "read"] : ["none", next];
+};
+var _apReread = ask => ctx => ["loading", {
+  ..._apEmpty(ctx),
+  ask
+}, "read"];
+var _apWritten = (ctx, p) => p.rec ? _apReady(ctx, p.rec) : null;
+var _apAnswer = kind => (ctx, p) => {
+  if (p.req !== ctx.req) return null;
+  if (kind === "resolve") return p.url ? ["ready", {
+    ...ctx,
+    url: p.url,
+    source: p.source || "spotify",
+    rec: null
+  }] : ["unavailable", _apEmpty(ctx)];
+  if (kind === "offline" && p.noLookup) return ["none", _apEmpty(ctx)];
+  return [kind, _apEmpty(ctx)];
+};
+var _apStop = () => MACHINE_STOP;
+var ARTIST_PHOTO_MACHINE = createMachine({
+  id: "artist-photo",
+  initial: "none",
+  events: ARTIST_PHOTO_EVENTS,
+  states: {
+    none: {
+      MOUNT: _apAsk,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: (ctx, p) => ctx.name ? _apReread("retry")(ctx, p) : null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    loading: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: (ctx, p) => _apReady(ctx, p.rec),
+      CACHE_MISS: (ctx, p) => p.error ? ["error", ctx] : p.canFetch ? ["loading", {
+        ...ctx,
+        req: ctx.req + 1
+      }, "fetch"] : ["none", ctx],
+      FETCH_RESOLVE: _apAnswer("resolve"),
+      FETCH_MISS: _apAnswer("unavailable"),
+      FETCH_REJECT: _apAnswer("offline"),
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    ready: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: (ctx, p) => p.rec ? _apReady(ctx, p.rec) : p.canFetch ? ["loading", {
+        ..._apEmpty(ctx),
+        req: ctx.req + 1
+      }, "fetch"] : ["none", _apEmpty(ctx)],
+      RETRY: null,
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    unavailable: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
+    },
+    offline: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: _apReread("online"),
+      UNMOUNT: _apStop
+    },
+    error: {
+      MOUNT: null,
+      PARAM_CHANGE: _apAsk,
+      CACHE_HIT: null,
+      CACHE_MISS: null,
+      FETCH_RESOLVE: null,
+      FETCH_MISS: null,
+      FETCH_REJECT: null,
+      CACHE_WRITTEN: _apWritten,
+      CACHE_EXPIRED: null,
+      RETRY: _apReread("retry"),
+      ONLINE: null,
+      UNMOUNT: _apStop
     }
-    return () => {
-      live = false;
+  }
+});
+function _readArtistPhoto(name) {
+  try {
+    return {
+      rec: getArtistImage(name)
     };
-  }, [name.toLowerCase(), photo]);
-  return photo;
+  } catch (error) {
+    return {
+      rec: null,
+      error
+    };
+  }
+}
+function _settleArtistPhoto(snap, canFetch) {
+  if (snap.effect !== "read") return snap;
+  var {
+    rec,
+    error
+  } = _readArtistPhoto(snap.ctx.name);
+  return ARTIST_PHOTO_MACHINE.step(snap, rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+    rec
+  } : {
+    error,
+    canFetch: !error && canFetch(snap.ctx.ask || "mount")
+  });
+}
+function _spotifyTokenValid() {
+  var token = localStorage.getItem("spotify_token");
+  var expires = localStorage.getItem("spotify_expires");
+  return !!(token && expires && Date.now() < parseInt(expires));
+}
+function useArtistPhotoMachine(name, {
+  key = name,
+  lookup = null,
+  canFetch = () => false
+} = {}) {
+  var canFetchRef = React.useRef(canFetch);
+  canFetchRef.current = canFetch;
+  var can = reason => !!canFetchRef.current(reason);
+  var [snap, send] = useMachine(ARTIST_PHOTO_MACHINE, key, prev => _settleArtistPhoto(ARTIST_PHOTO_MACHINE.step(prev || ARTIST_PHOTO_MACHINE.start({
+    key,
+    name,
+    url: null,
+    source: null,
+    rec: null,
+    req: 0
+  }), prev ? "PARAM_CHANGE" : "MOUNT", {
+    key,
+    name
+  }), can), (effect, s, send) => {
+    if (effect === "read") {
+      var {
+        rec,
+        error
+      } = _readArtistPhoto(s.ctx.name);
+      send(rec ? "CACHE_HIT" : "CACHE_MISS", rec ? {
+        rec
+      } : {
+        error,
+        canFetch: !error && can(s.ctx.ask || "mount")
+      });
+    } else if (effect === "fetch" && lookup) {
+      var _req = s.ctx.req;
+      lookup(s.ctx.name).then(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+        req: _req,
+        url,
+        source: "spotify"
+      }), () => send("FETCH_REJECT", {
+        req: _req
+      }));
+    }
+  });
+  var ln = String(name || "").toLowerCase();
+  React.useEffect(() => {
+    var onExpired = () => send("CACHE_EXPIRED", {
+      rec: _readArtistPhoto(name).rec,
+      canFetch: can("expired")
+    });
+    var onWritten = e => {
+      if (ln && Array.isArray(e.detail) && e.detail.includes(ln)) send("CACHE_WRITTEN", {
+        rec: _readArtistPhoto(name).rec
+      });
+    };
+    var onOnline = () => send("ONLINE");
+    window.addEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+    window.addEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+    window.addEventListener("online", onOnline);
+    return () => {
+      window.removeEventListener(ARTIST_IMAGES_EXPIRED, onExpired);
+      window.removeEventListener(ARTIST_IMAGES_WRITTEN, onWritten);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [key, send]);
+  var req = snap.ctx.req;
+  var report = React.useCallback(url => send(url ? "FETCH_RESOLVE" : "FETCH_MISS", {
+    req,
+    url,
+    source: "spotify"
+  }), [req, send]);
+  var fail = React.useCallback(() => send("FETCH_REJECT", {
+    req
+  }), [req, send]);
+  var noLookup = React.useCallback(() => send("FETCH_REJECT", {
+    req,
+    noLookup: true
+  }), [req, send]);
+  var retry = React.useCallback(() => send("RETRY"), [send]);
+  return {
+    url: snap.ctx.url,
+    status: snap.state,
+    retry,
+    rec: snap.ctx.rec,
+    source: snap.ctx.source,
+    report,
+    fail,
+    noLookup
+  };
+}
+function useArtistPhoto(name) {
+  return useArtistPhotoMachine(name, {
+    lookup: _queuePhoto,
+    canFetch: _spotifyTokenValid
+  }).url;
 }
 function ArtistSwatch({
   artist,
@@ -1277,7 +1511,10 @@ function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   var cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || [];
+  var anchors = (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || []).filter(a => {
+    var s = a.anchorSource || a.src;
+    return s === "osm" || s === "crowd";
+  });
   if (anchors.length === 0) return null;
   var radius = opts.radiusM || 140;
   var now = window.NOW;
@@ -1327,15 +1564,31 @@ function setReminderLeadMin(mins) {
     localStorage.setItem(_REMINDER_LEAD_KEY, String(mins));
   } catch {}
 }
+function _reminderText(p) {
+  var lead = p.leadMin || 15;
+  return p.late ? {
+    title: `${p.name}: you arrive in ${lead} min`,
+    body: `${p.stageName} · you arrive ${fmt12(p.start)}`
+  } : {
+    title: `${p.name} starts in ${lead} min`,
+    body: `${p.stageName} · ${fmt12(p.start)}`
+  };
+}
 function scheduleReminders(state, showLocal) {
   var ln = _capLocalNotifications();
   var now = Date.now();
   var leadMin = getReminderLeadMin();
   var pending = [];
   var lineup = activeLineup(state.saved);
-  state.saved.forEach(id => {
-    var a = lineup.find(x => x.id === id);
-    if (!a) return;
+  var ids = typeof reminderSetIds === "function" ? reminderSetIds(state.saved) : state.saved;
+  ids.forEach(id => {
+    var found = lineup.find(x => x.id === id);
+    if (!found) return;
+    var win = typeof attendWindow === "function" && state.saved.includes(id) ? attendWindow(found, undefined, state.saved) : null;
+    var a = win && win.partial ? {
+      ...found,
+      start: win.start
+    } : found;
     var startMs = _artistStartMs(a);
     if (!startMs) return;
     var fireMs = startMs - leadMin * 60000;
@@ -1348,6 +1601,7 @@ function scheduleReminders(state, showLocal) {
       name: a.name,
       stageName: stage?.name || "",
       start: a.start,
+      late: a.start !== found.start,
       fireMs,
       leadMin
     });
@@ -1369,8 +1623,8 @@ function scheduleReminders(state, showLocal) {
       ln.schedule({
         notifications: pending.map(p => ({
           id: p.notifId,
-          title: `${p.name} starts in ${p.leadMin} min`,
-          body: `${p.stageName} · ${fmt12(p.start)}`,
+          title: _reminderText(p).title,
+          body: _reminderText(p).body,
           schedule: {
             at: new Date(p.fireMs),
             allowWhileIdle: true
@@ -1388,14 +1642,12 @@ function scheduleReminders(state, showLocal) {
     } catch {}
     return _SCHEDULED.size;
   }
-  _SCHEDULED.forEach(h => {
-    if (typeof h !== "number") clearTimeout(h);
-  });
+  _SCHEDULED.forEach(h => clearTimeout(h));
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {
-      showLocal(`${p.name} starts in ${p.leadMin} min`, {
-        body: `${p.stageName} · ${fmt12(p.start)}`,
+      showLocal(_reminderText(p).title, {
+        body: _reminderText(p).body,
         tag: `set-${p.id}`,
         data: {
           url: "/"
@@ -1419,10 +1671,9 @@ function loadAndReschedule(showLocal) {
     var live = saved.filter(r => r.fireMs > now && r.fireMs - now <= 24 * 3600000);
     live.forEach(r => {
       if (_SCHEDULED.has(r.id)) return;
-      var lead = r.leadMin || 15;
       var handle = setTimeout(() => {
-        showLocal(`${r.name} starts in ${lead} min`, {
-          body: `${r.stageName} · ${fmt12(r.start)}`,
+        showLocal(_reminderText(r).title, {
+          body: _reminderText(r).body,
           tag: `set-${r.id}`,
           data: {
             url: "/"
@@ -1811,7 +2062,7 @@ function _festivalPlanStatus(id) {
   var arts = ((window._DATA_SETS || {})[id]?.artists || []).filter(a => set.has(a.id));
   var sameWeekend = (a, b) => !a.weekend || !b.weekend || a.weekend === "both" || b.weekend === "both" || a.weekend === b.weekend;
   var conflicts = 0;
-  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof overlaps === "function" && overlaps(arts[_i2], arts[j])) conflicts++;
+  for (var _i2 = 0; _i2 < arts.length; _i2++) for (var j = _i2 + 1; j < arts.length; j++) if (arts[_i2].day === arts[j].day && sameWeekend(arts[_i2], arts[j]) && typeof setsClash === "function" && setsClash(arts[_i2], arts[j], id, ids)) conflicts++;
   return {
     saved: arts.length,
     conflicts
@@ -2962,7 +3213,8 @@ Object.assign(window, {
   ArtistSwatch,
   Wordmark,
   useArtistPhoto,
-  useArtistImageExpiry,
+  useArtistPhotoMachine,
+  ARTIST_PHOTO_MACHINE,
   getArtistImage,
   getShareableArtistImage,
   putArtistImage,
