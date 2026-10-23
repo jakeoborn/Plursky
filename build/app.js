@@ -1342,7 +1342,7 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+    var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({

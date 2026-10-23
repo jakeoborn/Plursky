@@ -900,11 +900,10 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+          // The Artists directory is entered from Me, so Me stays lit on it.
+          const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
           return (
             <TabBar
-              // The Artists directory (?tab=artists) lights no tab: where it is
-              // entered from is still Jake's call (B6 spec section 5).
               active={meFold.includes(state.tab) ? "me" : state.tab}
               onChange={t => setState({ ...state, tab: t })}
             />
