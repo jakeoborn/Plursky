@@ -7,8 +7,9 @@
 // lists exactly the registry's billings, a key under review says it may be
 // more than one act, a name billed only through a project reads "Also plays
 // as" and is never Playing 2026 on the project's billing, the festival chip
-// scopes and widens it, no tab or screen claims an entry yet (placement is
-// Jake's call), and the slice is never precached. No network beyond
+// scopes and widens it, Me carries the one entry (an "Artists" row that opens
+// the directory with Me lit, and back returns to Me) while Lineup carries none,
+// and the slice is never precached. No network beyond
 // the local server (the script CDNs come from scripts/vendor/).
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -138,10 +139,10 @@ try {
       await page.selectOption('[data-artists-festival]', ''); await page.clock.runFor(300); await page.waitForTimeout(150);
       const sc3 = await page.evaluate(() => document.querySelector('[data-artists-count]')?.textContent.trim());
       check(sc3 === r.count, `${tag}: the Festival chip does not widen the scope: "${sc3}", want "${r.count}"`);
-      // Where the directory is entered from is Jake's call (B6 spec section 5):
-      // no tab claims it, and neither Me nor Lineup carries an entry yet.
+      // The directory is entered from Me (B6 spec section 5, settled
+      // 2026-10-22), so Me stays lit on it.
       const lit = await page.evaluate(() => [...document.querySelectorAll('button[aria-current="page"]')].map(b => b.textContent.trim()).join('|'));
-      check(lit === '', `${tag}: the directory lights "${lit}" in the tab bar (want no tab)`);
+      check(lit === 'Me', `${tag}: the directory lights "${lit}" in the tab bar (want Me)`);
       // A sparse scrubber keeps its letters together at a fixed pitch instead of
       // spreading them over the full height beside unrelated rows, and a press
       // on the last letter still shows that letter's section.
@@ -181,7 +182,18 @@ try {
         await page.clock.runFor(1500); await page.waitForTimeout(200);
         if (t === 'lineup') { await page.click('[data-lineup-search-toggle]'); await page.clock.runFor(300); await page.fill('input[aria-label="Search the lineup"]', 'charli'); await page.clock.runFor(300); await page.waitForTimeout(150); }
         const entry = await page.evaluate(() => !!document.querySelector('[data-artists-entry], [data-lineup-artists-entry]') || /Artist history/.test(document.body.innerText));
-        check(!entry, `${tag}: ${t} carries a directory entry (placement is not settled)`);
+        if (t === 'lineup') { check(!entry, `${tag}: lineup carries a directory entry (the one entry is on Me)`); continue; }
+        const row = await page.evaluate(() => { const b = document.querySelector('[data-artists-entry]'); if (!b) return null; const r = b.getBoundingClientRect();
+          return { text: b.innerText.replace(/\s+/g, ' ').trim(), h: r.height, fits: r.left >= 0 && r.right <= innerWidth, cut: [...b.querySelectorAll('span')].some(s => s.scrollWidth > s.clientWidth + 1) }; });
+        check(!!row && /^Artists Every festival$/.test(row.text), `${tag}: Me's directory row reads ${JSON.stringify(row?.text)} (want "Artists" / "Every festival")`);
+        check(!!row && row.h >= 44 && row.fits && !row.cut, `${tag}: Me's directory row is ${row?.h}px tall, fits ${row?.fits}, cut ${row?.cut}`);
+        if (!row) continue;
+        await page.click('[data-artists-entry]'); await page.clock.runFor(400); await page.waitForTimeout(200);
+        const opened = await page.evaluate(() => ({ title: document.querySelector('h1')?.textContent.trim(), lit: [...document.querySelectorAll('button[aria-current="page"]')].map(b => b.textContent.trim()).join('|') }));
+        check(opened.title === 'Artists' && opened.lit === 'Me', `${tag}: the Me row opens ${JSON.stringify(opened)} (want the directory with Me lit)`);
+        await page.click('button[aria-label="Back"]'); await page.clock.runFor(400); await page.waitForTimeout(200);
+        const back = await page.evaluate(() => !!document.querySelector('[data-artists-entry]'));
+        check(back, `${tag}: back from the directory does not return to Me`);
       }
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();
@@ -194,4 +206,4 @@ if (problems.length) {
   for (const p of problems) console.log(`    ✗ ${p}`);
   process.exit(1);
 }
-console.log(`  ✓ artist directory: ${checks} checks — opens at ?tab=artists, no entry placed, windowed, names in full, scrubber, search, sheet = registry, pending keys honest, never precached`);
+console.log(`  ✓ artist directory: ${checks} checks — opens at ?tab=artists and from Me's row, windowed, names in full, scrubber, search, sheet = registry, pending keys honest, never precached`);

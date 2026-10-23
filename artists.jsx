@@ -318,3 +318,19 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
     </FieldSheet>
   );
 }
+
+// The entry on Me, under All festivals (placement settled 2026-10-22: B6 spec
+// section 5's global entry). The back button returns to Me.
+function ArtistsDirectoryRow() {
+  return (
+    <button data-artists-entry onClick={() => (window._pushNav || (() => {}))({ tab: "artists", artist: null })}
+      className="duo-card" style={{
+        width: "100%", minHeight: 52, marginBottom: 14, padding: "10px 16px",
+        display: "flex", alignItems: "center", gap: 12, border: "none",
+        color: "var(--ink)", cursor: "pointer", textAlign: "left", fontFamily: "inherit",
+      }}>
+      <span className="duo-headline" style={{ flex: 1, minWidth: 0 }}>Artists</span>
+      <span className="duo-body-s duo-ink2" style={{ flexShrink: 0 }}>Every festival</span>
+    </button>
+  );
+}
