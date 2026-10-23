@@ -3458,6 +3458,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-qn. Quick name before sign-in ─────────────────────────────────────
+// Opening Me on a fresh install asks "What should Plursky call you?" once
+// (skippable, a skip is remembered). The answer is plursky_display_name, and
+// crew presence, the picks a crew join shares and the crew recaps carry it
+// signed out. Apple sign-in keeps a typed name and fills only an empty one.
+{
+  console.log("▸ Quick-name gate — local name asked once, shown on every crew door, kept by sign-in");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-quick-name.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`quick name failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // scripts/test-mount-probe.mjs: the real index.html in headless Chrome, with
 // the pinned CDN scripts served from scripts/vendor/ (no network). Output is

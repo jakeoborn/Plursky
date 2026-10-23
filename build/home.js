@@ -1980,10 +1980,7 @@ function HomeScreen({
   var online = useOnlineStatus();
   var isLive = !countdown && !isPostFestival;
   var ip = useInstallPrompt();
-  var userName = "";
-  try {
-    userName = localStorage.getItem("user_name") || "";
-  } catch {}
+  var userName = plurskyLocalName();
   var showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
   var showInstall = !showSetup && ip.canInstall;
   var showNotif = !showSetup && !showInstall && !isPostFestival && savedIds.length > 0 && notifPerm === "default" && !notifNudgeDismissed;

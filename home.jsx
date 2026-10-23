@@ -1594,8 +1594,9 @@ function HomeScreen({ state, setState }) {
   const isLive = !countdown && !isPostFestival;
 
   const ip = useInstallPrompt();
-  let userName = "";
-  try { userName = localStorage.getItem("user_name") || ""; } catch {}
+  // Any local name counts (Me, the crew card and the quick-name ask write
+  // plursky_display_name; only Personalize wrote user_name).
+  const userName = plurskyLocalName();
   const showSetup = !setupBannerDismissed && !userName && !state.spotifyConnected;
   const showInstall = !showSetup && ip.canInstall;
   // Set reminders only mean something while a saved set is still ahead.

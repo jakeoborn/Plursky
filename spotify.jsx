@@ -7479,9 +7479,7 @@ function MeScreen({ state, setState }) {
   const _mePostFest = Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
   // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
-  const [localName, setLocalName] = React.useState(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
-  });
+  const [localName, setLocalName] = React.useState(plurskyLocalName);
   React.useEffect(() => {
     if (state.spotifyConnected && !profile) {
       ensureSpotifyProfile().then(setProfile);
@@ -7493,16 +7491,21 @@ function MeScreen({ state, setState }) {
     window.addEventListener("plursky:display-name", onName);
     return () => window.removeEventListener("plursky:display-name", onName);
   }, []);
+  // Opening Me is one of the places the quick-name ask appears: once, only
+  // while no name is set and the ask was never skipped.
+  React.useEffect(() => {
+    if (plurskyQuickNameDue()) window.plurskyAskQuickName?.();
+  }, []);
 
-  // Resolve display name from Spotify profile → display_name → user_name
-  // (matches Runbuds-style identity: serif name + ping chip + tagline).
-  const rawName = profile?.name || localName || "";
+  // The local name first — it is what your crew sees (plurskyLocalName) — then
+  // the Spotify profile's name for a user who never typed one.
+  const rawName = localName || profile?.name || "";
   const displayName = rawName || "—";
   const initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
   const promptName = () => {
     const next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
     if (!next) return;
-    try { localStorage.setItem("plursky_display_name", next); } catch {}
+    plurskySetLocalName(next);
     setLocalName(next);
   };
 

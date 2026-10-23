@@ -10958,13 +10958,7 @@ function MeScreen({
 }) {
   var _mePostFest = Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
   var [profile, setProfile] = React.useState(getSpotifyProfileSync);
-  var [localName, setLocalName] = React.useState(() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "";
-    } catch {
-      return "";
-    }
-  });
+  var [localName, setLocalName] = React.useState(plurskyLocalName);
   React.useEffect(() => {
     if (state.spotifyConnected && !profile) {
       ensureSpotifyProfile().then(setProfile);
@@ -10977,15 +10971,16 @@ function MeScreen({
     window.addEventListener("plursky:display-name", onName);
     return () => window.removeEventListener("plursky:display-name", onName);
   }, []);
-  var rawName = profile?.name || localName || "";
+  React.useEffect(() => {
+    if (plurskyQuickNameDue()) window.plurskyAskQuickName?.();
+  }, []);
+  var rawName = localName || profile?.name || "";
   var displayName = rawName || "—";
   var initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
   var promptName = () => {
     var next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
     if (!next) return;
-    try {
-      localStorage.setItem("plursky_display_name", next);
-    } catch {}
+    plurskySetLocalName(next);
     setLocalName(next);
   };
   var pingCode = typeof window.getMyPingCode === "function" ? window.getMyPingCode() : "PLUR";

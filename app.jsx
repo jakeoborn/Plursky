@@ -231,10 +231,41 @@ function OnboardingModal({ onDone, setState, state }) {
   );
 }
 
+// Quick name: "What should Plursky call you?", asked once, on the first
+// screen that uses who you are (opening Me, a first crew join), never in
+// onboarding. It writes the same local name every other door reads
+// (plurskySetLocalName); no account, no server. Closing it in any way is a
+// skip, and a skip is remembered (plurskySkipQuickName), so it never nags.
+function QuickNameSheet({ onDone }) {
+  const [name, setName] = React.useState("");
+  const ok = !!name.trim();
+  const save = () => { if (!ok) return; onDone(plurskySetLocalName(name.trim().slice(0, 20))); };
+  const skip = () => { plurskySkipQuickName(); onDone(null); };
+  return (
+    <FieldSheet title="What should Plursky call you?" onClose={skip}>
+      <div data-quick-name>
+        <p style={{ margin: "2px 0 14px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+          Your crew sees this name next to your picks. No account needed.
+        </p>
+        <input data-quick-name-input value={name} onChange={e => setName(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") save(); }}
+          aria-label="Your name" placeholder="First name" autoComplete="given-name" autoFocus maxLength={20} style={{
+            width: "100%", height: 48, borderRadius: 14, border: "none", background: "var(--paper-2)",
+            color: "var(--ink)", padding: "0 16px", fontSize: 17, outline: "none", fontFamily: "inherit",
+          }} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
+          <FieldButton data-quick-name-save onClick={save} disabled={!ok}>Save</FieldButton>
+          <FieldButton data-quick-name-skip kind="secondary" onClick={skip}>Not now</FieldButton>
+        </div>
+      </div>
+    </FieldSheet>
+  );
+}
+
 // Personalize: name, Spotify and reminders, each asked with one sentence of
 // why, only when the user opens it. Closing saves the name.
 function PersonalizeSheet({ state, onClose }) {
-  const [name, setName] = React.useState(() => { try { return localStorage.getItem("user_name") || ""; } catch { return ""; } });
+  const [name, setName] = React.useState(plurskyLocalName);
   const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
   const save = () => {
     try {
@@ -558,6 +589,22 @@ function App() {
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [personalizeOpen, setPersonalizeOpen] = React.useState(false);
+  // The quick-name ask. Callers await window.plurskyAskQuickName(), which
+  // resolves with the saved name or null on a skip. A layout effect, so it is
+  // in place before any screen's mount effect (Me asks on mount).
+  const [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  const quickNameWaiters = React.useRef([]);
+  React.useLayoutEffect(() => {
+    window.plurskyAskQuickName = () => {
+      if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
+      return new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameOpen(true); });
+    };
+    return () => { delete window.plurskyAskQuickName; };
+  }, []);
+  const quickNameDone = (name) => {
+    setQuickNameOpen(false);
+    quickNameWaiters.current.splice(0).forEach(resolve => resolve(name));
+  };
   // True while any full-screen overlay is mounted. The search FAB below hides
   // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
   const modalOpen = useModalOpen();
@@ -928,6 +975,7 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
+      {quickNameOpen && !showOnboarding && <QuickNameSheet onDone={quickNameDone} />}
       {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
           festival and starts its geolocation flow, so General Home, which is
           before any festival is chosen, never mounts it. */}
@@ -1015,7 +1063,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v466",
+        version: "v467",
       }));
     } catch {}
   }
@@ -1046,7 +1094,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v466
+          Plursky · v467
         </div>
       </div>
     );

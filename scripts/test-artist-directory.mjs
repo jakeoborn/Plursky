@@ -48,6 +48,7 @@ try {
       await ctx.addInitScript(({ scheme }) => {
         localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', 'acl-2026'); localStorage.setItem('active_festival_explicit', '1');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
+        localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: Me opens unobstructed
       }, { scheme });
       const page = await ctx.newPage();
       await page.goto(`http://127.0.0.1:${PORT}/index.html?f=acl-2026&tab=artists`, { waitUntil: 'domcontentloaded', timeout: 60000 });
