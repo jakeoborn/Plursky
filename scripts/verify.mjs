@@ -2865,6 +2865,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Career arc (artist repository M6): every claim on an artist page traces
+// to a billing id, untimed billings never feed a slot or closing claim, a
+// single billing has no axis, a pending key shows nothing comparative.
+{
+  console.log("▸ Career arc gate — every claim traces to a billing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-career.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`career arc failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-tp. Today print: the ticket / journey Today and the artist hero under
 // the approved Sora + chalk/charcoal direction (2026-10-12). Every lifecycle
 // state at 390 and 320 in both modes: chalk/charcoal sheet, the verified accent

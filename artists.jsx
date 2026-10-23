@@ -12,30 +12,34 @@
 // row's real height measured, because a name wraps instead of being cut.
 
 const _ART_DIR_URL = "data/artists/directory.json";
-let _artDirPromise = null;
+// The career slice (M6): every billing with its id, for the artist page.
+const _ART_CAREER_URL = "data/artists/careers.json";
+const _artSlices = {};
 
-function _artDirFetch() {
-  if (!_artDirPromise) {
-    _artDirPromise = fetch(_ART_DIR_URL).then(r => {
+function _artSliceFetch(url) {
+  if (!_artSlices[url]) {
+    _artSlices[url] = fetch(url).then(r => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json();
-    }).catch(e => { _artDirPromise = null; throw e; });
+    }).catch(e => { delete _artSlices[url]; throw e; });
   }
-  return _artDirPromise;
+  return _artSlices[url];
 }
+const _artDirFetch = () => _artSliceFetch(_ART_DIR_URL);
 
-function useArtistDirectory() {
+function _useArtSlice(url) {
   const [res, setRes] = React.useState({ status: "loading" });
   const [attempt, setAttempt] = React.useState(0);
   React.useEffect(() => {
     let live = true;
     setRes({ status: "loading" });
-    _artDirFetch().then(data => { if (live) setRes({ status: "ready", data }); })
+    _artSliceFetch(url).then(data => { if (live) setRes({ status: "ready", data }); })
       .catch(() => { if (live) setRes({ status: "error" }); });
     return () => { live = false; };
-  }, [attempt]);
+  }, [url, attempt]);
   return [res, () => setAttempt(a => a + 1)];
 }
+const useArtistDirectory = () => _useArtSlice(_ART_DIR_URL);
 
 const _artFold = s => window.PlurskyArtistKey.foldKey(s);
 const _artFestShort = name => String(name).replace(/\s+20\d\d$/, "");
@@ -125,12 +129,7 @@ function ArtistsDirectoryScreen({ state, setState }) {
   }, [list]);
 
   const back = () => { if (window._popNav) window._popNav(); else setState(s => ({ ...s, tab: "me" })); };
-  const openBilling = (b) => {
-    const f = fests[b[0]];
-    if (b[7] && f.id === (window.FESTIVAL_CONFIG && FESTIVAL_CONFIG.id)) (window._pushNav || (n => setState(s => ({ ...s, ...n }))))({ artist: b[7] });
-    else if (!b[7]) (window._pushNav || (n => setState(s => ({ ...s, ...n }))))({ tab: "past", pastEdition: f.id, pastDirect: true, artist: null });
-    setOpen(null);
-  };
+  const openBilling = (b) => { _artOpenBilling(fests[b[0]], b[7], setState); setOpen(null); };
   // Festivals that actually bill someone, newest first, for the picker.
   const festOptions = fests.map((f, i) => ({ i, f })).sort((x, y) => (y.f.year || 0) - (x.f.year || 0) || x.f.name.localeCompare(y.f.name));
 
@@ -273,6 +272,14 @@ function _ArtistsWindow({ items, fests, today, onOpen }) {
 // One artist's billings in our records, newest year first (Deezer / Spotify
 // events rows). A set at the festival you have open opens its artist page;
 // an archived set opens that past edition. Billing text stays verbatim.
+// A set at the open festival opens its artist page; an archived set opens
+// its past edition; a set at another live festival opens nothing.
+function _artOpenBilling(f, liveId, setState) {
+  const go = window._pushNav || (n => setState(s => ({ ...s, ...n })));
+  if (liveId && f.id === (window.FESTIVAL_CONFIG && FESTIVAL_CONFIG.id)) go({ artist: liveId });
+  else if (!liveId) go({ tab: "past", pastEdition: f.id, pastDirect: true, artist: null });
+}
+
 function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
   const years = [...new Set(a.b.map(b => (b[1] || "").slice(0, 4) || String(fests[b[0]].year || "")))].sort().reverse();
   const activeId = window.FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
@@ -316,5 +323,236 @@ function _ArtistBillingsSheet({ a, fests, today, onClose, onOpenBilling }) {
         ))}
       </div>
     </FieldSheet>
+  );
+}
+
+// ── The career arc (artist repository M6, spec §4) ─────────────────────────
+// Built only from the career slice. Every line on screen carries the billing
+// ids it reads (data-billings), so the arc gate traces each one back to
+// billings.json. Untimed billings never feed a slot or closing claim; main
+// stage is claimed only where an edition carries a sourced ruling; "first" is
+// always "in our records"; an archived set says when its page was archived
+// (§4.5). A key still under review (§3.4) lists its billings separately, with
+// no arc and nothing comparative. You-pins (§4.3) wait for a festival-scoped
+// attended store.
+const _crYear = (x, fests) => (x[2] || "").slice(0, 4) || String(fests[x[1]].year || "");
+const _crTime = t => (t && typeof fmt12 === "function" ? fmt12(t) : t);
+function _crPublished(ymd) {
+  try { return new Date(`${ymd}T12:00:00Z`).toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric", year: "numeric" }); } catch { return ymd; }
+}
+const _crIsPartnerRole = x => x[7] === "b2b" || x[7] === "cobilled";
+
+// The page's act → its registry key: the billing this page shows, and the
+// performer on it whose key is this name's. No exact match, no career.
+function useArtistCareer(festivalId, artistId, name) {
+  const [res] = _useArtSlice(_ART_CAREER_URL);
+  return React.useMemo(() => {
+    if (res.status !== "ready" || !window.PlurskyArtistKey) return null;
+    const d = res.data;
+    if (!d._byBilling) {
+      d._byBilling = new Map();
+      for (const [k, a] of Object.entries(d.artists)) for (const x of a.b) d._byBilling.set(x[0], [...(d._byBilling.get(x[0]) || []), k]);
+    }
+    const want = window.PlurskyArtistKey.artistKey(name || "");
+    const key = (d._byBilling.get(`${festivalId}:${artistId}`) || []).find(k => k === want);
+    return key ? { key, c: d.artists[key], fests: d.festivals, nameOf: k => (d.artists[k] && d.artists[k].n) || d.names[k] || k } : null;
+  }, [res, festivalId, artistId, name]);
+}
+
+function _careerModel(c, fests, today) {
+  const bs = c.b, year = x => _crYear(x, fests);
+  const years = [...new Set(bs.map(year))].sort();
+  const brands = [];
+  for (const x of bs) if (!brands.includes(fests[x[1]].brand)) brands.push(fests[x[1]].brand);
+  const ladder = brands.map(br => {
+    const mine = bs.filter(x => fests[x[1]].brand === br);
+    const ys = [...new Set(mine.map(year))].sort(), moves = [];
+    // A returning festival: the last set of one year against the first of the
+    // next, stage and start as printed. Times only when both rows are timed.
+    for (let i = 1; i < ys.length; i++) {
+      const from = mine.filter(x => year(x) === ys[i - 1]).slice(-1)[0], to = mine.find(x => year(x) === ys[i]);
+      const timed = !!(from[4] && to[4]);
+      const side = x => [x[3] || "stage TBA", timed ? _crTime(x[4]) : null].filter(Boolean).join(" ");
+      moves.push({ ids: [from[0], to[0]], text: `${ys[i - 1]} ${side(from)} → ${ys[i]} ${side(to)}${from[9] === false && to[9] === true ? " · main stage" : ""}` });
+    }
+    return { br, label: _artFestShort(fests[mine[0][1]].name), cells: years.map(y => mine.filter(x => year(x) === y)), moves };
+  });
+  const facts = [];
+  facts.push({ ids: [bs[0][0]], text: `First on a lineup in our records: ${fests[bs[0][1]].name}` });
+  if (years.length > 1) facts.push({ ids: bs.map(x => x[0]), text: years.map(y => { const n = new Set(bs.filter(x => year(x) === y).map(x => x[1])).size; return `${y}: ${n} festival${n === 1 ? "" : "s"}`; }).join(" → ") });
+  const closed = new Map();
+  for (const x of bs) if (x[8] === true && x[3]) { const t = `Closed ${x[3]}, ${fests[x[1]].name}`; closed.set(t, [...(closed.get(t) || []), x[0]]); }
+  for (const [text, ids] of closed) facts.push({ ids, text });
+  // Where they broke: the first main-stage set or closing slot, only after an
+  // earlier billing known to be neither.
+  const peak = x => x[9] === true || x[8] === true, neither = x => x[9] === false && x[8] === false;
+  const pi = bs.findIndex(peak), prior = pi > 0 ? bs.slice(0, pi).find(neither) : null;
+  if (prior) facts.push({ ids: [prior[0], bs[pi][0]], text: `First ${bs[pi][9] === true ? "main-stage set" : "closing slot"} in our records: ${fests[bs[pi][1]].name}` });
+  const upcoming = bs.filter(x => x[2] ? (x[2] >= today || (x[14] && x[14] >= today)) : year(x) >= today.slice(0, 4));
+  const partners = new Map();
+  for (const x of bs) if (_crIsPartnerRole(x)) for (const k of x[10]) {
+    const p = partners.get(k) || { k, years: new Set(), ids: [] };
+    p.years.add(year(x)); p.ids.push(x[0]); partners.set(k, p);
+  }
+  return { years, ladder, facts, upcoming, partners: [...partners.values()] };
+}
+
+function _CareerNode({ x, fests }) {
+  const main = x[9] === true, closing = x[8] === true, timed = !!x[4], split = timed && _crIsPartnerRole(x) && x[10].length > 0;
+  const label = [fests[x[1]].name, x[3] || "stage TBA", timed ? _crTime(x[4]) : "time TBA", main && "main stage", closing && "closed the stage", split && "B2B"].filter(Boolean).join(", ");
+  return (
+    <svg data-ladder-node data-billings={x[0]} role="img" aria-label={label} width="20" height="20" viewBox="0 0 20 20" style={{ flex: "none", display: "block" }}>
+      {timed ? <circle cx="10" cy="10" r="6" fill={main ? "var(--signal)" : "var(--ink-2)"} /> : <circle cx="10" cy="10" r="3" fill="var(--ink-3)" />}
+      {closing && <circle cx="10" cy="10" r="9" fill="none" stroke="var(--signal)" strokeWidth="1.5" />}
+      {split && <line x1="5.5" y1="14.5" x2="14.5" y2="5.5" stroke="var(--paper)" strokeWidth="2" />}
+    </svg>
+  );
+}
+
+function _CareerLadder({ m, fests }) {
+  const n = m.years.length, cols = `repeat(${n}, minmax(0, 1fr))`;
+  return (
+    <div data-career-ladder className="duo-card" style={{ padding: "12px 14px", marginBottom: 10 }}>
+      <div aria-hidden="true" style={{ display: "grid", gridTemplateColumns: cols, marginBottom: 4 }}>
+        {m.years.map(y => <span key={y} className="duo-data-s duo-ink3" style={{ textAlign: "center" }}>{y}</span>)}
+      </div>
+      {m.ladder.map(row => {
+        const on = row.cells.map((c, i) => c.length ? i : -1).filter(i => i >= 0);
+        const a = on[0], z = on[on.length - 1];
+        return (
+          <div key={row.br} data-ladder-row={row.br} style={{ padding: "6px 0", borderTop: "1px solid var(--line)" }}>
+            <div className="duo-body-s" style={{ fontWeight: 600, overflowWrap: "anywhere" }}>{row.label}</div>
+            <div style={{ position: "relative", display: "grid", gridTemplateColumns: cols, alignItems: "center", minHeight: 24 }}>
+              {z > a && <span aria-hidden="true" style={{ position: "absolute", top: "50%", height: 2, marginTop: -1, background: "var(--line-2)",
+                left: `${(a + 0.5) / n * 100}%`, right: `${(n - z - 0.5) / n * 100}%` }} />}
+              {row.cells.map((c, i) => (
+                <span key={i} style={{ position: "relative", display: "flex", justifyContent: "center", gap: 2 }}>
+                  {c.map(x => <_CareerNode key={x[0]} x={x} fests={fests} />)}
+                </span>
+              ))}
+            </div>
+            {row.moves.map(mv => (
+              <div key={mv.ids.join(" ")} data-claim="move" data-billings={mv.ids.join(" ")} className="duo-body-s duo-ink2" style={{ fontWeight: 400, overflowWrap: "anywhere" }}>{mv.text}</div>
+            ))}
+          </div>
+        );
+      })}
+      <div className="duo-body-s duo-ink3" style={{ fontWeight: 400, marginTop: 6, display: "flex", flexWrap: "wrap", columnGap: 12 }}>
+        <span>● a set</span><span>• time TBA</span>
+        {m.ladder.some(r => r.cells.some(c => c.some(x => x[9] === true))) && <span style={{ color: "var(--signal-ink)" }}>● main stage</span>}
+        {m.ladder.some(r => r.cells.some(c => c.some(x => x[8] === true))) && <span>◯ closed the stage</span>}
+      </div>
+    </div>
+  );
+}
+
+function ArtistCareer({ part, festivalId, artistId, name, setState }) {
+  const career = useArtistCareer(festivalId, artistId, name);
+  const [sheet, setSheet] = React.useState(null);
+  if (!career) return null;
+  const { c, fests, nameOf } = career;
+  const today = _artToday();
+  const m = c.pending ? null : _careerModel(c, fests, today);
+  const openArtist = k => _artDirFetch().then(d => { const a = d.artists.find(x => x.k === k); if (a) setSheet({ a, fests: d.festivals }); }).catch(() => {});
+  const sheetEl = sheet && <_ArtistBillingsSheet a={sheet.a} fests={sheet.fests} today={today} onClose={() => setSheet(null)}
+    onOpenBilling={b => { _artOpenBilling(sheet.fests[b[0]], b[7], setState); setSheet(null); }} />;
+
+  if (part === "arc") {
+    if (c.pending) return (
+      <p data-artist-career="pending" className="duo-body-s duo-ink2" style={{ margin: "0 0 14px", fontWeight: 400 }}>
+        This name may be more than one act in our records, so its billings are listed separately below.
+      </p>
+    );
+    return (
+      <section data-artist-career style={{ marginBottom: 16 }}>
+        <h2 className="duo-sect" style={{ padding: "4px 0 6px" }}>Career in our records</h2>
+        {c.b.length === 1
+          ? <div data-career-single style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <_CareerNode x={c.b[0]} fests={fests} />
+              <span data-claim="first" data-billings={c.b[0][0]} className="duo-body">{m.facts[0].text}</span>
+            </div>
+          : <>
+              <_CareerLadder m={m} fests={fests} />
+              {m.facts.map(f => <p key={f.text} data-claim="fact" data-billings={f.ids.join(" ")} className="duo-body-s" style={{ margin: "0 0 4px", fontWeight: 400 }}>{f.text}</p>)}
+            </>}
+      </section>
+    );
+  }
+
+  const row = (x, i) => {
+    const f = fests[x[1]], live = x[13];
+    const can = (live && f.id === festivalId && live !== artistId) || !live;
+    const when = x[2] ? _artDay(x[2], true) + (x[14] ? ` and ${_artDay(x[14], true)}` : "") : "Date to be announced";
+    const line = [when, x[3] || "stage TBA", x[4] ? _crTime(x[4]) : "time TBA", x[6], x[11] && `as published ${_crPublished(x[11])}`].filter(Boolean).join(" · ");
+    const with_ = _crIsPartnerRole(x) && x[10].length ? `${x[7] === "b2b" ? "B2B with" : "With"} ${x[10].map(nameOf).join(", ")}` : null;
+    const body = (
+      <span style={{ flex: 1, minWidth: 0 }}>
+        <span className="duo-body" style={{ display: "block", fontWeight: 600 }}>{f.name}</span>
+        <span data-claim="billing" data-billings={x[0]} className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>{line}</span>
+        {with_ && <span data-claim="partners" data-billings={x[0]} className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>{with_}</span>}
+      </span>
+    );
+    const st = { width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 56, padding: "8px 0", borderBottom: "1px solid var(--line)" };
+    return can
+      ? <button key={i} data-career-billing={x[0]} onClick={() => _artOpenBilling(f, live, setState)} style={{ ...st, background: "transparent", border: "none", borderBottom: st.borderBottom,
+          color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
+          {body}
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--ink-3)", flex: "none" }}><path d="M9 6 L15 12 L9 18"/></svg>
+        </button>
+      : <div key={i} data-career-billing={x[0]} style={st}>{body}</div>;
+  };
+  const yearsDesc = [...new Set(c.b.map(x => _crYear(x, fests)))].sort().reverse();
+  return (
+    <div data-artist-career-detail>
+      {m && m.upcoming.length > 0 && (
+        <section data-career-upcoming style={{ marginBottom: 18 }}>
+          <h2 className="duo-sect" style={{ padding: "4px 0 2px" }}>Coming up</h2>
+          {m.upcoming.map(row)}
+        </section>
+      )}
+      <section data-career-years style={{ marginBottom: 18 }}>
+        <h2 className="duo-sect" style={{ padding: "4px 0 2px" }}>{c.pending ? "Billings under this name" : "Year by year"}</h2>
+        {yearsDesc.map((y, i) => {
+          const mine = c.b.filter(x => _crYear(x, fests) === y);
+          return (
+            <details key={y} data-career-year={y} open={i === 0}>
+              <summary className="duo-body" style={{ minHeight: 44, lineHeight: "44px", cursor: "pointer", fontWeight: 600 }}>
+                {y} · {mine.length} {mine.length === 1 ? "billing" : "billings"}
+              </summary>
+              {mine.slice().reverse().map(row)}
+            </details>
+          );
+        })}
+      </section>
+      {m && m.partners.length > 0 && (
+        <section data-career-partners style={{ marginBottom: 18 }}>
+          <h2 className="duo-sect" style={{ padding: "4px 0 6px" }}>B2B and collab partners</h2>
+          <div style={{ display: "flex", gap: 12, overflowX: "auto", paddingBottom: 4 }}>
+            {m.partners.map(p => (
+              <button key={p.k} data-claim="partner" data-billings={p.ids.join(" ")} onClick={() => openArtist(p.k)}
+                style={{ flex: "none", width: 88, display: "grid", justifyItems: "center", gap: 4, padding: "4px 0", background: "transparent", border: "none", color: "var(--ink)", fontFamily: "inherit", cursor: "pointer", minHeight: 44 }}>
+                <_ArtFace name={nameOf(p.k)} size={48} />
+                <span className="duo-body-s" style={{ fontWeight: 600, textAlign: "center", overflowWrap: "anywhere" }}>{nameOf(p.k)}</span>
+                <span className="duo-body-s duo-ink3" style={{ fontWeight: 400 }}>{[...p.years].sort().join(", ")}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+      {m && c.s && c.s.length > 0 && (
+        <section data-career-shared style={{ marginBottom: 18 }}>
+          <h2 className="duo-sect" style={{ padding: "4px 0 2px" }}>Most often on the same lineup</h2>
+          {c.s.map(([k, n]) => (
+            <button key={k} data-claim="shared" data-shared={`${k}:${n}`} onClick={() => openArtist(k)}
+              style={{ width: "100%", display: "flex", alignItems: "center", gap: 12, minHeight: 52, padding: "6px 0", background: "transparent", border: "none", borderBottom: "1px solid var(--line)", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: "pointer" }}>
+              <_ArtFace name={nameOf(k)} size={36} />
+              <span className="duo-body" style={{ flex: 1, minWidth: 0, fontWeight: 600, overflowWrap: "anywhere" }}>{nameOf(k)}</span>
+              <span className="duo-body-s duo-ink2" style={{ flexShrink: 0, fontWeight: 400 }}>{n} festivals together</span>
+            </button>
+          ))}
+        </section>
+      )}
+      {sheetEl}
+    </div>
   );
 }
