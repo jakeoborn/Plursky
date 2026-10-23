@@ -11514,7 +11514,7 @@ function MeScreen({
       lineHeight: 1.38,
       color: "var(--text-2)"
     }
-  }, "Your plan is kept"))), React.createElement(HistoryRecordsSection, {
+  }, "Your plan is kept"))), typeof ArtistsDirectoryRow === "function" && React.createElement(ArtistsDirectoryRow, null), React.createElement(HistoryRecordsSection, {
     state: state,
     setState: setState
   }), React.createElement("div", {

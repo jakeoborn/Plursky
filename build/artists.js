@@ -646,3 +646,38 @@ function _ArtistBillingsSheet({
     }, body);
   })))));
 }
+function ArtistsDirectoryRow() {
+  return React.createElement("button", {
+    "data-artists-entry": true,
+    onClick: () => (window._pushNav || (() => {}))({
+      tab: "artists",
+      artist: null
+    }),
+    className: "duo-card",
+    style: {
+      width: "100%",
+      minHeight: 52,
+      marginBottom: 14,
+      padding: "10px 16px",
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      border: "none",
+      color: "var(--ink)",
+      cursor: "pointer",
+      textAlign: "left",
+      fontFamily: "inherit"
+    }
+  }, React.createElement("span", {
+    className: "duo-headline",
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, "Artists"), React.createElement("span", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      flexShrink: 0
+    }
+  }, "Every festival"));
+}
