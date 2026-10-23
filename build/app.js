@@ -1342,7 +1342,7 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+    var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({
@@ -1456,7 +1456,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v463"
+        version: "v464"
       }));
     } catch {}
   }
@@ -1508,7 +1508,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v463"))
+      }, "Plursky · v464"))
     );
   }
 }
