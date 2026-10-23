@@ -1101,7 +1101,7 @@ function App() {
     var dlFrom = params.get("from");
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
+    var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past", "artists"].includes(dlTab) ? dlTab : null;
     var dlEdition = params.get("edition");
     var validEdition = validTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(dlEdition || "") ? dlEdition : null;
     var validStage = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
@@ -1168,7 +1168,7 @@ function App() {
         var raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         var params = new URLSearchParams(raw);
         var tab = params.get("tab");
-        if (["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(tab)) {
+        if (["home", "map", "lineup", "spotify", "me", "memories", "past", "artists"].includes(tab)) {
           var edition = params.get("edition");
           var pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({
@@ -1314,6 +1314,9 @@ function App() {
   });else if (state.tab === "past") body = React.createElement(PastFestivalsScreen, {
     state: state,
     setState: setState
+  });else if (state.tab === "artists") body = React.createElement(ArtistsDirectoryScreen, {
+    state: state,
+    setState: setState
   });
   var statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
   return React.createElement(IOSDevice, {
@@ -1340,7 +1343,7 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+    var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({
@@ -1454,7 +1457,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v464"
+        version: "v466"
       }));
     } catch {}
   }
@@ -1506,7 +1509,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v464"))
+      }, "Plursky · v466"))
     );
   }
 }

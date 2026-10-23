@@ -662,7 +662,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past","artists"].includes(dlTab) ? dlTab : null;
     // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
     // shape is checked here; HistoricalEditionView opens an id only if the
     // library index lists it, so a bad id reads "not in the library".
@@ -762,7 +762,7 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
+        if (["home","map","lineup","spotify","me","memories","past","artists"].includes(tab)) {
           const edition = params.get("edition");
           const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
@@ -870,6 +870,7 @@ function App() {
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
   else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
+  else if (state.tab === "artists")  body = <ArtistsDirectoryScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -902,7 +903,8 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+          // The Artists directory is entered from Me, so Me stays lit on it.
+          const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
@@ -1013,7 +1015,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v464",
+        version: "v466",
       }));
     } catch {}
   }
@@ -1044,7 +1046,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v464
+          Plursky · v466
         </div>
       </div>
     );
