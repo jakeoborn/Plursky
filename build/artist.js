@@ -1649,7 +1649,13 @@ function ArtistScreen({
     style: {
       padding: "18px 20px 24px"
     }
-  }, (() => {
+  }, typeof ArtistCareer === "function" && React.createElement(ArtistCareer, {
+    part: "arc",
+    festivalId: FESTIVAL_CONFIG.id,
+    artistId: a.id,
+    name: activeName,
+    setState: setState
+  }), (() => {
     var live = typeof isSetLive === "function" && isSetLive(a);
     var dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || {
       label: `DAY ${a.day}`
@@ -1831,7 +1837,13 @@ function ArtistScreen({
         }
       }, fmt12(x.start)));
     }));
-  })(), (() => {
+  })(), typeof ArtistCareer === "function" && React.createElement(ArtistCareer, {
+    part: "detail",
+    festivalId: FESTIVAL_CONFIG.id,
+    artistId: a.id,
+    name: activeName,
+    setState: setState
+  }), (() => {
     var cells = [];
     if (saveCount != null && saveCount > 0) cells.push({
       label: "GOING",

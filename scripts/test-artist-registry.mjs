@@ -177,6 +177,13 @@ const out = build();
     let disk = null; try { disk = readFileSync(`data/artists/${f}`, 'utf8'); } catch {}
     check(disk === text(v), `data/artists/${f} is stale — run: node scripts/build-artist-registry.mjs`);
   }
+  // The slices the app ships are written compact. directory.json went stale
+  // on main (ecda893 moved III Points' RC95 close) while this checked only
+  // the four files above.
+  for (const [f, v] of Object.entries({ 'directory.json': out.directory, 'careers.json': out.careers })) {
+    let disk = null; try { disk = readFileSync(`data/artists/${f}`, 'utf8'); } catch {}
+    check(disk === JSON.stringify(v) + '\n', `data/artists/${f} is stale — run: node scripts/build-artist-registry.mjs`);
+  }
 }
 
 if (problems.length) {
