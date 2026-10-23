@@ -121,7 +121,7 @@ function NightWizard({
   var dayStats = DAYS.map(d => {
     var sets = activeLineup(localIds).filter(a => a.day === d.n && local.has(a.id));
     var clashes = 0;
-    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (overlaps(sets[i], sets[j])) clashes++;
+    for (var i = 0; i < sets.length; i++) for (var j = i + 1; j < sets.length; j++) if (setsClash(sets[i], sets[j], undefined, localIds)) clashes++;
     return {
       ...d,
       count: sets.length,
@@ -130,7 +130,7 @@ function NightWizard({
   });
   var sorted = activeLineup(localIds).filter(a => a.day === activeDay && local.has(a.id)).sort((a, b) => compareSetsByTime(a, b, STAGES));
   var conflictIds = new Set();
-  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (overlaps(sorted[i], sorted[j])) {
+  for (var i = 0; i < sorted.length; i++) for (var j = i + 1; j < sorted.length; j++) if (setsClash(sorted[i], sorted[j], undefined, localIds)) {
     conflictIds.add(sorted[i].id);
     conflictIds.add(sorted[j].id);
   }
@@ -1279,63 +1279,55 @@ function LineupScreen({
       return a.name.toLowerCase().includes(term) || (a.genre || "").toLowerCase().includes(term) || (st?.name || "").toLowerCase().includes(term);
     }).length;
   }, [q, day, weekendFilter]);
+  var attendV = useAttendVersion();
   var dayStats = React.useMemo(() => DAYS.map(d => {
     var savedThisDay = lineupFor(weekendFilter).filter(x => x.day === d.n && savedSetIds.has(x.id));
     var clashes = 0;
-    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (overlaps(savedThisDay[i], savedThisDay[j])) clashes++;
+    for (var i = 0; i < savedThisDay.length; i++) for (var j = i + 1; j < savedThisDay.length; j++) if (setsClash(savedThisDay[i], savedThisDay[j], undefined, state.saved)) clashes++;
     return {
       ...d,
       count: savedThisDay.length,
       clashes
     };
-  }), [savedSetIds, weekendFilter]);
+  }), [savedSetIds, weekendFilter, attendV]);
   var totalSaved = React.useMemo(() => dayStats.reduce((s, d) => s + d.count, 0), [dayStats]);
   var savedToday = React.useMemo(() => lineupFor(weekendFilter).filter(a => a.day === day && savedSetIds.has(a.id)), [day, savedSetIds, weekendFilter]);
   var [syncOpen, setSyncOpen] = React.useState(false);
   var hasFeed = FESTIVALS_REGISTRY.some(e => e.available && e.config.id === FESTIVAL_CONFIG.id);
-  var CONFLICT_ACK_KEY = "plursky_conflicts_kept_both_v1";
-  var _pairKey = (idA, idB) => [idA, idB].sort().join("|");
-  var [ackedPairs, setAckedPairs] = React.useState(() => {
-    try {
-      return new Set(JSON.parse(localStorage.getItem(CONFLICT_ACK_KEY) || "[]"));
-    } catch {
-      return new Set();
-    }
-  });
+  var [splitPair, setSplitPair] = React.useState(null);
   var ackPair = (idA, idB) => {
-    setAckedPairs(prev => {
-      var next = new Set(prev);
-      next.add(_pairKey(idA, idB));
-      try {
-        localStorage.setItem(CONFLICT_ACK_KEY, JSON.stringify([...next]));
-      } catch {}
-      return next;
-    });
+    var a = ARTISTS.find(x => x.id === idA),
+      b = ARTISTS.find(x => x.id === idB);
+    if (a && b) acceptClash(a, b);
   };
   var {
     conflicts,
-    conflictById
+    conflictById,
+    acceptedById
   } = React.useMemo(() => {
     var _conflicts = [];
-    var _byId = {};
+    var _byId = {},
+      _acc = {};
     for (var i = 0; i < savedToday.length; i++) {
       for (var j = i + 1; j < savedToday.length; j++) {
-        if (overlaps(savedToday[i], savedToday[j])) {
-          var a = savedToday[i],
-            b = savedToday[j];
-          if (!ackedPairs.has(_pairKey(a.id, b.id))) {
-            _conflicts.push([a, b]);
-          }
+        var a = savedToday[i],
+          b = savedToday[j];
+        if (setsClash(a, b, undefined, state.saved)) {
+          _conflicts.push([a, b]);
           (_byId[a.id] = _byId[a.id] || []).push(b);
           (_byId[b.id] = _byId[b.id] || []).push(a);
+        } else if (setsOverlapAccepted(a, b, undefined, state.saved)) {
+          (_acc[a.id] = _acc[a.id] || []).push(b);
+          (_acc[b.id] = _acc[b.id] || []).push(a);
         }
       }
     }
     return {
       conflicts: _conflicts,
-      conflictById: _byId
+      conflictById: _byId,
+      acceptedById: _acc
     };
-  }, [savedToday, ackedPairs]);
+  }, [savedToday, attendV]);
   var liveSavedCount = savedInLineup(state.saved).length;
   var gridLead = viewMode === "grid" && !(filter === "saved" && liveSavedCount === 0);
   React.useEffect(() => {
@@ -1634,20 +1626,25 @@ function LineupScreen({
       gap: 4
     }
   }, saveDayCard, myNight, planActions) : null;
-  var conflictCard = conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
+  var conflictCard = splitPair ? React.createElement(SplitNightSheet, {
+    pair: splitPair,
+    onDone: () => setSplitPair(null),
+    onCancel: () => setSplitPair(null)
+  }) : conflicts.length > 0 && filter === "saved" ? React.createElement(ConflictResolver, {
     conflicts: conflicts,
     onKeep: (keepId, dropId) => {
+      noteClashLoser(dropId);
       setState({
         ...state,
         saved: state.saved.filter(id => id !== dropId)
       });
     },
     onKeepBoth: pair => ackPair(pair[0].id, pair[1].id),
-    onSplit: pair => setState({
-      ...state,
-      tab: "map",
-      focusStage: pair[0].stage
-    })
+    onSplit: pair => setSplitPair(pair)
+  }) : null;
+  var keepAlertsCard = filter === "saved" ? React.createElement(KeepAlertsRows, {
+    acts: lineupFor(weekendFilter).filter(a => a.day === day),
+    saved: state.saved
   }) : null;
   var vibeCard = stageFilter !== "all" ? (() => {
     var stage = STAGES.find(s => s.id === stageFilter);
@@ -2035,7 +2032,7 @@ function LineupScreen({
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
-  }), !gridLead && conflictCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
+  }), !gridLead && conflictCard, !gridLead && keepAlertsCard, !gridLead && vibeCard, React.createElement(ScrollBody, {
     "data-lineup-scroll": true,
     ref: useStaggerFade(`${day}-${viewMode}-${filter}-${stageFilter}-${tierFilter}-${genreFilter}-${sortBy}-${weekendFilter}`, viewMode === "list" && NOW.night === day && !!NOW.time && sortBy === "time"),
     style: viewMode === "grid" ? {
@@ -2067,7 +2064,7 @@ function LineupScreen({
         minHeight: 0
       }
     }, React.createElement(TimelineGrid, {
-      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, vibeCard),
+      lead: React.createElement(React.Fragment, null, searchRow, actionsRow, conflictCard, keepAlertsCard, vibeCard),
       day: day,
       allDayArtists: dayArt,
       state: state,
@@ -2147,6 +2144,8 @@ function LineupScreen({
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
       var clashWith = conflictById[a.id];
+      var acceptedWith = !clashWith && acceptedById[a.id];
+      var win = saved ? attendWindow(a, undefined, state.saved) : null;
       var isHighlighted = highlightId === a.id;
       var isLive = isSetLive(a);
       var ring = saved || isLive ? clashWith ? "cl" : "on" : "";
@@ -2240,13 +2239,25 @@ function LineupScreen({
           color: "var(--ink)",
           fontWeight: 600
         }
-      }, TOP_BILLED, " · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
+      }, TOP_BILLED, " · "), acceptedWith && React.createElement("span", {
+        "data-overlap-accepted": true,
+        style: {
+          color: "var(--ink-2)",
+          fontWeight: 600
+        }
+      }, "Overlap accepted · "), _lineupMetaValue(stage.name)), setTimesUnconfirmed(a) && React.createElement("span", {
         "data-set-time-status": true,
         style: {
           font: "400 13px/1.385 var(--f-ui)",
           color: "var(--ink-2)"
         }
-      }, SET_TIMES_UNCONFIRMED), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
+      }, SET_TIMES_UNCONFIRMED), win && win.partial && React.createElement("span", {
+        "data-attend-window": a.id,
+        style: {
+          font: "400 13px/1.385 var(--f-ui)",
+          color: "var(--ink-2)"
+        }
+      }, attendWindowLabel(a, win)), clashWith && !pinned && clashWith.map(o => React.createElement("span", {
         key: o.id,
         "data-clash-with": o.id,
         style: {
@@ -3742,13 +3753,293 @@ function ConflictResolver({
   }, React.createElement("button", {
     onClick: () => onKeepBoth?.(pair),
     style: crBtn
-  }, "Keep both"), React.createElement("button", {
+  }, "Keep both"), splitRange(a, b).ok && React.createElement("button", {
     onClick: () => onSplit(pair),
     style: crBtn
   }, "Split the night"), conflicts.length > 1 && React.createElement("button", {
     onClick: next,
     style: crBtn
   }, "Next clash")));
+}
+function _BellIcon({
+  on
+}) {
+  return React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: on ? "currentColor" : "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"
+  }), React.createElement("path", {
+    d: "M13.73 21a2 2 0 0 1-3.46 0",
+    fill: "none"
+  }));
+}
+function KeepAlertsRows({
+  acts,
+  saved,
+  style
+}) {
+  useAttendVersion();
+  var savedSet = new Set(saved || []);
+  var kept = new Set(alertsKeptIds());
+  var want = new Set([...clashLoserIds(), ...kept]);
+  var rows = (acts || []).filter(a => want.has(a.id) && !savedSet.has(a.id)).sort((x, y) => toNightMin(x.start) - toNightMin(y.start));
+  if (!rows.length) return null;
+  return React.createElement("div", {
+    "data-keep-alerts-list": true,
+    role: "group",
+    "aria-label": "Not in your plan",
+    style: {
+      margin: "4px 20px 12px",
+      padding: "10px 14px 2px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      ...style
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--text-2)"
+    }
+  }, "Not in your plan"), rows.map((a, i) => {
+    var on = kept.has(a.id);
+    var stg = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+    var name = actDisplayName(a.name);
+    return React.createElement("div", {
+      key: a.id,
+      "data-keep-alerts-row": a.id,
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        minHeight: 52,
+        borderTop: i ? "1px solid var(--line)" : "none"
+      }
+    }, React.createElement("div", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 500,
+        color: "var(--text-2)",
+        overflowWrap: "anywhere"
+      }
+    }, name), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        fontVariantNumeric: "tabular-nums"
+      }
+    }, stg, " · ", fmt12(a.start), "–", fmt12(a.end), on ? " · reminder only" : "")), on ? React.createElement("button", {
+      type: "button",
+      "data-alerts-kept": a.id,
+      "aria-pressed": "true",
+      "aria-label": `Reminder on for ${name}. Tap to cancel`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, false);
+      },
+      style: {
+        ...fieldIconBtn,
+        color: "var(--ink)"
+      }
+    }, React.createElement(_BellIcon, {
+      on: true
+    })) : React.createElement("button", {
+      type: "button",
+      "data-keep-alerts": a.id,
+      "aria-label": `Keep alerts for ${name}`,
+      onClick: () => {
+        window.plurskyHaptic?.("LIGHT");
+        setAlertsKept(a.id, true);
+      },
+      style: {
+        ...fieldIconBtn,
+        width: "auto",
+        padding: "0 10px",
+        gap: 6,
+        color: "var(--text-2)",
+        fontSize: 15,
+        fontWeight: 500
+      }
+    }, React.createElement(_BellIcon, null), React.createElement("span", null, "Keep alerts")));
+  }));
+}
+function SplitNightSheet({
+  pair,
+  onDone,
+  onCancel
+}) {
+  var {
+    first,
+    second,
+    lo,
+    hi,
+    def,
+    ok
+  } = splitRange(pair && pair[0], pair && pair[1]);
+  var cur = ok ? attendWindow(first) : null;
+  var startAt = cur && cur.partial && cur.with === second.id ? toNightMin(cur.end) : def;
+  var [sw, setSw] = React.useState(snapSplitSwitch(startAt, lo, hi));
+  if (!ok) return null;
+  var t = nightMinToHHMM(sw);
+  var fS = (STAGES.find(s => s.id === first.stage) || UNPLACED_STAGE).name;
+  var sS = (STAGES.find(s => s.id === second.stage) || UNPLACED_STAGE).name;
+  var crBtn = {
+    ...fieldIconBtn,
+    width: "auto",
+    padding: "0 12px",
+    color: "var(--text-2)",
+    fontSize: 15,
+    fontWeight: 500
+  };
+  var blocked = splitBlocker(first, second);
+  if (blocked) return React.createElement("div", {
+    role: "group",
+    "aria-label": "Split the night",
+    "data-split-sheet": true,
+    "data-split-refused": true,
+    style: {
+      margin: "4px 20px 12px",
+      padding: "12px 14px 6px",
+      borderRadius: 14,
+      background: "var(--paper-2)"
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--ink-2)"
+    }
+  }, "Split the night"), React.createElement("p", {
+    style: {
+      margin: "8px 0",
+      fontSize: 15,
+      lineHeight: "20px",
+      overflowWrap: "anywhere"
+    }
+  }, React.createElement("b", null, actDisplayName(blocked.act.name)), " is already split with ", React.createElement("b", null, actDisplayName(blocked.partner.name)), ". An act can be in one split at a time. To split it with another set, tap Reset on its row in your night first."), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("button", {
+    onClick: onCancel,
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "OK")));
+  return React.createElement("div", {
+    role: "group",
+    "aria-label": "Split the night",
+    "data-split-sheet": true,
+    style: {
+      margin: "4px 20px 12px",
+      padding: "12px 14px 6px",
+      borderRadius: 14,
+      background: "var(--paper-2)"
+    }
+  }, React.createElement("div", {
+    style: {
+      ..._fieldEyebrow,
+      color: "var(--ink-2)"
+    }
+  }, "Split the night"), React.createElement("label", {
+    htmlFor: "split-switch",
+    style: {
+      display: "block",
+      marginTop: 8,
+      fontSize: 15,
+      lineHeight: "20px"
+    }
+  }, "Switch at ", React.createElement("b", {
+    "data-split-time": true,
+    style: {
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, fmt12(t))), React.createElement("input", {
+    id: "split-switch",
+    type: "range",
+    min: lo,
+    max: hi,
+    step: SPLIT_STEP_MIN,
+    value: sw,
+    onChange: e => setSw(snapSplitSwitch(e.target.value, lo, hi)),
+    "aria-valuetext": `Switch at ${fmt12(t)}`,
+    style: {
+      width: "100%",
+      minHeight: 44,
+      accentColor: "var(--acc)"
+    }
+  }), React.createElement("div", {
+    "data-split-preview": true,
+    style: {
+      display: "grid",
+      gap: 6,
+      padding: "4px 0 8px"
+    }
+  }, [[first, first.start, t, fS], [second, t, second.end, sS]].map(([art, s, e, stg]) => React.createElement("div", {
+    key: art.id,
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      gap: 10,
+      fontSize: 15,
+      lineHeight: "20px"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      overflowWrap: "anywhere",
+      minWidth: 0
+    }
+  }, actDisplayName(art.name), React.createElement("span", {
+    style: {
+      fontWeight: 400,
+      color: "var(--text-2)"
+    }
+  }, " · ", stg)), React.createElement("span", {
+    style: {
+      flexShrink: 0,
+      fontVariantNumeric: "tabular-nums",
+      color: "var(--text-2)"
+    }
+  }, fmt12(s), "–", fmt12(e))))), React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexWrap: "wrap",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("button", {
+    onClick: onCancel,
+    style: crBtn
+  }, "Cancel"), React.createElement("button", {
+    "data-split-confirm": true,
+    onClick: () => {
+      if (splitNight(first, second, sw)) onDone?.();
+    },
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "Split here")));
 }
 function TierStars({
   tier
@@ -4309,7 +4600,7 @@ function toggleSave(state, setState, id) {
   var hasConflict = !has && a && next.some(sid => {
     if (sid === id) return false;
     var b = ARTISTS.find(x => x.id === sid);
-    return b && b.day === a.day && overlaps(a, b);
+    return b && b.day === a.day && setsClash(a, b, undefined, next);
   });
   if (hasConflict) {
     try {

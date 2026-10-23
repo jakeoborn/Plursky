@@ -2164,7 +2164,7 @@ function MapScreen({ state, setState }) {
                     (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   const [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   const crewName = React.useMemo(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
+    return plurskyLocalName();
   }, []);
   // Push-style reminders for saved sets — see useSavedSetReminders below.
   const [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
@@ -2361,7 +2361,10 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      // A friend's declared stage always counts. Inferring one from their GPS
+      // dot needs sourced registration: on poster-read anchors the dot's
+      // position on the art is a guess, and the nudge would fire off it.
+      const sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -7453,13 +7456,7 @@ function _crewRowToThreadItem(row, myPid) {
 }
 function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
   const isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  const myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "Me";
-    } catch { return "Me"; }
-  })();
+  const myName = plurskyLocalName() || "Me";
 
   const [thread, setThread] = React.useState(() => loadThread(friend.id));
   const [draft, setDraft] = React.useState("");

@@ -2744,11 +2744,7 @@ function MapScreen({
   var isSharing = !!shareState?.active && (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   var [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   var crewName = React.useMemo(() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "";
-    } catch {
-      return "";
-    }
+    return plurskyLocalName();
   }, []);
   var [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
   useSavedSetReminders(state.saved, notifyEnabled);
@@ -2945,7 +2941,7 @@ function MapScreen({
     if (!crewFriends.length) return null;
     var byStage = {};
     for (var f of crewFriends) {
-      var sid = f.stageId || _nearestStageId(f.x, f.y);
+      var sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -10279,13 +10275,7 @@ function MessageDrawer({
   onSwitchToMeet
 }) {
   var isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  var myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "Me";
-    } catch {
-      return "Me";
-    }
-  })();
+  var myName = plurskyLocalName() || "Me";
   var [thread, setThread] = React.useState(() => loadThread(friend.id));
   var [draft, setDraft] = React.useState("");
   var [typing, setTyping] = React.useState(false);
