@@ -1289,12 +1289,16 @@ function scheduleReminders(state, showLocal) {
   // A push for a set nobody is playing was the failure this closes.
   const lineup = activeLineup(state.saved);
 
-  state.saved.forEach(id => {
+  // L5: saved sets plus the unsaved sets the user kept alerts for, one list
+  // (reminderSetIds). Same lead, same ids, same cancel-and-replace slate.
+  const ids = typeof reminderSetIds === "function" ? reminderSetIds(state.saved) : state.saved;
+  ids.forEach(id => {
     const found = lineup.find(x => x.id === id);
     if (!found) return;
     // L3: after a split the reminder is for when you ARRIVE (the switch time),
-    // not the set's published start you are deliberately skipping.
-    const win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    // not the set's published start you are deliberately skipping. A set kept
+    // for alerts only is not in a split you hold: the whole set.
+    const win = typeof attendWindow === "function" && state.saved.includes(id) ? attendWindow(found, undefined, state.saved) : null;
     const a = win && win.partial ? { ...found, start: win.start } : found;
     const startMs = _artistStartMs(a);
     if (!startMs) return;
@@ -1344,7 +1348,11 @@ function scheduleReminders(state, showLocal) {
   }
 
   // Web fallback: setTimeout per reminder.
-  _SCHEDULED.forEach(h => { if (typeof h !== "number") clearTimeout(h); });
+  // Every entry here is a timeout handle (the native branch above returned).
+  // A browser's setTimeout handle IS a number, so the old `typeof h !==
+  // "number"` guard cleared nothing: an unsaved set's reminder still fired
+  // until a reload (found by the L5 cancel gate).
+  _SCHEDULED.forEach(h => clearTimeout(h));
   _SCHEDULED.clear();
   pending.forEach(p => {
     const handle = setTimeout(() => {

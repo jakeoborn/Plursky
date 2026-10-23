@@ -2202,6 +2202,47 @@ function useAttendVersion() {
   return v;
 }
 
+// ── Keep alerts (L5) ──────────────────────────────────────────────────────
+// A set that loses a clash ("Keep this" on the other one) is unsaved, so the
+// saved-set reminder for it goes silent. The user can keep its reminder, per
+// set: `${fid}_alerts_kept_v1` = [setId]. Keeping alerts is NOT a save: the
+// set stays out of `saved`, so clashes, the banner, counts and the resolver
+// never see it. Only the reminder paths read it, through reminderSetIds.
+// Changes fire plursky:attend-change so the app's reschedule effect re-runs.
+// Losers are remembered for this session only (a quiet offer at resolve time);
+// what the user keeps is persisted.
+function _alertsKeptKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_alerts_kept_v1`; }
+function alertsKeptIds(fid) {
+  const v = _l3Read(_alertsKeptKey(fid), []);
+  return Array.isArray(v) ? v.filter(x => typeof x === "string") : [];
+}
+function setAlertsKept(id, on, fid) {
+  const cur = alertsKeptIds(fid);
+  const next = on ? (cur.includes(id) ? cur : [...cur, id]) : cur.filter(x => x !== id);
+  if (next.length === cur.length && next.every((x, i) => x === cur[i])) return;
+  try { localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(next)); } catch {}
+  _l3Changed();
+}
+// A set saved again is reminded as a saved set; its keep-alerts entry goes so
+// a later unsave silences it, the way an unsave always has.
+function pruneAlertsKept(savedIds, fid) {
+  const saved = new Set(savedIds || []);
+  const cur = alertsKeptIds(fid);
+  if (cur.some(id => saved.has(id))) {
+    try { localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(cur.filter(id => !saved.has(id)))); } catch {}
+    _l3Changed();
+  }
+}
+// THE reminder list: saved sets, then alerts-kept sets not saved. Every
+// reminder path (native, web, in-app) reads this; clashes never do.
+function reminderSetIds(savedIds, fid) {
+  const saved = Array.isArray(savedIds) ? savedIds : [];
+  return [...saved, ...alertsKeptIds(fid).filter(id => !saved.includes(id))];
+}
+const _CLASH_LOSERS = new Set();
+function noteClashLoser(id) { if (id && !_CLASH_LOSERS.has(id)) { _CLASH_LOSERS.add(id); _l3Changed(); } }
+function clashLoserIds() { return [..._CLASH_LOSERS]; }
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
 // is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a

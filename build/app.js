@@ -1244,6 +1244,7 @@ function App() {
   }, [_pushNav, _popNav]);
   var attendV = useAttendVersion();
   React.useEffect(() => {
+    pruneAlertsKept(state.saved);
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
   }, [state.saved.join(","), notifPerm, attendV]);
   React.useEffect(() => {
@@ -1456,7 +1457,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v465"
+        version: "v466"
       }));
     } catch {}
   }
@@ -1508,7 +1509,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v465"))
+      }, "Plursky · v466"))
     );
   }
 }

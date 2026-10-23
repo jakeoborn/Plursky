@@ -1580,10 +1580,11 @@ function scheduleReminders(state, showLocal) {
   var leadMin = getReminderLeadMin();
   var pending = [];
   var lineup = activeLineup(state.saved);
-  state.saved.forEach(id => {
+  var ids = typeof reminderSetIds === "function" ? reminderSetIds(state.saved) : state.saved;
+  ids.forEach(id => {
     var found = lineup.find(x => x.id === id);
     if (!found) return;
-    var win = typeof attendWindow === "function" ? attendWindow(found, undefined, state.saved) : null;
+    var win = typeof attendWindow === "function" && state.saved.includes(id) ? attendWindow(found, undefined, state.saved) : null;
     var a = win && win.partial ? {
       ...found,
       start: win.start
@@ -1641,9 +1642,7 @@ function scheduleReminders(state, showLocal) {
     } catch {}
     return _SCHEDULED.size;
   }
-  _SCHEDULED.forEach(h => {
-    if (typeof h !== "number") clearTimeout(h);
-  });
+  _SCHEDULED.forEach(h => clearTimeout(h));
   _SCHEDULED.clear();
   pending.forEach(p => {
     var handle = setTimeout(() => {

@@ -758,18 +758,27 @@ function buildTonightsPlan(state) {
 // Returns upcoming-set reminders (≤30 min away) and overlap conflicts.
 // Falls back to the static ALERTS demo when nothing is saved or pre-event.
 function computeAlerts(savedIds, day, timeStr) {
-  if (!savedIds?.length) return [];
+  // L5: reminders also cover sets kept for alerts only (reminderSetIds);
+  // conflicts below stay over saved sets alone.
+  const remindIds = reminderSetIds(savedIds || []);
+  if (!remindIds.length) return [];
+  savedIds = savedIds || [];
   const nowMin = toNightMin(timeStr);
-  const todaySaved = activeLineup(savedIds)
+  const byTime = (a, b) => toNightMin(a.start) - toNightMin(b.start);
+  const lineup = activeLineup(savedIds);
+  const todaySaved = lineup
     .filter(a => a.day === day && savedIds.includes(a.id))
-    .sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
+    .sort(byTime);
+  const todayRemind = lineup
+    .filter(a => a.day === day && remindIds.includes(a.id))
+    .sort(byTime);
   const out = [];
 
-  for (const a of todaySaved) {
+  for (const a of todayRemind) {
     // The attend start, not the published one (Codex P2 on #335): after a
     // split the reminder fires before the user's arrival, the way the native
-    // reminders already do.
-    const win = attendWindow(a, undefined, savedIds);
+    // reminders already do. An alerts-only set is the whole set.
+    const win = savedIds.includes(a.id) ? attendWindow(a, undefined, savedIds) : { start: a.start, end: a.end, partial: false };
     const late = win.partial && win.start !== a.start;
     const minsAway = toNightMin(win.start) - nowMin;
     if (minsAway > 0 && minsAway <= 30) {
@@ -1547,7 +1556,7 @@ function HomeScreen({ state, setState }) {
   const liveStrip = liveAcrossStages();
 
   // Computed alerts from saved sets — replaces static demo ALERTS during festival
-  const _dynAlerts = !countdown && liveSaved.length
+  const _dynAlerts = !countdown && reminderSetIds(liveSaved).length
     ? computeAlerts(liveSaved, NOW.night, NOW.time)
     : [];
   const alerts = _dynAlerts.length ? _dynAlerts : (state.alerts || ALERTS);
@@ -2403,6 +2412,7 @@ function TonightsPlan({ plan, state, setState }) {
               <ConflictResolver
                 conflicts={conflicts}
                 onKeep={(keepId, dropId) => {
+                  noteClashLoser(dropId);
                   setState({ ...state, saved: state.saved.filter(id => id !== dropId) });
                   setResolverOpen(false);
                 }}
@@ -2413,6 +2423,10 @@ function TonightsPlan({ plan, state, setState }) {
           )}
           {plan.map(p => <PlanRow key={p.artist.id} entry={p} state={state} setState={setState} onEditSplit={setSplitPair} />)}
         </>
+      )}
+      {/* L5: tonight's clash losers and alerts-only sets, outside the plan. */}
+      {NOW.night != null && (
+        <KeepAlertsRows acts={activeLineup(state.saved).filter(a => a.day === NOW.night)} saved={state.saved} style={{ margin: "10px 0 0" }} />
       )}
     </>
   );
