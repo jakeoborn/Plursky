@@ -1385,6 +1385,9 @@ function ArtistScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "18px 20px 24px" }}>
+        {/* The career arc opens the body (B6 spec §4): this act's history on
+            festival lineups, from the career slice (artists.jsx). */}
+        {typeof ArtistCareer === "function" && <ArtistCareer part="arc" festivalId={FESTIVAL_CONFIG.id} artistId={a.id} name={activeName} setState={setState} />}
         {/* Stage & time: the board's set card. Lifted while the set is on,
             with minutes left and progress (Today's math); otherwise the day
             and the clock. A billed act no official schedule has placed
@@ -1462,6 +1465,9 @@ function ArtistScreen({ state, setState }) {
             </section>
           );
         })()}
+
+        {/* The rest of the career: coming up, year by year, partners, shared lineups. */}
+        {typeof ArtistCareer === "function" && <ArtistCareer part="detail" festivalId={FESTIVAL_CONFIG.id} artistId={a.id} name={activeName} setState={setState} />}
 
         {/* Glance stats — only render cells with values; hide row entirely if none */}
         {(() => {

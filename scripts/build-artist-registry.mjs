@@ -144,6 +144,60 @@ export function conflicts(families) {
   return false;
 }
 
+// "20250611072342" (UTC) → "2025-06-10" in the edition's own zone, never UTC.
+export function publishedOn(ts, tz) {
+  const m = /^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/.exec(ts || '');
+  if (!m || !tz) return null;
+  const at = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]));
+  return new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(at);
+}
+
+// The career slice (M6), loaded on demand by an artist page, never precached.
+// A billing is [id, festival, date, stage, start, end, setTag, role, closing,
+// mainStage, partners, publishedOn, openEnd, liveId|null, date2?].
+// Every field is a billing's own (§4.4): an id per billing so every claim on
+// screen traces to one, the stage, the printed start and end, closing and
+// main stage exactly as the billings carry them (null = no claim), the other
+// performers on that billing, and an archived set's "as published" date. The
+// only derived field is shared lineups: the performers billed at the same
+// festival-editions most often, two or more, ranked by count, then name.
+// A pending collision (§3.4) carries its billings and nothing comparative.
+export function buildCareers(registry, billings, rowById, festOf, festIx, pendingKeys) {
+  const billingById = new Map(billings.map(b => [b.id, b]));
+  const keysAt = new Map(), festsOf = new Map();
+  for (const r of registry) for (const id of r.billings) {
+    const f = billingById.get(id).festivalId;
+    if (!keysAt.has(f)) keysAt.set(f, new Set()); keysAt.get(f).add(r.key);
+    if (!festsOf.has(r.key)) festsOf.set(r.key, new Set()); festsOf.get(r.key).add(f);
+  }
+  const nameOf = new Map(registry.map(r => [r.key, r.name]));
+  const fold = s => globalThis.PlurskyArtistKey.foldKey(s);
+  const artists = {};
+  for (const r of registry) {
+    if (!r.billings.length) continue;
+    const b = r.billings.map(id => {
+      const x = billingById.get(id), row = rowById.get(id);
+      return [id, festOf(row), x.date, x.stage, x.start, x.end, x.setTag, x.performers.find(p => p.key === r.key)?.role || 'performer',
+        x.closing, x.mainStage, x.performers.filter(p => p.key !== r.key).map(p => p.key), row.published || null, row.openEnd ? 1 : 0,
+        row.source === 'live' ? id.slice(row.festivalId.length + 1) : null, ...(row.date2 ? [row.date2] : [])];
+    }).sort((p, q) => String(p[2]).localeCompare(String(q[2])) || String(p[4]).localeCompare(String(q[4])) || p[0].localeCompare(q[0]));
+    const out = { n: r.name, b };
+    if (pendingKeys.has(r.key)) out.pending = 1;
+    else {
+      const same = new Set([r.key, ...r.parents, ...r.projects]), count = new Map();
+      for (const f of festsOf.get(r.key) || []) for (const k of keysAt.get(f)) if (!same.has(k) && !pendingKeys.has(k)) count.set(k, (count.get(k) || 0) + 1);
+      const s = [...count].filter(([, n]) => n >= 2).sort((p, q) => q[1] - p[1] || fold(nameOf.get(p[0])).localeCompare(fold(nameOf.get(q[0]))) || p[0].localeCompare(q[0])).slice(0, 5);
+      if (s.length) out.s = s;
+    }
+    artists[r.key] = out;
+  }
+  // Partners and shared names resolve through artists[k].n; a partner with no
+  // billing of its own (a project parent) still needs its name.
+  const names = {};
+  for (const a of Object.values(artists)) for (const x of a.b) for (const k of x[10]) if (!artists[k]) names[k] = nameOf.get(k) || k;
+  return { version: 1, festivals: festIx, artists, names };
+}
+
 export function build(root = ROOT, overrides = null) {
   const { REG, DS } = loadRegistry(root);
   const ov = overrides || (existsSync(`${root}/data/artists/overrides.json`) ? JSON.parse(readFileSync(`${root}/data/artists/overrides.json`, 'utf8')) : {});
@@ -185,11 +239,15 @@ export function build(root = ROOT, overrides = null) {
   for (const fn of readdirSync(H).filter(f => f.endsWith('.json')).sort()) {
     const ed = JSON.parse(readFileSync(`${H}/${fn}`, 'utf8'));
     const art = new Map(ed.artists.map(a => [a.id, a])), st = new Map(ed.stages.map(s => [s.id, s.name])), days = new Map((ed.days || []).map(d => [d.day, d.date]));
+    // §4.5: an archived day is what the official page printed when it was
+    // archived, so each set carries that capture's date, in the edition's zone.
+    const published = new Map((ed.provenance?.captures || []).map(c => [c.day, publishedOn(c.captureTimestamp || c.imageCapture, ed.timezone)]));
     for (const s of ed.sets) {
       const a = art.get(s.artistId);
       rows.push({ id: s.id, source: 'edition', festivalId: ed.id, festivalBrand: brandOf(ed.festivalId || ed.id), year: ed.year,
         date: days.get(s.day) || null, day: s.day ?? null, stage: st.get(s.stageId) || null,
-        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id });
+        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id,
+        published: published.get(s.day) || null, ...(s.openEnd ? { openEnd: true } : {}) });
     }
   }
 
@@ -301,9 +359,10 @@ export function build(root = ROOT, overrides = null) {
     }),
   };
   directory.festivals = festIx;
+  const careers = buildCareers(registry, billings, rowById, festOf, festIx, pendingKeys);
   const unruled = review.filter(r => !r.pending).length;
   const stageErrors = [...stagesIx.errors, ...[...unmappedStages].map(k => `printed stage not in ${STAGES_FILE}: ${k.replace('|', ' → ')} (run --seed-stages, then join with a source)`)];
-  return { registry, billings, review, excluded, directory, sources, overrides: ov, stageErrors, rows,
+  return { registry, billings, review, excluded, directory, careers, sources, overrides: ov, stageErrors, rows,
     counts: { rows: rows.length, billings: billings.length, excluded: excluded.length, review: review.length, pending: review.length - unruled, unruled, ruled: billings.filter(b => billingOv.has(b.printed)).length, artists: registry.length } };
 }
 
@@ -338,7 +397,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (out.stageErrors.length) { console.log(`✗ stage overlay: ${out.stageErrors.length} problems`); for (const e of out.stageErrors.slice(0, 10)) console.log(`  ✗ ${e}`); process.exit(1); }
   const files = { 'registry.json': out.registry, 'billings.json': out.billings, 'review.json': out.review, 'excluded.json': out.excluded };
   // The directory slice ships to the app, so it is written compact.
-  const compact = { 'directory.json': JSON.stringify(out.directory) + '\n' };
+  const compact = { 'directory.json': JSON.stringify(out.directory) + '\n', 'careers.json': JSON.stringify(out.careers) + '\n' };
   const text = v => JSON.stringify(v, null, 1) + '\n';
   if (process.argv[2] === '--check') {
     const drift = [...Object.entries(files).map(([f, v]) => [f, text(v)]), ...Object.entries(compact)].filter(([f, t]) => !existsSync(`${OUT}/${f}`) || readFileSync(`${OUT}/${f}`, 'utf8') !== t).map(([f]) => f);
