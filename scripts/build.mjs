@@ -25,7 +25,10 @@ const COPY = [
   'icon-512.png',
   'og.svg',
   'data/artist-photos.js',
+  'data/artist-key.js',
   'data/festival-art.js',
+  // The Artists directory slice: shipped, loaded on demand, never precached.
+  'data/artists/directory.json',
 ];
 
 execFileSync(process.execPath, [path.join(root, 'scripts', 'build-artist-photo-ledger.mjs')],

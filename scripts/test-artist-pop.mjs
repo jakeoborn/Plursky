@@ -57,7 +57,7 @@ try {
     // Spotify image we seed or nothing.
     const a = await page.evaluate(({ kind, LFM }) => {
       const led = window.PLURSKY_ARTIST_PHOTOS || {};
-      const slug = n => n.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const slug = n => window.PlurskyArtistKey.artistKey(n);   // the app's own lookup key (data/artist-key.js)
       const pool = window.ARTISTS.filter(x => x.start && !/\bb2b\b|\bvs\b|&/i.test(x.name) && !led[slug(x.name)]);
       const a = pool[kind === 'spotify' ? 0 : 5];
       const look = typeof _lookupName === 'function' ? _lookupName(a.name) : a.name;
