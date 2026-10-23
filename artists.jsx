@@ -441,7 +441,27 @@ function _CareerLadder({ m, fests }) {
         <span>● a set</span><span>• time TBA</span>
         {m.ladder.some(r => r.cells.some(c => c.some(x => x[9] === true))) && <span style={{ color: "var(--signal-ink)" }}>● main stage</span>}
         {m.ladder.some(r => r.cells.some(c => c.some(x => x[8] === true))) && <span>◯ closed the stage</span>}
+        {m.ladder.some(r => r.cells.some(c => c.some(x => x[4] && _crIsPartnerRole(x) && x[10].length))) && <span>⊘ B2B</span>}
       </div>
+    </div>
+  );
+}
+
+// A year block (FotMob's season rows). A closed year renders no rows at all:
+// a closed <details> kept its rows' old colours across a theme toggle,
+// because Chrome skips style recalc in hidden details content.
+function _CareerYear({ y, rows, row, startOpen }) {
+  const [open, setOpen] = React.useState(startOpen);
+  return (
+    <div data-career-year={y}>
+      <button aria-expanded={open} onClick={() => setOpen(v => !v)} className="duo-body"
+        style={{ width: "100%", minHeight: 44, display: "flex", alignItems: "center", gap: 8, padding: 0, background: "transparent", border: "none",
+          color: "var(--ink)", fontFamily: "inherit", fontWeight: 600, textAlign: "left", cursor: "pointer" }}>
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          style={{ flex: "none", transform: open ? "rotate(90deg)" : "none" }}><path d="M9 6 L15 12 L9 18"/></svg>
+        {y} · {rows.length} {rows.length === 1 ? "billing" : "billings"}
+      </button>
+      {open && rows.slice().reverse().map(row)}
     </div>
   );
 }
@@ -504,7 +524,7 @@ function ArtistCareer({ part, festivalId, artistId, name, setState }) {
   const yearsDesc = [...new Set(c.b.map(x => _crYear(x, fests)))].sort().reverse();
   return (
     <div data-artist-career-detail>
-      {m && m.upcoming.length > 0 && (
+      {m && m.upcoming.length > 0 && c.b.length > 1 && (
         <section data-career-upcoming style={{ marginBottom: 18 }}>
           <h2 className="duo-sect" style={{ padding: "4px 0 2px" }}>Coming up</h2>
           {m.upcoming.map(row)}
@@ -512,17 +532,7 @@ function ArtistCareer({ part, festivalId, artistId, name, setState }) {
       )}
       <section data-career-years style={{ marginBottom: 18 }}>
         <h2 className="duo-sect" style={{ padding: "4px 0 2px" }}>{c.pending ? "Billings under this name" : "Year by year"}</h2>
-        {yearsDesc.map((y, i) => {
-          const mine = c.b.filter(x => _crYear(x, fests) === y);
-          return (
-            <details key={y} data-career-year={y} open={i === 0}>
-              <summary className="duo-body" style={{ minHeight: 44, lineHeight: "44px", cursor: "pointer", fontWeight: 600 }}>
-                {y} · {mine.length} {mine.length === 1 ? "billing" : "billings"}
-              </summary>
-              {mine.slice().reverse().map(row)}
-            </details>
-          );
-        })}
+        {yearsDesc.map((y, i) => <_CareerYear key={y} y={y} rows={c.b.filter(x => _crYear(x, fests) === y)} row={row} startOpen={i === 0} />)}
       </section>
       {m && m.partners.length > 0 && (
         <section data-career-partners style={{ marginBottom: 18 }}>

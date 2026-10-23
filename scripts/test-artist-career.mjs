@@ -121,6 +121,9 @@ async function readPage(browser, port, fx, scheme, width, mutation) {
     // The slice is fetched on demand: wait for it, then a beat for React.
     await slice;
     await page.clock.runFor(400); await page.waitForTimeout(250);
+    // Years open newest first; open the rest so every billing row is read.
+    for (const b of await page.$$('[data-career-year] > button[aria-expanded="false"]')) await b.click();
+    await page.waitForTimeout(100);
     return await page.evaluate(() => {
       const r = el => el.getBoundingClientRect();
       const card = document.querySelector('[data-career-ladder]');

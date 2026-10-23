@@ -906,7 +906,53 @@ function _CareerLadder({
     style: {
       color: "var(--signal-ink)"
     }
-  }, "● main stage"), m.ladder.some(r => r.cells.some(c => c.some(x => x[8] === true))) && React.createElement("span", null, "◯ closed the stage")));
+  }, "● main stage"), m.ladder.some(r => r.cells.some(c => c.some(x => x[8] === true))) && React.createElement("span", null, "◯ closed the stage"), m.ladder.some(r => r.cells.some(c => c.some(x => x[4] && _crIsPartnerRole(x) && x[10].length))) && React.createElement("span", null, "⊘ B2B")));
+}
+function _CareerYear({
+  y,
+  rows,
+  row,
+  startOpen
+}) {
+  var [open, setOpen] = React.useState(startOpen);
+  return React.createElement("div", {
+    "data-career-year": y
+  }, React.createElement("button", {
+    "aria-expanded": open,
+    onClick: () => setOpen(v => !v),
+    className: "duo-body",
+    style: {
+      width: "100%",
+      minHeight: 44,
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: 0,
+      background: "transparent",
+      border: "none",
+      color: "var(--ink)",
+      fontFamily: "inherit",
+      fontWeight: 600,
+      textAlign: "left",
+      cursor: "pointer"
+    }
+  }, React.createElement("svg", {
+    "aria-hidden": "true",
+    width: "14",
+    height: "14",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    style: {
+      flex: "none",
+      transform: open ? "rotate(90deg)" : "none"
+    }
+  }, React.createElement("path", {
+    d: "M9 6 L15 12 L9 18"
+  })), y, " · ", rows.length, " ", rows.length === 1 ? "billing" : "billings"), open && rows.slice().reverse().map(row));
 }
 function ArtistCareer({
   part,
@@ -1072,7 +1118,7 @@ function ArtistCareer({
   var yearsDesc = [...new Set(c.b.map(x => _crYear(x, fests)))].sort().reverse();
   return React.createElement("div", {
     "data-artist-career-detail": true
-  }, m && m.upcoming.length > 0 && React.createElement("section", {
+  }, m && m.upcoming.length > 0 && c.b.length > 1 && React.createElement("section", {
     "data-career-upcoming": true,
     style: {
       marginBottom: 18
@@ -1092,22 +1138,13 @@ function ArtistCareer({
     style: {
       padding: "4px 0 2px"
     }
-  }, c.pending ? "Billings under this name" : "Year by year"), yearsDesc.map((y, i) => {
-    var mine = c.b.filter(x => _crYear(x, fests) === y);
-    return React.createElement("details", {
-      key: y,
-      "data-career-year": y,
-      open: i === 0
-    }, React.createElement("summary", {
-      className: "duo-body",
-      style: {
-        minHeight: 44,
-        lineHeight: "44px",
-        cursor: "pointer",
-        fontWeight: 600
-      }
-    }, y, " · ", mine.length, " ", mine.length === 1 ? "billing" : "billings"), mine.slice().reverse().map(row));
-  })), m && m.partners.length > 0 && React.createElement("section", {
+  }, c.pending ? "Billings under this name" : "Year by year"), yearsDesc.map((y, i) => React.createElement(_CareerYear, {
+    key: y,
+    y: y,
+    rows: c.b.filter(x => _crYear(x, fests) === y),
+    row: row,
+    startOpen: i === 0
+  }))), m && m.partners.length > 0 && React.createElement("section", {
     "data-career-partners": true,
     style: {
       marginBottom: 18
