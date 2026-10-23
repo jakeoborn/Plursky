@@ -40,6 +40,25 @@ const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "1
 await new Promise(r => setTimeout(r, 800));
 const browser = await chromium.launch();
 
+// The clock every context runs on: an instant inside Lost Lands' own pack
+// window (_packWindow of its configured dates), read from the app rather than
+// hardcoded, so the sheet still offers the festival after it ends. Read in a
+// throwaway context with nothing seeded, so phase A still starts with no pack.
+async function packInstant() {
+  const c = await browser.newContext({ serviceWorkers: "block" });
+  await wireVendor(c);
+  const p = await c.newPage();
+  await p.goto(`${ORIGIN}/?tab=home`, { waitUntil: "load" });
+  await p.waitForFunction(fid => typeof _packWindow === "function" && _DATA_SETS[fid]?.config, FID, { timeout: 30000 });
+  const w = await p.evaluate(fid => _packWindow(_DATA_SETS[fid].config), FID);
+  await c.close();
+  if (!(Number.isFinite(w.start) && Number.isFinite(w.end) && w.end > w.start)) throw new Error(`${FID}: no usable pack window (${JSON.stringify(w)})`);
+  return w.start + Math.min(3600000, (w.end - w.start) / 2);
+}
+const AT = await packInstant();
+console.log(`clock: ${new Date(AT).toISOString()} (inside ${FID}'s pack window)`);
+const atPackTime = ctx => ctx.clock.install({ time: AT });
+
 function seed({ plus }) {
   return ([fid, plus]) => {
     localStorage.setItem("onboarded", "v1");
@@ -74,6 +93,7 @@ try {
   // ── A–E: service workers blocked (the native app) ─────────────────────────
   const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 844 } });
   await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
+  await atPackTime(ctx);
   await ctx.addInitScript(seed({ plus: true }), [FID, true]);
   let page = await newPage(ctx, "map");
 
@@ -156,9 +176,13 @@ try {
     const get = window._packGet;
     window._packGet = async k => { const b = await get(k); window.__packLog.push([k, !!b]); return b; };
   });
+  // wireVendor's routes answer unpkg even "offline" (a route fulfils before
+  // the network), which would hand MapLibre over without touching the pack.
+  // A phone with no signal gets nothing from unpkg: abort it here.
+  await ctx.route(/unpkg\.com\/maplibre-gl/, r => r.abort("internetdisconnected"));
   await ctx.setOffline(true);
   await page.getByRole("button", { name: /^Map$/ }).first().click();
-  await page.getByText("OFFLINE · SAVED STREET MAP").waitFor({ timeout: 20000 });
+  await page.getByText("OFFLINE — SHOWING CACHED MAP").waitFor({ timeout: 20000 });
   await page.waitForTimeout(4000);
   const log = await page.evaluate(() => window.__packLog || []);
   const of = re => log.filter(([k]) => re.test(k));
@@ -187,6 +211,10 @@ try {
     `MapLibre loaded from the pack's stored copy (lib reads: ${show(lib) || "none"}; scripts: ${srcs.map(s => s.slice(0, 40)).join(", ")})`);
   check(await page.getByText("MAP ERROR").count() === 0, "no MAP ERROR");
   check(await page.getByText(/festival map shown|check your connection/i).count() === 0, "no offline fallback note");
+  // The saved pack is what makes this map work offline, so GPS off says so.
+  if (await page.getAttribute("button[data-map-locate]", "data-map-locate").catch(() => null) === "on") await page.click("button[data-map-locate]");
+  const noSignal = await page.waitForFunction(() => document.querySelector("[data-map-no-signal]")?.textContent === "Works with no signal", null, { timeout: 15000 }).then(() => true, () => false);
+  check(noSignal, `offline with the saved pack, GPS off: "Works with no signal" under "Show me on the map"`);
   await page.screenshot({ path: join(OUT, "D-map-offline.png") });
 
   console.log("E2. expired, then delete");
@@ -210,19 +238,23 @@ try {
   console.log("F. not Plus");
   const free = await browser.newContext({ serviceWorkers: "block", viewport: { width: 390, height: 844 } });
   await wireVendor(free);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
+  await atPackTime(free);
   await free.addInitScript(seed({ plus: false }), [FID, false]);
   page = await newPage(free, "map");
   await openSheet(page);
   await page.locator(`[data-pack-row="${FID}"]`).getByRole("button", { name: "SAVE" }).click();
-  await page.getByText(/Season Pass/i).first().waitFor({ timeout: 10000 }).catch(() => {});
-  check(await page.getByText(/Season Pass/i).count() > 0, "SAVE opened the Plursky+ sheet");
+  const plus = page.getByRole("dialog", { name: "Plursky+" });
+  await plus.waitFor({ timeout: 10000 }).catch(() => {});
+  check(await plus.count() > 0 && /offline festival maps/i.test(await plus.innerText().catch(() => "")), "SAVE opened the Plursky+ sheet, for offline festival maps");
   check(JSON.stringify(await page.evaluate(() => _packMirror())) === "{}" && !(await page.evaluate(() => Object.keys(_packJobs).length)), "nothing saved, no download started");
+  await page.waitForTimeout(1200);   // the sheet fades in over the pack list; shoot it settled, not mid-transition
   await page.screenshot({ path: join(OUT, "F-free-save.png") });
   await free.close();
 
   console.log("G. service workers on: every Cache API cache untouched");
   const sw = await browser.newContext({ viewport: { width: 390, height: 844 } });
   await wireVendor(sw);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
+  await atPackTime(sw);
   await sw.addInitScript(seed({ plus: true }), [FID, true]);
   page = await newPage(sw, "home");
   await page.evaluate(() => navigator.serviceWorker.ready);

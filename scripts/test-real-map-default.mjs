@@ -150,7 +150,7 @@ try {
     // f73: the demo dot only where checked geometry places it. (GPS starts on;
     // with no permission granted the dot is the demo position.)
     const you = () => page.evaluate(() => document.querySelector("[data-realmap-you]")?.getAttribute("data-realmap-you") || "missing");
-    const gpsText = () => page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
+    const gpsText = () => page.evaluate(() => document.querySelector('button[data-map-locate]')?.innerText.trim());
     if (!C.fix) {
       const you0 = await you();
       check(you0 === (C.pins ? "shown" : "hidden"), `${C.fid}: demo "you" dot with no fix is ${you0} (want ${C.pins ? "shown" : "hidden"})`);
@@ -161,14 +161,14 @@ try {
       // map load can take longer than that on a busy machine.
       await ctx.setGeolocation({ latitude: C.fix.latitude + 1e-6, longitude: C.fix.longitude, accuracy: 8 });
       const label = await page.waitForFunction(() => {
-        const t = document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim();
+        const t = document.querySelector('button[data-map-locate]')?.innerText.trim();
         return t === "LIVE" || t === "OFF-SITE" ? t : null;   // the on-site verdict, not a transient state
       }, null, { timeout: 15000 }).then(h => h.jsonValue(), async () => `timeout (pill "${await gpsText()}")`);
       check(label === "LIVE", `${tag0(C)}: a real fix at ${C.fix.stage} reads "${label}" (want LIVE, not OFF-SITE)`);
       check(await you() === "shown", `${tag0(C)}: the live dot at ${C.fix.stage} is ${await you()}`);
       // GPS off → the dot falls back to the demo position, which ACL cannot place.
-      await page.click('button[aria-label="Toggle GPS"]'); await page.waitForTimeout(500);
-      check(await gpsText() === "OFF" && await you() === "hidden", `${tag0(C)}: GPS off leaves the dot ${await you()} (pill "${await gpsText()}"), want hidden`);
+      await page.click('button[data-map-locate]'); await page.waitForTimeout(500);
+      check(/^Show me on the map/.test(await gpsText() || "") && await you() === "hidden", `${tag0(C)}: GPS off leaves the dot ${await you()} (pill "${await gpsText()}"), want hidden`);
     }
     if (C.only === "fix") { check(!errors.length, `${tag0(C)}: no page errors (${errors.slice(0, 2).join(" | ")})`); await ctx.close(); continue; }
     // 1. pins
