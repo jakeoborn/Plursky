@@ -6806,7 +6806,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           padding: "2px 8px", borderRadius: 999,
           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
           pointerEvents: "none", boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)",
-        }}>YOU</div>
+        }}>{avatar.live ? "YOU" : "DEMO"}</div>
       </div>
     </div>
 

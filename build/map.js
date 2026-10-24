@@ -8958,7 +8958,7 @@ function TopDownMap({
       pointerEvents: "none",
       boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)"
     }
-  }, "YOU"))), compass && React.createElement("div", {
+  }, avatar.live ? "YOU" : "DEMO"))), compass && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
