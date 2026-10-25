@@ -5,7 +5,7 @@ Full ship flow: **[RELEASE.md](RELEASE.md)**. Open work: **[TODO.md](TODO.md)**.
 
 Read AGENT_LOG.md at session start; append a dated entry before ending a session. Narrowly-scoped handoffs, decisions, and open loops only.
 
-Never launch the general-purpose subagent. Use only narrowly scoped custom subagents with restricted tools; if none fits, do the work directly. (Enforced by `permissions.deny` in `.claude/settings.json`: `Agent(general-purpose)` and the catch-all `Agent(claude)`.)
+Never launch the general-purpose subagent. Use only narrowly scoped custom subagents with restricted tools; if none fits, do the work directly.
 
 Prefer decisions that improve UX, DX, and AX together; when they conflict, UX wins, then DX, then AX - and never break anything.
 
