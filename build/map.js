@@ -7535,7 +7535,7 @@ function RealMap({
       top: 58,
       left: 10,
       zIndex: 4,
-      background: "rgba(var(--shade-rgb),0.78)",
+      background: "var(--offline-badge-bg, rgba(var(--shade-rgb),0.78))",
       color: "var(--ink)",
       borderColor: "rgba(var(--ink-rgb),0.18)",
       padding: "8px 10px 7px",
