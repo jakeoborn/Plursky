@@ -2454,6 +2454,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b4m. Map edition label ─────────────────────────────────────────────
+// A plate drawn for another edition (`mapArtYear`) is named wherever that art
+// is on screen, inside main's posture label; Escape Halloween 2026 ships its
+// 2025 map. Fixture rule on ACL plus Escape as shipped, 280–393 px.
+{
+  console.log("▸ Map edition label — another edition's art names its year wherever it is on screen");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-edition-label.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map edition label failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5a. Sitemap commit rows ───────────────────────────────────────────
 // The homepage, terms and privacy fingerprints come from committed files only,
 // so plain --check (the freshness gate above) must hold them to the committed
