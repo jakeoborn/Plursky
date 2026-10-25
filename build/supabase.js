@@ -91,6 +91,7 @@ async function sbSignInWithApple() {
           });
         } catch {}
       }
+      plurskyClaimProviderName(who.givenName);
       return {
         error: null
       };
@@ -203,7 +204,7 @@ function sbOnAuthChange(cb) {
           if (!p) return;
           localStorage.setItem("spotify_profile", JSON.stringify({
             id: p.id,
-            name: p.display_name || p.id,
+            name: p.display_name || null,
             email: p.email || null,
             image: p.images?.[0]?.url || null,
             country: p.country || null,
@@ -217,6 +218,7 @@ function sbOnAuthChange(cb) {
         var meta = session?.user?.user_metadata;
         var name = meta?.full_name || meta?.name;
         if (name) localStorage.setItem("plursky_apple_name", name);
+        if (name && session?.user?.app_metadata?.provider === "apple") plurskyClaimProviderName(name);
       } catch {}
     }
   });
@@ -732,13 +734,7 @@ function AccountCard({
       fontSize: 11
     }
   }, "supabase.jsx"), " to enable cloud sync."), configured && sbUser && (() => {
-    var sp = (() => {
-      try {
-        return JSON.parse(localStorage.getItem("spotify_profile") || "null");
-      } catch {
-        return null;
-      }
-    })();
+    var sp = typeof getSpotifyProfileSync === "function" ? getSpotifyProfileSync() : null;
     var appleName = (() => {
       try {
         return localStorage.getItem("plursky_apple_name");
@@ -805,7 +801,14 @@ function AccountCard({
         color: "var(--acc-ink)",
         marginTop: 2
       }
-    }, "● SIGNED IN", sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""))), React.createElement("div", {
+    }, "● SIGNED IN", sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""), plurskyNameStaysYours(displayName) && React.createElement("div", {
+      "data-name-stays": true,
+      style: {
+        fontSize: 12,
+        color: "var(--ink-2)",
+        marginTop: 4
+      }
+    }, "Signed in — name stays yours: ", plurskyLocalName()))), React.createElement("div", {
       style: {
         display: "flex",
         gap: 8,
@@ -1346,24 +1349,70 @@ function sbFindByPingCode(code) {
   }
   return null;
 }
+function plurskyLocalName() {
+  try {
+    return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "";
+  } catch {
+    return "";
+  }
+}
+function plurskySetLocalName(value) {
+  var name = String(value || "").trim();
+  if (!name) return "";
+  try {
+    localStorage.setItem("plursky_display_name", name);
+  } catch {}
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:display-name", {
+      detail: name
+    }));
+  } catch {}
+  return name;
+}
+function plurskyQuickNameDue() {
+  try {
+    return !plurskyLocalName() && localStorage.getItem("plursky_display_name") === null;
+  } catch {
+    return false;
+  }
+}
+function plurskySkipQuickName() {
+  try {
+    if (localStorage.getItem("plursky_display_name") === null) localStorage.setItem("plursky_display_name", "");
+  } catch {}
+}
+function plurskyClaimProviderName(fullName) {
+  var current = plurskyLocalName();
+  if (current) return current;
+  var first = String(fullName || "").trim().split(/\s+/)[0] || "";
+  return first ? plurskySetLocalName(first) : "";
+}
+function plurskyNameStaysYours(accountName) {
+  var local = plurskyLocalName();
+  var acct = String(accountName || "").trim();
+  if (!local || !acct) return false;
+  var first = acct.split(/\s+/)[0].toLowerCase();
+  return local.trim().toLowerCase() !== first && local.trim().toLowerCase() !== acct.toLowerCase();
+}
 function FriendsCard({
   state,
   setState
 }) {
   var configured = !!(SUPABASE_URL && SUPABASE_ANON);
   var [sharing, setSharing] = React.useState(false);
-  var [myName, setMyName] = React.useState(() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "";
-    } catch {
-      return "";
-    }
-  });
+  var [myName, setMyName] = React.useState(plurskyLocalName);
   var [stageId, setStageId] = React.useState(() => STAGES?.[0]?.id || "");
   var [editName, setEditName] = React.useState(false);
   var [nameInput, setNameInput] = React.useState("");
   var [snap, setSnap] = React.useState(() => sbGetPresSnap());
   React.useEffect(() => sbOnPresenceChange(setSnap), []);
+  React.useEffect(() => {
+    var onName = e => {
+      if (e.detail) setMyName(e.detail);
+    };
+    window.addEventListener("plursky:display-name", onName);
+    return () => window.removeEventListener("plursky:display-name", onName);
+  }, []);
   React.useEffect(() => {
     if (!myName && state.spotifyConnected) {
       ensureSpotifyProfile().then(p => {
@@ -1381,9 +1430,7 @@ function FriendsCard({
     var v = val.trim().slice(0, 20);
     if (!v) return;
     setMyName(v);
-    try {
-      localStorage.setItem("plursky_display_name", v);
-    } catch {}
+    plurskySetLocalName(v);
     setEditName(false);
     setNameInput("");
   };
@@ -3210,16 +3257,12 @@ function CrewCard({
   var totemInputRef = React.useRef(null);
   var leaveRef = React.useRef(null);
   var myPid = sbGetMyPresId();
-  var myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "Me";
-    } catch {
-      return "Me";
-    }
-  })();
-  var joinCrew = c => {
+  var myName = plurskyLocalName() || "Me";
+  var joinCrew = async c => {
     var newCode = (c || code).toUpperCase().trim().slice(0, 6);
     if (newCode.length < 4) return;
+    if (plurskyQuickNameDue() && window.plurskyAskQuickName) await window.plurskyAskQuickName();
+    var joinName = plurskyLocalName() || "Me";
     setCode(newCode);
     try {
       localStorage.setItem("plursky_group_code", newCode);
@@ -3227,7 +3270,7 @@ function CrewCard({
     if (leaveRef.current) leaveRef.current();
     leaveRef.current = sbGroupJoin(newCode, {
       pid: myPid,
-      name: myName,
+      name: joinName,
       artistIds: savedInLineup(state.saved)
     }, setMembers);
     setJoined(true);

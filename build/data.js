@@ -586,27 +586,32 @@ var FESTIVALS_REGISTRY = [{
       stageId: "kinetic",
       lat: 28.53700,
       lng: -81.40040,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "circuit",
       lat: 28.53999,
       lng: -81.40219,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "neon",
       lat: 28.53900,
       lng: -81.39850,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "stereo",
       lat: 28.53730,
       lng: -81.40310,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }, {
       stageId: "bacardi",
       lat: 28.53660,
       lng: -81.40240,
-      src: "poster"
+      src: "poster",
+      basis: "poster-read, 2025 art, unsurveyed"
     }],
     mainStageId: "kinetic",
     mapImage: "edco-tinker-2026.jpg",
@@ -1537,6 +1542,248 @@ function savedInLineup(savedIds) {
   var known = new Set(lineupFor("all").map(a => a.id));
   return savedIds.filter(id => known.has(id));
 }
+var CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+var SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try {
+    var v = JSON.parse(localStorage.getItem(key) || "null");
+    return v == null ? fallback : v;
+  } catch {
+    return fallback;
+  }
+}
+function _l3Changed() {
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:attend-change"));
+  } catch {}
+}
+function _attendKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_attend_v1`;
+}
+function attendWindows(fid) {
+  var v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+function nightMinToHHMM(m) {
+  var h = Math.floor(m / 60) % 24,
+    mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+function _attendLineup(fid) {
+  var id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  var ds = typeof window !== "undefined" && window._DATA_SETS || {};
+  return ds[id] && Array.isArray(ds[id].artists) ? ds[id].artists : [];
+}
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  var s = toNightMin(a.start),
+    e = toNightMin(a.end),
+    ws = toNightMin(w.start),
+    we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
+function _attendSameNight(a, b) {
+  if (a.day !== b.day) return false;
+  var wa = a.weekend,
+    wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+function attendWindow(a, fid, savedIds) {
+  var whole = {
+    start: a && a.start,
+    end: a && a.end,
+    partial: false,
+    with: null
+  };
+  if (!a || !a.start || !a.end) return whole;
+  var all = attendWindows(fid),
+    w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  if (w.with) {
+    var saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    var partner = _attendLineup(fid).find(x => x.id === w.with);
+    var back = all[w.with];
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+  }
+  return {
+    start: w.start,
+    end: w.end,
+    partial: true,
+    with: w.with || null
+  };
+}
+function attendWindowLabel(a, win) {
+  var w = win || attendWindow(a);
+  if (!w.partial) return "";
+  var late = w.start !== a.start,
+    early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  var all = attendWindows(fid);
+  all[id] = {
+    start,
+    end,
+    ...(withId ? {
+      with: withId
+    } : {})
+  };
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  var all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) {
+  return [idA, idB].sort().join("|");
+}
+function _acceptedPairs() {
+  var v = _l3Read(CLASH_KEPT_BOTH_KEY, []);
+  return new Set(Array.isArray(v) ? v : []);
+}
+function clashAccepted(a, b) {
+  return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id));
+}
+function acceptClash(a, b) {
+  var s = _acceptedPairs();
+  s.add(clashPairKey(a.id, b.id));
+  try {
+    localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s]));
+  } catch {}
+  _l3Changed();
+}
+function attendOverlaps(a, b, fid, savedIds) {
+  return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds));
+}
+function setsClash(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b);
+}
+function setsOverlapAccepted(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b);
+}
+function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return {
+    first: null,
+    second: null,
+    lo: 0,
+    hi: -1,
+    def: 0,
+    ok: false
+  };
+  var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  var lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  var hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return {
+    first,
+    second,
+    lo,
+    hi,
+    def: lo,
+    ok: lo <= hi
+  };
+}
+function snapSplitSwitch(v, lo, hi) {
+  var n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  var top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
+function splitBlocker(a, b, fid) {
+  var _loop2 = function () {
+      if (!x || !other) return 0;
+      var w = attendWindow(x, fid);
+      if (w.partial && w.with && w.with !== other.id) {
+        var partner = _attendLineup(fid).find(p => p.id === w.with);
+        if (partner) return {
+          v: {
+            act: x,
+            partner
+          }
+        };
+      }
+    },
+    _ret;
+  for (var [x, other] of [[a, b], [b, a]]) {
+    _ret = _loop2();
+    if (_ret === 0) continue;
+    if (_ret) return _ret.v;
+  }
+  return null;
+}
+function splitNight(a, b, switchMin, fid) {
+  var {
+    first,
+    second,
+    lo,
+    hi,
+    ok
+  } = splitRange(a, b);
+  if (!ok || splitBlocker(a, b, fid)) return false;
+  var sw = snapSplitSwitch(switchMin, lo, hi);
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
+}
+function useAttendVersion() {
+  var [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    var f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
+function _alertsKeptKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_alerts_kept_v1`;
+}
+function alertsKeptIds(fid) {
+  var v = _l3Read(_alertsKeptKey(fid), []);
+  return Array.isArray(v) ? v.filter(x => typeof x === "string") : [];
+}
+function setAlertsKept(id, on, fid) {
+  var cur = alertsKeptIds(fid);
+  var next = on ? cur.includes(id) ? cur : [...cur, id] : cur.filter(x => x !== id);
+  if (next.length === cur.length && next.every((x, i) => x === cur[i])) return;
+  try {
+    localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(next));
+  } catch {}
+  _l3Changed();
+}
+function pruneAlertsKept(savedIds, fid) {
+  var saved = new Set(savedIds || []);
+  var cur = alertsKeptIds(fid);
+  if (cur.some(id => saved.has(id))) {
+    try {
+      localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(cur.filter(id => !saved.has(id))));
+    } catch {}
+    _l3Changed();
+  }
+}
+function reminderSetIds(savedIds, fid) {
+  var saved = Array.isArray(savedIds) ? savedIds : [];
+  return [...saved, ...alertsKeptIds(fid).filter(id => !saved.includes(id))];
+}
+var _CLASH_LOSERS = new Set();
+function noteClashLoser(id) {
+  if (id && !_CLASH_LOSERS.has(id)) {
+    _CLASH_LOSERS.add(id);
+    _l3Changed();
+  }
+}
+function clashLoserIds() {
+  return [..._CLASH_LOSERS];
+}
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;
@@ -1675,7 +1922,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop2 = function () {
+  var _loop3 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -1708,10 +1955,10 @@ function diffSchedule(oldActs, newActs, cfg) {
         startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null
       });
     },
-    _ret;
+    _ret2;
   for (var [id, o] of before) {
-    _ret = _loop2();
-    if (_ret === 0) continue;
+    _ret2 = _loop3();
+    if (_ret2 === 0) continue;
   }
   for (var [_id2, n] of after) {
     if (before.has(_id2)) continue;
@@ -1832,7 +2079,7 @@ function _pinUnresolvedTimes(acts, ev, attach) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop3 = function () {
+  var _loop4 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -1850,7 +2097,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop3()) continue;
+    if (_loop4()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }
@@ -2503,49 +2750,57 @@ var EDCO_AMENITIES = [{
   type: "water",
   label: "Hydration",
   x: 44,
-  y: 30
+  y: 30,
+  src: "unsourced"
 }, {
   id: "eoa2",
   type: "water",
   label: "Hydration",
   x: 60,
-  y: 62
+  y: 62,
+  src: "unsourced"
 }, {
   id: "eoa3",
   type: "food",
   label: "Vendor Village",
   x: 50,
-  y: 50
+  y: 50,
+  src: "unsourced"
 }, {
   id: "eoa4",
   type: "food",
   label: "Westside Eats",
   x: 22,
-  y: 58
+  y: 58,
+  src: "unsourced"
 }, {
   id: "eoa5",
   type: "med",
   label: "Medical",
   x: 54,
-  y: 40
+  y: 40,
+  src: "unsourced"
 }, {
   id: "eoa6",
   type: "toilet",
   label: "Restrooms",
   x: 30,
-  y: 40
+  y: 40,
+  src: "unsourced"
 }, {
   id: "eoa7",
   type: "toilet",
   label: "Restrooms",
   x: 70,
-  y: 56
+  y: 56,
+  src: "unsourced"
 }, {
   id: "eoa8",
   type: "info",
   label: "Info & Guest Services",
   x: 48,
-  y: 18
+  y: 18,
+  src: "unsourced"
 }];
 var LL_STAGES = [{
   id: "prehistoric",

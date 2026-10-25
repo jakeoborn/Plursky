@@ -2103,7 +2103,9 @@ function MapScreen({ state, setState }) {
     if (REAL_MAP_ONLY) return;
     try { sessionStorage.setItem("plursky_realmap_failed", "1"); } catch {}
     setUseRealMap(false);
-    setRealMapNote((why || "Real map unavailable") + " — festival map shown");
+    // Offline is said as offline (L7): the festival map below is the cached one.
+    const offline = (typeof navigator !== "undefined" && navigator.onLine === false) || why === "No network connection";
+    setRealMapNote((offline ? "Offline" : (why || "Real map unavailable")) + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
   };
   // v133: pinch/button zoom + pan over the SVG TopDownMap. zoom=1 is fit-screen
@@ -2162,7 +2164,7 @@ function MapScreen({ state, setState }) {
                     (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   const [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   const crewName = React.useMemo(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
+    return plurskyLocalName();
   }, []);
   // Push-style reminders for saved sets — see useSavedSetReminders below.
   const [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
@@ -2359,7 +2361,10 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      // A friend's declared stage always counts. Inferring one from their GPS
+      // dot needs sourced registration: on poster-read anchors the dot's
+      // position on the art is a guess, and the nudge would fire off it.
+      const sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -2529,6 +2534,9 @@ function MapScreen({ state, setState }) {
     : gpsStatus === "unavailable" ? "N/A"
     : "DEMO";
   const gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
+  // L7: the locate button says it works with no signal only where this
+  // festival's map is on the device (one predicate, _mapCachedOffline).
+  const mapCachedOffline = useMapCachedOffline(FESTIVAL_CONFIG);
 
   // Unified sheet handles visibility internally based on stage/meetMode/search state.
 
@@ -2571,6 +2579,14 @@ function MapScreen({ state, setState }) {
             </div>
           );
         })()}
+        {/* Why the festival map is on screen instead of the real one. In the
+            header, on solid ground (L7): floating at the top of the map it
+            sat on the locate button and the battery pill at 320 wide. */}
+        {realMapNote && (
+          <div data-map-fallback-note role="status" style={{ flexBasis: "100%", font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
+            {realMapNote}
+          </div>
+        )}
         {gpsLive && gpsStatus === "denied" && (
           <div data-map-gps-denied style={{ flexBasis: "100%", font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
             Location off · allow it to see yourself on the map
@@ -2586,25 +2602,41 @@ function MapScreen({ state, setState }) {
             background so it reads over any map style. */}
         <div style={{
           position: "absolute", top: 12, right: 10, zIndex: 4,
-          display: "flex", flexDirection: "column", gap: 6,
+          display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6,
         }}>
-          <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
-            minWidth: 46, minHeight: 44, padding: "6px 8px", borderRadius: "var(--rad-sm)",
+          {/* The locate button (L7). Off, it says what it does — "Show me on
+              the map" — and, only where this festival's map is on the
+              device, "Works with no signal". On, it is the status chip
+              (LIVE / FINDING… / NO FIX), unchanged: LIVE stays the one
+              fresh-fix predicate. Same GPS path, no new permission flow. */}
+          <button data-map-locate={gpsLive ? "on" : "off"} onClick={() => setGpsLive(g => !g)} aria-label="Show me on the map" aria-pressed={gpsActive} style={{
+            alignSelf: "flex-end",
+            minWidth: 46, minHeight: 44, padding: gpsLive ? "6px 8px" : "7px 12px 7px 10px", borderRadius: "var(--rad-sm)",
             background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
             color: gpsActive ? "var(--on-acc)" : "var(--ink)", // denial is said by the banner; the chip stays quiet
             border: gpsActive ? "none" : "1px solid var(--line-2)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             cursor: "pointer",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+            display: "flex", flexDirection: gpsLive ? "column" : "row", alignItems: "center", gap: gpsLive ? 2 : 8,
+            textAlign: "left",
             boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
               <path d="M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"/>
               <circle cx="12" cy="12" r="6"/>
               {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
             </svg>
-            <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
+            {gpsLive ? (
+              <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
+            ) : (
+              <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ font: "500 13px/1.2 var(--f-ui)", whiteSpace: "nowrap" }}>Show me on the map</span>
+                {mapCachedOffline && (
+                  <span data-map-no-signal style={{ font: "400 11px/1.2 var(--f-ui)", color: "var(--ink-2)", whiteSpace: "nowrap" }}>Works with no signal</span>
+                )}
+              </span>
+            )}
           </button>
           {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
@@ -3196,18 +3228,6 @@ function MapScreen({ state, setState }) {
             onClick={handleMapClick}
           />
         )}
-        {realMapNote && (
-          <div style={{
-            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
-            zIndex: 4, padding: "4px 10px", borderRadius: 999,
-            background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
-            backdropFilter: "blur(8px)", maxWidth: "88%", textAlign: "center",
-          }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
-              {realMapNote.toUpperCase()}
-            </span>
-          </div>
-        )}
 
         {/* Ground-level peek window (picture-in-picture) */}
         {stage && peek && (
@@ -3790,6 +3810,46 @@ function _packMirror() {
   try { return JSON.parse(localStorage.getItem(PACK_MIRROR_KEY) || "{}") || {}; } catch { return {}; }
 }
 function _packMirrorWrite(all) { try { localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all)); } catch {} }
+
+// ── Is this festival's map on the device? (L7) ──────────────────────
+// The ONE predicate behind the map tab's "Works with no signal" line. True
+// only when a map for this festival will draw with no network:
+//   • a saved offline street pack (the same mirror RealMap opens on when
+//     offline at mount), or
+//   • its ground plate (cfg.mapImage). sw.js LOCAL precaches every mapImage —
+//     the "precache integrity" gate in verify.mjs holds that in both
+//     directions — but on the web the plate is asked of Cache Storage itself,
+//     because an install that failed (addAll is atomic) or has not finished
+//     caches nothing. The native app has no service worker; build.mjs bundles
+//     the plate into dist/, so there it is on the device.
+// A mapMode:"real" festival has no plate, and its basemap tiles are cached
+// only as they are viewed, which is no promise: without a pack it is false.
+function _mapPlateFor(cfg) {
+  return cfg && cfg.mapMode !== "real" && typeof cfg.mapImage === "string" && cfg.mapImage ? cfg.mapImage : null;
+}
+async function _mapCachedOffline(cfg) {
+  if (!cfg || !cfg.id) return false;
+  if (_packMirror()[cfg.id]) return true;
+  const plate = _mapPlateFor(cfg);
+  if (!plate) return false;
+  try { if (window.Capacitor?.isNativePlatform?.()) return true; } catch {}
+  if (typeof caches === "undefined") return false;
+  try { return !!(await caches.match(new URL(plate, location.href).href)); } catch { return false; }
+}
+function useMapCachedOffline(cfg) {
+  const fid = cfg && cfg.id;
+  const [cached, setCached] = React.useState(false);
+  React.useEffect(() => {
+    let alive = true;
+    const check = () => _mapCachedOffline(cfg).then(v => { if (alive) setCached(!!v); }, () => {});
+    check();
+    // A first visit installs the worker after the map has opened: ask again
+    // once it is active (its install is what fills the cache).
+    try { navigator.serviceWorker?.ready?.then(check, () => {}); } catch {}
+    return () => { alive = false; };
+  }, [fid]);
+  return cached;
+}
 
 function _packEntry(fid) {
   const reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
@@ -5811,10 +5871,10 @@ function RealMap({
       {packMode ? (
         <div role="status" className="duo-code" style={{
           position: "absolute", top: 58, left: 10, zIndex: 4,
-          background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
+          background: "var(--offline-badge-bg, rgba(var(--shade-rgb),0.78))", color: "var(--ink)",
           borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
-        }}>OFFLINE · SAVED STREET MAP</div>
+        }}>OFFLINE — SHOWING CACHED MAP</div>
       ) : (
       <div ref={styleSwitchRef} data-realmap-style-switch style={{
         position: "absolute", top: 58, left: 10, zIndex: 4,
@@ -5853,7 +5913,11 @@ function RealMap({
           gap: 6, padding: 20, textAlign: "center",
         }}>
           <div>MAP ERROR</div>
-          <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>{err}</div>
+          {/* Offline is said as offline (L7). Here nothing is cached — a saved
+              pack would have opened instead (pack mode) — so it says so. */}
+          <div data-realmap-err style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
+            {err === "No network connection" ? "Offline — no cached map for this festival yet" : err}
+          </div>
           {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
               map EXISTS. On a mapMode:"real" festival there is no art and no
               stage grid, so that button drops the user onto a blank plate —
@@ -6742,7 +6806,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           padding: "2px 8px", borderRadius: 999,
           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
           pointerEvents: "none", boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)",
-        }}>YOU</div>
+        }}>{avatar.live ? "YOU" : "DEMO"}</div>
       </div>
     </div>
 
@@ -7392,13 +7456,7 @@ function _crewRowToThreadItem(row, myPid) {
 }
 function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
   const isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  const myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "Me";
-    } catch { return "Me"; }
-  })();
+  const myName = plurskyLocalName() || "Me";
 
   const [thread, setThread] = React.useState(() => loadThread(friend.id));
   const [draft, setDraft] = React.useState("");

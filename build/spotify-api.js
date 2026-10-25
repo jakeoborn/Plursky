@@ -529,7 +529,7 @@ async function _spotifyExchangeCode(code, redirectUri) {
         var p = await profRes.json();
         localStorage.setItem("spotify_profile", JSON.stringify({
           id: p.id,
-          name: p.display_name || p.id,
+          name: p.display_name || null,
           email: p.email || null,
           image: p.images?.[0]?.url || null,
           country: p.country || null,
@@ -723,7 +723,9 @@ async function getValidToken() {
 function getSpotifyProfileSync() {
   try {
     var raw = localStorage.getItem("spotify_profile");
-    return raw ? JSON.parse(raw) : null;
+    var prof = raw ? JSON.parse(raw) : null;
+    if (prof && prof.name && prof.name === prof.id) prof.name = null;
+    return prof;
   } catch {
     return null;
   }
@@ -743,7 +745,7 @@ async function ensureSpotifyProfile() {
     var p = await res.json();
     var prof = {
       id: p.id,
-      name: p.display_name || p.id,
+      name: p.display_name || null,
       email: p.email || null,
       image: p.images?.[0]?.url || null,
       country: p.country || null,

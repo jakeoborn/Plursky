@@ -231,6 +231,9 @@ async function sbSignInWithApple() {
           });
         } catch {}
       }
+      // Apple's first name becomes the local name only when none is set: a
+      // name typed before signing in stays.
+      plurskyClaimProviderName(who.givenName);
       return { error: null };
     } catch (e) {
       // User-cancellation should not surface as a scary error.
@@ -329,7 +332,9 @@ function sbOnAuthChange(cb) {
         }).then(r => r.ok ? r.json() : null).then(p => {
           if (!p) return;
           localStorage.setItem("spotify_profile", JSON.stringify({
-            id: p.id, name: p.display_name || p.id,
+            // No display name → no name. The raw Spotify id is not a name and
+            // must never reach the Me tab or a crew card.
+            id: p.id, name: p.display_name || null,
             email: p.email || null, image: p.images?.[0]?.url || null,
             country: p.country || null, product: p.product || null,
           }));
@@ -342,6 +347,8 @@ function sbOnAuthChange(cb) {
         const meta = session?.user?.user_metadata;
         const name = meta?.full_name || meta?.name;
         if (name) localStorage.setItem("plursky_apple_name", name);
+        // Web Apple sign-in: same rule as the native path, fill only when unset.
+        if (name && session?.user?.app_metadata?.provider === "apple") plurskyClaimProviderName(name);
       } catch {}
     }
   });
@@ -809,7 +816,7 @@ function AccountCard({ state, setState }) {
       )}
 
       {configured && sbUser && (() => {
-        const sp = (() => { try { return JSON.parse(localStorage.getItem("spotify_profile") || "null"); } catch { return null; } })();
+        const sp = typeof getSpotifyProfileSync === "function" ? getSpotifyProfileSync() : null;
         const appleName = (() => { try { return localStorage.getItem("plursky_apple_name"); } catch { return null; } })();
         const isApple = sbUser.app_metadata?.provider === "apple";
         const avatar = sp?.image || null;
@@ -837,6 +844,11 @@ function AccountCard({ state, setState }) {
                   {displayName}
                 </div>
                 <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--acc-ink)", marginTop: 2 }}>● SIGNED IN{sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""}</div>
+                {plurskyNameStaysYours(displayName) && (
+                  <div data-name-stays style={{ fontSize: 12, color: "var(--ink-2)", marginTop: 4 }}>
+                    Signed in — name stays yours: {plurskyLocalName()}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -1211,6 +1223,53 @@ function sbFindByPingCode(code) {
   return null;
 }
 
+// ── Local name: what Plursky calls you, signed in or not ─────
+// One answer for every door: crew presence, the picks a crew sees, crew
+// recaps and the Me tab all read plurskyLocalName(). It is the name typed on
+// this phone (plursky_display_name, or user_name from the older Personalize
+// sheet). No account and no server are involved in setting it.
+// A sign-in fills it only while it is empty, so a typed name is never
+// replaced by an account's name (plurskyClaimProviderName).
+// Skipping the quick-name ask stores an EMPTY plursky_display_name: the key
+// then exists, so the ask is not shown again, but it still reads as "no name"
+// everywhere (every reader uses ||), and a later sign-in still fills it.
+function plurskyLocalName() {
+  try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; }
+  catch { return ""; }
+}
+function plurskySetLocalName(value) {
+  const name = String(value || "").trim();
+  if (!name) return "";
+  try { localStorage.setItem("plursky_display_name", name); } catch {}
+  // Screens already mounted (Me, the crew cards) hold the name in state.
+  try { window.dispatchEvent(new CustomEvent("plursky:display-name", { detail: name })); } catch {}
+  return name;
+}
+function plurskyQuickNameDue() {
+  try { return !plurskyLocalName() && localStorage.getItem("plursky_display_name") === null; }
+  catch { return false; }
+}
+function plurskySkipQuickName() {
+  try { if (localStorage.getItem("plursky_display_name") === null) localStorage.setItem("plursky_display_name", ""); } catch {}
+}
+// A provider's name (Apple sends it once, on the first authorize) becomes the
+// local name only when there is none. Returns the name in force afterwards.
+function plurskyClaimProviderName(fullName) {
+  const current = plurskyLocalName();
+  if (current) return current;
+  const first = String(fullName || "").trim().split(/\s+/)[0] || "";
+  return first ? plurskySetLocalName(first) : "";
+}
+// The Me tab's account row says so when the account's name and the local
+// name differ, so a signed-in user knows which one their crew sees.
+function plurskyNameStaysYours(accountName) {
+  const local = plurskyLocalName();
+  const acct = String(accountName || "").trim();
+  if (!local || !acct) return false;
+  const first = acct.split(/\s+/)[0].toLowerCase();
+  return local.trim().toLowerCase() !== first && local.trim().toLowerCase() !== acct.toLowerCase();
+}
+
 // ── FriendsCard ───────────────────────────────────────────────
 // Replaces the hardcoded friends array in MeScreen.
 // Demo mode (no Supabase) shows mock data. Live mode uses presence.
@@ -1218,19 +1277,20 @@ function FriendsCard({ state, setState }) {
   const configured = !!(SUPABASE_URL && SUPABASE_ANON);
 
   const [sharing,   setSharing]   = React.useState(false);
-  const [myName,    setMyName]    = React.useState(() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "";
-    } catch { return ""; }
-  });
+  const [myName,    setMyName]    = React.useState(plurskyLocalName);
   const [stageId,   setStageId]   = React.useState(() => STAGES?.[0]?.id || "");
   const [editName,  setEditName]  = React.useState(false);
   const [nameInput, setNameInput] = React.useState("");
   const [snap,      setSnap]      = React.useState(() => sbGetPresSnap());
 
   React.useEffect(() => sbOnPresenceChange(setSnap), []);
+  // The quick-name ask (or Personalize) can set the name while this card is
+  // mounted on Me; follow it so Go live broadcasts that name.
+  React.useEffect(() => {
+    const onName = e => { if (e.detail) setMyName(e.detail); };
+    window.addEventListener("plursky:display-name", onName);
+    return () => window.removeEventListener("plursky:display-name", onName);
+  }, []);
 
   React.useEffect(() => {
     if (!myName && state.spotifyConnected) {
@@ -1250,7 +1310,7 @@ function FriendsCard({ state, setState }) {
     const v = val.trim().slice(0, 20);
     if (!v) return;
     setMyName(v);
-    try { localStorage.setItem("plursky_display_name", v); } catch {}
+    plurskySetLocalName(v);
     setEditName(false);
     setNameInput("");
   };
@@ -2627,15 +2687,19 @@ function CrewCard({ state }) {
   const leaveRef = React.useRef(null);
 
   const myPid  = sbGetMyPresId();
-  const myName = (() => { try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "Me"; } catch { return "Me"; } })();
+  const myName = plurskyLocalName() || "Me";
 
-  const joinCrew = (c) => {
+  const joinCrew = async (c) => {
     const newCode = (c || code).toUpperCase().trim().slice(0, 6);
     if (newCode.length < 4) return;
+    // Joining shares your picks under your name: the first join is one of the
+    // places the quick-name ask appears (skippable; it never asks twice).
+    if (plurskyQuickNameDue() && window.plurskyAskQuickName) await window.plurskyAskQuickName();
+    const joinName = plurskyLocalName() || "Me";
     setCode(newCode);
     try { localStorage.setItem("plursky_group_code", newCode); } catch {}
     if (leaveRef.current) leaveRef.current();
-    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) }, setMembers);
+    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: joinName, artistIds: savedInLineup(state.saved) }, setMembers);
     setJoined(true);
     setJoining(false);
     setCodeInput("");

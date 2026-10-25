@@ -29,7 +29,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/lorde.webp"
   },
-  "charli xcx": {
+  "charli-xcx": {
     "artist": "Charli XCX",
     "author": "Elena Ternovaja",
     "source": "commons",
@@ -44,7 +44,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/charli-xcx.webp"
   },
-  "amyl and the sniffers": {
+  "amyl-and-the-sniffers": {
     "artist": "Amyl And The Sniffers",
     "author": "kingArthur_aus",
     "source": "commons",
@@ -59,7 +59,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/amyl-and-the-sniffers.webp"
   },
-  "the war on drugs": {
+  "the-war-on-drugs": {
     "artist": "The War On Drugs",
     "author": "Jeff Marquis",
     "source": "commons",
@@ -74,7 +74,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/the-war-on-drugs.webp"
   },
-  "kings of leon": {
+  "kings-of-leon": {
     "artist": "Kings of Leon",
     "author": "Raph_PH",
     "source": "commons",
@@ -89,7 +89,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/kings-of-leon.webp"
   },
-  "john summit": {
+  "john-summit": {
     "artist": "John Summit",
     "author": "Wynneplaga",
     "source": "commons",
@@ -104,7 +104,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Rotated to the file's EXIF orientation (6; the 2026-10-04 copy had shipped sideways), cropped to the face (1300px square of the 2419px original at 551,230), resized to 1024px and converted to WebP on 2026-10-11. Display may crop and overlay.",
     "url": "./artist-photos/john-summit.webp"
   },
-  "laidback luke": {
+  "laidback-luke": {
     "artist": "Laidback Luke",
     "author": "Shawn Tron",
     "source": "commons",
@@ -119,7 +119,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/laidback-luke.webp"
   },
-  "tiësto": {
+  "tiesto": {
     "artist": "Tiësto",
     "author": "Brandon Lim",
     "source": "commons",
@@ -134,7 +134,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/tiesto.webp"
   },
-  "ki/ki": {
+  "ki-ki": {
     "artist": "Ki/Ki",
     "author": "Charlestpt",
     "source": "commons",
@@ -164,7 +164,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/luciano.webp"
   },
-  "da tweekaz": {
+  "da-tweekaz": {
     "artist": "Da Tweekaz",
     "author": "KaiKnight2",
     "source": "commons",
@@ -194,7 +194,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/chuckie.webp"
   },
-  "bone thugs-n-harmony": {
+  "bone-thugs-n-harmony": {
     "artist": "Bone Thugs-N-Harmony",
     "author": "Kmilo from NY/TX",
     "source": "commons",
@@ -209,7 +209,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/bone-thugs-n-harmony.webp"
   },
-  "connan mockasin": {
+  "connan-mockasin": {
     "artist": "Connan Mockasin",
     "author": "Paul Hudson",
     "source": "commons",
@@ -224,7 +224,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/connan-mockasin.webp"
   },
-  "danny brown": {
+  "danny-brown": {
     "artist": "Danny Brown",
     "author": "Julio Enriquez",
     "source": "commons",
@@ -239,7 +239,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/danny-brown.webp"
   },
-  "dj harvey": {
+  "dj-harvey": {
     "artist": "DJ Harvey",
     "author": "Saltyrobot",
     "source": "commons",
@@ -254,7 +254,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/dj-harvey.webp"
   },
-  "floating points": {
+  "floating-points": {
     "artist": "Floating Points",
     "author": "basic_sounds",
     "source": "commons",
@@ -269,7 +269,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/floating-points.webp"
   },
-  "flying lotus": {
+  "flying-lotus": {
     "artist": "Flying Lotus",
     "author": "Simon Fernandez",
     "source": "commons",
@@ -284,7 +284,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/flying-lotus.webp"
   },
-  "honey dijon": {
+  "honey-dijon": {
     "artist": "Honey Dijon",
     "author": "LOVE Magazine",
     "source": "commons",
@@ -299,7 +299,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/honey-dijon.webp"
   },
-  "jane remover": {
+  "jane-remover": {
     "artist": "Jane Remover",
     "author": "Angel",
     "source": "commons",
@@ -314,7 +314,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/jane-remover.webp"
   },
-  "lil' kim": {
+  "lil-kim": {
     "artist": "Lil' Kim",
     "author": "Monique Tatum",
     "source": "commons",
@@ -329,7 +329,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/lil-kim.webp"
   },
-  "men i trust": {
+  "men-i-trust": {
     "artist": "Men I Trust",
     "author": "Justin Higuchi",
     "source": "commons",
@@ -359,7 +359,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/parcels.webp"
   },
-  "purity ring": {
+  "purity-ring": {
     "artist": "Purity Ring",
     "author": "Henry Laurisch",
     "source": "commons",
@@ -389,7 +389,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/tokischa.webp"
   },
-  "charlotte de witte": {
+  "charlotte-de-witte": {
     "artist": "Charlotte de Witte",
     "author": "Alan Overbeek",
     "source": "commons",
@@ -404,7 +404,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/charlotte-de-witte.webp"
   },
-  "four tet": {
+  "four-tet": {
     "artist": "Four Tet",
     "author": "Chris Pimlott",
     "source": "commons",
@@ -434,7 +434,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/kelela.webp"
   },
-  "marco carola": {
+  "marco-carola": {
     "artist": "Marco Carola",
     "author": "Dave Walker",
     "source": "commons",
@@ -464,7 +464,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/rusowsky.webp"
   },
-  "seth troxler": {
+  "seth-troxler": {
     "artist": "Seth Troxler",
     "author": "Ben Price",
     "source": "commons",
@@ -509,7 +509,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/underworld.webp"
   },
-  "steve aoki": {
+  "steve-aoki": {
     "artist": "Steve Aoki",
     "author": "Jalil Arfaoui",
     "source": "commons",
@@ -554,7 +554,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/excision.webp"
   },
-  "dimitri vegas & like mike": {
+  "dimitri-vegas-and-like-mike": {
     "artist": "Dimitri Vegas & Like Mike",
     "author": "Mixtribe",
     "source": "commons",
@@ -569,7 +569,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/dimitri-vegas-and-like-mike.webp"
   },
-  "nina kraviz": {
+  "nina-kraviz": {
     "artist": "Nina Kraviz",
     "author": "Alec Luhn",
     "source": "commons",
@@ -584,7 +584,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/nina-kraviz.webp"
   },
-  "richie hawtin": {
+  "richie-hawtin": {
     "artist": "Richie Hawtin",
     "author": "Sven Volkens",
     "source": "commons",
@@ -629,7 +629,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/galantis.webp"
   },
-  "ice cube": {
+  "ice-cube": {
     "artist": "Ice Cube",
     "author": "Adam Bielawski",
     "source": "commons",
@@ -659,7 +659,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/cascada.webp"
   },
-  "martin garrix": {
+  "martin-garrix": {
     "artist": "Martin Garrix",
     "author": "Moiyeah",
     "source": "commons",
@@ -734,7 +734,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/alesso.webp"
   },
-  "alan walker": {
+  "alan-walker": {
     "artist": "Alan Walker",
     "author": "Maximilian Wild",
     "source": "commons",
@@ -749,7 +749,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/alan-walker.webp"
   },
-  "alison wonderland": {
+  "alison-wonderland": {
     "artist": "Alison Wonderland",
     "author": "Eva Rinaldi",
     "source": "commons",
@@ -779,7 +779,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/deorro.webp"
   },
-  "boys noize": {
+  "boys-noize": {
     "artist": "Boys Noize",
     "author": "Arne Müseler",
     "source": "commons",
@@ -824,7 +824,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/marshmello.webp"
   },
-  "dj snake": {
+  "dj-snake": {
     "artist": "DJ Snake",
     "author": "Arno Partissimo",
     "source": "commons",
@@ -839,7 +839,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/dj-snake.webp"
   },
-  "lane 8": {
+  "lane-8": {
     "artist": "Lane 8",
     "author": "swimfinfan from Chicago",
     "source": "commons",

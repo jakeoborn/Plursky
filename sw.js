@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v452';
+﻿const CACHE      = 'plursky-v472';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v452';
+const APP_VER    = 'v472';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -52,6 +52,8 @@ const LOCAL = [
   `./data/festivals/countdown-nye-2026.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
+  // One artist key for the photo lookup and the registry (artist repository M3).
+  `./data/artist-key.js?v=${APP_VER}`,
   // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
   `./data/festival-art.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
@@ -91,7 +93,9 @@ const LOCAL = [
   './artist-photos/cascada.webp',
   './artist-photos/charli-xcx.webp',
   './artist-photos/charlotte-de-witte.webp',
+  './artist-photos/chuckie.webp',
   './artist-photos/connan-mockasin.webp',
+  './artist-photos/da-tweekaz.webp',
   './artist-photos/danny-brown.webp',
   './artist-photos/deorro.webp',
   './artist-photos/dimitri-vegas-and-like-mike.webp',
@@ -106,12 +110,16 @@ const LOCAL = [
   './artist-photos/honey-dijon.webp',
   './artist-photos/ice-cube.webp',
   './artist-photos/jane-remover.webp',
+  './artist-photos/john-summit.webp',
   './artist-photos/kaskade.webp',
   './artist-photos/kelela.webp',
+  './artist-photos/ki-ki.webp',
   './artist-photos/kings-of-leon.webp',
+  './artist-photos/laidback-luke.webp',
   './artist-photos/lane-8.webp',
   './artist-photos/lil-kim.webp',
   './artist-photos/lorde.webp',
+  './artist-photos/luciano.webp',
   './artist-photos/marco-carola.webp',
   './artist-photos/marshmello.webp',
   './artist-photos/martin-garrix.webp',
@@ -126,6 +134,7 @@ const LOCAL = [
   './artist-photos/slander.webp',
   './artist-photos/steve-aoki.webp',
   './artist-photos/the-war-on-drugs.webp',
+  './artist-photos/tiesto.webp',
   './artist-photos/tokischa.webp',
   './artist-photos/tricky.webp',
   './artist-photos/underworld.webp',
@@ -181,6 +190,7 @@ const LOCAL = [
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,
+  `./build/machine.js?v=${APP_VER}`,
   `./build/chrome.js?v=${APP_VER}`,
   `./build/home.js?v=${APP_VER}`,
   `./build/map.js?v=${APP_VER}`,
@@ -191,6 +201,7 @@ const LOCAL = [
   `./build/spotify-api.js?v=${APP_VER}`,
   `./build/recap-engine.js?v=${APP_VER}`,
   `./build/historical.js?v=${APP_VER}`,
+  `./build/artists.js?v=${APP_VER}`,
   `./build/landing.js?v=${APP_VER}`,
   `./build/spotify.js?v=${APP_VER}`,
   `./build/app.js?v=${APP_VER}`,

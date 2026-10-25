@@ -231,10 +231,41 @@ function OnboardingModal({ onDone, setState, state }) {
   );
 }
 
+// Quick name: "What should Plursky call you?", asked once, on the first
+// screen that uses who you are (opening Me, a first crew join), never in
+// onboarding. It writes the same local name every other door reads
+// (plurskySetLocalName); no account, no server. Closing it in any way is a
+// skip, and a skip is remembered (plurskySkipQuickName), so it never nags.
+function QuickNameSheet({ onDone }) {
+  const [name, setName] = React.useState("");
+  const ok = !!name.trim();
+  const save = () => { if (!ok) return; onDone(plurskySetLocalName(name.trim().slice(0, 20))); };
+  const skip = () => { plurskySkipQuickName(); onDone(null); };
+  return (
+    <FieldSheet title="What should Plursky call you?" onClose={skip}>
+      <div data-quick-name>
+        <p style={{ margin: "2px 0 14px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)" }}>
+          Your crew sees this name next to your picks. No account needed.
+        </p>
+        <input data-quick-name-input value={name} onChange={e => setName(e.target.value)}
+          onKeyDown={e => { if (e.key === "Enter") save(); }}
+          aria-label="Your name" placeholder="First name" autoComplete="given-name" autoFocus maxLength={20} style={{
+            width: "100%", height: 48, borderRadius: 14, border: "none", background: "var(--paper-2)",
+            color: "var(--ink)", padding: "0 16px", fontSize: 17, outline: "none", fontFamily: "inherit",
+          }} />
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 16 }}>
+          <FieldButton data-quick-name-save onClick={save} disabled={!ok}>Save</FieldButton>
+          <FieldButton data-quick-name-skip kind="secondary" onClick={skip}>Not now</FieldButton>
+        </div>
+      </div>
+    </FieldSheet>
+  );
+}
+
 // Personalize: name, Spotify and reminders, each asked with one sentence of
 // why, only when the user opens it. Closing saves the name.
 function PersonalizeSheet({ state, onClose }) {
-  const [name, setName] = React.useState(() => { try { return localStorage.getItem("user_name") || ""; } catch { return ""; } });
+  const [name, setName] = React.useState(plurskyLocalName);
   const { supported: notifSupported, perm: notifPerm, enable: enableNotifs } = useNotifications();
   const save = () => {
     try {
@@ -558,6 +589,22 @@ function App() {
   });
   const [searchOpen, setSearchOpen] = React.useState(false);
   const [personalizeOpen, setPersonalizeOpen] = React.useState(false);
+  // The quick-name ask. Callers await window.plurskyAskQuickName(), which
+  // resolves with the saved name or null on a skip. A layout effect, so it is
+  // in place before any screen's mount effect (Me asks on mount).
+  const [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  const quickNameWaiters = React.useRef([]);
+  React.useLayoutEffect(() => {
+    window.plurskyAskQuickName = () => {
+      if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
+      return new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameOpen(true); });
+    };
+    return () => { delete window.plurskyAskQuickName; };
+  }, []);
+  const quickNameDone = (name) => {
+    setQuickNameOpen(false);
+    quickNameWaiters.current.splice(0).forEach(resolve => resolve(name));
+  };
   // True while any full-screen overlay is mounted. The search FAB below hides
   // rather than trying to out-stack it — see useDeclareModal in chrome.jsx.
   const modalOpen = useModalOpen();
@@ -662,7 +709,7 @@ function App() {
     const dlFrom   = params.get("from"); // optional friend name
     const dlCrew   = params.get("crew"); // crew code from a shared invite link
     const validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    const validTab    = ["home","map","lineup","spotify","me","memories","past"].includes(dlTab) ? dlTab : null;
+    const validTab    = ["home","map","lineup","spotify","me","memories","past","artists"].includes(dlTab) ? dlTab : null;
     // ?tab=past&edition=<id>: a festival page's "Look back" link. Only the
     // shape is checked here; HistoricalEditionView opens an id only if the
     // library index lists it, so a bad id reads "not in the library".
@@ -762,7 +809,7 @@ function App() {
         const raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         const params = new URLSearchParams(raw);
         const tab = params.get("tab");
-        if (["home","map","lineup","spotify","me","memories","past"].includes(tab)) {
+        if (["home","map","lineup","spotify","me","memories","past","artists"].includes(tab)) {
           const edition = params.get("edition");
           const pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({ ...prev, tab, ...(tab === "past" ? { pastEdition } : {}) }));
@@ -814,10 +861,15 @@ function App() {
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
 
-  // Auto-schedule push reminders whenever saves change (if permission already granted)
+  // Auto-schedule push reminders whenever saves change (if permission already
+  // granted), and when a split moves an arrival time (L3).
+  const attendV = useAttendVersion();
   React.useEffect(() => {
+    // L5: a set saved again leaves the alerts-only list (its pruning fires
+    // attend-change, which re-runs this effect).
+    pruneAlertsKept(state.saved);
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
 
   // Cloud-backup auto-push: when the user is signed in to Supabase, push their
   // saved lineup + notes 1s after the most recent change. Silent — the cloud
@@ -865,6 +917,7 @@ function App() {
   else if (state.tab === "recap")    body = <RecapScreen    state={state} setState={setState} />;
   else if (state.tab === "me")       body = <MeScreen       state={state} setState={setState} />;
   else if (state.tab === "past")     body = <PastFestivalsScreen state={state} setState={setState} />;
+  else if (state.tab === "artists")  body = <ArtistsDirectoryScreen state={state} setState={setState} />;
 
   // status bar tint — dark pane on map, light elsewhere
   const statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
@@ -897,7 +950,8 @@ function App() {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
-          const meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+          // The Artists directory is entered from Me, so Me stays lit on it.
+          const meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
@@ -921,6 +975,7 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
+      {quickNameOpen && !showOnboarding && <QuickNameSheet onDone={quickNameDone} />}
       {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
           festival and starts its geolocation flow, so General Home, which is
           before any festival is chosen, never mounts it. */}
@@ -1008,7 +1063,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v452",
+        version: "v472",
       }));
     } catch {}
   }
@@ -1039,7 +1094,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v452
+          Plursky · v472
         </div>
       </div>
     );
