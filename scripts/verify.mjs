@@ -3425,6 +3425,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c3b. Set-level attendance verdict (spec PR 1, logic only) ─────────
+// Presence intervals → full / partial / brief / unknown on synthetic fixtures:
+// threshold boundaries, midnight, W2, time class, photo points, manual wins,
+// and a mutation pass that must catch every threshold nudge.
+{
+  console.log("▸ Set attendance gate — full/partial boundaries, windows, time class, photo points, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-attendance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
 // A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
 // wraps inside the row at 320px instead of cutting at 8 characters.

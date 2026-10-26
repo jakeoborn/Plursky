@@ -1872,6 +1872,109 @@ function _cfgActDayDate(cfg, a) {
   var shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
   return shift > 0 ? _shiftDayDate(d, shift) : d;
 }
+var ATTEND_GAP_MS = 5 * 60000;
+var ATTEND_GRACE_MS = 5 * 60000;
+var ATTEND_FULL_SHARE = 0.85;
+var ATTEND_FULL_EDGE_MS = 10 * 60000;
+var ATTEND_PARTIAL_MS = 15 * 60000;
+var ATTEND_PARTIAL_SHARE = 0.25;
+var ATTEND_PHOTO_MS = 2 * 60000;
+function attendFixesToIntervals(fixes, gapMs = ATTEND_GAP_MS) {
+  var ok = (fixes || []).filter(f => f && typeof f.ms === "number" && isFinite(f.ms) && f.stageId != null).slice().sort((x, y) => x.ms - y.ms || String(x.stageId).localeCompare(String(y.stageId)));
+  var out = {};
+  var run = null;
+  for (var f of ok) {
+    if (run && run.stageId === f.stageId && f.ms - run.to <= gapMs) {
+      run.to = f.ms;
+      continue;
+    }
+    run = {
+      stageId: f.stageId,
+      from: f.ms,
+      to: f.ms
+    };
+    (out[f.stageId] = out[f.stageId] || []).push(run);
+  }
+  for (var k of Object.keys(out)) out[k] = out[k].map(r => ({
+    from: r.from,
+    to: r.to,
+    src: "gps"
+  }));
+  return out;
+}
+function attendTimeClass(a) {
+  if (!a || setTimeStatus(a) !== "confirmed" || _hhmmNightMin(a.end) == null) return "blank";
+  return a.sourceClass === "third_party" ? "third_party" : "settled";
+}
+function attendSetWindowMs(a, cfg, runs) {
+  var base = _cfgActDayDate(cfg, a);
+  if (!base) return null;
+  var win = d => {
+    var s = _wallMs(d, a.start, cfg && cfg.tz),
+      e = _wallMs(d, a.end, cfg && cfg.tz);
+    return s != null && e != null && e > s ? {
+      startMs: s,
+      endMs: e
+    } : null;
+  };
+  var w1 = win(base);
+  var wk = cfg && cfg.weekendStartMs;
+  var shift = a.weekend === "W1" || a.weekend === "W2" || !wk ? 0 : typeof wk.W1 === "number" && typeof wk.W2 === "number" ? wk.W2 - wk.W1 : 0;
+  if (!(shift > 0) || !w1) return w1;
+  var w2 = win(_shiftDayDate(base, shift));
+  if (!w2) return w1;
+  var score = w => _attendPresenceMs(runs, w) + (runs || []).filter(r => r.src === "photo" && r.from >= w.startMs - ATTEND_GRACE_MS && r.from <= w.endMs + ATTEND_GRACE_MS).length;
+  return score(w2) > score(w1) ? w2 : w1;
+}
+function _attendPresenceMs(runs, w) {
+  var ms = 0;
+  for (var r of runs || []) if (r.src !== "photo") ms += Math.max(0, Math.min(r.to, w.endMs) - Math.max(r.from, w.startMs));
+  return ms;
+}
+function attendanceVerdict(a, intervals, cfg, opts = {}) {
+  var timeClass = attendTimeClass(a);
+  var runs = (intervals && a && intervals[a.stage] || []).filter(r => r && typeof r.from === "number" && typeof r.to === "number" && r.to >= r.from);
+  var res = (verdict, caught, minutes, setMin, span) => ({
+    verdict,
+    caught,
+    minutes,
+    setMin,
+    timeClass,
+    span: span || null
+  });
+  var span = rs => rs.length ? {
+    from: Math.min(...rs.map(r => r.from)),
+    to: Math.max(...rs.map(r => r.to))
+  } : null;
+  var w = timeClass === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  var setMin = w ? Math.round((w.endMs - w.startMs) / 60000) : null;
+  if (opts.manual === "full" || opts.manual === "partial") return res(opts.manual, true, null, setMin, span(runs));
+  if (!w) return runs.length ? res("unknown", false, null, null, span(runs)) : res("none", false, null, null, null);
+  var lo = w.startMs - ATTEND_GRACE_MS,
+    hi = w.endMs + ATTEND_GRACE_MS;
+  var inside = runs.filter(r => r.to >= (r.src === "photo" ? lo - ATTEND_PHOTO_MS : lo) && r.from <= (r.src === "photo" ? hi + ATTEND_PHOTO_MS : hi));
+  if (!inside.length) return res("none", false, null, setMin, null);
+  var gps = inside.filter(r => r.src !== "photo");
+  var P = _attendPresenceMs(gps, w),
+    L = w.endMs - w.startMs;
+  var minutes = Math.round(P / 60000);
+  var reached = P >= ATTEND_PARTIAL_MS || P >= ATTEND_PARTIAL_SHARE * L;
+  if (timeClass === "third_party") return reached || gps.length < inside.length ? res("unknown", true, minutes, setMin, span(inside)) : res("brief", false, minutes, setMin, span(inside));
+  var first = gps.length ? Math.min(...gps.map(r => r.from)) : Infinity;
+  var last = gps.length ? Math.max(...gps.map(r => r.to)) : -Infinity;
+  if (P >= ATTEND_FULL_SHARE * L && first <= w.startMs + ATTEND_FULL_EDGE_MS && last >= w.endMs - ATTEND_FULL_EDGE_MS) return res("full", true, minutes, setMin, span(inside));
+  if (reached) return res("partial", true, minutes, setMin, span(inside));
+  if (gps.length < inside.length) return res("unknown", true, minutes, setMin, span(inside));
+  return res("brief", false, minutes, setMin, span(inside));
+}
+function attendanceVerdictLabel(v) {
+  if (!v) return "";
+  if (v.verdict === "full") return "Full set";
+  var r5 = n => Math.max(5, Math.round(n / 5) * 5);
+  if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
+  if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
+  return "";
+}
 function _scheduleActs(artists) {
   return (artists || []).map(a => {
     var o = {
