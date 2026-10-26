@@ -944,3 +944,106 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
   };
 }
+
+// ── Scan my weekend (v475) ────────────────────────────────────
+// The iPhone app can read the photo library directly (PhotoScan plugin)
+// instead of the user hand-picking files in PHPicker, which strips GPS
+// without full access and caps a pick at 50. These are the pure parts: which
+// time ranges to ask the library for, which assets it returned belong to a
+// festival night, and how an asset's own capture data becomes the meta the
+// matcher reads. Nothing here touches the plugin, so it all runs in a vm test.
+
+// Every night of the festival as a UTC window, per weekend. The same
+// 11:00 → 06:00 local span (±30 min) _photoFestivalNightWeekend accepts, so
+// anything the scan keeps is something the matcher can place on a night.
+function _scanNightWindows(cfgIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  if (!cfg?.dayDates) return [];
+  const H = 3600000, slack = 30 * 60000;
+  const out = [];
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number)) {
+      const dm = cfg.dayDates[n];
+      if (!dm || typeof dm.midnightUtc !== "number") continue;
+      const midnight = dm.midnightUtc + shift;
+      out.push({ night: n, weekend, startMs: midnight + 11 * H - slack, endMs: midnight + 30 * H + slack });
+    }
+  }
+  return out.sort((a, b) => a.startMs - b.startMs);
+}
+
+// The library is asked once per contiguous run of nights, not once for the
+// whole envelope: ACL's two weekends sit a week apart, and the week between
+// is not the festival.
+function _scanQueryRanges(cfgIn) {
+  const ranges = [];
+  for (const w of _scanNightWindows(cfgIn)) {
+    const last = ranges[ranges.length - 1];
+    if (last && w.startMs <= last.endMs) last.endMs = Math.max(last.endMs, w.endMs);
+    else ranges.push({ startMs: w.startMs, endMs: w.endMs });
+  }
+  return ranges;
+}
+
+// One PhotoKit asset → the meta processImportedFiles hands the matcher.
+// creationDate is a real instant, so rawUtcMs is authoritative and no
+// timezone is guessed; the wall clock is derived for display only. A 0,0
+// location is PhotoKit's "no fix", never a place.
+function _photoKitAssetMeta(asset, cfgIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  const ms = Number(asset?.createdMs);
+  if (!isFinite(ms) || ms <= 0) return null;
+  const lat = Number(asset.lat), lng = Number(asset.lng);
+  const hasGps = asset.lat != null && asset.lng != null && isFinite(lat) && isFinite(lng)
+    && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
+  const acc = Number(asset.acc);
+  return {
+    date: _wallClockFromUtc(ms, cfg),
+    rawUtcMs: ms,
+    lat: hasGps ? lat : null,
+    lng: hasGps ? lng : null,
+    acc: hasGps && asset.acc != null && isFinite(acc) && acc >= 0 ? acc : null,
+    timestampSource: "photokit",
+    locationSource: hasGps ? "photokit-gps" : "none",
+  };
+}
+
+// Which of the returned assets to import: inside a festival night, not
+// imported by an earlier scan, oldest first. Returns the counts too, so the
+// screen can say what it skipped instead of a bare "nothing found".
+function _scanPickAssets(assets, cfgIn, seenIds) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  const seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  const keep = [];
+  let outside = 0, already = 0;
+  for (const a of assets || []) {
+    if (!a || !a.id) continue;
+    const ms = Number(a.createdMs);
+    if (!isFinite(ms) || !_photoFestivalNightWeekend(null, cfg, ms)) { outside++; continue; }
+    if (seen.has(a.id)) { already++; continue; }
+    keep.push(a);
+  }
+  keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
+  return { keep, outside, already };
+}
+
+// Library ids an earlier scan already imported. Device-local on purpose: a
+// PhotoKit id means nothing on another phone. Capped so it cannot grow
+// without bound across seasons; the oldest fall off first, and the import's
+// own fingerprint check still catches a repeat.
+const _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
+const _SCAN_SEEN_MAX = 20000;
+function _scanSeenRead() {
+  try {
+    const v = JSON.parse(localStorage.getItem(_SCAN_SEEN_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  } catch { return new Set(); }
+}
+function _scanSeenAdd(ids) {
+  const cur = [..._scanSeenRead()];
+  const have = new Set(cur);
+  for (const id of ids || []) if (typeof id === "string" && !have.has(id)) { cur.push(id); have.add(id); }
+  const trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
+  try { localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed)); } catch {}
+  return trimmed.length;
+}

@@ -8,6 +8,7 @@ final class PlurskyBridgeViewController: CAPBridgeViewController {
     override func capacitorDidLoad() {
         super.capacitorDidLoad()
         bridge?.registerPluginInstance(AppearancePlugin())
+        bridge?.registerPluginInstance(PhotoScanPlugin())
     }
 
     override func webViewConfiguration(for instanceConfiguration: InstanceConfiguration) -> WKWebViewConfiguration {
