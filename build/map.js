@@ -751,7 +751,12 @@ function useGeolocation(enabled) {
       });
       setStatus("live");
       try {
-        var hit = window.recordAttendanceFromGps?.(lat, lng);
+        var hit = window.recordAttendanceFromGps?.(lat, lng, {
+          accuracy: p.coords.accuracy,
+          timestamp: p.timestamp,
+          atMs: lastTs,
+          saver: bsActive
+        });
         if (hit && typeof window.plurskyToast === "function") {
           var a = (window.ARTISTS || []).find(x => x.id === hit.artistId);
           if (a) window.plurskyToast(`✓ Caught ${a.name}`);

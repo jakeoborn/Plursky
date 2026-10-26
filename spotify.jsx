@@ -10989,21 +10989,10 @@ function _checkinActive(cfg, artists, ms) {
   return (artists || []).filter(a => _checkinActWindows(cfg, a).some(([s, e]) => ms >= s && ms < e));
 }
 
-// One GPS fix → a trusted stage, or the reason there isn't one. Stale,
-// coarse, outside the venue, or too close to call between two stages all
-// give no stage. The measurements come back either way, for the trial sheet.
+// One GPS fix → a trusted stage, or the reason there isn't one: the shared
+// stage fix gate (data.jsx) on Check-in's rules.
 function _checkinGps(anchors, fix, atMs, rules = _CHECKIN_GPS) {
-  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
-  const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
-  if (!anchors || !anchors.length) return { status: "no-anchors", accM };
-  const d = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng) }))
-    .sort((x, y) => x.dist - y.dist);
-  const out = { accM, distM: d[0].dist, marginM: d.length > 1 ? d[1].dist - d[0].dist : null };
-  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return { ...out, status: "stale" };
-  if (accM == null || accM > rules.maxAccM) return { ...out, status: "coarse" };
-  if (d[0].dist > rules.maxDistM) return { ...out, status: "outside" };
-  if (out.marginM != null && out.marginM < rules.minMarginM) return { ...out, status: "ambiguous" };
-  return { ...out, status: "trusted", stageId: d[0].stageId };
+  return stageFixGate(anchors, fix, atMs, rules);
 }
 
 // The whole proposal, pure: which night, which sets are on, which stage the

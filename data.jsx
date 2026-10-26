@@ -2377,6 +2377,64 @@ const ATTEND_PARTIAL_MS = 15 * 60000;
 const ATTEND_PARTIAL_SHARE = 0.25;
 const ATTEND_PHOTO_MS = 2 * 60000;        // a photo is a point, capture time ± 2 min
 
+// Great-circle distance in meters. Here, not in photo-tag.jsx, because the
+// stage fix gate below needs it and data.jsx loads first.
+function _haversineMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = (d) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// The one fix gate (set-attendance spec PR 2): a GPS fix → a trusted stage,
+// or the reason there isn't one. Stale, coarse (no accuracy counts as
+// coarse), outside the radius, or too close to call between two stages all
+// give no stage, and the measurements come back either way. Live Set Check-in
+// and the attendance geofence both ask this; only their rules differ.
+// Attendance: LIVE is the map's freshness (60 s, 120 s in battery saver), the
+// radius stays today's 140 m, accuracy and margin are Check-in's.
+const STAGE_FIX_ATTEND = { maxAgeMs: 60000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+const STAGE_FIX_ATTEND_SAVER = { maxAgeMs: 120000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+function stageFixGate(anchors, fix, atMs, rules) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
+  const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return { status: "no-anchors", accM };
+  const d = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng) }))
+    .sort((x, y) => x.dist - y.dist || String(x.stageId).localeCompare(String(y.stageId)));
+  const out = { accM, distM: d[0].dist, marginM: d.length > 1 ? d[1].dist - d[0].dist : null };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return { ...out, status: "stale" };
+  if (accM == null || accM > rules.maxAccM) return { ...out, status: "coarse" };
+  if (d[0].dist > rules.maxDistM) return { ...out, status: "outside" };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return { ...out, status: "ambiguous" };
+  return { ...out, status: "trusted", stageId: d[0].stageId };
+}
+
+// Only measured stage positions (osm / crowd) may fire automatic attendance.
+// A poster read, a provisional pin or a derived point is a guess about where
+// a stage is, and a guess must not mark a set (founder, 2026-10-20).
+function attendEvidenceAnchors(cfg) {
+  return ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
+    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+}
+
+// Raw samples ({ lat, lng, accuracy, timestamp, atMs }) → the qualifying
+// fixes attendFixesToIntervals takes. atMs is when the app received the
+// sample (freshness); the fix counts at its own timestamp. A sample the gate
+// does not trust is dropped, never guessed onto a stage.
+function attendQualifyFixes(samples, anchors, rules = STAGE_FIX_ATTEND) {
+  const out = [];
+  for (const f of samples || []) {
+    if (!f) continue;
+    const ms = typeof f.timestamp === "number" ? f.timestamp : f.atMs;
+    const g = stageFixGate(anchors, f, typeof f.atMs === "number" ? f.atMs : ms, rules);
+    if (g.status === "trusted" && typeof ms === "number") out.push({ ms, stageId: g.stageId });
+  }
+  return out;
+}
+
 // Qualifying GPS fixes ({ ms, stageId }, already through the fix gate) →
 // runs per stage. Sorted by time then stage, so the input's array order can
 // never decide a run (a tie-break is a policy). A fix for another stage, or a

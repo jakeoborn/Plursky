@@ -1500,46 +1500,32 @@ function getAttendanceSource(artistId) {
     return "manual";
   }
 }
-function _gpsDistMeters(latA, lngA, latB, lngB) {
-  var toRad = d => d * Math.PI / 180;
-  var cosLat = Math.cos(toRad((latA + latB) / 2));
-  var dLat = toRad(latB - latA) * 6371000;
-  var dLng = toRad(lngB - lngA) * 6371000 * cosLat;
-  return Math.hypot(dLat, dLng);
-}
 function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   var cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  var anchors = (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg.gpsAnchors || []).filter(a => {
-    var s = a.anchorSource || a.src;
-    return s === "osm" || s === "crowd";
-  });
+  var anchors = attendEvidenceAnchors(cfg);
   if (anchors.length === 0) return null;
-  var radius = opts.radiusM || 140;
   var now = window.NOW;
   if (!now || !now.day || !now.time) return null;
-  var best = null;
-  for (var a of anchors) {
-    var d = _gpsDistMeters(lat, lng, a.lat, a.lng);
-    if (d > radius) continue;
-    if (!best || d < best.d) best = {
-      ...a,
-      d
-    };
-  }
-  if (!best) return null;
-  var playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
+  var gate = stageFixGate(anchors, {
+    lat,
+    lng,
+    accuracy: opts.accuracy,
+    timestamp: opts.timestamp
+  }, typeof opts.atMs === "number" ? opts.atMs : Date.now(), opts.saver ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND);
+  if (gate.status !== "trusted") return null;
+  var playing = activeLineup().find(a => a.stage === gate.stageId && isSetLive(a));
   if (!playing) return null;
   return {
     artistId: playing.id,
-    stageId: best.stageId,
+    stageId: gate.stageId,
     night: now.day,
-    distM: Math.round(best.d)
+    distM: Math.round(gate.distM)
   };
 }
-function recordAttendanceFromGps(lat, lng) {
-  var hit = detectCurrentArtist(lat, lng);
+function recordAttendanceFromGps(lat, lng, opts) {
+  var hit = detectCurrentArtist(lat, lng, opts);
   if (!hit) return null;
   var added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;

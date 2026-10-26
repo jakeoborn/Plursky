@@ -680,7 +680,7 @@ function useGeolocation(enabled) {
         // footprint AND the timing matches. Idempotent + cheap; no record
         // means we're between stages or it's not set time.
         try {
-          const hit = window.recordAttendanceFromGps?.(lat, lng);
+          const hit = window.recordAttendanceFromGps?.(lat, lng, { accuracy: p.coords.accuracy, timestamp: p.timestamp, atMs: lastTs, saver: bsActive });
           if (hit && typeof window.plurskyToast === "function") {
             const a = (window.ARTISTS || []).find(x => x.id === hit.artistId);
             if (a) window.plurskyToast(`✓ Caught ${a.name}`);
