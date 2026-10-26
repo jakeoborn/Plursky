@@ -68,8 +68,66 @@ function _appleMusicOriginOk() {
   catch { return false; }
 }
 
+// ── iPhone app: native MusicKit sign-in ──────────────────────────────────
+// Inside the app the page runs at capacitor://localhost, which the MusicKit
+// web sign-in can never post back to, so connecting dead-ended there. The
+// AppleMusicNative plugin (ios/App/App/AppleMusicPlugin.swift) asks with the
+// system prompt and returns a developer token MusicKit generated for this app
+// plus the Music User Token. Every API call below still runs here; only where
+// the two tokens come from changes. On the web nothing changes.
+function _amNative() {
+  const cap = window.Capacitor;
+  if (!cap?.isNativePlatform?.()) return null;
+  return cap.Plugins?.AppleMusicNative || null;
+}
+// The native developer token, once the plugin has handed one over. Held in
+// memory only: MusicKit caches it on the device and the plugin re-reads it.
+let _amNativeDevToken = null;
+function _amDevToken() { return _amNativeDevToken || APPLE_DEV_TOKEN; }
+// prompt=true may show the system sheet; prompt=false never does.
+async function _amNativeTokens(prompt) {
+  const p = _amNative();
+  if (!p) return null;
+  const args = { fallbackDeveloperToken: APPLE_DEV_TOKEN };
+  const r = prompt ? await p.authorize(args) : await p.tokens(args);
+  if (r?.status === "authorized" && r.userToken && r.developerToken) {
+    _amNativeDevToken = r.developerToken;
+    try { localStorage.setItem("am_user_token", r.userToken); } catch {}
+  }
+  return r;
+}
+// What to tell the user when the native sign-in fails. The plugin rejects
+// with MusicKit's own error name as the message.
+function _amNativeErrorMessage(e) {
+  const msg = String(e?.message || e?.errorMessage || "");
+  if (/userNotSignedIn/i.test(msg)) return "Sign in to Apple Music in the Music app first, then tap CONNECT again.";
+  if (/privacyAcknowledgementRequired/i.test(msg)) return "Open the Music app once and accept Apple's terms, then tap CONNECT again.";
+  if (/permissionDenied/i.test(msg)) return "Apple Music access is off for Plursky. Turn it on in Settings → Plursky, then tap CONNECT again.";
+  if (e?.code === "developer_token_failed") return "Apple Music isn't set up for this build yet. Try again after the next update.";
+  return "Apple Music didn't connect. Check you're signed in to the Music app, then tap CONNECT again.";
+}
+
 async function connectAppleMusic() {
   if (!APPLE_DEV_TOKEN) return { error: "not_configured" };
+  if (_amNative()) {
+    try {
+      const r = await _amNativeTokens(true);
+      if (r?.status === "authorized" && r.userToken) {
+        // Signed in, but a library playlist also needs Sync Library on.
+        if (r.hasCloudLibraryEnabled === false) {
+          return { ok: true, warning: "Turn on Sync Library in Settings → Music so Plursky can add playlists to your library." };
+        }
+        return { ok: true };
+      }
+      if (r?.status === "denied" || r?.status === "restricted") {
+        return { error: "Apple Music access is off for Plursky. Turn it on in Settings → Plursky, then tap CONNECT again." };
+      }
+      return { error: "Apple Music didn't connect. Tap CONNECT to try again." };
+    } catch (e) {
+      console.warn("[plursky:applemusic] native connect failed", e?.code, e?.message);
+      return { error: _amNativeErrorMessage(e) };
+    }
+  }
   if (!_appleMusicOriginOk()) {
     return { error: "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there." };
   }
@@ -93,6 +151,7 @@ async function connectAppleMusic() {
 
 function disconnectAppleMusic() {
   localStorage.removeItem("am_user_token");
+  _amNativeDevToken = null;
   if (typeof MusicKit !== "undefined") {
     try { MusicKit.getInstance().unauthorize(); } catch {}
   }
@@ -101,10 +160,11 @@ function disconnectAppleMusic() {
 // Paginate through the user's entire Apple Music library and return
 // a flat array of {name} objects (one per unique artist).
 async function fetchAppleMusicArtists() {
+  if (_amNative()) { try { await _amNativeTokens(false); } catch {} }
   const ut  = localStorage.getItem("am_user_token");
   if (!ut || !APPLE_DEV_TOKEN) return null;
   const headers = {
-    Authorization:    `Bearer ${APPLE_DEV_TOKEN}`,
+    Authorization:    `Bearer ${_amDevToken()}`,
     "Music-User-Token": ut,
   };
   const seen    = new Set();
@@ -181,6 +241,8 @@ function _collectMomentSongs() {
 async function createAppleMusicPlaylist(state, opts = {}) {
   const prog = (m) => { if (opts.onProgress) opts.onProgress(m); };
   if (!APPLE_DEV_TOKEN) return { ok: false, reason: "not_configured" };
+  // iPhone app: pick the native tokens back up after a restart, silently.
+  if (_amNative()) { try { await _amNativeTokens(false); } catch {} }
 
   let ut = null;
   try { ut = localStorage.getItem("am_user_token"); } catch {}
@@ -191,7 +253,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   }
   if (!ut) return { ok: false, reason: "not_connected" };
 
-  const devHeaders  = { Authorization: `Bearer ${APPLE_DEV_TOKEN}` };
+  const devHeaders  = { Authorization: `Bearer ${_amDevToken()}` };
   const userHeaders = { ...devHeaders, "Music-User-Token": ut };
 
   const source = opts.source === "attended" ? "attended" : "saved";
@@ -1186,6 +1248,6 @@ function getDiscoveries(spotifyArtists, matched, savedIds, max = 8) {
 Object.assign(window, {
   startSpotifyAuth, ensureSpotifyProfile, getSpotifyProfileSync,
   fetchPreviewUrl,
-  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured, _ensureMusicKitConfigured,
+  connectAppleMusic, disconnectAppleMusic, createAppleMusicPlaylist, _appleMusicConfigured, _ensureMusicKitConfigured, _amNative,
   _collectMomentSongs,
 });

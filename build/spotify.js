@@ -53,7 +53,7 @@ function SpotifyScreen({
     });
   }, [amConnected]);
   React.useEffect(() => {
-    if (APPLE_DEV_TOKEN && !amConnected) {
+    if (APPLE_DEV_TOKEN && !amConnected && !_amNative()) {
       _ensureMusicKitConfigured().catch(() => {});
     }
   }, []);
