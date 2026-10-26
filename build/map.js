@@ -501,6 +501,9 @@ function _solveMapAffine(cfg, stages) {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 function _gpsFromAffine(affine, cfg, x, y) {
   if (!affine) return null;
@@ -2669,7 +2672,9 @@ function MapScreen({
   }, [useRealMap]);
   var meetPin = meetTarget && !meetTarget.textOnly ? meetTarget : null;
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
-  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
+  var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -3144,7 +3149,12 @@ function MapScreen({
     }
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
-    className: "duo-code"
+    className: "duo-code",
+    style: {
+      whiteSpace: "normal",
+      maxWidth: "100%",
+      boxSizing: "border-box"
+    }
   }, mapPostureLabel), (() => {
     var has = t => mapAmenities.some(a => a.type === t);
     var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];

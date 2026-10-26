@@ -364,6 +364,12 @@ const MAP_REGISTRATION_TOL_M = 25;
 // lineup cards, search. It just gets no pin. Passing it into the map layers
 // instead would feed mapToGps(undefined, undefined) to every geo builder and
 // draw a marker at NaN, which renders as an invisible-but-clickable ghost.
+// Is this festival's map plate the art of a DIFFERENT edition? `mapArtYear` is
+// the year the shipped art was drawn for; unset means the festival's own.
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
+
 const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
   .filter(s => typeof s.x === "number" && typeof s.y === "number");
 
@@ -2083,11 +2089,16 @@ function MapScreen({ state, setState }) {
   const canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   // The posture label says what the map on screen can claim (POSTER_TIER).
   // Unchecked art is drawn faded AND its stages are pending, so it says both.
-  const mapPostureLabel = REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
+  // Wherever a plate drawn for another edition is on screen, the label names
+  // that edition first: last year's layout is true of the art, not of this
+  // festival. The real map draws no art at tier "none", so it stays unprefixed.
+  const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
+  const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
+  const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
     ? (useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"
-        : "LAYOUT ONLY";
+        : "LAYOUT ONLY");
   // The amenities the map on screen can place: all of them on the drawn map,
   // only checked-geometry ones on the real map (the same rule as stage pins).
   const mapAmenities = useRealMap ? REAL_MAP_AMENITIES : (typeof AMENITIES !== "undefined" ? AMENITIES : []);
@@ -2553,9 +2564,11 @@ function MapScreen({ state, setState }) {
         )}
         {/* The title never shrinks under the posture label: a long label
             ("NOT TO SCALE · STAGES PENDING") wraps to its own line instead
-            of printing over "Map" (#313 review, 320–393 pt). */}
+            of printing over "Map" (#313 review, 320–393 pt), and a label
+            longer than the header ("2025 MAP · NOT TO SCALE · STAGES
+            PENDING" at 280) wraps inside it instead of running off screen. */}
         <h1 className="duo-title" style={{ margin: 0, flex: "1 0 auto" }}>Map</h1>
-        <span data-map-posture className="duo-code">{mapPostureLabel}</span>
+        <span data-map-posture className="duo-code" style={{ whiteSpace: "normal", maxWidth: "100%", boxSizing: "border-box" }}>{mapPostureLabel}</span>
         {(() => {
           const has = t => mapAmenities.some(a => a.type === t);
           const cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
