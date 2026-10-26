@@ -16,8 +16,9 @@
 //        Markdown list of failures and exit 1 if any. The weekly workflow
 //        prints only the count: the repo is public, so the detail is read by
 //        running this locally, never posted.
-// A request that cannot complete (network, 429, 5xx) is "could not confirm":
-// never counted as dead, and a previously verified embed keeps its result.
+// A request that cannot complete (network, 429, 5xx, or a page that refuses
+// the checker with 401/403/451) is "could not confirm": never counted as dead,
+// and a previously verified embed keeps its result.
 import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

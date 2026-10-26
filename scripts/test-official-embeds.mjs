@@ -6,8 +6,9 @@
 //   · official only: the festival's own site must link the account, and the
 //     platform must name that account as the post's author (IG, X, YouTube)
 //   · dead URL dropped: an oEmbed failure never reaches a page; a request
-//     that cannot complete (network, 429, 5xx) is "could not confirm", never
-//     dead, and never flips an embed verified before
+//     that cannot complete (network, 429, 5xx, or a page refusing the check
+//     with 401/403/451) is "could not confirm", never dead, and never flips
+//     an embed verified before
 //   · a verification result counts only for the record it verified
 //   · the weekly job re-checks what the committed pages carry and never
 //     posts the list (no issue, count only)
@@ -74,6 +75,14 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
     ['oEmbed 429', [officialSite, [/instagram_oembed/, { status: 429, text: '' }], [/embed\//, igEmbed('iiipoints')]]],
     ['oEmbed unreachable', [officialSite, [/instagram_oembed/, boom], [/embed\//, igEmbed('iiipoints')]]],
     ['Instagram embed page 502', [officialSite, [/instagram_oembed/, oe({})], [/embed\//, { status: 502, text: '' }]]],
+    // A page that refuses the checker instead of answering about the post.
+    // The weekly job runs from a datacenter IP, which is what a festival
+    // site's bot wall answers 403 to, so neither of these may read as a
+    // verdict: the first is not a dead embed, the second not another
+    // account's post.
+    ['official site 403 (bot wall)', [[/iiipoints\.com/, { status: 403, text: '' }], [/instagram_oembed/, oe({})], [/embed\//, igEmbed('iiipoints')]]],
+    ['official site 401', [[/iiipoints\.com/, { status: 401, text: '' }], [/instagram_oembed/, oe({})], [/embed\//, igEmbed('iiipoints')]]],
+    ['Instagram embed page 403 (bot wall)', [officialSite, [/instagram_oembed/, oe({})], [/embed\//, { status: 403, text: '' }]]],
   ]) {
     const r = await run(base, routes);
     check(!r.ok && r.unknown === true, `${what}: counted as ${r.ok ? 'verified' : 'dead'}, expected "could not confirm" (${r.reason})`);
@@ -84,8 +93,8 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   check(!fan.ok && /not by the official/.test(fan.reason), `an Instagram post by another account passes (${fan.reason})`);
   const noAuthor = await run(base, [officialSite, [/instagram_oembed/, oe({})], [/embed\//, { status: 200, text: '<div></div>' }]]);
   check(!noAuthor.ok, 'an Instagram post whose author cannot be read passes');
-  const siteDown = await run(base, [[/iiipoints\.com/, { status: 403, text: '' }], [/instagram_oembed/, oe({})], [/embed\//, igEmbed('iiipoints')]]);
-  check(!siteDown.ok, 'an embed whose official site cannot be read passes');
+  const siteDown = await run(base, [[/iiipoints\.com/, { status: 404, text: '' }], [/instagram_oembed/, oe({})], [/embed\//, igEmbed('iiipoints')]]);
+  check(!siteDown.ok && !siteDown.unknown, 'an embed whose official site is gone (404) passes, or is only "could not confirm"');
 }
 {
   const edc = [/^https:\/\/lasvegas\.edc\.com\/$/, site(['https://twitter.com/EDC_LasVegas'])];
@@ -119,6 +128,8 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   check(!watchDown.ok && watchDown.unknown === true, `YouTube watch page 503: counted as ${watchDown.ok ? 'verified' : 'dead'}, expected "could not confirm" (${watchDown.reason})`);
   const chanDown = await run(yt, routes('UCZVJbgloLghAYhH2uyaKIOQ').map(([re, res]) => [re, /Hardfest/.test(String(re)) && /user/.test(String(re)) ? { status: 500, text: '' } : res]));
   check(!chanDown.ok && chanDown.unknown === true, `YouTube channel page 500: counted as ${chanDown.ok ? 'verified' : 'dead'}, expected "could not confirm" (${chanDown.reason})`);
+  const watchWalled = await run(yt, routes('UCZVJbgloLghAYhH2uyaKIOQ').map(([re, res]) => [re, /watch/.test(String(re)) ? { status: 403, text: '' } : res]));
+  check(!watchWalled.ok && watchWalled.unknown === true, `YouTube watch page 403: counted as ${watchWalled.ok ? 'verified' : 'dead'}, expected "could not confirm" (${watchWalled.reason})`);
   const noProbe = await run(yt, routes('UCZVJbgloLghAYhH2uyaKIOQ'), {});
   check(!noProbe.ok, 'a YouTube video passes with no player probe at all');
 }
