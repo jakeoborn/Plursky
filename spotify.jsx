@@ -6579,12 +6579,13 @@ function MemoriesScreen({ state, setState }) {
       const { keep, already } = _scanPickAssets(assets, cfg, _scanSeenRead());
       if (!keep.length) { setScan({ phase: "none", already, limited }); return; }
       const reviewAcc = [];
-      const CHUNK = 20;
-      let imported = 0, unreadable = 0;
-      for (let i = 0; i < keep.length; i += CHUNK) {
-        setScan({ phase: "importing", done: i, total: keep.length });
+      const chunks = _scanChunks(keep);
+      let imported = 0, unreadable = 0, done = 0;
+      for (const chunk of chunks) {
+        setScan({ phase: "importing", done, total: keep.length });
+        done += chunk.length;
         const files = [], fileAssets = [];
-        for (const a of keep.slice(i, i + CHUNK)) {
+        for (const a of chunk) {
           const f = await _scanExportFile(PS, a, cfg);
           if (f) { files.push(f); fileAssets.push(a); } else unreadable++;
         }

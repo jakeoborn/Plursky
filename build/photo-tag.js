@@ -891,6 +891,14 @@ function _scanPickAssets(assets, cfgIn, seenIds) {
     already
   };
 }
+function _scanChunks(assets, maxPhotos = 20) {
+  var chunks = [];
+  for (var a of assets || []) {
+    var last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);else chunks.push([a]);
+  }
+  return chunks;
+}
 var _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
 var _SCAN_SEEN_MAX = 20000;
 function _scanSeenRead() {

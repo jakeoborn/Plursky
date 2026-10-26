@@ -17,6 +17,7 @@
 //      accuracy and a missing time are refused;
 //   4. already-imported ids are skipped and counted, outside-night assets are
 //      counted, and what is kept comes back oldest first;
+//      import chunks hold up to 20 photos, and a video always goes alone;
 //   5. the remembered-id store round-trips, de-duplicates, survives corrupt
 //      storage and is capped with the oldest dropped first;
 //   6. the import loop takes the library's meta instead of re-reading EXIF;
@@ -168,6 +169,14 @@ function scanChecks(C, store) {
   t(p.outside === 1, `outside-night count ${p.outside}, want 1`);
   const p2 = C._scanPickAssets(assets, cfg, ["seen"]);
   t(p2.keep.length === 2, "an array of seen ids is not honoured");
+
+  // Chunks: videos alone, photos up to 20, order kept.
+  const seq = [...Array(45)].map((_, i) => ({ id: `p${i}`, mediaType: (i === 7 || i === 8 || i === 30) ? "video" : "image" }));
+  const ch = C._scanChunks(seq);
+  t(ch.flat().map(x => x.id).join(",") === seq.map(x => x.id).join(","), "chunking lost or reordered assets");
+  t(ch.every(c => !c.some(x => x.mediaType === "video") || c.length === 1), "a video shared a chunk");
+  t(ch.every(c => c.length <= 20), "a chunk held more than 20 photos");
+  t(ch.length === 7, `45 assets with 3 videos made ${ch.length} chunks, want 7`);
 
   // ── 5. remembered ids ──────────────────────────────────────────────────
   for (const k of Object.keys(store)) delete store[k];

@@ -1027,6 +1027,19 @@ function _scanPickAssets(assets, cfgIn, seenIds) {
   return { keep, outside, already };
 }
 
+// Import batches: up to `maxPhotos` photos together, but a video always goes
+// alone. A clip can be hundreds of MB, and holding several at once in the
+// WebView is how an import runs out of memory. Order is kept.
+function _scanChunks(assets, maxPhotos = 20) {
+  const chunks = [];
+  for (const a of assets || []) {
+    const last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);
+    else chunks.push([a]);
+  }
+  return chunks;
+}
+
 // Library ids an earlier scan already imported. Device-local on purpose: a
 // PhotoKit id means nothing on another phone. Capped so it cannot grow
 // without bound across seasons; the oldest fall off first, and the import's

@@ -9709,18 +9709,20 @@ function MemoriesScreen({
         return;
       }
       var reviewAcc = [];
-      var CHUNK = 20;
+      var chunks = _scanChunks(keep);
       var imported = 0,
-        unreadable = 0;
+        unreadable = 0,
+        done = 0;
       var _loop6 = async function () {
         setScan({
           phase: "importing",
-          done: i,
+          done,
           total: keep.length
         });
+        done += chunk.length;
         var files = [],
           fileAssets = [];
-        for (var a of keep.slice(i, i + CHUNK)) {
+        for (var a of chunk) {
           var f = await _scanExportFile(PS, a, cfg);
           if (f) {
             files.push(f);
@@ -9739,7 +9741,7 @@ function MemoriesScreen({
           path: _f._scanPath
         })?.catch?.(() => {});
       };
-      for (var i = 0; i < keep.length; i += CHUNK) {
+      for (var chunk of chunks) {
         if (await _loop6()) continue;
       }
       setScan({
