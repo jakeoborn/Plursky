@@ -2338,6 +2338,9 @@ const _TAG_SOURCE_LABEL = {
   "video-metadata":     { text: "AUTO · VIDEO TIME", tone: "ok" },
   "video-night-only":   { text: "VIDEO NIGHT · PICK A SET", tone: "warn" },
   "archive-recovered":  { text: "RECOVERED · ARCHIVE", tone: "ok" },
+  // Scan my weekend: time and place read from the photo library itself.
+  photokit:             { text: "AUTO · PHOTO LIBRARY", tone: "ok" },
+  "photokit-night-only":{ text: "LIBRARY NIGHT · PICK A SET", tone: "warn" },
   // The user said they don't know. A choice, not a gap: it leaves the review
   // list and the archive-recovery pass never re-guesses it.
   unknown:              { text: "MARKED UNKNOWN",    tone: "info" },
@@ -6132,10 +6135,13 @@ function MemoriesScreen({ state, setState }) {
     } catch { return null; }
   };
 
-  const processImportedFiles = async (files) => {
+  // opts.reviewAcc (Scan my weekend): an array shared across chunks, so the
+  // review after each chunk lists everything the scan has landed so far
+  // rather than only the latest chunk. Returns the settled results.
+  const processImportedFiles = async (files, opts = {}) => {
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
-      return;
+      return [];
     }
     const results = [];
     setBatch({ total: files.length, done: 0, results });
@@ -6166,8 +6172,13 @@ function MemoriesScreen({ state, setState }) {
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
           continue;
         }
-        const exif = await _parseExifMeta(f).catch(() => null);
-        const baseMeta = _metaFromFile(f, exif);
+        // A file from Scan my weekend carries the photo library's own
+        // capture instant and GPS fix. Those beat anything EXIF could say
+        // (a real UTC time, no timezone guess, accuracy included), so the
+        // EXIF read is skipped for it entirely.
+        const pk = f.photoKitMeta || null;
+        const exif = pk ? null : await _parseExifMeta(f).catch(() => null);
+        const baseMeta = pk ? { ...pk, takenAtSource: "photokit" } : _metaFromFile(f, exif);
         const recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         const meta = recovered?.meta || baseMeta;
         const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
@@ -6325,9 +6336,13 @@ function MemoriesScreen({ state, setState }) {
     // reports a score cannot tell you WHICH clip went to the wrong set, and
     // by the time you scroll the wall to find out you no longer remember what
     // you imported.
-    if (landed.length) setReview(landed);
+    if (Array.isArray(opts.reviewAcc)) {
+      opts.reviewAcc.push(...landed);
+      if (opts.reviewAcc.length) setReview(opts.reviewAcc.slice());
+    } else if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
+    return settledResults;
   };
 
   // Deletes one piece of MEDIA: the record the user is looking at and every
@@ -6505,6 +6520,109 @@ function MemoriesScreen({ state, setState }) {
     // cancelled is a deliberate no-op: no message, no state change.
     if (res.status === "cancelled") return;
     setPickerState({ status: res.status, detail: res.unreadable || res.error || null });
+  };
+
+  // ── Scan my weekend (v476) ───────────────────────────────────────────────
+  // One tap finds every photo and video from the festival's nights in the
+  // library, with no picking, no 50-item cap, and GPS intact (PHPicker strips
+  // it without full access). The PhotoScan plugin lists assets and writes
+  // them out one at a time; which nights to ask for, what to keep and how
+  // each is tagged all live in photo-tag.jsx (_scanQueryRanges,
+  // _scanPickAssets, _photoKitAssetMeta). Import runs in chunks so a weekend
+  // of video never sits in memory at once, and each chunk persists before
+  // the next starts. A library id is remembered only once its import landed,
+  // so a second scan picks up exactly what the first missed.
+  const [scan, setScan] = React.useState(null); // null | { phase, ... }
+  const scanAvailable = !!(window.Capacitor?.isNativePlatform?.()
+    && window.Capacitor?.Plugins?.PhotoScan?.scan
+    && window.FESTIVAL_CONFIG?.dayDates);
+  const _scanExportFile = async (PS, asset, cfg) => {
+    const meta = _photoKitAssetMeta(asset, cfg);
+    if (!meta) return null;
+    try {
+      const ex = await PS.export({ id: asset.id });
+      if (!ex?.path) return null;
+      const cap = window.Capacitor;
+      const src = cap.convertFileSrc ? cap.convertFileSrc(ex.path) : ex.path;
+      const blob = await fetch(src).then(r => r.blob());
+      if (!blob || !blob.size) return null;
+      const isVideo = asset.mediaType === "video";
+      const type = ex.mimeType || blob.type || (isVideo ? "video/quicktime" : "image/jpeg");
+      const file = new File([blob], ex.name || `scan-${Number(asset.createdMs)}.${isVideo ? "mov" : "jpg"}`,
+        { type, lastModified: Number(asset.createdMs) });
+      const tag = (k, v) => { try { Object.defineProperty(file, k, { value: v }); } catch { file[k] = v; } };
+      tag("photoKitMeta", meta);
+      tag("_scanPath", ex.path);
+      if (isVideo) tag("nativePath", ex.path);
+      return file;
+    } catch (err) {
+      console.warn("[memories] scan export failed", err);
+      return null;
+    }
+  };
+  const handleScanWeekend = async () => {
+    const PS = window.Capacitor?.Plugins?.PhotoScan;
+    const cfg = window.FESTIVAL_CONFIG;
+    if (!PS || !cfg?.dayDates) return;
+    if ((batch && batch.done < batch.total) || (scan && ["access", "scanning", "importing"].includes(scan.phase))) return;
+    setScan({ phase: "access" });
+    try {
+      const access = await PS.requestAccess();
+      const limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) { setScan({ phase: "denied" }); return; }
+      setScan({ phase: "scanning" });
+      const assets = [];
+      for (const r of _scanQueryRanges(cfg)) {
+        const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
+        assets.push(...(res?.assets || []));
+      }
+      const { keep, already } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      if (!keep.length) { setScan({ phase: "none", already, limited }); return; }
+      const reviewAcc = [];
+      const chunks = _scanChunks(keep);
+      let imported = 0, unreadable = 0, done = 0;
+      for (const chunk of chunks) {
+        setScan({ phase: "importing", done, total: keep.length });
+        done += chunk.length;
+        const files = [], fileAssets = [];
+        for (const a of chunk) {
+          const f = await _scanExportFile(PS, a, cfg);
+          if (f) { files.push(f); fileAssets.push(a); } else unreadable++;
+        }
+        if (!files.length) continue;
+        const results = (await processImportedFiles(files, { reviewAcc })) || [];
+        const failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+        _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+        imported += results.filter(r => r.momentId).length;
+        unreadable += failed.size;
+        // A photo is in IndexedDB now, so its export file is dead weight. A
+        // video's file stays: song recognition reads it from nativePath.
+        for (const f of files) if (!/^video\//.test(f.type)) PS.discard?.({ path: f._scanPath })?.catch?.(() => {});
+      }
+      setScan({ phase: "done", imported, unreadable, already, limited });
+    } catch (err) {
+      console.warn("[memories] scan failed", err);
+      setScan({ phase: "error" });
+    }
+  };
+  const _scanMessage = (st) => {
+    if (!st) return null;
+    const fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
+    const limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: `Looking for photos from ${fest} nights…` };
+    if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
+    if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
+    if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Scan again to pick up the rest.", retry: true };
+    if (st.phase === "none") return {
+      title: `No new photos from ${fest} nights`,
+      body: (st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "Nothing in your library was taken during the festival’s nights.") + limitedNote,
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from ${fest}`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", limitedNote.trim()].filter(Boolean).join(" ") || null,
+      retry: !!st.unreadable,
+    };
+    return null;
   };
 
   // What the user is told for each non-success picker state. `cancelled` is
@@ -6882,6 +7000,43 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
+        {/* Scan my weekend (v476): the iPhone app reads the festival's nights
+            straight from the photo library. Shown only where the plugin is
+            present and the festival has dates to scan; the picker below
+            stays for anything taken outside those nights. */}
+        {scanAvailable && (() => {
+          const msg = _scanMessage(scan);
+          const busy = !!msg?.busy || (!!batch && batch.done < batch.total);
+          return (
+            <div style={{ marginTop: 12 }}>
+              <button onClick={handleScanWeekend} disabled={busy} data-scan-weekend
+                className="duo-card" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, width: "100%", minHeight: 64, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: busy ? "default" : "pointer" }}>
+                <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20 l-4.2-4.2"/><path d="M8.5 11 h5 M11 8.5 v5"/></svg>
+                </span>
+                <span style={{ flex: "1 1 150px", minWidth: 0 }}>
+                  <span data-fit-words data-fit-min="13" className="duo-headline" style={{ display: "block" }}>Scan my weekend</span>
+                  <span data-fit-words data-fit-min="11" className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Finds every photo and video from festival nights</span>
+                </span>
+                <span className="duo-body-s" style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{busy ? "…" : "Scan"}</span>
+              </button>
+              {msg && (
+                <div role="status" style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
+                  <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: msg.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{msg.title}</div>
+                  {msg.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.body}</p>}
+                  {!msg.busy && (
+                    <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+                      {msg.retry && (
+                        <button onClick={handleScanWeekend} style={{ minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "var(--paper-3)", color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" }}>Scan again</button>
+                      )}
+                      <button onClick={() => setScan(null)} style={{ minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "transparent", color: "var(--text-2)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" }}>Dismiss</button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })()}
         {/* ONE import CTA (v341). The old screen drew this card AND a
             full-width "Import from camera roll" button inside the empty
             state, so the first thing a new user saw was the same action

@@ -2290,6 +2290,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+// Scan my weekend (v476): the photo-library scan asks only for festival
+// nights, keeps every act-time asset, and tags it exactly as the EXIF path
+// tags the same instant, with the library's GPS fix carried through.
+{
+  console.log("▸ Scan my weekend gate — night ranges, keep rules, same tags as EXIF");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-my-weekend.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan my weekend failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 {
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
