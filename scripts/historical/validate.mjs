@@ -16,6 +16,7 @@ export const OFFICIAL_HOSTS = {
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
+  "edc-orlando": ["orlando.electricdaisycarnival.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -100,6 +101,13 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     // Each string is tried as a billing and as a stage name.
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }
+  }
+  // A stage-scoped rule (Kinetic Field's show segments) only fires with the
+  // set's own stage, so each set's billing is tried on the stage it plays.
+  const stageName = new Map(e.stages.map(s => [s.id, s.name])), artistName = new Map(e.artists.map(a => [a.id, a.name]));
+  for (const s of e.sets) {
+    const billing = s.billing || artistName.get(s.artistId) || "", why = dropReason(billing, stageName.get(s.stageId) || "");
+    if (why && !hit.has(billing)) { hit.add(billing); p.push(`${e.id}: dropped ${why.category} "${billing}" appears in the edition`); }
   }
 
   const ids = new Set(), slots = new Set(), used = new Set();
@@ -224,6 +232,13 @@ function officialSources(e, meta, p) {
       if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
       else if (!graphicPrints(c.printed, date, e.year, meta.dates.map(([d]) => d)))
         p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
+      // A styled stage name carried onto the edition's other printing: only
+      // case and spacing may change, and the target must be a stage it shows.
+      const fold = x => String(x).replace(/\s+/g, "").toLowerCase();
+      for (const [from, to] of Object.entries(c.stagesAs || {})) {
+        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case and spacing may differ`);
+        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
+      }
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);

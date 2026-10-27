@@ -1,0 +1,46 @@
+{
+ "id": "edc-orlando-2017",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-11-10",
+   "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 45,
+   "note": "Header read off the graphic: FRIDAY, NOVEMBER 10",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 44,
+   "byEye": [
+    "d1 circuitGROUNDS 21:00-22:00 SNAILS: OCR read the range; by eye 9:00 PM - 10:00 PM SNAILS"
+   ],
+   "printedReadings": [
+    "KINETIC EXPERIENCE: DROP? Kinetic Field show segment (printed in light type), not an artist set"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2017-11-11",
+   "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 43,
+   "note": "Header read off the graphic: SATURDAY, NOVEMBER 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 41,
+   "byEye": [
+    "d2 circuitGROUNDS 16:15-17:15 BONNIE X CLYDE: by eye 4:15 PM  5:15 PM (the dash between the times is not printed)",
+    "d2 BOOMBOX ART CAR 22:00-23:00 LANDIS: printed 10:00 PM - 11:00 AM; the next set starts 11:00 PM, so read as 23:00"
+   ],
+   "printedReadings": [
+    "KINETIC EXPERIENCE: DROP? Kinetic Field show segment (printed in light type), not an artist set",
+    "GETTER: printed gap: ends 10:40 PM, ZEDD starts 10:45 PM",
+    "K?D: question mark as printed",
+    "BONNIE X CLYDE: dash between times not printed on this row",
+    "LANDIS: PRINTED TYPO: end printed \"11:00 AM\"; read as 11:00 PM (next set starts 11:00 PM)"
+   ]
+  }
+ ]
+}

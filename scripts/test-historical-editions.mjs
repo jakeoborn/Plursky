@@ -17,7 +17,8 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { ACTIVITIES, EDITIONS } from "./historical/editions.mjs";
+import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
+import { activeTab, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 
@@ -94,6 +95,7 @@ if (base && edc) {
   const dropSamples = [["edc-las-vegas-2025", "Fireworks"], ["acl-2025", "SILENT DISCO"], ["edc-las-vegas-2025", "Special Guest"],
     ["escape-halloween-2025", "SECRET GUEST"], ["escape-halloween-2022", "DANSE MACABRE - SILENT DISCO"],
     ["escape-halloween-2024", "AFTER PARTY SET TIMES – THE CAULDRON"],
+    ["edc-orlando-2019", "CHANGEOVER"], ["edc-orlando-2022", "DISCOVERY PROJECT"],
     ...Object.entries(ACTIVITIES).flatMap(([id, list]) => list.map(a => [id, a]))];
   for (const [id, billing] of dropSamples) {
     const e = editions[id]; if (!e) continue;
@@ -101,6 +103,42 @@ if (base && edc) {
     mustFail(`${billing} back as an artist set`, m => { m.artists.push(back); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: back.id }); }, e, undefined, /: dropped /);
     mustFail(`${billing} back as an event`, m => { m.events = [{ id: `${id}:d1:x:0000:${artistKey(billing)}`, label: billing, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }]; }, e, undefined, /: dropped .*appears/);
     mustFail(`${billing} back as a stage`, m => { m.stages[0].name = billing; }, e, undefined, /: dropped /);
+  }
+  // Stage-scoped drops: a Kinetic Field show segment is only dropped on
+  // Kinetic Field, so each is put back as a set there, and the same name on
+  // another stage stays a performer. "Discovery Project" is an unnamed slot
+  // only on a printed stage; the stageless 2026 lineup entries keep it.
+  {
+    const o = editions["edc-orlando-2022"], o25 = editions["edc-orlando-2025"];
+    ok(o && o25, "the EDC Orlando 2022 and 2025 editions must exist for the show-segment mutations");
+    for (const [e, billing] of [[o, "GROW"], [o, "KINETIC BLOOM"], [o25, "INTERMEZZO: TECHNOPOLIS"], [o25, "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS"]]) if (e) {
+      const kf = e.stages.find(s => /^kinetic ?field$/i.test(s.name));
+      mustFail(`${billing} back as a Kinetic Field set (${e.id})`, m => {
+        const a = { id: `${e.id}:${artistKey(billing)}-back`, name: billing, key: artistKey(billing), performers: performerKeys(billing) };
+        m.artists.push(a); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: a.id, stageId: kf.id });
+      }, e, undefined, /: dropped show-segment /);
+    }
+    ok(!dropReason("GROW", "Neon Garden") && !dropReason("Discovery Project", ""), "a show-segment name off Kinetic Field, or a stageless Discovery Project, must not be dropped");
+    // An unnamed B2B partner stays in the billing but is no performer.
+    const dw = editions["edc-orlando-2021"]?.artists.find(a => a.name === "DRINKURWATER B2B Special Guest");
+    ok(dw && dw.performers.join() === "drinkurwater", `Orlando 2021's "DRINKURWATER B2B Special Guest" must keep its billing with drinkurwater as its only performer: ${JSON.stringify(dw)}`);
+    // The importer: a stage map may only re-case and re-space a name, and a
+    // page's day is its active tab, never the dates in its site translations.
+    ok(stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "kineticFIELD") === "Kinetic Field" && stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "neonGARDEN") === "neonGARDEN",
+      "stageAs must carry a mapped stage and leave an unmapped one as printed");
+    let renamed = false; try { stageFor({ stageAs: { rynobusARTCAR: "Rynobus" } }, "rynobusARTCAR"); } catch { renamed = true; }
+    mutations++; ok(renamed, "mutation not caught: a stageAs map that renames a stage (rynobusARTCAR → Rynobus)");
+    const tabHtml = `<a class="button-blocks"> Friday, November 07</a><a href="/day-2/" class="button-blocks button-blocks--active">Saturday, November 09</a>`;
+    ok(activeTab(tabHtml) === "Saturday, November 09" && activeTab(`_siteTranslations={"d":"Saturday, November 08"}`) === undefined,
+      "the active day tab must be read from the tab, never from other dates on the page");
+    const o23 = editions["edc-orlando-2023"], sa23 = m => m.provenance.captures.find(c => c.stagesAs);
+    if (o23) {
+      mustFail("a stagesAs map that renames a stage", m => { sa23(m).stagesAs.rynobusARTCAR = "Rynobus"; }, o23, undefined, /renames the stage/);
+      mustFail("a stagesAs target that is not a stage of the edition", m => { m.stages[5].name = "Anniversary Stage"; }, o23, undefined, /not a stage of the edition/);
+    }
+    // A graphic's styled stage name carried onto the page printing is recorded.
+    const sa = editions["edc-orlando-2023"]?.stages.map(s => s.name).join("|");
+    ok(sa === "Kinetic Field|Circuit Grounds|Neon Garden|Stereo Bloom|Rynobus Art Car|Anniversary Art Car", `Orlando 2023's day-2 graphic stages must join the pages' six: ${sa}`);
   }
   // Founder ruling 2: the Bonus Tracks stage is dropped whole. Every printed
   // Bonus Tracks row is put back on a restored stage, and a stage renamed to

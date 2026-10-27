@@ -1,0 +1,239 @@
+{
+  "id": "edc-orlando-2019",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "gathered": "historical-gather/edc-orlando-2019",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-11-08",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+          "published": "2019-11-01",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY NOVEMBER 8",
+          "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
+          "bytes": 738933,
+          "rows": 52
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-11-09",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+          "published": "2019-11-01",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY NOVEMBER 9",
+          "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
+          "bytes": 738933,
+          "rows": 52
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-11-10",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
+          "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+          "published": "2019-11-01",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SUNDAY NOVEMBER 10",
+          "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
+          "bytes": 738933,
+          "rows": 52
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "17:22",
+      "end": "17:25",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "18:53",
+      "end": "18:59",
+      "billing": "NATURAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "20:07",
+      "end": "20:10",
+      "billing": "INDUSTRIAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "21:09",
+      "end": "21:12",
+      "billing": "KINETIC ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "22:25",
+      "end": "22:30",
+      "billing": "SPIRITUAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "circuitGROUNDS",
+      "start": "22:40",
+      "end": "22:50",
+      "billing": "CHANGEOVER",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "18:05",
+      "end": "18:08",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "19:10",
+      "end": "19:16",
+      "billing": "NATURAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "20:20",
+      "end": "20:23",
+      "billing": "INDUSTRIAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "21:37",
+      "end": "21:40",
+      "billing": "KINETIC ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "22:40",
+      "end": "22:45",
+      "billing": "SPIRITUAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "wideawakeARTCAR",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "SECRET GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "18:16",
+      "end": "18:19",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "19:18",
+      "end": "19:24",
+      "billing": "NATURAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "20:23",
+      "end": "20:26",
+      "billing": "INDUSTRIAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "21:28",
+      "end": "21:31",
+      "billing": "KINETIC ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "22:43",
+      "end": "22:46",
+      "billing": "SPIRITUAL ENERGY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "23:58",
+      "end": "00:00",
+      "billing": "CLOSING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "circuitGROUNDS",
+      "start": "22:40",
+      "end": "22:55",
+      "billing": "CHANGEOVER",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

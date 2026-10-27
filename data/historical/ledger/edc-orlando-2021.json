@@ -1,0 +1,58 @@
+{
+  "id": "edc-orlando-2021",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "gathered": "historical-gather/edc-orlando-2021",
+  "days": [
+    {
+      "day": 1,
+      "date": "2021-11-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20220124001635/https://orlando.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20220124001635",
+          "printed": "Friday, November 12",
+          "sha256": "a73f1e04643ea516502544994d4dfa4f19ec3d99535ce9a0362749705eaf9f6e",
+          "bytes": 295359,
+          "rows": 54
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2021-11-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20220124012001/https://orlando.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20220124012001",
+          "printed": "Saturday, November 13",
+          "sha256": "2aee26c0a60659e6573bde28c00d228edd6244a8b4865ead995442f045d552da",
+          "bytes": 345605,
+          "rows": 61
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2021-11-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "archivedUrl": "https://web.archive.org/web/20220124001516/https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "captureTimestamp": "20220124001516",
+          "printed": "Sunday, November 14",
+          "sha256": "2d3ca331a4d59bb73a82bfd0e6881f94386f09cf6d759db8228f2cdf45606b0d",
+          "bytes": 348461,
+          "rows": 57
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
