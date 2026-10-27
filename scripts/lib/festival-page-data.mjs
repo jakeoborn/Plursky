@@ -41,6 +41,22 @@ export function plateFor(cfg, root = ROOT) {
 // cannot appear under a 2027 label as anything but a look-back. The /f/ page
 // is an index into Past Festivals, never a copy of it, so only the summary
 // travels, plus the date the newest official source was archived.
+// When an edition's record was last checked against its official source, and
+// how to say it. A Wayback capture is "archived"; an official_sources edition
+// also counts a re-hosted graphic's publish date, which is not an archive
+// date, so it says "latest source". historical.jsx's look-back header states
+// the same rule; test-past-lookbacks.mjs states it a third time, on purpose,
+// and holds the page and the app to it.
+export function sourceDate(edition) {
+  const pv = edition?.provenance || {};
+  const ts = (pv.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, ''))
+    .filter(t => /^\d{8}/.test(t || '')).sort().pop();
+  if (!ts) return null;
+  const latest = pv.extractionMethod === 'official_sources';
+  return { date: `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`,
+    label: latest ? 'Latest official source' : 'Official source archived' };
+}
+
 export function pastEditionsFor(id, root = ROOT) {
   const idx = path.join(root, 'data', 'historical', 'index.json');
   if (!existsSync(idx)) return [];
@@ -51,8 +67,7 @@ export function pastEditionsFor(id, root = ROOT) {
     .map(e => {
       const lineupOnly = e.completeness === 'lineup_only';
       const file = path.join(root, 'data', 'historical', 'editions', `${e.id}.json`);
-      const caps = existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')).provenance?.captures || []) : [];
-      const ts = caps.map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || '')).sort().pop();
+      const src = existsSync(file) ? sourceDate(JSON.parse(readFileSync(file, 'utf8'))) : null;
       return {
         id: e.id, name: e.name, year: e.year, lineupOnly,
         first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
@@ -61,7 +76,7 @@ export function pastEditionsFor(id, root = ROOT) {
         // A lineup_only edition has no sets because none were archived, not
         // because the festival had none: it never says "0 sets".
         sets: lineupOnly ? null : e.counts?.sets ?? null,
-        archived: ts ? `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}` : null,
+        archived: src?.date ?? null, sourceLabel: src?.label ?? null,
       };
     })
     .sort((a, b) => b.year - a.year);
