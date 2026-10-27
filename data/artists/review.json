@@ -98,6 +98,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "nocturnal-wonderland-2019:d2:labyrinth:1745:ed-rush-optical",
+  "printed": "Ed Rush + Optical",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2021:d1:owloch-grove:2230:bunny-from-rabbit-in-the-moon",
+  "printed": "Bunny (from Rabbit In The Moon)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+ },
+ {
   "id": "key:bou",
   "printed": "Bou",
   "reason": "very short name billed at more than one festival brand",
@@ -182,6 +196,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:k-d",
+  "printed": "k?d",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:jev",
   "printed": "Jev",
   "reason": "very short name billed at more than one festival brand",
@@ -212,6 +233,13 @@
  {
   "id": "key:i-o",
   "printed": "i_o",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:4b",
+  "printed": "4B",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

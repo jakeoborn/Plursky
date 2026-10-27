@@ -1,0 +1,58 @@
+{
+  "id": "nocturnal-wonderland-2017",
+  "method": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "gathered": "historical-gather/nocturnal-wonderland-2017",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-09-15",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-nocturnalsettimes.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/09/nocturnalsettimes.jpg",
+          "foundAt": "https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
+          "published": "2017-09-13",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY (SEPTEMBER 15 • 16, 2017)",
+          "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
+          "bytes": 153261,
+          "rows": 32
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-09-16",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-nocturnalsettimes.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/09/nocturnalsettimes.jpg",
+          "foundAt": "https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
+          "published": "2017-09-13",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY (SEPTEMBER 15 • 16, 2017)",
+          "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
+          "bytes": 153261,
+          "rows": 32
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "LABYRINTH",
+      "start": "17:00",
+      "end": "18:00",
+      "billing": "TBA",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

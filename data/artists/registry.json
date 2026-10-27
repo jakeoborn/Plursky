@@ -85,9 +85,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet"
+   "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
+   "nocturnal-wonderland-2021:d1:labyrinth:2100:12th-planet"
   ],
-  "firstSeen": "2022-11-11",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
@@ -249,10 +250,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d1:kineticfield:1624:3lau"
+   "edc-orlando-2019:d1:kineticfield:1624:3lau",
+   "nocturnal-wonderland-2021:d2:wolves-den:2100:3lau"
   ],
   "firstSeen": "2019-11-08",
-  "lastSeen": "2019-11-08",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -281,9 +283,11 @@
   "billings": [
    "edc-orlando-2022:d1:kinetic-field:1629:4b",
    "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche",
-   "edc-orlando-2024:d3:circuit-grounds:1530:4b-b2b-jstjr"
+   "edc-orlando-2024:d3:circuit-grounds:1530:4b-b2b-jstjr",
+   "nocturnal-wonderland-2018:d1:wolves-den:2205:4b",
+   "nocturnal-wonderland-2021:d1:wolves-den:2000:4b"
   ],
-  "firstSeen": "2022-11-11",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2024-11-10",
   "photo": null,
   "links": []
@@ -529,17 +533,20 @@
  },
  {
   "key": "a-trak",
-  "name": "A-TRAK",
-  "aliases": [],
+  "name": "A-Trak",
+  "aliases": [
+   "A-TRAK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
-   "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak"
+   "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
+   "nocturnal-wonderland-2021:d1:sunken-garden:2200:a-trak"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-11",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -703,15 +710,19 @@
  {
   "key": "ac-slater",
   "name": "AC Slater",
-  "aliases": [],
+  "aliases": [
+   "AC SLATER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-ac-slater-d2",
-   "edc-orlando-2021:d3:kinetic-field:1616:ac-slater"
+   "edc-orlando-2021:d3:kinetic-field:1616:ac-slater",
+   "nocturnal-wonderland-2018:d2:wolves-den:2000:ac-slater",
+   "nocturnal-wonderland-2021:d2:labyrinth:2200:ac-slater"
   ],
-  "firstSeen": "2021-11-14",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -1074,7 +1085,8 @@
    "edc-orlando-2026:ecf2",
    "escape-halloween-2026:esc-adventure-club-d2",
    "edc-orlando-2019:d1:circuitgrounds:1725:adventure-club-b2b-bear-grillz-sunset",
-   "escape-halloween-2024:d2:sewer-district:2300:adventure-club"
+   "escape-halloween-2024:d2:sewer-district:2300:adventure-club",
+   "nocturnal-wonderland-2022:d1:wolves-den:2100:adventure-club"
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2026-11-06",
@@ -1226,6 +1238,21 @@
   "links": []
  },
  {
+  "key": "agents-of-time",
+  "name": "Agents Of Time",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:owloch-grove:1930:agents-of-time"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ahadadream",
   "name": "Ahadadream",
   "aliases": [],
@@ -1294,6 +1321,21 @@
   "links": []
  },
  {
+  "key": "aidan-sokol",
+  "name": "Aidan Sokol",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:sunken-garden:1600:aidan-sokol"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "aimmia",
   "name": "AIMMIA",
   "aliases": [],
@@ -1305,6 +1347,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "airglo",
+  "name": "Airglo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:2100:airglo"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -1354,10 +1411,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d1:rynobus:1600:ak-renny-b2b-alliesun"
+   "edc-orlando-2022:d1:rynobus:1600:ak-renny-b2b-alliesun",
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:1700:ak-renny"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -1438,7 +1496,8 @@
    "edc-orlando-2021:d3:kinetic-field:2004:alan-walker",
    "edc-orlando-2022:d2:kinetic-field:2115:alan-walker",
    "edc-orlando-2023:d3:kinetic-field:2006:alan-walker",
-   "escape-halloween-2017:d2:slaughterhouse:1915:alan-walker"
+   "escape-halloween-2017:d2:slaughterhouse:1915:alan-walker",
+   "nocturnal-wonderland-2019:d1:wolves-den:2200:alan-walker"
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-11-07",
@@ -1605,6 +1664,21 @@
   ],
   "firstSeen": "2025-10-12",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-brutus",
+  "name": "ALEX BRUTUS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:1800:alex-brutus"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -2498,6 +2572,21 @@
   "links": []
  },
  {
+  "key": "anakim",
+  "name": "Anakim",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:sunken-garden:1500:anakim"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "anastazja",
   "name": "Anastazja",
   "aliases": [],
@@ -2641,7 +2730,8 @@
    "ultra-miami-2026:ul127",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2255:andy-c",
    "edc-las-vegas-2025:d1:basspod:2230:andy-c",
-   "edc-orlando-2019:d2:circuitgrounds:2000:andy-c"
+   "edc-orlando-2019:d2:circuitgrounds:2000:andy-c",
+   "nocturnal-wonderland-2022:d2:labyrinth:2100:andy-c"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-03-29",
@@ -3022,9 +3112,10 @@
   "billings": [
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:0030:apashe",
    "edc-las-vegas-2025:d1:basspod:2330:apashe",
-   "edc-orlando-2025:d2:circuitgrounds:2000:apashe"
+   "edc-orlando-2025:d2:circuitgrounds:2000:apashe",
+   "nocturnal-wonderland-2024:d1:labyrinth:2055:apashe"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -3041,6 +3132,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "apx1",
+  "name": "APX1",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:boombox-art-car:2230:apx1"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -3176,14 +3282,17 @@
  {
   "key": "armand-van-helden",
   "name": "Armand Van Helden",
-  "aliases": [],
+  "aliases": [
+   "ARMAND VAN HELDEN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:circuit-grounds:2130:armand-van-helden"
+   "edc-las-vegas-2025:d1:circuit-grounds:2130:armand-van-helden",
+   "nocturnal-wonderland-2022:d1:sunken-garden:2115:armand-van-helden"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -3232,9 +3341,10 @@
    "edc-las-vegas-2025:d1:cosmic-meadow:2200:armnhmr",
    "edc-orlando-2022:d2:corona-electric-beach:2300:armnhmr",
    "edc-orlando-2023:d3:circuit-grounds:1630:armnhmr",
-   "escape-halloween-2021:d1:the-grimm:1830:armnhmr"
+   "escape-halloween-2021:d1:the-grimm:1830:armnhmr",
+   "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -3402,14 +3512,17 @@
  {
   "key": "assembly",
   "name": "Assembly",
-  "aliases": [],
+  "aliases": [
+   "ASSEMBLY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d3:forest-house:1900:assembly"
+   "edc-las-vegas-2025:d3:forest-house:1900:assembly",
+   "nocturnal-wonderland-2017:d2:temple-noctem:1700:assembly"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
@@ -3473,6 +3586,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "atlast",
+  "name": "ATLAST",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1645:atlast"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -3541,9 +3669,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-gorge-2026:d1:queen-s-valley:1730:atura"
+   "beyond-wonderland-gorge-2026:d1:queen-s-valley:1730:atura",
+   "nocturnal-wonderland-2024:d1:wolves-den:1500:atura"
   ],
-  "firstSeen": "2026-06-27",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -3580,16 +3709,20 @@
  },
  {
   "key": "audien",
-  "name": "AUDIEN",
-  "aliases": [],
+  "name": "Audien",
+  "aliases": [
+   "AUDIEN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2022:d2:kinetic-field:1630:audien",
-   "escape-halloween-2025:d2:the-big-top:2000:audien"
+   "escape-halloween-2025:d2:the-big-top:2000:audien",
+   "nocturnal-wonderland-2018:d2:wolves-den:2100:audien",
+   "nocturnal-wonderland-2021:d1:wolves-den:2100:audien"
   ],
-  "firstSeen": "2022-11-12",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -3709,6 +3842,21 @@
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "autograf",
+  "name": "AUTOGRAF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:2340:autograf"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -4004,9 +4152,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:neongarden:2300:b2b2b2b"
+   "edc-orlando-2019:d3:neongarden:2300:b2b2b2b",
+   "nocturnal-wonderland-2019:d1:parliament-art-car:2300:b2b2b2b"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2019-11-10",
   "photo": null,
   "links": []
@@ -4442,7 +4591,8 @@
    "nocturnal-wonderland-2026:nw-barely-alive",
    "edc-orlando-2023:d1:circuit-grounds:1715:barely-alive",
    "edc-orlando-2025:d2:circuitgrounds:1700:barely-alive",
-   "escape-halloween-2017:d1:ghouls-graveyard:2100:barely-alive-b2b-virtual-riot"
+   "escape-halloween-2017:d1:ghouls-graveyard:2100:barely-alive-b2b-virtual-riot",
+   "nocturnal-wonderland-2024:d2:labyrinth:2000:barely-alive"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-09-20",
@@ -5334,9 +5484,11 @@
    "edc-orlando-2017:d1:boombox-art-car:1730:bijou",
    "edc-orlando-2017:d1:boombox-art-car:1930:angelz-b2b-bijou-b2b-ciszak",
    "edc-orlando-2019:d1:kineticfield:1330:bijou",
-   "escape-halloween-2022:d1:the-grimm:1800:bijou"
+   "escape-halloween-2022:d1:the-grimm:1800:bijou",
+   "nocturnal-wonderland-2017:d1:sunken-garden:1800:bijou",
+   "nocturnal-wonderland-2018:d1:wolves-den:1805:bijou"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2022-10-28",
   "photo": null,
   "links": []
@@ -5402,6 +5554,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "billy-kenny",
+  "name": "BILLY KENNY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:2130:billy-kenny"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -5648,9 +5815,10 @@
    "edc-orlando-2022:d1:circuit-grounds:2130:black-tiger-sex-machine",
    "edc-orlando-2024:d1:circuit-grounds:2140:black-tiger-sex-machine",
    "escape-halloween-2022:d1:feeding-grounds:2355:black-tiger-sex-machine",
-   "escape-halloween-2025:d1:sewer-district:2145:black-tiger-sex-machine"
+   "escape-halloween-2025:d1:sewer-district:2145:black-tiger-sex-machine",
+   "nocturnal-wonderland-2019:d2:labyrinth:2155:black-tiger-sex-machine"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -5697,10 +5865,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2017:d2:ghouls-graveyard:1700:blackgummy"
+   "escape-halloween-2017:d2:ghouls-graveyard:1700:blackgummy",
+   "nocturnal-wonderland-2018:d2:wolves-den:1900:blackgummy"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2017-10-28",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -5737,14 +5906,18 @@
  {
   "key": "blanke",
   "name": "Blanke",
-  "aliases": [],
+  "aliases": [
+   "BLANKE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-gorge-2026:d2:queen-s-valley:1900:blanke"
+   "beyond-wonderland-gorge-2026:d2:queen-s-valley:1900:blanke",
+   "nocturnal-wonderland-2022:d2:labyrinth:1800:blanke",
+   "nocturnal-wonderland-2024:d2:labyrinth:1800:blanke"
   ],
-  "firstSeen": "2026-06-28",
+  "firstSeen": "2022-09-18",
   "lastSeen": "2026-06-28",
   "photo": null,
   "links": []
@@ -5784,16 +5957,19 @@
  },
  {
   "key": "bleep-bloop",
-  "name": "BLEEP BLOOP",
-  "aliases": [],
+  "name": "Bleep Bloop",
+  "aliases": [
+   "BLEEP BLOOP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:circuitgrounds:1600:bleep-bloop"
+   "edc-orlando-2017:d1:circuitgrounds:1600:bleep-bloop",
+   "nocturnal-wonderland-2019:d2:labyrinth:1845:bleep-bloop"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -6021,6 +6197,21 @@
   "links": []
  },
  {
+  "key": "blvk-jvck",
+  "name": "BLVK JVCK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d1:labyrinth:1600:blvk-jvck"
+  ],
+  "firstSeen": "2022-09-17",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blvk-sheep",
   "name": "BLVK SHEEP",
   "aliases": [],
@@ -6207,9 +6398,10 @@
    "edc-orlando-2024:d2:casa-bacardi:1600:bolo",
    "edc-orlando-2025:d3:casabacardi:2130:bolo",
    "escape-halloween-2024:d1:casa-bacardi:2115:bolo",
-   "hard-summer-2025:d1:harder-stage:1600:bolo"
+   "hard-summer-2025:d1:harder-stage:1600:bolo",
+   "nocturnal-wonderland-2024:d2:wolves-den:1500:bolo"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -6255,9 +6447,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d2:blacklight-bar:2200:bones",
-   "escape-halloween-2022:d2:sanitarium:1600:bones"
+   "escape-halloween-2022:d2:sanitarium:1600:bones",
+   "nocturnal-wonderland-2017:d1:sunken-garden:1700:bones"
   ],
-  "firstSeen": "2022-10-29",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -6321,9 +6514,10 @@
    "edc-lv-2026:bp20",
    "lost-lands-2026:llu7",
    "edc-orlando-2026:ecu6",
-   "edc-orlando-2024:d2:circuit-grounds:1955:boogie-t"
+   "edc-orlando-2024:d2:circuit-grounds:1955:boogie-t",
+   "nocturnal-wonderland-2024:d1:labyrinth:1950:boogie-t"
   ],
-  "firstSeen": "2024-11-09",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -6352,10 +6546,12 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d2:kineticfield:1554:boombox-cartel",
-   "escape-halloween-2019:d2:sanitarium:2145:boombox-cartel"
+   "escape-halloween-2019:d2:sanitarium:2145:boombox-cartel",
+   "nocturnal-wonderland-2018:d2:wolves-den:2215:boombox-cartel",
+   "nocturnal-wonderland-2022:d2:wolves-den:1945:boombox-cartel"
   ],
   "firstSeen": "2017-11-11",
-  "lastSeen": "2019-10-26",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -6419,9 +6615,10 @@
   "billings": [
    "edc-orlando-2019:d2:stereobloom:1845:born-dirty",
    "edc-orlando-2021:d3:stereo-bloom:1615:born-dirty",
-   "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty"
+   "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty",
+   "nocturnal-wonderland-2017:d2:temple-noctem:2215:born-dirty"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2021-11-14",
   "photo": null,
   "links": []
@@ -6483,6 +6680,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bot",
+  "name": "BOT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:temple-noctem:2330:sage-armstrong-b2b-bot"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -6803,9 +7015,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2022:d3:neon-garden:1430:brennen-grey",
-   "escape-halloween-2022:d2:sewer-district:1800:brennen-grey"
+   "escape-halloween-2022:d2:sewer-district:1800:brennen-grey",
+   "nocturnal-wonderland-2018:d1:sunken-garden:1900:brennen-grey"
   ],
-  "firstSeen": "2022-10-29",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
@@ -7081,6 +7294,21 @@
   "links": []
  },
  {
+  "key": "buku",
+  "name": "Buku",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:labyrinth:1800:buku"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bullet-tooth",
   "name": "Bullet Tooth",
   "aliases": [
@@ -7096,6 +7324,21 @@
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bunny-from-rabbit-in-the-moon",
+  "name": "Bunny (from Rabbit In The Moon)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:2230:bunny-from-rabbit-in-the-moon"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -7403,6 +7646,21 @@
   "links": []
  },
  {
+  "key": "camden-cox",
+  "name": "Camden Cox",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:sunken-garden:1600:camden-cox"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "camelphat",
   "name": "CamelPhat",
   "aliases": [
@@ -7413,9 +7671,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2019:d3:neongarden:1700:camelphat",
-   "edc-orlando-2022:d1:neon-garden:2100:camelphat"
+   "edc-orlando-2022:d1:neon-garden:2100:camelphat",
+   "nocturnal-wonderland-2019:d2:sunken-garden:2200:camelphat-b2b-solardo"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
@@ -7448,6 +7707,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "camo-and-krooked",
+  "name": "Camo & Krooked",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:labyrinth:1750:camo-and-krooked"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -8226,15 +8500,20 @@
  {
   "key": "champagne-drip",
   "name": "Champagne Drip",
-  "aliases": [],
+  "aliases": [
+   "CHAMPAGNE DRIP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:llu8",
-   "edc-orlando-2024:d2:circuit-grounds:1655:champagne-drip"
+   "edc-orlando-2024:d2:circuit-grounds:1655:champagne-drip",
+   "nocturnal-wonderland-2017:d1:labyrinth:1800:champagne-drip",
+   "nocturnal-wonderland-2019:d1:labyrinth:1800:champagne-drip-b2b-zeke-beats",
+   "nocturnal-wonderland-2021:d1:labyrinth:1900:champagne-drip"
   ],
-  "firstSeen": "2024-11-09",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -8387,6 +8666,24 @@
   ],
   "firstSeen": "2026-09-05",
   "lastSeen": "2026-09-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "charles-feelgood",
+  "name": "Charles Feelgood",
+  "aliases": [
+   "CHARLES FEELGOOD"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:1600:charles-feelgood-b2b-dj-dan",
+   "nocturnal-wonderland-2022:d1:wolves-den:1600:charles-feelgood"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2022-09-17",
   "photo": null,
   "links": []
  },
@@ -8692,6 +8989,21 @@
   "links": []
  },
  {
+  "key": "chet-porter",
+  "name": "CHET PORTER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:2215:chet-porter"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cheyenne-giles",
   "name": "Cheyenne Giles",
   "aliases": [],
@@ -8841,6 +9153,21 @@
   "links": []
  },
  {
+  "key": "chloshow",
+  "name": "CHLOSHOW",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d1:sunken-garden:1600:chloshow"
+  ],
+  "firstSeen": "2022-09-17",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chozen",
   "name": "Chozen",
   "aliases": [
@@ -8975,9 +9302,10 @@
    "crssd-fall-2026:crssd-chris-lorenzo",
    "hard-summer-2026:hs1-chris-lorenzo",
    "edc-orlando-2024:d3:kinetic-field:1732:fly-with-us-ac-slater-b2b-chris-lorenzo-sunset-set",
-   "escape-halloween-2025:d2:feeding-grounds:2315:chris-lorenzo"
+   "escape-halloween-2025:d2:feeding-grounds:2315:chris-lorenzo",
+   "nocturnal-wonderland-2019:d2:wolves-den:1830:chris-lorenzo"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -9172,7 +9500,9 @@
    "edc-lv-2026:s15",
    "edc-orlando-2026:ecs2",
    "edc-orlando-2019:d2:kineticfield:1600:cid",
-   "edc-orlando-2023:d1:stereo-bloom:1845:cid"
+   "edc-orlando-2023:d1:stereo-bloom:1845:cid",
+   "nocturnal-wonderland-2022:d2:sunken-garden:2200:cid",
+   "nocturnal-wonderland-2024:d1:sunken-garden:2230:lee-foss-b2b-cid"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-11-07",
@@ -9334,16 +9664,20 @@
  },
  {
   "key": "claptone",
-  "name": "CLAPTONE",
-  "aliases": [],
+  "name": "Claptone",
+  "aliases": [
+   "CLAPTONE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2022:d2:neon-garden:1830:claptone",
-   "escape-halloween-2019:d2:psycho-circus:1930:claptone"
+   "escape-halloween-2019:d2:psycho-circus:1930:claptone",
+   "nocturnal-wonderland-2017:d1:sunken-garden:0045:claptone",
+   "nocturnal-wonderland-2021:d1:sunken-garden:2300:claptone"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
@@ -9523,6 +9857,21 @@
   "links": []
  },
  {
+  "key": "cloverdale",
+  "name": "CLOVERDALE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:sunken-garden:1700:cloverdale"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "club-angel",
   "name": "Club Angel",
   "aliases": [
@@ -9590,15 +9939,18 @@
  },
  {
   "key": "coco-and-breezy",
-  "name": "COCO & BREEZY",
-  "aliases": [],
+  "name": "Coco & Breezy",
+  "aliases": [
+   "COCO & BREEZY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2022:d2:stereo-bloom:1615:coco-and-breezy",
    "edc-orlando-2025:d2:stereobloom:1630:coco-and-breezy",
-   "edc-orlando-2025:d3:casabacardi:2000:coco-and-breezy"
+   "edc-orlando-2025:d3:casabacardi:2000:coco-and-breezy",
+   "nocturnal-wonderland-2024:d1:sunken-garden:1800:coco-and-breezy"
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2025-11-09",
@@ -10059,6 +10411,37 @@
   "links": []
  },
  {
+  "key": "convex",
+  "name": "CONVEX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:wolves-den:1700:convex",
+   "nocturnal-wonderland-2018:d2:wolves-den:1700:convex"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "coolhandluke",
+  "name": "CoolHandLuke",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:1500:coolhandluke"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "coone",
   "name": "Coone",
   "aliases": [
@@ -10372,6 +10755,21 @@
   "links": []
  },
  {
+  "key": "crissy-criss",
+  "name": "Crissy Criss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:1930:crissy-criss-mc-dino"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cristoph",
   "name": "Cristoph",
   "aliases": [
@@ -10382,9 +10780,10 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:q24",
-   "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1"
+   "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
+   "nocturnal-wonderland-2018:d1:sunken-garden:2215:cristoph"
   ],
-  "firstSeen": "2026-05-17",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-04",
   "photo": null,
   "links": []
@@ -10434,6 +10833,21 @@
   ],
   "firstSeen": "2025-10-10",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "crs",
+  "name": "CRS?",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:boombox-art-car:2130:crs"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -10491,9 +10905,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu10"
+   "lost-lands-2026:llu10",
+   "nocturnal-wonderland-2021:d2:sunken-garden:1900:crystal-skies"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -10577,6 +10992,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2023-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cut-snake",
+  "name": "CUT SNAKE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:sunken-garden:2100:cut-snake"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -10810,16 +11240,34 @@
  {
   "key": "dack-janiels",
   "name": "Dack Janiels",
-  "aliases": [],
+  "aliases": [
+   "DACK JANIELS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-dack-janiels-b2b-mongrel",
-   "escape-halloween-2021:d1:psycho-circus:1600:dack-janiels"
+   "escape-halloween-2021:d1:psycho-circus:1600:dack-janiels",
+   "nocturnal-wonderland-2018:d1:labyrinth:1800:dack-janiels"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "daemia",
+  "name": "DAEMIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:1930:j-splat-b2b-daemia"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -10853,6 +11301,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "daktyl",
+  "name": "DAKTYL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:2100:daktyl"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -11124,6 +11587,21 @@
   "links": []
  },
  {
+  "key": "danny-byrd",
+  "name": "DANNY BYRD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:labyrinth:2000:danny-byrd"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "danny-daze",
   "name": "Danny Daze",
   "aliases": [],
@@ -11364,6 +11842,21 @@
   "links": []
  },
  {
+  "key": "dateless",
+  "name": "DATELESS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:sunken-garden:1800:dateless"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "datsik",
   "name": "DATSIK",
   "aliases": [],
@@ -11420,6 +11913,21 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2023-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "davi",
+  "name": "Daví",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:owloch-grove:1630:davi"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -11704,7 +12212,8 @@
    "edc-orlando-2023:d1:kinetic-field:1727:deadmau5-sunset-set",
    "escape-halloween-2019:d1:the-grimm:0030:deadmau5",
    "escape-halloween-2024:d1:the-grimm:2045:deadmau5",
-   "escape-halloween-2025:d1:the-big-top:2210:deadmau5"
+   "escape-halloween-2025:d1:the-big-top:2210:deadmau5",
+   "nocturnal-wonderland-2021:d1:wolves-den:2300:deadmau5"
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2026-09-19",
@@ -11892,6 +12401,21 @@
   "links": []
  },
  {
+  "key": "deeper-purpose",
+  "name": "Deeper Purpose",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:sunken-garden:2000:deeper-purpose"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deer-tick",
   "name": "Deer Tick",
   "aliases": [],
@@ -11936,6 +12460,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2026-06-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dela-moontribe",
+  "name": "DELA MOONTRIBE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:sunken-garden:1800:dela-moontribe"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -12089,9 +12628,12 @@
    "edc-orlando-2024:d1:kinetic-field:2006:deorro-b2b-timmy-trumpet",
    "escape-halloween-2022:d1:the-grimm:2320:deorro-b2b-valentino-khan",
    "escape-halloween-2025:d1:the-big-top:2100:deorro",
-   "hard-summer-2025:d2:harder-stage:2100:deorro"
+   "hard-summer-2025:d2:harder-stage:2100:deorro",
+   "nocturnal-wonderland-2018:d2:wolves-den:0045:deorro",
+   "nocturnal-wonderland-2019:d1:wolves-den:2100:deorro",
+   "nocturnal-wonderland-2024:d2:wolves-den:2200:deorro"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -12252,6 +12794,21 @@
   "links": []
  },
  {
+  "key": "devoted",
+  "name": "DEVOTED",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:temple-noctem:2100:devoted"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dexter-and-the-moonrocks",
   "name": "Dexter And The Moonrocks",
   "aliases": [],
@@ -12347,16 +12904,20 @@
  {
   "key": "dillon-francis",
   "name": "Dillon Francis",
-  "aliases": [],
+  "aliases": [
+   "DILLON FRANCIS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
    "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
-   "escape-halloween-2019:d1:the-grimm:2315:dillon-francis"
+   "escape-halloween-2019:d1:the-grimm:2315:dillon-francis",
+   "nocturnal-wonderland-2017:d1:wolves-den:0100:dillon-francis",
+   "nocturnal-wonderland-2022:d2:wolves-den:2145:dillon-francis"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2024-11-09",
   "photo": null,
   "links": []
@@ -12423,9 +12984,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf11"
+   "lost-lands-2026:llf11",
+   "nocturnal-wonderland-2021:d1:labyrinth:2000:dion-timmer"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -12453,15 +13015,18 @@
  {
   "key": "dirt-monkey",
   "name": "Dirt Monkey",
-  "aliases": [],
+  "aliases": [
+   "DIRT MONKEY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:llh3",
-   "edc-orlando-2023:d1:circuit-grounds:1815:dirt-monkey-b2b-subdocta"
+   "edc-orlando-2023:d1:circuit-grounds:1815:dirt-monkey-b2b-subdocta",
+   "nocturnal-wonderland-2018:d1:labyrinth:1900:dirt-monkey"
   ],
-  "firstSeen": "2023-11-10",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-17",
   "photo": null,
   "links": []
@@ -12601,9 +13166,10 @@
    "edc-las-vegas-2025:d3:cosmic-meadow:0430:disco-lines",
    "edc-orlando-2022:d3:stereo-bloom:1745:disco-lines",
    "edc-orlando-2023:d3:circuit-grounds:1945:disco-lines",
-   "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines"
+   "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
+   "nocturnal-wonderland-2022:d2:wolves-den:1645:disco-lines"
   ],
-  "firstSeen": "2022-11-13",
+  "firstSeen": "2022-09-18",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -12707,6 +13273,21 @@
   "links": []
  },
  {
+  "key": "div-ide",
+  "name": "DIV/IDE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:wolves-den:1700:div-ide"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "divas-and-jazz",
   "name": "Divas & Jazz",
   "aliases": [],
@@ -12802,15 +13383,19 @@
  {
   "key": "dj-adam-auburn",
   "name": "DJ Adam Auburn",
-  "aliases": [],
+  "aliases": [
+   "DJ ADAM AUBURN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2022:d1:kinetic-field:1300:dj-adam-auburn",
-   "escape-halloween-2021:d2:the-grimm:1600:dj-adam-auburn"
+   "escape-halloween-2021:d2:the-grimm:1600:dj-adam-auburn",
+   "nocturnal-wonderland-2021:d1:wolves-den:1500:dj-adam-auburn",
+   "nocturnal-wonderland-2022:d1:wolves-den:1500:dj-adam-auburn"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
@@ -12921,6 +13506,51 @@
   ],
   "firstSeen": "2025-11-07",
   "lastSeen": "2025-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-construct",
+  "name": "DJ CONSTRUCT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:boombox-art-car:2330:dj-construct"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-dan",
+  "name": "DJ Dan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:1600:charles-feelgood-b2b-dj-dan"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-demigod",
+  "name": "DJ Demigod",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:1500:dj-demigod"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -13130,6 +13760,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-hanzel",
+  "name": "DJ HANZEL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:sunken-garden:2000:dj-hanzel"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -13414,6 +14059,21 @@
   "links": []
  },
  {
+  "key": "dj-mustard",
+  "name": "DJ MUSTARD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:wolves-den:2200:dj-mustard"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-nate",
   "name": "DJ Naté",
   "aliases": [],
@@ -13554,7 +14214,8 @@
    "edc-orlando-2025:d2:kineticfield:2105:dj-snake",
    "escape-halloween-2017:d1:slaughterhouse:0045:dj-snake",
    "escape-halloween-2021:d1:the-grimm:0045:dj-snake",
-   "escape-halloween-2025:d1:the-big-top:0035:marshmello-b2b-dj-snake"
+   "escape-halloween-2025:d1:the-big-top:0035:marshmello-b2b-dj-snake",
+   "nocturnal-wonderland-2019:d2:wolves-den:2245:dj-snake"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-12-31",
@@ -13853,7 +14514,9 @@
  {
   "key": "doctor-p",
   "name": "Doctor P",
-  "aliases": [],
+  "aliases": [
+   "DOCTOR P"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -13861,7 +14524,8 @@
    "edc-lv-2026:bp9",
    "lost-lands-2026:llf13",
    "lost-lands-2026:llf63",
-   "escape-halloween-2021:d1:psycho-circus:2300:doctor-p-b2b-funtcase"
+   "escape-halloween-2021:d1:psycho-circus:2300:doctor-p-b2b-funtcase",
+   "nocturnal-wonderland-2022:d2:labyrinth:2000:doctor-p"
   ],
   "firstSeen": "2021-10-29",
   "lastSeen": "2026-09-18",
@@ -13980,9 +14644,10 @@
    "edc-orlando-2021:d3:stereo-bloom:2045:dombresky",
    "edc-orlando-2023:d1:stereo-bloom:2230:dombresky",
    "edc-orlando-2025:d2:stereobloom:2230:dombresky",
-   "escape-halloween-2019:d2:psycho-circus:1800:dombresky"
+   "escape-halloween-2019:d2:psycho-circus:1800:dombresky",
+   "nocturnal-wonderland-2017:d1:sunken-garden:2000:dombresky"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -14127,9 +14792,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-donald-glaude-b2b-thee-o"
+   "nocturnal-wonderland-2026:nw-donald-glaude-b2b-thee-o",
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:2100:donald-glaude"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -14231,16 +14897,34 @@
   "links": []
  },
  {
-  "key": "dr-apollo",
-  "name": "DR. APOLLO",
+  "key": "downlink",
+  "name": "Downlink",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2025:d1:danse-macabre:2000:dr-apollo"
+   "nocturnal-wonderland-2021:d1:labyrinth:2200:modestep-b2b-downlink-dnb-set"
   ],
-  "firstSeen": "2025-10-31",
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dr-apollo",
+  "name": "Dr. Apollo",
+  "aliases": [
+   "DR. APOLLO"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2025:d1:danse-macabre:2000:dr-apollo",
+   "nocturnal-wonderland-2021:d1:labyrinth:1500:dr-apollo"
+  ],
+  "firstSeen": "2021-09-18",
   "lastSeen": "2025-10-31",
   "photo": null,
   "links": []
@@ -14274,9 +14958,13 @@
    "lost-lands-2026:lls19",
    "escape-halloween-2026:esc-dr-fresch-d2",
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2325:dr-fresch",
-   "lollapalooza-2025:d3:perry-s:1645:dr-fresch"
+   "lollapalooza-2025:d3:perry-s:1645:dr-fresch",
+   "nocturnal-wonderland-2017:d2:wolves-den:2045:dr-fresch",
+   "nocturnal-wonderland-2019:d2:wolves-den:1730:dr-fresch",
+   "nocturnal-wonderland-2021:d2:labyrinth:2100:dr-fresch",
+   "nocturnal-wonderland-2022:d1:wolves-den:2000:dr-fresch"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -14409,6 +15097,21 @@
   "links": []
  },
  {
+  "key": "dreamers-delight",
+  "name": "Dreamers Delight",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:wolves-den:1600:dreamers-delight"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dreeemy",
   "name": "DRĖĖĖMY",
   "aliases": [],
@@ -14437,6 +15140,21 @@
   ],
   "firstSeen": "2025-11-08",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "drezo",
+  "name": "Drezo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:wolves-den:1800:drezo"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -14641,6 +15359,21 @@
   "links": []
  },
  {
+  "key": "ducka-shan",
+  "name": "Ducka Shan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1550:ducka-shan"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ducky",
   "name": "DUCKY",
   "aliases": [],
@@ -14648,9 +15381,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d2:circuitgrounds:1415:ducky"
+   "edc-orlando-2017:d2:circuitgrounds:1415:ducky",
+   "nocturnal-wonderland-2017:d1:wolves-den:1900:ducky"
   ],
-  "firstSeen": "2017-11-11",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2017-11-11",
   "photo": null,
   "links": []
@@ -14731,6 +15465,21 @@
   ],
   "firstSeen": "2025-07-31",
   "lastSeen": "2025-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dustycloud",
+  "name": "Dustycloud",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:sunken-garden:1900:dustycloud"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -14896,14 +15645,17 @@
  {
   "key": "eats-everything",
   "name": "Eats Everything",
-  "aliases": [],
+  "aliases": [
+   "EATS EVERYTHING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2023:d3:neon-garden:1600:eats-everything"
+   "edc-orlando-2023:d3:neon-garden:1600:eats-everything",
+   "nocturnal-wonderland-2022:d1:sunken-garden:2000:eats-everything"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2023-11-12",
   "photo": null,
   "links": []
@@ -14920,7 +15672,8 @@
   "billings": [
    "edc-lv-2026:bp14",
    "edc-orlando-2021:d2:circuit-grounds:1700:eazybaked",
-   "edc-orlando-2024:d2:circuit-grounds:1555:eazybaked"
+   "edc-orlando-2024:d2:circuit-grounds:1555:eazybaked",
+   "nocturnal-wonderland-2024:d1:labyrinth:1650:eazybaked"
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2026-05-17",
@@ -14999,6 +15752,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ed-rush-optical",
+  "name": "Ed Rush + Optical",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:labyrinth:1745:ed-rush-optical"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -15150,14 +15918,17 @@
  {
   "key": "effin",
   "name": "Effin",
-  "aliases": [],
+  "aliases": [
+   "EFFIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls20"
+   "lost-lands-2026:lls20",
+   "nocturnal-wonderland-2022:d1:labyrinth:1700:effin"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -15270,6 +16041,21 @@
   "links": []
  },
  {
+  "key": "electric-mantis",
+  "name": "ELECTRIC MANTIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:temple-noctem:2215:electric-mantis"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "electron-c",
   "name": "ELECTRON-C",
   "aliases": [],
@@ -15327,9 +16113,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:q25",
-   "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1"
+   "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
+   "nocturnal-wonderland-2018:d1:sunken-garden:2330:eli-and-fur",
+   "nocturnal-wonderland-2021:d2:owloch-grove:2230:eli-and-fur"
   ],
-  "firstSeen": "2026-05-17",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-04",
   "photo": null,
   "links": []
@@ -15352,9 +16140,10 @@
    "edc-orlando-2023:d3:neon-garden:1900:eli-brown",
    "edc-orlando-2025:d2:kineticfield:1844:eli-brown",
    "escape-halloween-2022:d1:sewer-district:2000:eli-brown",
-   "escape-halloween-2025:d2:the-big-top:2215:eli-brown"
+   "escape-halloween-2025:d2:the-big-top:2215:eli-brown",
+   "nocturnal-wonderland-2019:d2:sunken-garden:1900:eli-brown"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-08-02",
   "photo": null,
   "links": []
@@ -15452,15 +16241,18 @@
  {
   "key": "eliminate",
   "name": "Eliminate",
-  "aliases": [],
+  "aliases": [
+   "ELIMINATE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-eliminate",
-   "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1925:eliminate"
+   "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1925:eliminate",
+   "nocturnal-wonderland-2022:d1:labyrinth:1800:eliminate"
   ],
-  "firstSeen": "2026-06-28",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -15674,9 +16466,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d2:beatbox-art-car:2345:emo-nite-grave-rave-set"
+   "edc-las-vegas-2025:d2:beatbox-art-car:2345:emo-nite-grave-rave-set",
+   "nocturnal-wonderland-2024:d2:wolves-den:1700:emo-nite"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -15768,6 +16561,24 @@
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eprom",
+  "name": "Eprom",
+  "aliases": [
+   "EPROM"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:labyrinth:2200:eprom",
+   "nocturnal-wonderland-2019:d1:labyrinth:1900:eprom"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -15931,6 +16742,21 @@
   "links": []
  },
  {
+  "key": "etc-etc",
+  "name": "ETC!ETC!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:parliament-art-car:2100:etc-etc"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eternalism",
   "name": "ETERNALISM",
   "aliases": [],
@@ -16074,6 +16900,21 @@
   "links": []
  },
  {
+  "key": "evraftr",
+  "name": "EVRAFTR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1500:evraftr"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "excision",
   "name": "Excision",
   "aliases": [
@@ -16095,9 +16936,10 @@
    "edc-orlando-2021:d2:circuit-grounds:2300:excision",
    "edc-orlando-2023:d2:circuit-grounds:2300:excision",
    "edc-orlando-2025:d2:circuitgrounds:2300:excision",
-   "escape-halloween-2019:d1:psycho-circus:0100:excision"
+   "escape-halloween-2019:d1:psycho-circus:0100:excision",
+   "nocturnal-wonderland-2017:d2:wolves-den:0045:excision"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -16227,16 +17069,34 @@
   "links": []
  },
  {
-  "key": "fallen",
-  "name": "Fallen",
+  "key": "falcons",
+  "name": "FALCONS",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:bp1"
+   "nocturnal-wonderland-2017:d1:temple-noctem:0045:falcons"
   ],
-  "firstSeen": "2026-05-16",
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fallen",
+  "name": "Fallen",
+  "aliases": [
+   "FALLEN"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-lv-2026:bp1",
+   "nocturnal-wonderland-2018:d1:labyrinth:1700:fallen"
+  ],
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -16305,6 +17165,21 @@
   ],
   "firstSeen": "2025-10-10",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fashen",
+  "name": "Fashen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:2000:fashen"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -16483,6 +17358,24 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fester",
+  "name": "Fester",
+  "aliases": [
+   "FESTER"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:0000:fester",
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:1800:fester"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -16986,7 +17879,9 @@
    "lost-lands-2026:lls21",
    "countdown-nye-2026:cdny-flosstradamus",
    "escape-halloween-2017:d1:ghouls-graveyard:0100:flosstradamus",
-   "escape-halloween-2022:d2:feeding-grounds:2245:flosstradamus"
+   "escape-halloween-2022:d2:feeding-grounds:2245:flosstradamus",
+   "nocturnal-wonderland-2021:d1:labyrinth:2300:flosstradamus",
+   "nocturnal-wonderland-2024:d2:labyrinth:2300:yellow-claw-b2b-flosstradamus"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-12-31",
@@ -17086,10 +17981,27 @@
   "billings": [
    "edc-lv-2026:bp9",
    "lost-lands-2026:lls22",
-   "lollapalooza-2025:d3:perry-s:1530:flux-pavilion"
+   "lollapalooza-2025:d3:perry-s:1530:flux-pavilion",
+   "nocturnal-wonderland-2018:d1:labyrinth:0100:flux-pavilion",
+   "nocturnal-wonderland-2021:d2:wolves-den:2200:flux-pavilion"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fly",
+  "name": "FLY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d1:labyrinth:1500:fly"
+  ],
+  "firstSeen": "2022-09-17",
+  "lastSeen": "2022-09-17",
   "photo": null,
   "links": []
  },
@@ -17150,6 +18062,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2025-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "four-color-zack",
+  "name": "FOUR COLOR ZACK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:temple-noctem:1830:four-color-zack"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -17393,6 +18320,21 @@
   "links": []
  },
  {
+  "key": "fritz-carlton",
+  "name": "FRITZ CARLTON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:1700:fritz-carlton"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "frogwater",
   "name": "Frogwater",
   "aliases": [],
@@ -17457,6 +18399,21 @@
   ],
   "firstSeen": "2025-06-08",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "frostbyte",
+  "name": "Frostbyte",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:labyrinth:1500:frostbyte"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -17700,9 +18657,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d2:circuit-grounds:2100:g-jones"
+   "edc-orlando-2021:d2:circuit-grounds:2100:g-jones",
+   "nocturnal-wonderland-2019:d2:labyrinth:2050:g-jones"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2021-11-13",
   "photo": null,
   "links": []
@@ -17868,16 +18826,20 @@
  {
   "key": "ganja-white-night",
   "name": "Ganja White Night",
-  "aliases": [],
+  "aliases": [
+   "GANJA WHITE NIGHT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:lls23",
    "edc-orlando-2024:d2:circuit-grounds:2300:ganja-white-night",
-   "escape-halloween-2021:d1:psycho-circus:0000:ganja-white-night"
+   "escape-halloween-2021:d1:psycho-circus:0000:ganja-white-night",
+   "nocturnal-wonderland-2019:d1:labyrinth:2200:ganja-white-night",
+   "nocturnal-wonderland-2022:d2:labyrinth:2300:ganja-white-night"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -18007,10 +18969,27 @@
   "projects": [],
   "billings": [
    "edc-orlando-2023:d3:kinetic-field:1432:gem-and-tauri",
-   "escape-halloween-2024:d2:the-grimm:1700:gem-and-tauri"
+   "escape-halloween-2024:d2:the-grimm:1700:gem-and-tauri",
+   "nocturnal-wonderland-2021:d2:sunken-garden:1700:gem-and-tauri"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gene-farris",
+  "name": "Gene Farris",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:sunken-garden:1800:gene-farris",
+   "nocturnal-wonderland-2024:d1:sunken-garden:1900:gene-farris-b2b-offaiah"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -18057,6 +19036,21 @@
   ],
   "firstSeen": "2026-09-04",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gentlemens-club",
+  "name": "Gentlemens Club",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:labyrinth:2000:gentlemens-club"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -18681,6 +19675,21 @@
   "links": []
  },
  {
+  "key": "golden-features",
+  "name": "Golden Features",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:wolves-den:1700:golden-features"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "goldfinger",
   "name": "Goldfinger",
   "aliases": [],
@@ -18692,6 +19701,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "goldfish",
+  "name": "GOLDFISH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:2105:goldfish"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -18727,6 +19751,21 @@
   "links": []
  },
  {
+  "key": "golf-clap",
+  "name": "GOLF CLAP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:1750:golf-clap"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "goo",
   "name": "GOO",
   "aliases": [],
@@ -18754,6 +19793,21 @@
   ],
   "firstSeen": "2025-10-03",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "good-vibes-soundclash",
+  "name": "GOOD VIBES SOUNDCLASH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:0100:good-vibes-soundclash"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -19083,6 +20137,21 @@
   "links": []
  },
  {
+  "key": "gray-area",
+  "name": "Gray Area",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:labyrinth:1500:gray-area"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "green-matter",
   "name": "Green Matter",
   "aliases": [],
@@ -19118,7 +20187,8 @@
    "edc-orlando-2019:d3:neongarden:2130:green-velvet",
    "edc-orlando-2025:d3:kineticfield:1726:green-velvet-b2b-alok-sunset-set",
    "escape-halloween-2017:d1:cannibals-tea-party:2230:green-velvet",
-   "escape-halloween-2021:d1:sewer-district:1930:green-velvet"
+   "escape-halloween-2021:d1:sewer-district:1930:green-velvet",
+   "nocturnal-wonderland-2024:d1:sunken-garden:2100:green-velvet"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-12-30",
@@ -19232,6 +20302,24 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "grlskout",
+  "name": "Grlskout",
+  "aliases": [
+   "GRLSKOUT"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:wolves-den:1500:grlskout",
+   "nocturnal-wonderland-2022:d2:wolves-den:1500:grlskout"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -19354,6 +20442,21 @@
   "links": []
  },
  {
+  "key": "gta",
+  "name": "GTA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:wolves-den:0000:gta"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "guardrail",
   "name": "Guardrail",
   "aliases": [],
@@ -19365,6 +20468,23 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gud-vibrations",
+  "name": "GUD VIBRATIONS",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "nghtmre-and-slander"
+  ],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:labyrinth:2330:nghtmre-and-slander-present-gud-vibrations"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -19459,9 +20579,12 @@
   "billings": [
    "edc-orlando-2019:d1:kineticfield:1526:habstrakt",
    "hard-summer-2025:d1:harder-stage:1700:habstrakt-b2b-jstjr",
-   "hard-summer-2025:d1:beatbox-boombox-art-car:1930:habstrakt"
+   "hard-summer-2025:d1:beatbox-boombox-art-car:1930:habstrakt",
+   "nocturnal-wonderland-2018:d1:wolves-den:2105:habstrakt",
+   "nocturnal-wonderland-2021:d1:wolves-den:1900:habstrakt",
+   "nocturnal-wonderland-2024:d2:wolves-den:1800:habstrakt"
   ],
-  "firstSeen": "2019-11-08",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2025-08-02",
   "photo": null,
   "links": []
@@ -19882,6 +21005,21 @@
   "links": []
  },
  {
+  "key": "haywyre",
+  "name": "HAYWYRE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:2330:haywyre"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hazlett",
   "name": "Hazlett",
   "aliases": [],
@@ -20206,6 +21344,21 @@
   "links": []
  },
  {
+  "key": "hi-i-m-ghost",
+  "name": "HI I'M GHOST",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:labyrinth:1600:hi-i-m-ghost"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hi-lo",
   "name": "HI-LO",
   "aliases": [],
@@ -20238,15 +21391,18 @@
  },
  {
   "key": "highlnd",
-  "name": "HIGHLND",
-  "aliases": [],
+  "name": "Highlnd",
+  "aliases": [
+   "HIGHLND"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d2:corona-electric-beach:1700:highlnd"
+   "edc-orlando-2022:d2:corona-electric-beach:1700:highlnd",
+   "nocturnal-wonderland-2021:d1:wolves-den:1600:highlnd"
   ],
-  "firstSeen": "2022-11-12",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
@@ -20266,6 +21422,21 @@
   ],
   "firstSeen": "2025-11-09",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hint-of-lavender",
+  "name": "Hint Of Lavender",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:sunken-garden:1500:hint-of-lavender"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -20786,9 +21957,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d2:circuit-grounds:2115:hugel",
-   "edc-orlando-2023:d1:stereo-bloom:2115:hugel"
+   "edc-orlando-2023:d1:stereo-bloom:2115:hugel",
+   "nocturnal-wonderland-2022:d2:sunken-garden:1900:hugel"
   ],
-  "firstSeen": "2023-11-10",
+  "firstSeen": "2022-09-18",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -20805,6 +21977,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "human-resources",
+  "name": "Human Resources",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:owloch-grove:1500:human-resources"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -20899,6 +22086,36 @@
   "links": []
  },
  {
+  "key": "huxley",
+  "name": "HUXLEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:sunken-garden:2145:josh-butler-b2b-huxley"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "huxley-anne",
+  "name": "Huxley Anne",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:labyrinth:1545:huxley-anne"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hvdes",
   "name": "HVDES",
   "aliases": [],
@@ -20908,9 +22125,11 @@
   "billings": [
    "lost-lands-2026:lls29",
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:1725:hvdes",
-   "escape-halloween-2024:d1:sewer-district:1900:hvdes"
+   "escape-halloween-2024:d1:sewer-district:1900:hvdes",
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1745:hvdes",
+   "nocturnal-wonderland-2021:d2:labyrinth:1600:hvdes"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -20929,6 +22148,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hydrah",
+  "name": "Hydrah",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:wolves-den:1500:hydrah"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -21271,7 +22505,9 @@
    "edc-las-vegas-2025:d2:kinetic-field:0147:illenium-b2b-slander",
    "edc-orlando-2024:d3:kinetic-field:2232:illenium",
    "escape-halloween-2017:d1:slaughterhouse:2045:illenium",
-   "escape-halloween-2024:d1:the-grimm:0035:illenium"
+   "escape-halloween-2024:d1:the-grimm:0035:illenium",
+   "nocturnal-wonderland-2018:d1:wolves-den:0030:illenium",
+   "nocturnal-wonderland-2022:d1:wolves-den:2300:illenium"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-09-20",
@@ -21881,6 +23117,21 @@
   "links": []
  },
  {
+  "key": "j-splat",
+  "name": "J. SPLAT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:1930:j-splat-b2b-daemia"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "j-v-o",
   "name": "J.V.O",
   "aliases": [],
@@ -21908,7 +23159,8 @@
    "edc-orlando-2022:d2:stereo-bloom:2015:j-worra-b2b-vnssa",
    "edc-orlando-2024:d1:stereo-bloom:1945:j-worra",
    "escape-halloween-2022:d2:sanitarium:1830:j-worra",
-   "escape-halloween-2025:d2:feeding-grounds:2045:j-worra"
+   "escape-halloween-2025:d2:feeding-grounds:2045:j-worra",
+   "nocturnal-wonderland-2024:d2:sunken-garden:2200:j-worra"
   ],
   "firstSeen": "2022-10-29",
   "lastSeen": "2025-11-01",
@@ -21927,6 +23179,21 @@
   ],
   "firstSeen": "2026-10-31",
   "lastSeen": "2026-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jack-beats",
+  "name": "JACK BEATS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "reel-mood"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -21956,9 +23223,10 @@
    "edc-lv-2026:c2",
    "lollapalooza-2026:lo153",
    "edc-las-vegas-2025:d1:stereo-bloom:2000:jackie-hollander",
-   "edc-orlando-2024:d1:stereo-bloom:1415:jackie-hollander"
+   "edc-orlando-2024:d1:stereo-bloom:1415:jackie-hollander",
+   "nocturnal-wonderland-2024:d1:sunken-garden:1600:jackie-hollander"
   ],
-  "firstSeen": "2024-11-08",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-08-02",
   "photo": null,
   "links": []
@@ -22089,6 +23357,21 @@
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jai-wolf",
+  "name": "JAI WOLF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:wolves-den:2310:jai-wolf"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -22313,9 +23596,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d2:kinetic-field:1526:jason-ross"
+   "edc-orlando-2021:d2:kinetic-field:1526:jason-ross",
+   "nocturnal-wonderland-2021:d2:sunken-garden:2000:jason-ross"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2021-11-13",
   "photo": null,
   "links": []
@@ -22348,7 +23632,8 @@
    "edc-orlando-2017:d1:kineticfield:1858:jauz",
    "edc-orlando-2019:d1:circuitgrounds:2140:jauz",
    "edc-orlando-2021:d3:circuit-grounds:2120:jauz",
-   "escape-halloween-2021:d2:psycho-circus:0045:jauz"
+   "escape-halloween-2021:d2:psycho-circus:0045:jauz",
+   "nocturnal-wonderland-2019:d1:wolves-den:2300:jauz"
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2021-11-14",
@@ -22412,6 +23697,21 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jayceeoh",
+  "name": "Jayceeoh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:parliament-art-car:2000:jayceeoh"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -22547,9 +23847,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d2:circuit-grounds:1400:jeanie"
+   "edc-orlando-2022:d2:circuit-grounds:1400:jeanie",
+   "nocturnal-wonderland-2021:d1:labyrinth:1600:jeanie"
   ],
-  "firstSeen": "2022-11-12",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
@@ -22662,6 +23963,21 @@
   "links": []
  },
  {
+  "key": "jesse-brooks",
+  "name": "Jesse Brooks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:1630:jesse-brooks"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jesse-detor",
   "name": "JESSE DETOR",
   "aliases": [],
@@ -22723,7 +24039,8 @@
    "edc-las-vegas-2025:d2:basspod:2230:jessica-audiffred-b2b-layz",
    "edc-orlando-2022:d1:circuit-grounds:1615:jessica-audiffred",
    "edc-orlando-2024:d1:circuit-grounds:1815:jessica-audiffred",
-   "escape-halloween-2025:d1:sewer-district:2300:jessica-audiffred"
+   "escape-halloween-2025:d1:sewer-district:2300:jessica-audiffred",
+   "nocturnal-wonderland-2024:d2:labyrinth:1900:jessica-audiffred"
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2026-12-31",
@@ -23320,6 +24637,21 @@
   "links": []
  },
  {
+  "key": "jonas-rathsman",
+  "name": "JONAS RATHSMAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:sunken-garden:2100:jonas-rathsman"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jonny-maven",
   "name": "JONNY MAVEN",
   "aliases": [],
@@ -23455,6 +24787,22 @@
   "links": []
  },
  {
+  "key": "josh-butler",
+  "name": "JOSH BUTLER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:1930:josh-butler",
+   "nocturnal-wonderland-2018:d2:sunken-garden:2145:josh-butler-b2b-huxley"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "josh-teed",
   "name": "Josh Teed",
   "aliases": [],
@@ -23578,7 +24926,8 @@
    "edc-orlando-2017:d2:circuitgrounds:1930:joyryde",
    "edc-orlando-2021:d3:kinetic-field:1901:joyryde",
    "edc-orlando-2021:d3:corona-electric-beach:2300:joyryde",
-   "edc-orlando-2023:d3:circuit-grounds:1845:joyryde"
+   "edc-orlando-2023:d3:circuit-grounds:1845:joyryde",
+   "nocturnal-wonderland-2019:d2:wolves-den:2030:joyryde"
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2026-10-31",
@@ -23662,9 +25011,12 @@
    "edc-orlando-2021:d3:corona-electric-beach:2200:jstjr",
    "edc-orlando-2024:d3:circuit-grounds:1530:4b-b2b-jstjr",
    "escape-halloween-2021:d2:psycho-circus:2145:jstjr",
-   "hard-summer-2025:d1:harder-stage:1700:habstrakt-b2b-jstjr"
+   "hard-summer-2025:d1:harder-stage:1700:habstrakt-b2b-jstjr",
+   "nocturnal-wonderland-2019:d1:parliament-art-car:2200:jstjr",
+   "nocturnal-wonderland-2022:d2:wolves-den:1845:jstjr",
+   "nocturnal-wonderland-2024:d1:wolves-den:1900:jstjr"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -23681,6 +25033,21 @@
   ],
   "firstSeen": "2026-09-27",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "juany-bravo",
+  "name": "Juany Bravo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:sunken-garden:1500:juany-bravo"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -24001,6 +25368,21 @@
   "links": []
  },
  {
+  "key": "just-a-gent",
+  "name": "JUST A GENT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:temple-noctem:2100:just-a-gent"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "justin-hawkes",
   "name": "Justin Hawkes",
   "aliases": [],
@@ -24137,10 +25519,12 @@
    "kill-the-kid"
   ],
   "billings": [
-   "edc-orlando-2017:d2:circuitgrounds:1830:k-d"
+   "edc-orlando-2017:d2:circuitgrounds:1830:k-d",
+   "nocturnal-wonderland-2017:d1:wolves-den:2000:k-d",
+   "nocturnal-wonderland-2019:d1:wolves-den:1900:k-d"
   ],
-  "firstSeen": "2017-11-11",
-  "lastSeen": "2017-11-11",
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -24191,7 +25575,8 @@
    "ultra-miami-2026:ul65",
    "escape-halloween-2026:esc-kai-wachi-d1",
    "edc-orlando-2022:d2:circuit-grounds:1900:kai-wachi-b2b-kompany",
-   "edc-orlando-2025:d2:circuitgrounds:2100:kai-wachi"
+   "edc-orlando-2025:d2:circuitgrounds:2100:kai-wachi",
+   "nocturnal-wonderland-2024:d1:labyrinth:2200:kai-wachi"
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2026-10-30",
@@ -24271,9 +25656,10 @@
   "billings": [
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1930:kaleena-zanders",
    "edc-orlando-2022:d3:stereo-bloom:1430:kaleena-zanders",
-   "edc-orlando-2022:d3:corona-electric-beach:1930:kaleena-zanders"
+   "edc-orlando-2022:d3:corona-electric-beach:1930:kaleena-zanders",
+   "nocturnal-wonderland-2022:d2:sunken-garden:1600:kaleena-zanders"
   ],
-  "firstSeen": "2022-11-13",
+  "firstSeen": "2022-09-18",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -24501,7 +25887,8 @@
    "edc-orlando-2019:d1:kineticfield:1725:kaskade-sunset",
    "edc-orlando-2021:d1:kinetic-field:2233:kaskade",
    "edc-orlando-2023:d1:kinetic-field:2232:kaskade",
-   "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland"
+   "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
+   "nocturnal-wonderland-2024:d1:wolves-den:2300:kaskade"
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2026-11-07",
@@ -24586,17 +25973,22 @@
  },
  {
   "key": "kayoh",
-  "name": "KAYOH",
-  "aliases": [],
+  "name": "Kayoh",
+  "aliases": [
+   "KAYOH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:corona-electric-beach:2130:kayoh",
-   "edc-orlando-2017:d2:boombox-art-car:2000:kayoh"
+   "edc-orlando-2017:d2:boombox-art-car:2000:kayoh",
+   "nocturnal-wonderland-2017:d2:labyrinth:1700:kayoh",
+   "nocturnal-wonderland-2018:d1:wolves-den:1700:kayoh",
+   "nocturnal-wonderland-2019:d1:parliament-art-car:1700:kayoh"
   ],
-  "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-11",
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -24661,7 +26053,9 @@
    "edc-orlando-2021:d1:kinetic-field:1956:kayzo",
    "edc-orlando-2023:d1:circuit-grounds:2130:kayzo",
    "escape-halloween-2022:d2:feeding-grounds:0045:kayzo",
-   "escape-halloween-2025:d1:feeding-grounds:0000:kayzo"
+   "escape-halloween-2025:d1:feeding-grounds:0000:kayzo",
+   "nocturnal-wonderland-2024:d2:wolves-den:2100:kayzo",
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:2300:kayzo"
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2025-10-31",
@@ -24815,9 +26209,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2019:d1:crazy-town:2000:kendoll"
+   "escape-halloween-2019:d1:crazy-town:2000:kendoll",
+   "nocturnal-wonderland-2019:d1:sunken-garden:1700:kendoll"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2019-10-25",
   "photo": null,
   "links": []
@@ -24849,6 +26244,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2025-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kenny-oliver",
+  "name": "Kenny Oliver",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:sunken-garden:1600:kenny-oliver"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -24999,6 +26409,21 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "keys-n-krates",
+  "name": "KEYS N KRATES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:0100:keys-n-krates"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -25213,6 +26638,24 @@
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kill-the-noise",
+  "name": "Kill The Noise",
+  "aliases": [
+   "KILL THE NOISE"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:labyrinth:2210:kill-the-noise",
+   "nocturnal-wonderland-2021:d2:sunken-garden:2200:kill-the-noise"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -25724,6 +27167,21 @@
   "links": []
  },
  {
+  "key": "koven",
+  "name": "KOVEN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:labyrinth:1900:koven"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kozik-and-sueldo",
   "name": "KOZIK & SUELDO",
   "aliases": [],
@@ -25750,6 +27208,36 @@
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2022-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "krafty-kuts",
+  "name": "Krafty Kuts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:owloch-grove:1800:krafty-kuts"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "krane",
+  "name": "KRANE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:temple-noctem:2330:krane"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -25863,7 +27351,8 @@
    "edc-orlando-2017:d2:kineticfield:1752:kshmr",
    "edc-orlando-2021:d2:kinetic-field:2003:kshmr",
    "escape-halloween-2021:d2:the-grimm:2245:kshmr",
-   "escape-halloween-2025:d2:the-big-top:2100:kshmr-b2b-r3hab"
+   "escape-halloween-2025:d2:the-big-top:2100:kshmr-b2b-r3hab",
+   "nocturnal-wonderland-2024:d2:wolves-den:1900:kshmr"
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2025-11-01",
@@ -26131,6 +27620,21 @@
   "links": []
  },
  {
+  "key": "kyle-walker",
+  "name": "Kyle Walker",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:wolves-den:1630:kyle-walker"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kyle-watson",
   "name": "Kyle Watson",
   "aliases": [],
@@ -26138,9 +27642,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson"
+   "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson",
+   "nocturnal-wonderland-2024:d2:sunken-garden:2100:kyle-watson"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -26563,6 +28068,21 @@
   "links": []
  },
  {
+  "key": "last-heroes",
+  "name": "Last Heroes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:sunken-garden:1800:last-heroes"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "laszewo",
   "name": "Laszewo",
   "aliases": [
@@ -26868,16 +28388,36 @@
  },
  {
   "key": "lee-foss",
-  "name": "LEE FOSS",
+  "name": "Lee Foss",
+  "aliases": [
+   "LEE FOSS"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2019:d2:stereobloom:2230:lee-foss",
+   "nocturnal-wonderland-2018:d2:sunken-garden:0000:lee-foss",
+   "nocturnal-wonderland-2022:d1:sunken-garden:2230:lee-foss",
+   "nocturnal-wonderland-2024:d1:sunken-garden:2230:lee-foss-b2b-cid"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2024-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lee-reynolds",
+  "name": "LEE REYNOLDS",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:stereobloom:2230:lee-foss"
+   "nocturnal-wonderland-2018:d2:sunken-garden:2030:mikey-lion-b2b-lee-reynolds"
   ],
-  "firstSeen": "2019-11-09",
-  "lastSeen": "2019-11-09",
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -26958,6 +28498,21 @@
   "links": []
  },
  {
+  "key": "lektrique",
+  "name": "Lektrique",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:parliament-art-car:1900:lektrique"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lelo",
   "name": "Lelo",
   "aliases": [],
@@ -27025,9 +28580,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-lenny-v"
+   "nocturnal-wonderland-2026:nw-lenny-v",
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:1930:lenny-v"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -27217,6 +28773,21 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lick",
+  "name": "Lick",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:labyrinth:1700:lick"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -27430,9 +29001,11 @@
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:0030:liquid-stranger",
    "edc-las-vegas-2025:d3:basspod:0030:liquid-stranger",
    "edc-orlando-2021:d1:circuit-grounds:2015:liquid-stranger",
-   "edc-orlando-2023:d2:circuit-grounds:2200:liquid-stranger"
+   "edc-orlando-2023:d2:circuit-grounds:2200:liquid-stranger",
+   "nocturnal-wonderland-2018:d1:labyrinth:0000:liquid-stranger",
+   "nocturnal-wonderland-2022:d1:labyrinth:2300:liquid-stranger"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -27592,6 +29165,21 @@
   "links": []
  },
  {
+  "key": "lo-99",
+  "name": "LO'99",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:sunken-garden:1900:lo-99"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lo-g",
   "name": "Lo-G",
   "aliases": [],
@@ -27608,16 +29196,19 @@
  },
  {
   "key": "loadstar",
-  "name": "LOADSTAR",
-  "aliases": [],
+  "name": "Loadstar",
+  "aliases": [
+   "LOADSTAR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:circuitgrounds:1800:dc-breaks-b2b-loadstar"
+   "edc-orlando-2017:d1:circuitgrounds:1800:dc-breaks-b2b-loadstar",
+   "nocturnal-wonderland-2019:d2:labyrinth:1645:loadstar"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -27716,9 +29307,10 @@
   "projects": [],
   "billings": [
    "escape-halloween-2019:d1:crazy-town:2100:londonbridge",
-   "escape-halloween-2021:d2:psycho-circus:1600:londonbridge"
+   "escape-halloween-2021:d2:psycho-circus:1600:londonbridge",
+   "nocturnal-wonderland-2019:d2:sunken-garden:1700:londonbridge"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2021-10-30",
   "photo": null,
   "links": []
@@ -28125,10 +29717,26 @@
    "acl-2025:d2:tito-s-handmade-vodka:1830:lp-giobbi",
    "acl-2025:d5:tito-s-handmade-vodka:1830:lp-giobbi",
    "edc-orlando-2021:d3:stereo-bloom:1730:lp-giobbi-sunset",
-   "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty"
+   "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty",
+   "nocturnal-wonderland-2021:d1:sunken-garden:1700:lp-giobbi"
   ],
-  "firstSeen": "2021-11-14",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2025-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ltj-bukem",
+  "name": "LTJ Bukem",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:2300:ltj-bukem"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -28189,10 +29797,12 @@
   "projects": [],
   "billings": [
    "escape-halloween-2019:d2:psycho-circus:1600:lucati",
-   "escape-halloween-2021:d2:sanitarium:1830:lucati"
+   "escape-halloween-2021:d2:sanitarium:1830:lucati",
+   "nocturnal-wonderland-2021:d2:wolves-den:1600:lucati",
+   "nocturnal-wonderland-2024:d1:sunken-garden:1700:lucati"
   ],
   "firstSeen": "2019-10-26",
-  "lastSeen": "2021-10-30",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -28273,9 +29883,10 @@
   "billings": [
    "edc-orlando-2021:d3:circuit-grounds:1605:lucii",
    "escape-halloween-2021:d1:psycho-circus:1800:lucii",
-   "escape-halloween-2022:d2:feeding-grounds:2045:lucii"
+   "escape-halloween-2022:d2:feeding-grounds:2045:lucii",
+   "nocturnal-wonderland-2021:d2:labyrinth:1800:lucii"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2022-10-29",
   "photo": null,
   "links": []
@@ -28853,6 +30464,21 @@
   "links": []
  },
  {
+  "key": "machete",
+  "name": "Machete",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:labyrinth:1500:machete"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "machine-girl",
   "name": "Machine Girl",
   "aliases": [],
@@ -29154,9 +30780,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:boombox-art-car:1345:mahalo",
-   "edc-orlando-2017:d1:corona-electric-beach:1700:mahalo"
+   "edc-orlando-2017:d1:corona-electric-beach:1700:mahalo",
+   "nocturnal-wonderland-2017:d2:temple-noctem:1945:mahalo"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2017-11-10",
   "photo": null,
   "links": []
@@ -29252,9 +30879,11 @@
   ],
   "billings": [
    "nocturnal-wonderland-2026:nw-malaa",
-   "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set"
+   "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
+   "nocturnal-wonderland-2019:d2:wolves-den:2130:malaa",
+   "nocturnal-wonderland-2021:d2:labyrinth:2300:malaa"
   ],
-  "firstSeen": "2023-11-11",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -29831,9 +31460,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-mark-lewis"
+   "nocturnal-wonderland-2026:nw-mark-lewis",
+   "nocturnal-wonderland-2024:d1:beatbox-art-car:2230:mark-lewis"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -29978,6 +31608,21 @@
   "links": []
  },
  {
+  "key": "marques-wyatt",
+  "name": "Marques Wyatt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:sunken-garden:2300:marques-wyatt"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marsh",
   "name": "Marsh",
   "aliases": [],
@@ -30044,6 +31689,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marten-horger",
+  "name": "MARTEN HØRGER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:sunken-garden:1800:marten-h-rger"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -30156,6 +31816,24 @@
   "links": []
  },
  {
+  "key": "mason-maynard",
+  "name": "Mason Maynard",
+  "aliases": [
+   "MASON MAYNARD"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:sunken-garden:2000:mason-maynard",
+   "nocturnal-wonderland-2022:d1:sunken-garden:1800:mason-maynard"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mason-norris",
   "name": "Mason Norris",
   "aliases": [],
@@ -30198,6 +31876,21 @@
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mat-zo",
+  "name": "Mat Zo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:2155:mat-zo-dnb-set"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -30253,9 +31946,11 @@
    "edc-orlando-2022:d3:stereo-bloom:2000:matroda",
    "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair",
    "edc-orlando-2024:d2:kinetic-field:1853:matroda",
-   "escape-halloween-2025:d2:feeding-grounds:0030:matroda"
+   "escape-halloween-2025:d2:feeding-grounds:0030:matroda",
+   "nocturnal-wonderland-2021:d2:wolves-den:1800:matroda",
+   "nocturnal-wonderland-2022:d2:sunken-garden:2300:matroda"
   ],
-  "firstSeen": "2021-11-14",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -30509,14 +32204,17 @@
  {
   "key": "max-low",
   "name": "Max Low",
-  "aliases": [],
+  "aliases": [
+   "MAX LOW"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2026:d2:queen-s-domain:1600:max-low"
+   "beyond-wonderland-socal-2026:d2:queen-s-domain:1600:max-low",
+   "nocturnal-wonderland-2022:d2:sunken-garden:1500:max-low"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2022-09-18",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -30570,9 +32268,10 @@
    "portola-2026:pt1-max-styler",
    "edc-las-vegas-2025:d1:circuit-grounds:2015:max-styler",
    "edc-orlando-2024:d1:stereo-bloom:1730:max-styler-sunset-set",
-   "edc-orlando-2025:d3:circuitgrounds:1840:max-styler"
+   "edc-orlando-2025:d3:circuitgrounds:1840:max-styler",
+   "nocturnal-wonderland-2024:d2:sunken-garden:1900:max-styler"
   ],
-  "firstSeen": "2024-11-08",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -30604,6 +32303,36 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maximono",
+  "name": "MAXIMONO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:2030:maximono"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maximus-c",
+  "name": "MAXIMUS C",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:0100:maximus-c"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -30655,7 +32384,8 @@
    "edc-orlando-2021:d2:circuit-grounds:1300:fury-mc-dino",
    "edc-orlando-2023:d2:circuit-grounds:1300:fury-with-mc-dino",
    "edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino",
-   "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino"
+   "edc-orlando-2025:d2:circuitgrounds:1300:fury-mc-dino",
+   "nocturnal-wonderland-2021:d1:owloch-grove:1930:crissy-criss-mc-dino"
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2026-11-07",
@@ -31115,9 +32845,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2022:d1:sewer-district:1600:miane"
+   "escape-halloween-2022:d1:sewer-district:1600:miane",
+   "nocturnal-wonderland-2022:d1:sunken-garden:1700:miane"
   ],
-  "firstSeen": "2022-10-28",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2022-10-28",
   "photo": null,
   "links": []
@@ -31215,10 +32946,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d1:circuit-grounds:1715:midnight-tyrannosaurus"
+   "edc-orlando-2022:d1:circuit-grounds:1715:midnight-tyrannosaurus",
+   "nocturnal-wonderland-2024:d1:labyrinth:1850:midnight-tyrannosaurus"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -31290,14 +33022,17 @@
  {
   "key": "mija",
   "name": "Mija",
-  "aliases": [],
+  "aliases": [
+   "MIJA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "countdown-nye-2026:cdny-mija-b2b-sim0ne"
+   "countdown-nye-2026:cdny-mija-b2b-sim0ne",
+   "nocturnal-wonderland-2017:d1:wolves-den:2100:mija"
   ],
-  "firstSeen": "2026-12-31",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -31374,6 +33109,24 @@
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mikey-lion",
+  "name": "Mikey Lion",
+  "aliases": [
+   "MIKEY LION"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:sunken-garden:2030:mikey-lion-b2b-lee-reynolds",
+   "nocturnal-wonderland-2021:d1:sunken-garden:2100:mikey-lion"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -31797,6 +33550,21 @@
   "links": []
  },
  {
+  "key": "mk",
+  "name": "MK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:sunken-garden:0100:mk"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mk-gee",
   "name": "MK.GEE",
   "aliases": [],
@@ -31978,15 +33746,18 @@
  },
  {
   "key": "modestep",
-  "name": "MODESTEP",
-  "aliases": [],
+  "name": "Modestep",
+  "aliases": [
+   "MODESTEP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2022:d1:feeding-grounds:2050:modestep"
+   "escape-halloween-2022:d1:feeding-grounds:2050:modestep",
+   "nocturnal-wonderland-2021:d1:labyrinth:2200:modestep-b2b-downlink-dnb-set"
   ],
-  "firstSeen": "2022-10-28",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2022-10-28",
   "photo": null,
   "links": []
@@ -31999,9 +33770,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d3:kinetic-field:1425:moksi"
+   "edc-orlando-2022:d3:kinetic-field:1425:moksi",
+   "nocturnal-wonderland-2022:d1:wolves-den:1900:moksi"
   ],
-  "firstSeen": "2022-11-13",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
@@ -32295,9 +34067,10 @@
   "billings": [
    "escape-halloween-2026:esc-morelia-d1",
    "escape-halloween-2026:esc-morelia-b2b-pixie-dust-d1",
-   "escape-halloween-2025:d1:danse-macabre:2300:morelia"
+   "escape-halloween-2025:d1:danse-macabre:2300:morelia",
+   "nocturnal-wonderland-2018:d2:sunken-garden:1700:morelia"
   ],
-  "firstSeen": "2025-10-31",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -32608,6 +34381,21 @@
   "links": []
  },
  {
+  "key": "mscls",
+  "name": "MSCLS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:temple-noctem:1830:mscls"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mstrkrft",
   "name": "MSTRKRFT",
   "aliases": [],
@@ -32759,6 +34547,21 @@
   "links": []
  },
  {
+  "key": "must-die",
+  "name": "MUST DIE!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d1:labyrinth:2000:must-die-b2b-tisoki"
+  ],
+  "firstSeen": "2022-09-17",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mustard",
   "name": "Mustard",
   "aliases": [],
@@ -32799,9 +34602,10 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:bp23",
-   "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1950:muzz"
+   "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1950:muzz",
+   "nocturnal-wonderland-2024:d2:labyrinth:1600:muzz"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -33274,9 +35078,10 @@
   "billings": [
    "edc-las-vegas-2025:d2:basspod:0230:netsky",
    "edc-orlando-2024:d2:circuit-grounds:1755:netsky",
-   "escape-halloween-2024:d2:sewer-district:2145:netsky"
+   "escape-halloween-2024:d2:sewer-district:2145:netsky",
+   "nocturnal-wonderland-2018:d1:labyrinth:2300:netsky-dj-set"
   ],
-  "firstSeen": "2024-10-26",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -33395,10 +35200,26 @@
    "edc-orlando-2021:d1:circuit-grounds:2125:nghtmre-b2b-svdden-death",
    "edc-orlando-2021:d1:corona-electric-beach:2300:nghtmre",
    "escape-halloween-2017:d2:ghouls-graveyard:0030:nghtmre",
-   "escape-halloween-2025:d2:sewer-district:2215:nghtmre-b2b-peekaboo"
+   "escape-halloween-2025:d2:sewer-district:2215:nghtmre-b2b-peekaboo",
+   "nocturnal-wonderland-2021:d1:wolves-den:2200:nghtmre"
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nghtmre-and-slander",
+  "name": "NGHTMRE & SLANDER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "gud-vibrations"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -33493,6 +35314,21 @@
   ],
   "firstSeen": "2026-09-06",
   "lastSeen": "2026-09-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nick-ledesma",
+  "name": "Nick Ledesma",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:sunken-garden:1500:nick-ledesma"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -33688,9 +35524,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-nifty-nubez"
+   "nocturnal-wonderland-2026:nw-nifty-nubez",
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:1500:nifty-nubez"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -33744,14 +35581,17 @@
  {
   "key": "nightstalker",
   "name": "Nightstalker",
-  "aliases": [],
+  "aliases": [
+   "NIGHTSTALKER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:bp12",
    "nocturnal-wonderland-2026:nw-nightstalker-with-mc-dino",
-   "escape-halloween-2019:d1:psycho-circus:1600:nightstalker"
+   "escape-halloween-2019:d1:psycho-circus:1600:nightstalker",
+   "nocturnal-wonderland-2022:d2:labyrinth:1500:nightstalker"
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2026-09-20",
@@ -33996,7 +35836,9 @@
   "billings": [
    "edc-orlando-2017:d2:boombox-art-car:1700:nitti-gritti",
    "edc-orlando-2019:d3:kineticfield:1420:nitti-gritti",
-   "edc-orlando-2021:d2:corona-electric-beach:2200:nitti-gritti"
+   "edc-orlando-2021:d2:corona-electric-beach:2200:nitti-gritti",
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1945:nitti-gritti",
+   "nocturnal-wonderland-2021:d2:wolves-den:1900:nitti-gritti"
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2021-11-13",
@@ -34020,16 +35862,19 @@
  },
  {
   "key": "no-mana",
-  "name": "NO MANA",
-  "aliases": [],
+  "name": "No Mana",
+  "aliases": [
+   "NO MANA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:wideawakeartcar:2000:no-mana"
+   "edc-orlando-2019:d2:wideawakeartcar:2000:no-mana",
+   "nocturnal-wonderland-2021:d2:wolves-den:1700:no-mana"
   ],
   "firstSeen": "2019-11-09",
-  "lastSeen": "2019-11-09",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -34236,7 +36081,8 @@
    "edc-orlando-2019:d2:stereobloom:2000:noizu",
    "edc-orlando-2021:d3:stereo-bloom:1930:noizu",
    "edc-orlando-2023:d1:kinetic-field:1627:noizu",
-   "edc-orlando-2024:d1:stereo-bloom:2045:noizu"
+   "edc-orlando-2024:d1:stereo-bloom:2045:noizu",
+   "nocturnal-wonderland-2024:d2:sunken-garden:2300:noizu"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-06-27",
@@ -34270,9 +36116,10 @@
   "billings": [
    "edc-las-vegas-2025:d3:kinetic-field:2054:nora-en-pure",
    "edc-orlando-2019:d3:circuitgrounds:1820:nora-en-pure",
-   "escape-halloween-2019:d2:psycho-circus:2100:gorgon-city-b2b-nora-en-pure"
+   "escape-halloween-2019:d2:psycho-circus:2100:gorgon-city-b2b-nora-en-pure",
+   "nocturnal-wonderland-2018:d1:sunken-garden:0045:nora-en-pure"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
@@ -34295,14 +36142,17 @@
  {
   "key": "nostalgix",
   "name": "Nostalgix",
-  "aliases": [],
+  "aliases": [
+   "NOSTALGIX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:c21",
    "ultra-miami-2026:ul32",
-   "edc-orlando-2021:d1:circuit-grounds:1600:wenzday-b2b-nostalgix"
+   "edc-orlando-2021:d1:circuit-grounds:1600:wenzday-b2b-nostalgix",
+   "nocturnal-wonderland-2022:d1:wolves-den:1700:nostalgix"
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2026-05-17",
@@ -34335,9 +36185,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2026:d2:queen-s-domain:1755:notd"
+   "beyond-wonderland-socal-2026:d2:queen-s-domain:1755:notd",
+   "nocturnal-wonderland-2024:d1:wolves-den:1700:notd"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-09-14",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -34701,25 +36552,29 @@
   "billings": [
    "edc-orlando-2026:ecu27",
    "ultra-miami-2026:ul28",
-   "edc-las-vegas-2025:d3:basspod:2330:of-the-trees"
+   "edc-las-vegas-2025:d3:basspod:2330:of-the-trees",
+   "nocturnal-wonderland-2024:d2:labyrinth:2100:of-the-trees"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
  {
   "key": "offaiah",
-  "name": "OFFAIAH",
-  "aliases": [],
+  "name": "Offaiah",
+  "aliases": [
+   "OFFAIAH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:stereobloom:1510:offaiah"
+   "edc-orlando-2019:d2:stereobloom:1510:offaiah",
+   "nocturnal-wonderland-2024:d1:sunken-garden:1900:gene-farris-b2b-offaiah"
   ],
   "firstSeen": "2019-11-09",
-  "lastSeen": "2019-11-09",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -35160,15 +37015,33 @@
  {
   "key": "ookay",
   "name": "Ookay",
+  "aliases": [
+   "OOKAY"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2026:ul31",
+   "nocturnal-wonderland-2017:d2:wolves-den:2145:ookay-live"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2026-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "oona-dahl",
+  "name": "ÖONA DAHL",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul31"
+   "nocturnal-wonderland-2018:d1:sunken-garden:2000:oona-dahl"
   ],
-  "firstSeen": "2026-03-27",
-  "lastSeen": "2026-03-27",
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -35283,14 +37156,17 @@
  {
   "key": "oscar-da-grouch",
   "name": "Oscar Da Grouch",
-  "aliases": [],
+  "aliases": [
+   "OSCAR DA GROUCH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-oscar-da-grouch"
+   "nocturnal-wonderland-2026:nw-oscar-da-grouch",
+   "nocturnal-wonderland-2018:d1:boombox-art-car:2230:oscar-da-grouch"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -35328,14 +37204,17 @@
  {
   "key": "oscure",
   "name": "Oscure",
-  "aliases": [],
+  "aliases": [
+   "OSCURE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-oscure"
+   "nocturnal-wonderland-2026:nw-oscure",
+   "nocturnal-wonderland-2018:d2:boombox-art-car:0030:oscure"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -36136,8 +38015,10 @@
  },
  {
   "key": "pauline-herr",
-  "name": "PAULINE HERR",
-  "aliases": [],
+  "name": "Pauline Herr",
+  "aliases": [
+   "PAULINE HERR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -36145,7 +38026,8 @@
    "edc-orlando-2022:d2:corona-electric-beach:2000:pauline-herr",
    "edc-orlando-2022:d3:circuit-grounds:1525:pauline-herr",
    "escape-halloween-2022:d2:feeding-grounds:1645:pauline-herr",
-   "escape-halloween-2025:d2:the-warehouse:2300:rossy-b2b-pauline-herr"
+   "escape-halloween-2025:d2:the-warehouse:2300:rossy-b2b-pauline-herr",
+   "nocturnal-wonderland-2024:d1:wolves-den:1600:pauline-herr"
   ],
   "firstSeen": "2022-10-29",
   "lastSeen": "2025-11-01",
@@ -36245,9 +38127,11 @@
    "countdown-nye-2026:cdny-lyny-b2b-peekaboo",
    "escape-halloween-2024:d1:sewer-district:0000:peekaboo",
    "escape-halloween-2025:d2:sewer-district:2215:nghtmre-b2b-peekaboo",
-   "hard-summer-2025:d1:green-stage:1900:peekaboo"
+   "hard-summer-2025:d1:green-stage:1900:peekaboo",
+   "nocturnal-wonderland-2019:d2:labyrinth:1945:peekaboo",
+   "nocturnal-wonderland-2022:d2:labyrinth:2200:peekaboo"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -36453,6 +38337,21 @@
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "phantoms",
+  "name": "PHANTOMS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:1945:phantoms"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -36692,6 +38591,21 @@
   "links": []
  },
  {
+  "key": "pixel-terror",
+  "name": "Pixel Terror",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:labyrinth:1700:pixel-terror"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pixie-dust",
   "name": "Pixie Dust",
   "aliases": [],
@@ -36828,6 +38742,21 @@
   "links": []
  },
  {
+  "key": "pluto",
+  "name": "PLUTO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:labyrinth:1830:pluto"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pocket",
   "name": "Pocket",
   "aliases": [],
@@ -36855,6 +38784,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "point-point",
+  "name": "POINT POINT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:2000:point-point"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -37289,6 +39233,21 @@
   "links": []
  },
  {
+  "key": "prxzm",
+  "name": "PRXZM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:wolves-den:1800:prxzm"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "pryda",
   "name": "Pryda",
   "aliases": [],
@@ -37528,6 +39487,21 @@
   "links": []
  },
  {
+  "key": "quix",
+  "name": "QUIX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:wolves-den:1845:quix"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "r-v-calypso",
   "name": "R/V Calypso",
   "aliases": [],
@@ -37558,7 +39532,8 @@
    "edc-orlando-2019:d3:kineticfield:1819:r3hab",
    "edc-orlando-2021:d1:kinetic-field:2111:afrojack-b2b-r3hab",
    "escape-halloween-2017:d2:ghouls-graveyard:1915:r3hab",
-   "escape-halloween-2025:d2:the-big-top:2100:kshmr-b2b-r3hab"
+   "escape-halloween-2025:d2:the-big-top:2100:kshmr-b2b-r3hab",
+   "nocturnal-wonderland-2022:d2:wolves-den:2045:r3hab"
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-12-31",
@@ -37639,6 +39614,21 @@
   ],
   "firstSeen": "2026-08-08",
   "lastSeen": "2026-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rad-cat",
+  "name": "Rad Cat",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:parliament-art-car:1600:rad-cat"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -37908,16 +39898,20 @@
  },
  {
   "key": "rawtek",
-  "name": "RAWTEK",
-  "aliases": [],
+  "name": "Rawtek",
+  "aliases": [
+   "RAWTEK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2017:d2:chopping-block:1630:rawtek"
+   "escape-halloween-2017:d2:chopping-block:1630:rawtek",
+   "nocturnal-wonderland-2017:d1:temple-noctem:1945:rawtek",
+   "nocturnal-wonderland-2019:d1:parliament-art-car:1800:rawtek"
   ],
-  "firstSeen": "2017-10-28",
-  "lastSeen": "2017-10-28",
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -38008,9 +40002,10 @@
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1930:reaper",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1845:reaper",
    "edc-orlando-2021:d2:circuit-grounds:1600:reaper",
-   "edc-orlando-2021:d2:corona-electric-beach:2100:reaper"
+   "edc-orlando-2021:d2:corona-electric-beach:2100:reaper",
+   "nocturnal-wonderland-2021:d2:labyrinth:1700:reaper"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -38148,6 +40143,24 @@
   "links": []
  },
  {
+  "key": "redlight",
+  "name": "Redlight",
+  "aliases": [
+   "REDLIGHT"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:sunken-garden:2215:redlight",
+   "nocturnal-wonderland-2019:d1:sunken-garden:2200:redlight"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "redtape",
   "name": "REDTAPE",
   "aliases": [],
@@ -38159,6 +40172,39 @@
   ],
   "firstSeen": "2025-10-31",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "reel-mood",
+  "name": "REEL MOOD",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "jack-beats",
+   "taiki-nulight"
+  ],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d1:wolves-den:1800:jack-beats-taiki-nulight-present-reel-mood"
+  ],
+  "firstSeen": "2022-09-17",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "regard",
+  "name": "Regard",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:wolves-den:1800:regard"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -38381,7 +40427,8 @@
    "edc-orlando-2017:d1:kineticfield:1652:rezz",
    "edc-orlando-2019:d2:kineticfield:2140:rezz",
    "edc-orlando-2022:d3:circuit-grounds:2245:rezz",
-   "escape-halloween-2017:d1:slaughterhouse:1930:rezz"
+   "escape-halloween-2017:d1:slaughterhouse:1930:rezz",
+   "nocturnal-wonderland-2022:d2:wolves-den:2245:rezz"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2025-05-17",
@@ -38677,9 +40724,10 @@
    "edc-las-vegas-2025:d1:basspod:0030:riot-ten",
    "edc-orlando-2019:d2:circuitgrounds:1900:riot-ten",
    "edc-orlando-2023:d2:circuit-grounds:2000:riot-ten",
-   "escape-halloween-2019:d1:psycho-circus:2200:riot-ten"
+   "escape-halloween-2019:d1:psycho-circus:2200:riot-ten",
+   "nocturnal-wonderland-2018:d2:labyrinth:1910:riot-ten"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-09-16",
   "photo": null,
   "links": []
@@ -38758,7 +40806,8 @@
    "edc-las-vegas-2025:d1:cosmic-meadow:2315:rl-grime",
    "edc-orlando-2019:d3:kineticfield:2026:rl-grime",
    "escape-halloween-2019:d2:the-grimm:2300:rl-grime",
-   "escape-halloween-2025:d2:sewer-district:0045:rl-grime"
+   "escape-halloween-2025:d2:sewer-district:0045:rl-grime",
+   "nocturnal-wonderland-2024:d1:wolves-den:2200:rl-grime"
   ],
   "firstSeen": "2019-10-26",
   "lastSeen": "2026-08-02",
@@ -38870,6 +40919,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robin-season",
+  "name": "Robin Season",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:parliament-art-car:1500:robin-season"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -39046,16 +41110,19 @@
  },
  {
   "key": "rohaan",
-  "name": "ROHAAN",
-  "aliases": [],
+  "name": "Rohaan",
+  "aliases": [
+   "ROHAAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan"
+   "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan",
+   "nocturnal-wonderland-2024:d1:labyrinth:1550:rohaan"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -39542,6 +41609,39 @@
   "links": []
  },
  {
+  "key": "rybo",
+  "name": "Rybo",
+  "aliases": [
+   "RYBO"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d1:sunken-garden:1600:rybo",
+   "nocturnal-wonderland-2022:d1:sunken-garden:1500:rybo"
+  ],
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2022-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ryden",
+  "name": "Ryden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:sunken-garden:1500:ryden"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ryman",
   "name": "Ryman",
   "aliases": [],
@@ -39705,15 +41805,20 @@
  },
  {
   "key": "sacha-robotti",
-  "name": "SACHA ROBOTTI",
-  "aliases": [],
+  "name": "Sacha Robotti",
+  "aliases": [
+   "SACHA ROBOTTI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2025:d2:danse-macabre:0000:sacha-robotti"
+   "escape-halloween-2025:d2:danse-macabre:0000:sacha-robotti",
+   "nocturnal-wonderland-2017:d2:sunken-garden:1840:sacha-robotti",
+   "nocturnal-wonderland-2019:d2:sunken-garden:2100:sacha-robotti",
+   "nocturnal-wonderland-2021:d1:sunken-garden:2000:sacha-robotti"
   ],
-  "firstSeen": "2025-11-01",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -39749,6 +41854,24 @@
   "links": []
  },
  {
+  "key": "sage-armstrong",
+  "name": "Sage Armstrong",
+  "aliases": [
+   "SAGE ARMSTRONG"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:temple-noctem:2330:sage-armstrong-b2b-bot",
+   "nocturnal-wonderland-2019:d1:sunken-garden:2100:sage-armstrong"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2019-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sahbabii",
   "name": "SahBabii",
   "aliases": [],
@@ -39777,9 +41900,10 @@
    "edc-orlando-2021:d1:circuit-grounds:1910:said-the-sky",
    "edc-orlando-2022:d3:circuit-grounds:1725:said-the-sky-sunset-set",
    "escape-halloween-2019:d1:the-grimm:1905:said-the-sky",
-   "escape-halloween-2022:d2:the-grimm:2055:said-the-sky"
+   "escape-halloween-2022:d2:the-grimm:2055:said-the-sky",
+   "nocturnal-wonderland-2018:d2:labyrinth:2110:said-the-sky"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -39982,16 +42106,20 @@
  },
  {
   "key": "sam-divine",
-  "name": "SAM DIVINE",
-  "aliases": [],
+  "name": "Sam Divine",
+  "aliases": [
+   "SAM DIVINE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d2:stereo-bloom:1815:sam-divine"
+   "edc-orlando-2022:d2:stereo-bloom:1815:sam-divine",
+   "nocturnal-wonderland-2021:d1:sunken-garden:1900:sam-divine",
+   "nocturnal-wonderland-2024:d2:sunken-garden:1800:sam-divine"
   ],
-  "firstSeen": "2022-11-12",
-  "lastSeen": "2022-11-12",
+  "firstSeen": "2021-09-18",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -40056,9 +42184,10 @@
    "edc-lv-2026:bp15",
    "lost-lands-2026:llf20",
    "nocturnal-wonderland-2026:nw-kompany-b2b-samplifire",
-   "edc-las-vegas-2025:d2:basspod:2040:samplifire"
+   "edc-las-vegas-2025:d2:basspod:2040:samplifire",
+   "nocturnal-wonderland-2024:d2:labyrinth:1700:samplifire"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -40108,7 +42237,8 @@
    "edc-orlando-2019:d2:kineticfield:1916:san-holo",
    "edc-orlando-2023:d3:circuit-grounds:2045:san-holo",
    "escape-halloween-2019:d2:sanitarium:2345:san-holo",
-   "escape-halloween-2025:d2:sewer-district:2000:san-holo-wholesome-riddim-set"
+   "escape-halloween-2025:d2:sewer-district:2000:san-holo-wholesome-riddim-set",
+   "nocturnal-wonderland-2024:d1:wolves-den:2000:san-holo"
   ],
   "firstSeen": "2019-10-26",
   "lastSeen": "2026-11-08",
@@ -40333,10 +42463,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d1:circuit-grounds:1800:saymyname"
+   "edc-orlando-2021:d1:circuit-grounds:1800:saymyname",
+   "nocturnal-wonderland-2019:d2:wolves-den:1930:saymyname",
+   "nocturnal-wonderland-2022:d1:labyrinth:2100:saymyname"
   ],
-  "firstSeen": "2021-11-12",
-  "lastSeen": "2021-11-12",
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2022-09-17",
   "photo": null,
   "links": []
  },
@@ -40382,6 +42514,21 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "schade",
+  "name": "Schade",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:sunken-garden:1800:schade"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -40464,6 +42611,21 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "scooby",
+  "name": "SCOOBY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:2030:scooby"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -40587,6 +42749,21 @@
   ],
   "firstSeen": "2019-11-10",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sebastian-ghouls",
+  "name": "SEBASTIAN GHOULS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:sunken-garden:1700:sebastian-ghouls"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -40845,7 +43022,8 @@
    "edc-orlando-2021:d3:kinetic-field:2117:seven-lions",
    "edc-orlando-2023:d3:circuit-grounds:2150:seven-lions",
    "edc-orlando-2025:d3:circuitgrounds:1725:seven-lions-sunset-set",
-   "escape-halloween-2024:d2:the-grimm:2325:seven-lions"
+   "escape-halloween-2024:d2:the-grimm:2325:seven-lions",
+   "nocturnal-wonderland-2021:d2:wolves-den:2300:seven-lions"
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2026-12-31",
@@ -40924,6 +43102,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shadow-cliq",
+  "name": "Shadow Cliq",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:labyrinth:1500:shadow-cliq"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -41388,16 +43581,19 @@
  },
  {
   "key": "sian",
-  "name": "SIAN",
-  "aliases": [],
+  "name": "Sian",
+  "aliases": [
+   "SIAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:wideawakeartcar:2300:sian"
+   "edc-orlando-2019:d2:wideawakeartcar:2300:sian",
+   "nocturnal-wonderland-2021:d1:owloch-grove:2100:sian-techno-classics"
   ],
   "firstSeen": "2019-11-09",
-  "lastSeen": "2019-11-09",
+  "lastSeen": "2021-09-18",
   "photo": null,
   "links": []
  },
@@ -41419,7 +43615,8 @@
    "edc-orlando-2021:d3:stereo-bloom:2200:sidepiece",
    "edc-orlando-2024:d3:circuit-grounds:2040:sidepiece",
    "escape-halloween-2022:d2:sanitarium:2130:sidepiece",
-   "escape-halloween-2025:d1:the-big-top:1955:sidepiece"
+   "escape-halloween-2025:d1:the-big-top:1955:sidepiece",
+   "nocturnal-wonderland-2024:d1:wolves-den:2100:sidepiece"
   ],
   "firstSeen": "2021-11-14",
   "lastSeen": "2026-09-20",
@@ -41735,14 +43932,17 @@
  {
   "key": "simfonik",
   "name": "simfonik",
-  "aliases": [],
+  "aliases": [
+   "SIMFONIK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d2:blacklight-bar:2100:simfonik"
+   "edc-las-vegas-2025:d2:blacklight-bar:2100:simfonik",
+   "nocturnal-wonderland-2018:d2:boombox-art-car:2030:simfonik"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -42131,7 +44331,8 @@
    "edc-lv-2026:s21",
    "edc-las-vegas-2025:d1:bionic-jungle:2130:skream-b2b-partiboi69",
    "edc-orlando-2017:d2:neongarden:1730:skream",
-   "escape-halloween-2017:d1:cannibals-tea-party:2030:skream"
+   "escape-halloween-2017:d1:cannibals-tea-party:2030:skream",
+   "nocturnal-wonderland-2018:d2:sunken-garden:2300:skream"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-05-17",
@@ -42220,6 +44421,21 @@
   "links": []
  },
  {
+  "key": "skyler",
+  "name": "Skyler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:2200:skyler"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slamm",
   "name": "Slamm",
   "aliases": [],
@@ -42255,7 +44471,8 @@
    "edc-orlando-2019:d1:circuitgrounds:2040:slander",
    "edc-orlando-2022:d2:circuit-grounds:2300:slander",
    "edc-orlando-2024:d3:kinetic-field:2114:slander",
-   "escape-halloween-2017:d2:slaughterhouse:2030:slander"
+   "escape-halloween-2017:d2:slaughterhouse:2030:slander",
+   "nocturnal-wonderland-2024:d2:wolves-den:2300:slander"
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-11-08",
@@ -42417,6 +44634,21 @@
   "links": []
  },
  {
+  "key": "slumberjack",
+  "name": "SLUMBERJACK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:wolves-den:1905:slumberjack"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slushii",
   "name": "SLUSHII",
   "aliases": [],
@@ -42425,10 +44657,11 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:kineticfield:1752:slushii",
-   "escape-halloween-2017:d2:chopping-block:2315:slushii"
+   "escape-halloween-2017:d2:chopping-block:2315:slushii",
+   "nocturnal-wonderland-2018:d2:wolves-den:2330:slushii"
   ],
   "firstSeen": "2017-10-28",
-  "lastSeen": "2017-11-10",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -42504,24 +44737,28 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:circuitgrounds:2100:snails"
+   "edc-orlando-2017:d1:circuitgrounds:2100:snails",
+   "nocturnal-wonderland-2017:d1:wolves-den:2300:snails"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2017-11-10",
   "photo": null,
   "links": []
  },
  {
   "key": "snakehips",
-  "name": "SNAKEHIPS",
-  "aliases": [],
+  "name": "Snakehips",
+  "aliases": [
+   "SNAKEHIPS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2024:d2:the-grimm:1800:snakehips"
+   "escape-halloween-2024:d2:the-grimm:1800:snakehips",
+   "nocturnal-wonderland-2019:d1:wolves-den:2000:snakehips"
   ],
-  "firstSeen": "2024-10-26",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2024-10-26",
   "photo": null,
   "links": []
@@ -42707,15 +44944,18 @@
  },
  {
   "key": "solardo",
-  "name": "SOLARDO",
-  "aliases": [],
+  "name": "Solardo",
+  "aliases": [
+   "SOLARDO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:neongarden:1530:solardo"
+   "edc-orlando-2019:d3:neongarden:1530:solardo",
+   "nocturnal-wonderland-2019:d2:sunken-garden:2200:camelphat-b2b-solardo"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2019-11-10",
   "photo": null,
   "links": []
@@ -43219,6 +45459,21 @@
   "links": []
  },
  {
+  "key": "space-jesus",
+  "name": "SPACE JESUS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:labyrinth:2010:space-jesus"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "space-laces",
   "name": "Space Laces",
   "aliases": [],
@@ -43303,6 +45558,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spencer-brown",
+  "name": "Spencer Brown",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:owloch-grove:2100:spencer-brown"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -43398,6 +45668,21 @@
   ],
   "firstSeen": "2026-08-01",
   "lastSeen": "2026-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spock",
+  "name": "SPOCK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:wolves-den:1745:spock"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
  },
@@ -43825,6 +46110,21 @@
   "links": []
  },
  {
+  "key": "steve-darko",
+  "name": "Steve Darko",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:sunken-garden:1800:steve-darko"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "steve-dekay",
   "name": "Steve Dekay",
   "aliases": [],
@@ -44123,9 +46423,12 @@
   "billings": [
    "edc-lv-2026:k12",
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:2130:sub-focus",
-   "edc-orlando-2025:d1:circuitgrounds:1730:sub-focus-sunset-set"
+   "edc-orlando-2025:d1:circuitgrounds:1730:sub-focus-sunset-set",
+   "nocturnal-wonderland-2017:d2:sunken-garden:2330:sub-focus",
+   "nocturnal-wonderland-2021:d2:sunken-garden:2300:sub-focus",
+   "nocturnal-wonderland-2024:d2:wolves-den:2000:sub-focus"
   ],
-  "firstSeen": "2025-11-07",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -44148,6 +46451,21 @@
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "subcoder",
+  "name": "SUBCODER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:boombox-art-car:1800:subcoder"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -44215,9 +46533,10 @@
    "edc-orlando-2021:d2:circuit-grounds:2200:subtronics",
    "edc-orlando-2023:d1:circuit-grounds:2245:subtronics",
    "edc-orlando-2025:d3:kineticfield:2105:subtronics",
-   "escape-halloween-2022:d1:feeding-grounds:0100:subtronics"
+   "escape-halloween-2022:d1:feeding-grounds:0100:subtronics",
+   "nocturnal-wonderland-2019:d1:labyrinth:2100:subtronics"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -44271,7 +46590,9 @@
  {
   "key": "sullivan-king",
   "name": "Sullivan King",
-  "aliases": [],
+  "aliases": [
+   "SULLIVAN KING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -44283,7 +46604,8 @@
    "edc-las-vegas-2025:d1:basspod:0130:sullivan-king",
    "edc-orlando-2022:d1:circuit-grounds:2015:sullivan-king",
    "edc-orlando-2024:d2:circuit-grounds:2155:sullivan-king",
-   "escape-halloween-2021:d1:psycho-circus:2000:sullivan-king"
+   "escape-halloween-2021:d1:psycho-circus:2000:sullivan-king",
+   "nocturnal-wonderland-2022:d1:labyrinth:2200:sullivan-king"
   ],
   "firstSeen": "2021-10-29",
   "lastSeen": "2026-12-30",
@@ -44317,6 +46639,21 @@
   ],
   "firstSeen": "2026-06-18",
   "lastSeen": "2026-06-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sumthin-sumthin",
+  "name": "Sumthin Sumthin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d1:labyrinth:1600:sumthin-sumthin"
+  ],
+  "firstSeen": "2019-09-14",
+  "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
  },
@@ -44630,7 +46967,8 @@
    "edc-las-vegas-2025:d2:basspod:0130:svdden-death",
    "edc-orlando-2019:d2:circuitgrounds:2100:svdden-death",
    "edc-orlando-2021:d1:circuit-grounds:2125:nghtmre-b2b-svdden-death",
-   "edc-orlando-2022:d2:circuit-grounds:2200:svdden-death"
+   "edc-orlando-2022:d2:circuit-grounds:2200:svdden-death",
+   "nocturnal-wonderland-2024:d1:labyrinth:2300:svdden-death"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-09-19",
@@ -44649,6 +46987,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2025-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "swage",
+  "name": "SWAGE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:labyrinth:1700:swage"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
  },
@@ -44815,14 +47168,17 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "reel-mood"
+  ],
   "billings": [
    "lost-lands-2026:llu42",
    "edc-orlando-2026:ecu34",
    "iii-points-2026:iiip-levity-b2b-taiki-nulight",
-   "countdown-nye-2026:cdny-taiki-nulight"
+   "countdown-nye-2026:cdny-taiki-nulight",
+   "nocturnal-wonderland-2019:d1:sunken-garden:2000:taiki-nulight"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -45265,6 +47621,21 @@
   ],
   "firstSeen": "2025-10-31",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "teko",
+  "name": "Teko",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d1:sunken-garden:1500:teko"
+  ],
+  "firstSeen": "2024-09-14",
+  "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
  },
@@ -45876,6 +48247,21 @@
   ],
   "firstSeen": "2025-06-07",
   "lastSeen": "2025-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-glitch-mob",
+  "name": "The Glitch Mob",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:wolves-den:2000:the-glitch-mob"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
  },
@@ -46561,14 +48947,17 @@
  {
   "key": "thee-o",
   "name": "Thee-O",
-  "aliases": [],
+  "aliases": [
+   "THEE-O"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-donald-glaude-b2b-thee-o"
+   "nocturnal-wonderland-2026:nw-donald-glaude-b2b-thee-o",
+   "nocturnal-wonderland-2018:d2:boombox-art-car:1930:thee-o"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -46964,7 +49353,9 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls54",
-   "escape-halloween-2017:d1:ghouls-graveyard:1900:ray-volpe-b2b-tisoki"
+   "escape-halloween-2017:d1:ghouls-graveyard:1900:ray-volpe-b2b-tisoki",
+   "nocturnal-wonderland-2018:d1:labyrinth:2100:tisoki",
+   "nocturnal-wonderland-2022:d1:labyrinth:2000:must-die-b2b-tisoki"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-09-19",
@@ -47125,7 +49516,8 @@
   "billings": [
    "edc-orlando-2022:d2:stereo-bloom:1715:tom-and-collins",
    "edc-orlando-2024:d2:stereo-bloom:1745:tom-and-collins-sunset-set",
-   "edc-orlando-2024:d2:casa-bacardi:2200:tom-and-collins"
+   "edc-orlando-2024:d2:casa-bacardi:2200:tom-and-collins",
+   "nocturnal-wonderland-2024:d2:sunken-garden:1700:tom-and-collins"
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2024-11-09",
@@ -47321,6 +49713,21 @@
   "links": []
  },
  {
+  "key": "totally-enormous-extinct-dinosaurs",
+  "name": "TOTALLY ENORMOUS EXTINCT DINOSAURS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:sunken-garden:2230:totally-enormous-extinct-dinosaurs-dj-set"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tove-lo",
   "name": "TOVE LO",
   "aliases": [],
@@ -47364,6 +49771,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "trademark",
+  "name": "TRADEMARK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d1:boombox-art-car:2130:trademark"
+  ],
+  "firstSeen": "2018-09-14",
+  "lastSeen": "2018-09-14",
   "photo": null,
   "links": []
  },
@@ -47568,6 +49990,21 @@
   "links": []
  },
  {
+  "key": "trippy-turtle",
+  "name": "TRIPPY TURTLE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:0100:trippy-turtle"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trivecta",
   "name": "Trivecta",
   "aliases": [
@@ -47581,9 +50018,10 @@
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2155:trivecta",
    "edc-las-vegas-2025:d1:cosmic-meadow:2100:trivecta",
    "edc-orlando-2022:d3:circuit-grounds:1625:trivecta",
-   "escape-halloween-2024:d2:sewer-district:1945:trivecta"
+   "escape-halloween-2024:d2:sewer-district:1945:trivecta",
+   "nocturnal-wonderland-2022:d1:labyrinth:1900:trivecta"
   ],
-  "firstSeen": "2022-11-13",
+  "firstSeen": "2022-09-17",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -47721,6 +50159,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tsu-nami",
+  "name": "Tsu Nami",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2024:d2:wolves-den:1600:tsu-nami"
+  ],
+  "firstSeen": "2024-09-15",
+  "lastSeen": "2024-09-15",
   "photo": null,
   "links": []
  },
@@ -47979,9 +50432,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2017:d1:slaughterhouse:1600:two-owls"
+   "escape-halloween-2017:d1:slaughterhouse:1600:two-owls",
+   "nocturnal-wonderland-2017:d1:wolves-den:1800:two-owls"
   ],
-  "firstSeen": "2017-10-27",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2017-10-27",
   "photo": null,
   "links": []
@@ -48226,6 +50680,21 @@
   "links": []
  },
  {
+  "key": "unlike-pluto",
+  "name": "UNLIKE PLUTO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d2:wolves-den:1945:unlike-pluto"
+  ],
+  "firstSeen": "2017-09-16",
+  "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ur-mom",
   "name": "Ur Mom",
   "aliases": [],
@@ -48268,6 +50737,21 @@
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "uz",
+  "name": "UZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:2050:uz"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -48344,9 +50828,10 @@
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1500:valentino-khan",
    "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
    "escape-halloween-2019:d2:sanitarium:2045:valentino-khan",
-   "escape-halloween-2022:d1:the-grimm:2320:deorro-b2b-valentino-khan"
+   "escape-halloween-2022:d1:the-grimm:2320:deorro-b2b-valentino-khan",
+   "nocturnal-wonderland-2017:d2:wolves-den:2245:valentino-khan"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -48740,6 +51225,21 @@
   "links": []
  },
  {
+  "key": "vindata",
+  "name": "VINDATA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:2210:vindata"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vini-vici",
   "name": "Vini Vici",
   "aliases": [],
@@ -48867,7 +51367,8 @@
    "edc-orlando-2023:d1:circuit-grounds:1915:virtual-riot",
    "edc-orlando-2025:d1:circuitgrounds:1930:virtual-riot",
    "escape-halloween-2017:d1:ghouls-graveyard:2100:barely-alive-b2b-virtual-riot",
-   "escape-halloween-2025:d1:sewer-district:2045:virtual-riot"
+   "escape-halloween-2025:d1:sewer-district:2045:virtual-riot",
+   "nocturnal-wonderland-2024:d2:labyrinth:2200:virtual-riot"
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2026-09-20",
@@ -48969,6 +51470,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "volac",
+  "name": "VOLAC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2022:d2:sunken-garden:2100:volac"
+  ],
+  "firstSeen": "2022-09-18",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -49367,9 +51883,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2025:d2:the-warehouse:2100:wavedash"
+   "escape-halloween-2025:d2:the-warehouse:2100:wavedash",
+   "nocturnal-wonderland-2018:d2:labyrinth:1810:wavedash",
+   "nocturnal-wonderland-2022:d2:labyrinth:1700:wavedash"
   ],
-  "firstSeen": "2025-11-01",
+  "firstSeen": "2018-09-15",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -49433,18 +51951,38 @@
   "links": []
  },
  {
+  "key": "waze-and-odyssey",
+  "name": "WAZE & ODYSSEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2018:d2:sunken-garden:1915:waze-and-odyssey"
+  ],
+  "firstSeen": "2018-09-15",
+  "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wenzday",
   "name": "Wenzday",
-  "aliases": [],
+  "aliases": [
+   "WENZDAY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "beyond-wonderland-socal-2026:d2:queen-s-domain:1655:wenzday",
    "edc-orlando-2021:d1:circuit-grounds:1600:wenzday-b2b-nostalgix",
-   "edc-orlando-2021:d2:corona-electric-beach:2000:wenzday"
+   "edc-orlando-2021:d2:corona-electric-beach:2000:wenzday",
+   "nocturnal-wonderland-2019:d2:wolves-den:1500:wenzday",
+   "nocturnal-wonderland-2021:d2:labyrinth:1500:wenzday",
+   "nocturnal-wonderland-2022:d2:wolves-den:1545:wenzday"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2019-09-15",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -49482,7 +52020,9 @@
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:2000:westend",
    "edc-orlando-2021:d3:stereo-bloom:1500:westend-b2b-black-v-neck",
    "edc-orlando-2023:d1:stereo-bloom:2000:westend-b2b-joshwa",
-   "edc-orlando-2025:d2:stereobloom:1845:westend"
+   "edc-orlando-2025:d2:stereobloom:1845:westend",
+   "nocturnal-wonderland-2022:d1:sunken-garden:1900:westend",
+   "nocturnal-wonderland-2024:d2:sunken-garden:2000:westend"
   ],
   "firstSeen": "2021-11-14",
   "lastSeen": "2026-08-02",
@@ -49606,10 +52146,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d3:circuit-grounds:1805:whipped-cream"
+   "edc-orlando-2021:d3:circuit-grounds:1805:whipped-cream",
+   "nocturnal-wonderland-2022:d2:wolves-den:1745:whipped-cream"
   ],
   "firstSeen": "2021-11-14",
-  "lastSeen": "2021-11-14",
+  "lastSeen": "2022-09-18",
   "photo": null,
   "links": []
  },
@@ -49798,9 +52339,10 @@
   "billings": [
    "arc-2026:arc-will-clarke-midway-d3",
    "edc-orlando-2022:d2:neon-garden:1700:will-clarke",
-   "escape-halloween-2021:d1:sewer-district:2100:will-clarke"
+   "escape-halloween-2021:d1:sewer-district:2100:will-clarke",
+   "nocturnal-wonderland-2017:d1:sunken-garden:2330:will-clarke"
   ],
-  "firstSeen": "2021-10-29",
+  "firstSeen": "2017-09-15",
   "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
@@ -49891,9 +52433,10 @@
    "edc-lv-2026:c22",
    "lost-lands-2026:llu48",
    "edc-orlando-2021:d3:circuit-grounds:1505:william-black",
-   "escape-halloween-2021:d2:the-grimm:1815:william-black"
+   "escape-halloween-2021:d2:the-grimm:1815:william-black",
+   "nocturnal-wonderland-2021:d1:wolves-den:1700:william-black"
   ],
-  "firstSeen": "2021-10-30",
+  "firstSeen": "2021-09-18",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -49957,6 +52500,21 @@
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2019-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wingtip",
+  "name": "WINGTIP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:labyrinth:1900:wingtip"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
  },
@@ -50055,6 +52613,21 @@
   "links": []
  },
  {
+  "key": "wizard",
+  "name": "WIZARD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2017:d1:temple-noctem:1700:wizard"
+  ],
+  "firstSeen": "2017-09-15",
+  "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wolf-alice",
   "name": "Wolf Alice",
   "aliases": [],
@@ -50115,6 +52688,21 @@
   "links": []
  },
  {
+  "key": "woo-york",
+  "name": "Woo York",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:owloch-grove:1800:woo-york"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "woof-logik",
   "name": "Woof Logik",
   "aliases": [],
@@ -50122,9 +52710,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-woof-logik"
+   "nocturnal-wonderland-2026:nw-woof-logik",
+   "nocturnal-wonderland-2024:d2:beatbox-art-car:1830:woof-logik"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2024-09-15",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -50147,9 +52736,10 @@
    "edc-orlando-2022:d3:circuit-grounds:1840:wooli",
    "edc-orlando-2025:d1:circuitgrounds:2135:wooli",
    "escape-halloween-2022:d1:feeding-grounds:2150:wooli",
-   "escape-halloween-2024:d1:sewer-district:2300:wooli"
+   "escape-halloween-2024:d1:sewer-district:2300:wooli",
+   "nocturnal-wonderland-2021:d2:sunken-garden:2100:wooli"
   ],
-  "firstSeen": "2022-10-28",
+  "firstSeen": "2021-09-19",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -50218,9 +52808,12 @@
   "billings": [
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki",
    "edc-orlando-2025:d3:circuitgrounds:1525:wuki",
-   "escape-halloween-2019:d2:sanitarium:1830:wuki"
+   "escape-halloween-2019:d2:sanitarium:1830:wuki",
+   "nocturnal-wonderland-2017:d2:temple-noctem:0045:wuki",
+   "nocturnal-wonderland-2021:d2:labyrinth:2000:wuki",
+   "nocturnal-wonderland-2024:d1:wolves-den:1800:wuki"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -50369,6 +52962,21 @@
   "links": []
  },
  {
+  "key": "xavi",
+  "name": "Xavi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:sunken-garden:1600:xavi"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xaviersobased",
   "name": "XAVIERSOBASED",
   "aliases": [],
@@ -50442,6 +53050,21 @@
   ],
   "firstSeen": "2022-10-28",
   "lastSeen": "2022-10-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yakz",
+  "name": "Yakz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2019:d2:parliament-art-car:1845:yakz"
+  ],
+  "firstSeen": "2019-09-15",
+  "lastSeen": "2019-09-15",
   "photo": null,
   "links": []
  },
@@ -50555,7 +53178,9 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d1:cosmic-meadow:0315:yellow-claw",
-   "edc-orlando-2019:d1:kineticfield:2010:yellow-claw"
+   "edc-orlando-2019:d1:kineticfield:2010:yellow-claw",
+   "nocturnal-wonderland-2022:d1:wolves-den:2200:yellow-claw",
+   "nocturnal-wonderland-2024:d2:labyrinth:2300:yellow-claw-b2b-flosstradamus"
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2025-05-16",
@@ -50873,6 +53498,21 @@
   "links": []
  },
  {
+  "key": "z-trip",
+  "name": "Z-Trip",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "nocturnal-wonderland-2021:d2:labyrinth:1900:z-trip"
+  ],
+  "firstSeen": "2021-09-19",
+  "lastSeen": "2021-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "zack-fox",
   "name": "Zack Fox",
   "aliases": [],
@@ -50976,9 +53616,10 @@
    "acl-2025:d5:miller-lite:1915:zeds-dead",
    "beyond-wonderland-gorge-2026:d2:queen-s-valley:2325:zeds-dead",
    "edc-orlando-2022:d1:circuit-grounds:2245:zeds-dead",
-   "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead"
+   "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
+   "nocturnal-wonderland-2019:d1:labyrinth:2300:zeds-dead"
   ],
-  "firstSeen": "2022-11-11",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-30",
   "photo": null,
   "links": []
@@ -50991,9 +53632,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d2:circuitgrounds:1700:zeke-beats"
+   "edc-orlando-2019:d2:circuitgrounds:1700:zeke-beats",
+   "nocturnal-wonderland-2019:d1:labyrinth:1800:champagne-drip-b2b-zeke-beats"
   ],
-  "firstSeen": "2019-11-09",
+  "firstSeen": "2019-09-14",
   "lastSeen": "2019-11-09",
   "photo": null,
   "links": []
@@ -51193,9 +53835,11 @@
    "edc-orlando-2017:d1:circuitgrounds:2200:zomboy",
    "edc-orlando-2022:d3:circuit-grounds:2140:zomboy",
    "edc-orlando-2024:d2:circuit-grounds:2055:zomboy",
-   "escape-halloween-2021:d1:psycho-circus:0100:zomboy"
+   "escape-halloween-2021:d1:psycho-circus:0100:zomboy",
+   "nocturnal-wonderland-2017:d2:wolves-den:2345:zomboy",
+   "nocturnal-wonderland-2019:d2:labyrinth:2300:zomboy"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2017-09-16",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
