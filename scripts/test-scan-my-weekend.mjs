@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// test-scan-my-weekend.mjs: the pure half of "Scan my weekend" (v475).
+// test-scan-my-weekend.mjs: the pure half of "Scan my weekend" (v476).
 //
 // The iPhone app now reads the festival's nights straight from the photo
 // library (PhotoScan plugin) instead of a hand pick in PHPicker, which strips

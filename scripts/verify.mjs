@@ -2290,7 +2290,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
   }
 }
-// Scan my weekend (v475): the photo-library scan asks only for festival
+// Scan my weekend (v476): the photo-library scan asks only for festival
 // nights, keeps every act-time asset, and tags it exactly as the EXIF path
 // tags the same instant, with the library's GPS fix carried through.
 {

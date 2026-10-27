@@ -945,7 +945,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   };
 }
 
-// ── Scan my weekend (v475) ────────────────────────────────────
+// ── Scan my weekend (v476) ────────────────────────────────────
 // The iPhone app can read the photo library directly (PhotoScan plugin)
 // instead of the user hand-picking files in PHPicker, which strips GPS
 // without full access and caps a pick at 50. These are the pure parts: which

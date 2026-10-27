@@ -6522,7 +6522,7 @@ function MemoriesScreen({ state, setState }) {
     setPickerState({ status: res.status, detail: res.unreadable || res.error || null });
   };
 
-  // ── Scan my weekend (v475) ───────────────────────────────────────────────
+  // ── Scan my weekend (v476) ───────────────────────────────────────────────
   // One tap finds every photo and video from the festival's nights in the
   // library, with no picking, no 50-item cap, and GPS intact (PHPicker strips
   // it without full access). The PhotoScan plugin lists assets and writes
@@ -7000,7 +7000,7 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
-        {/* Scan my weekend (v475): the iPhone app reads the festival's nights
+        {/* Scan my weekend (v476): the iPhone app reads the festival's nights
             straight from the photo library. Shown only where the plugin is
             present and the festival has dates to scan; the picker below
             stays for anything taken outside those nights. */}
