@@ -1,4 +1,4 @@
-// Apple Music on the iPhone app signs in natively (v474).
+// Apple Music on the iPhone app signs in natively (v475).
 //
 // Born from: inside the app the page runs at capacitor://localhost, and the
 // MusicKit web sign-in can only post its token back to an origin registered
