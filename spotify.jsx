@@ -48,7 +48,9 @@ function SpotifyScreen({ state, setState }) {
   // blocks the authorize popup when the gesture is spent awaiting the
   // script load — this was the Apple Music "can't connect" bug.
   React.useEffect(() => {
-    if (APPLE_DEV_TOKEN && !amConnected) { _ensureMusicKitConfigured().catch(() => {}); }
+    // The iPhone app signs in natively (AppleMusicNative), so the web
+    // MusicKit script is never needed there.
+    if (APPLE_DEV_TOKEN && !amConnected && !_amNative()) { _ensureMusicKitConfigured().catch(() => {}); }
   }, []);
 
   const handleAmConnect = async () => {

@@ -2329,6 +2329,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b1. Apple Music signs in natively in the iPhone app ────────────────
+// Inside the app the MusicKit web sign-in can't post back to
+// capacitor://localhost, so the AppleMusicNative plugin supplies both tokens.
+// Every Apple Music call must carry the token the plugin returned, a restart
+// must recover it without a prompt, and the web path must stay as it was.
+{
+  console.log("▸ Apple Music native gate — native tokens on every call, silent restart, web unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-apple-music-native.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`apple music native gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b2. Schedule Sync diff engine ──────────────────────────────────────
 // diffSchedule reports each change kind exactly, TBA and null stages are
 // values, DST nights resolve to the real instant, every live festival's
