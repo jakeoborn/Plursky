@@ -1,0 +1,24 @@
+{
+ "id": "escape-halloween-2019",
+ "days": [
+  {
+   "day": 2,
+   "date": "2019-10-26",
+   "sha256": "f502622e734019c3bc0bfccf0c94ad8efa5e8519155d8056c2c6fc99a520d32d",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 30,
+   "note": "Header read off the graphic: SATURDAY · OCTOBER 26",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 29,
+   "byEye": [
+    "d2 Psycho Circus 21:00-22:30 GORGON CITY B2B NORA EN PURE: billing wraps over 2 lines; by eye 9:00PM - 10:30PM"
+   ],
+   "printedReadings": [
+    "GORGON CITY B2B NORA EN PURE: billing wraps over 2 printed lines, joined",
+    "CHRIS LIEBING B2B CHARLOTTE DE WITTE: billing wraps over 2 printed lines, joined"
+   ]
+  }
+ ]
+}

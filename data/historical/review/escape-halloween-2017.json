@@ -1,0 +1,42 @@
+{
+ "id": "escape-halloween-2017",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-10-27",
+   "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 36,
+   "note": "Header read off the graphic: FRIDAY · OCTOBER 27 & 28, 2017",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 35,
+   "byEye": [
+    "d1 CHOPPING BLOCK 23:00-00:00 DA TWEEKAZ: by eye 11:00PM - 12:00AM DA TWEEKAZ"
+   ],
+   "printedReadings": [
+    "NIGHTSTALKER MC DINO: printed on 2 lines (\"NIGHTSTALKER\" / \"MC DINO\") with no joiner, joined with a space"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2017-10-28",
+   "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 33,
+   "note": "Header read off the graphic: SATURDAY · OCTOBER 27 & 28, 2017",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 31,
+   "byEye": [
+    "d2 CANNIBALS' TEA PARTY 16:00-17:00 SHMITTY: OCR read the billing; by eye the range prints 4:00PM - 5:00PM",
+    "d2 CHOPPING BLOCK 23:15-00:15 SLUSHII: by eye 11:15PM - 12:15AM SLUSHII"
+   ],
+   "printedReadings": [
+    "BOYS NOIZE (LIVE): printed gap: SLUSHII ends 12:15AM"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "id": "escape-halloween-2024",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-10-25",
+   "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: FRIDAY, OCT 25",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 38,
+   "byEye": [
+    "d1 SEWER DISTRICT 00:00-01:00 PEEKABOO: by eye 12:00AM - 1:00AM",
+    "d1 SEWER DISTRICT 23:00-00:00 WOOLI: by eye 11:00PM - 12:00AM",
+    "d1 SEWER DISTRICT 21:00-22:00 LEVEL UP: by eye 9:00PM - 10:00PM",
+    "d1 SEWER DISTRICT 20:00-21:00 EMORFIK: by eye 8:00PM - 9:00PM"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2024-10-26",
+   "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: SATURDAY, OCT 26",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 40,
+   "byEye": [
+    "d2 SEWER DISTRICT 00:17-00:45 LUDACRIS: printed 12:17PM - 12:45AM; between the 12:15AM and 12:45AM sets, so read as 00:17",
+    "d2 SEWER DISTRICT 23:00-00:15 ADVENTURE CLUB: printed 11:00PM - 12:15PM; the next set starts 12:17AM, so read as 00:15"
+   ],
+   "printedReadings": [
+    "LUDACRIS: PRINTED 12:17PM (sic): sits between 12:15AM and 12:45AM sets, so read as 00:17; start written 00:17",
+    "ADVENTURE CLUB: PRINTED end 12:15PM (sic): next set starts 12:17AM, so read as 00:15; end written 00:15"
+   ]
+  },
+  {
+   "day": 1,
+   "date": "2024-10-25",
+   "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 23,
+   "note": "Header read off the graphic: FRIDAY, OCTOBER 25",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 21,
+   "byEye": [
+    "d1 BEATBOX BOOMBOX ART CAR 19:00-20:00 KAKA: by eye 7:00PM - 8:00PM KAKA",
+    "d1 DANSE MACABRE 17:00-18:00 DAKЯΣD: by eye 5:00PM - 6:00PM; the billing prints a reversed R and a sigma"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2024-10-26",
+   "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 21,
+   "note": "Header read off the graphic: SATURDAY, OCTOBER 26",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 20,
+   "byEye": [
+    "d2 DANSE MACABRE 00:00-01:00 RCKSLVR B2B GRLFRND: by eye 12:00AM - 1:00AM"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 1,
+   "date": "2024-10-25",
+   "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 3,
+   "note": "Header read off the graphic: AFTER PARTY SET TIMES · FRIDAY, OCT 25 · OCTOBER 25 + 26, 2024",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 3,
+   "byEye": [],
+   "printedReadings": [
+    "CAPOZZI X AAZAR (VERTIGO): AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides",
+    "ALISON WONDERLAND (TECHNO SET): AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides",
+    "KREAM (AFTER : LAB): AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2024-10-26",
+   "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
+   "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 3,
+   "note": "Header read off the graphic: AFTER PARTY SET TIMES · SATURDAY, OCT 26 · OCTOBER 25 + 26, 2024",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 3,
+   "byEye": [],
+   "printedReadings": [
+    "FALLON: AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides",
+    "CLOONEE: AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides",
+    "ODD MOB: AFTER PARTY: separately printed slide, 2AM-6AM after festival close; build decides"
+   ]
+  }
+ ]
+}

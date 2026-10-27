@@ -92,6 +92,8 @@ if (base && edc) {
   // ANY form. Every category, and every listed activity, is put back as an
   // artist set, as an event, and as a stage, into the edition it came from.
   const dropSamples = [["edc-las-vegas-2025", "Fireworks"], ["acl-2025", "SILENT DISCO"], ["edc-las-vegas-2025", "Special Guest"],
+    ["escape-halloween-2025", "SECRET GUEST"], ["escape-halloween-2022", "DANSE MACABRE - SILENT DISCO"],
+    ["escape-halloween-2024", "AFTER PARTY SET TIMES – THE CAULDRON"],
     ...Object.entries(ACTIVITIES).flatMap(([id, list]) => list.map(a => [id, a]))];
   for (const [id, billing] of dropSamples) {
     const e = editions[id]; if (!e) continue;
@@ -114,6 +116,45 @@ if (base && edc) {
     }, e, undefined, /: dropped bonus-tracks-stage /);
     mustFail(`${id}: a kept stage renamed BONUS TRACKS`, m => { m.stages[0].name = "BONUS TRACKS"; }, e, undefined, /: dropped bonus-tracks-stage /);
   }
+  // official_sources (Escape): every receipt rule is proven live on a real
+  // edition. 2024 is all re-hosted graphics; 2019 mixes a next-year Wayback
+  // page (day 1) with a re-hosted graphic (day 2).
+  const e24 = editions["escape-halloween-2024"], e19 = editions["escape-halloween-2019"];
+  ok(e24 && e19, "the Escape 2024 and 2019 editions must exist for the official_sources mutations");
+  if (e24 && e19) {
+    const g = m => m.provenance.captures.find(c => c.kind === "graphic");
+    const pg = m => m.provenance.captures.find(c => c.kind === "page");
+    mustFail("graphic from a non-approved host (Clashfinder)", m => { g(m).imageUrl = "https://clashfinder.com/s/escape2024/x.png"; }, e24, undefined, /approved re-host/);
+    mustFail("re-host published after the edition's last day", m => { g(m).published = "2024-11-10"; }, e24, undefined, /re-host published/);
+    mustFail("re-host published in another year", m => { g(m).published = "2023-10-18"; }, e24, undefined, /re-host published/);
+    mustFail("graphic with no page it was found on", m => { delete g(m).foundAt; }, e24, undefined, /found on/);
+    mustFail("graphic with no re-host named", m => { delete g(m).rehostedBy; }, e24, undefined, /re-hosted/);
+    mustFail("graphic with no printed header", m => { delete g(m).printed; }, e24, undefined, /printed header/);
+    mustFail("graphic with no fetch date", m => { delete g(m).fetchedAt; }, e24, undefined, /fetch date/);
+    mustFail("graphic whose hash is not the reviewed file", m => { g(m).sha256 = "0".repeat(64); }, e24, undefined, /review manifest/);
+    mustFail("a source claims one row more than it printed", m => { g(m).rows += 1; }, e24, undefined, /sources account/);
+    mustFail("a source of unknown kind", m => { g(m).kind = "screenshot"; }, e24, undefined, /neither page nor graphic/);
+    mustFail("a day left with no source", m => { m.provenance.captures = m.provenance.captures.filter(c => c.day !== 2); }, e24, undefined, /day 2: no source/);
+    mustFail("a page capture two years after the edition", m => { const c = pg(m); c.archivedUrl = c.archivedUrl.replace("/web/2020", "/web/2021"); c.captureTimestamp = c.captureTimestamp.replace(/^2020/, "2021"); }, e19, undefined, /not from 2019 or the year after/);
+    mustFail("a page capture timestamp that is not its URL's", m => { pg(m).captureTimestamp = "20200101000000"; }, e19, undefined, /captureTimestamp/);
+    mustFail("a page whose day tab prints another day", m => { pg(m).printed = "Saturday, October 26"; }, e19, undefined, /day tab/);
+    mustFail("a page capture from a non-official host", m => { const c = pg(m); c.archivedUrl = c.archivedUrl.replace("escapehalloween.com", "edmidentity.com"); }, e19, undefined, /not an official escape-halloween property/);
+    {
+      const r = clone(reviewFor(e24.id)); r.days[0].rowsConfirmed -= 1; mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: r, dropped: droppedFor(e24.id) }).some(x => /rows confirmed/.test(x)), "mutation not caught: a graphic's review confirms fewer rows than it printed");
+      const u = clone(reviewFor(e24.id)); delete u.days[1].reviewer; mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: u, dropped: droppedFor(e24.id) }).some(x => /not signed/.test(x)), "mutation not caught: an unsigned graphic review");
+      mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: undefined, dropped: droppedFor(e24.id) }).some(x => /no visual-review manifest/.test(x)), "mutation not caught: re-hosted graphics with no review manifest");
+    }
+    // A styled non-Latin billing is allowed only where it was read by eye.
+    mustFail("DAKЯΣD's allowance carried to another edition", m => { m.artists[0].name = "DAKЯΣD"; }, editions["escape-halloween-2025"], undefined, /non-Latin/);
+    // One act printed in two casings is one artist; the set keeps its printing.
+    const nk = e19.artists.filter(a => a.key === "nukid"), nkSets = e19.sets.filter(s => s.artistId === nk[0]?.id);
+    ok(nk.length === 1 && nkSets.length === 2 && nkSets.some(s => s.billing === "NUKID") && nk[0].name === "NuKid",
+      `Escape 2019's NuKid (page) and NUKID (graphic) must be one artist with both sets, the graphic's set keeping its billing: ${JSON.stringify(nk)}`);
+  }
+
   // The named kids-stage act the ruling keeps.
   const hc = editions["lollapalooza-2025"]?.artists.find(a => a.name === "SPECIAL GUEST: THE HAPPINESS CLUB");
   ok(hc && editions["lollapalooza-2025"].sets.filter(x => x.artistId === hc.id).map(x => x.day).join() === "3,4",
@@ -172,6 +213,19 @@ for (const [id, e] of Object.entries(editions)) {
   for (const d of e.days) {
     if (led.method === "structured_html") {
       ok(led.days.find(x => x.day === d.day)?.date === d.date, `${id} day ${d.day}: ${d.date} is not what the archived page's day tab printed`);
+    } else if (led.method === "official_sources") {
+      // Every source cited for a day prints that day: a page's own day tab,
+      // or the header read off a graphic (weekday, month, day of month).
+      const [, m, dd] = d.date.split("-").map(Number);
+      const wd = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" }).toUpperCase();
+      const srcs = led.days.find(x => x.day === d.day)?.sources || [];
+      ok(srcs.length > 0, `${id} day ${d.day}: no source in the ledger`);
+      for (const s of srcs) {
+        const p = (s.printed || "").toUpperCase();
+        ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date
+          : p.includes(wd.slice(0, 3)) && p.includes(MONTH[m - 1].slice(0, 3)) && new RegExp(`\\b0?${dd}\\b`).test(p),
+          `${id} day ${d.day}: ${s.kind} ${s.captureTimestamp || s.file} prints "${s.printed}", not ${wd} ${MONTH[m - 1]} ${dd}`);
+      }
     } else {
       // The reviewer copied each graphic's printed header into its note;
       // it must name this day's weekday and month (full or abbreviated).

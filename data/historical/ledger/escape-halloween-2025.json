@@ -1,0 +1,58 @@
+{
+  "id": "escape-halloween-2025",
+  "method": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "gathered": "historical-gather/escape-halloween-2025",
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-10-31",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-friday-set-times.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/friday-set-times.jpg",
+          "foundAt": "https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
+          "published": "2025-10-24",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY, OCT 31",
+          "sha256": "e09ac2436a8becd15484a93c5017e76f4addd4c3bc4af21c2f5d3b36b68fed91",
+          "bytes": 385147,
+          "rows": 67
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-11-01",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-saturday-set-times.jpg",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/saturday-set-times.jpg",
+          "foundAt": "https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
+          "published": "2025-10-24",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY, NOV 1",
+          "sha256": "94d42a4aa321cda7eb450ce6ee037d5ef21d3819c4115944c8d06a60bb9cf434",
+          "bytes": 375570,
+          "rows": 65
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "THE WAREHOUSE",
+      "start": "22:00",
+      "end": "23:00",
+      "billing": "SECRET GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

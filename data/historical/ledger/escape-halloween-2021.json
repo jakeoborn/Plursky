@@ -1,0 +1,42 @@
+{
+  "id": "escape-halloween-2021",
+  "method": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "gathered": "historical-gather/escape-halloween-2021",
+  "days": [
+    {
+      "day": 1,
+      "date": "2021-10-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://escapehalloween.com/lineup/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20220128225856/https://escapehalloween.com/lineup/set-times/",
+          "captureTimestamp": "20220128225856",
+          "printed": "Friday, October 29",
+          "sha256": "ee7dcb63f6314627d7aaa3f3e95a64ef1ab20f2c9214c2f9cdb68bebbadd0574",
+          "bytes": 231727,
+          "rows": 32
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2021-10-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://escapehalloween.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20211203030926/https://escapehalloween.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20211203030926",
+          "printed": "Saturday, October 30",
+          "sha256": "906b476102ad2c7d7b6bd232583d32e3b409224cc8886b6b48c013bfd45f4e48",
+          "bytes": 199821,
+          "rows": 31
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

@@ -375,7 +375,8 @@ function _HistLibrary({
 }
 var _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
-  official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block"
+  official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
+  official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row"
 };
 function _HistProvenance({
   edition,
@@ -407,7 +408,7 @@ function _HistProvenance({
       margin: 0,
       color: "var(--text-2)"
     }
-  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", ", as archived by the Wayback Machine. Artist and stage names appear exactly as printed. Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
+  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", p.extractionMethod === "official_sources" ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. " : ", as archived by the Wayback Machine. ", "Artist and stage names appear exactly as printed. Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
     style: {
       fontSize: 13,
       color: "var(--text-2)"
@@ -422,7 +423,7 @@ function _HistProvenance({
       color: "var(--text-2)",
       marginBottom: 4
     }
-  }, "Archived captures"), (p.captures || []).map((c, i) => React.createElement("div", {
+  }, p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"), (p.captures || []).map((c, i) => React.createElement("div", {
     key: i,
     style: {
       padding: "8px 0",
@@ -447,7 +448,12 @@ function _HistProvenance({
     target: "_blank",
     rel: "noopener noreferrer",
     style: link
-  }, "Schedule page · ", stamp(c.pageCapture))))))));
+  }, "Schedule page · ", stamp(c.pageCapture))), c.kind === "graphic" && React.createElement("div", null, React.createElement("a", {
+    href: c.foundAt,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: link
+  }, "Official graphic · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))))))));
 }
 function _HistChip({
   on,
@@ -503,7 +509,7 @@ function _HistEdition({
   var e = res.status === "ready" ? res.data : null;
   var lineupOnly = meta.completeness === "lineup_only";
   var checked = React.useMemo(() => {
-    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, {
       month: "short",
       day: "numeric",
@@ -579,7 +585,7 @@ function _HistEdition({
       fontWeight: 600,
       overflowWrap: "anywhere"
     }
-  }, view.artist[s.artistId]?.name), sub && React.createElement("div", {
+  }, s.billing || view.artist[s.artistId]?.name), sub && React.createElement("div", {
     style: {
       fontSize: 13,
       lineHeight: "18px",
@@ -617,7 +623,7 @@ function _HistEdition({
       }
     }, "No artist matches “", q.trim(), "”."));
   } else if (e && query) {
-    var hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
+    var hits = e.sets.filter(s => _histFold(s.billing || view.artist[s.artistId]?.name).includes(query));
     body = React.createElement(React.Fragment, null, meta.days.map(d => {
       var rows = hits.filter(s => s.day === d.day).sort(view.byTime);
       if (!rows.length) return null;
@@ -744,7 +750,7 @@ function _HistEdition({
       fontWeight: 600,
       color: "var(--ink)"
     }
-  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · source archived ", checked)), !lineupOnly && !query && groups.map(g => React.createElement("div", {
+  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), !lineupOnly && !query && groups.map(g => React.createElement("div", {
     key: g.name || "days",
     role: "group",
     "aria-label": g.name || "Days",

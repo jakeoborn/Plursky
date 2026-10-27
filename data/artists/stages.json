@@ -718,6 +718,191 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "escape-halloween:slaughterhouse",
+     "names": [
+      {
+       "printed": "SLAUGHTERHOUSE",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:ghouls-graveyard",
+     "names": [
+      {
+       "printed": "GHOULS' GRAVEYARD",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:chopping-block",
+     "names": [
+      {
+       "printed": "CHOPPING BLOCK",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:cannibals-tea-party",
+     "names": [
+      {
+       "printed": "CANNIBALS' TEA PARTY",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-grimm",
+     "names": [
+      {
+       "printed": "The Grimm",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "THE GRIMM",
+       "editions": [
+        "escape-halloween-2022",
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:psycho-circus",
+     "names": [
+      {
+       "printed": "Psycho Circus",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:sanitarium",
+     "names": [
+      {
+       "printed": "Sanitarium",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "SANITARIUM",
+       "editions": [
+        "escape-halloween-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:crazy-town",
+     "names": [
+      {
+       "printed": "Crazy Town",
+       "editions": [
+        "escape-halloween-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:wicked-woods",
+     "names": [
+      {
+       "printed": "WICKED WOODS",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cauldron",
+     "names": [
+      {
+       "printed": "THE CAULDRON",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX BOOMBOX ART CAR",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi-2",
+     "names": [
+      {
+       "printed": "CASA BACARDI",
+       "editions": [
+        "escape-halloween-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

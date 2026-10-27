@@ -588,11 +588,45 @@
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Kaufmann\".",
    "source": "https://socal.dreamstateusa.com/lineup/"
+  },
+  {
+   "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
+   "performers": [
+    {
+     "name": "AFROKI",
+     "role": "project",
+     "parents": [
+      "AFROJACK",
+      "STEVE AOKI"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://escapehalloween.com/lineup/set-times/"
+  },
+  {
+   "printed": "DOG EAT DOG (CRANKDAT B2B RIOT TEN)",
+   "performers": [
+    {
+     "name": "DOG EAT DOG",
+     "role": "project",
+     "parents": [
+      "CRANKDAT",
+      "RIOT TEN"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://escapehalloween.com/lineup/set-times/"
   }
  ],
  "pending": [
   {
    "printed": "Sultan + Shepard",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Machinedrum + Holly",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   },
   {

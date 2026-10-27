@@ -1,0 +1,1210 @@
+{
+ "id": "escape-halloween-2019",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2019",
+ "year": 2019,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-10-25",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2019-10-26",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2019:the-grimm",
+   "name": "The Grimm"
+  },
+  {
+   "id": "escape-halloween-2019:psycho-circus",
+   "name": "Psycho Circus"
+  },
+  {
+   "id": "escape-halloween-2019:sanitarium",
+   "name": "Sanitarium"
+  },
+  {
+   "id": "escape-halloween-2019:sewer-district",
+   "name": "Sewer District"
+  },
+  {
+   "id": "escape-halloween-2019:crazy-town",
+   "name": "Crazy Town"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2019:win-and-woo",
+   "name": "Win and Woo",
+   "key": "win-and-woo",
+   "performers": [
+    "win-and-woo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:anotr",
+   "name": "ANOTR",
+   "key": "anotr",
+   "performers": [
+    "anotr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:said-the-sky",
+   "name": "Said The Sky",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:deadmau5",
+   "name": "deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:nightstalker",
+   "name": "Nightstalker",
+   "key": "nightstalker",
+   "performers": [
+    "nightstalker"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:definitive",
+   "name": "Definitive",
+   "key": "definitive",
+   "performers": [
+    "definitive"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:conrank",
+   "name": "Conrank",
+   "key": "conrank",
+   "performers": [
+    "conrank"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:prolix-b2b-mob-tactics",
+   "name": "Prolix B2B Mob Tactics",
+   "key": "prolix-b2b-mob-tactics",
+   "performers": [
+    "prolix",
+    "mob-tactics"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:the-prototypes",
+   "name": "The Prototypes",
+   "key": "the-prototypes",
+   "performers": [
+    "the-prototypes"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:riot-ten",
+   "name": "Riot Ten",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:bear-grillz",
+   "name": "Bear Grillz",
+   "key": "bear-grillz",
+   "performers": [
+    "bear-grillz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:soren",
+   "name": "Soren",
+   "key": "soren",
+   "performers": [
+    "soren"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:hpnotic-b2b-keiji",
+   "name": "Hpnotic B2B Keiji",
+   "key": "hpnotic-b2b-keiji",
+   "performers": [
+    "hpnotic",
+    "keiji"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:junkie-kid",
+   "name": "Junkie Kid",
+   "key": "junkie-kid",
+   "performers": [
+    "junkie-kid"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:technoboy-n-tuneboy",
+   "name": "Technoboy 'N' Tuneboy",
+   "key": "technoboy-n-tuneboy",
+   "performers": [
+    "technoboy-n-tuneboy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:headhunterz",
+   "name": "Headhunterz",
+   "key": "headhunterz",
+   "performers": [
+    "headhunterz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:sub-zero-project-live",
+   "name": "Sub Zero Project (Live)",
+   "key": "sub-zero-project-live",
+   "performers": [
+    "sub-zero-project-live"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:dj-anime",
+   "name": "DJ AniMe",
+   "key": "dj-anime",
+   "performers": [
+    "dj-anime"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:nicolas-matar",
+   "name": "Nicolas Matar",
+   "key": "nicolas-matar",
+   "performers": [
+    "nicolas-matar"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:stephan-bodzin-live",
+   "name": "Stephan Bodzin (Live)",
+   "key": "stephan-bodzin-live",
+   "performers": [
+    "stephan-bodzin-live"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:dubfire-b2b-nicole-moudaber-b2b-paco-osuna",
+   "name": "Dubfire B2B Nicole Moudaber B2B Paco Osuna",
+   "key": "dubfire-b2b-nicole-moudaber-b2b-paco-osuna",
+   "performers": [
+    "dubfire",
+    "nicole-moudaber",
+    "paco-osuna"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:dendro",
+   "name": "Dendro",
+   "key": "dendro",
+   "performers": [
+    "dendro"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:game-and-watch",
+   "name": "Game & Watch",
+   "key": "game-and-watch",
+   "performers": [
+    "game-and-watch"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:teig",
+   "name": "Teig",
+   "key": "teig",
+   "performers": [
+    "teig"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:qlank",
+   "name": "Qlank",
+   "key": "qlank",
+   "performers": [
+    "qlank"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:kendoll",
+   "name": "Kendoll",
+   "key": "kendoll",
+   "performers": [
+    "kendoll"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:londonbridge",
+   "name": "LondonBridge",
+   "key": "londonbridge",
+   "performers": [
+    "londonbridge"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:nukid",
+   "name": "NuKid",
+   "key": "nukid",
+   "performers": [
+    "nukid"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:ocean-roulette",
+   "name": "Ocean Roulette",
+   "key": "ocean-roulette",
+   "performers": [
+    "ocean-roulette"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:kaysin",
+   "name": "Kaysin",
+   "key": "kaysin",
+   "performers": [
+    "kaysin"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:fish-scale",
+   "name": "Fish Scale",
+   "key": "fish-scale",
+   "performers": [
+    "fish-scale"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:willaris-k",
+   "name": "WILLARIS. K",
+   "key": "willaris-k",
+   "performers": [
+    "willaris-k"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:i-o",
+   "name": "i_o",
+   "key": "i-o",
+   "performers": [
+    "i-o"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:alok",
+   "name": "ALOK",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:don-diablo",
+   "name": "DON DIABLO",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:rl-grime",
+   "name": "RL GRIME",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:lucati",
+   "name": "LUCATI",
+   "key": "lucati",
+   "performers": [
+    "lucati"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:meduza",
+   "name": "MEDUZA",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:dombresky",
+   "name": "DOMBRESKY",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:claptone",
+   "name": "CLAPTONE",
+   "key": "claptone",
+   "performers": [
+    "claptone"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:gorgon-city-b2b-nora-en-pure",
+   "name": "GORGON CITY B2B NORA EN PURE",
+   "key": "gorgon-city-b2b-nora-en-pure",
+   "performers": [
+    "gorgon-city",
+    "nora-en-pure"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:chris-lake",
+   "name": "CHRIS LAKE",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:eric-prydz",
+   "name": "ERIC PRYDZ",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:slooze",
+   "name": "SLOOZE",
+   "key": "slooze",
+   "performers": [
+    "slooze"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:sober-rob",
+   "name": "SOBER ROB",
+   "key": "sober-rob",
+   "performers": [
+    "sober-rob"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:wuki",
+   "name": "WUKI",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:gg-magree",
+   "name": "GG MAGREE",
+   "key": "gg-magree",
+   "performers": [
+    "gg-magree"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:valentino-khan",
+   "name": "VALENTINO KHAN",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:boombox-cartel",
+   "name": "BOOMBOX CARTEL",
+   "key": "boombox-cartel",
+   "performers": [
+    "boombox-cartel"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:what-so-not",
+   "name": "WHAT SO NOT",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:san-holo",
+   "name": "SAN HOLO",
+   "key": "san-holo",
+   "performers": [
+    "san-holo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:metro-boomin",
+   "name": "METRO BOOMIN",
+   "key": "metro-boomin",
+   "performers": [
+    "metro-boomin"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:sinopoli",
+   "name": "SINOPOLI",
+   "key": "sinopoli",
+   "performers": [
+    "sinopoli"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:hito",
+   "name": "HITO",
+   "key": "hito",
+   "performers": [
+    "hito"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:guti-live",
+   "name": "GUTI (LIVE)",
+   "key": "guti-live",
+   "performers": [
+    "guti-live"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:bicep-dj-set",
+   "name": "BICEP (DJ SET)",
+   "key": "bicep-dj-set",
+   "performers": [
+    "bicep-dj-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:chris-liebing-b2b-charlotte-de-witte",
+   "name": "CHRIS LIEBING B2B CHARLOTTE DE WITTE",
+   "key": "chris-liebing-b2b-charlotte-de-witte",
+   "performers": [
+    "chris-liebing",
+    "charlotte-de-witte"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:testpilot",
+   "name": "TESTPILOT",
+   "key": "testpilot",
+   "performers": [
+    "testpilot"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:1600:win-and-woo",
+   "artistId": "escape-halloween-2019:win-and-woo",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:1730:anotr",
+   "artistId": "escape-halloween-2019:anotr",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:1905:said-the-sky",
+   "artistId": "escape-halloween-2019:said-the-sky",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "19:05",
+   "end": "20:20"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:2025:timmy-trumpet",
+   "artistId": "escape-halloween-2019:timmy-trumpet",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "20:25",
+   "end": "21:43"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:2145:duke-dumont",
+   "artistId": "escape-halloween-2019:duke-dumont",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "21:45",
+   "end": "23:15"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:2315:dillon-francis",
+   "artistId": "escape-halloween-2019:dillon-francis",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:the-grimm:0030:deadmau5",
+   "artistId": "escape-halloween-2019:deadmau5",
+   "day": 1,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:1600:nightstalker",
+   "artistId": "escape-halloween-2019:nightstalker",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:1700:definitive",
+   "artistId": "escape-halloween-2019:definitive",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:1800:conrank",
+   "artistId": "escape-halloween-2019:conrank",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:1900:prolix-b2b-mob-tactics",
+   "artistId": "escape-halloween-2019:prolix-b2b-mob-tactics",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:2000:the-prototypes",
+   "artistId": "escape-halloween-2019:the-prototypes",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:2100:atliens",
+   "artistId": "escape-halloween-2019:atliens",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:2200:riot-ten",
+   "artistId": "escape-halloween-2019:riot-ten",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:2300:bear-grillz",
+   "artistId": "escape-halloween-2019:bear-grillz",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:0000:borgore",
+   "artistId": "escape-halloween-2019:borgore",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:psycho-circus:0100:excision",
+   "artistId": "escape-halloween-2019:excision",
+   "day": 1,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:1600:soren",
+   "artistId": "escape-halloween-2019:soren",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:1730:hpnotic-b2b-keiji",
+   "artistId": "escape-halloween-2019:hpnotic-b2b-keiji",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "17:30",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:1930:junkie-kid",
+   "artistId": "escape-halloween-2019:junkie-kid",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:2030:technoboy-n-tuneboy",
+   "artistId": "escape-halloween-2019:technoboy-n-tuneboy",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:2200:coone",
+   "artistId": "escape-halloween-2019:coone",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:2300:headhunterz",
+   "artistId": "escape-halloween-2019:headhunterz",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:0000:sub-zero-project-live",
+   "artistId": "escape-halloween-2019:sub-zero-project-live",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sanitarium:0100:dj-anime",
+   "artistId": "escape-halloween-2019:dj-anime",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:1600:nicolas-matar",
+   "artistId": "escape-halloween-2019:nicolas-matar",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:1700:monika-kruse",
+   "artistId": "escape-halloween-2019:monika-kruse",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:1830:len-faki",
+   "artistId": "escape-halloween-2019:len-faki",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:2000:kolsch",
+   "artistId": "escape-halloween-2019:kolsch",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:2135:stephan-bodzin-live",
+   "artistId": "escape-halloween-2019:stephan-bodzin-live",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "21:35",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:sewer-district:2310:dubfire-b2b-nicole-moudaber-b2b-paco-osuna",
+   "artistId": "escape-halloween-2019:dubfire-b2b-nicole-moudaber-b2b-paco-osuna",
+   "day": 1,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "23:10",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:1600:dendro",
+   "artistId": "escape-halloween-2019:dendro",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:1700:game-and-watch",
+   "artistId": "escape-halloween-2019:game-and-watch",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:1800:teig",
+   "artistId": "escape-halloween-2019:teig",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:1900:qlank",
+   "artistId": "escape-halloween-2019:qlank",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:2000:kendoll",
+   "artistId": "escape-halloween-2019:kendoll",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:2100:londonbridge",
+   "artistId": "escape-halloween-2019:londonbridge",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:2200:nukid",
+   "artistId": "escape-halloween-2019:nukid",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:2300:ocean-roulette",
+   "artistId": "escape-halloween-2019:ocean-roulette",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:0000:kaysin",
+   "artistId": "escape-halloween-2019:kaysin",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2019:d1:crazy-town:0100:fish-scale",
+   "artistId": "escape-halloween-2019:fish-scale",
+   "day": 1,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:1600:nukid",
+   "artistId": "escape-halloween-2019:nukid",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "16:00",
+   "end": "17:00",
+   "billing": "NUKID"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:1700:willaris-k",
+   "artistId": "escape-halloween-2019:willaris-k",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:1830:i-o",
+   "artistId": "escape-halloween-2019:i-o",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:2000:alok",
+   "artistId": "escape-halloween-2019:alok",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:2130:don-diablo",
+   "artistId": "escape-halloween-2019:don-diablo",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:2300:rl-grime",
+   "artistId": "escape-halloween-2019:rl-grime",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:the-grimm:0030:alesso",
+   "artistId": "escape-halloween-2019:alesso",
+   "day": 2,
+   "stageId": "escape-halloween-2019:the-grimm",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:1600:lucati",
+   "artistId": "escape-halloween-2019:lucati",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:1700:meduza",
+   "artistId": "escape-halloween-2019:meduza",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:1800:dombresky",
+   "artistId": "escape-halloween-2019:dombresky",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:1930:claptone",
+   "artistId": "escape-halloween-2019:claptone",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:2100:gorgon-city-b2b-nora-en-pure",
+   "artistId": "escape-halloween-2019:gorgon-city-b2b-nora-en-pure",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:2230:chris-lake",
+   "artistId": "escape-halloween-2019:chris-lake",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:psycho-circus:0000:eric-prydz",
+   "artistId": "escape-halloween-2019:eric-prydz",
+   "day": 2,
+   "stageId": "escape-halloween-2019:psycho-circus",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:1600:slooze",
+   "artistId": "escape-halloween-2019:slooze",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:1730:sober-rob",
+   "artistId": "escape-halloween-2019:sober-rob",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:1830:wuki",
+   "artistId": "escape-halloween-2019:wuki",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "18:30",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:1945:gg-magree",
+   "artistId": "escape-halloween-2019:gg-magree",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:2045:valentino-khan",
+   "artistId": "escape-halloween-2019:valentino-khan",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:2145:boombox-cartel",
+   "artistId": "escape-halloween-2019:boombox-cartel",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:2245:what-so-not",
+   "artistId": "escape-halloween-2019:what-so-not",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:2345:san-holo",
+   "artistId": "escape-halloween-2019:san-holo",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sanitarium:0100:metro-boomin",
+   "artistId": "escape-halloween-2019:metro-boomin",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sanitarium",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:1600:sinopoli",
+   "artistId": "escape-halloween-2019:sinopoli",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:1730:hito",
+   "artistId": "escape-halloween-2019:hito",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:1900:guti-live",
+   "artistId": "escape-halloween-2019:guti-live",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:2000:bicep-dj-set",
+   "artistId": "escape-halloween-2019:bicep-dj-set",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:2130:anna",
+   "artistId": "escape-halloween-2019:anna",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:2300:chris-liebing-b2b-charlotte-de-witte",
+   "artistId": "escape-halloween-2019:chris-liebing-b2b-charlotte-de-witte",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2019:d2:sewer-district:0030:testpilot",
+   "artistId": "escape-halloween-2019:testpilot",
+   "day": 2,
+   "stageId": "escape-halloween-2019:sewer-district",
+   "start": "00:30",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200818061449/https://escapehalloween.com/lineup/set-times/",
+    "captureTimestamp": "20200818061449",
+    "printed": "Friday, October 25",
+    "sha256": "e797d25714eebea6061ca1b4eb35977dbd7ab2e786e422488a5b05de0cd53100",
+    "rows": 41
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o.jpg",
+    "foundAt": "https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+    "published": "2019-10-21",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY · OCTOBER 26",
+    "sha256": "f502622e734019c3bc0bfccf0c94ad8efa5e8519155d8056c2c6fc99a520d32d",
+    "rows": 30,
+    "reviewManifest": "data/historical/review/escape-halloween-2019.json"
+   }
+  ]
+ }
+}
