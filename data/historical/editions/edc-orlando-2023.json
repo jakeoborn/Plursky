@@ -2793,6 +2793,12 @@
     "printed": "SATURDAY NOV 11",
     "sha256": "d054cc94f373bc4b67bb4423c293bd26ad97a65a41135bc3e611a1acc9601678",
     "rows": 62,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20231103172234/https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
+     "captureTimestamp": "20231103172234",
+     "sha256": "c0d838c8409589d3bc510d1b1a356c1043a1a3abcee11c54b93eb6cbcadf080b",
+     "cites": "F-A7uSJXQAAvJ4r"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2023.json",
     "stagesAs": {
      "kineticFIELD": "Kinetic Field",

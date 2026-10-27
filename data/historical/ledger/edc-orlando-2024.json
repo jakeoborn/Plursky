@@ -2,7 +2,6 @@
   "id": "edc-orlando-2024",
   "method": "official_sources",
   "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
-  "gathered": "historical-gather/edc-orlando-2024",
   "days": [
     {
       "day": 1,
