@@ -900,6 +900,12 @@
     "printed": "SATURDAY SEPTEMBER 17",
     "sha256": "65b6be65d3cdcddee1a850587085f60cb2ede558c69a38800e4d91b11efeac53",
     "rows": 26,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20220909211309/https://edmidentity.com/2022/09/09/nocturnal-wonderland-2022-essentials/",
+     "captureTimestamp": "20220909211309",
+     "sha256": "5ae5b5985ac198bb032e60872dd6f95839baa17c03f6e26023a032b46a9033b4",
+     "cites": "wp-content/uploads/2022/09/FcKrGsZWQAcRfUd"
+    },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2022.json"
    },
    {
@@ -913,6 +919,12 @@
     "printed": "SUNDAY SEPTEMBER 18",
     "sha256": "65b6be65d3cdcddee1a850587085f60cb2ede558c69a38800e4d91b11efeac53",
     "rows": 27,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20220909211309/https://edmidentity.com/2022/09/09/nocturnal-wonderland-2022-essentials/",
+     "captureTimestamp": "20220909211309",
+     "sha256": "5ae5b5985ac198bb032e60872dd6f95839baa17c03f6e26023a032b46a9033b4",
+     "cites": "wp-content/uploads/2022/09/FcKrGsZWQAcRfUd"
+    },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2022.json"
    }
   ]

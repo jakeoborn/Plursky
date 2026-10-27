@@ -1064,6 +1064,12 @@
     "printed": "FRIDAY (SEPTEMBER 15 • 16, 2017)",
     "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
     "rows": 32,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20171021001854/https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
+     "captureTimestamp": "20171021001854",
+     "sha256": "2adbddb36726d2d2ae92887d0dbfa963ba1d7a7c7d20e389aafa6345c4ab3bdc",
+     "cites": "wp-content/uploads/2017/09/nocturnalsettimes"
+    },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2017.json"
    },
    {
@@ -1077,6 +1083,12 @@
     "printed": "SATURDAY (SEPTEMBER 15 • 16, 2017)",
     "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
     "rows": 32,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20171021001854/https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
+     "captureTimestamp": "20171021001854",
+     "sha256": "2adbddb36726d2d2ae92887d0dbfa963ba1d7a7c7d20e389aafa6345c4ab3bdc",
+     "cites": "wp-content/uploads/2017/09/nocturnalsettimes"
+    },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2017.json"
    }
   ]
