@@ -2,7 +2,6 @@
   "id": "edc-orlando-2022",
   "method": "official_sources",
   "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
-  "gathered": "historical-gather/edc-orlando-2022",
   "days": [
     {
       "day": 1,
@@ -20,7 +19,6 @@
         },
         {
           "kind": "graphic",
-          "file": "edmid-313873918_8681187051921556_4878906861207207811_n.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
           "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
           "published": "2022-11-03",
@@ -29,7 +27,13 @@
           "printed": "FRIDAY NOV 11",
           "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
           "bytes": 541404,
-          "rows": 5
+          "rows": 5,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+          }
         }
       ]
     },
@@ -39,7 +43,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "edmid-313873918_8681187051921556_4878906861207207811_n.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
           "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
           "published": "2022-11-03",
@@ -48,7 +51,13 @@
           "printed": "SATURDAY NOV 12",
           "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
           "bytes": 541404,
-          "rows": 55
+          "rows": 55,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+          }
         }
       ]
     },
@@ -58,7 +67,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "edmid-313873918_8681187051921556_4878906861207207811_n.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
           "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
           "published": "2022-11-03",
@@ -67,7 +75,13 @@
           "printed": "SUNDAY NOV 13",
           "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
           "bytes": 541404,
-          "rows": 51
+          "rows": 51,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+            "captureTimestamp": "20221208172253",
+            "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+            "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+          }
         }
       ]
     }

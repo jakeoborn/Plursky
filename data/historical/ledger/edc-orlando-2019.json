@@ -2,7 +2,6 @@
   "id": "edc-orlando-2019",
   "method": "official_sources",
   "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
-  "gathered": "historical-gather/edc-orlando-2019",
   "days": [
     {
       "day": 1,
@@ -10,7 +9,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
           "published": "2019-11-01",
@@ -19,7 +17,13 @@
           "printed": "FRIDAY NOVEMBER 8",
           "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
           "bytes": 738933,
-          "rows": 52
+          "rows": 52,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20191102144333/https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+            "captureTimestamp": "20191102144333",
+            "sha256": "8304410c60801279ef74ca2b85ea30431de9dcaed665a08f7039ec4aea1b058d",
+            "cites": "wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03"
+          }
         }
       ]
     },
@@ -29,7 +33,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
           "published": "2019-11-01",
@@ -38,7 +41,13 @@
           "printed": "SATURDAY NOVEMBER 9",
           "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
           "bytes": 738933,
-          "rows": 52
+          "rows": 52,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20191102144333/https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+            "captureTimestamp": "20191102144333",
+            "sha256": "8304410c60801279ef74ca2b85ea30431de9dcaed665a08f7039ec4aea1b058d",
+            "cites": "wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03"
+          }
         }
       ]
     },
@@ -48,7 +57,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "edmid-edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03.jpg",
           "foundAt": "https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
           "published": "2019-11-01",
@@ -57,7 +65,13 @@
           "printed": "SUNDAY NOVEMBER 10",
           "sha256": "dedceb65ff9fc858d1cc3ba8d6a5b14f452b6ac971415d8c26f2177ca37c40b7",
           "bytes": 738933,
-          "rows": 52
+          "rows": 52,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20191102144333/https://edmidentity.com/2019/11/01/edc-orlando-2019-essentials/",
+            "captureTimestamp": "20191102144333",
+            "sha256": "8304410c60801279ef74ca2b85ea30431de9dcaed665a08f7039ec4aea1b058d",
+            "cites": "wp-content/uploads/2019/10/edc_orlando_2019_lu_set_times_8x10_r03"
+          }
         }
       ]
     }

@@ -2325,6 +2325,12 @@
     "printed": "FRIDAY NOV 11",
     "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
     "rows": 5,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    },
    {
@@ -2338,6 +2344,12 @@
     "printed": "SATURDAY NOV 12",
     "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
     "rows": 55,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    },
    {
@@ -2351,6 +2363,12 @@
     "printed": "SUNDAY NOV 13",
     "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
     "rows": 51,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    }
   ]

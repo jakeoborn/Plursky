@@ -2060,6 +2060,12 @@
     "printed": "FRIDAY NOV 7",
     "sha256": "3fe947fba3b1392c84d15ecffbf7c486f103db24418aee65245aa703c6164fac",
     "rows": 47,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+     "captureTimestamp": "20251106020111",
+     "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+     "cites": "wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2025.json"
    },
    {
@@ -2073,6 +2079,12 @@
     "printed": "SATURDAY NOV 8",
     "sha256": "9efbc7243bea4fa9ad72ee49aa22a904416d5079904232256349c5e6d24565f5",
     "rows": 49,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+     "captureTimestamp": "20251106020111",
+     "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+     "cites": "wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2025.json"
    },
    {
@@ -2086,6 +2098,12 @@
     "printed": "SUNDAY NOV 9",
     "sha256": "cc7c7b7eb82bb61d9f1db05db87c5179ca673ceda9f96446c0820d3316325a74",
     "rows": 47,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+     "captureTimestamp": "20251106020111",
+     "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+     "cites": "wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n"
+    },
     "reviewManifest": "data/historical/review/edc-orlando-2025.json",
     "stagesAs": {
      "neonGARDEN": "neonGarden"
