@@ -10,7 +10,7 @@
 //   118 sets on 7 stages: Fri 58, Sat 60. Every stage closes 02:00 both
 //   nights except Saturday's Warehouse, 01:40.
 //   ✓ CROSS-CHECKED: the fetch matched, row for row, a second independent
-//   read of the same two pages (the lane's browser CSV, Slack 2026-10-26).
+//   read of the same two pages in a desktop browser on 2026-10-26.
 //   Names are AS PRINTED, oddities included: "k?d presents: Kill The Kid",
 //   "Dr. Greco", "B2" (a Danse Macabre act, also on the lineup page — not a
 //   B2B fragment), "MALUGI presents Matteo & Friends B2B" (looks cut off on

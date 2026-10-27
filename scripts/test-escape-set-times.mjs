@@ -10,7 +10,7 @@
 //   4. names as printed, oddities included, and the two Saturday repeats;
 //   5. absolute instants: every set resolves through _wallMs to its PDT
 //      reading (lane ruling: venue-local Pacific, UTC-7 both nights), with
-//      literal instants from the lane's independent CSV pinned;
+//      literal instants from an independent browser read pinned;
 //   6. acts also billed at an EDC edition are the same printed name there.
 import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
@@ -105,7 +105,7 @@ for (const a of acts) for (const t of [a.start, a.end]) {
   instants++;
   check(_wallMs(cfg.dayDates[a.day], t, cfg.tz) === pdt(a.day, t), `${a.id} ${t}: _wallMs ${new Date(_wallMs(cfg.dayDates[a.day], t, cfg.tz)).toISOString()} ≠ PDT ${new Date(pdt(a.day, t)).toISOString()}`);
 }
-// Literal instants from the lane's CSV (start_utc_if_PDT / end_utc_if_PDT).
+// Literal instants from an independent browser read of the official pages.
 const pin = (id, startIso, endIso) => {
   const a = acts.find(x => x.id === id);
   check(a && new Date(_wallMs(cfg.dayDates[a.day], a.start, cfg.tz)).toISOString() === startIso
