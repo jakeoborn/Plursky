@@ -2769,6 +2769,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Escape Halloween 2026: the official set times, as shipped ────────────
+// 118 sets on 7 stages (Fri 58, Sat 60) from escapehalloween.com's per-day
+// set-times pages; every set's instant in PDT, the 02:00 close on the
+// fall-back night included; names as printed; EDC cross-billings agree.
+{
+  console.log("▸ Escape 2026 set times — 118 official sets, PDT instants, names as printed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-escape-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Escape set times failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a

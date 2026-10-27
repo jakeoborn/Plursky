@@ -111,6 +111,16 @@ console.log(`  ✓ fixtures: every change kind alone, TBA both ways, null stage,
     check(_wallMs(oct31, "03:00", esc.tz) === Date.UTC(2026, 10, 1, 11, 0), `Nov 1 03:00 PST must be 11:00Z`);
     check(plain(oct31, "03:00") === Date.UTC(2026, 10, 1, 10, 0), `positive control: the plain sum is an hour early at 03:00`);
     check(_wallMs(oct30, "03:00", esc.tz) === plain(oct30, "03:00"), `a night with no transition must equal the plain sum`);
+    // The 02:00 boundary: Escape's official close ("4PM-2AM") is 02:00 PDT,
+    // the transition instant, not 02:00 PST an hour later. Nine Saturday sets end on it.
+    check(_wallMs(oct31, "02:00", esc.tz) === Date.UTC(2026, 10, 1, 9, 0), `Nov 1 02:00 (the fall-back boundary) must be 09:00Z, got ${new Date(_wallMs(oct31, "02:00", esc.tz)).toISOString()}`);
+    check(_wallMs(oct31, "02:00", esc.tz) === esc.endMs, `Escape's last set end must equal its own endMs`);
+    check(_wallMs(oct31, "02:30", esc.tz) === Date.UTC(2026, 10, 1, 10, 30), `Nov 1 02:30 is PST, 10:30Z`);
+    // Spring-forward control (LA, Sun Mar 8 2026 02:00 → 03:00): the
+    // fall-back boundary read must not leak into the other transition.
+    const mar7 = { midnightUtc: Date.UTC(2026, 2, 7, 8, 0) };
+    check(_wallMs(mar7, "01:30", esc.tz) === Date.UTC(2026, 2, 8, 9, 30), `spring: Mar 8 01:30 PST must be 09:30Z`);
+    check(_wallMs(mar7, "03:00", esc.tz) === Date.UTC(2026, 2, 8, 10, 0), `spring: Mar 8 03:00 PDT must be 10:00Z, got ${new Date(_wallMs(mar7, "03:00", esc.tz)).toISOString()}`);
     const dd = diffSchedule([act("x", 2, "s", "01:30", "02:30")], [act("x", 2, "s", "03:00", "04:00")], esc);
     check(dd.changes[0]?.startDeltaMin === 150, `01:30 → 03:00 across fall-back is +150 min, got ${dd.changes[0]?.startDeltaMin}`);
     console.log(`  ✓ DST: Escape's Oct 31 night resolves 03:00 to 11:00Z and a move across the fall-back reads +150 min`);

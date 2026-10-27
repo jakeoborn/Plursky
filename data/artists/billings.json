@@ -57166,9 +57166,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "18:45",
+  "end": "19:45",
   "printed": "A Little Sound",
   "setTag": null,
   "performers": [
@@ -57178,8 +57178,8 @@
    }
   ],
   "act": "a-little-sound",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57190,9 +57190,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "20:30",
+  "end": "22:00",
   "printed": "Adam Ten",
   "setTag": null,
   "performers": [
@@ -57202,8 +57202,32 @@
    }
   ],
   "act": "adam-ten",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-all-rise",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "All Rise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "all-rise",
+    "role": "performer"
+   }
+  ],
+  "act": "all-rise",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57214,9 +57238,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "16:00",
+  "end": "16:45",
   "printed": "All The Reason",
   "setTag": null,
   "performers": [
@@ -57226,8 +57250,8 @@
    }
   ],
   "act": "all-the-reason",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57238,9 +57262,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "AniMe - No Boundaries",
   "setTag": null,
   "performers": [
@@ -57250,8 +57274,8 @@
    }
   ],
   "act": "anime-no-boundaries",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57262,9 +57286,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "21:15",
+  "end": "22:40",
   "printed": "Azyr",
   "setTag": null,
   "performers": [
@@ -57274,8 +57298,56 @@
    }
   ],
   "act": "azyr",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-b2-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "B2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "b2",
+    "role": "performer"
+   }
+  ],
+  "act": "b2",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-benni-ola-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Benni Ola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benni-ola",
+    "role": "performer"
+   }
+  ],
+  "act": "benni-ola",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -57286,9 +57358,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "21:00",
+  "end": "22:15",
   "printed": "Benny Benassi",
   "setTag": null,
   "performers": [
@@ -57298,8 +57370,8 @@
    }
   ],
   "act": "benny-benassi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -57310,9 +57382,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "18:30",
+  "end": "19:00",
   "printed": "Cascada",
   "setTag": null,
   "performers": [
@@ -57322,8 +57394,8 @@
    }
   ],
   "act": "cascada",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -57334,9 +57406,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "19:50",
+  "end": "21:15",
   "printed": "Cera Khin",
   "setTag": null,
   "performers": [
@@ -57346,8 +57418,8 @@
    }
   ],
   "act": "cera-khin",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -57358,9 +57430,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "22:40",
+  "end": "00:10",
   "printed": "Clara Cuvé",
   "setTag": null,
   "performers": [
@@ -57370,8 +57442,8 @@
    }
   ],
   "act": "clara-cuve",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -57382,9 +57454,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "00:45",
+  "end": "02:00",
   "printed": "Cloonee",
   "setTag": null,
   "performers": [
@@ -57394,8 +57466,32 @@
    }
   ],
   "act": "cloonee",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:the-big-top",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-comadoses",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Comadoses",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "comadoses",
+    "role": "performer"
+   }
+  ],
+  "act": "comadoses",
+  "closing": true,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57406,9 +57502,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Coone B2B DJ Isaac",
   "setTag": null,
   "performers": [
@@ -57422,8 +57518,8 @@
    }
   ],
   "act": "coone-b2b-dj-isaac",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57434,9 +57530,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "19:45",
+  "end": "20:45",
   "printed": "Cyclops",
   "setTag": null,
   "performers": [
@@ -57446,8 +57542,8 @@
    }
   ],
   "act": "cyclops",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57458,9 +57554,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Darren Styles",
   "setTag": null,
   "performers": [
@@ -57470,8 +57566,32 @@
    }
   ],
   "act": "darren-styles",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-death-simulator",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Death Simulator",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "death-simulator",
+    "role": "performer"
+   }
+  ],
+  "act": "death-simulator",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57482,9 +57602,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "22:15",
+  "end": "23:30",
   "printed": "Dimitri Vegas & Like Mike",
   "setTag": null,
   "performers": [
@@ -57494,32 +57614,8 @@
    }
   ],
   "act": "dimitri-vegas-and-like-mike",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-discovery-project-d1",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": "2026-10-30",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Discovery Project",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "discovery-project",
-    "role": "performer"
-   }
-  ],
-  "act": "discovery-project",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -57530,9 +57626,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "19:00",
+  "end": "20:30",
   "printed": "DJ Tennis",
   "setTag": null,
   "performers": [
@@ -57542,8 +57638,32 @@
    }
   ],
   "act": "dj-tennis",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-dr-greco-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "Dr. Greco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-greco",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-greco",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -57554,9 +57674,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "01:00",
+  "end": "02:00",
   "printed": "Excision",
   "setTag": null,
   "performers": [
@@ -57566,8 +57686,8 @@
    }
   ],
   "act": "excision",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57578,9 +57698,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Frontliner (Journey Set)",
   "setTag": "Journey Set",
   "performers": [
@@ -57590,8 +57710,8 @@
    }
   ],
   "act": "frontliner",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57602,9 +57722,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Gammer",
   "setTag": null,
   "performers": [
@@ -57614,8 +57734,8 @@
    }
   ],
   "act": "gammer",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57626,9 +57746,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "20:45",
+  "end": "21:45",
   "printed": "Getter",
   "setTag": null,
   "performers": [
@@ -57638,8 +57758,8 @@
    }
   ],
   "act": "getter",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57650,9 +57770,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "17:45",
+  "end": "18:45",
   "printed": "HerShe",
   "setTag": null,
   "performers": [
@@ -57662,8 +57782,56 @@
    }
   ],
   "act": "hershe",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-hiwater",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "HIWATER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hiwater",
+    "role": "performer"
+   }
+  ],
+  "act": "hiwater",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-honeypacq",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "HoneyPacq",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "honeypacq",
+    "role": "performer"
+   }
+  ],
+  "act": "honeypacq",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57674,9 +57842,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "00:00",
+  "end": "02:00",
   "printed": "Jamie Jones B2B Franky Rizardo",
   "setTag": null,
   "performers": [
@@ -57690,8 +57858,8 @@
    }
   ],
   "act": "jamie-jones-b2b-franky-rizardo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -57702,9 +57870,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "22:00",
+  "end": "00:00",
   "printed": "Joseph Capriati B2B Sosa",
   "setTag": null,
   "performers": [
@@ -57718,8 +57886,8 @@
    }
   ],
   "act": "joseph-capriati-b2b-sosa",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -57730,9 +57898,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "k?d presents: Kill The Kid",
   "setTag": null,
   "performers": [
@@ -57742,8 +57910,8 @@
    }
   ],
   "act": "k-d-presents-kill-the-kid",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57754,9 +57922,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "23:55",
+  "end": "00:55",
   "printed": "Kai Wachi",
   "setTag": null,
   "performers": [
@@ -57766,8 +57934,8 @@
    }
   ],
   "act": "kai-wachi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57778,9 +57946,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Kana Hishiya",
   "setTag": null,
   "performers": [
@@ -57790,8 +57958,32 @@
    }
   ],
   "act": "kana-hishiya",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-kimmo",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Kimmo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kimmo",
+    "role": "performer"
+   }
+  ],
+  "act": "kimmo",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57802,9 +57994,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "18:25",
+  "end": "19:50",
   "printed": "Kloud",
   "setTag": null,
   "performers": [
@@ -57814,8 +58006,8 @@
    }
   ],
   "act": "kloud",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -57826,9 +58018,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "KREAM",
   "setTag": null,
   "performers": [
@@ -57838,8 +58030,8 @@
    }
   ],
   "act": "kream",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -57850,9 +58042,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "01:00",
+  "end": "02:00",
   "printed": "Lady Faith B2B LNY TNZ",
   "setTag": null,
   "performers": [
@@ -57866,8 +58058,32 @@
    }
   ],
   "act": "lady-faith-b2b-lny-tnz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-lady-sinclair-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Lady Sinclair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-sinclair",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-sinclair",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -57878,9 +58094,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "22:50",
+  "end": "23:50",
   "printed": "Level Up",
   "setTag": null,
   "performers": [
@@ -57890,8 +58106,8 @@
    }
   ],
   "act": "level-up",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -57902,9 +58118,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Mish",
   "setTag": null,
   "performers": [
@@ -57914,8 +58130,8 @@
    }
   ],
   "act": "mish",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -57926,9 +58142,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "16:45",
+  "end": "17:45",
   "printed": "MODAL NODES",
   "setTag": null,
   "performers": [
@@ -57938,8 +58154,32 @@
    }
   ],
   "act": "modal-nodes",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-monic",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Monic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "monic",
+    "role": "performer"
+   }
+  ],
+  "act": "monic",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -57950,9 +58190,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Morelia",
   "setTag": null,
   "performers": [
@@ -57962,8 +58202,36 @@
    }
   ],
   "act": "morelia",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-morelia-b2b-pixie-dust-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Morelia B2B Pixie Dust",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morelia",
+    "role": "b2b"
+   },
+   {
+    "key": "pixie-dust",
+    "role": "b2b"
+   }
+  ],
+  "act": "morelia-b2b-pixie-dust",
+  "closing": true,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -57974,9 +58242,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "MORTEN",
   "setTag": null,
   "performers": [
@@ -57986,8 +58254,32 @@
    }
   ],
   "act": "morten",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-mr-fowler-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "Mr. Fowler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-fowler",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-fowler",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -57998,9 +58290,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "17:15",
+  "end": "18:30",
   "printed": "Nervo",
   "setTag": null,
   "performers": [
@@ -58010,8 +58302,8 @@
    }
   ],
   "act": "nervo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58022,9 +58314,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Pixie Dust",
   "setTag": null,
   "performers": [
@@ -58034,8 +58326,84 @@
    }
   ],
   "act": "pixie-dust",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-roroll-b2b-hua-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "RoRoll B2B HUA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roroll",
+    "role": "b2b"
+   },
+   {
+    "key": "hua",
+    "role": "b2b"
+   }
+  ],
+  "act": "roroll-b2b-hua",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-sabrosura-boyz-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Beatbox Art Car",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Sabrosura Boyz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrosura-boyz",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrosura-boyz",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-seung",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "Danse Macabre",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "SEUNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seung",
+    "role": "performer"
+   }
+  ],
+  "act": "seung",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -58046,9 +58414,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Showtek (Hardstyle Set)",
   "setTag": "Hardstyle Set",
   "performers": [
@@ -58058,8 +58426,8 @@
    }
   ],
   "act": "showtek",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -58070,9 +58438,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "17:30",
+  "end": "19:00",
   "printed": "Silvie Loto",
   "setTag": null,
   "performers": [
@@ -58082,8 +58450,32 @@
    }
   ],
   "act": "silvie-loto",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-solitaire-d1",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-30",
+  "day": 1,
+  "stage": "The Big Top",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Solitaire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solitaire",
+    "role": "performer"
+   }
+  ],
+  "act": "solitaire",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58094,9 +58486,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "23:30",
+  "end": "00:40",
   "printed": "Steve Aoki",
   "setTag": null,
   "performers": [
@@ -58106,8 +58498,8 @@
    }
   ],
   "act": "steve-aoki",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58118,9 +58510,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "17:00",
+  "end": "18:25",
   "printed": "Trancemaster Krause",
   "setTag": null,
   "performers": [
@@ -58130,8 +58522,8 @@
    }
   ],
   "act": "trancemaster-krause",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58142,9 +58534,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "00:10",
+  "end": "02:00",
   "printed": "Trym",
   "setTag": null,
   "performers": [
@@ -58154,8 +58546,8 @@
    }
   ],
   "act": "trym",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58166,9 +58558,9 @@
   "year": 2026,
   "date": "2026-10-30",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "21:45",
+  "end": "22:45",
   "printed": "YDG",
   "setTag": null,
   "performers": [
@@ -58178,8 +58570,8 @@
    }
   ],
   "act": "ydg",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58190,9 +58582,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "00:30",
+  "end": "02:00",
   "printed": "999999999",
   "setTag": null,
   "performers": [
@@ -58202,8 +58594,8 @@
    }
   ],
   "act": "999999999",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -58214,9 +58606,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "21:30",
+  "end": "23:00",
   "printed": "AC Slater",
   "setTag": null,
   "performers": [
@@ -58226,8 +58618,8 @@
    }
   ],
   "act": "ac-slater",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -58238,9 +58630,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "16:00",
+  "end": "16:40",
   "printed": "Acyan",
   "setTag": null,
   "performers": [
@@ -58250,8 +58642,32 @@
    }
   ],
   "act": "acyan",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-acyan-d2-s2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Acyan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acyan",
+    "role": "performer"
+   }
+  ],
+  "act": "acyan",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -58262,9 +58678,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "21:40",
+  "end": "22:40",
   "printed": "Adventure Club",
   "setTag": null,
   "performers": [
@@ -58274,8 +58690,8 @@
    }
   ],
   "act": "adventure-club",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58286,9 +58702,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "17:15",
+  "end": "18:45",
   "printed": "Alex Chapman B2B Zoe Gitter",
   "setTag": null,
   "performers": [
@@ -58302,8 +58718,8 @@
    }
   ],
   "act": "alex-chapman-b2b-zoe-gitter",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58314,9 +58730,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "21:00",
+  "end": "22:10",
   "printed": "Alok",
   "setTag": null,
   "performers": [
@@ -58326,8 +58742,8 @@
    }
   ],
   "act": "alok",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58338,9 +58754,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "19:00",
+  "end": "20:15",
   "printed": "Andruss B2B Juos",
   "setTag": null,
   "performers": [
@@ -58354,8 +58770,8 @@
    }
   ],
   "act": "andruss-b2b-juos",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -58366,9 +58782,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "21:10",
+  "end": "22:20",
   "printed": "Avalon Emerson",
   "setTag": null,
   "performers": [
@@ -58378,8 +58794,8 @@
    }
   ],
   "act": "avalon-emerson",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58390,9 +58806,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "19:40",
+  "end": "20:40",
   "printed": "Bou",
   "setTag": null,
   "performers": [
@@ -58402,8 +58818,8 @@
    }
   ],
   "act": "bou",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58414,9 +58830,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Cat & Maomi",
   "setTag": null,
   "performers": [
@@ -58426,8 +58842,32 @@
    }
   ],
   "act": "cat-and-maomi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-cat-and-maomi-d2-s2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Cat & Maomi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cat-and-maomi",
+    "role": "performer"
+   }
+  ],
+  "act": "cat-and-maomi",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -58438,9 +58878,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "20:00",
+  "end": "21:10",
   "printed": "Champion",
   "setTag": null,
   "performers": [
@@ -58450,8 +58890,8 @@
    }
   ],
   "act": "champion",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58462,9 +58902,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "Chrysalis",
   "setTag": null,
   "performers": [
@@ -58474,8 +58914,56 @@
    }
   ],
   "act": "chrysalis",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-coe",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "$coe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coe",
+    "role": "performer"
+   }
+  ],
+  "act": "coe",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-craymak-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "CRaymak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "craymak",
+    "role": "performer"
+   }
+  ],
+  "act": "craymak",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -58486,9 +58974,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "00:50",
+  "end": "02:00",
   "printed": "Dabin",
   "setTag": null,
   "performers": [
@@ -58498,8 +58986,32 @@
    }
   ],
   "act": "dabin",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-desa-deca",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Desa Deca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "desa-deca",
+    "role": "performer"
+   }
+  ],
+  "act": "desa-deca",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -58510,9 +59022,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "23:25",
+  "end": "00:40",
   "printed": "Disco Lines",
   "setTag": null,
   "performers": [
@@ -58522,8 +59034,8 @@
    }
   ],
   "act": "disco-lines",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58534,9 +59046,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "22:20",
+  "end": "23:30",
   "printed": "DJ Heartstring",
   "setTag": null,
   "performers": [
@@ -58546,8 +59058,8 @@
    }
   ],
   "act": "dj-heartstring",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
   "mainStage": null
  },
  {
@@ -58558,9 +59070,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "20:40",
+  "end": "21:40",
   "printed": "Dr. Fresch",
   "setTag": null,
   "performers": [
@@ -58570,8 +59082,8 @@
    }
   ],
   "act": "dr-fresch",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58582,9 +59094,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "16:40",
+  "end": "17:40",
   "printed": "ero808",
   "setTag": null,
   "performers": [
@@ -58594,8 +59106,8 @@
    }
   ],
   "act": "ero808",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58606,9 +59118,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "18:30",
+  "end": "20:00",
   "printed": "Funk Assault",
   "setTag": null,
   "performers": [
@@ -58618,8 +59130,32 @@
    }
   ],
   "act": "funk-assault",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-fvlako-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "FVLAKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fvlako",
+    "role": "performer"
+   }
+  ],
+  "act": "fvlako",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -58630,9 +59166,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "22:15",
+  "end": "23:25",
   "printed": "Galantis",
   "setTag": null,
   "performers": [
@@ -58642,8 +59178,32 @@
    }
   ],
   "act": "galantis",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-girl-math-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Feeding Grounds",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "Girl Math",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-math",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-math",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -58654,9 +59214,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Ian Asher",
   "setTag": null,
   "performers": [
@@ -58666,32 +59226,8 @@
    }
   ],
   "act": "ian-asher",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-ice-cube-d2",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": "2026-10-31",
-  "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Ice Cube",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "ice-cube",
-    "role": "performer"
-   }
-  ],
-  "act": "ice-cube",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58702,9 +59238,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "23:00",
+  "end": "00:30",
   "printed": "Indira Paganotto",
   "setTag": null,
   "performers": [
@@ -58714,8 +59250,32 @@
    }
   ],
   "act": "indira-paganotto",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-ja-rule-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Sewer District",
+  "start": "00:15",
+  "end": "00:45",
+  "printed": "Ja Rule",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ja-rule",
+    "role": "performer"
+   }
+  ],
+  "act": "ja-rule",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58726,9 +59286,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "17:40",
+  "end": "18:40",
   "printed": "Jon Casey",
   "setTag": null,
   "performers": [
@@ -58738,8 +59298,8 @@
    }
   ],
   "act": "jon-casey",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58750,9 +59310,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "JOYRYDE (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -58762,8 +59322,8 @@
    }
   ],
   "act": "joyryde",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58774,9 +59334,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "16:00",
+  "end": "17:15",
   "printed": "JSMN",
   "setTag": null,
   "performers": [
@@ -58786,8 +59346,56 @@
    }
   ],
   "act": "jsmn",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-juos-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Juos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juos",
+    "role": "performer"
+   }
+  ],
+  "act": "juos",
+  "closing": true,
+  "stageLineage": "escape-halloween:beatbox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-killmatter-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "KILLMATTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "killmatter",
+    "role": "performer"
+   }
+  ],
+  "act": "killmatter",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
   "mainStage": null
  },
  {
@@ -58798,9 +59406,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "18:40",
+  "end": "19:40",
   "printed": "Know Good",
   "setTag": null,
   "performers": [
@@ -58810,8 +59418,32 @@
    }
   ],
   "act": "know-good",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-landopolo",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Landopolo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "landopolo",
+    "role": "performer"
+   }
+  ],
+  "act": "landopolo",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -58822,9 +59454,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sewer District",
+  "start": "22:45",
+  "end": "23:45",
   "printed": "Liquid Stranger",
   "setTag": null,
   "performers": [
@@ -58834,8 +59466,8 @@
    }
   ],
   "act": "liquid-stranger",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
   "mainStage": null
  },
  {
@@ -58846,9 +59478,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "LUMI",
   "setTag": null,
   "performers": [
@@ -58858,8 +59490,8 @@
    }
   ],
   "act": "lumi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58870,9 +59502,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Maddix",
   "setTag": null,
   "performers": [
@@ -58882,8 +59514,8 @@
    }
   ],
   "act": "maddix",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
@@ -58894,9 +59526,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "23:30",
+  "end": "00:40",
   "printed": "MALUGI",
   "setTag": null,
   "performers": [
@@ -58906,8 +59538,104 @@
    }
   ],
   "act": "malugi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-malugi-presents-matteo-and-friends-b2b-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "The Warehouse",
+  "start": "00:40",
+  "end": "01:40",
+  "printed": "MALUGI presents Matteo & Friends B2B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matteo-and-friends-b2b",
+    "role": "project"
+   }
+  ],
+  "act": "malugi-presents-matteo-and-friends-b2b",
+  "closing": true,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-marie-nyx",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Marie Nyx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marie-nyx",
+    "role": "performer"
+   }
+  ],
+  "act": "marie-nyx",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-mark-lizaola",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Mark Lizaola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-lizaola",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-lizaola",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-nina-j",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Nina J",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nina-j",
+    "role": "performer"
+   }
+  ],
+  "act": "nina-j",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -58918,9 +59646,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "21:30",
+  "end": "23:00",
   "printed": "Nina Kraviz",
   "setTag": null,
   "performers": [
@@ -58930,8 +59658,8 @@
    }
   ],
   "act": "nina-kraviz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -58942,9 +59670,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "00:30",
+  "end": "02:00",
   "printed": "OMNOM",
   "setTag": null,
   "performers": [
@@ -58954,8 +59682,8 @@
    }
   ],
   "act": "omnom",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -58966,9 +59694,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "PEDROZ",
   "setTag": null,
   "performers": [
@@ -58978,8 +59706,32 @@
    }
   ],
   "act": "pedroz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-richard-vission",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Richard Vission",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-vission",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-vission",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -58990,9 +59742,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "20:00",
+  "end": "21:30",
   "printed": "Richie Hawtin",
   "setTag": null,
   "performers": [
@@ -59002,8 +59754,8 @@
    }
   ],
   "act": "richie-hawtin",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -59014,9 +59766,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Rommii",
   "setTag": null,
   "performers": [
@@ -59026,8 +59778,8 @@
    }
   ],
   "act": "rommii",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -59038,9 +59790,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Feeding Grounds",
+  "start": "23:00",
+  "end": "00:30",
   "printed": "San Pacho",
   "setTag": null,
   "performers": [
@@ -59050,8 +59802,8 @@
    }
   ],
   "act": "san-pacho",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
   "mainStage": null
  },
  {
@@ -59062,9 +59814,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Warehouse",
+  "start": "18:45",
+  "end": "20:00",
   "printed": "Sedef Adasï",
   "setTag": null,
   "performers": [
@@ -59074,8 +59826,80 @@
    }
   ],
   "act": "sedef-adasi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-warehouse",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-shaking",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "SHAKING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shaking",
+    "role": "performer"
+   }
+  ],
+  "act": "shaking",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-sim-ivy-d2",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Beatbox Art Car",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Sim Ivy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sim-ivy",
+    "role": "performer"
+   }
+  ],
+  "act": "sim-ivy",
+  "closing": false,
+  "stageLineage": "escape-halloween:beatbox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-spency-be",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Spency Be",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spency-be",
+    "role": "performer"
+   }
+  ],
+  "act": "spency-be",
+  "closing": false,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -59086,9 +59910,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "TELYKAST",
   "setTag": null,
   "performers": [
@@ -59098,32 +59922,56 @@
    }
   ],
   "act": "telykast",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
-  "id": "escape-halloween-2026:esc-vnssa-b2b-qqqq-d2",
+  "id": "escape-halloween-2026:esc-too-hort-d2",
   "source": "live",
   "festivalId": "escape-halloween-2026",
   "festivalBrand": "escape-halloween",
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "VNSSA B2B ????",
+  "stage": "Sewer District",
+  "start": "23:45",
+  "end": "00:15",
+  "printed": "Too $hort",
   "setTag": null,
   "performers": [
    {
-    "key": "vnssa",
-    "role": "b2b"
+    "key": "too-hort",
+    "role": "performer"
    }
   ],
-  "act": "vnssa-b2b",
-  "closing": null,
-  "stageLineage": null,
+  "act": "too-hort",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2026:esc-unscheduled-tykni",
+  "source": "live",
+  "festivalId": "escape-halloween-2026",
+  "festivalBrand": "escape-halloween",
+  "year": 2026,
+  "date": "2026-10-31",
+  "day": 2,
+  "stage": "Danse Macabre",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "TYKNI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tykni",
+    "role": "performer"
+   }
+  ],
+  "act": "tykni",
+  "closing": true,
+  "stageLineage": "escape-halloween:danse-macabre",
   "mainStage": null
  },
  {
@@ -59134,9 +59982,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Cage",
+  "start": "17:15",
+  "end": "18:30",
   "printed": "Yanamaste",
   "setTag": null,
   "performers": [
@@ -59146,8 +59994,8 @@
    }
   ],
   "act": "yanamaste",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "escape-halloween:the-cage",
   "mainStage": null
  },
  {
@@ -59158,9 +60006,9 @@
   "year": 2026,
   "date": "2026-10-31",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "The Big Top",
+  "start": "00:45",
+  "end": "02:00",
   "printed": "Zedd",
   "setTag": null,
   "performers": [
@@ -59170,488 +60018,8 @@
    }
   ],
   "act": "zedd",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-all-rise",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "All Rise",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "all-rise",
-    "role": "performer"
-   }
-  ],
-  "act": "all-rise",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-coe",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "$coe",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "coe",
-    "role": "performer"
-   }
-  ],
-  "act": "coe",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-comadoses",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Comadoses",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "comadoses",
-    "role": "performer"
-   }
-  ],
-  "act": "comadoses",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-death-simulator",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Death Simulator",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "death-simulator",
-    "role": "performer"
-   }
-  ],
-  "act": "death-simulator",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-desa-deca",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Desa Deca",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "desa-deca",
-    "role": "performer"
-   }
-  ],
-  "act": "desa-deca",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-hiwater",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "HIWATER",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "hiwater",
-    "role": "performer"
-   }
-  ],
-  "act": "hiwater",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-honeypacq",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "HoneyPacq",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "honeypacq",
-    "role": "performer"
-   }
-  ],
-  "act": "honeypacq",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-hua",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "HUA",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "hua",
-    "role": "performer"
-   }
-  ],
-  "act": "hua",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-kimmo",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Kimmo",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "kimmo",
-    "role": "performer"
-   }
-  ],
-  "act": "kimmo",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-landopolo",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Landopolo",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "landopolo",
-    "role": "performer"
-   }
-  ],
-  "act": "landopolo",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-marie-nyx",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Marie Nyx",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "marie-nyx",
-    "role": "performer"
-   }
-  ],
-  "act": "marie-nyx",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-mark-lizaola",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Mark Lizaola",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "mark-lizaola",
-    "role": "performer"
-   }
-  ],
-  "act": "mark-lizaola",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-monic",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Monic",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "monic",
-    "role": "performer"
-   }
-  ],
-  "act": "monic",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-nina-j",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Nina J",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "nina-j",
-    "role": "performer"
-   }
-  ],
-  "act": "nina-j",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-richard-vission",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Richard Vission",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "richard-vission",
-    "role": "performer"
-   }
-  ],
-  "act": "richard-vission",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-roroll",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "RoRoll",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "roroll",
-    "role": "performer"
-   }
-  ],
-  "act": "roroll",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-seung",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "SEUNG",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "seung",
-    "role": "performer"
-   }
-  ],
-  "act": "seung",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-shaking",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "SHAKING",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "shaking",
-    "role": "performer"
-   }
-  ],
-  "act": "shaking",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-spency-be",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Spency Be",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "spency-be",
-    "role": "performer"
-   }
-  ],
-  "act": "spency-be",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "escape-halloween-2026:esc-unscheduled-tykni",
-  "source": "live",
-  "festivalId": "escape-halloween-2026",
-  "festivalBrand": "escape-halloween",
-  "year": 2026,
-  "date": null,
-  "day": null,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "TYKNI",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "tykni",
-    "role": "performer"
-   }
-  ],
-  "act": "tykni",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "escape-halloween:the-big-top",
   "mainStage": null
  },
  {
