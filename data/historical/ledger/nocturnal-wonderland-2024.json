@@ -1,0 +1,42 @@
+{
+  "id": "nocturnal-wonderland-2024",
+  "method": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "gathered": "historical-gather/nocturnal-wonderland-2024",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-09-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20250124060843/https://www.nocturnalwonderland.com/lineup/set-times/",
+          "captureTimestamp": "20250124060843",
+          "printed": "Saturday, September 14",
+          "sha256": "cab2e2b224ffe0c3acb99e45b8721bfc532f49bdccf349efb88965f534ead9c0",
+          "bytes": 218136,
+          "rows": 32
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-09-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20241006203951/https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20241006203951",
+          "printed": "Sunday, September 15",
+          "sha256": "46d68fb93ef60da5725c7143cf6ad32a5f5e882780fcaf9b79520798495d532a",
+          "bytes": 226819,
+          "rows": 34
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

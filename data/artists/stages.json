@@ -1988,6 +1988,140 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wolves-den",
+     "names": [
+      {
+       "printed": "WOLVES' DEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Wolves' Den",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:labyrinth",
+     "names": [
+      {
+       "printed": "LABYRINTH",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:sunken-garden",
+     "names": [
+      {
+       "printed": "SUNKEN GARDEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Sunken Garden",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:temple-noctem",
+     "names": [
+      {
+       "printed": "TEMPLE NOCTEM",
+       "editions": [
+        "nocturnal-wonderland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "nocturnal-wonderland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "nocturnal-wonderland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:owloch-grove",
+     "names": [
+      {
+       "printed": "Owloch Grove",
+       "editions": [
+        "nocturnal-wonderland-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -19,5 +19,11 @@
  "edc-orlando-2022": { "stages": 5, "setsPerDay": [45, 49, 46], "droppedPerDay": [5, 6, 5] },
  "edc-orlando-2023": { "stages": 6, "setsPerDay": [55, 57, 58], "droppedPerDay": [0, 5, 1] },
  "edc-orlando-2024": { "stages": 5, "setsPerDay": [40, 42, 40], "droppedPerDay": [1, 0, 0] },
- "edc-orlando-2025": { "stages": 5, "setsPerDay": [42, 44, 42], "droppedPerDay": [5, 5, 5] }
+ "edc-orlando-2025": { "stages": 5, "setsPerDay": [42, 44, 42], "droppedPerDay": [5, 5, 5] },
+ "nocturnal-wonderland-2017": { "stages": 4, "setsPerDay": [31, 32], "droppedPerDay": [1, 0] },
+ "nocturnal-wonderland-2018": { "stages": 4, "setsPerDay": [32, 30], "droppedPerDay": [0, 0] },
+ "nocturnal-wonderland-2019": { "stages": 4, "setsPerDay": [36, 34], "droppedPerDay": [0, 0] },
+ "nocturnal-wonderland-2021": { "stages": 4, "setsPerDay": [33, 33], "droppedPerDay": [0, 0] },
+ "nocturnal-wonderland-2022": { "stages": 3, "setsPerDay": [26, 27], "droppedPerDay": [0, 0] },
+ "nocturnal-wonderland-2024": { "stages": 4, "setsPerDay": [32, 34], "droppedPerDay": [0, 0] }
 }

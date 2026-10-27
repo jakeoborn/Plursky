@@ -725,6 +725,48 @@
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
    "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Crissy Criss + MC Dino",
+   "performers": [
+    {
+     "name": "Crissy Criss",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "JACK BEATS + TAIKI NULIGHT PRESENT: REEL MOOD",
+   "performers": [
+    {
+     "name": "REEL MOOD",
+     "role": "project",
+     "parents": [
+      "JACK BEATS",
+      "TAIKI NULIGHT"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "Sian (Techno Classics)",
+   "performers": [
+    {
+     "name": "Sian",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Techno Classics",
+   "why": "\"Techno Classics\" names the set's music, not a person: it is the set tag, and the billing counts on Sian (the Above & Beyond (Anjunabeats Classics) rule).",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
   }
  ],
  "pending": [
@@ -834,6 +876,22 @@
   },
   {
    "key": "i-o",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Ed Rush + Optical",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bunny (from Rabbit In The Moon)",
+   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+  },
+  {
+   "key": "k-d",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "4b",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]

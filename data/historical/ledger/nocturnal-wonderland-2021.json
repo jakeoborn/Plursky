@@ -1,0 +1,42 @@
+{
+  "id": "nocturnal-wonderland-2021",
+  "method": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "gathered": "historical-gather/nocturnal-wonderland-2021",
+  "days": [
+    {
+      "day": 1,
+      "date": "2021-09-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20220116095750/https://www.nocturnalwonderland.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20220116095750",
+          "printed": "Saturday, September 18",
+          "sha256": "3ae2d95bc9085ab2feebd15fcd1fc4459850103aa8f75f588f2dd95092f92c02",
+          "bytes": 217076,
+          "rows": 33
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2021-09-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20211026185822/https://www.nocturnalwonderland.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20211026185822",
+          "printed": "Sunday, September 19",
+          "sha256": "b9ae8ffd3a7584f75f5aa2eea2408ed9b8f62d8c0a8ea0e4f6e3d51c3402ea25",
+          "bytes": 226060,
+          "rows": 33
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

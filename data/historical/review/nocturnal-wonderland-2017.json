@@ -1,0 +1,79 @@
+{
+ "id": "nocturnal-wonderland-2017",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-09-15",
+   "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/09/nocturnalsettimes.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading of the full graphic, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 32,
+   "note": "Header read off the graphic: FRIDAY (SEPTEMBER 15 • 16, 2017)",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 16,
+   "byEye": [
+    "d1 WOLVES' DEN 00:00-01:00 GTA: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 18:00-19:00 TWO OWLS: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 20:00-21:00 POINT POINT: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 19:00-20:00 WINGTIP: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 18:00-19:00 CHAMPAGNE DRIP: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 17:00-18:00 TBA: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 SUNKEN GARDEN 20:00-21:00 DOMBRESKY: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 SUNKEN GARDEN 18:00-19:00 BIJOU: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 SUNKEN GARDEN 17:00-18:00 BONES: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 21:00-22:00 MIJA: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 22:00-23:00 DJ MUSTARD: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 WOLVES' DEN 20:00-21:00 K?D: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 LABYRINTH 21:05-22:05 GOLDFISH: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 SUNKEN GARDEN 19:00-20:00 LO'99: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 TEMPLE NOCTEM 22:15-23:30 ELECTRIC MANTIS: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 TEMPLE NOCTEM 21:00-22:15 JUST A GENT: by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": [
+    "K?D: question mark as printed (artist stylisation)"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2017-09-16",
+   "sha256": "407e0543c5fa4e7205c5d8b96b4a39c2e34df31cc4385d331d29c21df2d76e49",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/09/nocturnalsettimes.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading of the full graphic, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 32,
+   "note": "Header read off the graphic: SATURDAY (SEPTEMBER 15 • 16, 2017)",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 23,
+   "byEye": [
+    "d2 LABYRINTH 21:00-22:00 DAKTYL: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 LABYRINTH 18:30-19:30 PLUTO: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 LABYRINTH 17:00-18:30 KAYOH: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 SUNKEN GARDEN 01:00-02:00 GOOD VIBES SOUNDCLASH: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 TEMPLE NOCTEM 22:15-23:30 BORN DIRTY: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 TEMPLE NOCTEM 21:00-22:15 DEVOTED: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 TEMPLE NOCTEM 18:30-19:45 MSCLS: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 TEMPLE NOCTEM 17:00-18:30 ASSEMBLY: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 SUNKEN GARDEN 22:30-23:30 TOTALLY ENORMOUS EXTINCT DINOSAURS (DJ SET): by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": [
+    "GOOD VIBES SOUNDCLASH: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "SUB FOCUS: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "TOTALLY ENORMOUS EXTINCT DINOSAURS (DJ SET): billing wraps over 2 printed lines, joined; \"(DJ SET)\" in small type; stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "BILLY KENNY: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "MAXIMONO: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "JOSH BUTLER: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "SACHA ROBOTTI: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "GOLF CLAP: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "FRITZ CARLTON: stage sub-label printed under/beside the name: (THIS AIN'T BRISTOL)",
+    "WUKI: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "SAGE ARMSTRONG B2B BOT: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "BORN DIRTY: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "DEVOTED: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "MAHALO: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "MSCLS: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS",
+    "ASSEMBLY: stage sub-label printed under/beside the name: HOSTED BY INSOMNIAC RECORDS"
+   ]
+  }
+ ]
+}

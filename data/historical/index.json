@@ -589,6 +589,162 @@
     "artists": 190,
     "sets": 225
    }
+  },
+  {
+   "id": "nocturnal-wonderland-2024",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-09-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2024-09-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 65,
+    "sets": 66
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2022",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-09-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2022-09-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 53,
+    "sets": 53
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2021",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2021",
+   "year": 2021,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-09-18",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2021-09-19",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 66,
+    "sets": 66
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2019",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-09-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2019-09-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 70,
+    "sets": 70
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2018",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2018",
+   "year": 2018,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-09-14",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-09-15",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 62,
+    "sets": 62
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2017",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-09-15",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-09-16",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 63,
+    "sets": 63
+   }
   }
  ]
 }
