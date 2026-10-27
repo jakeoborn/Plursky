@@ -230,7 +230,7 @@ function _HistProvenance({ edition, onClose }) {
           {_HIST_METHOD[p.extractionMethod] || "From the festival's official schedule"}{p.extractionMethod === "official_sources"
             ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. "
             : ", as archived by the Wayback Machine. "}
-          Artist and stage names appear exactly as printed. Non-music activities are left out.
+          Artist and stage names appear exactly as printed{(p.captures || []).some(c => c.stagesAs) ? ", except where a source notes otherwise" : ""}. Non-music activities are left out.
         </p>
         {p.official && <div><div style={{ fontSize: 13, color: "var(--text-2)" }}>Official source</div><div style={{ overflowWrap: "anywhere" }}>{p.official.replace(/^https?:\/\//, "")}</div></div>}
         {(p.captures || []).length > 0 && (
@@ -248,6 +248,7 @@ function _HistProvenance({ edition, onClose }) {
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
                 {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {stamp(c.published.replace(/-/g, ""))}</a></div>}
+                {c.stagesAs && <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 2 }}>This graphic styles its stage names {Object.keys(c.stagesAs).join(", ")}; they are shown as the festival's other days print them.</div>}
               </div>
               );
             })}

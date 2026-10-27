@@ -15,6 +15,10 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
 {
   const p = parseBilling('Above & Beyond (Sunrise Set)');
   check(same(keys(p), ['above-and-beyond:performer']) && p.setTag === 'Sunrise Set' && !p.review, `set tag: "Above & Beyond (Sunrise Set)" → ${JSON.stringify(p)}`);
+  // EDC Orlando prints a bare "(SUNSET)" for the sunset slot: a set tag, so
+  // the act keeps one key with its untagged sets.
+  const ss = parseBilling('KASKADE (SUNSET)');
+  check(same(keys(ss), ['kaskade:performer']) && ss.setTag === 'SUNSET' && !ss.review, `set tag: "KASKADE (SUNSET)" → ${JSON.stringify(ss)}`);
   const t = parseBilling('Adventure Club (Throwback Set)');
   check(same(keys(t), ['adventure-club:performer']) && t.setTag === 'Throwback Set', `set tag: "Adventure Club (Throwback Set)" → ${JSON.stringify(t)}`);
   const amp = parseBilling('Walker & Royce');

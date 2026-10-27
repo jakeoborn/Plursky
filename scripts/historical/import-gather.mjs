@@ -54,6 +54,24 @@ async function receiptFor(s) {
   throw new Error(`${s.foundAt}: no archived capture cites ${token}`);
 }
 
+// stageAs: a string renames every row of a source (a separately printed
+// section); a map carries a graphic's styled stage name onto the edition's
+// other printing, only where the two differ by case and spacing alone
+// (Orlando 2023's "kineticFIELD" graphic beside its "Kinetic Field" pages).
+export function stageFor(s, printed) {
+  if (typeof s.stageAs === "string") return s.stageAs;
+  const as = s.stageAs?.[printed];
+  if (!as) return printed;
+  const fold = x => x.replace(/\s+/g, "").toLowerCase();
+  if (fold(as) !== fold(printed)) throw new Error(`stageAs "${printed}" → "${as}" is not the same name: only case and spacing may differ`);
+  return as;
+}
+
+// The day a set-times capture shows is its active day tab. The page's
+// _siteTranslations carry other years' dates (Orlando 2024's Feb 2025
+// captures print 2025's), so only the tab counts.
+export const activeTab = html => /class="[^"]*button-blocks--active[^"]*"[^>]*>([^<]+)</.exec(html)?.[1].trim();
+
 export async function importGather(id, dir) {
   const ed = EDITIONS[id];
   if (!ed || ed.method !== "official_sources") throw new Error(`${id} is not an official_sources edition`);
@@ -72,7 +90,7 @@ export async function importGather(id, dir) {
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
     const [s, i] = hits[0];
     if (!r.start || !r.end) throw new Error(`row ${r.artist}: blank time (no openEnd convention for gather rows yet)`);
-    bySource.get(i).push({ day: +r.day, stage: s.stageAs || r.stage, start: r.start, end: r.end, artist: r.artist, source: s.match, note: r.note || "" });
+    bySource.get(i).push({ day: +r.day, stage: stageFor(s, r.stage), start: r.start, end: r.end, artist: r.artist, source: s.match, note: r.note || "" });
   }
 
   const ledgerDays = ed.dates.map(([date], i) => ({ day: i + 1, date, sources: [] }));
@@ -86,6 +104,10 @@ export async function importGather(id, dir) {
       if (cap.captureTimestamp !== s.captureTimestamp) throw new Error(`${s.url}: Wayback served ${cap.captureTimestamp}, not ${s.captureTimestamp}`);
       if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a set-times page shows one`);
       const day = days[0];
+      // The receipt's day tab is what the page itself shows as the active tab,
+      // not the page's script data (Orlando 2024's _siteTranslations carry 2025).
+      const tab = activeTab(cap.text);
+      if (tab !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the active day tab prints "${tab}", the receipt says "${s.printed[day]}"`);
       const parsed = parseDay(cap.text).map(x => sheetRow(day, x)).map(x => ({ day, stage: x.stage, start: x.start, end: x.end, artist: x.artist }));
       const want = got.map(rowKey).sort(), have = parsed.map(rowKey).sort();
       const missing = want.filter(k => !have.includes(k)), extra = have.filter(k => !want.includes(k));
@@ -98,7 +120,8 @@ export async function importGather(id, dir) {
       for (const day of days) {
         const n = got.filter(r => r.day === day).length;
         ledgerDays[day - 1].sources.push({ kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published,
-          rehostedBy: s.rehostedBy, fetchedAt: s.fetchedAt, printed: s.printed[day], sha256: hash, bytes: buf.length, rows: n, receipt });
+          rehostedBy: s.rehostedBy, fetchedAt: s.fetchedAt, printed: s.printed[day], sha256: hash, bytes: buf.length, rows: n, receipt,
+          ...(s.stageAs && typeof s.stageAs === "object" && { stagesAs: s.stageAs }) });
         const rv = s.review || {};
         const onDay = l => (l || []).filter(x => x.startsWith(`d${day} `));
         reviewDays.push({ day, date: ed.dates[day - 1][0], sha256: hash, imageUrl: s.imageUrl, reviewer: REVIEWER, reviewedAt: rc.reviewedAt,

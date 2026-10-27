@@ -1,0 +1,139 @@
+{
+  "id": "edc-orlando-2017",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "gathered": "historical-gather/edc-orlando-2017",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-11-10",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-23331301_1939029429470719_3061741298535184076_o.png",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+          "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+          "published": "2017-11-06",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY, NOVEMBER 10",
+          "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+          "bytes": 1262412,
+          "rows": 45
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-11-11",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "edmid-23331301_1939029429470719_3061741298535184076_o.png",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
+          "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+          "published": "2017-11-06",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY, NOVEMBER 11",
+          "sha256": "96b36828e47969746bb93eee54826171edb10e9fe4eb8d0246f77ad2a29865f2",
+          "bytes": 1262412,
+          "rows": 43
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "18:52",
+      "end": "18:58",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "19:58",
+      "end": "20:00",
+      "billing": "INTERMEZZO SOUTH",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "21:10",
+      "end": "21:12",
+      "billing": "INTERMEZZO NORTH",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "22:40",
+      "end": "22:42",
+      "billing": "INTERMEZZO EAST",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "23:56",
+      "end": "00:00",
+      "billing": "KINETIC EXPERIENCE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "18:52",
+      "end": "18:58",
+      "billing": "OPENING CEREMONY",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "20:00",
+      "end": "20:02",
+      "billing": "INTERMEZZO SOUTH",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "21:12",
+      "end": "21:14",
+      "billing": "INTERMEZZO NORTH",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "22:25",
+      "end": "22:27",
+      "billing": "INTERMEZZO EAST",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "23:54",
+      "end": "00:00",
+      "billing": "KINETIC EXPERIENCE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    }
+  ]
+}

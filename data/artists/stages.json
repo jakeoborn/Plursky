@@ -626,6 +626,243 @@
     }
    ]
   },
+  "edc-orlando": {
+   "lineages": [
+    {
+     "id": "edc-orlando:kineticfield",
+     "names": [
+      {
+       "printed": "kineticFIELD",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neongarden",
+     "names": [
+      {
+       "printed": "neonGARDEN",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019"
+       ]
+      },
+      {
+       "printed": "neonGarden",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuitgrounds",
+     "names": [
+      {
+       "printed": "circuitGROUNDS",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "edc-orlando-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereobloom",
+     "names": [
+      {
+       "printed": "stereoBLOOM",
+       "editions": [
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:wideawakeartcar",
+     "names": [
+      {
+       "printed": "wideawakeARTCAR",
+       "editions": [
+        "edc-orlando-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "edc-orlando-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus-art-car",
+     "names": [
+      {
+       "printed": "Rynobus Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:anniversary-art-car",
+     "names": [
+      {
+       "printed": "Anniversary Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casa-bacardi",
+     "names": [
+      {
+       "printed": "Casa BACARDÍ",
+       "editions": [
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casabacardi",
+     "names": [
+      {
+       "printed": "casaBACARDÍ",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "escape-halloween": {
    "lineages": [
     {

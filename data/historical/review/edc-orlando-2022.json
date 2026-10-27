@@ -1,0 +1,91 @@
+{
+ "id": "edc-orlando-2022",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-11-11",
+   "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 5,
+   "note": "Header read off the graphic: FRIDAY NOV 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 5,
+   "byEye": [],
+   "printedReadings": [
+    "KINETIC BLOOM: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set; absent from the day-1 HTML",
+    "POLLINATE: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set; absent from the day-1 HTML",
+    "BLOSSOM: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set; absent from the day-1 HTML",
+    "GROW: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set; absent from the day-1 HTML"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2022-11-12",
+   "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 55,
+   "note": "Header read off the graphic: SATURDAY NOV 12",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 43,
+   "byEye": [
+    "d2 Kinetic Field 19:55-19:58 GROW: by eye 7:55 PM - 7:58 PM GROW (pink interlude)",
+    "d2 Kinetic Field 17:30-18:39 DOM DOLLA (SUNSET SET): by eye 5:30 PM - 6:39 PM",
+    "d2 Kinetic Field 18:45-19:55 VINTAGE CULTURE: by eye 6:45 PM - 7:55 PM",
+    "d2 Circuit Grounds 20:00-21:00 GETTER: by eye 8:00 PM - 9:00 PM",
+    "d2 Circuit Grounds 18:00-19:00 RUSKO: by eye 6:00 PM - 7:00 PM",
+    "d2 Circuit Grounds 16:00-17:00 CHEE B2B TSURUDA: by eye 4:00 PM - 5:00 PM",
+    "d2 Neon Garden 17:00-18:30 WILL CLARKE: by eye 5:00 PM - 6:30 PM",
+    "d2 Neon Garden 15:30-17:00 REBŪKE: by eye 3:30 PM - 5:00 PM; the accent on the U is too small at this size to tell a macron from an umlaut, carried as the gather read it",
+    "d2 Stereo Bloom 14:00-15:15 TRUTH X LIES: by eye 2:00PM - 3:15PM",
+    "d2 Rynobus 13:45-14:30 BOBBY BUZZ: by eye 1:45PM - 2:30PM",
+    "d2 Rynobus 19:00-20:00 HEATHER COLLINS: by eye 7:00PM - 8:00PM",
+    "d2 Rynobus 16:00-16:45 GN AKA G$MONTANA & NEUROZIZ: by eye 4:00PM - 4:45PM"
+   ],
+   "printedReadings": [
+    "KINETIC BLOOM: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "POLLINATE: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "BLOSSOM: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "GROW: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "FURY & MC DINO: printed \"MC-DINO\"/\"MC DINO\" unclear at this size (hyphen or speck)",
+    "REBŪKE: ambiguous glyph: U with a macron/diacritic as printed (artist styles it Rebūke)",
+    "DJ MONDO B2B CHRIS CRAZE: printed \"CHRIS'CRAZE\" / \"DJ MÓNDO\" unclear at this size (specks); read as plain"
+   ]
+  },
+  {
+   "day": 3,
+   "date": "2022-11-13",
+   "sha256": "5639d90ff10c940cdfe16a4144bd9f8ba6222715159e8132dc731db8c18c83f0",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 51,
+   "note": "Header read off the graphic: SUNDAY NOV 13",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 42,
+   "byEye": [
+    "d3 Kinetic Field 16:30-17:35 JAMES HYPE: by eye 4:30 PM - 5:35 PM",
+    "d3 Circuit Grounds 16:25-17:25 TRIVECTA: by eye 4:25 PM - 5:25 PM",
+    "d3 Circuit Grounds 18:40-19:40 WOOLI: by eye 6:40 PM - 7:40 PM",
+    "d3 Stereo Bloom 13:00-14:30 EDGAR V: by eye 1:00 PM - 2:30PM",
+    "d3 Stereo Bloom 14:30-15:30 KALEEÑA ZANDERS: by eye 2:30PM - 3:30 PM",
+    "d3 Stereo Bloom 15:30-16:30 FRANCIS MERCIER: by eye 3:30 PM - 4:30 PM",
+    "d3 Rynobus 18:00-19:00 RAK: by eye 6:00PM - 7:00PM",
+    "d3 Rynobus 17:00-18:00 SARA BENYO: by eye 5:00 PM - 6:00PM",
+    "d3 Rynobus 16:00-17:00 BUTLER: by eye 4:00PM - 5:00 PM"
+   ],
+   "printedReadings": [
+    "CLOSING: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "DJ SNAKE: PRINTED OVERLAP: end 11:58 PM but CLOSING starts 11:57 PM, kept as printed",
+    "POLLINATE: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "BLOSSOM: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "GROW: DROP? Kinetic Field interlude (printed in pink on the grid), not an artist set",
+    "ENDLESS SUMMER: SAM FELDT B2B JONAS BLUE: billing wraps over 2 printed lines, joined",
+    "KALEEÑA ZANDERS: ambiguous glyph: tilde printed over the second E/N (artist styles it Kaleena)"
+   ]
+  }
+ ]
+}

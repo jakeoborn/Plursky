@@ -1,0 +1,87 @@
+{
+ "id": "edc-orlando-2025",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-11-07",
+   "sha256": "3fe947fba3b1392c84d15ecffbf7c486f103db24418aee65245aa703c6164fac",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 47,
+   "note": "Header read off the graphic: FRIDAY NOV 7",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 45,
+   "byEye": [
+    "d1 casaBACARDÍ 15:00-17:00 MONOKY: by eye 3:00PM - 5:00PM",
+    "d1 circuitGROUNDS 20:30-21:35 TAPE B: by eye 8:30PM - 9:35PM"
+   ],
+   "printedReadings": [
+    "INTERMEZZO: TRANCEFORMATION: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: THIS IS HOUSE MUSIC: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: TECHNOPOLIS: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: METROPOLIS BASS CITY: DROP? non-music interlude (Intermezzo) as printed"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2025-11-08",
+   "sha256": "9efbc7243bea4fa9ad72ee49aa22a904416d5079904232256349c5e6d24565f5",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 49,
+   "note": "Header read off the graphic: SATURDAY NOV 8",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 35,
+   "byEye": [
+    "d2 circuitGROUNDS EXCISION 23:00-00:00: by eye 11:00PM - 12:00AM",
+    "d2 circuitGROUNDS CRANKDAT 22:00-23:00: by eye 10:00PM - 11:00PM",
+    "d2 circuitGROUNDS KAI WACHI 21:00-22:00: by eye 9:00PM - 10:00PM",
+    "d2 circuitGROUNDS APASHE 20:00-21:00: by eye 8:00PM - 9:00PM",
+    "d2 circuitGROUNDS HOL! 19:00-20:00: by eye 7:00PM - 8:00PM",
+    "d2 circuitGROUNDS INFEKT 18:00-19:00: by eye 6:00PM - 7:00PM",
+    "d2 circuitGROUNDS BARELY ALIVE 17:00-18:00: by eye 5:00PM - 6:00PM",
+    "d2 circuitGROUNDS ANDROMEDIK 16:00-17:00: by eye 4:00PM - 5:00PM",
+    "d2 circuitGROUNDS MADDY O'NEAL 15:00-16:00: by eye 3:00PM - 4:00PM",
+    "d2 circuitGROUNDS A HUNDRED DRUMS 14:00-15:00: by eye 2:00PM - 3:00PM",
+    "d2 circuitGROUNDS FURY + MC DINO 13:00-14:00: by eye 1:00PM - 2:00PM",
+    "d2 stereoBLOOM 21:15-22:30 WALKER & ROYCE: by eye 9:15PM - 10:30PM",
+    "d2 stereoBLOOM 20:00-21:15 OMNOM: by eye 8:00PM - 9:15PM",
+    "d2 stereoBLOOM 18:45-20:00 WESTEND: by eye 6:45PM - 8:00PM"
+   ],
+   "printedReadings": [
+    "INTERMEZZO: TRANCEFORMATION: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: METROPOLIS BASS CITY: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: THIS IS HOUSE MUSIC: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: TECHNOPOLIS: DROP? non-music interlude (Intermezzo) as printed"
+   ]
+  },
+  {
+   "day": 3,
+   "date": "2025-11-09",
+   "sha256": "cc7c7b7eb82bb61d9f1db05db87c5179ca673ceda9f96446c0820d3316325a74",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n.jpg",
+   "reviewer": "Claude Plur (Opus 5.5): Vision OCR cross-check + by-eye reading on 2-3x crops, session d3003194",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 47,
+   "note": "Header read off the graphic: SUNDAY NOV 9",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 41,
+   "byEye": [
+    "d3 circuitGROUNDS 21:45-22:45 CHARLOTTE DE WITTE: by eye 9:45PM - 10:45PM",
+    "d3 circuitGROUNDS 19:45-20:45 THE OUTLAW: by eye 7:45PM - 8:45PM",
+    "d3 circuitGROUNDS 17:25-18:40 SEVEN LIONS (SUNSET SET): by eye 5:25PM - 6:40PM",
+    "d3 circuitGROUNDS 16:25-17:25 ŁASZEWO: by eye 4:25PM - 5:25PM, barred L as printed",
+    "d3 circuitGROUNDS 15:25-16:25 WUKI: by eye 3:25PM - 4:25PM",
+    "d3 neonGARDEN 21:00-22:30 DEBORAH DE LUCA: by eye 9:00PM - 10:30PM"
+   ],
+   "printedReadings": [
+    "INTERMEZZO: METROPOLIS BASS CITY: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: TECHNOPOLIS: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: THIS IS HOUSE MUSIC: DROP? non-music interlude (Intermezzo) as printed",
+    "INTERMEZZO: TRANCEFORMATION: DROP? non-music interlude (Intermezzo) as printed"
+   ]
+  }
+ ]
+}

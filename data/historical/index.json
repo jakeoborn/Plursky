@@ -130,6 +130,218 @@
    }
   },
   {
+   "id": "edc-orlando-2025",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2025",
+   "year": 2025,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-11-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-11-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-11-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 121,
+    "sets": 128
+   }
+  },
+  {
+   "id": "edc-orlando-2024",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2024",
+   "year": 2024,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-11-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-11-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-11-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 117,
+    "sets": 122
+   }
+  },
+  {
+   "id": "edc-orlando-2023",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2023",
+   "year": 2023,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-11-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-11-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-11-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 168,
+    "sets": 170
+   }
+  },
+  {
+   "id": "edc-orlando-2022",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2022",
+   "year": 2022,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-11-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-11-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-11-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 140,
+    "sets": 140
+   }
+  },
+  {
+   "id": "edc-orlando-2021",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2021",
+   "year": 2021,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-11-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2021-11-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2021-11-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 164,
+    "sets": 172
+   }
+  },
+  {
+   "id": "edc-orlando-2019",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2019",
+   "year": 2019,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-11-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-11-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-11-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 135,
+    "sets": 137
+   }
+  },
+  {
+   "id": "edc-orlando-2017",
+   "festivalId": "edc-orlando",
+   "festivalName": "EDC Orlando",
+   "name": "EDC Orlando 2017",
+   "year": 2017,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-11-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-11-11",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 78,
+    "sets": 78
+   }
+  },
+  {
    "id": "escape-halloween-2025",
    "festivalId": "escape-halloween",
    "festivalName": "Escape Halloween",
