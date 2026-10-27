@@ -1,0 +1,48 @@
+{
+  "id": "dreamstate-socal-2023",
+  "method": "official_sources",
+  "official": "https://socal.dreamstateusa.com/lineup/set-times/",
+  "gathered": "historical-gather/dreamstate-socal-2023",
+  "days": [
+    {
+      "day": 1,
+      "date": "2023-11-17",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "ig-CzrednDMQE6-1.jpg",
+          "imageUrl": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/622061719_17961347511018547_1565309587914429353_n.jpg",
+          "foundAt": "https://www.instagram.com/p/CzrednDMQE6/",
+          "published": "2023-11-15",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-25",
+          "printed": "FRI 11.17.23",
+          "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
+          "bytes": 561201,
+          "rows": 36
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2023-11-18",
+      "sources": [
+        {
+          "kind": "graphic",
+          "file": "ig-CzrednDMQE6-1.jpg",
+          "imageUrl": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/622061719_17961347511018547_1565309587914429353_n.jpg",
+          "foundAt": "https://www.instagram.com/p/CzrednDMQE6/",
+          "published": "2023-11-15",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-25",
+          "printed": "SAT 11.18.23",
+          "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
+          "bytes": 561201,
+          "rows": 34
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

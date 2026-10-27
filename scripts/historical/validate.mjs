@@ -18,6 +18,7 @@ export const OFFICIAL_HOSTS = {
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "dreamstate-socal": ["dreamstateusa.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -27,7 +28,13 @@ export const OFFICIAL_HOSTS = {
 export const REHOST_HOSTS = {
   "pbs.twimg.com": "X (Twitter) media",
   "edmidentity.com": "EDM Identity",
+  // The promoter's own CDN and the festival's own Instagram posts: first-party
+  // graphics served off a host the festival does not brand. An Instagram
+  // graphic must cite the post it belongs to (checked below).
+  "cdn-insomniac.s3.amazonaws.com": "Insomniac's CDN",
+  "cdninstagram.com": "Instagram media",
 };
+const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
 // Identity posts carry their own uploads and X media they re-upload.
@@ -221,7 +228,10 @@ function officialSources(e, meta, p) {
     } else if (c.kind === "graphic") {
       const host = hostOf(c.imageUrl);
       const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
-      if (!official && !REHOST_HOSTS[host]) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
+      const rehost = rehostOf(host);
+      if (!official && !rehost) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
+      if (rehost === "cdninstagram.com" && !/^https:\/\/www\.instagram\.com\/p\/[\w-]+\/$/.test(c.foundAt || ""))
+        p.push(`${tag}: an Instagram graphic must cite its post (instagram.com/p/<shortcode>/), not ${c.foundAt || "(none)"}`);
       if (!/^https:\/\//.test(c.foundAt || "")) p.push(`${tag}: graphic has no page it was found on`);
       else receiptLinks(c, e, official, host, tag, p);
       if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);

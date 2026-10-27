@@ -99,6 +99,136 @@
    }
   },
   {
+   "id": "dreamstate-socal-2025",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-11-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-11-22",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 84,
+    "sets": 84
+   }
+  },
+  {
+   "id": "dreamstate-socal-2024",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-11-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-11-23",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 91,
+    "sets": 92
+   }
+  },
+  {
+   "id": "dreamstate-socal-2023",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-11-17",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-11-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 70,
+    "sets": 70
+   }
+  },
+  {
+   "id": "dreamstate-socal-2019",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-11-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-11-23",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 52,
+    "sets": 52
+   }
+  },
+  {
+   "id": "dreamstate-socal-2016",
+   "festivalId": "dreamstate-socal",
+   "festivalName": "Dreamstate SoCal",
+   "name": "Dreamstate SoCal 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-11-25",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-11-26",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 64,
+    "sets": 64
+   }
+  },
+  {
    "id": "edc-las-vegas-2025",
    "festivalId": "edc-lv",
    "festivalName": "EDC Las Vegas",

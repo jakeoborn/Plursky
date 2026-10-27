@@ -778,6 +778,147 @@
    "setTag": "Techno Classics",
    "why": "\"Techno Classics\" names the set's music, not a person: it is the set tag, and the billing counts on Sian (the Above & Beyond (Anjunabeats Classics) rule).",
    "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "PureNRG (Giuseppe Ottaviani & Solarstone)",
+   "performers": [
+    {
+     "name": "PureNRG",
+     "role": "project",
+     "parents": [
+      "Giuseppe Ottaviani",
+      "Solarstone"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.dreamstateusa.com/set-times/"
+  },
+  {
+   "printed": "Gentech (Mark Sherry & Scot Project)",
+   "performers": [
+    {
+     "name": "Gentech",
+     "role": "project",
+     "parents": [
+      "Mark Sherry",
+      "Scot Project"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Pathfinders (James Dymond & Chris Schweizer)",
+   "performers": [
+    {
+     "name": "Pathfinders",
+     "role": "project",
+     "parents": [
+      "James Dymond",
+      "Chris Schweizer"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Fables (Dan Stone & Ferry Tayle)",
+   "performers": [
+    {
+     "name": "Fables",
+     "role": "project",
+     "parents": [
+      "Dan Stone",
+      "Ferry Tayle"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Skypatrol (Standerwick & ReOrder)",
+   "performers": [
+    {
+     "name": "Skypatrol",
+     "role": "project",
+     "parents": [
+      "Standerwick",
+      "ReOrder"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "AA Meeting (John Askew & Activa)",
+   "performers": [
+    {
+     "name": "AA Meeting",
+     "role": "project",
+     "parents": [
+      "John Askew",
+      "Activa"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Abraxis (Seven Lions & Dimibo)",
+   "performers": [
+    {
+     "name": "Abraxis",
+     "role": "project",
+     "parents": [
+      "Seven Lions",
+      "Dimibo"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Paul Oakenfold (Full On Fluoro)",
+   "performers": [
+    {
+     "name": "Paul Oakenfold",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Full On Fluoro",
+   "why": "\"Full On Fluoro\" names the set's music, not a person: it is the set tag, and the billing counts on Paul Oakenfold (the Sian (Techno Classics) rule).",
+   "source": "https://www.dreamstateusa.com/set-times/"
+  },
+  {
+   "printed": "Paul Oakenfold (Perfecto Classics)",
+   "performers": [
+    {
+     "name": "Paul Oakenfold",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Perfecto Classics",
+   "why": "\"Perfecto Classics\" names the set's music, not a person: it is the set tag, and the billing counts on Paul Oakenfold (the Sian (Techno Classics) rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "JEFFREY SUTORIUS (THE CLASSICS)",
+   "performers": [
+    {
+     "name": "JEFFREY SUTORIUS",
+     "role": "performer"
+    }
+   ],
+   "setTag": "THE CLASSICS",
+   "why": "\"THE CLASSICS\" names the set's music, not a person: it is the set tag, and the billing counts on JEFFREY SUTORIUS (the Sian (Techno Classics) rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   }
  ],
  "pending": [
@@ -907,6 +1048,54 @@
   },
   {
    "key": "4b",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "YOSHI + RAZNER PRES GENESIS",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Infected Mushroom + Blastoyz",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Paul Denton + Sneijder",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Amy Wiles + Leena Punks",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Mauro Picotto + Bryan Kearney",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "SunrYse + Dan Miles",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "PAUL VAN DYK + ALY & FILA",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "OMIKI + VEGAS",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "CRISTOPH + INNELLEA",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Joint Operations Centre (JOC)",
+   "why": "Left as printed: the parenthetical reads as the act's own initials, a case no ruling covers yet, so it is neither a set tag nor split. Renders as its own billing until a ruling does."
+  },
+  {
+   "key": "t78",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "atb",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]

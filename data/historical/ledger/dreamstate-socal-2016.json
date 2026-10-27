@@ -1,0 +1,63 @@
+{
+  "id": "dreamstate-socal-2016",
+  "method": "official_sources",
+  "official": "https://www.dreamstateusa.com/set-times/",
+  "gathered": "historical-gather/dreamstate-socal-2016",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-11-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.dreamstateusa.com/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20161130071942/https://www.dreamstateusa.com/set-times/",
+          "captureTimestamp": "20161130071942",
+          "printed": "Friday, November 25",
+          "sha256": "56c6239c0127ade70bc51ac6eb8e4bf42c02d938b1fe92f09cf322bec25be858",
+          "bytes": 151022,
+          "rows": 33,
+          "format": "day-tabs"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-11-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.dreamstateusa.com/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20161130071942/https://www.dreamstateusa.com/set-times/",
+          "captureTimestamp": "20161130071942",
+          "printed": "Saturday, November 26",
+          "sha256": "56c6239c0127ade70bc51ac6eb8e4bf42c02d938b1fe92f09cf322bec25be858",
+          "bytes": 151022,
+          "rows": 33,
+          "format": "day-tabs"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "THE SEQUENCE",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "Coming Soon!!!",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 2,
+      "stage": "TIMELESS",
+      "start": "23:00",
+      "end": "00:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

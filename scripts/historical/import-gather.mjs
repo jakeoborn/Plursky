@@ -11,7 +11,8 @@
 //   receipts.json  the edition's sources, each with its receipt:
 //     page    { kind, match, url, captureTimestamp, printed: {day: tab} }
 //             re-read here through wayback.mjs and re-parsed with the
-//             Insomniac parser; the rows must equal the sheet's, row for row
+//             Insomniac parser; the rows must equal the sheet's, row for row.
+//             format "day-tabs": one page prints every day (Dreamstate 2016)
 //     graphic { kind, match, file, imageUrl, foundAt, published, rehostedBy,
 //               fetchedAt, printed: {day: header}, stageAs?, when?, review }
 //             the local file's sha256 is what the ledger and review record.
@@ -83,6 +84,24 @@ export function stageFor(s, printed) {
 // captures print 2025's), so only the tab counts.
 export const activeTab = html => /class="[^"]*button-blocks--active[^"]*"[^>]*>([^<]+)</.exec(html)?.[1].trim();
 
+// Dreamstate's 2016 theme prints every day on one page: a tab pane per day,
+// a header naming the stages in order, then one ds-stage column per stage.
+// Each pane comes back under its own tab label, with ranges as printed.
+const plain = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#0?39;|&#8217;/g, "'").replace(/\s+/g, " ").trim();
+export function parseDayTabs(html) {
+  const labels = new Map([...html.matchAll(/<li id="day_([a-z0-9_]+)"[^>]*>([^<]+)</g)].map(m => [m[1], plain(m[2])]));
+  const panes = [...html.matchAll(/<div role="tabpanel" class="tab-pane[^"]*" id="([a-z0-9_]+)">/g)];
+  return panes.map((p, i) => {
+    const seg = html.slice(p.index, panes[i + 1]?.index ?? html.length);
+    const stages = [...seg.matchAll(/<div class="stg[^"]*">([^<]*)<\/div>/g)].map(m => plain(m[1]));
+    const cols = seg.split(/<div class="ds-stage[ "]/).slice(1);
+    if (cols.length !== stages.length) throw new Error(`pane ${p[1]}: ${stages.length} stage headers, ${cols.length} stage columns`);
+    const sets = cols.flatMap((c, j) => [...c.matchAll(/<strong class="ds-event-title">([\s\S]*?)<\/strong>\s*<span class="ds-time-range">([\s\S]*?)<\/span>/g)]
+      .map(m => ({ stage: stages[j], artist: plain(m[1]), printed: plain(m[2]) })));
+    return { tab: labels.get(p[1]), sets };
+  });
+}
+
 export async function importGather(id, dir) {
   const ed = EDITIONS[id];
   if (!ed || ed.method !== "official_sources") throw new Error(`${id} is not an official_sources edition`);
@@ -113,18 +132,31 @@ export async function importGather(id, dir) {
     if (s.kind === "page") {
       const cap = await fetchCapture(s.captureTimestamp, s.url);
       if (cap.captureTimestamp !== s.captureTimestamp) throw new Error(`${s.url}: Wayback served ${cap.captureTimestamp}, not ${s.captureTimestamp}`);
-      if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a set-times page shows one`);
-      const day = days[0];
-      // The receipt's day tab is what the page itself shows as the active tab,
-      // not the page's script data (Orlando 2024's _siteTranslations carry 2025).
-      const tab = activeTab(cap.text);
-      if (tab !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the active day tab prints "${tab}", the receipt says "${s.printed[day]}"`);
-      const parsed = parseDay(cap.text).map(x => sheetRow(day, x)).map(x => ({ day, stage: x.stage, start: x.start, end: x.end, artist: x.artist }));
-      const want = got.map(rowKey).sort(), have = parsed.map(rowKey).sort();
-      const missing = want.filter(k => !have.includes(k)), extra = have.filter(k => !want.includes(k));
-      if (missing.length || extra.length) throw new Error(`${s.archivedUrl || s.url}: the archived page and the reviewed sheet disagree\n  sheet only: ${missing.join("\n  ")}\n  page only: ${extra.join("\n  ")}`);
-      ledgerDays[day - 1].sources.push({ kind: "page", url: s.url, archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp,
-        printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: got.length });
+      const agree = (day, parsed) => {
+        const mine = got.filter(r => r.day === day);
+        const want = mine.map(rowKey).sort(), have = parsed.map(x => ({ day, ...sheetRow(day, x) })).map(rowKey).sort();
+        const missing = want.filter(k => !have.includes(k)), extra = have.filter(k => !want.includes(k));
+        if (missing.length || extra.length) throw new Error(`${s.url} @${s.captureTimestamp}: the archived page and the reviewed sheet disagree\n  sheet only: ${missing.join("\n  ")}\n  page only: ${extra.join("\n  ")}`);
+        ledgerDays[day - 1].sources.push({ kind: "page", url: s.url, archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp,
+          printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: mine.length, ...(s.format && { format: s.format }) });
+      };
+      if (s.format === "day-tabs") {
+        // Every day is on the page; each day's rows must equal its own pane.
+        const panes = parseDayTabs(cap.text);
+        for (const day of days) {
+          const pane = panes.find(p => p.tab === s.printed[day]);
+          if (!pane) throw new Error(`${s.url} @${s.captureTimestamp}: no day tab prints "${s.printed[day]}" (tabs: ${panes.map(p => p.tab).join(" / ")})`);
+          agree(day, pane.sets);
+        }
+      } else {
+        if (days.length !== 1) throw new Error(`page ${s.match} is cited for ${days.length} days; a set-times page shows one`);
+        const day = days[0];
+        // The receipt's day tab is what the page itself shows as the active tab,
+        // not the page's script data (Orlando 2024's _siteTranslations carry 2025).
+        const tab = activeTab(cap.text);
+        if (tab !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the active day tab prints "${tab}", the receipt says "${s.printed[day]}"`);
+        agree(day, parseDay(cap.text));
+      }
       out.push(...got.map(r => ({ ...r, source: `page ${cap.captureTimestamp}` })));
     } else if (s.kind === "graphic") {
       const buf = readFileSync(join(dir, s.file)), hash = sha256(buf), receipt = await receiptFor(s);

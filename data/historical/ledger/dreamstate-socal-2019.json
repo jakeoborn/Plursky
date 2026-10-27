@@ -1,0 +1,42 @@
+{
+  "id": "dreamstate-socal-2019",
+  "method": "official_sources",
+  "official": "https://socal.dreamstateusa.com/lineup/set-times/",
+  "gathered": "historical-gather/dreamstate-socal-2019",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-11-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://socal.dreamstateusa.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20200921061533/https://socal.dreamstateusa.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20200921061533",
+          "printed": "Friday, November 22",
+          "sha256": "c1753c2db77825a1871547e319b96387c0082a07a34aeb2f07530b597c450efc",
+          "bytes": 180402,
+          "rows": 27
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-11-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://socal.dreamstateusa.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20200921063146/https://socal.dreamstateusa.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20200921063146",
+          "printed": "Saturday, November 23",
+          "sha256": "fefff85351218faa2cc5ba28bf56bfb988679c9e0935e78643d46e77c7e0d2c6",
+          "bytes": 187968,
+          "rows": 25
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

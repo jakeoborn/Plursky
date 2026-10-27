@@ -293,6 +293,21 @@
   "links": []
  },
  {
+  "key": "4yu",
+  "name": "4YÛ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:2100:4yu"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "5-card-studs",
   "name": "5 Card Studs",
   "aliases": [],
@@ -551,6 +566,24 @@
   "links": []
  },
  {
+  "key": "aa-meeting",
+  "name": "AA Meeting",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "activa",
+   "john-askew"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:0100:aa-meeting-john-askew-and-activa"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "aabel",
   "name": "Aabel",
   "aliases": [],
@@ -684,11 +717,31 @@
   "billings": [
    "edc-lv-2026:k18",
    "dreamstate-socal-2026:dssc-above-and-beyond-anjunabeats-classics",
+   "dreamstate-socal-2019:d2:the-dream:2300:above-and-beyond",
+   "dreamstate-socal-2024:d2:the-dream:2200:above-and-beyond",
    "edc-orlando-2019:d2:kineticfield:2245:above-and-beyond",
    "edc-orlando-2022:d3:kinetic-field:1735:above-and-beyond-sunset-set"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "abraxis",
+  "name": "Abraxis",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "dimibo",
+   "seven-lions"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:0100:abraxis-seven-lions-and-dimibo"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -730,14 +783,21 @@
  {
   "key": "ace-ventura",
   "name": "Ace Ventura",
-  "aliases": [],
+  "aliases": [
+   "ACE VENTURA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-ace-ventura"
+   "dreamstate-socal-2026:dssc-ace-ventura",
+   "dreamstate-socal-2016:d2:the-sequence:2300:ace-ventura",
+   "dreamstate-socal-2019:d1:the-sequence:2000:ace-ventura",
+   "dreamstate-socal-2023:d1:the-sequence:2300:ace-ventura",
+   "dreamstate-socal-2024:d2:the-sequence:2245:ace-ventura",
+   "dreamstate-socal-2025:d2:the-sequence:2100:ace-ventura"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -776,6 +836,21 @@
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "activa",
+  "name": "Activa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "aa-meeting"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -869,9 +944,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d1:timeless:1800:adam-scott",
    "edc-orlando-2023:d3:stereo-bloom:1400:adam-scott"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2023-11-12",
   "photo": null,
   "links": []
@@ -888,6 +964,21 @@
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2026-09-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "adam-stark",
+  "name": "Adam Stark",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:1900:adam-stark"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -1550,6 +1641,21 @@
   "links": []
  },
  {
+  "key": "alchimyst-and-whiteno1se",
+  "name": "ALCHIMYST & WHITENO1SE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:1800:alchimyst-and-whiteno1se"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "aldo-nova",
   "name": "Aldo Nova",
   "aliases": [],
@@ -1561,6 +1667,21 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "aldor",
+  "name": "ALDOR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:beatbox-art-car:1700:aldor"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -1623,6 +1744,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2025-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alessandra-roncone",
+  "name": "Alessandra Roncone",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:1700:alessandra-roncone"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
  },
@@ -1730,6 +1866,21 @@
   ],
   "firstSeen": "2024-11-08",
   "lastSeen": "2024-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-m-o-r-p-h",
+  "name": "Alex M.O.R.P.H.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "cassiopeia"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -1983,6 +2134,21 @@
   "links": []
  },
  {
+  "key": "allen-and-envy",
+  "name": "Allen & Envy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:1800:allen-and-envy"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "allen-watts",
   "name": "Allen Watts",
   "aliases": [],
@@ -1990,9 +2156,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-allen-watts-and-talla-2xlc"
+   "dreamstate-socal-2026:dssc-allen-watts-and-talla-2xlc",
+   "dreamstate-socal-2024:d1:the-vision:1900:allen-watts"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2024-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -2211,6 +2378,23 @@
   "links": []
  },
  {
+  "key": "alt-1",
+  "name": "ALT_1",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "sneijder"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:2000:sneijder-pres-alt-1"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alt8",
   "name": "ALT8",
   "aliases": [],
@@ -2286,9 +2470,13 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
+   "dreamstate-socal-2016:d1:the-dream:2200:aly-and-fila",
+   "dreamstate-socal-2019:d1:the-dream:0100:aly-and-fila",
+   "dreamstate-socal-2023:d1:the-dream:2055:aly-and-fila",
+   "dreamstate-socal-2024:d2:the-dream:1815:aly-and-fila",
    "edc-orlando-2017:d1:neongarden:2130:aly-and-fila"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -2524,6 +2712,37 @@
   "links": []
  },
  {
+  "key": "amy-wiles",
+  "name": "AMY WILES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-dream:1600:amy-wiles",
+   "dreamstate-socal-2025:d1:the-vision:1900:amy-wiles"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "amy-wiles-leena-punks",
+  "name": "Amy Wiles + Leena Punks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-dream:1600:amy-wiles-leena-punks"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amyl-and-the-sniffers",
   "name": "Amyl and the Sniffers",
   "aliases": [
@@ -2648,6 +2867,25 @@
   "links": []
  },
  {
+  "key": "andrew-bayer",
+  "name": "Andrew Bayer",
+  "aliases": [
+   "ANDREW BAYER"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-dream:0100:andrew-bayer-b2b-ilan-bluestone",
+   "dreamstate-socal-2023:d2:the-dream:1900:andrew-bayer",
+   "dreamstate-socal-2024:d2:the-dream:0000:andrew-bayer"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "andrew-rayel",
   "name": "Andrew Rayel",
   "aliases": [
@@ -2660,10 +2898,11 @@
   ],
   "billings": [
    "edc-lv-2026:q15",
+   "dreamstate-socal-2016:d1:the-dream:2300:andrew-rayel",
    "edc-orlando-2019:d3:kineticfield:1618:andrew-rayel",
    "edc-orlando-2022:d1:stereo-bloom:2300:andrew-rayel"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -2754,6 +2993,21 @@
   "links": []
  },
  {
+  "key": "andy-moor-and-lange",
+  "name": "Andy Moor & Lange",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "stadium4"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "andy-pate",
   "name": "Andy Pate",
   "aliases": [],
@@ -2808,11 +3062,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-void:2115:anfisa-letyago",
    "edc-orlando-2023:d3:neon-garden:1730:anfisa-letyago",
    "escape-halloween-2022:d2:sewer-district:1930:anfisa-letyago"
   ],
   "firstSeen": "2022-10-29",
-  "lastSeen": "2023-11-12",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -2937,9 +3192,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-animato"
+   "dreamstate-socal-2026:dssc-animato",
+   "dreamstate-socal-2016:d1:timeless:0100:animato",
+   "dreamstate-socal-2019:d2:the-sequence:2100:animato",
+   "dreamstate-socal-2024:d2:the-sequence:1415:animato"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -3240,6 +3498,7 @@
   "billings": [
    "edc-lv-2026:k3",
    "ultra-miami-2026:ul134",
+   "dreamstate-socal-2025:d2:the-dream:2240:argy",
    "edc-las-vegas-2025:d3:quantum-valley:0000:argy",
    "edc-orlando-2025:d1:kineticfield:1626:argy"
   ],
@@ -3311,6 +3570,8 @@
    "ultra-miami-2026:ul13",
    "ultra-miami-2026:ul14",
    "ultra-miami-2026:ul56",
+   "dreamstate-socal-2023:d2:the-dream:2340:armin-van-buuren",
+   "dreamstate-socal-2024:d1:the-dream:2315:armin-van-buuren",
    "edc-las-vegas-2025:d3:kinetic-field:0147:armin-van-buuren",
    "edc-orlando-2017:d2:kineticfield:2227:armin-van-buuren",
    "edc-orlando-2021:d3:kinetic-field:2236:armin-van-buuren",
@@ -3447,6 +3708,21 @@
   "links": []
  },
  {
+  "key": "ashley-smith-vs-maria-healy",
+  "name": "Ashley Smith vs Maria Healy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:1700:ashley-smith-vs-maria-healy"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ashley-venom",
   "name": "Ashley Venom",
   "aliases": [],
@@ -3530,15 +3806,22 @@
  {
   "key": "astrix",
   "name": "Astrix",
-  "aliases": [],
+  "aliases": [
+   "ASTRIX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q18",
-   "dreamstate-socal-2026:dssc-astrix"
+   "dreamstate-socal-2026:dssc-astrix",
+   "dreamstate-socal-2016:d2:the-sequence:0000:astrix",
+   "dreamstate-socal-2019:d1:the-sequence:2200:astrix",
+   "dreamstate-socal-2023:d1:the-sequence:2100:astrix",
+   "dreamstate-socal-2024:d1:the-sequence:2115:astrix",
+   "dreamstate-socal-2025:d1:the-sequence:2100:astrix"
   ],
-  "firstSeen": "2026-05-16",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -3551,10 +3834,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:the-dream:2200:atb",
    "edc-orlando-2022:d1:stereo-bloom:2200:atb",
    "edc-orlando-2024:d3:stereo-bloom:2245:atb"
   ],
-  "firstSeen": "2022-11-11",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2024-11-10",
   "photo": null,
   "links": []
@@ -3562,15 +3846,18 @@
  {
   "key": "atdusk",
   "name": "atDusk",
-  "aliases": [],
+  "aliases": [
+   "ATDUSK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2023:d1:the-dream:1655:atdusk",
    "edc-orlando-2022:d1:stereo-bloom:1430:atdusk"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -3846,6 +4133,21 @@
   "links": []
  },
  {
+  "key": "authenticity",
+  "name": "Authenticity",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:1800:authenticity"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "autograf",
   "name": "AUTOGRAF",
   "aliases": [],
@@ -3876,6 +4178,21 @@
   "links": []
  },
  {
+  "key": "ava-alika",
+  "name": "Ava Alika",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:1700:ava-alika"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "avalon",
   "name": "Avalon",
   "aliases": [
@@ -3885,11 +4202,15 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:the-sequence:0100:avalon",
+   "dreamstate-socal-2019:d1:the-sequence:0000:avalon",
+   "dreamstate-socal-2024:d1:the-sequence:1800:avalon",
+   "dreamstate-socal-2025:d1:the-sequence:2300:avalon",
    "edc-las-vegas-2025:d1:quantum-valley:0100:avalon",
    "edc-orlando-2019:d3:stereobloom:2130:avalon"
   ],
-  "firstSeen": "2019-11-10",
-  "lastSeen": "2025-05-16",
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -4555,9 +4876,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-barakuda"
+   "dreamstate-socal-2026:dssc-barakuda",
+   "dreamstate-socal-2016:d1:the-sequence:1700:barakuda"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -5011,6 +5333,37 @@
   "links": []
  },
  {
+  "key": "ben-gold",
+  "name": "Ben Gold",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-dream:1800:ben-gold",
+   "dreamstate-socal-2024:d2:the-vision:1900:ben-gold"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ben-gold-and-ciaran-mcauley",
+  "name": "BEN GOLD & CIARAN MCAULEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:2000:ben-gold-and-ciaran-mcauley"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ben-hemsley",
   "name": "Ben Hemsley",
   "aliases": [
@@ -5020,11 +5373,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2025:d1:the-dream:1900:ben-hemsley",
    "edc-las-vegas-2025:d2:quantum-valley:0230:ben-hemsley",
    "edc-orlando-2025:d2:kineticfield:1526:ben-hemsley"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2025-11-08",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -5072,11 +5426,12 @@
    "xtreme"
   ],
   "billings": [
+   "dreamstate-socal-2016:d2:the-vision:2100:ben-nicky",
    "edc-las-vegas-2025:d2:kinetic-field:2100:ben-nicky",
    "edc-las-vegas-2025:d2:quantum-valley:0130:maddix-b2b-ben-nicky",
    "escape-halloween-2024:d2:the-grimm:1900:ben-nicky"
   ],
-  "firstSeen": "2024-10-26",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -5236,6 +5591,21 @@
   ],
   "firstSeen": "2026-05-16",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "berg",
+  "name": "Berg",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-sequence:2000:berg"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -5541,7 +5911,9 @@
  {
   "key": "billy-gillies",
   "name": "Billy Gillies",
-  "aliases": [],
+  "aliases": [
+   "BILLY GILLIES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -5549,6 +5921,9 @@
    "edc-lv-2026:q13",
    "dreamstate-socal-2026:dssc-aly-and-fila-and-billy-gillies",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2100:billy-gillies",
+   "dreamstate-socal-2023:d1:the-vision:2300:billy-gillies",
+   "dreamstate-socal-2024:d2:the-void:1900:billy-gillies",
+   "dreamstate-socal-2025:d1:the-dream:1800:billy-gillies",
    "edc-las-vegas-2025:d2:quantum-valley:2130:billy-gillies",
    "edc-orlando-2023:d3:stereo-bloom:1700:billy-gillies"
   ],
@@ -5585,6 +5960,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "binary-finary",
+  "name": "Binary Finary",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:timeless:2300:binary-finary"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -5930,10 +6320,41 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:2300:blastoyz",
    "edc-orlando-2023:d3:stereo-bloom:2300:blastoyz"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2019-11-23",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blazy",
+  "name": "BLAZY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-sequence:1900:blazy"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blazy-and-vegas",
+  "name": "BLAZY & VEGAS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:2015:blazy-and-vegas"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -6016,6 +6437,36 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bliss",
+  "name": "BLiSS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-sequence:2215:bliss"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blk",
+  "name": "blk.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-void:2230:blk"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -6193,6 +6644,21 @@
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blurr",
+  "name": "Blurr",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:1700:blurr"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -6721,6 +7187,21 @@
   "links": []
  },
  {
+  "key": "bowers-and-bidwell",
+  "name": "BOWERS & BIDWELL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-dream:1600:bowers-and-bidwell"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bowling-shoes",
   "name": "Bowling Shoes",
   "aliases": [],
@@ -7206,15 +7687,21 @@
  {
   "key": "bryan-kearney",
   "name": "Bryan Kearney",
-  "aliases": [],
+  "aliases": [
+   "BRYAN KEARNEY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
+   "karney",
    "key4050"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "dreamstate-socal-2023:d1:the-dream:1955:bryan-kearney",
+   "dreamstate-socal-2025:d2:the-vision:0000:bryan-kearney"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -7393,14 +7880,17 @@
  {
   "key": "burn-in-noise",
   "name": "Burn In Noise",
-  "aliases": [],
+  "aliases": [
+   "BURN IN NOISE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-burn-in-noise"
+   "dreamstate-socal-2026:dssc-burn-in-noise",
+   "dreamstate-socal-2025:d2:the-sequence:1900:burn-in-noise"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -7795,6 +8285,21 @@
   "links": []
  },
  {
+  "key": "cancelthecouch",
+  "name": "CANCELTHECOUCH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:beatbox-art-car:2100:cancelthecouch"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "candlebox",
   "name": "Candlebox",
   "aliases": [],
@@ -7882,6 +8387,25 @@
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "captain-hook",
+  "name": "Captain Hook",
+  "aliases": [
+   "CAPTAIN HOOK"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-sequence:2300:captain-hook",
+   "dreamstate-socal-2023:d1:the-sequence:2000:captain-hook",
+   "dreamstate-socal-2024:d2:the-sequence:2000:captain-hook"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -8291,6 +8815,23 @@
   ],
   "firstSeen": "2025-11-08",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cassiopeia",
+  "name": "Cassiopeia",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "alex-m-o-r-p-h"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:1600:alex-m-o-r-p-h-presents-cassiopeia"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -9072,6 +9613,21 @@
   "links": []
  },
  {
+  "key": "chicane",
+  "name": "CHICANE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-vision:2300:chicane-classics-set"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "child-support",
   "name": "Child Support",
   "aliases": [],
@@ -9234,6 +9790,21 @@
   "links": []
  },
  {
+  "key": "chris-giuliano",
+  "name": "CHRIS GIULIANO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-vision:1600:chris-giuliano"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chris-koster",
   "name": "Chris Koster",
   "aliases": [],
@@ -9327,6 +9898,21 @@
   "links": []
  },
  {
+  "key": "chris-schweizer",
+  "name": "Chris Schweizer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "pathfinders"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chris-stussy",
   "name": "Chris Stussy",
   "aliases": [
@@ -9373,6 +9959,21 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "christopher-lawrence",
+  "name": "Christopher Lawrence",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-vision:1900:christopher-lawrence"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
  },
@@ -9484,6 +10085,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ciaran-mcauley",
+  "name": "Ciaran McAuley",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-vision:1600:ciaran-mcauley"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -9694,6 +10310,7 @@
   "billings": [
    "ultra-miami-2026:ul23",
    "escape-halloween-2026:esc-clara-cuv-d1",
+   "dreamstate-socal-2024:d1:the-void:2345:clara-cuve",
    "edc-las-vegas-2025:d3:neon-garden:2130:clara-cuve",
    "escape-halloween-2024:d2:wicked-woods:1830:clara-cuve",
    "escape-halloween-2024:d2:the-cauldron:2345:clara-cuve"
@@ -10050,6 +10667,25 @@
   "links": []
  },
  {
+  "key": "coexist",
+  "name": "Coexist",
+  "aliases": [
+   "COEXIST"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:1600:coexist",
+   "dreamstate-socal-2024:d1:the-sequence:1300:coexist",
+   "dreamstate-socal-2025:d2:the-sequence:1700:coexist"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "coffintexts",
   "name": "Coffintexts",
   "aliases": [],
@@ -10093,6 +10729,21 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cold-blue-winter-album-showcase",
+  "name": "Cold Blue \"Winter Album Showcase\"",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:1900:cold-blue-winter-album-showcase"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
  },
@@ -10189,6 +10840,23 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "collider-live",
+  "name": "Collider Live",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "craig-connelly"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:1800:craig-connelly-presents-collider-live"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -10565,12 +11233,14 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:q6",
+   "dreamstate-socal-2016:d1:the-dream:0000:cosmic-gate",
+   "dreamstate-socal-2023:d2:the-dream:2000:cosmic-gate",
    "edc-las-vegas-2025:d2:quantum-valley:2230:cosmic-gate",
    "edc-orlando-2019:d3:kineticfield:1717:cosmic-gate",
    "edc-orlando-2021:d2:stereo-bloom:2015:cosmic-gate",
    "edc-orlando-2024:d3:stereo-bloom:2015:cosmic-gate"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -10603,6 +11273,51 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2026-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "craig-connelly",
+  "name": "Craig Connelly",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "collider-live"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "craig-connelly-and-factor-b",
+  "name": "CRAIG CONNELLY & FACTOR B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:2100:craig-connelly-and-factor-b"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "craig-connelly-vs-factor-b",
+  "name": "Craig Connelly vs Factor B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:2100:craig-connelly-vs-factor-b"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -10785,6 +11500,21 @@
   ],
   "firstSeen": "2018-09-14",
   "lastSeen": "2026-09-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cristoph-innellea",
+  "name": "CRISTOPH + INNELLEA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-dream:2040:cristoph-innellea"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -11040,6 +11770,23 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cyberpunk",
+  "name": "CYBERPUNK",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "gareth-emery"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-dream:0000:gareth-emery-pres-cyberpunk"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -11461,6 +12208,21 @@
   "links": []
  },
  {
+  "key": "dan-stone",
+  "name": "Dan Stone",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "fables"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dana-montana",
   "name": "DANA MONTANA",
   "aliases": [],
@@ -11553,6 +12315,21 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "daniel-pinho",
+  "name": "Daniel Pinho",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-void:1430:daniel-pinho"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -11764,15 +12541,19 @@
  {
   "key": "darren-porter",
   "name": "Darren Porter",
-  "aliases": [],
+  "aliases": [
+   "DARREN PORTER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q10",
-   "dreamstate-socal-2026:dssc-darren-porter-and-sean-tyas"
+   "dreamstate-socal-2026:dssc-darren-porter-and-sean-tyas",
+   "dreamstate-socal-2016:d2:timeless:0100:darren-porter",
+   "dreamstate-socal-2025:d2:the-vision:1900:darren-porter"
   ],
-  "firstSeen": "2026-05-15",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -11797,6 +12578,21 @@
   "links": []
  },
  {
+  "key": "darren-tate",
+  "name": "DARREN TATE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-vision:1800:darren-tate"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "darude",
   "name": "Darude",
   "aliases": [],
@@ -11804,9 +12600,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:q5"
+   "edc-lv-2026:q5",
+   "dreamstate-socal-2024:d2:the-vision:1800:darude"
   ],
-  "firstSeen": "2026-05-15",
+  "firstSeen": "2024-11-23",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -11902,6 +12699,21 @@
   "links": []
  },
  {
+  "key": "dave-neven",
+  "name": "Dave Neven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-dream:1700:dave-neven"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dave-owen-w-mc-blak",
   "name": "DAVE OWEN W/MC BLAK",
   "aliases": [],
@@ -11913,6 +12725,21 @@
   ],
   "firstSeen": "2023-11-11",
   "lastSeen": "2023-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "davey-asprey",
+  "name": "Davey Asprey",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-dream:1900:davey-asprey"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
  },
@@ -11934,7 +12761,9 @@
  {
   "key": "david-forbes",
   "name": "David Forbes",
-  "aliases": [],
+  "aliases": [
+   "DAVID FORBES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -11942,10 +12771,41 @@
   ],
   "billings": [
    "beyond-wonderland-socal-2026:d2:cheshire-woods:1900:david-forbes",
+   "dreamstate-socal-2025:d1:the-void:2000:david-forbes",
    "edc-las-vegas-2025:d1:quantum-valley:2000:david-forbes"
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "david-forbes-and-mark-sherry",
+  "name": "David Forbes & Mark Sherry",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "thick-as-thieves"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "david-forbes-and-renegade-system",
+  "name": "DAVID FORBES & RENEGADE SYSTEM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:2200:david-forbes-and-renegade-system"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -11982,15 +12842,19 @@
  {
   "key": "david-rust",
   "name": "David Rust",
-  "aliases": [],
+  "aliases": [
+   "DAVID RUST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-david-rust-and-olly-james",
+   "dreamstate-socal-2023:d1:the-vision:2100:david-rust",
+   "dreamstate-socal-2024:d2:the-void:2000:david-rust",
    "edc-las-vegas-2025:d1:quantum-valley:0200:david-rust"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -12052,6 +12916,21 @@
   ],
   "firstSeen": "2026-09-05",
   "lastSeen": "2026-09-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "daxson",
+  "name": "DAXSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-dream:1600:daxson"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -12887,6 +13766,23 @@
   "links": []
  },
  {
+  "key": "digital-culture",
+  "name": "Digital Culture",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "ram-and-richard-durand"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:2115:ram-and-richard-durand-present-digital-culture"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dijon",
   "name": "Dijon",
   "aliases": [],
@@ -12937,6 +13833,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dimibo",
+  "name": "Dimibo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "abraxis"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -15469,6 +16380,24 @@
   "links": []
  },
  {
+  "key": "dustin-husain",
+  "name": "Dustin Husain",
+  "aliases": [
+   "DUSTIN HUSAIN"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:1600:dustin-husain",
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:2200:dustin-husain"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dustycloud",
   "name": "Dustycloud",
   "aliases": [],
@@ -15677,6 +16606,23 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ebenezer",
+  "name": "EBENEZER",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "ruben-de-ronde-and-estiva"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:1800:ruben-de-ronde-and-estiva-pres-ebenezer"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -15934,6 +16880,21 @@
   "links": []
  },
  {
+  "key": "egorythmia",
+  "name": "Egorythmia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:1900:egorythmia"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "egzod",
   "name": "EGZOD",
   "aliases": [],
@@ -16056,6 +17017,36 @@
   "links": []
  },
  {
+  "key": "electric-universe",
+  "name": "Electric Universe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-sequence:0100:electric-universe-live-set"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "electric-universe-laser-harp",
+  "name": "ELECTRIC UNIVERSE [LASER HARP]",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:0000:electric-universe-laser-harp"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "electron-c",
   "name": "ELECTRON-C",
   "aliases": [],
@@ -16114,6 +17105,7 @@
   "billings": [
    "edc-lv-2026:q25",
    "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
+   "dreamstate-socal-2025:d2:the-dream:1840:eli-and-fur",
    "nocturnal-wonderland-2018:d1:sunken-garden:2330:eli-and-fur",
    "nocturnal-wonderland-2021:d2:owloch-grove:2230:eli-and-fur"
   ],
@@ -16374,6 +17366,7 @@
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-ely-oaks",
+   "dreamstate-socal-2025:d2:the-void:1800:ely-oaks",
    "edc-orlando-2025:d2:kineticfield:1426:ely-oaks",
    "edc-orlando-2025:d2:casabacardi:2130:ely-oaks",
    "escape-halloween-2025:d2:the-big-top:1700:ely-oaks"
@@ -16496,17 +17489,20 @@
  {
   "key": "emotional-havoc",
   "name": "Emotional Havoc",
-  "aliases": [],
+  "aliases": [
+   "EMOTIONAL HAVOC"
+  ],
   "kind": "project",
   "parents": [
    "ben-nicky"
   ],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2025:d1:the-dream:2100:ben-nicky-pres-emotional-havoc",
    "edc-orlando-2023:d3:stereo-bloom:2145:ben-nicky-presents-emotional-havoc"
   ],
   "firstSeen": "2023-11-12",
-  "lastSeen": "2023-11-12",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -16992,6 +17988,24 @@
   "links": []
  },
  {
+  "key": "fables",
+  "name": "Fables",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "dan-stone",
+   "ferry-tayle"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:2000:fables-dan-stone-and-ferry-tayle"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "face-ii-face-a-v",
   "name": "Face II Face A/V",
   "aliases": [],
@@ -17020,6 +18034,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2021-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "factor-b-and-lostly",
+  "name": "FACTOR B & LOSTLY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "lost-minds"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -17215,6 +18244,21 @@
   "links": []
  },
  {
+  "key": "fatima-hajji",
+  "name": "FATIMA HAJJI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:2100:fatima-hajji"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fcukers",
   "name": "Fcukers",
   "aliases": [
@@ -17331,17 +18375,39 @@
   "links": []
  },
  {
-  "key": "ferry-corsten",
-  "name": "Ferry Corsten",
+  "key": "fernanda-pistelli",
+  "name": "Fernanda Pistelli",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-void:1600:fernanda-pistelli"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ferry-corsten",
+  "name": "Ferry Corsten",
+  "aliases": [
+   "FERRY CORSTEN"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "gouryella"
+  ],
+  "billings": [
    "dreamstate-socal-2026:dssc-ferry-corsten-and-marsh",
+   "dreamstate-socal-2019:d1:the-dream:0000:ferry-corsten",
+   "dreamstate-socal-2023:d2:the-dream:2100:ferry-corsten",
+   "dreamstate-socal-2025:d2:the-dream:1940:ferry-corsten",
    "edc-orlando-2022:d1:stereo-bloom:2030:ferry-corsten"
   ],
-  "firstSeen": "2022-11-11",
+  "firstSeen": "2019-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -17353,6 +18419,7 @@
   "kind": "performer",
   "parents": [],
   "projects": [
+   "fables",
    "mirage"
   ],
   "billings": [],
@@ -17566,6 +18633,21 @@
   "links": []
  },
  {
+  "key": "fish56octagon",
+  "name": "FISH56OCTAGON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-vision:2100:fish56octagon"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fisher",
   "name": "Fisher",
   "aliases": [
@@ -17675,6 +18757,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fleming-and-lawrence",
+  "name": "FLEMING & LAWRENCE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-vision:2200:fleming-and-lawrence"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -18260,6 +19357,24 @@
   "links": []
  },
  {
+  "key": "freedom-fighters",
+  "name": "Freedom Fighters",
+  "aliases": [
+   "FREEDOM FIGHTERS"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-sequence:2100:freedom-fighters",
+   "dreamstate-socal-2025:d1:the-sequence:1800:freedom-fighters"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fresh-meat-hevnfall",
   "name": "Fresh Meat: Hevnfall",
   "aliases": [],
@@ -18506,12 +19621,13 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:k22",
+   "dreamstate-socal-2024:d1:the-void:1900:funk-tribu",
    "edc-las-vegas-2025:d2:quantum-valley:0030:funk-tribu",
    "edc-las-vegas-2025:d3:neon-garden:0000:funk-tribu-b2b-tta",
    "edc-orlando-2025:d3:kineticfield:1626:funk-tribu",
    "hard-summer-2025:d1:purple-stage:1800:funk-tribu"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2024-11-22",
   "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
@@ -18677,6 +19793,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gabriel-and-dresden",
+  "name": "Gabriel & Dresden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-dream:2000:gabriel-and-dresden"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -18867,16 +19998,36 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "cyberpunk"
+  ],
   "billings": [
    "edc-lv-2026:q7",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0000:gareth-emery",
+   "dreamstate-socal-2016:d1:the-dream:0100:gareth-emery",
+   "dreamstate-socal-2019:d1:the-dream:2300:gareth-emery",
+   "dreamstate-socal-2023:d1:the-dream:2255:gareth-emery",
    "edc-orlando-2017:d1:neongarden:2230:gareth-emery",
    "edc-orlando-2022:d3:kinetic-field:1911:gareth-emery",
    "edc-orlando-2024:d3:stereo-bloom:2130:gareth-emery"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gaudium",
+  "name": "Gaudium",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-sequence:2300:gaudium"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
  },
@@ -19036,6 +20187,42 @@
   ],
   "firstSeen": "2026-09-04",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "genix",
+  "name": "Genix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-dream:1900:genix"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gentech",
+  "name": "Gentech",
+  "aliases": [
+   "GENTECH"
+  ],
+  "kind": "project",
+  "parents": [
+   "mark-sherry",
+   "scot-project"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:2300:gentech-mark-sherry-and-scot-project",
+   "dreamstate-socal-2023:d2:the-vision:2300:gentech"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -19323,14 +20510,18 @@
  {
   "key": "giorgia-angiuli",
   "name": "Giorgia Angiuli",
-  "aliases": [],
+  "aliases": [
+   "GIORGIA ANGIULI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-giorgia-angiuli"
+   "dreamstate-socal-2026:dssc-giorgia-angiuli",
+   "dreamstate-socal-2024:d2:the-sequence:1900:giorgia-angiuli",
+   "dreamstate-socal-2025:d1:the-sequence:2000:giorgia-angiuli"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2024-11-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -19450,16 +20641,23 @@
  {
   "key": "giuseppe-ottaviani",
   "name": "Giuseppe Ottaviani",
-  "aliases": [],
+  "aliases": [
+   "GIUSEPPE OTTAVIANI"
+  ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "ottagon",
+   "purenrg"
+  ],
   "billings": [
+   "dreamstate-socal-2023:d2:the-void:2200:giuseppe-ottaviani",
+   "dreamstate-socal-2025:d1:the-dream:2000:giuseppe-ottaviani",
    "edc-orlando-2022:d1:stereo-bloom:1900:giuseppe-ottaviani",
    "edc-orlando-2024:d3:stereo-bloom:1900:giuseppe-ottaviani"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2024-11-10",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -19475,6 +20673,21 @@
   ],
   "firstSeen": "2026-03-28",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "giuseppe-ottaviani-live-2-0",
+  "name": "Giuseppe Ottaviani Live 2.0",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-dream:2100:giuseppe-ottaviani-live-2-0"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
   "photo": null,
   "links": []
  },
@@ -19901,6 +21114,24 @@
   "links": []
  },
  {
+  "key": "gouryella",
+  "name": "Gouryella",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "ferry-corsten"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-dream:0100:ferry-corsten-presents-gouryella",
+   "dreamstate-socal-2024:d2:the-dream:2045:ferry-corsten-presents-gouryella"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "grabbitz",
   "name": "Grabbitz",
   "aliases": [],
@@ -20137,6 +21368,21 @@
   "links": []
  },
  {
+  "key": "graviity",
+  "name": "GRAViiTY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-sequence:1415:graviity"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gray-area",
   "name": "Gray Area",
   "aliases": [],
@@ -20214,6 +21460,24 @@
   "links": []
  },
  {
+  "key": "greg-downey",
+  "name": "Greg Downey",
+  "aliases": [
+   "GREG DOWNEY"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:1700:greg-downey",
+   "dreamstate-socal-2024:d2:the-void:1600:greg-downey"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "greg-koch-and-the-koch-marshall-trio",
   "name": "Greg Koch & The Koch Marshall Trio",
   "aliases": [],
@@ -20255,6 +21519,21 @@
   ],
   "firstSeen": "2025-10-12",
   "lastSeen": "2025-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "grigore",
+  "name": "Grigoré",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-dream:1400:grigore"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -20532,6 +21811,22 @@
   ],
   "firstSeen": "2019-10-26",
   "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gvx",
+  "name": "GVX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:1600:gvx",
+   "dreamstate-socal-2025:d2:the-void:1700:gvx"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -20936,6 +22231,21 @@
   "links": []
  },
  {
+  "key": "harshil-kamdar",
+  "name": "Harshil Kamdar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-vision:1300:harshil-kamdar"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "harvard-bass",
   "name": "Harvard Bass",
   "aliases": [],
@@ -20947,6 +22257,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hausman",
+  "name": "HAUSMAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:beatbox-art-car:1900:hausman"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -21114,6 +22439,21 @@
   "links": []
  },
  {
+  "key": "hector-oaks",
+  "name": "Héctor Oaks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-void:2000:hector-oaks"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hedex",
   "name": "Hedex",
   "aliases": [],
@@ -21160,6 +22500,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hel-slowed",
+  "name": "HEL:SLØWED",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-vision:1700:hel-sl-wed"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -22460,15 +23815,19 @@
  {
   "key": "ilan-bluestone",
   "name": "Ilan Bluestone",
-  "aliases": [],
+  "aliases": [
+   "ILAN BLUESTONE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q8",
-   "dreamstate-socal-2026:dssc-alpha-9-and-ilan-bluestone"
+   "dreamstate-socal-2026:dssc-alpha-9-and-ilan-bluestone",
+   "dreamstate-socal-2019:d2:the-dream:0100:andrew-bayer-b2b-ilan-bluestone",
+   "dreamstate-socal-2025:d1:the-vision:2200:ilan-bluestone"
   ],
-  "firstSeen": "2026-05-15",
+  "firstSeen": "2019-11-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -22592,6 +23951,21 @@
   "links": []
  },
  {
+  "key": "indecent-noise",
+  "name": "Indecent Noise",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-vision:2000:indecent-noise"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "indira-paganotto",
   "name": "Indira Paganotto",
   "aliases": [
@@ -22603,9 +23977,10 @@
   "billings": [
    "edc-lv-2026:n17",
    "escape-halloween-2026:esc-indira-paganotto-d2",
+   "dreamstate-socal-2023:d1:the-sequence:2200:indira-paganotto",
    "edc-orlando-2025:d3:neongarden:1930:indira-paganotto"
   ],
-  "firstSeen": "2025-11-09",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
@@ -22622,10 +23997,27 @@
   "billings": [
    "dreamstate-socal-2026:dssc-infected-mushroom",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2300:infected-mushroom",
+   "dreamstate-socal-2016:d1:the-sequence:0000:infected-mushroom-psytrance-dj-set",
+   "dreamstate-socal-2023:d1:the-sequence:0000:infected-mushroom",
    "edc-orlando-2017:d1:neongarden:1830:infected-mushroom-dj-set"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "infected-mushroom-blastoyz",
+  "name": "Infected Mushroom + Blastoyz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-sequence:2330:infected-mushroom-blastoyz"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -23409,6 +24801,21 @@
   "links": []
  },
  {
+  "key": "james-dymond",
+  "name": "James Dymond",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "pathfinders"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "james-hype",
   "name": "James Hype",
   "aliases": [
@@ -23596,10 +25003,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d1:the-dream:1900:jason-ross",
+   "dreamstate-socal-2019:d2:the-dream:2100:jason-ross",
    "edc-orlando-2021:d2:kinetic-field:1526:jason-ross",
    "nocturnal-wonderland-2021:d2:sunken-garden:2000:jason-ross"
   ],
-  "firstSeen": "2021-09-19",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2021-11-13",
   "photo": null,
   "links": []
@@ -23856,6 +25265,21 @@
   "links": []
  },
  {
+  "key": "jeffrey-sutorius",
+  "name": "JEFFREY SUTORIUS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-void:2200:jeffrey-sutorius-the-classics"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jelly-roll",
   "name": "Jelly Roll",
   "aliases": [],
@@ -23929,6 +25353,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jerome-isma-ae",
+  "name": "JEROME ISMA-AE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:1800:jerome-isma-ae"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -24387,6 +25826,21 @@
   "links": []
  },
  {
+  "key": "johan-gielen",
+  "name": "Johan Gielen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:2000:johan-gielen"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "johannes-schuster",
   "name": "Johannes Schuster",
   "aliases": [],
@@ -24404,14 +25858,17 @@
  {
   "key": "john-00-fleming",
   "name": "John 00 Fleming",
-  "aliases": [],
+  "aliases": [
+   "JOHN 00 FLEMING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-john-00-fleming"
+   "dreamstate-socal-2026:dssc-john-00-fleming",
+   "dreamstate-socal-2025:d2:the-sequence:1800:john-00-fleming"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -24424,12 +25881,15 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "aa-meeting"
+  ],
   "billings": [
    "dreamstate-socal-2026:dssc-john-askew-and-simon-patterson",
+   "dreamstate-socal-2016:d2:the-vision:0000:john-askew",
    "edc-orlando-2019:d3:stereobloom:2000:john-askew"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -24500,15 +25960,36 @@
  {
   "key": "john-o-callaghan",
   "name": "John O'Callaghan",
-  "aliases": [],
+  "aliases": [
+   "JOHN O'CALLAGHAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
    "key4050"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "dreamstate-socal-2016:d2:the-dream:2000:john-o-callaghan",
+   "dreamstate-socal-2024:d1:the-dream:1815:john-o-callaghan",
+   "dreamstate-socal-2025:d2:the-vision:2300:john-o-callaghan"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "john-o-callaghan-and-giuseppe-ottaviani",
+  "name": "JOHN O'CALLAGHAN & GIUSEPPE OTTAVIANI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-dream:2155:john-o-callaghan-and-giuseppe-ottaviani"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -24570,6 +26051,21 @@
   "links": []
  },
  {
+  "key": "johnny-monsoon",
+  "name": "Johnny Monsoon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:1900:johnny-monsoon"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "johnny-stimson",
   "name": "JOHNNY STIMSON",
   "aliases": [],
@@ -24581,6 +26077,36 @@
   ],
   "firstSeen": "2025-10-10",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "joint-operations-centre",
+  "name": "Joint Operations Centre",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-void:2215:joint-operations-centre"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "joint-operations-centre-joc",
+  "name": "Joint Operations Centre (JOC)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:0000:joint-operations-centre-joc"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -24652,6 +26178,21 @@
   "links": []
  },
  {
+  "key": "jonny-atom",
+  "name": "JONNY ATOM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:beatbox-art-car:1800:jonny-atom"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jonny-maven",
   "name": "JONNY MAVEN",
   "aliases": [],
@@ -24697,6 +26238,25 @@
   "links": []
  },
  {
+  "key": "jordan-suckley",
+  "name": "Jordan Suckley",
+  "aliases": [
+   "JORDAN SUCKLEY"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:2300:jordan-suckley",
+   "dreamstate-socal-2024:d1:the-vision:1700:jordan-suckley",
+   "dreamstate-socal-2025:d2:the-vision:2000:jordan-suckley"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joris-voorn",
   "name": "Joris Voorn",
   "aliases": [],
@@ -24712,6 +26272,21 @@
   "links": []
  },
  {
+  "key": "jorn-van-deynhoven",
+  "name": "Jorn van Deynhoven",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:2100:jorn-van-deynhoven"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jorza",
   "name": "Jorza",
   "aliases": [],
@@ -24723,6 +26298,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jorza-and-taylor-torrence",
+  "name": "JORZA & TAYLOR TORRENCE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:1700:jorza-and-taylor-torrence"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -24799,6 +26389,21 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "josh-taylor",
+  "name": "Josh Taylor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:2000:josh-taylor"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -25037,6 +26642,21 @@
   "links": []
  },
  {
+  "key": "juan-rios",
+  "name": "JUAN RIOS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:beatbox-art-car:2000:juan-rios"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "juany-bravo",
   "name": "Juany Bravo",
   "aliases": [],
@@ -25104,9 +26724,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-eddie-halliwell-and-judge-jules"
+   "dreamstate-socal-2026:dssc-eddie-halliwell-and-judge-jules",
+   "dreamstate-socal-2024:d2:the-vision:2230:judge-jules-classics-set"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2024-11-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -25189,16 +26810,19 @@
  },
  {
   "key": "julian-gray",
-  "name": "JULIAN GRAY",
-  "aliases": [],
+  "name": "Julian Gray",
+  "aliases": [
+   "JULIAN GRAY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d2:the-dream:1300:julian-gray",
    "edc-orlando-2019:d2:wideawakeartcar:1700:julian-gray"
   ],
   "firstSeen": "2019-11-09",
-  "lastSeen": "2019-11-09",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -25559,6 +27183,21 @@
   "links": []
  },
  {
+  "key": "kai-tracid",
+  "name": "Kai Tracid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:2200:kai-tracid"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kai-wachi",
   "name": "Kai Wachi",
   "aliases": [
@@ -25801,6 +27440,24 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "karney",
+  "name": "Karney",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "bryan-kearney"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:0000:bryan-kearney-presents-karney",
+   "dreamstate-socal-2024:d1:the-vision:2230:karney"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -26361,6 +28018,22 @@
   "links": []
  },
  {
+  "key": "kevin-cornine",
+  "name": "Kevin Cornine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:1300:kevin-cornine",
+   "dreamstate-socal-2024:d1:beatbox-boombox-art-car:2200:kevin-cornine"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kevin-de-vries",
   "name": "Kevin de Vries",
   "aliases": [
@@ -26397,7 +28070,9 @@
  {
   "key": "key4050",
   "name": "Key4050",
-  "aliases": [],
+  "aliases": [
+   "KEY4050"
+  ],
   "kind": "project",
   "parents": [
    "bryan-kearney",
@@ -26405,9 +28080,12 @@
   ],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-bryan-kearney-and-john-ocallaghan-pres-key4050"
+   "dreamstate-socal-2026:dssc-bryan-kearney-and-john-ocallaghan-pres-key4050",
+   "dreamstate-socal-2019:d1:the-dream:2200:key4050",
+   "dreamstate-socal-2023:d2:the-void:0000:key4050",
+   "dreamstate-socal-2025:d1:the-void:0000:key4050"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2019-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -26455,6 +28133,41 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "khomha",
+  "name": "KhoMha",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-dream:1800:khomha"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "khromata",
+  "name": "Khromata",
+  "aliases": [
+   "KHROMATA"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-sequence:1800:khromata",
+   "dreamstate-socal-2023:d1:the-sequence:1600:khromata",
+   "dreamstate-socal-2024:d2:the-sequence:1300:khromata",
+   "dreamstate-socal-2025:d2:the-sequence:1600:khromata"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -26660,6 +28373,21 @@
   "links": []
  },
  {
+  "key": "killerwatts",
+  "name": "KILLERWATTS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-sequence:2300:killerwatts"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "killmatter",
   "name": "Killmatter",
   "aliases": [
@@ -26704,6 +28432,21 @@
   ],
   "firstSeen": "2026-07-30",
   "lastSeen": "2026-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kimmic",
+  "name": "KIMMIC",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-void:1700:kimmic"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -26913,10 +28656,11 @@
    "edc-lv-2026:n19",
    "edc-orlando-2026:ecu20",
    "beyond-wonderland-socal-2026:d1:the-looking-glass:0030:klangkuenstler",
+   "dreamstate-socal-2023:d1:the-void:2300:klangkuenstler",
    "edc-orlando-2024:d3:neon-garden:1800:klangkuenstler",
    "escape-halloween-2025:d2:the-cage:2130:klangkuenstler"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -26951,9 +28695,10 @@
   "billings": [
    "edc-lv-2026:s18",
    "lost-lands-2026:llf26",
-   "lollapalooza-2026:lo11"
+   "lollapalooza-2026:lo11",
+   "dreamstate-socal-2025:d1:beatbox-art-car:1700:klo"
   ],
-  "firstSeen": "2026-05-17",
+  "firstSeen": "2025-11-21",
   "lastSeen": "2026-09-18",
   "photo": null,
   "links": []
@@ -27311,16 +29056,20 @@
  },
  {
   "key": "kristina-sky",
-  "name": "KRISTINA SKY",
-  "aliases": [],
+  "name": "Kristina Sky",
+  "aliases": [
+   "KRISTINA SKY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:the-vision:1700:kristina-sky",
+   "dreamstate-socal-2025:d1:the-void:1600:kristina-sky",
    "edc-orlando-2017:d1:neongarden:1400:kristina-sky"
   ],
-  "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -27541,6 +29290,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kyau-and-albert",
+  "name": "Kyau & Albert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-dream:2100:kyau-and-albert"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -28021,6 +29785,21 @@
   "links": []
  },
  {
+  "key": "lane-8-and-yotto",
+  "name": "LANE 8 & YOTTO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-dream:2205:lane-8-and-yotto"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lanie-gardner",
   "name": "Lanie Gardner",
   "aliases": [],
@@ -28146,9 +29925,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d2:the-dream:1500:laura-van-dam",
    "edc-las-vegas-2025:d3:quantum-valley:2000:laura-van-dam"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2024-11-23",
   "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
@@ -28448,6 +30228,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "leiel",
+  "name": "Leiel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-sequence:1700:leiel"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
  },
@@ -28862,16 +30657,19 @@
  {
   "key": "lilly-palmer",
   "name": "Lilly Palmer",
-  "aliases": [],
+  "aliases": [
+   "LILLY PALMER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:cg18",
    "ultra-miami-2026:ul12",
-   "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer"
+   "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer",
+   "dreamstate-socal-2025:d2:the-void:0000:lilly-palmer"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -28972,16 +30770,20 @@
  },
  {
   "key": "liquid-soul",
-  "name": "LIQUID SOUL",
-  "aliases": [],
+  "name": "Liquid Soul",
+  "aliases": [
+   "LIQUID SOUL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:the-sequence:2200:liquid-soul",
+   "dreamstate-socal-2023:d1:the-sequence:1900:liquid-soul",
    "edc-orlando-2017:d1:neongarden:1700:liquid-soul"
   ],
-  "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -29456,6 +31258,23 @@
   "links": []
  },
  {
+  "key": "lost-minds",
+  "name": "LOST MINDS",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "factor-b-and-lostly"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-dream:1700:factor-b-and-lostly-pres-lost-minds"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lost-orange-cat",
   "name": "Lost Orange Cat",
   "aliases": [],
@@ -29493,9 +31312,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-vision:1400:lostly",
    "edc-las-vegas-2025:d2:quantum-valley:2030:lostly"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2024-11-22",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -30370,6 +32190,21 @@
   "links": []
  },
  {
+  "key": "m-i-k-e-push",
+  "name": "M.I.K.E. Push",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:timeless:0000:m-i-k-e-push"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "m-o-n-r-o-e",
   "name": "M.O.N.R.O.E.",
   "aliases": [],
@@ -30572,6 +32407,21 @@
   "links": []
  },
  {
+  "key": "mad-maxx",
+  "name": "MAD MAXX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-sequence:1700:mad-maxx"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maddix",
   "name": "Maddix",
   "aliases": [
@@ -30585,6 +32435,8 @@
    "edc-orlando-2026:ecu23",
    "ultra-miami-2026:ul117",
    "escape-halloween-2026:esc-maddix-d2",
+   "dreamstate-socal-2023:d1:the-dream:1855:maddix",
+   "dreamstate-socal-2025:d1:the-dream:2200:maddix",
    "edc-las-vegas-2025:d2:quantum-valley:0130:maddix-b2b-ben-nicky",
    "edc-las-vegas-2025:d3:circuit-grounds:2015:maddix",
    "edc-orlando-2023:d3:stereo-bloom:1800:maddix",
@@ -30757,6 +32609,21 @@
   "links": []
  },
  {
+  "key": "magnus",
+  "name": "Magnus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-sequence:1800:magnus"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "magnus-ferrell",
   "name": "Magnus Ferrell",
   "aliases": [],
@@ -30863,6 +32730,21 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "major7",
+  "name": "Major7",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-sequence:1900:major7"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
  },
@@ -30992,6 +32874,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mandragora",
+  "name": "MANDRAGORA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-sequence:0000:mandragora"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -31506,15 +33403,36 @@
  {
   "key": "mark-sherry",
   "name": "Mark Sherry",
-  "aliases": [],
+  "aliases": [
+   "MARK SHERRY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
+   "gentech",
    "thick-as-thieves"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:2000:mark-sherry",
+   "dreamstate-socal-2025:d1:the-void:1900:mark-sherry"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mark-sherry-and-indecent-noise",
+  "name": "MARK SHERRY & INDECENT NOISE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:2000:mark-sherry-and-indecent-noise"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -31541,10 +33459,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-dream:2045:markus-schulz",
    "edc-orlando-2021:d2:stereo-bloom:2245:markus-schulz"
   ],
   "firstSeen": "2021-11-13",
-  "lastSeen": "2021-11-13",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -31557,10 +33476,27 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-marlo",
+   "dreamstate-socal-2016:d2:the-dream:2100:marlo",
+   "dreamstate-socal-2024:d1:the-dream:1930:marlo",
    "edc-orlando-2023:d3:stereo-bloom:1915:marlo"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marlo-tech-energy",
+  "name": "MARLO [TECH ENERGY]",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-void:2300:marlo-tech-energy"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -31895,6 +33831,21 @@
   "links": []
  },
  {
+  "key": "materia-blu",
+  "name": "Materia Blu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:1800:materia-blu"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mathame",
   "name": "Mathame",
   "aliases": [],
@@ -32019,14 +33970,17 @@
  {
   "key": "matt-fax",
   "name": "Matt Fax",
-  "aliases": [],
+  "aliases": [
+   "MATT FAX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-bt-and-matt-fax"
+   "dreamstate-socal-2026:dssc-bt-and-matt-fax",
+   "dreamstate-socal-2023:d2:the-dream:1800:matt-fax"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2023-11-18",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -32115,16 +34069,19 @@
  {
   "key": "matty-ralph",
   "name": "Matty Ralph",
-  "aliases": [],
+  "aliases": [
+   "MATTY RALPH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q2",
    "ultra-miami-2026:ul9",
-   "dreamstate-socal-2026:dssc-matty-ralph"
+   "dreamstate-socal-2026:dssc-matty-ralph",
+   "dreamstate-socal-2025:d1:the-void:1700:matty-ralph"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-11-21",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -32155,15 +34112,33 @@
  {
   "key": "mauro-picotto",
   "name": "Mauro Picotto",
+  "aliases": [
+   "MAURO PICOTTO"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2026:dssc-mauro-picotto",
+   "dreamstate-socal-2023:d2:the-vision:0000:mauro-picotto"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mauro-picotto-bryan-kearney",
+  "name": "Mauro Picotto + Bryan Kearney",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-mauro-picotto"
+   "dreamstate-socal-2024:d2:the-void:2330:mauro-picotto-bryan-kearney"
   ],
-  "firstSeen": "2026-11-20",
-  "lastSeen": "2026-11-20",
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -32294,14 +34269,17 @@
  {
   "key": "maximizer",
   "name": "Maximizer",
-  "aliases": [],
+  "aliases": [
+   "MAXIMIZER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-maximizer"
+   "dreamstate-socal-2026:dssc-maximizer",
+   "dreamstate-socal-2025:d1:the-sequence:1600:maximizer"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2025-11-21",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -32665,6 +34643,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2025-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "menno-de-jong",
+  "name": "Menno de Jong",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-vision:2300:menno-de-jong"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
  },
@@ -33429,6 +35422,7 @@
   "billings": [
    "ultra-miami-2026:ul17",
    "outside-lands-2026:os125",
+   "dreamstate-socal-2025:d2:the-dream:2140:miss-monique",
    "edc-las-vegas-2025:d3:quantum-valley:2300:miss-monique",
    "edc-orlando-2022:d2:kinetic-field:1430:miss-monique",
    "edc-orlando-2023:d1:kinetic-field:1527:miss-monique",
@@ -33505,15 +35499,19 @@
  {
   "key": "miyuki",
   "name": "Miyuki",
-  "aliases": [],
+  "aliases": [
+   "MIYUKI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2023:d1:the-vision:1600:miyuki",
+   "dreamstate-socal-2024:d1:the-dream:1430:miyuki",
    "edc-las-vegas-2025:d2:quantum-valley:1900:miyuki",
    "edc-orlando-2024:d3:stereo-bloom:1430:miyuki"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -34010,6 +36008,21 @@
   "links": []
  },
  {
+  "key": "moonfazed",
+  "name": "MOONFAZED",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:beatbox-art-car:2100:moonfazed"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moonlght",
   "name": "Moonlght",
   "aliases": [],
@@ -34130,6 +36143,21 @@
   "links": []
  },
  {
+  "key": "morten-granau",
+  "name": "MORTEN GRANAU",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:1700:morten-granau"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moscoman",
   "name": "Moscoman",
   "aliases": [],
@@ -34231,14 +36259,19 @@
  {
   "key": "mr-brooks",
   "name": "Mr. Brooks",
-  "aliases": [],
+  "aliases": [
+   "MR. BROOKS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:timeless:1700:mr-brooks",
+   "dreamstate-socal-2023:d2:the-vision:1600:mr-brooks",
+   "dreamstate-socal-2024:d1:the-dream:1300:mr-brooks",
    "edc-las-vegas-2025:d1:quantum-valley:1900:mr-brooks"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -34716,6 +36749,21 @@
   "links": []
  },
  {
+  "key": "mystro",
+  "name": "MYSTRO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:beatbox-art-car:1800:mystro"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mythm",
   "name": "Mythm",
   "aliases": [],
@@ -34984,9 +37032,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-neelix"
+   "dreamstate-socal-2026:dssc-neelix",
+   "dreamstate-socal-2016:d1:the-sequence:0100:neelix"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2016-11-25",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -35033,6 +37082,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "neptune-project",
+  "name": "Neptune Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:timeless:1900:neptune-project"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -35504,15 +37568,19 @@
  {
   "key": "nifra",
   "name": "Nifra",
-  "aliases": [],
+  "aliases": [
+   "NIFRA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d2:the-void:1800:nifra",
+   "dreamstate-socal-2025:d1:the-void:2300:nifra",
    "edc-orlando-2021:d2:stereo-bloom:1615:nifra"
   ],
   "firstSeen": "2021-11-13",
-  "lastSeen": "2021-11-13",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -35665,6 +37733,24 @@
   "links": []
  },
  {
+  "key": "niko-zografos",
+  "name": "Niko Zografos",
+  "aliases": [
+   "NIKO ZOGRAFOS"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:1700:niko-zografos",
+   "dreamstate-socal-2025:d1:beatbox-art-car:2200:niko-zografos"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nikole",
   "name": "Nikole",
   "aliases": [],
@@ -35706,6 +37792,27 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2025-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nilsix",
+  "name": "Nilsix",
+  "aliases": [
+   "NILSIX"
+  ],
+  "kind": "project",
+  "parents": [
+   "orjan-nilsen-and-mark-sixma"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:1900:orjan-nilsen-and-mark-sixma-pres-nilsix",
+   "dreamstate-socal-2024:d1:the-dream:1700:orjan-nilsen-and-mark-sixma-present-nilsix",
+   "dreamstate-socal-2025:d1:the-vision:0000:nilsix"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -36249,9 +38356,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah"
+   "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah",
+   "dreamstate-socal-2025:d2:the-void:2300:novah"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -36729,6 +38837,21 @@
   "links": []
  },
  {
+  "key": "oliver-smith",
+  "name": "Oliver Smith",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-dream:1800:oliver-smith"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oliverse",
   "name": "Oliverse",
   "aliases": [],
@@ -36814,14 +38937,17 @@
  {
   "key": "olly-james",
   "name": "Olly James",
-  "aliases": [],
+  "aliases": [
+   "OLLY JAMES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-david-rust-and-olly-james"
+   "dreamstate-socal-2026:dssc-david-rust-and-olly-james",
+   "dreamstate-socal-2025:d2:the-vision:1700:olly-james"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -36880,15 +39006,34 @@
  {
   "key": "omiki",
   "name": "Omiki",
+  "aliases": [
+   "OMIKI"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-sequence:1915:omiki",
+   "dreamstate-socal-2024:d1:the-sequence:1900:omiki",
+   "edc-las-vegas-2025:d1:quantum-valley:0300:omiki"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "omiki-vegas",
+  "name": "OMIKI + VEGAS",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:quantum-valley:0300:omiki"
+   "dreamstate-socal-2025:d1:the-sequence:0000:omiki-vegas"
   ],
-  "firstSeen": "2025-05-16",
-  "lastSeen": "2025-05-16",
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -37109,6 +39254,21 @@
   "links": []
  },
  {
+  "key": "orjan-nilsen-and-mark-sixma",
+  "name": "ORJAN NILSEN & MARK SIXMA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "nilsix"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "orkidea",
   "name": "ORKIDEA",
   "aliases": [],
@@ -37302,6 +39462,38 @@
   "links": []
  },
  {
+  "key": "ottagon",
+  "name": "Ottagon",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "giuseppe-ottaviani"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-dream:2210:giuseppe-ottaviani-presents-ottagon"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "out-of-orbit",
+  "name": "Out of Orbit",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-sequence:1800:out-of-orbit"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "out-tonight-a-musical-singalong",
   "name": "OUT TONIGHT: A Musical Singalong",
   "aliases": [],
@@ -37358,6 +39550,38 @@
   ],
   "firstSeen": "2026-07-02",
   "lastSeen": "2026-07-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "outside-the-universe",
+  "name": "Outside The Universe",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "outsiders-and-electric-universe"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-sequence:2115:outsiders-and-electric-universe-present-outside-the-universe"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "outsiders-and-electric-universe",
+  "name": "Outsiders & Electric Universe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "outside-the-universe"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -37912,6 +40136,24 @@
   "links": []
  },
  {
+  "key": "pathfinders",
+  "name": "Pathfinders",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "chris-schweizer",
+   "james-dymond"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:1900:pathfinders-james-dymond-and-chris-schweizer"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "patrick-mason",
   "name": "Patrick Mason",
   "aliases": [
@@ -37950,30 +40192,70 @@
  {
   "key": "paul-denton",
   "name": "Paul Denton",
-  "aliases": [],
+  "aliases": [
+   "PAUL DENTON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
    "parallel-worlds"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "dreamstate-socal-2023:d2:the-vision:2000:paul-denton"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paul-denton-sneijder",
+  "name": "Paul Denton + Sneijder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:2000:paul-denton-sneijder"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paul-denton-vs-david-forbes",
+  "name": "Paul Denton vs David Forbes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:1800:paul-denton-vs-david-forbes"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
  {
   "key": "paul-oakenfold",
   "name": "Paul Oakenfold",
-  "aliases": [],
+  "aliases": [
+   "PAUL OAKENFOLD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q14",
+   "dreamstate-socal-2016:d2:the-dream:2300:paul-oakenfold-full-on-fluoro",
+   "dreamstate-socal-2023:d2:the-vision:1800:paul-oakenfold",
+   "dreamstate-socal-2024:d2:the-vision:2345:paul-oakenfold-perfecto-classics",
+   "dreamstate-socal-2025:d2:the-vision:2200:paul-oakenfold",
    "edc-las-vegas-2025:d1:quantum-valley:2100:paul-oakenfold"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -38001,15 +40283,33 @@
   "kind": "performer",
   "parents": [],
   "projects": [
-   "essence-of-acid"
+   "essence-of-acid",
+   "solikien"
   ],
   "billings": [
    "edc-lv-2026:q9",
+   "dreamstate-socal-2016:d2:the-dream:0000:paul-van-dyk",
+   "dreamstate-socal-2024:d2:the-dream:1930:paul-van-dyk",
    "edc-orlando-2021:d2:stereo-bloom:2130:paul-van-dyk",
    "edc-orlando-2023:d3:stereo-bloom:2030:paul-van-dyk"
   ],
-  "firstSeen": "2021-11-13",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paul-van-dyk-aly-and-fila",
+  "name": "PAUL VAN DYK + ALY & FILA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-dream:2300:paul-van-dyk-aly-and-fila"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -38238,14 +40538,19 @@
  {
   "key": "perfect-stranger",
   "name": "Perfect Stranger",
-  "aliases": [],
+  "aliases": [
+   "PERFECT STRANGER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-perfect-stranger"
+   "dreamstate-socal-2026:dssc-perfect-stranger",
+   "dreamstate-socal-2016:d2:the-sequence:2000:perfect-stranger",
+   "dreamstate-socal-2019:d1:the-sequence:1900:perfect-stranger",
+   "dreamstate-socal-2023:d1:the-sequence:1800:perfect-stranger"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -38292,6 +40597,24 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pettra",
+  "name": "Pettra",
+  "aliases": [
+   "PETTRA"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-sequence:1700:pettra",
+   "dreamstate-socal-2024:d2:the-sequence:1645:pettra"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -38442,6 +40765,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2021-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "photographer",
+  "name": "Photographer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:1900:photographer"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -39007,15 +41345,18 @@
  {
   "key": "pretty-pink",
   "name": "Pretty Pink",
-  "aliases": [],
+  "aliases": [
+   "PRETTY PINK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2023:d2:the-dream:1700:pretty-pink",
    "edc-orlando-2023:d3:stereo-bloom:1600:pretty-pink"
   ],
   "firstSeen": "2023-11-12",
-  "lastSeen": "2023-11-12",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -39319,6 +41660,24 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "purenrg",
+  "name": "PureNRG",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "giuseppe-ottaviani",
+   "solarstone"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:0100:purenrg-giuseppe-ottaviani-and-solarstone"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -39792,6 +42151,36 @@
   "links": []
  },
  {
+  "key": "ram",
+  "name": "RAM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:2200:ram"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ram-and-richard-durand",
+  "name": "RAM & Richard Durand",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "digital-culture"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ranger-trucco",
   "name": "Ranger Trucco",
   "aliases": [
@@ -39810,6 +42199,21 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rank-1",
+  "name": "Rank 1",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-dream:1900:rank-1"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
  },
@@ -39987,6 +42391,39 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "reality-test",
+  "name": "Reality Test",
+  "aliases": [
+   "REALITY TEST"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:2000:reality-test",
+   "dreamstate-socal-2023:d2:the-sequence:2230:reality-test"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "realize",
+  "name": "REALIZE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-void:1600:realize"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -40333,6 +42770,21 @@
   "links": []
  },
  {
+  "key": "reorder",
+  "name": "ReOrder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "skypatrol"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "reparations",
   "name": "REPARATIONS",
   "aliases": [],
@@ -40466,6 +42918,24 @@
   "links": []
  },
  {
+  "key": "richard-durand",
+  "name": "Richard Durand",
+  "aliases": [
+   "RICHARD DURAND"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:timeless:1900:richard-durand-isos-set",
+   "dreamstate-socal-2023:d2:the-vision:2100:richard-durand"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "richard-finger",
   "name": "Richard Finger",
   "aliases": [],
@@ -40537,6 +43007,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ricky-s",
+  "name": "Ricky S",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:2000:ricky-s"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -40627,6 +43112,38 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rina-mirai",
+  "name": "RINA MIRAI",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "rinaly"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:1700:rinaly-pres-rina-mirai"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rinaly",
+  "name": "RINALY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "rina-mirai"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -40759,6 +43276,25 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ritmo",
+  "name": "Ritmo",
+  "aliases": [
+   "RITMO"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-sequence:2200:ritmo",
+   "dreamstate-socal-2024:d1:the-sequence:1645:ritmo",
+   "dreamstate-socal-2025:d2:the-sequence:2000:ritmo"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -40904,6 +43440,21 @@
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robert-nickson",
+  "name": "ROBERT NICKSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d2:the-vision:1900:robert-nickson"
+  ],
+  "firstSeen": "2023-11-18",
+  "lastSeen": "2023-11-18",
   "photo": null,
   "links": []
  },
@@ -41109,6 +43660,21 @@
   "links": []
  },
  {
+  "key": "roger-shah",
+  "name": "Roger Shah",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-vision:2115:roger-shah"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rohaan",
   "name": "Rohaan",
   "aliases": [
@@ -41186,6 +43752,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "roman-messer",
+  "name": "ROMAN MESSER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-vision:1800:roman-messer"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -41400,6 +43981,23 @@
   "links": []
  },
  {
+  "key": "rraw",
+  "name": "RRAW!",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "talla-2xlc"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:1900:talla-2xlc-pres-rraw"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rsun",
   "name": "Rsun",
   "aliases": [],
@@ -41422,10 +44020,27 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2019:d1:the-dream:2000:ruben-de-ronde",
+   "dreamstate-socal-2024:d1:the-dream:1600:ruben-de-ronde",
    "edc-orlando-2022:d1:stereo-bloom:1600:ruben-de-ronde"
   ],
-  "firstSeen": "2022-11-11",
-  "lastSeen": "2022-11-11",
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ruben-de-ronde-and-estiva",
+  "name": "RUBEN DE RONDE & ESTIVA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "ebenezer"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -42352,12 +44967,15 @@
  {
   "key": "sarah-de-warren",
   "name": "Sarah de Warren",
-  "aliases": [],
+  "aliases": [
+   "SARAH DE WARREN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q1",
+   "dreamstate-socal-2025:d1:the-dream:1600:sarah-de-warren",
    "edc-las-vegas-2025:d3:metaphoenix:1900:sarah-de-warren"
   ],
   "firstSeen": "2025-05-18",
@@ -42645,6 +45263,21 @@
   "links": []
  },
  {
+  "key": "scot-project",
+  "name": "Scot Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "gentech"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "scott-e-berendt-and-the-us-project",
   "name": "Scott E. Berendt & The US Project",
   "aliases": [],
@@ -42745,10 +45378,27 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-darren-porter-and-sean-tyas",
+   "dreamstate-socal-2023:d2:the-void:1900:sean-tyas",
+   "dreamstate-socal-2024:d2:the-vision:2000:sean-tyas",
    "edc-orlando-2019:d3:stereobloom:1700:sean-tyas"
   ],
   "firstSeen": "2019-11-10",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sean-tyas-vs-menno-de-jong",
+  "name": "Sean Tyas vs Menno de Jong",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:2300:sean-tyas-vs-menno-de-jong"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -42892,6 +45542,21 @@
   "links": []
  },
  {
+  "key": "sentinel-7",
+  "name": "Sentinel 7",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-sequence:1700:sentinel-7"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "senza",
   "name": "SENZA",
   "aliases": [],
@@ -42909,15 +45574,18 @@
  {
   "key": "sequence-six",
   "name": "Sequence Six",
-  "aliases": [],
+  "aliases": [
+   "SEQUENCE SIX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-sequence-six",
-   "beyond-wonderland-socal-2026:d2:cheshire-woods:1600:sequence-six"
+   "beyond-wonderland-socal-2026:d2:cheshire-woods:1600:sequence-six",
+   "dreamstate-socal-2025:d2:beatbox-art-car:2200:sequence-six"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -43009,7 +45677,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "abraxis"
+  ],
   "billings": [
    "edc-lv-2026:c26",
    "lost-lands-2026:lls49",
@@ -43374,14 +46044,17 @@
  {
   "key": "shingo-nakamura",
   "name": "Shingo Nakamura",
-  "aliases": [],
+  "aliases": [
+   "SHINGO NAKAMURA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:q22"
+   "edc-lv-2026:q22",
+   "dreamstate-socal-2025:d2:the-dream:1740:shingo-nakamura"
   ],
-  "firstSeen": "2026-05-17",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
@@ -43454,14 +46127,17 @@
  {
   "key": "shlomo",
   "name": "Shlømo",
-  "aliases": [],
+  "aliases": [
+   "SHLØMO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2023:d1:the-void:2200:shl-mo",
    "edc-las-vegas-2025:d1:wasteland:0330:shl-mo"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -43531,6 +46207,21 @@
   "links": []
  },
  {
+  "key": "shpongle",
+  "name": "Shpongle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-sequence:2100:shpongle-simon-posford-live-set"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shy-fx",
   "name": "Shy FX",
   "aliases": [],
@@ -43594,6 +46285,21 @@
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2021-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sidekicks",
+  "name": "Sidekicks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:1700:sidekicks"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -43856,9 +46562,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-void:1700:silver-panda",
    "edc-las-vegas-2025:d1:forest-house:0000:silver-panda"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-11-22",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -43963,6 +46670,21 @@
   "links": []
  },
  {
+  "key": "simon-o-shine",
+  "name": "Simon O'Shine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-dream:1700:simon-o-shine"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "simon-patterson",
   "name": "Simon Patterson",
   "aliases": [
@@ -43973,10 +46695,11 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-john-askew-and-simon-patterson",
+   "dreamstate-socal-2016:d2:the-vision:0100:simon-patterson",
    "edc-orlando-2017:d1:neongarden:2000:simon-patterson",
    "edc-orlando-2019:d3:stereobloom:2245:simon-patterson"
   ],
-  "firstSeen": "2017-11-10",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -44436,6 +47159,24 @@
   "links": []
  },
  {
+  "key": "skypatrol",
+  "name": "Skypatrol",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "reorder",
+   "standerwick"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-vision:2200:skypatrol-standerwick-and-reorder"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slamm",
   "name": "Slamm",
   "aliases": [],
@@ -44764,6 +47505,23 @@
   "links": []
  },
  {
+  "key": "sneijder",
+  "name": "Sneijder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "alt-1"
+  ],
+  "billings": [
+   "dreamstate-socal-2016:d2:the-vision:1800:sneijder"
+  ],
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2016-11-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "snow-strippers",
   "name": "Snow Strippers",
   "aliases": [],
@@ -44826,6 +47584,21 @@
   ],
   "firstSeen": "2026-07-03",
   "lastSeen": "2026-07-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "society",
+  "name": "SOCIETY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:the-vision:1600:society"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -44963,15 +47736,39 @@
  {
   "key": "solarstone",
   "name": "Solarstone",
-  "aliases": [],
+  "aliases": [
+   "SOLARSTONE"
+  ],
   "kind": "performer",
   "parents": [],
+  "projects": [
+   "purenrg"
+  ],
+  "billings": [
+   "dreamstate-socal-2026:dssc-solarstone",
+   "dreamstate-socal-2019:d1:the-vision:2100:solarstone",
+   "dreamstate-socal-2024:d1:the-vision:2345:solarstone",
+   "dreamstate-socal-2025:d2:the-vision:2100:solarstone"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "solikien",
+  "name": "SOLIKIEN",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "paul-van-dyk"
+  ],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-solarstone"
+   "dreamstate-socal-2023:d1:the-dream:0000:paul-van-dyk-pres-solikien"
   ],
-  "firstSeen": "2026-11-20",
-  "lastSeen": "2026-11-20",
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -45096,6 +47893,24 @@
   "links": []
  },
  {
+  "key": "somna",
+  "name": "Somna",
+  "aliases": [
+   "SOMNA"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-dream:1800:somna",
+   "dreamstate-socal-2023:d2:the-vision:1700:somna"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2023-11-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "son-of-son",
   "name": "Son of Son",
   "aliases": [
@@ -45110,6 +47925,21 @@
   ],
   "firstSeen": "2026-09-06",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sonic-species",
+  "name": "Sonic Species",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-sequence:1530:sonic-species"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
  },
@@ -45444,17 +48274,20 @@
  {
   "key": "space-92",
   "name": "Space 92",
-  "aliases": [],
+  "aliases": [
+   "SPACE 92"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
    "turbulences"
   ],
   "billings": [
+   "dreamstate-socal-2025:d2:the-void:2200:space-92",
    "edc-orlando-2024:d3:kinetic-field:1432:space-92"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2024-11-10",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -45569,9 +48402,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2019:d2:the-dream:2200:spencer-brown",
    "nocturnal-wonderland-2021:d2:owloch-grove:2100:spencer-brown"
   ],
-  "firstSeen": "2021-09-19",
+  "firstSeen": "2019-11-23",
   "lastSeen": "2021-09-19",
   "photo": null,
   "links": []
@@ -45839,6 +48673,23 @@
   "links": []
  },
  {
+  "key": "stadium4",
+  "name": "Stadium4",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "andy-moor-and-lange"
+  ],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-dream:2000:andy-moor-and-lange-present-stadium4"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stan-christ",
   "name": "Stan Christ",
   "aliases": [],
@@ -45850,6 +48701,23 @@
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-05-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "standerwick",
+  "name": "Standerwick",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "skypatrol"
+  ],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-vision:0000:standerwick"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -46736,6 +49604,36 @@
   "links": []
  },
  {
+  "key": "sunny-lax",
+  "name": "Sunny Lax",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-dream:1700:sunny-lax"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sunryse-dan-miles",
+  "name": "SunrYse + Dan Miles",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:beatbox-boombox-art-car:2100:sunryse-dan-miles"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sunshine-benzi",
   "name": "Sunshine Benzi",
   "aliases": [],
@@ -46843,15 +49741,18 @@
  {
   "key": "superstrings",
   "name": "Superstrings",
-  "aliases": [],
+  "aliases": [
+   "SUPERSTRINGS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q12",
-   "ultra-miami-2026:ul10"
+   "ultra-miami-2026:ul10",
+   "dreamstate-socal-2025:d1:the-vision:2000:superstrings"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-11-21",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -47140,9 +50041,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:q19"
+   "edc-lv-2026:q19",
+   "dreamstate-socal-2025:d2:the-void:2100:t78"
   ],
-  "firstSeen": "2026-05-16",
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -47219,11 +50121,15 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
-  "billings": [
-   "dreamstate-socal-2026:dssc-allen-watts-and-talla-2xlc"
+  "projects": [
+   "rraw"
   ],
-  "firstSeen": "2026-11-20",
+  "billings": [
+   "dreamstate-socal-2026:dssc-allen-watts-and-talla-2xlc",
+   "dreamstate-socal-2016:d2:timeless:2100:talla-2xlc",
+   "dreamstate-socal-2024:d2:the-vision:1700:talla-2xlc"
+  ],
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -47440,6 +50346,24 @@
   "links": []
  },
  {
+  "key": "taylor-torrence",
+  "name": "Taylor Torrence",
+  "aliases": [
+   "TAYLOR TORRENCE"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-void:1430:taylor-torrence",
+   "dreamstate-socal-2025:d1:the-void:1800:taylor-torrence"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "taz",
   "name": "Taz",
   "aliases": [],
@@ -47481,6 +50405,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d1:the-void:1800:tdj",
    "edc-las-vegas-2025:d2:bionic-jungle:0430:tdj",
    "edc-orlando-2024:d3:stereo-bloom:1600:tdj"
   ],
@@ -47686,6 +50611,21 @@
   "links": []
  },
  {
+  "key": "tensteps",
+  "name": "Tensteps",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-void:1300:tensteps"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "terence-tabeau",
   "name": "Terence Tabeau",
   "aliases": [],
@@ -47708,9 +50648,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-terra"
+   "dreamstate-socal-2026:dssc-terra",
+   "dreamstate-socal-2024:d1:the-sequence:1530:terra"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2024-11-22",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -47863,6 +50804,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-amplified-pianist",
+  "name": "THE AMPLIFIED PIANIST",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d2:beatbox-art-car:2000:the-amplified-pianist"
+  ],
+  "firstSeen": "2025-11-22",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -48800,6 +51756,21 @@
   "links": []
  },
  {
+  "key": "the-space-brothers",
+  "name": "The Space Brothers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d1:the-vision:1800:the-space-brothers"
+  ],
+  "firstSeen": "2019-11-22",
+  "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-story-so-far",
   "name": "The Story So Far",
   "aliases": [],
@@ -48898,6 +51869,21 @@
   "links": []
  },
  {
+  "key": "the-thrillseekers",
+  "name": "The Thrillseekers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:timeless:2100:the-thrillseekers"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-war-on-drugs",
   "name": "The War On Drugs",
   "aliases": [],
@@ -48984,13 +51970,15 @@
   "kind": "project",
   "parents": [
    "david-forbes",
+   "david-forbes-and-mark-sherry",
    "mark-sherry"
   ],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-david-forbes-and-mark-sherry-pres-thick-as-thieves"
+   "dreamstate-socal-2026:dssc-david-forbes-and-mark-sherry-pres-thick-as-thieves",
+   "dreamstate-socal-2024:d2:the-void:2100:david-forbes-and-mark-sherry-present-thick-as-thieves"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2024-11-23",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -49026,16 +52014,34 @@
   "links": []
  },
  {
-  "key": "thomas-schumacher",
-  "name": "Thomas Schumacher",
+  "key": "thomas-kelly",
+  "name": "THOMAS KELLY",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:q20"
+   "dreamstate-socal-2025:d1:beatbox-art-car:1900:thomas-kelly"
   ],
-  "firstSeen": "2026-05-16",
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "thomas-schumacher",
+  "name": "Thomas Schumacher",
+  "aliases": [
+   "THOMAS SCHUMACHER"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-lv-2026:q20",
+   "dreamstate-socal-2025:d2:the-void:1900:thomas-schumacher"
+  ],
+  "firstSeen": "2025-11-22",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -49114,6 +52120,7 @@
    "edc-lv-2026:cg15",
    "portola-2026:pt2-tiesto",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
+   "dreamstate-socal-2025:d2:the-dream:2345:tiesto-trance-set",
    "edc-las-vegas-2025:d1:circuit-grounds:0030:tiesto",
    "edc-orlando-2021:d2:kinetic-field:2233:tiesto",
    "edc-orlando-2022:d2:kinetic-field:2228:tiesto",
@@ -49822,15 +52829,18 @@
  {
   "key": "trance-wax",
   "name": "Trance Wax",
-  "aliases": [],
+  "aliases": [
+   "TRANCE WAX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2025:d2:the-dream:1640:trance-wax",
    "edc-las-vegas-2025:d2:quantum-valley:0330:trance-wax"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -49846,6 +52856,21 @@
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "transcendent",
+  "name": "Transcendent",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:timeless:1700:transcendent"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
   "photo": null,
   "links": []
  },
@@ -49910,6 +52935,21 @@
   "links": []
  },
  {
+  "key": "triceradrops",
+  "name": "Triceradrops",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-sequence:1800:triceradrops"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trick",
   "name": "Trick",
   "aliases": [],
@@ -49960,6 +53000,21 @@
   "links": []
  },
  {
+  "key": "triode",
+  "name": "Triode",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-void:1300:triode"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trippie-hippie",
   "name": "Trippie Hippie",
   "aliases": [],
@@ -50001,6 +53056,21 @@
   ],
   "firstSeen": "2017-09-15",
   "lastSeen": "2017-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tristan",
+  "name": "TRISTAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2025:d1:the-sequence:2200:tristan"
+  ],
+  "firstSeen": "2025-11-21",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -50148,16 +53218,19 @@
  {
   "key": "trym",
   "name": "Trym",
-  "aliases": [],
+  "aliases": [
+   "TRYM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul66",
    "escape-halloween-2026:esc-trym-d1",
-   "beyond-wonderland-socal-2026:d1:the-looking-glass:2000:trym"
+   "beyond-wonderland-socal-2026:d1:the-looking-glass:2000:trym",
+   "dreamstate-socal-2023:d1:the-void:0000:trym"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2023-11-17",
   "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
@@ -50595,6 +53668,21 @@
   "links": []
  },
  {
+  "key": "ucast",
+  "name": "UCast",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2016:d1:the-dream:1700:ucast"
+  ],
+  "firstSeen": "2016-11-25",
+  "lastSeen": "2016-11-25",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "uchi",
   "name": "Uchi",
   "aliases": [],
@@ -50868,6 +53956,21 @@
   "links": []
  },
  {
+  "key": "vangar",
+  "name": "Vangar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d2:the-vision:1430:vangar"
+  ],
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vania-junco",
   "name": "Vania Junco",
   "aliases": [],
@@ -50928,6 +54031,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vegas",
+  "name": "Vegas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-sequence:2000:vegas"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
   "photo": null,
   "links": []
  },
@@ -51117,15 +54235,19 @@
  {
   "key": "victor-ruiz",
   "name": "Victor Ruiz",
-  "aliases": [],
+  "aliases": [
+   "VICTOR RUIZ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2024:d2:the-dream:1700:victor-ruiz",
+   "dreamstate-socal-2025:d2:the-void:2000:victor-ruiz",
    "edc-las-vegas-2025:d1:quantum-valley:2200:victor-ruiz"
   ],
-  "firstSeen": "2025-05-16",
-  "lastSeen": "2025-05-16",
+  "firstSeen": "2024-11-23",
+  "lastSeen": "2025-11-22",
   "photo": null,
   "links": []
  },
@@ -51242,7 +54364,9 @@
  {
   "key": "vini-vici",
   "name": "Vini Vici",
-  "aliases": [],
+  "aliases": [
+   "VINI VICI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -51250,11 +54374,31 @@
    "ultra-miami-2026:ul11",
    "dreamstate-socal-2026:dssc-vini-vici",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0100:vini-vici",
+   "dreamstate-socal-2016:d2:the-sequence:2100:vini-vici",
+   "dreamstate-socal-2019:d2:the-sequence:2200:vini-vici",
+   "dreamstate-socal-2023:d2:the-sequence:2130:vini-vici",
+   "dreamstate-socal-2024:d2:the-sequence:0000:vini-vici",
+   "dreamstate-socal-2025:d2:the-sequence:2200:vini-vici",
    "edc-las-vegas-2025:d1:quantum-valley:0000:vini-vici",
    "edc-orlando-2024:d3:stereo-bloom:1745:vini-vici-sunset-set"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2016-11-26",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vini-vici-and-friends",
+  "name": "Vini Vici & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2019:d2:the-sequence:0000:vini-vici-and-friends"
+  ],
+  "firstSeen": "2019-11-23",
+  "lastSeen": "2019-11-23",
   "photo": null,
   "links": []
  },
@@ -52299,16 +55443,21 @@
  },
  {
   "key": "will-atkinson",
-  "name": "WILL ATKINSON",
-  "aliases": [],
+  "name": "Will Atkinson",
+  "aliases": [
+   "WILL ATKINSON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2016:d2:the-vision:2200:will-atkinson",
+   "dreamstate-socal-2023:d1:the-dream:1755:will-atkinson",
+   "dreamstate-socal-2025:d1:the-void:2100:will-atkinson",
    "edc-orlando-2019:d3:stereobloom:1830:will-atkinson"
   ],
-  "firstSeen": "2019-11-10",
-  "lastSeen": "2019-11-10",
+  "firstSeen": "2016-11-26",
+  "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
  },
@@ -53007,6 +56156,21 @@
   "links": []
  },
  {
+  "key": "xijaro-and-pitch",
+  "name": "XiJaro & Pitch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2024:d1:the-vision:1500:xijaro-and-pitch"
+  ],
+  "firstSeen": "2024-11-22",
+  "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xilla",
   "name": "Xilla",
   "aliases": [],
@@ -53275,10 +56439,26 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "dreamstate-socal-2019:d1:the-vision:0100:yoji-biomehanika",
    "edc-las-vegas-2025:d1:quantum-valley:0400:yoji-biomehanika"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2019-11-22",
   "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yoji-biomehanika-and-scot-project",
+  "name": "YOJI BIOMEHANIKA & SCOT PROJECT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-vision:0000:yoji-biomehanika-and-scot-project"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
@@ -53330,6 +56510,21 @@
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yoshi-razner-pres-genesis",
+  "name": "YOSHI + RAZNER PRES GENESIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "dreamstate-socal-2023:d1:the-void:1800:yoshi-razner-pres-genesis"
+  ],
+  "firstSeen": "2023-11-17",
+  "lastSeen": "2023-11-17",
   "photo": null,
   "links": []
  },
