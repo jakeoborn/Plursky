@@ -1203,6 +1203,12 @@
     "printed": "SATURDAY · OCTOBER 26",
     "sha256": "f502622e734019c3bc0bfccf0c94ad8efa5e8519155d8056c2c6fc99a520d32d",
     "rows": 30,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20191115203351/https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+     "captureTimestamp": "20191115203351",
+     "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
+     "cites": "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2019.json"
    }
   ]

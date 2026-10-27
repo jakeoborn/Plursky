@@ -1098,6 +1098,12 @@
     "printed": "FRIDAY, OCT 28",
     "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
     "rows": 34,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRieXgBsMspW"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2022.json"
    },
    {
@@ -1111,6 +1117,12 @@
     "printed": "FRIDAY, OCT 28",
     "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
     "rows": 10,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2022.json"
    },
    {
@@ -1124,6 +1136,12 @@
     "printed": "SATURDAY, OCT 29",
     "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
     "rows": 31,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRieXgBsMspW"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2022.json"
    },
    {
@@ -1137,6 +1155,12 @@
     "printed": "SATURDAY, OCT 29",
     "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
     "rows": 8,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2022.json"
    }
   ]

@@ -2131,6 +2131,12 @@
     "printed": "FRIDAY, OCT 31",
     "sha256": "e09ac2436a8becd15484a93c5017e76f4addd4c3bc4af21c2f5d3b36b68fed91",
     "rows": 67,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20251027122732/https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
+     "captureTimestamp": "20251027122732",
+     "sha256": "d1392f5416fa9a407e2547c1b33577abb9f75c187f137a8131ba639cfdf8fad3",
+     "cites": "wp-content/uploads/2025/10/friday-set-times"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2025.json"
    },
    {
@@ -2144,6 +2150,12 @@
     "printed": "SATURDAY, NOV 1",
     "sha256": "94d42a4aa321cda7eb450ce6ee037d5ef21d3819c4115944c8d06a60bb9cf434",
     "rows": 65,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20251027122732/https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
+     "captureTimestamp": "20251027122732",
+     "sha256": "d1392f5416fa9a407e2547c1b33577abb9f75c187f137a8131ba639cfdf8fad3",
+     "cites": "wp-content/uploads/2025/10/saturday-set-times"
+    },
     "reviewManifest": "data/historical/review/escape-halloween-2025.json"
    }
   ]

@@ -4,8 +4,8 @@
 //
 //   node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
 //
-// <gather-dir> is the private research folder for one edition
-// (~/Plursky-private/historical-gather/<id>/). It holds:
+// <gather-dir> is the research folder for one edition, kept outside the
+// repo. It holds:
 //   sheet.tsv      one row per printed set: day, date, stage, start, end,
 //                  artist, source_kind, source_ref, note
 //   receipts.json  the edition's sources, each with its receipt:
@@ -14,20 +14,24 @@
 //             Insomniac parser; the rows must equal the sheet's, row for row
 //     graphic { kind, match, file, imageUrl, foundAt, published, rehostedBy,
 //               fetchedAt, printed: {day: header}, stageAs?, when?, review }
-//             the local file's sha256 is what the ledger and review record
+//             the local file's sha256 is what the ledger and review record.
+//             Its receipt is a Wayback capture of `foundAt` that cites the
+//             image (citeToken); the earliest such capture is recorded
 //   plus `exclude` (note patterns for printed rows that are not the
-//   edition's, e.g. a pre-event slot the final page re-filled), `reviewer`
-//   and `reviewedAt`.
+//   edition's, e.g. a pre-event slot the final page re-filled) and
+//   `reviewedAt`.
 //
 // Every sheet row must belong to exactly one source. Nothing is fetched from
-// a non-Wayback host and no image enters the repo: only hashes and counts.
+// a non-Wayback host and no image enters the repo: only public URLs, hashes
+// and counts. Local file names and folder paths stay in the gather folder.
 
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, dirname, join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { EDITIONS } from "./editions.mjs";
-import { fetchCapture } from "./wayback.mjs";
+import { fetchCapture, listCaptures } from "./wayback.mjs";
+import { citeToken } from "./lib.mjs";
 import { parseDay } from "../fetch-insomniac-settimes.mjs";
 import { sheetRow } from "./extract-insomniac.mjs";
 import { readSheet } from "./build-editions.mjs";
@@ -35,6 +39,20 @@ import { readSheet } from "./build-editions.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
+
+// The public review label: who checked the pixels and how, never a session.
+export const REVIEWER = "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops";
+
+// The earliest Wayback capture of the page a graphic was found on that cites
+// the graphic: the proof that the re-host's page carried this image.
+async function receiptFor(s) {
+  const token = citeToken(s.imageUrl);
+  for (const c of await listCaptures(s.foundAt, "2010", "2026")) {
+    const cap = await fetchCapture(c.timestamp, s.foundAt);
+    if (cap.text.includes(token)) return { archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, sha256: cap.sha256, cites: token };
+  }
+  throw new Error(`${s.foundAt}: no archived capture cites ${token}`);
+}
 
 export async function importGather(id, dir) {
   const ed = EDITIONS[id];
@@ -76,20 +94,20 @@ export async function importGather(id, dir) {
         printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: got.length });
       out.push(...got.map(r => ({ ...r, source: `page ${cap.captureTimestamp}` })));
     } else if (s.kind === "graphic") {
-      const buf = readFileSync(join(dir, s.file)), hash = sha256(buf);
+      const buf = readFileSync(join(dir, s.file)), hash = sha256(buf), receipt = await receiptFor(s);
       for (const day of days) {
         const n = got.filter(r => r.day === day).length;
-        ledgerDays[day - 1].sources.push({ kind: "graphic", file: basename(s.file), imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published,
-          rehostedBy: s.rehostedBy, fetchedAt: s.fetchedAt, printed: s.printed[day], sha256: hash, bytes: buf.length, rows: n });
+        ledgerDays[day - 1].sources.push({ kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published,
+          rehostedBy: s.rehostedBy, fetchedAt: s.fetchedAt, printed: s.printed[day], sha256: hash, bytes: buf.length, rows: n, receipt });
         const rv = s.review || {};
         const onDay = l => (l || []).filter(x => x.startsWith(`d${day} `));
-        reviewDays.push({ day, date: ed.dates[day - 1][0], sha256: hash, imageUrl: s.imageUrl, reviewer: rc.reviewer, reviewedAt: rc.reviewedAt,
+        reviewDays.push({ day, date: ed.dates[day - 1][0], sha256: hash, imageUrl: s.imageUrl, reviewer: REVIEWER, reviewedAt: rc.reviewedAt,
           rowsConfirmed: n, note: `Header read off the graphic: ${s.printed[day]}`,
           method: "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
           ocrMatchedBoth: n - onDay(rv.byEye).length, byEye: onDay(rv.byEye),
           printedReadings: got.filter(r => r.day === day && /PRINTED|sic/i.test(r.note)).map(r => `${r.artist}: ${r.note}`) });
       }
-      out.push(...got.map(r => ({ ...r, source: basename(s.file) })));
+      out.push(...got.map(r => ({ ...r, source: `graphic ${hash.slice(0, 12)}` })));
     } else throw new Error(`source ${s.match}: kind ${s.kind}`);
   }
 
@@ -99,7 +117,7 @@ export async function importGather(id, dir) {
   out.sort((a, b) => a.day - b.day || stageOrder.indexOf(a.stage) - stageOrder.indexOf(b.stage) || night(a.start) - night(b.start));
   const cols = ["day", "stage", "start", "end", "artist", "openEnd", "source"];
   writeFileSync(join(ROOT, `data/historical/sheets/${id}.tsv`), [cols.join("\t"), ...out.map(r => cols.map(c => r[c] ?? "").join("\t"))].join("\n") + "\n");
-  const ledger = { id, method: "official_sources", official: rc.official, gathered: `historical-gather/${basename(dir)}`, days: ledgerDays, excluded };
+  const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
   if (reviewDays.length) {
     mkdirSync(join(ROOT, "data/historical/review"), { recursive: true });
@@ -114,6 +132,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   try {
     const { out, ledger, excluded } = await importGather(id, dir);
     console.log(`▸ ${id}: ${out.length} printed rows · ${excluded.length} excluded`);
-    for (const d of ledger.days) console.log(`  day ${d.day} ${d.date}: ${d.sources.map(s => `${s.kind} ${s.captureTimestamp || s.file} ${s.rows}`).join(" + ")}`);
+    for (const d of ledger.days) console.log(`  day ${d.day} ${d.date}: ${d.sources.map(s => `${s.kind} ${s.captureTimestamp || s.sha256.slice(0, 12)} ${s.rows}`).join(" + ")}`);
   } catch (e) { console.error(`✗ ${e.message}`); process.exit(1); }
 }

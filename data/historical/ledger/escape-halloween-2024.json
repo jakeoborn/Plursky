@@ -2,7 +2,6 @@
   "id": "escape-halloween-2024",
   "method": "official_sources",
   "official": "https://escapehalloween.com/lineup/set-times/",
-  "gathered": "historical-gather/escape-halloween-2024",
   "days": [
     {
       "day": 1,
@@ -10,7 +9,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "x-Gac-PdSWwAAz3Qe.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -19,11 +17,16 @@
           "printed": "FRIDAY, OCT 25",
           "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
           "bytes": 336975,
-          "rows": 42
+          "rows": 42,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-PdSWwAAz3Qe"
+          }
         },
         {
           "kind": "graphic",
-          "file": "x-Gac-P1vWEAA_2dT.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -32,11 +35,16 @@
           "printed": "FRIDAY, OCTOBER 25",
           "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
           "bytes": 281009,
-          "rows": 23
+          "rows": 23,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-P1vWEAA_2dT"
+          }
         },
         {
           "kind": "graphic",
-          "file": "x-Gac-PrkWkAEGuDe.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -45,7 +53,13 @@
           "printed": "AFTER PARTY SET TIMES · FRIDAY, OCT 25 · OCTOBER 25 + 26, 2024",
           "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
           "bytes": 225084,
-          "rows": 3
+          "rows": 3,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-PrkWkAEGuDe"
+          }
         }
       ]
     },
@@ -55,7 +69,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "x-Gac-PdSWwAAz3Qe.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -64,11 +77,16 @@
           "printed": "SATURDAY, OCT 26",
           "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
           "bytes": 336975,
-          "rows": 42
+          "rows": 42,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-PdSWwAAz3Qe"
+          }
         },
         {
           "kind": "graphic",
-          "file": "x-Gac-P1vWEAA_2dT.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -77,11 +95,16 @@
           "printed": "SATURDAY, OCTOBER 26",
           "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
           "bytes": 281009,
-          "rows": 21
+          "rows": 21,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-P1vWEAA_2dT"
+          }
         },
         {
           "kind": "graphic",
-          "file": "x-Gac-PrkWkAEGuDe.jpg",
           "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
           "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
           "published": "2024-10-18",
@@ -90,7 +113,13 @@
           "printed": "AFTER PARTY SET TIMES · SATURDAY, OCT 26 · OCTOBER 25 + 26, 2024",
           "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
           "bytes": 225084,
-          "rows": 3
+          "rows": 3,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+            "captureTimestamp": "20241111234903",
+            "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+            "cites": "Gac-PrkWkAEGuDe"
+          }
         }
       ]
     }

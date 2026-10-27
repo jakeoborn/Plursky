@@ -46,13 +46,17 @@ official graphic re-hosted by an approved host (`REHOST_HOSTS` in
 `validate.mjs`: EDM Identity, X media, per ruling A). A graphic carries its
 receipt: image URL, the page it was found on and that page's publish date (in
 the edition year, on or before its last day), the fetch date, the printed
-header, its sha256 and its row count. The sources' row counts must sum to what
+header, its sha256 and its row count, plus a Wayback capture of the page it
+was found on that cites the image (`receipt`). The header must print the
+day's weekday, month and day of month, and any year it prints must be the
+edition's. The sources' row counts must sum to what
 each day keeps and drops, and every graphic needs a signed review entry for
 its exact hash. A first-party capture replaces a re-host when one turns up.
 
-    node scripts/historical/import-gather.mjs <edition-id> ~/Plursky-private/historical-gather/<edition-id>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
 
-The gather folder holds the reviewed `sheet.tsv` and a `receipts.json`;
+The gather folder (kept outside the repo; its paths and file names never
+enter it) holds the reviewed `sheet.tsv` and a `receipts.json`;
 page sources are re-read through `wayback.mjs` and must equal the sheet row
 for row.
 

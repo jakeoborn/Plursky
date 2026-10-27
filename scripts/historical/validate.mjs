@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { datedLabel, dayMinutes, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -25,6 +25,13 @@ export const OFFICIAL_HOSTS = {
 export const REHOST_HOSTS = {
   "pbs.twimg.com": "X (Twitter) media",
   "edmidentity.com": "EDM Identity",
+};
+
+// Where the page citing a graphic may live, by the graphic's host: EDM
+// Identity posts carry their own uploads and X media they re-upload.
+export const RECEIPT_HOSTS = {
+  "edmidentity.com": ["edmidentity.com"],
+  "pbs.twimg.com": ["edmidentity.com"],
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -162,6 +169,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
       if (!r) { p.push(`${e.id} day ${c.day}: graphic ${c.sha256?.slice(0, 12)} is not in the review manifest (or was reviewed as a different file)`); continue; }
       if (!r.reviewer || !r.reviewedAt) p.push(`${e.id} day ${c.day}: review not signed`);
       if (r.rowsConfirmed !== c.rows) p.push(`${e.id} day ${c.day}: ${r.rowsConfirmed} rows confirmed against the graphic's pixels, the source claims ${c.rows}`);
+      if (r.imageUrl !== c.imageUrl) p.push(`${e.id} day ${c.day}: the review of ${c.sha256?.slice(0, 12)} names image ${r.imageUrl || "(none)"}, the source cites ${c.imageUrl}`);
     }
   }
 
@@ -206,6 +214,7 @@ function officialSources(e, meta, p) {
       const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
       if (!official && !REHOST_HOSTS[host]) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
       if (!/^https:\/\//.test(c.foundAt || "")) p.push(`${tag}: graphic has no page it was found on`);
+      else receiptLinks(c, e, official, host, tag, p);
       if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);
       // The receipt: the re-host was published in the edition's year, no
       // later than its last day (a pre-event schedule, not a later recap).
@@ -213,7 +222,30 @@ function officialSources(e, meta, p) {
         p.push(`${tag}: re-host published ${c.published || "(no date)"}, not in ${e.year} on or before ${lastDay}`);
       if (!DAY.test(c.fetchedAt || "")) p.push(`${tag}: graphic has no fetch date`);
       if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
+      else if (!graphicPrints(c.printed, date, e.year, meta.dates.map(([d]) => d)))
+        p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
+}
+
+// A graphic's page is linked to the graphic, not just named: the page sits on
+// a host that carries that image host's graphics (an EDM Identity post's
+// /YYYY/MM/DD/ path is its publish date), and a Wayback capture of exactly
+// that page cites the image. The importer found the citation in the
+// capture; the validator holds the record to that page and that image.
+function receiptLinks(c, e, official, host, tag, p) {
+  const page = hostOf(c.foundAt);
+  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[host] || [];
+  if (!allowed.some(h => page === h || page.endsWith("." + h))) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
+  const dated = /^\/(\d{4})\/(\d{2})\/(\d{2})\//.exec(new URL(c.foundAt).pathname);
+  if (page === "edmidentity.com" && (!dated || dated.slice(1).join("-") !== c.published))
+    p.push(`${tag}: found-at page ${c.foundAt} is not dated ${c.published}`);
+  const r = c.receipt;
+  if (!r) return p.push(`${tag}: graphic has no receipt capture of the page it was found on`);
+  const m = WAYBACK.exec(r.archivedUrl || "");
+  if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
+  else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  if (!/^[0-9a-f]{64}$/.test(r.sha256 || "")) p.push(`${tag}: receipt capture hash missing`);
+  if (r.cites !== citeToken(c.imageUrl)) p.push(`${tag}: receipt cites ${r.cites || "(nothing)"}, not the graphic ${citeToken(c.imageUrl)}`);
 }

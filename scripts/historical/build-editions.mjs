@@ -73,7 +73,7 @@ export function buildEdition(id, rows, ledger) {
       ? ledger.days.flatMap(d => d.sources.map(s => s.kind === "page"
         ? { day: d.day, kind: "page", archivedUrl: s.archivedUrl, captureTimestamp: s.captureTimestamp, printed: s.printed, sha256: s.sha256, rows: s.rows }
         : { day: d.day, kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published, rehostedBy: s.rehostedBy,
-            fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, reviewManifest: `data/historical/review/${id}.json` }))
+            fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, receipt: s.receipt, reviewManifest: `data/historical/review/${id}.json` }))
       : ledger.days.filter(d => !d.blocked).map(d => ed.method === "structured_html"
       ? { day: d.day, archivedUrl: d.archivedUrl, captureTimestamp: d.chosen, sha256: d.sha256 }
       : { day: d.day, pageArchivedUrl: d.pageArchivedUrl, pageCapture: d.pageCapture, imageArchivedUrl: d.imageArchivedUrl,
