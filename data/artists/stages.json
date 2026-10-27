@@ -626,6 +626,101 @@
     }
    ]
   },
+  "escape-halloween": {
+   "lineages": [
+    {
+     "id": "escape-halloween:sewer-district",
+     "names": [
+      {
+       "printed": "Sewer District",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cage",
+     "names": [
+      {
+       "printed": "The Cage",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:danse-macabre",
+     "names": [
+      {
+       "printed": "Danse Macabre",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:feeding-grounds",
+     "names": [
+      {
+       "printed": "Feeding Grounds",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-big-top",
+     "names": [
+      {
+       "printed": "The Big Top",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "governors-ball": {
    "lineages": [
     {

@@ -143,11 +143,17 @@ const lineupDays = [...new Set(ds.artists.map(a => a.day))];
 if (DAYS_FROM_SHEET && lineupDays.filter(d => d != null).length > 1)
   die(`--days-from-sheet is for a lineup with no per-act day, but ${fid}'s acts already sit on days ${lineupDays.join("/")}`, 2);
 
+// actOf holds every act on a day|name key, in lineup order. Two entries with
+// the SAME printed name on one day are one act's repeat sets (Escape's art-car
+// doubles, Outside Lands' Death Cab): the sheet's rows for that name fill them
+// in start order below. Two DIFFERENT names that only normalise together are
+// still refused — that is the collision the key exists to catch.
 const actOf = new Map(), byName = new Map(), errors = [];
 for (const a of ds.artists) {
   const k = `${a.day}|${norm(a.name)}`;
-  if (actOf.has(k)) errors.push(`lineup: "${a.name}" and "${actOf.get(k).name}" normalise to the same key on day ${a.day}`);
-  actOf.set(k, a);
+  const same = actOf.get(k);
+  if (same && same[0].name !== a.name) errors.push(`lineup: "${a.name}" and "${same[0].name}" normalise to the same key on day ${a.day}`);
+  actOf.set(k, [...(same || []), a]);
   const n = norm(a.name);
   byName.set(n, byName.has(n) ? null : a);           // null: the name is on more than one act
 }
@@ -157,7 +163,12 @@ for (const a of ds.artists) {
 // --days-from-sheet, or for an act whose day is null (Escape's lineup-card
 // acts), the name alone matches and the sheet's day is written with the row.
 const sched = new Map();                              // id → { stage, start, end, name, day, writeDay }
-for (const r of rows) {
+// Rows are matched in night order (day, then start), so a repeat act's first
+// set always takes its first lineup entry — sheet order never decides. An
+// unreadable time sorts last; it fails below either way.
+const rowKey = r => [dayOf.get(String(r.day).trim()) ?? dayOf.get(norm(r.day)) ?? 99, hhmm(r.start) ? nightMin(hhmm(r.start)) : 1e9, r.ln];
+const ordered = [...rows].sort((x, y) => { const a = rowKey(x), b = rowKey(y); return (a[0] - b[0]) || (a[1] - b[1]) || (a[2] - b[2]); });
+for (const r of ordered) {
   const at = `row ${r.ln} "${r.artist}"`;
   const day = dayOf.get(String(r.day).trim()) ?? dayOf.get(norm(r.day));
   const stage = stageOf.get(stageKey(r.stage));
@@ -169,7 +180,8 @@ for (const r of rows) {
   if (!start || !end) errors.push(`${at}: unreadable time "${r.start}" – "${r.end}"`);
   else if (nightMin(end) <= nightMin(start)) errors.push(`${at}: ends ${end} at or before it starts ${start}`);
   if (!day) continue;
-  let act = DAYS_FROM_SHEET ? null : actOf.get(`${day}|${norm(r.artist)}`), writeDay = false;
+  const entries = DAYS_FROM_SHEET ? null : actOf.get(`${day}|${norm(r.artist)}`);
+  let act = entries ? (entries.find(a => !sched.has(a.id)) || entries[0]) : null, writeDay = false;
   if (!act) {
     const cand = byName.get(norm(r.artist));
     if (cand && (DAYS_FROM_SHEET || cand.day == null)) { act = cand; writeDay = true; }

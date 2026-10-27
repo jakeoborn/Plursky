@@ -619,7 +619,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-acyan-d2"
+   "escape-halloween-2026:esc-acyan-d2",
+   "escape-halloween-2026:esc-acyan-d2-s2"
   ],
   "firstSeen": "2026-10-31",
   "lastSeen": "2026-10-31",
@@ -1470,8 +1471,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-all-rise"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -3141,6 +3142,21 @@
   "links": []
  },
  {
+  "key": "b2",
+  "name": "B2",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-b2-d1"
+  ],
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "b3k",
   "name": "B3K",
   "aliases": [],
@@ -3970,6 +3986,21 @@
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "benni-ola",
+  "name": "Benni Ola",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-benni-ola-d1"
+  ],
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -6215,7 +6246,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-cat-and-maomi-d2"
+   "escape-halloween-2026:esc-cat-and-maomi-d2",
+   "escape-halloween-2026:esc-cat-and-maomi-d2-s2"
   ],
   "firstSeen": "2026-10-31",
   "lastSeen": "2026-10-31",
@@ -7465,8 +7497,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-coe"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -7637,8 +7669,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-comadoses"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -7910,6 +7942,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "craymak",
+  "name": "CRaymak",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-craymak-d2"
+  ],
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -9049,8 +9096,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-death-simulator"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -9320,8 +9367,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-desa-deca"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -9684,11 +9731,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecu11",
-   "escape-halloween-2026:esc-discovery-project-d1",
    "dreamstate-socal-2026:dssc-discovery-project",
    "countdown-nye-2026:cdny-discovery-project"
   ],
-  "firstSeen": "2026-10-30",
+  "firstSeen": "2026-11-08",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -10867,6 +10913,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2026-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dr-greco",
+  "name": "Dr. Greco",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-dr-greco-d1"
+  ],
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -13467,6 +13528,21 @@
   "links": []
  },
  {
+  "key": "fvlako",
+  "name": "FVLAKO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-fvlako-d2"
+  ],
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fyutch-and-aura-v",
   "name": "FYÜTCH & AURA V",
   "aliases": [],
@@ -13960,11 +14036,12 @@
   ],
   "projects": [],
   "billings": [
+   "escape-halloween-2026:esc-girl-math-d2",
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:2030:girl-math",
    "edc-las-vegas-2025:d3:cosmic-meadow:2000:girl-math-vnssa-b2b-nala"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-06-27",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -15520,8 +15597,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-hiwater"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -15668,8 +15745,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-honeypacq"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -15905,10 +15982,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-unscheduled-hua"
+   "escape-halloween-2026:esc-roroll-b2b-hua-d1"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -16199,21 +16276,6 @@
   ],
   "firstSeen": "2026-03-27",
   "lastSeen": "2026-11-08",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "ice-cube",
-  "name": "Ice Cube",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "escape-halloween-2026:esc-ice-cube-d2"
-  ],
-  "firstSeen": "2026-10-31",
-  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -16853,6 +16915,21 @@
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ja-rule",
+  "name": "Ja Rule",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-ja-rule-d2"
+  ],
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -18486,7 +18563,8 @@
   "projects": [],
   "billings": [
    "nocturnal-wonderland-2026:nw-juos",
-   "escape-halloween-2026:esc-andruss-b2b-juos-d2"
+   "escape-halloween-2026:esc-andruss-b2b-juos-d2",
+   "escape-halloween-2026:esc-juos-d2"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-10-31",
@@ -19457,15 +19535,18 @@
  {
   "key": "killmatter",
   "name": "Killmatter",
-  "aliases": [],
+  "aliases": [
+   "KILLMATTER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu22"
+   "lost-lands-2026:llu22",
+   "escape-halloween-2026:esc-killmatter-d2"
   ],
   "firstSeen": "2026-09-20",
-  "lastSeen": "2026-09-20",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -19509,8 +19590,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-kimmo"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -20261,10 +20342,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "escape-halloween-2026:esc-lady-sinclair-d1",
    "edc-las-vegas-2025:d1:metaphoenix:2130:lady-sinclair"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2025-05-16",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -20446,8 +20528,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-landopolo"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -22663,7 +22745,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "matteo-and-friends-b2b"
+  ],
   "billings": [
    "edc-lv-2026:c18",
    "edc-orlando-2026:ecf24",
@@ -22980,7 +23064,7 @@
    "hard-summer-2025:d1:locals-only-ice-cream-truck:1730:marie-nyx"
   ],
   "firstSeen": "2025-08-02",
-  "lastSeen": "2025-08-02",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -23093,7 +23177,7 @@
    "hard-summer-2025:d1:beatbox-boombox-art-car:1500:mark-lizaola"
   ],
   "firstSeen": "2025-08-02",
-  "lastSeen": "2025-08-02",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -23475,6 +23559,23 @@
   ],
   "firstSeen": "2026-11-20",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "matteo-and-friends-b2b",
+  "name": "Matteo & Friends B2B",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "malugi"
+  ],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-malugi-presents-matteo-and-friends-b2b-d2"
+  ],
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -24864,8 +24965,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-monic"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -24984,7 +25085,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-morelia-d1"
+   "escape-halloween-2026:esc-morelia-d1",
+   "escape-halloween-2026:esc-morelia-b2b-pixie-dust-d1"
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
@@ -25147,6 +25249,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mr-fowler",
+  "name": "Mr. Fowler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-mr-fowler-d1"
+  ],
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -26355,8 +26472,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-nina-j"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -28502,6 +28619,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "escape-halloween-2026:esc-morelia-b2b-pixie-dust-d1",
    "escape-halloween-2026:esc-pixie-dust-d1"
   ],
   "firstSeen": "2026-10-30",
@@ -29843,8 +29961,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-richard-vission"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -30465,10 +30583,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2026:esc-unscheduled-roroll"
+   "escape-halloween-2026:esc-roroll-b2b-hua-d1"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -30879,10 +30997,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "escape-halloween-2026:esc-sabrosura-boyz-d1",
    "edc-las-vegas-2025:d2:blacklight-bar:0145:sabrosura-boyz"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -31784,8 +31903,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-seung"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
   "photo": null,
   "links": []
  },
@@ -31899,7 +32018,7 @@
    "hard-summer-2025:d2:beatbox-boombox-art-car:1500:shaking"
   ],
   "firstSeen": "2025-08-03",
-  "lastSeen": "2026-08-01",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -32482,10 +32601,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2026:hs1-sim-ivy"
+   "hard-summer-2026:hs1-sim-ivy",
+   "escape-halloween-2026:esc-sim-ivy-d2"
   ],
   "firstSeen": "2026-08-01",
-  "lastSeen": "2026-08-01",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -33276,6 +33396,21 @@
   "links": []
  },
  {
+  "key": "solitaire",
+  "name": "Solitaire",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-solitaire-d1"
+  ],
+  "firstSeen": "2026-10-30",
+  "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "solomon-hicks",
   "name": "Solomon Hicks",
   "aliases": [],
@@ -33776,8 +33911,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-spency-be"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -37083,6 +37218,21 @@
   "links": []
  },
  {
+  "key": "too-hort",
+  "name": "Too $hort",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2026:esc-too-hort-d2"
+  ],
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tops",
   "name": "TOPS",
   "aliases": [],
@@ -37687,8 +37837,8 @@
   "billings": [
    "escape-halloween-2026:esc-unscheduled-tykni"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2026-10-31",
+  "lastSeen": "2026-10-31",
   "photo": null,
   "links": []
  },
@@ -38513,9 +38663,7 @@
  {
   "key": "vnssa",
   "name": "VNSSA",
-  "aliases": [
-   "VNSSA B2B ????"
-  ],
+  "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -38524,12 +38672,11 @@
   "billings": [
    "edc-lv-2026:c5",
    "arc-2026:arc-walker-and-royce-b2b-vnssa-midway-d3",
-   "escape-halloween-2026:esc-vnssa-b2b-qqqq-d2",
    "edc-las-vegas-2025:d1:stereo-bloom:0315:vnssa",
    "hard-summer-2025:d1:harder-stage:1815:walker-and-royce-b2b-vnssa"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
  },
