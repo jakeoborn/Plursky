@@ -83895,6 +83895,198 @@
   "mainStage": null
  },
  {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:1300:d3v",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "D3V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d3v",
+    "role": "performer"
+   }
+  ],
+  "act": "d3v",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:1400:doc-brown",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "DOC BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doc-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "doc-brown",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:1530:sharps",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "SHARPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sharps",
+    "role": "performer"
+   }
+  ],
+  "act": "sharps",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:1700:mahalo",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "17:00",
+  "end": "19:30",
+  "printed": "MAHALO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahalo",
+    "role": "performer"
+   }
+  ],
+  "act": "mahalo",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:1930:corporate-slackrs",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "CORPORATE SLACKRS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corporate-slackrs",
+    "role": "performer"
+   }
+  ],
+  "act": "corporate-slackrs",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:2030:party-favor",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "PARTY FAVOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "party-favor",
+    "role": "performer"
+   }
+  ],
+  "act": "party-favor",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:2130:kayoh",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "KAYOH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayoh",
+    "role": "performer"
+   }
+  ],
+  "act": "kayoh",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d1:corona-electric-beach:2230:landis",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-10",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "LANDIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "landis",
+    "role": "performer"
+   }
+  ],
+  "act": "landis",
+  "closing": true,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
   "id": "edc-orlando-2017:d2:kineticfield:1300:damaged-goods",
   "source": "edition",
   "festivalId": "edc-orlando-2017",
@@ -84809,6 +85001,176 @@
   "act": "steven-spence",
   "closing": true,
   "stageLineage": "edc-orlando:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:1400:dead-space",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "DEAD SPACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dead-space",
+    "role": "performer"
+   }
+  ],
+  "act": "dead-space",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:1530:carbetta-and-doons",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "CARBETTA & DOONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carbetta-and-doons",
+    "role": "performer"
+   }
+  ],
+  "act": "carbetta-and-doons",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:1700:clips-x-ahoy-and-hype-turner",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "17:00",
+  "end": "19:30",
+  "printed": "CLIPS X AHOY & HYPE TURNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clips-x-ahoy-and-hype-turner",
+    "role": "act"
+   }
+  ],
+  "act": "clips-x-ahoy-and-hype-turner",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:1930:el-dusty",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "EL DUSTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-dusty",
+    "role": "performer"
+   }
+  ],
+  "act": "el-dusty",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "A-TRAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "performer"
+   }
+  ],
+  "act": "a-trak",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:2130:bonnie-x-clyde",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "BONNIE X CLYDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonnie-x-clyde",
+    "role": "act"
+   }
+  ],
+  "act": "bonnie-x-clyde",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "edc-orlando-2017:d2:corona-electric-beach:2230:nitti-gritti-and-sam-f",
+  "source": "edition",
+  "festivalId": "edc-orlando-2017",
+  "festivalBrand": "edc-orlando",
+  "year": 2017,
+  "date": "2017-11-11",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "NITTI GRITTI & SAM F",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nitti-gritti-and-sam-f",
+    "role": "performer"
+   }
+  ],
+  "act": "nitti-gritti-and-sam-f",
+  "closing": true,
+  "stageLineage": "edc-orlando:corona-electric-beach",
   "mainStage": null
  },
  {
@@ -93401,6 +93763,275 @@
   "mainStage": null
  },
  {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1300:taylor-jaymin",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "TAYLOR JAYMIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-jaymin",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-jaymin",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1400:corey-divine",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "COREY DIVINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corey-divine",
+    "role": "performer"
+   }
+  ],
+  "act": "corey-divine",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1500:purple",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "PURPLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple",
+    "role": "performer"
+   }
+  ],
+  "act": "purple",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1600:party-shirt",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "PARTY SHIRT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "party-shirt",
+    "role": "performer"
+   }
+  ],
+  "act": "party-shirt",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1700:truth-x-lies",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TRUTH X LIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "truth-x-lies",
+    "role": "act"
+   }
+  ],
+  "act": "truth-x-lies",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1800:corrupt-uk",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CORRUPT (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corrupt-uk",
+    "role": "performer"
+   }
+  ],
+  "act": "corrupt-uk",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ROHAAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rohaan",
+    "role": "performer"
+   }
+  ],
+  "act": "rohaan",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:2000:oddkidout",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "ODDKIDOUT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oddkidout",
+    "role": "performer"
+   }
+  ],
+  "act": "oddkidout",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:2100:softest-hard",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "SOFTEST HARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "softest-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "softest-hard",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:2200:capozzi",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "CAPOZZI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capozzi",
+    "role": "performer"
+   }
+  ],
+  "act": "capozzi",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-11",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "4B B2B MIKEY BARRENECHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4b",
+    "role": "b2b"
+   },
+   {
+    "key": "mikey-barreneche",
+    "role": "b2b"
+   }
+  ],
+  "act": "4b-b2b-mikey-barreneche",
+  "closing": true,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
   "id": "edc-orlando-2022:d2:kinetic-field:1300:doozie",
   "source": "edition",
   "festivalId": "edc-orlando-2022",
@@ -94602,6 +95233,270 @@
   "mainStage": null
  },
  {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1300:fixion",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "FIXION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fixion",
+    "role": "performer"
+   }
+  ],
+  "act": "fixion",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1400:juuku",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "JUUKU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juuku",
+    "role": "performer"
+   }
+  ],
+  "act": "juuku",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1500:avello",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "AVELLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avello",
+    "role": "performer"
+   }
+  ],
+  "act": "avello",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1600:taylor-kade",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "TAYLOR KADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-kade",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-kade",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1700:highlnd",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "HIGHLND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "highlnd",
+    "role": "performer"
+   }
+  ],
+  "act": "highlnd",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1800:if-found",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "IF FOUND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "if-found",
+    "role": "performer"
+   }
+  ],
+  "act": "if-found",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:1900:danny-olson",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "DANNY OLSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-olson",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-olson",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:2000:pauline-herr",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "PAULINE HERR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pauline-herr",
+    "role": "performer"
+   }
+  ],
+  "act": "pauline-herr",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:2100:codeko",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "CODEKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codeko",
+    "role": "performer"
+   }
+  ],
+  "act": "codeko",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:2200:yetep",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "YETEP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yetep",
+    "role": "performer"
+   }
+  ],
+  "act": "yetep",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d2:corona-electric-beach:2300:armnhmr",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-12",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "ARMNHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": true,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
   "id": "edc-orlando-2022:d3:kinetic-field:1300:yokai",
   "source": "edition",
   "festivalId": "edc-orlando-2022",
@@ -95715,6 +96610,250 @@
   "act": "kozmoz",
   "closing": true,
   "stageLineage": "edc-orlando:rynobus",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1300:birmingham-drive-presents-fll-snd",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:30",
+  "printed": "BIRMINGHAM DRIVE PRESENTS FLL SND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fll-snd",
+    "role": "project"
+   }
+  ],
+  "act": "birmingham-drive-presents-fll-snd",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1430:prankstisci",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "PRANKSTISCI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prankstisci",
+    "role": "performer"
+   }
+  ],
+  "act": "prankstisci",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1530:mednas",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "MEDNAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mednas",
+    "role": "performer"
+   }
+  ],
+  "act": "mednas",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1630:edgar-v",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "EDGAR V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "edgar-v",
+    "role": "performer"
+   }
+  ],
+  "act": "edgar-v",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1730:landis",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "LANDIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "landis",
+    "role": "performer"
+   }
+  ],
+  "act": "landis",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1830:gianni-blu",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "GIANNI BLU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gianni-blu",
+    "role": "performer"
+   }
+  ],
+  "act": "gianni-blu",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:1930:kaleena-zanders",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "KALEENA ZANDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaleena-zanders",
+    "role": "performer"
+   }
+  ],
+  "act": "kaleena-zanders",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:2030:francis-mercier",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "FRANCIS MERCIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francis-mercier",
+    "role": "performer"
+   }
+  ],
+  "act": "francis-mercier",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:2200:black-v-neck-latin-house-set",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "BLACK V NECK (LATIN HOUSE SET)",
+  "setTag": "LATIN HOUSE SET",
+  "performers": [
+   {
+    "key": "black-v-neck",
+    "role": "performer"
+   }
+  ],
+  "act": "black-v-neck",
+  "closing": false,
+  "stageLineage": "edc-orlando:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair",
+  "source": "edition",
+  "festivalId": "edc-orlando-2022",
+  "festivalBrand": "edc-orlando",
+  "year": 2022,
+  "date": "2022-11-13",
+  "day": 3,
+  "stage": "Corona Electric Beach",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "MATRODA B2B BLEU CLAIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "b2b"
+   },
+   {
+    "key": "bleu-clair",
+    "role": "b2b"
+   }
+  ],
+  "act": "matroda-b2b-bleu-clair",
+  "closing": true,
+  "stageLineage": "edc-orlando:corona-electric-beach",
   "mainStage": null
  },
  {
@@ -109316,6 +110455,246 @@
   "act": "testpilot",
   "closing": true,
   "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:1600:wires",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "WIRES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wires",
+    "role": "performer"
+   }
+  ],
+  "act": "wires",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:1700:kozik-and-sueldo",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "KOZIK & SUELDO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kozik-and-sueldo",
+    "role": "performer"
+   }
+  ],
+  "act": "kozik-and-sueldo",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:1800:whales",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "WHALES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whales",
+    "role": "performer"
+   }
+  ],
+  "act": "whales",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:1900:bloodthinnerz",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BLOODTHINNERZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bloodthinnerz",
+    "role": "performer"
+   }
+  ],
+  "act": "bloodthinnerz",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:2000:benda",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "BENDA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benda",
+    "role": "performer"
+   }
+  ],
+  "act": "benda",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:2100:og-nixin",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "OG NIXIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "og-nixin",
+    "role": "performer"
+   }
+  ],
+  "act": "og-nixin",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:2200:algo",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "ALGO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "algo",
+    "role": "performer"
+   }
+  ],
+  "act": "algo",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:2300:hami",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "HAMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hami",
+    "role": "performer"
+   }
+  ],
+  "act": "hami",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:0000:mvrvels",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "MVRVELS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mvrvels",
+    "role": "performer"
+   }
+  ],
+  "act": "mvrvels",
+  "closing": false,
+  "stageLineage": "escape-halloween:crazy-town",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2019:d2:crazy-town:0100:akronym",
+  "source": "edition",
+  "festivalId": "escape-halloween-2019",
+  "festivalBrand": "escape-halloween",
+  "year": 2019,
+  "date": "2019-10-26",
+  "day": 2,
+  "stage": "Crazy Town",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "AKRONYM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "akronym",
+    "role": "performer"
+   }
+  ],
+  "act": "akronym",
+  "closing": true,
+  "stageLineage": "escape-halloween:crazy-town",
   "mainStage": null
  },
  {

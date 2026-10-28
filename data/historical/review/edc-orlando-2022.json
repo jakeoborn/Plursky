@@ -86,6 +86,53 @@
     "ENDLESS SUMMER: SAM FELDT B2B JONAS BLUE: billing wraps over 2 printed lines, joined",
     "KALEEÑA ZANDERS: ambiguous glyph: tilde printed over the second E/N (artist styles it Kaleena)"
    ]
+  },
+  {
+   "day": 1,
+   "date": "2022-11-11",
+   "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 11,
+   "note": "Header read off the graphic: NOV 11 FRIDAY",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 10,
+   "byEye": [
+    "d1 Corona Electric Beach 18:00-19:00 CORRUPT (UK): by eye CORRUPT (UK) 6:00PM-7:00PM"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2022-11-12",
+   "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 11,
+   "note": "Header read off the graphic: SATURDAY NOV 12",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 11,
+   "byEye": [],
+   "printedReadings": []
+  },
+  {
+   "day": 3,
+   "date": "2022-11-13",
+   "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 10,
+   "note": "Header read off the graphic: NOV 13 SUNDAY",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 8,
+   "byEye": [
+    "d3 Corona Electric Beach 22:00-23:00 BLACK V NECK (LATIN HOUSE SET): \"(LATIN HOUSE SET)\" is printed small under the name; by eye 10PM-11PM",
+    "d3 Corona Electric Beach 13:00-14:30 BIRMINGHAM DRIVE PRESENTS FLL SND: \"PRESENTS\" is printed small between the names; by eye 1:00PM-2:30PM"
+   ],
+   "printedReadings": []
   }
  ]
 }

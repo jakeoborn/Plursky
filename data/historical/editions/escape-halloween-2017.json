@@ -1169,7 +1169,10 @@
      "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
      "captureTimestamp": "20220810223016",
      "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
-     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2017.json"
    },
@@ -1188,7 +1191,10 @@
      "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
      "captureTimestamp": "20220810223016",
      "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
-     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2017.json"
    }
