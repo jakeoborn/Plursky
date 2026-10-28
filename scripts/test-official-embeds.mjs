@@ -200,6 +200,15 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   const wf = readFileSync(path.join(root, '.github/workflows/embeds-weekly.yml'), 'utf8');
   check(!/gh issue|issues:\s*write/.test(wf), 'the weekly embeds job posts dead embeds in a public issue (report privately)');
   check(/head -n 1 embeds-report\.md/.test(wf) && !/cat embeds-report\.md/.test(wf), 'the weekly embeds job prints the dead-embed list to its public log');
+  // The printed causes are fixed labels: nothing from a reason reaches the log.
+  const leaky = ['accountSourceUrl returned 202', 'accountSourceUrl does not link the official account', 'oEmbed returned 404 (dead, private or not embeddable)',
+    'oEmbed returned non-JSON', 'post is not by the official account', 'YouTube upload date unreadable', 'YouTube player refuses embedded playback ("This video is unavailable")',
+    'url is not a x post/video/playlist URL', 'officialAccount is not a instagram account URL https://www.instagram.com/secretfest', 'accountSourceUrl returned 202 https://secret.example/'];
+  for (const r of leaky) check(!/https?:|secret|instagram\.com|\/p\//i.test(L.failureCause(r)), `a printed cause leaks its reason: ${L.failureCause(r)}`);
+  check(L.failureCause('accountSourceUrl returned 202') === 'festival site answered 202', 'a site\'s status is not in its printed cause');
+  check(L.failureCause('accountSourceUrl returned 202 https://secret.example/') === 'record invalid', 'a reason with trailing text matched a status cause');
+  check(L.failureCause('YouTube upload date unreadable') !== L.failureCause('post is not by the official account'), 'two different causes print alike');
+  check(L.causeTally(['post is not by the official account', 'accountSourceUrl returned 202', 'post is not by the official account']) === '2 author did not match, 1 festival site answered 202', 'the cause tally is wrong');
 }
 
 // ── 4. The committed pages ──────────────────────────────────────────────────

@@ -251,6 +251,29 @@ async function _verifyEmbed(e, fetcher, opts) {
   return { ok: true, reason: null, publishedAt, accountName };
 }
 
+// The weekly job's public log names no embed, but the CAUSE of each failure is
+// safe to print and tells the owner which check to look at. Fixed labels only:
+// nothing from the reason itself (a URL, a handle) reaches the log.
+const CAUSES = [
+  [/^accountSourceUrl returned (\d{3})$/, m => `festival site answered ${m[1]}`],
+  [/^accountSourceUrl does not link/, () => 'festival site no longer links the account'],
+  [/^oEmbed returned (\d{3}) /, m => `oEmbed answered ${m[1]}`],
+  [/^oEmbed returned (non-JSON|no embed)/, () => 'oEmbed returned no embed'],
+  [/^post is not by the official account$/, () => 'author did not match'],
+  [/^YouTube upload date unreadable$/, () => 'YouTube upload date unreadable'],
+  [/^YouTube player refuses/, () => 'YouTube player refused playback'],
+];
+export function failureCause(reason) {
+  for (const [re, label] of CAUSES) { const m = String(reason || '').match(re); if (m) return label(m); }
+  return 'record invalid';
+}
+// "2 author did not match, 1 festival site answered 202", largest first.
+export function causeTally(reasons) {
+  const n = new Map();
+  for (const r of reasons) { const c = failureCause(r); n.set(c, (n.get(c) || 0) + 1); }
+  return [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([c, k]) => `${k} ${c}`).join(', ');
+}
+
 // ── Selection + caps ──────────────────────────────────────────────────────
 export function loadEmbedData(root = REPO) {
   const read = f => { const p = path.join(root, 'data', f); return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null; };
