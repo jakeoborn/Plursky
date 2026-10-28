@@ -33,6 +33,27 @@ export const EDITIONS = {
       ["2025-10-10", "Friday"], ["2025-10-11", "Saturday"], ["2025-10-12", "Sunday"]],
     dayLabels: ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
+  // Escape: no single archived source covers most years. Each day lists its
+  // sources (an archived official page, or an official graphic re-hosted by
+  // the festival's X account or EDM Identity, ruling A) in ledger/<id>.json.
+  "escape-halloween-2017": { festivalId: "escape-halloween", name: "Escape Halloween 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-10-27", "Friday"], ["2017-10-28", "Saturday"]] },
+  "escape-halloween-2019": { festivalId: "escape-halloween", name: "Escape Halloween 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-10-25", "Friday"], ["2019-10-26", "Saturday"]] },
+  "escape-halloween-2021": { festivalId: "escape-halloween", name: "Escape Halloween 2021", year: 2021,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2021-10-29", "Friday"], ["2021-10-30", "Saturday"]] },
+  "escape-halloween-2022": { festivalId: "escape-halloween", name: "Escape Halloween 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
+  "escape-halloween-2024": { festivalId: "escape-halloween", name: "Escape Halloween 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2024-10-25", "Friday"], ["2024-10-26", "Saturday"]] },
+  "escape-halloween-2025": { festivalId: "escape-halloween", name: "Escape Halloween 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2025-10-31", "Friday"], ["2025-11-01", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
@@ -47,9 +68,17 @@ export const EDITIONS = {
 export const DROP_RULES = [
   { category: "bonus-tracks-stage", stage: /^bonus tracks$/i,
     reason: "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup" },
+  // Escape 2022 printed its silent disco as a whole stage ("DANSE MACABRE -
+  // SILENT DISCO"); the Silent Disco ruling drops it as a stage too.
+  { category: "operational", stage: /\bsilent disco\b/i,
+    reason: "operational programming, not a billed performance" },
+  // Escape 2024 printed its after-party (THE CAULDRON, 2AM-6AM) on a separate
+  // "AFTER PARTY SET TIMES" graphic, after the festival's close.
+  { category: "after-party", stage: /^after party\b/i,
+    reason: "after-party: printed separately, after the festival's close, not part of the festival schedule" },
   { category: "operational", test: /^(fireworks|closing fireworks|opening ceremony|closing ceremony|silent disco)$/i,
     reason: "operational programming, not a billed performance" },
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|tba|to be announced)$/i,
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|tba|to be announced)$/i,
     reason: "unnamed slot: no performer was billed" },
 ];
 
@@ -79,6 +108,8 @@ export const ACTIVITIES = {
 // every other billing and stage.
 export const PRINTED_NON_LATIN = {
   "beyond-wonderland-socal-2026": ["Cntrl Alt DΞLΞTΞ"],
+  // Read by eye on the official graphic (review/escape-halloween-2024.json).
+  "escape-halloween-2024": ["DAKЯΣD"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";

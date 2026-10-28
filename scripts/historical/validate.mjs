@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { dayMinutes, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -15,7 +15,27 @@ export const OFFICIAL_HOSTS = {
   "acl": ["aclfestival.com", "cdn.prod.website-files.com"],
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
+  "escape-halloween": ["escapehalloween.com"],
 };
+
+// Where an official graphic may be re-hosted for an `official_sources`
+// edition (ruling A): the image must visibly be the festival's own graphic,
+// and the page it was found on is recorded with its publish date. A first-
+// party capture replaces it when one turns up.
+export const REHOST_HOSTS = {
+  "pbs.twimg.com": "X (Twitter) media",
+  "edmidentity.com": "EDM Identity",
+};
+
+// Where the page citing a graphic may live, by the graphic's host: EDM
+// Identity posts carry their own uploads and X media they re-upload.
+export const RECEIPT_HOSTS = {
+  "edmidentity.com": ["edmidentity.com"],
+  "pbs.twimg.com": ["edmidentity.com"],
+};
+
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
+const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
 const WAYBACK = /^https:\/\/web\.archive\.org\/web\/(\d{14})\/(https?:\/\/[^/]+)\//;
@@ -51,7 +71,8 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
 
   // Provenance: every capture official, archived, and of the right year.
   if (!e.provenance?.captures?.length) p.push(`${e.id}: no provenance captures`);
-  for (const c of e.provenance?.captures || []) {
+  if (e.provenance?.extractionMethod === "official_sources") officialSources(e, meta, p);
+  else for (const c of e.provenance?.captures || []) {
     const url = c.archivedUrl || c.pageArchivedUrl;
     const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} day ${c.day}`);
     if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} day ${c.day}: page capture ${ts} is not from ${e.year}`);
@@ -131,6 +152,27 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     });
   }
 
+  // Every printed row of an official_sources day came from exactly one of
+  // its sources: the sources' row counts sum to what the day keeps and drops.
+  // Each graphic was reviewed against its pixels, row for row.
+  if (e.provenance?.extractionMethod === "official_sources") {
+    for (const d of e.days) {
+      const caps = e.provenance.captures.filter(c => c.day === d.day);
+      const kept = e.sets.filter(s => s.day === d.day).length, gone = dropped.filter(s => s.day === d.day).length;
+      const sum = caps.reduce((n, c) => n + (c.rows || 0), 0);
+      if (sum !== kept + gone) p.push(`${e.id} day ${d.day}: sources account for ${sum} printed rows, edition keeps ${kept} and drops ${gone}`);
+    }
+    const graphics = e.provenance.captures.filter(c => c.kind === "graphic");
+    if (graphics.length && !review) p.push(`${e.id}: re-hosted graphics with no visual-review manifest`);
+    else for (const c of graphics) {
+      const r = review.days?.find(x => x.day === c.day && x.sha256 === c.sha256);
+      if (!r) { p.push(`${e.id} day ${c.day}: graphic ${c.sha256?.slice(0, 12)} is not in the review manifest (or was reviewed as a different file)`); continue; }
+      if (!r.reviewer || !r.reviewedAt) p.push(`${e.id} day ${c.day}: review not signed`);
+      if (r.rowsConfirmed !== c.rows) p.push(`${e.id} day ${c.day}: ${r.rowsConfirmed} rows confirmed against the graphic's pixels, the source claims ${c.rows}`);
+      if (r.imageUrl !== c.imageUrl) p.push(`${e.id} day ${c.day}: the review of ${c.sha256?.slice(0, 12)} names image ${r.imageUrl || "(none)"}, the source cites ${c.imageUrl}`);
+    }
+  }
+
   // Image-derived editions need a signed review manifest that covers every row.
   if (e.provenance?.extractionMethod === "official_image_transcription") {
     if (!review) p.push(`${e.id}: image-derived edition has no visual-review manifest`);
@@ -147,4 +189,63 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     }
   }
   return p;
+}
+
+// official_sources: each capture is either an archived official page or an
+// official graphic with a dated re-host receipt. Either way it must print the
+// day it is cited for.
+function officialSources(e, meta, p) {
+  const lastDay = meta.dates[meta.dates.length - 1][0];
+  for (const c of e.provenance.captures) {
+    const tag = `${e.id} day ${c.day}`, date = meta.dates[c.day - 1]?.[0];
+    if (!date) { p.push(`${tag}: a source for a day the edition does not have`); continue; }
+    if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${tag}: artifact hash missing`);
+    if (!Number.isInteger(c.rows) || c.rows < 1) p.push(`${tag}: source carries no row count`);
+    if (c.kind === "page") {
+      const ts = officialArchive(c.archivedUrl, e.festivalId, e.year, p, tag);
+      // A post-event capture can fall in the next year (Escape 2019's set
+      // times survive only in an Aug 2020 capture). Its own day tab must
+      // still print this day's weekday and date in the edition year.
+      if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${tag}: page capture ${ts} is not from ${e.year} or the year after`);
+      if (ts && ts !== c.captureTimestamp) p.push(`${tag}: captureTimestamp ${c.captureTimestamp} ≠ the archived URL's ${ts}`);
+      if (datedLabel(c.printed, e.year) !== date) p.push(`${tag}: the page's day tab "${c.printed}" does not print ${date}`);
+    } else if (c.kind === "graphic") {
+      const host = hostOf(c.imageUrl);
+      const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
+      if (!official && !REHOST_HOSTS[host]) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
+      if (!/^https:\/\//.test(c.foundAt || "")) p.push(`${tag}: graphic has no page it was found on`);
+      else receiptLinks(c, e, official, host, tag, p);
+      if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);
+      // The receipt: the re-host was published in the edition's year, no
+      // later than its last day (a pre-event schedule, not a later recap).
+      if (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay)
+        p.push(`${tag}: re-host published ${c.published || "(no date)"}, not in ${e.year} on or before ${lastDay}`);
+      if (!DAY.test(c.fetchedAt || "")) p.push(`${tag}: graphic has no fetch date`);
+      if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
+      else if (!graphicPrints(c.printed, date, e.year, meta.dates.map(([d]) => d)))
+        p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
+    } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
+  }
+  for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
+}
+
+// A graphic's page is linked to the graphic, not just named: the page sits on
+// a host that carries that image host's graphics (an EDM Identity post's
+// /YYYY/MM/DD/ path is its publish date), and a Wayback capture of exactly
+// that page cites the image. The importer found the citation in the
+// capture; the validator holds the record to that page and that image.
+function receiptLinks(c, e, official, host, tag, p) {
+  const page = hostOf(c.foundAt);
+  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[host] || [];
+  if (!allowed.some(h => page === h || page.endsWith("." + h))) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
+  const dated = /^\/(\d{4})\/(\d{2})\/(\d{2})\//.exec(new URL(c.foundAt).pathname);
+  if (page === "edmidentity.com" && (!dated || dated.slice(1).join("-") !== c.published))
+    p.push(`${tag}: found-at page ${c.foundAt} is not dated ${c.published}`);
+  const r = c.receipt;
+  if (!r) return p.push(`${tag}: graphic has no receipt capture of the page it was found on`);
+  const m = WAYBACK.exec(r.archivedUrl || "");
+  if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
+  else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  if (!/^[0-9a-f]{64}$/.test(r.sha256 || "")) p.push(`${tag}: receipt capture hash missing`);
+  if (r.cites !== citeToken(c.imageUrl)) p.push(`${tag}: receipt cites ${r.cites || "(nothing)"}, not the graphic ${citeToken(c.imageUrl)}`);
 }

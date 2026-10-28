@@ -38,7 +38,29 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
-Then, for either path:
+Mixed official sources (`official_sources`, Escape): when no single archive
+covers an edition, each day lists its sources in the ledger. A source is an
+archived official page (Wayback, the festival's own host; a post-event capture
+may fall in the following year, but its day tab must print the day) or an
+official graphic re-hosted by an approved host (`REHOST_HOSTS` in
+`validate.mjs`: EDM Identity, X media, per ruling A). A graphic carries its
+receipt: image URL, the page it was found on and that page's publish date (in
+the edition year, on or before its last day), the fetch date, the printed
+header, its sha256 and its row count, plus a Wayback capture of the page it
+was found on that cites the image (`receipt`). The header must print the
+day's weekday, month and day of month, and any year it prints must be the
+edition's. The sources' row counts must sum to what
+each day keeps and drops, and every graphic needs a signed review entry for
+its exact hash. A first-party capture replaces a re-host when one turns up.
+
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+The gather folder (kept outside the repo; its paths and file names never
+enter it) holds the reviewed `sheet.tsv` and a `receipts.json`;
+page sources are re-read through `wayback.mjs` and must equal the sheet row
+for row.
+
+Then, for any path:
 
     node scripts/historical/build-editions.mjs
     # lock counts in expected-counts.json, then
@@ -50,8 +72,9 @@ Then, for either path:
   a `<title>` or a "closest" capture: EDC LV's June 2025 page is titled 2026.
 - Billing is verbatim as printed; stage names as printed (ACL's LADYBIRD and
   LADY BIRD are one stage; Lolla's DOLLAPALOOZA stays its own).
-- The whole Bonus Tracks stage, Fireworks, Silent Disco, bare unnamed slots
-  ("Special Guest") and non-music activities are **dropped**: not an artist,
+- The whole Bonus Tracks stage, Fireworks, Silent Disco (a billing or a whole
+  silent-disco stage), a separately printed after-party, bare unnamed slots
+  ("Special Guest", "Secret Guest") and non-music activities are **dropped**: not an artist,
   set, event or stage in any form. The sheets and review manifests keep them as printed, and the
   build records each dropped row with its reason in `ledger/<id>.json`
   (`dropped`). Rules and the activity list live in

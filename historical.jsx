@@ -215,6 +215,7 @@ function _HistLibrary({ state, setState }) {
 const _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
+  official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row",
 };
 
 function _HistProvenance({ edition, onClose }) {
@@ -226,21 +227,30 @@ function _HistProvenance({ edition, onClose }) {
     <FieldSheet title="About this schedule" onClose={onClose}>
       <div style={{ display: "grid", gap: 14, fontSize: 15, lineHeight: "21px" }}>
         <p style={{ margin: 0, color: "var(--text-2)" }}>
-          {_HIST_METHOD[p.extractionMethod] || "From the festival's official schedule"}, as archived by the Wayback Machine.
+          {_HIST_METHOD[p.extractionMethod] || "From the festival's official schedule"}{p.extractionMethod === "official_sources"
+            ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. "
+            : ", as archived by the Wayback Machine. "}
           Artist and stage names appear exactly as printed. Non-music activities are left out.
         </p>
         {p.official && <div><div style={{ fontSize: 13, color: "var(--text-2)" }}>Official source</div><div style={{ overflowWrap: "anywhere" }}>{p.official.replace(/^https?:\/\//, "")}</div></div>}
         {(p.captures || []).length > 0 && (
           <div>
-            <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>Archived captures</div>
-            {(p.captures || []).map((c, i) => (
+            <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>{p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"}</div>
+            {(p.captures || []).map((c, i, all) => {
+              // A day with several graphics from one post numbers them, so
+              // three "Official graphic" rows can be told apart.
+              const same = all.filter(x => x.kind === "graphic" && x.day === c.day);
+              const nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
+              return (
               <div key={i} style={{ padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
                 <div style={{ fontWeight: 600 }}>{dayLabel(c.day)}</div>
                 {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Set-times page · {stamp(c.captureTimestamp)}</a>}
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
+                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {stamp(c.published.replace(/-/g, ""))}</a></div>}
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -274,7 +284,7 @@ function _HistEdition({ meta, back }) {
   const e = res.status === "ready" ? res.data : null;
   const lineupOnly = meta.completeness === "lineup_only";
   const checked = React.useMemo(() => {
-    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
   }, [e]);
   const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"} · archived`;
@@ -301,7 +311,7 @@ function _HistEdition({ meta, back }) {
         {time(s)}{s.openEnd && <div style={{ fontSize: 11, color: "var(--text-3)" }}>no end time printed</div>}
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{view.artist[s.artistId]?.name}</div>
+        <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{s.billing || view.artist[s.artistId]?.name}</div>
         {sub && <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{sub}</div>}
       </div>
     </li>
@@ -320,7 +330,7 @@ function _HistEdition({ meta, back }) {
       </>
     );
   } else if (e && query) {
-    const hits = e.sets.filter(s => _histFold(view.artist[s.artistId]?.name).includes(query));
+    const hits = e.sets.filter(s => _histFold(s.billing || view.artist[s.artistId]?.name).includes(query));
     body = (
       <>
         {meta.days.map(d => {
@@ -379,10 +389,11 @@ function _HistEdition({ meta, back }) {
       <_HistHeader title={meta.festivalName} sub={frozen} onBack={back} right={infoBtn} />
       <div style={{ padding: "8px 20px 8px", display: "grid", gap: 8, borderBottom: "1px solid var(--line)" }}>
         {/* What this is, and how old the record is: a past edition, its own
-            dates, and the date its official source was archived. */}
+            dates, and the date its official source was archived (or, for a
+            re-hosted graphic, published). */}
         <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
           <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
-          {checked && <> · source archived {checked}</>}
+          {checked && <> · {e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
         </p>
         {!lineupOnly && !query && groups.map(g => (
           <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 6 }}>

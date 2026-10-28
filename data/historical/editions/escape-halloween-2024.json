@@ -1,0 +1,2202 @@
+{
+ "id": "escape-halloween-2024",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2024",
+ "year": 2024,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-10-25",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2024-10-26",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2024:the-grimm",
+   "name": "THE GRIMM"
+  },
+  {
+   "id": "escape-halloween-2024:sewer-district",
+   "name": "SEWER DISTRICT"
+  },
+  {
+   "id": "escape-halloween-2024:feeding-grounds",
+   "name": "FEEDING GROUNDS"
+  },
+  {
+   "id": "escape-halloween-2024:wicked-woods",
+   "name": "WICKED WOODS"
+  },
+  {
+   "id": "escape-halloween-2024:the-cauldron",
+   "name": "THE CAULDRON"
+  },
+  {
+   "id": "escape-halloween-2024:beatbox-boombox-art-car",
+   "name": "BEATBOX BOOMBOX ART CAR"
+  },
+  {
+   "id": "escape-halloween-2024:casa-bacardi",
+   "name": "CASA BACARDÍ"
+  },
+  {
+   "id": "escape-halloween-2024:danse-macabre",
+   "name": "DANSE MACABRE"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2024:yellowtael",
+   "name": "YELLOWTAEL",
+   "key": "yellowtael",
+   "performers": [
+    "yellowtael"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:capozzi",
+   "name": "CAPOZZI",
+   "key": "capozzi",
+   "performers": [
+    "capozzi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:omnom",
+   "name": "OMNOM",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:kream",
+   "name": "KREAM",
+   "key": "kream",
+   "performers": [
+    "kream"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:lost-frequencies",
+   "name": "LOST FREQUENCIES",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:deadmau5",
+   "name": "DEADMAU5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:afroki-afrojack-b2b-steve-aoki",
+   "name": "AFROKI (AFROJACK B2B STEVE AOKI)",
+   "key": "afroki-afrojack-b2b-steve-aoki",
+   "performers": [
+    "afroki-afrojack",
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:alison-wonderland",
+   "name": "ALISON WONDERLAND",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:illenium",
+   "name": "ILLENIUM",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:daizy",
+   "name": "DAIZY",
+   "key": "daizy",
+   "performers": [
+    "daizy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:sharlitz-web",
+   "name": "SHARLITZ WEB",
+   "key": "sharlitz-web",
+   "performers": [
+    "sharlitz-web"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:vastive",
+   "name": "VASTIVE",
+   "key": "vastive",
+   "performers": [
+    "vastive"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:hvdes",
+   "name": "HVDES",
+   "key": "hvdes",
+   "performers": [
+    "hvdes"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:emorfik",
+   "name": "EMORFIK",
+   "key": "emorfik",
+   "performers": [
+    "emorfik"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:level-up",
+   "name": "LEVEL UP",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:ghastly-presents-ghengar",
+   "name": "GHASTLY PRESENTS GHENGAR",
+   "key": "ghastly-presents-ghengar",
+   "performers": [
+    "ghastly-presents-ghengar"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:wooli",
+   "name": "WOOLI",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:peekaboo",
+   "name": "PEEKABOO",
+   "key": "peekaboo",
+   "performers": [
+    "peekaboo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dog-eat-dog-crankdat-b2b-riot-ten",
+   "name": "DOG EAT DOG (CRANKDAT B2B RIOT TEN)",
+   "key": "dog-eat-dog-crankdat-b2b-riot-ten",
+   "performers": [
+    "dog-eat-dog-crankdat",
+    "riot-ten"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:angel-cannon",
+   "name": "ANGEL CANNON",
+   "key": "angel-cannon",
+   "performers": [
+    "angel-cannon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:tony-junior",
+   "name": "TONY JUNIOR",
+   "key": "tony-junior",
+   "performers": [
+    "tony-junior"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rob-gee",
+   "name": "ROB GEE",
+   "key": "rob-gee",
+   "performers": [
+    "rob-gee"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rebekah",
+   "name": "REBEKAH",
+   "key": "rebekah",
+   "performers": [
+    "rebekah"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:lady-faith",
+   "name": "LADY FAITH",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:keltek",
+   "name": "KELTEK",
+   "key": "keltek",
+   "performers": [
+    "keltek"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rooler",
+   "name": "ROOLER",
+   "key": "rooler",
+   "performers": [
+    "rooler"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:da-tweekaz",
+   "name": "DA TWEEKAZ",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:lil-texas",
+   "name": "LIL TEXAS",
+   "key": "lil-texas",
+   "performers": [
+    "lil-texas"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:angerfist",
+   "name": "ANGERFIST",
+   "key": "angerfist",
+   "performers": [
+    "angerfist"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:joshua-de-la-cruz",
+   "name": "JOSHUA DE LA CRUZ",
+   "key": "joshua-de-la-cruz",
+   "performers": [
+    "joshua-de-la-cruz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:prunk",
+   "name": "PRUNK",
+   "key": "prunk",
+   "performers": [
+    "prunk"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:denis-sulta",
+   "name": "DENIS SULTA",
+   "key": "denis-sulta",
+   "performers": [
+    "denis-sulta"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:chloe-caillet",
+   "name": "CHLOÉ CAILLET",
+   "key": "chloe-caillet",
+   "performers": [
+    "chloe-caillet"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dennis-cruz",
+   "name": "DENNIS CRUZ",
+   "key": "dennis-cruz",
+   "performers": [
+    "dennis-cruz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:pawsa",
+   "name": "PAWSA",
+   "key": "pawsa",
+   "performers": [
+    "pawsa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:fatboy-slim",
+   "name": "FATBOY SLIM",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:cherry-lee",
+   "name": "CHERRY LEE",
+   "key": "cherry-lee",
+   "performers": [
+    "cherry-lee"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:swim",
+   "name": "SWIM",
+   "key": "swim",
+   "performers": [
+    "swim"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:fka-m4a",
+   "name": "FKA.M4A",
+   "key": "fka-m4a",
+   "performers": [
+    "fka-m4a"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:young-marco",
+   "name": "YOUNG MARCO",
+   "key": "young-marco",
+   "performers": [
+    "young-marco"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dixon",
+   "name": "DIXON",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:samuel-fu-b2b-ttr",
+   "name": "SAMÜEL FU B2B TTR",
+   "key": "samuel-fu-b2b-ttr",
+   "performers": [
+    "samuel-fu",
+    "ttr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:kaka",
+   "name": "KAKA",
+   "key": "kaka",
+   "performers": [
+    "kaka"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:hua",
+   "name": "HUA",
+   "key": "hua",
+   "performers": [
+    "hua"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:shakedat",
+   "name": "SHAKEDAT",
+   "key": "shakedat",
+   "performers": [
+    "shakedat"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:roroll",
+   "name": "ROROLL",
+   "key": "roroll",
+   "performers": [
+    "roroll"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:mena-e",
+   "name": "MENA¢E",
+   "key": "mena-e",
+   "performers": [
+    "mena-e"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:chuwe",
+   "name": "CHUWE",
+   "key": "chuwe",
+   "performers": [
+    "chuwe"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:allierockk",
+   "name": "ALLIEROCKK",
+   "key": "allierockk",
+   "performers": [
+    "allierockk"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dj-tony-banks",
+   "name": "DJ TONY BANKS",
+   "key": "dj-tony-banks",
+   "performers": [
+    "dj-tony-banks"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:d-zeledon",
+   "name": "D. ZELEDON",
+   "key": "d-zeledon",
+   "performers": [
+    "d-zeledon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dj-fredy-fresco",
+   "name": "DJ FREDY FRESCO",
+   "key": "dj-fredy-fresco",
+   "performers": [
+    "dj-fredy-fresco"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:blind-dvte",
+   "name": "BLIND DVTE",
+   "key": "blind-dvte",
+   "performers": [
+    "blind-dvte"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dak-d",
+   "name": "DAKЯΣD",
+   "key": "dak-d",
+   "performers": [
+    "dak-d"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:bvss-botz",
+   "name": "BVSS BOTZ",
+   "key": "bvss-botz",
+   "performers": [
+    "bvss-botz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:88mph",
+   "name": "88MPH",
+   "key": "88mph",
+   "performers": [
+    "88mph"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:all-rise",
+   "name": "ALL RISE",
+   "key": "all-rise",
+   "performers": [
+    "all-rise"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:haavi",
+   "name": "HAAVI",
+   "key": "haavi",
+   "performers": [
+    "haavi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:sabrosura-boyz",
+   "name": "SABROSURA BOYZ",
+   "key": "sabrosura-boyz",
+   "performers": [
+    "sabrosura-boyz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:void",
+   "name": "VOID",
+   "key": "void",
+   "performers": [
+    "void"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:aundreja",
+   "name": "AUNDREJA",
+   "key": "aundreja",
+   "performers": [
+    "aundreja"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:tattoopudge",
+   "name": "TATTOOPUDGE",
+   "key": "tattoopudge",
+   "performers": [
+    "tattoopudge"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rayray",
+   "name": "RAYRAY",
+   "key": "rayray",
+   "performers": [
+    "rayray"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:gem-and-tauri",
+   "name": "GEM & TAURI",
+   "key": "gem-and-tauri",
+   "performers": [
+    "gem-and-tauri"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:snakehips",
+   "name": "SNAKEHIPS",
+   "key": "snakehips",
+   "performers": [
+    "snakehips"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:ben-nicky",
+   "name": "BEN NICKY",
+   "key": "ben-nicky",
+   "performers": [
+    "ben-nicky"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:maddix",
+   "name": "MADDIX",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:don-diablo",
+   "name": "DON DIABLO",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:james-hype",
+   "name": "JAMES HYPE",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:seven-lions",
+   "name": "SEVEN LIONS",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dj-zo",
+   "name": "DJ ZO",
+   "key": "dj-zo",
+   "performers": [
+    "dj-zo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:jacknife",
+   "name": "JACKNIFE",
+   "key": "jacknife",
+   "performers": [
+    "jacknife"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:softest-chyl",
+   "name": "SOFTEST CHYL",
+   "key": "softest-chyl",
+   "performers": [
+    "softest-chyl"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:frosttop-b2b-remk",
+   "name": "FROSTTOP B2B REMK",
+   "key": "frosttop-b2b-remk",
+   "performers": [
+    "frosttop",
+    "remk"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:trivecta",
+   "name": "TRIVECTA",
+   "key": "trivecta",
+   "performers": [
+    "trivecta"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:hamdi",
+   "name": "HAMDI",
+   "key": "hamdi",
+   "performers": [
+    "hamdi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:netsky",
+   "name": "NETSKY",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:adventure-club",
+   "name": "ADVENTURE CLUB",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:ludacris",
+   "name": "LUDACRIS",
+   "key": "ludacris",
+   "performers": [
+    "ludacris"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:two-friends",
+   "name": "TWO FRIENDS",
+   "key": "two-friends",
+   "performers": [
+    "two-friends"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:lisbona-sisters",
+   "name": "LISBONA SISTERS",
+   "key": "lisbona-sisters",
+   "performers": [
+    "lisbona-sisters"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:fallon",
+   "name": "FALLON",
+   "key": "fallon",
+   "performers": [
+    "fallon"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:mary-droppinz-ukg-set",
+   "name": "MARY DROPPINZ (UKG SET)",
+   "key": "mary-droppinz-ukg-set",
+   "performers": [
+    "mary-droppinz-ukg-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:tita-lau",
+   "name": "TITA LAU",
+   "key": "tita-lau",
+   "performers": [
+    "tita-lau"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:joshwa-b2b-riordan",
+   "name": "JOSHWA B2B RIORDAN",
+   "key": "joshwa-b2b-riordan",
+   "performers": [
+    "joshwa",
+    "riordan"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:odd-mob",
+   "name": "ODD MOB",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:meduza",
+   "name": "MEDUZA",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:cloonee",
+   "name": "CLOONEE",
+   "key": "cloonee",
+   "performers": [
+    "cloonee"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:palma",
+   "name": "PALMA",
+   "key": "palma",
+   "performers": [
+    "palma"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:chippy-nonstop",
+   "name": "CHIPPY NONSTOP",
+   "key": "chippy-nonstop",
+   "performers": [
+    "chippy-nonstop"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:clara-cuve",
+   "name": "CLARA CUVÉ",
+   "key": "clara-cuve",
+   "performers": [
+    "clara-cuve"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:oguz",
+   "name": "OGUZ",
+   "key": "oguz",
+   "performers": [
+    "oguz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:patrick-mason",
+   "name": "PATRICK MASON",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:ben-klock-b2b-marcel-dettmann",
+   "name": "BEN KLOCK B2B MARCEL DETTMANN",
+   "key": "ben-klock-b2b-marcel-dettmann",
+   "performers": [
+    "ben-klock",
+    "marcel-dettmann"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:nina-kraviz",
+   "name": "NINA KRAVIZ",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:gbenga",
+   "name": "GBENGA",
+   "key": "gbenga",
+   "performers": [
+    "gbenga"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:alex-chapman",
+   "name": "ALEX CHAPMAN",
+   "key": "alex-chapman",
+   "performers": [
+    "alex-chapman"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:slayyyter-dj-set",
+   "name": "SLAYYYTER (DJ SET)",
+   "key": "slayyyter-dj-set",
+   "performers": [
+    "slayyyter-dj-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:justin-jay",
+   "name": "JUSTIN JAY",
+   "key": "justin-jay",
+   "performers": [
+    "justin-jay"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:dana-montana",
+   "name": "DANA MONTANA",
+   "key": "dana-montana",
+   "performers": [
+    "dana-montana"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:joanna-kuchta",
+   "name": "JOANNA KUCHTA",
+   "key": "joanna-kuchta",
+   "performers": [
+    "joanna-kuchta"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rainedrop",
+   "name": "RAINEDROP",
+   "key": "rainedrop",
+   "performers": [
+    "rainedrop"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:kitsuni",
+   "name": "KITSUNI",
+   "key": "kitsuni",
+   "performers": [
+    "kitsuni"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:badvoid",
+   "name": "BADVOID",
+   "key": "badvoid",
+   "performers": [
+    "badvoid"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:sj",
+   "name": "SJ",
+   "key": "sj",
+   "performers": [
+    "sj"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:blvk-sheep",
+   "name": "BLVK SHEEP",
+   "key": "blvk-sheep",
+   "performers": [
+    "blvk-sheep"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:chassi",
+   "name": "CHASSI",
+   "key": "chassi",
+   "performers": [
+    "chassi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:mnylow",
+   "name": "MNYLOW",
+   "key": "mnylow",
+   "performers": [
+    "mnylow"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:lyon808",
+   "name": "LYON808",
+   "key": "lyon808",
+   "performers": [
+    "lyon808"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:principe-q",
+   "name": "PRINCIPE Q",
+   "key": "principe-q",
+   "performers": [
+    "principe-q"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:joshwa",
+   "name": "JOSHWA",
+   "key": "joshwa",
+   "performers": [
+    "joshwa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:j-patron",
+   "name": "J.PATRON",
+   "key": "j-patron",
+   "performers": [
+    "j-patron"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:twlv34",
+   "name": "TWLV34",
+   "key": "twlv34",
+   "performers": [
+    "twlv34"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:carlo-key",
+   "name": "CARLO KEY",
+   "key": "carlo-key",
+   "performers": [
+    "carlo-key"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:chamoy-baby",
+   "name": "CHAMOY BABY",
+   "key": "chamoy-baby",
+   "performers": [
+    "chamoy-baby"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:who-is-hush",
+   "name": "WHO IS HUSH",
+   "key": "who-is-hush",
+   "performers": [
+    "who-is-hush"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:spency-be",
+   "name": "SPENCY BE",
+   "key": "spency-be",
+   "performers": [
+    "spency-be"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:jonny-maven",
+   "name": "JONNY MAVEN",
+   "key": "jonny-maven",
+   "performers": [
+    "jonny-maven"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:mark-lizaola",
+   "name": "MARK LIZAOLA",
+   "key": "mark-lizaola",
+   "performers": [
+    "mark-lizaola"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:barbosa",
+   "name": "BARBOSA",
+   "key": "barbosa",
+   "performers": [
+    "barbosa"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:rckslvr-b2b-grlfrnd",
+   "name": "RCKSLVR B2B GRLFRND",
+   "key": "rckslvr-b2b-grlfrnd",
+   "performers": [
+    "rckslvr",
+    "grlfrnd"
+   ]
+  },
+  {
+   "id": "escape-halloween-2024:b-mbsqvad",
+   "name": "BØMBSQVAD",
+   "key": "b-mbsqvad",
+   "performers": [
+    "b-mbsqvad"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:1600:yellowtael",
+   "artistId": "escape-halloween-2024:yellowtael",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:1645:capozzi",
+   "artistId": "escape-halloween-2024:capozzi",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:1745:omnom",
+   "artistId": "escape-halloween-2024:omnom",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:1845:kream",
+   "artistId": "escape-halloween-2024:kream",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:1945:lost-frequencies",
+   "artistId": "escape-halloween-2024:lost-frequencies",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:2045:deadmau5",
+   "artistId": "escape-halloween-2024:deadmau5",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:2200:afroki-afrojack-b2b-steve-aoki",
+   "artistId": "escape-halloween-2024:afroki-afrojack-b2b-steve-aoki",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:2315:alison-wonderland",
+   "artistId": "escape-halloween-2024:alison-wonderland",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-grimm:0035:illenium",
+   "artistId": "escape-halloween-2024:illenium",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "00:35",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:1600:daizy",
+   "artistId": "escape-halloween-2024:daizy",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:1700:sharlitz-web",
+   "artistId": "escape-halloween-2024:sharlitz-web",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:1800:vastive",
+   "artistId": "escape-halloween-2024:vastive",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:1900:hvdes",
+   "artistId": "escape-halloween-2024:hvdes",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:2000:emorfik",
+   "artistId": "escape-halloween-2024:emorfik",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:2100:level-up",
+   "artistId": "escape-halloween-2024:level-up",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:2200:ghastly-presents-ghengar",
+   "artistId": "escape-halloween-2024:ghastly-presents-ghengar",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:2300:wooli",
+   "artistId": "escape-halloween-2024:wooli",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:0000:peekaboo",
+   "artistId": "escape-halloween-2024:peekaboo",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:sewer-district:0100:dog-eat-dog-crankdat-b2b-riot-ten",
+   "artistId": "escape-halloween-2024:dog-eat-dog-crankdat-b2b-riot-ten",
+   "day": 1,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:1600:angel-cannon",
+   "artistId": "escape-halloween-2024:angel-cannon",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:1700:tony-junior",
+   "artistId": "escape-halloween-2024:tony-junior",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:1800:rob-gee",
+   "artistId": "escape-halloween-2024:rob-gee",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:1900:rebekah",
+   "artistId": "escape-halloween-2024:rebekah",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:2000:lady-faith",
+   "artistId": "escape-halloween-2024:lady-faith",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:2100:keltek",
+   "artistId": "escape-halloween-2024:keltek",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:2200:rooler",
+   "artistId": "escape-halloween-2024:rooler",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:2300:da-tweekaz",
+   "artistId": "escape-halloween-2024:da-tweekaz",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:0000:lil-texas",
+   "artistId": "escape-halloween-2024:lil-texas",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:feeding-grounds:0100:angerfist",
+   "artistId": "escape-halloween-2024:angerfist",
+   "day": 1,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:1600:joshua-de-la-cruz",
+   "artistId": "escape-halloween-2024:joshua-de-la-cruz",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:1700:prunk",
+   "artistId": "escape-halloween-2024:prunk",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:1830:denis-sulta",
+   "artistId": "escape-halloween-2024:denis-sulta",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:2000:chloe-caillet",
+   "artistId": "escape-halloween-2024:chloe-caillet",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:2130:dennis-cruz",
+   "artistId": "escape-halloween-2024:dennis-cruz",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:2300:pawsa",
+   "artistId": "escape-halloween-2024:pawsa",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:wicked-woods:0030:fatboy-slim",
+   "artistId": "escape-halloween-2024:fatboy-slim",
+   "day": 1,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:1600:cherry-lee",
+   "artistId": "escape-halloween-2024:cherry-lee",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:1730:chloe-caillet",
+   "artistId": "escape-halloween-2024:chloe-caillet",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:1900:swim",
+   "artistId": "escape-halloween-2024:swim",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:2030:fka-m4a",
+   "artistId": "escape-halloween-2024:fka-m4a",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:2200:young-marco",
+   "artistId": "escape-halloween-2024:young-marco",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:the-cauldron:0000:dixon",
+   "artistId": "escape-halloween-2024:dixon",
+   "day": 1,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "00:00",
+   "end": "01:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:1800:samuel-fu-b2b-ttr",
+   "artistId": "escape-halloween-2024:samuel-fu-b2b-ttr",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:1900:kaka",
+   "artistId": "escape-halloween-2024:kaka",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:2000:hua",
+   "artistId": "escape-halloween-2024:hua",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:2100:shakedat",
+   "artistId": "escape-halloween-2024:shakedat",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "21:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:2130:roroll",
+   "artistId": "escape-halloween-2024:roroll",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:2230:mena-e",
+   "artistId": "escape-halloween-2024:mena-e",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:beatbox-boombox-art-car:2330:chuwe",
+   "artistId": "escape-halloween-2024:chuwe",
+   "day": 1,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:1600:allierockk",
+   "artistId": "escape-halloween-2024:allierockk",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "16:00",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:1745:dj-tony-banks",
+   "artistId": "escape-halloween-2024:dj-tony-banks",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "17:45",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:1930:d-zeledon",
+   "artistId": "escape-halloween-2024:d-zeledon",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "19:30",
+   "end": "21:15"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:2115:bolo",
+   "artistId": "escape-halloween-2024:bolo",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:2300:omnom",
+   "artistId": "escape-halloween-2024:omnom",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "23:00",
+   "end": "00:15"
+  },
+  {
+   "id": "escape-halloween-2024:d1:casa-bacardi:0015:dj-fredy-fresco",
+   "artistId": "escape-halloween-2024:dj-fredy-fresco",
+   "day": 1,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "00:15",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:1600:blind-dvte",
+   "artistId": "escape-halloween-2024:blind-dvte",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:1700:dak-d",
+   "artistId": "escape-halloween-2024:dak-d",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:1800:bvss-botz",
+   "artistId": "escape-halloween-2024:bvss-botz",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:1900:88mph",
+   "artistId": "escape-halloween-2024:88mph",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:2000:all-rise",
+   "artistId": "escape-halloween-2024:all-rise",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:2100:haavi",
+   "artistId": "escape-halloween-2024:haavi",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:2200:sabrosura-boyz",
+   "artistId": "escape-halloween-2024:sabrosura-boyz",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:2300:void",
+   "artistId": "escape-halloween-2024:void",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:0000:aundreja",
+   "artistId": "escape-halloween-2024:aundreja",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2024:d1:danse-macabre:0100:tattoopudge",
+   "artistId": "escape-halloween-2024:tattoopudge",
+   "day": 1,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:1600:rayray",
+   "artistId": "escape-halloween-2024:rayray",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:1700:gem-and-tauri",
+   "artistId": "escape-halloween-2024:gem-and-tauri",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:1800:snakehips",
+   "artistId": "escape-halloween-2024:snakehips",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:1900:ben-nicky",
+   "artistId": "escape-halloween-2024:ben-nicky",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:2000:maddix",
+   "artistId": "escape-halloween-2024:maddix",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:2100:don-diablo",
+   "artistId": "escape-halloween-2024:don-diablo",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "21:00",
+   "end": "22:10"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:2210:james-hype",
+   "artistId": "escape-halloween-2024:james-hype",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "22:10",
+   "end": "23:20"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:2325:seven-lions",
+   "artistId": "escape-halloween-2024:seven-lions",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "23:25",
+   "end": "00:25"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-grimm:0030:martin-garrix",
+   "artistId": "escape-halloween-2024:martin-garrix",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-grimm",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:1600:dj-zo",
+   "artistId": "escape-halloween-2024:dj-zo",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:1645:jacknife",
+   "artistId": "escape-halloween-2024:jacknife",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:1745:softest-chyl",
+   "artistId": "escape-halloween-2024:softest-chyl",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:1845:frosttop-b2b-remk",
+   "artistId": "escape-halloween-2024:frosttop-b2b-remk",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:1945:trivecta",
+   "artistId": "escape-halloween-2024:trivecta",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:2045:hamdi",
+   "artistId": "escape-halloween-2024:hamdi",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:2145:netsky",
+   "artistId": "escape-halloween-2024:netsky",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:2300:adventure-club",
+   "artistId": "escape-halloween-2024:adventure-club",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "23:00",
+   "end": "00:15"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:0017:ludacris",
+   "artistId": "escape-halloween-2024:ludacris",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "00:17",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:sewer-district:0045:two-friends",
+   "artistId": "escape-halloween-2024:two-friends",
+   "day": 2,
+   "stageId": "escape-halloween-2024:sewer-district",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:1600:lisbona-sisters",
+   "artistId": "escape-halloween-2024:lisbona-sisters",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:1700:fallon",
+   "artistId": "escape-halloween-2024:fallon",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:1800:mary-droppinz-ukg-set",
+   "artistId": "escape-halloween-2024:mary-droppinz-ukg-set",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:1900:tita-lau",
+   "artistId": "escape-halloween-2024:tita-lau",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:2000:joshwa-b2b-riordan",
+   "artistId": "escape-halloween-2024:joshwa-b2b-riordan",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:2130:odd-mob",
+   "artistId": "escape-halloween-2024:odd-mob",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:2300:meduza",
+   "artistId": "escape-halloween-2024:meduza",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:feeding-grounds:0030:cloonee",
+   "artistId": "escape-halloween-2024:cloonee",
+   "day": 2,
+   "stageId": "escape-halloween-2024:feeding-grounds",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:1600:palma",
+   "artistId": "escape-halloween-2024:palma",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:1700:chippy-nonstop",
+   "artistId": "escape-halloween-2024:chippy-nonstop",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:1830:clara-cuve",
+   "artistId": "escape-halloween-2024:clara-cuve",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:2000:oguz",
+   "artistId": "escape-halloween-2024:oguz",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:2130:patrick-mason",
+   "artistId": "escape-halloween-2024:patrick-mason",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:2300:ben-klock-b2b-marcel-dettmann",
+   "artistId": "escape-halloween-2024:ben-klock-b2b-marcel-dettmann",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:wicked-woods:0030:nina-kraviz",
+   "artistId": "escape-halloween-2024:nina-kraviz",
+   "day": 2,
+   "stageId": "escape-halloween-2024:wicked-woods",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:1600:gbenga",
+   "artistId": "escape-halloween-2024:gbenga",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "16:00",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:1745:alex-chapman",
+   "artistId": "escape-halloween-2024:alex-chapman",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "17:45",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:1915:slayyyter-dj-set",
+   "artistId": "escape-halloween-2024:slayyyter-dj-set",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "19:15",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:2045:justin-jay",
+   "artistId": "escape-halloween-2024:justin-jay",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:2145:dana-montana",
+   "artistId": "escape-halloween-2024:dana-montana",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:2245:joanna-kuchta",
+   "artistId": "escape-halloween-2024:joanna-kuchta",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:2345:clara-cuve",
+   "artistId": "escape-halloween-2024:clara-cuve",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:the-cauldron:0045:lil-texas",
+   "artistId": "escape-halloween-2024:lil-texas",
+   "day": 2,
+   "stageId": "escape-halloween-2024:the-cauldron",
+   "start": "00:45",
+   "end": "01:45"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:1800:rainedrop",
+   "artistId": "escape-halloween-2024:rainedrop",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:1900:kitsuni",
+   "artistId": "escape-halloween-2024:kitsuni",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:2000:badvoid",
+   "artistId": "escape-halloween-2024:badvoid",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:2115:sj",
+   "artistId": "escape-halloween-2024:sj",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:2230:blvk-sheep",
+   "artistId": "escape-halloween-2024:blvk-sheep",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:beatbox-boombox-art-car:2330:chassi",
+   "artistId": "escape-halloween-2024:chassi",
+   "day": 2,
+   "stageId": "escape-halloween-2024:beatbox-boombox-art-car",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2024:d2:casa-bacardi:1600:mnylow",
+   "artistId": "escape-halloween-2024:mnylow",
+   "day": 2,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:casa-bacardi:1800:lyon808",
+   "artistId": "escape-halloween-2024:lyon808",
+   "day": 2,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:casa-bacardi:2000:principe-q",
+   "artistId": "escape-halloween-2024:principe-q",
+   "day": 2,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:casa-bacardi:2200:joshwa",
+   "artistId": "escape-halloween-2024:joshwa",
+   "day": 2,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:casa-bacardi:0000:j-patron",
+   "artistId": "escape-halloween-2024:j-patron",
+   "day": 2,
+   "stageId": "escape-halloween-2024:casa-bacardi",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:1600:twlv34",
+   "artistId": "escape-halloween-2024:twlv34",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:1700:carlo-key",
+   "artistId": "escape-halloween-2024:carlo-key",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:1800:chamoy-baby",
+   "artistId": "escape-halloween-2024:chamoy-baby",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:1900:who-is-hush",
+   "artistId": "escape-halloween-2024:who-is-hush",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:2000:spency-be",
+   "artistId": "escape-halloween-2024:spency-be",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:2100:jonny-maven",
+   "artistId": "escape-halloween-2024:jonny-maven",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:2200:mark-lizaola",
+   "artistId": "escape-halloween-2024:mark-lizaola",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:2300:barbosa",
+   "artistId": "escape-halloween-2024:barbosa",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:0000:rckslvr-b2b-grlfrnd",
+   "artistId": "escape-halloween-2024:rckslvr-b2b-grlfrnd",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2024:d2:danse-macabre:0100:b-mbsqvad",
+   "artistId": "escape-halloween-2024:b-mbsqvad",
+   "day": 2,
+   "stageId": "escape-halloween-2024:danse-macabre",
+   "start": "01:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY, OCT 25",
+    "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
+    "rows": 42,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-PdSWwAAz3Qe"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   },
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY, OCTOBER 25",
+    "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
+    "rows": 23,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-P1vWEAA_2dT"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   },
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "AFTER PARTY SET TIMES · FRIDAY, OCT 25 · OCTOBER 25 + 26, 2024",
+    "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
+    "rows": 3,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-PrkWkAEGuDe"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-PdSWwAAz3Qe?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY, OCT 26",
+    "sha256": "5a592ada5f853b3a1517c94e9001f27ee7bf186147871715abe3710e7c9a910c",
+    "rows": 42,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-PdSWwAAz3Qe"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-P1vWEAA_2dT?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY, OCTOBER 26",
+    "sha256": "94f33672732281645a05c6e240e35dfb61c5ce9d6269106eb7e0768d6f4e84bc",
+    "rows": 21,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-P1vWEAA_2dT"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://pbs.twimg.com/media/Gac-PrkWkAEGuDe?format=jpg&name=orig",
+    "foundAt": "https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+    "published": "2024-10-18",
+    "rehostedBy": "X media, via EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "AFTER PARTY SET TIMES · SATURDAY, OCT 26 · OCTOBER 25 + 26, 2024",
+    "sha256": "e0e9b8bd7e5c77d6f47a466421c5294db2909840f299f7c4ed4dd9e51917c972",
+    "rows": 3,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20241111234903/https://edmidentity.com/2024/10/18/escape-halloween-2024-set-times/",
+     "captureTimestamp": "20241111234903",
+     "sha256": "8da4b3f40f51f7ebc344d080ceed9a96d8f7bc0e008464fd5f52121c7682f371",
+     "cites": "Gac-PrkWkAEGuDe"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2024.json"
+   }
+  ]
+ }
+}
