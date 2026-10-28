@@ -130,6 +130,14 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   check(!chanDown.ok && chanDown.unknown === true, `YouTube channel page 500: counted as ${chanDown.ok ? 'verified' : 'dead'}, expected "could not confirm" (${chanDown.reason})`);
   const watchWalled = await run(yt, routes('UCZVJbgloLghAYhH2uyaKIOQ').map(([re, res]) => [re, /watch/.test(String(re)) ? { status: 403, text: '' } : res]));
   check(!watchWalled.ok && watchWalled.unknown === true, `YouTube watch page 403: counted as ${watchWalled.ok ? 'verified' : 'dead'}, expected "could not confirm" (${watchWalled.reason})`);
+  // The weekly runner is served a watch page with no upload date for videos a
+  // home connection reads dated: undated is "could not confirm", but a video
+  // the player refuses is still dead.
+  const undated = routes('UCZVJbgloLghAYhH2uyaKIOQ').map(([re, res]) => [re, /watch/.test(String(re)) ? { status: 200, text: '<html>no microdata</html>' } : res]);
+  const noDate = await run(yt, undated);
+  check(!noDate.ok && noDate.unknown === true, `a YouTube watch page with no upload date: counted as ${noDate.ok ? 'verified' : 'dead'}, expected "could not confirm" (${noDate.reason})`);
+  const noDateRefused = await run(yt, undated, { youtubePlayable: async () => false });
+  check(!noDateRefused.ok && !noDateRefused.unknown, `an undated video the player refuses is not counted dead (${noDateRefused.reason})`);
   const noProbe = await run(yt, routes('UCZVJbgloLghAYhH2uyaKIOQ'), {});
   check(!noProbe.ok, 'a YouTube video passes with no player probe at all');
 }
@@ -202,12 +210,12 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   check(/head -n 1 embeds-report\.md/.test(wf) && !/cat embeds-report\.md/.test(wf), 'the weekly embeds job prints the dead-embed list to its public log');
   // The printed causes are fixed labels: nothing from a reason reaches the log.
   const leaky = ['accountSourceUrl returned 202', 'accountSourceUrl does not link the official account', 'oEmbed returned 404 (dead, private or not embeddable)',
-    'oEmbed returned non-JSON', 'post is not by the official account', 'YouTube upload date unreadable', 'YouTube player refuses embedded playback ("This video is unavailable")',
+    'oEmbed returned non-JSON', 'post is not by the official account', 'could not confirm: YouTube upload date unreadable', 'YouTube player refuses embedded playback ("This video is unavailable")',
     'url is not a x post/video/playlist URL', 'officialAccount is not a instagram account URL https://www.instagram.com/secretfest', 'accountSourceUrl returned 202 https://secret.example/'];
   for (const r of leaky) check(!/https?:|secret|instagram\.com|\/p\//i.test(L.failureCause(r)), `a printed cause leaks its reason: ${L.failureCause(r)}`);
   check(L.failureCause('accountSourceUrl returned 202') === 'festival site answered 202', 'a site\'s status is not in its printed cause');
   check(L.failureCause('accountSourceUrl returned 202 https://secret.example/') === 'record invalid', 'a reason with trailing text matched a status cause');
-  check(L.failureCause('YouTube upload date unreadable') !== L.failureCause('post is not by the official account'), 'two different causes print alike');
+  check(L.failureCause('YouTube player refuses embedded playback') !== L.failureCause('post is not by the official account'), 'two different causes print alike');
   check(L.causeTally(['post is not by the official account', 'accountSourceUrl returned 202', 'post is not by the official account']) === '2 author did not match, 1 festival site answered 202', 'the cause tally is wrong');
 }
 

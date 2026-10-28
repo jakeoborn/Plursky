@@ -240,10 +240,14 @@ async function _verifyEmbed(e, fetcher, opts) {
   const publishedAt = e.platform === 'instagram' ? instagramPublishedAt(e.url)
     : e.platform === 'x' ? xPublishedAt(e.url)
     : e.platform === 'youtube' ? await youtubePublishedAt(e.url, fetcher) : null;
-  if (e.platform === 'youtube' && !publishedAt) return { ok: false, reason: 'YouTube upload date unreadable' };
   if (e.platform === 'youtube') {
     const playable = opts.youtubePlayable ? await opts.youtubePlayable(youtubeId(e.url)) : null;
     if (playable === false) return { ok: false, reason: 'YouTube player refuses embedded playback ("This video is unavailable")' };
+    // A watch page without its upload date says nothing about the video: oEmbed
+    // has already found it live and by the official account. GitHub's runner is
+    // served such a page for videos a home connection reads dated (2026-10-28),
+    // so a missing date is "could not confirm", never dead.
+    if (!publishedAt) return { ok: false, unknown: true, reason: 'could not confirm: YouTube upload date unreadable' };
     if (playable !== true) return { ok: false, unknown: true, reason: 'YouTube embedded playback could not be confirmed' };
   }
   // The account's display name for the caption; a name, never post content.
@@ -260,7 +264,6 @@ const CAUSES = [
   [/^oEmbed returned (\d{3}) /, m => `oEmbed answered ${m[1]}`],
   [/^oEmbed returned (non-JSON|no embed)/, () => 'oEmbed returned no embed'],
   [/^post is not by the official account$/, () => 'author did not match'],
-  [/^YouTube upload date unreadable$/, () => 'YouTube upload date unreadable'],
   [/^YouTube player refuses/, () => 'YouTube player refused playback'],
 ];
 export function failureCause(reason) {
