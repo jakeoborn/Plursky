@@ -19,7 +19,7 @@ import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
 import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
 import { activeTab, stageFor } from "./historical/import-gather.mjs";
-import { datedLabel, graphicPrints, instant, to24 } from "./historical/lib.mjs";
+import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -191,6 +191,13 @@ if (base && edc) {
       mustFail("an exclusion of a graphic a source uses", m => { m.provenance.notUsedGraphics.push({ cites: "wp-content/uploads/2025/10/friday-set-times", reason: "x" }); }, e25, undefined, /notUsedGraphics .*friday-set-times/);
       mustFail("a receipt that does not list its page's graphics", m => { delete m.provenance.captures.find(c => c.kind === "graphic").receipt.setTimesGraphics; }, o17, undefined, /does not list the set-times graphics/);
       mustFail("a receipt whose list leaves out the graphic it cites", m => { const r = m.provenance.captures.find(eb).receipt; r.setTimesGraphics = r.setTimesGraphics.filter(t => !/electricbeach/.test(t)); }, o17, undefined, /without the one it cites/);
+      // Lists from sources sharing one receipt page are unioned: a later
+      // source listing only its own graphic cannot hide the omitted beach one.
+      mustFail("Orlando 2017 without its beach source, a later same-page source listing only its own graphic", m => {
+        m.provenance.captures = m.provenance.captures.filter(c => !eb(c));
+        const last = m.provenance.captures.filter(c => c.kind === "graphic" && c.receipt?.setTimesGraphics).pop();
+        last.receipt.setTimesGraphics = last.receipt.setTimesGraphics.filter(t => sameGraphic(t, last.receipt.cites));
+      }, o17, undefined, /shows set-times graphic wp-content\/uploads\/2017\/11\/electricbeach2017, which no source uses/);
     }
     // The header must print the cited day: the 2017 graphic's Saturday header
     // swapped for another edition's date fails, the real combined-day one passes.

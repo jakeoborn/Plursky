@@ -119,9 +119,14 @@ export const sameGraphic = (token, cites) => token === cites || token.endsWith("
 // The set-times graphics an edition's receipt pages show that no source uses
 // and `notUsed` ([{cites, reason}]) does not exclude, plus exclusions that
 // name no graphic on any receipt, name one a source uses, or give no reason.
+// Several sources can share one receipt page; their lists are unioned, so a
+// later source listing fewer graphics never hides one an earlier one listed.
 export function receiptGaps(graphicCaptures, notUsed = []) {
   const receipts = new Map();
-  for (const c of graphicCaptures) if (c.receipt?.setTimesGraphics) receipts.set(c.receipt.archivedUrl, c.receipt);
+  for (const c of graphicCaptures) if (c.receipt?.setTimesGraphics) {
+    const r = receipts.get(c.receipt.archivedUrl);
+    receipts.set(c.receipt.archivedUrl, { ...c.receipt, setTimesGraphics: [...new Set([...(r?.setTimesGraphics || []), ...c.receipt.setTimesGraphics])] });
+  }
   const cited = graphicCaptures.map(c => c.receipt?.cites).filter(Boolean);
   const unused = [], stale = [];
   for (const r of receipts.values()) for (const t of r.setTimesGraphics)
