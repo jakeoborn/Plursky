@@ -80,6 +80,7 @@ export function buildEdition(id, rows, ledger) {
       ? { day: d.day, archivedUrl: d.archivedUrl, captureTimestamp: d.chosen, sha256: d.sha256 }
       : { day: d.day, pageArchivedUrl: d.pageArchivedUrl, pageCapture: d.pageCapture, imageArchivedUrl: d.imageArchivedUrl,
           imageCapture: d.imageCapture, sha256: d.sha256, reviewManifest: `data/historical/review/${id}.json` }),
+    ...(ledger.notUsedGraphics && { notUsedGraphics: ledger.notUsedGraphics }),
   };
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,

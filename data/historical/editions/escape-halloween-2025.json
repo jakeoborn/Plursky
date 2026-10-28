@@ -2135,7 +2135,13 @@
      "archivedUrl": "https://web.archive.org/web/20251027122732/https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
      "captureTimestamp": "20251027122732",
      "sha256": "d1392f5416fa9a407e2547c1b33577abb9f75c187f137a8131ba639cfdf8fad3",
-     "cites": "wp-content/uploads/2025/10/friday-set-times"
+     "cites": "wp-content/uploads/2025/10/friday-set-times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2025/10/preparty-1",
+      "wp-content/uploads/2025/10/friday-set-times",
+      "wp-content/uploads/2025/10/saturday-set-times",
+      "wp-content/uploads/2025/10/official-after-party"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2025.json"
    },
@@ -2154,9 +2160,25 @@
      "archivedUrl": "https://web.archive.org/web/20251027122732/https://edmidentity.com/2025/10/24/escape-psycho-circus-2025-set-times-essentials/",
      "captureTimestamp": "20251027122732",
      "sha256": "d1392f5416fa9a407e2547c1b33577abb9f75c187f137a8131ba639cfdf8fad3",
-     "cites": "wp-content/uploads/2025/10/saturday-set-times"
+     "cites": "wp-content/uploads/2025/10/saturday-set-times",
+     "setTimesGraphics": [
+      "wp-content/uploads/2025/10/preparty-1",
+      "wp-content/uploads/2025/10/friday-set-times",
+      "wp-content/uploads/2025/10/saturday-set-times",
+      "wp-content/uploads/2025/10/official-after-party"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2025.json"
+   }
+  ],
+  "notUsedGraphics": [
+   {
+    "cites": "wp-content/uploads/2025/10/preparty-1",
+    "reason": "the Witching Hours pre-party at the Feeding Grounds, 3:00-4:00PM each day, before the printed FESTIVAL OPENS: 4PM; not a festival set"
+   },
+   {
+    "cites": "wp-content/uploads/2025/10/official-after-party",
+    "reason": "the official afterparty at The Warehouse, 2AM-6AM, a separate event after the festival closes; not a festival set"
    }
   ]
  }

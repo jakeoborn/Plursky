@@ -282,6 +282,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2022:d1:kinetic-field:1629:4b",
+   "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche",
    "edc-orlando-2024:d3:circuit-grounds:1530:4b-b2b-jstjr",
    "nocturnal-wonderland-2018:d1:wolves-den:2205:4b",
    "nocturnal-wonderland-2021:d1:wolves-den:2000:4b"
@@ -541,6 +542,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
+   "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
    "nocturnal-wonderland-2021:d1:sunken-garden:2200:a-trak"
   ],
   "firstSeen": "2017-11-10",
@@ -1433,6 +1435,21 @@
   "links": []
  },
  {
+  "key": "akronym",
+  "name": "AKRONYM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:0100:akronym"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alan-fitzpatrick",
   "name": "Alan Fitzpatrick",
   "aliases": [],
@@ -1806,6 +1823,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "algo",
+  "name": "ALGO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:2200:algo"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -3307,6 +3339,7 @@
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:2030:armnhmr",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2355:armnhmr",
    "edc-las-vegas-2025:d1:cosmic-meadow:2200:armnhmr",
+   "edc-orlando-2022:d2:corona-electric-beach:2300:armnhmr",
    "edc-orlando-2023:d3:circuit-grounds:1630:armnhmr",
    "escape-halloween-2021:d1:the-grimm:1830:armnhmr",
    "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr"
@@ -3891,10 +3924,11 @@
    "edc-orlando-2026:ecs7",
    "lollapalooza-2026:lo63",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1755:avello",
+   "edc-orlando-2022:d2:corona-electric-beach:1500:avello",
    "edc-orlando-2022:d3:circuit-grounds:1300:avello",
    "edc-orlando-2023:d1:kinetic-field:1300:avello"
   ],
-  "firstSeen": "2022-11-13",
+  "firstSeen": "2022-11-12",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -5119,9 +5153,10 @@
   "billings": [
    "lost-lands-2026:llf6",
    "edc-orlando-2026:ecf6",
-   "edc-orlando-2023:d2:circuit-grounds:1500:benda"
+   "edc-orlando-2023:d2:circuit-grounds:1500:benda",
+   "escape-halloween-2019:d2:crazy-town:2000:benda"
   ],
-  "firstSeen": "2023-11-11",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -5605,7 +5640,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "fll-snd"
+  ],
   "billings": [
    "edc-orlando-2021:d2:rynobus:1600:birmingham-drive"
   ],
@@ -5797,7 +5834,8 @@
   "projects": [],
   "billings": [
    "edc-orlando-2021:d3:stereo-bloom:1500:westend-b2b-black-v-neck",
-   "edc-orlando-2022:d3:stereo-bloom:1630:black-v-neck"
+   "edc-orlando-2022:d3:stereo-bloom:1630:black-v-neck",
+   "edc-orlando-2022:d3:corona-electric-beach:2200:black-v-neck-latin-house-set"
   ],
   "firstSeen": "2021-11-14",
   "lastSeen": "2022-11-13",
@@ -5943,7 +5981,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2022:d3:stereo-bloom:1900:bleu-clair"
+   "edc-orlando-2022:d3:stereo-bloom:1900:bleu-clair",
+   "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair"
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2022-11-13",
@@ -6072,6 +6111,21 @@
   ],
   "firstSeen": "2026-06-07",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bloodthinnerz",
+  "name": "BLOODTHINNERZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1900:bloodthinnerz"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -6425,6 +6479,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d2:circuitgrounds:1615:bonnie-x-clyde",
+   "edc-orlando-2017:d2:corona-electric-beach:2130:bonnie-x-clyde",
    "edc-orlando-2023:d3:kinetic-field:1532:bonnie-x-clyde"
   ],
   "firstSeen": "2017-11-11",
@@ -7822,9 +7877,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:2200:capozzi",
    "escape-halloween-2024:d1:the-grimm:1645:capozzi"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2022-11-11",
   "lastSeen": "2024-10-25",
   "photo": null,
   "links": []
@@ -7872,6 +7928,21 @@
   ],
   "firstSeen": "2025-05-16",
   "lastSeen": "2025-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carbetta-and-doons",
+  "name": "CARBETTA & DOONS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2017:d2:corona-electric-beach:1530:carbetta-and-doons"
+  ],
+  "firstSeen": "2017-11-11",
+  "lastSeen": "2017-11-11",
   "photo": null,
   "links": []
  },
@@ -9697,6 +9768,21 @@
   "links": []
  },
  {
+  "key": "clips-x-ahoy-and-hype-turner",
+  "name": "CLIPS X AHOY & HYPE TURNER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2017:d2:corona-electric-beach:1700:clips-x-ahoy-and-hype-turner"
+  ],
+  "firstSeen": "2017-11-11",
+  "lastSeen": "2017-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "clipse",
   "name": "Clipse",
   "aliases": [],
@@ -9915,6 +10001,21 @@
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "codeko",
+  "name": "CODEKO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:2100:codeko"
+  ],
+  "firstSeen": "2022-11-12",
+  "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
  },
@@ -10378,6 +10479,21 @@
   "links": []
  },
  {
+  "key": "corey-divine",
+  "name": "COREY DIVINE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:1400:corey-divine"
+  ],
+  "firstSeen": "2022-11-11",
+  "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "corporate-slackrs",
   "name": "CORPORATE SLACKRS",
   "aliases": [],
@@ -10385,7 +10501,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:kineticfield:1300:corporate-slackrs"
+   "edc-orlando-2017:d1:kineticfield:1300:corporate-slackrs",
+   "edc-orlando-2017:d1:corona-electric-beach:1930:corporate-slackrs"
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2017-11-10",
@@ -10404,6 +10521,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "corrupt-uk",
+  "name": "CORRUPT (UK)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:1800:corrupt-uk"
+  ],
+  "firstSeen": "2022-11-11",
+  "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
  },
@@ -11020,10 +11152,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2017:d1:corona-electric-beach:1300:d3v",
    "edc-orlando-2019:d1:wideawakeartcar:2000:d3v",
    "edc-orlando-2021:d1:corona-electric-beach:1800:d3v"
   ],
-  "firstSeen": "2019-11-08",
+  "firstSeen": "2017-11-10",
   "lastSeen": "2021-11-12",
   "photo": null,
   "links": []
@@ -11511,6 +11644,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "danny-olson",
+  "name": "DANNY OLSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:1900:danny-olson"
+  ],
+  "firstSeen": "2022-11-12",
+  "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
  },
@@ -12010,10 +12158,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:boombox-art-car:1300:dead-space"
+   "edc-orlando-2017:d1:boombox-art-car:1300:dead-space",
+   "edc-orlando-2017:d2:corona-electric-beach:1400:dead-space"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "lastSeen": "2017-11-11",
   "photo": null,
   "links": []
  },
@@ -14332,14 +14481,17 @@
  {
   "key": "doc-brown",
   "name": "Doc Brown",
-  "aliases": [],
+  "aliases": [
+   "DOC BROWN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2017:d1:corona-electric-beach:1400:doc-brown",
    "edc-orlando-2021:d1:corona-electric-beach:1500:doc-brown"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2017-11-10",
   "lastSeen": "2021-11-12",
   "photo": null,
   "links": []
@@ -15676,6 +15828,7 @@
    "edc-orlando-2019:d1:kineticfield:1300:edgar-v",
    "edc-orlando-2021:d1:corona-electric-beach:1300:edgar-v",
    "edc-orlando-2022:d3:stereo-bloom:1300:edgar-v",
+   "edc-orlando-2022:d3:corona-electric-beach:1630:edgar-v",
    "edc-orlando-2023:d2:stereo-bloom:1300:edgar-v",
    "edc-orlando-2024:d1:stereo-bloom:1300:edgar-v",
    "edc-orlando-2024:d3:casa-bacardi:1600:edgar-v",
@@ -15824,6 +15977,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "el-dusty",
+  "name": "EL DUSTY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2017:d2:corona-electric-beach:1930:el-dusty"
+  ],
+  "firstSeen": "2017-11-11",
+  "lastSeen": "2017-11-11",
   "photo": null,
   "links": []
  },
@@ -17436,6 +17604,21 @@
   "links": []
  },
  {
+  "key": "fixion",
+  "name": "FIXION",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:1300:fixion"
+  ],
+  "firstSeen": "2022-11-12",
+  "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fka-m4a",
   "name": "FKA.M4A",
   "aliases": [],
@@ -17543,6 +17726,23 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fll-snd",
+  "name": "FLL SND",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "birmingham-drive"
+  ],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d3:corona-electric-beach:1300:birmingham-drive-presents-fll-snd"
+  ],
+  "firstSeen": "2022-11-13",
+  "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
  },
@@ -17910,7 +18110,8 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d2:stereo-bloom:2315:francis-mercier",
-   "edc-orlando-2022:d3:stereo-bloom:1530:francis-mercier"
+   "edc-orlando-2022:d3:stereo-bloom:1530:francis-mercier",
+   "edc-orlando-2022:d3:corona-electric-beach:2030:francis-mercier"
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2025-05-17",
@@ -19024,6 +19225,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gianni-blu",
+  "name": "GIANNI BLU",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d3:corona-electric-beach:1830:gianni-blu"
+  ],
+  "firstSeen": "2022-11-13",
+  "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
  },
@@ -20517,6 +20733,21 @@
   "links": []
  },
  {
+  "key": "hami",
+  "name": "HAMI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:2300:hami"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hank-azaria-and-the-ez-street-band",
   "name": "Hank Azaria And The EZ Street Band",
   "aliases": [],
@@ -21161,15 +21392,18 @@
  {
   "key": "highlnd",
   "name": "Highlnd",
-  "aliases": [],
+  "aliases": [
+   "HIGHLND"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:1700:highlnd",
    "nocturnal-wonderland-2021:d1:wolves-den:1600:highlnd"
   ],
   "firstSeen": "2021-09-18",
-  "lastSeen": "2021-09-18",
+  "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
  },
@@ -22190,6 +22424,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "if-found",
+  "name": "IF FOUND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:1800:if-found"
+  ],
+  "firstSeen": "2022-11-12",
+  "lastSeen": "2022-11-12",
   "photo": null,
   "links": []
  },
@@ -25214,6 +25463,21 @@
   "links": []
  },
  {
+  "key": "juuku",
+  "name": "JUUKU",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:1400:juuku"
+  ],
+  "firstSeen": "2022-11-12",
+  "lastSeen": "2022-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "juvenile-and-the-400-degreez-band",
   "name": "JUVENILE & The 400 Degreez Band",
   "aliases": [],
@@ -25392,6 +25656,7 @@
   "billings": [
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1930:kaleena-zanders",
    "edc-orlando-2022:d3:stereo-bloom:1430:kaleena-zanders",
+   "edc-orlando-2022:d3:corona-electric-beach:1930:kaleena-zanders",
    "nocturnal-wonderland-2022:d2:sunken-garden:1600:kaleena-zanders"
   ],
   "firstSeen": "2022-09-18",
@@ -25716,6 +25981,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2017:d1:corona-electric-beach:2130:kayoh",
    "edc-orlando-2017:d2:boombox-art-car:2000:kayoh",
    "nocturnal-wonderland-2017:d2:labyrinth:1700:kayoh",
    "nocturnal-wonderland-2018:d1:wolves-den:1700:kayoh",
@@ -26916,6 +27182,21 @@
   "links": []
  },
  {
+  "key": "kozik-and-sueldo",
+  "name": "KOZIK & SUELDO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1700:kozik-and-sueldo"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kozmoz",
   "name": "KOZMOZ",
   "aliases": [],
@@ -27652,11 +27933,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2017:d1:corona-electric-beach:2230:landis",
    "edc-orlando-2017:d2:boombox-art-car:2200:landis",
-   "edc-orlando-2021:d3:corona-electric-beach:1730:landis"
+   "edc-orlando-2021:d3:corona-electric-beach:1730:landis",
+   "edc-orlando-2022:d3:corona-electric-beach:1730:landis"
   ],
-  "firstSeen": "2017-11-11",
-  "lastSeen": "2021-11-14",
+  "firstSeen": "2017-11-10",
+  "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
  },
@@ -30497,6 +30780,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:boombox-art-car:1345:mahalo",
+   "edc-orlando-2017:d1:corona-electric-beach:1700:mahalo",
    "nocturnal-wonderland-2017:d2:temple-noctem:1945:mahalo"
   ],
   "firstSeen": "2017-09-16",
@@ -31660,6 +31944,7 @@
    "edc-las-vegas-2025:d3:cosmic-meadow:0230:matroda",
    "edc-orlando-2021:d3:stereo-bloom:1830:matroda",
    "edc-orlando-2022:d3:stereo-bloom:2000:matroda",
+   "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair",
    "edc-orlando-2024:d2:kinetic-field:1853:matroda",
    "escape-halloween-2025:d2:feeding-grounds:0030:matroda",
    "nocturnal-wonderland-2021:d2:wolves-den:1800:matroda",
@@ -32163,15 +32448,18 @@
  {
   "key": "mednas",
   "name": "Mednas",
-  "aliases": [],
+  "aliases": [
+   "MEDNAS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d3:circuit-grounds:1300:mednas"
+   "edc-orlando-2021:d3:circuit-grounds:1300:mednas",
+   "edc-orlando-2022:d3:corona-electric-beach:1530:mednas"
   ],
   "firstSeen": "2021-11-14",
-  "lastSeen": "2021-11-14",
+  "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
  },
@@ -32806,6 +33094,21 @@
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2017-10-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mikey-barreneche",
+  "name": "MIKEY BARRENECHE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche"
+  ],
+  "firstSeen": "2022-11-11",
+  "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
  },
@@ -34308,6 +34611,21 @@
   "links": []
  },
  {
+  "key": "mvrvels",
+  "name": "MVRVELS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:0000:mvrvels"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mykris",
   "name": "MYKRIS",
   "aliases": [],
@@ -35528,6 +35846,21 @@
   "links": []
  },
  {
+  "key": "nitti-gritti-and-sam-f",
+  "name": "NITTI GRITTI & SAM F",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2017:d2:corona-electric-beach:2230:nitti-gritti-and-sam-f"
+  ],
+  "firstSeen": "2017-11-11",
+  "lastSeen": "2017-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "no-mana",
   "name": "No Mana",
   "aliases": [
@@ -36150,6 +36483,21 @@
   "links": []
  },
  {
+  "key": "oddkidout",
+  "name": "ODDKIDOUT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:2000:oddkidout"
+  ],
+  "firstSeen": "2022-11-11",
+  "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oddly-godly",
   "name": "Oddly Godly",
   "aliases": [],
@@ -36241,9 +36589,10 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu29",
-   "edc-orlando-2024:d1:circuit-grounds:1510:og-nixin"
+   "edc-orlando-2024:d1:circuit-grounds:1510:og-nixin",
+   "escape-halloween-2019:d2:crazy-town:2100:og-nixin"
   ],
-  "firstSeen": "2024-11-08",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -37439,10 +37788,26 @@
   "projects": [],
   "billings": [
    "edc-orlando-2017:d1:kineticfield:1554:party-favor",
+   "edc-orlando-2017:d1:corona-electric-beach:2030:party-favor",
    "edc-orlando-2019:d1:circuitgrounds:1940:party-favor"
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2019-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "party-shirt",
+  "name": "PARTY SHIRT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:1600:party-shirt"
+  ],
+  "firstSeen": "2022-11-11",
+  "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
  },
@@ -37658,6 +38023,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2022:d2:corona-electric-beach:2000:pauline-herr",
    "edc-orlando-2022:d3:circuit-grounds:1525:pauline-herr",
    "escape-halloween-2022:d2:feeding-grounds:1645:pauline-herr",
    "escape-halloween-2025:d2:the-warehouse:2300:rossy-b2b-pauline-herr",
@@ -38600,10 +38966,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:circuitgrounds:1300:prankstisci"
+   "edc-orlando-2019:d3:circuitgrounds:1300:prankstisci",
+   "edc-orlando-2022:d3:corona-electric-beach:1430:prankstisci"
   ],
   "firstSeen": "2019-11-10",
-  "lastSeen": "2019-11-10",
+  "lastSeen": "2022-11-13",
   "photo": null,
   "links": []
  },
@@ -38988,15 +39355,18 @@
  {
   "key": "purple",
   "name": "Purple",
-  "aliases": [],
+  "aliases": [
+   "PURPLE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul163",
+   "edc-orlando-2022:d1:corona-electric-beach:1500:purple",
    "edc-orlando-2024:d3:casa-bacardi:2200:purple"
   ],
-  "firstSeen": "2024-11-10",
+  "firstSeen": "2022-11-11",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -40741,14 +41111,17 @@
  {
   "key": "rohaan",
   "name": "Rohaan",
-  "aliases": [],
+  "aliases": [
+   "ROHAAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan",
    "nocturnal-wonderland-2024:d1:labyrinth:1550:rohaan"
   ],
-  "firstSeen": "2024-09-14",
+  "firstSeen": "2022-11-11",
   "lastSeen": "2024-09-14",
   "photo": null,
   "links": []
@@ -42860,6 +43233,21 @@
   "links": []
  },
  {
+  "key": "sharps",
+  "name": "SHARPS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2017:d1:corona-electric-beach:1530:sharps"
+  ],
+  "firstSeen": "2017-11-10",
+  "lastSeen": "2017-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sharyn-maceren",
   "name": "Sharyn Maceren",
   "aliases": [],
@@ -44524,15 +44912,18 @@
  {
   "key": "softest-hard",
   "name": "Softest Hard",
-  "aliases": [],
+  "aliases": [
+   "SOFTEST HARD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2021:d3:circuit-grounds:1405:softest-hard"
+   "edc-orlando-2021:d3:circuit-grounds:1405:softest-hard",
+   "edc-orlando-2022:d1:corona-electric-beach:2100:softest-hard"
   ],
   "firstSeen": "2021-11-14",
-  "lastSeen": "2021-11-14",
+  "lastSeen": "2022-11-11",
   "photo": null,
   "links": []
  },
@@ -47014,14 +47405,17 @@
  {
   "key": "taylor-jaymin",
   "name": "Taylor Jaymin",
-  "aliases": [],
+  "aliases": [
+   "TAYLOR JAYMIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2022:d1:corona-electric-beach:1300:taylor-jaymin",
    "edc-orlando-2023:d3:anniversary-art-car:1430:taylor-jaymin"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2022-11-11",
   "lastSeen": "2023-11-12",
   "photo": null,
   "links": []
@@ -47029,15 +47423,18 @@
  {
   "key": "taylor-kade",
   "name": "Taylor Kade",
-  "aliases": [],
+  "aliases": [
+   "TAYLOR KADE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2025:d2:yeedc:2030:taylor-kade-yeedm-set",
+   "edc-orlando-2022:d2:corona-electric-beach:1600:taylor-kade",
    "edc-orlando-2023:d3:anniversary-art-car:1300:taylor-kade"
   ],
-  "firstSeen": "2023-11-12",
+  "firstSeen": "2022-11-12",
   "lastSeen": "2025-05-17",
   "photo": null,
   "links": []
@@ -49740,6 +50137,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2021:d3:corona-electric-beach:1300:truth-x-lies",
+   "edc-orlando-2022:d1:corona-electric-beach:1700:truth-x-lies",
    "edc-orlando-2022:d2:stereo-bloom:1400:truth-x-lies"
   ],
   "firstSeen": "2021-11-14",
@@ -51671,14 +52069,17 @@
  {
   "key": "whales",
   "name": "Whales",
-  "aliases": [],
+  "aliases": [
+   "WHALES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls57"
+   "lost-lands-2026:lls57",
+   "escape-halloween-2019:d2:crazy-town:1800:whales"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -52178,6 +52579,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wires",
+  "name": "WIRES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1600:wires"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -52805,16 +53221,18 @@
   "key": "yetep",
   "name": "Yetep",
   "aliases": [
-   "yetep"
+   "yetep",
+   "YETEP"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:llu50",
-   "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1955:yetep"
+   "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1955:yetep",
+   "edc-orlando-2022:d2:corona-electric-beach:2200:yetep"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2022-11-12",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []

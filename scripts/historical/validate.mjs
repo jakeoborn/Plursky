@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { citeToken, datedLabel, dayMinutes, graphicPrints, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -243,6 +243,20 @@ function officialSources(e, meta, p) {
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
+  // Completeness against the receipt pages, not just the chosen sources:
+  // every set-times graphic an EDM Identity receipt page shows is used by a
+  // source or excluded with its reason (Orlando 2017 shipped without the
+  // Corona Electric Beach graphic its own receipt page carried).
+  const graphics = e.provenance.captures.filter(c => c.kind === "graphic" && c.receipt);
+  for (const c of graphics.filter((c, i) => graphics.findIndex(x => x.receipt.archivedUrl === c.receipt.archivedUrl && x.receipt.cites === c.receipt.cites) === i)) {
+    if (hostOf(c.foundAt) !== "edmidentity.com") continue;
+    const shown = c.receipt.setTimesGraphics;
+    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} does not list the set-times graphics its page shows`);
+    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} lists set-times graphics without the one it cites`);
+  }
+  const { unused, stale } = receiptGaps(graphics, e.provenance.notUsedGraphics);
+  for (const u of unused) p.push(`${e.id}: receipt ${u.page} shows set-times graphic ${u.cites}, which no source uses and notUsedGraphics does not exclude`);
+  for (const n of stale) p.push(`${e.id}: notUsedGraphics ${n.cites} is used by a source, on no receipt page, or has no reason`);
 }
 
 // A graphic's page is linked to the graphic, not just named: the page sits on

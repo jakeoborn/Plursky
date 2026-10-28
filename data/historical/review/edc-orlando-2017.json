@@ -41,6 +41,39 @@
     "BONNIE X CLYDE: dash between times not printed on this row",
     "LANDIS: PRINTED TYPO: end printed \"11:00 AM\"; read as 11:00 PM (next set starts 11:00 PM)"
    ]
+  },
+  {
+   "day": 1,
+   "date": "2017-11-10",
+   "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 8,
+   "note": "Header read off the graphic: FRIDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 6,
+   "byEye": [
+    "d1 Corona Electric Beach 20:30-21:30 PARTY FAVOR: headliner set in display type; by eye PARTY FAVOR 8:30pm - 9:30pm",
+    "d1 Corona Electric Beach 13:00-14:00 D3V: by eye 1pm - 2pm on a 3x crop"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2017-11-11",
+   "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 7,
+   "note": "Header read off the graphic: SATURDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 6,
+   "byEye": [
+    "d2 Corona Electric Beach 20:30-21:30 A-TRAK: printed as the A-Trak logo; by eye A-TRAK 8:30pm - 9:30pm"
+   ],
+   "printedReadings": []
   }
  ]
 }

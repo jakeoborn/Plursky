@@ -18,8 +18,9 @@
 //             Its receipt is a Wayback capture of `foundAt` that cites the
 //             image (citeToken); the earliest such capture is recorded
 //   plus `exclude` (note patterns for printed rows that are not the
-//   edition's, e.g. a pre-event slot the final page re-filled) and
-//   `reviewedAt`.
+//   edition's, e.g. a pre-event slot the final page re-filled),
+//   `notUsedGraphics` ([{cites, reason}]: a set-times graphic a receipt page
+//   shows that is not the edition's, e.g. an after-party's) and `reviewedAt`.
 //
 // Every sheet row must belong to exactly one source. Nothing is fetched from
 // a non-Wayback host and no image enters the repo: only public URLs, hashes
@@ -31,7 +32,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { EDITIONS } from "./editions.mjs";
 import { fetchCapture, listCaptures } from "./wayback.mjs";
-import { citeToken } from "./lib.mjs";
+import { citeToken, setTimesGraphics, sameGraphic, receiptGaps } from "./lib.mjs";
 import { parseDay } from "../fetch-insomniac-settimes.mjs";
 import { sheetRow } from "./extract-insomniac.mjs";
 import { readSheet } from "./build-editions.mjs";
@@ -49,7 +50,17 @@ async function receiptFor(s) {
   const token = citeToken(s.imageUrl);
   for (const c of await listCaptures(s.foundAt, "2010", "2026")) {
     const cap = await fetchCapture(c.timestamp, s.foundAt);
-    if (cap.text.includes(token)) return { archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, sha256: cap.sha256, cites: token };
+    if (!cap.text.includes(token)) continue;
+    const receipt = { archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, sha256: cap.sha256, cites: token };
+    // An EDM Identity post also records every set-times graphic it shows, so
+    // the edition can be held to all of them, not just the one cited here.
+    if (new URL(s.foundAt).hostname === "edmidentity.com") {
+      const shown = setTimesGraphics(cap.text);
+      if (!shown) throw new Error(`${cap.archivedUrl}: no article body found to list its set-times graphics`);
+      if (!shown.some(t => sameGraphic(t, token))) throw new Error(`${cap.archivedUrl}: cites ${token}, but not among the set-times graphics it shows (${shown.join(", ") || "none"})`);
+      receipt.setTimesGraphics = shown;
+    }
+    return receipt;
   }
   throw new Error(`${s.foundAt}: no archived capture cites ${token}`);
 }
@@ -140,7 +151,13 @@ export async function importGather(id, dir) {
   out.sort((a, b) => a.day - b.day || stageOrder.indexOf(a.stage) - stageOrder.indexOf(b.stage) || night(a.start) - night(b.start));
   const cols = ["day", "stage", "start", "end", "artist", "openEnd", "source"];
   writeFileSync(join(ROOT, `data/historical/sheets/${id}.tsv`), [cols.join("\t"), ...out.map(r => cols.map(c => r[c] ?? "").join("\t"))].join("\n") + "\n");
-  const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded };
+  // Every set-times graphic a receipt page shows is used by a source or
+  // excluded in receipts.json `notUsedGraphics` with the reason.
+  const notUsedGraphics = rc.notUsedGraphics || [];
+  const { unused, stale } = receiptGaps(ledgerDays.flatMap(d => d.sources), notUsedGraphics);
+  if (unused.length) throw new Error(`set-times graphics no source uses and none excludes:\n  ${unused.map(u => `${u.cites} (${u.page})`).join("\n  ")}`);
+  if (stale.length) throw new Error(`notUsedGraphics entries that are used, on no receipt page, or have no reason: ${stale.map(n => n.cites).join(", ")}`);
+  const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded, ...(notUsedGraphics.length && { notUsedGraphics }) };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
   if (reviewDays.length) {
     mkdirSync(join(ROOT, "data/historical/review"), { recursive: true });

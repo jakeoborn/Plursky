@@ -590,6 +590,17 @@
    "source": "https://socal.dreamstateusa.com/lineup/"
   },
   {
+   "printed": "CORRUPT (UK)",
+   "performers": [
+    {
+     "name": "CORRUPT (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Corrupt\".",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
    "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
    "performers": [
     {
@@ -849,6 +860,10 @@
   {
    "key": "d-o-d",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "CLIPS X AHOY & HYPE TURNER",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   },
   {
    "printed": "BONNIE X CLYDE",
