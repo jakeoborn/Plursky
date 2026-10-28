@@ -17,6 +17,7 @@ export const OFFICIAL_HOSTS = {
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
+  "nocturnal-wonderland": ["nocturnalwonderland.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
