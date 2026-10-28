@@ -237,6 +237,10 @@ if (base && edc) {
       mustFail("an Instagram graphic that cites no post", m => { g(m).foundAt = "https://www.instagram.com/dreamstateusa/"; }, ds23, undefined, /must cite its post/);
       mustFail("an Instagram graphic found on a re-host page", m => { g(m).foundAt = "https://edmidentity.com/2023/11/15/dreamstate-socal-2023/"; }, ds23, undefined, /must cite its post/);
       mustFail("a graphic on a look-alike of Instagram's CDN", m => { g(m).imageUrl = "https://scontent.cdninstagram.com.example.net/x.jpg"; }, ds23, undefined, /approved re-host/);
+      // Its receipt is that post's own embed, read on a recorded date.
+      mustFail("an Instagram receipt from another post's embed", m => { g(m).receipt.url = "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/"; }, ds23, undefined, /is not the embed of/);
+      mustFail("an Instagram receipt with no read date", m => { delete g(m).receipt.fetchedAt; }, ds23, undefined, /no read date/);
+      mustFail("an Instagram receipt citing another slide", m => { g(m).receipt.cites = "581251862_18534320416060183_3114781477568202383_n"; }, ds23, undefined, /receipt cites/);
     }
     {
       const r = clone(reviewFor(e24.id)); r.days[0].rowsConfirmed -= 1; mutations++;

@@ -2,7 +2,6 @@
   "id": "dreamstate-socal-2024",
   "method": "official_sources",
   "official": "https://socal.dreamstateusa.com/lineup/set-times/",
-  "gathered": "historical-gather/dreamstate-socal-2024",
   "days": [
     {
       "day": 1,

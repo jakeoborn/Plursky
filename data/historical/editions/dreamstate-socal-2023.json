@@ -1175,6 +1175,12 @@
     "printed": "FRI 11.17.23",
     "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
     "rows": 36,
+    "receipt": {
+     "url": "https://www.instagram.com/p/CzrednDMQE6/embed/captioned/",
+     "fetchedAt": "2026-10-25",
+     "sha256": "ed05a90e67373c3a012fbd9b0d2473563a1af2702d276e37a498e2c96386dfbe",
+     "cites": "622061719_17961347511018547_1565309587914429353_n"
+    },
     "reviewManifest": "data/historical/review/dreamstate-socal-2023.json"
    },
    {
@@ -1188,6 +1194,12 @@
     "printed": "SAT 11.18.23",
     "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
     "rows": 34,
+    "receipt": {
+     "url": "https://www.instagram.com/p/CzrednDMQE6/embed/captioned/",
+     "fetchedAt": "2026-10-25",
+     "sha256": "ed05a90e67373c3a012fbd9b0d2473563a1af2702d276e37a498e2c96386dfbe",
+     "cites": "622061719_17961347511018547_1565309587914429353_n"
+    },
     "reviewManifest": "data/historical/review/dreamstate-socal-2023.json"
    }
   ]

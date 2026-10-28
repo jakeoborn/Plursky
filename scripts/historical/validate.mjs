@@ -37,10 +37,12 @@ export const REHOST_HOSTS = {
 const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
-// Identity posts carry their own uploads and X media they re-upload.
+// Identity posts carry their own uploads and X media they re-upload; an
+// Instagram slide is cited by its own post.
 export const RECEIPT_HOSTS = {
   "edmidentity.com": ["edmidentity.com"],
   "pbs.twimg.com": ["edmidentity.com"],
+  "cdninstagram.com": ["instagram.com"],
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -274,18 +276,25 @@ function officialSources(e, meta, p) {
 // /YYYY/MM/DD/ path is its publish date), and a Wayback capture of exactly
 // that page cites the image. The importer found the citation in the
 // capture; the validator holds the record to that page and that image.
+// Wayback holds no Instagram post, so an Instagram slide's receipt is the
+// post's own logged-out embed (/embed/captioned/), read on a recorded date.
 function receiptLinks(c, e, official, host, tag, p) {
-  const page = hostOf(c.foundAt);
-  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[host] || [];
+  const page = hostOf(c.foundAt), rehost = rehostOf(host);
+  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[rehost] || [];
   if (!allowed.some(h => page === h || page.endsWith("." + h))) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
   const dated = /^\/(\d{4})\/(\d{2})\/(\d{2})\//.exec(new URL(c.foundAt).pathname);
   if (page === "edmidentity.com" && (!dated || dated.slice(1).join("-") !== c.published))
     p.push(`${tag}: found-at page ${c.foundAt} is not dated ${c.published}`);
   const r = c.receipt;
   if (!r) return p.push(`${tag}: graphic has no receipt capture of the page it was found on`);
-  const m = WAYBACK.exec(r.archivedUrl || "");
-  if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
-  else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  if (rehost === "cdninstagram.com") {
+    if (r.url !== `${c.foundAt}embed/captioned/`) p.push(`${tag}: receipt ${r.url || "(none)"} is not the embed of ${c.foundAt}`);
+    if (!DAY.test(r.fetchedAt || "")) p.push(`${tag}: receipt has no read date`);
+  } else {
+    const m = WAYBACK.exec(r.archivedUrl || "");
+    if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
+    else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  }
   if (!/^[0-9a-f]{64}$/.test(r.sha256 || "")) p.push(`${tag}: receipt capture hash missing`);
   if (r.cites !== citeToken(c.imageUrl)) p.push(`${tag}: receipt cites ${r.cites || "(nothing)"}, not the graphic ${citeToken(c.imageUrl)}`);
 }

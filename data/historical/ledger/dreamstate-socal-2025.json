@@ -2,7 +2,6 @@
   "id": "dreamstate-socal-2025",
   "method": "official_sources",
   "official": "https://socal.dreamstateusa.com/lineup/set-times/",
-  "gathered": "historical-gather/dreamstate-socal-2025",
   "days": [
     {
       "day": 1,
@@ -10,7 +9,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "ig-DRK5JIlkh91-1.jpg",
           "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581776729_18534320413060183_3932077034120035890_n.jpg",
           "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
           "published": "2025-11-17",
@@ -19,11 +17,16 @@
           "printed": "FRI 11.21.25",
           "sha256": "7ca6ec2d04b8ac9ab95800a1f4c9c819dd0b644bf66b4f5a63e0caabc55089f4",
           "bytes": 271689,
-          "rows": 36
+          "rows": 36,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581776729_18534320413060183_3932077034120035890_n"
+          }
         },
         {
           "kind": "graphic",
-          "file": "ig-DRK5JIlkh91-2.jpg",
           "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581251862_18534320416060183_3114781477568202383_n.jpg",
           "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
           "published": "2025-11-17",
@@ -32,7 +35,13 @@
           "printed": "BEATBOX ART CAR · FRI 11.21",
           "sha256": "93ccfec2277c9ed6dcdbe316a633b49eb61c8e44bdf7d40ea394aca355891028",
           "bytes": 240776,
-          "rows": 6
+          "rows": 6,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581251862_18534320416060183_3114781477568202383_n"
+          }
         }
       ]
     },
@@ -42,7 +51,6 @@
       "sources": [
         {
           "kind": "graphic",
-          "file": "ig-DRK5JIlkh91-1.jpg",
           "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581776729_18534320413060183_3932077034120035890_n.jpg",
           "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
           "published": "2025-11-17",
@@ -51,11 +59,16 @@
           "printed": "SAT 11.22.25",
           "sha256": "7ca6ec2d04b8ac9ab95800a1f4c9c819dd0b644bf66b4f5a63e0caabc55089f4",
           "bytes": 271689,
-          "rows": 36
+          "rows": 36,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581776729_18534320413060183_3932077034120035890_n"
+          }
         },
         {
           "kind": "graphic",
-          "file": "ig-DRK5JIlkh91-2.jpg",
           "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581251862_18534320416060183_3114781477568202383_n.jpg",
           "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
           "published": "2025-11-17",
@@ -64,7 +77,13 @@
           "printed": "BEATBOX ART CAR · SAT 11.22",
           "sha256": "93ccfec2277c9ed6dcdbe316a633b49eb61c8e44bdf7d40ea394aca355891028",
           "bytes": 240776,
-          "rows": 6
+          "rows": 6,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581251862_18534320416060183_3114781477568202383_n"
+          }
         }
       ]
     }

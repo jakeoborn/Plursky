@@ -47,8 +47,16 @@ export const REVIEWER = "Plursky history review (Claude Plur): Vision OCR cross-
 
 // The earliest Wayback capture of the page a graphic was found on that cites
 // the graphic: the proof that the re-host's page carried this image.
-async function receiptFor(s) {
+// Wayback holds no Instagram post, so an Instagram slide's receipt is the
+// post's logged-out embed, read once and kept in the gather folder
+// (`receiptCopy`, read on `receiptReadAt`).
+async function receiptFor(s, dir) {
   const token = citeToken(s.imageUrl);
+  if (new URL(s.imageUrl).hostname.endsWith("cdninstagram.com")) {
+    const buf = readFileSync(join(dir, s.receiptCopy));
+    if (!buf.toString("utf8").includes(token)) throw new Error(`${s.foundAt}: the post's embed does not cite ${token}`);
+    return { url: `${s.foundAt}embed/captioned/`, fetchedAt: s.receiptReadAt, sha256: sha256(buf), cites: token };
+  }
   for (const c of await listCaptures(s.foundAt, "2010", "2026")) {
     const cap = await fetchCapture(c.timestamp, s.foundAt);
     if (!cap.text.includes(token)) continue;
@@ -159,7 +167,7 @@ export async function importGather(id, dir) {
       }
       out.push(...got.map(r => ({ ...r, source: `page ${cap.captureTimestamp}` })));
     } else if (s.kind === "graphic") {
-      const buf = readFileSync(join(dir, s.file)), hash = sha256(buf), receipt = await receiptFor(s);
+      const buf = readFileSync(join(dir, s.file)), hash = sha256(buf), receipt = await receiptFor(s, dir);
       for (const day of days) {
         const n = got.filter(r => r.day === day).length;
         ledgerDays[day - 1].sources.push({ kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published,
