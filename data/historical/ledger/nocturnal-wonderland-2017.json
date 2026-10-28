@@ -66,11 +66,11 @@
   "notUsedGraphics": [
     {
       "cites": "wp-content/uploads/2017/09/Screenshot_20170912-183004",
-      "reason": "a phone screenshot of the FRIDAY schedule as a grid, under the post's 'Set Times Grid' heading; it prints the weekday but no date or year, and all 32 sets match the cited official graphic"
+      "reason": "a 1080x1404 PNG phone screenshot (file name Screenshot_20170912-183004, no alt text) under the post's 'Nocturnal Wonderland 2017 Set Times Grid:' heading, after the cited official 'Set Times:' graphic; a screenshot is not an official graphic, and the cited graphic is the source for these days"
     },
     {
       "cites": "wp-content/uploads/2017/09/Screenshot_20170912-183013",
-      "reason": "a phone screenshot of the SATURDAY schedule as a grid, under the post's 'Set Times Grid' heading; it prints the weekday but no date or year, and all 32 sets match the cited official graphic"
+      "reason": "a 1080x1400 PNG phone screenshot (file name Screenshot_20170912-183013, no alt text) under the post's 'Nocturnal Wonderland 2017 Set Times Grid:' heading, after the cited official 'Set Times:' graphic; a screenshot is not an official graphic, and the cited graphic is the source for these days"
     }
   ],
   "dropped": [
