@@ -211,6 +211,14 @@ if (base && edc) {
       if (d25) {
         mustFail("an Instagram post with a third slide no source uses", m => { for (const c of ig(m)) c.receipt.setTimesGraphics.push("999_999_999_n"); }, d25, undefined, /shows set-times graphic 999_999_999_n, which no source uses/);
         mustFail("an Instagram receipt with no slide list", m => { delete ig(m)[0].receipt.setTimesGraphics; }, d25, undefined, /does not list the set-times graphics/);
+        // Slide lists from one post are unioned too: dropping the second
+        // slide's sources and trimming a later list to its own slide still flags it.
+        const slide2 = [...new Set(ig(d25).map(c => c.receipt.cites))][1];
+        mustFail("Dreamstate 2025 without its second slide, a later same-post list naming only its own slide", m => {
+          m.provenance.captures = m.provenance.captures.filter(c => c.receipt?.cites !== slide2);
+          const last = ig(m).pop();
+          last.receipt.setTimesGraphics = [last.receipt.cites];
+        }, d25, undefined, new RegExp(`shows set-times graphic ${slide2}, which no source uses`));
       }
       mustFail("a receipt whose list leaves out the graphic it cites", m => { const r = m.provenance.captures.find(eb).receipt; r.setTimesGraphics = r.setTimesGraphics.filter(t => !/electricbeach/.test(t)); }, o17, undefined, /without the one it cites/);
       // Lists from sources sharing one receipt page are unioned: a later
