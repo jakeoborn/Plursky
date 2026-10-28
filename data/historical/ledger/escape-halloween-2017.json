@@ -1,0 +1,63 @@
+{
+  "id": "escape-halloween-2017",
+  "method": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-10-27",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+          "foundAt": "https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+          "published": "2017-10-23",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY · OCTOBER 27 & 28, 2017",
+          "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+          "bytes": 1905363,
+          "rows": 36,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+            "captureTimestamp": "20220810223016",
+            "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
+            "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+            "setTimesGraphics": [
+              "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-10-28",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/10/Escape-2017-Set-Times.png",
+          "foundAt": "https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+          "published": "2017-10-23",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY · OCTOBER 27 & 28, 2017",
+          "sha256": "d433f96d41c266c564af4001ec3b3b22bc5a9dc4b27094a7b158b7669c0b4357",
+          "bytes": 1905363,
+          "rows": 33,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20220810223016/https://edmidentity.com/2017/10/23/escape-psycho-circus-2017-essentials/",
+            "captureTimestamp": "20220810223016",
+            "sha256": "e4bd8a89eab512c2e36207cfcc382ed90810f7176e7eae00e8e59837ef4d3eca",
+            "cites": "wp-content/uploads/2017/10/Escape-2017-Set-Times",
+            "setTimesGraphics": [
+              "wp-content/uploads/2017/10/Escape-2017-Set-Times"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

@@ -30,9 +30,10 @@ export function readSheet(file) {
 
 // The key an artist keeps across editions: billing, case- and accent-folded.
 // A B2B billing is one set but several performers; each gets its own key so a
-// later solo slot joins their history.
+// later solo slot joins their history. An unnamed partner (Orlando 2021's
+// "DRINKURWATER B2B Special Guest") stays in the billing but is no performer.
 export const artistKey = name => slug(name);
-export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).map(slug).filter(Boolean);
+export const performerKeys = name => name.split(/\s+(?:B2B|B3B)\s+/i).filter(p => !dropReason(p, "")).map(slug).filter(Boolean);
 
 // Printed rows the library does not keep (editions.mjs DROP_RULES/ACTIVITIES),
 // with the reason, in sheet order. build writes them to ledger/<id>.json.
@@ -49,26 +50,37 @@ export function buildEdition(id, rows, ledger) {
     if (!s) stages.push(s = { id: `${id}:${slug(name)}`, name });
     return s.id;
   };
+  // One act, one artist, however a source cased it: Escape 2019's page prints
+  // "NuKid" on Friday and its graphic "NUKID" on Saturday. The artist keeps
+  // its first printing; a set printed differently keeps its own `billing`.
   const artistId = name => {
-    let a = artists.find(x => x.name === name);
+    let a = artists.find(x => x.key === artistKey(name));
     if (!a) artists.push(a = { id: `${id}:${slug(name)}`, name, key: artistKey(name), performers: performerKeys(name) });
-    return a.id;
+    return a;
   };
   for (const r of rows) {
     if (dropReason(r.artist, r.stage)) continue;
     const day = +r.day, stage = stageId(r.stage);
     const base = { day, stageId: stage, start: r.start, end: r.end || null };
     if (r.openEnd === "1") base.openEnd = true;
-    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, artistId: artistId(r.artist), ...base });
+    const a = artistId(r.artist);
+    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, artistId: a.id, ...base, ...(a.name !== r.artist && { billing: r.artist }) });
   }
   const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday }));
   const provenance = {
     extractionMethod: ed.method,
     official: ledger.official,
-    captures: ledger.days.filter(d => !d.blocked).map(d => ed.method === "structured_html"
+    captures: ed.method === "official_sources"
+      ? ledger.days.flatMap(d => d.sources.map(s => s.kind === "page"
+        ? { day: d.day, kind: "page", archivedUrl: s.archivedUrl, captureTimestamp: s.captureTimestamp, printed: s.printed, sha256: s.sha256, rows: s.rows }
+        : { day: d.day, kind: "graphic", imageUrl: s.imageUrl, foundAt: s.foundAt, published: s.published, rehostedBy: s.rehostedBy,
+            fetchedAt: s.fetchedAt, printed: s.printed, sha256: s.sha256, rows: s.rows, receipt: s.receipt, reviewManifest: `data/historical/review/${id}.json`,
+            ...(s.stagesAs && { stagesAs: s.stagesAs }) }))
+      : ledger.days.filter(d => !d.blocked).map(d => ed.method === "structured_html"
       ? { day: d.day, archivedUrl: d.archivedUrl, captureTimestamp: d.chosen, sha256: d.sha256 }
       : { day: d.day, pageArchivedUrl: d.pageArchivedUrl, pageCapture: d.pageCapture, imageArchivedUrl: d.imageArchivedUrl,
           imageCapture: d.imageCapture, sha256: d.sha256, reviewManifest: `data/historical/review/${id}.json` }),
+    ...(ledger.notUsedGraphics && { notUsedGraphics: ledger.notUsedGraphics }),
   };
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,

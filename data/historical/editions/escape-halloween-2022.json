@@ -1,0 +1,1184 @@
+{
+ "id": "escape-halloween-2022",
+ "festivalId": "escape-halloween",
+ "name": "Escape Halloween 2022",
+ "year": 2022,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-10-28",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-10-29",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "escape-halloween-2022:the-grimm",
+   "name": "THE GRIMM"
+  },
+  {
+   "id": "escape-halloween-2022:feeding-grounds",
+   "name": "FEEDING GROUNDS"
+  },
+  {
+   "id": "escape-halloween-2022:sanitarium",
+   "name": "SANITARIUM"
+  },
+  {
+   "id": "escape-halloween-2022:sewer-district",
+   "name": "SEWER DISTRICT"
+  }
+ ],
+ "artists": [
+  {
+   "id": "escape-halloween-2022:kromi",
+   "name": "KROMI",
+   "key": "kromi",
+   "performers": [
+    "kromi"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:blossom",
+   "name": "BLOSSOM",
+   "key": "blossom",
+   "performers": [
+    "blossom"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:bijou",
+   "name": "BIJOU",
+   "key": "bijou",
+   "performers": [
+    "bijou"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:oliver-heldens",
+   "name": "OLIVER HELDENS",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:wax-motif",
+   "name": "WAX MOTIF",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:deorro-b2b-valentino-khan",
+   "name": "DEORRO B2B VALENTINO KHAN",
+   "key": "deorro-b2b-valentino-khan",
+   "performers": [
+    "deorro",
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:marshmello",
+   "name": "MARSHMELLO",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:skellytn",
+   "name": "SKELLYTN",
+   "key": "skellytn",
+   "performers": [
+    "skellytn"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:zingara",
+   "name": "ZINGARA",
+   "key": "zingara",
+   "performers": [
+    "zingara"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:shiverz",
+   "name": "SHIVERZ",
+   "key": "shiverz",
+   "performers": [
+    "shiverz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:calcium",
+   "name": "CALCIUM",
+   "key": "calcium",
+   "performers": [
+    "calcium"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:the-prototypes",
+   "name": "THE PROTOTYPES",
+   "key": "the-prototypes",
+   "performers": [
+    "the-prototypes"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:modestep",
+   "name": "MODESTEP",
+   "key": "modestep",
+   "performers": [
+    "modestep"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:wooli",
+   "name": "WOOLI",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:getter-b2b-eptic",
+   "name": "GETTER B2B EPTIC",
+   "key": "getter-b2b-eptic",
+   "performers": [
+    "getter",
+    "eptic"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:black-tiger-sex-machine",
+   "name": "BLACK TIGER SEX MACHINE",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:subtronics",
+   "name": "SUBTRONICS",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:kreation",
+   "name": "KREATION",
+   "key": "kreation",
+   "performers": [
+    "kreation"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:soren",
+   "name": "SOREN",
+   "key": "soren",
+   "performers": [
+    "soren"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:lucky-rabbit",
+   "name": "LUCKY RABBIT",
+   "key": "lucky-rabbit",
+   "performers": [
+    "lucky-rabbit"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:sound-rush",
+   "name": "SOUND RUSH",
+   "key": "sound-rush",
+   "performers": [
+    "sound-rush"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:dj-anime",
+   "name": "DJ ANIME",
+   "key": "dj-anime",
+   "performers": [
+    "dj-anime"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:ben-nicky-presents-xtreme",
+   "name": "BEN NICKY PRESENTS XTREME",
+   "key": "ben-nicky-presents-xtreme",
+   "performers": [
+    "ben-nicky-presents-xtreme"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:sub-zero-project",
+   "name": "SUB ZERO PROJECT",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:da-tweekaz",
+   "name": "DA TWEEKAZ",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:d-sturb-b2b-warface",
+   "name": "D-STURB B2B WARFACE",
+   "key": "d-sturb-b2b-warface",
+   "performers": [
+    "d-sturb",
+    "warface"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:radical-redemption",
+   "name": "RADICAL REDEMPTION",
+   "key": "radical-redemption",
+   "performers": [
+    "radical-redemption"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:miane",
+   "name": "MIANE",
+   "key": "miane",
+   "performers": [
+    "miane"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:chris-stussy",
+   "name": "CHRIS STUSSY",
+   "key": "chris-stussy",
+   "performers": [
+    "chris-stussy"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:eli-brown",
+   "name": "ELI BROWN",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:meduza",
+   "name": "MEDUZA",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:marco-carola",
+   "name": "MARCO CAROLA",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:kill-script",
+   "name": "KILL SCRIPT",
+   "key": "kill-script",
+   "performers": [
+    "kill-script"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:florian-picasso",
+   "name": "FLORIAN PICASSO",
+   "key": "florian-picasso",
+   "performers": [
+    "florian-picasso"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:kloud",
+   "name": "KLOUD",
+   "key": "kloud",
+   "performers": [
+    "kloud"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:vintage-culture",
+   "name": "VINTAGE CULTURE",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:said-the-sky",
+   "name": "SAID THE SKY",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:eric-prydz",
+   "name": "ERIC PRYDZ",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:tiesto",
+   "name": "TIËSTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:frosttop",
+   "name": "FROSTTOP",
+   "key": "frosttop",
+   "performers": [
+    "frosttop"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:pauline-herr",
+   "name": "PAULINE HERR",
+   "key": "pauline-herr",
+   "performers": [
+    "pauline-herr"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:dot",
+   "name": "DOT",
+   "key": "dot",
+   "performers": [
+    "dot"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:nurko-nightfall-set",
+   "name": "NURKO (NIGHTFALL SET)",
+   "key": "nurko-nightfall-set",
+   "performers": [
+    "nurko-nightfall-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:moore-kismet",
+   "name": "MOORE KISMET",
+   "key": "moore-kismet",
+   "performers": [
+    "moore-kismet"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:lucii",
+   "name": "LUCII",
+   "key": "lucii",
+   "performers": [
+    "lucii"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:100-gecs",
+   "name": "100 GECS",
+   "key": "100-gecs",
+   "performers": [
+    "100-gecs"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:flosstradamus",
+   "name": "FLOSSTRADAMUS",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:saymynitti",
+   "name": "SAYMYNITTI",
+   "key": "saymynitti",
+   "performers": [
+    "saymynitti"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:kayzo",
+   "name": "KAYZO",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:bones",
+   "name": "BONES",
+   "key": "bones",
+   "performers": [
+    "bones"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:honeyluv",
+   "name": "HONEYLUV",
+   "key": "honeyluv",
+   "performers": [
+    "honeyluv"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:j-worra",
+   "name": "J. WORRA",
+   "key": "j-worra",
+   "performers": [
+    "j-worra"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:cloonee",
+   "name": "CLOONEE",
+   "key": "cloonee",
+   "performers": [
+    "cloonee"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:bob-moses-club-set",
+   "name": "BOB MOSES (CLUB SET)",
+   "key": "bob-moses-club-set",
+   "performers": [
+    "bob-moses-club-set"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:diplo",
+   "name": "DIPLO",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:drakk",
+   "name": "DRAKK",
+   "key": "drakk",
+   "performers": [
+    "drakk"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:brennen-grey",
+   "name": "BRENNEN GREY",
+   "key": "brennen-grey",
+   "performers": [
+    "brennen-grey"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:anfisa-letyago",
+   "name": "ANFISA LETYAGO",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:ben-klock",
+   "name": "BEN KLOCK",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:deborah-de-luca",
+   "name": "DEBORAH DE LUCA",
+   "key": "deborah-de-luca",
+   "performers": [
+    "deborah-de-luca"
+   ]
+  },
+  {
+   "id": "escape-halloween-2022:nina-kraviz",
+   "name": "NINA KRAVIZ",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:1600:kromi",
+   "artistId": "escape-halloween-2022:kromi",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:1700:blossom",
+   "artistId": "escape-halloween-2022:blossom",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:1800:bijou",
+   "artistId": "escape-halloween-2022:bijou",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:1915:oliver-heldens",
+   "artistId": "escape-halloween-2022:oliver-heldens",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "19:15",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:2045:wax-motif",
+   "artistId": "escape-halloween-2022:wax-motif",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:2205:alesso",
+   "artistId": "escape-halloween-2022:alesso",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "22:05",
+   "end": "23:20"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:2320:deorro-b2b-valentino-khan",
+   "artistId": "escape-halloween-2022:deorro-b2b-valentino-khan",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "23:20",
+   "end": "00:35"
+  },
+  {
+   "id": "escape-halloween-2022:d1:the-grimm:0045:marshmello",
+   "artistId": "escape-halloween-2022:marshmello",
+   "day": 1,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:1600:skellytn",
+   "artistId": "escape-halloween-2022:skellytn",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:1650:zingara",
+   "artistId": "escape-halloween-2022:zingara",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:1750:shiverz",
+   "artistId": "escape-halloween-2022:shiverz",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:1850:calcium",
+   "artistId": "escape-halloween-2022:calcium",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:1950:the-prototypes",
+   "artistId": "escape-halloween-2022:the-prototypes",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:2050:modestep",
+   "artistId": "escape-halloween-2022:modestep",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "20:50",
+   "end": "21:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:2150:wooli",
+   "artistId": "escape-halloween-2022:wooli",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "21:50",
+   "end": "22:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:2250:getter-b2b-eptic",
+   "artistId": "escape-halloween-2022:getter-b2b-eptic",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "22:50",
+   "end": "23:50"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:2355:black-tiger-sex-machine",
+   "artistId": "escape-halloween-2022:black-tiger-sex-machine",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "23:55",
+   "end": "00:55"
+  },
+  {
+   "id": "escape-halloween-2022:d1:feeding-grounds:0100:subtronics",
+   "artistId": "escape-halloween-2022:subtronics",
+   "day": 1,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:1600:kreation",
+   "artistId": "escape-halloween-2022:kreation",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:1700:soren",
+   "artistId": "escape-halloween-2022:soren",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:1800:lucky-rabbit",
+   "artistId": "escape-halloween-2022:lucky-rabbit",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:1900:sound-rush",
+   "artistId": "escape-halloween-2022:sound-rush",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:2000:dj-anime",
+   "artistId": "escape-halloween-2022:dj-anime",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:2100:ben-nicky-presents-xtreme",
+   "artistId": "escape-halloween-2022:ben-nicky-presents-xtreme",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:2200:sub-zero-project",
+   "artistId": "escape-halloween-2022:sub-zero-project",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:2300:da-tweekaz",
+   "artistId": "escape-halloween-2022:da-tweekaz",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:0000:d-sturb-b2b-warface",
+   "artistId": "escape-halloween-2022:d-sturb-b2b-warface",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sanitarium:0100:radical-redemption",
+   "artistId": "escape-halloween-2022:radical-redemption",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:1600:miane",
+   "artistId": "escape-halloween-2022:miane",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:1800:chris-stussy",
+   "artistId": "escape-halloween-2022:chris-stussy",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:2000:eli-brown",
+   "artistId": "escape-halloween-2022:eli-brown",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:2130:meduza",
+   "artistId": "escape-halloween-2022:meduza",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:2300:anna",
+   "artistId": "escape-halloween-2022:anna",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2022:d1:sewer-district:0030:marco-carola",
+   "artistId": "escape-halloween-2022:marco-carola",
+   "day": 1,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:1600:kill-script",
+   "artistId": "escape-halloween-2022:kill-script",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:1700:florian-picasso",
+   "artistId": "escape-halloween-2022:florian-picasso",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:1815:kloud",
+   "artistId": "escape-halloween-2022:kloud",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:1930:vintage-culture",
+   "artistId": "escape-halloween-2022:vintage-culture",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:2055:said-the-sky",
+   "artistId": "escape-halloween-2022:said-the-sky",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "20:55",
+   "end": "22:05"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:2210:martin-garrix",
+   "artistId": "escape-halloween-2022:martin-garrix",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "22:10",
+   "end": "23:25"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:2325:eric-prydz",
+   "artistId": "escape-halloween-2022:eric-prydz",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "23:25",
+   "end": "00:40"
+  },
+  {
+   "id": "escape-halloween-2022:d2:the-grimm:0045:tiesto",
+   "artistId": "escape-halloween-2022:tiesto",
+   "day": 2,
+   "stageId": "escape-halloween-2022:the-grimm",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:1600:frosttop",
+   "artistId": "escape-halloween-2022:frosttop",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:1645:pauline-herr",
+   "artistId": "escape-halloween-2022:pauline-herr",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:1745:dot",
+   "artistId": "escape-halloween-2022:dot",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:1845:nurko-nightfall-set",
+   "artistId": "escape-halloween-2022:nurko-nightfall-set",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:1945:moore-kismet",
+   "artistId": "escape-halloween-2022:moore-kismet",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:2045:lucii",
+   "artistId": "escape-halloween-2022:lucii",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:2200:100-gecs",
+   "artistId": "escape-halloween-2022:100-gecs",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:2245:flosstradamus",
+   "artistId": "escape-halloween-2022:flosstradamus",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:2345:saymynitti",
+   "artistId": "escape-halloween-2022:saymynitti",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "escape-halloween-2022:d2:feeding-grounds:0045:kayzo",
+   "artistId": "escape-halloween-2022:kayzo",
+   "day": 2,
+   "stageId": "escape-halloween-2022:feeding-grounds",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:1600:bones",
+   "artistId": "escape-halloween-2022:bones",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:1715:honeyluv",
+   "artistId": "escape-halloween-2022:honeyluv",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "17:15",
+   "end": "18:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:1830:j-worra",
+   "artistId": "escape-halloween-2022:j-worra",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:2000:cloonee",
+   "artistId": "escape-halloween-2022:cloonee",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:2130:sidepiece",
+   "artistId": "escape-halloween-2022:sidepiece",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:2300:bob-moses-club-set",
+   "artistId": "escape-halloween-2022:bob-moses-club-set",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sanitarium:0030:diplo",
+   "artistId": "escape-halloween-2022:diplo",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sanitarium",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:1600:drakk",
+   "artistId": "escape-halloween-2022:drakk",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:1800:brennen-grey",
+   "artistId": "escape-halloween-2022:brennen-grey",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:1930:anfisa-letyago",
+   "artistId": "escape-halloween-2022:anfisa-letyago",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:2100:ben-klock",
+   "artistId": "escape-halloween-2022:ben-klock",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:2230:deborah-de-luca",
+   "artistId": "escape-halloween-2022:deborah-de-luca",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "22:30",
+   "end": "00:15"
+  },
+  {
+   "id": "escape-halloween-2022:d2:sewer-district:0015:nina-kraviz",
+   "artistId": "escape-halloween-2022:nina-kraviz",
+   "day": 2,
+   "stageId": "escape-halloween-2022:sewer-district",
+   "start": "00:15",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://escapehalloween.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRieXgBsMspW.jpg",
+    "foundAt": "https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+    "published": "2022-10-24",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY, OCT 28",
+    "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
+    "rows": 34,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+     "setTimesGraphics": [
+      "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+      "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2022.json"
+   },
+   {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi.jpg",
+    "foundAt": "https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+    "published": "2022-10-24",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "FRIDAY, OCT 28",
+    "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
+    "rows": 10,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi",
+     "setTimesGraphics": [
+      "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+      "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2022.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRieXgBsMspW.jpg",
+    "foundAt": "https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+    "published": "2022-10-24",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY, OCT 29",
+    "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
+    "rows": 31,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+     "setTimesGraphics": [
+      "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+      "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2022.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi.jpg",
+    "foundAt": "https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+    "published": "2022-10-24",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-27",
+    "printed": "SATURDAY, OCT 29",
+    "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
+    "rows": 8,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20230320220223/https://edmidentity.com/2022/10/24/escape-halloween-2022-essentials/",
+     "captureTimestamp": "20230320220223",
+     "sha256": "4e6b5e5551c20edcfc567ddaa6c747c4c9dc4e3ad1928e0e0b905439361dfa97",
+     "cites": "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi",
+     "setTimesGraphics": [
+      "wp-content/uploads/2022/10/Ff8GRieXgBsMspW",
+      "wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi"
+     ]
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2022.json"
+   }
+  ]
+ }
+}

@@ -15,6 +15,10 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
 {
   const p = parseBilling('Above & Beyond (Sunrise Set)');
   check(same(keys(p), ['above-and-beyond:performer']) && p.setTag === 'Sunrise Set' && !p.review, `set tag: "Above & Beyond (Sunrise Set)" → ${JSON.stringify(p)}`);
+  // EDC Orlando prints a bare "(SUNSET)" for the sunset slot: a set tag, so
+  // the act keeps one key with its untagged sets.
+  const ss = parseBilling('KASKADE (SUNSET)');
+  check(same(keys(ss), ['kaskade:performer']) && ss.setTag === 'SUNSET' && !ss.review, `set tag: "KASKADE (SUNSET)" → ${JSON.stringify(ss)}`);
   const t = parseBilling('Adventure Club (Throwback Set)');
   check(same(keys(t), ['adventure-club:performer']) && t.setTag === 'Throwback Set', `set tag: "Adventure Club (Throwback Set)" → ${JSON.stringify(t)}`);
   const amp = parseBilling('Walker & Royce');
@@ -81,6 +85,17 @@ const out = build();
   check(lasership && lasership.kind === 'project' && lasership.parents.includes('levity'), `Lasership is not Levity's project: ${JSON.stringify(lasership)}`);
   const cl = billings.find(b => /Cloonee/i.test(b.printed) && b.source === 'live');
   check(cl && cl.closing !== null && cl.date, `control: a timed live billing has no closing flag or date: ${JSON.stringify(cl)}`);
+}
+
+// ── Every archived set carries its source's date ─────────────────────────
+// An official_sources graphic has no Wayback timestamp: its own publish date
+// stands in (Escape 2024 read null until the graphic kind was handled).
+{
+  const ed = out.rows.filter(r => r.source === 'edition');
+  check(ed.length > 1000, `control: ${ed.length} archived rows read`);
+  check(ed.every(r => r.published), `archived sets with no "as published" date: ${[...new Set(ed.filter(r => !r.published).map(r => r.festivalId))]}`);
+  const nk = ed.filter(r => r.festivalId === 'escape-halloween-2019' && /^nukid$/i.test(r.printed)).map(r => `${r.printed} ${r.published}`).sort();
+  check(nk.join() === 'NUKID 2019-10-21,NuKid 2020-08-17', `a set keeps its own printing and its own source's date (Escape 2019 NuKid): ${nk}`);
 }
 
 // ── M2: every review row is ruled or explicitly pending ───────────────────

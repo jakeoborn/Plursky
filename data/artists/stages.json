@@ -626,6 +626,243 @@
     }
    ]
   },
+  "edc-orlando": {
+   "lineages": [
+    {
+     "id": "edc-orlando:kineticfield",
+     "names": [
+      {
+       "printed": "kineticFIELD",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neongarden",
+     "names": [
+      {
+       "printed": "neonGARDEN",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019"
+       ]
+      },
+      {
+       "printed": "neonGarden",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuitgrounds",
+     "names": [
+      {
+       "printed": "circuitGROUNDS",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "edc-orlando-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereobloom",
+     "names": [
+      {
+       "printed": "stereoBLOOM",
+       "editions": [
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:wideawakeartcar",
+     "names": [
+      {
+       "printed": "wideawakeARTCAR",
+       "editions": [
+        "edc-orlando-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "edc-orlando-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus-art-car",
+     "names": [
+      {
+       "printed": "Rynobus Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:anniversary-art-car",
+     "names": [
+      {
+       "printed": "Anniversary Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casa-bacardi",
+     "names": [
+      {
+       "printed": "Casa BACARDÍ",
+       "editions": [
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casabacardi",
+     "names": [
+      {
+       "printed": "casaBACARDÍ",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "escape-halloween": {
    "lineages": [
     {
@@ -713,6 +950,191 @@
        "printed": "The Big Top",
        "editions": [
         "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:slaughterhouse",
+     "names": [
+      {
+       "printed": "SLAUGHTERHOUSE",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:ghouls-graveyard",
+     "names": [
+      {
+       "printed": "GHOULS' GRAVEYARD",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:chopping-block",
+     "names": [
+      {
+       "printed": "CHOPPING BLOCK",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:cannibals-tea-party",
+     "names": [
+      {
+       "printed": "CANNIBALS' TEA PARTY",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-grimm",
+     "names": [
+      {
+       "printed": "The Grimm",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "THE GRIMM",
+       "editions": [
+        "escape-halloween-2022",
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:psycho-circus",
+     "names": [
+      {
+       "printed": "Psycho Circus",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:sanitarium",
+     "names": [
+      {
+       "printed": "Sanitarium",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "SANITARIUM",
+       "editions": [
+        "escape-halloween-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:crazy-town",
+     "names": [
+      {
+       "printed": "Crazy Town",
+       "editions": [
+        "escape-halloween-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:wicked-woods",
+     "names": [
+      {
+       "printed": "WICKED WOODS",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cauldron",
+     "names": [
+      {
+       "printed": "THE CAULDRON",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX BOOMBOX ART CAR",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi-2",
+     "names": [
+      {
+       "printed": "CASA BACARDI",
+       "editions": [
+        "escape-halloween-2025"
        ]
       }
      ],
