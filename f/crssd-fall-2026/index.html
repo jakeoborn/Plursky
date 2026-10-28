@@ -446,44 +446,6 @@
       <dd>Yes. This page links the official CRSSD Fest Fall 2026 map on the festival&#39;s own site.</dd>
     </dl>
   </section>
-  <section id="watch" class="watch" aria-labelledby="watch-h">
-    <h2 id="watch-h">Watch &amp; listen</h2>
-    <p class="note">From CRSSD Fest Fall 2026's official accounts.</p>
-    <figure class="embed embed-sp">
-      <iframe src="https://open.spotify.com/embed/playlist/3EioeVIOJxZQARH4GlGw2I" title="CRSSD Fest Fall 2026 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-      <p class="embed-cap">CRSSD Fest Fall 2026's official playlist on Spotify · <a href="https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I" rel="noopener">View the original</a></p>
-    </figure>
-    <script>
-(function () {
-  var sec = document.getElementById('watch');
-  if (!sec) return;
-  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
-  var requested = {};
-  function hydrate(p, fig) {
-    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
-    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
-    if (requested[p]) return; // in flight: the script scans the page when it runs
-    requested[p] = true;
-    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
-  }
-  sec.addEventListener('click', function (ev) {
-    var b = ev.target.closest && ev.target.closest('button.embed-load');
-    if (!b) return;
-    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
-    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
-    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
-    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
-    bq.appendChild(a); // X's script reads the post id from this link
-    bq.className = bq.getAttribute('data-class');
-    bq.removeAttribute('data-class');
-    fig.classList.add('tapped');
-    fig.setAttribute('tabindex', '-1');
-    fig.focus({ preventScroll: true });
-    hydrate(fig.getAttribute('data-tap'), fig);
-  });
-})();
-    </script>
-  </section>
 
   <section aria-labelledby="map-h">
     <h2 id="map-h">CRSSD Fest Fall 2026 map</h2>
