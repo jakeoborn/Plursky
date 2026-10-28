@@ -2314,6 +2314,10 @@ function artistDayDate(a, nowMs, savedIds) {
 // Oct 31 → Nov 1 falls back at 02:00, and midnightUtc + hours put every later
 // set an hour late. A night with no transition (every live festival today)
 // returns that plain sum. Null for a blank (TBA) time or an unknown day.
+// On a FALL-BACK night the transition wall time itself (02:00) is read as the
+// end of the first pass, i.e. the transition instant: Escape's "Festival Hours
+// 4PM-2AM" close is 02:00 PDT = 09:00Z, not 02:00 PST an hour later (lane
+// ruling 2026-10-26). 01:xx stays the first (PDT) pass; 02:01 on is PST.
 const _tzFmt = {};
 const _tzNightShifts = {};
 function _utcOffsetMs(tz, ms) {
@@ -2338,8 +2342,13 @@ function _wallMs(dayDate, hhmm, tz) {
     }
     const o0 = _tzNightShifts[key];
     if (o0 === null) return naive;
+    // Fall-back night (the offset drops overnight): read the offset one
+    // second before the candidate instant, so the 02:00 boundary keeps the
+    // pre-transition offset. A whole second, because _utcOffsetMs works in
+    // whole seconds. A spring-forward night keeps the exact-instant read.
+    const back = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) < o0 ? 1000 : 0;
     let ms = naive;
-    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms - back);
     return ms;
   } catch { return naive; }
 }

@@ -1858,8 +1858,9 @@ function _wallMs(dayDate, hhmm, tz) {
     }
     var o0 = _tzNightShifts[key];
     if (o0 === null) return naive;
+    var back = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) < o0 ? 1000 : 0;
     var ms = naive;
-    for (var i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    for (var i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms - back);
     return ms;
   } catch {
     return naive;
