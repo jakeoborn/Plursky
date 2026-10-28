@@ -34,6 +34,10 @@
   {
    "id": "edc-orlando-2017:boombox-art-car",
    "name": "BOOMBOX ART CAR"
+  },
+  {
+   "id": "edc-orlando-2017:corona-electric-beach",
+   "name": "Corona Electric Beach"
   }
  ],
  "artists": [
@@ -362,6 +366,46 @@
    ]
   },
   {
+   "id": "edc-orlando-2017:d3v",
+   "name": "D3V",
+   "key": "d3v",
+   "performers": [
+    "d3v"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:doc-brown",
+   "name": "DOC BROWN",
+   "key": "doc-brown",
+   "performers": [
+    "doc-brown"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:sharps",
+   "name": "SHARPS",
+   "key": "sharps",
+   "performers": [
+    "sharps"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:kayoh",
+   "name": "KAYOH",
+   "key": "kayoh",
+   "performers": [
+    "kayoh"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:landis",
+   "name": "LANDIS",
+   "key": "landis",
+   "performers": [
+    "landis"
+   ]
+  },
+  {
    "id": "edc-orlando-2017:damaged-goods",
    "name": "DAMAGED GOODS",
    "key": "damaged-goods",
@@ -635,14 +679,6 @@
    ]
   },
   {
-   "id": "edc-orlando-2017:kayoh",
-   "name": "KAYOH",
-   "key": "kayoh",
-   "performers": [
-    "kayoh"
-   ]
-  },
-  {
    "id": "edc-orlando-2017:jose-estrada",
    "name": "JOSE ESTRADA",
    "key": "jose-estrada",
@@ -651,19 +687,51 @@
    ]
   },
   {
-   "id": "edc-orlando-2017:landis",
-   "name": "LANDIS",
-   "key": "landis",
-   "performers": [
-    "landis"
-   ]
-  },
-  {
    "id": "edc-orlando-2017:steven-spence",
    "name": "STEVEN SPENCE",
    "key": "steven-spence",
    "performers": [
     "steven-spence"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:carbetta-and-doons",
+   "name": "CARBETTA & DOONS",
+   "key": "carbetta-and-doons",
+   "performers": [
+    "carbetta-and-doons"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:clips-x-ahoy-and-hype-turner",
+   "name": "CLIPS X AHOY & HYPE TURNER",
+   "key": "clips-x-ahoy-and-hype-turner",
+   "performers": [
+    "clips-x-ahoy-and-hype-turner"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:el-dusty",
+   "name": "EL DUSTY",
+   "key": "el-dusty",
+   "performers": [
+    "el-dusty"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:a-trak",
+   "name": "A-TRAK",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ]
+  },
+  {
+   "id": "edc-orlando-2017:nitti-gritti-and-sam-f",
+   "name": "NITTI GRITTI & SAM F",
+   "key": "nitti-gritti-and-sam-f",
+   "performers": [
+    "nitti-gritti-and-sam-f"
    ]
   }
  ],
@@ -989,6 +1057,70 @@
    "end": "00:00"
   },
   {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:1300:d3v",
+   "artistId": "edc-orlando-2017:d3v",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:1400:doc-brown",
+   "artistId": "edc-orlando-2017:doc-brown",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:1530:sharps",
+   "artistId": "edc-orlando-2017:sharps",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:1700:mahalo",
+   "artistId": "edc-orlando-2017:mahalo",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "17:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:1930:corporate-slackrs",
+   "artistId": "edc-orlando-2017:corporate-slackrs",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:2030:party-favor",
+   "artistId": "edc-orlando-2017:party-favor",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:2130:kayoh",
+   "artistId": "edc-orlando-2017:kayoh",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-orlando-2017:d1:corona-electric-beach:2230:landis",
+   "artistId": "edc-orlando-2017:landis",
+   "day": 1,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
    "id": "edc-orlando-2017:d2:kineticfield:1300:damaged-goods",
    "artistId": "edc-orlando-2017:damaged-goods",
    "day": 2,
@@ -1291,6 +1423,62 @@
    "stageId": "edc-orlando-2017:boombox-art-car",
    "start": "23:00",
    "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:1400:dead-space",
+   "artistId": "edc-orlando-2017:dead-space",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:1530:carbetta-and-doons",
+   "artistId": "edc-orlando-2017:carbetta-and-doons",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "15:30",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:1700:clips-x-ahoy-and-hype-turner",
+   "artistId": "edc-orlando-2017:clips-x-ahoy-and-hype-turner",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "17:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:1930:el-dusty",
+   "artistId": "edc-orlando-2017:el-dusty",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:2030:a-trak",
+   "artistId": "edc-orlando-2017:a-trak",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:2130:bonnie-x-clyde",
+   "artistId": "edc-orlando-2017:bonnie-x-clyde",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-orlando-2017:d2:corona-electric-beach:2230:nitti-gritti-and-sam-f",
+   "artistId": "edc-orlando-2017:nitti-gritti-and-sam-f",
+   "day": 2,
+   "stageId": "edc-orlando-2017:corona-electric-beach",
+   "start": "22:30",
+   "end": "00:00"
   }
  ],
  "provenance": {
@@ -1317,6 +1505,25 @@
     "reviewManifest": "data/historical/review/edc-orlando-2017.json"
    },
    {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+    "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+    "published": "2017-11-06",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "FRIDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+    "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+    "rows": 8,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20190921045450/https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+     "captureTimestamp": "20190921045450",
+     "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
+     "cites": "wp-content/uploads/2017/11/electricbeach2017"
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2017.json"
+   },
+   {
     "day": 2,
     "kind": "graphic",
     "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o.png",
@@ -1332,6 +1539,25 @@
      "captureTimestamp": "20190921045450",
      "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
      "cites": "wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o"
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2017.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+    "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+    "published": "2017-11-06",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "SATURDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+    "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+    "rows": 7,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20190921045450/https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+     "captureTimestamp": "20190921045450",
+     "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
+     "cites": "wp-content/uploads/2017/11/electricbeach2017"
     },
     "reviewManifest": "data/historical/review/edc-orlando-2017.json"
    }

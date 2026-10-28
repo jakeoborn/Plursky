@@ -24,6 +24,24 @@
             "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
             "cites": "wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o"
           }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+          "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+          "published": "2017-11-06",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "FRIDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+          "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+          "bytes": 896906,
+          "rows": 8,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20190921045450/https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+            "captureTimestamp": "20190921045450",
+            "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
+            "cites": "wp-content/uploads/2017/11/electricbeach2017"
+          }
         }
       ]
     },
@@ -47,6 +65,24 @@
             "captureTimestamp": "20190921045450",
             "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
             "cites": "wp-content/uploads/2017/11/23331301_1939029429470719_3061741298535184076_o"
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2017/11/electricbeach2017.png",
+          "foundAt": "https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+          "published": "2017-11-06",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "SATURDAY · ORLANDO 2017 · NOVEMBER 10 - 11",
+          "sha256": "72ebf4861e9a6524d63ff0ea0e6bf0331735cd6907bcf33de82037153ed0f3d5",
+          "bytes": 896906,
+          "rows": 7,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20190921045450/https://edmidentity.com/2017/11/06/edc-orlando-2017-essentials/",
+            "captureTimestamp": "20190921045450",
+            "sha256": "952ef519cd88856eae3bb2e0836818a3fe81046d59511bf4001581968b5169ee",
+            "cites": "wp-content/uploads/2017/11/electricbeach2017"
           }
         }
       ]

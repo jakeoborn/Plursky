@@ -43,6 +43,10 @@
   {
    "id": "edc-orlando-2022:rynobus",
    "name": "Rynobus"
+  },
+  {
+   "id": "edc-orlando-2022:corona-electric-beach",
+   "name": "Corona Electric Beach"
   }
  ],
  "artists": [
@@ -410,6 +414,95 @@
    ]
   },
   {
+   "id": "edc-orlando-2022:taylor-jaymin",
+   "name": "TAYLOR JAYMIN",
+   "key": "taylor-jaymin",
+   "performers": [
+    "taylor-jaymin"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:corey-divine",
+   "name": "COREY DIVINE",
+   "key": "corey-divine",
+   "performers": [
+    "corey-divine"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:purple",
+   "name": "PURPLE",
+   "key": "purple",
+   "performers": [
+    "purple"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:party-shirt",
+   "name": "PARTY SHIRT",
+   "key": "party-shirt",
+   "performers": [
+    "party-shirt"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:truth-x-lies",
+   "name": "TRUTH X LIES",
+   "key": "truth-x-lies",
+   "performers": [
+    "truth-x-lies"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:corrupt-uk",
+   "name": "CORRUPT (UK)",
+   "key": "corrupt-uk",
+   "performers": [
+    "corrupt-uk"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:rohaan",
+   "name": "ROHAAN",
+   "key": "rohaan",
+   "performers": [
+    "rohaan"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:oddkidout",
+   "name": "ODDKIDOUT",
+   "key": "oddkidout",
+   "performers": [
+    "oddkidout"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:softest-hard",
+   "name": "SOFTEST HARD",
+   "key": "softest-hard",
+   "performers": [
+    "softest-hard"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:capozzi",
+   "name": "CAPOZZI",
+   "key": "capozzi",
+   "performers": [
+    "capozzi"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:4b-b2b-mikey-barreneche",
+   "name": "4B B2B MIKEY BARRENECHE",
+   "key": "4b-b2b-mikey-barreneche",
+   "performers": [
+    "4b",
+    "mikey-barreneche"
+   ]
+  },
+  {
    "id": "edc-orlando-2022:doozie",
    "name": "DOOZIE",
    "key": "doozie",
@@ -628,14 +721,6 @@
    ]
   },
   {
-   "id": "edc-orlando-2022:truth-x-lies",
-   "name": "TRUTH X LIES",
-   "key": "truth-x-lies",
-   "performers": [
-    "truth-x-lies"
-   ]
-  },
-  {
    "id": "edc-orlando-2022:torren-foot",
    "name": "TORREN FOOT",
    "key": "torren-foot",
@@ -808,6 +893,94 @@
    ]
   },
   {
+   "id": "edc-orlando-2022:fixion",
+   "name": "FIXION",
+   "key": "fixion",
+   "performers": [
+    "fixion"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:juuku",
+   "name": "JUUKU",
+   "key": "juuku",
+   "performers": [
+    "juuku"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:avello",
+   "name": "AVELLO",
+   "key": "avello",
+   "performers": [
+    "avello"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:taylor-kade",
+   "name": "TAYLOR KADE",
+   "key": "taylor-kade",
+   "performers": [
+    "taylor-kade"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:highlnd",
+   "name": "HIGHLND",
+   "key": "highlnd",
+   "performers": [
+    "highlnd"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:if-found",
+   "name": "IF FOUND",
+   "key": "if-found",
+   "performers": [
+    "if-found"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:danny-olson",
+   "name": "DANNY OLSON",
+   "key": "danny-olson",
+   "performers": [
+    "danny-olson"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:pauline-herr",
+   "name": "PAULINE HERR",
+   "key": "pauline-herr",
+   "performers": [
+    "pauline-herr"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:codeko",
+   "name": "CODEKO",
+   "key": "codeko",
+   "performers": [
+    "codeko"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:yetep",
+   "name": "YETEP",
+   "key": "yetep",
+   "performers": [
+    "yetep"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
    "id": "edc-orlando-2022:yokai",
    "name": "YOKAI",
    "key": "yokai",
@@ -881,27 +1054,11 @@
    ]
   },
   {
-   "id": "edc-orlando-2022:avello",
-   "name": "AVELLO",
-   "key": "avello",
-   "performers": [
-    "avello"
-   ]
-  },
-  {
    "id": "edc-orlando-2022:laszewo",
    "name": "LASZEWO",
    "key": "laszewo",
    "performers": [
     "laszewo"
-   ]
-  },
-  {
-   "id": "edc-orlando-2022:pauline-herr",
-   "name": "PAULINE HERR",
-   "key": "pauline-herr",
-   "performers": [
-    "pauline-herr"
    ]
   },
   {
@@ -1176,6 +1333,63 @@
    "key": "kozmoz",
    "performers": [
     "kozmoz"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:birmingham-drive-presents-fll-snd",
+   "name": "BIRMINGHAM DRIVE PRESENTS FLL SND",
+   "key": "birmingham-drive-presents-fll-snd",
+   "performers": [
+    "birmingham-drive-presents-fll-snd"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:prankstisci",
+   "name": "PRANKSTISCI",
+   "key": "prankstisci",
+   "performers": [
+    "prankstisci"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:mednas",
+   "name": "MEDNAS",
+   "key": "mednas",
+   "performers": [
+    "mednas"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:landis",
+   "name": "LANDIS",
+   "key": "landis",
+   "performers": [
+    "landis"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:gianni-blu",
+   "name": "GIANNI BLU",
+   "key": "gianni-blu",
+   "performers": [
+    "gianni-blu"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:black-v-neck-latin-house-set",
+   "name": "BLACK V NECK (LATIN HOUSE SET)",
+   "key": "black-v-neck-latin-house-set",
+   "performers": [
+    "black-v-neck-latin-house-set"
+   ]
+  },
+  {
+   "id": "edc-orlando-2022:matroda-b2b-bleu-clair",
+   "name": "MATRODA B2B BLEU CLAIR",
+   "key": "matroda-b2b-bleu-clair",
+   "performers": [
+    "matroda",
+    "bleu-clair"
    ]
   }
  ],
@@ -1537,6 +1751,94 @@
    "artistId": "edc-orlando-2022:2ar-b2b-haylee-wood",
    "day": 1,
    "stageId": "edc-orlando-2022:rynobus",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1300:taylor-jaymin",
+   "artistId": "edc-orlando-2022:taylor-jaymin",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1400:corey-divine",
+   "artistId": "edc-orlando-2022:corey-divine",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1500:purple",
+   "artistId": "edc-orlando-2022:purple",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1600:party-shirt",
+   "artistId": "edc-orlando-2022:party-shirt",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1700:truth-x-lies",
+   "artistId": "edc-orlando-2022:truth-x-lies",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1800:corrupt-uk",
+   "artistId": "edc-orlando-2022:corrupt-uk",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:1900:rohaan",
+   "artistId": "edc-orlando-2022:rohaan",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:2000:oddkidout",
+   "artistId": "edc-orlando-2022:oddkidout",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:2100:softest-hard",
+   "artistId": "edc-orlando-2022:softest-hard",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:2200:capozzi",
+   "artistId": "edc-orlando-2022:capozzi",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche",
+   "artistId": "edc-orlando-2022:4b-b2b-mikey-barreneche",
+   "day": 1,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
    "start": "23:00",
    "end": "00:00"
   },
@@ -1933,6 +2235,94 @@
    "end": "00:00"
   },
   {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1300:fixion",
+   "artistId": "edc-orlando-2022:fixion",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1400:juuku",
+   "artistId": "edc-orlando-2022:juuku",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1500:avello",
+   "artistId": "edc-orlando-2022:avello",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1600:taylor-kade",
+   "artistId": "edc-orlando-2022:taylor-kade",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1700:highlnd",
+   "artistId": "edc-orlando-2022:highlnd",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1800:if-found",
+   "artistId": "edc-orlando-2022:if-found",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:1900:danny-olson",
+   "artistId": "edc-orlando-2022:danny-olson",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:2000:pauline-herr",
+   "artistId": "edc-orlando-2022:pauline-herr",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:2100:codeko",
+   "artistId": "edc-orlando-2022:codeko",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:2200:yetep",
+   "artistId": "edc-orlando-2022:yetep",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2022:d2:corona-electric-beach:2300:armnhmr",
+   "artistId": "edc-orlando-2022:armnhmr",
+   "day": 2,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
    "id": "edc-orlando-2022:d3:kinetic-field:1300:yokai",
    "artistId": "edc-orlando-2022:yokai",
    "day": 3,
@@ -2299,6 +2689,87 @@
    "stageId": "edc-orlando-2022:rynobus",
    "start": "23:00",
    "end": "00:00"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1300:birmingham-drive-presents-fll-snd",
+   "artistId": "edc-orlando-2022:birmingham-drive-presents-fll-snd",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1430:prankstisci",
+   "artistId": "edc-orlando-2022:prankstisci",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1530:mednas",
+   "artistId": "edc-orlando-2022:mednas",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1630:edgar-v",
+   "artistId": "edc-orlando-2022:edgar-v",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1730:landis",
+   "artistId": "edc-orlando-2022:landis",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1830:gianni-blu",
+   "artistId": "edc-orlando-2022:gianni-blu",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:1930:kaleena-zanders",
+   "artistId": "edc-orlando-2022:kaleena-zanders",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "19:30",
+   "end": "20:30",
+   "billing": "KALEENA ZANDERS"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:2030:francis-mercier",
+   "artistId": "edc-orlando-2022:francis-mercier",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:2200:black-v-neck-latin-house-set",
+   "artistId": "edc-orlando-2022:black-v-neck-latin-house-set",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair",
+   "artistId": "edc-orlando-2022:matroda-b2b-bleu-clair",
+   "day": 3,
+   "stageId": "edc-orlando-2022:corona-electric-beach",
+   "start": "23:00",
+   "end": "00:00"
   }
  ],
  "provenance": {
@@ -2334,6 +2805,25 @@
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    },
    {
+    "day": 1,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+    "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+    "published": "2022-11-03",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "NOV 11 FRIDAY",
+    "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+    "rows": 11,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2022.json"
+   },
+   {
     "day": 2,
     "kind": "graphic",
     "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
@@ -2353,6 +2843,25 @@
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    },
    {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+    "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+    "published": "2022-11-03",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "SATURDAY NOV 12",
+    "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+    "rows": 11,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2022.json"
+   },
+   {
     "day": 3,
     "kind": "graphic",
     "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n.jpg",
@@ -2368,6 +2877,25 @@
      "captureTimestamp": "20221208172253",
      "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
      "cites": "wp-content/uploads/2022/11/313873918_8681187051921556_4878906861207207811_n"
+    },
+    "reviewManifest": "data/historical/review/edc-orlando-2022.json"
+   },
+   {
+    "day": 3,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/11/Fg_joRpXwAEecwB.jpg",
+    "foundAt": "https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+    "published": "2022-11-03",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "NOV 13 SUNDAY",
+    "sha256": "0835798c2e902586b06528a79aa069bb22b069ef528b6c57cc7b736d06429fd8",
+    "rows": 10,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20221208172253/https://edmidentity.com/2022/11/03/edc-orlando-2022-essentials/",
+     "captureTimestamp": "20221208172253",
+     "sha256": "600967a295dff23472949281ae72c39a238e80dfb3eb326bcd0ce0d87c84f1ec",
+     "cites": "wp-content/uploads/2022/11/Fg_joRpXwAEecwB"
     },
     "reviewManifest": "data/historical/review/edc-orlando-2022.json"
    }
