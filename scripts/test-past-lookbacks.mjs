@@ -8,7 +8,7 @@
 // disabled with no placeholder. It proves, reading every expectation from
 // data/historical and the registry:
 //   - the /f/ page of a qualified stub leads with "Look back: <year>", a Past
-//     edition chip, the edition's own dates, its archive date and a link that
+//     edition chip, the edition's own dates, its source date (sourceDate) and a link that
 //     opens that edition; no other stub page has one; no page lists an
 //     edition of its own year or later;
 //   - in the app, the stub row reads "Look back: <year>" and opens the edition
@@ -31,11 +31,18 @@ import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from "./lib/server-ready.mjs";
 import { wireVendor } from "./lib/vendor-cdn.mjs";
-import { pastEditionsFor } from "./lib/festival-page-data.mjs";
+import { pastEditionsFor, sourceDate } from "./lib/festival-page-data.mjs";
 import { loadRegistry } from "./lib/load-registry.mjs";
 
 const ROOT = process.cwd();
 const H = p => JSON.parse(readFileSync(join(ROOT, "data/historical", p), "utf8"));
+// What a look-back may claim about its source, stated here and not read from
+// the generator: a Wayback capture is "archived"; an official_sources edition
+// can date from a re-hosted graphic's publish date, so it says "latest source".
+const wording = ed => ed.provenance?.extractionMethod === "official_sources"
+  ? { page: "Latest official source", app: "latest source" } : { page: "Official source archived", app: "source archived" };
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const dateLabel = iso => { const [y, m, d] = iso.split("-").map(Number); return `${MON[m - 1]} ${d}, ${y}`; };
 const INDEX = H("index.json");
 const SHOTS = process.env.PLURSKY_PAST_SHOTS;
 if (SHOTS) mkdirSync(SHOTS, { recursive: true });
@@ -70,7 +77,8 @@ for (const f of REG) {
   ok(section.includes(`Look back: ${lb.year}</h2>`), `/f/${id}/ look-back is not headed "Look back: ${lb.year}"`);
   ok(section.includes(`<span class="chip chip-past">Past edition</span>${lb.name}`), `/f/${id}/ look-back does not name ${lb.name} as a Past edition`);
   ok(section.includes(`href="/?tab=past&amp;edition=${lb.id}"`), `/f/${id}/ look-back does not link to ${lb.id}`);
-  ok(/Official source archived [A-Z][a-z]{2} \d+, \d{4}\./.test(section), `/f/${id}/ look-back does not say when its source was archived`);
+  const lbEd = H(`editions/${lb.id}.json`), src = sourceDate(lbEd), want = src && `${wording(lbEd).page} ${dateLabel(src.date)}.`;
+  ok(!!want && section.includes(want), `/f/${id}/ look-back does not say "${want}" for its source`);
   ok(lb.completeness === "lineup_only" ? section.includes("Set times not verified for this edition") : section.includes(`${lb.counts.sets} sets on ${lb.counts.stages} stages`),
     `/f/${id}/ look-back misstates what the ${lb.year} record holds`);
   ok(html.indexOf('class="lookback"') < html.indexOf('id="answers-h"'), `/f/${id}/ look-back is not the first thing after the header`);
@@ -165,8 +173,9 @@ try {
     await page.locator("[data-edition-status]").waitFor({ timeout: 10000 });
     await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
     const status = await page.locator("[data-edition-status]").textContent();
-    ok(status.startsWith("Past edition · ") && status.includes(String(lb.year)) && /source archived [A-Z][a-z]{2} \d+, \d{4}/.test(status),
-      `the look-back does not say Past edition, its dates and its archive date: "${status}"`);
+    const src = sourceDate(ed), want = src && `· ${wording(ed).app} ${dateLabel(src.date)}`;
+    ok(status.startsWith("Past edition · ") && status.includes(String(lb.year)) && !!want && status.endsWith(want),
+      `the look-back does not say Past edition, its dates and "${want}": "${status}"`);
     ok(await page.getByText(`Official ${lb.year} schedule · archived`, { exact: true }).count() === 1, `the look-back is not labelled as the official ${lb.year} schedule`);
     ok(await page.getByText(String(yearOf(Q.id))).count() === 0, `the ${lb.year} look-back shows the year ${yearOf(Q.id)}`);
     const d1 = ed.sets.filter(s => s.day === 1).length;

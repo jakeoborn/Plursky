@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { citeToken, datedLabel, dayMinutes, graphicPrints, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -16,6 +16,7 @@ export const OFFICIAL_HOSTS = {
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
+  "edc-orlando": ["orlando.electricdaisycarnival.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -100,6 +101,13 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     // Each string is tried as a billing and as a stage name.
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }
+  }
+  // A stage-scoped rule (Kinetic Field's show segments) only fires with the
+  // set's own stage, so each set's billing is tried on the stage it plays.
+  const stageName = new Map(e.stages.map(s => [s.id, s.name])), artistName = new Map(e.artists.map(a => [a.id, a.name]));
+  for (const s of e.sets) {
+    const billing = s.billing || artistName.get(s.artistId) || "", why = dropReason(billing, stageName.get(s.stageId) || "");
+    if (why && !hit.has(billing)) { hit.add(billing); p.push(`${e.id}: dropped ${why.category} "${billing}" appears in the edition`); }
   }
 
   const ids = new Set(), slots = new Set(), used = new Set();
@@ -224,9 +232,30 @@ function officialSources(e, meta, p) {
       if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
       else if (!graphicPrints(c.printed, date, e.year, meta.dates.map(([d]) => d)))
         p.push(`${tag}: the graphic's header "${c.printed}" does not print ${weekdayOf(date)} ${date}`);
+      // A styled stage name carried onto the edition's other printing: only
+      // case and spacing may change, and the target must be a stage it shows.
+      const fold = x => String(x).replace(/\s+/g, "").toLowerCase();
+      for (const [from, to] of Object.entries(c.stagesAs || {})) {
+        if (fold(from) !== fold(to)) p.push(`${tag}: stagesAs "${from}" → "${to}" renames the stage; only case and spacing may differ`);
+        if (!e.stages.some(st => st.name === to)) p.push(`${tag}: stagesAs maps "${from}" onto "${to}", which is not a stage of the edition`);
+      }
     } else p.push(`${tag}: source kind "${c.kind}" is neither page nor graphic`);
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
+  // Completeness against the receipt pages, not just the chosen sources:
+  // every set-times graphic an EDM Identity receipt page shows is used by a
+  // source or excluded with its reason (Orlando 2017 shipped without the
+  // Corona Electric Beach graphic its own receipt page carried).
+  const graphics = e.provenance.captures.filter(c => c.kind === "graphic" && c.receipt);
+  for (const c of graphics.filter((c, i) => graphics.findIndex(x => x.receipt.archivedUrl === c.receipt.archivedUrl && x.receipt.cites === c.receipt.cites) === i)) {
+    if (hostOf(c.foundAt) !== "edmidentity.com") continue;
+    const shown = c.receipt.setTimesGraphics;
+    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} does not list the set-times graphics its page shows`);
+    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} lists set-times graphics without the one it cites`);
+  }
+  const { unused, stale } = receiptGaps(graphics, e.provenance.notUsedGraphics);
+  for (const u of unused) p.push(`${e.id}: receipt ${u.page} shows set-times graphic ${u.cites}, which no source uses and notUsedGraphics does not exclude`);
+  for (const n of stale) p.push(`${e.id}: notUsedGraphics ${n.cites} is used by a source, on no receipt page, or has no reason`);
 }
 
 // A graphic's page is linked to the graphic, not just named: the page sits on

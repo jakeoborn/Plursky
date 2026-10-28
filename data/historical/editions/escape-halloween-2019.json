@@ -1367,7 +1367,11 @@
      "archivedUrl": "https://web.archive.org/web/20191115203351/https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
      "captureTimestamp": "20191115203351",
      "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
-     "cites": "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o"
+     "cites": "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o",
+     "setTimesGraphics": [
+      "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o",
+      "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2019.json"
    },
@@ -1386,7 +1390,11 @@
      "archivedUrl": "https://web.archive.org/web/20191115203351/https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
      "captureTimestamp": "20191115203351",
      "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
-     "cites": "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y"
+     "cites": "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y",
+     "setTimesGraphics": [
+      "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o",
+      "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y"
+     ]
     },
     "reviewManifest": "data/historical/review/escape-halloween-2019.json"
    }

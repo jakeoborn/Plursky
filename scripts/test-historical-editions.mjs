@@ -17,8 +17,9 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { ACTIVITIES, EDITIONS } from "./historical/editions.mjs";
-import { datedLabel, graphicPrints, instant, to24 } from "./historical/lib.mjs";
+import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
+import { activeTab, stageFor } from "./historical/import-gather.mjs";
+import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -94,6 +95,7 @@ if (base && edc) {
   const dropSamples = [["edc-las-vegas-2025", "Fireworks"], ["acl-2025", "SILENT DISCO"], ["edc-las-vegas-2025", "Special Guest"],
     ["escape-halloween-2025", "SECRET GUEST"], ["escape-halloween-2022", "DANSE MACABRE - SILENT DISCO"],
     ["escape-halloween-2024", "AFTER PARTY SET TIMES – THE CAULDRON"],
+    ["edc-orlando-2019", "CHANGEOVER"], ["edc-orlando-2022", "DISCOVERY PROJECT"],
     ...Object.entries(ACTIVITIES).flatMap(([id, list]) => list.map(a => [id, a]))];
   for (const [id, billing] of dropSamples) {
     const e = editions[id]; if (!e) continue;
@@ -101,6 +103,42 @@ if (base && edc) {
     mustFail(`${billing} back as an artist set`, m => { m.artists.push(back); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: back.id }); }, e, undefined, /: dropped /);
     mustFail(`${billing} back as an event`, m => { m.events = [{ id: `${id}:d1:x:0000:${artistKey(billing)}`, label: billing, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }]; }, e, undefined, /: dropped .*appears/);
     mustFail(`${billing} back as a stage`, m => { m.stages[0].name = billing; }, e, undefined, /: dropped /);
+  }
+  // Stage-scoped drops: a Kinetic Field show segment is only dropped on
+  // Kinetic Field, so each is put back as a set there, and the same name on
+  // another stage stays a performer. "Discovery Project" is an unnamed slot
+  // only on a printed stage; the stageless 2026 lineup entries keep it.
+  {
+    const o = editions["edc-orlando-2022"], o25 = editions["edc-orlando-2025"];
+    ok(o && o25, "the EDC Orlando 2022 and 2025 editions must exist for the show-segment mutations");
+    for (const [e, billing] of [[o, "GROW"], [o, "KINETIC BLOOM"], [o25, "INTERMEZZO: TECHNOPOLIS"], [o25, "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS"]]) if (e) {
+      const kf = e.stages.find(s => /^kinetic ?field$/i.test(s.name));
+      mustFail(`${billing} back as a Kinetic Field set (${e.id})`, m => {
+        const a = { id: `${e.id}:${artistKey(billing)}-back`, name: billing, key: artistKey(billing), performers: performerKeys(billing) };
+        m.artists.push(a); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: a.id, stageId: kf.id });
+      }, e, undefined, /: dropped show-segment /);
+    }
+    ok(!dropReason("GROW", "Neon Garden") && !dropReason("Discovery Project", ""), "a show-segment name off Kinetic Field, or a stageless Discovery Project, must not be dropped");
+    // An unnamed B2B partner stays in the billing but is no performer.
+    const dw = editions["edc-orlando-2021"]?.artists.find(a => a.name === "DRINKURWATER B2B Special Guest");
+    ok(dw && dw.performers.join() === "drinkurwater", `Orlando 2021's "DRINKURWATER B2B Special Guest" must keep its billing with drinkurwater as its only performer: ${JSON.stringify(dw)}`);
+    // The importer: a stage map may only re-case and re-space a name, and a
+    // page's day is its active tab, never the dates in its site translations.
+    ok(stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "kineticFIELD") === "Kinetic Field" && stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "neonGARDEN") === "neonGARDEN",
+      "stageAs must carry a mapped stage and leave an unmapped one as printed");
+    let renamed = false; try { stageFor({ stageAs: { rynobusARTCAR: "Rynobus" } }, "rynobusARTCAR"); } catch { renamed = true; }
+    mutations++; ok(renamed, "mutation not caught: a stageAs map that renames a stage (rynobusARTCAR → Rynobus)");
+    const tabHtml = `<a class="button-blocks"> Friday, November 07</a><a href="/day-2/" class="button-blocks button-blocks--active">Saturday, November 09</a>`;
+    ok(activeTab(tabHtml) === "Saturday, November 09" && activeTab(`_siteTranslations={"d":"Saturday, November 08"}`) === undefined,
+      "the active day tab must be read from the tab, never from other dates on the page");
+    const o23 = editions["edc-orlando-2023"], sa23 = m => m.provenance.captures.find(c => c.stagesAs);
+    if (o23) {
+      mustFail("a stagesAs map that renames a stage", m => { sa23(m).stagesAs.rynobusARTCAR = "Rynobus"; }, o23, undefined, /renames the stage/);
+      mustFail("a stagesAs target that is not a stage of the edition", m => { m.stages[5].name = "Anniversary Stage"; }, o23, undefined, /not a stage of the edition/);
+    }
+    // A graphic's styled stage name carried onto the page printing is recorded.
+    const sa = editions["edc-orlando-2023"]?.stages.map(s => s.name).join("|");
+    ok(sa === "Kinetic Field|Circuit Grounds|Neon Garden|Stereo Bloom|Rynobus Art Car|Anniversary Art Car", `Orlando 2023's day-2 graphic stages must join the pages' six: ${sa}`);
   }
   // Founder ruling 2: the Bonus Tracks stage is dropped whole. Every printed
   // Bonus Tracks row is put back on a restored stage, and a stage renamed to
@@ -139,6 +177,28 @@ if (base && edc) {
     mustFail("a page capture timestamp that is not its URL's", m => { pg(m).captureTimestamp = "20200101000000"; }, e19, undefined, /captureTimestamp/);
     mustFail("a page whose day tab prints another day", m => { pg(m).printed = "Saturday, October 26"; }, e19, undefined, /day tab/);
     mustFail("a page capture from a non-official host", m => { const c = pg(m); c.archivedUrl = c.archivedUrl.replace("escapehalloween.com", "edmidentity.com"); }, e19, undefined, /not an official escape-halloween property/);
+    // Completeness against the receipt pages: Orlando 2017's essentials post
+    // carries a Corona Electric Beach graphic beside the main one, and Escape
+    // 2025's carries a pre-party and an afterparty graphic it excludes.
+    const o17 = editions["edc-orlando-2017"], e25 = editions["escape-halloween-2025"];
+    const eb = c => /electricbeach2017/.test(c.receipt?.cites || "");
+    ok(o17?.provenance.captures.filter(eb).length === 2 && e25?.provenance.notUsedGraphics?.length === 2, "Orlando 2017 must cite its Corona Electric Beach graphic on both days, and Escape 2025 must exclude 2 graphics");
+    if (o17 && e25) {
+      mustFail("Orlando 2017 without its Corona Electric Beach source", m => { m.provenance.captures = m.provenance.captures.filter(c => !eb(c)); }, o17, undefined, /shows set-times graphic wp-content\/uploads\/2017\/11\/electricbeach2017, which no source uses/);
+      mustFail("Escape 2025 with its afterparty exclusion removed", m => { m.provenance.notUsedGraphics = m.provenance.notUsedGraphics.filter(n => !/after-party/.test(n.cites)); }, e25, undefined, /official-after-party, which no source uses/);
+      mustFail("an exclusion with no reason", m => { delete m.provenance.notUsedGraphics[0].reason; }, e25, undefined, /notUsedGraphics .* has no reason/);
+      mustFail("an exclusion naming a graphic on no receipt page", m => { m.provenance.notUsedGraphics[0].cites = "wp-content/uploads/2025/10/other"; }, e25, undefined, /notUsedGraphics wp-content\/uploads\/2025\/10\/other/);
+      mustFail("an exclusion of a graphic a source uses", m => { m.provenance.notUsedGraphics.push({ cites: "wp-content/uploads/2025/10/friday-set-times", reason: "x" }); }, e25, undefined, /notUsedGraphics .*friday-set-times/);
+      mustFail("a receipt that does not list its page's graphics", m => { delete m.provenance.captures.find(c => c.kind === "graphic").receipt.setTimesGraphics; }, o17, undefined, /does not list the set-times graphics/);
+      mustFail("a receipt whose list leaves out the graphic it cites", m => { const r = m.provenance.captures.find(eb).receipt; r.setTimesGraphics = r.setTimesGraphics.filter(t => !/electricbeach/.test(t)); }, o17, undefined, /without the one it cites/);
+      // Lists from sources sharing one receipt page are unioned: a later
+      // source listing only its own graphic cannot hide the omitted beach one.
+      mustFail("Orlando 2017 without its beach source, a later same-page source listing only its own graphic", m => {
+        m.provenance.captures = m.provenance.captures.filter(c => !eb(c));
+        const last = m.provenance.captures.filter(c => c.kind === "graphic" && c.receipt?.setTimesGraphics).pop();
+        last.receipt.setTimesGraphics = last.receipt.setTimesGraphics.filter(t => sameGraphic(t, last.receipt.cites));
+      }, o17, undefined, /shows set-times graphic wp-content\/uploads\/2017\/11\/electricbeach2017, which no source uses/);
+    }
     // The header must print the cited day: the 2017 graphic's Saturday header
     // swapped for another edition's date fails, the real combined-day one passes.
     const e17 = editions["escape-halloween-2017"], g2 = m => m.provenance.captures.find(c => c.kind === "graphic" && c.day === 2);

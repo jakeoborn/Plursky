@@ -408,7 +408,7 @@ function _HistProvenance({
       margin: 0,
       color: "var(--text-2)"
     }
-  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", p.extractionMethod === "official_sources" ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. " : ", as archived by the Wayback Machine. ", "Artist and stage names appear exactly as printed. Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
+  }, _HIST_METHOD[p.extractionMethod] || "From the festival's official schedule", p.extractionMethod === "official_sources" ? ". Pages are as archived by the Wayback Machine. Where the festival's own copy was not archived, its official graphic is a re-hosted copy, named below. " : ", as archived by the Wayback Machine. ", "Artist and stage names appear exactly as printed", (p.captures || []).some(c => c.stagesAs) ? ", except where a source notes otherwise" : "", ". Non-music activities are left out."), p.official && React.createElement("div", null, React.createElement("div", {
     style: {
       fontSize: 13,
       color: "var(--text-2)"
@@ -456,7 +456,13 @@ function _HistProvenance({
       target: "_blank",
       rel: "noopener noreferrer",
       style: link
-    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))));
+    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))), c.stagesAs && React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--text-2)",
+        marginTop: 2
+      }
+    }, "This graphic styles its stage names ", Object.keys(c.stagesAs).join(", "), "; they are shown as the festival's other days print them."));
   }))));
 }
 function _HistChip({

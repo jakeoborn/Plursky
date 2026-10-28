@@ -590,6 +590,17 @@
    "source": "https://socal.dreamstateusa.com/lineup/"
   },
   {
+   "printed": "CORRUPT (UK)",
+   "performers": [
+    {
+     "name": "CORRUPT (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Corrupt\".",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
    "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
    "performers": [
     {
@@ -618,6 +629,113 @@
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
    "source": "https://escapehalloween.com/lineup/set-times/"
+  },
+  {
+   "printed": "FURY + MC DINO",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Fury + MC Dino",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "FURY WITH MC DINO",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Afroki (Afrojack B2B Steve Aoki)",
+   "performers": [
+    {
+     "name": "Afroki",
+     "role": "project",
+     "parents": [
+      "Afrojack",
+      "Steve Aoki"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Disco Wrek (Disco Lines B2B Ship Wrek)",
+   "performers": [
+    {
+     "name": "Disco Wrek",
+     "role": "project",
+     "parents": [
+      "Disco Lines",
+      "Ship Wrek"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Waxtroda (Wax Motif B2B Matroda)",
+   "performers": [
+    {
+     "name": "Waxtroda",
+     "role": "project",
+     "parents": [
+      "Wax Motif",
+      "Matroda"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Worship (Sub Focus B2B Dimension B2B Culture Shock B2B 1991)",
+   "performers": [
+    {
+     "name": "Worship",
+     "role": "project",
+     "parents": [
+      "Sub Focus",
+      "Dimension",
+      "Culture Shock",
+      "1991"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
   }
  ],
  "pending": [
@@ -699,6 +817,38 @@
   },
   {
    "key": "d-o-d",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "CLIPS X AHOY & HYPE TURNER",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "BONNIE X CLYDE",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Truth x Lies",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "TRUTH X LIES",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "zhu",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "2ar",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "tdj",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "i-o",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]

@@ -15,7 +15,7 @@
 // splits a b2b into faces itself.
 (function (g) {
   var LETTERS = { "¥": "Y", "Ø": "O", "ø": "o", "Æ": "AE", "æ": "ae", "Œ": "OE", "œ": "oe", "ß": "ss", "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Þ": "Th", "þ": "th", "ð": "d" };
-  var SET_TAG = /^(?:.*\bset|live|hybrid|in the round|unmasked)$/i;
+  var SET_TAG = /^(?:.*\bset|sunrise|sunset|live|hybrid|in the round|unmasked)$/i;
   var PEOPLE_IN_PARENS = /\s[x×+]\s|\sb[23]b\s|,|\s&\s/i;
   function foldKey(s) {
     return String(s).replace(/[¥ØøÆæŒœßŁłĐđÞþð]/g, function (c) { return LETTERS[c]; })
