@@ -423,37 +423,41 @@ function _HistProvenance({
       color: "var(--text-2)",
       marginBottom: 4
     }
-  }, p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"), (p.captures || []).map((c, i) => React.createElement("div", {
-    key: i,
-    style: {
-      padding: "8px 0",
-      borderBottom: "1px solid var(--line)"
-    }
-  }, React.createElement("div", {
-    style: {
-      fontWeight: 600
-    }
-  }, dayLabel(c.day)), c.archivedUrl && React.createElement("a", {
-    href: c.archivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Set-times page · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
-    href: c.imageArchivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Schedule graphic · ", stamp(c.imageCapture))), c.pageArchivedUrl && React.createElement("div", null, React.createElement("a", {
-    href: c.pageArchivedUrl,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Schedule page · ", stamp(c.pageCapture))), c.kind === "graphic" && React.createElement("div", null, React.createElement("a", {
-    href: c.foundAt,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: link
-  }, "Official graphic · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))))))));
+  }, p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"), (p.captures || []).map((c, i, all) => {
+    var same = all.filter(x => x.kind === "graphic" && x.day === c.day);
+    var nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
+    return React.createElement("div", {
+      key: i,
+      style: {
+        padding: "8px 0",
+        borderBottom: "1px solid var(--line)"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontWeight: 600
+      }
+    }, dayLabel(c.day)), c.archivedUrl && React.createElement("a", {
+      href: c.archivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Set-times page · ", stamp(c.captureTimestamp)), c.imageArchivedUrl && React.createElement("div", null, React.createElement("a", {
+      href: c.imageArchivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Schedule graphic · ", stamp(c.imageCapture))), c.pageArchivedUrl && React.createElement("div", null, React.createElement("a", {
+      href: c.pageArchivedUrl,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Schedule page · ", stamp(c.pageCapture))), c.kind === "graphic" && React.createElement("div", null, React.createElement("a", {
+      href: c.foundAt,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))));
+  }))));
 }
 function _HistChip({
   on,

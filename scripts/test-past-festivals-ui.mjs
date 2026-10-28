@@ -8,7 +8,8 @@
 // real counts; an edition renders every set of a day under its printed stage,
 // sorted across midnight; open-ended closers show no invented end; ACL's six
 // days group into two weekends; search spans every day; the provenance sheet
-// lists every archived capture; a lineup_only edition (a fixture served by
+// lists every archived capture, each row readable apart from the others
+// (several graphics on one day are numbered); a lineup_only edition (a fixture served by
 // route interception, since no real one exists yet) shows names and no times;
 // a failed fetch offers a retry; and nothing scrolls sideways at 393pt.
 //
@@ -152,6 +153,24 @@ try {
   ok(await sheet.getByText(edc.provenance.official.replace(/^https?:\/\//, "")).count() === 1, "provenance does not name the official source");
   await shot("5-edc-provenance");
   await page.keyboard.press("Escape");
+
+  // ── several graphics on one day: each source row reads differently ──
+  const multi = Object.values(ED).find(e => (e.provenance.captures || []).some((c, i, all) =>
+    c.kind === "graphic" && all.filter(x => x.kind === "graphic" && x.day === c.day).length > 1));
+  if (multi) {
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: String(multi.year), exact: true }) })
+      .getByRole("button", { name: new RegExp("^" + INDEX.editions.find(e => e.id === multi.id).festivalName) }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    await page.getByRole("button", { name: "About this schedule" }).click();
+    const about = page.getByRole("dialog", { name: "About this schedule" });
+    await about.waitFor({ timeout: 5000 });
+    const rows = await about.getByRole("link").evaluateAll(as => as.map(a => a.parentElement.parentElement.textContent));
+    ok(rows.length === multi.provenance.captures.length && new Set(rows).size === rows.length,
+      `${multi.id}: the About sheet has ${rows.length} source rows, ${new Set(rows).size} distinct (ledger has ${multi.provenance.captures.length})`);
+    await shot("5b-multi-graphic-provenance");
+    await page.keyboard.press("Escape");
+  }
 
   // ── lineup_only fixture: names, no times, no day tabs ──
   await page.getByRole("button", { name: "Back" }).click();

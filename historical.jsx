@@ -236,15 +236,21 @@ function _HistProvenance({ edition, onClose }) {
         {(p.captures || []).length > 0 && (
           <div>
             <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>{p.extractionMethod === "official_sources" ? "Sources" : "Archived captures"}</div>
-            {(p.captures || []).map((c, i) => (
+            {(p.captures || []).map((c, i, all) => {
+              // A day with several graphics from one post numbers them, so
+              // three "Official graphic" rows can be told apart.
+              const same = all.filter(x => x.kind === "graphic" && x.day === c.day);
+              const nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
+              return (
               <div key={i} style={{ padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
                 <div style={{ fontWeight: 600 }}>{dayLabel(c.day)}</div>
                 {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Set-times page · {stamp(c.captureTimestamp)}</a>}
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
-                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic · {c.rehostedBy} · {stamp(c.published.replace(/-/g, ""))}</a></div>}
+                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {stamp(c.published.replace(/-/g, ""))}</a></div>}
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
