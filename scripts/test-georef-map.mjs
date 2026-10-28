@@ -170,17 +170,24 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
 
   // detectCurrentArtist is the GPS auto-attend geofence. Run the shipped
   // function, not a copy: stand ON the kinetic anchor during a live kinetic set.
+  // It asks data.jsx's shared stage fix gate, so that slice runs with it. The
+  // fix carries ±10 m accuracy: a fix with no accuracy is coarse and marks nothing.
   const src = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
-  const from = src.indexOf("function _gpsDistMeters(");
+  const from = src.indexOf("function detectCurrentArtist(");
   const to = src.indexOf("// Called from the GPS effect in MapScreen");
   ok(from > 0 && to > from, "detectCurrentArtist is found in chrome.jsx");
+  const dataSrc = readFileSync(join(ROOT, "data.jsx"), "utf8");
+  const gFrom = dataSrc.indexOf("// Great-circle distance in meters. Here, not in photo-tag.jsx");
+  const gTo = dataSrc.indexOf("// Raw samples ({ lat, lng, accuracy, timestamp, atMs })");
+  ok(gFrom > 0 && gTo > gFrom, "the stage fix gate is found in data.jsx");
+  const gateSrc = dataSrc.slice(gFrom, gTo);
   const detect = cfg => {
     const ctx = {
-      window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math,
+      window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math, Number, String, Date,
       activeLineup: () => [{ id: "act1", stage: "kinetic" }], isSetLive: () => true,
     };
     vm.createContext(ctx);
-    vm.runInContext(`${src.slice(from, to)}\n;__hit = detectCurrentArtist(${cfg.gpsAnchors[0].lat}, ${cfg.gpsAnchors[0].lng});`, ctx);
+    vm.runInContext(`${gateSrc}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${cfg.gpsAnchors[0].lat}, ${cfg.gpsAnchors[0].lng}, { accuracy: 10 });`, ctx);
     return ctx.__hit;
   };
   ok(detect(clone(config)) === null, "standing on a poster-read anchor during its live set marks nothing attended");
@@ -192,7 +199,6 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
   // stage. An osm/crowd point must fire for its stage; a poster, provisional,
   // derived or unsourced point must never resolve to its own stage (a hit on a
   // neighbouring EVIDENCE anchor inside 140 m is allowed — that one is real).
-  const dataSrc = readFileSync(join(ROOT, "data.jsx"), "utf8");
   const rFrom = dataSrc.indexOf("function resolvedStageAnchors(cfg)");
   const rTo = dataSrc.indexOf("function resolvedStageAnchor(cfg, stageId)");
   ok(rFrom > 0 && rTo > rFrom, "resolvedStageAnchors is found in data.jsx");
@@ -209,11 +215,11 @@ ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 &&
     const stageIds = [...new Set(points.map(p => p.stageId))];
     for (const p of points) {
       const ctx = {
-        window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math,
+        window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math, Number, String, Date,
         activeLineup: () => stageIds.map(s => ({ id: `act-${s}`, stage: s })), isSetLive: () => true,
       };
       vm.createContext(ctx);
-      vm.runInContext(`${dataSrc.slice(rFrom, rTo)}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${p.lat}, ${p.lng});`, ctx);
+      vm.runInContext(`${dataSrc.slice(rFrom, rTo)}\n${gateSrc}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${p.lat}, ${p.lng}, { accuracy: 10 });`, ctx);
       const own = ctx.__hit && ctx.__hit.stageId === p.stageId;
       if (EVIDENCE.has(p.kind)) { if (own) fired++; else dead.push(`${cfg.id}:${p.stageId}(${p.kind})`); }
       else { if (own) leaks.push(`${cfg.id}:${p.stageId}(${p.kind})`); else refused++; }

@@ -475,17 +475,7 @@ function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   return null;
 }
 
-// Great-circle distance in meters. Only used for off-stage detection so
-// precision isn't critical, but haversine is ~5 lines and exact.
-function _haversineMeters(lat1, lng1, lat2, lng2) {
-  const R = 6371000;
-  const toRad = (d) => d * Math.PI / 180;
-  const dLat = toRad(lat2 - lat1);
-  const dLng = toRad(lng2 - lng1);
-  const a = Math.sin(dLat / 2) ** 2 +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(a));
-}
+// _haversineMeters lives in data.jsx with the stage fix gate, which needs it.
 
 // ── Which festival is this photo actually FROM? (v235) ────────────────────
 // Everything downstream used to read window.FESTIVAL_CONFIG / window.ARTISTS,

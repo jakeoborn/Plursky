@@ -1880,6 +1880,85 @@ var ATTEND_FULL_EDGE_MS = 10 * 60000;
 var ATTEND_PARTIAL_MS = 15 * 60000;
 var ATTEND_PARTIAL_SHARE = 0.25;
 var ATTEND_PHOTO_MS = 2 * 60000;
+function _haversineMeters(lat1, lng1, lat2, lng2) {
+  var R = 6371000;
+  var toRad = d => d * Math.PI / 180;
+  var dLat = toRad(lat2 - lat1);
+  var dLng = toRad(lng2 - lng1);
+  var a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+var STAGE_FIX_ATTEND = {
+  maxAgeMs: 60000,
+  maxAccM: 100,
+  maxDistM: 140,
+  minMarginM: 35
+};
+var STAGE_FIX_ATTEND_SAVER = {
+  maxAgeMs: 120000,
+  maxAccM: 100,
+  maxDistM: 140,
+  minMarginM: 35
+};
+function stageFixGate(anchors, fix, atMs, rules) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
+    status: fix && fix.denied ? "denied" : "none"
+  };
+  var accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return {
+    status: "no-anchors",
+    accM
+  };
+  var d = anchors.map(a => ({
+    stageId: a.stageId,
+    dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng)
+  })).sort((x, y) => x.dist - y.dist || String(x.stageId).localeCompare(String(y.stageId)));
+  var out = {
+    accM,
+    distM: d[0].dist,
+    marginM: d.length > 1 ? d[1].dist - d[0].dist : null
+  };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return {
+    ...out,
+    status: "stale"
+  };
+  if (accM == null || accM > rules.maxAccM) return {
+    ...out,
+    status: "coarse"
+  };
+  if (d[0].dist > rules.maxDistM) return {
+    ...out,
+    status: "outside"
+  };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return {
+    ...out,
+    status: "ambiguous"
+  };
+  return {
+    ...out,
+    status: "trusted",
+    stageId: d[0].stageId
+  };
+}
+function attendEvidenceAnchors(cfg) {
+  return (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {
+    var s = a.anchorSource || a.src;
+    return s === "osm" || s === "crowd";
+  });
+}
+function attendQualifyFixes(samples, anchors, rules = STAGE_FIX_ATTEND) {
+  var out = [];
+  for (var f of samples || []) {
+    if (!f) continue;
+    var ms = typeof f.timestamp === "number" ? f.timestamp : f.atMs;
+    var g = stageFixGate(anchors, f, typeof f.atMs === "number" ? f.atMs : ms, rules);
+    if (g.status === "trusted" && typeof ms === "number") out.push({
+      ms,
+      stageId: g.stageId
+    });
+  }
+  return out;
+}
 function attendFixesToIntervals(fixes, gapMs = ATTEND_GAP_MS) {
   var ok = (fixes || []).filter(f => f && typeof f.ms === "number" && isFinite(f.ms) && f.stageId != null).slice().sort((x, y) => x.ms - y.ms || String(x.stageId).localeCompare(String(y.stageId)));
   var out = {};

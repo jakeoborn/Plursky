@@ -1105,8 +1105,8 @@ function _mapDisplayPerm(display) {
 // Real "SETS CAUGHT" stat — replaces the previous hardcoded heuristic
 // (set.day <= NOW.day, which lit up every saved set whether attended
 // or not). Two ways a set ends up here:
-//   (a) Live GPS auto-detect — if the user is within ~140 m of a
-//       stage anchor while one of its artists is mid-set, we mark
+//   (a) Live GPS auto-detect — if a fix the stage fix gate trusts puts
+//       the user at a measured stage while one of its artists is mid-set, we mark
 //       attendance immediately. No history needed; just current GPS
 //       + current time. See `detectCurrentArtist`.
 //   (b) Manual review in the Memories tab — checkbox list per night
@@ -1171,62 +1171,43 @@ function getAttendanceSource(artistId) {
   } catch { return "manual"; }
 }
 
-// Quick equirectangular distance — accurate enough at festival scale.
-function _gpsDistMeters(latA, lngA, latB, lngB) {
-  const toRad = (d) => d * Math.PI / 180;
-  const cosLat = Math.cos(toRad((latA + latB) / 2));
-  const dLat = toRad(latB - latA) * 6371000;
-  const dLng = toRad(lngB - lngA) * 6371000 * cosLat;
-  return Math.hypot(dLat, dLng);
-}
-
-// Given current GPS + current festival time, return the artist the user is
+// Given one GPS fix + current festival time, return the artist the user is
 // most likely watching right now — or null if none matches.
 //
-// "At a set" = within `radiusM` of a stage anchor AND the stage has an
-// artist whose set window contains NOW.time. We use 140 m as the default
-// radius which roughly matches the audible/visible footprint of a stage
-// at LVMS without bleeding into neighbours.
+// "At a set" = the shared stage fix gate (data.jsx stageFixGate) trusts the
+// fix for a MEASURED stage — fresh, ±100 m, within 140 m of the anchor and
+// ≥35 m clearer than the runner-up, Live Set Check-in's rule — AND that stage
+// has an artist whose set window contains NOW. A coarse fix, a fix with no
+// accuracy, or one between two stages marks nothing. opts: { accuracy,
+// timestamp, atMs, saver } from the position; saver uses the 120 s LIVE window.
 function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   const cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  // Crowd anchors where measured. This function compares the USER'S live
-  // position against stage pins at a 140 m radius — with kinetic's poster pin
-  // 438 m from its crowd, a user standing at the main stage was 279 m from the
-  // NEAREST anchor and this returned null every time. Live stage detection was
-  // silently dead at the biggest stage on site.
-  // Evidence only (osm / crowd). This is a geofence: a hit auto-marks a set
-  // attended with no tap. A poster read, a provisional pin or a derived point
-  // is a guess about where a stage is, and a guess must not fire it. EDC
-  // Orlando 2026 ships five poster reads off 2025 art (founder, 2026-10-20).
-  const anchors = ((typeof resolvedStageAnchors === "function")
-    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []))
-    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+  // Crowd anchors where measured (resolvedStageAnchors): kinetic's poster pin
+  // sat 438 m from its crowd, so live detection was dead at the main stage.
+  // Evidence only (osm / crowd): this is a geofence, and a hit auto-marks a
+  // set attended with no tap. EDC Orlando 2026 ships five poster reads off
+  // 2025 art (founder, 2026-10-20); a guess must not fire it.
+  const anchors = attendEvidenceAnchors(cfg);
   if (anchors.length === 0) return null;
-  const radius = opts.radiusM || 140;
   const now = window.NOW;
   if (!now || !now.day || !now.time) return null;
-  // Closest stage anchor within radius
-  let best = null;
-  for (const a of anchors) {
-    const d = _gpsDistMeters(lat, lng, a.lat, a.lng);
-    if (d > radius) continue;
-    if (!best || d < best.d) best = { ...a, d };
-  }
-  if (!best) return null;
+  const gate = stageFixGate(anchors, { lat, lng, accuracy: opts.accuracy, timestamp: opts.timestamp },
+    typeof opts.atMs === "number" ? opts.atMs : Date.now(), opts.saver ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND);
+  if (gate.status !== "trusted") return null;
   // Artist on stage at that anchor right now, by real date (isSetLive). The
   // old clock-of-day match against now.day auto-attended a set a week early.
-  const playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
+  const playing = activeLineup().find(a => a.stage === gate.stageId && isSetLive(a));
   if (!playing) return null;
-  return { artistId: playing.id, stageId: best.stageId, night: now.day, distM: Math.round(best.d) };
+  return { artistId: playing.id, stageId: gate.stageId, night: now.day, distM: Math.round(gate.distM) };
 }
 
 // Called from the GPS effect in MapScreen on every successful sample.
 // Idempotent + cheap — silently no-ops when the user is between stages,
 // outside the festival, or it's not set time.
-function recordAttendanceFromGps(lat, lng) {
-  const hit = detectCurrentArtist(lat, lng);
+function recordAttendanceFromGps(lat, lng, opts) {
+  const hit = detectCurrentArtist(lat, lng, opts);
   if (!hit) return null;
   const added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
