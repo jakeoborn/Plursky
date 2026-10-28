@@ -2314,6 +2314,10 @@ function artistDayDate(a, nowMs, savedIds) {
 // Oct 31 → Nov 1 falls back at 02:00, and midnightUtc + hours put every later
 // set an hour late. A night with no transition (every live festival today)
 // returns that plain sum. Null for a blank (TBA) time or an unknown day.
+// On a FALL-BACK night the transition wall time itself (02:00) is read as the
+// end of the first pass, i.e. the transition instant: Escape's "Festival Hours
+// 4PM-2AM" close is 02:00 PDT = 09:00Z, not 02:00 PST an hour later (lane
+// ruling 2026-10-26). 01:xx stays the first (PDT) pass; 02:01 on is PST.
 const _tzFmt = {};
 const _tzNightShifts = {};
 function _utcOffsetMs(tz, ms) {
@@ -2338,8 +2342,13 @@ function _wallMs(dayDate, hhmm, tz) {
     }
     const o0 = _tzNightShifts[key];
     if (o0 === null) return naive;
+    // Fall-back night (the offset drops overnight): read the offset one
+    // second before the candidate instant, so the 02:00 boundary keeps the
+    // pre-transition offset. A whole second, because _utcOffsetMs works in
+    // whole seconds. A spring-forward night keeps the exact-instant read.
+    const back = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) < o0 ? 1000 : 0;
     let ms = naive;
-    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms - back);
     return ms;
   } catch { return naive; }
 }
@@ -2353,6 +2362,119 @@ function _cfgActDayDate(cfg, a) {
   const w = cfg.weekendStartMs;
   const shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
   return shift > 0 ? _shiftDayDate(d, shift) : d;
+}
+
+// ── Set-level attendance: presence intervals → full / partial verdict ──────
+// Pure logic only (set-attendance spec PR 1): nothing here reads GPS, stores
+// anything or renders. What was observed is a list of presence intervals per
+// stage; the verdict is DERIVED from them and the set's published window,
+// never stored on its own. Every surface asks attendanceVerdict, none
+// re-derives it (one policy, many doors).
+//   full     presence ≥ 85% of the set, and within 10 min of BOTH ends
+//   partial  ≥ 15 min or ≥ 25% of the set, not full ("≈ 30 of 60 min")
+//   brief    less than that: not caught, not shown
+//   unknown  caught, length not claimable: a photo point only, or a
+//            third_party window (an unverified time never earns full/partial)
+//   none     no evidence at this stage
+// Blank times (TBA or an unresolved time) never claim the set: the verdict
+// is "unknown", caught false, and only the stage + clock span is reported.
+const ATTEND_GAP_MS = 5 * 60000;          // a fix gap longer than this closes a run
+const ATTEND_GRACE_MS = 5 * 60000;        // late starts and walk-ups, either side
+const ATTEND_FULL_SHARE = 0.85;
+const ATTEND_FULL_EDGE_MS = 10 * 60000;
+const ATTEND_PARTIAL_MS = 15 * 60000;
+const ATTEND_PARTIAL_SHARE = 0.25;
+const ATTEND_PHOTO_MS = 2 * 60000;        // a photo is a point, capture time ± 2 min
+
+// Qualifying GPS fixes ({ ms, stageId }, already through the fix gate) →
+// runs per stage. Sorted by time then stage, so the input's array order can
+// never decide a run (a tie-break is a policy). A fix for another stage, or a
+// gap over gapMs, closes the run; a lone fix is a zero-length run.
+function attendFixesToIntervals(fixes, gapMs = ATTEND_GAP_MS) {
+  const ok = (fixes || []).filter(f => f && typeof f.ms === "number" && isFinite(f.ms) && f.stageId != null)
+    .slice().sort((x, y) => x.ms - y.ms || String(x.stageId).localeCompare(String(y.stageId)));
+  const out = {};
+  let run = null;
+  for (const f of ok) {
+    if (run && run.stageId === f.stageId && f.ms - run.to <= gapMs) { run.to = f.ms; continue; }
+    run = { stageId: f.stageId, from: f.ms, to: f.ms };
+    (out[f.stageId] = out[f.stageId] || []).push(run);
+  }
+  for (const k of Object.keys(out)) out[k] = out[k].map(r => ({ from: r.from, to: r.to, src: "gps" }));
+  return out;
+}
+
+// How far a set's published time can be trusted. Live lineups are the
+// festival's own; a historical row carries its gather class (sourceClass).
+function attendTimeClass(a) {
+  if (!a || setTimeStatus(a) !== "confirmed" || _hhmmNightMin(a.end) == null) return "blank";
+  return a.sourceClass === "third_party" ? "third_party" : "settled";
+}
+
+// The set's window as instants, on the weekend the evidence says. A W1/W2
+// tag answers it; a both-weekend act on a two-weekend festival takes the
+// weekend its presence falls in (more presence wins, W1 when there is none).
+function attendSetWindowMs(a, cfg, runs) {
+  const base = _cfgActDayDate(cfg, a);
+  if (!base) return null;
+  const win = d => {
+    const s = _wallMs(d, a.start, cfg && cfg.tz), e = _wallMs(d, a.end, cfg && cfg.tz);
+    return s != null && e != null && e > s ? { startMs: s, endMs: e } : null;
+  };
+  const w1 = win(base);
+  const wk = cfg && cfg.weekendStartMs;
+  const shift = a.weekend === "W1" || a.weekend === "W2" || !wk ? 0
+    : (typeof wk.W1 === "number" && typeof wk.W2 === "number" ? wk.W2 - wk.W1 : 0);
+  if (!(shift > 0) || !w1) return w1;
+  const w2 = win(_shiftDayDate(base, shift));
+  if (!w2) return w1;
+  // A photo point counts as one millisecond here, so photo-only evidence on
+  // Weekend 2 still picks Weekend 2.
+  const score = w => _attendPresenceMs(runs, w) + (runs || []).filter(r => r.src === "photo" && r.from >= w.startMs - ATTEND_GRACE_MS && r.from <= w.endMs + ATTEND_GRACE_MS).length;
+  return score(w2) > score(w1) ? w2 : w1;
+}
+
+function _attendPresenceMs(runs, w) {
+  let ms = 0;
+  for (const r of runs || []) if (r.src !== "photo") ms += Math.max(0, Math.min(r.to, w.endMs) - Math.max(r.from, w.startMs));
+  return ms;
+}
+
+// intervals: { [stageId]: [{ from, to, src: "gps" | "photo" }] }.
+// opts.manual ("full" | "partial") always wins and GPS never downgrades it.
+function attendanceVerdict(a, intervals, cfg, opts = {}) {
+  const timeClass = attendTimeClass(a);
+  const runs = ((intervals && a && intervals[a.stage]) || []).filter(r => r && typeof r.from === "number" && typeof r.to === "number" && r.to >= r.from);
+  const res = (verdict, caught, minutes, setMin, span) => ({ verdict, caught, minutes, setMin, timeClass, span: span || null });
+  const span = rs => rs.length ? { from: Math.min(...rs.map(r => r.from)), to: Math.max(...rs.map(r => r.to)) } : null;
+  const w = timeClass === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  const setMin = w ? Math.round((w.endMs - w.startMs) / 60000) : null;
+  if (opts.manual === "full" || opts.manual === "partial") return res(opts.manual, true, null, setMin, span(runs));
+  if (!w) return runs.length ? res("unknown", false, null, null, span(runs)) : res("none", false, null, null, null);
+  const lo = w.startMs - ATTEND_GRACE_MS, hi = w.endMs + ATTEND_GRACE_MS;
+  const inside = runs.filter(r => r.to >= (r.src === "photo" ? lo - ATTEND_PHOTO_MS : lo) && r.from <= (r.src === "photo" ? hi + ATTEND_PHOTO_MS : hi));
+  if (!inside.length) return res("none", false, null, setMin, null);
+  const gps = inside.filter(r => r.src !== "photo");
+  const P = _attendPresenceMs(gps, w), L = w.endMs - w.startMs;
+  const minutes = Math.round(P / 60000);
+  const reached = P >= ATTEND_PARTIAL_MS || P >= ATTEND_PARTIAL_SHARE * L;
+  if (timeClass === "third_party") return reached || gps.length < inside.length ? res("unknown", true, minutes, setMin, span(inside)) : res("brief", false, minutes, setMin, span(inside));
+  const first = gps.length ? Math.min(...gps.map(r => r.from)) : Infinity;
+  const last = gps.length ? Math.max(...gps.map(r => r.to)) : -Infinity;
+  if (P >= ATTEND_FULL_SHARE * L && first <= w.startMs + ATTEND_FULL_EDGE_MS && last >= w.endMs - ATTEND_FULL_EDGE_MS) return res("full", true, minutes, setMin, span(inside));
+  if (reached) return res("partial", true, minutes, setMin, span(inside));
+  if (gps.length < inside.length) return res("unknown", true, minutes, setMin, span(inside));   // a photo lifts it to caught, never to full
+  return res("brief", false, minutes, setMin, span(inside));
+}
+
+// "Full set" / "≈ 30 of 60 min": the minutes round to 5 and always say ≈.
+function attendanceVerdictLabel(v) {
+  if (!v) return "";
+  if (v.verdict === "full") return "Full set";
+  const r5 = n => Math.max(5, Math.round(n / 5) * 5);
+  if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
+  if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
+  return "";
 }
 
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
