@@ -1175,6 +1175,21 @@
   "links": []
  },
  {
+  "key": "akronym",
+  "name": "AKRONYM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:0100:akronym"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alan-fitzpatrick",
   "name": "Alan Fitzpatrick",
   "aliases": [],
@@ -1479,6 +1494,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "algo",
+  "name": "ALGO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:2200:algo"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -4295,15 +4325,18 @@
  {
   "key": "benda",
   "name": "Benda",
-  "aliases": [],
+  "aliases": [
+   "BENDA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lost-lands-2026:llf6",
-   "edc-orlando-2026:ecf6"
+   "edc-orlando-2026:ecf6",
+   "escape-halloween-2019:d2:crazy-town:2000:benda"
   ],
-  "firstSeen": "2026-09-18",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -5063,6 +5096,21 @@
   ],
   "firstSeen": "2026-06-07",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bloodthinnerz",
+  "name": "BLOODTHINNERZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1900:bloodthinnerz"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -16696,6 +16744,21 @@
   "links": []
  },
  {
+  "key": "hami",
+  "name": "HAMI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:2300:hami"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hank-azaria-and-the-ez-street-band",
   "name": "Hank Azaria And The EZ Street Band",
   "aliases": [],
@@ -22110,6 +22173,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2026-09-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kozik-and-sueldo",
+  "name": "KOZIK & SUELDO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1700:kozik-and-sueldo"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
@@ -28307,6 +28385,21 @@
   "links": []
  },
  {
+  "key": "mvrvels",
+  "name": "MVRVELS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:0000:mvrvels"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mykris",
   "name": "MYKRIS",
   "aliases": [],
@@ -29962,9 +30055,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu29"
+   "lost-lands-2026:llu29",
+   "escape-halloween-2019:d2:crazy-town:2100:og-nixin"
   ],
-  "firstSeen": "2026-09-20",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -43243,14 +43337,17 @@
  {
   "key": "whales",
   "name": "Whales",
-  "aliases": [],
+  "aliases": [
+   "WHALES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls57"
+   "lost-lands-2026:lls57",
+   "escape-halloween-2019:d2:crazy-town:1800:whales"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2019-10-26",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -43694,6 +43791,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wires",
+  "name": "WIRES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "escape-halloween-2019:d2:crazy-town:1600:wires"
+  ],
+  "firstSeen": "2019-10-26",
+  "lastSeen": "2019-10-26",
   "photo": null,
   "links": []
  },
