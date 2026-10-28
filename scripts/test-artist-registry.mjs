@@ -93,7 +93,17 @@ const out = build();
 {
   const ed = out.rows.filter(r => r.source === 'edition');
   check(ed.length > 1000, `control: ${ed.length} archived rows read`);
-  check(ed.every(r => r.published), `archived sets with no "as published" date: ${[...new Set(ed.filter(r => !r.published).map(r => r.festivalId))]}`);
+  // The one exception: a day whose only sources are the festival's own
+  // Instagram posts, which print no date (none is inferred from a shortcode),
+  // so the card shows none. Dreamstate 2023 and 2025 are that case.
+  const undated = (id, day) => {
+    const caps = JSON.parse(readFileSync(new URL(`../data/historical/editions/${id}.json`, import.meta.url), 'utf8')).provenance.captures.filter(c => c.day === day);
+    return caps.length > 0 && caps.every(c => c.kind === 'graphic' && /^https:\/\/www\.instagram\.com\/p\//.test(c.foundAt || '') && c.published == null);
+  };
+  const missing = ed.filter(r => !r.published && !undated(r.festivalId, r.day));
+  check(missing.length === 0, `archived sets with no "as published" date: ${[...new Set(missing.map(r => r.festivalId))]}`);
+  const ig = ed.filter(r => /^dreamstate-socal-202[35]$/.test(r.festivalId));
+  check(ig.length === 154 && ig.every(r => r.published == null), `Dreamstate 2023 + 2025 sets carry no inferred date: ${ig.length} rows, ${ig.filter(r => r.published).length} dated`);
   const nk = ed.filter(r => r.festivalId === 'escape-halloween-2019' && /^nukid$/i.test(r.printed)).map(r => `${r.printed} ${r.published}`).sort();
   check(nk.join() === 'NUKID 2019-10-21,NuKid 2020-08-17', `a set keeps its own printing and its own source's date (Escape 2019 NuKid): ${nk}`);
 }

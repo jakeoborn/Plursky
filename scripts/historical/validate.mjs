@@ -239,7 +239,11 @@ function officialSources(e, meta, p) {
       if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);
       // The receipt: the re-host was published in the edition's year, no
       // later than its last day (a pre-event schedule, not a later recap).
-      if (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay)
+      // The festival's own Instagram post prints no date, and none is
+      // inferred from its shortcode, so it may leave published blank; a
+      // date it does carry is held to the same rule.
+      if (!(rehost === "cdninstagram.com" && c.published == null) &&
+          (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay))
         p.push(`${tag}: re-host published ${c.published || "(no date)"}, not in ${e.year} on or before ${lastDay}`);
       if (!DAY.test(c.fetchedAt || "")) p.push(`${tag}: graphic has no fetch date`);
       if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
