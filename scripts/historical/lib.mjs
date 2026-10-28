@@ -112,6 +112,25 @@ export function setTimesGraphics(html) {
   return out;
 }
 
+// Every slide of an Instagram post, from its logged-out embed, as cite tokens
+// (the CDN file name, no extension), or null when the embed shows neither a
+// carousel nor a single image. A carousel lists its slides in the embed's
+// sidecar JSON; a one-image post shows one EmbeddedMediaImage. The profile
+// picture and "more posts" thumbnails are neither, so they never count.
+export function postSlides(html) {
+  const h = html.replace(/\\\//g, "/").replace(/\\"/g, '"');
+  const name = u => (/\/([\w.-]+?)\.(?:jpe?g|png|webp|heic)/i.exec(u) || [])[1];
+  const i = h.indexOf("edge_sidecar_to_children");
+  if (i >= 0) {
+    const list = h.slice(i).split(/"edge_media_to_caption"|"edge_media_preview_like"/)[0];
+    const out = [...list.matchAll(/"display_url":"([^"]+)"/g)].map(m => name(m[1])).filter(Boolean);
+    return out.length ? [...new Set(out)] : null;
+  }
+  const img = /<img\b[^>]*class="[^"]*EmbeddedMediaImage[^"]*"[^>]*>/.exec(h);
+  const src = img && (/\ssrc="([^"]+)"/.exec(img[0]) || [])[1];
+  return src && name(src) ? [name(src)] : null;
+}
+
 // A receipt page's graphic token names a source's cite token: the same path,
 // or (an X media id, cited by name alone) the same file name.
 export const sameGraphic = (token, cites) => token === cites || token.endsWith("/" + cites);
@@ -124,13 +143,13 @@ export const sameGraphic = (token, cites) => token === cites || token.endsWith("
 export function receiptGaps(graphicCaptures, notUsed = []) {
   const receipts = new Map();
   for (const c of graphicCaptures) if (c.receipt?.setTimesGraphics) {
-    const r = receipts.get(c.receipt.archivedUrl);
-    receipts.set(c.receipt.archivedUrl, { ...c.receipt, setTimesGraphics: [...new Set([...(r?.setTimesGraphics || []), ...c.receipt.setTimesGraphics])] });
+    const key = c.receipt.archivedUrl || c.receipt.url, r = receipts.get(key);
+    receipts.set(key, { ...c.receipt, setTimesGraphics: [...new Set([...(r?.setTimesGraphics || []), ...c.receipt.setTimesGraphics])] });
   }
   const cited = graphicCaptures.map(c => c.receipt?.cites).filter(Boolean);
   const unused = [], stale = [];
   for (const r of receipts.values()) for (const t of r.setTimesGraphics)
-    if (!cited.some(x => sameGraphic(t, x)) && !notUsed.some(n => n.cites === t && n.reason) && !unused.some(u => u.cites === t)) unused.push({ cites: t, page: r.archivedUrl });
+    if (!cited.some(x => sameGraphic(t, x)) && !notUsed.some(n => n.cites === t && n.reason) && !unused.some(u => u.cites === t)) unused.push({ cites: t, page: r.archivedUrl || r.url });
   for (const n of notUsed) if (!n.reason || cited.some(x => sameGraphic(n.cites, x)) || ![...receipts.values()].some(r => r.setTimesGraphics.includes(n.cites))) stale.push(n);
   return { unused, stale };
 }

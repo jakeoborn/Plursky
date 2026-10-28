@@ -256,15 +256,17 @@ function officialSources(e, meta, p) {
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
   // Completeness against the receipt pages, not just the chosen sources:
-  // every set-times graphic an EDM Identity receipt page shows is used by a
-  // source or excluded with its reason (Orlando 2017 shipped without the
-  // Corona Electric Beach graphic its own receipt page carried).
+  // every set-times graphic an EDM Identity receipt page shows, and every
+  // slide of an Instagram post, is used by a source or excluded with its
+  // reason (Orlando 2017 shipped without the Corona Electric Beach graphic
+  // its own receipt page carried).
   const graphics = e.provenance.captures.filter(c => c.kind === "graphic" && c.receipt);
-  for (const c of graphics.filter((c, i) => graphics.findIndex(x => x.receipt.archivedUrl === c.receipt.archivedUrl && x.receipt.cites === c.receipt.cites) === i)) {
-    if (hostOf(c.foundAt) !== "edmidentity.com") continue;
+  const page = r => r.archivedUrl || r.url;
+  for (const c of graphics.filter((c, i) => graphics.findIndex(x => page(x.receipt) === page(c.receipt) && x.receipt.cites === c.receipt.cites) === i)) {
+    if (!["edmidentity.com", "instagram.com"].includes(hostOf(c.foundAt))) continue;
     const shown = c.receipt.setTimesGraphics;
-    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} does not list the set-times graphics its page shows`);
-    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} lists set-times graphics without the one it cites`);
+    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${page(c.receipt)} does not list the set-times graphics its page shows`);
+    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${page(c.receipt)} lists set-times graphics without the one it cites`);
   }
   const { unused, stale } = receiptGaps(graphics, e.provenance.notUsedGraphics);
   for (const u of unused) p.push(`${e.id}: receipt ${u.page} shows set-times graphic ${u.cites}, which no source uses and notUsedGraphics does not exclude`);
