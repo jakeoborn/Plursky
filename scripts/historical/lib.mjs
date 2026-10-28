@@ -88,8 +88,9 @@ export const slug = s => String(s).normalize("NFKD").replace(/[̀-ͯ]/g, "")
 // the graphic a source cites: Orlando 2017's post carried a Corona Electric
 // Beach graphic that the first import left out. The body ends before the
 // tags and share bar, so sidebars and related-post thumbnails never count.
-// Two site themes: JNews (2021 on) and Newspaper (to 2020).
-const POST_BODIES = [['class="content-inner', ["jeg_post_tags", "jeg_share_bottom"]], ['class="td-post-content', ["td-post-source-tags", "td-post-sharing-bottom"]]];
+// Three site themes: JNews (2021 on), Newspaper (to 2020) and Extra (2017).
+const POST_BODIES = [['class="content-inner', ["jeg_post_tags", "jeg_share_bottom"]], ['class="td-post-content', ["td-post-source-tags", "td-post-sharing-bottom"]],
+  ['class="post-content entry-content', ["abh_box", "jp-relatedposts", "post-footer"]]];
 export function setTimesGraphics(html) {
   const theme = POST_BODIES.find(([start]) => html.includes(start));
   if (!theme) return null;
