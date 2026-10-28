@@ -8,7 +8,7 @@
  "beyond-wonderland-socal-2026": { "stages": 7, "setsPerDay": [65, 69], "droppedPerDay": [1, 0] },
  "acl-2025": { "stages": 8, "setsPerDay": [32, 34, 33, 32, 34, 34], "droppedPerDay": [4, 4, 4, 3, 4, 4] },
  "escape-halloween-2017": { "stages": 4, "setsPerDay": [36,  33], "droppedPerDay": [0,  0] },
- "escape-halloween-2019": { "stages": 5, "setsPerDay": [41,  30], "droppedPerDay": [0,  0] },
+ "escape-halloween-2019": { "stages": 5, "setsPerDay": [41,  40], "droppedPerDay": [0,  0] },
  "escape-halloween-2021": { "stages": 4, "setsPerDay": [32,  31], "droppedPerDay": [0,  0] },
  "escape-halloween-2022": { "stages": 4, "setsPerDay": [34,  31], "droppedPerDay": [10,  8] },
  "escape-halloween-2024": { "stages": 8, "setsPerDay": [65,  63], "droppedPerDay": [3,  3] },

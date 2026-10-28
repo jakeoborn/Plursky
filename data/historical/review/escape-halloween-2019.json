@@ -19,6 +19,20 @@
     "GORGON CITY B2B NORA EN PURE: billing wraps over 2 printed lines, joined",
     "CHRIS LIEBING B2B CHARLOTTE DE WITTE: billing wraps over 2 printed lines, joined"
    ]
+  },
+  {
+   "day": 2,
+   "date": "2019-10-26",
+   "sha256": "a019e99a2e0f9d709b4f03de8f13a77b82e033b93ce4c4ba1a74202be2a58ea3",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 10,
+   "note": "Header read off the graphic: SATURDAY · OCTOBER 25-26,2019",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 10,
+   "byEye": [],
+   "printedReadings": []
   }
  ]
 }

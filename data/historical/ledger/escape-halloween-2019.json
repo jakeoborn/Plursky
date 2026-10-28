@@ -40,6 +40,24 @@
             "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
             "cites": "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o"
           }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y.jpg",
+          "foundAt": "https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+          "published": "2019-10-21",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-28",
+          "printed": "SATURDAY · OCTOBER 25-26,2019",
+          "sha256": "a019e99a2e0f9d709b4f03de8f13a77b82e033b93ce4c4ba1a74202be2a58ea3",
+          "bytes": 446751,
+          "rows": 10,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20191115203351/https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+            "captureTimestamp": "20191115203351",
+            "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
+            "cites": "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y"
+          }
         }
       ]
     }

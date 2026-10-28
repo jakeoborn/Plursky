@@ -606,6 +606,86 @@
    "performers": [
     "testpilot"
    ]
+  },
+  {
+   "id": "escape-halloween-2019:wires",
+   "name": "WIRES",
+   "key": "wires",
+   "performers": [
+    "wires"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:kozik-and-sueldo",
+   "name": "KOZIK & SUELDO",
+   "key": "kozik-and-sueldo",
+   "performers": [
+    "kozik-and-sueldo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:whales",
+   "name": "WHALES",
+   "key": "whales",
+   "performers": [
+    "whales"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:bloodthinnerz",
+   "name": "BLOODTHINNERZ",
+   "key": "bloodthinnerz",
+   "performers": [
+    "bloodthinnerz"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:benda",
+   "name": "BENDA",
+   "key": "benda",
+   "performers": [
+    "benda"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:og-nixin",
+   "name": "OG NIXIN",
+   "key": "og-nixin",
+   "performers": [
+    "og-nixin"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:algo",
+   "name": "ALGO",
+   "key": "algo",
+   "performers": [
+    "algo"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:hami",
+   "name": "HAMI",
+   "key": "hami",
+   "performers": [
+    "hami"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:mvrvels",
+   "name": "MVRVELS",
+   "key": "mvrvels",
+   "performers": [
+    "mvrvels"
+   ]
+  },
+  {
+   "id": "escape-halloween-2019:akronym",
+   "name": "AKRONYM",
+   "key": "akronym",
+   "performers": [
+    "akronym"
+   ]
   }
  ],
  "sets": [
@@ -1177,6 +1257,86 @@
    "stageId": "escape-halloween-2019:sewer-district",
    "start": "00:30",
    "end": "02:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:1600:wires",
+   "artistId": "escape-halloween-2019:wires",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:1700:kozik-and-sueldo",
+   "artistId": "escape-halloween-2019:kozik-and-sueldo",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:1800:whales",
+   "artistId": "escape-halloween-2019:whales",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:1900:bloodthinnerz",
+   "artistId": "escape-halloween-2019:bloodthinnerz",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:2000:benda",
+   "artistId": "escape-halloween-2019:benda",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:2100:og-nixin",
+   "artistId": "escape-halloween-2019:og-nixin",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:2200:algo",
+   "artistId": "escape-halloween-2019:algo",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:2300:hami",
+   "artistId": "escape-halloween-2019:hami",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:0000:mvrvels",
+   "artistId": "escape-halloween-2019:mvrvels",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "escape-halloween-2019:d2:crazy-town:0100:akronym",
+   "artistId": "escape-halloween-2019:akronym",
+   "day": 2,
+   "stageId": "escape-halloween-2019:crazy-town",
+   "start": "01:00",
+   "end": "02:00"
   }
  ],
  "provenance": {
@@ -1208,6 +1368,25 @@
      "captureTimestamp": "20191115203351",
      "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
      "cites": "wp-content/uploads/2019/10/73390801_3106101986072829_4696561156381212672_o"
+    },
+    "reviewManifest": "data/historical/review/escape-halloween-2019.json"
+   },
+   {
+    "day": 2,
+    "kind": "graphic",
+    "imageUrl": "https://edmidentity.com/wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y.jpg",
+    "foundAt": "https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+    "published": "2019-10-21",
+    "rehostedBy": "EDM Identity",
+    "fetchedAt": "2026-10-28",
+    "printed": "SATURDAY · OCTOBER 25-26,2019",
+    "sha256": "a019e99a2e0f9d709b4f03de8f13a77b82e033b93ce4c4ba1a74202be2a58ea3",
+    "rows": 10,
+    "receipt": {
+     "archivedUrl": "https://web.archive.org/web/20191115203351/https://edmidentity.com/2019/10/21/escape-psycho-circus-2019-essentials/",
+     "captureTimestamp": "20191115203351",
+     "sha256": "f72408304b269c0117f6703efa1a4a3488d837c4b8a15c67008bc76935dda2e1",
+     "cites": "wp-content/uploads/2019/10/EHqzWSPUUAAwH0Y"
     },
     "reviewManifest": "data/historical/review/escape-halloween-2019.json"
    }
