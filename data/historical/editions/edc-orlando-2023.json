@@ -2797,7 +2797,12 @@
      "archivedUrl": "https://web.archive.org/web/20231103172234/https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
      "captureTimestamp": "20231103172234",
      "sha256": "c0d838c8409589d3bc510d1b1a356c1043a1a3abcee11c54b93eb6cbcadf080b",
-     "cites": "F-A7uSJXQAAvJ4r"
+     "cites": "F-A7uSJXQAAvJ4r",
+     "setTimesGraphics": [
+      "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+      "wp-content/uploads/2023/11/F-A7uSJXQAAvJ4r",
+      "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn"
+     ]
     },
     "reviewManifest": "data/historical/review/edc-orlando-2023.json",
     "stagesAs": {
@@ -2817,6 +2822,16 @@
     "printed": "Sunday, November 12",
     "sha256": "292d1ac20140192e34a7141c8694e36ec983950d03b9162a02951f801f9e25ea",
     "rows": 59
+   }
+  ],
+  "notUsedGraphics": [
+   {
+    "cites": "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+    "reason": "the pre-event FRIDAY NOV 10 graphic; day 1 comes from the festival's own archived set-times page (Wayback 20231130025626), which supersedes it"
+   },
+   {
+    "cites": "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn",
+    "reason": "the pre-event SUNDAY NOV 12 graphic; day 3 comes from the festival's own archived set-times page (Wayback 20231117232412), which supersedes it"
    }
   ]
  }

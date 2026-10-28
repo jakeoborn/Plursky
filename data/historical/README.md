@@ -53,6 +53,13 @@ edition's. The sources' row counts must sum to what
 each day keeps and drops, and every graphic needs a signed review entry for
 its exact hash. A first-party capture replaces a re-host when one turns up.
 
+An edition is checked against every set-times graphic its EDM Identity
+receipt pages show, not just the ones its sources cite. The importer lists
+them on each receipt (`setTimesGraphics`, read from the article body only).
+Each one must be used by a source or listed in `notUsedGraphics` with the
+reason, such as a pre-party, an afterparty, or a pre-event graphic that the
+festival's own page supersedes.
+
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
 
 The gather folder (kept outside the repo; its paths and file names never
