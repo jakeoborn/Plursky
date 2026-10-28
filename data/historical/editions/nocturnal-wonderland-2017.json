@@ -1068,7 +1068,12 @@
      "archivedUrl": "https://web.archive.org/web/20171021001854/https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
      "captureTimestamp": "20171021001854",
      "sha256": "2adbddb36726d2d2ae92887d0dbfa963ba1d7a7c7d20e389aafa6345c4ab3bdc",
-     "cites": "wp-content/uploads/2017/09/nocturnalsettimes"
+     "cites": "wp-content/uploads/2017/09/nocturnalsettimes",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/09/nocturnalsettimes",
+      "wp-content/uploads/2017/09/Screenshot_20170912-183004",
+      "wp-content/uploads/2017/09/Screenshot_20170912-183013"
+     ]
     },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2017.json"
    },
@@ -1087,9 +1092,24 @@
      "archivedUrl": "https://web.archive.org/web/20171021001854/https://edmidentity.com/2017/09/13/nocturnal-wonderland-2017-essentials/",
      "captureTimestamp": "20171021001854",
      "sha256": "2adbddb36726d2d2ae92887d0dbfa963ba1d7a7c7d20e389aafa6345c4ab3bdc",
-     "cites": "wp-content/uploads/2017/09/nocturnalsettimes"
+     "cites": "wp-content/uploads/2017/09/nocturnalsettimes",
+     "setTimesGraphics": [
+      "wp-content/uploads/2017/09/nocturnalsettimes",
+      "wp-content/uploads/2017/09/Screenshot_20170912-183004",
+      "wp-content/uploads/2017/09/Screenshot_20170912-183013"
+     ]
     },
     "reviewManifest": "data/historical/review/nocturnal-wonderland-2017.json"
+   }
+  ],
+  "notUsedGraphics": [
+   {
+    "cites": "wp-content/uploads/2017/09/Screenshot_20170912-183004",
+    "reason": "a phone screenshot of the FRIDAY schedule as a grid, under the post's 'Set Times Grid' heading; it prints the weekday but no date or year, and all 32 sets match the cited official graphic"
+   },
+   {
+    "cites": "wp-content/uploads/2017/09/Screenshot_20170912-183013",
+    "reason": "a phone screenshot of the SATURDAY schedule as a grid, under the post's 'Set Times Grid' heading; it prints the weekday but no date or year, and all 32 sets match the cited official graphic"
    }
   ]
  }
