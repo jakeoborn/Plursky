@@ -3457,6 +3457,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c3d. Crew meetups (15-feature program #3) ─────────────────────────
+// A meetup goes to the crew thread on the user's tap, stage and time only, and
+// comes back as a card that adds it to my meetups once. Body round trip,
+// app send + thread render with Supabase blocked, and mutations.
+{
+  console.log("▸ Crew meetups gate — tap to send, stage + time only, card adds once, other festival not added, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-meetups.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew meetups failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
 // A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
 // wraps inside the row at 320px instead of cutting at 8 characters.

@@ -1874,6 +1874,30 @@ function MeetupsSheet({
     var next = removeMeetup(id);
     setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
   };
+  var crewCode = (() => {
+    try {
+      return localStorage.getItem("plursky_group_code") || "";
+    } catch {
+      return "";
+    }
+  })();
+  var [sent, setSent] = React.useState({});
+  var sendToCrew = async m => {
+    var body = _formatMeetupBody(m, FESTIVAL_CONFIG.id);
+    if (!crewCode || !body) return;
+    setSent(x => ({
+      ...x,
+      [m.id]: "sending"
+    }));
+    var {
+      error,
+      queued
+    } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    setSent(x => ({
+      ...x,
+      [m.id]: queued ? "queued" : error ? "failed" : "sent"
+    }));
+  };
   var fmtWhen = ts => {
     try {
       var d = new Date(ts);
@@ -2031,7 +2055,30 @@ function MeetupsSheet({
       style: {
         opacity: 0.6
       }
-    }, "· ", tFmt.rel))), React.createElement("button", {
+    }, "· ", tFmt.rel))), crewCode && React.createElement("button", {
+      type: "button",
+      "data-meetup-send": m.id,
+      disabled: sent[m.id] === "sending" || sent[m.id] === "sent" || sent[m.id] === "queued",
+      onClick: () => sendToCrew(m),
+      className: "mono",
+      style: {
+        minHeight: 44,
+        padding: "0 10px",
+        borderRadius: 10,
+        background: "transparent",
+        border: "1px solid var(--line-2)",
+        color: "var(--ink)",
+        fontSize: 10,
+        letterSpacing: 1.1,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, {
+      sending: "SENDING",
+      sent: "SENT",
+      queued: "QUEUED",
+      failed: "RETRY"
+    }[sent[m.id]] || "SEND TO CREW"), React.createElement("button", {
       onClick: () => handleRemove(m.id),
       "aria-label": "Remove",
       style: {

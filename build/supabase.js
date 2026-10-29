@@ -2219,6 +2219,120 @@ function _formatPollBody(id, question, options) {
 function _formatVoteBody(pollId, option) {
   return `[VOTE ${pollId}] ${option}`;
 }
+var MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
+function _meetupText(s, max) {
+  return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max);
+}
+function _formatMeetupBody(m, festivalId) {
+  var name = _meetupText(m && m.name, 60),
+    notes = _meetupText(m && m.notes, 200);
+  var at = Math.round(Number(m && m.atTs));
+  if (!festivalId || !name || !Number.isFinite(at)) return null;
+  var body = `[MEETUP ${festivalId} ${m && m.stageId || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
+  return _parseMeetup(body) ? body : null;
+}
+function _parseMeetup(body) {
+  var m = MEETUP_RE.exec(body || "");
+  if (!m) return null;
+  return {
+    festivalId: m[1],
+    stageId: m[2] === "-" ? null : m[2],
+    atTs: +m[3],
+    name: m[4].trim(),
+    notes: (m[5] || "").trim()
+  };
+}
+function meetupKey(m) {
+  return `${m && m.stageId || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`;
+}
+function MeetupCard({
+  meet,
+  from,
+  sentAt
+}) {
+  var [mine, setMine] = React.useState(() => readMeetups().some(x => meetupKey(x) === meetupKey(meet)));
+  var here = meet.festivalId === FESTIVAL_CONFIG.id;
+  var stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
+  var other = here ? null : (FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null;
+  var past = meet.atTs < Date.now() - 30 * 60 * 1000;
+  var when = "";
+  try {
+    when = new Date(meet.atTs).toLocaleString([], {
+      weekday: "short",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  } catch {}
+  var add = () => {
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({
+      name: meet.name,
+      stageId: meet.stageId,
+      atTs: meet.atTs,
+      notes: meet.notes
+    });
+    window.plurskyHaptic?.("LIGHT");
+    setMine(true);
+  };
+  return React.createElement("div", {
+    "data-crew-meetup": true,
+    style: {
+      background: "var(--paper-2)",
+      borderRadius: 14,
+      padding: "12px 14px",
+      margin: "4px 0",
+      border: "1px solid var(--line)",
+      borderLeft: stage ? `3px solid ${stage.color}` : "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8.5,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700,
+      marginBottom: 6
+    }
+  }, "MEETUP · ", String(from).toUpperCase(), " · ", sentAt), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 16,
+      lineHeight: 1.25,
+      overflowWrap: "anywhere"
+    }
+  }, meet.name), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      marginTop: 2
+    }
+  }, [stage && stage.name, when, other && `for ${other.shortName || other.name || meet.festivalId}`].filter(Boolean).join(" · ")), meet.notes && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      marginTop: 4,
+      overflowWrap: "anywhere"
+    }
+  }, meet.notes), here && !past && React.createElement("button", {
+    type: "button",
+    "data-crew-meetup-add": true,
+    "aria-pressed": mine,
+    disabled: mine,
+    onClick: add,
+    style: {
+      marginTop: 10,
+      minHeight: 44,
+      padding: "0 14px",
+      borderRadius: 10,
+      background: mine ? "transparent" : "var(--ink)",
+      color: mine ? "var(--text-2)" : "var(--paper)",
+      border: mine ? "1px solid var(--line-2)" : "none",
+      fontSize: 15,
+      fontWeight: 600,
+      cursor: mine ? "default" : "pointer"
+    }
+  }, mine ? "In your meetups" : "Add to my meetups"));
+}
 function ReportSheet({
   message,
   code,
@@ -2794,6 +2908,16 @@ function CrewChat({
     var parsedPoll = _parsePoll(m.body);
     var mine = m.sender_pid === myPid;
     var menuOpen = menuMsgId === m.id;
+    var meet = _parseMeetup(m.body);
+    if (meet) {
+      return React.createElement(React.Fragment, {
+        key: m.id
+      }, _promoCard, React.createElement(MeetupCard, {
+        meet: meet,
+        from: mine ? "You" : m.sender_name || "Friend",
+        sentAt: fmtTime(m.created_at)
+      }));
+    }
     if (parsedPoll) {
       var live = pollState[parsedPoll.id];
       var tally = {};

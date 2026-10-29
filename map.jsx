@@ -1524,6 +1524,17 @@ function MeetupsSheet({ onClose }) {
     const next = removeMeetup(id);
     setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
   };
+  // Send to crew (15-feature program #3): the user's tap posts the meetup to
+  // the crew thread, stage and time only. No crew code, no button.
+  const crewCode = (() => { try { return localStorage.getItem("plursky_group_code") || ""; } catch { return ""; } })();
+  const [sent, setSent] = React.useState({});
+  const sendToCrew = async (m) => {
+    const body = _formatMeetupBody(m, FESTIVAL_CONFIG.id);
+    if (!crewCode || !body) return;
+    setSent(x => ({ ...x, [m.id]: "sending" }));
+    const { error, queued } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    setSent(x => ({ ...x, [m.id]: queued ? "queued" : error ? "failed" : "sent" }));
+  };
 
   const fmtWhen = (ts) => {
     try {
@@ -1600,6 +1611,13 @@ function MeetupsSheet({ onClose }) {
                       <span style={{ opacity: 0.6 }}>· {tFmt.rel}</span>
                     </div>
                   </div>
+                  {crewCode && (
+                    <button type="button" data-meetup-send={m.id} disabled={sent[m.id] === "sending" || sent[m.id] === "sent" || sent[m.id] === "queued"}
+                      onClick={() => sendToCrew(m)} className="mono" style={{
+                        minHeight: 44, padding: "0 10px", borderRadius: 10, background: "transparent",
+                        border: "1px solid var(--line-2)", color: "var(--ink)", fontSize: 10, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
+                      }}>{({ sending: "SENDING", sent: "SENT", queued: "QUEUED", failed: "RETRY" })[sent[m.id]] || "SEND TO CREW"}</button>
+                  )}
                   <button onClick={() => handleRemove(m.id)} aria-label="Remove" style={{
                     background: "transparent", border: "none", color: "var(--muted)",
                     fontSize: 16, cursor: "pointer", lineHeight: 1, padding: 4,
