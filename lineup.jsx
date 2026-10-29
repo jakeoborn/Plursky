@@ -2573,6 +2573,13 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
   const next = () => {
     setIdx(i => (i + 1 < conflicts.length ? i + 1 : i));
   };
+  // The solver's pick for this pair, with its reason; null shows nothing.
+  const sug = clashSuggestion(a, b);
+  const useSug = () => {
+    window.plurskyHaptic?.("LIGHT");
+    if (sug.kind === "keep") onKeep(sug.keepId, sug.dropId);
+    else splitNight(a, b, sug.switchMin);
+  };
 
   const crBtn = { ...fieldIconBtn, width: "auto", padding: "0 10px", color: "var(--text-2)", fontSize: 15, fontWeight: 500 };
   return (
@@ -2581,6 +2588,17 @@ function ConflictResolver({ conflicts, onKeep, onKeepBoth, onSplit }) {
         <span style={{ ..._fieldEyebrow, color: "var(--warn)" }}>⚠ Clash {safeIdx + 1} of {conflicts.length}</span>
         <span style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>Overlap {fmt12(overlapStart)}–{fmt12(overlapEnd)}</span>
       </div>
+      {sug && (
+        <div data-clash-suggestion={sug.rule} style={{ display: "flex", alignItems: "center", gap: 10, minHeight: 52, borderBottom: "1px solid var(--line)" }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>Suggested</div>
+            <div style={{ fontSize: 15, lineHeight: "20px", fontWeight: 500, overflowWrap: "anywhere" }}>{sug.reason}</div>
+          </div>
+          <button type="button" data-clash-suggestion-use aria-label={`Apply suggestion: ${sug.reason}`} onClick={useSug} style={{ ...crBtn, color: "var(--ink)", fontWeight: 600 }}>
+            Apply
+          </button>
+        </div>
+      )}
       {[a, b].map((art, i) => {
         const stg = i === 0 ? sA : sB;
         return (

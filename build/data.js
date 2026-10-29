@@ -1584,7 +1584,9 @@ function _attendFits(a, w) {
   return ws >= s && we <= e && ws < we && !(ws === s && we === e);
 }
 function _attendSameNight(a, b) {
-  if (a.day !== b.day) return false;
+  return a.day === b.day && _attendSameWeekend(a, b);
+}
+function _attendSameWeekend(a, b) {
   var wa = a.weekend,
     wb = b.weekend;
   return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
@@ -1681,7 +1683,7 @@ function splitRange(a, b) {
     def: 0,
     ok: false
   };
-  var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end) || String(x.id).localeCompare(String(y.id)));
   var lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
   var hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
   return {
@@ -1734,6 +1736,62 @@ function splitNight(a, b, switchMin, fid) {
   setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
   return true;
+}
+var CLASH_SPLIT_MIN_MIN = 30;
+function _clashName(a) {
+  return String(a && a.name || "").trim().toLowerCase();
+}
+function clashPlaysAgain(a, lineup) {
+  if (!a) return null;
+  var n = _clashName(a);
+  var again = (lineup || []).filter(x => x && x.id !== a.id && x.start && x.end && _clashName(x) === n && x.day > a.day && _attendSameWeekend(a, x));
+  return again.sort((x, y) => x.day - y.day || toNightMin(x.start) - toNightMin(y.start) || String(x.id).localeCompare(String(y.id)))[0] || null;
+}
+function clashSuggestion(a, b, ctx) {
+  if (!a || !b || a.id === b.id) return null;
+  var c = ctx || {};
+  var lineup = c.lineup || _attendLineup(c.fid);
+  var matched = new Set(c.matchedIds || _l3Read("spotify_matched_ids_v1", []) || []);
+  var dayLabel = c.dayLabel || (d => {
+    var x = (typeof DAYS !== "undefined" ? DAYS : []).find(y => y.n === d);
+    return x ? x.label : `Day ${d}`;
+  });
+  var keep = (k, d, rule, reason) => ({
+    kind: "keep",
+    keepId: k.id,
+    dropId: d.id,
+    rule,
+    reason
+  });
+  var againA = clashPlaysAgain(a, lineup),
+    againB = clashPlaysAgain(b, lineup);
+  if (!!againA !== !!againB) {
+    var [goes, stays, at] = againA ? [a, b, againA] : [b, a, againB];
+    return keep(stays, goes, "plays-again", `Keep ${actDisplayName(stays.name)}. ${actDisplayName(goes.name)} plays again ${dayLabel(at.day)} at ${fmt12(at.start)}.`);
+  }
+  var mA = matched.has(a.id),
+    mB = matched.has(b.id);
+  if (mA !== mB) {
+    var [k, d] = mA ? [a, b] : [b, a];
+    return keep(k, d, "your-music", `Keep ${actDisplayName(k.name)}. It is in your Spotify artists.`);
+  }
+  var r = splitRange(a, b);
+  if (r.ok) {
+    var sw = snapSplitSwitch((r.lo + r.hi) / 2, r.lo, r.hi);
+    var firstMin = sw - toNightMin(r.first.start),
+      secondMin = toNightMin(r.second.end) - sw;
+    if (firstMin >= CLASH_SPLIT_MIN_MIN && secondMin >= CLASH_SPLIT_MIN_MIN) {
+      return {
+        kind: "split",
+        firstId: r.first.id,
+        secondId: r.second.id,
+        switchMin: sw,
+        rule: "split",
+        reason: `Split: ${actDisplayName(r.first.name)} until ${fmt12(nightMinToHHMM(sw))}, then ${actDisplayName(r.second.name)} (${firstMin} and ${secondMin} min).`
+      };
+    }
+  }
+  return null;
 }
 function useAttendVersion() {
   var [v, setV] = React.useState(0);

@@ -2069,7 +2069,10 @@ function _attendFits(a, w) {
 // belongs to the evening before) and a weekend both play, the rule
 // _schedClash and the plan status use. Not calendar dates.
 function _attendSameNight(a, b) {
-  if (a.day !== b.day) return false;
+  return a.day === b.day && _attendSameWeekend(a, b);
+}
+// Both can be seen on one weekend: untagged, "both", or the same tag.
+function _attendSameWeekend(a, b) {
   const wa = a.weekend, wb = b.weekend;
   return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
 }
@@ -2147,7 +2150,9 @@ function setsOverlapAccepted(a, b, fid, savedIds) { return attendOverlaps(a, b, 
 // Default: the low end.
 function splitRange(a, b) {
   if (!a || !b || !a.start || !a.end || !b.start || !b.end) return { first: null, second: null, lo: 0, hi: -1, def: 0, ok: false };
-  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end));
+  // Same start and end: the lower id goes first, so argument order never
+  // decides which set keeps the early half (a tie-break is a policy).
+  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end) || String(x.id).localeCompare(String(y.id)));
   const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
   const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
   return { first, second, lo, hi, def: lo, ok: lo <= hi };
@@ -2190,6 +2195,62 @@ function splitNight(a, b, switchMin, fid) {
   setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
   return true;
 }
+// ── Clash solver ─────────────────────────────────────────────────────────
+// One suggestion per clashing pair, with the reason that decided it, or null
+// when nothing on record tells the two apart: the solver never guesses. The
+// rules run in order and the first one that separates the pair decides:
+//   1. plays again: only one of the two has another timed set on a LATER
+//      night the user can reach (same weekend), so keeping the other loses
+//      nothing. Later only: an earlier night may already be over;
+//   2. your music: only one is in the Spotify matches;
+//   3. split: a switch exists that gives each set CLASH_SPLIT_MIN_MIN or more;
+//      the switch is the middle of the split range, on the 5-minute grid.
+// No rule ranks by tier: most lineups derive it from the start hour
+// (data.jsx _aclMk, the EDC builder), so it is a time slot, not a billing,
+// and "headline" would be a claim the data does not make.
+// Pure for a given ctx { lineup, matchedIds, dayLabel }, and the answer is the
+// same for (a, b) and (b, a): a tie-break is a policy, never argument order.
+const CLASH_SPLIT_MIN_MIN = 30;
+function _clashName(a) { return String((a && a.name) || "").trim().toLowerCase(); }
+function clashPlaysAgain(a, lineup) {
+  if (!a) return null;
+  const n = _clashName(a);
+  const again = (lineup || []).filter(x => x && x.id !== a.id && x.start && x.end && _clashName(x) === n
+    && x.day > a.day && _attendSameWeekend(a, x));
+  return again.sort((x, y) => x.day - y.day || toNightMin(x.start) - toNightMin(y.start) || String(x.id).localeCompare(String(y.id)))[0] || null;
+}
+function clashSuggestion(a, b, ctx) {
+  if (!a || !b || a.id === b.id) return null;
+  const c = ctx || {};
+  const lineup = c.lineup || _attendLineup(c.fid);
+  const matched = new Set(c.matchedIds || _l3Read("spotify_matched_ids_v1", []) || []);
+  const dayLabel = c.dayLabel || (d => { const x = (typeof DAYS !== "undefined" ? DAYS : []).find(y => y.n === d); return x ? x.label : `Day ${d}`; });
+  const keep = (k, d, rule, reason) => ({ kind: "keep", keepId: k.id, dropId: d.id, rule, reason });
+  // 1. plays again
+  const againA = clashPlaysAgain(a, lineup), againB = clashPlaysAgain(b, lineup);
+  if (!!againA !== !!againB) {
+    const [goes, stays, at] = againA ? [a, b, againA] : [b, a, againB];
+    return keep(stays, goes, "plays-again", `Keep ${actDisplayName(stays.name)}. ${actDisplayName(goes.name)} plays again ${dayLabel(at.day)} at ${fmt12(at.start)}.`);
+  }
+  // 2. your music
+  const mA = matched.has(a.id), mB = matched.has(b.id);
+  if (mA !== mB) {
+    const [k, d] = mA ? [a, b] : [b, a];
+    return keep(k, d, "your-music", `Keep ${actDisplayName(k.name)}. It is in your Spotify artists.`);
+  }
+  // 3. split
+  const r = splitRange(a, b);
+  if (r.ok) {
+    const sw = snapSplitSwitch((r.lo + r.hi) / 2, r.lo, r.hi);
+    const firstMin = sw - toNightMin(r.first.start), secondMin = toNightMin(r.second.end) - sw;
+    if (firstMin >= CLASH_SPLIT_MIN_MIN && secondMin >= CLASH_SPLIT_MIN_MIN) {
+      return { kind: "split", firstId: r.first.id, secondId: r.second.id, switchMin: sw, rule: "split",
+        reason: `Split: ${actDisplayName(r.first.name)} until ${fmt12(nightMinToHHMM(sw))}, then ${actDisplayName(r.second.name)} (${firstMin} and ${secondMin} min).` };
+    }
+  }
+  return null;
+}
+
 // Re-renders a screen when a window or an accepted pair changes (any screen,
 // any tab). Read it into a memo's deps so counts recompute.
 function useAttendVersion() {
