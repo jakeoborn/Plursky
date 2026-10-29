@@ -1400,6 +1400,12 @@ function ShareLocationSheet({
 // Crew radar (15-feature program #2): who in my crew is at which stage,
 // from the stage each of them picked. Stage-level only, never a position.
 // Biggest group first; ties by stage name so the order never flickers.
+// A share saved before stage-only sharing (it may say includeGps: true, and
+// carry a public-link token) stays off until a fresh tap: an old share never
+// resumes broadcasting on its own.
+function _migrateShareState(s) {
+  return s ? { ...s, active: false, includeGps: false, includeStage: true, token: undefined } : s;
+}
 function crewRadarRows(crewFriends, now = Date.now()) {
   const by = {};
   for (const f of crewFriends || []) {
@@ -1945,6 +1951,9 @@ function MapScreen({ state, setState }) {
   // declined so the 20s re-broadcast doesn't keep re-popping the banner.
   const [rallySent, setRallySent] = React.useState(false);
   const [incomingRally, setIncomingRally] = React.useState(null);
+  // The rally's stage on this festival's map. A rally carries no position, so
+  // one naming a stage this festival does not have shows nothing.
+  const rallyStage = incomingRally ? (STAGES || []).find(s => s.id === incomingRally.stageId) || null : null;
   const dismissedRallyRef = React.useRef(new Set());
   // "Crew gathered here": dismissed cluster signature (stageId:count) so the
   // nudge only re-appears when the gathering grows.
@@ -2119,8 +2128,7 @@ function MapScreen({ state, setState }) {
     try {
       const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
       if (s && s.expiresAt && s.expiresAt <= Date.now()) return null; // expired
-      // A share saved before stage-only sharing may say includeGps: true.
-      return s ? { ...s, includeGps: false, includeStage: true, token: undefined } : s;
+      return _migrateShareState(s);
     } catch { return null; }
   });
   const isSharing = !!shareState?.active &&
@@ -3182,10 +3190,10 @@ function MapScreen({ state, setState }) {
             </span>
             {meetPin && isSharing && (
               <button onClick={() => {
+                // A rally names a stage, never the pin's x/y or lat/lng.
                 const ok = sbBroadcastRally({
-                  x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
+                  label: meetTarget.label,
                   stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
-                  gps: meetTarget.gps || null,
                 });
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
@@ -3205,7 +3213,7 @@ function MapScreen({ state, setState }) {
         )}
 
         {/* Incoming rally — a crew member dropped a meet point and pinged us */}
-        {incomingRally && (
+        {incomingRally && rallyStage && (
           <div style={{
             position: "absolute", top: 0, left: 0, right: 0, zIndex: 9,
             background: "linear-gradient(135deg, var(--signal), var(--ember))",
@@ -3221,13 +3229,13 @@ function MapScreen({ state, setState }) {
                 {(incomingRally.fromName || "CREW").toUpperCase()} WANTS TO MEET
               </span>
               <span style={{ display: "block", fontSize: 13, fontWeight: 700, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {incomingRally.label}{minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar)}
+                {incomingRally.label}{minsAwaySuffix(Math.hypot(rallyStage.x - avatar.x, rallyStage.y - avatar.y), avatar)}
               </span>
             </span>
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeet({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
+              setMeet({ x: rallyStage.x, y: rallyStage.y, label: incomingRally.label, stageId: rallyStage.id, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -3242,7 +3250,7 @@ function MapScreen({ state, setState }) {
 
         {/* "Crew gathered here" — serendipity nudge when >=2 crew share a stage */}
         {(() => {
-          if (!crewCluster || meetMode || incomingRally) return null;
+          if (!crewCluster || meetMode || rallyStage) return null;
           const sig = `${crewCluster.stage.id}:${crewCluster.members.length}`;
           if (sig === clusterDismissed) return null;
           const headOver = () => {

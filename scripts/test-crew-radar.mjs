@@ -14,7 +14,14 @@
 //   4. App (headless Chrome, Supabase blocked): the share sheet has no GPS
 //      option and says so; with no stage Start is disabled; with a stage Start
 //      saves includeGps:false. The radar renders one row per stage.
-//   5. Mutations on the compiled source must each fail a check.
+//   5. Crew channel, on a fake Supabase client (#376 gaps): a rally sends and
+//      accepts only { rallyId, label, stageId, from…, ts } and no rally without
+//      a stage; the stage headcount joins only the stage I declared, on a
+//      festival + crew channel, re-checks the share on every call and leaves
+//      on a cleared stage and on Stop; sbPresenceUpdate({ stageId: null })
+//      withdraws my stage. A share saved before stage-only sharing comes back
+//      inactive (_migrateShareState) until a fresh tap.
+//   6. Mutations on the compiled source must each fail a check.
 import vm from "node:vm";
 import { readFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -27,8 +34,33 @@ const SUPA = readFileSync(join(ROOT, "build", "supabase.js"), "utf8");
 const MAPSRC = readFileSync(join(ROOT, "map.jsx"), "utf8");
 const noop = () => {};
 
+function fakeClient() {
+  const chans = [];
+  const tolerant = () => new Proxy(function () {}, {
+    get: (t, k) => (k === "then" ? undefined : tolerant()), apply: () => tolerant(),
+  });
+  const client = new Proxy({}, {
+    get: (t, k) => {
+      if (k === "chans") return chans;
+      if (k === "channel") return (name) => {
+        const ch = { name, handlers: {}, sends: [], tracked: [], unsub: false,
+          on(type, f, cb) { ch.handlers[(f && f.event) || type] = cb; return ch; },
+          subscribe(cb) { if (cb) cb("SUBSCRIBED"); return ch; },
+          send(m) { ch.sends.push(m); }, track(m) { ch.tracked.push(m); return Promise.resolve(); },
+          unsubscribe() { ch.unsub = true; }, presenceState: () => ({}) };
+        chans.push(ch); return ch;
+      };
+      if (k === "removeChannel") return (ch) => { if (ch) ch.unsub = true; };
+      if (k === "then") return undefined;
+      return tolerant();
+    },
+  });
+  return client;
+}
+
 function loadSupa(src) {
-  const store = {};
+  const store = { plursky_group_code: "TST123", plursky_pid: "p_me" };
+  const client = fakeClient();
   const ctx = {
     console: { log: noop, warn: noop, error: noop }, Intl, fetch: () => new Promise(noop),
     setTimeout: noop, clearTimeout: noop, setInterval: noop, clearInterval: noop,
@@ -38,13 +70,16 @@ function loadSupa(src) {
     navigator: { userAgent: "node", onLine: true },
     document: { addEventListener: noop, removeEventListener: noop, createElement: () => ({ style: {} }), head: { appendChild: noop }, body: { appendChild: noop } },
     React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
-    supabase: { createClient: () => null }, FESTIVAL_CONFIG: { id: "fixture-fest" },
+    supabase: { createClient: () => client }, FESTIVAL_CONFIG: { id: "fixture-fest" },
+    CustomEvent: class { constructor(t, o) { this.type = t; this.detail = o && o.detail; } },
   };
   ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
-  ctx.addEventListener = noop; ctx.removeEventListener = noop;
+  ctx.addEventListener = noop; ctx.removeEventListener = noop; ctx.dispatchEvent = noop;
   vm.createContext(ctx);
   vm.runInContext(src, ctx, { filename: "build/supabase.js" });
-  const F = vm.runInContext(`({ _crewLocPayload, _crewShareActive })`, ctx);
+  const F = vm.runInContext(`({ _crewLocPayload, _crewShareActive, sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave,
+    sbBroadcastRally, sbOnRally, joinStagePresence, leaveStagePresence })`, ctx);
+  F.chans = client.chans;
   F.setShare = v => { if (v == null) delete store.plursky_share_state; else store.plursky_share_state = typeof v === "string" ? v : JSON.stringify(v); };
   return F;
 }
@@ -63,7 +98,67 @@ function loadRows(src) {
   return ctx.crewRadarRows;
 }
 
-function unit(F, rows) {
+function loadMigrate(src) {
+  const a = src.indexOf("function _migrateShareState"), b = src.indexOf("function crewRadarRows");
+  if (a < 0 || b < a) throw new Error("_migrateShareState not found");
+  const ctx = {}; vm.createContext(ctx); vm.runInContext(src.slice(a, b), ctx);
+  return ctx._migrateShareState;
+}
+
+// The crew channel and the stage headcount, on the fake client.
+function crew(F, check) {
+  const crewCh = () => F.chans.filter(c => c.name === "crew-TST123").pop();
+  const stageChs = () => F.chans.filter(c => /^stage:/.test(c.name));
+  const live = () => stageChs().filter(c => !c.unsub);
+  const lastLoc = () => { const m = (crewCh()?.sends || []).filter(x => x.event === "loc").pop(); return m && m.payload; };
+  F.setShare({ active: true, expiresAt: Date.now() + 3600e3 });
+  F.sbPresenceJoin({ name: "Sam", stageId: "kinetic" });
+  check(!!crewCh(), "sharing joins the crew channel");
+  check(live().length === 1 && live()[0].name === "stage:fixture-fest:crew-TST123:kinetic",
+    `the headcount joins my declared stage on a festival + crew channel (got ${live().map(c => c.name)})`);
+  check(live()[0]?.tracked.length === 1, "the headcount tracks me once on that channel");
+  // Rally: stage id only, on send.
+  const sent = F.sbBroadcastRally({ label: "Meet at kinetic", stageId: "kinetic", x: 41, y: 37, gps: { lat: 28.5, lng: -81.4 } });
+  const rs = (crewCh()?.sends || []).filter(x => x.event === "rally").pop();
+  check(sent === true && rs && rs.payload.stageId === "kinetic" && rs.payload.label === "Meet at kinetic", `a rally sends its stage and label (got ${JSON.stringify(rs && rs.payload)})`);
+  check(rs && Object.keys(rs.payload).sort().join() === "fromName,fromPid,label,rallyId,stageId,ts", `a rally sends no position (keys ${rs && Object.keys(rs.payload)})`);
+  check(rs && !/28\.5|81\.4|"x"|"y"|gps/.test(JSON.stringify(rs.payload)), "no coordinate value is in the rally payload");
+  const nSends = crewCh().sends.length;
+  check(F.sbBroadcastRally({ label: "Here", stageId: null, gps: { lat: 28.5, lng: -81.4 } }) === false && crewCh().sends.length === nSends, "a rally with no stage is not sent");
+  // Rally: stage id only, on receive (a crewmate on an older version sends x/y/gps).
+  let got = "none"; const off = F.sbOnRally(r => { got = r; });
+  crewCh().handlers.rally({ payload: { rallyId: "r1", fromPid: "p_other", fromName: "Bo", stageId: "circuit", label: "Old", x: 5, y: 6, gps: { lat: 28.5, lng: -81.4 } } });
+  check(got && got.stageId === "circuit" && !("gps" in got) && !("x" in got) && !("y" in got), `an accepted rally keeps no position (got ${JSON.stringify(got)})`);
+  got = "none";
+  crewCh().handlers.rally({ payload: { rallyId: "r2", fromPid: "p_other", label: "Pin", x: 5, y: 6, gps: { lat: 28.5, lng: -81.4 } } });
+  check(got === "none", "a received rally with no stage is dropped");
+  off();
+  // Update: a new stage moves the headcount; a missing key keeps it; null withdraws.
+  F.sbPresenceUpdate({ stageId: "circuit" });
+  check(live().length === 1 && /:circuit$/.test(live()[0].name) && stageChs().some(c => /:kinetic$/.test(c.name) && c.unsub), "a new declared stage moves the headcount");
+  F.sbPresenceUpdate({});
+  check(lastLoc()?.stageId === "circuit" && live().length === 1, "an update with no stageId key keeps my stage");
+  F.sbPresenceUpdate({ stageId: null });
+  check(lastLoc() && lastLoc().stageId === null, `a cleared stage withdraws it from the crew (sent ${JSON.stringify(lastLoc())})`);
+  check(live().length === 0, "a cleared stage leaves the headcount");
+  // Re-checked on every call: the share ended between two picks.
+  F.sbPresenceUpdate({ stageId: "bass" });
+  check(live().length === 1 && /:bass$/.test(live()[0].name), "picking a stage again re-joins while sharing");
+  F.setShare({ active: true, expiresAt: Date.now() - 1000 });
+  F.sbPresenceUpdate({ stageId: "kinetic" });
+  check(live().length === 0, "an expired share joins no headcount and leaves the old one");
+  F.setShare({ active: true, expiresAt: Date.now() + 3600e3 });
+  F.sbPresenceUpdate({ stageId: "kinetic" });
+  check(live().length === 1, "back to sharing → the headcount re-joins");
+  F.sbPresenceLeave();
+  check(live().length === 0, "Stop leaves the headcount");
+  F.setShare({ active: false });
+  F.joinStagePresence("kinetic");
+  check(live().length === 0, "not sharing → a direct join is refused");
+  F.setShare(null);
+}
+
+function unit(F, rows, migrate) {
   let checks = 0, failed = 0; const fails = [];
   const check = (ok, msg) => { checks++; if (!ok) { failed++; fails.push(msg); } };
   const T = Date.UTC(2026, 10, 7, 2, 40);
@@ -84,6 +179,11 @@ function unit(F, rows) {
   F.setShare("{not json");
   check(F._crewShareActive() === false, "an unreadable share → not counted");
   F.setShare(null);
+  crew(F, check);
+  const old = migrate({ active: true, includeGps: true, includeStage: false, token: "tok", expiresAt: T + 3600e3, label: "x" });
+  check(old.active === false && old.includeGps === false && old.includeStage === true && old.token === undefined && old.expiresAt === T + 3600e3,
+    `a share saved before stage-only sharing comes back inactive, stage-only, no token (got ${JSON.stringify(old)})`);
+  check(migrate(null) === null, "no saved share → none");
 
   const now = T + 10 * 60e3;
   const r = rows([
@@ -104,7 +204,7 @@ function unit(F, rows) {
   return { checks, failed, fails };
 }
 
-const base = unit(loadSupa(SUPA), loadRows(MAPSRC));
+const base = unit(loadSupa(SUPA), loadRows(MAPSRC), loadMigrate(MAPSRC));
 for (const f of base.fails) console.log(`  ✗  ${f}`);
 const MUT = [
   ["supa", "  return {\n    pid: l.pid,\n    name: l.name,", "  return {\n    ...l,\n    pid: l.pid,\n    name: l.name,"],
@@ -115,6 +215,17 @@ const MUT = [
   ["map", "b.members.length - a.members.length || a.stage.name.localeCompare(b.stage.name)", "b.members.length - a.members.length"],
   ["map", "if (!st) continue;", ""],
   ["map", "Math.max(...r.members.map(m => m.ts || 0))", "Math.min(...r.members.map(m => m.ts || 0))"],
+  // #376 gaps: rally position, headcount scope / opt-in / Stop, null stage, migration.
+  ["supa", "    rallyId: String(r.rallyId),\n", "    ...r,\n    rallyId: String(r.rallyId),\n"],
+  ["supa", "var r = _rallyPayload(payload);", "var r = payload;"],
+  ["supa", "if (!_presCh || !stageId) return false;", "if (!_presCh) return false;"],
+  ["supa", "return `stage:${fid}:${_presChannelName()}:${stageId}`;", "return `stage:${stageId}`;"],
+  ["supa", "if (!_sb || !stageId || !_crewShareActive()) {", "if (!_sb || !stageId) {"],
+  ["supa", "  _myLoc = null;\n  leaveStagePresence();\n", "  _myLoc = null;\n"],
+  ["supa", "arg && Object.prototype.hasOwnProperty.call(arg, \"stageId\") ? {\n    stageId: arg.stageId || null\n  } : {\n    stageId: _myLoc.stageId\n  };", "{\n    stageId: (arg || {}).stageId ?? _myLoc.stageId\n  };"],
+  ["supa", "    ts: Date.now()\n  };\n  _syncStageHeadcount();\n  _presSnap", "    ts: Date.now()\n  };\n  _presSnap"],
+  ["supa", "  };\n  _syncStageHeadcount();\n  _presCh = _sb.channel", "  };\n  _presCh = _sb.channel"],
+  ["map", "return s ? { ...s, active: false, includeGps: false,", "return s ? { ...s, includeGps: false,"],
 ];
 let caught = 0, mutFail = 0;
 for (const [which, from, to] of MUT) {
@@ -122,7 +233,7 @@ for (const [which, from, to] of MUT) {
   const n = src.split(from).length - 1;
   if (n !== 1) { mutFail++; console.log(`  ✗  mutation target not found exactly once (${n}): ${from}`); continue; }
   let r;
-  try { r = which === "supa" ? unit(loadSupa(SUPA.replace(from, to)), loadRows(MAPSRC)) : unit(loadSupa(SUPA), loadRows(MAPSRC.replace(from, to))); }
+  try { r = which === "supa" ? unit(loadSupa(SUPA.replace(from, to)), loadRows(MAPSRC), loadMigrate(MAPSRC)) : unit(loadSupa(SUPA), loadRows(MAPSRC.replace(from, to)), loadMigrate(MAPSRC.replace(from, to))); }
   catch { r = { failed: 1 }; }
   if (r.failed > 0) caught++; else { mutFail++; console.log(`  ✗  mutation survived: ${from} → ${to}`); }
 }
@@ -137,7 +248,10 @@ sCheck(sheet.length > 1000 && !/includeGps:\s*true|setIncludeGps|type="checkbox"
 sCheck(!/sbLiveShare|ShareLinkRow|share\.html/.test(mapCode), "the map writes no live_shares row and shows no public link");
 sCheck(!/gpsToMap\(e\.gps|f\.gps\b/.test(mapCode) && !/STAGES\[0\]\?\.id \|\| null/.test(mapCode), "the map reads no crewmate GPS and never invents a stage");
 const join_ = supaCode.slice(supaCode.indexOf("function joinStagePresence"), supaCode.indexOf("function joinStagePresence") + 200);
-sCheck(/!_crewShareActive\(\)\) return;/.test(join_), "the stage headcount checks the opt-in first");
+sCheck(/!_crewShareActive\(\)\) \{ leaveStagePresence\(\); return; \}/.test(join_), "the stage headcount checks the opt-in first, on every call");
+const spotCode = code(readFileSync(join(ROOT, "spotify.jsx"), "utf8"));
+sCheck(!/joinStagePresence/.test(spotCode) && !/joinStagePresence/.test(mapCode), "no GPS fix or live-mode stage joins the headcount (only the declared stage does)");
+sCheck(!/incomingRally\.(x|y|gps)\b/.test(mapCode) && /stageId: rallyStage\.id, isRally: true/.test(mapCode), "a received rally is placed at its stage on this festival's map");
 sCheck((supaCode.match(/_crewLocPayload\(/g) || []).length >= 3, "both the send and the receive go through _crewLocPayload");
 
 // ── App ──
