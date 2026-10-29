@@ -39,6 +39,7 @@ function load(src) {
     document: { addEventListener: noop, removeEventListener: noop, createElement: () => ({ style: {} }), head: { appendChild: noop }, body: { appendChild: noop } },
     React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
     supabase: { createClient: () => null }, FESTIVAL_CONFIG: { id: "fixture-fest" },
+    _DATA_SETS: { "edc-orlando-2026": { stages: [{ id: "kinetic" }] } },
   };
   ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
   ctx.addEventListener = noop; ctx.removeEventListener = noop;
@@ -66,6 +67,9 @@ function unit(F) {
   check(F._parseBeacon(`[MEETUP f-1 kinetic ${T}] x`) === null, "a meetup is not a beacon");
   check(F.BEACON_TTL_MS === 15 * 60 * 1000, "live for 15 minutes");
   check(F.beaconLiveUntil({ ts: T }, T + 60e3) === T + 15 * 60e3, "live until tap + 15 min");
+  check(F._parseBeacon(`[BEACON edc-orlando-2026 amex ${T}]`) === null, "a stage its festival doesn't have is not a beacon");
+  check(F._formatBeaconBody("amex", "edc-orlando-2026", T) === null, "…and can't be sent");
+  check(F._parseBeacon(`[BEACON zz-fest stage1 ${T}]`)?.festivalId === "zz-fest", "a festival this build doesn't know still parses (named only)");
   check(F.beaconLiveUntil({ ts: T + 3600e3 }, T) === T + 15 * 60e3, "a tap time ahead of the clock counts from now");
   return { checks, failed, fails };
 }
@@ -79,6 +83,7 @@ const MUT = [
   ["return _parseBeacon(body) ? body : null;", "return body;"],
   ["Math.min(b.ts, now) + BEACON_TTL_MS", "b.ts + BEACON_TTL_MS"],
   ["BEACON_TTL_MS = 15 * 60 * 1000;", "BEACON_TTL_MS = 60 * 60 * 1000;"],
+  ["if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;", "if (!m) return null;"],
 ];
 let caught = 0, mutFail = 0;
 for (const [from, to] of MUT) {
@@ -159,7 +164,7 @@ try {
         row(1, `[BEACON ${fid} kinetic ${now - 120e3}]`, "p-sam", "Sam"),
         row(2, `[BEACON ${fid} kinetic ${now - 40 * 60e3}]`, "p-sam", "Sam"),
         row(3, `[BEACON ${fid} kinetic ${now}]`, "p-me", "Me"),
-        row(4, `[BEACON acl-2026 honda ${now}]`, "p-ana", "Ana"),
+        row(4, `[BEACON acl-2026 amex ${now}]`, "p-ana", "Ana"),
       ];
       window.sbCrewFetchMessages = async () => rows;
       window.sbCrewSubscribeMessages = () => () => {};

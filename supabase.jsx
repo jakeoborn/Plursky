@@ -2007,9 +2007,12 @@ function _formatBeaconBody(stageId, festivalId, ts) {
   const body = `[BEACON ${festivalId} ${stageId} ${at}]`;
   return _parseBeacon(body) ? body : null;
 }
+// As with meetups: a stage the named festival doesn't have is not a beacon
+// (a festival this build doesn't know still parses, and is only named).
 function _parseBeacon(body) {
   const m = BEACON_RE.exec(body || "");
-  return m ? { festivalId: m[1], stageId: m[2], ts: +m[3] } : null;
+  if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;
+  return { festivalId: m[1], stageId: m[2], ts: +m[3] };
 }
 // Live for 15 minutes from the tap. A tap time ahead of the clock (a skewed
 // phone) counts from now, so a beacon can never read live for longer.

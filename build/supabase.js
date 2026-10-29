@@ -2272,11 +2272,12 @@ function _formatBeaconBody(stageId, festivalId, ts) {
 }
 function _parseBeacon(body) {
   var m = BEACON_RE.exec(body || "");
-  return m ? {
+  if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;
+  return {
     festivalId: m[1],
     stageId: m[2],
     ts: +m[3]
-  } : null;
+  };
 }
 function beaconLiveUntil(b, now) {
   return Math.min(b.ts, now) + BEACON_TTL_MS;
