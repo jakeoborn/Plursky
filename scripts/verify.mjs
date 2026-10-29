@@ -3457,6 +3457,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c3c. Set-clash solver (15-feature program #1) ─────────────────────
+// One suggestion per clashing pair, with its reason, or none: plays again on a
+// later night, your Spotify match, or a split of 30+ min each. Both argument
+// orders agree; every rule nudge in the compiled source must be caught.
+{
+  console.log("▸ Clash solver gate — plays again, your music, split 30+ min, no guess, both orders, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-clash-solver.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`clash solver failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
 // A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
 // wraps inside the row at 320px instead of cutting at 8 characters.
