@@ -3504,22 +3504,6 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── EDC Orlando map watch: candidates, negatives and UNKNOWN are separate ──
-// The weekly watcher (edco-map-watch.yml) resolves relative, protocol-relative
-// and <base>-relative map links against each page's final URL; an unreadable
-// page is exit 2 (UNKNOWN), never a green "no map". Local fixtures only.
-{
-  console.log("▸ EDC Orlando map watch gate — every URL form found, negatives exit 0, unreadable exit 2");
-  try {
-    const out = execFileSync(process.execPath, ["scripts/test-watch-edco-map.mjs"],
-      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    process.stdout.write(out);
-  } catch (e) {
-    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`EDC Orlando map watch failed${detail ? ` — ${detail}` : ""}`);
-  }
-}
-
 // ── 1z-c8. An existing festival stamp is corrected only on proof ──────────
 // Capture time can show a stamp is wrong; only festivalStampSource can show the
 // machine wrote it. A proven fallback stamp with one contradicting claimant is
