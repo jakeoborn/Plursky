@@ -1972,6 +1972,75 @@ function _parseMeetup(body) {
 // The same meetup, wherever it came from: one place, one time, one name.
 function meetupKey(m) { return `${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
 
+// A find-me beacon: one tap in "Where are you?" tells the crew which stage
+// I'm at. Stage id and the tap time only, never coordinates and never free
+// text, and it reads as live for 15 minutes from the tap.
+const BEACON_TTL_MS = 15 * 60 * 1000;
+const BEACON_RE = /^\[BEACON ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\]$/;
+function _formatBeaconBody(stageId, festivalId, ts) {
+  const at = Math.round(Number(ts));
+  if (!festivalId || !stageId || !Number.isFinite(at)) return null;
+  const body = `[BEACON ${festivalId} ${stageId} ${at}]`;
+  return _parseBeacon(body) ? body : null;
+}
+function _parseBeacon(body) {
+  const m = BEACON_RE.exec(body || "");
+  return m ? { festivalId: m[1], stageId: m[2], ts: +m[3] } : null;
+}
+// Live for 15 minutes from the tap. A tap time ahead of the clock (a skewed
+// phone) counts from now, so a beacon can never read live for longer.
+function beaconLiveUntil(b, now) { return Math.min(b.ts, now) + BEACON_TTL_MS; }
+
+function BeaconCard({ beacon, from, sentAt, onReply }) {
+  const [now, setNow] = React.useState(() => Date.now());
+  const until = beaconLiveUntil(beacon, now);
+  const live = now < until;
+  React.useEffect(() => {
+    if (!live) return;
+    const t = setInterval(() => setNow(Date.now()), 30000);
+    return () => clearInterval(t);
+  }, [live]);
+  const [reply, setReply] = React.useState(null);
+  const here = beacon.festivalId === FESTIVAL_CONFIG.id;
+  const stage = here ? STAGES.find(s => s.id === beacon.stageId) : null;
+  const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === beacon.festivalId) || {}).config || null);
+  const where = stage ? stage.name : other ? (other.shortName || other.name) : null;
+  let ended = "";
+  try { ended = new Date(until).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); } catch {}
+  const mins = Math.max(1, Math.ceil((until - now) / 60000));
+  const send = async () => {
+    setReply("sending");
+    const r = await onReply(`On my way to ${stage.name}`);
+    setReply(r && r.queued ? "queued" : r && r.error ? "failed" : "sent");
+  };
+  return (
+    <div data-crew-beacon={live ? "live" : "ended"} style={{
+      background: "var(--paper-2)", borderRadius: 14, padding: "12px 14px", margin: "4px 0",
+      border: "1px solid var(--line)", borderLeft: stage && live ? `3px solid ${stage.color}` : "1px solid var(--line)",
+      opacity: live ? 1 : 0.7,
+    }}>
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+        FIND ME · {String(from).toUpperCase()} · {sentAt}
+      </div>
+      <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>
+        {where ? `${from} ${from === "You" ? "are" : "is"} at ${where}` : `${from} sent a find-me`}
+      </div>
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+        {live ? `Live for ${mins} more min` : `Ended ${ended}`}
+      </div>
+      {onReply && live && stage && (
+        <button type="button" data-crew-beacon-reply disabled={!!reply && reply !== "failed"} onClick={send} style={{
+          marginTop: 10, minHeight: 44, padding: "0 14px", borderRadius: 10,
+          background: reply && reply !== "failed" ? "transparent" : "var(--ink)",
+          color: reply && reply !== "failed" ? "var(--text-2)" : "var(--paper)",
+          border: reply && reply !== "failed" ? "1px solid var(--line-2)" : "none",
+          fontSize: 15, fontWeight: 600, cursor: reply && reply !== "failed" ? "default" : "pointer",
+        }}>{reply === "sending" ? "Sending…" : reply === "sent" ? "Sent: on my way" : reply === "queued" ? "Queued: sends when online" : reply === "failed" ? "Didn't send. Retry" : "On my way"}</button>
+      )}
+    </div>
+  );
+}
+
 // A crew meetup in the thread: where and when, and one tap to put it in my
 // own meetups (the list the Map's MEETUPS sheet shows). A meetup for another
 // festival names that festival and is not added: its stage ids belong there.
@@ -2500,6 +2569,20 @@ function CrewChat({ code, myPid, myName }) {
           const parsedPoll = _parsePoll(m.body);
           const mine = m.sender_pid === myPid;
           const menuOpen = menuMsgId === m.id;
+          const beacon = _parseBeacon(m.body);
+          if (beacon) {
+            return (<React.Fragment key={m.id}>
+              {_promoCard}
+              <BeaconCard beacon={beacon} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)}
+                onReply={mine ? null : (body) => sbCrewSendMessage(code, myPid, myName, body)} />
+              {!mine && (
+                <div data-crew-card-moderation="beacon" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
+            </React.Fragment>);
+          }
           const meet = _parseMeetup(m.body);
           if (meet) {
             return (<React.Fragment key={m.id}>

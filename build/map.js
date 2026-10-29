@@ -182,19 +182,6 @@ function persistMyStatus(stageId) {
     }));
   } catch {}
 }
-function broadcastMyLocation(stageId) {
-  var stage = STAGES.find(s => s.id === stageId);
-  if (!stage) return;
-  var msg = `I'm at ${stage.name} 👋 come through`;
-  FRIENDS.forEach(f => {
-    saveThread(f.id, [...loadThread(f.id), {
-      from: "me",
-      text: msg,
-      ts: Date.now(),
-      status: "sent"
-    }]);
-  });
-}
 var HYD_DRIFT_PER_MIN = 60 / 90;
 var HYD_DRIFT_CAP_MIN = 6 * 60;
 function readWellness() {
@@ -1220,7 +1207,14 @@ function IAmAtSheet({
   onStatusSet
 }) {
   var [selected, setSelected] = React.useState(initialStage || null);
-  var [sent, setSent] = React.useState(false);
+  var [sent, setSent] = React.useState(null);
+  var crewCode = (() => {
+    try {
+      return localStorage.getItem("plursky_group_code") || "";
+    } catch {
+      return "";
+    }
+  })();
   var stage = STAGES.find(s => s.id === selected);
   var shareLink = async () => {
     if (!stage) return;
@@ -1241,14 +1235,22 @@ function IAmAtSheet({
     }
     onClose();
   };
-  var tellCrew = () => {
-    if (!stage) return;
+  var tellCrew = async () => {
+    if (!stage || !crewCode || sent === "sending" || sent === "sent") return;
+    var body = _formatBeaconBody(selected, FESTIVAL_CONFIG.id, Date.now());
+    if (!body) return;
     persistMyStatus(selected);
     onStatusSet(selected);
-    broadcastMyLocation(selected);
-    setSent(true);
-    setTimeout(onClose, 900);
+    setSent("sending");
+    var {
+      error,
+      queued
+    } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    var r = queued ? "queued" : error ? "failed" : "sent";
+    setSent(r);
+    if (r !== "failed") setTimeout(onClose, 900);
   };
+  var canTell = !!stage && !!crewCode;
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -1360,28 +1362,39 @@ function IAmAtSheet({
       marginLeft: 8
     }
   }, stage.name)), React.createElement("div", {
+    className: "mono",
+    "data-find-me-note": true,
+    style: {
+      fontSize: 9,
+      letterSpacing: 0.8,
+      color: "var(--muted)",
+      marginBottom: 10,
+      lineHeight: 1.4
+    }
+  }, crewCode ? "YOUR CREW SEES THE STAGE FOR 15 MIN · NO GPS" : "START OR JOIN A CREW ON THE MAP TO SEND A FIND-ME"), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8
     }
   }, React.createElement("button", {
+    "data-find-me-send": sent || "idle",
     onClick: tellCrew,
-    disabled: !stage,
+    disabled: !canTell || sent === "sending" || sent === "sent",
     style: {
       flex: 1,
       padding: "10px 12px",
       borderRadius: 999,
-      background: sent ? "var(--success)" : stage ? "var(--ink)" : "var(--paper-2)",
-      color: stage ? "var(--paper)" : "var(--muted)",
+      background: sent === "sent" || sent === "queued" ? "var(--success)" : canTell ? "var(--ink)" : "var(--paper-2)",
+      color: canTell ? "var(--paper)" : "var(--muted)",
       border: "none",
-      cursor: stage ? "pointer" : "default",
+      cursor: canTell ? "pointer" : "default",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.1,
       fontWeight: 700,
       transition: "background .2s"
     }
-  }, sent ? "✓ CREW NOTIFIED" : "TELL MY CREW"), React.createElement("button", {
+  }, sent === "sending" ? "SENDING…" : sent === "sent" ? "✓ CREW CAN FIND YOU" : sent === "queued" ? "✓ QUEUED · SENDS ONLINE" : sent === "failed" ? "DIDN'T SEND · RETRY" : crewCode ? "FIND ME · TELL CREW" : "JOIN A CREW FIRST"), React.createElement("button", {
     onClick: shareLink,
     disabled: !stage,
     style: {

@@ -3471,6 +3471,16 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`crew meetups failed${detail ? ` — ${detail}` : ""}`);
   }
+
+  console.log("▸ Crew beacon gate — tap to send, stage + time only, live 15 min, reply once, report/block, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-beacon.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew beacon failed${detail ? ` — ${detail}` : ""}`);
+  }
 }
 
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
