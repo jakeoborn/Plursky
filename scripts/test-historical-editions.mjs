@@ -261,6 +261,13 @@ if (base && edc) {
       // Instagram post may leave it blank.
       ok(ds23.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || "")).every(c => c.published == null), "Dreamstate 2023's Instagram graphics must carry no inferred published date");
       mustFail("an Instagram graphic dated in another year", m => { g(m).published = "2022-11-15"; }, ds23, undefined, /re-host published/);
+      // The exception is bound to the festival's own listed posts: the lane's
+      // repro (an unrelated post, its embed, another account) still fails, and
+      // so does the right post re-hosted by another account.
+      const igCaps = m => m.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || ""));
+      mustFail("an unrelated post by another account, undated", m => { for (const c of igCaps(m)) { c.foundAt = "https://www.instagram.com/p/UNRELATED_POST/"; c.receipt.url = "https://www.instagram.com/p/UNRELATED_POST/embed/captioned/"; c.rehostedBy = "Another Instagram account"; } }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("the festival's post credited to another account, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@someoneelse)"; }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("a look-alike account handle, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@dreamstateusa.fan)"; }, ds23, undefined, /re-host published \(no date\)/);
       mustFail("a non-Instagram re-host with no published date", m => { delete g(m).published; }, e24, undefined, /re-host published \(no date\)/);
       mustFail("an Instagram receipt citing another slide", m => { g(m).receipt.cites = "581251862_18534320416060183_3114781477568202383_n"; }, ds23, undefined, /receipt cites/);
     }

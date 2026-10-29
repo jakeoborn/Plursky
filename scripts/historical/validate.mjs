@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -239,10 +239,9 @@ function officialSources(e, meta, p) {
       if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);
       // The receipt: the re-host was published in the edition's year, no
       // later than its last day (a pre-event schedule, not a later recap).
-      // The festival's own Instagram post prints no date, and none is
-      // inferred from its shortcode, so it may leave published blank; a
-      // date it does carry is held to the same rule.
-      if (!(rehost === "cdninstagram.com" && c.published == null) &&
+      // Only the festival's own listed posts that print no date may leave it
+      // blank (undatedOwnPost); a date any post carries is held to the rule.
+      if (!undatedOwnPost(e.id, c) &&
           (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay))
         p.push(`${tag}: re-host published ${c.published || "(no date)"}, not in ${e.year} on or before ${lastDay}`);
       if (!DAY.test(c.fetchedAt || "")) p.push(`${tag}: graphic has no fetch date`);

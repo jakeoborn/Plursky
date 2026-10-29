@@ -153,3 +153,23 @@ export function receiptGaps(graphicCaptures, notUsed = []) {
   for (const n of notUsed) if (!n.reason || cited.some(x => sameGraphic(n.cites, x)) || ![...receipts.values()].some(r => r.setTimesGraphics.includes(n.cites))) stale.push(n);
   return { unused, stale };
 }
+
+// The festival's own Instagram posts that print no publish date (none is
+// inferred from a shortcode's media ID): edition id → the account and the
+// exact posts. Only these may leave `published` blank, so an unrelated post
+// or another account's re-host cannot borrow the exception.
+export const UNDATED_OWN_POSTS = {
+  "dreamstate-socal-2023": { account: "@dreamstateusa", posts: ["CzrednDMQE6"] },
+  "dreamstate-socal-2025": { account: "@dreamstateusa", posts: ["DRK5JIlkh91"] },
+};
+export function undatedOwnPost(editionId, c) {
+  const own = UNDATED_OWN_POSTS[editionId];
+  if (!own || c?.kind !== "graphic" || c.published != null) return false;
+  const code = /^https:\/\/www\.instagram\.com\/p\/([\w-]+)\/$/.exec(c.foundAt || "")?.[1];
+  let host = "";
+  try { host = new URL(c.imageUrl).hostname; } catch {}
+  return own.posts.includes(code)
+    && c.receipt?.url === `https://www.instagram.com/p/${code}/embed/captioned/`
+    && new RegExp(`(^|[^\\w.])${own.account}(?![\\w.])`).test(c.rehostedBy || "")
+    && /(^|\.)cdninstagram\.com$/.test(host);
+}
