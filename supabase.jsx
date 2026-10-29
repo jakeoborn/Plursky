@@ -1071,12 +1071,18 @@ function _presNotify() {
   _presCbs.forEach(fn => { try { fn(s); } catch {} });
 }
 
+// What a crew "loc" carries: who, which stage, and when. Stage-level only
+// (15-feature program #2): no lat/lng goes out, and none is kept from a
+// crewmate on an older version that still sends it.
+function _crewLocPayload(l) {
+  return { pid: l.pid, name: l.name, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
+}
 function _broadcastMyLoc() {
   if (!_presCh || !_myLoc) return;
-  try { _presCh.send({ type: "broadcast", event: "loc", payload: { ..._myLoc, ts: Date.now() } }); } catch {}
+  try { _presCh.send({ type: "broadcast", event: "loc", payload: _crewLocPayload({ ..._myLoc, ts: Date.now() }) }); } catch {}
 }
 
-function sbPresenceJoin({ name, stageId, gps }) {
+function sbPresenceJoin({ name, stageId }) {
   if (!_sb) return;
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
@@ -1084,14 +1090,14 @@ function sbPresenceJoin({ name, stageId, gps }) {
 
   let pingCode;
   try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, gps, ts: Date.now() };
+  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, ts: Date.now() };
 
   _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
   _presCh
     // Someone shared their location → merge into the snapshot
     .on("broadcast", { event: "loc" }, ({ payload }) => {
       if (!payload?.pid || payload.pid === _presMyId) return;
-      _presSnap[payload.pid] = payload;
+      _presSnap[payload.pid] = _crewLocPayload(payload);
       _presNotify();
     })
     // A late joiner asked everyone to re-announce → re-broadcast mine
@@ -1124,10 +1130,10 @@ function sbPresenceJoin({ name, stageId, gps }) {
 }
 
 // Accepts either a plain stageId (legacy, kept so old call sites still work)
-// or a partial { stageId?, gps? } update merged onto the current state.
+// or a partial { stageId? } update merged onto the current state (stage only).
 async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
-  const patch = typeof arg === "string" ? { stageId: arg } : (arg || {});
+  const patch = typeof arg === "string" ? { stageId: arg } : { stageId: (arg || {}).stageId ?? _myLoc.stageId };
   _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
   _presSnap[_presMyId] = { ..._myLoc };
   _broadcastMyLoc();
@@ -1149,7 +1155,7 @@ function _stopPresenceHeartbeat() {
 // crew code change so a sharing user moves to the new crew's channel.
 function sbPresenceRefresh() {
   if (!_myLoc) return false;
-  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId, gps: _myLoc.gps });
+  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId });
   return true;
 }
 
@@ -1812,6 +1818,9 @@ function sbGenerateShareToken() {
   }
 }
 
+// No caller since #2 (stage-only crew share): the live_shares table these
+// write to was never created in prod, so every write failed silently, and a
+// public link is out of scope. Kept only so an old share.html link fails soft.
 async function sbLiveShareStart({ token, pid, name, color, expiresAt, gps, stageId }) {
   if (!_sb || !token) return { error: "no_supabase_or_token" };
   const row = {
@@ -1957,20 +1966,35 @@ function _formatVoteBody(pollId, option) {
 // always parses back to what was sent.
 const MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
 function _meetupText(s, max) { return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max); }
+// A meetup's stage must be one of its festival's stages. A non-active
+// festival's stages come from _DATA_SETS (bare STAGES is the active one).
+// true / false, or null when this build doesn't know the festival.
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
+// Only a meetup saved for this festival goes out under its id: a row from
+// another festival (or a legacy row with no festival) is never relabelled.
 function _formatMeetupBody(m, festivalId) {
   const name = _meetupText(m && m.name, 60), notes = _meetupText(m && m.notes, 200);
   const at = Math.round(Number(m && m.atTs));
   if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
   const body = `[MEETUP ${festivalId} ${(m && m.stageId) || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
   return _parseMeetup(body) ? body : null;
 }
 function _parseMeetup(body) {
   const m = MEETUP_RE.exec(body || "");
   if (!m) return null;
+  // A stage the named festival doesn't have is not a meetup. A festival this
+  // build doesn't know still parses: its card names it and offers no Add.
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
   return { festivalId: m[1], stageId: m[2] === "-" ? null : m[2], atTs: +m[3], name: m[4].trim(), notes: (m[5] || "").trim() };
 }
 // The same meetup, wherever it came from: one place, one time, one name.
-function meetupKey(m) { return `${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
+function meetupKey(m) { return `${(m && m.festivalId) || "-"}|${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
 
 // A find-me beacon: one tap in "Where are you?" tells the crew which stage
 // I'm at. Stage id and the tap time only, never coordinates and never free
@@ -2053,7 +2077,7 @@ function MeetupCard({ meet, from, sentAt }) {
   let when = "";
   try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
   const add = () => {
-    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ festivalId: meet.festivalId, name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
     window.plurskyHaptic?.("LIGHT");
     setMine(true);
   };
@@ -3172,8 +3196,17 @@ function CrewCard({ state }) {
 let _stagePresChannel = null;
 let _currentPresenceStage = null;
 
+// Opt-in (15-feature program #2): the headcount only counts me while I'm
+// sharing my stage with my crew. It used to join anyone the live-mode GPS
+// placed near a stage, without asking.
+function _crewShareActive() {
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch { return false; }
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
+  if (!_sb || !stageId || !_crewShareActive()) return;
   if (_currentPresenceStage === stageId) return;
 
   // Leave previous stage channel

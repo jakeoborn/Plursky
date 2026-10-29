@@ -7,8 +7,11 @@
 //      cannot break the parse; no festival, no name or no time → no body.
 //      The body carries festival, stage id, time, name and notes, nothing
 //      else (no lat/lng can ride along).
-//   2. meetupKey: one place + one time + one name is one meetup, whatever the
-//      case or spacing of the name.
+//      Festival scope (#374 review): a row goes out only under its own
+//      festival, a legacy row with no festival never does, a stage the
+//      festival doesn't have never does, and a body naming one doesn't parse.
+//   2. meetupKey: one festival + place + time + name is one meetup, whatever
+//      the case or spacing of the name.
 //   3. App (headless Chrome, network to Supabase blocked, the send and fetch
 //      stubbed on window): MEETUPS sheet → SEND TO CREW posts exactly the
 //      formatted body for the active festival and reads SENT; with no crew
@@ -40,6 +43,14 @@ function load(src) {
     document: { addEventListener: noop, removeEventListener: noop, createElement: () => ({ style: {} }), head: { appendChild: noop }, body: { appendChild: noop } },
     React: new Proxy(function () {}, { get: () => () => null, apply: () => null }),
     supabase: { createClient: () => null }, FESTIVAL_CONFIG: { id: "fixture-fest" },
+    _DATA_SETS: {
+      "edc-orlando-2026": { stages: [{ id: "kinetic" }, { id: "neon" }] },
+      "f-1": { stages: [{ id: "kinetic" }] },
+      "acl-2026": { stages: [{ id: "amex" }] },
+      // Known here with a valid stage, but an id the body regex can't carry:
+      // only the format's own parse-back guard can refuse it.
+      "Bad Fest": { stages: [{ id: "kinetic" }] },
+    },
   };
   ctx.window = ctx; ctx.globalThis = ctx; ctx.self = ctx;
   ctx.addEventListener = noop; ctx.removeEventListener = noop;
@@ -52,7 +63,8 @@ function unit(F) {
   let checks = 0, failed = 0; const fails = [];
   const check = (ok, msg) => { checks++; if (!ok) { failed++; fails.push(msg); } };
   const AT = Date.UTC(2026, 10, 7, 2, 40);
-  const m = { name: "Kinetic flag", stageId: "kinetic", atTs: AT, notes: "left of the owl" };
+  const m = { festivalId: "edc-orlando-2026", name: "Kinetic flag", stageId: "kinetic", atTs: AT, notes: "left of the owl" };
+  const m1 = { ...m, festivalId: "f-1" };
   const body = F._formatMeetupBody(m, "edc-orlando-2026");
   check(body === `[MEETUP edc-orlando-2026 kinetic ${AT}] Kinetic flag || left of the owl`, `body format (got ${body})`);
   const p = F._parseMeetup(body);
@@ -67,20 +79,31 @@ function unit(F) {
   const evil = F._formatMeetupBody({ ...m, name: "A || B\nC", notes: "x || y\nz" }, "edc-orlando-2026");
   const pe = F._parseMeetup(evil);
   check(pe && pe.name === "A | B C" && pe.notes === "x | y z", `"||" and line breaks are flattened, the parse holds (got ${JSON.stringify(pe)})`);
-  check(F._formatMeetupBody({ ...m, name: "x".repeat(80), notes: "y".repeat(300) }, "f-1").length <= 500, "the body fits the 500-char message cap");
-  check(F._parseMeetup(F._formatMeetupBody({ ...m, name: "x".repeat(80) }, "f-1")).name.length === 60, "name capped at 60");
-  check(F._formatMeetupBody({ ...m, name: "  " }, "f-1") === null, "no name → no body");
+  check(F._formatMeetupBody({ ...m1, name: "x".repeat(80), notes: "y".repeat(300) }, "f-1").length <= 500, "the body fits the 500-char message cap");
+  check(F._parseMeetup(F._formatMeetupBody({ ...m1, name: "x".repeat(80) }, "f-1")).name.length === 60, "name capped at 60");
+  check(F._formatMeetupBody({ ...m1, name: "  " }, "f-1") === null, "no name → no body");
   check(F._formatMeetupBody(m, "") === null, "no festival → no body");
-  check(F._formatMeetupBody({ ...m, atTs: "soon" }, "f-1") === null, "no time → no body");
-  check(F._formatMeetupBody(m, "Bad Fest") === null, "a festival id the parser can't read → no body (never an unparseable post)");
-  check(F._formatMeetupBody({ ...m, stageId: "two words" }, "f-1") === null, "a stage id the parser can't read → no body");
+  check(F._formatMeetupBody({ ...m1, atTs: "soon" }, "f-1") === null, "no time → no body");
+  check(F._formatMeetupBody({ ...m, festivalId: "Bad Fest" }, "Bad Fest") === null, "a festival id the parser can't read → no body (never an unparseable post)");
+  check(F._formatMeetupBody({ ...m1, stageId: "two words" }, "f-1") === null, "a stage id the parser can't read → no body");
   check(F._parseMeetup("[MEETUP edc-orlando-2026 kinetic 12] hi") === null, "a short time is not a meetup");
   check(F._parseMeetup("let's meet at kinetic") === null, "plain chat is not a meetup");
   check(F._parseMeetup(`[POLL abcdef12] q || a || b`) === null, "a poll is not a meetup");
+  // Festival scope (#374 review): a row only goes out under its own festival.
+  check(F._formatMeetupBody({ ...m, festivalId: "acl-2026", stageId: "amex" }, "edc-orlando-2026") === null, "another festival's meetup never goes out under this festival");
+  const { festivalId: _drop, ...legacy } = m;
+  check(F._formatMeetupBody(legacy, "edc-orlando-2026") === null, "a legacy row with no festival is never relabelled");
+  check(F._formatMeetupBody({ ...m, stageId: "amex" }, "edc-orlando-2026") === null, "a stage this festival doesn't have → no body");
+  check(F._formatMeetupBody({ ...m, festivalId: "zz-fest" }, "zz-fest") === null, "a festival this build doesn't know → no body");
+  check(F._formatMeetupBody({ ...m, stageId: null }, "edc-orlando-2026") !== null, "no stage stays allowed");
+  check(F._parseMeetup(`[MEETUP edc-orlando-2026 amex ${AT}] Wrong`) === null, "a body naming a stage its festival doesn't have is not a meetup");
+  const pu = F._parseMeetup(`[MEETUP zz-fest stage1 ${AT}] Elsewhere`);
+  check(pu && pu.festivalId === "zz-fest", "a festival this build doesn't know still parses (named, never added)");
   // meetupKey
   check(F.meetupKey(m) === F.meetupKey({ ...m, name: "  KINETIC   flag ", notes: "other" }), "same place, time and name (any case or spacing) is one meetup");
   check(F.meetupKey(m) !== F.meetupKey({ ...m, atTs: AT + 60000 }), "another time is another meetup");
   check(F.meetupKey(m) !== F.meetupKey({ ...m, stageId: "neon" }), "another stage is another meetup");
+  check(F.meetupKey(m) !== F.meetupKey({ ...m, festivalId: "acl-2026" }), "another festival is another meetup");
   return { checks, failed, fails };
 }
 
@@ -91,6 +114,10 @@ const MUT = [
   ["(\\d{12,14})\\] (.+?)", "(\\d{2,14})\\] (.+?)"],
   ['m[2] === "-" ? null : m[2]', "m[2]"],
   [".toLowerCase()}`", "}`"],
+  ["if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;", "if (_meetupStageKnown(festivalId, m.stageId) !== true) return null;"],
+  ["_meetupStageKnown(festivalId, m.stageId) !== true", "_meetupStageKnown(festivalId, m.stageId) === false"],
+  ['if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;', ""],
+  ['`${m && m.festivalId || "-"}|${m && m.stageId', '`${m && m.stageId'],
   ["return _parseMeetup(body) ? body : null;", "return body;"],
 ];
 let caught = 0, mutFail = 0;
@@ -123,7 +150,14 @@ try {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
       if (crew) localStorage.setItem("plursky_group_code", "TST123");
-      localStorage.setItem("plursky_meetups_v1", JSON.stringify([{ id: "m1", name: "Kinetic flag", stageId: "kinetic", atTs: Date.now() + 3600e3, notes: "left of the owl", createdAt: 1 }]));
+      // m1 is this festival's. m-acl was saved at ACL (the #374 review repro:
+      // switch festivals, Send must not emit it as this one); m-old is a
+      // legacy row with no festival, hidden and never relabelled.
+      localStorage.setItem("plursky_meetups_v1", JSON.stringify([
+        { id: "m1", festivalId: fid, name: "Kinetic flag", stageId: "kinetic", atTs: Date.now() + 3600e3, notes: "left of the owl", createdAt: 1 },
+        { id: "m-acl", festivalId: "acl-2026", name: "Amex flag", stageId: "amex", atTs: Date.now() + 3600e3, notes: "", createdAt: 1 },
+        { id: "m-old", name: "Old pin", stageId: "kinetic", atTs: Date.now() + 3600e3, notes: "", createdAt: 1 },
+      ]));
     }, [FID, withCrew]);
     const page = await ctx.newPage();
     const errors = []; page.on("pageerror", e => errors.push(e.message));
@@ -147,9 +181,13 @@ try {
       await ctx.close(); continue;
     }
     aCheck(await btn.count() === 1, "a crew code → SEND TO CREW on the meetup");
+    aCheck(await page.locator('[data-meetup-send="m-acl"], [data-meetup-send="m-old"]').count() === 0 && !/Amex flag|Old pin/.test(await page.locator("#__meet").innerText()),
+      "another festival's meetup and a legacy unscoped one are not listed here and offer no Send");
+    aCheck(await page.evaluate(fid => _formatMeetupBody(JSON.parse(localStorage.getItem("plursky_meetups_v1")).find(m => m.id === "m-acl"), fid), FID) === null,
+      "the ACL meetup can't be formatted as this festival's");
     await btn.click(); await page.waitForTimeout(200);
     const sent = await page.evaluate(() => window.__sent);
-    const atTs = await page.evaluate(() => JSON.parse(localStorage.getItem("plursky_meetups_v1"))[0].atTs);
+    const atTs = await page.evaluate(() => JSON.parse(localStorage.getItem("plursky_meetups_v1")).find(m => m.id === "m1").atTs);
     aCheck(sent.length === 1 && sent[0].code === "TST123" && sent[0].body === `[MEETUP ${FID} kinetic ${atTs}] Kinetic flag || left of the owl`, `the tap posts exactly the formatted body (got ${JSON.stringify(sent)})`);
     aCheck(/SENT/.test(await btn.innerText()) && await btn.isDisabled(), "the button reads SENT and can't post twice");
     await page.evaluate(() => document.getElementById("__meet").remove());
@@ -159,9 +197,10 @@ try {
       const rows = [
         row(1, `[MEETUP ${fid} kinetic ${atTs}] Kinetic flag || left of the owl`, "p-sam"),
         row(2, `[MEETUP ${fid} circuit ${atTs + 1800e3}] Circuit rail || by the speaker`, "p-sam"),
-        row(3, `[MEETUP acl-2026 honda ${atTs}] Honda field`, "p-sam"),
+        row(3, `[MEETUP acl-2026 amex ${atTs}] Amex field`, "p-sam"),
         row(4, `[MEETUP ${fid} neon ${atTs}] My own pin`, "p-me"),
         row(5, `[POLL abcdef12] Where after? || Neon || Kinetic`, "p-sam"),
+        row(6, `[MEETUP ${fid} honda ${atTs}] Not a stage here`, "p-sam"),
       ];
       window.sbCrewFetchMessages = async () => rows;
       window.sbCrewSubscribeMessages = () => () => {};
@@ -184,11 +223,11 @@ try {
     aCheck(/Circuit rail/.test(await t(1)) && /by the speaker/.test(await t(1)) && /CIRCUIT|Circuit Grounds/i.test(await t(1)), `the new card names the stage and the note (got "${(await t(1)).replace(/\n/g, " / ")}")`);
     aCheck(!/Add to my meetups/.test(await t(2)) && /for ACL/i.test(await t(2)), `another festival's meetup names it and offers no Add (got "${(await t(2)).replace(/\n/g, " / ")}")`);
     await cards.nth(1).locator("[data-crew-meetup-add]").click(); await page.waitForTimeout(200);
-    const list = await page.evaluate(() => JSON.parse(localStorage.getItem("plursky_meetups_v1")).map(m => `${m.stageId}|${m.name}`));
-    aCheck(list.filter(x => x === "circuit|Circuit rail").length === 1 && list.length === 2, `Add puts it in my meetups once (got ${JSON.stringify(list)})`);
+    const list = await page.evaluate(() => JSON.parse(localStorage.getItem("plursky_meetups_v1")).map(m => `${m.festivalId}|${m.stageId}|${m.name}`));
+    aCheck(list.filter(x => x === `${FID}|circuit|Circuit rail`).length === 1 && list.length === 4, `Add puts it in my meetups once, under this festival (got ${JSON.stringify(list)})`);
     aCheck(/In your meetups/.test(await t(1)), "after Add the card reads 'In your meetups'");
     if (process.env.SHOT_DIR) await page.screenshot({ path: join(process.env.SHOT_DIR, "crew-meetups-thread.png") });
-    aCheck(!/MEETUP edc/.test(await page.locator("#__chat").innerText()), "the raw [MEETUP …] body never shows in the thread");
+    aCheck(!/Not a stage here/.test((await Promise.all([...Array(await cards.count()).keys()].map(t))).join(" ")), "a meetup naming a stage this festival doesn't have gets no card");
     aCheck(errors.length === 0, `no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
   }

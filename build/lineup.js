@@ -3671,6 +3671,11 @@ function ConflictResolver({
   var next = () => {
     setIdx(i => i + 1 < conflicts.length ? i + 1 : i);
   };
+  var sug = clashSuggestion(a, b);
+  var useSug = () => {
+    window.plurskyHaptic?.("LIGHT");
+    if (sug.kind === "keep") onKeep(sug.keepId, sug.dropId);else splitNight(a, b, sug.switchMin);
+  };
   var crBtn = {
     ...fieldIconBtn,
     width: "auto",
@@ -3707,7 +3712,44 @@ function ConflictResolver({
       color: "var(--text-2)",
       fontVariantNumeric: "tabular-nums"
     }
-  }, "Overlap ", fmt12(overlapStart), "–", fmt12(overlapEnd))), [a, b].map((art, i) => {
+  }, "Overlap ", fmt12(overlapStart), "–", fmt12(overlapEnd))), sug && React.createElement("div", {
+    "data-clash-suggestion": sug.rule,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      minHeight: 52,
+      borderBottom: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, "Suggested"), React.createElement("div", {
+    style: {
+      fontSize: 15,
+      lineHeight: "20px",
+      fontWeight: 500,
+      overflowWrap: "anywhere"
+    }
+  }, sug.reason)), React.createElement("button", {
+    type: "button",
+    "data-clash-suggestion-use": true,
+    "aria-label": `Apply suggestion: ${sug.reason}`,
+    onClick: useSug,
+    style: {
+      ...crBtn,
+      color: "var(--ink)",
+      fontWeight: 600
+    }
+  }, "Apply")), [a, b].map((art, i) => {
     var stg = i === 0 ? sA : sB;
     return React.createElement("div", {
       key: art.id,
