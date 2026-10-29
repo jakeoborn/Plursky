@@ -88,7 +88,7 @@ const base = unit(load(SUPA));
 for (const f of base.fails) console.log(`  ✗  ${f}`);
 const MUT = [
   ['.replace(/\\|\\|/g, "|")', ""],
-  ["(\\d{12,14})", "(\\d{2,14})"],
+  ["(\\d{12,14})\\] (.+?)", "(\\d{2,14})\\] (.+?)"],
   ['m[2] === "-" ? null : m[2]', "m[2]"],
   [".toLowerCase()}`", "}`"],
   ["return _parseMeetup(body) ? body : null;", "return body;"],
