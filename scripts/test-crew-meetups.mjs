@@ -160,6 +160,8 @@ try {
         row(1, `[MEETUP ${fid} kinetic ${atTs}] Kinetic flag || left of the owl`, "p-sam"),
         row(2, `[MEETUP ${fid} circuit ${atTs + 1800e3}] Circuit rail || by the speaker`, "p-sam"),
         row(3, `[MEETUP acl-2026 honda ${atTs}] Honda field`, "p-sam"),
+        row(4, `[MEETUP ${fid} neon ${atTs}] My own pin`, "p-me"),
+        row(5, `[POLL abcdef12] Where after? || Neon || Kinetic`, "p-sam"),
       ];
       window.sbCrewFetchMessages = async () => rows;
       window.sbCrewSubscribeMessages = () => () => {};
@@ -168,7 +170,15 @@ try {
     }, [FID, atTs]);
     await page.waitForTimeout(800);
     const cards = page.locator("#__chat [data-crew-meetup]");
-    aCheck(await cards.count() === 3, `three meetup cards in the thread (got ${await cards.count()})`);
+    aCheck(await cards.count() === 4, `four meetup cards in the thread (got ${await cards.count()})`);
+    // Moderation parity: a meetup or poll someone else sent carries the same report/block menu as a bubble; my own doesn't.
+    const modMeet = page.locator('#__chat [data-crew-card-moderation="meetup"]');
+    aCheck(await modMeet.count() === 3, `Sam's three meetups each carry report/block, mine none (got ${await modMeet.count()})`);
+    aCheck(await page.locator('#__chat [data-crew-card-moderation="poll"]').count() === 1, "Sam's poll carries report/block");
+    await modMeet.nth(1).locator('button[aria-label="Message options"]').click(); await page.waitForTimeout(150);
+    const menuText = await modMeet.nth(1).innerText();
+    aCheck(/Report message/.test(menuText) && /Block Sam/.test(menuText), `the meetup menu offers Report and Block (got "${menuText.replace(/\n/g, " / ")}")`);
+    await modMeet.nth(1).getByText("CANCEL").click(); await page.waitForTimeout(150);
     const t = i => cards.nth(i).innerText();
     aCheck(/In your meetups/.test(await t(0)), "the meetup already in my list reads 'In your meetups'");
     aCheck(/Circuit rail/.test(await t(1)) && /by the speaker/.test(await t(1)) && /CIRCUIT|Circuit Grounds/i.test(await t(1)), `the new card names the stage and the note (got "${(await t(1)).replace(/\n/g, " / ")}")`);

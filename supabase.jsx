@@ -2384,6 +2384,60 @@ function CrewChat({ code, myPid, myName }) {
     } catch { return ""; }
   };
 
+  // Report / block for anything another crewmate sent: plain bubbles,
+  // polls and meetup cards all carry free text, so all three get the menu.
+  const msgMenuButton = (m, menuOpen) => (
+    <button
+      onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
+      aria-label="Message options"
+      title="Report or block"
+      style={{
+        background: "transparent", border: "none", padding: "2px 6px",
+        borderRadius: 8, color: "var(--muted)", cursor: "pointer",
+        fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
+        minHeight: 18, lineHeight: 1,
+      }}
+    >⋯</button>
+  );
+  const msgMenu = (m) => (
+      <div style={{
+        marginTop: 6, padding: 6, borderRadius: 12,
+        background: "var(--paper)", border: "1px solid var(--line)",
+        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
+        display: "flex", flexDirection: "column", gap: 2,
+        minWidth: 200, maxWidth: "85%",
+      }}>
+        <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
+          <span>Report message</span>
+        </button>
+        <button onClick={() => {
+          sbBlockPid(m.sender_pid);
+          setMenuMsgId(null);
+        }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ember-ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
+          <span>Block {(m.sender_name || "Friend")}</span>
+        </button>
+        <button onClick={() => setMenuMsgId(null)} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--muted)", textAlign: "left",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+        }}>CANCEL</button>
+      </div>
+  );
   return (
     <div style={{ marginTop: 10 }}>
       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 6, padding: "0 2px" }}>
@@ -2451,6 +2505,12 @@ function CrewChat({ code, myPid, myName }) {
             return (<React.Fragment key={m.id}>
               {_promoCard}
               <MeetupCard meet={meet} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)} />
+              {!mine && (
+                <div data-crew-card-moderation="meetup" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
             </React.Fragment>);
           }
           if (parsedPoll) {
@@ -2529,6 +2589,12 @@ function CrewChat({ code, myPid, myName }) {
                   {totalVotes} {totalVotes === 1 ? "VOTE" : "VOTES"} · {fmtTime(m.created_at)}
                 </div>
               </div>
+              {!mine && (
+                <div data-crew-card-moderation="poll" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
             </React.Fragment>);
           }
           return (<React.Fragment key={m.id}>
@@ -2566,59 +2632,9 @@ function CrewChat({ code, myPid, myName }) {
                     : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE"
                     : fmtTime(m.created_at)}
                 </span>
-                {!mine && !m._pending && !m._failed && !m._queued && (
-                  <button
-                    onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
-                    aria-label="Message options"
-                    title="Report or block"
-                    style={{
-                      background: "transparent", border: "none", padding: "2px 6px",
-                      borderRadius: 8, color: "var(--muted)", cursor: "pointer",
-                      fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
-                      minHeight: 18, lineHeight: 1,
-                    }}
-                  >⋯</button>
-                )}
+                {!mine && !m._pending && !m._failed && !m._queued && msgMenuButton(m, menuOpen)}
               </div>
-              {menuOpen && !mine && (
-                <div style={{
-                  marginTop: 6, padding: 6, borderRadius: 12,
-                  background: "var(--paper)", border: "1px solid var(--line)",
-                  boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
-                  display: "flex", flexDirection: "column", gap: 2,
-                  minWidth: 200, maxWidth: "85%",
-                }}>
-                  <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
-                    <span>Report message</span>
-                  </button>
-                  <button onClick={() => {
-                    sbBlockPid(m.sender_pid);
-                    setMenuMsgId(null);
-                  }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ember-ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
-                    <span>Block {(m.sender_name || "Friend")}</span>
-                  </button>
-                  <button onClick={() => setMenuMsgId(null)} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--muted)", textAlign: "left",
-                    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
-                  }}>CANCEL</button>
-                </div>
-              )}
+              {menuOpen && !mine && msgMenu(m)}
             </div>
           </React.Fragment>);
         })}

@@ -2801,6 +2801,102 @@ function CrewChat({
       return "";
     }
   };
+  var msgMenuButton = (m, menuOpen) => React.createElement("button", {
+    onClick: () => setMenuMsgId(menuOpen ? null : m.id),
+    "aria-label": "Message options",
+    title: "Report or block",
+    style: {
+      background: "transparent",
+      border: "none",
+      padding: "2px 6px",
+      borderRadius: 8,
+      color: "var(--muted)",
+      cursor: "pointer",
+      fontFamily: "inherit",
+      fontSize: 12,
+      letterSpacing: 1,
+      minHeight: 18,
+      lineHeight: 1
+    }
+  }, "⋯");
+  var msgMenu = m => React.createElement("div", {
+    style: {
+      marginTop: 6,
+      padding: 6,
+      borderRadius: 12,
+      background: "var(--paper)",
+      border: "1px solid var(--line)",
+      boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      minWidth: 200,
+      maxWidth: "85%"
+    }
+  }, React.createElement("button", {
+    onClick: () => {
+      setReportMsg(m);
+      setMenuMsgId(null);
+    },
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      fontSize: 13,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, React.createElement("span", {
+    "aria-hidden": true,
+    style: {
+      fontSize: 13
+    }
+  }, "🚩"), React.createElement("span", null, "Report message")), React.createElement("button", {
+    onClick: () => {
+      sbBlockPid(m.sender_pid);
+      setMenuMsgId(null);
+    },
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--ember-ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      fontSize: 13,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, React.createElement("span", {
+    "aria-hidden": true,
+    style: {
+      fontSize: 13
+    }
+  }, "🚫"), React.createElement("span", null, "Block ", m.sender_name || "Friend")), React.createElement("button", {
+    onClick: () => setMenuMsgId(null),
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--muted)",
+      textAlign: "left",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 9.5,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "CANCEL"));
   return React.createElement("div", {
     style: {
       marginTop: 10
@@ -2916,7 +3012,15 @@ function CrewChat({
         meet: meet,
         from: mine ? "You" : m.sender_name || "Friend",
         sentAt: fmtTime(m.created_at)
-      }));
+      }), !mine && React.createElement("div", {
+        "data-crew-card-moderation": "meetup",
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          marginTop: -2
+        }
+      }, msgMenuButton(m, menuOpen), menuOpen && msgMenu(m)));
     }
     if (parsedPoll) {
       var live = pollState[parsedPoll.id];
@@ -3033,7 +3137,15 @@ function CrewChat({
           marginTop: 8,
           textAlign: "right"
         }
-      }, totalVotes, " ", totalVotes === 1 ? "VOTE" : "VOTES", " · ", fmtTime(m.created_at))));
+      }, totalVotes, " ", totalVotes === 1 ? "VOTE" : "VOTES", " · ", fmtTime(m.created_at))), !mine && React.createElement("div", {
+        "data-crew-card-moderation": "poll",
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          marginTop: -2
+        }
+      }, msgMenuButton(m, menuOpen), menuOpen && msgMenu(m)));
     }
     return React.createElement(React.Fragment, {
       key: m.id
@@ -3079,101 +3191,7 @@ function CrewChat({
         alignItems: "center",
         gap: 6
       }
-    }, React.createElement("span", null, m._failed ? "FAILED · TAP TO RETRY" : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE" : fmtTime(m.created_at)), !mine && !m._pending && !m._failed && !m._queued && React.createElement("button", {
-      onClick: () => setMenuMsgId(menuOpen ? null : m.id),
-      "aria-label": "Message options",
-      title: "Report or block",
-      style: {
-        background: "transparent",
-        border: "none",
-        padding: "2px 6px",
-        borderRadius: 8,
-        color: "var(--muted)",
-        cursor: "pointer",
-        fontFamily: "inherit",
-        fontSize: 12,
-        letterSpacing: 1,
-        minHeight: 18,
-        lineHeight: 1
-      }
-    }, "⋯")), menuOpen && !mine && React.createElement("div", {
-      style: {
-        marginTop: 6,
-        padding: 6,
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        minWidth: 200,
-        maxWidth: "85%"
-      }
-    }, React.createElement("button", {
-      onClick: () => {
-        setReportMsg(m);
-        setMenuMsgId(null);
-      },
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--ink)",
-        textAlign: "left",
-        fontFamily: "inherit",
-        fontSize: 13,
-        display: "flex",
-        alignItems: "center",
-        gap: 8
-      }
-    }, React.createElement("span", {
-      "aria-hidden": true,
-      style: {
-        fontSize: 13
-      }
-    }, "🚩"), React.createElement("span", null, "Report message")), React.createElement("button", {
-      onClick: () => {
-        sbBlockPid(m.sender_pid);
-        setMenuMsgId(null);
-      },
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--ember-ink)",
-        textAlign: "left",
-        fontFamily: "inherit",
-        fontSize: 13,
-        display: "flex",
-        alignItems: "center",
-        gap: 8
-      }
-    }, React.createElement("span", {
-      "aria-hidden": true,
-      style: {
-        fontSize: 13
-      }
-    }, "🚫"), React.createElement("span", null, "Block ", m.sender_name || "Friend")), React.createElement("button", {
-      onClick: () => setMenuMsgId(null),
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--muted)",
-        textAlign: "left",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 9.5,
-        letterSpacing: 1.2,
-        fontWeight: 700
-      }
-    }, "CANCEL"))));
+    }, React.createElement("span", null, m._failed ? "FAILED · TAP TO RETRY" : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE" : fmtTime(m.created_at)), !mine && !m._pending && !m._failed && !m._queued && msgMenuButton(m, menuOpen)), menuOpen && !mine && msgMenu(m)));
   })), reportMsg && React.createElement(ReportSheet, {
     message: reportMsg,
     code: code,
