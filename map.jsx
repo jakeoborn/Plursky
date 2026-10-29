@@ -1217,73 +1217,27 @@ function _expiryKeyFromState(shareState) {
   return "festival";
 }
 
-// Inline "shareable link" row used inside the Share With Crew sheet. Builds
-// the public viewer URL from the token, supports navigator.share when
-// available, falls back to clipboard. Shows "COPIED" for 1.5s.
-function ShareLinkRow({ token }) {
-  const [copied, setCopied] = React.useState(false);
-  const url = React.useMemo(() => {
-    if (typeof window === "undefined") return `share.html?t=${token}`;
-    const base = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}`;
-    return `${base}share.html?t=${token}`;
-  }, [token]);
-  const onShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: `Find me at ${FESTIVAL_CONFIG.brand || "the festival"}`, text: "Live location on Plursky", url });
-      } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      }
-    } catch { /* user canceled or no clipboard */ }
-  };
-  return (
-    <div style={{
-      padding: "10px 12px", borderRadius: 10, background: "var(--paper-2)",
-      marginBottom: 14, display: "flex", alignItems: "center", gap: 10,
-    }}>
-      <span style={{ fontSize: 18 }}>🔗</span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Shareable link</div>
-        <div className="mono" style={{
-          fontSize: 9, letterSpacing: 0.6, color: "var(--muted)",
-          marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-        }}>{url}</div>
-      </div>
-      <button onClick={onShare} style={{
-        background: copied ? "var(--success)" : "var(--ink)",
-        color: "var(--paper)", border: "none", borderRadius: 999,
-        padding: "7px 12px", cursor: "pointer",
-        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-      }}>{copied ? "COPIED" : "COPY"}</button>
-    </div>
-  );
-}
 
 function ShareLocationSheet({
   onClose, shareState, crewCount, crewCode,
-  gpsPos, gpsStatus, myStatusStage,
-  onSave, onStop,
+  myStatusStage,
+  onSave, onStop, onPickStage,
 }) {
-  const [includeGps,   setIncludeGps]   = React.useState(shareState?.includeGps   ?? true);
-  const [includeStage, setIncludeStage] = React.useState(shareState?.includeStage ?? true);
+  // Stage-level only (15-feature program #2): the crew sees the stage I
+  // picked in "I'm at", never my GPS. There is no GPS option to turn on.
   const [expiryKey,    setExpiryKey]    = React.useState(() => _expiryKeyFromState(shareState));
 
   const active = !!shareState?.active &&
                  (!shareState?.expiresAt || shareState.expiresAt > Date.now());
-  const isDenied      = gpsStatus === "denied";
-  const isUnavailable = gpsStatus === "unavailable";
-  const canShareGps   = !isDenied && !isUnavailable;
   const stage         = myStatusStage ? STAGES.find(s => s.id === myStatusStage) : null;
 
   const handleStart = () => {
-    if (!includeGps && !includeStage) return;
+    if (!stage) return;
     const opt = _SHARE_EXPIRY_OPTIONS.find(o => o.key === expiryKey) || _SHARE_EXPIRY_OPTIONS[1];
     onSave({
       active: true,
-      includeGps: includeGps && canShareGps,
-      includeStage,
+      includeGps: false,
+      includeStage: true,
       expiresAt: opt.compute(),
     });
     onClose();
@@ -1363,67 +1317,28 @@ function ShareLocationSheet({
           fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
           marginBottom: 8,
         }}>WHAT'S SHARED</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
-          <label style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "10px 12px", borderRadius: 10,
-            background: "var(--paper-2)",
-            cursor: canShareGps ? "pointer" : "not-allowed",
-            opacity: canShareGps ? 1 : 0.55,
-          }}>
-            <input type="checkbox"
-              checked={includeGps && canShareGps}
-              disabled={!canShareGps}
-              onChange={(e) => setIncludeGps(e.target.checked)}
-              style={{ accentColor: "var(--ember)", width: 16, height: 16 }}
-            />
-            <span style={{ fontSize: 18 }}>📍</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>My GPS location</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                {gpsStatus === "live" && gpsPos
-                  ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m`
-                  : gpsStatus === "locating" ? "FINDING…"
-                  : gpsStatus === "stale"    ? "NO RECENT FIX"
-                  : gpsStatus === "denied"   ? "DENIED IN BROWSER"
-                  : gpsStatus === "unavailable" ? "UNSUPPORTED"
-                  : "OFF"}
-              </div>
+        <div data-share-stage-row style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: "10px 12px", borderRadius: 10,
+          background: "var(--paper-2)", marginBottom: 6,
+        }}>
+          <span style={{ fontSize: 18 }}>🎪</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>My stage</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+              {stage ? stage.name.toUpperCase() : "NOT SET"}
             </div>
-          </label>
-
-          <label style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "10px 12px", borderRadius: 10,
-            background: "var(--paper-2)", cursor: "pointer",
-          }}>
-            <input type="checkbox"
-              checked={includeStage}
-              onChange={(e) => setIncludeStage(e.target.checked)}
-              style={{ accentColor: "var(--ember)", width: 16, height: 16 }}
-            />
-            <span style={{ fontSize: 18 }}>🎪</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Current stage</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                {stage ? stage.name.toUpperCase() : "NOT SET — TAP “I'M AT” FIRST"}
-              </div>
-            </div>
-          </label>
-        </div>
-
-        {/* GPS-denied inline banner */}
-        {includeGps && isDenied && (
-          <div style={{
-            padding: "8px 11px", borderRadius: 999,
-            background: "rgba(var(--alert-rgb),0.10)", border: "1px solid rgba(var(--alert-rgb),0.35)",
-            marginBottom: 12,
-          }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--alert)", fontWeight: 700 }}>
-              GPS DENIED · ENABLE LOCATION IN BROWSER
-            </span>
           </div>
-        )}
+          {onPickStage && (
+            <button type="button" data-share-pick-stage onClick={onPickStage} className="mono" style={{
+              background: "var(--ink)", color: "var(--paper)", border: "none", borderRadius: 999,
+              padding: "7px 12px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>{stage ? "CHANGE" : "PICK STAGE"}</button>
+          )}
+        </div>
+        <div data-share-no-gps className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginBottom: 14, lineHeight: 1.4 }}>
+          STAGE ONLY · YOUR CREW NEVER SEES YOUR GPS
+        </div>
 
         {/* Auto-expire picker */}
         <div className="mono" style={{
@@ -1446,12 +1361,6 @@ function ShareLocationSheet({
           })}
         </div>
 
-        {/* Shareable link — only meaningful while sharing AND we have a token.
-            Copies a URL friends can open without installing Plursky. */}
-        {active && shareState?.token && (
-          <ShareLinkRow token={shareState.token} />
-        )}
-
         {/* Battery callout */}
         <div className="mono" style={{
           fontSize: 9, letterSpacing: 1.1, color: "var(--muted)",
@@ -1471,20 +1380,62 @@ function ShareLocationSheet({
           }}>STOP SHARING</button>
         ) : (
           <button onClick={handleStart}
-            disabled={(!includeGps || !canShareGps) && !includeStage}
+            data-share-start
+            disabled={!stage}
             style={{
               width: "100%", padding: "12px 16px", borderRadius: 999,
-              background: ((!includeGps || !canShareGps) && !includeStage)
-                ? "var(--paper-2)" : "var(--ember)",
-              color: ((!includeGps || !canShareGps) && !includeStage)
-                ? "var(--muted)" : "#fff",
+              background: !stage ? "var(--paper-2)" : "var(--ember)",
+              color: !stage ? "var(--muted)" : "#fff",
               border: "none",
-              cursor: ((!includeGps || !canShareGps) && !includeStage) ? "default" : "pointer",
+              cursor: !stage ? "default" : "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10,
               letterSpacing: 1.3, fontWeight: 700,
-            }}>START SHARING</button>
+            }}>{stage ? "START SHARING MY STAGE" : "PICK YOUR STAGE FIRST"}</button>
         )}
       </div>
+    </div>
+  );
+}
+
+// Crew radar (15-feature program #2): who in my crew is at which stage,
+// from the stage each of them picked. Stage-level only, never a position.
+// Biggest group first; ties by stage name so the order never flickers.
+function crewRadarRows(crewFriends, now = Date.now()) {
+  const by = {};
+  for (const f of crewFriends || []) {
+    if (!f || !f.stageId) continue;
+    const st = STAGES.find(s => s.id === f.stageId);
+    if (!st) continue;
+    (by[st.id] = by[st.id] || { stage: st, members: [] }).members.push(f);
+  }
+  return Object.values(by).map(r => {
+    const newest = Math.max(...r.members.map(m => m.ts || 0));
+    const members = r.members.slice().sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    return { stage: r.stage, members, minsAgo: newest ? Math.max(0, Math.floor((now - newest) / 60000)) : null };
+  }).sort((a, b) => b.members.length - a.members.length || a.stage.name.localeCompare(b.stage.name));
+}
+
+function CrewRadar({ crewFriends }) {
+  const rows = crewRadarRows(crewFriends);
+  if (!rows.length) return null;
+  return (
+    <div data-crew-radar style={{ flexBasis: "100%", display: "flex", flexDirection: "column", gap: 6 }}>
+      <div className="duo-label" style={{ color: "var(--ink-3)" }}>CREW RADAR · BY STAGE</div>
+      {rows.map(r => (
+        <div key={r.stage.id} data-crew-radar-row={r.stage.id} style={{
+          display: "flex", alignItems: "center", gap: 10, padding: "8px 12px",
+          borderRadius: 10, background: "var(--s2)", borderLeft: `3px solid ${r.stage.color}`,
+          font: "400 13px/1.385 var(--f-ui)", color: "var(--ink)",
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontWeight: 600 }}>{r.stage.name}</div>
+            <div style={{ color: "var(--ink-2)", overflowWrap: "anywhere" }}>{r.members.map(m => m.name).join(", ")}</div>
+          </div>
+          <span style={{ color: "var(--ink-2)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+            {r.members.length}{r.minsAgo == null ? "" : r.minsAgo < 1 ? " · now" : ` · ${r.minsAgo}m`}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -2168,7 +2119,8 @@ function MapScreen({ state, setState }) {
     try {
       const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
       if (s && s.expiresAt && s.expiresAt <= Date.now()) return null; // expired
-      return s;
+      // A share saved before stage-only sharing may say includeGps: true.
+      return s ? { ...s, includeGps: false, includeStage: true, token: undefined } : s;
     } catch { return null; }
   });
   const isSharing = !!shareState?.active &&
@@ -2344,22 +2296,14 @@ function MapScreen({ state, setState }) {
     return Object.entries(crewSnap)
       .filter(([id]) => id !== myPresId)
       .map(([id, e]) => {
-        // Prefer real GPS (set via Share With Crew → "📍 My GPS location");
-        // fall back to stage centroid when only stage is broadcast.
-        let x, y;
-        if (e.gps && Number.isFinite(e.gps.lat) && Number.isFinite(e.gps.lng)) {
-          const m = gpsToMap(e.gps.lat, e.gps.lng);
-          x = Math.max(2, Math.min(98, m.x));
-          y = Math.max(2, Math.min(98, m.y));
-        } else {
-          const st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
-          if (!st) return null;
-          x = st.x; y = st.y;
-        }
+        // Stage-level only: a crewmate sits at the stage they picked. GPS
+        // an older app version still sends is ignored, never drawn.
+        const st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
+        if (!st) return null;
         return {
           id, name: e.name || "?",
           color: e.color || "var(--text-2)",
-          x, y, gps: e.gps || null,
+          x: st.x, y: st.y, gps: null,
           stageId: e.stageId, ts: e.ts,
         };
       }).filter(Boolean);
@@ -2372,10 +2316,8 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      // A friend's declared stage always counts. Inferring one from their GPS
-      // dot needs sourced registration: on poster-read anchors the dot's
-      // position on the art is a guess, and the nudge would fire off it.
-      const sid = f.stageId || (MAP_REGISTRATION_SOURCED ? _nearestStageId(f.x, f.y) : null);
+      // Only a friend's declared stage counts (shares are stage-only).
+      const sid = f.stageId;
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -2402,56 +2344,20 @@ function MapScreen({ state, setState }) {
   // through dedicated effects below.
   React.useEffect(() => {
     if (!isSharing) { sbPresenceLeave(); return; }
-    const stageId = shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
-    const gps = (shareState.includeGps && gpsPos)
-      ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-      : undefined;
-    sbPresenceJoin({ name: crewName || "Anon", stageId, gps });
+    // Only the stage I picked: no GPS, and no stand-in stage I never chose.
+    sbPresenceJoin({ name: crewName || "Anon", stageId: myStatusStage || null });
     return () => { /* leave handled by the next effect run or unmount */ };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSharing]);
 
-  // Unified broadcast heartbeat — fan out GPS/stage updates to both Supabase
-  // Realtime presence (crew view) and the live_shares row (public link). One
-  // effect avoids duplicate work; both write paths are idempotent.
+  // A new "I'm at" pick moves my crew dot. Stage id only.
   React.useEffect(() => {
     if (!isSharing) return;
-    const gps = (shareState?.includeGps && gpsPos)
-      ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-      : undefined;
-    const stageId = shareState?.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
-    if (gps || stageId !== undefined) sbPresenceUpdate({ gps, stageId });
-    if (shareState?.token) sbLiveShareUpdate(shareState.token, { gps, stageId });
-  }, [
-    isSharing, shareState?.includeGps, shareState?.includeStage, shareState?.token,
-    gpsPos?.lat, gpsPos?.lng, gpsPos?.accuracy, myStatusStage,
-  ]);
+    sbPresenceUpdate({ stageId: myStatusStage || null });
+  }, [isSharing, myStatusStage]);
 
-  // Live share lifecycle: mint a token on first activation, upsert the row,
-  // tear down on stop. Cleanup function fires when isSharing flips off or
-  // shareState is cleared by the expiry watchdog.
-  React.useEffect(() => {
-    if (!isSharing) return;
-    // First time → generate token, then wait for next render to actually start.
-    if (!shareState.token) {
-      const token = sbGenerateShareToken();
-      setShareState(s => s ? { ...s, token } : s);
-      return;
-    }
-    sbLiveShareStart({
-      token: shareState.token,
-      pid: sbGetMyPresId?.() || "anon",
-      name: crewName || "Friend",
-      expiresAt: shareState.expiresAt,
-      gps: (shareState.includeGps && gpsPos)
-        ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-        : undefined,
-      stageId: shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null,
-    });
-    const tokenCapture = shareState.token;
-    return () => { sbLiveShareStop(tokenCapture); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSharing, shareState?.token]);
+  // No public link: the live_shares writes are gone (that table was never
+  // created in prod, so every write failed silently), and so is the link.
 
   // Auto-expiry watchdog. Schedules a one-shot timer for the remaining
   // window so we wake exactly when sharing should stop, without polling.
@@ -2584,11 +2490,12 @@ function MapScreen({ state, setState }) {
               {cat === "crew" && (
                 <div data-map-crew-line style={{ flexBasis: "100%", display: "flex", alignItems: "center", gap: 10, font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
                   <span style={{ flex: 1, minWidth: 0 }}>
-                    {crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"}
+                    {crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a stage"}
                   </span>
                   <button className="duo-chip" onClick={() => setShareOpen(true)}><span>Share with crew</span></button>
                 </div>
               )}
+              {cat === "crew" && crewFriends.length > 0 && <CrewRadar crewFriends={crewFriends} />}
             </div>
           );
         })()}
@@ -3558,9 +3465,8 @@ function MapScreen({ state, setState }) {
           shareState={shareState}
           crewCount={crewFriends.length}
           crewCode={sbGetOrCreateGroupCode?.() || ""}
-          gpsPos={gpsPos}
-          gpsStatus={gpsStatus}
           myStatusStage={myStatusStage}
+          onPickStage={() => { setShareOpen(false); setIAmAtOpen(true); }}
           onClose={() => setShareOpen(false)}
           onSave={(s) => setShareState(s)}
           onStop={() => setShareState(null)}

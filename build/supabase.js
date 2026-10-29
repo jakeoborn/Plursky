@@ -1087,23 +1087,32 @@ function _presNotify() {
     } catch {}
   });
 }
+function _crewLocPayload(l) {
+  return {
+    pid: l.pid,
+    name: l.name,
+    stageId: l.stageId || null,
+    color: l.color,
+    pingCode: l.pingCode,
+    ts: l.ts || Date.now()
+  };
+}
 function _broadcastMyLoc() {
   if (!_presCh || !_myLoc) return;
   try {
     _presCh.send({
       type: "broadcast",
       event: "loc",
-      payload: {
+      payload: _crewLocPayload({
         ..._myLoc,
         ts: Date.now()
-      }
+      })
     });
   } catch {}
 }
 function sbPresenceJoin({
   name,
-  stageId,
-  gps
+  stageId
 }) {
   if (!_sb) return;
   _presMyId = _myPresId();
@@ -1122,7 +1131,6 @@ function sbPresenceJoin({
     stageId,
     color,
     pingCode,
-    gps,
     ts: Date.now()
   };
   _presCh = _sb.channel(_presChannelName(), {
@@ -1138,7 +1146,7 @@ function sbPresenceJoin({
     payload
   }) => {
     if (!payload?.pid || payload.pid === _presMyId) return;
-    _presSnap[payload.pid] = payload;
+    _presSnap[payload.pid] = _crewLocPayload(payload);
     _presNotify();
   }).on("broadcast", {
     event: "loc-req"
@@ -1196,7 +1204,9 @@ async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
   var patch = typeof arg === "string" ? {
     stageId: arg
-  } : arg || {};
+  } : {
+    stageId: (arg || {}).stageId ?? _myLoc.stageId
+  };
   _myLoc = {
     ..._myLoc,
     ...patch,
@@ -1227,8 +1237,7 @@ function sbPresenceRefresh() {
   if (!_myLoc) return false;
   sbPresenceJoin({
     name: _myLoc.name,
-    stageId: _myLoc.stageId,
-    gps: _myLoc.gps
+    stageId: _myLoc.stageId
   });
   return true;
 }
@@ -3885,8 +3894,16 @@ function CrewCard({
 }
 var _stagePresChannel = null;
 var _currentPresenceStage = null;
+function _crewShareActive() {
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch {
+    return false;
+  }
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
+  if (!_sb || !stageId || !_crewShareActive()) return;
   if (_currentPresenceStage === stageId) return;
   if (_stagePresChannel) {
     _stagePresChannel.unsubscribe();

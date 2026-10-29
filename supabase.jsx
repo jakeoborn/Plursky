@@ -1071,12 +1071,18 @@ function _presNotify() {
   _presCbs.forEach(fn => { try { fn(s); } catch {} });
 }
 
+// What a crew "loc" carries: who, which stage, and when. Stage-level only
+// (15-feature program #2): no lat/lng goes out, and none is kept from a
+// crewmate on an older version that still sends it.
+function _crewLocPayload(l) {
+  return { pid: l.pid, name: l.name, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
+}
 function _broadcastMyLoc() {
   if (!_presCh || !_myLoc) return;
-  try { _presCh.send({ type: "broadcast", event: "loc", payload: { ..._myLoc, ts: Date.now() } }); } catch {}
+  try { _presCh.send({ type: "broadcast", event: "loc", payload: _crewLocPayload({ ..._myLoc, ts: Date.now() }) }); } catch {}
 }
 
-function sbPresenceJoin({ name, stageId, gps }) {
+function sbPresenceJoin({ name, stageId }) {
   if (!_sb) return;
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
@@ -1084,14 +1090,14 @@ function sbPresenceJoin({ name, stageId, gps }) {
 
   let pingCode;
   try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, gps, ts: Date.now() };
+  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, ts: Date.now() };
 
   _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
   _presCh
     // Someone shared their location → merge into the snapshot
     .on("broadcast", { event: "loc" }, ({ payload }) => {
       if (!payload?.pid || payload.pid === _presMyId) return;
-      _presSnap[payload.pid] = payload;
+      _presSnap[payload.pid] = _crewLocPayload(payload);
       _presNotify();
     })
     // A late joiner asked everyone to re-announce → re-broadcast mine
@@ -1124,10 +1130,10 @@ function sbPresenceJoin({ name, stageId, gps }) {
 }
 
 // Accepts either a plain stageId (legacy, kept so old call sites still work)
-// or a partial { stageId?, gps? } update merged onto the current state.
+// or a partial { stageId? } update merged onto the current state (stage only).
 async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
-  const patch = typeof arg === "string" ? { stageId: arg } : (arg || {});
+  const patch = typeof arg === "string" ? { stageId: arg } : { stageId: (arg || {}).stageId ?? _myLoc.stageId };
   _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
   _presSnap[_presMyId] = { ..._myLoc };
   _broadcastMyLoc();
@@ -1149,7 +1155,7 @@ function _stopPresenceHeartbeat() {
 // crew code change so a sharing user moves to the new crew's channel.
 function sbPresenceRefresh() {
   if (!_myLoc) return false;
-  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId, gps: _myLoc.gps });
+  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId });
   return true;
 }
 
@@ -1812,6 +1818,9 @@ function sbGenerateShareToken() {
   }
 }
 
+// No caller since #2 (stage-only crew share): the live_shares table these
+// write to was never created in prod, so every write failed silently, and a
+// public link is out of scope. Kept only so an old share.html link fails soft.
 async function sbLiveShareStart({ token, pid, name, color, expiresAt, gps, stageId }) {
   if (!_sb || !token) return { error: "no_supabase_or_token" };
   const row = {
@@ -3004,8 +3013,17 @@ function CrewCard({ state }) {
 let _stagePresChannel = null;
 let _currentPresenceStage = null;
 
+// Opt-in (15-feature program #2): the headcount only counts me while I'm
+// sharing my stage with my crew. It used to join anyone the live-mode GPS
+// placed near a stage, without asking.
+function _crewShareActive() {
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch { return false; }
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
+  if (!_sb || !stageId || !_crewShareActive()) return;
   if (_currentPresenceStage === stageId) return;
 
   // Leave previous stage channel

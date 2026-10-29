@@ -3521,6 +3521,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Crew radar (15-feature program #2) ───────────────────────────────────
+// Share with crew is stage-only: no GPS option, no public link, no
+// live_shares writes; crew loc payloads carry no coordinates either way, and
+// the stage headcount counts me only while I share. The Crew chip groups my
+// crew by stage.
+{
+  console.log("▸ Crew radar gate — stage-only crew share, radar grouped by stage");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-radar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew radar failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-qn. Quick name before sign-in ─────────────────────────────────────
 // Opening Me on a fresh install asks "What should Plursky call you?" once
 // (skippable, a skip is remembered). The answer is plursky_display_name, and
