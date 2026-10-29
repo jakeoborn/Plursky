@@ -247,7 +247,7 @@ function _HistProvenance({ edition, onClose }) {
                 {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Set-times page · {stamp(c.captureTimestamp)}</a>}
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
-                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {stamp(c.published.replace(/-/g, ""))}</a></div>}
+                {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {c.published ? stamp(c.published.replace(/-/g, "")) : "no printed date"}</a></div>}
                 {c.stagesAs && <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 2 }}>This graphic styles its stage names {Object.keys(c.stagesAs).join(", ")}; they are shown as the festival's other days print them.</div>}
               </div>
               );

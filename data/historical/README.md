@@ -54,8 +54,9 @@ each day keeps and drops, and every graphic needs a signed review entry for
 its exact hash. A first-party capture replaces a re-host when one turns up.
 
 An edition is checked against every set-times graphic its EDM Identity
-receipt pages show, not just the ones its sources cite. The importer lists
-them on each receipt (`setTimesGraphics`, read from the article body only).
+receipt pages show, and every slide of an Instagram post it cites, not just
+the ones its sources cite. The importer lists them on each receipt
+(`setTimesGraphics`, read from the article body only, or the post's slides).
 Each one must be used by a source or listed in `notUsedGraphics` with the
 reason, such as a pre-party, an afterparty, or a pre-event graphic that the
 festival's own page supersedes.

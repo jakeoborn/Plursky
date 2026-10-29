@@ -3,7 +3,7 @@
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
 import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
-import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, weekdayOf } from "./lib.mjs";
+import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
 // official source, however accurate it looks.
@@ -18,6 +18,7 @@ export const OFFICIAL_HOSTS = {
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "dreamstate-socal": ["dreamstateusa.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -27,13 +28,21 @@ export const OFFICIAL_HOSTS = {
 export const REHOST_HOSTS = {
   "pbs.twimg.com": "X (Twitter) media",
   "edmidentity.com": "EDM Identity",
+  // The promoter's own CDN and the festival's own Instagram posts: first-party
+  // graphics served off a host the festival does not brand. An Instagram
+  // graphic must cite the post it belongs to (checked below).
+  "cdn-insomniac.s3.amazonaws.com": "Insomniac's CDN",
+  "cdninstagram.com": "Instagram media",
 };
+const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
-// Identity posts carry their own uploads and X media they re-upload.
+// Identity posts carry their own uploads and X media they re-upload; an
+// Instagram slide is cited by its own post.
 export const RECEIPT_HOSTS = {
   "edmidentity.com": ["edmidentity.com"],
   "pbs.twimg.com": ["edmidentity.com"],
+  "cdninstagram.com": ["instagram.com"],
 };
 
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
@@ -221,13 +230,19 @@ function officialSources(e, meta, p) {
     } else if (c.kind === "graphic") {
       const host = hostOf(c.imageUrl);
       const official = (OFFICIAL_HOSTS[e.festivalId] || []).some(h => host === h || host.endsWith("." + h));
-      if (!official && !REHOST_HOSTS[host]) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
+      const rehost = rehostOf(host);
+      if (!official && !rehost) p.push(`${tag}: graphic host ${host || "(none)"} is neither official nor an approved re-host`);
+      if (rehost === "cdninstagram.com" && !/^https:\/\/www\.instagram\.com\/p\/[\w-]+\/$/.test(c.foundAt || ""))
+        p.push(`${tag}: an Instagram graphic must cite its post (instagram.com/p/<shortcode>/), not ${c.foundAt || "(none)"}`);
       if (!/^https:\/\//.test(c.foundAt || "")) p.push(`${tag}: graphic has no page it was found on`);
       else receiptLinks(c, e, official, host, tag, p);
       if (!c.rehostedBy) p.push(`${tag}: graphic does not name who re-hosted it`);
       // The receipt: the re-host was published in the edition's year, no
       // later than its last day (a pre-event schedule, not a later recap).
-      if (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay)
+      // Only the festival's own listed posts that print no date may leave it
+      // blank (undatedOwnPost); a date any post carries is held to the rule.
+      if (!undatedOwnPost(e.id, c) &&
+          (!DAY.test(c.published || "") || !c.published.startsWith(String(e.year)) || c.published > lastDay))
         p.push(`${tag}: re-host published ${c.published || "(no date)"}, not in ${e.year} on or before ${lastDay}`);
       if (!DAY.test(c.fetchedAt || "")) p.push(`${tag}: graphic has no fetch date`);
       if (!c.printed) p.push(`${tag}: graphic has no printed header recorded`);
@@ -244,15 +259,17 @@ function officialSources(e, meta, p) {
   }
   for (const [i] of meta.dates.entries()) if (!e.provenance.captures.some(c => c.day === i + 1)) p.push(`${e.id} day ${i + 1}: no source`);
   // Completeness against the receipt pages, not just the chosen sources:
-  // every set-times graphic an EDM Identity receipt page shows is used by a
-  // source or excluded with its reason (Orlando 2017 shipped without the
-  // Corona Electric Beach graphic its own receipt page carried).
+  // every set-times graphic an EDM Identity receipt page shows, and every
+  // slide of an Instagram post, is used by a source or excluded with its
+  // reason (Orlando 2017 shipped without the Corona Electric Beach graphic
+  // its own receipt page carried).
   const graphics = e.provenance.captures.filter(c => c.kind === "graphic" && c.receipt);
-  for (const c of graphics.filter((c, i) => graphics.findIndex(x => x.receipt.archivedUrl === c.receipt.archivedUrl && x.receipt.cites === c.receipt.cites) === i)) {
-    if (hostOf(c.foundAt) !== "edmidentity.com") continue;
+  const page = r => r.archivedUrl || r.url;
+  for (const c of graphics.filter((c, i) => graphics.findIndex(x => page(x.receipt) === page(c.receipt) && x.receipt.cites === c.receipt.cites) === i)) {
+    if (!["edmidentity.com", "instagram.com"].includes(hostOf(c.foundAt))) continue;
     const shown = c.receipt.setTimesGraphics;
-    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} does not list the set-times graphics its page shows`);
-    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${c.receipt.archivedUrl} lists set-times graphics without the one it cites`);
+    if (!Array.isArray(shown)) p.push(`${e.id} day ${c.day}: receipt ${page(c.receipt)} does not list the set-times graphics its page shows`);
+    else if (!shown.some(t => sameGraphic(t, c.receipt.cites))) p.push(`${e.id} day ${c.day}: receipt ${page(c.receipt)} lists set-times graphics without the one it cites`);
   }
   const { unused, stale } = receiptGaps(graphics, e.provenance.notUsedGraphics);
   for (const u of unused) p.push(`${e.id}: receipt ${u.page} shows set-times graphic ${u.cites}, which no source uses and notUsedGraphics does not exclude`);
@@ -264,18 +281,25 @@ function officialSources(e, meta, p) {
 // /YYYY/MM/DD/ path is its publish date), and a Wayback capture of exactly
 // that page cites the image. The importer found the citation in the
 // capture; the validator holds the record to that page and that image.
+// Wayback holds no Instagram post, so an Instagram slide's receipt is the
+// post's own logged-out embed (/embed/captioned/), read on a recorded date.
 function receiptLinks(c, e, official, host, tag, p) {
-  const page = hostOf(c.foundAt);
-  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[host] || [];
+  const page = hostOf(c.foundAt), rehost = rehostOf(host);
+  const allowed = official ? OFFICIAL_HOSTS[e.festivalId] || [] : RECEIPT_HOSTS[rehost] || [];
   if (!allowed.some(h => page === h || page.endsWith("." + h))) p.push(`${tag}: found-at page ${page} is not where ${host} graphics are cited`);
   const dated = /^\/(\d{4})\/(\d{2})\/(\d{2})\//.exec(new URL(c.foundAt).pathname);
   if (page === "edmidentity.com" && (!dated || dated.slice(1).join("-") !== c.published))
     p.push(`${tag}: found-at page ${c.foundAt} is not dated ${c.published}`);
   const r = c.receipt;
   if (!r) return p.push(`${tag}: graphic has no receipt capture of the page it was found on`);
-  const m = WAYBACK.exec(r.archivedUrl || "");
-  if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
-  else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  if (rehost === "cdninstagram.com") {
+    if (r.url !== `${c.foundAt}embed/captioned/`) p.push(`${tag}: receipt ${r.url || "(none)"} is not the embed of ${c.foundAt}`);
+    if (!DAY.test(r.fetchedAt || "")) p.push(`${tag}: receipt has no read date`);
+  } else {
+    const m = WAYBACK.exec(r.archivedUrl || "");
+    if (!m || r.archivedUrl !== `https://web.archive.org/web/${m[1]}/${c.foundAt}`) p.push(`${tag}: receipt ${r.archivedUrl || "(none)"} is not a capture of ${c.foundAt}`);
+    else if (m[1] !== r.captureTimestamp) p.push(`${tag}: receipt captureTimestamp ${r.captureTimestamp} ≠ its URL's ${m[1]}`);
+  }
   if (!/^[0-9a-f]{64}$/.test(r.sha256 || "")) p.push(`${tag}: receipt capture hash missing`);
   if (r.cites !== citeToken(c.imageUrl)) p.push(`${tag}: receipt cites ${r.cites || "(nothing)"}, not the graphic ${citeToken(c.imageUrl)}`);
 }

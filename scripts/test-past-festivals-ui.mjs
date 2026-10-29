@@ -13,7 +13,7 @@
 // route interception, since no real one exists yet) shows names and no times;
 // a failed fetch offers a retry; and nothing scrolls sideways at 393pt.
 //
-//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes 6 screenshots
+//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes 9 screenshots
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
@@ -169,6 +169,25 @@ try {
     ok(rows.length === multi.provenance.captures.length && new Set(rows).size === rows.length,
       `${multi.id}: the About sheet has ${rows.length} source rows, ${new Set(rows).size} distinct (ledger has ${multi.provenance.captures.length})`);
     await shot("5b-multi-graphic-provenance");
+    await page.keyboard.press("Escape");
+  }
+
+  // ── undated Instagram posts: the sheet renders and says so, no date shown ──
+  for (const id of ["dreamstate-socal-2023", "dreamstate-socal-2025"]) {
+    const ed = ED[id], undated = ed.provenance.captures.filter(c => c.kind === "graphic" && c.published == null);
+    ok(undated.length > 0, `${id}: expected undated Instagram sources`);
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: String(ed.year), exact: true }) })
+      .getByRole("button", { name: new RegExp("^" + INDEX.editions.find(e => e.id === id).festivalName) }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    await page.getByRole("button", { name: "About this schedule" }).click();
+    const about = page.getByRole("dialog", { name: "About this schedule" });
+    await about.waitFor({ timeout: 5000 });
+    const rows = await about.getByRole("link").allTextContents();
+    ok(rows.length === ed.provenance.captures.length && rows.filter(t => / · no printed date$/.test(t)).length === undated.length,
+      `${id}: ${rows.filter(t => /no printed date/.test(t)).length} of ${rows.length} source rows say "no printed date", ledger has ${undated.length} undated`);
+    ok(!rows.some(t => /no printed date/.test(t) && /\b20\d\d\b/.test(t)), `${id}: an undated source row shows a year`);
+    await shot(`5c-${id}-undated-provenance`);
     await page.keyboard.press("Escape");
   }
 

@@ -418,6 +418,135 @@
     }
    ]
   },
+  "dreamstate-socal": {
+   "lineages": [
+    {
+     "id": "dreamstate-socal:the-dream",
+     "names": [
+      {
+       "printed": "THE DREAM",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Dream",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-sequence",
+     "names": [
+      {
+       "printed": "THE SEQUENCE",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Sequence",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-vision",
+     "names": [
+      {
+       "printed": "THE VISION",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Vision",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:timeless",
+     "names": [
+      {
+       "printed": "TIMELESS",
+       "editions": [
+        "dreamstate-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-void",
+     "names": [
+      {
+       "printed": "THE VOID",
+       "editions": [
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Void",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX ART CAR",
+       "editions": [
+        "dreamstate-socal-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "edc-lv": {
    "lineages": [
     {

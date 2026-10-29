@@ -28,6 +28,76 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. Ilan Bluestone is billed alone at EDC Las Vegas 2026; his arc misses this set until it is ruled."
  },
  {
+  "id": "dreamstate-socal-2019:d2:the-vision:0000:joint-operations-centre-joc",
+  "printed": "Joint Operations Centre (JOC)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical reads as the act's own initials, a case no ruling covers yet, so it is neither a set tag nor split. Renders as its own billing until a ruling does."
+ },
+ {
+  "id": "dreamstate-socal-2023:d1:the-void:1800:yoshi-razner-pres-genesis",
+  "printed": "YOSHI + RAZNER PRES GENESIS",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2024:d1:the-sequence:2330:infected-mushroom-blastoyz",
+  "printed": "Infected Mushroom + Blastoyz",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2024:d1:the-vision:2000:paul-denton-sneijder",
+  "printed": "Paul Denton + Sneijder",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2024:d2:the-dream:1600:amy-wiles-leena-punks",
+  "printed": "Amy Wiles + Leena Punks",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2024:d2:the-void:2330:mauro-picotto-bryan-kearney",
+  "printed": "Mauro Picotto + Bryan Kearney",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2024:d2:beatbox-boombox-art-car:2100:sunryse-dan-miles",
+  "printed": "SunrYse + Dan Miles",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2025:d1:the-dream:2300:paul-van-dyk-aly-and-fila",
+  "printed": "PAUL VAN DYK + ALY & FILA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2025:d1:the-sequence:0000:omiki-vegas",
+  "printed": "OMIKI + VEGAS",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "dreamstate-socal-2025:d2:the-dream:2040:cristoph-innellea",
+  "printed": "CRISTOPH + INNELLEA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "edc-las-vegas-2025:d2:forest-house:0315:bunny-rabbit-in-the-moon",
   "printed": "Bunny (Rabbit in the Moon)",
   "reason": "parenthetical is not a known set tag",
@@ -133,6 +203,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:t78",
+  "printed": "T78",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:cid",
   "printed": "Cid",
   "reason": "very short name billed at more than one festival brand",
@@ -217,8 +294,8 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:2ar",
-  "printed": "2AR",
+  "id": "key:atb",
+  "printed": "ATB",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
@@ -226,6 +303,13 @@
  {
   "id": "key:tdj",
   "printed": "TDJ",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:2ar",
+  "printed": "2AR",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
