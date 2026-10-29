@@ -2262,6 +2262,111 @@ function _parseMeetup(body) {
 function meetupKey(m) {
   return `${m && m.festivalId || "-"}|${m && m.stageId || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`;
 }
+var BEACON_TTL_MS = 15 * 60 * 1000;
+var BEACON_RE = /^\[BEACON ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\]$/;
+function _formatBeaconBody(stageId, festivalId, ts) {
+  var at = Math.round(Number(ts));
+  if (!festivalId || !stageId || !Number.isFinite(at)) return null;
+  var body = `[BEACON ${festivalId} ${stageId} ${at}]`;
+  return _parseBeacon(body) ? body : null;
+}
+function _parseBeacon(body) {
+  var m = BEACON_RE.exec(body || "");
+  if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;
+  return {
+    festivalId: m[1],
+    stageId: m[2],
+    ts: +m[3]
+  };
+}
+function beaconLiveUntil(b, now) {
+  return Math.min(b.ts, now) + BEACON_TTL_MS;
+}
+function BeaconCard({
+  beacon,
+  from,
+  sentAt,
+  onReply
+}) {
+  var [now, setNow] = React.useState(() => Date.now());
+  var until = beaconLiveUntil(beacon, now);
+  var live = now < until;
+  React.useEffect(() => {
+    if (!live) return;
+    var t = setInterval(() => setNow(Date.now()), 30000);
+    return () => clearInterval(t);
+  }, [live]);
+  var [reply, setReply] = React.useState(null);
+  var here = beacon.festivalId === FESTIVAL_CONFIG.id;
+  var stage = here ? STAGES.find(s => s.id === beacon.stageId) : null;
+  var other = here ? null : (FESTIVALS_REGISTRY.find(f => f.config.id === beacon.festivalId) || {}).config || null;
+  var where = stage ? stage.name : other ? other.shortName || other.name : null;
+  var ended = "";
+  try {
+    ended = new Date(until).toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  } catch {}
+  var mins = Math.max(1, Math.ceil((until - now) / 60000));
+  var send = async () => {
+    setReply("sending");
+    var r = await onReply(`On my way to ${stage.name}`);
+    setReply(r && r.queued ? "queued" : r && r.error ? "failed" : "sent");
+  };
+  return React.createElement("div", {
+    "data-crew-beacon": live ? "live" : "ended",
+    style: {
+      background: "var(--paper-2)",
+      borderRadius: 14,
+      padding: "12px 14px",
+      margin: "4px 0",
+      border: "1px solid var(--line)",
+      borderLeft: stage && live ? `3px solid ${stage.color}` : "1px solid var(--line)",
+      opacity: live ? 1 : 0.7
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8.5,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700,
+      marginBottom: 6
+    }
+  }, "FIND ME · ", String(from).toUpperCase(), " · ", sentAt), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 16,
+      lineHeight: 1.25,
+      overflowWrap: "anywhere"
+    }
+  }, where ? `${from} ${from === "You" ? "are" : "is"} at ${where}` : `${from} sent a find-me`), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      marginTop: 2
+    }
+  }, live ? `Live for ${mins} more min` : `Ended ${ended}`), onReply && live && stage && React.createElement("button", {
+    type: "button",
+    "data-crew-beacon-reply": true,
+    disabled: !!reply && reply !== "failed",
+    onClick: send,
+    style: {
+      marginTop: 10,
+      minHeight: 44,
+      padding: "0 14px",
+      borderRadius: 10,
+      background: reply && reply !== "failed" ? "transparent" : "var(--ink)",
+      color: reply && reply !== "failed" ? "var(--text-2)" : "var(--paper)",
+      border: reply && reply !== "failed" ? "1px solid var(--line-2)" : "none",
+      fontSize: 15,
+      fontWeight: 600,
+      cursor: reply && reply !== "failed" ? "default" : "pointer"
+    }
+  }, reply === "sending" ? "Sending…" : reply === "sent" ? "Sent: on my way" : reply === "queued" ? "Queued: sends when online" : reply === "failed" ? "Didn't send. Retry" : "On my way"));
+}
 function MeetupCard({
   meet,
   from,
@@ -3022,6 +3127,25 @@ function CrewChat({
     var parsedPoll = _parsePoll(m.body);
     var mine = m.sender_pid === myPid;
     var menuOpen = menuMsgId === m.id;
+    var beacon = _parseBeacon(m.body);
+    if (beacon) {
+      return React.createElement(React.Fragment, {
+        key: m.id
+      }, _promoCard, React.createElement(BeaconCard, {
+        beacon: beacon,
+        from: mine ? "You" : m.sender_name || "Friend",
+        sentAt: fmtTime(m.created_at),
+        onReply: mine ? null : body => sbCrewSendMessage(code, myPid, myName, body)
+      }), !mine && React.createElement("div", {
+        "data-crew-card-moderation": "beacon",
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          marginTop: -2
+        }
+      }, msgMenuButton(m, menuOpen), menuOpen && msgMenu(m)));
+    }
     var meet = _parseMeetup(m.body);
     if (meet) {
       return React.createElement(React.Fragment, {
