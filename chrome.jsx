@@ -1848,9 +1848,32 @@ const _BS = (window._BS = window._BS || {
     catch { return "auto"; }
   })(),
   battery: null,         // { level: 0..1, charging: bool } when supported
+  // What the radio looks like: navigator.connection where the browser has
+  // it (Chrome/Android; iOS WebKit does not), plus crew sends that had to
+  // queue, which works everywhere.
+  net: { effectiveType: null, saveData: false, failTs: [] },
   active: false,
   listeners: new Set(),  // (active) => void
 });
+
+// Weak signal: the browser says 2G or Data Saver, or 2 crew sends queued in
+// the last 5 minutes. Offline is its own state (OFFLINE), not weak signal.
+const _BS_FAIL_WINDOW_MS = 5 * 60 * 1000;
+function _bsLowSignal(now = Date.now()) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return false;
+  const n = _BS.net;
+  if (n.saveData || n.effectiveType === "slow-2g" || n.effectiveType === "2g") return true;
+  return n.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS).length >= 2;
+}
+// The one question for anything that talks to the network on a timer:
+// battery saver on, or a weak signal, means go easy on the radio.
+function plurskyNetSaver() { return !!_BS.active || _bsLowSignal(); }
+// supabase.jsx reports each crew send: queued (true) or delivered (false).
+function plurskyNoteNetQueued(queued) {
+  const now = Date.now();
+  _BS.net.failTs = queued ? [..._BS.net.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS), now] : [];
+  _BS.listeners.forEach(fn => { try { fn(_BS.active); } catch {} });
+}
 
 function _bsHasFestivalContext() {
   // Active during the festival window itself, OR when the user has a saved set
@@ -1935,6 +1958,17 @@ if (!window._bsInited) {
     } catch { _bsApply(); }
   })();
 
+  try {
+    const c = navigator.connection;
+    const syncNet = () => {
+      _BS.net.effectiveType = (c && c.effectiveType) || null;
+      _BS.net.saveData = !!(c && c.saveData);
+      _BS.listeners.forEach(fn => { try { fn(_BS.active); } catch {} });
+    };
+    if (c) { syncNet(); c.addEventListener?.("change", syncNet); }
+    window.addEventListener("online", () => { _BS.net.failTs = []; syncNet(); });
+  } catch {}
+
   // Re-evaluate the night-window every 5 min (cheap, lets auto-mode flip on
   // at 02:00 without waiting for an unrelated battery event).
   setInterval(_bsApply, 5 * 60 * 1000);
@@ -1966,6 +2000,7 @@ function useBatterySaver() {
     active:  _BS.active,
     mode:    _BS.mode,
     battery: _BS.battery,    // { level, charging } | null
+    lowSignal: _bsLowSignal(),
     setMode: setBatterySaverMode,
   };
 }
@@ -2015,7 +2050,7 @@ function BatterySaverToast() {
 
 // Settings card for MeScreen — segmented control + live battery readout.
 function BatterySaverCard() {
-  const { active, mode, battery, setMode } = useBatterySaver();
+  const { active, mode, battery, lowSignal, setMode } = useBatterySaver();
   const segs = [
     { id: "off",  label: "Off" },
     { id: "auto", label: "Auto" },
@@ -2046,7 +2081,10 @@ function BatterySaverCard() {
       </div>
       <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
         Dims the screen, freezes animations, and slows GPS polling.
-        Auto kicks in at 2 AM or when battery drops under 25%.
+        Auto kicks in under 25% battery during the festival.
+      </div>
+      <div data-bs-signal-note style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
+        {lowSignal ? "Weak signal now: " : "On a weak signal, "}crew location updates slow to once a minute and auto-backup waits.
       </div>
 
       <div style={{
@@ -2420,7 +2458,7 @@ const _STATUS_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 function StatusStrip() {
   _useTickMs(30000);
   const online = useOnlineStatus();
-  const { active: bsActive } = useBatterySaver();
+  const { active: bsActive, lowSignal } = useBatterySaver();
 
   const now = new Date();
   const day = _STATUS_DAYS[now.getDay()];
@@ -2452,6 +2490,16 @@ function StatusStrip() {
               <path d="M11 9 L13 9 L11 13 L14 13 L10 18"/>
             </svg>
             SAVER
+          </span>
+        )}
+        {online && lowSignal && (
+          <span data-status-weak-signal style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--flare)" }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 13 Q12 8 18 13" opacity="0.55"/>
+              <path d="M9 16 Q12 13.5 15 16"/>
+              <circle cx="12" cy="19" r="0.9" fill="currentColor"/>
+            </svg>
+            WEAK SIGNAL
           </span>
         )}
         {!online && (

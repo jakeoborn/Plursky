@@ -6789,7 +6789,10 @@ function MemoriesScreen({ state, setState }) {
   // on mount and whenever moments change (e.g. after an import). Ref-guarded
   // against concurrent runs; no-ops when nothing is pending.
   React.useEffect(() => {
+    // Auto-backup waits out a weak signal (or battery saver); the manual
+    // BACK UP button still works.
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
+    if (typeof plurskyNetSaver === "function" && plurskyNetSaver()) return;
     if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     let cancelled = false;
     (async () => {

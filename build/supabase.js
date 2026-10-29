@@ -420,7 +420,7 @@ async function sbExportUserData(state) {
     crewCode: safeLs("plursky_group_code"),
     settings: {
       reminderLeadMin: parseJson(safeLs("plursky_reminder_lead_min")),
-      batterySaver: safeLs("plursky_battery_saver"),
+      batterySaver: safeLs("battery_saver_mode"),
       pinger: safeLs("plursky_pinger_v1")
     },
     keptBothConflicts: parseJson(safeLs("plursky_conflicts_kept_both_v1")) || [],
@@ -1209,17 +1209,24 @@ async function sbPresenceUpdate(arg) {
   _presNotify();
 }
 var _heartbeatId = null;
+var PRES_HEARTBEAT_MS = 20000,
+  PRES_HEARTBEAT_SAVER_MS = 60000;
+function _presHeartbeatMs() {
+  return typeof plurskyNetSaver === "function" && plurskyNetSaver() ? PRES_HEARTBEAT_SAVER_MS : PRES_HEARTBEAT_MS;
+}
 function _startPresenceHeartbeat() {
-  if (_heartbeatId) clearInterval(_heartbeatId);
-  _heartbeatId = setInterval(() => {
+  _stopPresenceHeartbeat();
+  var beat = () => {
     _broadcastMyLoc();
     _broadcastMyRally();
     _presNotify();
-  }, 20000);
+    _heartbeatId = setTimeout(beat, _presHeartbeatMs());
+  };
+  _heartbeatId = setTimeout(beat, _presHeartbeatMs());
 }
 function _stopPresenceHeartbeat() {
   if (_heartbeatId) {
-    clearInterval(_heartbeatId);
+    clearTimeout(_heartbeatId);
     _heartbeatId = null;
   }
 }
@@ -1995,11 +2002,13 @@ async function sbCrewSendMessage(code, pid, name, body) {
       name,
       body: trimmed
     });
+    window.plurskyNoteNetQueued?.(true);
     return {
       error: null,
       queued: true
     };
   }
+  window.plurskyNoteNetQueued?.(false);
   return {
     error: null,
     queued: false
