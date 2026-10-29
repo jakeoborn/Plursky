@@ -25,5 +25,10 @@
  "nocturnal-wonderland-2019": { "stages": 4, "setsPerDay": [36, 34], "droppedPerDay": [0, 0] },
  "nocturnal-wonderland-2021": { "stages": 4, "setsPerDay": [33, 33], "droppedPerDay": [0, 0] },
  "nocturnal-wonderland-2022": { "stages": 3, "setsPerDay": [26, 27], "droppedPerDay": [0, 0] },
- "nocturnal-wonderland-2024": { "stages": 4, "setsPerDay": [32, 34], "droppedPerDay": [0, 0] }
+ "nocturnal-wonderland-2024": { "stages": 4, "setsPerDay": [32, 34], "droppedPerDay": [0, 0] },
+ "dreamstate-socal-2016": { "stages": 4, "setsPerDay": [32, 32], "droppedPerDay": [1, 1] },
+ "dreamstate-socal-2019": { "stages": 3, "setsPerDay": [27, 25], "droppedPerDay": [0, 0] },
+ "dreamstate-socal-2023": { "stages": 4, "setsPerDay": [36, 34], "droppedPerDay": [0, 0] },
+ "dreamstate-socal-2024": { "stages": 5, "setsPerDay": [46, 46], "droppedPerDay": [0, 0] },
+ "dreamstate-socal-2025": { "stages": 5, "setsPerDay": [42, 42], "droppedPerDay": [0, 0] }
 }

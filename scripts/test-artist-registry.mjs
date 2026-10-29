@@ -5,6 +5,7 @@
 // are current. No network.
 import { readFileSync } from 'node:fs';
 import { build, parseBilling, keyOf, indexStages } from './build-artist-registry.mjs';
+import { undatedOwnPost } from './historical/lib.mjs';
 
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
@@ -93,7 +94,25 @@ const out = build();
 {
   const ed = out.rows.filter(r => r.source === 'edition');
   check(ed.length > 1000, `control: ${ed.length} archived rows read`);
-  check(ed.every(r => r.published), `archived sets with no "as published" date: ${[...new Set(ed.filter(r => !r.published).map(r => r.festivalId))]}`);
+  // The one exception: a day whose only sources are the festival's own listed
+  // Instagram posts, which print no date (none is inferred from a shortcode),
+  // so the card shows none. Dreamstate 2023 and 2025 are that case; the
+  // predicate is the validator's own (undatedOwnPost), so the two cannot drift.
+  const undated = (id, day) => {
+    const caps = JSON.parse(readFileSync(new URL(`../data/historical/editions/${id}.json`, import.meta.url), 'utf8')).provenance.captures.filter(c => c.day === day);
+    return caps.length > 0 && caps.every(c => undatedOwnPost(id, c));
+  };
+  const missing = ed.filter(r => !r.published && !undated(r.festivalId, r.day));
+  check(missing.length === 0, `archived sets with no "as published" date: ${[...new Set(missing.map(r => r.festivalId))]}`);
+  {
+    const real = JSON.parse(readFileSync(new URL('../data/historical/editions/dreamstate-socal-2023.json', import.meta.url), 'utf8')).provenance.captures[0];
+    const other = { ...real, foundAt: 'https://www.instagram.com/p/UNRELATED_POST/', receipt: { ...real.receipt, url: 'https://www.instagram.com/p/UNRELATED_POST/embed/captioned/' }, rehostedBy: 'Another Instagram account' };
+    check(undatedOwnPost('dreamstate-socal-2023', real), 'control: the real undated Dreamstate 2023 post is accepted');
+    check(!undatedOwnPost('dreamstate-socal-2023', other), 'an unrelated post by another account is accepted as undated');
+    check(!undatedOwnPost('escape-halloween-2024', real), "another festival's edition borrows Dreamstate's undated post");
+  }
+  const ig = ed.filter(r => /^dreamstate-socal-202[35]$/.test(r.festivalId));
+  check(ig.length === 154 && ig.every(r => r.published == null), `Dreamstate 2023 + 2025 sets carry no inferred date: ${ig.length} rows, ${ig.filter(r => r.published).length} dated`);
   const nk = ed.filter(r => r.festivalId === 'escape-halloween-2019' && /^nukid$/i.test(r.printed)).map(r => `${r.printed} ${r.published}`).sort();
   check(nk.join() === 'NUKID 2019-10-21,NuKid 2020-08-17', `a set keeps its own printing and its own source's date (Escape 2019 NuKid): ${nk}`);
 }

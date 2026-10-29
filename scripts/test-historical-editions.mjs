@@ -18,7 +18,7 @@ import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
 import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
-import { activeTab, stageFor } from "./historical/import-gather.mjs";
+import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
 
@@ -131,6 +131,20 @@ if (base && edc) {
     const tabHtml = `<a class="button-blocks"> Friday, November 07</a><a href="/day-2/" class="button-blocks button-blocks--active">Saturday, November 09</a>`;
     ok(activeTab(tabHtml) === "Saturday, November 09" && activeTab(`_siteTranslations={"d":"Saturday, November 08"}`) === undefined,
       "the active day tab must be read from the tab, never from other dates on the page");
+    // Dreamstate 2016's theme: every day on one page, a pane per day, stage
+    // headers in order, then one ds-stage column per stage.
+    const box = (a, t) => `<div class="ds-event-box"><div class="ds-event-container"><div class="ds-tooltip"><img></div><strong class="ds-event-title">${a}</strong> <span class="ds-time-range">${t}</span></div></div>`;
+    const pane = (id, stages, cols) => `<div role="tabpanel" class="tab-pane" id="${id}"><div class="ds-schedule-header">${stages.map(x => `<div class="stg ">${x}</div>`).join("")}</div>`
+      + cols.map(c => `<div class="ds-stage "><div class="ds-bands">${c.join("")}</div></div>`).join("") + `</div>`;
+    const tabs = `<li id="day_fri" data-day="fri" class="active">Friday, November 25 </li><li id="day_sat" data-day="sat">Saturday, November 26</li>`;
+    const dt = parseDayTabs(tabs + pane("fri", ["THE DREAM", "TIMELESS"], [[box("UCast", "5:00 PM - 6:00 PM")], [box("Tom &amp; Jerry", "1:00 AM - 2:00 AM")]])
+      + pane("sat", ["THE DREAM"], [[box("KhoMha", "6:00 PM - 7:00 PM"), box("Special Guest", "11:00 PM - 12:00 AM")]]));
+    ok(JSON.stringify(dt) === JSON.stringify([{ tab: "Friday, November 25", sets: [{ stage: "THE DREAM", artist: "UCast", printed: "5:00 PM - 6:00 PM" },
+      { stage: "TIMELESS", artist: "Tom & Jerry", printed: "1:00 AM - 2:00 AM" }] }, { tab: "Saturday, November 26", sets: [
+      { stage: "THE DREAM", artist: "KhoMha", printed: "6:00 PM - 7:00 PM" }, { stage: "THE DREAM", artist: "Special Guest", printed: "11:00 PM - 12:00 AM" }] }]),
+      `a day-tabs page must come back pane by pane, each set under its own stage and tab: ${JSON.stringify(dt)}`);
+    let short = false; try { parseDayTabs(tabs + pane("fri", ["THE DREAM", "TIMELESS"], [[box("UCast", "5:00 PM - 6:00 PM")]])); } catch { short = true; }
+    mutations++; ok(short, "mutation not caught: a day-tabs pane with more stage headers than columns");
     const o23 = editions["edc-orlando-2023"], sa23 = m => m.provenance.captures.find(c => c.stagesAs);
     if (o23) {
       mustFail("a stagesAs map that renames a stage", m => { sa23(m).stagesAs.rynobusARTCAR = "Rynobus"; }, o23, undefined, /renames the stage/);
@@ -190,6 +204,22 @@ if (base && edc) {
       mustFail("an exclusion naming a graphic on no receipt page", m => { m.provenance.notUsedGraphics[0].cites = "wp-content/uploads/2025/10/other"; }, e25, undefined, /notUsedGraphics wp-content\/uploads\/2025\/10\/other/);
       mustFail("an exclusion of a graphic a source uses", m => { m.provenance.notUsedGraphics.push({ cites: "wp-content/uploads/2025/10/friday-set-times", reason: "x" }); }, e25, undefined, /notUsedGraphics .*friday-set-times/);
       mustFail("a receipt that does not list its page's graphics", m => { delete m.provenance.captures.find(c => c.kind === "graphic").receipt.setTimesGraphics; }, o17, undefined, /does not list the set-times graphics/);
+      // An Instagram post is held to every slide: Dreamstate 2025's carousel
+      // has 2 and the edition uses both.
+      const d25 = editions["dreamstate-socal-2025"], ig = m => m.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || ""));
+      ok(d25 && ig(d25).length && ig(d25).every(c => c.receipt.setTimesGraphics?.length === 2), "Dreamstate 2025 must list both slides of its Instagram post");
+      if (d25) {
+        mustFail("an Instagram post with a third slide no source uses", m => { for (const c of ig(m)) c.receipt.setTimesGraphics.push("999_999_999_n"); }, d25, undefined, /shows set-times graphic 999_999_999_n, which no source uses/);
+        mustFail("an Instagram receipt with no slide list", m => { delete ig(m)[0].receipt.setTimesGraphics; }, d25, undefined, /does not list the set-times graphics/);
+        // Slide lists from one post are unioned too: dropping the second
+        // slide's sources and trimming a later list to its own slide still flags it.
+        const slide2 = [...new Set(ig(d25).map(c => c.receipt.cites))][1];
+        mustFail("Dreamstate 2025 without its second slide, a later same-post list naming only its own slide", m => {
+          m.provenance.captures = m.provenance.captures.filter(c => c.receipt?.cites !== slide2);
+          const last = ig(m).pop();
+          last.receipt.setTimesGraphics = [last.receipt.cites];
+        }, d25, undefined, new RegExp(`shows set-times graphic ${slide2}, which no source uses`));
+      }
       mustFail("a receipt whose list leaves out the graphic it cites", m => { const r = m.provenance.captures.find(eb).receipt; r.setTimesGraphics = r.setTimesGraphics.filter(t => !/electricbeach/.test(t)); }, o17, undefined, /without the one it cites/);
       // Lists from sources sharing one receipt page are unioned: a later
       // source listing only its own graphic cannot hide the omitted beach one.
@@ -215,6 +245,32 @@ if (base && edc) {
     mustFail("a receipt whose timestamp is not its URL's", m => { g(m).receipt.captureTimestamp = "20250101000000"; }, e24, undefined, /receipt captureTimestamp/);
     mustFail("a receipt that cites another image", m => { g(m).receipt.cites = "Gac-P1vWEAA_2dT"; }, e24, undefined, /receipt cites/);
     mustFail("a graphic whose image is swapped under its receipt", m => { g(m).imageUrl = "https://pbs.twimg.com/media/Gac-XXXXXXXXXXX?format=jpg&name=orig"; }, e24, undefined, /receipt cites/);
+    // The festival's own Instagram post (Dreamstate 2023, 2025): the CDN host
+    // is approved only with the post it belongs to as the page it was found on.
+    const ds23 = editions["dreamstate-socal-2023"];
+    ok(ds23, "the Dreamstate SoCal 2023 edition must exist for the Instagram-graphic mutations");
+    if (ds23) {
+      mustFail("an Instagram graphic that cites no post", m => { g(m).foundAt = "https://www.instagram.com/dreamstateusa/"; }, ds23, undefined, /must cite its post/);
+      mustFail("an Instagram graphic found on a re-host page", m => { g(m).foundAt = "https://edmidentity.com/2023/11/15/dreamstate-socal-2023/"; }, ds23, undefined, /must cite its post/);
+      mustFail("a graphic on a look-alike of Instagram's CDN", m => { g(m).imageUrl = "https://scontent.cdninstagram.com.example.net/x.jpg"; }, ds23, undefined, /approved re-host/);
+      // Its receipt is that post's own embed, read on a recorded date.
+      mustFail("an Instagram receipt from another post's embed", m => { g(m).receipt.url = "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/"; }, ds23, undefined, /is not the embed of/);
+      mustFail("an Instagram receipt with no read date", m => { delete g(m).receipt.fetchedAt; }, ds23, undefined, /no read date/);
+      // No printed date, none inferred: the post leaves published blank, but
+      // a date it carries must still fall in the edition's year, and only an
+      // Instagram post may leave it blank.
+      ok(ds23.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || "")).every(c => c.published == null), "Dreamstate 2023's Instagram graphics must carry no inferred published date");
+      mustFail("an Instagram graphic dated in another year", m => { g(m).published = "2022-11-15"; }, ds23, undefined, /re-host published/);
+      // The exception is bound to the festival's own listed posts: the lane's
+      // repro (an unrelated post, its embed, another account) still fails, and
+      // so does the right post re-hosted by another account.
+      const igCaps = m => m.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || ""));
+      mustFail("an unrelated post by another account, undated", m => { for (const c of igCaps(m)) { c.foundAt = "https://www.instagram.com/p/UNRELATED_POST/"; c.receipt.url = "https://www.instagram.com/p/UNRELATED_POST/embed/captioned/"; c.rehostedBy = "Another Instagram account"; } }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("the festival's post credited to another account, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@someoneelse)"; }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("a look-alike account handle, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@dreamstateusa.fan)"; }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("a non-Instagram re-host with no published date", m => { delete g(m).published; }, e24, undefined, /re-host published \(no date\)/);
+      mustFail("an Instagram receipt citing another slide", m => { g(m).receipt.cites = "581251862_18534320416060183_3114781477568202383_n"; }, ds23, undefined, /receipt cites/);
+    }
     {
       const r = clone(reviewFor(e24.id)); r.days[0].rowsConfirmed -= 1; mutations++;
       ok(validateEdition(clone(e24), { expected: expected[e24.id], review: r, dropped: droppedFor(e24.id) }).some(x => /rows confirmed/.test(x)), "mutation not caught: a graphic's review confirms fewer rows than it printed");
@@ -286,6 +342,15 @@ for (const id of Object.keys(editions)) {
 
 // ── dates come from the page, not from editions.mjs alone ──
 const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+// Numeric headers (Dreamstate's "FRI 11.17.23") read through the same
+// graphicPrints as named ones; a printed year must be the edition's.
+{
+  const DS23 = ["2023-11-17", "2023-11-18"], DS25 = ["2025-11-21", "2025-11-22"], ORL22 = ["2022-11-11", "2022-11-12", "2022-11-13"];
+  for (const [printed, date, year, dates, want] of [["FRI 11.17.23", "2023-11-17", 2023, DS23, true], ["BEATBOX ART CAR · SAT 11.22", "2025-11-22", 2025, DS25, true],
+    ["FRIDAY NOV 11", "2022-11-11", 2022, ORL22, true], ["FRI 11.17.22", "2023-11-17", 2023, DS23, false], ["FRI 11.18.23", "2023-11-17", 2023, DS23, false],
+    ["SAT 11.17.23", "2023-11-17", 2023, DS23, false], ["FRI 10.17.23", "2023-11-17", 2023, DS23, false], ["FRIDAY NOV 12", "2022-11-11", 2022, ORL22, false]])
+    ok(graphicPrints(printed, date, year, dates) === want, `graphic header "${printed}" should ${want ? "" : "not "}print ${date}`);
+}
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {

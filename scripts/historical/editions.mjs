@@ -92,7 +92,21 @@ export const EDITIONS = {
     dates: [["2022-09-17", "Saturday"], ["2022-09-18", "Sunday"]] },
   "nocturnal-wonderland-2024": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2024", year: 2024,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
-    dates: [["2024-09-14", "Saturday"], ["2024-09-15", "Sunday"]] },
+    dates: [["2024-09-14", "Saturday"], ["2024-09-15", "Sunday"]] },  "dreamstate-socal-2016": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-11-25", "Friday"], ["2016-11-26", "Saturday"]] },
+  "dreamstate-socal-2019": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-11-22", "Friday"], ["2019-11-23", "Saturday"]] },
+  "dreamstate-socal-2023": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2023-11-17", "Friday"], ["2023-11-18", "Saturday"]] },
+  "dreamstate-socal-2024": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2024-11-22", "Friday"], ["2024-11-23", "Saturday"]] },
+  "dreamstate-socal-2025": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2025-11-21", "Friday"], ["2025-11-22", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
@@ -123,7 +137,7 @@ export const DROP_RULES = [
   { category: "show-segment", stage: /^kinetic ?field$/i,
     test: /^(intermezzo\b.*|kinetic (experience|celebration|bloom)\b.*|(natural|kinetic|industrial|spiritual) energy|grow|blossom|pollinate|closing)$/i,
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|tba|to be announced)$/i,
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|tba|to be announced|coming soon!*)$/i,
     reason: "unnamed slot: no performer was billed" },
   // A bare "Discovery Project" in a printed stage slot is the contest set
   // before its winner was named (EDC Orlando 2022, 2024). A lineup list's

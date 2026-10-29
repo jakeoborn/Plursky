@@ -1,0 +1,49 @@
+{
+ "id": "dreamstate-socal-2023",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-11-17",
+   "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
+   "imageUrl": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/622061719_17961347511018547_1565309587914429353_n.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 36,
+   "note": "Header read off the graphic: FRI 11.17.23",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 34,
+   "byEye": [
+    "d1 THE DREAM 16:55-17:55 ATDUSK: by eye on the full graphic, billing and printed range as the sheet",
+    "d1 THE DREAM 16:00-16:55 DAXSON: by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2023-11-18",
+   "sha256": "c10da1938d2b0e6841bf10d47812852331ddee67942d92b21593600b75dd566e",
+   "imageUrl": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-15/622061719_17961347511018547_1565309587914429353_n.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 34,
+   "note": "Header read off the graphic: SAT 11.18.23",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 22,
+   "byEye": [
+    "d2 THE DREAM 23:40-01:00 ARMIN VAN BUUREN: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VISION 21:00-22:00 RICHARD DURAND: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VISION 19:00-20:00 ROBERT NICKSON: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VISION 18:00-19:00 PAUL OAKENFOLD: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE SEQUENCE 17:00-18:00 MORTEN GRANAU: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 00:00-01:00 KEY4050: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 22:00-23:00 GIUSEPPE OTTAVIANI: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 21:00-22:00 CRAIG CONNELLY & FACTOR B: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 19:00-20:00 SEAN TYAS: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 18:00-19:00 RUBEN DE RONDE & ESTIVA PRES EBENEZER: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 17:00-18:00 GREG DOWNEY: by eye on the full graphic, billing and printed range as the sheet",
+    "d2 THE VOID 16:00-17:00 DUSTIN HUSAIN: by eye on the full graphic, billing and printed range as the sheet"
+   ],
+   "printedReadings": []
+  }
+ ]
+}

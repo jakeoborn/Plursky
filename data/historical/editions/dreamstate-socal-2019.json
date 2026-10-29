@@ -1,0 +1,896 @@
+{
+ "id": "dreamstate-socal-2019",
+ "festivalId": "dreamstate-socal",
+ "name": "Dreamstate SoCal 2019",
+ "year": 2019,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-11-22",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2019-11-23",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "dreamstate-socal-2019:the-dream",
+   "name": "The Dream"
+  },
+  {
+   "id": "dreamstate-socal-2019:the-vision",
+   "name": "The Vision"
+  },
+  {
+   "id": "dreamstate-socal-2019:the-sequence",
+   "name": "The Sequence"
+  }
+ ],
+ "artists": [
+  {
+   "id": "dreamstate-socal-2019:dave-neven",
+   "name": "Dave Neven",
+   "key": "dave-neven",
+   "performers": [
+    "dave-neven"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:somna",
+   "name": "Somna",
+   "key": "somna",
+   "performers": [
+    "somna"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:davey-asprey",
+   "name": "Davey Asprey",
+   "key": "davey-asprey",
+   "performers": [
+    "davey-asprey"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:ruben-de-ronde",
+   "name": "Ruben de Ronde",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:giuseppe-ottaviani-live-2-0",
+   "name": "Giuseppe Ottaviani Live 2.0",
+   "key": "giuseppe-ottaviani-live-2-0",
+   "performers": [
+    "giuseppe-ottaviani-live-2-0"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:key4050",
+   "name": "Key4050",
+   "key": "key4050",
+   "performers": [
+    "key4050"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:gareth-emery",
+   "name": "Gareth Emery",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:alessandra-roncone",
+   "name": "Alessandra Roncone",
+   "key": "alessandra-roncone",
+   "performers": [
+    "alessandra-roncone"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:the-space-brothers",
+   "name": "The Space Brothers",
+   "key": "the-space-brothers",
+   "performers": [
+    "the-space-brothers"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:cold-blue-winter-album-showcase",
+   "name": "Cold Blue \"Winter Album Showcase\"",
+   "key": "cold-blue-winter-album-showcase",
+   "performers": [
+    "cold-blue-winter-album-showcase"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:johan-gielen",
+   "name": "Johan Gielen",
+   "key": "johan-gielen",
+   "performers": [
+    "johan-gielen"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:solarstone",
+   "name": "Solarstone",
+   "key": "solarstone",
+   "performers": [
+    "solarstone"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:kai-tracid",
+   "name": "Kai Tracid",
+   "key": "kai-tracid",
+   "performers": [
+    "kai-tracid"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:gentech-mark-sherry-and-scot-project",
+   "name": "Gentech (Mark Sherry & Scot Project)",
+   "key": "gentech-mark-sherry-and-scot-project",
+   "performers": [
+    "gentech-mark-sherry-and-scot-project"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:bryan-kearney-presents-karney",
+   "name": "Bryan Kearney presents Karney",
+   "key": "bryan-kearney-presents-karney",
+   "performers": [
+    "bryan-kearney-presents-karney"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:yoji-biomehanika",
+   "name": "Yoji Biomehanika",
+   "key": "yoji-biomehanika",
+   "performers": [
+    "yoji-biomehanika"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:sentinel-7",
+   "name": "Sentinel 7",
+   "key": "sentinel-7",
+   "performers": [
+    "sentinel-7"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:khromata",
+   "name": "Khromata",
+   "key": "khromata",
+   "performers": [
+    "khromata"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:perfect-stranger",
+   "name": "Perfect Stranger",
+   "key": "perfect-stranger",
+   "performers": [
+    "perfect-stranger"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:ace-ventura",
+   "name": "Ace Ventura",
+   "key": "ace-ventura",
+   "performers": [
+    "ace-ventura"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:shpongle-simon-posford-live-set",
+   "name": "Shpongle (Simon Posford Live Set)",
+   "key": "shpongle-simon-posford-live-set",
+   "performers": [
+    "shpongle-simon-posford-live-set"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:astrix",
+   "name": "Astrix",
+   "key": "astrix",
+   "performers": [
+    "astrix"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:gaudium",
+   "name": "Gaudium",
+   "key": "gaudium",
+   "performers": [
+    "gaudium"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:avalon",
+   "name": "Avalon",
+   "key": "avalon",
+   "performers": [
+    "avalon"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:electric-universe-live-set",
+   "name": "Electric Universe (Live Set)",
+   "key": "electric-universe-live-set",
+   "performers": [
+    "electric-universe-live-set"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:sunny-lax",
+   "name": "Sunny Lax",
+   "key": "sunny-lax",
+   "performers": [
+    "sunny-lax"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:oliver-smith",
+   "name": "Oliver Smith",
+   "key": "oliver-smith",
+   "performers": [
+    "oliver-smith"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:genix",
+   "name": "Genix",
+   "key": "genix",
+   "performers": [
+    "genix"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:gabriel-and-dresden",
+   "name": "Gabriel & Dresden",
+   "key": "gabriel-and-dresden",
+   "performers": [
+    "gabriel-and-dresden"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:jason-ross",
+   "name": "Jason Ross",
+   "key": "jason-ross",
+   "performers": [
+    "jason-ross"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:spencer-brown",
+   "name": "Spencer Brown",
+   "key": "spencer-brown",
+   "performers": [
+    "spencer-brown"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:andrew-bayer-b2b-ilan-bluestone",
+   "name": "Andrew Bayer B2B Ilan Bluestone",
+   "key": "andrew-bayer-b2b-ilan-bluestone",
+   "performers": [
+    "andrew-bayer",
+    "ilan-bluestone"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:ashley-smith-vs-maria-healy",
+   "name": "Ashley Smith vs Maria Healy",
+   "key": "ashley-smith-vs-maria-healy",
+   "performers": [
+    "ashley-smith-vs-maria-healy"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:paul-denton-vs-david-forbes",
+   "name": "Paul Denton vs David Forbes",
+   "key": "paul-denton-vs-david-forbes",
+   "performers": [
+    "paul-denton-vs-david-forbes"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:pathfinders-james-dymond-and-chris-schweizer",
+   "name": "Pathfinders (James Dymond & Chris Schweizer)",
+   "key": "pathfinders-james-dymond-and-chris-schweizer",
+   "performers": [
+    "pathfinders-james-dymond-and-chris-schweizer"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:fables-dan-stone-and-ferry-tayle",
+   "name": "Fables (Dan Stone & Ferry Tayle)",
+   "key": "fables-dan-stone-and-ferry-tayle",
+   "performers": [
+    "fables-dan-stone-and-ferry-tayle"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:craig-connelly-vs-factor-b",
+   "name": "Craig Connelly vs Factor B",
+   "key": "craig-connelly-vs-factor-b",
+   "performers": [
+    "craig-connelly-vs-factor-b"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:skypatrol-standerwick-and-reorder",
+   "name": "Skypatrol (Standerwick & ReOrder)",
+   "key": "skypatrol-standerwick-and-reorder",
+   "performers": [
+    "skypatrol-standerwick-and-reorder"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:sean-tyas-vs-menno-de-jong",
+   "name": "Sean Tyas vs Menno de Jong",
+   "key": "sean-tyas-vs-menno-de-jong",
+   "performers": [
+    "sean-tyas-vs-menno-de-jong"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:joint-operations-centre-joc",
+   "name": "Joint Operations Centre (JOC)",
+   "key": "joint-operations-centre-joc",
+   "performers": [
+    "joint-operations-centre-joc"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:aa-meeting-john-askew-and-activa",
+   "name": "AA Meeting (John Askew & Activa)",
+   "key": "aa-meeting-john-askew-and-activa",
+   "performers": [
+    "aa-meeting-john-askew-and-activa"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:sidekicks",
+   "name": "Sidekicks",
+   "key": "sidekicks",
+   "performers": [
+    "sidekicks"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:egorythmia",
+   "name": "Egorythmia",
+   "key": "egorythmia",
+   "performers": [
+    "egorythmia"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:reality-test",
+   "name": "Reality Test",
+   "key": "reality-test",
+   "performers": [
+    "reality-test"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:animato",
+   "name": "Animato",
+   "key": "animato",
+   "performers": [
+    "animato"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:blastoyz",
+   "name": "Blastoyz",
+   "key": "blastoyz",
+   "performers": [
+    "blastoyz"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:vini-vici-and-friends",
+   "name": "Vini Vici & Friends",
+   "key": "vini-vici-and-friends",
+   "performers": [
+    "vini-vici-and-friends"
+   ]
+  },
+  {
+   "id": "dreamstate-socal-2019:abraxis-seven-lions-and-dimibo",
+   "name": "Abraxis (Seven Lions & Dimibo)",
+   "key": "abraxis-seven-lions-and-dimibo",
+   "performers": [
+    "abraxis-seven-lions-and-dimibo"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:1700:dave-neven",
+   "artistId": "dreamstate-socal-2019:dave-neven",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:1800:somna",
+   "artistId": "dreamstate-socal-2019:somna",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:1900:davey-asprey",
+   "artistId": "dreamstate-socal-2019:davey-asprey",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:2000:ruben-de-ronde",
+   "artistId": "dreamstate-socal-2019:ruben-de-ronde",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:2100:giuseppe-ottaviani-live-2-0",
+   "artistId": "dreamstate-socal-2019:giuseppe-ottaviani-live-2-0",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:2200:key4050",
+   "artistId": "dreamstate-socal-2019:key4050",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:2300:gareth-emery",
+   "artistId": "dreamstate-socal-2019:gareth-emery",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:0000:ferry-corsten",
+   "artistId": "dreamstate-socal-2019:ferry-corsten",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-dream:0100:aly-and-fila",
+   "artistId": "dreamstate-socal-2019:aly-and-fila",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:1700:alessandra-roncone",
+   "artistId": "dreamstate-socal-2019:alessandra-roncone",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:1800:the-space-brothers",
+   "artistId": "dreamstate-socal-2019:the-space-brothers",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:1900:cold-blue-winter-album-showcase",
+   "artistId": "dreamstate-socal-2019:cold-blue-winter-album-showcase",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:2000:johan-gielen",
+   "artistId": "dreamstate-socal-2019:johan-gielen",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:2100:solarstone",
+   "artistId": "dreamstate-socal-2019:solarstone",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:2200:kai-tracid",
+   "artistId": "dreamstate-socal-2019:kai-tracid",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:2300:gentech-mark-sherry-and-scot-project",
+   "artistId": "dreamstate-socal-2019:gentech-mark-sherry-and-scot-project",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:0000:bryan-kearney-presents-karney",
+   "artistId": "dreamstate-socal-2019:bryan-kearney-presents-karney",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-vision:0100:yoji-biomehanika",
+   "artistId": "dreamstate-socal-2019:yoji-biomehanika",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:1700:sentinel-7",
+   "artistId": "dreamstate-socal-2019:sentinel-7",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:1800:khromata",
+   "artistId": "dreamstate-socal-2019:khromata",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:1900:perfect-stranger",
+   "artistId": "dreamstate-socal-2019:perfect-stranger",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:2000:ace-ventura",
+   "artistId": "dreamstate-socal-2019:ace-ventura",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:2100:shpongle-simon-posford-live-set",
+   "artistId": "dreamstate-socal-2019:shpongle-simon-posford-live-set",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:2200:astrix",
+   "artistId": "dreamstate-socal-2019:astrix",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:2300:gaudium",
+   "artistId": "dreamstate-socal-2019:gaudium",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:0000:avalon",
+   "artistId": "dreamstate-socal-2019:avalon",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d1:the-sequence:0100:electric-universe-live-set",
+   "artistId": "dreamstate-socal-2019:electric-universe-live-set",
+   "day": 1,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:1700:sunny-lax",
+   "artistId": "dreamstate-socal-2019:sunny-lax",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:1800:oliver-smith",
+   "artistId": "dreamstate-socal-2019:oliver-smith",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:1900:genix",
+   "artistId": "dreamstate-socal-2019:genix",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:2000:gabriel-and-dresden",
+   "artistId": "dreamstate-socal-2019:gabriel-and-dresden",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:2100:jason-ross",
+   "artistId": "dreamstate-socal-2019:jason-ross",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:2200:spencer-brown",
+   "artistId": "dreamstate-socal-2019:spencer-brown",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:2300:above-and-beyond",
+   "artistId": "dreamstate-socal-2019:above-and-beyond",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "23:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-dream:0100:andrew-bayer-b2b-ilan-bluestone",
+   "artistId": "dreamstate-socal-2019:andrew-bayer-b2b-ilan-bluestone",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-dream",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:1700:ashley-smith-vs-maria-healy",
+   "artistId": "dreamstate-socal-2019:ashley-smith-vs-maria-healy",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:1800:paul-denton-vs-david-forbes",
+   "artistId": "dreamstate-socal-2019:paul-denton-vs-david-forbes",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:1900:pathfinders-james-dymond-and-chris-schweizer",
+   "artistId": "dreamstate-socal-2019:pathfinders-james-dymond-and-chris-schweizer",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:2000:fables-dan-stone-and-ferry-tayle",
+   "artistId": "dreamstate-socal-2019:fables-dan-stone-and-ferry-tayle",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:2100:craig-connelly-vs-factor-b",
+   "artistId": "dreamstate-socal-2019:craig-connelly-vs-factor-b",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:2200:skypatrol-standerwick-and-reorder",
+   "artistId": "dreamstate-socal-2019:skypatrol-standerwick-and-reorder",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:2300:sean-tyas-vs-menno-de-jong",
+   "artistId": "dreamstate-socal-2019:sean-tyas-vs-menno-de-jong",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:0000:joint-operations-centre-joc",
+   "artistId": "dreamstate-socal-2019:joint-operations-centre-joc",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-vision:0100:aa-meeting-john-askew-and-activa",
+   "artistId": "dreamstate-socal-2019:aa-meeting-john-askew-and-activa",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-vision",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:1700:sidekicks",
+   "artistId": "dreamstate-socal-2019:sidekicks",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "17:00",
+   "end": "19:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:1900:egorythmia",
+   "artistId": "dreamstate-socal-2019:egorythmia",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:2000:reality-test",
+   "artistId": "dreamstate-socal-2019:reality-test",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:2100:animato",
+   "artistId": "dreamstate-socal-2019:animato",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:2200:vini-vici",
+   "artistId": "dreamstate-socal-2019:vini-vici",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:2300:blastoyz",
+   "artistId": "dreamstate-socal-2019:blastoyz",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:0000:vini-vici-and-friends",
+   "artistId": "dreamstate-socal-2019:vini-vici-and-friends",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "dreamstate-socal-2019:d2:the-sequence:0100:abraxis-seven-lions-and-dimibo",
+   "artistId": "dreamstate-socal-2019:abraxis-seven-lions-and-dimibo",
+   "day": 2,
+   "stageId": "dreamstate-socal-2019:the-sequence",
+   "start": "01:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://socal.dreamstateusa.com/lineup/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200921061533/https://socal.dreamstateusa.com/lineup/set-times/day-1/",
+    "captureTimestamp": "20200921061533",
+    "printed": "Friday, November 22",
+    "sha256": "c1753c2db77825a1871547e319b96387c0082a07a34aeb2f07530b597c450efc",
+    "rows": 27
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200921063146/https://socal.dreamstateusa.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20200921063146",
+    "printed": "Saturday, November 23",
+    "sha256": "fefff85351218faa2cc5ba28bf56bfb988679c9e0935e78643d46e77c7e0d2c6",
+    "rows": 25
+   }
+  ]
+ }
+}

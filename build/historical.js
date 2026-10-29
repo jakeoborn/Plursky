@@ -456,7 +456,7 @@ function _HistProvenance({
       target: "_blank",
       rel: "noopener noreferrer",
       style: link
-    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", stamp(c.published.replace(/-/g, "")))), c.stagesAs && React.createElement("div", {
+    }, "Official graphic", nth, " · ", c.rehostedBy, " · ", c.published ? stamp(c.published.replace(/-/g, "")) : "no printed date")), c.stagesAs && React.createElement("div", {
       style: {
         fontSize: 13,
         color: "var(--text-2)",
