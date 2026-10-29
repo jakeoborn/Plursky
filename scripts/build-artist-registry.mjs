@@ -241,12 +241,18 @@ export function build(root = ROOT, overrides = null) {
     const art = new Map(ed.artists.map(a => [a.id, a])), st = new Map(ed.stages.map(s => [s.id, s.name])), days = new Map((ed.days || []).map(d => [d.day, d.date]));
     // §4.5: an archived day is what the official page printed when it was
     // archived, so each set carries that capture's date, in the edition's zone.
-    const published = new Map((ed.provenance?.captures || []).map(c => [c.day, publishedOn(c.captureTimestamp || c.imageCapture, ed.timezone)]));
+    // An official_sources graphic carries its own publish date; a day printed
+    // by several sources takes the latest.
+    const published = new Map();
+    for (const c of ed.provenance?.captures || []) {
+      const on = c.kind === 'graphic' ? c.published : publishedOn(c.captureTimestamp || c.imageCapture, ed.timezone);
+      if (on && !(published.get(c.day) > on)) published.set(c.day, on);
+    }
     for (const s of ed.sets) {
       const a = art.get(s.artistId);
       rows.push({ id: s.id, source: 'edition', festivalId: ed.id, festivalBrand: brandOf(ed.festivalId || ed.id), year: ed.year,
         date: days.get(s.day) || null, day: s.day ?? null, stage: st.get(s.stageId) || null,
-        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id,
+        start: s.start || null, end: s.end || null, printed: s.billing || (a ? a.name : s.artistId), genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id,
         published: published.get(s.day) || null, ...(s.openEnd ? { openEnd: true } : {}) });
     }
   }
