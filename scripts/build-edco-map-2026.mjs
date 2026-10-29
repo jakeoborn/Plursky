@@ -6,11 +6,12 @@
 //   node scripts/build-edco-map-2026.mjs          # (re)build the plate
 //   node scripts/build-edco-map-2026.mjs --check  # verify source + derivative
 //
-// ⚠ NOT PINNED YET. The official 2026 map is not published (checked
-// 2026-09-30: orlando.edc.com's guide and stages pages carry no map image), so
-// every field the map decides is null and the app still ships the generated
-// placeholder `edco-tinker-2026.jpg`. While unpinned, --check passes and says
-// so, and a build refuses to run.
+// PINNED 2026-10-29 from the official Festival Map page
+// (https://orlando.edc.com/guide/map/), which shows the 2026 map: "ORLANDO
+// 2026, NOV 6+7+8, TINKER FIELD". config.mapImage ships the derivative. The
+// stage and amenity x/y in data.jsx are the `measured` rows below, and the
+// five anchors are fitted from map-sources/edco-map-2026-control-points.json.
+// The festival stays gated until the official set times are out.
 //
 // The flip session fills this in, in order:
 //   1. Save the official map UNEDITED at `source`. Record its URL and date here.
@@ -32,21 +33,61 @@ import { imageSize, sha256 } from "./build-acl-map-2026.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const EDCO_MAP_2026 = {
   festivalId: "edc-orlando-2026",
-  // What ships until the official map is pinned.
+  // What shipped until the official map was pinned (deleted with the pin).
   placeholder: "edco-tinker-2026.jpg",
   source: "map-sources/edco-map-2026-source.png",
-  sourceUrl: null,
-  sourceObservedAt: null,
-  sourceSha256: null,
-  sourceSize: null,
-  crop: null,                       // { x, y, w, h } in source pixels
-  pad: null,                        // { top, bottom, left, right, color }
+  // The official page that shows the map (in a <figure>, as data-lazy-src),
+  // and the file it shows. No `mapSource` in data.jsx yet: the public /f/
+  // page's map link is held for EDC Orlando by test-festival-maps-hours.mjs
+  // until a ruling gives it one.
+  sourcePage: "https://orlando.edc.com/guide/map/",
+  sourceUrl: "https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/44/2026/10/27141013/edco_2026_de_festival_map_1080x1350_r02.png",
+  sourceObservedAt: "2026-10-29",
+  sourceSha256: "4d0196f6896fe85d34ad5687c16b3f31161a7a8616dacff6ab6d27d51c46f5e5",
+  sourceSize: [1080, 1350],
+  crop: { x: 60, y: 326, w: 960, h: 719 },  // map art only: below "TINKER FIELD", above the legend
+  pad: { top: 120, bottom: 121, left: 0, right: 0, color: "0C170F" },
   derivative: "edco-tinker-2026.webp",
-  derivativeSize: null,
-  derivativeSha256: null,
+  derivativeSize: [960, 960],
+  // The committed plate. A rebuild with these settings reproduces it byte for
+  // byte (cwebp 1.6.0); a re-encode elsewhere is a new plate and fails --check.
+  derivativeSha256: "51b377145fda9de0a5639442eddf6207a532fe5922d56e08ea7348043d985e24",
   cwebp: ["-q", "86", "-m", "6", "-sharp_yuv", "-metadata", "none"],
-  // Derivative pixels, at the centre of the thing itself. Empty until step 5.
-  measured: { stages: {}, amenities: {} },
+  // Derivative pixels, at the centre of the thing itself (step 5, 2026-10-29).
+  measured: {
+    stages: {
+      kinetic: { px: [675, 612], confidence: "high",   note: "middle of the diagonal stage deck under the light rig, south-east of the KINETIC FIELD owl" },
+      circuit: { px: [145, 245], confidence: "high",   note: "stage deck under the light rig on West Church Street, north of the circuitGROUNDS logo" },
+      neon:    { px: [839, 360], confidence: "medium", note: "light rig north of the neon garden lotus; the lotus is a logo, so the rig is taken as the stage" },
+      stereo:  { px: [135, 615], confidence: "high",   note: "centre of the blue light-tower cluster beside the stereoBLOOM logo" },
+      bacardi: { px: [395, 736], confidence: "low",    note: "the BACARDÍ medallion; the art draws no stage structure here, so this is the label's position" },
+    },
+    // Every printed First Aid, Info, Water Station, Restroom / GA+ Restroom
+    // and Food badge, centred on the glyph (legend under the map). VIP-only
+    // badges, bars, lockers and the rest of the legend are not pinned.
+    amenities: {
+      eom1: { px: [102, 470], confidence: "high", note: "First Aid badge in Pixel Forest" },
+      eom2: { px: [279, 456], confidence: "high", note: "First Aid badge south-west of the stadium" },
+      eom3: { px: [424, 451], confidence: "high", note: "First Aid badge south-east of the stadium, by Kandi Casino" },
+      eom4: { px: [729, 322], confidence: "high", note: "First Aid badge beside the Entrance" },
+      eoi1: { px: [371, 450], confidence: "high", note: "Info badge south of the stadium, beside Lost & Found" },
+      eow1: { px: [95, 545],  confidence: "high", note: "the 40 TAPS water-station pill south of Pixel Forest" },
+      eow2: { px: [480, 737], confidence: "high", note: "the 64 TAPS water-station pill beside Rockstar" },
+      eot1: { px: [289, 371], confidence: "high", note: "Restrooms badge on the stadium's west stand" },
+      eot2: { px: [312, 371], confidence: "high", note: "GA+ Restrooms badge on the stadium's west stand" },
+      eot3: { px: [419, 358], confidence: "high", note: "Restrooms badge on the stadium's east stand" },
+      eot4: { px: [440, 358], confidence: "high", note: "GA+ Restrooms badge on the stadium's east stand" },
+      eot5: { px: [528, 168], confidence: "high", note: "Restrooms badge in the north annex off West Church Street" },
+      eot6: { px: [786, 471], confidence: "high", note: "GA+ Restrooms badge east of Kinetic Field" },
+      eot7: { px: [786, 502], confidence: "high", note: "Restrooms badge east of Kinetic Field" },
+      eof1: { px: [78, 419],  confidence: "high", note: "Food badge in Pixel Forest" },
+      eof2: { px: [410, 539], confidence: "high", note: "Food badge on Rainbow Road" },
+      eof3: { px: [698, 350], confidence: "high", note: "Food half of the bar + food pill in Rainbow Bazaar" },
+      eof4: { px: [501, 536], confidence: "high", note: "Food badge below Flower Tower" },
+      eof5: { px: [551, 562], confidence: "high", note: "Food badge on Kinetic Field's west edge" },
+      eof6: { px: [504, 606], confidence: "high", note: "Food badge by Jack Daniel's" },
+    },
+  },
 };
 
 const PIN_FIELDS = ["sourceUrl", "sourceObservedAt", "sourceSha256", "sourceSize", "crop", "pad"];
@@ -76,6 +117,8 @@ export function checkEdcoMap(M, { root = ROOT, mapImage } = {}) {
   if (!existsSync(out)) return { ok: false, msg: `${M.derivative} is missing` };
   if (dims(out) !== M.derivativeSize.join("x")) return { ok: false, msg: `${M.derivative} is ${dims(out)}, expected ${M.derivativeSize.join("x")}` };
   if (sha256(out) !== M.derivativeSha256) return { ok: false, msg: `${M.derivative} is not the plate these coordinates were measured on (sha256 differs) — rebuild or re-measure` };
+  if (mapImage !== undefined && mapImage !== M.derivative)
+    return { ok: false, msg: `config.mapImage is ${mapImage}, but the official 2026 plate ${M.derivative} is pinned and built — ship it` };
   return { ok: true, pinned: true, built: true, msg: `${M.source} ${M.sourceSize.join("x")} · ${M.derivative} ${M.derivativeSize.join("x")}` };
 }
 
