@@ -1071,12 +1071,18 @@ function _presNotify() {
   _presCbs.forEach(fn => { try { fn(s); } catch {} });
 }
 
+// What a crew "loc" carries: who, which stage, and when. Stage-level only
+// (15-feature program #2): no lat/lng goes out, and none is kept from a
+// crewmate on an older version that still sends it.
+function _crewLocPayload(l) {
+  return { pid: l.pid, name: l.name, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
+}
 function _broadcastMyLoc() {
   if (!_presCh || !_myLoc) return;
-  try { _presCh.send({ type: "broadcast", event: "loc", payload: { ..._myLoc, ts: Date.now() } }); } catch {}
+  try { _presCh.send({ type: "broadcast", event: "loc", payload: _crewLocPayload({ ..._myLoc, ts: Date.now() }) }); } catch {}
 }
 
-function sbPresenceJoin({ name, stageId, gps }) {
+function sbPresenceJoin({ name, stageId }) {
   if (!_sb) return;
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
@@ -1084,14 +1090,15 @@ function sbPresenceJoin({ name, stageId, gps }) {
 
   let pingCode;
   try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, gps, ts: Date.now() };
+  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, ts: Date.now() };
+  _syncStageHeadcount();
 
   _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
   _presCh
     // Someone shared their location → merge into the snapshot
     .on("broadcast", { event: "loc" }, ({ payload }) => {
       if (!payload?.pid || payload.pid === _presMyId) return;
-      _presSnap[payload.pid] = payload;
+      _presSnap[payload.pid] = _crewLocPayload(payload);
       _presNotify();
     })
     // A late joiner asked everyone to re-announce → re-broadcast mine
@@ -1104,7 +1111,9 @@ function sbPresenceJoin({ name, stageId, gps }) {
     // A crew member called a rally point → surface it to converge on
     .on("broadcast", { event: "rally" }, ({ payload }) => {
       if (!payload?.rallyId || payload.fromPid === _presMyId) return;
-      _activeRally = payload;
+      const r = _rallyPayload(payload);
+      if (!r) return;
+      _activeRally = r;
       _rallyNotify();
     })
     // Rally caller cleared it → drop it everywhere
@@ -1124,11 +1133,15 @@ function sbPresenceJoin({ name, stageId, gps }) {
 }
 
 // Accepts either a plain stageId (legacy, kept so old call sites still work)
-// or a partial { stageId?, gps? } update merged onto the current state.
+// or a partial { stageId? } update merged onto the current state (stage only).
 async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
-  const patch = typeof arg === "string" ? { stageId: arg } : (arg || {});
+  // An explicit stageId: null withdraws my stage; only a missing key keeps it.
+  const patch = typeof arg === "string" ? { stageId: arg }
+    : (arg && Object.prototype.hasOwnProperty.call(arg, "stageId")) ? { stageId: arg.stageId || null }
+    : { stageId: _myLoc.stageId };
   _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
+  _syncStageHeadcount();
   _presSnap[_presMyId] = { ..._myLoc };
   _broadcastMyLoc();
   _presNotify();
@@ -1149,7 +1162,7 @@ function _stopPresenceHeartbeat() {
 // crew code change so a sharing user moves to the new crew's channel.
 function sbPresenceRefresh() {
   if (!_myLoc) return false;
-  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId, gps: _myLoc.gps });
+  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId });
   return true;
 }
 
@@ -1161,6 +1174,7 @@ function sbPresenceLeave() {
   }
   _presSnap = {};
   _myLoc = null;
+  leaveStagePresence();
   _myRally = null;
   _activeRally = null;
   _presMyId = null;
@@ -1173,26 +1187,36 @@ function sbOnPresenceChange(cb) {
 }
 
 // ── Rally point (shared meet-up) ─────────────────────────────
-// One crew member calls a rally; everyone else receives { x, y, label,
-// stageId, fromName } and can converge on it. Rides the same crew broadcast
+// One crew member calls a rally; everyone else receives { label, stageId,
+// fromName } and can converge on that stage. No x/y and no lat/lng: a rally
+// names a stage, never a spot (stage-only crew sharing). Rides the same crew broadcast
 // channel as location, so it's scoped to your crew. Re-broadcast on the
 // heartbeat + on loc-req (fire-and-forget has no history), and cleared
 // explicitly or when the caller leaves.
 function _broadcastMyRally() {
   if (!_presCh || !_myRally) return;
-  try { _presCh.send({ type: "broadcast", event: "rally", payload: { ..._myRally, ts: Date.now() } }); } catch {}
+  const p = _rallyPayload({ ..._myRally, ts: Date.now() });
+  if (!p) return;
+  try { _presCh.send({ type: "broadcast", event: "rally", payload: p }); } catch {}
+}
+// The only fields a rally carries, on send and on receive. A rally with no
+// stage is dropped.
+function _rallyPayload(r) {
+  if (!r || !r.rallyId || !r.stageId) return null;
+  return {
+    rallyId: String(r.rallyId), label: String(r.label || "").slice(0, 60),
+    stageId: String(r.stageId), fromPid: r.fromPid || null,
+    fromName: r.fromName || "Someone", ts: r.ts || Date.now(),
+  };
 }
 function _rallyNotify() { const r = _activeRally; _rallyCbs.forEach(fn => { try { fn(r); } catch {} }); }
 
 // Call a rally. Requires being joined to the crew channel (i.e. sharing).
-function sbBroadcastRally({ x, y, label, stageId, gps }) {
-  if (!_presCh) return false;
-  // gps: the pin's raw lat/lng when it was dropped on the real basemap. On a
-  // festival with no affine, x/y alone would put every rally on the centroid.
-  const g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? { lat: gps.lat, lng: gps.lng } : null;
+function sbBroadcastRally({ label, stageId }) {
+  if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
-    x, y, label, stageId: stageId || null, ...(g ? { gps: g } : {}),
+    label, stageId,
     fromPid: _presMyId, fromName: (_myLoc && _myLoc.name) || "Someone",
   };
   _broadcastMyRally();
@@ -1812,6 +1836,9 @@ function sbGenerateShareToken() {
   }
 }
 
+// No caller since #2 (stage-only crew share): the live_shares table these
+// write to was never created in prod, so every write failed silently, and a
+// public link is out of scope. Kept only so an old share.html link fails soft.
 async function sbLiveShareStart({ token, pid, name, color, expiresAt, gps, stageId }) {
   if (!_sb || !token) return { error: "no_supabase_or_token" };
   const row = {
@@ -3004,9 +3031,31 @@ function CrewCard({ state }) {
 let _stagePresChannel = null;
 let _currentPresenceStage = null;
 
+// Opt-in (15-feature program #2): the headcount only counts me while I'm
+// sharing my stage with my crew. It used to join anyone the live-mode GPS
+// placed near a stage, without asking.
+function _crewShareActive() {
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch { return false; }
+}
+// The headcount follows the stage I declared to my crew, never a GPS fix:
+// sbPresenceJoin/Update call this, and sbPresenceLeave (Stop) leaves.
+function _syncStageHeadcount() {
+  const sid = _myLoc && _myLoc.stageId;
+  if (sid) joinStagePresence(sid); else leaveStagePresence();
+}
+// One channel per festival and crew: my crew's headcount, not everyone's.
+function _stagePresChannelName(stageId) {
+  const fid = (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id) || "-";
+  return `stage:${fid}:${_presChannelName()}:${stageId}`;
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
-  if (_currentPresenceStage === stageId) return;
+  // Re-checked on every call: a share that stopped or expired never joins.
+  if (!_sb || !stageId || !_crewShareActive()) { leaveStagePresence(); return; }
+  const chName = _stagePresChannelName(stageId);
+  if (_currentPresenceStage === chName) return;
 
   // Leave previous stage channel
   if (_stagePresChannel) {
@@ -3014,14 +3063,14 @@ function joinStagePresence(stageId) {
     _stagePresChannel = null;
   }
 
-  _currentPresenceStage = stageId;
+  _currentPresenceStage = chName;
   const deviceId = localStorage.getItem("plursky-device-id") || (() => {
     const id = `anon_${Math.random().toString(36).slice(2, 8)}`;
     try { localStorage.setItem("plursky-device-id", id); } catch {}
     return id;
   })();
 
-  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+  _stagePresChannel = _sb.channel(chName, {
     config: { presence: { key: deviceId } },
   });
 
