@@ -12,8 +12,8 @@
 //   1. RealMap places the avatar, the meet pin and the route ends through
 //      _lngLatOf(): a point's own raw GPS when it carries one, else the affine.
 //   2. The live avatar carries its raw fix {lat, lng, accuracy, ts}; a meet pin
-//      dropped on the basemap carries the clicked lat/lng, and so does the
-//      rally it is broadcast as.
+//      dropped on the basemap carries the clicked lat/lng. The rally it is
+//      broadcast as carries only its stage id (stage-only crew sharing, #376).
 //   3. The demo avatar carries no GPS, so it is never drawn as a real fix.
 //   4. A festival WITH a registered affine is unchanged for points without GPS.
 //
@@ -161,22 +161,21 @@ const m = (P, a, b) => P.distMiles(a.lat, a.lng, b.lat, b.lng) * 1609.34;
   check(/gps: \{ lat: gpsPos\.lat, lng: gpsPos\.lng/.test(src), "the live avatar carries the raw fix");
   check(/live: true, gps: liveAvatar\.gps/.test(src), "MapScreen passes the raw fix on the avatar");
   check(/\.\.\.\(xy\.gps \? \{ gps: xy\.gps \} : \{\}\)/.test(src), "MapScreen keeps the clicked lat/lng on the meet target");
-  check(/gps: meetTarget\.gps \|\| null/.test(src), "a rally carries the meet pin's lat/lng");
+  check(!/gps: meetTarget\.gps/.test(src) && /sbBroadcastRally\(\{\s*label: meetTarget\.label,\s*stageId:/.test(src), "a rally sends the stage id, never the pin's lat/lng");
   // The overlay re-stack ran moveLayer on every styledata, and moveLayer fires
   // styledata: the style never settled, so "load" never fired and no avatar or
   // stage marker was ever added (measured on III Points and ACL, main c0b8b3e).
   check(/if \(_top\.some\(\(id, i\) => _tail\[i\] !== id\)\) _top\.forEach/.test(body), "RealMap re-stacks its overlay layers only when they are out of order (no styledata loop)");
   check(!/\]\.forEach\(\(id\) => \{\s*try \{ if \(map\.getLayer\(id\)\) map\.moveLayer\(id\)/.test(body), "the unconditional moveLayer loop is gone");
   check(/const ll = _realMapTarget\(f\);/.test(body), "crew friend markers go through the range-checked _realMapTarget");
-  check(/\.\.\.\(_validGps\(incomingRally\.gps\)/.test(src), "an accepted rally's gps is range-checked");
+  check(!/incomingRally\.(gps|x|y)\b/.test(src), "an accepted rally is placed at its stage, never at a sent position");
   check(/const routingLabel = !avatar\?\.live \? "ROUTE PREVIEW" : "YOUR LOCATION LIVE";/.test(src), "the meet sheet says YOUR LOCATION LIVE only for a live avatar, else ROUTE PREVIEW");
   check(!/WALKING`/.test(src) && /\$\{meetGroup\.length \? ` · YOU \+ \$\{meetGroup\.length\}` : ""\}/.test(src), "the meet banner names who the meetup is for, never claims anyone is WALKING");
   check(!/(ALL|BOTH) ROUTING LIVE/.test(src), "no ALL/BOTH ROUTING LIVE crew claim (friends' freshness is not checked there)");
   check(/const gpsPos = _gpsFresh \? _gpsRaw : null;/.test(src), "MapScreen reads the fix only while useGeolocation says it is live");
   check(/live: _gpsFresh \} = useGeolocation\(gpsLive\)/.test(src), "MapScreen takes the live flag from useGeolocation");
   const sb = readFileSync(join(ROOT, "supabase.jsx"), "utf8");
-  check(/Math\.abs\(gps\.lat\) <= 90 && Math\.abs\(gps\.lng\) <= 180/.test(sb), "sbBroadcastRally range-checks the pin's lat/lng");
-  check(/function sbBroadcastRally\(\{ x, y, label, stageId, gps \}\)/.test(sb) && /\.\.\.\(g \? \{ gps: g \} : \{\}\)/.test(sb), "sbBroadcastRally sends the pin's lat/lng");
+  check(/function sbBroadcastRally\(\{ label, stageId \}\)/.test(sb) && !/\.\.\.\(g \? \{ gps: g \} : \{\}\)/.test(sb), "sbBroadcastRally takes a stage id and label, no lat/lng");
 }
 
 // ── 4. useGeolocation: OFF, an error and a stale fix are never LIVE ─────────
