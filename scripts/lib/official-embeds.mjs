@@ -115,9 +115,23 @@ export function xPublishedAt(url) {
 // ("could not confirm"), never a dead embed.
 export class TransientFetch extends Error {}
 const rethrowTransient = err => { if (err instanceof TransientFetch) throw err; return null; };
+
+// A page that REFUSES the checker instead of answering about the post: a bot
+// wall (403), an auth gate (401) or a legal block (451). The weekly workflow
+// runs on a GitHub runner, whose datacenter IP is what festival sites' bot
+// protection answers 403 to, so a refusal says nothing about the embed and
+// belongs with 429 and 5xx. Only pages are read this way; an oEmbed status is
+// the platform's verdict on the post itself and keeps its own meaning (a 401
+// from YouTube's oEmbed IS a private video).
+const REFUSED = new Set([401, 403, 451]);
+const pageRead = (url, r) => {
+  if (r && REFUSED.has(r.status)) throw new TransientFetch(`${url} refused the check with ${r.status}`);
+  return r;
+};
 async function youtubePublishedAt(url, fetcher) {
   try {
-    const r = await fetcher(`https://www.youtube.com/watch?v=${youtubeId(url)}`);
+    const watch = `https://www.youtube.com/watch?v=${youtubeId(url)}`;
+    const r = pageRead(watch, await fetcher(watch));
     const m = r && r.status === 200 && r.text.match(/itemprop="uploadDate" content="(\d{4}-\d{2}-\d{2})/);
     return m ? m[1] : null;
   } catch (err) { return rethrowTransient(err); }
@@ -142,7 +156,7 @@ export async function youtubeChannelId(url, fetcher) {
   const direct = String(url).match(/youtube\.com\/channel\/(UC[A-Za-z0-9_-]{22})/);
   if (direct) return direct[1];
   try {
-    const r = await fetcher(url);
+    const r = pageRead(url, await fetcher(url));
     if (!r || r.status !== 200) return null;
     const m = r.text.match(/<link rel="canonical" href="https:\/\/www\.youtube\.com\/channel\/(UC[A-Za-z0-9_-]{22})"/);
     return m ? m[1] : null;
@@ -201,7 +215,7 @@ export async function verifyEmbed(e, fetcher, opts = {}) {
   }
 }
 async function _verifyEmbed(e, fetcher, opts) {
-  const src = await fetcher(e.accountSourceUrl);
+  const src = pageRead(e.accountSourceUrl, await fetcher(e.accountSourceUrl));
   if (src.status !== 200) return { ok: false, reason: `accountSourceUrl returned ${src.status}` };
   if (!pageLinksAccount(src.text, e.platform, e.officialAccount)) return { ok: false, reason: 'accountSourceUrl does not link the official account' };
   const oe = await fetcher(OEMBED[e.platform](e.url));
@@ -216,24 +230,51 @@ async function _verifyEmbed(e, fetcher, opts) {
   }
   if (e.platform === 'instagram') {
     const { type, code } = instagramCode(e.url);
-    const p = await fetcher(`https://www.instagram.com/${type}/${code}/embed/`); pageHtml = p.status === 200 ? p.text : null;
+    const ig = `https://www.instagram.com/${type}/${code}/embed/`;
+    const p = pageRead(ig, await fetcher(ig)); pageHtml = p.status === 200 ? p.text : null;
   }
   if (e.platform === 'spotify' && accountKey('spotify', e.officialAccount).startsWith('user/')) {
-    const p = await fetcher(e.url); pageHtml = p.status === 200 ? p.text : null;
+    const p = pageRead(e.url, await fetcher(e.url)); pageHtml = p.status === 200 ? p.text : null;
   }
   if (!authorMatches(e.platform, e.officialAccount, body, pageHtml, e.url, ctx)) return { ok: false, reason: 'post is not by the official account' };
   const publishedAt = e.platform === 'instagram' ? instagramPublishedAt(e.url)
     : e.platform === 'x' ? xPublishedAt(e.url)
     : e.platform === 'youtube' ? await youtubePublishedAt(e.url, fetcher) : null;
-  if (e.platform === 'youtube' && !publishedAt) return { ok: false, reason: 'YouTube upload date unreadable' };
   if (e.platform === 'youtube') {
     const playable = opts.youtubePlayable ? await opts.youtubePlayable(youtubeId(e.url)) : null;
     if (playable === false) return { ok: false, reason: 'YouTube player refuses embedded playback ("This video is unavailable")' };
+    // A watch page without its upload date says nothing about the video: oEmbed
+    // has already found it live and by the official account. GitHub's runner is
+    // served such a page for videos a home connection reads dated (2026-10-28),
+    // so a missing date is "could not confirm", never dead.
+    if (!publishedAt) return { ok: false, unknown: true, reason: 'could not confirm: YouTube upload date unreadable' };
     if (playable !== true) return { ok: false, unknown: true, reason: 'YouTube embedded playback could not be confirmed' };
   }
   // The account's display name for the caption; a name, never post content.
   const accountName = e.platform === 'youtube' ? (body.author_name || null) : null;
   return { ok: true, reason: null, publishedAt, accountName };
+}
+
+// The weekly job's public log names no embed, but the CAUSE of each failure is
+// safe to print and tells the owner which check to look at. Fixed labels only:
+// nothing from the reason itself (a URL, a handle) reaches the log.
+const CAUSES = [
+  [/^accountSourceUrl returned (\d{3})$/, m => `festival site answered ${m[1]}`],
+  [/^accountSourceUrl does not link/, () => 'festival site no longer links the account'],
+  [/^oEmbed returned (\d{3}) /, m => `oEmbed answered ${m[1]}`],
+  [/^oEmbed returned (non-JSON|no embed)/, () => 'oEmbed returned no embed'],
+  [/^post is not by the official account$/, () => 'author did not match'],
+  [/^YouTube player refuses/, () => 'YouTube player refused playback'],
+];
+export function failureCause(reason) {
+  for (const [re, label] of CAUSES) { const m = String(reason || '').match(re); if (m) return label(m); }
+  return 'record invalid';
+}
+// "2 author did not match, 1 festival site answered 202", largest first.
+export function causeTally(reasons) {
+  const n = new Map();
+  for (const r of reasons) { const c = failureCause(r); n.set(c, (n.get(c) || 0) + 1); }
+  return [...n].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([c, k]) => `${k} ${c}`).join(', ');
 }
 
 // ── Selection + caps ──────────────────────────────────────────────────────
