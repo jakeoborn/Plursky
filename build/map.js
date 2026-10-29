@@ -643,6 +643,7 @@ function writeMeetups(arr) {
   } catch {}
 }
 function addMeetup({
+  festivalId,
   name,
   stageId,
   atTs,
@@ -651,6 +652,7 @@ function addMeetup({
   var list = readMeetups();
   list.push({
     id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    festivalId: festivalId || FESTIVAL_CONFIG.id,
     name: (name || "").slice(0, 60),
     stageId: stageId || null,
     atTs: Number(atTs) || Date.now(),
@@ -668,9 +670,10 @@ function removeMeetup(id) {
 }
 function upcomingMeetups() {
   var cutoff = Date.now() - 30 * 60 * 1000;
-  var list = readMeetups().filter(m => m.atTs > cutoff);
-  if (list.length !== readMeetups().length) writeMeetups(list);
-  return list;
+  var all = readMeetups();
+  var live = all.filter(m => m.atTs > cutoff);
+  if (live.length !== all.length) writeMeetups(live);
+  return live.filter(m => m.festivalId === FESTIVAL_CONFIG.id);
 }
 function formatLastSeen(ts) {
   if (!ts) return {
@@ -1861,18 +1864,19 @@ function MeetupsSheet({
     var atTs = new Date(whenLocal).getTime();
     if (!atTs || Number.isNaN(atTs)) return;
     var finalName = name.trim() || STAGES.find(s => s.id === stageId)?.name || "Meetup";
-    var next = addMeetup({
+    addMeetup({
+      festivalId: FESTIVAL_CONFIG.id,
       name: finalName,
       stageId,
       atTs,
       notes: notes.trim()
     });
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    setList(upcomingMeetups());
     reset();
   };
   var handleRemove = id => {
-    var next = removeMeetup(id);
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    removeMeetup(id);
+    setList(upcomingMeetups());
   };
   var crewCode = (() => {
     try {

@@ -1957,20 +1957,35 @@ function _formatVoteBody(pollId, option) {
 // always parses back to what was sent.
 const MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
 function _meetupText(s, max) { return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max); }
+// A meetup's stage must be one of its festival's stages. A non-active
+// festival's stages come from _DATA_SETS (bare STAGES is the active one).
+// true / false, or null when this build doesn't know the festival.
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
+// Only a meetup saved for this festival goes out under its id: a row from
+// another festival (or a legacy row with no festival) is never relabelled.
 function _formatMeetupBody(m, festivalId) {
   const name = _meetupText(m && m.name, 60), notes = _meetupText(m && m.notes, 200);
   const at = Math.round(Number(m && m.atTs));
   if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
   const body = `[MEETUP ${festivalId} ${(m && m.stageId) || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
   return _parseMeetup(body) ? body : null;
 }
 function _parseMeetup(body) {
   const m = MEETUP_RE.exec(body || "");
   if (!m) return null;
+  // A stage the named festival doesn't have is not a meetup. A festival this
+  // build doesn't know still parses: its card names it and offers no Add.
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
   return { festivalId: m[1], stageId: m[2] === "-" ? null : m[2], atTs: +m[3], name: m[4].trim(), notes: (m[5] || "").trim() };
 }
 // The same meetup, wherever it came from: one place, one time, one name.
-function meetupKey(m) { return `${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
+function meetupKey(m) { return `${(m && m.festivalId) || "-"}|${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
 
 // A crew meetup in the thread: where and when, and one tap to put it in my
 // own meetups (the list the Map's MEETUPS sheet shows). A meetup for another
@@ -1984,7 +1999,7 @@ function MeetupCard({ meet, from, sentAt }) {
   let when = "";
   try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
   const add = () => {
-    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ festivalId: meet.festivalId, name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
     window.plurskyHaptic?.("LIGHT");
     setMine(true);
   };

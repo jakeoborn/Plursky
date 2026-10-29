@@ -602,10 +602,12 @@ function readMeetups() {
 function writeMeetups(arr) {
   try { localStorage.setItem(MEETUPS_KEY, JSON.stringify(arr)); } catch {}
 }
-function addMeetup({ name, stageId, atTs, notes }) {
+// Every row carries its festival: stage ids only mean something there.
+function addMeetup({ festivalId, name, stageId, atTs, notes }) {
   const list = readMeetups();
   list.push({
     id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    festivalId: festivalId || FESTIVAL_CONFIG.id,
     name: (name || "").slice(0, 60),
     stageId: stageId || null,
     atTs: Number(atTs) || Date.now(),
@@ -622,14 +624,17 @@ function removeMeetup(id) {
   writeMeetups(list);
   return list;
 }
-// Surface only upcoming entries (not in the past). Anything older than
-// 30 min is also stale-removed automatically — keeps the list tidy.
+// Surface only upcoming entries (not in the past) for the active festival.
+// Anything older than 30 min is also stale-removed automatically, whatever
+// its festival. A legacy row saved with no festival is hidden, never
+// relabelled as this one (its stage id may belong elsewhere); it ages out.
 function upcomingMeetups() {
   const cutoff = Date.now() - 30 * 60 * 1000;
-  const list = readMeetups().filter(m => m.atTs > cutoff);
+  const all = readMeetups();
+  const live = all.filter(m => m.atTs > cutoff);
   // Rewrite if we pruned anything stale
-  if (list.length !== readMeetups().length) writeMeetups(list);
-  return list;
+  if (live.length !== all.length) writeMeetups(live);
+  return live.filter(m => m.festivalId === FESTIVAL_CONFIG.id);
 }
 
 // "Last seen" staleness for friend pins. Buckets that match festival reality:
@@ -1516,13 +1521,13 @@ function MeetupsSheet({ onClose }) {
     const atTs = new Date(whenLocal).getTime();
     if (!atTs || Number.isNaN(atTs)) return;
     const finalName = name.trim() || (STAGES.find(s => s.id === stageId)?.name || "Meetup");
-    const next = addMeetup({ name: finalName, stageId, atTs, notes: notes.trim() });
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    addMeetup({ festivalId: FESTIVAL_CONFIG.id, name: finalName, stageId, atTs, notes: notes.trim() });
+    setList(upcomingMeetups());
     reset();
   };
   const handleRemove = (id) => {
-    const next = removeMeetup(id);
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    removeMeetup(id);
+    setList(upcomingMeetups());
   };
   // Send to crew (15-feature program #3): the user's tap posts the meetup to
   // the crew thread, stage and time only. No crew code, no button.

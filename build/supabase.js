@@ -2223,17 +2223,25 @@ var MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{1
 function _meetupText(s, max) {
   return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max);
 }
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  var ds = typeof window !== "undefined" && window._DATA_SETS ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
 function _formatMeetupBody(m, festivalId) {
   var name = _meetupText(m && m.name, 60),
     notes = _meetupText(m && m.notes, 200);
   var at = Math.round(Number(m && m.atTs));
   if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
   var body = `[MEETUP ${festivalId} ${m && m.stageId || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
   return _parseMeetup(body) ? body : null;
 }
 function _parseMeetup(body) {
   var m = MEETUP_RE.exec(body || "");
   if (!m) return null;
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
   return {
     festivalId: m[1],
     stageId: m[2] === "-" ? null : m[2],
@@ -2243,7 +2251,7 @@ function _parseMeetup(body) {
   };
 }
 function meetupKey(m) {
-  return `${m && m.stageId || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`;
+  return `${m && m.festivalId || "-"}|${m && m.stageId || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`;
 }
 function MeetupCard({
   meet,
@@ -2265,6 +2273,7 @@ function MeetupCard({
   } catch {}
   var add = () => {
     if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({
+      festivalId: meet.festivalId,
       name: meet.name,
       stageId: meet.stageId,
       atTs: meet.atTs,
