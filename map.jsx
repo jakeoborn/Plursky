@@ -4431,9 +4431,10 @@ function mapToGps(x, y) {
 // preserveAspectRatio="xMidYMid slice"> — "slice" means COVER: scale until the
 // short edge fills, centre, crop the overflow. Three of the five assets are
 // deliberately square (acl-park 1708², ef-forest 1200², lostlands 1400²) so
-// cover is exact and the extent is the plain 0-100 box. Two are NOT:
-// edc-map-2026.jpg is 1080×1350 and edco-tinker-2026.jpg is 960×1200, both
-// 0.80 aspect, so the SVG crops 12.5% off the top AND bottom.
+// cover is exact and the extent is the plain 0-100 box. Some are NOT:
+// edc-map-2026.jpg is 1080×1350, 0.80 aspect, so the SVG crops 12.5% off the
+// top AND bottom. (edco-tinker-2026.jpg was 960×1200 too, until the official
+// 2026 plate, a 960² square, replaced it.)
 //
 // MapLibre's `image` source does no cropping — it stretches the WHOLE image
 // into the quad it is given. Feeding it the plain 0-100 corners would squash

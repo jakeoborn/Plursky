@@ -1,0 +1,27 @@
+{
+  "plate": "edco-tinker-2026.webp",
+  "plateSize": [960, 960],
+  "measuredAt": "2026-10-29",
+  "method": "Street intersections the official 2026 map draws, read by eye at 4x on the plate (about +-5 px, at the centre of each drawn road). Their coordinates are the OpenStreetMap nodes recorded for the same four intersections on the 2025 map (api.openstreetmap.org/api/0.6/map, fetched 2026-09-30). Least-squares affine with scripts/georef-map.mjs: rms 9.5 m, worst 11.5 m.",
+  "controlPoints": [
+    { "name": "W Church St x Tampa Ave (NW)", "px": 53, "py": 211, "lat": 28.5401379, "lng": -81.4054887, "osm": "node shared by West Church Street and Tampa Avenue" },
+    { "name": "W Church St x Rio Grande Ave (N)", "px": 509, "py": 206, "lat": 28.5401883, "lng": -81.4014289, "osm": "node shared by West Church Street and Rio Grande Avenue" },
+    { "name": "W Anderson St x Nashville Ave (SE)", "px": 767, "py": 680, "lat": 28.5365183, "lng": -81.3992577, "osm": "node shared by West Anderson Street and Nashville Avenue" },
+    { "name": "Tampa Ave x SR-408 (SW)", "px": 69, "py": 645, "lat": 28.5363673, "lng": -81.4053432, "osm": "mean of Tampa Avenue's crossings with the two East-West Expressway carriageways" }
+  ],
+  "stages": [
+    { "stageId": "kinetic", "px": 675, "py": 612 },
+    { "stageId": "circuit", "px": 145, "py": 245 },
+    { "stageId": "neon", "px": 839, "py": 360 },
+    { "stageId": "stereo", "px": 135, "py": 615 },
+    { "stageId": "bacardi", "px": 395, "py": 736 }
+  ],
+  "stagesNote": "px are the measured stage pins in scripts/build-edco-map-2026.mjs",
+  "check": {
+    "name": "Camping World Stadium bowl centre",
+    "px": 372, "py": 340,
+    "lat": 28.5390398, "lng": -81.4027504,
+    "osm": "centre of way 400475584 (Nominatim, 2026-10-29)",
+    "note": "Not a control point. The stadium is drawn on the art and is not used in the fit, so where the fit puts it is an independent test of the fit."
+  }
+}
