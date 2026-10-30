@@ -1028,14 +1028,17 @@ function AccountCard({
     }
   }, "TRY AGAIN")))));
 }
-var PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
 var PRESENCE_COLORS = ["#FFD60A", "#30D158", "#64D2FF", "#B79CFF", "#FF6FB5", "#FF9F0A"];
+function _crewFid() {
+  return typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id || null;
+}
 function _presChannelName() {
   var code = null;
   try {
     code = localStorage.getItem("plursky_group_code") || null;
   } catch {}
-  return code ? `crew-${code}` : PRESENCE_FALLBACK;
+  var fid = _crewFid();
+  return code && fid ? `crew-${code}:${fid}` : null;
 }
 function _presColor(id) {
   if (!id) return PRESENCE_COLORS[0];
@@ -1091,6 +1094,7 @@ function _crewLocPayload(l) {
   return {
     pid: l.pid,
     name: l.name,
+    fid: l.fid || null,
     stageId: l.stageId || null,
     color: l.color,
     pingCode: l.pingCode,
@@ -1098,7 +1102,7 @@ function _crewLocPayload(l) {
   };
 }
 function _broadcastMyLoc() {
-  if (!_presCh || !_myLoc) return;
+  if (!_presCh || !_myLoc || !_presenceGuard()) return;
   try {
     _presCh.send({
       type: "broadcast",
@@ -1114,7 +1118,8 @@ function sbPresenceJoin({
   name,
   stageId
 }) {
-  if (!_sb) return;
+  var chName = _presChannelName();
+  if (!_sb || !chName) return;
   _presMyId = _myPresId();
   var color = _presColor(_presMyId);
   if (_presCh) {
@@ -1128,13 +1133,15 @@ function sbPresenceJoin({
   _myLoc = {
     pid: _presMyId,
     name,
+    fid: _crewFid(),
     stageId,
     color,
     pingCode,
     ts: Date.now()
   };
   _syncStageHeadcount();
-  _presCh = _sb.channel(_presChannelName(), {
+  _armShareExpiry();
+  _presCh = _sb.channel(chName, {
     config: {
       broadcast: {
         self: false
@@ -1146,7 +1153,7 @@ function sbPresenceJoin({
   }, ({
     payload
   }) => {
-    if (!payload?.pid || payload.pid === _presMyId) return;
+    if (!payload?.pid || payload.pid === _presMyId || payload.fid !== _crewFid()) return;
     _presSnap[payload.pid] = _crewLocPayload(payload);
     _presNotify();
   }).on("broadcast", {
@@ -1170,7 +1177,7 @@ function sbPresenceJoin({
   }) => {
     if (!payload?.rallyId || payload.fromPid === _presMyId) return;
     var r = _rallyPayload(payload);
-    if (!r) return;
+    if (!r || r.fid !== _crewFid()) return;
     _activeRally = r;
     _rallyNotify();
   }).on("broadcast", {
@@ -1247,8 +1254,40 @@ function sbPresenceRefresh() {
   });
   return true;
 }
+var _shareExpiryId = null;
+function _presenceGuard() {
+  if (_crewShareActive()) return true;
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    if (s && s.active) localStorage.setItem("plursky_share_state", JSON.stringify({
+      ...s,
+      active: false
+    }));
+  } catch {}
+  sbPresenceLeave();
+  return false;
+}
+function _armShareExpiry() {
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
+  var exp = null;
+  try {
+    exp = (JSON.parse(localStorage.getItem("plursky_share_state") || "null") || {}).expiresAt || null;
+  } catch {}
+  if (!exp) return;
+  _shareExpiryId = setTimeout(() => {
+    _shareExpiryId = null;
+    _presenceGuard();
+  }, Math.min(Math.max(0, exp - Date.now()) + 50, 2147483000));
+}
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
   if (_presCh && _sb) {
     try {
       _presCh.send({
@@ -1275,7 +1314,7 @@ function sbOnPresenceChange(cb) {
   return () => _presCbs.delete(cb);
 }
 function _broadcastMyRally() {
-  if (!_presCh || !_myRally) return;
+  if (!_presCh || !_myRally || !_presenceGuard()) return;
   var p = _rallyPayload({
     ..._myRally,
     ts: Date.now()
@@ -1293,6 +1332,7 @@ function _rallyPayload(r) {
   if (!r || !r.rallyId || !r.stageId) return null;
   return {
     rallyId: String(r.rallyId),
+    fid: r.fid || null,
     label: String(r.label || "").slice(0, 60),
     stageId: String(r.stageId),
     fromPid: r.fromPid || null,
@@ -1315,6 +1355,7 @@ function sbBroadcastRally({
   if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
+    fid: _crewFid(),
     label,
     stageId,
     fromPid: _presMyId,
@@ -3915,8 +3956,8 @@ function _syncStageHeadcount() {
   if (sid) joinStagePresence(sid);else leaveStagePresence();
 }
 function _stagePresChannelName(stageId) {
-  var fid = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id || "-";
-  return `stage:${fid}:${_presChannelName()}:${stageId}`;
+  var crew = _presChannelName();
+  return crew ? `stage:${crew}:${stageId}` : null;
 }
 function joinStagePresence(stageId) {
   if (!_sb || !stageId || !_crewShareActive()) {
@@ -3924,6 +3965,10 @@ function joinStagePresence(stageId) {
     return;
   }
   var chName = _stagePresChannelName(stageId);
+  if (!chName) {
+    leaveStagePresence();
+    return;
+  }
   if (_currentPresenceStage === chName) return;
   if (_stagePresChannel) {
     _stagePresChannel.unsubscribe();
