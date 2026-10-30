@@ -1243,6 +1243,7 @@ function ShareLocationSheet({
       active: true,
       includeGps: false,
       includeStage: true,
+      stageOnly: 2, // this build's format; _migrateShareState leaves it alone
       expiresAt: opt.compute(),
     });
     onClose();
@@ -1407,9 +1408,11 @@ function ShareLocationSheet({
 // Biggest group first; ties by stage name so the order never flickers.
 // A share saved before stage-only sharing (it may say includeGps: true, and
 // carry a public-link token) stays off until a fresh tap: an old share never
-// resumes broadcasting on its own.
+// resumes broadcasting on its own. A share this build started is stamped
+// stageOnly: 2 and is left alone, so leaving Map and coming back keeps it.
 function _migrateShareState(s) {
-  return s ? { ...s, active: false, includeGps: false, includeStage: true, token: undefined } : s;
+  if (!s || s.stageOnly === 2) return s;
+  return { ...s, active: false, includeGps: false, includeStage: true, token: undefined };
 }
 function crewRadarRows(crewFriends, now = Date.now()) {
   const by = {};

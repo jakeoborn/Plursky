@@ -1459,6 +1459,7 @@ function ShareLocationSheet({
       active: true,
       includeGps: false,
       includeStage: true,
+      stageOnly: 2,
       expiresAt: opt.compute()
     });
     onClose();
@@ -1711,13 +1712,14 @@ function ShareLocationSheet({
   }, stage ? "START SHARING MY STAGE" : "PICK YOUR STAGE FIRST")));
 }
 function _migrateShareState(s) {
-  return s ? {
+  if (!s || s.stageOnly === 2) return s;
+  return {
     ...s,
     active: false,
     includeGps: false,
     includeStage: true,
     token: undefined
-  } : s;
+  };
 }
 function crewRadarRows(crewFriends, now = Date.now()) {
   var by = {};
