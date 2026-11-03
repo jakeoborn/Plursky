@@ -2052,6 +2052,8 @@ function MeetupCard({ meet, from, sentAt }) {
   const here = meet.festivalId === FESTIVAL_CONFIG.id;
   const stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
   const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null);
+  // A festival this build doesn't know is still named, by its raw id, so an elsewhere meetup never reads as local.
+  const forName = here ? null : ((other && (other.shortName || other.name)) || meet.festivalId);
   const past = meet.atTs < Date.now() - 30 * 60 * 1000;
   let when = "";
   try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
@@ -2070,7 +2072,7 @@ function MeetupCard({ meet, from, sentAt }) {
       </div>
       <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>{meet.name}</div>
       <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
-        {[stage && stage.name, when, other && `for ${other.shortName || other.name || meet.festivalId}`].filter(Boolean).join(" · ")}
+        {[stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")}
       </div>
       {meet.notes && <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 4, overflowWrap: "anywhere" }}>{meet.notes}</div>}
       {here && !past && (

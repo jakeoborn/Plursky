@@ -2320,6 +2320,7 @@ function MeetupCard({
   var here = meet.festivalId === FESTIVAL_CONFIG.id;
   var stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
   var other = here ? null : (FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null;
+  var forName = here ? null : other && (other.shortName || other.name) || meet.festivalId;
   var past = meet.atTs < Date.now() - 30 * 60 * 1000;
   var when = "";
   try {
@@ -2373,7 +2374,7 @@ function MeetupCard({
       color: "var(--text-2)",
       marginTop: 2
     }
-  }, [stage && stage.name, when, other && `for ${other.shortName || other.name || meet.festivalId}`].filter(Boolean).join(" · ")), meet.notes && React.createElement("div", {
+  }, [stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")), meet.notes && React.createElement("div", {
     style: {
       fontSize: 13,
       lineHeight: "18px",

@@ -228,6 +228,18 @@ try {
     aCheck(/In your meetups/.test(await t(1)), "after Add the card reads 'In your meetups'");
     if (process.env.SHOT_DIR) await page.screenshot({ path: join(process.env.SHOT_DIR, "crew-meetups-thread.png") });
     aCheck(!/Not a stage here/.test((await Promise.all([...Array(await cards.count()).keys()].map(t))).join(" ")), "a meetup naming a stage this festival doesn't have gets no card");
+    // A festival this build doesn't know (#374 review): the card still names it, by its raw id, and offers no Add.
+    await page.evaluate(() => document.getElementById("__chat").remove());
+    await page.evaluate(atTs => {
+      window.sbCrewFetchMessages = async () => [{ id: 7, sender_pid: "p-sam", sender_name: "Sam", body: `[MEETUP zz-fest stage1 ${atTs}] Elsewhere`, created_at: new Date().toISOString() }];
+      const host = document.createElement("div"); host.id = "__chat2"; host.style.cssText = "position:fixed;inset:0;z-index:2147483000;overflow:auto;background:var(--paper)"; document.body.appendChild(host);
+      ReactDOM.createRoot(host).render(React.createElement(CrewChat, { code: "TST123", myPid: "p-me", myName: "Me" }));
+    }, atTs);
+    await page.waitForTimeout(800);
+    const zz = page.locator("#__chat2 [data-crew-meetup]");
+    const zzText = (await zz.count()) === 1 ? await zz.innerText() : "";
+    aCheck(/Elsewhere/.test(zzText) && /for zz-fest/.test(zzText) && await zz.locator("[data-crew-meetup-add]").count() === 0,
+      `an unknown festival's meetup names it ("for zz-fest") and offers no Add (got "${zzText.replace(/\n/g, " / ")}")`);
     aCheck(errors.length === 0, `no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
   }
