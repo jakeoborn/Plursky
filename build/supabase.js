@@ -2333,19 +2333,20 @@ function _beaconFirstSeen(key, now) {
   if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);
   return _beaconSeen.get(key);
 }
-function beaconLiveUntil(b, now, seenAt = now) {
-  return Math.min(b.ts, seenAt) + BEACON_TTL_MS;
+function beaconLiveUntil(b, now, seenAt = now, receivedAt) {
+  return Math.min(b.ts, seenAt, Number.isFinite(receivedAt) ? receivedAt : Infinity) + BEACON_TTL_MS;
 }
 function BeaconCard({
   beacon,
   msgId,
+  receivedAt,
   from,
   sentAt,
   onReply
 }) {
   var [now, setNow] = React.useState(() => Date.now());
   var [seenAt] = React.useState(() => _beaconFirstSeen(`${msgId}|${beacon.festivalId}|${beacon.stageId}|${beacon.ts}`, Date.now()));
-  var until = beaconLiveUntil(beacon, now, seenAt);
+  var until = beaconLiveUntil(beacon, now, seenAt, receivedAt);
   var live = now < until;
   React.useEffect(() => {
     if (!live) return;
@@ -3191,6 +3192,7 @@ function CrewChat({
       }, _promoCard, React.createElement(BeaconCard, {
         beacon: beacon,
         msgId: m.id,
+        receivedAt: Date.parse(m.created_at),
         from: mine ? "You" : m.sender_name || "Friend",
         sentAt: fmtTime(m.created_at),
         onReply: mine ? null : body => sbCrewSendMessage(code, myPid, myName, body)
