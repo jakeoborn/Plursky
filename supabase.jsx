@@ -995,9 +995,9 @@ function AccountCard({ state, setState }) {
 // No DB table needed — presence is ephemeral, managed by Supabase
 // Realtime. Channel is scoped per CREW so a stranger running Plursky
 // can't see your location: only people who joined your crew code do.
-// Falls back to a festival-wide demo channel if no crew is set yet.
+// With no crew code there is no channel: the old festival-wide fallback sent
+// my stage to every Plursky user at the festival.
 
-const PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
 // Crew identity hues, the one place a friend's colour comes from: their map
 // pin, chat avatar and (for you) the PING chip on Me. Six hues far apart on
 // the wheel and bright on the dark canvas. The dark theme folded every accent
@@ -1011,10 +1011,16 @@ const PRESENCE_COLORS = [
 // Reuse the existing crew/group code (CrewCard already manages it under
 // plursky_group_code) so the presence channel is scoped to your crew —
 // only members see each other's stage, not the whole festival.
+// Scoped to the festival too: the same crew code at two festivals is two
+// channels, so a friend at Vegas kinetic never lands on Orlando's kinetic.
+function _crewFid() {
+  return (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id) || null;
+}
 function _presChannelName() {
   let code = null;
   try { code = localStorage.getItem("plursky_group_code") || null; } catch {}
-  return code ? `crew-${code}` : PRESENCE_FALLBACK;
+  const fid = _crewFid();
+  return code && fid ? `crew-${code}:${fid}` : null;
 }
 
 function _presColor(id) {
@@ -1075,28 +1081,31 @@ function _presNotify() {
 // (15-feature program #2): no lat/lng goes out, and none is kept from a
 // crewmate on an older version that still sends it.
 function _crewLocPayload(l) {
-  return { pid: l.pid, name: l.name, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
+  return { pid: l.pid, name: l.name, fid: l.fid || null, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
 }
 function _broadcastMyLoc() {
-  if (!_presCh || !_myLoc) return;
+  if (!_presCh || !_myLoc || !_presenceGuard()) return;
   try { _presCh.send({ type: "broadcast", event: "loc", payload: _crewLocPayload({ ..._myLoc, ts: Date.now() }) }); } catch {}
 }
 
 function sbPresenceJoin({ name, stageId }) {
-  if (!_sb) return;
+  const chName = _presChannelName();
+  if (!_sb || !chName) return;
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
   if (_presCh) { _sb.removeChannel(_presCh); _presCh = null; }
 
   let pingCode;
   try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, ts: Date.now() };
+  _myLoc = { pid: _presMyId, name, fid: _crewFid(), stageId, color, pingCode, ts: Date.now() };
+  _syncStageHeadcount();
+  _armShareExpiry();
 
-  _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
+  _presCh = _sb.channel(chName, { config: { broadcast: { self: false } } });
   _presCh
     // Someone shared their location → merge into the snapshot
     .on("broadcast", { event: "loc" }, ({ payload }) => {
-      if (!payload?.pid || payload.pid === _presMyId) return;
+      if (!payload?.pid || payload.pid === _presMyId || payload.fid !== _crewFid()) return;
       _presSnap[payload.pid] = _crewLocPayload(payload);
       _presNotify();
     })
@@ -1110,7 +1119,9 @@ function sbPresenceJoin({ name, stageId }) {
     // A crew member called a rally point → surface it to converge on
     .on("broadcast", { event: "rally" }, ({ payload }) => {
       if (!payload?.rallyId || payload.fromPid === _presMyId) return;
-      _activeRally = payload;
+      const r = _rallyPayload(payload);
+      if (!r || r.fid !== _crewFid()) return;
+      _activeRally = r;
       _rallyNotify();
     })
     // Rally caller cleared it → drop it everywhere
@@ -1133,8 +1144,12 @@ function sbPresenceJoin({ name, stageId }) {
 // or a partial { stageId? } update merged onto the current state (stage only).
 async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
-  const patch = typeof arg === "string" ? { stageId: arg } : { stageId: (arg || {}).stageId ?? _myLoc.stageId };
+  // An explicit stageId: null withdraws my stage; only a missing key keeps it.
+  const patch = typeof arg === "string" ? { stageId: arg }
+    : (arg && Object.prototype.hasOwnProperty.call(arg, "stageId")) ? { stageId: arg.stageId || null }
+    : { stageId: _myLoc.stageId };
   _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
+  _syncStageHeadcount();
   _presSnap[_presMyId] = { ..._myLoc };
   _broadcastMyLoc();
   _presNotify();
@@ -1159,14 +1174,37 @@ function sbPresenceRefresh() {
   return true;
 }
 
+// The share's expiry lives here, not only in MapScreen: its timer is cleared
+// when Map unmounts, and the heartbeat, loc-req and rally kept broadcasting
+// past expiresAt from any other tab. Past expiresAt (or once the share is
+// stopped) this persists active:false, leaves the headcount and stops.
+let _shareExpiryId = null;
+function _presenceGuard() {
+  if (_crewShareActive()) return true;
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    if (s && s.active) localStorage.setItem("plursky_share_state", JSON.stringify({ ...s, active: false }));
+  } catch {}
+  sbPresenceLeave();
+  return false;
+}
+function _armShareExpiry() {
+  if (_shareExpiryId) { clearTimeout(_shareExpiryId); _shareExpiryId = null; }
+  let exp = null;
+  try { exp = (JSON.parse(localStorage.getItem("plursky_share_state") || "null") || {}).expiresAt || null; } catch {}
+  if (!exp) return;
+  _shareExpiryId = setTimeout(() => { _shareExpiryId = null; _presenceGuard(); }, Math.min(Math.max(0, exp - Date.now()) + 50, 2147483000));
+}
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
+  if (_shareExpiryId) { clearTimeout(_shareExpiryId); _shareExpiryId = null; }
   if (_presCh && _sb) {
     try { _presCh.send({ type: "broadcast", event: "loc-bye", payload: { pid: _presMyId } }); } catch {}
     _sb.removeChannel(_presCh); _presCh = null;
   }
   _presSnap = {};
   _myLoc = null;
+  leaveStagePresence();
   _myRally = null;
   _activeRally = null;
   _presMyId = null;
@@ -1179,26 +1217,36 @@ function sbOnPresenceChange(cb) {
 }
 
 // ── Rally point (shared meet-up) ─────────────────────────────
-// One crew member calls a rally; everyone else receives { x, y, label,
-// stageId, fromName } and can converge on it. Rides the same crew broadcast
+// One crew member calls a rally; everyone else receives { label, stageId,
+// fromName } and can converge on that stage. No x/y and no lat/lng: a rally
+// names a stage, never a spot (stage-only crew sharing). Rides the same crew broadcast
 // channel as location, so it's scoped to your crew. Re-broadcast on the
 // heartbeat + on loc-req (fire-and-forget has no history), and cleared
 // explicitly or when the caller leaves.
 function _broadcastMyRally() {
-  if (!_presCh || !_myRally) return;
-  try { _presCh.send({ type: "broadcast", event: "rally", payload: { ..._myRally, ts: Date.now() } }); } catch {}
+  if (!_presCh || !_myRally || !_presenceGuard()) return;
+  const p = _rallyPayload({ ..._myRally, ts: Date.now() });
+  if (!p) return;
+  try { _presCh.send({ type: "broadcast", event: "rally", payload: p }); } catch {}
+}
+// The only fields a rally carries, on send and on receive. A rally with no
+// stage is dropped.
+function _rallyPayload(r) {
+  if (!r || !r.rallyId || !r.stageId) return null;
+  return {
+    rallyId: String(r.rallyId), fid: r.fid || null, label: String(r.label || "").slice(0, 60),
+    stageId: String(r.stageId), fromPid: r.fromPid || null,
+    fromName: r.fromName || "Someone", ts: r.ts || Date.now(),
+  };
 }
 function _rallyNotify() { const r = _activeRally; _rallyCbs.forEach(fn => { try { fn(r); } catch {} }); }
 
 // Call a rally. Requires being joined to the crew channel (i.e. sharing).
-function sbBroadcastRally({ x, y, label, stageId, gps }) {
-  if (!_presCh) return false;
-  // gps: the pin's raw lat/lng when it was dropped on the real basemap. On a
-  // festival with no affine, x/y alone would put every rally on the centroid.
-  const g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? { lat: gps.lat, lng: gps.lng } : null;
+function sbBroadcastRally({ label, stageId }) {
+  if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
-    x, y, label, stageId: stageId || null, ...(g ? { gps: g } : {}),
+    fid: _crewFid(), label, stageId,
     fromPid: _presMyId, fromName: (_myLoc && _myLoc.name) || "Someone",
   };
   _broadcastMyRally();
@@ -2085,6 +2133,8 @@ function MeetupCard({ meet, from, sentAt }) {
   const here = meet.festivalId === FESTIVAL_CONFIG.id;
   const stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
   const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null);
+  // A festival this build doesn't know is still named, by its raw id, so an elsewhere meetup never reads as local.
+  const forName = here ? null : ((other && (other.shortName || other.name)) || meet.festivalId);
   const past = meet.atTs < Date.now() - 30 * 60 * 1000;
   let when = "";
   try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
@@ -2103,7 +2153,7 @@ function MeetupCard({ meet, from, sentAt }) {
       </div>
       <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>{meet.name}</div>
       <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
-        {[stage && stage.name, when, other && `for ${other.shortName || other.name || meet.festivalId}`].filter(Boolean).join(" · ")}
+        {[stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")}
       </div>
       {meet.notes && <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 4, overflowWrap: "anywhere" }}>{meet.notes}</div>}
       {here && !past && (
@@ -3217,9 +3267,23 @@ function _crewShareActive() {
     return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
   } catch { return false; }
 }
+// The headcount follows the stage I declared to my crew, never a GPS fix:
+// sbPresenceJoin/Update call this, and sbPresenceLeave (Stop) leaves.
+function _syncStageHeadcount() {
+  const sid = _myLoc && _myLoc.stageId;
+  if (sid) joinStagePresence(sid); else leaveStagePresence();
+}
+// One channel per festival and crew: my crew's headcount, not everyone's.
+function _stagePresChannelName(stageId) {
+  const crew = _presChannelName();
+  return crew ? `stage:${crew}:${stageId}` : null;
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId || !_crewShareActive()) return;
-  if (_currentPresenceStage === stageId) return;
+  // Re-checked on every call: a share that stopped or expired never joins.
+  if (!_sb || !stageId || !_crewShareActive()) { leaveStagePresence(); return; }
+  const chName = _stagePresChannelName(stageId);
+  if (!chName) { leaveStagePresence(); return; }
+  if (_currentPresenceStage === chName) return;
 
   // Leave previous stage channel
   if (_stagePresChannel) {
@@ -3227,14 +3291,14 @@ function joinStagePresence(stageId) {
     _stagePresChannel = null;
   }
 
-  _currentPresenceStage = stageId;
+  _currentPresenceStage = chName;
   const deviceId = localStorage.getItem("plursky-device-id") || (() => {
     const id = `anon_${Math.random().toString(36).slice(2, 8)}`;
     try { localStorage.setItem("plursky-device-id", id); } catch {}
     return id;
   })();
 
-  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+  _stagePresChannel = _sb.channel(chName, {
     config: { presence: { key: deviceId } },
   });
 

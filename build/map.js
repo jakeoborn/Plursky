@@ -1472,6 +1472,7 @@ function ShareLocationSheet({
       active: true,
       includeGps: false,
       includeStage: true,
+      stageOnly: 2,
       expiresAt: opt.compute()
     });
     onClose();
@@ -1722,6 +1723,16 @@ function ShareLocationSheet({
       fontWeight: 700
     }
   }, stage ? "START SHARING MY STAGE" : "PICK YOUR STAGE FIRST")));
+}
+function _migrateShareState(s) {
+  if (!s || s.stageOnly === 2) return s;
+  return {
+    ...s,
+    active: false,
+    includeGps: false,
+    includeStage: true,
+    token: undefined
+  };
 }
 function crewRadarRows(crewFriends, now = Date.now()) {
   var by = {};
@@ -2625,6 +2636,7 @@ function MapScreen({
   var [meetGroup, setMeetGroup] = React.useState([]);
   var [rallySent, setRallySent] = React.useState(false);
   var [incomingRally, setIncomingRally] = React.useState(null);
+  var rallyStage = incomingRally ? (STAGES || []).find(s => s.id === incomingRally.stageId) || null : null;
   var dismissedRallyRef = React.useRef(new Set());
   var [clusterDismissed, setClusterDismissed] = React.useState(null);
   var clearMeet = () => {
@@ -2754,12 +2766,7 @@ function MapScreen({
     try {
       var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
       if (s && s.expiresAt && s.expiresAt <= Date.now()) return null;
-      return s ? {
-        ...s,
-        includeGps: false,
-        includeStage: true,
-        token: undefined
-      } : s;
+      return _migrateShareState(s);
     } catch {
       return null;
     }
@@ -3554,7 +3561,7 @@ function MapScreen({
     style: {
       position: "absolute",
       left: 10,
-      top: 90,
+      top: isSharing ? 130 : 90,
       zIndex: 6,
       background: "rgba(var(--glass),0.94)",
       border: "none",
@@ -3620,13 +3627,14 @@ function MapScreen({
       }
     }, a.label));
   })), isSharing && React.createElement("button", {
+    "data-sharing-pill": true,
     onClick: () => setShareState(null),
-    "aria-label": "Stop sharing your location",
+    "aria-label": "Stop sharing your stage with your crew",
     style: {
       position: "absolute",
-      top: 46,
-      left: "50%",
-      transform: "translateX(-50%)",
+      top: 98,
+      left: 10,
+      whiteSpace: "nowrap",
       zIndex: 6,
       display: "flex",
       alignItems: "center",
@@ -3655,7 +3663,7 @@ function MapScreen({
       letterSpacing: 1.2,
       fontWeight: 800
     }
-  }, "SHARING · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
+  }, "SHARING STAGE · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
@@ -4484,11 +4492,8 @@ function MapScreen({
   }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetPin && isSharing && React.createElement("button", {
     onClick: () => {
       var ok = sbBroadcastRally({
-        x: meetTarget.x,
-        y: meetTarget.y,
         label: meetTarget.label,
-        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
-        gps: meetTarget.gps || null
+        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y)
       });
       if (ok) setRallySent(true);
     },
@@ -4519,7 +4524,7 @@ function MapScreen({
       letterSpacing: 1.2,
       fontWeight: 700
     }
-  }, "× CANCEL")), incomingRally && React.createElement("div", {
+  }, "× CANCEL")), incomingRally && rallyStage && React.createElement("div", {
     style: {
       position: "absolute",
       top: 0,
@@ -4564,20 +4569,15 @@ function MapScreen({
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, incomingRally.label, minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar))), React.createElement("button", {
+  }, incomingRally.label, minsAwaySuffix(Math.hypot(rallyStage.x - avatar.x, rallyStage.y - avatar.y), avatar))), React.createElement("button", {
     onClick: () => {
       dismissedRallyRef.current.add(incomingRally.rallyId);
       setMeetMode(true);
       setMeet({
-        x: incomingRally.x,
-        y: incomingRally.y,
-        ...(_validGps(incomingRally.gps) ? {
-          gps: {
-            lat: incomingRally.gps.lat,
-            lng: incomingRally.gps.lng
-          }
-        } : {}),
+        x: rallyStage.x,
+        y: rallyStage.y,
         label: incomingRally.label,
+        stageId: rallyStage.id,
         isRally: true
       });
       setIncomingRally(null);
@@ -4613,7 +4613,7 @@ function MapScreen({
       flexShrink: 0
     }
   }, "✕")), (() => {
-    if (!crewCluster || meetMode || incomingRally) return null;
+    if (!crewCluster || meetMode || rallyStage) return null;
     var sig = `${crewCluster.stage.id}:${crewCluster.members.length}`;
     if (sig === clusterDismissed) return null;
     var headOver = () => {

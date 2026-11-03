@@ -11351,9 +11351,8 @@ function NowPlayingBar() {
       const debugArtist = artists.find(a => a.stage === debugStage?.id && a.day === 1) || artists[0];
       if (debugStage) {
         setLiveState(s => ({ ...s, stage: debugStage, artist: debugArtist || null }));
-        if (window.joinStagePresence) window.joinStagePresence(debugStage.id);
       }
-      return () => { if (window.leaveStagePresence) window.leaveStagePresence(); };
+      return;
     }
 
     let watchId;
@@ -11372,13 +11371,13 @@ function NowPlayingBar() {
 
       const stageObj = (window.STAGES || []).find(s => s.id === nearest.stageId);
       // The fix only names the stage; the effect below names the set.
+      // This fix stays on the device. The headcount joins only the stage I
+      // declared to my crew (supabase.jsx _syncStageHeadcount), never this.
       setLiveState(s => (s.stage?.id === stageObj?.id ? s : { ...s, stage: stageObj }));
-      if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, { enableHighAccuracy: true, maximumAge: 10000 });
 
     return () => {
       if (watchId) navigator.geolocation.clearWatch(watchId);
-      if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
 

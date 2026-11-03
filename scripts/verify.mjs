@@ -3569,7 +3569,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // the stage headcount counts me only while I share. The Crew chip groups my
 // crew by stage.
 {
-  console.log("▸ Crew radar gate — stage-only crew share, radar grouped by stage");
+  console.log("▸ Crew radar gate — stage-only crew share, radar grouped by stage, expiry across tabs, festival-scoped crew channel");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-crew-radar.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
