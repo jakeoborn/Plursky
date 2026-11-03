@@ -1155,7 +1155,7 @@ async function sbPresenceUpdate(arg) {
   _presNotify();
 }
 
-let _heartbeatId = null;
+let _heartbeatId = null, _heartbeatGen = 0;
 // 20s heartbeat: fire-and-forget broadcast has no history, so periodic
 // re-announce keeps everyone fresh and beats the 90s stale cutoff. On battery
 // saver or a weak signal it stretches to 60s, still inside that cutoff; each
@@ -1166,13 +1166,18 @@ function _presHeartbeatMs() {
 }
 function _startPresenceHeartbeat() {
   _stopPresenceHeartbeat();
+  const gen = _heartbeatGen;
   const beat = () => {
+    _heartbeatId = null;
     _broadcastMyLoc(); _broadcastMyRally(); _presNotify();
-    _heartbeatId = setTimeout(beat, _presHeartbeatMs());
+    // A beat that ended the share (past expiresAt the guard leaves, which stops
+    // the heartbeat) or that a Stop overtook schedules nothing more.
+    if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());
   };
   _heartbeatId = setTimeout(beat, _presHeartbeatMs());
 }
 function _stopPresenceHeartbeat() {
+  _heartbeatGen++;
   if (_heartbeatId) { clearTimeout(_heartbeatId); _heartbeatId = null; }
 }
 

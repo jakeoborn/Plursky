@@ -1231,7 +1231,8 @@ async function sbPresenceUpdate(arg) {
   _broadcastMyLoc();
   _presNotify();
 }
-var _heartbeatId = null;
+var _heartbeatId = null,
+  _heartbeatGen = 0;
 var PRES_HEARTBEAT_MS = 20000,
   PRES_HEARTBEAT_SAVER_MS = 60000;
 function _presHeartbeatMs() {
@@ -1239,15 +1240,18 @@ function _presHeartbeatMs() {
 }
 function _startPresenceHeartbeat() {
   _stopPresenceHeartbeat();
+  var gen = _heartbeatGen;
   var beat = () => {
+    _heartbeatId = null;
     _broadcastMyLoc();
     _broadcastMyRally();
     _presNotify();
-    _heartbeatId = setTimeout(beat, _presHeartbeatMs());
+    if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());
   };
   _heartbeatId = setTimeout(beat, _presHeartbeatMs());
 }
 function _stopPresenceHeartbeat() {
+  _heartbeatGen++;
   if (_heartbeatId) {
     clearTimeout(_heartbeatId);
     _heartbeatId = null;
