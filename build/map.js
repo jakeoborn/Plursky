@@ -643,6 +643,7 @@ function writeMeetups(arr) {
   } catch {}
 }
 function addMeetup({
+  festivalId,
   name,
   stageId,
   atTs,
@@ -651,6 +652,7 @@ function addMeetup({
   var list = readMeetups();
   list.push({
     id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    festivalId: festivalId || FESTIVAL_CONFIG.id,
     name: (name || "").slice(0, 60),
     stageId: stageId || null,
     atTs: Number(atTs) || Date.now(),
@@ -668,9 +670,10 @@ function removeMeetup(id) {
 }
 function upcomingMeetups() {
   var cutoff = Date.now() - 30 * 60 * 1000;
-  var list = readMeetups().filter(m => m.atTs > cutoff);
-  if (list.length !== readMeetups().length) writeMeetups(list);
-  return list;
+  var all = readMeetups();
+  var live = all.filter(m => m.atTs > cutoff);
+  if (live.length !== all.length) writeMeetups(live);
+  return live.filter(m => m.festivalId === FESTIVAL_CONFIG.id);
 }
 function formatLastSeen(ts) {
   if (!ts) return {
@@ -1821,18 +1824,43 @@ function MeetupsSheet({
     var atTs = new Date(whenLocal).getTime();
     if (!atTs || Number.isNaN(atTs)) return;
     var finalName = name.trim() || STAGES.find(s => s.id === stageId)?.name || "Meetup";
-    var next = addMeetup({
+    addMeetup({
+      festivalId: FESTIVAL_CONFIG.id,
       name: finalName,
       stageId,
       atTs,
       notes: notes.trim()
     });
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    setList(upcomingMeetups());
     reset();
   };
   var handleRemove = id => {
-    var next = removeMeetup(id);
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    removeMeetup(id);
+    setList(upcomingMeetups());
+  };
+  var crewCode = (() => {
+    try {
+      return localStorage.getItem("plursky_group_code") || "";
+    } catch {
+      return "";
+    }
+  })();
+  var [sent, setSent] = React.useState({});
+  var sendToCrew = async m => {
+    var body = _formatMeetupBody(m, FESTIVAL_CONFIG.id);
+    if (!crewCode || !body) return;
+    setSent(x => ({
+      ...x,
+      [m.id]: "sending"
+    }));
+    var {
+      error,
+      queued
+    } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    setSent(x => ({
+      ...x,
+      [m.id]: queued ? "queued" : error ? "failed" : "sent"
+    }));
   };
   var fmtWhen = ts => {
     try {
@@ -1991,7 +2019,30 @@ function MeetupsSheet({
       style: {
         opacity: 0.6
       }
-    }, "· ", tFmt.rel))), React.createElement("button", {
+    }, "· ", tFmt.rel))), crewCode && React.createElement("button", {
+      type: "button",
+      "data-meetup-send": m.id,
+      disabled: sent[m.id] === "sending" || sent[m.id] === "sent" || sent[m.id] === "queued",
+      onClick: () => sendToCrew(m),
+      className: "mono",
+      style: {
+        minHeight: 44,
+        padding: "0 10px",
+        borderRadius: 10,
+        background: "transparent",
+        border: "1px solid var(--line-2)",
+        color: "var(--ink)",
+        fontSize: 10,
+        letterSpacing: 1.1,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, {
+      sending: "SENDING",
+      sent: "SENT",
+      queued: "QUEUED",
+      failed: "RETRY"
+    }[sent[m.id]] || "SEND TO CREW"), React.createElement("button", {
       onClick: () => handleRemove(m.id),
       "aria-label": "Remove",
       style: {

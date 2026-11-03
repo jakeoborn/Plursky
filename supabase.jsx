@@ -2007,6 +2007,85 @@ function _formatVoteBody(pollId, option) {
   return `[VOTE ${pollId}] ${option}`;
 }
 
+// A meetup sent to the crew thread (15-feature program #3), on the poll
+// pattern: [MEETUP <festivalId> <stageId|-> <atMs>] <name> || <notes>.
+// Stage level only, never coordinates, and only on the user's tap ("Send to
+// crew" on a meetup). Name and notes lose "||" and line breaks so the body
+// always parses back to what was sent.
+const MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
+function _meetupText(s, max) { return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max); }
+// A meetup's stage must be one of its festival's stages. A non-active
+// festival's stages come from _DATA_SETS (bare STAGES is the active one).
+// true / false, or null when this build doesn't know the festival.
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
+// Only a meetup saved for this festival goes out under its id: a row from
+// another festival (or a legacy row with no festival) is never relabelled.
+function _formatMeetupBody(m, festivalId) {
+  const name = _meetupText(m && m.name, 60), notes = _meetupText(m && m.notes, 200);
+  const at = Math.round(Number(m && m.atTs));
+  if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
+  const body = `[MEETUP ${festivalId} ${(m && m.stageId) || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
+  return _parseMeetup(body) ? body : null;
+}
+function _parseMeetup(body) {
+  const m = MEETUP_RE.exec(body || "");
+  if (!m) return null;
+  // A stage the named festival doesn't have is not a meetup. A festival this
+  // build doesn't know still parses: its card names it and offers no Add.
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
+  return { festivalId: m[1], stageId: m[2] === "-" ? null : m[2], atTs: +m[3], name: m[4].trim(), notes: (m[5] || "").trim() };
+}
+// The same meetup, wherever it came from: one place, one time, one name.
+function meetupKey(m) { return `${(m && m.festivalId) || "-"}|${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
+
+// A crew meetup in the thread: where and when, and one tap to put it in my
+// own meetups (the list the Map's MEETUPS sheet shows). A meetup for another
+// festival names that festival and is not added: its stage ids belong there.
+function MeetupCard({ meet, from, sentAt }) {
+  const [mine, setMine] = React.useState(() => readMeetups().some(x => meetupKey(x) === meetupKey(meet)));
+  const here = meet.festivalId === FESTIVAL_CONFIG.id;
+  const stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
+  const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null);
+  // A festival this build doesn't know is still named, by its raw id, so an elsewhere meetup never reads as local.
+  const forName = here ? null : ((other && (other.shortName || other.name)) || meet.festivalId);
+  const past = meet.atTs < Date.now() - 30 * 60 * 1000;
+  let when = "";
+  try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
+  const add = () => {
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ festivalId: meet.festivalId, name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
+    window.plurskyHaptic?.("LIGHT");
+    setMine(true);
+  };
+  return (
+    <div data-crew-meetup style={{
+      background: "var(--paper-2)", borderRadius: 14, padding: "12px 14px", margin: "4px 0",
+      border: "1px solid var(--line)", borderLeft: stage ? `3px solid ${stage.color}` : "1px solid var(--line)",
+    }}>
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+        MEETUP · {String(from).toUpperCase()} · {sentAt}
+      </div>
+      <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>{meet.name}</div>
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+        {[stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")}
+      </div>
+      {meet.notes && <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 4, overflowWrap: "anywhere" }}>{meet.notes}</div>}
+      {here && !past && (
+        <button type="button" data-crew-meetup-add aria-pressed={mine} disabled={mine} onClick={add} style={{
+          marginTop: 10, minHeight: 44, padding: "0 14px", borderRadius: 10,
+          background: mine ? "transparent" : "var(--ink)", color: mine ? "var(--text-2)" : "var(--paper)",
+          border: mine ? "1px solid var(--line-2)" : "none", fontSize: 15, fontWeight: 600, cursor: mine ? "default" : "pointer",
+        }}>{mine ? "In your meetups" : "Add to my meetups"}</button>
+      )}
+    </div>
+  );
+}
+
 // Inline action sheet shown when the user taps "Report message" on a bubble.
 // 5 reason chips (matches the check-constraint on crew_message_reports.reason)
 // + a 500-char optional note. Submit inserts the row; the parent shows a
@@ -2379,6 +2458,60 @@ function CrewChat({ code, myPid, myName }) {
     } catch { return ""; }
   };
 
+  // Report / block for anything another crewmate sent: plain bubbles,
+  // polls and meetup cards all carry free text, so all three get the menu.
+  const msgMenuButton = (m, menuOpen) => (
+    <button
+      onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
+      aria-label="Message options"
+      title="Report or block"
+      style={{
+        background: "transparent", border: "none", padding: "2px 6px",
+        borderRadius: 8, color: "var(--muted)", cursor: "pointer",
+        fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
+        minHeight: 18, lineHeight: 1,
+      }}
+    >⋯</button>
+  );
+  const msgMenu = (m) => (
+      <div style={{
+        marginTop: 6, padding: 6, borderRadius: 12,
+        background: "var(--paper)", border: "1px solid var(--line)",
+        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
+        display: "flex", flexDirection: "column", gap: 2,
+        minWidth: 200, maxWidth: "85%",
+      }}>
+        <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
+          <span>Report message</span>
+        </button>
+        <button onClick={() => {
+          sbBlockPid(m.sender_pid);
+          setMenuMsgId(null);
+        }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ember-ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
+          <span>Block {(m.sender_name || "Friend")}</span>
+        </button>
+        <button onClick={() => setMenuMsgId(null)} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--muted)", textAlign: "left",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+        }}>CANCEL</button>
+      </div>
+  );
   return (
     <div style={{ marginTop: 10 }}>
       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 6, padding: "0 2px" }}>
@@ -2441,6 +2574,19 @@ function CrewChat({ code, myPid, myName }) {
           const parsedPoll = _parsePoll(m.body);
           const mine = m.sender_pid === myPid;
           const menuOpen = menuMsgId === m.id;
+          const meet = _parseMeetup(m.body);
+          if (meet) {
+            return (<React.Fragment key={m.id}>
+              {_promoCard}
+              <MeetupCard meet={meet} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)} />
+              {!mine && (
+                <div data-crew-card-moderation="meetup" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
+            </React.Fragment>);
+          }
           if (parsedPoll) {
             const live = pollState[parsedPoll.id];
             const tally = {};
@@ -2517,6 +2663,12 @@ function CrewChat({ code, myPid, myName }) {
                   {totalVotes} {totalVotes === 1 ? "VOTE" : "VOTES"} · {fmtTime(m.created_at)}
                 </div>
               </div>
+              {!mine && (
+                <div data-crew-card-moderation="poll" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
             </React.Fragment>);
           }
           return (<React.Fragment key={m.id}>
@@ -2554,59 +2706,9 @@ function CrewChat({ code, myPid, myName }) {
                     : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE"
                     : fmtTime(m.created_at)}
                 </span>
-                {!mine && !m._pending && !m._failed && !m._queued && (
-                  <button
-                    onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
-                    aria-label="Message options"
-                    title="Report or block"
-                    style={{
-                      background: "transparent", border: "none", padding: "2px 6px",
-                      borderRadius: 8, color: "var(--muted)", cursor: "pointer",
-                      fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
-                      minHeight: 18, lineHeight: 1,
-                    }}
-                  >⋯</button>
-                )}
+                {!mine && !m._pending && !m._failed && !m._queued && msgMenuButton(m, menuOpen)}
               </div>
-              {menuOpen && !mine && (
-                <div style={{
-                  marginTop: 6, padding: 6, borderRadius: 12,
-                  background: "var(--paper)", border: "1px solid var(--line)",
-                  boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
-                  display: "flex", flexDirection: "column", gap: 2,
-                  minWidth: 200, maxWidth: "85%",
-                }}>
-                  <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
-                    <span>Report message</span>
-                  </button>
-                  <button onClick={() => {
-                    sbBlockPid(m.sender_pid);
-                    setMenuMsgId(null);
-                  }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ember-ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
-                    <span>Block {(m.sender_name || "Friend")}</span>
-                  </button>
-                  <button onClick={() => setMenuMsgId(null)} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--muted)", textAlign: "left",
-                    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
-                  }}>CANCEL</button>
-                </div>
-              )}
+              {menuOpen && !mine && msgMenu(m)}
             </div>
           </React.Fragment>);
         })}
