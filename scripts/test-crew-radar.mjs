@@ -638,6 +638,61 @@ try {
   } else console.log("  ✗  rendered mutation target not found (cross-festival)");
 } catch (e) { tCheck(false, `rendered cross-festival run: ${e.message.split("\n")[0]}`); }
 
+// ── Rendered: the sharing pill fits beside the map controls at 320 and 390 ──
+// Centred at top 46 it covered the Stylized/Satellite toggle at 390 and
+// wrapped over it at 320. One line, clear of the toggle and the right column.
+async function pillRun(width, mapBody) {
+  const PORT4 = await reservePort();
+  const srv = spawn("python3", ["-m", "http.server", String(PORT4), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
+  const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
+  let browser;
+  try {
+    await serverReady(`http://127.0.0.1:${PORT4}/index.html`);
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+    const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height: 760 } });
+    await wireVendor(ctx);
+    await ctx.route(/supabase\.co/, r => r.abort());
+    if (mapBody) await ctx.route(/\/build\/map\.js/, r => r.fulfill({ status: 200, contentType: "application/javascript", body: mapBody }));
+    await ctx.addInitScript(fid => {
+      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("plursky_group_code", "TST123");
+      localStorage.setItem("status_me", JSON.stringify({ stage: "kinetic", ts: Date.now() }));
+      localStorage.setItem("plursky_share_state", JSON.stringify({ active: true, includeGps: false, includeStage: true, stageOnly: 2, expiresAt: Date.now() + 3600e3 }));
+    }, FID);
+    const page = await ctx.newPage();
+    await page.goto(`http://127.0.0.1:${PORT4}/index.html?f=${FID}&tab=map`, { waitUntil: "domcontentloaded" });
+    await page.waitForSelector("[data-sharing-pill], [aria-label^='Stop sharing']", { timeout: 60000 });
+    await page.waitForSelector("[data-realmap-style-switch]", { timeout: 30000 });
+    await page.waitForTimeout(400);
+    return await page.evaluate(() => {
+      const r = el => el && el.getBoundingClientRect();
+      const pill = r(document.querySelector("[data-sharing-pill], [aria-label^='Stop sharing']"));
+      const label = document.querySelector("[data-sharing-pill] .mono, [aria-label^='Stop sharing'] .mono");
+      const sw = r(document.querySelector("[data-realmap-style-switch]"));
+      const lh = label ? parseFloat(getComputedStyle(label).lineHeight) || 12 : 0;
+      const hit = (a, b) => a && b && a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+      const right = [...document.querySelectorAll("button")].map(r).filter(b => b.width && b.left > window.innerWidth * 0.6 && b.top < 300);
+      return { overlapSwitch: hit(pill, sw), overlapRight: right.some(b => hit(pill, b)),
+        oneLine: !!label && label.getBoundingClientRect().height < lh * 1.6, text: label && label.textContent };
+    });
+  } finally { if (browser) await browser.close(); srv.kill(); }
+}
+try {
+  for (const w of [320, 390]) {
+    const P = await pillRun(w);
+    tCheck(!P.overlapSwitch && !P.overlapRight && P.oneLine, `${w}px: the sharing pill is one line and clear of the map controls (${JSON.stringify(P)})`);
+    tCheck(/STAGE/.test(P.text || ""), `${w}px: the pill says it shares the stage (got "${P.text}")`);
+  }
+  tabMutTotal++;
+  const MAPJS = readFileSync(join(ROOT, "build", "map.js"), "utf8"), pt = 'top: 98,\n      left: 10,\n      whiteSpace: "nowrap",';
+  if (MAPJS.split(pt).length === 2) {
+    const M = await pillRun(320, MAPJS.replace(pt, 'top: 46,\n      left: "50%",\n      transform: "translateX(-50%)",'));
+    if (M.overlapSwitch || M.overlapRight || !M.oneLine) tabMutCaught++;
+    else console.log(`  ✗  rendered mutation survived: centred pill (${JSON.stringify(M)})`);
+  } else console.log("  ✗  rendered mutation target not found (pill)");
+} catch (e) { tCheck(false, `rendered pill run: ${e.message.split("\n")[0]}`); }
+
 const failed = base.failed + mutFail + statFail + appFail + tabFail + (tabMutTotal - tabMutCaught);
 console.log(`${failed ? "✗" : "✓"} crew radar: ${base.checks - base.failed}/${base.checks} unit checks, ${stat.length - statFail}/${stat.length} static, ${appChecks - appFail}/${appChecks} app checks, ${tabChecks - tabFail}/${tabChecks} tab checks, ${caught}/${MUT.length} mutations + ${tabMutCaught}/${tabMutTotal} rendered caught`);
 process.exit(failed ? 1 : 0);
