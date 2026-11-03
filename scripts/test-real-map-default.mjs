@@ -17,7 +17,7 @@
 //   6. (this file) a rendered check of the default path, in verify.
 //   7. Nothing pins, routes or navigates to a poster coordinate: on Ultra a
 //      crew member sharing only a stage gets no marker, meet-at-stage (crew
-//      HEAD OVER) and a rally with no lat/lng are text-only with no meet pin
+//      HEAD OVER) and a rally (a stage id, no position) are text-only with no meet pin
 //      and no route, and a saved stage offers no GO HERE. Summerfest is the
 //      control: the same steps DO pin, route and offer GO HERE.
 //   8. The opening camera frames the grounds (ACL opened ~600 m off them),
@@ -321,8 +321,8 @@ try {
         }
         await page.locator("button", { hasText: "CANCEL" }).first().click().catch(() => {}); await page.waitForTimeout(300);
       }
-      // A rally with no lat/lng (an older client sends poster x/y).
-      await page.evaluate(st => window.__rallyCb({ rallyId: "gate-r1", fromName: "Gate Ava", x: st.x, y: st.y, label: st.name }), st);
+      // A rally names a stage only (stage-only crew sharing, #376).
+      await page.evaluate(st => window.__rallyCb({ rallyId: "gate-r1", fromName: "Gate Ava", stageId: st.id, label: st.name }), st);
       await page.waitForTimeout(300);
       const rh = page.locator("button", { hasText: "HEAD OVER" });
       if (await rh.count()) {

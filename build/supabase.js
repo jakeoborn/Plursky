@@ -1028,14 +1028,17 @@ function AccountCard({
     }
   }, "TRY AGAIN")))));
 }
-var PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
 var PRESENCE_COLORS = ["#FFD60A", "#30D158", "#64D2FF", "#B79CFF", "#FF6FB5", "#FF9F0A"];
+function _crewFid() {
+  return typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id || null;
+}
 function _presChannelName() {
   var code = null;
   try {
     code = localStorage.getItem("plursky_group_code") || null;
   } catch {}
-  return code ? `crew-${code}` : PRESENCE_FALLBACK;
+  var fid = _crewFid();
+  return code && fid ? `crew-${code}:${fid}` : null;
 }
 function _presColor(id) {
   if (!id) return PRESENCE_COLORS[0];
@@ -1087,25 +1090,36 @@ function _presNotify() {
     } catch {}
   });
 }
+function _crewLocPayload(l) {
+  return {
+    pid: l.pid,
+    name: l.name,
+    fid: l.fid || null,
+    stageId: l.stageId || null,
+    color: l.color,
+    pingCode: l.pingCode,
+    ts: l.ts || Date.now()
+  };
+}
 function _broadcastMyLoc() {
-  if (!_presCh || !_myLoc) return;
+  if (!_presCh || !_myLoc || !_presenceGuard()) return;
   try {
     _presCh.send({
       type: "broadcast",
       event: "loc",
-      payload: {
+      payload: _crewLocPayload({
         ..._myLoc,
         ts: Date.now()
-      }
+      })
     });
   } catch {}
 }
 function sbPresenceJoin({
   name,
-  stageId,
-  gps
+  stageId
 }) {
-  if (!_sb) return;
+  var chName = _presChannelName();
+  if (!_sb || !chName) return;
   _presMyId = _myPresId();
   var color = _presColor(_presMyId);
   if (_presCh) {
@@ -1119,13 +1133,15 @@ function sbPresenceJoin({
   _myLoc = {
     pid: _presMyId,
     name,
+    fid: _crewFid(),
     stageId,
     color,
     pingCode,
-    gps,
     ts: Date.now()
   };
-  _presCh = _sb.channel(_presChannelName(), {
+  _syncStageHeadcount();
+  _armShareExpiry();
+  _presCh = _sb.channel(chName, {
     config: {
       broadcast: {
         self: false
@@ -1137,8 +1153,8 @@ function sbPresenceJoin({
   }, ({
     payload
   }) => {
-    if (!payload?.pid || payload.pid === _presMyId) return;
-    _presSnap[payload.pid] = payload;
+    if (!payload?.pid || payload.pid === _presMyId || payload.fid !== _crewFid()) return;
+    _presSnap[payload.pid] = _crewLocPayload(payload);
     _presNotify();
   }).on("broadcast", {
     event: "loc-req"
@@ -1160,7 +1176,9 @@ function sbPresenceJoin({
     payload
   }) => {
     if (!payload?.rallyId || payload.fromPid === _presMyId) return;
-    _activeRally = payload;
+    var r = _rallyPayload(payload);
+    if (!r || r.fid !== _crewFid()) return;
+    _activeRally = r;
     _rallyNotify();
   }).on("broadcast", {
     event: "rally-clear"
@@ -1196,12 +1214,17 @@ async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
   var patch = typeof arg === "string" ? {
     stageId: arg
-  } : arg || {};
+  } : arg && Object.prototype.hasOwnProperty.call(arg, "stageId") ? {
+    stageId: arg.stageId || null
+  } : {
+    stageId: _myLoc.stageId
+  };
   _myLoc = {
     ..._myLoc,
     ...patch,
     ts: Date.now()
   };
+  _syncStageHeadcount();
   _presSnap[_presMyId] = {
     ..._myLoc
   };
@@ -1234,13 +1257,44 @@ function sbPresenceRefresh() {
   if (!_myLoc) return false;
   sbPresenceJoin({
     name: _myLoc.name,
-    stageId: _myLoc.stageId,
-    gps: _myLoc.gps
+    stageId: _myLoc.stageId
   });
   return true;
 }
+var _shareExpiryId = null;
+function _presenceGuard() {
+  if (_crewShareActive()) return true;
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    if (s && s.active) localStorage.setItem("plursky_share_state", JSON.stringify({
+      ...s,
+      active: false
+    }));
+  } catch {}
+  sbPresenceLeave();
+  return false;
+}
+function _armShareExpiry() {
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
+  var exp = null;
+  try {
+    exp = (JSON.parse(localStorage.getItem("plursky_share_state") || "null") || {}).expiresAt || null;
+  } catch {}
+  if (!exp) return;
+  _shareExpiryId = setTimeout(() => {
+    _shareExpiryId = null;
+    _presenceGuard();
+  }, Math.min(Math.max(0, exp - Date.now()) + 50, 2147483000));
+}
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
   if (_presCh && _sb) {
     try {
       _presCh.send({
@@ -1256,6 +1310,7 @@ function sbPresenceLeave() {
   }
   _presSnap = {};
   _myLoc = null;
+  leaveStagePresence();
   _myRally = null;
   _activeRally = null;
   _presMyId = null;
@@ -1266,17 +1321,31 @@ function sbOnPresenceChange(cb) {
   return () => _presCbs.delete(cb);
 }
 function _broadcastMyRally() {
-  if (!_presCh || !_myRally) return;
+  if (!_presCh || !_myRally || !_presenceGuard()) return;
+  var p = _rallyPayload({
+    ..._myRally,
+    ts: Date.now()
+  });
+  if (!p) return;
   try {
     _presCh.send({
       type: "broadcast",
       event: "rally",
-      payload: {
-        ..._myRally,
-        ts: Date.now()
-      }
+      payload: p
     });
   } catch {}
+}
+function _rallyPayload(r) {
+  if (!r || !r.rallyId || !r.stageId) return null;
+  return {
+    rallyId: String(r.rallyId),
+    fid: r.fid || null,
+    label: String(r.label || "").slice(0, 60),
+    stageId: String(r.stageId),
+    fromPid: r.fromPid || null,
+    fromName: r.fromName || "Someone",
+    ts: r.ts || Date.now()
+  };
 }
 function _rallyNotify() {
   var r = _activeRally;
@@ -1287,26 +1356,15 @@ function _rallyNotify() {
   });
 }
 function sbBroadcastRally({
-  x,
-  y,
   label,
-  stageId,
-  gps
+  stageId
 }) {
-  if (!_presCh) return false;
-  var g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? {
-    lat: gps.lat,
-    lng: gps.lng
-  } : null;
+  if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
-    x,
-    y,
+    fid: _crewFid(),
     label,
-    stageId: stageId || null,
-    ...(g ? {
-      gps: g
-    } : {}),
+    stageId,
     fromPid: _presMyId,
     fromName: _myLoc && _myLoc.name || "Someone"
   };
@@ -2228,6 +2286,130 @@ function _formatPollBody(id, question, options) {
 function _formatVoteBody(pollId, option) {
   return `[VOTE ${pollId}] ${option}`;
 }
+var MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
+function _meetupText(s, max) {
+  return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max);
+}
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  var ds = typeof window !== "undefined" && window._DATA_SETS ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
+function _formatMeetupBody(m, festivalId) {
+  var name = _meetupText(m && m.name, 60),
+    notes = _meetupText(m && m.notes, 200);
+  var at = Math.round(Number(m && m.atTs));
+  if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
+  var body = `[MEETUP ${festivalId} ${m && m.stageId || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
+  return _parseMeetup(body) ? body : null;
+}
+function _parseMeetup(body) {
+  var m = MEETUP_RE.exec(body || "");
+  if (!m) return null;
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
+  return {
+    festivalId: m[1],
+    stageId: m[2] === "-" ? null : m[2],
+    atTs: +m[3],
+    name: m[4].trim(),
+    notes: (m[5] || "").trim()
+  };
+}
+function meetupKey(m) {
+  return `${m && m.festivalId || "-"}|${m && m.stageId || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`;
+}
+function MeetupCard({
+  meet,
+  from,
+  sentAt
+}) {
+  var [mine, setMine] = React.useState(() => readMeetups().some(x => meetupKey(x) === meetupKey(meet)));
+  var here = meet.festivalId === FESTIVAL_CONFIG.id;
+  var stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
+  var other = here ? null : (FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null;
+  var forName = here ? null : other && (other.shortName || other.name) || meet.festivalId;
+  var past = meet.atTs < Date.now() - 30 * 60 * 1000;
+  var when = "";
+  try {
+    when = new Date(meet.atTs).toLocaleString([], {
+      weekday: "short",
+      hour: "numeric",
+      minute: "2-digit"
+    });
+  } catch {}
+  var add = () => {
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({
+      festivalId: meet.festivalId,
+      name: meet.name,
+      stageId: meet.stageId,
+      atTs: meet.atTs,
+      notes: meet.notes
+    });
+    window.plurskyHaptic?.("LIGHT");
+    setMine(true);
+  };
+  return React.createElement("div", {
+    "data-crew-meetup": true,
+    style: {
+      background: "var(--paper-2)",
+      borderRadius: 14,
+      padding: "12px 14px",
+      margin: "4px 0",
+      border: "1px solid var(--line)",
+      borderLeft: stage ? `3px solid ${stage.color}` : "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    className: "mono",
+    style: {
+      fontSize: 8.5,
+      letterSpacing: 1.2,
+      color: "var(--muted)",
+      fontWeight: 700,
+      marginBottom: 6
+    }
+  }, "MEETUP · ", String(from).toUpperCase(), " · ", sentAt), React.createElement("div", {
+    className: "serif",
+    style: {
+      fontSize: 16,
+      lineHeight: 1.25,
+      overflowWrap: "anywhere"
+    }
+  }, meet.name), React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      marginTop: 2
+    }
+  }, [stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")), meet.notes && React.createElement("div", {
+    style: {
+      fontSize: 13,
+      lineHeight: "18px",
+      marginTop: 4,
+      overflowWrap: "anywhere"
+    }
+  }, meet.notes), here && !past && React.createElement("button", {
+    type: "button",
+    "data-crew-meetup-add": true,
+    "aria-pressed": mine,
+    disabled: mine,
+    onClick: add,
+    style: {
+      marginTop: 10,
+      minHeight: 44,
+      padding: "0 14px",
+      borderRadius: 10,
+      background: mine ? "transparent" : "var(--ink)",
+      color: mine ? "var(--text-2)" : "var(--paper)",
+      border: mine ? "1px solid var(--line-2)" : "none",
+      fontSize: 15,
+      fontWeight: 600,
+      cursor: mine ? "default" : "pointer"
+    }
+  }, mine ? "In your meetups" : "Add to my meetups"));
+}
 function ReportSheet({
   message,
   code,
@@ -2696,6 +2878,102 @@ function CrewChat({
       return "";
     }
   };
+  var msgMenuButton = (m, menuOpen) => React.createElement("button", {
+    onClick: () => setMenuMsgId(menuOpen ? null : m.id),
+    "aria-label": "Message options",
+    title: "Report or block",
+    style: {
+      background: "transparent",
+      border: "none",
+      padding: "2px 6px",
+      borderRadius: 8,
+      color: "var(--muted)",
+      cursor: "pointer",
+      fontFamily: "inherit",
+      fontSize: 12,
+      letterSpacing: 1,
+      minHeight: 18,
+      lineHeight: 1
+    }
+  }, "⋯");
+  var msgMenu = m => React.createElement("div", {
+    style: {
+      marginTop: 6,
+      padding: 6,
+      borderRadius: 12,
+      background: "var(--paper)",
+      border: "1px solid var(--line)",
+      boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
+      display: "flex",
+      flexDirection: "column",
+      gap: 2,
+      minWidth: 200,
+      maxWidth: "85%"
+    }
+  }, React.createElement("button", {
+    onClick: () => {
+      setReportMsg(m);
+      setMenuMsgId(null);
+    },
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      fontSize: 13,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, React.createElement("span", {
+    "aria-hidden": true,
+    style: {
+      fontSize: 13
+    }
+  }, "🚩"), React.createElement("span", null, "Report message")), React.createElement("button", {
+    onClick: () => {
+      sbBlockPid(m.sender_pid);
+      setMenuMsgId(null);
+    },
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--ember-ink)",
+      textAlign: "left",
+      fontFamily: "inherit",
+      fontSize: 13,
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, React.createElement("span", {
+    "aria-hidden": true,
+    style: {
+      fontSize: 13
+    }
+  }, "🚫"), React.createElement("span", null, "Block ", m.sender_name || "Friend")), React.createElement("button", {
+    onClick: () => setMenuMsgId(null),
+    style: {
+      padding: "9px 12px",
+      borderRadius: 8,
+      background: "transparent",
+      border: "none",
+      cursor: "pointer",
+      color: "var(--muted)",
+      textAlign: "left",
+      fontFamily: "Geist Mono, monospace",
+      fontSize: 9.5,
+      letterSpacing: 1.2,
+      fontWeight: 700
+    }
+  }, "CANCEL"));
   return React.createElement("div", {
     style: {
       marginTop: 10
@@ -2803,6 +3081,24 @@ function CrewChat({
     var parsedPoll = _parsePoll(m.body);
     var mine = m.sender_pid === myPid;
     var menuOpen = menuMsgId === m.id;
+    var meet = _parseMeetup(m.body);
+    if (meet) {
+      return React.createElement(React.Fragment, {
+        key: m.id
+      }, _promoCard, React.createElement(MeetupCard, {
+        meet: meet,
+        from: mine ? "You" : m.sender_name || "Friend",
+        sentAt: fmtTime(m.created_at)
+      }), !mine && React.createElement("div", {
+        "data-crew-card-moderation": "meetup",
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          marginTop: -2
+        }
+      }, msgMenuButton(m, menuOpen), menuOpen && msgMenu(m)));
+    }
     if (parsedPoll) {
       var live = pollState[parsedPoll.id];
       var tally = {};
@@ -2918,7 +3214,15 @@ function CrewChat({
           marginTop: 8,
           textAlign: "right"
         }
-      }, totalVotes, " ", totalVotes === 1 ? "VOTE" : "VOTES", " · ", fmtTime(m.created_at))));
+      }, totalVotes, " ", totalVotes === 1 ? "VOTE" : "VOTES", " · ", fmtTime(m.created_at))), !mine && React.createElement("div", {
+        "data-crew-card-moderation": "poll",
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          marginTop: -2
+        }
+      }, msgMenuButton(m, menuOpen), menuOpen && msgMenu(m)));
     }
     return React.createElement(React.Fragment, {
       key: m.id
@@ -2964,101 +3268,7 @@ function CrewChat({
         alignItems: "center",
         gap: 6
       }
-    }, React.createElement("span", null, m._failed ? "FAILED · TAP TO RETRY" : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE" : fmtTime(m.created_at)), !mine && !m._pending && !m._failed && !m._queued && React.createElement("button", {
-      onClick: () => setMenuMsgId(menuOpen ? null : m.id),
-      "aria-label": "Message options",
-      title: "Report or block",
-      style: {
-        background: "transparent",
-        border: "none",
-        padding: "2px 6px",
-        borderRadius: 8,
-        color: "var(--muted)",
-        cursor: "pointer",
-        fontFamily: "inherit",
-        fontSize: 12,
-        letterSpacing: 1,
-        minHeight: 18,
-        lineHeight: 1
-      }
-    }, "⋯")), menuOpen && !mine && React.createElement("div", {
-      style: {
-        marginTop: 6,
-        padding: 6,
-        borderRadius: 12,
-        background: "var(--paper)",
-        border: "1px solid var(--line)",
-        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        minWidth: 200,
-        maxWidth: "85%"
-      }
-    }, React.createElement("button", {
-      onClick: () => {
-        setReportMsg(m);
-        setMenuMsgId(null);
-      },
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--ink)",
-        textAlign: "left",
-        fontFamily: "inherit",
-        fontSize: 13,
-        display: "flex",
-        alignItems: "center",
-        gap: 8
-      }
-    }, React.createElement("span", {
-      "aria-hidden": true,
-      style: {
-        fontSize: 13
-      }
-    }, "🚩"), React.createElement("span", null, "Report message")), React.createElement("button", {
-      onClick: () => {
-        sbBlockPid(m.sender_pid);
-        setMenuMsgId(null);
-      },
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--ember-ink)",
-        textAlign: "left",
-        fontFamily: "inherit",
-        fontSize: 13,
-        display: "flex",
-        alignItems: "center",
-        gap: 8
-      }
-    }, React.createElement("span", {
-      "aria-hidden": true,
-      style: {
-        fontSize: 13
-      }
-    }, "🚫"), React.createElement("span", null, "Block ", m.sender_name || "Friend")), React.createElement("button", {
-      onClick: () => setMenuMsgId(null),
-      style: {
-        padding: "9px 12px",
-        borderRadius: 8,
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--muted)",
-        textAlign: "left",
-        fontFamily: "Geist Mono, monospace",
-        fontSize: 9.5,
-        letterSpacing: 1.2,
-        fontWeight: 700
-      }
-    }, "CANCEL"))));
+    }, React.createElement("span", null, m._failed ? "FAILED · TAP TO RETRY" : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE" : fmtTime(m.created_at)), !mine && !m._pending && !m._failed && !m._queued && msgMenuButton(m, menuOpen)), menuOpen && !mine && msgMenu(m)));
   })), reportMsg && React.createElement(ReportSheet, {
     message: reportMsg,
     code: code,
@@ -3894,14 +4104,38 @@ function CrewCard({
 }
 var _stagePresChannel = null;
 var _currentPresenceStage = null;
+function _crewShareActive() {
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch {
+    return false;
+  }
+}
+function _syncStageHeadcount() {
+  var sid = _myLoc && _myLoc.stageId;
+  if (sid) joinStagePresence(sid);else leaveStagePresence();
+}
+function _stagePresChannelName(stageId) {
+  var crew = _presChannelName();
+  return crew ? `stage:${crew}:${stageId}` : null;
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
-  if (_currentPresenceStage === stageId) return;
+  if (!_sb || !stageId || !_crewShareActive()) {
+    leaveStagePresence();
+    return;
+  }
+  var chName = _stagePresChannelName(stageId);
+  if (!chName) {
+    leaveStagePresence();
+    return;
+  }
+  if (_currentPresenceStage === chName) return;
   if (_stagePresChannel) {
     _stagePresChannel.unsubscribe();
     _stagePresChannel = null;
   }
-  _currentPresenceStage = stageId;
+  _currentPresenceStage = chName;
   var deviceId = localStorage.getItem("plursky-device-id") || (() => {
     var id = `anon_${Math.random().toString(36).slice(2, 8)}`;
     try {
@@ -3909,7 +4143,7 @@ function joinStagePresence(stageId) {
     } catch {}
     return id;
   })();
-  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+  _stagePresChannel = _sb.channel(chName, {
     config: {
       presence: {
         key: deviceId

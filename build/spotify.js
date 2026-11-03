@@ -16908,11 +16908,8 @@ function NowPlayingBar() {
           stage: debugStage,
           artist: debugArtist || null
         }));
-        if (window.joinStagePresence) window.joinStagePresence(debugStage.id);
       }
-      return () => {
-        if (window.leaveStagePresence) window.leaveStagePresence();
-      };
+      return;
     }
     var watchId;
     var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(CFG) : CFG.gpsAnchors || [];
@@ -16940,14 +16937,12 @@ function NowPlayingBar() {
         ...s,
         stage: stageObj
       });
-      if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, {
       enableHighAccuracy: true,
       maximumAge: 10000
     });
     return () => {
       if (watchId) navigator.geolocation.clearWatch(watchId);
-      if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
   React.useEffect(() => {
