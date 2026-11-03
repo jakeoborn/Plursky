@@ -72,6 +72,8 @@ function unit(F) {
   check(F._parseBeacon(`[BEACON zz-fest stage1 ${T}]`)?.festivalId === "zz-fest", "a festival this build doesn't know still parses (named only)");
   check(F.beaconLiveUntil({ ts: T + 3600e3 }, T) === T + 15 * 60e3, "a tap time ahead of the clock counts from now");
   check(F.beaconLiveUntil({ ts: T + 3600e3 }, T + 16 * 60e3, T) === T + 15 * 60e3, "a future beacon stays anchored to first sight: 16 min later it has ended");
+  check(F.beaconLiveUntil({ ts: T + 3600e3 }, T + 20 * 60e3, T + 20 * 60e3, T) === T + 15 * 60e3, "the server insert time caps a future beacon, so a reload can't re-arm it");
+  check(F.beaconLiveUntil({ ts: T }, T, T, NaN) === T + 15 * 60e3, "no server time → first sight alone");
   const k = "m9|f-1|kinetic|" + T;
   check(F._beaconFirstSeen(k, T) === T && F._beaconFirstSeen(k, T + 60e3) === T, "first sight is held once per message");
   return { checks, failed, fails };
@@ -84,9 +86,10 @@ const MUT = [
   ["(\\d{12,14})\\]$/", "(\\d{12,14})\\]/"],
   ["if (!festivalId || !stageId || !Number.isFinite(at)) return null;", "if (!festivalId || !Number.isFinite(at)) return null;"],
   ["return _parseBeacon(body) ? body : null;", "return body;"],
-  ["Math.min(b.ts, seenAt) + BEACON_TTL_MS", "b.ts + BEACON_TTL_MS"],
-  ["Math.min(b.ts, seenAt) + BEACON_TTL_MS", "Math.min(b.ts, now) + BEACON_TTL_MS"],
+  ["return Math.min(b.ts, seenAt, Number.isFinite(receivedAt) ? receivedAt : Infinity) + BEACON_TTL_MS;", "return b.ts + BEACON_TTL_MS;"],
+  ["Math.min(b.ts, seenAt, Number", "Math.min(b.ts, now, Number"],
   ["if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);", "_beaconSeen.set(key, now);"],
+  ["Number.isFinite(receivedAt) ? receivedAt : Infinity", "Infinity"],
   ["BEACON_TTL_MS = 15 * 60 * 1000;", "BEACON_TTL_MS = 60 * 60 * 1000;"],
   ["if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;", "if (!m) return null;"],
 ];
@@ -231,6 +234,30 @@ try {
     const zzText = await zz.innerText();
     aCheck(/Ana is at zz-fest/.test(zzText) && !/sent a find-me/.test(zzText) && await zz.locator("[data-crew-beacon-reply]").count() === 0,
       `an unknown festival's beacon names it by id, no reply (got "${zzText.replace(/\n/g, " / ")}")`);
+    // A reload forgets first sight: the same +1h beacon, inserted 20 min ago by
+    // the server, opened fresh. The server time caps it, so it is already over.
+    await page.evaluate(([fid]) => {
+      document.getElementById("__chat").remove();
+      const now = Date.now();
+      window.sbCrewFetchMessages = async () => [{ id: 21, sender_pid: "p-sam", sender_name: "Sam", body: `[BEACON ${fid} kinetic ${now + 3600e3}]`, created_at: new Date(now - 20 * 60e3).toISOString() }];
+      const host = document.createElement("div"); host.id = "__chat"; host.style.cssText = "position:fixed;inset:0;z-index:2147483000;overflow:auto;background:var(--paper)"; document.body.appendChild(host);
+      ReactDOM.createRoot(host).render(React.createElement(CrewChat, { code: "TST123", myPid: "p-me", myName: "Me" }));
+    }, [FID]);
+    await page.waitForTimeout(800);
+    const reloaded = page.locator('#__chat [data-crew-beacon]').first();
+    aCheck(await reloaded.getAttribute("data-crew-beacon") === "ended" && await reloaded.locator("[data-crew-beacon-reply]").count() === 0,
+      `after a reload, a +1h beacon the server got 20 min ago is ended, no On my way (got "${(await reloaded.innerText()).replace(/\n/g, " / ")}")`);
+    await page.evaluate(([fid]) => {
+      document.getElementById("__chat").remove();
+      const now = Date.now();
+      window.sbCrewFetchMessages = async () => [
+        { id: 11, sender_pid: "p-sam", sender_name: "Sam", body: `[BEACON ${fid} kinetic ${now + 3600e3}]`, created_at: new Date(now).toISOString() },
+        { id: 12, sender_pid: "p-ana", sender_name: "Ana", body: `[BEACON zz-fest stage1 ${now}]`, created_at: new Date(now).toISOString() },
+      ];
+      const host = document.createElement("div"); host.id = "__chat"; host.style.cssText = "position:fixed;inset:0;z-index:2147483000;overflow:auto;background:var(--paper)"; document.body.appendChild(host);
+      ReactDOM.createRoot(host).render(React.createElement(CrewChat, { code: "TST123", myPid: "p-me", myName: "Me" }));
+    }, [FID]);
+    await page.waitForTimeout(800);
     await page.clock.runFor("16:00");
     await page.waitForTimeout(300);
     aCheck(await future.getAttribute("data-crew-beacon") === "ended" && /Ended/.test(await future.innerText()) && await future.locator("[data-crew-beacon-reply]").count() === 0,
