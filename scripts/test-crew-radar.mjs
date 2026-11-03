@@ -543,6 +543,101 @@ try {
   } finally { await L.done(); }
 } catch (e) { tCheck(false, `rendered tab run: ${e.message.split("\n")[0]}`); }
 
+// ── Rendered: two festivals, one crew code, one stage id (#376 finding 7) ──
+// Three real app pages share one in-test broadcast bus keyed by channel name:
+// ACL and Lollapalooza both have a "titos" stage; a second Lollapalooza page
+// is the same-festival control. Nothing may cross festivals; the control must.
+async function crossFest(supaBody) {
+  const PORT3 = await reservePort();
+  const srv = spawn("python3", ["-m", "http.server", String(PORT3), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
+  const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
+  let browser;
+  try {
+    await serverReady(`http://127.0.0.1:${PORT3}/index.html`);
+    browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+    const pages = [];
+    const deliver = async (from, name, msg) => {
+      for (const p of pages) if (p !== from) await p.evaluate(([n, m]) => window.__busDeliver(n, m), [name, msg]).catch(() => {});
+    };
+    const open = async (fid, pid) => {
+      const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 } });
+      await wireVendor(ctx);
+      await ctx.route(/supabase\.co/, r => r.abort());
+      if (supaBody) await ctx.route(/\/build\/supabase\.js/, r => r.fulfill({ status: 200, contentType: "application/javascript", body: supaBody }));
+      await ctx.addInitScript(([fid, pid]) => {
+        localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+        localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+        localStorage.setItem("plursky_group_code", "TST123"); localStorage.setItem("plursky_pid", pid);
+        localStorage.setItem("status_me", JSON.stringify({ stage: "titos", ts: Date.now() }));
+        localStorage.setItem("plursky_share_state", JSON.stringify({ active: true, includeGps: false, includeStage: true, stageOnly: 2, expiresAt: Date.now() + 3600e3 }));
+        window.__chans = []; window.__rallies = [];
+        window.__busDeliver = (name, msg) => {
+          for (const ch of window.__chans) if (ch.name === name && !ch.unsub && ch.handlers[msg.event]) ch.handlers[msg.event](msg);
+        };
+        let real;
+        Object.defineProperty(window, "supabase", { configurable: true,
+          set(v) { real = v; },
+          get() {
+            if (!real) return real;
+            return { ...real, createClient: (...a) => {
+              const c = real.createClient(...a);
+              c.channel = (name) => {
+                const ch = { name, unsub: false, handlers: {},
+                  on(t, f, cb) { ch.handlers[(f && f.event) || t] = cb; return ch; },
+                  subscribe(cb) { if (cb) setTimeout(() => cb("SUBSCRIBED"), 0); return ch; },
+                  send(m) { if (!ch.unsub) window.__busSend(name, { type: m.type, event: m.event, payload: m.payload }); },
+                  track() { return Promise.resolve(); }, unsubscribe() { ch.unsub = true; }, presenceState: () => ({}) };
+                window.__chans.push(ch); return ch;
+              };
+              c.removeChannel = (ch) => { if (ch) ch.unsub = true; };
+              return c;
+            } };
+          } });
+      }, [fid, pid]);
+      const page = await ctx.newPage();
+      const errors = []; page.on("pageerror", e => errors.push(e.message));
+      await page.exposeFunction("__busSend", (name, msg) => deliver(page, name, msg));
+      pages.push(page);
+      await page.goto(`http://127.0.0.1:${PORT3}/index.html?f=${fid}&tab=map`, { waitUntil: "domcontentloaded" });
+      await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && typeof window.sbPresenceJoin === "function", fid, { timeout: 60000 });
+      await page.evaluate(() => window.sbOnRally(r => window.__rallies.push(r)));
+      return { page, errors };
+    };
+    const acl = await open("acl-2026", "p_acl");
+    const lol = await open("lollapalooza-2026", "p_lol");
+    const lol2 = await open("lollapalooza-2026", "p_lol2");
+    // Everyone re-announces on join; give the bus a beat, then ACL calls a rally at titos.
+    await lol2.page.waitForTimeout(2500);
+    await acl.page.evaluate(() => window.sbBroadcastRally({ label: "Meet", stageId: "titos" }));
+    await lol2.page.evaluate(() => window.sbBroadcastRally({ label: "Meet", stageId: "titos" }));
+    await lol2.page.waitForTimeout(1200);
+    const read = p => p.evaluate(() => ({ snap: Object.keys(window.sbGetPresSnap()), rallies: window.__rallies.filter(Boolean).map(r => r.fromPid) }));
+    return { acl: await read(acl.page), lol: await read(lol.page), lol2: await read(lol2.page),
+      errors: [...acl.errors, ...lol.errors, ...lol2.errors] };
+  } finally { if (browser) await browser.close(); srv.kill(); }
+}
+try {
+  const X = await crossFest(null);
+  tCheck(X.lol.snap.includes("p_lol2") && X.lol2.snap.includes("p_lol"), `control: two Lollapalooza crewmates see each other (lol ${X.lol.snap}, lol2 ${X.lol2.snap})`);
+  tCheck(X.lol.rallies.includes("p_lol2"), `control: a Lollapalooza rally reaches the Lollapalooza crewmate (got ${X.lol.rallies})`);
+  tCheck(!X.lol.snap.includes("p_acl") && !X.lol2.snap.includes("p_acl") && !X.acl.snap.includes("p_lol") && !X.acl.snap.includes("p_lol2"),
+    `same crew code, same "titos" stage, two festivals: no loc crosses (acl ${X.acl.snap} · lol ${X.lol.snap} · lol2 ${X.lol2.snap})`);
+  tCheck(!X.lol.rallies.includes("p_acl") && !X.lol2.rallies.includes("p_acl") && !X.acl.rallies.some(p => /^p_lol/.test(p)),
+    `…and no rally crosses (acl ${X.acl.rallies} · lol ${X.lol.rallies})`);
+  tCheck(X.errors.length === 0, `cross-festival: no page errors (${X.errors.slice(0, 2).join(" | ")})`);
+  // Rendered mutant: 1fd14e2's crew channel (no festival in the name) and no fid check on receive.
+  tabMutTotal++;
+  const SUPAJS = readFileSync(join(ROOT, "build", "supabase.js"), "utf8");
+  const swaps = [["return code && fid ? `crew-${code}:${fid}` : null;", "return code ? `crew-${code}` : null;"],
+    ["payload.pid === _presMyId || payload.fid !== _crewFid()) return;", "payload.pid === _presMyId) return;"],
+    ["if (!r || r.fid !== _crewFid()) return;", "if (!r) return;"]];
+  if (swaps.every(([f]) => SUPAJS.split(f).length === 2)) {
+    const M = await crossFest(swaps.reduce((s, [f, t]) => s.replace(f, t), SUPAJS));
+    if (M.lol.snap.includes("p_acl") || M.acl.snap.includes("p_lol") || M.lol.rallies.includes("p_acl")) tabMutCaught++;
+    else console.log(`  ✗  rendered mutation survived: unscoped crew channel (lol ${M.lol.snap} · rallies ${M.lol.rallies})`);
+  } else console.log("  ✗  rendered mutation target not found (cross-festival)");
+} catch (e) { tCheck(false, `rendered cross-festival run: ${e.message.split("\n")[0]}`); }
+
 const failed = base.failed + mutFail + statFail + appFail + tabFail + (tabMutTotal - tabMutCaught);
 console.log(`${failed ? "✗" : "✓"} crew radar: ${base.checks - base.failed}/${base.checks} unit checks, ${stat.length - statFail}/${stat.length} static, ${appChecks - appFail}/${appChecks} app checks, ${tabChecks - tabFail}/${tabChecks} tab checks, ${caught}/${MUT.length} mutations + ${tabMutCaught}/${tabMutTotal} rendered caught`);
 process.exit(failed ? 1 : 0);
