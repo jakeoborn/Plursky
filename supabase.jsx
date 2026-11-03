@@ -2015,12 +2015,20 @@ function _parseBeacon(body) {
   return { festivalId: m[1], stageId: m[2], ts: +m[3] };
 }
 // Live for 15 minutes from the tap. A tap time ahead of the clock (a skewed
-// phone) counts from now, so a beacon can never read live for longer.
-function beaconLiveUntil(b, now) { return Math.min(b.ts, now) + BEACON_TTL_MS; }
+// phone) counts from when this device first saw the beacon, held once per
+// message, so a beacon can never read live for longer (#375 review: anchoring
+// to each tick's "now" kept a future beacon live forever).
+const _beaconSeen = new Map();
+function _beaconFirstSeen(key, now) {
+  if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);
+  return _beaconSeen.get(key);
+}
+function beaconLiveUntil(b, now, seenAt = now) { return Math.min(b.ts, seenAt) + BEACON_TTL_MS; }
 
-function BeaconCard({ beacon, from, sentAt, onReply }) {
+function BeaconCard({ beacon, msgId, from, sentAt, onReply }) {
   const [now, setNow] = React.useState(() => Date.now());
-  const until = beaconLiveUntil(beacon, now);
+  const [seenAt] = React.useState(() => _beaconFirstSeen(`${msgId}|${beacon.festivalId}|${beacon.stageId}|${beacon.ts}`, Date.now()));
+  const until = beaconLiveUntil(beacon, now, seenAt);
   const live = now < until;
   React.useEffect(() => {
     if (!live) return;
@@ -2031,7 +2039,8 @@ function BeaconCard({ beacon, from, sentAt, onReply }) {
   const here = beacon.festivalId === FESTIVAL_CONFIG.id;
   const stage = here ? STAGES.find(s => s.id === beacon.stageId) : null;
   const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === beacon.festivalId) || {}).config || null);
-  const where = stage ? stage.name : other ? (other.shortName || other.name) : null;
+  // A festival this build doesn't know is named by its raw id, as meetups are (#374).
+  const where = stage ? stage.name : here ? null : ((other && (other.shortName || other.name)) || beacon.festivalId);
   let ended = "";
   try { ended = new Date(until).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); } catch {}
   const mins = Math.max(1, Math.ceil((until - now) / 60000));
@@ -2600,7 +2609,7 @@ function CrewChat({ code, myPid, myName }) {
           if (beacon) {
             return (<React.Fragment key={m.id}>
               {_promoCard}
-              <BeaconCard beacon={beacon} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)}
+              <BeaconCard beacon={beacon} msgId={m.id} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)}
                 onReply={mine ? null : (body) => sbCrewSendMessage(code, myPid, myName, body)} />
               {!mine && (
                 <div data-crew-card-moderation="beacon" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>

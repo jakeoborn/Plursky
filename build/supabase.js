@@ -2279,17 +2279,24 @@ function _parseBeacon(body) {
     ts: +m[3]
   };
 }
-function beaconLiveUntil(b, now) {
-  return Math.min(b.ts, now) + BEACON_TTL_MS;
+var _beaconSeen = new Map();
+function _beaconFirstSeen(key, now) {
+  if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);
+  return _beaconSeen.get(key);
+}
+function beaconLiveUntil(b, now, seenAt = now) {
+  return Math.min(b.ts, seenAt) + BEACON_TTL_MS;
 }
 function BeaconCard({
   beacon,
+  msgId,
   from,
   sentAt,
   onReply
 }) {
   var [now, setNow] = React.useState(() => Date.now());
-  var until = beaconLiveUntil(beacon, now);
+  var [seenAt] = React.useState(() => _beaconFirstSeen(`${msgId}|${beacon.festivalId}|${beacon.stageId}|${beacon.ts}`, Date.now()));
+  var until = beaconLiveUntil(beacon, now, seenAt);
   var live = now < until;
   React.useEffect(() => {
     if (!live) return;
@@ -2300,7 +2307,7 @@ function BeaconCard({
   var here = beacon.festivalId === FESTIVAL_CONFIG.id;
   var stage = here ? STAGES.find(s => s.id === beacon.stageId) : null;
   var other = here ? null : (FESTIVALS_REGISTRY.find(f => f.config.id === beacon.festivalId) || {}).config || null;
-  var where = stage ? stage.name : other ? other.shortName || other.name : null;
+  var where = stage ? stage.name : here ? null : other && (other.shortName || other.name) || beacon.festivalId;
   var ended = "";
   try {
     ended = new Date(until).toLocaleTimeString([], {
@@ -3133,6 +3140,7 @@ function CrewChat({
         key: m.id
       }, _promoCard, React.createElement(BeaconCard, {
         beacon: beacon,
+        msgId: m.id,
         from: mine ? "You" : m.sender_name || "Friend",
         sentAt: fmtTime(m.created_at),
         onReply: mine ? null : body => sbCrewSendMessage(code, myPid, myName, body)

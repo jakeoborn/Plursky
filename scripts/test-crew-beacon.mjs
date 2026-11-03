@@ -45,7 +45,7 @@ function load(src) {
   ctx.addEventListener = noop; ctx.removeEventListener = noop;
   vm.createContext(ctx);
   vm.runInContext(src, ctx, { filename: "build/supabase.js" });
-  return vm.runInContext(`({ _formatBeaconBody, _parseBeacon, beaconLiveUntil, BEACON_TTL_MS, _parseMeetup, _parsePoll })`, ctx);
+  return vm.runInContext(`({ _formatBeaconBody, _parseBeacon, beaconLiveUntil, _beaconFirstSeen, BEACON_TTL_MS, _parseMeetup, _parsePoll })`, ctx);
 }
 
 function unit(F) {
@@ -71,6 +71,9 @@ function unit(F) {
   check(F._formatBeaconBody("amex", "edc-orlando-2026", T) === null, "…and can't be sent");
   check(F._parseBeacon(`[BEACON zz-fest stage1 ${T}]`)?.festivalId === "zz-fest", "a festival this build doesn't know still parses (named only)");
   check(F.beaconLiveUntil({ ts: T + 3600e3 }, T) === T + 15 * 60e3, "a tap time ahead of the clock counts from now");
+  check(F.beaconLiveUntil({ ts: T + 3600e3 }, T + 16 * 60e3, T) === T + 15 * 60e3, "a future beacon stays anchored to first sight: 16 min later it has ended");
+  const k = "m9|f-1|kinetic|" + T;
+  check(F._beaconFirstSeen(k, T) === T && F._beaconFirstSeen(k, T + 60e3) === T, "first sight is held once per message");
   return { checks, failed, fails };
 }
 
@@ -81,7 +84,9 @@ const MUT = [
   ["(\\d{12,14})\\]$/", "(\\d{12,14})\\]/"],
   ["if (!festivalId || !stageId || !Number.isFinite(at)) return null;", "if (!festivalId || !Number.isFinite(at)) return null;"],
   ["return _parseBeacon(body) ? body : null;", "return body;"],
-  ["Math.min(b.ts, now) + BEACON_TTL_MS", "b.ts + BEACON_TTL_MS"],
+  ["Math.min(b.ts, seenAt) + BEACON_TTL_MS", "b.ts + BEACON_TTL_MS"],
+  ["Math.min(b.ts, seenAt) + BEACON_TTL_MS", "Math.min(b.ts, now) + BEACON_TTL_MS"],
+  ["if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);", "_beaconSeen.set(key, now);"],
   ["BEACON_TTL_MS = 15 * 60 * 1000;", "BEACON_TTL_MS = 60 * 60 * 1000;"],
   ["if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;", "if (!m) return null;"],
 ];
@@ -188,6 +193,49 @@ try {
     if (process.env.SHOT_DIR) await page.screenshot({ path: join(process.env.SHOT_DIR, "crew-beacon-thread.png") });
     aCheck(!/\[BEACON/.test(await page.locator("#__chat").innerText()), "the raw [BEACON …] body never shows");
     aCheck(errors.length === 0, `no page errors (${errors.slice(0, 2).join(" | ")})`);
+    await ctx.close();
+  }
+  // #375 review, timed: a beacon stamped an hour ahead (a skewed phone) is live
+  // from first sight and gone 16 minutes later, with no On my way. And a
+  // festival this build doesn't know is named by its raw id, never the generic line.
+  {
+    const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 } });
+    await wireVendor(ctx);
+    await ctx.route(/supabase\.co/, r => r.abort());
+    await ctx.addInitScript(([fid]) => {
+      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("plursky_group_code", "TST123");
+    }, [FID]);
+    const page = await ctx.newPage();
+    await page.clock.install();
+    const errors = []; page.on("pageerror", e => errors.push(e.message));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=home`, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && typeof window.BeaconCard === "function", FID, { timeout: 60000 });
+    await page.evaluate(([fid]) => {
+      const now = Date.now();
+      const row = (id, body, who, name) => ({ id, sender_pid: who, sender_name: name, body, created_at: new Date(now).toISOString() });
+      window.sbCrewFetchMessages = async () => [
+        row(11, `[BEACON ${fid} kinetic ${now + 3600e3}]`, "p-sam", "Sam"),
+        row(12, `[BEACON zz-fest stage1 ${now}]`, "p-ana", "Ana"),
+      ];
+      window.sbCrewSubscribeMessages = () => () => {};
+      const host = document.createElement("div"); host.id = "__chat"; host.style.cssText = "position:fixed;inset:0;z-index:2147483000;overflow:auto;background:var(--paper)"; document.body.appendChild(host);
+      ReactDOM.createRoot(host).render(React.createElement(CrewChat, { code: "TST123", myPid: "p-me", myName: "Me" }));
+    }, [FID]);
+    await page.waitForTimeout(800);
+    const future = page.locator('#__chat [data-crew-beacon]').nth(0);
+    const zz = page.locator('#__chat [data-crew-beacon]').nth(1);
+    aCheck(await future.getAttribute("data-crew-beacon") === "live" && /Live for 15 more min/.test(await future.innerText()) && await future.locator("[data-crew-beacon-reply]").count() === 1,
+      `a beacon an hour ahead is live for 15 min from first sight (got "${(await future.innerText()).replace(/\n/g, " / ")}")`);
+    const zzText = await zz.innerText();
+    aCheck(/Ana is at zz-fest/.test(zzText) && !/sent a find-me/.test(zzText) && await zz.locator("[data-crew-beacon-reply]").count() === 0,
+      `an unknown festival's beacon names it by id, no reply (got "${zzText.replace(/\n/g, " / ")}")`);
+    await page.clock.runFor("16:00");
+    await page.waitForTimeout(300);
+    aCheck(await future.getAttribute("data-crew-beacon") === "ended" && /Ended/.test(await future.innerText()) && await future.locator("[data-crew-beacon-reply]").count() === 0,
+      `16 minutes on, the future beacon has ended and offers no On my way (got "${(await future.innerText()).replace(/\n/g, " / ")}")`);
+    aCheck(errors.length === 0, `no page errors in the timed run (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();
   }
   await browser.close();
