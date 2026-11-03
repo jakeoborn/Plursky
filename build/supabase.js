@@ -1028,14 +1028,17 @@ function AccountCard({
     }
   }, "TRY AGAIN")))));
 }
-var PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
 var PRESENCE_COLORS = ["#FFD60A", "#30D158", "#64D2FF", "#B79CFF", "#FF6FB5", "#FF9F0A"];
+function _crewFid() {
+  return typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id || null;
+}
 function _presChannelName() {
   var code = null;
   try {
     code = localStorage.getItem("plursky_group_code") || null;
   } catch {}
-  return code ? `crew-${code}` : PRESENCE_FALLBACK;
+  var fid = _crewFid();
+  return code && fid ? `crew-${code}:${fid}` : null;
 }
 function _presColor(id) {
   if (!id) return PRESENCE_COLORS[0];
@@ -1087,25 +1090,36 @@ function _presNotify() {
     } catch {}
   });
 }
+function _crewLocPayload(l) {
+  return {
+    pid: l.pid,
+    name: l.name,
+    fid: l.fid || null,
+    stageId: l.stageId || null,
+    color: l.color,
+    pingCode: l.pingCode,
+    ts: l.ts || Date.now()
+  };
+}
 function _broadcastMyLoc() {
-  if (!_presCh || !_myLoc) return;
+  if (!_presCh || !_myLoc || !_presenceGuard()) return;
   try {
     _presCh.send({
       type: "broadcast",
       event: "loc",
-      payload: {
+      payload: _crewLocPayload({
         ..._myLoc,
         ts: Date.now()
-      }
+      })
     });
   } catch {}
 }
 function sbPresenceJoin({
   name,
-  stageId,
-  gps
+  stageId
 }) {
-  if (!_sb) return;
+  var chName = _presChannelName();
+  if (!_sb || !chName) return;
   _presMyId = _myPresId();
   var color = _presColor(_presMyId);
   if (_presCh) {
@@ -1119,13 +1133,15 @@ function sbPresenceJoin({
   _myLoc = {
     pid: _presMyId,
     name,
+    fid: _crewFid(),
     stageId,
     color,
     pingCode,
-    gps,
     ts: Date.now()
   };
-  _presCh = _sb.channel(_presChannelName(), {
+  _syncStageHeadcount();
+  _armShareExpiry();
+  _presCh = _sb.channel(chName, {
     config: {
       broadcast: {
         self: false
@@ -1137,8 +1153,8 @@ function sbPresenceJoin({
   }, ({
     payload
   }) => {
-    if (!payload?.pid || payload.pid === _presMyId) return;
-    _presSnap[payload.pid] = payload;
+    if (!payload?.pid || payload.pid === _presMyId || payload.fid !== _crewFid()) return;
+    _presSnap[payload.pid] = _crewLocPayload(payload);
     _presNotify();
   }).on("broadcast", {
     event: "loc-req"
@@ -1160,7 +1176,9 @@ function sbPresenceJoin({
     payload
   }) => {
     if (!payload?.rallyId || payload.fromPid === _presMyId) return;
-    _activeRally = payload;
+    var r = _rallyPayload(payload);
+    if (!r || r.fid !== _crewFid()) return;
+    _activeRally = r;
     _rallyNotify();
   }).on("broadcast", {
     event: "rally-clear"
@@ -1196,12 +1214,17 @@ async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
   var patch = typeof arg === "string" ? {
     stageId: arg
-  } : arg || {};
+  } : arg && Object.prototype.hasOwnProperty.call(arg, "stageId") ? {
+    stageId: arg.stageId || null
+  } : {
+    stageId: _myLoc.stageId
+  };
   _myLoc = {
     ..._myLoc,
     ...patch,
     ts: Date.now()
   };
+  _syncStageHeadcount();
   _presSnap[_presMyId] = {
     ..._myLoc
   };
@@ -1227,13 +1250,44 @@ function sbPresenceRefresh() {
   if (!_myLoc) return false;
   sbPresenceJoin({
     name: _myLoc.name,
-    stageId: _myLoc.stageId,
-    gps: _myLoc.gps
+    stageId: _myLoc.stageId
   });
   return true;
 }
+var _shareExpiryId = null;
+function _presenceGuard() {
+  if (_crewShareActive()) return true;
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    if (s && s.active) localStorage.setItem("plursky_share_state", JSON.stringify({
+      ...s,
+      active: false
+    }));
+  } catch {}
+  sbPresenceLeave();
+  return false;
+}
+function _armShareExpiry() {
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
+  var exp = null;
+  try {
+    exp = (JSON.parse(localStorage.getItem("plursky_share_state") || "null") || {}).expiresAt || null;
+  } catch {}
+  if (!exp) return;
+  _shareExpiryId = setTimeout(() => {
+    _shareExpiryId = null;
+    _presenceGuard();
+  }, Math.min(Math.max(0, exp - Date.now()) + 50, 2147483000));
+}
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
+  if (_shareExpiryId) {
+    clearTimeout(_shareExpiryId);
+    _shareExpiryId = null;
+  }
   if (_presCh && _sb) {
     try {
       _presCh.send({
@@ -1249,6 +1303,7 @@ function sbPresenceLeave() {
   }
   _presSnap = {};
   _myLoc = null;
+  leaveStagePresence();
   _myRally = null;
   _activeRally = null;
   _presMyId = null;
@@ -1259,17 +1314,31 @@ function sbOnPresenceChange(cb) {
   return () => _presCbs.delete(cb);
 }
 function _broadcastMyRally() {
-  if (!_presCh || !_myRally) return;
+  if (!_presCh || !_myRally || !_presenceGuard()) return;
+  var p = _rallyPayload({
+    ..._myRally,
+    ts: Date.now()
+  });
+  if (!p) return;
   try {
     _presCh.send({
       type: "broadcast",
       event: "rally",
-      payload: {
-        ..._myRally,
-        ts: Date.now()
-      }
+      payload: p
     });
   } catch {}
+}
+function _rallyPayload(r) {
+  if (!r || !r.rallyId || !r.stageId) return null;
+  return {
+    rallyId: String(r.rallyId),
+    fid: r.fid || null,
+    label: String(r.label || "").slice(0, 60),
+    stageId: String(r.stageId),
+    fromPid: r.fromPid || null,
+    fromName: r.fromName || "Someone",
+    ts: r.ts || Date.now()
+  };
 }
 function _rallyNotify() {
   var r = _activeRally;
@@ -1280,26 +1349,15 @@ function _rallyNotify() {
   });
 }
 function sbBroadcastRally({
-  x,
-  y,
   label,
-  stageId,
-  gps
+  stageId
 }) {
-  if (!_presCh) return false;
-  var g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? {
-    lat: gps.lat,
-    lng: gps.lng
-  } : null;
+  if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
-    x,
-    y,
+    fid: _crewFid(),
     label,
-    stageId: stageId || null,
-    ...(g ? {
-      gps: g
-    } : {}),
+    stageId,
     fromPid: _presMyId,
     fromName: _myLoc && _myLoc.name || "Someone"
   };
@@ -3885,14 +3943,38 @@ function CrewCard({
 }
 var _stagePresChannel = null;
 var _currentPresenceStage = null;
+function _crewShareActive() {
+  try {
+    var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch {
+    return false;
+  }
+}
+function _syncStageHeadcount() {
+  var sid = _myLoc && _myLoc.stageId;
+  if (sid) joinStagePresence(sid);else leaveStagePresence();
+}
+function _stagePresChannelName(stageId) {
+  var crew = _presChannelName();
+  return crew ? `stage:${crew}:${stageId}` : null;
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
-  if (_currentPresenceStage === stageId) return;
+  if (!_sb || !stageId || !_crewShareActive()) {
+    leaveStagePresence();
+    return;
+  }
+  var chName = _stagePresChannelName(stageId);
+  if (!chName) {
+    leaveStagePresence();
+    return;
+  }
+  if (_currentPresenceStage === chName) return;
   if (_stagePresChannel) {
     _stagePresChannel.unsubscribe();
     _stagePresChannel = null;
   }
-  _currentPresenceStage = stageId;
+  _currentPresenceStage = chName;
   var deviceId = localStorage.getItem("plursky-device-id") || (() => {
     var id = `anon_${Math.random().toString(36).slice(2, 8)}`;
     try {
@@ -3900,7 +3982,7 @@ function joinStagePresence(stageId) {
     } catch {}
     return id;
   })();
-  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+  _stagePresChannel = _sb.channel(chName, {
     config: {
       presence: {
         key: deviceId

@@ -255,11 +255,13 @@ caught([{ ...anchors[2], lng: anchors[2].lng + 0.012 }].every(a => miles(a) < co
   ok(dead.length === 0 && fired > 0, `every osm/crowd point still fires for its own stage (${fired} fired${dead.length ? `; DEAD ${dead.join(", ")}` : ""})`);
   ok(refused > 0, `the sweep met non-evidence points to refuse (${refused})`);
 
-  // Crew nudge: inferring a friend's stage from their GPS dot needs sourced
-  // registration. Source check (the cluster lives inside a component).
+  // Crew nudge: crew shares are stage-only (15-feature program #2), so the
+  // cluster counts a friend's declared stage and never infers one from a
+  // position. Source check (the cluster lives inside a component).
   const mapSrc = readFileSync(join(ROOT, "map.jsx"), "utf8");
-  ok(/f\.stageId \|\| \(MAP_REGISTRATION_SOURCED \? _nearestStageId\(f\.x, f\.y\) : null\)/.test(mapSrc),
-    "the crew-cluster nudge infers a stage from GPS only on sourced registration");
+  const cluster = mapSrc.slice(mapSrc.indexOf("const crewCluster"), mapSrc.indexOf("const crewCluster") + 900);
+  ok(/const sid = f\.stageId;/.test(cluster) && !/_nearestStageId\(f\.|f\.x|f\.gps/.test(cluster),
+    "the crew-cluster nudge counts only a declared stage, never one inferred from a position");
 }
 
 for (const f of fails) console.log(`  ✗  ${f}`);
