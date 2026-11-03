@@ -2734,7 +2734,7 @@ function MapScreen({ state, setState }) {
             Tap a row to isolate that type on the map; tap again to clear. */}
         {amenityKey && !meetMode && (
           <div role="group" aria-label="Amenity key" style={{
-            position: "absolute", left: 10, top: 90, zIndex: 6,
+            position: "absolute", left: 10, top: isSharing ? 130 : 90, zIndex: 6,
             background: "rgba(var(--glass),0.94)",
             border: "none", borderRadius: "var(--rad-md)",
             padding: 4, minWidth: 140,
@@ -2783,16 +2783,19 @@ function MapScreen({ state, setState }) {
         {/* #6 Persistent live-sharing badge — sharing state is the trust
             backbone of the crew moat, so it's unmissable + one tap to stop
             (was buried in the overflow menu / a fumbleable GPS icon). */}
+        {/* Left column, under the Stylized/Satellite toggle (top 58): centred
+            at top 46 it covered that toggle at 390 and wrapped over it at 320.
+            One line, and it names what is shared: the stage, never a position. */}
         {isSharing && (
-          <button onClick={() => setShareState(null)} aria-label="Stop sharing your location" style={{
-            position: "absolute", top: 46, left: "50%", transform: "translateX(-50%)",
+          <button data-sharing-pill onClick={() => setShareState(null)} aria-label="Stop sharing your stage with your crew" style={{
+            position: "absolute", top: 98, left: 10, whiteSpace: "nowrap",
             zIndex: 6, display: "flex", alignItems: "center", gap: 7,
             padding: "5px 12px", borderRadius: 999, cursor: "pointer", border: "none",
             background: "rgba(var(--signal-rgb),0.96)", color: "var(--ink)",
             boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.35)", backdropFilter: "blur(8px)",
           }}>
             <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.6s infinite" }}/>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING · TAP TO STOP</span>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING STAGE · TAP TO STOP</span>
           </button>
         )}
 

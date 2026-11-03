@@ -3548,7 +3548,7 @@ function MapScreen({
     style: {
       position: "absolute",
       left: 10,
-      top: 90,
+      top: isSharing ? 130 : 90,
       zIndex: 6,
       background: "rgba(var(--glass),0.94)",
       border: "none",
@@ -3614,13 +3614,14 @@ function MapScreen({
       }
     }, a.label));
   })), isSharing && React.createElement("button", {
+    "data-sharing-pill": true,
     onClick: () => setShareState(null),
-    "aria-label": "Stop sharing your location",
+    "aria-label": "Stop sharing your stage with your crew",
     style: {
       position: "absolute",
-      top: 46,
-      left: "50%",
-      transform: "translateX(-50%)",
+      top: 98,
+      left: 10,
+      whiteSpace: "nowrap",
       zIndex: 6,
       display: "flex",
       alignItems: "center",
@@ -3649,7 +3650,7 @@ function MapScreen({
       letterSpacing: 1.2,
       fontWeight: 800
     }
-  }, "SHARING · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
+  }, "SHARING STAGE · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
