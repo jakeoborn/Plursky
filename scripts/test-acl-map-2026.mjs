@@ -25,13 +25,18 @@ let checks = 0, mutations = 0;
 const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
 const clone = x => JSON.parse(JSON.stringify(x));
 
-// The three satellite anchors, in order: map.jsx solves MAP_AFFINE from the
-// first three. The derived `bmi` anchor was dropped 2026-09-23 (founder
-// ruling) after measuring 57 m off the 2026 fit; it must not come back.
+// The three satellite basis anchors, in order: map.jsx solves MAP_AFFINE
+// from the first three. The derived `bmi` anchor was dropped 2026-09-23
+// (founder ruling) after measuring 57 m off the 2026 fit; it must not come
+// back. `snapchat` joined 2026-10-18 as the INDEPENDENT anchor: the grove
+// footprint's stage structure measured on the same Esri Wayback 2024-11-18
+// capture (that footprint ran T-Mobile 2024 / Lady Bird 2025 / Snapchat
+// 2026 on the official patron maps), clearing the 2026-10-19 waiver.
 const ANCHORS = [
   { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
   { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
   { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+  { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
 ];
 const STAGE_IDS = ["amex", "snapchat", "titos", "miller", "tmobile", "bmi", "beatbox"];
 
@@ -76,7 +81,9 @@ function validate(ds, { local = LOCAL, start = ctx.__o.avatarStartFor(ds) } = {}
   const an = cfg.gpsAnchors || [];
   if (JSON.stringify(an.map(a => [a.stageId, a.lat, a.lng, a.src])) !== JSON.stringify(ANCHORS.map(a => [a.stageId, a.lat, a.lng, a.src])))
     p.push(`gpsAnchors changed: ${an.map(a => a.stageId).join(",")}`);
-  for (const id of ["snapchat", "titos", "beatbox"]) if (an.some(a => a.stageId === id)) p.push(`${id} has a GPS anchor; the poster is not a survey`);
+  for (const id of ["titos", "beatbox"]) if (an.some(a => a.stageId === id)) p.push(`${id} has a GPS anchor; the poster is not a survey`);
+  const snapAn = an.find(a => a.stageId === "snapchat");
+  if (snapAn && snapAn.src !== "osm") p.push("snapchat has a GPS anchor that is not a satellite measurement");
   // Art coordinates: every x/y is a measured row, and nothing unmeasured ships.
   const rows = [...ds.stages.map(s => ["stages", s]), ...(ds.amenities || []).map(a => ["amenities", a])];
   for (const [kind, item] of rows) {
@@ -177,8 +184,8 @@ ok(near(edcSet, edcSet.amenities[0].id, () => false) !== null, "EDC lost its ame
 delete ctx.geometryVerifiedFor;
 
 // ── 6. off_stage needs every programmed stage anchored (lane ruling 2026-09-23) ──
-// ACL has 3 of its 7 stages anchored. A photo in the BMI crowd is hundreds of
-// metres from all three, so "far from every anchor" says nothing about whether
+// ACL has 4 of its 7 stages anchored. A photo in the BMI crowd is well over
+// 120 m from all four, so "far from every anchor" says nothing about whether
 // you were between sets; it must fall through to the time matcher. EDC LV has
 // every stage anchored, so there far-from-everything still means off_stage.
 // Runs the COMPILED matcher, and again with the coverage check cut out, which
@@ -200,8 +207,9 @@ const photoAt = (M2, dsId, artistId, plusMin, lat, lng) => {
   const date = M2.wall(ds.config.dayDates[a.day].midnightUtc + (toMin(a.start) + plusMin) * 60000, ds.config);
   return M2.match({ date, lat, lng, acc: 10 }, [], [], ds);
 };
-// A spot in the BMI crowd: 340-440 m from every ACL anchor (a photo position, not an anchor).
-const BMI_CROWD = [30.266404, -97.767698];
+// A spot in the BMI crowd under the 2026 fit: 159-481 m from every ACL
+// anchor, snapchat nearest (a photo position, not an anchor).
+const BMI_CROWD = [30.266677, -97.768198];
 const liveM = matcherFrom(PHOTO_TAG);
 const aclA = ctx.__o.DS["acl-2026"].artists;
 const bmiSolo = aclA.find(a => a.stage === "bmi" && a.day === 3 && a.start === "12:45" && a.weekend === "W1");
@@ -228,5 +236,5 @@ ok(bmiSolo && photoAt(cut, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD).reason === "
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} ACL map checks failed`); process.exit(1); }
 console.log(`  ✓ ACL 2026 map: plate is the verified 2026 patron map (square ${M.derivativeSize.join("×")}), ` +
-  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 3 satellite anchors untouched, no derived anchor, off_stage only with every stage anchored, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
+  `${acl.stages.length} stages + ${acl.amenities.length} amenities on measured rows, 4 satellite anchors in order, no derived anchor, off_stage only with every stage anchored, YOU starts at (${ctx.__o.avatarStartFor(acl).x},${ctx.__o.avatarStartFor(acl).y}), ` +
   `${checks} checks (${mutations} mutations, each caught)`);

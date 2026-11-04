@@ -1,0 +1,67 @@
+{
+  "id": "edc-orlando-2024",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-11-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20250815121211/https://orlando.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20250815121211",
+          "printed": "Friday, November 08",
+          "sha256": "87608cb40cfff2ac3c2830ead7ca7d586a259f66dfba554c0251b455ffeea732",
+          "bytes": 359320,
+          "rows": 41
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-11-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20250208134430/https://orlando.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20250208134430",
+          "printed": "Saturday, November 09",
+          "sha256": "6b66c5d0531bc513e1634710f8d95f3bdce27d6db97ac3204e6c841578728ba1",
+          "bytes": 260614,
+          "rows": 42
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-11-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "archivedUrl": "https://web.archive.org/web/20250208124034/https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "captureTimestamp": "20250208124034",
+          "printed": "Sunday, November 10",
+          "sha256": "53902fe0f71c6a0e56e6d5eba765bdf0eb61cc0f8adc815be01f959602cb81e1",
+          "bytes": 238898,
+          "rows": 40
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "13:00",
+      "end": "13:45",
+      "billing": "Discovery Project",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

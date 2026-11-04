@@ -200,7 +200,8 @@ const R = B1.scheduleReview(FID, FEED, { saved: SAVED, now: before, remindersOn:
   ctx.matchMedia = () => ({ matches: false, addEventListener: noop, addListener: noop });
   vm.createContext(ctx);
   vm.runInContext(MODS, ctx);
-  for (const n of ["data", "chrome"]) vm.runInContext(readFileSync(join(ROOT, "build", `${n}.js`), "utf8"), ctx, { filename: `build/${n}.js` });
+  // index.html order: chrome.jsx builds its artist photo machine at load, from machine.jsx.
+  for (const n of ["data", "machine", "chrome"]) vm.runInContext(readFileSync(join(ROOT, "build", `${n}.js`), "utf8"), ctx, { filename: `build/${n}.js` });
   vm.runInContext("scheduleReminders({ saved: [] }, () => {})", ctx);
   check(cancelled.includes(424242), `the first native schedule after a relaunch must cancel the persisted slate (cancelled ${js(cancelled)})`);
   console.log("  ✓ native reminders: the persisted slate is cancelled on the first schedule after a relaunch");

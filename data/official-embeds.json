@@ -428,22 +428,6 @@
     },
     {
       "platform": "instagram",
-      "url": "https://www.instagram.com/ultra/p/DditxOuk8kk/",
-      "officialAccount": "https://www.instagram.com/ultra/",
-      "accountSourceUrl": "https://ultramusicfestival.com/",
-      "observedAt": "2026-09-24",
-      "kind": "carousel"
-    },
-    {
-      "platform": "instagram",
-      "url": "https://www.instagram.com/ultra/p/Ddfq6j9EZii/",
-      "officialAccount": "https://www.instagram.com/ultra/",
-      "accountSourceUrl": "https://ultramusicfestival.com/",
-      "observedAt": "2026-09-24",
-      "kind": "carousel"
-    },
-    {
-      "platform": "instagram",
       "url": "https://www.instagram.com/p/DWywBfsDb2J/",
       "officialAccount": "https://www.instagram.com/ultra/",
       "accountSourceUrl": "https://ultramusicfestival.com/",
@@ -705,14 +689,6 @@
       "accountSourceUrl": "https://www.crssdfest.com/",
       "observedAt": "2026-09-24",
       "kind": "lineup"
-    },
-    {
-      "platform": "spotify",
-      "url": "https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I",
-      "officialAccount": "https://open.spotify.com/playlist/3EioeVIOJxZQARH4GlGw2I",
-      "accountSourceUrl": "https://www.crssdfest.com/",
-      "observedAt": "2026-09-24",
-      "kind": "playlist"
     }
   ],
   "portola-2026": [

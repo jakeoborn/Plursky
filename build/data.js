@@ -13,6 +13,42 @@ var FESTIVAL_CONFIG = {
   locationShort: "Las Vegas Motor Speedway",
   dates: "May 15–17, 2026",
   year: 2026,
+  guide: [{
+    id: "gates",
+    icon: "🚪",
+    title: "Gates & entry",
+    items: ["Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.", "Bring a valid government-issued photo ID. 18+ event.", "Wristband activates online before you arrive — don't show up with it unpaired.", "One re-entry per day, only between 4 PM and midnight.", "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty."]
+  }, {
+    id: "lingo",
+    icon: "🗣️",
+    title: "Words you'll hear",
+    items: ["PLUR — Peace, Love, Unity, Respect. The unspoken code.", "Kandi — beaded bracelets. Trade them with strangers.", "Totem — tall flag/sign so your group can find you in the crowd.", "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.", "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.", "B2B — back-to-back DJ set; two artists trading on the decks."]
+  }, {
+    id: "survive",
+    icon: "💧",
+    title: "Survive the desert",
+    items: ["Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).", "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.", "Earplugs. Your future self will thank you.", "Eat real food before headliners. The food halls in Daisy Lane stay open all night.", "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces."]
+  }, {
+    id: "travel",
+    icon: "🚌",
+    title: "Getting there & back",
+    items: ["Shuttles run from Strip hotels all night. Last departure ~5:30 AM.", "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.", "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.", "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering."]
+  }, {
+    id: "day1",
+    icon: "🌅",
+    title: "Recommended Day 1",
+    items: ["Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.", "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.", "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.", "Eat at midnight. Sleep is for after the sunrise set.", "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise."]
+  }],
+  print: {
+    accent: "#ED3895",
+    source: {
+      url: "https://lasvegas.edc.com/wp-content/assets/css/edc-las-vegas.min.css?ver=2.2.41",
+      observedAt: "2026-10-09",
+      seenAs: "Site stylesheet: `a { color:#ed3895 }`, `button { background-color:#ed3895 }`, `.button--outline` border/text; hover darkens to #db187c (10 uses, the most of any non-grey colour).",
+      confidence: "high"
+    },
+    note: "No <meta theme-color> (the only custom property is WordPress's admin default #007cba), so the first-party sheet's link + primary-button colour is the accent."
+  },
   officialEvent: {
     website: "https://lasvegas.edc.com/",
     observedAt: "2026-09-10",
@@ -332,7 +368,17 @@ var FESTIVALS_REGISTRY = [{
     location: "Double JJ Ranch · Rothbury, MI",
     locationShort: "Double JJ Ranch",
     dates: "Dates TBA",
-    year: 2027
+    year: 2027,
+    print: {
+      accent: "#6244BB",
+      source: {
+        url: "https://www.electricforestfestival.com/",
+        observedAt: "2026-10-09",
+        seenAs: "Inline <style> in the homepage HTML: `.c-button.primary { background-color:#6244BB; border:3px solid #6244BB }`, `a:hover { color:#6244BB }`, `.c-primaryButton:hover` text/border (21 uses); the AEG template sheet style.v3.css carries no site colour.",
+        confidence: "high"
+      },
+      note: "No <meta theme-color> and no custom properties; the site-specific inline CSS makes purple #6244BB the primary button and link-hover colour (dark green #2d4031 is used for borders/pass headers, teal #02A1A9 for info bars)."
+    }
   },
   available: false,
   accent: "#34d399",
@@ -354,6 +400,16 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Legend Valley",
     dates: "Sep 18–20, 2026",
     year: 2026,
+    print: {
+      accent: "#F8D861",
+      source: {
+        url: "https://www.lostlandsfestival.com/wp-content/themes/lostlands-2017/css/main.min.css?v=10.349",
+        observedAt: "2026-10-09",
+        seenAs: "Theme stylesheet: `section h1..h4 { color:#f8d861 }`, content links `a { color:#f8d861 }`, `a:hover { color:#f8d861 }`, `.read-more { background:#f8d861 }`, ticket accordion active/price state (33 uses, the dominant non-grey colour).",
+        confidence: "high"
+      },
+      note: "data.jsx records no official website for this festival, so the well-known official domain lostlandsfestival.com was used; its <meta theme-color> is plain #ffffff, so the theme sheet's heading/link/button yellow is the accent."
+    },
     startMs: Date.UTC(2026, 8, 16, 16, 0, 0),
     endMs: Date.UTC(2026, 8, 21, 7, 0, 0),
     tz: "America/New_York",
@@ -457,6 +513,17 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Tinker Field",
     dates: "Nov 6–8, 2026",
     year: 2026,
+    print: {
+      accent: "#FF0100",
+      accent2: "#ED3895",
+      source: {
+        url: "https://orlando.edc.com/wp-content/assets/css/edc-orlando.min.css?ver=2.2.41",
+        observedAt: "2026-10-09",
+        seenAs: "Site stylesheet: `.custom-form button, .global-footer button { background-color:#ff0100 }`, `.button--outline` border, lineup/nav/tab hover `color:#ff0100` (8 uses); base links stay the shared EDC pink `a { color:#ed3895 }` (7 uses).",
+        confidence: "medium"
+      },
+      note: "No <meta theme-color>; the Orlando sheet overrides the shared EDC theme's buttons and hover states to red #ff0100 while leaving link text pink, so red is the edition-specific accent but the sheet is split between the two."
+    },
     officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
     officialEvent: {
       id: 523210,
@@ -517,31 +584,43 @@ var FESTIVALS_REGISTRY = [{
     },
     gpsAnchors: [{
       stageId: "kinetic",
-      lat: 28.537024,
-      lng: -81.399828,
-      src: "poster"
+      lat: 28.536981,
+      lng: -81.400040,
+      src: "poster",
+      basis: "poster-read, 2026 art, unsurveyed"
     }, {
       stageId: "circuit",
-      lat: 28.539811,
-      lng: -81.404500,
-      src: "poster"
+      lat: 28.539796,
+      lng: -81.404655,
+      src: "poster",
+      basis: "poster-read, 2026 art, unsurveyed"
     }, {
       stageId: "neon",
-      lat: 28.539153,
-      lng: -81.398598,
-      src: "poster"
+      lat: 28.539150,
+      lng: -81.398575,
+      src: "poster",
+      basis: "poster-read, 2026 art, unsurveyed"
+    }, {
+      stageId: "stereo",
+      lat: 28.536714,
+      lng: -81.404781,
+      src: "poster",
+      basis: "poster-read, 2026 art, unsurveyed"
+    }, {
+      stageId: "bacardi",
+      lat: 28.535824,
+      lng: -81.402511,
+      src: "poster",
+      basis: "poster-read, 2026 art, unsurveyed"
     }],
     mainStageId: "kinetic",
-    mapImage: "edco-tinker-2025.webp",
-    mapArtYear: 2025,
+    mapImage: "edco-tinker-2026.webp",
     mapStyle: "image-overlay",
     mapTheme: "park",
-    mapPrintsStageNames: true,
     weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
     setTimesProvisional: true
   },
-  available: true,
-  scheduleTBA: true,
+  available: false,
   accent: "#22c55e",
   emoji: "🌴",
   region: "North America"
@@ -558,7 +637,18 @@ var FESTIVALS_REGISTRY = [{
     tagline: "We are one",
     location: "De Schorre · Boom, Belgium",
     dates: "Dates TBA",
-    year: 2027
+    year: 2027,
+    print: {
+      accent: "#73123A",
+      accent2: "#D63A76",
+      source: {
+        url: "https://belgium.tomorrowland.com/_next/static/css/310ad92fa7d6d932.css",
+        observedAt: "2026-10-09",
+        seenAs: "Site stylesheet custom property `[data-theme=belgium] { --theme-color:335,73%,26% }` (HSL triplet, converted to hex #73123a); the legacy fallback sheet tml-fallback-2.x.css styles its buttons/bar with a magenta gradient #d63a76 -> #9a0b44 -> #8c0038.",
+        confidence: "medium"
+      },
+      note: "The <meta theme-color> is plain #000000 and the Next.js chunks define eight different per-section `--accent-1-base` values, so the Belgium theme's own `--theme-color` token is the one site-wide accent; the hex is a conversion of an HSL token, not a literal."
+    }
   },
   available: false,
   accent: "#fbbf24",
@@ -580,6 +670,16 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Zilker Park",
     dates: "Oct 2–4 & 9–11, 2026",
     year: 2026,
+    print: {
+      accent: "#F03250",
+      source: {
+        url: "https://cdn.prod.website-files.com/67456b412d0e4219d58ef6c2/css/acl-2026.shared.26bfb3548.min.css",
+        observedAt: "2026-10-09",
+        seenAs: "Site stylesheet custom properties: `--swatches--red:#f03250`, `--button-color--primary:var(--swatches--red)`, `--link-color--default:var(--swatches--red)`; hover `--button-color--primary-hover:#f34b66`, `--link-color--hover:#f34b66`.",
+        confidence: "high"
+      },
+      note: "No <meta theme-color>, but the Webflow sheet names a primary button colour and default link colour and both resolve to the red swatch #f03250."
+    },
     startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
     endMs: Date.UTC(2026, 9, 12, 5, 0, 0),
     weekendStartMs: {
@@ -631,8 +731,8 @@ var FESTIVALS_REGISTRY = [{
       }
     },
     gps: {
-      lat: 30.2630,
-      lng: -97.7730,
+      lat: 30.268090,
+      lng: -97.767611,
       onSiteRadiusMi: 0.4
     },
     gpsAnchors: [{
@@ -649,6 +749,11 @@ var FESTIVALS_REGISTRY = [{
       stageId: "tmobile",
       lat: 30.268021,
       lng: -97.770282,
+      src: "osm"
+    }, {
+      stageId: "snapchat",
+      lat: 30.266712,
+      lng: -97.766540,
       src: "osm"
     }],
     mainStageId: "amex",
@@ -684,7 +789,18 @@ var FESTIVALS_REGISTRY = [{
     tagline: "Two weekends, one polo field",
     location: "Empire Polo Club · Indio, CA",
     dates: "Apr 9–18, 2027",
-    year: 2027
+    year: 2027,
+    print: {
+      accent: "#4E6234",
+      accent2: "#44A1A4",
+      source: {
+        url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c",
+        observedAt: "2026-10-09",
+        seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.",
+        confidence: "medium"
+      },
+      note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token."
+    }
   },
   available: false,
   accent: "#ec4899",
@@ -701,6 +817,16 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Autódromo Hermanos Rodríguez",
     dates: "Feb 19–21, 2027",
     year: 2027,
+    print: {
+      accent: "#CC2831",
+      source: {
+        url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41",
+        observedAt: "2026-10-09",
+        seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.",
+        confidence: "high"
+      },
+      note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page."
+    },
     officialEvent: {
       id: 548875,
       url: "https://mexico.electricdaisycarnival.com/",
@@ -723,6 +849,17 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "NOS Events Center",
     dates: "Mar 26–27, 2027",
     year: 2027,
+    print: {
+      accent: "#00BABC",
+      accent2: "#FBD34D",
+      source: {
+        url: "https://socal.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41",
+        observedAt: "2026-10-09",
+        seenAs: "background-color of the site's primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; most-used non-grey hex in the site's own stylesheet (8 of 27)",
+        confidence: "medium"
+      },
+      note: "No theme-color meta (only WP admin defaults); the site-specific stylesheet linked from the homepage paints every CTA/button teal #00babc, while the 2027 homepage's inline hero typography uses gold #fbd34d with a purple #4b1b6b stroke (key-art, not UI chrome)."
+    },
     officialEvent: {
       id: 550731,
       url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/",
@@ -746,6 +883,17 @@ var FESTIVALS_REGISTRY = [{
     locationShort: "Gorge Amphitheatre",
     dates: "Jun 26–27, 2027",
     year: 2027,
+    print: {
+      accent: "#00BABC",
+      accent2: "#FBD34D",
+      source: {
+        url: "https://pnw.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41",
+        observedAt: "2026-10-09",
+        seenAs: "background-color of the primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; PNW's stylesheet is byte-identical to SoCal's (cmp)",
+        confidence: "medium"
+      },
+      note: "No theme-color meta; the shared pnw-socal-beyond.min.css is byte-identical across both Beyond sites and paints every CTA teal #00babc, with the same inline gold #fbd34d / purple #4b1b6b 2027 hero typography as SoCal."
+    },
     officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
     officialEvent: {
       id: 566426,
@@ -1261,6 +1409,16 @@ function setTimeStatus(a) {
 function setTimesUnconfirmed(a) {
   return setTimeStatus(a) === "unconfirmed";
 }
+var TOP_BILLED = "Top billed";
+function isTopBilled(a) {
+  return !!a && a.tierSource === "poster" && a.tier === 3;
+}
+function posterBilled() {
+  return !!(typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.posterBilling);
+}
+function topTierLabel(plural = false) {
+  return posterBilled() ? TOP_BILLED : plural ? "Headliners" : "Headliner";
+}
 function setTimeLabel(a) {
   return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start);
 }
@@ -1384,6 +1542,306 @@ function savedInLineup(savedIds) {
   var known = new Set(lineupFor("all").map(a => a.id));
   return savedIds.filter(id => known.has(id));
 }
+var CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+var SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try {
+    var v = JSON.parse(localStorage.getItem(key) || "null");
+    return v == null ? fallback : v;
+  } catch {
+    return fallback;
+  }
+}
+function _l3Changed() {
+  try {
+    window.dispatchEvent(new CustomEvent("plursky:attend-change"));
+  } catch {}
+}
+function _attendKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_attend_v1`;
+}
+function attendWindows(fid) {
+  var v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+function nightMinToHHMM(m) {
+  var h = Math.floor(m / 60) % 24,
+    mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+function _attendLineup(fid) {
+  var id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  var ds = typeof window !== "undefined" && window._DATA_SETS || {};
+  return ds[id] && Array.isArray(ds[id].artists) ? ds[id].artists : [];
+}
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  var s = toNightMin(a.start),
+    e = toNightMin(a.end),
+    ws = toNightMin(w.start),
+    we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
+function _attendSameNight(a, b) {
+  return a.day === b.day && _attendSameWeekend(a, b);
+}
+function _attendSameWeekend(a, b) {
+  var wa = a.weekend,
+    wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+function attendWindow(a, fid, savedIds) {
+  var whole = {
+    start: a && a.start,
+    end: a && a.end,
+    partial: false,
+    with: null
+  };
+  if (!a || !a.start || !a.end) return whole;
+  var all = attendWindows(fid),
+    w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  if (w.with) {
+    var saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    var partner = _attendLineup(fid).find(x => x.id === w.with);
+    var back = all[w.with];
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+  }
+  return {
+    start: w.start,
+    end: w.end,
+    partial: true,
+    with: w.with || null
+  };
+}
+function attendWindowLabel(a, win) {
+  var w = win || attendWindow(a);
+  if (!w.partial) return "";
+  var late = w.start !== a.start,
+    early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  var all = attendWindows(fid);
+  all[id] = {
+    start,
+    end,
+    ...(withId ? {
+      with: withId
+    } : {})
+  };
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  var all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try {
+    localStorage.setItem(_attendKey(fid), JSON.stringify(all));
+  } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) {
+  return [idA, idB].sort().join("|");
+}
+function _acceptedPairs() {
+  var v = _l3Read(CLASH_KEPT_BOTH_KEY, []);
+  return new Set(Array.isArray(v) ? v : []);
+}
+function clashAccepted(a, b) {
+  return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id));
+}
+function acceptClash(a, b) {
+  var s = _acceptedPairs();
+  s.add(clashPairKey(a.id, b.id));
+  try {
+    localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s]));
+  } catch {}
+  _l3Changed();
+}
+function attendOverlaps(a, b, fid, savedIds) {
+  return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds));
+}
+function setsClash(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b);
+}
+function setsOverlapAccepted(a, b, fid, savedIds) {
+  return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b);
+}
+function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return {
+    first: null,
+    second: null,
+    lo: 0,
+    hi: -1,
+    def: 0,
+    ok: false
+  };
+  var [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end) || String(x.id).localeCompare(String(y.id)));
+  var lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  var hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return {
+    first,
+    second,
+    lo,
+    hi,
+    def: lo,
+    ok: lo <= hi
+  };
+}
+function snapSplitSwitch(v, lo, hi) {
+  var n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  var top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
+function splitBlocker(a, b, fid) {
+  var _loop2 = function () {
+      if (!x || !other) return 0;
+      var w = attendWindow(x, fid);
+      if (w.partial && w.with && w.with !== other.id) {
+        var partner = _attendLineup(fid).find(p => p.id === w.with);
+        if (partner) return {
+          v: {
+            act: x,
+            partner
+          }
+        };
+      }
+    },
+    _ret;
+  for (var [x, other] of [[a, b], [b, a]]) {
+    _ret = _loop2();
+    if (_ret === 0) continue;
+    if (_ret) return _ret.v;
+  }
+  return null;
+}
+function splitNight(a, b, switchMin, fid) {
+  var {
+    first,
+    second,
+    lo,
+    hi,
+    ok
+  } = splitRange(a, b);
+  if (!ok || splitBlocker(a, b, fid)) return false;
+  var sw = snapSplitSwitch(switchMin, lo, hi);
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
+}
+var CLASH_SPLIT_MIN_MIN = 30;
+function _clashName(a) {
+  return String(a && a.name || "").trim().toLowerCase();
+}
+function clashPlaysAgain(a, lineup) {
+  if (!a) return null;
+  var n = _clashName(a);
+  var again = (lineup || []).filter(x => x && x.id !== a.id && x.start && x.end && _clashName(x) === n && x.day > a.day && _attendSameWeekend(a, x));
+  return again.sort((x, y) => x.day - y.day || toNightMin(x.start) - toNightMin(y.start) || String(x.id).localeCompare(String(y.id)))[0] || null;
+}
+function clashSuggestion(a, b, ctx) {
+  if (!a || !b || a.id === b.id) return null;
+  var c = ctx || {};
+  var lineup = c.lineup || _attendLineup(c.fid);
+  var matched = new Set(c.matchedIds || _l3Read("spotify_matched_ids_v1", []) || []);
+  var dayLabel = c.dayLabel || (d => {
+    var x = (typeof DAYS !== "undefined" ? DAYS : []).find(y => y.n === d);
+    return x ? x.label : `Day ${d}`;
+  });
+  var keep = (k, d, rule, reason) => ({
+    kind: "keep",
+    keepId: k.id,
+    dropId: d.id,
+    rule,
+    reason
+  });
+  var againA = clashPlaysAgain(a, lineup),
+    againB = clashPlaysAgain(b, lineup);
+  if (!!againA !== !!againB) {
+    var [goes, stays, at] = againA ? [a, b, againA] : [b, a, againB];
+    return keep(stays, goes, "plays-again", `Keep ${actDisplayName(stays.name)}. ${actDisplayName(goes.name)} plays again ${dayLabel(at.day)} at ${fmt12(at.start)}.`);
+  }
+  var mA = matched.has(a.id),
+    mB = matched.has(b.id);
+  if (mA !== mB) {
+    var [k, d] = mA ? [a, b] : [b, a];
+    return keep(k, d, "your-music", `Keep ${actDisplayName(k.name)}. It is in your Spotify artists.`);
+  }
+  var r = splitRange(a, b);
+  if (r.ok) {
+    var sw = snapSplitSwitch((r.lo + r.hi) / 2, r.lo, r.hi);
+    var firstMin = sw - toNightMin(r.first.start),
+      secondMin = toNightMin(r.second.end) - sw;
+    if (firstMin >= CLASH_SPLIT_MIN_MIN && secondMin >= CLASH_SPLIT_MIN_MIN) {
+      return {
+        kind: "split",
+        firstId: r.first.id,
+        secondId: r.second.id,
+        switchMin: sw,
+        rule: "split",
+        reason: `Split: ${actDisplayName(r.first.name)} until ${fmt12(nightMinToHHMM(sw))}, then ${actDisplayName(r.second.name)} (${firstMin} and ${secondMin} min).`
+      };
+    }
+  }
+  return null;
+}
+function useAttendVersion() {
+  var [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    var f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
+function _alertsKeptKey(fid) {
+  return `${fid || FESTIVAL_CONFIG.id}_alerts_kept_v1`;
+}
+function alertsKeptIds(fid) {
+  var v = _l3Read(_alertsKeptKey(fid), []);
+  return Array.isArray(v) ? v.filter(x => typeof x === "string") : [];
+}
+function setAlertsKept(id, on, fid) {
+  var cur = alertsKeptIds(fid);
+  var next = on ? cur.includes(id) ? cur : [...cur, id] : cur.filter(x => x !== id);
+  if (next.length === cur.length && next.every((x, i) => x === cur[i])) return;
+  try {
+    localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(next));
+  } catch {}
+  _l3Changed();
+}
+function pruneAlertsKept(savedIds, fid) {
+  var saved = new Set(savedIds || []);
+  var cur = alertsKeptIds(fid);
+  if (cur.some(id => saved.has(id))) {
+    try {
+      localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(cur.filter(id => !saved.has(id))));
+    } catch {}
+    _l3Changed();
+  }
+}
+function reminderSetIds(savedIds, fid) {
+  var saved = Array.isArray(savedIds) ? savedIds : [];
+  return [...saved, ...alertsKeptIds(fid).filter(id => !saved.includes(id))];
+}
+var _CLASH_LOSERS = new Set();
+function noteClashLoser(id) {
+  if (id && !_CLASH_LOSERS.has(id)) {
+    _CLASH_LOSERS.add(id);
+    _l3Changed();
+  }
+}
+function clashLoserIds() {
+  return [..._CLASH_LOSERS];
+}
 function momentWeekend(takenAt, cfg) {
   var c = cfg || typeof window !== "undefined" && window.FESTIVAL_CONFIG || FESTIVAL_CONFIG;
   var w = c && c.weekendStartMs;
@@ -1458,8 +1916,9 @@ function _wallMs(dayDate, hhmm, tz) {
     }
     var o0 = _tzNightShifts[key];
     if (o0 === null) return naive;
+    var back = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) < o0 ? 1000 : 0;
     var ms = naive;
-    for (var i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    for (var i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms - back);
     return ms;
   } catch {
     return naive;
@@ -1471,6 +1930,188 @@ function _cfgActDayDate(cfg, a) {
   var w = cfg.weekendStartMs;
   var shift = w && typeof w.W1 === "number" && typeof w.W2 === "number" ? w.W2 - w.W1 : 0;
   return shift > 0 ? _shiftDayDate(d, shift) : d;
+}
+var ATTEND_GAP_MS = 5 * 60000;
+var ATTEND_GRACE_MS = 5 * 60000;
+var ATTEND_FULL_SHARE = 0.85;
+var ATTEND_FULL_EDGE_MS = 10 * 60000;
+var ATTEND_PARTIAL_MS = 15 * 60000;
+var ATTEND_PARTIAL_SHARE = 0.25;
+var ATTEND_PHOTO_MS = 2 * 60000;
+function _haversineMeters(lat1, lng1, lat2, lng2) {
+  var R = 6371000;
+  var toRad = d => d * Math.PI / 180;
+  var dLat = toRad(lat2 - lat1);
+  var dLng = toRad(lng2 - lng1);
+  var a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+var STAGE_FIX_ATTEND = {
+  maxAgeMs: 60000,
+  maxAccM: 100,
+  maxDistM: 140,
+  minMarginM: 35
+};
+var STAGE_FIX_ATTEND_SAVER = {
+  maxAgeMs: 120000,
+  maxAccM: 100,
+  maxDistM: 140,
+  minMarginM: 35
+};
+function stageFixGate(anchors, fix, atMs, rules) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
+    status: fix && fix.denied ? "denied" : "none"
+  };
+  var accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return {
+    status: "no-anchors",
+    accM
+  };
+  var d = anchors.map(a => ({
+    stageId: a.stageId,
+    dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng)
+  })).sort((x, y) => x.dist - y.dist || String(x.stageId).localeCompare(String(y.stageId)));
+  var out = {
+    accM,
+    distM: d[0].dist,
+    marginM: d.length > 1 ? d[1].dist - d[0].dist : null
+  };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return {
+    ...out,
+    status: "stale"
+  };
+  if (accM == null || accM > rules.maxAccM) return {
+    ...out,
+    status: "coarse"
+  };
+  if (d[0].dist > rules.maxDistM) return {
+    ...out,
+    status: "outside"
+  };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return {
+    ...out,
+    status: "ambiguous"
+  };
+  return {
+    ...out,
+    status: "trusted",
+    stageId: d[0].stageId
+  };
+}
+function attendEvidenceAnchors(cfg) {
+  return (typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(cfg) : cfg && cfg.gpsAnchors || []).filter(a => {
+    var s = a.anchorSource || a.src;
+    return s === "osm" || s === "crowd";
+  });
+}
+function attendQualifyFixes(samples, anchors, rules = STAGE_FIX_ATTEND) {
+  var out = [];
+  for (var f of samples || []) {
+    if (!f) continue;
+    var ms = typeof f.timestamp === "number" ? f.timestamp : f.atMs;
+    var g = stageFixGate(anchors, f, typeof f.atMs === "number" ? f.atMs : ms, rules);
+    if (g.status === "trusted" && typeof ms === "number") out.push({
+      ms,
+      stageId: g.stageId
+    });
+  }
+  return out;
+}
+function attendFixesToIntervals(fixes, gapMs = ATTEND_GAP_MS) {
+  var ok = (fixes || []).filter(f => f && typeof f.ms === "number" && isFinite(f.ms) && f.stageId != null).slice().sort((x, y) => x.ms - y.ms || String(x.stageId).localeCompare(String(y.stageId)));
+  var out = {};
+  var run = null;
+  for (var f of ok) {
+    if (run && run.stageId === f.stageId && f.ms - run.to <= gapMs) {
+      run.to = f.ms;
+      continue;
+    }
+    run = {
+      stageId: f.stageId,
+      from: f.ms,
+      to: f.ms
+    };
+    (out[f.stageId] = out[f.stageId] || []).push(run);
+  }
+  for (var k of Object.keys(out)) out[k] = out[k].map(r => ({
+    from: r.from,
+    to: r.to,
+    src: "gps"
+  }));
+  return out;
+}
+function attendTimeClass(a) {
+  if (!a || setTimeStatus(a) !== "confirmed" || _hhmmNightMin(a.end) == null) return "blank";
+  return a.sourceClass === "third_party" ? "third_party" : "settled";
+}
+function attendSetWindowMs(a, cfg, runs) {
+  var base = _cfgActDayDate(cfg, a);
+  if (!base) return null;
+  var win = d => {
+    var s = _wallMs(d, a.start, cfg && cfg.tz),
+      e = _wallMs(d, a.end, cfg && cfg.tz);
+    return s != null && e != null && e > s ? {
+      startMs: s,
+      endMs: e
+    } : null;
+  };
+  var w1 = win(base);
+  var wk = cfg && cfg.weekendStartMs;
+  var shift = a.weekend === "W1" || a.weekend === "W2" || !wk ? 0 : typeof wk.W1 === "number" && typeof wk.W2 === "number" ? wk.W2 - wk.W1 : 0;
+  if (!(shift > 0) || !w1) return w1;
+  var w2 = win(_shiftDayDate(base, shift));
+  if (!w2) return w1;
+  var score = w => _attendPresenceMs(runs, w) + (runs || []).filter(r => r.src === "photo" && r.from >= w.startMs - ATTEND_GRACE_MS && r.from <= w.endMs + ATTEND_GRACE_MS).length;
+  return score(w2) > score(w1) ? w2 : w1;
+}
+function _attendPresenceMs(runs, w) {
+  var ms = 0;
+  for (var r of runs || []) if (r.src !== "photo") ms += Math.max(0, Math.min(r.to, w.endMs) - Math.max(r.from, w.startMs));
+  return ms;
+}
+function attendanceVerdict(a, intervals, cfg, opts = {}) {
+  var timeClass = attendTimeClass(a);
+  var runs = (intervals && a && intervals[a.stage] || []).filter(r => r && typeof r.from === "number" && typeof r.to === "number" && r.to >= r.from);
+  var res = (verdict, caught, minutes, setMin, span) => ({
+    verdict,
+    caught,
+    minutes,
+    setMin,
+    timeClass,
+    span: span || null
+  });
+  var span = rs => rs.length ? {
+    from: Math.min(...rs.map(r => r.from)),
+    to: Math.max(...rs.map(r => r.to))
+  } : null;
+  var w = timeClass === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  var setMin = w ? Math.round((w.endMs - w.startMs) / 60000) : null;
+  if (opts.manual === "full" || opts.manual === "partial") return res(opts.manual, true, null, setMin, span(runs));
+  if (!w) return runs.length ? res("unknown", false, null, null, span(runs)) : res("none", false, null, null, null);
+  var lo = w.startMs - ATTEND_GRACE_MS,
+    hi = w.endMs + ATTEND_GRACE_MS;
+  var inside = runs.filter(r => r.to >= (r.src === "photo" ? lo - ATTEND_PHOTO_MS : lo) && r.from <= (r.src === "photo" ? hi + ATTEND_PHOTO_MS : hi));
+  if (!inside.length) return res("none", false, null, setMin, null);
+  var gps = inside.filter(r => r.src !== "photo");
+  var P = _attendPresenceMs(gps, w),
+    L = w.endMs - w.startMs;
+  var minutes = Math.round(P / 60000);
+  var reached = P >= ATTEND_PARTIAL_MS || P >= ATTEND_PARTIAL_SHARE * L;
+  if (timeClass === "third_party") return reached || gps.length < inside.length ? res("unknown", true, minutes, setMin, span(inside)) : res("brief", false, minutes, setMin, span(inside));
+  var first = gps.length ? Math.min(...gps.map(r => r.from)) : Infinity;
+  var last = gps.length ? Math.max(...gps.map(r => r.to)) : -Infinity;
+  if (P >= ATTEND_FULL_SHARE * L && first <= w.startMs + ATTEND_FULL_EDGE_MS && last >= w.endMs - ATTEND_FULL_EDGE_MS) return res("full", true, minutes, setMin, span(inside));
+  if (reached) return res("partial", true, minutes, setMin, span(inside));
+  if (gps.length < inside.length) return res("unknown", true, minutes, setMin, span(inside));
+  return res("brief", false, minutes, setMin, span(inside));
+}
+function attendanceVerdictLabel(v) {
+  if (!v) return "";
+  if (v.verdict === "full") return "Full set";
+  var r5 = n => Math.max(5, Math.round(n / 5) * 5);
+  if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
+  if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
+  return "";
 }
 function _scheduleActs(artists) {
   return (artists || []).map(a => {
@@ -1522,7 +2163,7 @@ function diffSchedule(oldActs, newActs, cfg) {
   var changes = [];
   var at = s => _wallMs(_cfgActDayDate(cfg, s), s.start, cfg && cfg.tz);
   var unchanged = 0;
-  var _loop2 = function () {
+  var _loop3 = function () {
       var b = _schedSlot(o),
         n = after.get(id);
       if (!n) {
@@ -1555,10 +2196,10 @@ function diffSchedule(oldActs, newActs, cfg) {
         startDeltaMin: s0 != null && s1 != null ? Math.round((s1 - s0) / 60000) : null
       });
     },
-    _ret;
+    _ret2;
   for (var [id, o] of before) {
-    _ret = _loop2();
-    if (_ret === 0) continue;
+    _ret2 = _loop3();
+    if (_ret2 === 0) continue;
   }
   for (var [_id2, n] of after) {
     if (before.has(_id2)) continue;
@@ -1679,7 +2320,7 @@ function _pinUnresolvedTimes(acts, ev, attach) {
 function _applyScheduleOverlays(sets) {
   var all = _schedOverlays();
   var dirty = false;
-  var _loop3 = function () {
+  var _loop4 = function () {
     var ds = sets[fid],
       ov = all[fid];
     if (!ds || !ov || !ov.diff || ov.base !== _schedFingerprint(_scheduleActs(ds.artists))) {
@@ -1697,7 +2338,7 @@ function _applyScheduleOverlays(sets) {
     }
   };
   for (var fid of Object.keys(all)) {
-    if (_loop3()) continue;
+    if (_loop4()) continue;
   }
   if (dirty) _schedOverlaysWrite(all);
 }
@@ -2259,8 +2900,8 @@ var EDCO_STAGES = [{
   name: "kineticFIELD",
   short: "KINETIC",
   color: "#f97316",
-  x: 73.4,
-  y: 64.3,
+  x: 70.3,
+  y: 63.8,
   size: 1.7,
   desc: "Main stage",
   vibe: "Main Event",
@@ -2271,8 +2912,8 @@ var EDCO_STAGES = [{
   name: "circuitGROUNDS",
   short: "CIRCUIT",
   color: "#38bdf8",
-  x: 16.5,
-  y: 25.4,
+  x: 15.1,
+  y: 25.5,
   size: 1.4,
   desc: "Epic-melody big room",
   vibe: "Big Melodies",
@@ -2283,8 +2924,8 @@ var EDCO_STAGES = [{
   name: "neonGARDEN",
   short: "NEON",
   color: "#a855f7",
-  x: 88.5,
-  y: 38.2,
+  x: 87.4,
+  y: 37.5,
   size: 1.3,
   desc: "Factory 93 home base",
   vibe: "House & Techno",
@@ -2295,8 +2936,8 @@ var EDCO_STAGES = [{
   name: "stereoBLOOM",
   short: "STEREO",
   color: "#f43f5e",
-  x: 13,
-  y: 65.9,
+  x: 14.1,
+  y: 64.1,
   size: 1.1,
   desc: "Insomniac Records stage",
   vibe: "Label Sounds",
@@ -2307,8 +2948,8 @@ var EDCO_STAGES = [{
   name: "CASA BACARDÍ",
   short: "BACARDÍ",
   color: "#22c55e",
-  x: 44.1,
-  y: 75,
+  x: 41.1,
+  y: 76.7,
   size: 0.9,
   desc: "Lounge stage",
   vibe: "Lounge Sessions",
@@ -2319,6 +2960,8 @@ var EDCO_STAGES = [{
   name: "Schedule TBA",
   short: "TBA",
   color: "#9ca3af",
+  x: 50,
+  y: 50,
   size: 0.1,
   desc: "PROVISIONAL: stage assignments drop with the official schedule",
   vibe: "Unscheduled",
@@ -2339,11 +2982,151 @@ var _edcoMk = (id, name, genre, day) => {
     end: s ? s[2] : "",
     tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
-    bio: s ? "Playing EDC Orlando 2026." : `Playing EDC Orlando 2026 on ${["Friday, November 6", "Saturday, November 7", "Sunday, November 8"][day - 1]}. ` + "Stage and set time are not published yet — Insomniac posts the schedule in the days before the festival."
+    bio: s ? "Playing EDC Orlando 2026." : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)."
   };
 };
 var EDCO_ARTISTS = [_edcoMk("ecf1", "AAT", "Electronic", 1), _edcoMk("ecf2", "Adventure Club (Sunset Set)", "Electronic", 1), _edcoMk("ecf3", "Afrojack", "Electronic", 1), _edcoMk("ecf4", "Alesso (Sunset Set)", "Electronic", 1), _edcoMk("ecf5", "Azzecca", "House", 1), _edcoMk("ecf6", "Benda B2B Vastive", "Electronic", 1), _edcoMk("ecf7", "Big Florida", "Bass", 1), _edcoMk("ecf8", "Bou B2B Kanine", "Electronic", 1), _edcoMk("ecf9", "Brunello (Sunset Set)", "House", 1), _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles", "Techno", 1), _edcoMk("ecf11", "Chris Lorenzo", "House", 1), _edcoMk("ecf12", "David Guetta", "Electronic", 1), _edcoMk("ecf13", "HAYLA", "Electronic", 1), _edcoMk("ecf14", "IDEMI", "Electronic", 1), _edcoMk("ecf15", "Inbal", "Electronic", 1), _edcoMk("ecf16", "Interplanetary Criminal", "Electronic", 1), _edcoMk("ecf17", "JOA", "Electronic", 1), _edcoMk("ecf18", "Josh Baker", "House", 1), _edcoMk("ecf19", "Joshwa", "House", 1), _edcoMk("ecf20", "Kompany", "Bass", 1), _edcoMk("ecf21", "KREAM", "Electronic", 1), _edcoMk("ecf22", "Level Up", "Bass", 1), _edcoMk("ecf23", "Levity", "Bass", 1), _edcoMk("ecf24", "MALUGI (Sunset Set)", "Electronic", 1), _edcoMk("ecf25", "Matthias", "Electronic", 1), _edcoMk("ecf26", "Mau P", "Electronic", 1), _edcoMk("ecf27", "MPH", "Electronic", 1), _edcoMk("ecf28", "Omar+", "House", 1), _edcoMk("ecf29", "Pegassi", "Electronic", 1), _edcoMk("ecf30", "Prospa B2B Josh Baker", "House", 1), _edcoMk("ecf31", "Prospa", "Electronic", 1), _edcoMk("ecf32", "RAJE", "Electronic", 1), _edcoMk("ecf33", "Sloth", "Electronic", 1), _edcoMk("ecf34", "Whethan", "Electronic", 1), _edcoMk("ecf35", "Wooli", "Bass", 1), _edcoMk("ecf36", "Zack Martino", "Electronic", 1), _edcoMk("ecs1", "Aaron Hibell", "Electronic", 2), _edcoMk("ecs2", "ACRAZE B2B CID", "Electronic", 2), _edcoMk("ecs3", "Alan Walker (Sunset Set)", "Electronic", 2), _edcoMk("ecs4", "Alison Wonderland", "Bass", 2), _edcoMk("ecs5", "ALLEYCVT", "Bass", 2), _edcoMk("ecs6", "Alves", "Electronic", 2), _edcoMk("ecs7", "AVELLO", "Electronic", 2), _edcoMk("ecs8", "AYYBO", "Electronic", 2), _edcoMk("ecs9", "ChaseWest", "Electronic", 2), _edcoMk("ecs10", "Dennis Cruz", "House", 2), _edcoMk("ecs11", "Devault (Sunset Set)", "Electronic", 2), _edcoMk("ecs12", "Discip", "Electronic", 2), _edcoMk("ecs13", "Disco Lines", "Electronic", 2), _edcoMk("ecs14", "Fallon", "Electronic", 2), _edcoMk("ecs15", "Franky Rizardo", "House", 2), _edcoMk("ecs16", "Fury with MC Dino", "Electronic", 2), _edcoMk("ecs17", "Gabss", "Electronic", 2), _edcoMk("ecs18", "Greg 99", "Electronic", 2), _edcoMk("ecs19", "Jkyl & Hyde", "Bass", 2), _edcoMk("ecs20", "Kaskade", "Electronic", 2), _edcoMk("ecs21", "KinAhau", "House", 2), _edcoMk("ecs22", "LAYZ", "Bass", 2), _edcoMk("ecs23", "MADVKTM", "Electronic", 2), _edcoMk("ecs24", "Mai Iachetti", "Electronic", 2), _edcoMk("ecs25", "Max Dean, Luke Dean", "Electronic", 2), _edcoMk("ecs26", "Me n ü", "Electronic", 2), _edcoMk("ecs27", "Miguelle & Tons", "Electronic", 2), _edcoMk("ecs28", "Monoky", "Electronic", 2), _edcoMk("ecs29", "Nico Moreno", "Techno", 2), _edcoMk("ecs30", "Ray Volpe", "Bass", 2), _edcoMk("ecs31", "Roddy Lima", "Electronic", 2), _edcoMk("ecs32", "Rossi. (Sunset Set)", "House", 2), _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2), _edcoMk("ecs34", "Steve Aoki", "Electronic", 2), _edcoMk("ecs35", "Subsonic", "Electronic", 2), _edcoMk("ecs36", "Twinsick", "Electronic", 2), _edcoMk("ecu1", "A Little Sound", "Electronic", 3), _edcoMk("ecu2", "Adrián Mills", "Techno", 3), _edcoMk("ecu3", "Alok", "Electronic", 3), _edcoMk("ecu4", "AR/CO", "Electronic", 3), _edcoMk("ecu5", "ATLiens", "Bass", 3), _edcoMk("ecu6", "Boogie T", "Bass", 3), _edcoMk("ecu7", "Boys Noize B2B Brutalismus 3000", "Techno", 3), _edcoMk("ecu8", "Chef Boyarbeatz", "Electronic", 3), _edcoMk("ecu9", "CØNTRA", "Electronic", 3), _edcoMk("ecu10", "Deorro B2B DJ Diesel", "Electronic", 3), _edcoMk("ecu11", "Discovery Project", "Electronic", 3), _edcoMk("ecu12", "ESSE", "Electronic", 3), _edcoMk("ecu13", "Hardwell", "Electronic", 3), _edcoMk("ecu14", "Holy Priest", "Electronic", 3), _edcoMk("ecu15", "I Hate Models", "Techno", 3), _edcoMk("ecu16", "Ian Asher", "Electronic", 3), _edcoMk("ecu17", "Jessica Audiffred", "Bass", 3), _edcoMk("ecu18", "Kaivon", "Bass", 3), _edcoMk("ecu19", "KI/KI", "Techno", 3), _edcoMk("ecu20", "Klangkuenstler", "Techno", 3), _edcoMk("ecu21", "Know Good", "Electronic", 3), _edcoMk("ecu22", "M81!", "Electronic", 3), _edcoMk("ecu23", "Maddix", "Electronic", 3), _edcoMk("ecu24", "Marlon Hoffstadt (Sunset Set)", "Techno", 3), _edcoMk("ecu25", "Martin Garrix", "Electronic", 3), _edcoMk("ecu26", "Meduza", "Electronic", 3), _edcoMk("ecu27", "Of The Trees (Sunset Set)", "Bass", 3), _edcoMk("ecu28", "phrva", "Electronic", 3), _edcoMk("ecu29", "Ravenscoon", "Electronic", 3), _edcoMk("ecu30", "San Holo (Wholesome Riddim Set)", "Electronic", 3), _edcoMk("ecu31", "SHDW", "Techno", 3), _edcoMk("ecu32", "Sippy", "Bass", 3), _edcoMk("ecu33", "SLANDER (Sunset Set)", "Bass", 3), _edcoMk("ecu34", "Taiki Nulight", "Electronic", 3), _edcoMk("ecu35", "TroyBoi", "Electronic", 3), _edcoMk("ecu36", "Ultrathem", "Electronic", 3)];
-var EDCO_AMENITIES = [];
+var EDCO_AMENITIES = [{
+  id: "eom1",
+  type: "med",
+  label: "First Aid",
+  x: 10.6,
+  y: 49.0,
+  src: "official-2026-map"
+}, {
+  id: "eom2",
+  type: "med",
+  label: "First Aid",
+  x: 29.1,
+  y: 47.5,
+  src: "official-2026-map"
+}, {
+  id: "eom3",
+  type: "med",
+  label: "First Aid",
+  x: 44.2,
+  y: 47.0,
+  src: "official-2026-map"
+}, {
+  id: "eom4",
+  type: "med",
+  label: "First Aid",
+  x: 75.9,
+  y: 33.5,
+  src: "official-2026-map"
+}, {
+  id: "eoi1",
+  type: "info",
+  label: "Info",
+  x: 38.6,
+  y: 46.9,
+  src: "official-2026-map"
+}, {
+  id: "eow1",
+  type: "water",
+  label: "Water Station · 40 taps",
+  x: 9.9,
+  y: 56.8,
+  src: "official-2026-map"
+}, {
+  id: "eow2",
+  type: "water",
+  label: "Water Station · 64 taps",
+  x: 50.0,
+  y: 76.8,
+  src: "official-2026-map"
+}, {
+  id: "eot1",
+  type: "toilet",
+  label: "Restrooms",
+  x: 30.1,
+  y: 38.6,
+  src: "official-2026-map"
+}, {
+  id: "eot2",
+  type: "toilet",
+  label: "GA+ Restrooms",
+  x: 32.5,
+  y: 38.6,
+  src: "official-2026-map"
+}, {
+  id: "eot3",
+  type: "toilet",
+  label: "Restrooms",
+  x: 43.6,
+  y: 37.3,
+  src: "official-2026-map"
+}, {
+  id: "eot4",
+  type: "toilet",
+  label: "GA+ Restrooms",
+  x: 45.8,
+  y: 37.3,
+  src: "official-2026-map"
+}, {
+  id: "eot5",
+  type: "toilet",
+  label: "Restrooms",
+  x: 55.0,
+  y: 17.5,
+  src: "official-2026-map"
+}, {
+  id: "eot6",
+  type: "toilet",
+  label: "GA+ Restrooms",
+  x: 81.9,
+  y: 49.1,
+  src: "official-2026-map"
+}, {
+  id: "eot7",
+  type: "toilet",
+  label: "Restrooms",
+  x: 81.9,
+  y: 52.3,
+  src: "official-2026-map"
+}, {
+  id: "eof1",
+  type: "food",
+  label: "Food",
+  x: 8.1,
+  y: 43.6,
+  src: "official-2026-map"
+}, {
+  id: "eof2",
+  type: "food",
+  label: "Food",
+  x: 42.7,
+  y: 56.1,
+  src: "official-2026-map"
+}, {
+  id: "eof3",
+  type: "food",
+  label: "Food",
+  x: 72.7,
+  y: 36.5,
+  src: "official-2026-map"
+}, {
+  id: "eof4",
+  type: "food",
+  label: "Food",
+  x: 52.2,
+  y: 55.8,
+  src: "official-2026-map"
+}, {
+  id: "eof5",
+  type: "food",
+  label: "Food",
+  x: 57.4,
+  y: 58.5,
+  src: "official-2026-map"
+}, {
+  id: "eof6",
+  type: "food",
+  label: "Food",
+  x: 52.5,
+  y: 63.1,
+  src: "official-2026-map"
+}];
 var LL_STAGES = [{
   id: "prehistoric",
   name: "Prehistoric Paradox",

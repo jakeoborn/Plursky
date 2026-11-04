@@ -11,11 +11,10 @@
 //
 // Exits non-zero on the first failure.
 
-import { readFileSync, writeFileSync, unlinkSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { execFileSync, spawn } from "node:child_process";
-import { createServer } from "node:http";
+import { execFileSync } from "node:child_process";
 import { transformAsync, parseSync, traverse } from "@babel/core";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -26,6 +25,8 @@ const fail = m => { console.error(`\n✗ ${m}`); process.exit(1); };
 execFileSync(process.execPath, ["scripts/build-artist-photo-ledger.mjs", "--check"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -1339,6 +1340,22 @@ const REGISTRATION_TOL_M = 25;
   // naming a festival that now PASSES is fatal too — so this entry cannot
   // outlive the redraw it is standing in for.
   const ART_WAIVERS = {
+    // ACL joined 2026-10-18, when the snapchat anchor landed: the basis is
+    // satellite-measured and snapchat is an independent osm measurement, so
+    // the registration findings are gone — and what they reveal is that the
+    // 2026 patron art is not an affine image of Zilker Park around The
+    // Grove. The measured stage structure sits 5.19 grid units (~35 m) from
+    // where the basis affine draws SNAPCHAT; the desk survey found the same
+    // 34 m on 2026-09-06. The defect is in the ART, not the anchors, so
+    // this is the same kind of waiver as Ultra's. Distance readouts stay
+    // off either way: snapchat is 35 m out, past the 25 m readout gate.
+    // Clears by re-measuring the plate (a redraw is not ours to make — the
+    // art is the festival's own patron map) or by re-deriving stage x/y so
+    // the shipped art coordinates agree with the measured world.
+    "acl-2026": {
+      expires: "2026-12-01",
+      note: "acl-park-2026.webp art is locally distorted near The Grove; the satellite-measured snapchat anchor sits 5.19 grid units (~35 m) off the affine. Re-derive stage x/y against the measured anchors, then delete this waiver.",
+    },
     "ultra-miami-2026": {
       // Chosen to force the redraw into the quiet window before the 2027
       // festival roll, rather than into Ultra flip week.
@@ -1445,8 +1462,8 @@ const REGISTRATION_TOL_M = 25;
   //     the data can contradict the affine even when it is wrong
   // Both are now fatal for a LIVE festival (founder call 2026-09-05). A
   // festival flipping available:true from here on gets NO waiver and has to
-  // arrive with a sourced basis — which is the point: the three below are
-  // grandfathered breakage, and everything after them is a choice.
+  // arrive with a sourced basis — which is the point: what remains below is
+  // grandfathered breakage, and everything after it is a choice.
   //
   // THE EXPIRY IS THE MECHANISM. The footprint waiver above has none and has
   // already outlived several sessions; a waiver without a date is a quieter
@@ -1464,90 +1481,33 @@ const REGISTRATION_TOL_M = 25;
     // is measured now. What survives is `blind`: a basis can be perfectly
     // sourced and still have nothing independent to check it against, and
     // that is the condition that keeps distance readouts off.
-    "acl-2026": {
-      excuses: ["blind"],
-      expires: "2026-10-19",
-      // ⚠️ The 2026-09-06 desk survey ASKED for this waiver to be deleted, on
-      // the strength of a 34 m independent cross-check against `ladybird`.
-      // Retracted by Instinct 2026-09-06 once the reconciliation landed:
-      // `ladybird` is a 2024 stage that the 2026 lineup replaced with the
-      // Snapchat Stage, so the cross-check was real geometry against a stage
-      // this app does not have. `bonus` was a label borrowed from the
-      // Lollapalooza module. The basis (amex/miller/tmobile) is genuinely
-      // satellite-measured now, and it is the whole anchor set: `bmi`, which
-      // was derived through that same basis and so could never disagree with
-      // it, was dropped on 2026-09-23 after it measured 57 m off the 2026 fit.
-      //
-      // The official 2026 patron map published on 2026-09-22 and now places
-      // `snapchat` on the ART (ACL_STAGES x/y). That does NOT clear this
-      // waiver: a poster is not a survey, so it yields no world anchor, and
-      // test-acl-map-2026.mjs fails if one is read off it. Clears when
-      // `snapchat` (the one 2026 stage with no anchor) is measured on the
-      // ground or on satellite. That is the independent anchor still missing.
-      //
-      // Still true, still worth repeating: the Weekend 2 crowd pass does NOT
-      // clear this. A crowd anchor answers "where does a person STAND"; a
-      // gpsAnchor answers "where did the artist DRAW it". EDC's measured
-      // kinetic centroid is 438 m from its own poster pin.
-      note: "basis is satellite-measured (amex/miller/tmobile) but nothing " +
-            "independent checks it (the derived bmi anchor was dropped 2026-09-23). " +
-            "Needs a satellite or ground measurement of snapchat; the 2026 patron map places it on the art only",
-    },
     // ultra-miami-2026 is NO LONGER HERE. Its basis is measured and it has
     // four independent osm anchors, so it has neither registration finding.
     // Its problem moved up a gate: those four anchors DISAGREE with the drawn
     // art by up to 53 grid units, which is ART_WAIVERS above, not this.
     "governors-ball-2026": {
       excuses: ["blind"],
-      expires: "2026-10-19",
+      // Re-dated 2026-10-18 (was 2026-10-19): the dated-out half of the
+      // problem is solved, what remains is structural. The snapchat
+      // north/south conflict (737 m) is SETTLED — the official 2026 patron
+      // map (GOV26-PatronMap-5.26, support.govball.com, updated 2026-06-02;
+      // plate map-sources/govball-2026-patron-map.png) puts snapchat on the
+      // south lawn by Meadow Lake Bridge, agreeing with the 2025-map-fitted
+      // anchor and the satellite-measured grove. Esri Wayback re-checked the
+      // same day: no in-event capture exists (all four 2026 releases carry
+      // byte-identical NYC tiles), so no satellite measurement can clear this.
       // `blind` here is structural and re-sourcing cannot fix it: Governor's
       // Ball has three stages, so all three anchors ARE the basis and no
-      // fourth anchor exists to disagree with them. The 2026-09-06 survey
-      // measured `grove` off satellite and fitted the other two to the
-      // official 2025 map, which is a real improvement — verizon moved 390 m
-      // out of woods that cannot hold a main stage — but it cannot add a
-      // fourth stage that does not exist.
-      //
-      // Two ways out: the 2026 patron map (which would also settle the
-      // snapchat north/south conflict, currently 737 m wide), or a non-stage
-      // landmark tie point such as the Unisphere. The latter needs a schema
-      // change, since gpsAnchors are stageId-keyed.
+      // fourth anchor exists to disagree with them. The one way out is a
+      // non-stage landmark tie point (the Unisphere, 40.746396/-73.845074),
+      // which needs a schema change, since gpsAnchors are stageId-keyed.
+      // The expiry forces that schema work into the same quiet-window batch
+      // as the art waivers above.
+      expires: "2026-12-01",
       note: "3 anchors, all of them the basis — structurally uncheckable " +
-            "until a fourth tie point exists. grove is satellite-measured; " +
-            "verizon and snapchat are fitted to the official 2025 map",
-    },
-    "edc-orlando-2026": {
-      excuses: ["unsourced", "blind"],
-      // The day after the festival ends. If the official 2026 map publishes
-      // first, the flip re-fits the anchors and this entry has to go with it;
-      // if it never publishes, the gate goes red once the event is over and
-      // someone has to decide what the archived edition keeps.
-      expires: "2026-11-09",
-      // NOT grandfathered breakage, and the first waiver granted to a festival
-      // at the moment it opens. The 2026-09-05 call says a festival flipping
-      // available:true arrives with a sourced basis or does not arrive. The
-      // founder ruling of 2026-09-30 is the exception, made knowingly: "use
-      // 2025 and say we are waiting for official 2026 map". EDC Orlando opens
-      // on its lineup over the official 2025 map, labelled as such.
-      //
-      // Both conditions are real. Three anchors ship (kinetic, circuit, neon;
-      // founder ruling 2026-09-30), all `poster`: the 2025 plate fitted to four
-      // OpenStreetMap street intersections the art draws (control points in
-      // map-sources/edco-map-2025-control-points.json, residuals 7-12 m), then
-      // applied to each stage's pin. A fit off art is still a read off art, so
-      // the basis is unsourced; and the three are the whole basis, so it is
-      // blind. The four corners are checked in scripts/test-georef-map.mjs and
-      // on screen in scripts/test-edco-corners.mjs. Every distance readout
-      // stays withheld.
-      //
-      // This waiver covers EDC Orlando's three anchors and nothing else. It is
-      // not a precedent for any other festival opening unsourced.
-      //
-      // Clears at the flip: control points saved and re-fitted on the official
-      // 2026 art with scripts/georef-map.mjs, plus one osm or ground anchor.
-      note: "opened on its lineup over the official 2025 map (founder ruling " +
-            "2026-09-30); three anchors fitted on the 2025 plate to four OSM street corners, all of them the basis. " +
-            "Clears when the official 2026 map is fitted from saved control points",
+            "until a landmark tie point exists. grove is satellite-measured; " +
+            "verizon and snapchat agree with the official 2026 patron map " +
+            "(snapchat N/S conflict settled 2026-10-18)",
     },
   };
   const regProblems = [];
@@ -1723,6 +1683,14 @@ const REGISTRATION_TOL_M = 25;
       }
       continue;
     }
+    // An ESTIMATED footprint (`venue.footprintInferred`) is not a survey: one
+    // drawn around the anchors would pass them by construction (#326 review).
+    // It guards nothing, so the anchors read as unguarded, never as checked.
+    if (poly?.length && an.length && cfg.venue?.footprintInferred) {
+      fpUnbounded++;
+      console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), footprint INFERRED (not surveyed) — UNGUARDED by this gate`);
+      continue;
+    }
     if (!poly?.length && an.length) {
       fpUnbounded++;
       console.log(`  ·  ${cfg.id.padEnd(22)} ${an.length} anchor(s), NO footprint — UNGUARDED by this gate`);
@@ -1787,15 +1755,11 @@ const REGISTRATION_TOL_M = 25;
   // checks and had to be deleted, not adjusted.
   //
   // Recorded as a gate rather than a comment because a comment is exactly
-  // what the next flip session will not read.
-  //
-  // Nothing is grandfathered any more. EDC Orlando was the one entry (five
-  // poster anchors authored before the ruling); it opened on 2026-09-30, and
-  // a live festival is out of this gate's scope, so the entry excused
-  // nothing. Its anchors are now the registration gate's business, under a
-  // dated waiver. An id listed here that is not a gated festival carrying
-  // poster-class anchors is fatal below, same closure as the waivers above.
-  const LAYOUT_ONLY_GRANDFATHERED = new Set([]);
+  // what the next flip session will not read. EDC Orlando is grandfathered:
+  // its five poster anchors are already authored and internally consistent
+  // (3 m / 7 m off their own affine), so they stand as the calibration set
+  // for whenever a real osm/crowd source lands. That is the last batch.
+  const LAYOUT_ONLY_GRANDFATHERED = new Set(["edc-orlando-2026"]);
   const LO_EVIDENCE = EVIDENCE_SRC;
   console.log("▸ Layout-only gate — no new poster-class anchors on a gated festival");
   let loHard = 0, loOk = 0;
@@ -1817,11 +1781,6 @@ const REGISTRATION_TOL_M = 25;
     }
   }
   if (loHard) fail(`${loHard} gated festival(s) carry poster-class anchors — see above`);
-  for (const id of LAYOUT_ONLY_GRANDFATHERED) {
-    const f = REG.find(x => x.config.id === id);
-    const excuses = f && f.available !== true && (f.config.gpsAnchors || []).some(a => !LO_EVIDENCE.has(a.src));
-    if (!excuses) fail(`layout-only grandfather entry for ${id} is STALE: it is not a gated festival with poster-class anchors. Delete the entry.`);
-  }
   console.log(`  ✓ ${loOk} gated festival(s) hold the layout-only default`);
 
   // ── Crowd-anchor gate ────────────────────────────────────────────────────
@@ -2305,8 +2264,8 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 //   · LIVE — _allDataSets() filters to registry-`available`. Correct for
 //     _resolveFestivalForPhoto, which ATTRIBUTES (a gated id strands a moment,
 //     since getActiveFestivalId() also requires `available`); wrong for a trust
-//     question, where availability is a UI concern. edc-orlando-2026 was gated
-//     (until 2026-09-30) and the only gated festival with a data module, so a genuine EDC
+//     question, where availability is a UI concern. edc-orlando-2026 is gated
+//     and is the only gated festival with a data module, so a genuine EDC
 //     Orlando capture time was rejected as junk and the clip imported as
 //     no-date.
 //
@@ -2354,18 +2313,19 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── 1z-b. Board playlist planner ──────────────────────────────────────────
-// Saved sets are guaranteed seeds; discovery picks are capped, unsaved and
-// carry a reason that is TRUE of the lineup. Fixtures + every _DATA_SETS lineup.
+// ── 1z-b. Spotify is read-only ────────────────────────────────────────────
+// Spotify can't build playlists for Plursky: no playlist-modify scope is
+// requested and no source writes to the Spotify Web API. Apple Music keeps its
+// playlist builder, and the read scopes the listening import needs stay.
 {
-  console.log("▸ Board playlist gate — seeds guaranteed, picks capped and truly reasoned");
+  console.log("▸ Spotify read-only gate — no playlist-modify scope, no Spotify write call");
   try {
-    const out = execFileSync(process.execPath, ["scripts/test-board-playlist.mjs"],
+    const out = execFileSync(process.execPath, ["scripts/test-no-spotify-playlist-write.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     process.stdout.write(out);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`board playlist planner failed${detail ? ` — ${detail}` : ""}`);
+    fail(`spotify read-only gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2420,6 +2380,42 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3b. Real map draws raw GPS ────────────────────────────────────────
+// With no affine (III Points: mapMode "real", no gpsAnchors) every fix used to
+// collapse onto the venue centroid. The avatar, the meet pin and the route
+// ends are placed from their own raw lat/lng; affine festivals unchanged. (The
+// MapLibre walk is scripts/e2e-real-map-raw-gps.mjs, run by hand — network.)
+{
+  console.log("▸ Real-map raw GPS gate — live fixes and meet pins drawn where they are");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-real-map-raw-gps.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`real map raw GPS failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b3c. Poster over the real map ──────────────────────────────────────
+// The real map is the default; the festival's art shows at full strength only
+// where geometryVerifiedFor() passes, faded and labelled NOT TO SCALE where
+// anchors place it unchecked, and not at all where nothing places it. Stage
+// pins, landmarks and Water/Medical dots only where geometry is checked (#313
+// review: pins off, full stop); SVG art is rasterised for MapLibre; a failed
+// overlay stays off; the zoom column drives the real map. Fleet table pinned.
+{
+  console.log("▸ Poster over real map gate — art strength follows checked alignment");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-poster-over-real-map.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`poster over real map failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b4. Schedule Sync review + overlay ─────────────────────────────────
 // Every committed feed reviews as current; a mutated feed names exactly the
 // changed saved sets, new clashes, moved reminders and cancelled saves; the
@@ -2455,6 +2451,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`sitemap fingerprint failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b4m. Map edition label ─────────────────────────────────────────────
+// A plate drawn for another edition (`mapArtYear`) is named wherever that art
+// is on screen, inside main's posture label; Escape Halloween 2026 ships its
+// 2025 map. Fixture rule on ACL plus Escape as shipped, 280–393 px.
+{
+  console.log("▸ Map edition label — another edition's art names its year wherever it is on screen");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-edition-label.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map edition label failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2542,6 +2554,35 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// Item 6: festival list rows carry official art from the festival-art ledger
+// (or a tile in the festival's own accent) and a right-aligned state chip.
+{
+  console.log("▸ Festival art — ledger tiles, tinted fallbacks, state chips, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-art.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival art failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// L4: the artist page's colour pops. Accent stat numbers (AA on their card),
+// brand dots on unchanged link pills, accent-outline genre chips, and an empty
+// moments row that invites without showing fake content. Both modes, 390/320.
+{
+  console.log("▸ Artist pop — accent stats, brand dots, accent chips, empty-moments invitation");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-pop.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist pop failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Memories film strip names ─────────────────────────────────────────────
 // Every frame names its artist in full (wrapped to the frame, never sliced);
 // same class as #247's chip names. Real renderer, recorded fillText.
@@ -2570,6 +2611,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`artist no-day failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist photo reach ────────────────────────────────────────────────────
+// The batch 5 licensed portraits resolve by printed act name (the artist
+// screen's lookup), decode, are precached and show on their artist screen.
+// That every ledger row is shown by a reachable lineup is today print's job.
+{
+  console.log("▸ Artist photo reach — batch 5 portraits resolve, decode, precache and show");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-reach.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo reach failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2607,6 +2664,95 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Map: the DEFAULT real map, rendered ──────────────────────────────────
+// The visual map gates above pin the drawn art map, so this is the one that
+// renders what a user opens: pins only where geometry is checked (Summerfest
+// pins; Ultra and III Points read STAGES PENDING), the +/−/Reset column moves
+// the real map, a failed overlay stays off, Summerfest's opening pills never
+// overlap or sit under the style switch, Water/Medical chips show their dots.
+// MapLibre from unpkg (pinned); basemap tiles stubbed.
+{
+  console.log("▸ Real map default — the map a user opens, rendered");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-real-map-default.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`real map default failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Item 5: Today's saved rows carry the act's face (ledger, pair, initials).
+{
+  console.log("▸ Set row faces — Today's saved rows, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-row-faces.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set row faces failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// M1: the SW precaches MapLibre (PACK_LIB), and on a mapMode:"real" festival a
+// failed load keeps a persistent error card whose RETRY really reloads the map.
+{
+  console.log("▸ MapLibre field load — precache + persistent card + RETRY");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-maplibre-field-load.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`maplibre field load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// L3: Split the night — a split clears the clash everywhere, persists and
+// resets; Keep both accepts; the banner counts clashes and tight transitions apart.
+{
+  console.log("▸ Split the night — attend windows, kept-both, banner");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-split-the-night.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`split the night failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// L5: Keep alerts — a clash loser can keep its reminder without being saved;
+// it fires at the lead, one tap cancels, a reload keeps it, Keep both adds none.
+{
+  console.log("▸ Keep alerts — reminders for unpicked sets, opt-in per set");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-keep-alerts.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`keep alerts failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// L7: "Show me on the map" + "Works with no signal" only where the festival's
+// map is on the device (plate in the worker's cache, or a saved pack), and the
+// offline notes say offline. Real service worker, context.setOffline.
+{
+  console.log("▸ Map no signal — locate affordance + honest offline copy");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-map-no-signal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`map no signal failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── III Points 2026: each act's day is the official day graphic's ─────────
 // The lineup-by-day graphic is transcribed in docs/qa/reports/iii-points-2026-
 // day-split/graphic.tsv; the list page is the lineup. Both directions of the
@@ -2620,6 +2766,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`III Points day split failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Escape Halloween 2026: the official set times, as shipped ────────────
+// 118 sets on 7 stages (Fri 58, Sat 60) from escapehalloween.com's per-day
+// set-times pages; every set's instant in PDT, the 02:00 close on the
+// fall-back night included; names as printed; EDC cross-billings agree.
+{
+  console.log("▸ Escape 2026 set times — 118 official sets, PDT instants, names as printed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-escape-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Escape set times failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2714,6 +2876,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Lineup stage hues (Item 3a, Jake's pick A) ──
+// Six lane tokens >= 3:1 on paper and s3 in both modes, one door
+// (stageLaneHue), and the capture-only options B and C stay deleted.
+{
+  console.log("▸ Lineup stage-hue gate — six lanes >= 3:1, one door, B and C gone");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lineup-stage-hues.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`lineup stage hues failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Screen layout: the board's Me and Today (before the festival) ──
 // An empty account asks for a name (never a dash), Plan / Memories / Crew /
 // Badges are four round actions on one row with no zero counts, the
@@ -2728,6 +2905,88 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`screen layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist registry (artist repository, M1) ──
+// Every billing row (live lineups + archived editions) maps to artist keys or
+// is excluded with its reason; set tags come off identity, b2b splits, "&"
+// never does, presents makes a project, unclear rows go to review and are
+// never guessed; the generated data/artists files are current.
+{
+  console.log("▸ Artist registry gate — every billing maps, identity rules hold");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-registry.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist registry failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artists directory (artist repository, M5) ──
+// Opens from Me; windowed (a few dozen rows of ~2,500 in the DOM); every name
+// in full at 393 and 320 in both modes; scrubber, search, the sheet equals the
+// registry's billings; a key under review never reads as one career; the
+// slice ships but is never precached.
+{
+  console.log("▸ Artists directory gate — windowed, names in full, sheet = registry");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-directory.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artists directory failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Career arc (artist repository M6): every claim on an artist page traces
+// to a billing id, untimed billings never feed a slot or closing claim, a
+// single billing has no axis, a pending key shows nothing comparative.
+{
+  console.log("▸ Career arc gate — every claim traces to a billing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-career.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`career arc failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-tp. Today print: the ticket / journey Today and the artist hero under
+// the approved Sora + chalk/charcoal direction (2026-10-12). Every lifecycle
+// state at 390 and 320 in both modes: chalk/charcoal sheet, the verified accent
+// a thin rule, Sora rendered at the approved scale, AA on real pixels, the
+// stamp upright, every control 44px, the four steps routed, every ledger hero.
+{
+  console.log("▸ Today print gate — chalk/charcoal, Sora, every state, both modes, 390 and 320");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-today-print.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`today print failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Item 3 option B: III Points accent pops. The ledger accent fills the Today
+// hero's fold band and stamp, rules the section headers, marks the map header
+// and the picked stage chip, for a festival whose print row opts in; AA on
+// every fill in both modes at 390/320; EDC Las Vegas (no opt-in) stays the base.
+{
+  console.log("▸ III Points accent pops — ledger-gated, AA both modes, non-opted festival unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-iiip-accent-pops.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`III Points accent pops failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2768,6 +3027,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`spotify image compliance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Artist photo machine (machine.jsx): the swatch hook and the artist hero
+// share one table. Exhaustive (every state × event pair handled or a written-
+// down no-op), every rule stepped, a write during a lookup comes up with no
+// second lookup and the late answer is dropped, a name change re-asks, and
+// the app runs with no machine warnings.
+{
+  console.log("▸ Artist photo machine — one table for the swatch and the hero");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-photo-machine.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist photo machine failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -2846,8 +3122,8 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // presented as attributed must be claimed by that festival's night windows, a
 // record that cannot be proved must SAY so, and — so the flag cannot buy a
 // trivial pass — every provable record must come back evidence-backed. It also
-// covers the gated case (a gated festival is invisible to photo-tag's
-// registry-filtered _allDataSets; the test gates edc-orlando-2026 in its harness) and the once-per-load flag that used to be
+// covers the gated case (edc-orlando-2026 is invisible to photo-tag's
+// registry-filtered _allDataSets) and the once-per-load flag that used to be
 // burned by an early return before FESTIVAL_CONFIG was ready.
 {
   console.log("▸ Festival-migration gate — legacy moments attributed from their own capture time");
@@ -3165,6 +3441,74 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-c3b. Set-level attendance verdict (spec PR 1, logic only) ─────────
+// Presence intervals → full / partial / brief / unknown on synthetic fixtures:
+// threshold boundaries, midnight, W2, time class, photo points, manual wins,
+// and a mutation pass that must catch every threshold nudge.
+{
+  console.log("▸ Set attendance gate — full/partial boundaries, windows, time class, photo points, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-attendance.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`signal-aware failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c3c. Set-clash solver (15-feature program #1) ─────────────────────
+// One suggestion per clashing pair, with its reason, or none: plays again on a
+// later night, your Spotify match, or a split of 30+ min each. Both argument
+// orders agree; every rule nudge in the compiled source must be caught.
+{
+  console.log("▸ Clash solver gate — plays again, your music, split 30+ min, no guess, both orders, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-clash-solver.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`clash solver failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c3d. Crew meetups (15-feature program #3) ─────────────────────────
+// A meetup goes to the crew thread on the user's tap, stage and time only, and
+// comes back as a card that adds it to my meetups once. Body round trip,
+// app send + thread render with Supabase blocked, and mutations.
+{
+  console.log("▸ Crew meetups gate — tap to send, stage + time only, card adds once, other festival not added, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-meetups.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew meetups failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Crew beacon gate — tap to send, stage + time only, live 15 min, reply once, report/block, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-beacon.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew beacon failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
 // A smart chip ("<ARTIST> LIVE", "<ARTIST> 12M") carries the whole name and
 // wraps inside the row at 320px instead of cutting at 8 characters.
@@ -3201,7 +3545,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
 // ships from its own anchors, and build-edco-map-2026.mjs may ship only the
 // placeholder until an official 2026 map is pinned by hash.
 {
-  console.log("▸ Georef gate — EDC Orlando ships the pinned 2025 plate with measured pins; no unpinned 2026 map ships");
+  console.log("▸ Georef gate — EDC Orlando grid re-derived from its anchors; no unpinned map ships");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-georef-map.mjs"],
       { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
@@ -3209,38 +3553,6 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`georef failed${detail ? ` — ${detail}` : ""}`);
-  }
-}
-
-// ── EDC Orlando: the four corners, on screen ─────────────────────────────
-// A mocked position at each street corner the 2025 art draws must be drawn on
-// that corner (within 16 plate px). The fit itself is held above; this holds
-// what the app renders from the three anchors.
-{
-  console.log("▸ EDC Orlando corners — a person at each street corner is drawn on it");
-  try {
-    const out = execFileSync(process.execPath, ["scripts/test-edco-corners.mjs"],
-      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    process.stdout.write(out);
-  } catch (e) {
-    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`EDC Orlando corners failed${detail ? ` — ${detail}` : ""}`);
-  }
-}
-
-// ── Map plate drawn for another edition ───────────────────────────────────
-// A festival shipping last year's map says so on the map screen ("2025 MAP ·
-// OFFICIAL 2026 MAP PENDING"), and the long label stays clear of the control
-// column and the GPS pill down to 280 px. Fixture field on a live festival.
-{
-  console.log("▸ Map edition label — another edition's art is labelled as such, and the label fits");
-  try {
-    const out = execFileSync(process.execPath, ["scripts/test-map-edition-label.mjs"],
-      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    process.stdout.write(out);
-  } catch (e) {
-    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`map edition label failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3261,237 +3573,46 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── 2. Mount probe ─────────────────────────────────────────────────────────
-// Loads the REAL index.html in an iframe rather than reconstructing the script
-// order. An earlier version of this check derived load order by grepping
-// index.html for "*.jsx" — which also matched filenames written in PROSE
-// COMMENTS, hoisting app.jsx ahead of data.jsx and reporting a false root=0 on
-// perfectly healthy code. Loading the real document can't get the order wrong,
-// because it isn't guessing at it.
-const CHROME = [
-  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-  "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable",
-  "/usr/bin/chromium-browser", "/usr/bin/chromium",
-].find(existsSync);
-if (!CHROME) fail("no Chrome/Chromium found — run with --parse-only to skip the mount probe");
-
-const TYPES = { html:"text/html", js:"text/javascript", jsx:"text/babel",
-                css:"text/css", json:"application/json", svg:"image/svg+xml",
-                webp:"image/webp", png:"image/png", jpg:"image/jpeg", xml:"application/xml" };
-
-const server = createServer({ keepAlive: false }, (req, res) => {
-  const rel = decodeURIComponent(req.url.split("?")[0]).replace(/^\/+/, "") || "index.html";
-  const p = join(ROOT, rel.endsWith("/") ? rel + "index.html" : rel);
-  if (!p.startsWith(ROOT) || !existsSync(p)) { res.writeHead(404); return res.end("nope"); }
-  // Connection: close matters. With keep-alive, Chrome treats the sockets as
-  // pending network work and --virtual-time-budget never advances, so
-  // --dump-dom hangs until the process timeout instead of settling.
-  let body = readFileSync(p);
-  // Errors inside an iframe do NOT propagate to the parent, so the probe page
-  // cannot see a boot failure on its own — an earlier version of this gate
-  // passed a file containing a bare `throw`. Inject a capture prelude ahead of
-  // everything else when serving the document. index.html itself is untouched
-  // on disk and served verbatim apart from this one prepended <script>.
-  if (p.endsWith("index.html")) {
-    body = Buffer.from(
-      `<script>window.__probeErrs=[];` +
-      `addEventListener("error",e=>__probeErrs.push((e.message||"error")+" @"+((e.filename||"").split("/").pop()||"?")+":"+e.lineno));` +
-      `addEventListener("unhandledrejection",e=>__probeErrs.push("unhandled rejection: "+e.reason));` +
-      `</script>` + body.toString("utf8"), "utf8");
-  }
-  res.writeHead(200, {
-    "content-type": TYPES[p.split(".").pop()] || "application/octet-stream",
-    "connection": "close", "cache-control": "no-store",
-  });
-  res.end(body);
-});
-await new Promise(r => server.listen(0, "127.0.0.1", r));
-const PORT = server.address().port;
-
-// Must live at the server root so the iframe is same-origin and its globals
-// are reachable.
-// Floor for a healthy render. Used BOTH as the probe's settle condition
-// and as the final assertion, so a slow machine waits instead of failing.
-const MIN_RENDERED_CHARS = 5000;
-const PROBE = join(ROOT, "__verify_probe.html");
-// One top-level symbol per source file. A file whose evaluation dies still
-// leaves the others intact and the app can still mount, so `root > 0` alone
-// does NOT prove every script ran — this is what catches a dead file.
-const FNS = [
-  "IOSStatusBar",        // ios-frame.jsx
-  "getActiveFestivalId", // data.jsx
-  "_randNonce",          // supabase.jsx
-  "Screen",              // chrome.jsx
-  "festivalNightDate",   // home.jsx
-  "buildSmartReplies",   // map.jsx
-  "isLegendary",         // lineup.jsx
-  "_slDate",             // artist.jsx
-  "_parseDateString",    // photo-tag.jsx
-  "_loadMusicKit",       // spotify-api.jsx
-  "_buildVideoTimeline", // recap-engine.jsx
-  "PlusGate",            // spotify.jsx
-  "_purchasePlus", "_isPlusSub",
-];
-writeFileSync(PROBE, `<!doctype html><meta charset="utf-8">
-<iframe id="f" src="/" style="width:420px;height:900px;border:0"></iframe>
-<script>
-window.__e=[];addEventListener("error",e=>__e.push(e.message));
-// POLL, don't sleep. This used to read the iframe once at a fixed 9s and
-// report whatever it found. That is a race, not a measurement: on a cold or
-// loaded machine Babel had not finished compiling the script chain yet, so
-// the gate failed RED with root=0 on a perfectly healthy tree. Sample every
-// 250ms and stop at the first fully-mounted reading; only the DEADLINE is a
-// failure, and a healthy app now also finishes sooner than 9s.
-var FNS=${JSON.stringify(FNS)};
-var DEADLINE=11500, t0=Date.now();
-function read(){
-  try{
-    var w=document.getElementById("f").contentWindow, r=w.document.getElementById("root");
-    return {root:r?r.childElementCount:-1, chars:r?r.innerHTML.length:0,
-            fns:FNS.map(function(f){return f+"="+typeof w[f];}),
-            // ⚠ The whole multi-festival switch rides on this. data.jsx ends
-            // with Object.assign(window,{FESTIVAL_CONFIG:<active>,…}) and every
-            // later file reads those by BARE NAME — which only reaches the
-            // window property if top-level declarations were lowered to var.
-            // Ship const and the bare names hit the shadowing EDC base
-            // declarations instead: app boots, mounts, passes every other
-            // check, and quietly serves EDC's config at ACL. Measured in v253.
-            winProps:["FESTIVAL_START_MS","FESTIVAL_CONFIG","ARTISTS","STAGES"]
-              .map(function(k){return k+"="+typeof w[k];}),
-            activeId:(function(){try{return w.FESTIVAL_CONFIG&&w.FESTIVAL_CONFIG.id;}catch(e){return "?";}})(),
-            preCd:(function(){try{return w.preEventCountdown?JSON.stringify(w.preEventCountdown([])):"nofn";}catch(e){return "threw";}})(),
-            // Read the ACTIVE config's own start so the countdown can be
-            // checked against it rather than against an assumption that
-            // every shipped festival is still in the future. See below.
-            startMs:(function(){try{return w.FESTIVAL_START_MS||null;}catch(e){return null;}})(),
-            nowMs:Date.now(),
-            errs:(w.__probeErrs||[]).concat(window.__e), waitedMs:Date.now()-t0};
-  }catch(err){ return {root:-1,chars:0,fns:[],winProps:[],activeId:"?",preCd:"?",startMs:null,nowMs:0,errs:["probe: "+err.message],waitedMs:Date.now()-t0}; }
-}
-function emit(o){
-  var p=document.createElement("pre"); p.id="R"; p.textContent=JSON.stringify(o);
-  document.body.appendChild(p);
-}
-var lastChars=-1, stable=0;
-(function tick(){
-  var o=read();
-  // index.html ships ~2,066 chars of SEO fallback markup INSIDE #root, and it
-  // is perfectly stable until React commits over it. So root>0 plus "three
-  // identical samples" was satisfiable by the pre-hydration page: the gate
-  // sampled the fallback, called it settled, and then failed itself on the
-  // 5,000-char floor below — red on a tree whose app mounts fine. The floor
-  // has to gate the WAIT, not just the verdict.
-  var mounted=o.root>0 && o.chars>=${MIN_RENDERED_CHARS} &&
-              o.fns.every(function(f){return f.slice(-9)==="=function";});
-  // "Mounted" is not "rendered": #root gains its first child while the tree
-  // below is still filling in, and stopping there dropped the rendered-chars
-  // reading from ~19k to ~1.4k — a gate that no longer proves much. So also
-  // wait for the DOM to stop growing: three identical size samples in a row.
-  stable = (o.chars===lastChars) ? stable+1 : 0;
-  lastChars=o.chars;
-  if((mounted&&stable>=2)||Date.now()-t0>=DEADLINE) return emit(o);
-  setTimeout(tick,250);
-})();
-</script>`);
-
-// The hard wall-clock cap on Chrome. It is BOUNDED, not a hang: #107 reported
-// this probe "hangs indefinitely", but on 2026-09-10 six full runs on main
-// settled in ~1 s (7–16 s end to end), and a probe forced never to settle
-// (infinite virtual-time budget) was killed on the cap and failed red with no
-// orphaned Chrome. What CAN look like a hang is the silence while waiting
-// out the cap, and a failure line that did not say it was a timeout. So the
-// cap is announced up front, a timeout is named as one, and
-// VERIFY_PROBE_TIMEOUT_MS lets that path be exercised in seconds.
-const PROBE_TIMEOUT_MS = Number(process.env.VERIFY_PROBE_TIMEOUT_MS) || 90000;
-console.log(`▸ Mount probe — real index.html, headless Chrome (capped at ${PROBE_TIMEOUT_MS / 1000}s)`);
-// spawn, NOT execFileSync. The static server above runs in THIS process, so a
-// synchronous child blocks the event loop and the server can never answer
-// Chrome — every request hangs, virtual time never advances, and --dump-dom
-// waits out its timeout. It looks exactly like a broken app.
-const probeT0 = Date.now();
-let probeTimedOut = false;
-const dom = await new Promise((resolve) => {
-  const child = spawn(CHROME, ["--headless=new","--disable-gpu","--no-sandbox",
-    "--virtual-time-budget=14000","--dump-dom",`http://127.0.0.1:${PORT}/__verify_probe.html`],
-    { stdio: ["ignore","pipe","ignore"] });
-  let out = "";
-  const kill = setTimeout(() => { probeTimedOut = true; child.kill("SIGKILL"); }, PROBE_TIMEOUT_MS);
-  child.stdout.on("data", d => { out += d; });
-  child.on("close", () => { clearTimeout(kill); resolve(out); });
-  child.on("error", () => { clearTimeout(kill); resolve(""); });
-});
-try { unlinkSync(PROBE); } catch {}
-server.close();
-
-const m = dom.match(/<pre id="R">([\s\S]*?)<\/pre>/);
-if (!m && probeTimedOut)
-  fail(`probe TIMED OUT — Chrome was killed after ${Math.round((Date.now() - probeT0) / 1000)}s ` +
-       `without dumping the DOM (virtual time never drained). Re-run once; a slow machine ` +
-       `does not reproduce, a real stall does`);
-if (!m) fail("probe produced no result — Chrome exited without a result (crashed, or failed to launch)");
-const r = JSON.parse(m[1].replace(/&quot;/g,'"').replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">"));
-
-console.log(`  root children : ${r.root}`);
-console.log(`  rendered chars: ${r.chars}`);
-if (r.waitedMs != null) console.log(`  settled after : ${r.waitedMs} ms`);
-const okFns = r.fns.filter(f => f.endsWith("=function"));
-console.log(`  globals       : ${okFns.length}/${r.fns.length} present`);
-for (const f of r.fns) if (!f.endsWith("=function")) console.log(`      ✗ ${f}`);
-if (r.errs.length) console.log(`  console errors: ${r.errs.join(" / ")}`);
-
-if (r.root < 1) fail(`#root has ${r.root} children — the app did not mount`);
-// `root >= 1` does NOT mean the app rendered: RootErrorBoundary also produces
-// exactly one child, and so does a render caught mid-flight. This number was
-// printed but never asserted, so both failure modes read as a pass. Observed
-// 2026-08-29: a probe that settled slowly under load reported 2,066 chars
-// against a healthy 19,376 and the gate still went green.
-// A trip here is either a real regression or a slow-machine capture — re-run
-// once to tell them apart; a regression reproduces, a slow capture does not.
-if (r.chars < MIN_RENDERED_CHARS)
-  fail(`#root rendered only ${r.chars} chars (floor ${MIN_RENDERED_CHARS}) — error boundary or a partial render, not a healthy mount`);
-const missing = r.fns.filter(f => !f.endsWith("=function"));
-if (missing.length) fail(`not a function: ${missing.join(", ")}`);
-
-// ── The window-property contract (v253) ───────────────────────────────────
-// Bare cross-file names must reach the window properties data.jsx assigns,
-// not shadowing top-level declarations. If the compile stops lowering
-// const→var this is the ONLY check that notices: everything above still
-// passes while the app serves the wrong festival's data.
-const badProps = (r.winProps || []).filter(p => p.endsWith("=undefined"));
-console.log(`  window props  : ${(r.winProps || []).length - badProps.length}/${(r.winProps || []).length} reachable`);
-if (badProps.length)
-  fail(`top-level declarations are not reaching window (${badProps.join(", ")}) — ` +
-       `compile.mjs must lower const/let to var, see CLAUDE.md §5`);
-
-// And the observable consequence, so the contract is checked by BEHAVIOUR and
-// not only by shape: the active festival must be the resolved one, and the
-// pre-event countdown must AGREE WITH THAT FESTIVAL'S OWN START TIME.
-//
-// ⚠ This assertion used to be "preCd must be non-null", full stop. That held
-// only because every festival in the repo was still in the future. ARC 2026
-// (Sep 4–7) is the first one that is LIVE while the suite runs, and
-// preEventCountdown correctly returns null once now >= FESTIVAL_START_MS —
-// so the old form failed a green tree and blamed bare-name resolution for it.
-// Checking it in BOTH directions is also the stronger test: a stale config
-// would show a countdown when the active festival has already started, and
-// the absence of one when it has not. Either way the mismatch is the signal,
-// never the null on its own.
-console.log(`  active festival: ${r.activeId}`);
-if (!r.activeId || r.activeId === "?") fail("no active festival resolved");
-if (r.preCd === "threw") fail("preEventCountdown threw — bare-name resolution is reading a stale config");
-if (r.preCd === "nofn")  fail("preEventCountdown is not reachable by bare name");
+// ── Crew radar (15-feature program #2) ───────────────────────────────────
+// Share with crew is stage-only: no GPS option, no public link, no
+// live_shares writes; crew loc payloads carry no coordinates either way, and
+// the stage headcount counts me only while I share. The Crew chip groups my
+// crew by stage.
 {
-  const started = r.startMs != null && r.nowMs >= r.startMs;
-  const counting = r.preCd !== "null";
-  const when = r.startMs == null ? "unknown start" : new Date(r.startMs).toISOString().slice(0, 16) + "Z";
-  if (started && counting)
-    fail(`${r.activeId} started ${when} yet preEventCountdown still counts down — stale config`);
-  if (!started && !counting)
-    fail(`${r.activeId} starts ${when}, still in the future, yet preEventCountdown returned null — stale config`);
-  console.log(`  countdown     : ${started ? `withheld — ${r.activeId} is live/past (started ${when})`
-                                            : `counting to ${when}`} — agrees with the active config`);
+  console.log("▸ Crew radar gate — stage-only crew share, radar grouped by stage, expiry across tabs, festival-scoped crew channel");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-radar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew radar failed${detail ? ` — ${detail}` : ""}`);
+  }
 }
 
-if (r.errs.length) fail(`${r.errs.length} console error(s) during boot`);
+// ── 1z-qn. Quick name before sign-in ─────────────────────────────────────
+// Opening Me on a fresh install asks "What should Plursky call you?" once
+// (skippable, a skip is remembered). The answer is plursky_display_name, and
+// crew presence, the picks a crew join shares and the crew recaps carry it
+// signed out. Apple sign-in keeps a typed name and fills only an empty one.
+{
+  console.log("▸ Quick-name gate — local name asked once, shown on every crew door, kept by sign-in");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-quick-name.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`quick name failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 2. Mount probe ─────────────────────────────────────────────────────────
+// scripts/test-mount-probe.mjs: the real index.html in headless Chrome, with
+// the pinned CDN scripts served from scripts/vendor/ (no network). Output is
+// inherited so its readings and its ✗ line print here unchanged.
+try {
+  execFileSync(process.execPath, ["scripts/test-mount-probe.mjs"], { cwd: ROOT, stdio: "inherit" });
+} catch { fail("mount probe failed (its ✗ line is above)"); }
 
 console.log("\n✓ verify gate passed");

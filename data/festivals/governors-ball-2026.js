@@ -42,7 +42,7 @@
       x: 46.3, y: 71.9, size: 1.7, desc: "Main field · headliners",
       vibe: "The Main Event", vibeNote: "Presented by Verizon. Everything closes here — Lorde, Stray Kids, Rocky. Get in early or watch from the hill.", peak: "18:00–22:00" },
     { id: "snapchat", name: "Snapchat Stage", short: "SNAP", color: "#facc15",
-      x: 61, y: 31.2, size: 1.3, desc: "North field · co-headliners",
+      x: 61, y: 31.2, size: 1.3, desc: "South field · co-headliners",
       vibe: "The Other Big One", vibeNote: "Second-biggest stage and it books like the first. Alternating sets with the main so you can bounce.", peak: "17:00–21:00" },
     { id: "grove",    name: "The Grove", short: "GROVE", color: "#22c55e",
       x: 18.3, y: 48.4, size: 1, desc: "Tree line · discovery",
@@ -155,6 +155,8 @@
     locationShort: "Flushing Meadows",
     dates: "Jun 5–7, 2026",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#FF7D32", accent2: "#6400FF", source: { url: "https://cdn.prod.website-files.com/6752f21b56158b1c6c4bc981/css/gov-ball-2026.shared.678c825d0.min.css", observedAt: "2026-10-09", seenAs: "--swatches--orange: #ff7d32, consumed by --button-color--primary: var(--swatches--orange) (hover #e5702c), which .button uses for background-color and border; the homepage renders 5 'button w-button' elements", confidence: "medium" }, note: "No theme-color meta; the site's own Webflow stylesheet defines the primary button colour as the orange swatch, while links default to violet #6400ff and the homepage announcement bar is inline #19e6ff." },
     // gates day 1 (11:30 EDT) -> close of the final day (22:00 EDT)
     startMs: Date.UTC(2026, 5, 5, 15, 30, 0),
     endMs:   Date.UTC(2026, 5, 8, 2, 0, 0),
@@ -204,6 +206,17 @@
     // Unisphere, 40.746396/-73.845074) would need a schema change, since
     // anchors are stageId-keyed. Until then this festival cannot corroborate
     // its own registration and distance readouts stay off.
+    //
+    // 2026-10-18: the official 2026 patron map (GOV26-PatronMap-5.26,
+    // support.govball.com "Is there a current festival map?", updated
+    // 2026-06-02; plate map-sources/govball-2026-patron-map.png) CONFIRMS all
+    // three placements: GROVE northeast by Astronaut Court, GOVBALLNYC on the
+    // Festival Lawn, SNAPCHAT on the south lawn by Meadow Lake Bridge. That
+    // settles the snapchat north/south conflict below. Esri Wayback was
+    // re-checked the same day for an in-event capture to upgrade `poster` to
+    // a measurement: none exists (the 2026-05-28, 2026-06-30, 2026-08-05 and
+    // 2026-09-24 releases carry byte-identical NYC tiles, no stages; the
+    // 2024-06-06 and 2025-05-29 vintages are spring captures).
     gpsAnchors: [
       // Measured: the ringed trellis garden ("the grove") in the 2025-09-25
       // capture. Tightens the old anchor by 28 m — it was already close.
@@ -212,14 +225,13 @@
       // lawn E of the NY State Pavilion. ±50 m. Big fix: the old anchor was
       // 390 m away, in dense woods that cannot hold a main stage.
       { stageId: "verizon",  lat: 40.74420, lng: -73.84381, src: "poster" },
-      // ⚠ CONFLICT, landed deliberately (founder call 2026-09-06, Q3). The
-      // module used to say "north field" and the old anchor sat N at
-      // 40.74880/-73.83880; the 2025 official map puts the second stage on the
-      // SOUTH lawn by Meadow Lake Bridge — 737 m away. The 2026 map is app-only
-      // and unarchived, so which layout 2026 uses is UNVERIFIED. The official
-      // map beats an unsourced authoring comment, and `poster` cannot flip
-      // readouts on under the corroboration rule, so the downside is bounded.
-      // Re-verify against the 2026 patron map or GB recap media.
+      // RESOLVED 2026-10-18. The module used to say "north field" and the old
+      // anchor sat N at 40.74880/-73.83880; the 2025 official map put the
+      // second stage on the SOUTH lawn by Meadow Lake Bridge — 737 m away —
+      // and the official 2026 patron map (GOV26-PatronMap-5.26, updated
+      // 2026-06-02; map-sources/govball-2026-patron-map.png) now CONFIRMS the
+      // south lawn for 2026. The stage desc read "North field" until the same
+      // fix. `poster` strength stands: not evidence, cannot flip readouts on.
       //
       // ⚠ Filed as `derived` in the founder call; corrected to `poster` here.
       // In this codebase `derived` means BACK-COMPUTED FROM OUR OWN AFFINE,

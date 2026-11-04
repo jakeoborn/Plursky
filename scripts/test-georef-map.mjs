@@ -1,33 +1,25 @@
 #!/usr/bin/env node
-// test-georef-map.mjs — the georeference tool, EDC Orlando's anchors, and the
-// map plate EDC Orlando ships.
+// test-georef-map.mjs — the georeference tool, and EDC Orlando's map as it
+// ships on the official 2026 plate.
 //
-// Four things are locked:
+// Three things are locked:
 //   1. The fit itself, against a transform whose answer is known.
-//   2. The numbers #73 (v264) recorded for edc-orlando-2026, re-derived from
-//      the five anchors #73 shipped: the grid they derive, its scale, the
-//      centroid, the radius. Continuity only: this does not validate them.
-//      Three of the five still ship; the record of all five lives here.
-//   3. What ships since 2026-09-30: the official 2025 map, every stage pin
-//      measured on it, labelled as the 2025 map, no amenity pins, and GPS
-//      anchors for kinetic, circuit and neon only.
-//   4. What the three-anchor fit is, measured: exact at its own three points
-//      by construction, and not agreement with anything.
-//   5. build-edco-map-2026.mjs while the official 2026 map is unpublished.
+//   2. edc-orlando-2026 as shipped: the anchors are the 2026 street-corner
+//      fit (map-sources/edco-map-2026-control-points.json) applied to the
+//      measured pins, every x/y is a measured pin, and map.jsx's own affine
+//      draws the four street corners where the art draws them.
+//   3. build-edco-map-2026.mjs, pinned: the plate ships, the placeholder is
+//      gone, and the festival stays gated.
 // Each rule is proven live by a mutation that must fail it.
-//
-// ⚠ NOT reproduced, and it cannot be from the repo: #73's affine fit. Issue
-// #68 and PR #73 name the seven control points but record no pixel position
-// for them or for the five stages, so the raw fits in data.jsx are inputs
-// here, not outputs.
 
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import vm from "node:vm";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { fitAffine, applyAffine, deriveGrid, distanceM, metresPerDegree, outsideBoundsM, worstPairwiseError, festivalById } from "./georef-map.mjs";
 import { EDCO_MAP_2026, checkEdcoMap, isPinned } from "./build-edco-map-2026.mjs";
-import { EDCO_MAP_2025 } from "./build-edco-map-2025.mjs";
+import { loadRegistry } from "./lib/load-registry.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fails = [];
@@ -73,211 +65,211 @@ const control = PIX.map(([px, py], i) => ({ name: `cp${i + 1}`, px, py, ...truth
 
 // ── 2. EDC Orlando, as shipped ────────────────────────────────────────────
 const FID = "edc-orlando-2026";
-const ANCHORED = ["kinetic", "circuit", "neon"];
-const { config, stages, amenities, entry } = festivalById(FID);
+const { config, stages } = festivalById(FID);
 ok(config.id === FID, `the loader returned the festival asked for (${config.id})`);
 let askedWrong = false;
 try { festivalById("no-such-festival-2026"); } catch { askedWrong = true; }
 ok(askedWrong, "an unknown festival id is an error, not another festival");
 
-// The five anchors #73 (v264) shipped, as a RECORD. All five were in data.jsx
-// until 2026-09-30; stereo and bacardi were then removed (founder ruling), so
-// the continuity numbers below are derived from this table, not from what
-// ships. What ships is checked against it in section 3.
+const anchors = config.gpsAnchors;
 const IDS = ["kinetic", "circuit", "neon", "stereo", "bacardi"];
-const ANCHORS_73 = [
-  { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" },
-  { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" },
-  { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" },
-  { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" },
-  { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" },
+ok(anchors.length === 5 && IDS.every((id, i) => anchors[i].stageId === id), `five anchors, in order (${anchors.map(a => a.stageId).join(", ")})`);
+ok(anchors.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
+
+// The 2026 fit, re-run from the control points data.jsx names. Every anchor
+// must be that fit applied to its stage's measured pin.
+const M = EDCO_MAP_2026;
+const CP = JSON.parse(readFileSync(join(ROOT, "map-sources/edco-map-2026-control-points.json"), "utf8"));
+ok(CP.plate === M.derivative && CP.plateSize.join("x") === M.derivativeSize.join("x"), `the control points are read on the shipped plate (${CP.plate} ${CP.plateSize.join("x")})`);
+const fit = fitAffine(CP.controlPoints);
+ok(CP.controlPoints.length === 4 && fit.worst.metres < 15, `four street intersections, worst residual under 15 m (${fit.worst.name}, ${fit.worst.metres.toFixed(1)} m)`);
+ok(CP.stages.every(s => M.measured.stages[s.stageId] && M.measured.stages[s.stageId].px.join() === `${s.px},${s.py}`), "the control file's stage pixels are the manifest's measured pins");
+const fitted = (pins, id) => applyAffine(fit.affine, ...pins[id].px);
+const anchorIsFit = (as, pins) => IDS.every(id => distanceM(fitted(pins, id), as.find(a => a.stageId === id)) < 0.5);
+ok(anchorIsFit(anchors, M.measured.stages), `every anchor is the fit at its pin (${IDS.map(id => `${id} ${distanceM(fitted(M.measured.stages, id), anchors.find(a => a.stageId === id)).toFixed(2)} m`).join(", ")})`);
+// #73's anchors, fitted on other art (data.jsx keeps them as history).
+const OLD73 = [
+  { stageId: "kinetic", lat: 28.53700, lng: -81.40040 }, { stageId: "circuit", lat: 28.53999, lng: -81.40219 },
+  { stageId: "neon", lat: 28.53900, lng: -81.39850 }, { stageId: "stereo", lat: 28.53730, lng: -81.40310 },
+  { stageId: "bacardi", lat: 28.53660, lng: -81.40240 },
 ];
-const anchors = ANCHORS_73;
+caught(anchorIsFit(OLD73, M.measured.stages), "#73's anchors pass as the 2026 fit");
+const pinMoved = clone(M.measured.stages); pinMoved.circuit.px[0] += 30;
+caught(anchorIsFit(anchors, pinMoved), "circuit's pin moved 30 px leaves its anchor unchanged");
+// The independent check: the stadium is drawn on the art and is not a
+// control point, so where the fit puts it tests the fit.
+const bowl = applyAffine(fit.affine, CP.check.px, CP.check.py);
+ok(distanceM(bowl, CP.check) < 20, `the drawn stadium lands ${distanceM(bowl, CP.check).toFixed(1)} m from OpenStreetMap's stadium centre (limit 20)`);
+const skew = clone(CP.controlPoints); skew[1].px -= 40;
+caught(distanceM(applyAffine(fitAffine(skew).affine, CP.check.px, CP.check.py), CP.check) < 20, "a corner misread 40 px still puts the stadium in place");
 
-// The grid #73 shipped, derived from these anchors on one scale. It shipped
-// until 2026-09-30; the pins now sit on real art (section 3), so this is the
-// record of the derivation, not of what is on screen.
-const GRID_73 = { kinetic: [57, 76], circuit: [26, 17], neon: [90, 36], stereo: [10, 70], bacardi: [22, 83] };
-const grid = deriveGrid(anchors);
-const shipped = id => stages.find(s => s.id === id);
-const gridMatches = g => g.stages.every(s => GRID_73[s.stageId] && GRID_73[s.stageId][0] === s.x && GRID_73[s.stageId][1] === s.y);
-ok(gridMatches(grid), `the anchors still derive the grid #73 recorded (${grid.stages.map(s => `${s.stageId} ${s.x},${s.y}`).join(" · ")})`);
-ok(Math.abs(grid.metresPerUnit - 5.62) < 0.02, `one scale, 5.62 m per grid unit as #73 recorded (${grid.metresPerUnit.toFixed(3)})`);
-ok(Math.round(grid.spanE) === 450 && Math.round(grid.spanN) === 376, `east span 450 m, north span 376 m (${grid.spanE.toFixed(0)}, ${grid.spanN.toFixed(0)})`);
-const worst = worstPairwiseError(anchors, grid.stages, grid.metresPerUnit);
-ok(worst.pair === "stereo–bacardi" && worst.pct < 4.0, `worst pairwise error is stereo–bacardi, under 4 % (${worst.pair}, ${worst.pct.toFixed(2)} %)`);
+// Art coordinates: every stage and amenity x/y is its measured pin as a
+// percentage of the plate, and nothing unmeasured ships. TBA has no place.
+const gridPct = v => Math.round(1000 * v / M.derivativeSize[0]) / 10;
+const { amenities } = { amenities: loadRegistry(ROOT).DS[FID].amenities || [] };
+const artProblems = (st, am) => {
+  const p = [];
+  const rows = [...st.filter(s => s.id !== "tba").map(s => ["stages", s]), ...am.map(a => ["amenities", a])];
+  for (const [kind, item] of rows) {
+    const m = M.measured[kind][item.id];
+    if (!m) { p.push(`${kind} ${item.id} ships x/y (${item.x},${item.y}) with no measurement row`); continue; }
+    if (item.x !== gridPct(m.px[0]) || item.y !== gridPct(m.px[1])) p.push(`${item.id} is (${item.x},${item.y}); measured ${m.px.join(",")} px = (${gridPct(m.px[0])},${gridPct(m.px[1])})`);
+  }
+  for (const [kind, list] of [["stages", st], ["amenities", am]])
+    for (const id of Object.keys(M.measured[kind])) if (!list.some(x => x.id === id)) p.push(`measured ${kind.slice(0, -1)} ${id} is not shipped`);
+  return p;
+};
+const art = artProblems(stages, amenities);
+ok(!art.length, `every x/y is a measured pin:\n      ${art.join("\n      ")}`);
+const SURVEY = { food: 6, info: 1, med: 4, toilet: 7, water: 2 };
+const byType = {}; for (const a of amenities) byType[a.type] = (byType[a.type] || 0) + 1;
+ok(JSON.stringify(Object.keys(byType).sort().map(k => [k, byType[k]])) === JSON.stringify(Object.keys(SURVEY).sort().map(k => [k, SURVEY[k]])),
+  `amenities by type match the printed survey ${JSON.stringify(SURVEY)} (${JSON.stringify(byType)})`);
+for (const [kind, rows] of Object.entries(M.measured)) for (const [id, r] of Object.entries(rows))
+  ok(r.px[0] >= 0 && r.px[0] < M.derivativeSize[0] && r.px[1] >= M.pad.top && r.px[1] < M.derivativeSize[1] - M.pad.bottom && r.note,
+    `${kind} ${id} measured at ${r.px}, on the map art, with a note`);
+const nudged = clone(stages); nudged.find(s => s.id === "kinetic").x += 1;
+caught(!artProblems(nudged, amenities).length, "kinetic's x nudged one unit off its pin");
+caught(!artProblems(stages, [...amenities, { id: "eoa1", type: "water", label: "Hydration", x: 44, y: 30 }]).length, "an unmeasured amenity carried back in");
 
-// The table #73 rejected: each axis stretched to fill on its own.
-const stretched = deriveGrid(anchors, { isotropic: false });
-caught(gridMatches(stretched), "a per-axis stretch derives the recorded grid");
-// An anchor moved 30 m must move the grid.
-const moved = clone(anchors); moved[0].lat += 30 / metresPerDegree(28.538).lat;
-caught(gridMatches(deriveGrid(moved)), "kinetic moved 30 m north leaves the grid unchanged");
+// On screen: map.jsx's OWN 3-anchor affine (first three anchors + their x/y)
+// must draw a person standing at each street corner where the art draws it.
+const mapSrc0 = readFileSync(join(ROOT, "map.jsx"), "utf8");
+const sFrom = mapSrc0.indexOf("function _solveMapAffine(cfg, stages)"), sTo = mapSrc0.indexOf("const MAP_AFFINE = _solveMapAffine();");
+ok(sFrom > 0 && sTo > sFrom, "_solveMapAffine is found in map.jsx");
+const cornerOffsPx = (cfg, st) => {
+  const ctx = { Math, __cfg: cfg, __st: st };
+  vm.createContext(ctx);
+  vm.runInContext(`${mapSrc0.slice(sFrom, sTo)}\n;__A = _solveMapAffine(__cfg, __st);`, ctx);
+  const A = ctx.__A, k = M.derivativeSize[0] / 100;
+  return CP.controlPoints.map(c => Math.hypot((A.x[0] * c.lat + A.x[1] * c.lng + A.x[2]) * k - c.px, (A.y[0] * c.lat + A.y[1] * c.lng + A.y[2]) * k - c.py));
+};
+const TOL_PX = 16, offs = cornerOffsPx(config, stages);
+ok(offs.every(o => o <= TOL_PX), `every street corner is drawn within ${TOL_PX} plate px of the art (${offs.map(o => o.toFixed(1)).join(", ")})`);
+caught(cornerOffsPx({ ...clone(config), gpsAnchors: OLD73 }, stages).every(o => o <= TOL_PX), "#73's anchors on the 2026 plate keep the corners in place");
 
-// Centroid: the middle of the festival polygon data.jsx records
-// (Church St N / SR-408 + W Anderson S / S Tampa W / S Nashville E).
+// Centroid: the middle of the four edges data.jsx records (the west one is
+// not Tampa Avenue; see the comment there).
 const POLY = { n: 28.54022, s: 28.5363, w: -81.40353, e: -81.39935 };
 const mid = { lat: (POLY.n + POLY.s) / 2, lng: (POLY.w + POLY.e) / 2 };
 ok(mid.lat.toFixed(5) === config.gps.lat.toFixed(5) && mid.lng.toFixed(5) === config.gps.lng.toFixed(5),
-  `the centroid is the polygon's midpoint (${mid.lat.toFixed(5)}, ${mid.lng.toFixed(5)})`);
+  `the centroid is the edges' midpoint (${mid.lat.toFixed(5)}, ${mid.lng.toFixed(5)})`);
 const miles = a => distanceM(a, config.gps) / 1609.344;
-const far = anchors.reduce((a, b) => (miles(b) > miles(a) ? b : a));
-ok(far.stageId === "neon" && Math.abs(miles(far) - 0.186) < 0.002, `the farthest anchor is neon at 0.186 mi (${far.stageId}, ${miles(far).toFixed(3)})`);
-ok(anchors.every(a => miles(a) < config.gps.onSiteRadiusMi), `every anchor is inside onSiteRadiusMi ${config.gps.onSiteRadiusMi}`);
-caught([{ ...far, lng: far.lng + 0.012 }].every(a => miles(a) < config.gps.onSiteRadiusMi), "an anchor 1.2 km east still counts as on site");
+ok(anchors.every(a => miles(a) < config.gps.onSiteRadiusMi), `every anchor is inside onSiteRadiusMi ${config.gps.onSiteRadiusMi} (farthest ${Math.max(...anchors.map(miles)).toFixed(3)} mi)`);
+caught([{ ...anchors[2], lng: anchors[2].lng + 0.012 }].every(a => miles(a) < config.gps.onSiteRadiusMi), "an anchor 1.2 km east still counts as on site");
 
-// Raw fits before snapping, as data.jsx records them. kinetic and circuit
-// shipped unsnapped; the other three were moved inside the fence by hand.
-const RAW = {
-  kinetic: { lat: 28.537000, lng: -81.400398 }, circuit: { lat: 28.539991, lng: -81.402186 },
-  neon:    { lat: 28.539542, lng: -81.397451 }, stereo:  { lat: 28.536498, lng: -81.403728 },
-  bacardi: { lat: 28.535902, lng: -81.402559 },
-};
-const snap = id => distanceM(RAW[id], anchors.find(a => a.stageId === id));
-ok(snap("kinetic") < 1 && snap("circuit") < 1, `kinetic and circuit ship their raw fit, rounded (${snap("kinetic").toFixed(1)} m, ${snap("circuit").toFixed(1)} m)`);
-// Measured from the two recorded coordinate sets. data.jsx's prose says
-// ~85 m, ~85 m and ~40 m; the coordinates say otherwise, and they are the
-// record.
-const SNAPS = { neon: 119, stereo: 108, bacardi: 79 };
-for (const [id, m] of Object.entries(SNAPS))
-  ok(Math.abs(snap(id) - m) < 1.5, `${id} was snapped ${m} m from its raw fit (${snap(id).toFixed(1)} m)`);
-ok(outsideBoundsM(RAW.neon, POLY) > 0 && outsideBoundsM(RAW.stereo, POLY) > 0 && outsideBoundsM(RAW.bacardi, POLY) > 0,
-  "the three snapped stages' raw fits fall outside the festival polygon, which is why they were snapped");
-
-// ── 3. what ships: the official 2025 map, and it says so ─────────────────
+// ── 3. the 2026 map pipeline, pinned ──────────────────────────────────────
 {
-  const P = EDCO_MAP_2025;
-  const plate = checkEdcoMap(P, { mapImage: config.mapImage });
-  ok(plate.ok && plate.built === true, `the 2025 source and the plate built from it are the pinned files (${plate.msg})`);
-  ok(config.mapImage === P.derivative, `the registry ships the 2025 plate (${config.mapImage})`);
-  ok(P.mapYear === 2025 && config.mapArtYear === P.mapYear && config.mapArtYear !== config.year,
-    `the config names the art's own year, and it is not the festival's (mapArtYear ${config.mapArtYear}, year ${config.year})`);
-  ok(P.crop.w + P.pad.left + P.pad.right === P.derivativeSize[0] && P.crop.h + P.pad.top + P.pad.bottom === P.derivativeSize[1]
-    && P.derivativeSize[0] === P.derivativeSize[1], "crop plus pad is the square plate, with no scaling");
-  // The crop starts under the title block's date line: a 2025 date on the
-  // plate would be a wrong date for the 2026 festival.
-  ok(P.crop.y >= 306, `the crop starts below the "NOV 7+8+9" line (y ${P.crop.y})`);
-
-  const rows = P.measured.stages;
-  const want = id => rows[id] && rows[id].px.map(v => Math.round(1000 * v / P.derivativeSize[0]) / 10);
-  const pinsMatch = list => IDS.every(id => { const s = list.find(x => x.id === id), w = want(id); return s && w && s.x === w[0] && s.y === w[1]; });
-  ok(Object.keys(rows).sort().join() === [...IDS].sort().join(), `one measured row per stage, and no others (${Object.keys(rows).join(", ")})`);
-  ok(pinsMatch(stages), `every stage pin is its measured row on the plate (${IDS.map(id => `${id} ${shipped(id).x},${shipped(id).y}`).join(" · ")})`);
-  ok(Object.values(rows).every(r => r.px.every(v => v >= 0 && v <= P.derivativeSize[0]) && r.note && r.confidence), "every measured row is on the plate and says what was measured");
-  const tba = shipped("tba");
-  ok(tba && tba.x === undefined && tba.y === undefined, "the TBA stage has no position: it is not a place on the map");
-  ok(stages.filter(s => typeof s.x === "number").length === IDS.length, "no stage has a pin without a measured row");
-  const nudged = stages.map(s => (s.id === "bacardi" ? { ...s, x: s.x + 0.5 } : s));
-  caught(pinsMatch(nudged), "a pin moved half a grid unit off its measured row");
-  // The pre-2026-09-30 derived grid, over real art, would put pins off their stages.
-  caught(pinsMatch(stages.map(s => (GRID_73[s.id] ? { ...s, x: GRID_73[s.id][0], y: GRID_73[s.id][1] } : s))), "the derived grid shipped over the 2025 art");
-
-  ok(Array.isArray(amenities) && amenities.length === 0 && Object.keys(P.measured.amenities).length === 0,
-    `no amenity pins ship and none is measured off last year's map (${amenities.length})`);
-  ok(entry.available === true && entry.scheduleTBA === true, `open on its lineup, set times pending (available ${entry.available}, scheduleTBA ${entry.scheduleTBA})`);
-
-  // GPS anchors: kinetic, circuit and neon only (founder ruling 2026-09-30).
-  // An anchor is a lat/lng; a pin is a place on the art. stereo and bacardi
-  // keep the second and lose the first, and stay stages everywhere else.
-  const live = config.gpsAnchors;
-  const threeOnly = list => list.length === 3 && ANCHORED.every((id, i) => list[i].stageId === id);
-  ok(threeOnly(live), `three GPS anchors, in order (${live.map(a => a.stageId).join(", ")})`);
-  caught(threeOnly(ANCHORS_73), "all five of #73's anchors still ship");
-  ok(live.some((a, i) => a.lat !== ANCHORS_73[i].lat || a.lng !== ANCHORS_73[i].lng), "the three anchors are the 2025-plate re-fit, not #73's values (section 4)");
-  ok(live.every(a => a.src === "poster"), "every anchor is still poster class: a read off art, not a measurement");
-  caught([{ ...live[0], src: "osm" }, live[1], live[2]].every(a => a.src === "poster"), "a poster anchor relabelled as a measurement");
-  const unanchored = IDS.filter(id => !live.some(a => a.stageId === id));
-  ok(unanchored.join() === "stereo,bacardi", `stereo and bacardi have no GPS anchor (${unanchored.join(", ")})`);
-  ok(unanchored.every(id => { const st = shipped(id); return st && typeof st.x === "number" && typeof st.y === "number" && st.name; }),
-    "stereo and bacardi are still stages, with their pins on the art");
-  ok(!(config.crowdAnchors || []).length, "no crowd anchor stands in for a removed one");
-}
-
-// ── 4. the fit on the 2025 plate, and the four corners ───────────────────
-// Founder ruling 2026-09-30: fix the art's registration, verified at the four
-// corners. Four street intersections the 2025 art draws are matched to
-// OpenStreetMap (map-sources/edco-map-2025-control-points.json) and fitted
-// by least squares: four points, six unknowns, so the fit can fail to close.
-// The three anchors are that fit applied to their stages' pins. The corners
-// are then checked through the affine the APP solves (three anchors against
-// three pins, as map.jsx does), in plate pixels.
-const CP = JSON.parse(readFileSync(join(ROOT, "map-sources/edco-map-2025-control-points.json"), "utf8"));
-const PLATE = CP.plateSize[0];
-const CORNER_TOL_M = 15, CORNER_TOL_PX = 16, AXES_TOL_DEG = 5;
-const shapeOf = aff => {
-  const ux = [aff.east[0], aff.north[0]], uy = [aff.east[1], aff.north[1]], len = v => Math.hypot(v[0], v[1]);
-  return { deg: Math.acos((ux[0] * uy[0] + ux[1] * uy[1]) / (len(ux) * len(uy))) * 180 / Math.PI, sx: len(ux), sy: len(uy) };
-};
-// Ground point → pixels through an affine fitted px → ground.
-const toPx = (aff, p) => {
-  const m = metresPerDegree(aff.lat0);
-  const e = (p.lng - aff.lng0) * m.lng - aff.east[2], n = (p.lat - aff.lat0) * m.lat - aff.north[2];
-  const det = aff.east[0] * aff.north[1] - aff.east[1] * aff.north[0];
-  return [aff.px0 + (aff.north[1] * e - aff.east[1] * n) / det, aff.py0 + (aff.east[0] * n - aff.north[0] * e) / det];
-};
-// The app's own affine: three anchors against their pins, in plate px.
-const appAffine = anchors => fitAffine(anchors.slice(0, 3).map(a => { const st = shipped(a.stageId); return { name: a.stageId, px: st.x * PLATE / 100, py: st.y * PLATE / 100, lat: a.lat, lng: a.lng }; })).affine;
-const cornersOff = anchors => { const aff = appAffine(anchors); return CP.controlPoints.map(c => { const [x, y] = toPx(aff, c); return { name: c.name, px: Math.hypot(x - c.px, y - c.py) }; }); };
-{
-  ok(CP.plate === config.mapImage && CP.controlPoints.length === 4, `four control points on the plate that ships (${CP.plate}, ${CP.controlPoints.length})`);
-  const fit = fitAffine(CP.controlPoints);
-  ok(fit.residuals.every(r => r.metres <= CORNER_TOL_M), `the fit closes: every corner within ${CORNER_TOL_M} m (${fit.residuals.map(r => r.metres.toFixed(1)).join(", ")} m; rms ${fit.rms.toFixed(1)})`);
-  const sh = shapeOf(fit.affine);
-  ok(Math.abs(sh.deg - 90) <= AXES_TOL_DEG, `the fit is square on the ground: axes ${sh.deg.toFixed(1)}° (north-up art)`);
-  ok(sh.sx / sh.sy > 0.8 && sh.sx / sh.sy < 1.25, `the fit is near one scale: ${sh.sx.toFixed(2)} by ${sh.sy.toFixed(2)} m per px`);
-  // Each shipped anchor is the fit applied to its pin (anchor-distance check).
-  const live = config.gpsAnchors;
-  const offFit = live.map(a => { const st = shipped(a.stageId); return distanceM(applyAffine(fit.affine, st.x * PLATE / 100, st.y * PLATE / 100), a); });
-  ok(offFit.every(d => d < 1), `each anchor is the fit applied to its stage's pin (${live.map((a, i) => `${a.stageId} ${offFit[i].toFixed(2)} m`).join(", ")})`);
-  // How far each anchor moved from #73's value, recorded.
-  const MOVED = { kinetic: 56, circuit: 226, neon: 19 };
-  const moved = live.map(a => distanceM(a, ANCHORS_73.find(x => x.stageId === a.stageId)));
-  ok(live.every((a, i) => Math.abs(moved[i] - MOVED[a.stageId]) < 3), `moved from #73: ${live.map((a, i) => `${a.stageId} ${moved[i].toFixed(1)} m`).join(", ")}`);
-  // THE CORNERS, through the app's own affine, in plate pixels.
-  const off = cornersOff(live);
-  ok(off.every(c => c.px <= CORNER_TOL_PX), `all four corners pixel-verify through the app's affine, within ${CORNER_TOL_PX} px (${off.map(c => `${c.name.replace(/ \(.*/, "")} ${c.px.toFixed(1)}`).join("; ")})`);
-  ok(Math.abs(shapeOf(appAffine(live)).deg - 90) <= AXES_TOL_DEG, `the app's affine is square too (${shapeOf(appAffine(live)).deg.toFixed(1)}°)`);
-  // Mutations.
-  caught(cornersOff(ANCHORS_73).every(c => c.px <= CORNER_TOL_PX), "#73's anchors back in place (the sheared registration)");
-  caught(Math.abs(shapeOf(appAffine(ANCHORS_73)).deg - 90) <= AXES_TOL_DEG, "#73's anchors pass the square-axes check");
-  const misread = clone(CP.controlPoints); misread[0].px += 60;
-  caught(fitAffine(misread).residuals.every(r => r.metres <= CORNER_TOL_M), "a corner read 60 px wrong on the plate");
-  const nudged = clone(live); nudged[1].lng += 0.0005;
-  caught(cornersOff(nudged).every(c => c.px <= CORNER_TOL_PX), "circuit's anchor moved 49 m east");
-}
-
-// ── 5. the 2026 map pipeline, unpinned ────────────────────────────────────
-{
-  const M = EDCO_MAP_2026;
-  ok(M.festivalId === FID && M.placeholder === EDCO_MAP_2025.derivative, "the 2026 pipeline is EDC Orlando's, and what ships until it is pinned is the 2025 plate");
-  ok(!isPinned(M), "no official 2026 map is pinned");
+  const entry = loadRegistry(ROOT).REG.find(f => f.config && f.config.id === FID);
+  ok(M.festivalId === FID && isPinned(M), "the pipeline is EDC Orlando's and the official 2026 map is pinned");
   const state = checkEdcoMap(M, { mapImage: config.mapImage });
-  ok(state.ok && state.pinned === false, `unpinned, the check passes and says the 2025 plate ships (${state.msg})`);
+  ok(state.ok && state.pinned && state.built, `pinned and built, the check passes (${state.msg})`);
+  ok(config.mapImage === M.derivative, `the registry ships the official plate (${config.mapImage})`);
+  ok(!existsSync(join(ROOT, M.placeholder)), `the placeholder ${M.placeholder} is gone`);
+  ok(/'\.\/edco-tinker-2026\.webp'/.test(readFileSync(join(ROOT, "sw.js"), "utf8")), "sw.js precaches the plate for offline");
+  ok(M.sourcePage === "https://orlando.edc.com/guide/map/" && /^https:\/\/[^/]+\/.*\/edco_2026_[^/]*\.png$/.test(M.sourceUrl),
+    `the source is the 2026 file the official Festival Map page shows (${M.sourcePage})`);
+  ok(entry && entry.available === false, "the festival stays gated until the official 2026 set times are out");
 
-  caught(checkEdcoMap(M, { mapImage: M.derivative }).ok, "the registry pointing at an unbuilt 2026 plate");
-  const measured = clone(M); measured.measured.stages.kinetic = { px: [500, 500] };
-  caught(checkEdcoMap(measured, { mapImage: config.mapImage }).ok, "a measured row with no pinned source");
-  const half = { ...clone(M), sourceSha256: "0".repeat(64) };
-  caught(checkEdcoMap(half, { mapImage: config.mapImage }).ok, "a half-pinned manifest");
-  const full = { ...clone(M), sourceUrl: "https://example.invalid/map.png", sourceObservedAt: "2026-10-30",
-    sourceSha256: "0".repeat(64), sourceSize: [2000, 2000], crop: { x: 0, y: 0, w: 2000, h: 2000 },
-    pad: { top: 0, bottom: 0, left: 0, right: 0, color: "000000" } };
-  caught(checkEdcoMap(full, { mapImage: config.mapImage }).ok, "a fully pinned manifest whose source file is absent");
-  // Pinned to a real file that is not the map: the hash must refuse it.
-  const wrong = { ...full, source: "map-sources/acl-map-2026-source.png" };
+  caught(checkEdcoMap(M, { mapImage: M.placeholder }).ok, "the registry still shipping the placeholder once the plate is pinned");
+  const unpinned = { ...clone(M), sourceUrl: null, sourceObservedAt: null, sourceSha256: null, sourceSize: null, crop: null, pad: null, source: "map-sources/no-such-map.png" };
+  caught(checkEdcoMap(unpinned, { mapImage: unpinned.placeholder }).ok, "measured rows with no pinned source");
+  caught(checkEdcoMap({ ...clone(M), sourceSha256: null }, { mapImage: config.mapImage }).ok, "a half-pinned manifest");
+  const wrong = { ...clone(M), source: "map-sources/acl-map-2026-source.png" };
   const wrongState = checkEdcoMap(wrong, { mapImage: config.mapImage });
   caught(wrongState.ok, "a source file whose sha256 is not the pinned one");
   ok(/sha256 differs/.test(wrongState.msg || ""), `a wrong source is refused for its hash (${wrongState.msg})`);
-  // The same for the plate that ships: a re-encoded or swapped webp is refused.
-  caught(checkEdcoMap({ ...EDCO_MAP_2025, derivativeSha256: "0".repeat(64) }).ok, "a 2025 plate whose sha256 is not the pinned one");
+  caught(checkEdcoMap({ ...clone(M), derivativeSha256: "0".repeat(64) }, { mapImage: config.mapImage }).ok, "a plate that is not the one measured on");
 
-  let cli = "", buildRefused = false;
+  let cli = "";
   try { cli = execFileSync(process.execPath, ["scripts/build-edco-map-2026.mjs", "--check"], { cwd: ROOT, encoding: "utf8" }); } catch (e) { cli = `threw: ${e.stderr || e.message}`; }
-  ok(/the 2025 plate edco-tinker-2025\.webp still ships/.test(cli), `--check exits 0 while unpinned (${cli.trim()})`);
-  try { execFileSync(process.execPath, ["scripts/build-edco-map-2026.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }); } catch { buildRefused = true; }
-  ok(buildRefused, "a 2026 build with nothing pinned refuses to run");
+  ok(/^✓ map-sources\/edco-map-2026-source\.png 1080x1350 · edco-tinker-2026\.webp 960x960/.test(cli), `--check passes on the pinned plate (${cli.trim()})`);
+}
+
+// ── 4. poster reads and unsourced pins cannot fire a geofence ─────────────
+// Founder, 2026-10-20: the five anchors stay poster reads and say so in the
+// data, every amenity names its source, and nothing geofence-triggered fires
+// off either. Still true on the official 2026 map (2026-10-29): a read off
+// art through a fit is not a survey.
+{
+  const BASIS = "poster-read, 2026 art, unsurveyed";
+  const anchors = config.gpsAnchors || [];
+  ok(anchors.length === 5 && anchors.every(a => a.src === "poster" && a.basis === BASIS),
+    `all five anchors are labelled "${BASIS}" (${anchors.filter(a => a.basis === BASIS).length} of ${anchors.length})`);
+  const am = loadRegistry(ROOT).DS[FID].amenities || [];
+  ok(am.length === 20 && am.every(a => a.src === "official-2026-map"),
+    `every amenity pin names its source (${am.filter(a => a.src).length} of ${am.length})`);
+
+  // detectCurrentArtist is the GPS auto-attend geofence. Run the shipped
+  // function, not a copy: stand ON the kinetic anchor during a live kinetic set.
+  // It asks data.jsx's shared stage fix gate, so that slice runs with it. The
+  // fix carries ±10 m accuracy: a fix with no accuracy is coarse and marks nothing.
+  const src = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
+  const from = src.indexOf("function detectCurrentArtist(");
+  const to = src.indexOf("// Called from the GPS effect in MapScreen");
+  ok(from > 0 && to > from, "detectCurrentArtist is found in chrome.jsx");
+  const dataSrc = readFileSync(join(ROOT, "data.jsx"), "utf8");
+  const gFrom = dataSrc.indexOf("// Great-circle distance in meters. Here, not in photo-tag.jsx");
+  const gTo = dataSrc.indexOf("// Raw samples ({ lat, lng, accuracy, timestamp, atMs })");
+  ok(gFrom > 0 && gTo > gFrom, "the stage fix gate is found in data.jsx");
+  const gateSrc = dataSrc.slice(gFrom, gTo);
+  const detect = cfg => {
+    const ctx = {
+      window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math, Number, String, Date,
+      activeLineup: () => [{ id: "act1", stage: "kinetic" }], isSetLive: () => true,
+    };
+    vm.createContext(ctx);
+    vm.runInContext(`${gateSrc}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${cfg.gpsAnchors[0].lat}, ${cfg.gpsAnchors[0].lng}, { accuracy: 10 });`, ctx);
+    return ctx.__hit;
+  };
+  ok(detect(clone(config)) === null, "standing on a poster-read anchor during its live set marks nothing attended");
+  const surveyed = clone(config); surveyed.gpsAnchors[0].src = "osm";
+  caught(detect(surveyed) === null, "the same spot on a surveyed (osm) anchor no longer fires, so the guard is not just dead code");
+
+  // GLOBAL (founder, 2026-10-20): every festival, through the real
+  // resolvedStageAnchors. Stand on each anchor during a live set on every
+  // stage. An osm/crowd point must fire for its stage; a poster, provisional,
+  // derived or unsourced point must never resolve to its own stage (a hit on a
+  // neighbouring EVIDENCE anchor inside 140 m is allowed — that one is real).
+  const rFrom = dataSrc.indexOf("function resolvedStageAnchors(cfg)");
+  const rTo = dataSrc.indexOf("function resolvedStageAnchor(cfg, stageId)");
+  ok(rFrom > 0 && rTo > rFrom, "resolvedStageAnchors is found in data.jsx");
+  const EVIDENCE = new Set(["osm", "crowd"]);
+  let fired = 0, refused = 0;
+  const leaks = [], dead = [];
+  for (const { config: cfg } of loadRegistry(ROOT).REG) {
+    if (!cfg || !((cfg.gpsAnchors || []).length || (cfg.crowdAnchors || []).length)) continue;
+    const crowdIds = new Set((cfg.crowdAnchors || []).map(c => c.stageId));
+    const points = [
+      ...(cfg.gpsAnchors || []).filter(a => !crowdIds.has(a.stageId)).map(a => ({ ...a, kind: a.src || "unsourced" })),
+      ...(cfg.crowdAnchors || []).map(c => ({ ...c, kind: "crowd" })),
+    ];
+    const stageIds = [...new Set(points.map(p => p.stageId))];
+    for (const p of points) {
+      const ctx = {
+        window: { FESTIVAL_CONFIG: cfg, NOW: { day: 1, time: "21:00" } }, Math, Number, String, Date,
+        activeLineup: () => stageIds.map(s => ({ id: `act-${s}`, stage: s })), isSetLive: () => true,
+      };
+      vm.createContext(ctx);
+      vm.runInContext(`${dataSrc.slice(rFrom, rTo)}\n${gateSrc}\n${src.slice(from, to)}\n;__hit = detectCurrentArtist(${p.lat}, ${p.lng}, { accuracy: 10 });`, ctx);
+      const own = ctx.__hit && ctx.__hit.stageId === p.stageId;
+      if (EVIDENCE.has(p.kind)) { if (own) fired++; else dead.push(`${cfg.id}:${p.stageId}(${p.kind})`); }
+      else { if (own) leaks.push(`${cfg.id}:${p.stageId}(${p.kind})`); else refused++; }
+    }
+  }
+  ok(leaks.length === 0, `no poster/prov/derived/unsourced point fires auto-attend, any festival (${refused} refused${leaks.length ? `; LEAK ${leaks.join(", ")}` : ""})`);
+  ok(dead.length === 0 && fired > 0, `every osm/crowd point still fires for its own stage (${fired} fired${dead.length ? `; DEAD ${dead.join(", ")}` : ""})`);
+  ok(refused > 0, `the sweep met non-evidence points to refuse (${refused})`);
+
+  // Crew nudge: crew shares are stage-only (15-feature program #2), so the
+  // cluster counts a friend's declared stage and never infers one from a
+  // position. Source check (the cluster lives inside a component).
+  const mapSrc = readFileSync(join(ROOT, "map.jsx"), "utf8");
+  const cluster = mapSrc.slice(mapSrc.indexOf("const crewCluster"), mapSrc.indexOf("const crewCluster") + 900);
+  ok(/const sid = f\.stageId;/.test(cluster) && !/_nearestStageId\(f\.|f\.x|f\.gps/.test(cluster),
+    "the crew-cluster nudge counts only a declared stage, never one inferred from a position");
 }
 
 for (const f of fails) console.log(`  ✗  ${f}`);
-console.log(`  ${fails.length ? "✗" : "✓"}  georef + EDC Orlando map: ${checks - fails.length}/${checks} checks, ${mutations} mutations`);
+console.log(`  ${fails.length ? "✗" : "✓"}  georef + EDC Orlando map pipeline: ${checks - fails.length}/${checks} checks, ${mutations} mutations`);
 process.exit(fails.length ? 1 : 0);
