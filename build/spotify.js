@@ -9884,6 +9884,7 @@ function MemoriesScreen({
   };
   React.useEffect(() => {
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
+    if (typeof plurskyNetSaver === "function" && plurskyNetSaver()) return;
     if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     var cancelled = false;
     (async () => {

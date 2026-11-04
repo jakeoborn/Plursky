@@ -70,7 +70,9 @@ function loadSupa(src, fid = "fixture-fest", pid = "p_me") {
   const store = { plursky_group_code: "TST123", plursky_pid: pid };
   const client = fakeClient();
   const timers = [], intervals = [];
+  let saver = false;
   const ctx = {
+    plurskyNetSaver: () => saver,
     console: { log: noop, warn: noop, error: noop }, Intl, fetch: () => new Promise(noop),
     setTimeout: (fn, ms) => { timers.push({ fn, ms, live: true }); return timers.length; },
     clearTimeout: id => { if (timers[id - 1]) timers[id - 1].live = false; },
@@ -92,6 +94,7 @@ function loadSupa(src, fid = "fixture-fest", pid = "p_me") {
   const F = vm.runInContext(`({ _crewLocPayload, _crewShareActive, sbPresenceJoin, sbPresenceUpdate, sbPresenceLeave,
     sbBroadcastRally, sbOnRally, joinStagePresence, leaveStagePresence, peers: () => sbGetPresSnap() })`, ctx);
   F.chans = client.chans; F.timers = timers; F.intervals = intervals; F.store = store;
+  F.setSaver = v => { saver = !!v; };
   F.setShare = v => { if (v == null) delete store.plursky_share_state; else store.plursky_share_state = typeof v === "string" ? v : JSON.stringify(v); };
   return F;
 }
@@ -176,17 +179,66 @@ function crew(F, check) {
     check(ch.unsub && ch.sends.filter(x => x.event === "loc").length === n && live().length === 0 && st && st.active === false,
       `${why}: past expiresAt it stops, leaves the headcount and saves active:false (unsub ${ch.unsub}, locs ${ch.sends.filter(x => x.event === "loc").length}/${n}, headcount ${live().length}, saved ${JSON.stringify(st)})`);
   };
+  // Timers are told apart by what they are: the expiry timer's delay is the
+  // share's remaining time; a heartbeat beat is one 20s/60s period (#5 made it
+  // a setTimeout chain so each beat re-reads the saver policy). Firing a timer
+  // spends it, as a real setTimeout does.
+  const fire = t => { if (t) { t.live = false; t.fn(); } };
+  const isBeat = t => t.ms === 20000 || t.ms === 60000;
+  const beats = () => F.timers.filter(t => t.live && isBeat(t));
+  const locs = ch => ch.sends.filter(x => x.event === "loc").length;
+  const expiryTimers = () => {
+    const exp = (JSON.parse(F.store.plursky_share_state || "null") || {}).expiresAt;
+    return F.timers.filter(t => t.live && !isBeat(t) && exp && Math.abs(t.ms - (exp - Date.now())) < 1000);
+  };
+  const noneLeft = why => check(beats().length === 0 && F.intervals.every(t => !t.live) && expiryTimers().length === 0,
+    `${why}: nothing is left scheduled (beats ${beats().length}, intervals ${F.intervals.filter(t => t.live).length})`);
+  F.setSaver(false);
   let ch = restart();
-  const tm = F.timers.filter(t => t.live).pop();
-  check(tm && tm.ms > 3590e3 && tm.ms < 3601e3, `joining arms an expiry timer for the share's remaining time (got ${tm && tm.ms})`);
-  let n = ch.sends.filter(x => x.event === "loc").length;
-  expire(); tm && tm.fn();
+  const ex = expiryTimers();
+  check(ex.length === 1 && ex[0].ms > 3590e3 && ex[0].ms < 3601e3, `joining arms one expiry timer for the share's remaining time (got ${ex.map(t => t.ms)})`);
+  let n = locs(ch);
+  expire(); fire(ex[0]);
   stopped(ch, n, "the expiry timer");
-  ch = restart(); n = ch.sends.filter(x => x.event === "loc").length;
-  const hb = F.intervals.filter(t => t.live).pop();
-  check(!!hb, "sharing runs the heartbeat");
-  expire(); hb && hb.fn();
+  noneLeft("the expiry timer");
+  // The heartbeat runs as a chain: each beat announces once and leaves exactly one next beat.
+  ch = restart(); n = locs(ch);
+  let chain = true;
+  for (let i = 0; i < 3; i++) {
+    const b = beats();
+    if (b.length !== 1 || b[0].ms !== 20000) { chain = false; break; }
+    fire(b[0]);
+    if (locs(ch) !== n + i + 1) { chain = false; break; }
+  }
+  check(chain && beats().length === 1, `sharing runs the heartbeat: every 20s it announces and schedules exactly one next beat (beats ${beats().map(t => t.ms)}, locs ${locs(ch) - n})`);
+  n = locs(ch);
+  expire(); fire(beats()[0]);
   stopped(ch, n, "the 20s heartbeat");
+  noneLeft("the 20s heartbeat");
+  // Stretched to 60s on battery saver / a weak signal: expiry still stops it.
+  F.setSaver(true);
+  ch = restart();
+  check(beats().length === 1 && beats()[0].ms === 60000, `on battery saver the heartbeat stretches to 60s (got ${beats().map(t => t.ms)})`);
+  fire(beats()[0]);
+  n = locs(ch);
+  check(beats().length === 1 && beats()[0].ms === 60000, "a 60s beat schedules the next at 60s");
+  expire(); fire(beats()[0]);
+  stopped(ch, n, "the 60s heartbeat");
+  noneLeft("the 60s heartbeat");
+  // A saver-policy change lands mid-share: the next beat picks it up, and expiry still stops it.
+  F.setSaver(false);
+  ch = restart();
+  F.setSaver(true); fire(beats()[0]);
+  const stretched = beats().map(t => t.ms);
+  F.setSaver(false); fire(beats()[0]);
+  const recovered = beats().map(t => t.ms);
+  check(stretched.join() === "60000" && recovered.join() === "20000", `a saver change mid-share takes effect on the next beat, both ways (got ${stretched} then ${recovered})`);
+  F.setSaver(true); fire(beats()[0]);
+  n = locs(ch);
+  expire(); fire(beats()[0]);
+  stopped(ch, n, "the heartbeat after a mid-share saver change");
+  noneLeft("the heartbeat after a mid-share saver change");
+  F.setSaver(false);
   ch = restart(); n = ch.sends.filter(x => x.event === "loc").length;
   expire(); ch.handlers["loc-req"] && ch.handlers["loc-req"]({ payload: { pid: "p_other" } });
   stopped(ch, n, "a crewmate's loc-req");
@@ -197,8 +249,16 @@ function crew(F, check) {
   const before = F.timers.length;
   ch = restart();
   const armed = F.timers.slice(before).filter(t => t.ms > 3590e3);
+  const beatBeforeStop = beats();
   F.sbPresenceLeave();
   check(armed.length === 1 && !armed[0].live, `Stop clears the expiry timer (armed ${armed.length}, live ${armed.map(t => t.live)})`);
+  check(beatBeforeStop.length === 1 && beats().length === 0, "Stop clears the pending beat");
+  // A beat already firing when Stop lands (its callback overtaken) schedules nothing.
+  ch = restart();
+  const late = beats()[0];
+  F.sbPresenceLeave(); F.setShare({ active: true, stageOnly: 2, expiresAt: Date.now() + 3600e3 });
+  fire(late);
+  check(beats().length === 0, "a beat overtaken by Stop schedules no next beat");
   F.setShare(null);
 }
 
@@ -311,6 +371,9 @@ const MUT = [
   ["supa", "payload.pid === _presMyId || payload.fid !== _crewFid()) return;", "payload.pid === _presMyId) return;"],
   ["supa", "if (!r || r.fid !== _crewFid()) return;", "if (!r) return;"],
   ["supa", "return code && fid ? `crew-${code}:${fid}` : null;", "return `crew-${code}:${fid}`;"],
+  // #5 heartbeat chain: negative control (expiry broken: the beat keeps rescheduling past expiresAt), and the saver period.
+  ["supa", "if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());", "_heartbeatId = setTimeout(beat, _presHeartbeatMs());"],
+  ["supa", "plurskyNetSaver() ? PRES_HEARTBEAT_SAVER_MS : PRES_HEARTBEAT_MS", "PRES_HEARTBEAT_MS"],
 ];
 let caught = 0, mutFail = 0;
 for (const [which, from, to] of MUT) {
@@ -421,7 +484,7 @@ try {
 // for an in-page fake that records names, sends and unsubscribes.
 let tabChecks = 0, tabFail = 0, tabMutCaught = 0, tabMutTotal = 0;
 const tCheck = (ok, msg) => { tabChecks++; if (!ok) { tabFail++; console.log(`  ✗  ${msg}`); } };
-async function tabRun(seed, supaBody, mapBody) {
+async function tabRun(seed, supaBody, mapBody, clock) {
   const PORT2 = await reservePort();
   const srv = spawn("python3", ["-m", "http.server", String(PORT2), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
   try {
@@ -465,6 +528,7 @@ async function tabRun(seed, supaBody, mapBody) {
         } });
     }, [FID, seed]);
     const page = await ctx.newPage();
+    if (clock) await page.clock.install();
     const errors = []; page.on("pageerror", e => errors.push(e.message));
     await page.goto(`http://127.0.0.1:${PORT2}/index.html?f=${FID}&tab=map`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && typeof window.sbPresenceJoin === "function", FID, { timeout: 60000 });
@@ -509,6 +573,74 @@ try {
     if (!(M.b.share && M.b.share.active === false && M.b.chans.every(c => c.unsub))) tabMutCaught++;
     else console.log("  ✗  rendered mutation survived: no _armShareExpiry()");
   } else console.log("  ✗  rendered mutation target not found");
+
+  // The heartbeat chain on a faked page clock: 20s beats, 60s once the saver
+  // policy flips mid-share, 20s again when it clears. Then the phone sleeps
+  // through expiresAt (wall clock jumps, timers don't fire), so the next beat
+  // is the first to see it: it must leave, and nothing may beat after it.
+  const clockScenario = async (supaBody) => {
+    const R = await tabRun({ active: true, includeGps: false, includeStage: true, stageOnly: 2, expiresIn: 3600e3 }, supaBody, null, true);
+    try {
+      await R.page.waitForFunction(n => window.__chans.some(c => c.name === n && c.sends.some(x => x.event === "loc")), crewName, { timeout: 8000 }).catch(() => {});
+      await R.tab("home");
+      await R.page.evaluate(() => {
+        window.__beats = []; window.__saver = false;
+        const f = window._broadcastMyLoc;
+        window._broadcastMyLoc = (...a) => { window.__beats.push(Date.now()); return f(...a); };
+        window.plurskyNetSaver = () => window.__saver;
+      });
+      const beatsSince = (t) => R.page.evaluate(t => window.__beats.filter(x => x > t), t);
+      const gaps = (b) => b.slice(1).map((t, i) => t - b[i]);
+      const now = () => R.page.evaluate(() => Date.now());
+      const t0 = await now();
+      await R.page.clock.runFor(100000);
+      const g20 = gaps(await beatsSince(t0));
+      await R.page.evaluate(() => { window.__saver = true; });
+      const t1 = await now();
+      await R.page.clock.runFor(200000);
+      const g60 = gaps(await beatsSince(t1));
+      await R.page.evaluate(() => { window.__saver = false; });
+      const t2 = await now();
+      await R.page.clock.runFor(130000);
+      const gBack = gaps(await beatsSince(t2));
+      const a = await R.st();
+      await R.page.clock.setSystemTime(a.share.expiresAt + 5000);
+      const t3 = await now();
+      await R.page.clock.runFor(200000);
+      const after = await beatsSince(t3);
+      const b = await R.st();
+      return { g20, g60, gBack, a, b, after, t3, errors: R.errors };
+    } finally { await R.done(); }
+  };
+  const near = (g, ms) => Math.abs(g - ms) <= 1000;
+  {
+    const C = await clockScenario(null);
+    tCheck(C.g20.length >= 3 && C.g20.every(g => near(g, 20000)), `page clock: the heartbeat beats every 20s (gaps ${JSON.stringify(C.g20)})`);
+    tCheck(C.g60.length >= 2 && C.g60.slice(1).every(g => near(g, 60000)), `page clock: a saver change mid-share stretches the beats to 60s (gaps ${JSON.stringify(C.g60)})`);
+    tCheck(C.gBack.length >= 2 && near(C.gBack[C.gBack.length - 1], 20000), `page clock: when the saver clears the beats return to 20s (gaps ${JSON.stringify(C.gBack)})`);
+    tCheck(C.a.share && C.a.share.active === true, `page clock: the share is still active before expiresAt (got ${JSON.stringify(C.a.share)})`);
+    tCheck(C.after.length === 1, `page clock: past expiresAt one beat finds it and the heartbeat stops (beats after the jump: ${C.after.length})`);
+    tCheck(C.b.share && C.b.share.active === false, `page clock: past expiresAt the saved share is active:false (got ${JSON.stringify(C.b.share)})`);
+    tCheck(C.b.chans.every(c => c.unsub), `page clock: past expiresAt the crew channel and headcount are left (${JSON.stringify(C.b.chans.map(c => [c.name, c.unsub]))})`);
+    tCheck(C.b.chans.every(c => c.locs.every(t => t < C.t3)), "page clock: no loc is sent after expiresAt");
+    tCheck(C.errors.length === 0, `page clock: no page errors (${C.errors.slice(0, 2).join(" | ")})`);
+  }
+  // Rendered negative control: the beat reschedules after the guard left.
+  tabMutTotal++;
+  const gt = "if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());";
+  if (SUPA.split(gt).length === 2) {
+    const M = await clockScenario(SUPA.replace(gt, "_heartbeatId = setTimeout(beat, _presHeartbeatMs());"));
+    if (M.after.length !== 1) tabMutCaught++;
+    else console.log("  ✗  rendered mutation survived: heartbeat reschedules past expiresAt");
+  } else console.log("  ✗  rendered mutation target not found (heartbeat gen)");
+  // Rendered mutant: the beat ignores the saver policy.
+  tabMutTotal++;
+  const st = "plurskyNetSaver() ? PRES_HEARTBEAT_SAVER_MS : PRES_HEARTBEAT_MS";
+  if (SUPA.split(st).length === 2) {
+    const M = await clockScenario(SUPA.replace(st, "PRES_HEARTBEAT_MS"));
+    if (!(M.g60.length >= 2 && M.g60.slice(1).every(g => near(g, 60000)))) tabMutCaught++;
+    else console.log("  ✗  rendered mutation survived: heartbeat ignores the saver");
+  } else console.log("  ✗  rendered mutation target not found (saver)");
 
   const remount = async (mapBody) => {
     const R = await tabRun({ active: true, includeGps: false, includeStage: true, stageOnly: 2, expiresIn: 3600e3 }, null, mapBody);

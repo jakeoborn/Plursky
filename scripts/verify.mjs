@@ -3455,6 +3455,16 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
   }
+
+  console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`signal-aware failed${detail ? ` — ${detail}` : ""}`);
+  }
 }
 
 // ── 1z-c3c. Set-clash solver (15-feature program #1) ─────────────────────

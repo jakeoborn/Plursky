@@ -2432,9 +2432,33 @@ var _BS = window._BS = window._BS || {
     }
   })(),
   battery: null,
+  net: {
+    effectiveType: null,
+    saveData: false,
+    failTs: []
+  },
   active: false,
   listeners: new Set()
 };
+var _BS_FAIL_WINDOW_MS = 5 * 60 * 1000;
+function _bsLowSignal(now = Date.now()) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return false;
+  var n = _BS.net;
+  if (n.saveData || n.effectiveType === "slow-2g" || n.effectiveType === "2g") return true;
+  return n.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS).length >= 2;
+}
+function plurskyNetSaver() {
+  return !!_BS.active || _bsLowSignal();
+}
+function plurskyNoteNetQueued(queued) {
+  var now = Date.now();
+  _BS.net.failTs = queued ? [..._BS.net.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS), now] : [];
+  _BS.listeners.forEach(fn => {
+    try {
+      fn(_BS.active);
+    } catch {}
+  });
+}
 function _bsHasFestivalContext() {
   try {
     var now = Date.now();
@@ -2528,6 +2552,26 @@ if (!window._bsInited) {
       _bsApply();
     }
   })();
+  try {
+    var c = navigator.connection;
+    var syncNet = () => {
+      _BS.net.effectiveType = c && c.effectiveType || null;
+      _BS.net.saveData = !!(c && c.saveData);
+      _BS.listeners.forEach(fn => {
+        try {
+          fn(_BS.active);
+        } catch {}
+      });
+    };
+    if (c) {
+      syncNet();
+      c.addEventListener?.("change", syncNet);
+    }
+    window.addEventListener("online", () => {
+      _BS.net.failTs = [];
+      syncNet();
+    });
+  } catch {}
   setInterval(_bsApply, 5 * 60 * 1000);
   var tag = document.createElement("style");
   tag.id = "bs-css";
@@ -2555,6 +2599,7 @@ function useBatterySaver() {
     active: _BS.active,
     mode: _BS.mode,
     battery: _BS.battery,
+    lowSignal: _bsLowSignal(),
     setMode: setBatterySaverMode
   };
 }
@@ -2625,6 +2670,7 @@ function BatterySaverCard() {
     active,
     mode,
     battery,
+    lowSignal,
     setMode
   } = useBatterySaver();
   var segs = [{
@@ -2677,7 +2723,15 @@ function BatterySaverCard() {
       lineHeight: 1.43,
       marginBottom: 12
     }
-  }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in at 2 AM or when battery drops under 25%."), React.createElement("div", {
+  }, "Dims the screen, freezes animations, and slows GPS polling. Auto kicks in under 25% battery during the festival."), React.createElement("div", {
+    "data-bs-signal-note": true,
+    style: {
+      fontSize: 14,
+      color: "var(--ink-2)",
+      lineHeight: 1.43,
+      marginBottom: 12
+    }
+  }, lowSignal ? "Weak signal now: " : "On a weak signal, ", "crew location updates slow to once a minute and auto-backup waits."), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -3075,7 +3129,8 @@ function StatusStrip() {
   _useTickMs(30000);
   var online = useOnlineStatus();
   var {
-    active: bsActive
+    active: bsActive,
+    lowSignal
   } = useBatterySaver();
   var now = new Date();
   var day = _STATUS_DAYS[now.getDay()];
@@ -3129,7 +3184,34 @@ function StatusStrip() {
       d: "M10 1 L14 1"
     }), React.createElement("path", {
       d: "M11 9 L13 9 L11 13 L14 13 L10 18"
-    })), "SAVER"), !online && React.createElement("span", {
+    })), "SAVER"), online && lowSignal && React.createElement("span", {
+      "data-status-weak-signal": true,
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 4,
+        color: "var(--flare)"
+      }
+    }, React.createElement("svg", {
+      width: "11",
+      height: "11",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("path", {
+      d: "M6 13 Q12 8 18 13",
+      opacity: "0.55"
+    }), React.createElement("path", {
+      d: "M9 16 Q12 13.5 15 16"
+    }), React.createElement("circle", {
+      cx: "12",
+      cy: "19",
+      r: "0.9",
+      fill: "currentColor"
+    })), "WEAK SIGNAL"), !online && React.createElement("span", {
       style: {
         display: "inline-flex",
         alignItems: "center",
