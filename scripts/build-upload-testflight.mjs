@@ -34,6 +34,7 @@ import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
+import { exportOptionsPlist, exportOptionsProblems, externalDistribution } from "./testflight-guard.mjs";
 
 const APP_ID = "6768888507";
 const ASC_API = "https://api.appstoreconnect.apple.com";
@@ -315,19 +316,19 @@ if (DRY) {
   process.exit(0);
 }
 
-// ── 5. cloud-signed export straight to App Store Connect ────────────────────
+// ── 5. internal-only guard, then cloud-signed export to App Store Connect ───
+// Read-only ASC check BEFORE anything uploads: an external beta group or a
+// public link means a build could reach people outside the team, so the run
+// stops (testflight-guard.mjs). No bypass flag.
+const groups = await ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`);
+const external = externalDistribution(groups);
+if (external.length) die(`internal-only guard: ${external.join("; ")} — not uploading`);
+say(`internal-only guard: ${groups.length} beta group(s), all internal, no public link`);
+
 const exportOpts = path.join(LOG_DIR, "ExportOptions.plist");
-fs.writeFileSync(exportOpts, `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-  <key>method</key><string>app-store-connect</string>
-  <key>destination</key><string>upload</string>
-  <key>teamID</key><string>${TEAM_ID}</string>
-  <key>signingStyle</key><string>automatic</string>
-  <key>uploadSymbols</key><true/>
-  <key>manageAppVersionAndBuildNumber</key><false/>
-</dict></plist>
-`);
+fs.writeFileSync(exportOpts, exportOptionsPlist(TEAM_ID));
+const optProblems = exportOptionsProblems(fs.readFileSync(exportOpts, "utf8"));
+if (optProblems.length) die(`internal-only guard: ${optProblems.join("; ")}`);
 const upLog = run("upload", "xcodebuild", [
   "-exportArchive", "-archivePath", ARCHIVE, "-exportOptionsPlist", exportOpts,
   "-exportPath", path.join(LOG_DIR, "export"), ...authFlags,
@@ -338,11 +339,12 @@ say("upload accepted by xcodebuild");
 
 // ── 6. confirm in App Store Connect ─────────────────────────────────────────
 const deadline = Date.now() + WAIT_MIN * 60_000;
-let state = null;
+let state = null, buildId = null;
 while (Date.now() < deadline) {
   const j = await asc(`/v1/builds?filter[app]=${APP_ID}&filter[version]=${build}` +
     `&filter[preReleaseVersion.version]=${marketing}&fields[builds]=version,processingState,uploadedDate`);
   state = j.data[0]?.attributes?.processingState || null;
+  buildId = j.data[0]?.id || null;
   if (state && (!WAIT_VALID || state !== "PROCESSING")) break;
   say(state ? `ASC: ${state}, waiting…` : "ASC: not visible yet, waiting…");
   await new Promise((r) => setTimeout(r, 30_000));
@@ -350,6 +352,12 @@ while (Date.now() < deadline) {
 if (!state) die(`uploaded, but ${marketing} (${build}) did not appear in ASC within ${WAIT_MIN} min — check TestFlight`);
 if (WAIT_VALID && state === "PROCESSING") die(`${marketing} (${build}) is still PROCESSING after ${WAIT_MIN} min — --wait-valid never saw VALID`);
 if (state === "INVALID" || state === "FAILED") die(`ASC marked ${marketing} (${build}) ${state} — check the email from App Store Connect`);
+
+// Read back the processed build: it must sit in no external group.
+const buildGroups = await ascAll(`/v1/builds/${buildId}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`);
+const buildExternal = externalDistribution(buildGroups);
+if (buildExternal.length) die(`internal-only guard: ${marketing} (${build}) is in ${buildExternal.join("; ")}`);
+say(`internal-only guard: ${marketing} (${build}) is in ${buildGroups.length} group(s), none external`);
 
 console.log(`\n✓ Plursky ${marketing} (${build}) is in App Store Connect — ${state}`);
 console.log(`  source ${REF} @ ${sha} · web v${webVer}`);

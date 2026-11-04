@@ -3353,6 +3353,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// TestFlight uploads stay internal-only: the export plist sets
+// testFlightInternalTestingOnly, and an external beta group or public link
+// stops build-upload-testflight.mjs before anything uploads.
+{
+  console.log("▸ TestFlight internal-only guard — no external group, no public link, internal-only export");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-testflight-guard.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`TestFlight internal-only guard failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-c. Video thumbnails ────────────────────────────────────────────────
 // A library tile shows a stored poster <img>, never a live <video>. The old
 // "poster" was <video preload="metadata" src="...#t=0.1">: one decoder per
