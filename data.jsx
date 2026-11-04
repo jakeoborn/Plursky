@@ -682,7 +682,8 @@ const FESTIVALS_REGISTRY = [
       id:        "edc-orlando-2026",
       // Where the lineup rows came from (the SOURCE note above), as data so the
       // public /f/ page can cite it. observedAt = the date it was read.
-      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
+      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-11-04", official: true },
+      scheduleSource: { url: "https://orlando.edc.com/lineup/set-times/day-1/", observedAt: "2026-11-04", official: true },
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
@@ -809,16 +810,17 @@ const FESTIVALS_REGISTRY = [
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
-      setTimesProvisional: true,
+      setTimesProvisional: false,
     },
-    // STAYS GATED until the official 2026 set times are out (ruling relayed
-    // 2026-10-29: "2026 map only, no waiver, and it stays closed until the
-    // official 2026 set times are out"). The official 2026 map is in, but
+    // OPEN since 2026-11-04: the official 2026 set times are out
+    // (orlando.edc.com/lineup/set-times/day-1..3, 133 sets), imported into
+    // EDCO_SCHEDULE in this same change, as the 2026-10-29 ruling requires
+    // ("2026 map only, no waiver, and it stays closed until the official 2026
+    // set times are out"). The map is the official 2026 map only. Its
     // registration is still poster-class (no OSM polygon matches the fence,
-    // so it carries no footprint), and verify says it plainly: "unsourced,
-    // blind with no waiver". No waiver is added. The flip imports the official
-    // schedule and opens the festival in the same change.
-    available: false,
+    // so it carries no footprint) and verify says so: "unsourced, blind with
+    // no waiver". No waiver is added.
+    available: true,
     accent:    "#22c55e",
     emoji:     "🌴",
     region:    "North America",
@@ -3372,9 +3374,9 @@ const ACL_AMENITIES = [
 // ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
 // Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
 // filters, 108 acts; audited vs Insomniac press release 2026-06-23).
-// Set times + per-artist stage assignments + official 2026 map are NOT
-// published — every artist sits on stage "tba" with placeholder
-// 12:00-13:00 times until the flip session. Stage names verified from
+// Flipped 2026-11-04: set times + stages come from the official set-times
+// pages (EDCO_SCHEDULE), and the lineup was re-diffed the same day (133
+// entries). The official 2026 map is in. Stage names verified from
 // orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
 
 // Stage x/y are a 0–100 GRID, and since v264 they are DERIVED from the
@@ -3403,15 +3405,148 @@ const EDCO_STAGES = [
   { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 87.4, y: 37.5, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
   { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 14.1, y: 64.1, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
   { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 41.1, y: 76.7, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
-  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
 ];
 
 // The flip fills this block from the OFFICIAL schedule:
 //   node scripts/fetch-insomniac-settimes.mjs https://orlando.edc.com/lineup/set-times --days 3 --out sheet.tsv
 //   node scripts/import-set-times.mjs edc-orlando-2026 sheet.tsv --source <official-url>
-// id → [stageId, start, end]. Empty until then: every act stays on "tba".
+// id → [stageId, start, end]. An act the sheet does not name keeps stage null.
 const EDCO_SCHEDULE = {
   // SCHEDULE:BEGIN edc-orlando-2026
+  // source: https://orlando.edc.com/lineup/set-times/ · imported 2026-11-04 · 133 of 133 acts
+  "ecf36": ["kinetic", "13:00", "14:25"],  // Zack Martino
+  "ecf17": ["kinetic", "14:25", "15:25"],  // JOA
+  "ecf13": ["kinetic", "15:25", "16:25"],  // HAYLA
+  "ecf29": ["kinetic", "16:25", "17:28"],  // Pegassi
+  "ecf4": ["kinetic", "17:28", "18:43"],  // Alesso (Sunset Set)
+  "ecf21": ["kinetic", "18:47", "19:57"],  // KREAM
+  "ecf3": ["kinetic", "20:00", "21:10"],  // Afrojack
+  "ecf26": ["kinetic", "21:13", "22:28"],  // Mau P
+  "ecf12": ["kinetic", "22:31", "23:56"],  // David Guetta
+  "ecf33": ["circuit", "13:00", "14:15"],  // Sloth
+  "ecf6": ["circuit", "14:15", "15:30"],  // Benda B2B Vastive
+  "ecf7": ["circuit", "15:30", "16:30"],  // Big Florida
+  "ecf20": ["circuit", "16:30", "17:30"],  // Kompany
+  "ecf2": ["circuit", "17:30", "18:30"],  // Adventure Club (Sunset Set)
+  "ecf8": ["circuit", "18:30", "19:30"],  // Bou B2B Kanine
+  "ecf22": ["circuit", "19:30", "20:30"],  // Level Up
+  "ecf34": ["circuit", "20:30", "21:35"],  // Whethan
+  "ecf23": ["circuit", "21:35", "22:45"],  // Levity
+  "ecf35": ["circuit", "22:45", "00:00"],  // Wooli
+  "ecf25": ["neon", "13:00", "15:00"],  // Matthias
+  "ecf15": ["neon", "15:00", "16:30"],  // Inbal
+  "ecf5": ["neon", "16:30", "18:00"],  // Azzecca
+  "ecf44": ["neon", "18:00", "19:30"],  // Obskûr (Sunset Set)
+  "ecf28": ["neon", "19:30", "21:00"],  // Omar+
+  "ecf9": ["neon", "21:00", "22:30"],  // Brunello
+  "ecf18": ["neon", "22:30", "00:00"],  // Josh Baker
+  "ecf32": ["stereo", "13:00", "14:15"],  // RAJE
+  "ecf1": ["stereo", "14:15", "15:30"],  // AAT
+  "ecf14": ["stereo", "15:30", "16:30"],  // IDEMI
+  "ecf19": ["stereo", "16:30", "17:30"],  // Joshwa
+  "ecf24": ["stereo", "17:30", "18:45"],  // MALUGI (Sunset Set)
+  "ecf10": ["stereo", "18:45", "20:00"],  // Bullet Tooth B2B Sidney Charles
+  "ecf16": ["stereo", "20:00", "21:15"],  // Interplanetary Criminal
+  "ecf27": ["stereo", "21:15", "22:30"],  // MPH
+  "ecf11": ["stereo", "22:30", "00:00"],  // Chris Lorenzo
+  "ecf37": ["bacardi", "13:00", "14:00"],  // 2AR
+  "ecf45": ["bacardi", "14:00", "15:00"],  // Seeing Double
+  "ecf43": ["bacardi", "15:00", "16:30"],  // Night Tales
+  "ecf42": ["bacardi", "16:30", "17:45"],  // Me n ü
+  "ecf46": ["bacardi", "17:45", "19:00"],  // AAT
+  "ecf40": ["bacardi", "19:00", "20:15"],  // Eve Lauren
+  "ecf39": ["bacardi", "20:15", "21:30"],  // Crespo
+  "ecf41": ["bacardi", "21:30", "22:45"],  // Kashovski
+  "ecf38": ["bacardi", "22:45", "00:00"],  // Chantel Jeffries
+  "ecs28": ["kinetic", "13:00", "13:33"],  // Monoky
+  "ecs26": ["kinetic", "13:33", "14:33"],  // Me n ü
+  "ecs36": ["kinetic", "14:33", "15:33"],  // Twinsick
+  "ecs1": ["kinetic", "15:33", "16:33"],  // Aaron Hibell
+  "ecs2": ["kinetic", "16:33", "17:38"],  // ACRAZE B2B CID
+  "ecs3": ["kinetic", "17:38", "18:53"],  // Alan Walker (Sunset Set)
+  "ecs29": ["kinetic", "18:57", "20:02"],  // Nico Moreno
+  "ecs34": ["kinetic", "20:05", "21:10"],  // Steve Aoki
+  "ecs13": ["kinetic", "21:13", "22:28"],  // Disco Lines
+  "ecs20": ["kinetic", "22:31", "00:00"],  // Kaskade
+  "ecs16": ["circuit", "13:00", "14:30"],  // Fury with MC Dino
+  "ecs23": ["circuit", "14:30", "15:30"],  // MADVKTM
+  "ecs35": ["circuit", "15:30", "16:30"],  // Subsonic
+  "ecs7": ["circuit", "16:30", "17:30"],  // AVELLO
+  "ecs19": ["circuit", "17:30", "18:30"],  // Jkyl & Hyde
+  "ecs22": ["circuit", "18:30", "19:30"],  // LAYZ
+  "ecs5": ["circuit", "19:30", "20:30"],  // ALLEYCVT
+  "ecs30": ["circuit", "20:30", "21:30"],  // Ray Volpe
+  "ecs33": ["circuit", "21:35", "22:45"],  // Skull Machine (Black Tiger Sex Machine x Kai Wachi)
+  "ecs4": ["circuit", "22:45", "00:00"],  // Alison Wonderland
+  "ecs24": ["neon", "13:00", "14:30"],  // Mai Iachetti
+  "ecs21": ["neon", "14:30", "16:00"],  // KinAhau
+  "ecs27": ["neon", "16:00", "17:30"],  // Miguelle & Tons
+  "ecs42": ["neon", "17:30", "19:00"],  // Luke Dean B2B George Smeddles (Sunset Set)
+  "ecs32": ["neon", "19:00", "20:30"],  // Rossi.
+  "ecs10": ["neon", "20:30", "22:00"],  // Dennis Cruz
+  "ecs15": ["neon", "22:00", "00:00"],  // Franky Rizardo
+  "ecs6": ["stereo", "13:00", "14:30"],  // Alves
+  "ecs17": ["stereo", "14:30", "15:30"],  // Gabss
+  "ecs18": ["stereo", "15:30", "16:30"],  // Greg 99
+  "ecs14": ["stereo", "16:30", "17:30"],  // Fallon
+  "ecs11": ["stereo", "17:30", "18:45"],  // Devault (Sunset Set)
+  "ecs12": ["stereo", "18:45", "20:00"],  // Discip
+  "ecs31": ["stereo", "20:00", "21:15"],  // Roddy Lima
+  "ecs8": ["stereo", "21:15", "22:30"],  // AYYBO
+  "ecs9": ["stereo", "22:30", "00:00"],  // ChaseWest
+  "ecs39": ["bacardi", "13:00", "14:00"],  // JFUSE
+  "ecs41": ["bacardi", "14:00", "15:00"],  // Landis
+  "ecs43": ["bacardi", "15:00", "16:30"],  // RAJE
+  "ecs37": ["bacardi", "16:30", "18:00"],  // Allnightkev
+  "ecs45": ["bacardi", "18:00", "19:30"],  // Gabss
+  "ecs38": ["bacardi", "19:30", "21:00"],  // CC Love
+  "ecs40": ["bacardi", "21:00", "22:30"],  // Juos
+  "ecs44": ["bacardi", "22:30", "00:00"],  // Rommii
+  "ecu12": ["kinetic", "13:00", "14:35"],  // ESSE
+  "ecu4": ["kinetic", "14:35", "15:35"],  // AR/CO
+  "ecu17": ["kinetic", "15:35", "16:35"],  // Jessica Audiffred
+  "ecu16": ["kinetic", "16:35", "17:35"],  // Ian Asher
+  "ecu33": ["kinetic", "17:35", "18:50"],  // SLANDER (Sunset Set)
+  "ecu15": ["kinetic", "18:54", "19:59"],  // I Hate Models
+  "ecu3": ["kinetic", "20:02", "21:12"],  // Alok
+  "ecu13": ["kinetic", "21:15", "22:25"],  // Hardwell
+  "ecu25": ["kinetic", "22:28", "23:56"],  // Martin Garrix
+  "ecu42": ["circuit", "13:00", "13:10"],  // DJ3piece
+  "ecu39": ["circuit", "13:10", "14:25"],  // Bella Grazia
+  "ecu1": ["circuit", "14:25", "15:25"],  // A Little Sound
+  "ecu18": ["circuit", "15:25", "16:25"],  // Kaivon
+  "ecu30": ["circuit", "16:35", "17:25"],  // San Holo (Wholesome Riddim Set)
+  "ecu27": ["circuit", "17:25", "18:40"],  // Of The Trees (Sunset Set)
+  "ecu26": ["circuit", "18:40", "19:45"],  // Meduza
+  "ecu23": ["circuit", "19:45", "20:45"],  // Maddix
+  "ecu10": ["circuit", "20:45", "21:50"],  // Deorro B2B DJ Diesel
+  "ecu5": ["circuit", "21:50", "22:55"],  // ATLiens
+  "ecu14": ["circuit", "22:55", "00:00"],  // Holy Priest
+  "ecu36": ["neon", "13:00", "15:00"],  // Ultrathem
+  "ecu31": ["neon", "15:00", "16:30"],  // SHDW
+  "ecu2": ["neon", "16:30", "18:00"],  // Adrián Mills
+  "ecu24": ["neon", "18:00", "19:30"],  // Marlon Hoffstadt (Sunset Set)
+  "ecu7": ["neon", "19:30", "21:00"],  // Boys Noize B2B Brutalismus 3000
+  "ecu19": ["neon", "21:00", "22:30"],  // KI/KI
+  "ecu20": ["neon", "22:30", "00:00"],  // Klangkuenstler
+  "ecu22": ["stereo", "13:00", "14:10"],  // M81!
+  "ecu9": ["stereo", "14:10", "15:10"],  // CØNTRA
+  "ecu8": ["stereo", "15:10", "16:10"],  // Chef Boyarbeatz
+  "ecu28": ["stereo", "16:10", "17:10"],  // phrva
+  "ecu32": ["stereo", "17:10", "18:10"],  // Sippy
+  "ecu21": ["stereo", "18:15", "19:20"],  // Know Good
+  "ecu34": ["stereo", "19:20", "20:30"],  // Taiki Nulight
+  "ecu29": ["stereo", "20:30", "21:40"],  // Ravenscoon
+  "ecu6": ["stereo", "21:40", "22:50"],  // Boogie T
+  "ecu35": ["stereo", "22:50", "00:00"],  // TroyBoi
+  "ecu41": ["bacardi", "13:00", "14:00"],  // Bryan Softwell B2B Chini
+  "ecu45": ["bacardi", "14:00", "15:00"],  // Marian (BR)
+  "ecu40": ["bacardi", "15:00", "16:00"],  // BROSA
+  "ecu37": ["bacardi", "16:30", "18:00"],  // Alves
+  "ecu43": ["bacardi", "18:00", "19:30"],  // Joe Vanditti
+  "ecu38": ["bacardi", "19:30", "21:00"],  // Andrea Quintero
+  "ecu44": ["bacardi", "21:00", "22:30"],  // Kofla
+  "ecu46": ["bacardi", "22:30", "00:00"],  // William Kiss
   // SCHEDULE:END
 };
 const _edcoMk = (id, name, genre, day) => {
@@ -3420,15 +3555,16 @@ const _edcoMk = (id, name, genre, day) => {
   // as a schedule. Blank is the form the UI already understands.
   // EDCO_SCHEDULE above is the only way a time gets in.
   const s = EDCO_SCHEDULE[id];
-  return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
+  return { id, name, genre, country: "—", stage: s ? s[0] : null, day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
     bio: s ? "Playing EDC Orlando 2026."
-           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time and stage are not on the official schedule." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
 // 2026-08-22; re-diffed 2026-09-13 against the page's day <li> elements:
-// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name). id prefix:
+// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name; re-diffed again
+// 2026-11-04: Fri 43 / Sat 43 / Sun 45 + 2 same-day repeat sets = 133). id prefix:
 // ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
 // for the press-release groupings, default "Electronic" otherwise.
 const EDCO_ARTISTS = [
@@ -3440,7 +3576,7 @@ const EDCO_ARTISTS = [
   _edcoMk("ecf6", "Benda B2B Vastive",                        "Electronic", 1),
   _edcoMk("ecf7", "Big Florida",                              "Bass", 1),
   _edcoMk("ecf8", "Bou B2B Kanine",                           "Electronic", 1),
-  _edcoMk("ecf9", "Brunello (Sunset Set)",                    "House", 1),
+  _edcoMk("ecf9", "Brunello",                    "House", 1),
   _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles",          "Techno", 1),
   _edcoMk("ecf11", "Chris Lorenzo",                            "House", 1),
   _edcoMk("ecf12", "David Guetta",                             "Electronic", 1),
@@ -3461,8 +3597,6 @@ const EDCO_ARTISTS = [
   _edcoMk("ecf27", "MPH",                                      "Electronic", 1),
   _edcoMk("ecf28", "Omar+",                                    "House", 1),
   _edcoMk("ecf29", "Pegassi",                                  "Electronic", 1),
-  _edcoMk("ecf30", "Prospa B2B Josh Baker",                    "House", 1),
-  _edcoMk("ecf31", "Prospa",                                   "Electronic", 1),
   _edcoMk("ecf32", "RAJE",                                     "Electronic", 1),
   _edcoMk("ecf33", "Sloth",                                    "Electronic", 1),
   _edcoMk("ecf34", "Whethan",                                  "Electronic", 1),
@@ -3492,14 +3626,13 @@ const EDCO_ARTISTS = [
   _edcoMk("ecs22", "LAYZ",                                     "Bass", 2),
   _edcoMk("ecs23", "MADVKTM",                                  "Electronic", 2),
   _edcoMk("ecs24", "Mai Iachetti",                             "Electronic", 2),
-  _edcoMk("ecs25", "Max Dean, Luke Dean",                      "Electronic", 2),
   _edcoMk("ecs26", "Me n ü",                                   "Electronic", 2),
   _edcoMk("ecs27", "Miguelle & Tons",                          "Electronic", 2),
   _edcoMk("ecs28", "Monoky",                                   "Electronic", 2),
   _edcoMk("ecs29", "Nico Moreno",                              "Techno", 2),
   _edcoMk("ecs30", "Ray Volpe",                                "Bass", 2),
   _edcoMk("ecs31", "Roddy Lima",                               "Electronic", 2),
-  _edcoMk("ecs32", "Rossi. (Sunset Set)",                      "House", 2),
+  _edcoMk("ecs32", "Rossi.",                      "House", 2),
   _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2),
   _edcoMk("ecs34", "Steve Aoki",                               "Electronic", 2),
   _edcoMk("ecs35", "Subsonic",                                 "Electronic", 2),
@@ -3514,7 +3647,6 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu8", "Chef Boyarbeatz",                          "Electronic", 3),
   _edcoMk("ecu9", "CØNTRA",                                   "Electronic", 3),
   _edcoMk("ecu10", "Deorro B2B DJ Diesel",                     "Electronic", 3),
-  _edcoMk("ecu11", "Discovery Project",                        "Electronic", 3),
   _edcoMk("ecu12", "ESSE",                                     "Electronic", 3),
   _edcoMk("ecu13", "Hardwell",                                 "Electronic", 3),
   _edcoMk("ecu14", "Holy Priest",                              "Electronic", 3),
@@ -3540,6 +3672,40 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu34", "Taiki Nulight",                            "Electronic", 3),
   _edcoMk("ecu35", "TroyBoi",                                  "Electronic", 3),
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
+  // ── Re-diffed 2026-11-04 against orlando.edc.com/lineup/ (day lists
+  // Fri 43 / Sat 43 / Sun 45) and the official set-times pages: these acts
+  // joined the official lineup after the 09-13 audit (mostly CASA BACARDÍ).
+  // A second same-day entry with the SAME name is that act's repeat set
+  // (AAT Fri, Gabss Sat each play Stereo Bloom and CASA BACARDÍ).
+  _edcoMk("ecf37", "2AR",                                        "Electronic", 1),
+  _edcoMk("ecf38", "Chantel Jeffries",                           "Electronic", 1),
+  _edcoMk("ecf39", "Crespo",                                     "Electronic", 1),
+  _edcoMk("ecf40", "Eve Lauren",                                 "Electronic", 1),
+  _edcoMk("ecf41", "Kashovski",                                  "Electronic", 1),
+  _edcoMk("ecf42", "Me n ü",                                     "Electronic", 1),
+  _edcoMk("ecf43", "Night Tales",                                "Electronic", 1),
+  _edcoMk("ecf44", "Obskûr (Sunset Set)",                        "Electronic", 1),
+  _edcoMk("ecf45", "Seeing Double",                              "Electronic", 1),
+  _edcoMk("ecf46", "AAT",                                        "Electronic", 1),
+  _edcoMk("ecs37", "Allnightkev",                                "Electronic", 2),
+  _edcoMk("ecs38", "CC Love",                                    "Electronic", 2),
+  _edcoMk("ecs39", "JFUSE",                                      "Electronic", 2),
+  _edcoMk("ecs40", "Juos",                                       "Electronic", 2),
+  _edcoMk("ecs41", "Landis",                                     "Electronic", 2),
+  _edcoMk("ecs42", "Luke Dean B2B George Smeddles (Sunset Set)", "Electronic", 2),
+  _edcoMk("ecs43", "RAJE",                                       "Electronic", 2),
+  _edcoMk("ecs44", "Rommii",                                     "Electronic", 2),
+  _edcoMk("ecs45", "Gabss",                                      "Electronic", 2),
+  _edcoMk("ecu37", "Alves",                                      "Electronic", 3),
+  _edcoMk("ecu38", "Andrea Quintero",                            "Electronic", 3),
+  _edcoMk("ecu39", "Bella Grazia",                               "Electronic", 3),
+  _edcoMk("ecu40", "BROSA",                                      "Electronic", 3),
+  _edcoMk("ecu41", "Bryan Softwell B2B Chini",                   "Electronic", 3),
+  _edcoMk("ecu42", "DJ3piece",                                   "Electronic", 3),
+  _edcoMk("ecu43", "Joe Vanditti",                               "Electronic", 3),
+  _edcoMk("ecu44", "Kofla",                                      "Electronic", 3),
+  _edcoMk("ecu45", "Marian (BR)",                                "Electronic", 3),
+  _edcoMk("ecu46", "William Kiss",                               "Electronic", 3),
 ];
 
 // Every First Aid, Info, Water Station, Restroom / GA+ Restroom and Food

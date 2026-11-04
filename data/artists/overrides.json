@@ -601,6 +601,17 @@
    "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
   },
   {
+   "printed": "Marian (BR)",
+   "performers": [
+    {
+     "name": "Marian (BR)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Marian\".",
+   "source": "https://orlando.edc.com/lineup/set-times/day-3/"
+  },
+  {
    "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
    "performers": [
     {

@@ -10919,9 +10919,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "14:15",
+  "end": "15:30",
   "printed": "AAT",
   "setTag": null,
   "performers": [
@@ -10931,8 +10931,8 @@
    }
   ],
   "act": "aat",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -10943,9 +10943,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "17:30",
+  "end": "18:30",
   "printed": "Adventure Club (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -10955,8 +10955,8 @@
    }
   ],
   "act": "adventure-club",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -10967,9 +10967,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "20:00",
+  "end": "21:10",
   "printed": "Afrojack",
   "setTag": null,
   "performers": [
@@ -10979,8 +10979,8 @@
    }
   ],
   "act": "afrojack",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -10991,9 +10991,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "17:28",
+  "end": "18:43",
   "printed": "Alesso (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -11003,8 +11003,8 @@
    }
   ],
   "act": "alesso",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11015,9 +11015,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Azzecca",
   "setTag": null,
   "performers": [
@@ -11027,8 +11027,8 @@
    }
   ],
   "act": "azzecca",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11039,9 +11039,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "14:15",
+  "end": "15:30",
   "printed": "Benda B2B Vastive",
   "setTag": null,
   "performers": [
@@ -11055,8 +11055,8 @@
    }
   ],
   "act": "benda-b2b-vastive",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11067,9 +11067,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "15:30",
+  "end": "16:30",
   "printed": "Big Florida",
   "setTag": null,
   "performers": [
@@ -11079,8 +11079,8 @@
    }
   ],
   "act": "big-florida",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11091,9 +11091,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "18:30",
+  "end": "19:30",
   "printed": "Bou B2B Kanine",
   "setTag": null,
   "performers": [
@@ -11107,8 +11107,8 @@
    }
   ],
   "act": "bou-b2b-kanine",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11119,11 +11119,11 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Brunello (Sunset Set)",
-  "setTag": "Sunset Set",
+  "stage": "neonGARDEN",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Brunello",
+  "setTag": null,
   "performers": [
    {
     "key": "brunello",
@@ -11131,8 +11131,8 @@
    }
   ],
   "act": "brunello",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11143,9 +11143,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "18:45",
+  "end": "20:00",
   "printed": "Bullet Tooth B2B Sidney Charles",
   "setTag": null,
   "performers": [
@@ -11159,8 +11159,8 @@
    }
   ],
   "act": "bullet-tooth-b2b-sidney-charles",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11171,9 +11171,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Chris Lorenzo",
   "setTag": null,
   "performers": [
@@ -11183,8 +11183,8 @@
    }
   ],
   "act": "chris-lorenzo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11195,9 +11195,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "22:31",
+  "end": "23:56",
   "printed": "David Guetta",
   "setTag": null,
   "performers": [
@@ -11207,8 +11207,8 @@
    }
   ],
   "act": "david-guetta",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11219,9 +11219,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "15:25",
+  "end": "16:25",
   "printed": "HAYLA",
   "setTag": null,
   "performers": [
@@ -11231,8 +11231,8 @@
    }
   ],
   "act": "hayla",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11243,9 +11243,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "15:30",
+  "end": "16:30",
   "printed": "IDEMI",
   "setTag": null,
   "performers": [
@@ -11255,8 +11255,8 @@
    }
   ],
   "act": "idemi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11267,9 +11267,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "15:00",
+  "end": "16:30",
   "printed": "Inbal",
   "setTag": null,
   "performers": [
@@ -11279,8 +11279,8 @@
    }
   ],
   "act": "inbal",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11291,9 +11291,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Interplanetary Criminal",
   "setTag": null,
   "performers": [
@@ -11303,8 +11303,8 @@
    }
   ],
   "act": "interplanetary-criminal",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11315,9 +11315,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "14:25",
+  "end": "15:25",
   "printed": "JOA",
   "setTag": null,
   "performers": [
@@ -11327,8 +11327,8 @@
    }
   ],
   "act": "joa",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11339,9 +11339,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Josh Baker",
   "setTag": null,
   "performers": [
@@ -11351,8 +11351,8 @@
    }
   ],
   "act": "josh-baker",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11363,9 +11363,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "16:30",
+  "end": "17:30",
   "printed": "Joshwa",
   "setTag": null,
   "performers": [
@@ -11375,8 +11375,8 @@
    }
   ],
   "act": "joshwa",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11387,9 +11387,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "16:30",
+  "end": "17:30",
   "printed": "Kompany",
   "setTag": null,
   "performers": [
@@ -11399,8 +11399,8 @@
    }
   ],
   "act": "kompany",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11411,9 +11411,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "18:47",
+  "end": "19:57",
   "printed": "KREAM",
   "setTag": null,
   "performers": [
@@ -11423,8 +11423,8 @@
    }
   ],
   "act": "kream",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11435,9 +11435,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "19:30",
+  "end": "20:30",
   "printed": "Level Up",
   "setTag": null,
   "performers": [
@@ -11447,8 +11447,8 @@
    }
   ],
   "act": "level-up",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11459,9 +11459,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "21:35",
+  "end": "22:45",
   "printed": "Levity",
   "setTag": null,
   "performers": [
@@ -11471,8 +11471,8 @@
    }
   ],
   "act": "levity",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11483,9 +11483,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "17:30",
+  "end": "18:45",
   "printed": "MALUGI (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -11495,8 +11495,8 @@
    }
   ],
   "act": "malugi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11507,9 +11507,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Matthias",
   "setTag": null,
   "performers": [
@@ -11519,8 +11519,8 @@
    }
   ],
   "act": "matthias",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11531,9 +11531,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "21:13",
+  "end": "22:28",
   "printed": "Mau P",
   "setTag": null,
   "performers": [
@@ -11543,8 +11543,8 @@
    }
   ],
   "act": "mau-p",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11555,9 +11555,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "21:15",
+  "end": "22:30",
   "printed": "MPH",
   "setTag": null,
   "performers": [
@@ -11567,8 +11567,8 @@
    }
   ],
   "act": "mph",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11579,9 +11579,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Omar+",
   "setTag": null,
   "performers": [
@@ -11591,8 +11591,8 @@
    }
   ],
   "act": "omar",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -11603,9 +11603,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "16:25",
+  "end": "17:28",
   "printed": "Pegassi",
   "setTag": null,
   "performers": [
@@ -11615,60 +11615,8 @@
    }
   ],
   "act": "pegassi",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "edc-orlando-2026:ecf30",
-  "source": "live",
-  "festivalId": "edc-orlando-2026",
-  "festivalBrand": "edc-orlando",
-  "year": 2026,
-  "date": "2026-11-06",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Prospa B2B Josh Baker",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "prospa",
-    "role": "b2b"
-   },
-   {
-    "key": "josh-baker",
-    "role": "b2b"
-   }
-  ],
-  "act": "prospa-b2b-josh-baker",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "edc-orlando-2026:ecf31",
-  "source": "live",
-  "festivalId": "edc-orlando-2026",
-  "festivalBrand": "edc-orlando",
-  "year": 2026,
-  "date": "2026-11-06",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Prospa",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "prospa",
-    "role": "performer"
-   }
-  ],
-  "act": "prospa",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11679,9 +11627,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "13:00",
+  "end": "14:15",
   "printed": "RAJE",
   "setTag": null,
   "performers": [
@@ -11691,8 +11639,8 @@
    }
   ],
   "act": "raje",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11703,9 +11651,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "13:00",
+  "end": "14:15",
   "printed": "Sloth",
   "setTag": null,
   "performers": [
@@ -11715,8 +11663,8 @@
    }
   ],
   "act": "sloth",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11727,9 +11675,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "20:30",
+  "end": "21:35",
   "printed": "Whethan",
   "setTag": null,
   "performers": [
@@ -11739,8 +11687,8 @@
    }
   ],
   "act": "whethan",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11751,9 +11699,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "22:45",
+  "end": "00:00",
   "printed": "Wooli",
   "setTag": null,
   "performers": [
@@ -11763,8 +11711,8 @@
    }
   ],
   "act": "wooli",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11775,9 +11723,9 @@
   "year": 2026,
   "date": "2026-11-06",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "13:00",
+  "end": "14:25",
   "printed": "Zack Martino",
   "setTag": null,
   "performers": [
@@ -11787,8 +11735,8 @@
    }
   ],
   "act": "zack-martino",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11799,9 +11747,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "15:33",
+  "end": "16:33",
   "printed": "Aaron Hibell",
   "setTag": null,
   "performers": [
@@ -11811,8 +11759,8 @@
    }
   ],
   "act": "aaron-hibell",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11823,9 +11771,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "16:33",
+  "end": "17:38",
   "printed": "ACRAZE B2B CID",
   "setTag": null,
   "performers": [
@@ -11839,8 +11787,8 @@
    }
   ],
   "act": "acraze-b2b-cid",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11851,9 +11799,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "17:38",
+  "end": "18:53",
   "printed": "Alan Walker (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -11863,8 +11811,8 @@
    }
   ],
   "act": "alan-walker",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -11875,9 +11823,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "22:45",
+  "end": "00:00",
   "printed": "Alison Wonderland",
   "setTag": null,
   "performers": [
@@ -11887,8 +11835,8 @@
    }
   ],
   "act": "alison-wonderland",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11899,9 +11847,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "19:30",
+  "end": "20:30",
   "printed": "ALLEYCVT",
   "setTag": null,
   "performers": [
@@ -11911,8 +11859,8 @@
    }
   ],
   "act": "alleycvt",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11923,9 +11871,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Alves",
   "setTag": null,
   "performers": [
@@ -11935,8 +11883,8 @@
    }
   ],
   "act": "alves",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11947,9 +11895,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "16:30",
+  "end": "17:30",
   "printed": "AVELLO",
   "setTag": null,
   "performers": [
@@ -11959,8 +11907,8 @@
    }
   ],
   "act": "avello",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -11971,9 +11919,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "21:15",
+  "end": "22:30",
   "printed": "AYYBO",
   "setTag": null,
   "performers": [
@@ -11983,8 +11931,8 @@
    }
   ],
   "act": "ayybo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -11995,9 +11943,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "ChaseWest",
   "setTag": null,
   "performers": [
@@ -12007,8 +11955,8 @@
    }
   ],
   "act": "chasewest",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12019,9 +11967,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "20:30",
+  "end": "22:00",
   "printed": "Dennis Cruz",
   "setTag": null,
   "performers": [
@@ -12031,8 +11979,8 @@
    }
   ],
   "act": "dennis-cruz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12043,9 +11991,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "17:30",
+  "end": "18:45",
   "printed": "Devault (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -12055,8 +12003,8 @@
    }
   ],
   "act": "devault",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12067,9 +12015,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "18:45",
+  "end": "20:00",
   "printed": "Discip",
   "setTag": null,
   "performers": [
@@ -12079,8 +12027,8 @@
    }
   ],
   "act": "discip",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12091,9 +12039,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "21:13",
+  "end": "22:28",
   "printed": "Disco Lines",
   "setTag": null,
   "performers": [
@@ -12103,8 +12051,8 @@
    }
   ],
   "act": "disco-lines",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12115,9 +12063,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "16:30",
+  "end": "17:30",
   "printed": "Fallon",
   "setTag": null,
   "performers": [
@@ -12127,8 +12075,8 @@
    }
   ],
   "act": "fallon",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12139,9 +12087,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "22:00",
+  "end": "00:00",
   "printed": "Franky Rizardo",
   "setTag": null,
   "performers": [
@@ -12151,8 +12099,8 @@
    }
   ],
   "act": "franky-rizardo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12163,9 +12111,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Fury with MC Dino",
   "setTag": null,
   "performers": [
@@ -12179,8 +12127,8 @@
    }
   ],
   "act": "fury-with-mc-dino",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12191,9 +12139,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "14:30",
+  "end": "15:30",
   "printed": "Gabss",
   "setTag": null,
   "performers": [
@@ -12203,8 +12151,8 @@
    }
   ],
   "act": "gabss",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12215,9 +12163,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "15:30",
+  "end": "16:30",
   "printed": "Greg 99",
   "setTag": null,
   "performers": [
@@ -12227,8 +12175,8 @@
    }
   ],
   "act": "greg-99",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12239,9 +12187,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "17:30",
+  "end": "18:30",
   "printed": "Jkyl & Hyde",
   "setTag": null,
   "performers": [
@@ -12251,8 +12199,8 @@
    }
   ],
   "act": "jkyl-and-hyde",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12263,9 +12211,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "22:31",
+  "end": "00:00",
   "printed": "Kaskade",
   "setTag": null,
   "performers": [
@@ -12275,8 +12223,8 @@
    }
   ],
   "act": "kaskade",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12287,9 +12235,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "14:30",
+  "end": "16:00",
   "printed": "KinAhau",
   "setTag": null,
   "performers": [
@@ -12299,8 +12247,8 @@
    }
   ],
   "act": "kinahau",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12311,9 +12259,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "18:30",
+  "end": "19:30",
   "printed": "LAYZ",
   "setTag": null,
   "performers": [
@@ -12323,8 +12271,8 @@
    }
   ],
   "act": "layz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12335,9 +12283,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "14:30",
+  "end": "15:30",
   "printed": "MADVKTM",
   "setTag": null,
   "performers": [
@@ -12347,8 +12295,8 @@
    }
   ],
   "act": "madvktm",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12359,9 +12307,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "13:00",
+  "end": "14:30",
   "printed": "Mai Iachetti",
   "setTag": null,
   "performers": [
@@ -12371,32 +12319,8 @@
    }
   ],
   "act": "mai-iachetti",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "edc-orlando-2026:ecs25",
-  "source": "live",
-  "festivalId": "edc-orlando-2026",
-  "festivalBrand": "edc-orlando",
-  "year": 2026,
-  "date": "2026-11-07",
-  "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Max Dean, Luke Dean",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "max-dean-luke-dean",
-    "role": "performer"
-   }
-  ],
-  "act": "max-dean-luke-dean",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12407,9 +12331,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "13:33",
+  "end": "14:33",
   "printed": "Me n ü",
   "setTag": null,
   "performers": [
@@ -12419,8 +12343,8 @@
    }
   ],
   "act": "me-n-u",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12431,9 +12355,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "16:00",
+  "end": "17:30",
   "printed": "Miguelle & Tons",
   "setTag": null,
   "performers": [
@@ -12443,8 +12367,8 @@
    }
   ],
   "act": "miguelle-and-tons",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12455,9 +12379,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "13:00",
+  "end": "13:33",
   "printed": "Monoky",
   "setTag": null,
   "performers": [
@@ -12467,8 +12391,8 @@
    }
   ],
   "act": "monoky",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12479,9 +12403,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "18:57",
+  "end": "20:02",
   "printed": "Nico Moreno",
   "setTag": null,
   "performers": [
@@ -12491,8 +12415,8 @@
    }
   ],
   "act": "nico-moreno",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12503,9 +12427,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "20:30",
+  "end": "21:30",
   "printed": "Ray Volpe",
   "setTag": null,
   "performers": [
@@ -12515,8 +12439,8 @@
    }
   ],
   "act": "ray-volpe",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12527,9 +12451,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "20:00",
+  "end": "21:15",
   "printed": "Roddy Lima",
   "setTag": null,
   "performers": [
@@ -12539,8 +12463,8 @@
    }
   ],
   "act": "roddy-lima",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12551,11 +12475,11 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Rossi. (Sunset Set)",
-  "setTag": "Sunset Set",
+  "stage": "neonGARDEN",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Rossi.",
+  "setTag": null,
   "performers": [
    {
     "key": "rossi",
@@ -12563,8 +12487,8 @@
    }
   ],
   "act": "rossi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12575,9 +12499,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "21:35",
+  "end": "22:45",
   "printed": "Skull Machine (Black Tiger Sex Machine x Kai Wachi)",
   "setTag": null,
   "performers": [
@@ -12587,8 +12511,8 @@
    }
   ],
   "act": "skull-machine-black-tiger-sex-machine-x-kai-wachi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12599,9 +12523,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "20:05",
+  "end": "21:10",
   "printed": "Steve Aoki",
   "setTag": null,
   "performers": [
@@ -12611,8 +12535,8 @@
    }
   ],
   "act": "steve-aoki",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12623,9 +12547,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "15:30",
+  "end": "16:30",
   "printed": "Subsonic",
   "setTag": null,
   "performers": [
@@ -12635,8 +12559,8 @@
    }
   ],
   "act": "subsonic",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12647,9 +12571,9 @@
   "year": 2026,
   "date": "2026-11-07",
   "day": 2,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "14:33",
+  "end": "15:33",
   "printed": "Twinsick",
   "setTag": null,
   "performers": [
@@ -12659,8 +12583,8 @@
    }
   ],
   "act": "twinsick",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12671,9 +12595,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "14:25",
+  "end": "15:25",
   "printed": "A Little Sound",
   "setTag": null,
   "performers": [
@@ -12683,8 +12607,8 @@
    }
   ],
   "act": "a-little-sound",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12695,9 +12619,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "16:30",
+  "end": "18:00",
   "printed": "Adrián Mills",
   "setTag": null,
   "performers": [
@@ -12707,8 +12631,8 @@
    }
   ],
   "act": "adrian-mills",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12719,9 +12643,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "20:02",
+  "end": "21:12",
   "printed": "Alok",
   "setTag": null,
   "performers": [
@@ -12731,8 +12655,8 @@
    }
   ],
   "act": "alok",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12743,9 +12667,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "14:35",
+  "end": "15:35",
   "printed": "AR/CO",
   "setTag": null,
   "performers": [
@@ -12755,8 +12679,8 @@
    }
   ],
   "act": "ar-co",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12767,9 +12691,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "21:50",
+  "end": "22:55",
   "printed": "ATLiens",
   "setTag": null,
   "performers": [
@@ -12779,8 +12703,8 @@
    }
   ],
   "act": "atliens",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12791,9 +12715,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "21:40",
+  "end": "22:50",
   "printed": "Boogie T",
   "setTag": null,
   "performers": [
@@ -12803,8 +12727,8 @@
    }
   ],
   "act": "boogie-t",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12815,9 +12739,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "19:30",
+  "end": "21:00",
   "printed": "Boys Noize B2B Brutalismus 3000",
   "setTag": null,
   "performers": [
@@ -12831,8 +12755,8 @@
    }
   ],
   "act": "boys-noize-b2b-brutalismus-3000",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -12843,9 +12767,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "15:10",
+  "end": "16:10",
   "printed": "Chef Boyarbeatz",
   "setTag": null,
   "performers": [
@@ -12855,8 +12779,8 @@
    }
   ],
   "act": "chef-boyarbeatz",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12867,9 +12791,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "14:10",
+  "end": "15:10",
   "printed": "CØNTRA",
   "setTag": null,
   "performers": [
@@ -12879,8 +12803,8 @@
    }
   ],
   "act": "contra",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -12891,9 +12815,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "20:45",
+  "end": "21:50",
   "printed": "Deorro B2B DJ Diesel",
   "setTag": null,
   "performers": [
@@ -12907,32 +12831,8 @@
    }
   ],
   "act": "deorro-b2b-dj-diesel",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "edc-orlando-2026:ecu11",
-  "source": "live",
-  "festivalId": "edc-orlando-2026",
-  "festivalBrand": "edc-orlando",
-  "year": 2026,
-  "date": "2026-11-08",
-  "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Discovery Project",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "discovery-project",
-    "role": "performer"
-   }
-  ],
-  "act": "discovery-project",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -12943,9 +12843,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "13:00",
+  "end": "14:35",
   "printed": "ESSE",
   "setTag": null,
   "performers": [
@@ -12955,8 +12855,8 @@
    }
   ],
   "act": "esse",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12967,9 +12867,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "21:15",
+  "end": "22:25",
   "printed": "Hardwell",
   "setTag": null,
   "performers": [
@@ -12979,8 +12879,8 @@
    }
   ],
   "act": "hardwell",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -12991,9 +12891,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "22:55",
+  "end": "00:00",
   "printed": "Holy Priest",
   "setTag": null,
   "performers": [
@@ -13003,8 +12903,8 @@
    }
   ],
   "act": "holy-priest",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13015,9 +12915,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "18:54",
+  "end": "19:59",
   "printed": "I Hate Models",
   "setTag": null,
   "performers": [
@@ -13027,8 +12927,8 @@
    }
   ],
   "act": "i-hate-models",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -13039,9 +12939,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "16:35",
+  "end": "17:35",
   "printed": "Ian Asher",
   "setTag": null,
   "performers": [
@@ -13051,8 +12951,8 @@
    }
   ],
   "act": "ian-asher",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -13063,9 +12963,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "15:35",
+  "end": "16:35",
   "printed": "Jessica Audiffred",
   "setTag": null,
   "performers": [
@@ -13075,8 +12975,8 @@
    }
   ],
   "act": "jessica-audiffred",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -13087,9 +12987,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "15:25",
+  "end": "16:25",
   "printed": "Kaivon",
   "setTag": null,
   "performers": [
@@ -13099,8 +12999,8 @@
    }
   ],
   "act": "kaivon",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13111,9 +13011,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "21:00",
+  "end": "22:30",
   "printed": "KI/KI",
   "setTag": null,
   "performers": [
@@ -13123,8 +13023,8 @@
    }
   ],
   "act": "ki-ki",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -13135,9 +13035,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "22:30",
+  "end": "00:00",
   "printed": "Klangkuenstler",
   "setTag": null,
   "performers": [
@@ -13147,8 +13047,8 @@
    }
   ],
   "act": "klangkuenstler",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -13159,9 +13059,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "18:15",
+  "end": "19:20",
   "printed": "Know Good",
   "setTag": null,
   "performers": [
@@ -13171,8 +13071,8 @@
    }
   ],
   "act": "know-good",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13183,9 +13083,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "13:00",
+  "end": "14:10",
   "printed": "M81!",
   "setTag": null,
   "performers": [
@@ -13195,8 +13095,8 @@
    }
   ],
   "act": "m81",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13207,9 +13107,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "19:45",
+  "end": "20:45",
   "printed": "Maddix",
   "setTag": null,
   "performers": [
@@ -13219,8 +13119,8 @@
    }
   ],
   "act": "maddix",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13231,9 +13131,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "18:00",
+  "end": "19:30",
   "printed": "Marlon Hoffstadt (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -13243,8 +13143,8 @@
    }
   ],
   "act": "marlon-hoffstadt",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -13255,9 +13155,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "22:28",
+  "end": "23:56",
   "printed": "Martin Garrix",
   "setTag": null,
   "performers": [
@@ -13267,8 +13167,8 @@
    }
   ],
   "act": "martin-garrix",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -13279,9 +13179,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "18:40",
+  "end": "19:45",
   "printed": "Meduza",
   "setTag": null,
   "performers": [
@@ -13291,8 +13191,8 @@
    }
   ],
   "act": "meduza",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13303,9 +13203,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "17:25",
+  "end": "18:40",
   "printed": "Of The Trees (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -13315,8 +13215,8 @@
    }
   ],
   "act": "of-the-trees",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13327,9 +13227,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "16:10",
+  "end": "17:10",
   "printed": "phrva",
   "setTag": null,
   "performers": [
@@ -13339,8 +13239,8 @@
    }
   ],
   "act": "phrva",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13351,9 +13251,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "20:30",
+  "end": "21:40",
   "printed": "Ravenscoon",
   "setTag": null,
   "performers": [
@@ -13363,8 +13263,8 @@
    }
   ],
   "act": "ravenscoon",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13375,9 +13275,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "circuitGROUNDS",
+  "start": "16:35",
+  "end": "17:25",
   "printed": "San Holo (Wholesome Riddim Set)",
   "setTag": "Wholesome Riddim Set",
   "performers": [
@@ -13387,8 +13287,8 @@
    }
   ],
   "act": "san-holo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
   "mainStage": null
  },
  {
@@ -13399,9 +13299,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "15:00",
+  "end": "16:30",
   "printed": "SHDW",
   "setTag": null,
   "performers": [
@@ -13411,8 +13311,8 @@
    }
   ],
   "act": "shdw",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
   "mainStage": null
  },
  {
@@ -13423,9 +13323,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "17:10",
+  "end": "18:10",
   "printed": "Sippy",
   "setTag": null,
   "performers": [
@@ -13435,8 +13335,8 @@
    }
   ],
   "act": "sippy",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13447,9 +13347,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "kineticFIELD",
+  "start": "17:35",
+  "end": "18:50",
   "printed": "SLANDER (Sunset Set)",
   "setTag": "Sunset Set",
   "performers": [
@@ -13459,8 +13359,8 @@
    }
   ],
   "act": "slander",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:kineticfield",
   "mainStage": null
  },
  {
@@ -13471,9 +13371,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "19:20",
+  "end": "20:30",
   "printed": "Taiki Nulight",
   "setTag": null,
   "performers": [
@@ -13483,8 +13383,8 @@
    }
   ],
   "act": "taiki-nulight",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13495,9 +13395,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "stereoBLOOM",
+  "start": "22:50",
+  "end": "00:00",
   "printed": "TroyBoi",
   "setTag": null,
   "performers": [
@@ -13507,8 +13407,8 @@
    }
   ],
   "act": "troyboi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "edc-orlando:stereobloom",
   "mainStage": null
  },
  {
@@ -13519,9 +13419,9 @@
   "year": 2026,
   "date": "2026-11-08",
   "day": 3,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "neonGARDEN",
+  "start": "13:00",
+  "end": "15:00",
   "printed": "Ultrathem",
   "setTag": null,
   "performers": [
@@ -13531,8 +13431,712 @@
    }
   ],
   "act": "ultrathem",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf37",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "2AR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2ar",
+    "role": "performer"
+   }
+  ],
+  "act": "2ar",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf38",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Chantel Jeffries",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chantel-jeffries",
+    "role": "performer"
+   }
+  ],
+  "act": "chantel-jeffries",
+  "closing": true,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf39",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "Crespo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crespo",
+    "role": "performer"
+   }
+  ],
+  "act": "crespo",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf40",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Eve Lauren",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eve-lauren",
+    "role": "performer"
+   }
+  ],
+  "act": "eve-lauren",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf41",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "Kashovski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kashovski",
+    "role": "performer"
+   }
+  ],
+  "act": "kashovski",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf42",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "16:30",
+  "end": "17:45",
+  "printed": "Me n ü",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "me-n-u",
+    "role": "performer"
+   }
+  ],
+  "act": "me-n-u",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf43",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "Night Tales",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "night-tales",
+    "role": "performer"
+   }
+  ],
+  "act": "night-tales",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf44",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "neonGARDEN",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Obskûr (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "obskur",
+    "role": "performer"
+   }
+  ],
+  "act": "obskur",
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf45",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Seeing Double",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seeing-double",
+    "role": "performer"
+   }
+  ],
+  "act": "seeing-double",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecf46",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-06",
+  "day": 1,
+  "stage": "CASA BACARDÍ",
+  "start": "17:45",
+  "end": "19:00",
+  "printed": "AAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aat",
+    "role": "performer"
+   }
+  ],
+  "act": "aat",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs37",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Allnightkev",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "allnightkev",
+    "role": "performer"
+   }
+  ],
+  "act": "allnightkev",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs38",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "CC Love",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cc-love",
+    "role": "performer"
+   }
+  ],
+  "act": "cc-love",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs39",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "JFUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jfuse",
+    "role": "performer"
+   }
+  ],
+  "act": "jfuse",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs40",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Juos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juos",
+    "role": "performer"
+   }
+  ],
+  "act": "juos",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs41",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Landis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "landis",
+    "role": "performer"
+   }
+  ],
+  "act": "landis",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs42",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "neonGARDEN",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Luke Dean B2B George Smeddles (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "luke-dean",
+    "role": "b2b"
+   },
+   {
+    "key": "george-smeddles",
+    "role": "b2b"
+   }
+  ],
+  "act": "luke-dean-b2b-george-smeddles",
+  "closing": false,
+  "stageLineage": "edc-orlando:neongarden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs43",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "RAJE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raje",
+    "role": "performer"
+   }
+  ],
+  "act": "raje",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs44",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Rommii",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rommii",
+    "role": "performer"
+   }
+  ],
+  "act": "rommii",
+  "closing": true,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecs45",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-07",
+  "day": 2,
+  "stage": "CASA BACARDÍ",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Gabss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabss",
+    "role": "performer"
+   }
+  ],
+  "act": "gabss",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu37",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Alves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alves",
+    "role": "performer"
+   }
+  ],
+  "act": "alves",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu38",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Andrea Quintero",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrea-quintero",
+    "role": "performer"
+   }
+  ],
+  "act": "andrea-quintero",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu39",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "circuitGROUNDS",
+  "start": "13:10",
+  "end": "14:25",
+  "printed": "Bella Grazia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bella-grazia",
+    "role": "performer"
+   }
+  ],
+  "act": "bella-grazia",
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu40",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "BROSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brosa",
+    "role": "performer"
+   }
+  ],
+  "act": "brosa",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu41",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Bryan Softwell B2B Chini",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bryan-softwell",
+    "role": "b2b"
+   },
+   {
+    "key": "chini",
+    "role": "b2b"
+   }
+  ],
+  "act": "bryan-softwell-b2b-chini",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu42",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "circuitGROUNDS",
+  "start": "13:00",
+  "end": "13:10",
+  "printed": "DJ3piece",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj3piece",
+    "role": "performer"
+   }
+  ],
+  "act": "dj3piece",
+  "closing": false,
+  "stageLineage": "edc-orlando:circuitgrounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu43",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Joe Vanditti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joe-vanditti",
+    "role": "performer"
+   }
+  ],
+  "act": "joe-vanditti",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu44",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Kofla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kofla",
+    "role": "performer"
+   }
+  ],
+  "act": "kofla",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu45",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Marian (BR)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marian-br",
+    "role": "performer"
+   }
+  ],
+  "act": "marian-br",
+  "closing": false,
+  "stageLineage": "edc-orlando:casa-bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "edc-orlando-2026:ecu46",
+  "source": "live",
+  "festivalId": "edc-orlando-2026",
+  "festivalBrand": "edc-orlando",
+  "year": 2026,
+  "date": "2026-11-08",
+  "day": 3,
+  "stage": "CASA BACARDÍ",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "William Kiss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "william-kiss",
+    "role": "performer"
+   }
+  ],
+  "act": "william-kiss",
+  "closing": true,
+  "stageLineage": "edc-orlando:casa-bacardi",
   "mainStage": null
  },
  {
