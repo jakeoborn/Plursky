@@ -1,0 +1,399 @@
+day	stage	start	end	artist	settimeId	timeSource	captureTimestamp
+1	Kinetic Field	04:13	05:28	Steve Aoki	34625	printed	20240520144508
+1	Kinetic Field	03:00	04:10	David Guetta	34475	printed	20240520144508
+1	Kinetic Field	01:47	02:57	Illenium	34523	printed	20240520144508
+1	Kinetic Field	01:41	01:47	Fireworks	35533	printed	20240520144508
+1	Kinetic Field	00:31	01:41	Armin van Buuren	34442	printed	20240520144508
+1	Kinetic Field	23:18	00:28	Subtronics	34628	printed	20240520144508
+1	Kinetic Field	22:06	23:15	MK	34584	printed	20240520144508
+1	Kinetic Field	21:00	22:00	Maddix	34561	printed	20240520144508
+1	Kinetic Field	20:00	21:00	Ownboss	34597	printed	20240520144508
+1	Kinetic Field	19:00	20:00	Ninajirachi	34590	printed	20240520144508
+1	Cosmic Meadow	04:10	05:30	FrostTop B2B RemK	34505	printed	20240520144508
+1	Cosmic Meadow	03:00	04:10	Devault	34485	printed	20240520144508
+1	Cosmic Meadow	01:50	03:00	LSDREAM	34559	printed	20240520144508
+1	Cosmic Meadow	00:20	01:50	SLANDER	34620	printed	20240520144508
+1	Cosmic Meadow	23:05	00:15	Dabin	34474	printed	20240520144508
+1	Cosmic Meadow	21:45	23:00	Hamdi	34513	printed	20240520144508
+1	Cosmic Meadow	20:20	21:45	Sicaria	34617	printed	20240520144508
+1	Cosmic Meadow	19:00	20:20	Khiva	34547	printed	20240520144508
+1	Cosmic Meadow	17:30	18:58	Noizu B2B Westend B2B Melé	34592	printed	20240520144508
+1	Cosmic Meadow	17:00	17:30	Friendly Fire	35487	printed	20240520144508
+1	Circuit Grounds	04:30	05:30	SLANDER presents Before Dawn	34448	printed	20240520144508
+1	Circuit Grounds	03:00	04:30	John Summit	34533	printed	20240520144508
+1	Circuit Grounds	01:30	03:00	Eric Prydz	34498	printed	20240520144508
+1	Circuit Grounds	00:00	01:30	Peggy Gou	34601	printed	20240520144508
+1	Circuit Grounds	22:30	00:00	Vintage Culture	34640	printed	20240520144508
+1	Circuit Grounds	21:15	22:30	Cassian	34465	printed	20240520144508
+1	Circuit Grounds	20:00	21:15	Cristoph	34468	printed	20240520144508
+1	Circuit Grounds	19:00	20:00	Brina Knauss	34458	printed	20240520144508
+1	Neon Garden	04:00	05:30	Carl Cox B2B Nicole Moudaber	34463	printed	20240520144508
+1	Neon Garden	02:30	04:00	Carl Cox	34462	printed	20240520144508
+1	Neon Garden	01:00	02:30	Adam Beyer	34428	printed	20240520144508
+1	Neon Garden	23:30	01:00	Nicole Moudaber	34587	printed	20240520144508
+1	Neon Garden	22:00	23:30	Lilly Palmer	34557	printed	20240520144508
+1	Neon Garden	20:30	22:00	Chelina Manuhutu	34467	printed	20240520144508
+1	Neon Garden	19:00	20:30	Heidi Lawden	34516	printed	20240520144508
+1	Basspod	04:30	05:30	Mersiv	34578	printed	20240520144508
+1	Basspod	03:30	04:30	Adventure Club	34431	printed	20240520144508
+1	Basspod	02:30	03:30	HOL!	34520	printed	20240520144508
+1	Basspod	01:30	02:30	MARAUDA	34565	printed	20240520144508
+1	Basspod	00:30	01:30	Zomboy	34659	printed	20240520144508
+1	Basspod	23:30	00:30	NGHTMRE	34586	printed	20240520144508
+1	Basspod	22:30	23:30	Jessica Audiffred	34531	printed	20240520144508
+1	Basspod	21:30	22:30	LAYZ	34554	printed	20240520144508
+1	Basspod	20:30	21:30	Tape B	34632	printed	20240520144508
+1	Basspod	19:30	20:30	VUlllGUR	34642	printed	20240520144508
+1	Basspod	19:00	19:30	Nightstalker	34589	printed	20240520144508
+1	Wasteland	04:30	05:30	Clawz B2B Domina	34469	printed	20240520144508
+1	Wasteland	03:30	04:30	Hixxy	34519	printed	20240520144508
+1	Wasteland	02:30	03:30	Audiofreq	34445	printed	20240520144508
+1	Wasteland	01:30	02:30	Hivemind (Kayzo x Space Laces x Must Die!)	34518	printed	20240520144508
+1	Wasteland	00:30	01:30	Warface	34644	printed	20240520144508
+1	Wasteland	23:30	00:30	Sound Rush	34624	printed	20240520144508
+1	Wasteland	22:30	23:30	Keltek	34544	printed	20240520144508
+1	Wasteland	21:30	22:30	D-Sturb	34472	printed	20240520144508
+1	Wasteland	20:30	21:30	Yosuf	34653	printed	20240520144508
+1	Wasteland	19:00	20:30	Water Spirit	34646	printed	20240520144508
+1	Quantum Valley	04:00	05:30	Taylor Torrence	34633	printed	20240520144508
+1	Quantum Valley	03:00	04:00	Orjan Nilsen & Mark Sixma present Nilsix	34596	printed	20240520144508
+1	Quantum Valley	02:00	03:00	Infected Mushroom	34525	printed	20240520144508
+1	Quantum Valley	01:00	02:00	Blastoyz	34453	printed	20240520144508
+1	Quantum Valley	00:00	01:00	Markus Schulz	34567	printed	20240520144508
+1	Quantum Valley	23:00	00:00	Andrew Rayel	34438	printed	20240520144508
+1	Quantum Valley	22:00	23:00	Giuseppe Ottaviani	34508	printed	20240520144508
+1	Quantum Valley	21:00	22:00	Nifra	34588	printed	20240520144508
+1	Quantum Valley	20:00	21:00	Paul Oakenfold (Full On Fluoro)	34599	printed	20240520144508
+1	Quantum Valley	19:00	20:00	Alchimyst	34433	printed	20240520144508
+1	Stereo Bloom	04:30	05:30	Andruss	34439	printed	20240520144508
+1	Stereo Bloom	03:30	04:30	MISS DRE	34581	printed	20240520144508
+1	Stereo Bloom	02:15	03:30	Noizu	34591	printed	20240520144508
+1	Stereo Bloom	01:00	02:15	Matroda B2B San Pacho	34573	printed	20240520144508
+1	Stereo Bloom	00:00	01:00	J. Worra	34528	printed	20240520144508
+1	Stereo Bloom	23:00	00:00	Odd Mob x Omnom: Hyperbeam	34594	printed	20240520144508
+1	Stereo Bloom	22:00	23:00	Max Styler	34576	printed	20240520144508
+1	Stereo Bloom	21:00	22:00	Riordan	34611	printed	20240520144508
+1	Stereo Bloom	20:00	21:00	Majestic	34562	printed	20240520144508
+1	Stereo Bloom	19:00	20:00	ZOF	34658	printed	20240520144508
+1	Bionic Jungle	04:00	05:30	Justin Jay	34538	printed	20240520144508
+1	Bionic Jungle	02:30	04:00	HAAi	34512	printed	20240520144508
+1	Bionic Jungle	01:00	02:30	Denis Sulta	34483	printed	20240520144508
+1	Bionic Jungle	23:30	01:00	Jyoty	34539	printed	20240520144508
+1	Bionic Jungle	22:00	23:30	Sally C B2B Matisa	34612	printed	20240520144508
+1	Bionic Jungle	20:30	22:00	Marlie	34568	printed	20240520144508
+1	Bionic Jungle	19:00	20:30	Zen Freeman	34656	printed	20240520144508
+1	Bionic Jungle	17:00	19:00	Baggi B2B Matt Denuzzo	35476	printed	20240520144508
+1	Rynobus	04:00	05:30	Castor & Pollux	35252	printed	20240520144508
+1	Rynobus	03:00	04:00	TAILSPIN	35259	printed	20240520144508
+1	Rynobus	02:00	03:00	Matt Faulk	35255	printed	20240520144508
+1	Rynobus	00:30	02:00	NORSE	35257	printed	20240520144508
+1	Rynobus	23:30	00:30	Riordan (UKG Set)	35258	printed	20240520144508
+1	Rynobus	22:30	23:30	James Kennedy	35253	printed	20240520144508
+1	Rynobus	21:00	22:30	Myles O'Neal	35256	printed	20240520144508
+1	Rynobus	20:00	21:00	Kittrix B2B Kendoll	35254	printed	20240520144508
+1	Rynobus	19:00	20:00	Aaron K	35251	printed	20240520144508
+1	House of Dunkin'	03:00	04:00	Akaio	35260	printed	20240520144508
+1	House of Dunkin'	02:00	03:00	Bones	35263	printed	20240520144508
+1	House of Dunkin'	01:00	02:00	Andruss	35262	printed	20240520144508
+1	House of Dunkin'	00:00	01:00	TOBEHONEST	35268	printed	20240520144508
+1	House of Dunkin'	22:45	00:00	Súbelo Neo	35267	printed	20240520144508
+1	House of Dunkin'	21:30	22:45	Fallon	35265	printed	20240520144508
+1	House of Dunkin'	20:15	21:30	Discrete	35264	printed	20240520144508
+1	House of Dunkin'	19:00	20:15	Fredy Lane	35266	printed	20240520144508
+1	Beatbox Boombox Art Car	03:00	04:00	KEPIK	35272	printed	20240520144508
+1	Beatbox Boombox Art Car	02:00	03:00	CELO	35270	printed	20240520144508
+1	Beatbox Boombox Art Car	01:00	02:00	Kozmoz	35273	printed	20240520144508
+1	Beatbox Boombox Art Car	00:00	01:00	STAR SEED	35275	printed	20240520144508
+1	Beatbox Boombox Art Car	23:00	00:00	Monika Santucci	35274	printed	20240520144508
+1	Beatbox Boombox Art Car	22:00	23:00	Synymata	35276	printed	20240520144508
+1	Beatbox Boombox Art Car	21:15	22:00	Everen Maxwell	35271	printed	20240520144508
+1	Beatbox Boombox Art Car	20:30	21:15	Adam Pearce	35269	printed	20240520144508
+1	Beatbox Boombox Art Car	19:45	20:30	The Living Proof	35277	printed	20240520144508
+1	Beatbox Boombox Art Car	19:00	19:45	Tha Funk Junkie	35494	printed	20240520144508
+1	Meta Phoenix	04:00	05:30	OG Nixin	35281	printed	20240520144508
+1	Meta Phoenix	02:45	04:00	Chibs	35280	printed	20240520144508
+1	Meta Phoenix	01:30	02:45	VKTM	35285	printed	20240520144508
+1	Meta Phoenix	00:15	01:30	Sanzu	35283	printed	20240520144508
+1	Meta Phoenix	23:00	00:15	ARMNHMR	35284	printed	20240520144508
+1	Meta Phoenix	21:45	23:00	VLCN	35286	printed	20240520144508
+1	Meta Phoenix	20:30	21:45	Pyke	35282	printed	20240520144508
+1	Meta Phoenix	19:00	20:30	Algo	35278	printed	20240520144508
+1	YeeDC!	03:00	04:00	Mesa & Boss	35292	printed	20240520144508
+1	YeeDC!	01:30	03:00	Lucky Lou	35290	printed	20240520144508
+1	YeeDC!	00:15	01:30	Taylor Kade (YeeDM Set)	35293	printed	20240520144508
+1	YeeDC!	22:45	00:00	Dee Jay Silver	35287	printed	20240520144508
+1	YeeDC!	21:30	22:30	MC4D	35291	printed	20240520144508
+1	YeeDC!	20:15	21:30	Zevy	35294	printed	20240520144508
+1	YeeDC!	19:00	20:00	Lavish Life	35289	printed	20240520144508
+1	Blacklight Bar	04:15	05:30	Who's John	35303	printed	20240520144508
+1	Blacklight Bar	03:00	04:15	Tripps	35302	printed	20240520144508
+1	Blacklight Bar	01:30	03:00	Matt Suave	35300	printed	20240520144508
+1	Blacklight Bar	00:00	01:30	Doses	35298	printed	20240520144508
+1	Blacklight Bar	22:45	00:00	blklght	35297	printed	20240520144508
+1	Blacklight Bar	21:30	22:45	Lucky Lou	35299	printed	20240520144508
+1	Blacklight Bar	20:15	21:30	NOYZNTHEHOOD	35301	printed	20240520144508
+1	Blacklight Bar	19:00	20:15	arman.	35295	printed	20240520144508
+2	Kinetic Field	04:13	05:28	ACRAZE B2B KREAM	34427	printed	20240520150551
+2	Kinetic Field	03:00	04:10	Alison Wonderland	34435	printed	20240520150551
+2	Kinetic Field	01:47	02:57	Zedd	34655	printed	20240520150551
+2	Kinetic Field	01:41	01:47	Fireworks	35534	printed	20240520150551
+2	Kinetic Field	00:31	01:41	Tiësto	34634	printed	20240520150551
+2	Kinetic Field	23:18	00:28	DJ Snake	34492	printed	20240520150551
+2	Kinetic Field	22:06	23:15	Matroda	34572	printed	20240520150551
+2	Kinetic Field	21:00	22:00	Benny Benassi	34451	printed	20240520150551
+2	Kinetic Field	20:00	21:00	MitiS	34582	printed	20240520150551
+2	Kinetic Field	19:00	20:00	Rayben	34609	printed	20240520150551
+2	Cosmic Meadow	04:00	05:30	Worship (Sub Focus B2B Dimension B2B Culture Shock B2B 1991)	34650	printed	20240520150551
+2	Cosmic Meadow	03:00	04:00	TroyBoi	34637	printed	20240520150551
+2	Cosmic Meadow	01:45	03:00	Dillon Francis	34488	printed	20240520150551
+2	Cosmic Meadow	00:15	01:45	Deorro	34484	printed	20240520150551
+2	Cosmic Meadow	23:00	00:15	Purple Disco Machine	34606	printed	20240520150551
+2	Cosmic Meadow	21:30	23:00	JOYRYDE B2B Habstrakt	35532	printed	20240520150551
+2	Cosmic Meadow	20:15	21:30	Odd Mob	34593	printed	20240520150551
+2	Cosmic Meadow	19:00	20:15	Camden Cox	34461	printed	20240520150551
+2	Circuit Grounds	04:30	05:30	MK (Sunrise Set)	35488	printed	20240520150551
+2	Circuit Grounds	03:30	04:30	Wade	34643	printed	20240520150551
+2	Circuit Grounds	02:15	03:30	Eli Brown B2B HI-LO	34496	printed	20240520150551
+2	Circuit Grounds	01:00	02:10	Dom Dolla	34493	printed	20240520150551
+2	Circuit Grounds	23:30	01:00	Special Guest	35495	printed	20240520150551
+2	Circuit Grounds	22:00	23:30	Four Tet	34504	printed	20240520150551
+2	Circuit Grounds	21:00	22:00	Ben Hemsley	34449	printed	20240520150551
+2	Circuit Grounds	20:00	21:00	Kyle Walker	34552	printed	20240520150551
+2	Circuit Grounds	19:00	20:00	Airwolf Paradise	34432	printed	20240520150551
+2	Neon Garden	04:00	05:30	Joseph Capriati	34537	printed	20240520150551
+2	Neon Garden	02:30	04:00	Loco Dice	35489	printed	20240520150551
+2	Neon Garden	01:00	02:30	Jamie Jones	34529	printed	20240520150551
+2	Neon Garden	23:00	01:00	Peggy Gou B2B Marcel Dettmann	34602	printed	20240520150551
+2	Neon Garden	22:00	23:00	Marcel Dettmann	34566	printed	20240520150551
+2	Neon Garden	20:30	22:00	Ben Sterling	34450	printed	20240520150551
+2	Neon Garden	19:00	20:30	Malóne	34563	printed	20240520150551
+2	Basspod	04:30	05:30	Crankdat	34470	printed	20240520150551
+2	Basspod	03:30	04:30	Caspa	34464	printed	20240520150551
+2	Basspod	02:30	03:30	Boogie T	34454	printed	20240520150551
+2	Basspod	01:30	02:30	Subtronics B2B Level Up	34629	printed	20240520150551
+2	Basspod	00:30	01:30	Wooli	34649	printed	20240520150551
+2	Basspod	23:30	00:30	Hedex	34515	printed	20240520150551
+2	Basspod	22:30	23:30	Wilkinson	34647	printed	20240520150551
+2	Basspod	21:30	22:30	Bou	34455	printed	20240520150551
+2	Basspod	20:30	21:30	Rated R	34608	printed	20240520150551
+2	Basspod	19:30	20:30	Chef Boyarbeatz	34466	printed	20240520150551
+2	Basspod	19:00	19:30	Fallen with MC Dino	34500	printed	20240520150551
+2	Wasteland	04:30	05:30	Dead X B2B Levenkhan	34477	printed	20240520150551
+2	Wasteland	03:30	04:30	Creeds + Helen Ka	34471	printed	20240520150551
+2	Wasteland	02:30	03:30	Devin Wild	34486	printed	20240520150551
+2	Wasteland	01:30	02:30	Lil Texas	34556	printed	20240520150551
+2	Wasteland	00:30	01:30	Sub Zero Project	34627	printed	20240520150551
+2	Wasteland	23:30	00:30	Adrenalize B2B Wasted Penguinz	34430	printed	20240520150551
+2	Wasteland	22:30	23:30	Atmozfears	34444	printed	20240520150551
+2	Wasteland	21:30	22:30	GRAVEDGR	34509	printed	20240520150551
+2	Wasteland	20:30	21:30	Kreation B2B Darksiderz	34551	printed	20240520150551
+2	Wasteland	19:00	20:30	SOREN	34622	printed	20240520150551
+2	Quantum Valley	04:30	05:30	Metta & Glyde	34579	printed	20240520150551
+2	Quantum Valley	03:30	04:30	John 00 Fleming	34532	printed	20240520150551
+2	Quantum Valley	02:30	03:30	Aly & Fila	34436	printed	20240520150551
+2	Quantum Valley	01:30	02:30	Paul van Dyk	34600	printed	20240520150551
+2	Quantum Valley	00:30	01:30	Ferry Corsten	34501	printed	20240520150551
+2	Quantum Valley	23:30	00:30	Andrew Bayer	34437	printed	20240520150551
+2	Quantum Valley	22:30	23:30	Bryan Kearney	34459	printed	20240520150551
+2	Quantum Valley	21:30	22:30	Talla 2XLC	34631	printed	20240520150551
+2	Quantum Valley	20:30	21:30	Daxson	34476	printed	20240520150551
+2	Quantum Valley	19:00	20:30	Miyuki	34583	printed	20240520150551
+2	Stereo Bloom	04:15	05:30	BEC	34447	printed	20240520150551
+2	Stereo Bloom	03:00	04:15	Matt Sassari	34574	printed	20240520150551
+2	Stereo Bloom	01:45	03:00	Will Clarke	34648	printed	20240520150551
+2	Stereo Bloom	00:30	01:45	Kevin de Vries	34545	printed	20240520150551
+2	Stereo Bloom	23:15	00:30	Eli Brown	34495	printed	20240520150551
+2	Stereo Bloom	22:00	23:15	Kevin Saunderson B2B DJ Minx	34546	printed	20240520150551
+2	Stereo Bloom	21:00	22:00	Hannah Laing	34514	printed	20240520150551
+2	Stereo Bloom	20:00	21:00	Melé	34577	printed	20240520150551
+2	Stereo Bloom	19:00	20:00	Joluca	34535	printed	20240520150551
+2	Bionic Jungle	03:30	05:30	VTSS	34457	printed	20240520150551
+2	Bionic Jungle	02:00	03:30	X-Coast	34652	printed	20240520150551
+2	Bionic Jungle	00:30	02:00	Skin On Skin	34619	printed	20240520150551
+2	Bionic Jungle	22:30	00:30	DJ Heartstring	34491	printed	20240520150551
+2	Bionic Jungle	21:15	22:30	Interplanetary Criminal	34526	printed	20240520150551
+2	Bionic Jungle	20:00	21:15	Panteros666	34598	printed	20240520150551
+2	Bionic Jungle	19:00	20:00	Bianca Oblivion	34452	printed	20240520150551
+2	Rynobus	04:00	05:30	Polar Bears	35322	printed	20240520150551
+2	Rynobus	03:00	04:00	ARMNHMR presents Passport	35317	printed	20240520150551
+2	Rynobus	02:00	03:00	Bunny (Rabbit in the Moon)	35496	printed	20240520150551
+2	Rynobus	01:00	02:00	Tim Clark	35330	printed	20240520150551
+2	Rynobus	00:00	01:00	ZUEZEU	35334	printed	20240520150551
+2	Rynobus	23:00	00:00	Hannah Laing	35325	printed	20240520150551
+2	Rynobus	22:00	23:00	Taylor Jaymin	35326	printed	20240520150551
+2	Rynobus	21:00	22:00	Champ Fresnel	35321	printed	20240520150551
+2	Rynobus	20:00	21:00	Bryan Matthew	35318	printed	20240520150551
+2	Rynobus	19:00	20:00	XENAA	35333	printed	20240520150551
+2	House of Dunkin'	03:00	04:00	Crystal Skies	35338	printed	20240520150551
+2	House of Dunkin'	02:00	03:00	MitiS (Throwback Set)	35346	printed	20240520150551
+2	House of Dunkin'	01:00	02:00	Codeko	35337	printed	20240520150551
+2	House of Dunkin'	00:00	01:00	HALIENE	35342	printed	20240520150551
+2	House of Dunkin'	23:00	00:00	Synymata	35351	printed	20240520150551
+2	House of Dunkin'	22:00	23:00	Egzod	35341	printed	20240520150551
+2	House of Dunkin'	21:00	22:00	Rommii	35350	printed	20240520150551
+2	House of Dunkin'	20:00	21:00	Highlnd	35345	printed	20240520150551
+2	House of Dunkin'	19:00	20:00	Taylor Kade	35352	printed	20240520150551
+2	Beatbox Boombox Art Car	02:45	04:00	Sidney Charles	35367	printed	20240520150551
+2	Beatbox Boombox Art Car	01:30	02:45	Malóne	35363	printed	20240520150551
+2	Beatbox Boombox Art Car	00:15	01:30	DJ Minx	35355	printed	20240520150551
+2	Beatbox Boombox Art Car	22:45	00:15	Melé	35364	printed	20240520150551
+2	Beatbox Boombox Art Car	21:30	22:45	Ky William	35358	printed	20240520150551
+2	Beatbox Boombox Art Car	20:30	21:30	Teko	35371	printed	20240520150551
+2	Beatbox Boombox Art Car	19:00	20:30	Malcolm Zeller	35362	printed	20240520150551
+2	Meta Phoenix	03:45	05:30	Fallen B2B Fury B2B Nightstalker with Dknow (MC Dino)	35376	printed	20240520150551
+2	Meta Phoenix	02:30	03:45	Lizzy Jane	35382	printed	20240520150551
+2	Meta Phoenix	01:30	02:30	Culture Shock	35375	printed	20240520150551
+2	Meta Phoenix	00:00	01:30	Ghost in Real Life	35379	printed	20240520150551
+2	Meta Phoenix	22:45	00:00	Airglo	35372	printed	20240520150551
+2	Meta Phoenix	21:30	22:45	Kassel	35380	printed	20240520150551
+2	Meta Phoenix	20:15	21:30	Rebel Scum	35383	printed	20240520150551
+2	Meta Phoenix	19:00	20:15	Trouble	35384	printed	20240520150551
+2	YeeDC!	03:15	04:15	Lavish Life	35391	printed	20240520150551
+2	YeeDC!	01:45	02:45	Taylor Kade (YeeDM Set)	35396	printed	20240520150551
+2	YeeDC!	00:30	01:30	Roadhouse	35395	printed	20240520150551
+2	YeeDC!	23:00	00:00	Konstantina Gianni	35388	printed	20240520150551
+2	YeeDC!	21:45	22:45	PARTY DADS	35392	printed	20240520150551
+2	YeeDC!	20:15	21:15	Zevy	35397	printed	20240520150551
+2	YeeDC!	19:00	20:00	Disco Fries	35387	printed	20240520150551
+2	Blacklight Bar	04:00	05:30	Cat & Maomi	35398	printed	20240520150551
+2	Blacklight Bar	03:00	04:00	DJ Hazel	35400	printed	20240520150551
+2	Blacklight Bar	02:00	03:00	Piilot	35403	printed	20240520150551
+2	Blacklight Bar	00:00	02:00	fun2bjane B2B mad gavs	35401	printed	20240520150551
+2	Blacklight Bar	22:45	00:00	Soul Purpose	35405	printed	20240520150551
+2	Blacklight Bar	21:30	22:45	prv. d	35404	printed	20240520150551
+2	Blacklight Bar	20:30	21:30	Mark Lizaola	35402	printed	20240520150551
+2	Blacklight Bar	19:00	20:30	D!CED	35399	printed	20240520150551
+3	Kinetic Field	04:13	05:28	John Summit B2B Green Velvet	34534	printed	20240520144446
+3	Kinetic Field	03:00	04:10	Fisher	34502	printed	20240520144446
+3	Kinetic Field	01:47	02:57	Kaskade	34542	printed	20240520144446
+3	Kinetic Field	01:41	01:47	Fireworks	35535	printed	20240520144446
+3	Kinetic Field	00:31	01:41	Gryffin	34511	printed	20240520144446
+3	Kinetic Field	23:18	00:28	Alesso	34434	printed	20240520144446
+3	Kinetic Field	22:06	23:15	Mau P	34575	printed	20240520144446
+3	Kinetic Field	21:00	22:00	Lost Frequencies	34558	printed	20240520144446
+3	Kinetic Field	20:00	21:00	Wuki	34651	printed	20240520144446
+3	Kinetic Field	19:00	20:00	ZUEZEU	34660	printed	20240520144446
+3	Cosmic Meadow	04:15	05:30	Valentino Khan	34639	printed	20240520144446
+3	Cosmic Meadow	03:10	04:10	Kasablanca	34541	printed	20240520144446
+3	Cosmic Meadow	01:45	03:00	deadmau5	34479	printed	20240520144446
+3	Cosmic Meadow	00:15	01:45	Diplo	34490	printed	20240520144446
+3	Cosmic Meadow	23:00	00:15	Sofi Tukker (DJ Set)	34621	printed	20240520144446
+3	Cosmic Meadow	21:30	23:00	HUGEL	34522	printed	20240520144446
+3	Cosmic Meadow	20:15	21:30	Deeper Purpose	34482	printed	20240520144446
+3	Cosmic Meadow	19:00	20:15	Mary Droppinz	34571	printed	20240520144446
+3	Circuit Grounds	04:25	05:30	Timmy Trumpet	34635	printed	20240520144446
+3	Circuit Grounds	03:05	04:20	Kayzo Unleashed XL	34543	printed	20240520144446
+3	Circuit Grounds	01:45	03:00	Excision	34499	printed	20240520144446
+3	Circuit Grounds	00:15	01:45	Martin Garrix	34570	printed	20240520144446
+3	Circuit Grounds	23:02	00:15	Seven Lions	34614	printed	20240520144446
+3	Circuit Grounds	22:00	23:00	Sara Landry	34613	printed	20240520144446
+3	Circuit Grounds	21:00	22:00	Sub Focus	34626	printed	20240520144446
+3	Circuit Grounds	20:00	21:00	Koven	34550	printed	20240520144446
+3	Circuit Grounds	19:00	20:00	IVY	34527	printed	20240520144446
+3	Neon Garden	03:45	05:30	Trym	34638	printed	20240520144446
+3	Neon Garden	02:15	03:45	Indira Paganotto	34524	printed	20240520144446
+3	Neon Garden	00:45	02:15	Klangkuenstler	34549	printed	20240520144446
+3	Neon Garden	23:00	00:45	Deborah De Luca	34481	printed	20240520144446
+3	Neon Garden	21:00	23:00	Shlømo	34616	printed	20240520144446
+3	Neon Garden	19:00	21:00	Adam X	34429	printed	20240520144446
+3	Basspod	04:30	05:30	Jon Casey	34536	printed	20240520144446
+3	Basspod	03:30	04:30	Virtual Riot	34641	printed	20240520144446
+3	Basspod	02:30	03:30	Kai Wachi	34540	printed	20240520144446
+3	Basspod	01:30	02:30	Svdden Death	34630	printed	20240520144446
+3	Basspod	00:30	01:30	ATLiens	34443	printed	20240520144446
+3	Basspod	23:30	00:30	Dimension	34489	printed	20240520144446
+3	Basspod	22:30	23:30	Ghastly presents Ghengar	34507	printed	20240520144446
+3	Basspod	21:30	22:30	Emorfik	34497	printed	20240520144446
+3	Basspod	20:30	21:30	Zingara	34657	printed	20240520144446
+3	Basspod	19:30	20:30	JEANIE	34530	printed	20240520144446
+3	Basspod	19:00	19:30	Replicant	35536	printed	20240520144446
+3	Wasteland	04:30	05:30	DEATH CODE	34480	printed	20240520144446
+3	Wasteland	03:30	04:30	Deadly Guns	34478	printed	20240520144446
+3	Wasteland	02:30	03:30	Angerfist	34440	printed	20240520144446
+3	Wasteland	01:30	02:30	Da Tweekaz	34473	printed	20240520144446
+3	Wasteland	00:30	01:30	Devin Wild B2B Keltek	34487	printed	20240520144446
+3	Wasteland	23:30	00:30	Lady Faith	34553	printed	20240520144446
+3	Wasteland	22:30	23:30	Wasted Penguinz	34645	printed	20240520144446
+3	Wasteland	21:30	22:30	Mandy	34564	printed	20240520144446
+3	Wasteland	20:30	21:30	GEO	34506	printed	20240520144446
+3	Wasteland	19:00	20:30	Omar Santana	35491	printed	20240520144446
+3	Quantum Valley	04:30	05:30	Argy	34441	printed	20240520144446
+3	Quantum Valley	03:30	04:30	Mind Against	34580	printed	20240520144446
+3	Quantum Valley	02:15	03:30	Kevin de Vries	35486	printed	20240520144446
+3	Quantum Valley	01:00	02:15	Pryda	34605	printed	20240520144446
+3	Quantum Valley	00:00	01:00	Yotto	34654	printed	20240520144446
+3	Quantum Valley	23:00	00:00	Marsh	34569	printed	20240520144446
+3	Quantum Valley	22:00	23:00	Jerome Isma-Ae	35492	printed	20240520144446
+3	Quantum Valley	21:00	22:00	Luttrell	34560	printed	20240520144446
+3	Quantum Valley	20:00	21:00	KhoMha	34548	printed	20240520144446
+3	Quantum Valley	19:00	20:00	Naz	34585	printed	20240520144446
+3	Stereo Bloom	04:45	05:30	Abana B2B D. Zeledon	34426	printed	20240520144446
+3	Stereo Bloom	03:45	04:45	TOBEHONEST	34636	printed	20240520144446
+3	Stereo Bloom	02:45	03:45	Sosa	34623	printed	20240520144446
+3	Stereo Bloom	01:45	02:45	HoneyLuv	34521	printed	20240520144446
+3	Stereo Bloom	00:30	01:45	HUGEL & Friends	35493	printed	20240520144446
+3	Stereo Bloom	23:30	00:30	Shiba San	34615	printed	20240520144446
+3	Stereo Bloom	22:30	23:30	LF SYSTEM	34555	printed	20240520144446
+3	Stereo Bloom	21:30	22:30	Azzecca	34446	printed	20240520144446
+3	Stereo Bloom	20:15	21:30	Calussa	34460	printed	20240520144446
+3	Stereo Bloom	19:00	20:15	Pocket	34603	printed	20240520144446
+3	Bionic Jungle	04:00	05:30	East End Dubs	34494	printed	20240520144446
+3	Bionic Jungle	02:00	04:00	Oden & Fatzo	34595	printed	20240520144446
+3	Bionic Jungle	00:30	02:00	Sidney Charles	35108	printed	20240520144446
+3	Bionic Jungle	23:00	00:30	Ranger Trucco	34607	printed	20240520144446
+3	Bionic Jungle	21:00	23:00	Prunk	34604	printed	20240520144446
+3	Bionic Jungle	20:00	21:00	Fleur Shore	34503	printed	20240520144446
+3	Bionic Jungle	19:00	20:00	Hint of Lavender	34517	printed	20240520144446
+3	Rynobus	04:00	05:30	Nick Garcia	35310	printed	20240520144446
+3	Rynobus	03:00	04:00	Pickle	35311	printed	20240520144446
+3	Rynobus	02:00	03:00	Damon Sharpe	35305	printed	20240520144446
+3	Rynobus	01:00	02:00	PLS&TY	35312	printed	20240520144446
+3	Rynobus	00:00	01:00	KREAM	35307	printed	20240520144446
+3	Rynobus	23:00	00:00	Alison Wonderland (Techno Set)	35313	printed	20240520144446
+3	Rynobus	22:00	23:00	Neon Deluz	35309	printed	20240520144446
+3	Rynobus	21:00	22:00	Lost Like Us	35306	printed	20240520144446
+3	Rynobus	20:00	21:00	Marc V	35308	printed	20240520144446
+3	Rynobus	19:00	20:00	Assembly	35304	printed	20240520144446
+3	House of Dunkin'	03:00	04:00	Kaysin	35315	printed	20240520144446
+3	House of Dunkin'	02:00	03:00	Joluca	35537	printed	20240520144446
+3	House of Dunkin'	01:00	02:00	Myles O'Neal	35320	printed	20240520144446
+3	House of Dunkin'	00:00	01:00	TONG	35327	printed	20240520144446
+3	House of Dunkin'	23:00	00:00	Manics	35316	printed	20240520144446
+3	House of Dunkin'	22:00	23:00	Jackie Hollander	35314	printed	20240520144446
+3	House of Dunkin'	21:00	22:00	Thomas Garcia	35324	printed	20240520144446
+3	House of Dunkin'	20:00	21:00	Wes Pierce	35328	printed	20240520144446
+3	House of Dunkin'	19:00	20:00	Quality G	35323	printed	20240520144446
+3	Beatbox Boombox Art Car	03:00	04:00	LOUIEJAYXX	35339	printed	20240520144446
+3	Beatbox Boombox Art Car	02:00	03:00	Staysick	35344	printed	20240520144446
+3	Beatbox Boombox Art Car	01:00	02:00	Riot	35343	printed	20240520144446
+3	Beatbox Boombox Art Car	00:00	01:00	Jon Casey	35332	printed	20240520144446
+3	Beatbox Boombox Art Car	23:00	00:00	Redline	35340	printed	20240520144446
+3	Beatbox Boombox Art Car	22:00	23:00	VARI	35347	printed	20240520144446
+3	Beatbox Boombox Art Car	21:00	22:00	1080p	35331	printed	20240520144446
+3	Beatbox Boombox Art Car	20:00	21:00	LALA	35336	printed	20240520144446
+3	Beatbox Boombox Art Car	19:00	20:00	KIËSTO B2B arman.	35335	printed	20240520144446
+3	Meta Phoenix	04:15	05:30	Bunny (Rabbit in the Moon)	35349	printed	20240520144446
+3	Meta Phoenix	03:00	04:15	Fester	35353	printed	20240520144446
+3	Meta Phoenix	02:00	03:00	Kassel	35356	printed	20240520144446
+3	Meta Phoenix	01:00	02:00	Skellytn	35361	printed	20240520144446
+3	Meta Phoenix	00:00	01:00	Rohaan	35360	printed	20240520144446
+3	Meta Phoenix	22:45	00:00	Mary Droppinz	35357	printed	20240520144446
+3	Meta Phoenix	21:30	22:45	Pocket	35359	printed	20240520144446
+3	Meta Phoenix	20:15	21:30	Blake Webber	35348	printed	20240520144446
+3	Meta Phoenix	19:00	20:15	Harristone	35354	printed	20240520144446
+3	YeeDC!	03:15	04:30	Zevy	35538	printed	20240520144446
+3	YeeDC!	02:00	03:00	Brandi Cyrus	35366	printed	20240520144446
+3	YeeDC!	00:30	01:45	MC4D	35373	printed	20240520144446
+3	YeeDC!	23:00	00:00	VAVO	35374	printed	20240520144446
+3	YeeDC!	21:45	22:45	blake.	35365	printed	20240520144446
+3	YeeDC!	20:15	21:15	Lucky Lou	35370	printed	20240520144446
+3	YeeDC!	19:00	20:00	DJ 30Rack	35369	printed	20240520144446
+3	Blacklight Bar	04:15	05:30	AFROdisiac	35378	printed	20240520144446
+3	Blacklight Bar	03:00	04:15	Lisbona Sisters	35390	printed	20240520144446
+3	Blacklight Bar	01:45	03:00	Arboles Pintados	35381	printed	20240520144446
+3	Blacklight Bar	00:45	01:45	A Shade of Black	35377	printed	20240520144446
+3	Blacklight Bar	23:45	00:45	Neon Black	35393	printed	20240520144446
+3	Blacklight Bar	22:30	23:45	Kallaghan	35389	printed	20240520144446
+3	Blacklight Bar	21:30	22:30	Harmson	35386	printed	20240520144446
+3	Blacklight Bar	20:15	21:30	Bowie Jane	35385	printed	20240520144446
+3	Blacklight Bar	19:00	20:15	simfonik	35394	printed	20240520144446
