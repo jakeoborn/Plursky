@@ -964,6 +964,137 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:forest-house-art-car",
+     "names": [
+      {
+       "printed": "Forest House Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-las-vegas-2022",
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boombox-art-car",
+     "names": [
+      {
+       "printed": "Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:corona-stage",
+     "names": [
+      {
+       "printed": "Corona Stage",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:allegiant-rave-hangar",
+     "names": [
+      {
+       "printed": "Allegiant Rave Hangar",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:pariah-express-art-car",
+     "names": [
+      {
+       "printed": "Pariah Express Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:house-of-dunkin",
+     "names": [
+      {
+       "printed": "House of Dunkin'",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:meta-phoenix",
+     "names": [
+      {
+       "printed": "Meta Phoenix",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

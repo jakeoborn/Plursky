@@ -577,6 +577,68 @@
    }
   },
   {
+   "id": "edc-las-vegas-2024",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-05-17",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-05-18",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-05-19",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 15,
+    "artists": 371,
+    "sets": 394
+   }
+  },
+  {
+   "id": "edc-las-vegas-2022",
+   "festivalId": "edc-lv",
+   "festivalName": "EDC Las Vegas",
+   "name": "EDC Las Vegas 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-05-20",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-05-21",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-05-22",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 16,
+    "artists": 395,
+    "sets": 429
+   }
+  },
+  {
    "id": "edc-orlando-2025",
    "festivalId": "edc-orlando",
    "festivalName": "EDC Orlando",

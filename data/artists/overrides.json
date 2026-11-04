@@ -1099,6 +1099,50 @@
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   },
   {
+   "printed": "Piques + Lāsh",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "On Deck + Skemaddox",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Creeds + Helen Ka",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Odd Mob x Omnom: Hyperbeam",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hulk Gang (4B + Valentino Khan)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hivemind (Kayzo x Space Laces x Must Die!)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fallen B2B Fury B2B Nightstalker with Dknow (MC Dino)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bunny (Rabbit In The Moon)",
+   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+  },
+  {
+   "key": "dot",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "geo",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "mk",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
    "printed": "Tim and the Space Cadets with Mother Falcon",
    "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   },
