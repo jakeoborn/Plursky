@@ -11,7 +11,10 @@
 //   4. Time class: third_party never earns full/partial, blank never claims
 //      the set, an unresolved time is blank.
 //   5. Evidence: a photo is a point (caught, never full), manual always wins.
-//   6. Mutations: each threshold nudged in the compiled source must fail a
+//   6. Fix gate (spec PR 2): one stageFixGate for Live Set Check-in and the
+//      attendance geofence — fresh (60 s, 120 s in saver), ±100 m, ≤140 m,
+//      ≥35 m clear of the runner-up, measured anchors only, every boundary.
+//   7. Mutations: each threshold nudged in the compiled source must fail a
 //      check here, or the check is vacuous.
 import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
@@ -47,7 +50,8 @@ function load(src) {
   vm.createContext(ctx);
   vm.runInContext(MODS, ctx);
   vm.runInContext(src, ctx, { filename: "build/data.js" });
-  return vm.runInContext(`({ attendFixesToIntervals, attendanceVerdict, attendanceVerdictLabel, attendTimeClass, attendSetWindowMs })`, ctx);
+  return vm.runInContext(`({ attendFixesToIntervals, attendanceVerdict, attendanceVerdictLabel, attendTimeClass, attendSetWindowMs,
+    stageFixGate, attendQualifyFixes, attendEvidenceAnchors, STAGE_FIX_ATTEND, STAGE_FIX_ATTEND_SAVER })`, ctx);
 }
 
 const H = 3600000, M = 60000, D = 86400000;
@@ -156,13 +160,73 @@ function run(S) {
     check(man.verdict === "full" && man.caught, "manual full wins over a brief GPS read");
     check(V(set60, fixes(at(20, 0), at(21, 0)), { manual: "partial" }).verdict === "partial", "GPS never upgrades a manual partial");
   }
+
+  // ── 6. Fix gate ──────────────────────────────────────────────────────────
+  {
+    const R = S.STAGE_FIX_ATTEND, RS = S.STAGE_FIX_ATTEND_SAVER;
+    // Synthetic anchors on one meridian: main, side 100 m north, far 600 m south.
+    const LAT = 30.25, LNG = -97.75, MPD = 111195;
+    const pt = m => ({ lat: LAT + m / MPD, lng: LNG });
+    const main = { stageId: "main", ...pt(0) }, side = { stageId: "side", ...pt(100) }, far = { stageId: "far", ...pt(-600) };
+    const T = at(20, 30);
+    const G = (anchors, m, extra = {}, rules = R) => S.stageFixGate(anchors, { ...pt(m), accuracy: 10, timestamp: T, ...extra }, T, rules);
+    check(G([main, far], 0).status === "trusted" && G([main, far], 0).stageId === "main", "on the anchor, ±10 m, fresh: trusted for main");
+    check(G([main, far], 0, { accuracy: 100 }).status === "trusted", "±100 m is trusted");
+    check(G([main, far], 0, { accuracy: 101 }).status === "coarse", "±101 m is coarse");
+    check(G([main, far], 0, { accuracy: undefined }).status === "coarse", "a fix with no accuracy is coarse, never trusted");
+    check(G([main, far], -139).status === "trusted", "139 m from main (south, toward far): trusted");
+    check(G([main, far], -141).status === "outside" || G([main, far], 141).status === "outside", "141 m from main: outside");
+    check(G([main, far], 141).status === "outside", "141 m north of main, nothing nearer: outside");
+    check(G([main, side], 32).status === "trusted" && G([main, side], 32).stageId === "main", "32 m from main, 68 from side (36 m clear): trusted");
+    check(G([main, side], 33).status === "ambiguous", "33 m from main, 67 from side (34 m clear): ambiguous");
+    check(G([main, side], 50).status === "ambiguous" && G([side, main], 50).status === "ambiguous", "exactly between two stages: ambiguous in both array orders");
+    check(JSON.stringify(G([main, side], 20)) === JSON.stringify(G([side, main], 20)), "anchor array order never changes the answer");
+    check(G([main, far], 0, { timestamp: T - 60000 }).status === "trusted", "a 60 s old fix is LIVE");
+    check(G([main, far], 0, { timestamp: T - 60001 }).status === "stale", "a 60.001 s old fix is stale");
+    check(G([main, far], 0, { timestamp: T - 120000 }, RS).status === "trusted", "battery saver: a 120 s old fix is LIVE");
+    check(G([main, far], 0, { timestamp: T - 120001 }, RS).status === "stale", "battery saver: 120.001 s is stale");
+    check(S.stageFixGate([], { ...pt(0), accuracy: 10 }, T, R).status === "no-anchors", "no measured anchors: no stage");
+    check(S.stageFixGate([main], null, T, R).status === "none", "no fix: no stage");
+    check(RS.maxAccM === R.maxAccM && RS.maxDistM === R.maxDistM && RS.minMarginM === R.minMarginM, "saver changes freshness only");
+
+    // Measured anchors only: a poster read never reaches the gate.
+    const ev = S.attendEvidenceAnchors({ gpsAnchors: [{ ...main, src: "osm" }, { ...side, src: "poster" }, { ...far, src: "crowd" }, { stageId: "x", ...pt(900) }] });
+    const evIds = ev.map(a => a.stageId).sort().join(",");
+    check(evIds === "far,main", `evidence anchors are osm/crowd only (got ${evIds})`);
+
+    // Samples → qualifying fixes → verdict. A coarse feed claims nothing;
+    // a good one is the full set; the gate drops the bad minutes mid-run.
+    const feed = (acc, from = at(20, 0), to = at(21, 0)) => { const o = []; for (let t = from; t <= to; t += M) o.push({ ...pt(5), accuracy: acc, timestamp: t, atMs: t + 2000 }); return o; };
+    const q = (samples, rules) => S.attendQualifyFixes(samples, [main, far], rules);
+    check(q(feed(10)).length === 61 && q(feed(10)).every(f => f.stageId === "main"), "61 good samples → 61 fixes at main");
+    check(q(feed(10))[0].ms === at(20, 0), "a fix counts at its own timestamp, not when it arrived");
+    check(q(feed(150)).length === 0, "±150 m samples → no fixes");
+    check(V(set60, q(feed(10))).verdict === "full", "an hour of good fixes → full set");
+    check(V(set60, q(feed(150))).verdict === "none", "an hour of coarse fixes → no verdict");
+    const late = feed(10).map(f => ({ ...f, atMs: f.timestamp + 90000 }));
+    check(q(late).length === 0 && q(late, RS).length === 61, "fixes delivered 90 s late: stale, LIVE in battery saver");
+    const gappy = feed(10).map((f, i) => (i > 10 && i < 40 ? { ...f, accuracy: 300 } : f));
+    check(V(set60, q(gappy)).verdict === "partial", "29 coarse minutes mid-set break the run: partial, not full");
+  }
   return { checks, failed, fails };
 }
 
 const base = run(load(DATA));
+// The gate's callers, on their source lines. A map fix without accuracy would
+// read as coarse and silently stop GPS auto-attend everywhere.
+{
+  const src = n => readFileSync(join(ROOT, n), "utf8").split("\n").filter(l => !/^\s*\/\//.test(l)).join("\n");
+  const chrome = src("chrome.jsx"), map = src("map.jsx"), spot = src("spotify.jsx");
+  const det = chrome.slice(chrome.indexOf("function detectCurrentArtist("), chrome.indexOf("function recordAttendanceFromGps("));
+  const st = (ok, msg) => { base.checks++; if (!ok) { base.failed++; base.fails.push(msg); } };
+  st(/stageFixGate\(anchors,/.test(det) && /attendEvidenceAnchors\(cfg\)/.test(det), "detectCurrentArtist asks the shared gate on measured anchors");
+  st(!/_gpsDistMeters|radiusM/.test(chrome), "chrome.jsx keeps no second distance rule");
+  st(/recordAttendanceFromGps\?\.\(lat, lng, \{ accuracy: p\.coords\.accuracy, timestamp: p\.timestamp/.test(map), "the map passes the fix's accuracy and timestamp");
+  st(/function _checkinGps\([^)]*\) \{\s*return stageFixGate\(anchors, fix, atMs, rules\);/.test(spot), "Live Set Check-in delegates to the same gate");
+}
 for (const f of base.fails) console.log(`  ✗  ${f}`);
 
-// ── 6. Mutations: every threshold nudge must be caught ──────────────────────
+// ── 7. Mutations: every threshold nudge must be caught ──────────────────────
 const MUT = [
   ["ATTEND_FULL_SHARE = 0.85", "ATTEND_FULL_SHARE = 0.8"],
   ["ATTEND_FULL_EDGE_MS = 10 * 60000", "ATTEND_FULL_EDGE_MS = 12 * 60000"],
@@ -173,6 +237,16 @@ const MUT = [
   ["ATTEND_PHOTO_MS = 2 * 60000", "ATTEND_PHOTO_MS = 0"],
   ["return score(w2) > score(w1) ? w2 : w1", "return w1"],
   ['a.sourceClass === "third_party" ? "third_party"', 'false ? "third_party"'],
+  ["maxAgeMs: 60000,", "maxAgeMs: 50000,"],
+  ["maxAgeMs: 120000,", "maxAgeMs: 60000,"],
+  ["maxAccM: 100,\n  maxDistM: 140,\n  minMarginM: 35\n};\nvar STAGE_FIX_ATTEND_SAVER", "maxAccM: 120,\n  maxDistM: 140,\n  minMarginM: 35\n};\nvar STAGE_FIX_ATTEND_SAVER"],
+  ["maxDistM: 140,\n  minMarginM: 35\n};\nvar STAGE_FIX_ATTEND_SAVER", "maxDistM: 160,\n  minMarginM: 35\n};\nvar STAGE_FIX_ATTEND_SAVER"],
+  ["minMarginM: 35\n};\nvar STAGE_FIX_ATTEND_SAVER", "minMarginM: 25\n};\nvar STAGE_FIX_ATTEND_SAVER"],
+  ["if (accM == null || accM > rules.maxAccM)", "if (accM > rules.maxAccM)"],
+  ["out.marginM != null && out.marginM < rules.minMarginM", "false"],
+  ["atMs - fix.timestamp > rules.maxAgeMs", "false"],
+  ['return s === "osm" || s === "crowd";', "return true;"],
+  ["var ms = typeof f.timestamp === \"number\" ? f.timestamp : f.atMs;", "var ms = f.atMs;"],
 ];
 let caught = 0, mutFail = 0;
 for (const [from, to] of MUT) {
