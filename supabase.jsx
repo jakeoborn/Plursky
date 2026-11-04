@@ -569,7 +569,7 @@ async function sbExportUserData(state) {
     crewCode: safeLs("plursky_group_code"),
     settings: {
       reminderLeadMin: parseJson(safeLs("plursky_reminder_lead_min")),
-      batterySaver:    safeLs("plursky_battery_saver"),
+      batterySaver:    safeLs("battery_saver_mode"),
       pinger:          safeLs("plursky_pinger_v1"),
     },
     // Conflicts the user explicitly chose to keep both
@@ -1155,15 +1155,30 @@ async function sbPresenceUpdate(arg) {
   _presNotify();
 }
 
-let _heartbeatId = null;
+let _heartbeatId = null, _heartbeatGen = 0;
+// 20s heartbeat: fire-and-forget broadcast has no history, so periodic
+// re-announce keeps everyone fresh and beats the 90s stale cutoff. On battery
+// saver or a weak signal it stretches to 60s, still inside that cutoff; each
+// beat re-reads the policy, so it eases off and recovers without a restart.
+const PRES_HEARTBEAT_MS = 20000, PRES_HEARTBEAT_SAVER_MS = 60000;
+function _presHeartbeatMs() {
+  return (typeof plurskyNetSaver === "function" && plurskyNetSaver()) ? PRES_HEARTBEAT_SAVER_MS : PRES_HEARTBEAT_MS;
+}
 function _startPresenceHeartbeat() {
-  if (_heartbeatId) clearInterval(_heartbeatId);
-  // 20s heartbeat: fire-and-forget broadcast has no history, so periodic
-  // re-announce keeps everyone fresh and beats the 90s stale cutoff.
-  _heartbeatId = setInterval(() => { _broadcastMyLoc(); _broadcastMyRally(); _presNotify(); }, 20000);
+  _stopPresenceHeartbeat();
+  const gen = _heartbeatGen;
+  const beat = () => {
+    _heartbeatId = null;
+    _broadcastMyLoc(); _broadcastMyRally(); _presNotify();
+    // A beat that ended the share (past expiresAt the guard leaves, which stops
+    // the heartbeat) or that a Stop overtook schedules nothing more.
+    if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());
+  };
+  _heartbeatId = setTimeout(beat, _presHeartbeatMs());
 }
 function _stopPresenceHeartbeat() {
-  if (_heartbeatId) { clearInterval(_heartbeatId); _heartbeatId = null; }
+  _heartbeatGen++;
+  if (_heartbeatId) { clearTimeout(_heartbeatId); _heartbeatId = null; }
 }
 
 // Re-join on the channel matching the current crew code. Called after a
@@ -1781,8 +1796,10 @@ async function sbCrewSendMessage(code, pid, name, body) {
     // optimistic stub shows "⏱ QUEUED" instead of "FAILED · TAP TO RETRY"
     // (which would create a duplicate when the drainer eventually succeeds).
     sbOutboxAdd({ type: "crew_msg", code, pid, name, body: trimmed });
+    window.plurskyNoteNetQueued?.(true);
     return { error: null, queued: true };
   }
+  window.plurskyNoteNetQueued?.(false);
   return { error: null, queued: false };
 }
 
