@@ -98,6 +98,90 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-las-vegas-2022:d1:parliament-art-car:0100:sultan-shepard",
+  "printed": "Sultan + Shepard",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2022:d1:boombox-art-car:0300:piques-lash",
+  "printed": "Piques + Lāsh",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2022:d2:cosmic-meadow:0230:hulk-gang-4b-valentino-khan",
+  "printed": "Hulk Gang (4B + Valentino Khan)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2022:d2:parliament-art-car:0400:on-deck-skemaddox",
+  "printed": "On Deck + Skemaddox",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2022:d3:parliament-art-car:0000:bunny-rabbit-in-the-moon",
+  "printed": "Bunny (Rabbit In The Moon)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+ },
+ {
+  "id": "edc-las-vegas-2022:d3:allegiant-rave-hangar:2200:truth-x-lies",
+  "printed": "Truth x Lies",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2024:d1:wasteland:0130:hivemind-kayzo-x-space-laces-x-must-die",
+  "printed": "Hivemind (Kayzo x Space Laces x Must Die!)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2024:d1:stereo-bloom:2300:odd-mob-x-omnom-hyperbeam",
+  "printed": "Odd Mob x Omnom: Hyperbeam",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2024:d2:wasteland:0330:creeds-helen-ka",
+  "printed": "Creeds + Helen Ka",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2024:d2:rynobus:0200:bunny-rabbit-in-the-moon",
+  "printed": "Bunny (Rabbit in the Moon)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+ },
+ {
+  "id": "edc-las-vegas-2024:d2:meta-phoenix:0345:fallen-b2b-fury-b2b-nightstalker-with-dknow-mc-dino",
+  "printed": "Fallen B2B Fury B2B Nightstalker with Dknow (MC Dino)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2024:d3:meta-phoenix:0415:bunny-rabbit-in-the-moon",
+  "printed": "Bunny (Rabbit in the Moon)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+ },
+ {
   "id": "edc-las-vegas-2025:d2:forest-house:0315:bunny-rabbit-in-the-moon",
   "printed": "Bunny (Rabbit in the Moon)",
   "reason": "parenthetical is not a known set tag",
@@ -303,6 +387,27 @@
  {
   "id": "key:tdj",
   "printed": "TDJ",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:dot",
+  "printed": "Dot",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:geo",
+  "printed": "Geo",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:mk",
+  "printed": "MK",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

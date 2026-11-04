@@ -125,7 +125,8 @@ try {
 
   // ── EDC: overnight sets sort after the evening, not before noon ──
   await page.getByRole("button", { name: "Back" }).click();
-  await page.getByRole("button", { name: /^EDC Las Vegas/ }).click();
+  // EDC LV has several past editions; this block reads 2025's data, so open 2025's row.
+  await page.getByRole("button", { name: /^EDC Las Vegas\b.*\b2025\b/ }).click();
   await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
   const edc = ED["edc-las-vegas-2025"];
   const firstStage = edc.stages.find(st => edc.sets.some(s => s.day === 1 && s.stageId === st.id));
