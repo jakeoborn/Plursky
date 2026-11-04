@@ -818,8 +818,12 @@ const FESTIVALS_REGISTRY = [
     // ("2026 map only, no waiver, and it stays closed until the official 2026
     // set times are out"). The map is the official 2026 map only. Its
     // registration is still poster-class (no OSM polygon matches the fence,
-    // so it carries no footprint) and verify says so: "unsourced, blind with
-    // no waiver". No waiver is added.
+    // so it carries no footprint), so verify reports it unsourced and blind.
+    // That is excused by a dated waiver in verify.mjs REGISTRATION_WAIVERS
+    // (expires 2026-12-01). It overrides the "no waiver" line for this
+    // festival only, because no satellite capture of an EDC build exists.
+    // Distance readouts and GPS auto-attend stay off: the anchors are poster
+    // reads.
     available: true,
     accent:    "#22c55e",
     emoji:     "🌴",

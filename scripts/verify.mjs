@@ -1509,6 +1509,28 @@ const REGISTRATION_TOL_M = 25;
             "verizon and snapchat agree with the official 2026 patron map " +
             "(snapchat N/S conflict settled 2026-10-18)",
     },
+    "edc-orlando-2026": {
+      excuses: ["unsourced", "blind"],
+      // Added 2026-11-04, when the official 2026 set times opened the
+      // festival (#262). This overrides the 2026-10-29 "no waiver" line for
+      // this festival only (ruled in the PR thread, 2026-11-04). All five
+      // anchors are poster reads off the official 2026 map (street-corner
+      // fit, rms 9.5 m), so they cannot be evidence. Esri Wayback was
+      // checked the same day: Tinker Field has only three captures
+      // (2021-01-28, 2023-02-06, 2024-04-26, State of Florida 7.6 cm), none
+      // during an EDC build, and the 2026 stages go up the week of the
+      // festival (Nov 6-8). No published imagery can measure them in time.
+      // While this stands, distance readouts and GPS auto-attend stay OFF,
+      // because both refuse poster anchors. Clears with a measured basis
+      // plus one independent anchor, from a post-festival capture or an
+      // on-site survey. Delete it then, or let it expire and gate the
+      // festival again.
+      expires: "2026-12-01",
+      note: "all 5 anchors are poster reads off the official 2026 map; no " +
+            "satellite capture shows an EDC Orlando build (Esri Wayback at " +
+            "Tinker Field: 2021-01-28, 2023-02-06, 2024-04-26 only). " +
+            "Distance readouts and GPS auto-attend stay off.",
+    },
   };
   const regProblems = [];
   const waived = new Set();
