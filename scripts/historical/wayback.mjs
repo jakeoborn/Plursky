@@ -78,9 +78,15 @@ export async function fetchCapture(timestamp, url, { binary = false } = {}) {
     rec = { requestedUrl: url, requestedTimestamp: timestamp, captureTimestamp: served,
       archivedUrl: viewUrl(served, url), contentType: r.headers.get("content-type"),
       sha256: sha256(buf), bytes: buf.length, observedAt: new Date().toISOString() };
-    mkdirSync(CACHE_DIR, { recursive: true });
-    writeFileSync(file, buf);
-    writeFileSync(meta, JSON.stringify(rec, null, 2));
+    // Only the exact capture is cached under its own key. A neighbour is
+    // returned (and recorded as served) but not kept, or every later run would
+    // get the neighbour back: ACL 2018 W2's 2018-12-06 key had held a 2019
+    // page since 2026-10-22 although Wayback serves the 2018 capture.
+    if (served === timestamp) {
+      mkdirSync(CACHE_DIR, { recursive: true });
+      writeFileSync(file, buf);
+      writeFileSync(meta, JSON.stringify(rec, null, 2));
+    }
   }
   return { buf, text: binary ? null : buf.toString("utf8"), file, ...rec };
 }

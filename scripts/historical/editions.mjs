@@ -8,6 +8,9 @@
 
 import { slug } from "./lib.mjs";
 
+const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
+  "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
+
 export const EDITIONS = {
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
@@ -33,6 +36,43 @@ export const EDITIONS = {
       ["2025-10-10", "Friday"], ["2025-10-11", "Saturday"], ["2025-10-12", "Sunday"]],
     dayLabels: ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
       "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"] },
+  // ACL 2014-2016, 2018, 2019: the official aclfestival.com schedule grid, one
+  // archived page per weekend (format "acl-grid", acl-schedule.mjs). The grid
+  // prints ranges with no am/pm; each start is read off the page's own printed
+  // hour axis by the block's position (ruling A, 2026-11-04).
+  // ACL 2013's Weekend 2 Sunday (Oct 13) was cancelled by flooding: the final
+  // official W2 page still prints its grid under a cancellation banner. The
+  // edition has no such day (Instinct's ruling, 2026-11-04): the importer
+  // proves the banner and that the sheet excludes every block of that day.
+  "acl-2013": { festivalId: "acl", name: "Austin City Limits 2013", year: 2013,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2013-10-04", "Friday"], ["2013-10-05", "Saturday"], ["2013-10-06", "Sunday"], ["2013-10-11", "Friday"], ["2013-10-12", "Saturday"]],
+    dayLabels: ACL_WEEKEND_LABELS.slice(0, 5),
+    cancelledDays: [{ date: "2013-10-13", weekday: "Sunday", banner: "Sunday Performances Have Been Canceled Due To Flooding" }],
+    notes: [{ asOf: "2026-11-04", text: "Weekend 2 Sunday (October 13) was cancelled because of flooding, so it has no sets here. The official Weekend 2 schedule printed: “Sunday Performances Have Been Canceled Due To Flooding”.",
+      source: "https://web.archive.org/web/20140215094751/http://www.aclfestival.com/2013-schedule/weekend-two/" }] },
+  "acl-2014": { festivalId: "acl", name: "Austin City Limits 2014", year: 2014,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2014-10-03", "Friday"], ["2014-10-04", "Saturday"], ["2014-10-05", "Sunday"], ["2014-10-10", "Friday"], ["2014-10-11", "Saturday"], ["2014-10-12", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "acl-2015": { festivalId: "acl", name: "Austin City Limits 2015", year: 2015,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2015-10-02", "Friday"], ["2015-10-03", "Saturday"], ["2015-10-04", "Sunday"], ["2015-10-09", "Friday"], ["2015-10-10", "Saturday"], ["2015-10-11", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "acl-2016": { festivalId: "acl", name: "Austin City Limits 2016", year: 2016,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2016-09-30", "Friday"], ["2016-10-01", "Saturday"], ["2016-10-02", "Sunday"], ["2016-10-07", "Friday"], ["2016-10-08", "Saturday"], ["2016-10-09", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // ACL 2017's Weekend 2 survives only in a capture from Oct 9, four days
+  // before that weekend: its lineup ships, its times do not (Instinct's
+  // ruling, 2026-11-04). Those days are untimed: sets carry no start or end.
+  "acl-2017": { festivalId: "acl", name: "Austin City Limits 2017", year: 2017,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2017-10-06", "Friday"], ["2017-10-07", "Saturday"], ["2017-10-08", "Sunday"], ["2017-10-13", "Friday"], ["2017-10-14", "Saturday"], ["2017-10-15", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS, untimedDays: [4, 5, 6],
+    notes: [{ asOf: "2026-11-04", days: [4, 5, 6], text: "The only archived Weekend 2 schedule was captured October 9, before that weekend, so set times are not confirmed. The lineup is as that page printed it.",
+      source: "https://web.archive.org/web/20171009063627/https://www.aclfestival.com/schedule-weekend-two/?goal=0_59b0a4eaa1-57b082a223-155739397&mc_cid=57b082a223&mc_eid=217da620b6" }] },
+  "acl-2018": { festivalId: "acl", name: "Austin City Limits 2018", year: 2018,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2018-10-05", "Friday"], ["2018-10-06", "Saturday"], ["2018-10-07", "Sunday"], ["2018-10-12", "Friday"], ["2018-10-13", "Saturday"], ["2018-10-14", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  "acl-2019": { festivalId: "acl", name: "Austin City Limits 2019", year: 2019,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_sources", dates: [["2019-10-04", "Friday"], ["2019-10-05", "Saturday"], ["2019-10-06", "Sunday"], ["2019-10-11", "Friday"], ["2019-10-12", "Saturday"], ["2019-10-13", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   // Escape: no single archived source covers most years. Each day lists its
   // sources (an archived official page, or an official graphic re-hosted by
   // the festival's X account or EDM Identity, ruling A) in ledger/<id>.json.
@@ -129,7 +169,7 @@ export const DROP_RULES = [
   // "AFTER PARTY SET TIMES" graphic, after the festival's close.
   { category: "after-party", stage: /^after party\b/i,
     reason: "after-party: printed separately, after the festival's close, not part of the festival schedule" },
-  { category: "operational", test: /^(fireworks|closing fireworks|(opening|closing) ceremony(:.*)?|silent disco|changeover)$/i,
+  { category: "operational", test: /^(fireworks|closing fireworks|(opening|closing) ceremony(:.*)?|silent disco( powered by .+)?|changeover)$/i,
     reason: "operational programming, not a billed performance" },
   // EDC Orlando's Kinetic Field prints its show between sets: intermezzos,
   // named interludes (2019 "NATURAL ENERGY", 2022 "GROW", "BLOSSOM") and the

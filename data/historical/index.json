@@ -47,6 +47,323 @@
    }
   },
   {
+   "id": "acl-2019",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2019",
+   "year": 2019,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-10-04",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-10-05",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-10-06",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2019-10-11",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2019-10-12",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2019-10-13",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 144,
+    "sets": 219
+   }
+  },
+  {
+   "id": "acl-2018",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2018",
+   "year": 2018,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-10-05",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-10-06",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-10-07",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2018-10-12",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2018-10-13",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2018-10-14",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 149,
+    "sets": 225
+   }
+  },
+  {
+   "id": "acl-2017",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2017",
+   "year": 2017,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-10-06",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-10-07",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-10-08",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2017-10-13",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2017-10-14",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2017-10-15",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 148,
+    "sets": 228
+   }
+  },
+  {
+   "id": "acl-2016",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2016",
+   "year": 2016,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-09-30",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-10-01",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-10-02",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2016-10-07",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2016-10-08",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2016-10-09",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 158,
+    "sets": 234
+   }
+  },
+  {
+   "id": "acl-2015",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2015",
+   "year": 2015,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-10-02",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-10-03",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-10-04",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2015-10-09",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2015-10-10",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2015-10-11",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 152,
+    "sets": 246
+   }
+  },
+  {
+   "id": "acl-2014",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2014",
+   "year": 2014,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-10-03",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-10-04",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-10-05",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2014-10-10",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2014-10-11",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2014-10-12",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 138,
+    "sets": 240
+   }
+  },
+  {
+   "id": "acl-2013",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2013",
+   "year": 2013,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-10-04",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-10-05",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-10-06",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2013-10-11",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2013-10-12",
+     "label": "Weekend 2 · Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 136,
+    "sets": 219
+   }
+  },
+  {
    "id": "beyond-wonderland-gorge-2026",
    "festivalId": "beyond-wonderland-gorge",
    "festivalName": "Beyond Wonderland at The Gorge",
