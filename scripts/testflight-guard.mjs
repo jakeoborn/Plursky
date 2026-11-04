@@ -47,3 +47,30 @@ export function externalDistribution(groups) {
   }
   return out;
 }
+
+// Wait for the uploaded build to be VALID, then read its beta groups. The
+// groups are never read while the build is PROCESSING (or in any state but
+// VALID): a group Apple attaches when processing finishes would otherwise be
+// missed. There is no opt-out. All I/O is injected, so the test drives it with
+// a fake clock and fake ASC.
+//   poll()            → { state, buildId }  (state null while not visible yet)
+//   readGroups(id)    → ASC betaGroups rows for that build
+//   sleep()           → resolves after one poll interval
+//   now(), deadline   → ms clock and the give-up time
+// Returns { state, buildId, groups, problems }; any problem means stop.
+export async function awaitValidBuild({ poll, readGroups, sleep, now, deadline, onWait = () => {} }) {
+  let state = null, buildId = null;
+  while (now() < deadline) {
+    ({ state = null, buildId = null } = (await poll()) || {});
+    if (state === "VALID") break;
+    if (state === "INVALID" || state === "FAILED") {
+      return { state, buildId, groups: [], problems: [`App Store Connect marked the build ${state}`] };
+    }
+    onWait(state);
+    await sleep();
+  }
+  if (!state) return { state, buildId, groups: [], problems: ["the build never appeared in App Store Connect before the deadline"] };
+  if (state !== "VALID") return { state, buildId, groups: [], problems: [`the build is still ${state} at the deadline; its groups were not read`] };
+  const groups = (await readGroups(buildId)) || [];
+  return { state, buildId, groups, problems: externalDistribution(groups) };
+}
