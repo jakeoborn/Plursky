@@ -534,5 +534,17 @@ for (const [printed, date, year, dates, want] of [
   }
 }
 
+// 7. The Wayback cache never hands back a neighbouring capture under the
+// requested key: a poisoned entry is refetched, a redirect is never cached.
+// Own process: it isolates the cache dir and stubs fetch.
+{
+  checks++;
+  try {
+    const out = execFileSync(process.execPath, [join(ROOT, "scripts/test-wayback-cache.mjs")],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out.trimEnd().replace(/^/gm, "  ") + "\n");
+  } catch (e) { fails.push(`wayback cache: ${(e.stdout || "") + (e.stderr || "")}`.trim()); }
+}
+
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} historical-edition checks failed`); process.exit(1); }
 console.log(`  ✓ historical editions: ${files.length} edition(s) valid, ${checks} checks (${mutations} mutations, each caught), identity read off the page, isolated from the live app`);

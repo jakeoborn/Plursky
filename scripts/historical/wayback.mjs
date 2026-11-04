@@ -13,7 +13,7 @@
 // ARC's "closest" to 2025 was a 2021 page, which is exactly the trap.
 
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
 
@@ -66,9 +66,22 @@ export async function fetchCapture(timestamp, url, { binary = false } = {}) {
   const meta = file + ".json";
   let buf, rec;
   if (existsSync(file) && existsSync(meta)) {
-    buf = readFileSync(file);
     rec = JSON.parse(readFileSync(meta, "utf8"));
-  } else {
+    // A cache entry is trusted only if it IS the requested capture. An entry
+    // written before the exact-capture rule below (or by hand) can hold a
+    // neighbour under this key: ACL 2018 W2's 20181206131718 key held a
+    // 20190501000000 page. Move it aside (kept as evidence, never read again)
+    // and refetch, so a neighbour is never returned under the requested key.
+    if (rec.captureTimestamp !== timestamp) {
+      const stale = `.stale-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${rec.captureTimestamp || "unknown"}`;
+      renameSync(file, file + stale);
+      renameSync(meta, meta + stale);
+      rec = undefined;
+    } else {
+      buf = readFileSync(file);
+    }
+  }
+  if (!rec) {
     const r = await politeFetch(rawUrl(timestamp, url));
     if (!r.ok) throw new Error(`${rawUrl(timestamp, url)} → HTTP ${r.status}`);
     buf = Buffer.from(await r.arrayBuffer());
