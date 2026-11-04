@@ -137,14 +137,6 @@ function getMyStatus() {
 function persistMyStatus(stageId) {
   try { localStorage.setItem("status_me", JSON.stringify({ stage: stageId, ts: Date.now() })); } catch {}
 }
-function broadcastMyLocation(stageId) {
-  const stage = STAGES.find(s => s.id === stageId);
-  if (!stage) return;
-  const msg = `I'm at ${stage.name} 👋 come through`;
-  FRIENDS.forEach(f => {
-    saveThread(f.id, [...loadThread(f.id), { from: "me", text: msg, ts: Date.now(), status: "sent" }]);
-  });
-}
 
 
 // ── Wellness state ── persists across sessions in localStorage
@@ -1088,7 +1080,9 @@ function PingSheet({ onClose, onDropPin, friends }) {
 
 function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
   const [selected, setSelected] = React.useState(initialStage || null);
-  const [sent, setSent] = React.useState(false);
+  // "sending" | "sent" | "queued" | "failed" for the find-me beacon.
+  const [sent, setSent] = React.useState(null);
+  const crewCode = (() => { try { return localStorage.getItem("plursky_group_code") || ""; } catch { return ""; } })();
 
   const stage = STAGES.find(s => s.id === selected);
 
@@ -1105,14 +1099,20 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
     onClose();
   };
 
-  const tellCrew = () => {
-    if (!stage) return;
+  // Find-me beacon: the stage I picked goes to the crew thread, nothing else.
+  const tellCrew = async () => {
+    if (!stage || !crewCode || sent === "sending" || sent === "sent") return;
+    const body = _formatBeaconBody(selected, FESTIVAL_CONFIG.id, Date.now());
+    if (!body) return;
     persistMyStatus(selected);
     onStatusSet(selected);
-    broadcastMyLocation(selected);
-    setSent(true);
-    setTimeout(onClose, 900);
+    setSent("sending");
+    const { error, queued } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    const r = queued ? "queued" : error ? "failed" : "sent";
+    setSent(r);
+    if (r !== "failed") setTimeout(onClose, 900);
   };
+  const canTell = !!stage && !!crewCode;
 
   return (
     <div onClick={onClose} style={{
@@ -1162,15 +1162,18 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
           </div>
         )}
 
+        <div className="mono" data-find-me-note style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginBottom: 10, lineHeight: 1.4 }}>
+          {crewCode ? "YOUR CREW SEES THE STAGE FOR 15 MIN · NO GPS" : "START OR JOIN A CREW ON THE MAP TO SEND A FIND-ME"}
+        </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={tellCrew} disabled={!stage} style={{
+          <button data-find-me-send={sent || "idle"} onClick={tellCrew} disabled={!canTell || sent === "sending" || sent === "sent"} style={{
             flex: 1, padding: "10px 12px", borderRadius: 999,
-            background: sent ? "var(--success)" : (stage ? "var(--ink)" : "var(--paper-2)"),
-            color: stage ? "var(--paper)" : "var(--muted)",
-            border: "none", cursor: stage ? "pointer" : "default",
+            background: sent === "sent" || sent === "queued" ? "var(--success)" : (canTell ? "var(--ink)" : "var(--paper-2)"),
+            color: canTell ? "var(--paper)" : "var(--muted)",
+            border: "none", cursor: canTell ? "pointer" : "default",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
             transition: "background .2s",
-          }}>{sent ? "✓ CREW NOTIFIED" : "TELL MY CREW"}</button>
+          }}>{sent === "sending" ? "SENDING…" : sent === "sent" ? "✓ CREW CAN FIND YOU" : sent === "queued" ? "✓ QUEUED · SENDS ONLINE" : sent === "failed" ? "DIDN'T SEND · RETRY" : crewCode ? "FIND ME · TELL CREW" : "JOIN A CREW FIRST"}</button>
           <button onClick={shareLink} disabled={!stage} style={{
             flex: 1, padding: "10px 12px", borderRadius: 999,
             background: stage ? "var(--ember)" : "var(--paper-2)",
