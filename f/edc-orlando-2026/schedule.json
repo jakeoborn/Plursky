@@ -1,6 +1,6 @@
 {
   "festivalId": "edc-orlando-2026",
-  "source": {"url":"https://orlando.edc.com/lineup/set-times/day-1/","observedAt":"2026-11-04","official":true},
+  "source": {"url":"https://orlando.edc.com/lineup/set-times/day-1/","observedAt":"2026-11-04","official":true,"dayUrls":{"1":"https://orlando.edc.com/lineup/set-times/day-1/","2":"https://orlando.edc.com/lineup/set-times/day-2/","3":"https://orlando.edc.com/lineup/set-times/day-3/"}},
   "scheduleHash": "c0da1b169794ee86",
   "acts": [
     {"id":"ecf1","name":"AAT","day":1,"stage":"stereo","start":"14:15","end":"15:30"},

@@ -508,7 +508,12 @@ var FESTIVALS_REGISTRY = [{
     scheduleSource: {
       url: "https://orlando.edc.com/lineup/set-times/day-1/",
       observedAt: "2026-11-04",
-      official: true
+      official: true,
+      dayUrls: {
+        1: "https://orlando.edc.com/lineup/set-times/day-1/",
+        2: "https://orlando.edc.com/lineup/set-times/day-2/",
+        3: "https://orlando.edc.com/lineup/set-times/day-3/"
+      }
     },
     name: "EDC Orlando 2026",
     shortName: "EDC Orlando",

@@ -52,7 +52,7 @@
    ],
    "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
    "source": [
-    "https://orlando.edc.com/lineup/set-times/day-1/",
+    "https://orlando.edc.com/lineup/set-times/day-2/",
     "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
    ]
   },
@@ -477,7 +477,7 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://orlando.edc.com/lineup/set-times/day-1/"
+   "source": "https://orlando.edc.com/lineup/set-times/day-2/"
   },
   {
    "printed": "DOG BLOOD (SKRILLEX + BOYS NOIZE)",
@@ -609,7 +609,7 @@
     }
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Marian\".",
-   "source": "https://orlando.edc.com/lineup/set-times/day-1/"
+   "source": "https://orlando.edc.com/lineup/set-times/day-3/"
   },
   {
    "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",

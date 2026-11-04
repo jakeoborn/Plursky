@@ -221,13 +221,15 @@ export function build(root = ROOT, overrides = null) {
     // "tba" is the app's placeholder bucket ("Schedule TBA"), not a stage.
     const stageName = new Map((ds.stages || []).filter(s => s.id !== 'tba').map(s => [s.id, s.name]));
     const src = (cfg.scheduleSource || cfg.lineupSource || {}).url || null;
+    // A schedule published one page per day records each day's page, so a set cites the page that prints it.
+    const dayUrls = cfg.scheduleSource?.dayUrls || {};
     for (const a of ds.artists) {
       const dd = cfg.dayDates?.[a.day];
       let date = dd ? new Date(Date.UTC(dd.y, dd.m, dd.d)) : null;
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid,
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src: dayUrls[a.day] || src, festivalName: cfg.name || fid,
         // ACL bills a "both" act once and plays it each weekend: the second
         // date, a week on, rides the directory slice (the billing stays one).
         ...(date && a.weekend === 'both' ? { date2: new Date(date.getTime() + 7 * 86400000).toISOString().slice(0, 10) } : {}),

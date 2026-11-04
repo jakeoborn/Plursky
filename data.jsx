@@ -683,7 +683,9 @@ const FESTIVALS_REGISTRY = [
       // Where the lineup rows came from (the SOURCE note above), as data so the
       // public /f/ page can cite it. observedAt = the date it was read.
       lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-11-04", official: true },
-      scheduleSource: { url: "https://orlando.edc.com/lineup/set-times/day-1/", observedAt: "2026-11-04", official: true },
+      // Each night is its own page; dayUrls lets a set cite the page that prints it.
+      scheduleSource: { url: "https://orlando.edc.com/lineup/set-times/day-1/", observedAt: "2026-11-04", official: true,
+        dayUrls: { 1: "https://orlando.edc.com/lineup/set-times/day-1/", 2: "https://orlando.edc.com/lineup/set-times/day-2/", 3: "https://orlando.edc.com/lineup/set-times/day-3/" } },
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
