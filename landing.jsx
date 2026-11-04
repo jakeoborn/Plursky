@@ -230,17 +230,20 @@ function writeFestivalView(festivalId, patch) {
 // `plus` is passed in rather than read here so the pure gate can drive it.
 function _landingFestivalState(entry, now, plus) {
   const phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
-  if (!entry.available && !entry.previewOnly) return { label: "Not open yet", tone: "muted", locked: true };
+  // chip: how the row's state chip draws (Item 6). "fill" = open to walk
+  // into, "accent" = in, with something still to come, "neutral" = closed
+  // or over.
+  if (!entry.available && !entry.previewOnly) return { label: "Not open yet", tone: "muted", locked: true, chip: "neutral" };
   if (!entry.available && entry.previewOnly) {
     return plus
-      ? { label: "Early access", tone: "signal" }
-      : { label: "Early access · Plursky+", tone: "muted", locked: true, upsell: true };
+      ? { label: "Early access", tone: "signal", chip: "fill" }
+      : { label: "Early access · Plursky+", tone: "muted", locked: true, upsell: true, chip: "neutral" };
   }
-  if (phase === "live")  return { label: "Happening now", tone: "signal" };
-  if (phase === "ended") return { label: "Ended", tone: "muted" };
-  if (phase === "tba")   return { label: "Dates TBA", tone: "muted" };
-  if (entry.scheduleTBA) return { label: "Lineup in · set times TBA", tone: "muted" };
-  return { label: "Upcoming", tone: "muted" };
+  if (phase === "live")  return { label: "Happening now", tone: "signal", chip: "fill" };
+  if (phase === "ended") return { label: "Ended", tone: "muted", chip: "neutral" };
+  if (phase === "tba")   return { label: "Dates TBA", tone: "muted", chip: "accent" };
+  if (entry.scheduleTBA) return { label: "Lineup in · set times TBA", tone: "muted", chip: "accent" };
+  return { label: "Open", tone: "muted", chip: "fill" };
 }
 
 // ONE eligibility policy, used by the row, the primary button and the enter
@@ -270,7 +273,6 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
   const now = Date.now();
   const st = _landingFestivalState(entry, now, plus);
   const c = entry.config;
-  const toneColor = st.tone === "signal" ? "var(--signal-ink)" : "var(--text-2)";
   // An upsell row is locked as a DESTINATION and live as an OFFER: disabling
   // it is what made the row a dead end with nothing to tap.
   const dead = st.locked && !st.upsell;
@@ -278,9 +280,10 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
     <button
       onClick={() => { if (st.upsell) onUpsell?.(c.id, entry); else if (!st.locked) onEnter(c.id, entry); }}
       disabled={dead}
+      data-landing-row={c.id}
       aria-label={`${c.name}. ${st.label}.${st.upsell ? " Opens the Plursky+ offer." : ""}${saved ? " Saved." : ""}${memoryCount ? ` ${memoryCount} memories.` : ""}`}
       style={{
-        width: "100%", display: "flex", alignItems: "center", gap: 12,
+        width: "100%", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px 12px",
         minHeight: 72, padding: "10px 0",
         background: "transparent", border: "none",
         borderBottom: "1px solid var(--line)",
@@ -292,7 +295,7 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
           which nobody saw while the gate's "landing" screen was really Today.
           Only the picture keeps the dim. */}
       {typeof FestivalThumb === "function" ? <span style={{ flexShrink: 0, display: "flex", opacity: dead ? 0.55 : st.upsell ? 0.8 : 1 }}><FestivalThumb entry={entry} /></span> : null}
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ flex: "1 1 200px", minWidth: 0 }}>
         {/* Everything on this row WRAPS. At 320px "Henry Maier Festival Park ·
             Milwaukee, WI" pushed the row 42px wide and the card panned
             sideways; a clipped festival name or venue is also an ambiguous
@@ -310,19 +313,22 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
         <div data-fit-words data-fit-min="11" style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", minWidth: 0 }}>
           {c.location}{c.dates ? " · " : ""}{c.dates || null}
         </div>
-        <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: toneColor, fontVariantNumeric: "tabular-nums" }}>
-          {st.label}
-          {/* EXACT-festival count only. Absent means "none for this festival",
-              never "none anywhere" and never another festival's total. */}
-          {memoryCount > 0 ? ` · ${memoryCount} ${memoryCount === 1 ? "memory" : "memories"}` : ""}
-        </div>
+        {/* EXACT-festival count only. Absent means "none for this festival",
+            never "none anywhere" and never another festival's total. */}
+        {memoryCount > 0 && (
+          <div style={{ marginTop: 2, fontSize: 13, lineHeight: 1.38, color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+            {memoryCount} {memoryCount === 1 ? "memory" : "memories"}
+          </div>
+        )}
       </div>
-      {!dead && (
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)"
-             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-          <path d="M9 6 L15 12 L9 18"/>
-        </svg>
-      )}
+      {/* The state, right-aligned (Item 6): filled = open, accent outline =
+          lineup in with times to come, neutral outline = closed or over. The
+          name column keeps a 200px basis: when the chip would squeeze it below
+          that (phones, or large text), the chip drops to its own line, still
+          at the right edge, so a name takes at most two lines. 150px held on
+          this Mac but not on CI, where a classic scrollbar and the runner's
+          glyphs left "Beyond Wonderland at The Gorge 2027" three lines at 390. */}
+      <span data-landing-chip={st.chip} className={`landing-chip landing-chip-${st.chip}`} style={{ marginLeft: "auto" }}>{st.label}</span>
     </button>
   );
 }
@@ -491,7 +497,7 @@ function GeneralLandingScreen({ state, setState }) {
     { label: "Past",          fests: browse.filter(f => phaseOf(f) === "ended") },
   ].filter(g => g.fests.length > 0);
 
-  // The board's section eyebrow (duo-sect): Michroma caps.
+  // The board's section eyebrow (duo-sect): Space Grotesk caps.
   const eyebrow = { margin: "20px 0 6px" };
   const card = (f) => (
     <_LandingFestivalCard

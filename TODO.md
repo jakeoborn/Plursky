@@ -107,9 +107,8 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
       three anchors ARE the affine basis and nothing can ever check them. The
       fix is a non-stage landmark (the Unisphere, 40.746396/-73.845074), which
       needs a small schema change since `gpsAnchors` are `stageId`-keyed.
-- [ ] **Re-verify Govball `snapchat`** against the 2026 patron map or recap
-      media — north/south conflict, currently 737 m wide, landed on the 2025
-      official map's south position as `poster`.
+- [x] **Re-verify Govball `snapchat`** — settled via the official 2026
+      patron map in #320 (north/south conflict closed; blind waiver re-dated).
 
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
 Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:

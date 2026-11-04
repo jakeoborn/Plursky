@@ -60,6 +60,11 @@ jobs:
       - name: Cache-bust drift check (index.html + sw.js + app.jsx)
         run: node scripts/bump.mjs --check
 
+      # A `//` inside JSX renders as text (ToastHost printed three of them on
+      # every toast from v393 to v435). Valid JSX, so the parse gate misses it.
+      - name: No stray JSX comments
+        run: node scripts/test-no-stray-jsx-comments.mjs
+
       # Syntax only — no typecheck. Pinned to the repo's devDependency so
       # CI and local agree on what "parses" means.
       - name: JSX parse gate (syntax only, no typecheck)

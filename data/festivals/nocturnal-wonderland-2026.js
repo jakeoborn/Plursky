@@ -1849,6 +1849,8 @@
     locationShort: "Glen Helen Regional Park",
     dates:     "Sep 19\u201320, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#48FF7F", source: { url: "https://www.nocturnalwonderland.com/wp-content/assets/css/nocturnal.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, .bg-theme{background-color}, active nav link, blockquote (15 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and theme background to this green; no theme-color meta." },
     officialStages: ["Mystic Wild", "Dawn Mountain", "Aurora Plains", "Rave Cave", "Beatbox Boombox"],
     officialEvent: {
       id: 510542,
