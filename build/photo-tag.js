@@ -914,6 +914,325 @@ function _scanSeenAdd(ids) {
   } catch {}
   return trimmed.length;
 }
+var _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
+var _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
+var _SCAN_DIAG_MAX_EVENTS = 60;
+var _SCAN_DIAG_MAX_CHANGES = 80;
+var _SCAN_DIAG_MAX_RECORDS = 1500;
+var _SCAN_DIAG_MAX_CHARS = 38000;
+function _scanDiagSalt() {
+  try {
+    var s = localStorage.getItem(_SCAN_DIAG_SALT_KEY);
+    if (!s || !/^[0-9a-f]{32}$/.test(s)) {
+      var b = new Uint8Array(16);
+      if (window.crypto?.getRandomValues) window.crypto.getRandomValues(b);else for (var i = 0; i < 16; i++) b[i] = Math.floor(Math.random() * 256);
+      s = [...b].map(x => x.toString(16).padStart(2, "0")).join("");
+      localStorage.setItem(_SCAN_DIAG_SALT_KEY, s);
+    }
+    return s;
+  } catch {
+    return "nosalt";
+  }
+}
+function _scanDiagHash(id, salt) {
+  var str = `${salt}|${id}`;
+  var h1 = 0x811c9dc5,
+    h2 = 0x01000193 ^ 0x5bd1e995;
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 ^ c, 0x5bd1e995) >>> 0;
+    h2 = (h2 ^ h2 >>> 13) >>> 0;
+  }
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+}
+var _scanDiagStr = (v, re, max = 40) => typeof v === "string" && v.length <= max && re.test(v) ? v : v == null ? null : "?";
+var _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
+var _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
+var _SCAN_DIAG_WALL_RE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
+function _scanDiagRecord(m, night, salt) {
+  var imported = typeof m.importedAt === "string" ? m.importedAt.slice(0, 16) : null;
+  return {
+    h: _scanDiagHash(String(m.id), salt),
+    f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
+    n: Number.isFinite(Number(night)) ? Number(night) : null,
+    a: _scanDiagStr(m.artistId, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(m.tagSource, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
+    k: m.kind === "video" ? "v" : "p",
+    w: _scanDiagStr(m.takenAt, _SCAN_DIAG_WALL_RE, 16),
+    im: imported && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(imported) ? imported : null,
+    auto: m.autoTagged ? 1 : 0,
+    amb: m.tagAmbiguous ? 1 : 0,
+    rt: m.needsRetag ? 1 : 0,
+    fp: m._fingerprint ? 1 : 0
+  };
+}
+function _scanDiagRecords(all, salt) {
+  var out = [];
+  for (var night of Object.keys(all || {})) {
+    var arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (var m of arr) if (m && m.id != null) out.push(_scanDiagRecord(m, night, salt));
+  }
+  return out;
+}
+function _scanDiagSummary(records) {
+  var byFest = {},
+    bySource = {};
+  for (var r of records) {
+    var f = r.f || "-",
+      n = r.n == null ? "-" : String(r.n),
+      a = r.a || "-";
+    byFest[f] = byFest[f] || {
+      total: 0,
+      nights: {}
+    };
+    byFest[f].total++;
+    var nn = byFest[f].nights[n] = byFest[f].nights[n] || {};
+    nn[a] = (nn[a] || 0) + 1;
+    var s = r.ts || "-";
+    bySource[s] = (bySource[s] || 0) + 1;
+  }
+  return {
+    total: records.length,
+    byFest,
+    bySource
+  };
+}
+function _scanDiagRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_DIAG_KEY) || "null");
+    if (v && typeof v === "object" && Array.isArray(v.events)) return v;
+  } catch {}
+  return {
+    v: 1,
+    before: null,
+    last: null,
+    events: []
+  };
+}
+function _scanDiagWrite(d) {
+  try {
+    localStorage.setItem(_SCAN_DIAG_KEY, JSON.stringify(d));
+    return true;
+  } catch {
+    return false;
+  }
+}
+function _scanDiagOrigin(stack) {
+  var names = [];
+  for (var line of String(stack || "").split("\n")) {
+    var m = line.match(/^\s*(?:at\s+)?(?:async\s+)?([A-Za-z_$][\w$.]*)\s*(?:@|\()/);
+    var nm = m && m[1].split(".").pop();
+    if (!nm || /^_scanDiag|^_writeMoments$|^Error$/.test(nm)) continue;
+    if (nm.length <= 40) names.push(nm);
+    if (names.length >= 4) break;
+  }
+  return names.join(">") || "?";
+}
+function _scanDiagEnsureBefore(allIn) {
+  try {
+    var d = _scanDiagRead();
+    if (d.before) return false;
+    var salt = _scanDiagSalt();
+    var all = allIn || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(all, salt);
+    d.before = {
+      t: new Date().toISOString(),
+      summary: _scanDiagSummary(records),
+      records: records.slice(0, _SCAN_DIAG_MAX_RECORDS),
+      truncated: records.length > _SCAN_DIAG_MAX_RECORDS
+    };
+    d.last = Object.fromEntries(records.map(r => [r.h, `${r.f}|${r.n}|${r.a}|${r.ts}`]));
+    d.events.push({
+      t: d.before.t,
+      ev: "before",
+      origin: "boot",
+      total: records.length
+    });
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+function _scanDiagLog(ev, all, stack) {
+  try {
+    var d = _scanDiagRead();
+    var salt = _scanDiagSalt();
+    var cur = all || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(cur, salt);
+    var now = {};
+    for (var r of records) now[r.h] = `${r.f}|${r.n}|${r.a}|${r.ts}`;
+    var prev = d.last || {};
+    var added = 0,
+      removed = 0,
+      changed = 0;
+    var changes = [];
+    for (var h of Object.keys(now)) {
+      if (!(h in prev)) {
+        added++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`+${h}:${now[h]}`);
+      } else if (prev[h] !== now[h]) {
+        changed++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`~${h}:${prev[h]}>${now[h]}`);
+      }
+    }
+    for (var _h of Object.keys(prev)) if (!(_h in now)) {
+      removed++;
+      if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`-${_h}:${prev[_h]}`);
+    }
+    var origin = ev === "write" ? _scanDiagOrigin(stack) : ev;
+    var lastEv = d.events[d.events.length - 1];
+    if (ev === "write" && lastEv && lastEv.ev === "write" && lastEv.origin === origin) {
+      lastEv.writes = (lastEv.writes || 1) + 1;
+      lastEv.tEnd = new Date().toISOString();
+      lastEv.total = records.length;
+      lastEv.added += added;
+      lastEv.removed += removed;
+      lastEv.changed += changed;
+      for (var c of changes) if (lastEv.changes.length < _SCAN_DIAG_MAX_CHANGES) lastEv.changes.push(c);
+    } else {
+      d.events.push({
+        t: new Date().toISOString(),
+        ev,
+        origin,
+        total: records.length,
+        added,
+        removed,
+        changed,
+        changes
+      });
+      if (d.events.length > _SCAN_DIAG_MAX_EVENTS) {
+        d.events.splice(1, d.events.length - _SCAN_DIAG_MAX_EVENTS);
+      }
+    }
+    d.last = now;
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+function _scanDiagExportText(meta = {}) {
+  var d = _scanDiagRead();
+  var salt = _scanDiagSalt();
+  var all = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    } catch {
+      return {};
+    }
+  })();
+  var records = _scanDiagRecords(all, salt);
+  var ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
+  var build = n => ({
+    schema: "plursky-scan-diag/1",
+    created: new Date().toISOString(),
+    app: ver,
+    activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
+    scanSeen: (() => {
+      try {
+        return _scanSeenRead().size;
+      } catch {
+        return null;
+      }
+    })(),
+    before: d.before ? {
+      t: d.before.t,
+      summary: d.before.summary,
+      truncated: d.before.truncated || d.before.records.length > n,
+      records: d.before.records.slice(0, n)
+    } : null,
+    now: {
+      summary: _scanDiagSummary(records),
+      truncated: records.length > n,
+      records: records.slice(0, n)
+    },
+    events: d.events
+  });
+  var n = _SCAN_DIAG_MAX_RECORDS;
+  var text = JSON.stringify(build(n));
+  while (text.length > _SCAN_DIAG_MAX_CHARS && n > 0) {
+    n = Math.floor(n * 0.7);
+    text = JSON.stringify(build(n));
+  }
+  if (text.length > _SCAN_DIAG_MAX_CHARS) {
+    var slim = build(0);
+    slim.events = slim.events.slice(-10).map(e => ({
+      ...e,
+      changes: (e.changes || []).slice(0, 10)
+    }));
+    text = JSON.stringify(slim);
+  }
+  return text;
+}
+async function _scanDiagShare(meta = {}) {
+  _scanDiagLog("share", null, "");
+  var text = _scanDiagExportText(meta);
+  var capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      await capShare.share({
+        title: "Plursky scan diagnostic",
+        text,
+        dialogTitle: "Send scan diagnostic"
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (/cancel|abort/i.test(e?.message || "")) return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+      return {
+        ok: false,
+        mode: "error",
+        chars: text.length
+      };
+    }
+  }
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "Plursky scan diagnostic",
+        text
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (e?.name === "AbortError") return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+    }
+  }
+  try {
+    await navigator.clipboard?.writeText?.(text);
+    return {
+      ok: true,
+      mode: "copied",
+      chars: text.length
+    };
+  } catch {
+    return {
+      ok: false,
+      mode: "error",
+      chars: text.length
+    };
+  }
+}
+try {
+  _scanDiagEnsureBefore();
+} catch {}
 function _memoriesImportCopy(pickerAvailable, scanAvailable) {
   if (pickerAvailable) return {
     invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",

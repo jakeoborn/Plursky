@@ -1086,6 +1086,9 @@ function _readMoments() {
 let _momentSyncTimer = null;
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
+  // Build 39 scan diagnostic: record which caller changed which records.
+  // Read-only bookkeeping; it never alters what was just written.
+  try { if (typeof _scanDiagLog === "function") _scanDiagLog("write", all, new Error().stack); } catch {}
   // Fire so cross-screen consumers (per-artist strip on Artist screen,
   // Recap counts, etc.) re-read without prop-drilling.
   try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
@@ -6535,6 +6538,7 @@ function MemoriesScreen({ state, setState }) {
   // the next starts. A library id is remembered only once its import landed,
   // so a second scan picks up exactly what the first missed.
   const [scan, setScan] = React.useState(null); // null | { phase, ... }
+  const [diagNote, setDiagNote] = React.useState(null); // build 39: last "Share scan diagnostic" outcome
   const scanAvailable = !!(window.Capacitor?.isNativePlatform?.()
     && window.Capacitor?.Plugins?.PhotoScan?.scan
     && window.FESTIVAL_CONFIG?.dayDates);
@@ -6568,6 +6572,7 @@ function MemoriesScreen({ state, setState }) {
     if (!PS || !cfg?.dayDates) return;
     if ((batch && batch.done < batch.total) || (scan && ["access", "scanning", "importing"].includes(scan.phase))) return;
     setScan({ phase: "access" });
+    try { _scanDiagLog("scan-start"); } catch {}
     try {
       const access = await PS.requestAccess();
       const limited = access?.status === "limited";
@@ -6605,6 +6610,8 @@ function MemoriesScreen({ state, setState }) {
     } catch (err) {
       console.warn("[memories] scan failed", err);
       setScan({ phase: "error" });
+    } finally {
+      try { _scanDiagLog("scan-end"); } catch {}
     }
   };
   const _scanMessage = (st) => {
@@ -6935,7 +6942,7 @@ function MemoriesScreen({ state, setState }) {
           // resolves to a DIFFERENT festival is still a row in this list, and
           // it has to be reachable to be fixed.
           moments={rawAll}
-          onClose={() => setReview(null)}
+          onClose={() => { setReview(null); try { _scanDiagLog("review-close"); } catch {} }}
           onPatch={handlePatchMany}
           onMove={handleMoveNight}
         />
@@ -7039,6 +7046,27 @@ function MemoriesScreen({ state, setState }) {
                   )}
                 </div>
               )}
+              {/* Build 39: one tap opens the share sheet with a privacy-safe
+                  summary of the moment store and its recent writes (no
+                  photos, names, paths or GPS). Read-only. */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginTop: 4 }}>
+                <button data-scan-diag onClick={async () => {
+                    setDiagNote({ mode: "busy" });
+                    const r = await _scanDiagShare({ appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null });
+                    setDiagNote(r);
+                  }}
+                  style={{ minHeight: 44, padding: "0 4px", border: "none", background: "transparent", color: "var(--text-2)", fontSize: 13, lineHeight: 1.38, fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3, cursor: "pointer", fontFamily: "inherit" }}>
+                  Share scan diagnostic
+                </button>
+                {diagNote && diagNote.mode !== "busy" && (
+                  <span role="status" style={{ fontSize: 13, lineHeight: 1.38, color: diagNote.ok ? "var(--text-2)" : "var(--warn)" }}>
+                    {diagNote.mode === "share" ? "Diagnostic ready to send"
+                      : diagNote.mode === "copied" ? "Diagnostic copied"
+                      : diagNote.mode === "cancelled" ? "Not sent"
+                      : "Couldn't open the share sheet"}
+                  </span>
+                )}
+              </div>
             </div>
           );
         })()}

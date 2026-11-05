@@ -2326,6 +2326,20 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`Scan my weekend failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+// Scan diagnostic (build 39): read-only, allowlisted, size-capped export of
+// the moment store and every write, so a device can name the write that
+// collapsed a scan. Never repairs.
+{
+  console.log("▸ Scan diagnostic gate — before snapshot, read-only, allowlist, size cap");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-diagnostic.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan diagnostic failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 {
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {

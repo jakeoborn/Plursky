@@ -690,6 +690,8 @@ function AccountCard({ state, setState }) {
               }
               if (added) {
                 localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
+                // Build 39 scan diagnostic: this restore bypasses _writeMoments.
+                try { if (typeof _scanDiagLog === "function") _scanDiagLog("cloud-restore", local); } catch {}
                 try { window.dispatchEvent(new Event("plursky-moments-change")); } catch {}
               }
             }
