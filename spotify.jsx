@@ -7192,14 +7192,14 @@ function MemoriesScreen({ state, setState }) {
               no media, attended sets     → a compact import line ABOVE the
                                             set library, which renders as normal
               no picker                   → an honest explanation, never a
-                                            dead picker button */}
+                                            dead picker button; with Scan
+                                            available it points at Scan
+                                            instead (_memoriesImportCopy) */}
         {totalCount === 0 && attendedTotal === 0 && (
           <div style={{ marginTop: 24 }}>
             <div style={{ fontSize: 20, lineHeight: 1.25, fontWeight: 600 }}>Your weekend, remembered</div>
             <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
-              {pickerAvailable
-                ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."
-                : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."}
+              {_memoriesImportCopy(pickerAvailable, scanAvailable).invite}
             </p>
             {pickerAvailable
               ? <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
@@ -7216,9 +7216,7 @@ function MemoriesScreen({ state, setState }) {
               {attendedTotal} {attendedTotal === 1 ? "set" : "sets"} caught · no clips yet
             </div>
             <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
-              {pickerAvailable
-                ? "Import photos or videos and they’ll land on the sets below."
-                : "This build can’t open your photo library, so the sets below are your library for now."}
+              {_memoriesImportCopy(pickerAvailable, scanAvailable).withSets}
             </p>
             {pickerAvailable && (
               <button onClick={handlePickClick} style={{

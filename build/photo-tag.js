@@ -914,3 +914,17 @@ function _scanSeenAdd(ids) {
   } catch {}
   return trimmed.length;
 }
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below."
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below."
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now."
+  };
+}

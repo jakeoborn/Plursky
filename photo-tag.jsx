@@ -1050,3 +1050,23 @@ function _scanSeenAdd(ids) {
   try { localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed)); } catch {}
   return trimmed.length;
 }
+
+// Memories' empty-state copy, by what this build can do. Scan my weekend and
+// the picker are separate doors: a build with Scan but no picker can still
+// bring the library in, so the "can't open your photo library" line belongs
+// only to a build with neither. One function, so the copy under the Scan card
+// can never contradict it (#365).
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below.",
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below.",
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now.",
+  };
+}

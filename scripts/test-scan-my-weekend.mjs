@@ -194,6 +194,21 @@ function scanChecks(C, store) {
   t(!back.has("id0") && back.has("id20004"), "the cap did not drop the oldest first");
   for (const k of Object.keys(store)) delete store[k];
 
+  // ── 5b. empty-state copy never contradicts Scan ────────────────────────
+  // Every (picker, scan) combination: the "can't open your photo library"
+  // line appears only when neither door exists, and a Scan-only build points
+  // at Scan. (scan available, picker unavailable) is the case #365 got wrong.
+  const CANT = /can.t open your photo library/i;
+  for (const [pick, scan] of [[true, true], [true, false], [false, true], [false, false]]) {
+    const c = C._memoriesImportCopy(pick, scan);
+    const tag = `picker ${pick ? "on" : "off"}, scan ${scan ? "on" : "off"}`;
+    t(c && typeof c.invite === "string" && typeof c.withSets === "string", `${tag}: no copy`);
+    if (!c) continue;
+    const claims = CANT.test(c.invite) || CANT.test(c.withSets);
+    t(claims === (!pick && !scan), `${tag}: copy ${claims ? "claims" : "does not claim"} the library can't be opened`);
+    if (!pick && scan) t(/Scan my weekend/.test(c.invite) && /Scan my weekend/.test(c.withSets), `${tag}: copy does not point at Scan my weekend`);
+  }
+
   return { fails, n };
 }
 
@@ -217,12 +232,17 @@ checks += res.n; fails.push(...res.fails);
     fails.push("processImportedFiles no longer uses a scanned file's own meta");
   checks++;
   if (!/photokit: \{ text: "AUTO · PHOTO LIBRARY"/.test(flat)) fails.push("the photokit tag source has no card label");
+  // Both empty states take their copy from _memoriesImportCopy, with Scan's flag.
+  checks++;
+  if ((flat.match(/_memoriesImportCopy\(pickerAvailable, scanAvailable\)/g) || []).length !== 2 || /can.t open your photo library/.test(flat))
+    fails.push("an empty state in Memories no longer takes its copy from _memoriesImportCopy(pickerAvailable, scanAvailable)");
 }
 
 // ── 7. mutations ─────────────────────────────────────────────────────────
 for (const [label, from, to] of [
   ["ranges merged into one envelope", "if (last && w.startMs <= last.endMs)", "if (last)"],
   ["already-imported skip dropped", "if (seen.has(a.id)) {", "if (false) {"],
+  ["empty copy ignores Scan", "if (scanAvailable) return {", "if (false) return {"],
 ]) {
   if (!PT.includes(from)) { fails.push(`mutation "${label}": anchor not found in build/photo-tag.js`); continue; }
   const m = boot(DATA, PT.replace(from, to));

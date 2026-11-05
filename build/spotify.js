@@ -10638,7 +10638,7 @@ function MemoriesScreen({
       lineHeight: 1.4,
       color: "var(--text-2)"
     }
-  }, pickerAvailable ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap." : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."), pickerAvailable ? React.createElement(FieldButton, {
+  }, _memoriesImportCopy(pickerAvailable, scanAvailable).invite), pickerAvailable ? React.createElement(FieldButton, {
     onClick: handlePickClick
   }, "Import from camera roll") : React.createElement("p", {
     style: {
@@ -10664,7 +10664,7 @@ function MemoriesScreen({
       lineHeight: 1.38,
       color: "var(--text-2)"
     }
-  }, pickerAvailable ? "Import photos or videos and they’ll land on the sets below." : "This build can’t open your photo library, so the sets below are your library for now."), pickerAvailable && React.createElement("button", {
+  }, _memoriesImportCopy(pickerAvailable, scanAvailable).withSets), pickerAvailable && React.createElement("button", {
     onClick: handlePickClick,
     style: {
       marginTop: 8,
