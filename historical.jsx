@@ -9,7 +9,9 @@
 // ones a user has opened.
 //
 // Billing and stage names render exactly as printed (founder ruling), and a
-// closing set printed with only a start shows no invented end.
+// closing set printed with only a start shows no invented end. A day the
+// archive cannot time (ACL 2017's Weekend 2) shows its lineup with "Time not
+// confirmed", never a guessed time, under the edition's dated note.
 
 const _HIST_BASE = "data/historical/";
 const _histCache = {};
@@ -294,7 +296,8 @@ function _HistEdition({ meta, back }) {
     if (!e) return null;
     const artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
     const stage = Object.fromEntries(e.stages.map(s => [s.id, s]));
-    const byTime = (a, b) => _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
+    // Untimed sets keep the order the page printed them in.
+    const byTime = (a, b) => a.start == null || b.start == null ? 0 : _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
     return { artist, stage, byTime };
   }, [e]);
 
@@ -305,7 +308,19 @@ function _HistEdition({ meta, back }) {
   );
 
   const query = _histFold(q.trim());
-  const time = s => s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  const time = s => s.start == null ? "Time not confirmed" : s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  // The edition's dated notes that bear on what is on screen: edition-wide
+  // ones always, a day's own only on that day (all of them while searching).
+  const notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  const noteBlock = notes.length > 0 && (
+    <div data-edition-notes style={{ margin: "8px 0 4px", display: "grid", gap: 6 }}>
+      {notes.map((n, i) => (
+        <p key={i} style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+          {n.text} <span style={{ color: "var(--text-3)" }}>(noted {_histDate(n.asOf, { month: "short", day: "numeric", year: "numeric" })})</span>
+        </p>
+      ))}
+    </div>
+  );
   const setRow = (s, sub) => (
     <li key={s.id} style={{ display: "flex", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", alignItems: "baseline" }}>
       <div style={{ width: 140, flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
@@ -414,7 +429,7 @@ function _HistEdition({ meta, back }) {
           }} />
       </div>
       <ScrollBody ref={scroller} style={{ position: "relative", padding: "8px 20px 94px" }}>
-        {res.status !== "ready" ? <_HistStatus res={res} retry={retry} what={meta.name} /> : body}
+        {res.status !== "ready" ? <_HistStatus res={res} retry={retry} what={meta.name} /> : <>{noteBlock}{body}</>}
       </ScrollBody>
       {about && e && <_HistProvenance edition={e} onClose={() => setAbout(false)} />}
     </Screen>

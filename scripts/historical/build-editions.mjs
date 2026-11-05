@@ -61,12 +61,16 @@ export function buildEdition(id, rows, ledger) {
   for (const r of rows) {
     if (dropReason(r.artist, r.stage)) continue;
     const day = +r.day, stage = stageId(r.stage);
-    const base = { day, stageId: stage, start: r.start, end: r.end || null };
+    // An untimed day's sets (ACL 2017 W2) carry no start or end at all.
+    const untimed = (ed.untimedDays || []).includes(day);
+    if (untimed && (r.start || r.end)) throw new Error(`${id}: day ${day} is untimed but ${r.artist} carries ${r.start}-${r.end}`);
+    const base = untimed ? { day, stageId: stage, start: null, end: null } : { day, stageId: stage, start: r.start, end: r.end || null };
     if (r.openEnd === "1") base.openEnd = true;
     const a = artistId(r.artist);
-    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${r.start.replace(":", "")}:${slug(r.artist)}`, artistId: a.id, ...base, ...(a.name !== r.artist && { billing: r.artist }) });
+    sets.push({ id: `${id}:d${day}:${slug(r.stage)}:${untimed ? "untimed" : r.start.replace(":", "")}:${slug(r.artist)}`, artistId: a.id, ...base, ...(a.name !== r.artist && { billing: r.artist }) });
   }
-  const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday }));
+  const days = ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday,
+    ...((ed.untimedDays || []).includes(i + 1) && { untimed: true }) }));
   const provenance = {
     extractionMethod: ed.method,
     official: ledger.official,
@@ -81,11 +85,15 @@ export function buildEdition(id, rows, ledger) {
       : { day: d.day, pageArchivedUrl: d.pageArchivedUrl, pageCapture: d.pageCapture, imageArchivedUrl: d.imageArchivedUrl,
           imageCapture: d.imageCapture, sha256: d.sha256, reviewManifest: `data/historical/review/${id}.json` }),
     ...(ledger.notUsedGraphics && { notUsedGraphics: ledger.notUsedGraphics }),
+    ...(ledger.cancelledDays && { cancelledDays: ledger.cancelledDays }),
   };
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
     completeness: sets.length ? "complete_schedule" : "lineup_only",
     days, stages, artists, sets, provenance,
+    // Dated notes the schedule needs to be read right (a cancelled day, a
+    // weekend whose times the archive cannot confirm), each with its source.
+    ...(ed.notes && { notes: ed.notes }),
   };
 }
 

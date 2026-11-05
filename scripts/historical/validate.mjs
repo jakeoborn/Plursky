@@ -78,7 +78,25 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     if (d.day !== i + 1 || d.date !== date) p.push(`${e.id}: day ${d.day} is ${d.date}, expected day ${i + 1} = ${date}`);
     if (!d.date?.startsWith(String(e.year))) p.push(`${e.id}: day ${d.day} date ${d.date} is outside ${e.year}`);
     if (d.date && weekdayOf(d.date) !== wd?.toLowerCase()) p.push(`${e.id}: ${d.date} is not a ${wd}`);
+    if (!!d.untimed !== (meta.untimedDays || []).includes(d.day)) p.push(`${e.id}: day ${d.day} untimed is ${!!d.untimed}, the edition registry says ${!d.untimed}`);
   });
+  // Notes are the registry's, verbatim; each is dated and cites an archived
+  // official page of the edition's year. An untimed day must be covered by a
+  // note that names it, and a cancelled day by an edition-wide note.
+  if (JSON.stringify(e.notes || null) !== JSON.stringify(meta.notes || null)) p.push(`${e.id}: notes differ from the edition registry`);
+  for (const n of e.notes || []) {
+    if (!DAY.test(n.asOf || "")) p.push(`${e.id}: a note has no asOf date`);
+    if (!n.text) p.push(`${e.id}: a note has no text`);
+    const ts = officialArchive(n.source, e.festivalId, e.year, p, `${e.id} note`);
+    if (ts && !(ts.startsWith(String(e.year)) || ts.startsWith(String(e.year + 1)))) p.push(`${e.id}: note source ${ts} is not from ${e.year} or the year after`);
+    for (const d of n.days || []) if (!e.days.some(x => x.day === d)) p.push(`${e.id}: a note names day ${d}, which the edition does not have`);
+  }
+  for (const d of e.days) if (d.untimed && !(e.notes || []).some(n => n.days?.includes(d.day))) p.push(`${e.id}: day ${d.day} is untimed with no note saying why`);
+  for (const c of meta.cancelledDays || []) {
+    if (meta.dates.some(([x]) => x === c.date)) p.push(`${e.id}: cancelled day ${c.date} is still an edition day`);
+    if (!(e.notes || []).some(n => !n.days && n.text.includes(c.banner))) p.push(`${e.id}: cancelled day ${c.date} has no edition note quoting its banner`);
+    if (!(e.provenance?.cancelledDays || []).some(x => x.date === c.date && x.banner === c.banner && x.blocks > 0)) p.push(`${e.id}: cancelled day ${c.date} has no ledger proof of its banner`);
+  }
 
   // Provenance: every capture official, archived, and of the right year.
   if (!e.provenance?.captures?.length) p.push(`${e.id}: no provenance captures`);
@@ -129,6 +147,14 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     if (!Number.isInteger(s.day) || s.day < 1 || s.day > e.days.length) p.push(`${tag}: day ${s.day} is not an edition day`);
     if (!stageIds.has(s.stageId)) p.push(`${tag}: unknown stage ${s.stageId}`);
     if (!artistIds.has(s.artistId)) p.push(`${tag}: unknown artist ${s.artistId}`);
+    // An untimed day's set carries no time at all, never a placeholder.
+    if (e.days.find(d => d.day === s.day)?.untimed) {
+      if (s.start !== null || s.end !== null || s.openEnd) p.push(`${tag}: a set on an untimed day carries a time`);
+      const k = `${s.day}|${s.stageId}|untimed|${s.artistId}`;
+      if (slots.has(k)) p.push(`${tag}: duplicate artist-stage row on an untimed day`);
+      slots.add(k); used.add(s.artistId);
+      continue;
+    }
     if (!HHMM.test(s.start || "")) { p.push(`${tag}: start "${s.start}" is blank or unparseable`); continue; }
     if (s.end == null) { if (!s.openEnd) p.push(`${tag}: end is blank and the row is not marked as printed open-ended`); }
     else if (!HHMM.test(s.end)) p.push(`${tag}: end "${s.end}" unparseable`);

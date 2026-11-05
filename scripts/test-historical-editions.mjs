@@ -21,6 +21,7 @@ import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
+import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -479,6 +480,71 @@ for (const [printed, date, year, dates, want] of [
   ["SAT 11.18.22", "2023-11-18", 2023, ["2023-11-17", "2023-11-18"], false],
   ["SET TIMES", "2024-10-25", 2024, ["2024-10-25"], false],
 ]) ok(graphicPrints(printed, date, year, dates) === want, `graphic header "${printed}" should ${want ? "" : "not "}print ${date}`);
+
+// ── 6. ACL's grid: every start's am/pm is read off the page's own hour axis ──
+// A synthetic page in the 2016-19 markup (no archived HTML in the repo). The
+// scale is 0.2 em/min and the axis starts at 11:00am, so top = (start − 660) × 0.2.
+{
+  const AXIS = ["11:00am", "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm"];
+  const block = (title, time, top, h) => `<div class="o-session" style="top: ${top}em"><div class="o-session__inner" style="height: ${h}em"><p class="o-session__title">${title}</p><p class="o-session__time">${time}</p></div></div>`;
+  const D = "friday-2017-10-06";
+  const grid = ({ axis = AXIS, honda = [], kids = [] } = {}) => `<a data-value="${D}">Friday Oct 6th</a>
+<option data-target="#schedule-column-date-${D}-location-1">Honda</option><option data-target="#schedule-column-date-${D}-location-2">Austin Kiddie Limits presented by Lifeway</option>
+<ol class="c-schedule__timeslots">${axis.map(a => `<li><span>${a}</span></li>`).join("")}</ol>
+<div id="schedule-column-date-${D}-location-1">${honda.join("")}</div><div id="schedule-column-date-${D}-location-2">${kids.join("")}</div>`;
+  const HONDA = [block("Early Act", "12:30-1:15", 18, 9), block("Evening Act", "6:15-7:15", 87, 12)];
+  const KIDS = [block("School of Rock", "11:30-11:55", 6, 5)];
+  const day = html => parseAclSchedule(html).days[0];
+  const good = day(grid({ honda: HONDA, kids: KIDS }));
+  ok(good.timed && good.sets.map(x => `${x.artist} ${x.start}-${x.end}`).join(" | ") === "Early Act 12:30-13:15 | Evening Act 18:15-19:15 | School of Rock 11:30-11:55",
+    `the ACL grid must read each start's meridiem off its axis: ${good.sets.map(x => `${x.artist} ${x.start}-${x.end}`).join(" | ")}`);
+  ok(good.sets[2].stage === "Austin Kiddie Limits" && good.sets[2].stageSub === "presented by Lifeway", "the kids stage's sponsor must be split off as stageSub");
+  ok(axisMinutes("12:00pm") === 720 && axisMinutes("12:00 am") === 0 && axisMinutes("12:00") === null && readAxis(["11:00am", "1:00pm"]) === null,
+    "axis labels: noon and midnight read right, a label with no meridiem or a skipped hour is no axis");
+  ok(datedLabel("Friday Oct 4th", 2013) === "2013-10-04" && datedLabel("Friday Sep 30th", 2016) === "2016-09-30" && datedLabel("Friday Oct 4rd", 2013) === null && datedLabel("Saturday Oct 4th", 2013) === null,
+    "ACL day tabs: a 3-letter month and the right ordinal read; a wrong ordinal or weekday does not");
+  ok(dropReason("Silent Disco powered by Quiet Events", "Tito’s Handmade Vodka") && !dropReason("Silent Discovery", ""), "a sponsored Silent Disco is dropped; another billing starting with the words is not");
+  const untimed = (label, html, test = d => !d.timed && d.sets.every(x => x.start === "" && x.end === "" && x.meridiem === null)) => {
+    mutations++; ok(test(day(html)), `mutation not caught: ${label}`);
+  };
+  untimed("an axis that prints no meridiem", grid({ axis: AXIS.map(a => a.replace(/[ap]m$/, "")), honda: HONDA, kids: KIDS }));
+  untimed("an axis that wraps past midnight / skips an hour", grid({ axis: [...AXIS.slice(0, 11), "12:00am"], honda: HONDA, kids: KIDS }));
+  untimed("a block whose top fits neither reading", grid({ honda: [HONDA[0], block("Evening Act", "6:15-7:15", 87 + 30, 12)], kids: KIDS }));
+  untimed("a block placed off the axis that duplicates nothing", grid({ honda: [...HONDA, block("Ghost", "11:30-11:55", 150, 5)], kids: KIDS }));
+  untimed("a page with one duration only has no scale", grid({ honda: [block("Early Act", "12:30-1:15", 18, 9)] }));
+  untimed("an off-axis repeat of an on-axis block is reported, not kept", grid({ honda: HONDA, kids: [...KIDS, block("School of Rock", "11:30-11:55", 150, 5)] }),
+    d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "School of Rock").length === 1);
+  untimed("a cancelled block is flagged and its billing kept clean", grid({ honda: [...HONDA, block("*canceled* Gone Band", "3:00-4:00", 48, 12)], kids: KIDS }),
+    d => d.sets.some(x => x.canceled && x.artist === "Gone Band"));
+
+  // Untimed days, notes and cancelled days are each held by a rule.
+  const a17 = editions["acl-2017"], a13 = editions["acl-2013"];
+  ok(a17 && a13, "the ACL 2017 and 2013 editions must exist for the untimed/cancelled mutations");
+  if (a17 && a13) {
+    ok(a17.days.filter(d => d.untimed).map(d => d.day).join() === "4,5,6" && a17.sets.filter(x => x.day >= 4).every(x => x.start === null && x.end === null)
+      && a17.sets.filter(x => x.day < 4).every(x => /^\d{2}:\d{2}$/.test(x.start)), "ACL 2017: W2 ships lineup-only (no times), W1 timed");
+    ok(a13.days.length === 5 && !a13.days.some(d => d.date === "2013-10-13") && a13.provenance.cancelledDays?.[0]?.blocks === 43, "ACL 2013: the flooded W2 Sunday has no day, and its 43 printed blocks are the ledger's proof");
+    mustFail("a set on an untimed day given a time", m => { const x = m.sets.find(x => x.day === 5); x.start = "18:15"; x.end = "19:15"; }, a17, undefined, /untimed day carries a time/);
+    mustFail("an untimed day losing its flag", m => { delete m.days[3].untimed; }, a17, undefined, /untimed is false/);
+    mustFail("a timed day flagged untimed", m => { m.days[0].untimed = true; }, a17, undefined, /untimed is true/);
+    mustFail("an untimed day with no note", m => { delete m.notes; }, a17, undefined, /no note saying why/);
+    mustFail("a note reworded off the registry", m => { m.notes[0].text = "Times probably fine."; }, a13, undefined, /notes differ/);
+    mustFail("a cancelled day with no ledger proof", m => { delete m.provenance.cancelledDays; }, a13, undefined, /no ledger proof/);
+    mustFail("a cancelled day's proof without its blocks", m => { m.provenance.cancelledDays[0].blocks = 0; }, a13, undefined, /no ledger proof/);
+  }
+}
+
+// 7. The Wayback cache never hands back a neighbouring capture under the
+// requested key: a poisoned entry is refetched, a redirect is never cached.
+// Own process: it isolates the cache dir and stubs fetch.
+{
+  checks++;
+  try {
+    const out = execFileSync(process.execPath, [join(ROOT, "scripts/test-wayback-cache.mjs")],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out.trimEnd().replace(/^/gm, "  ") + "\n");
+  } catch (e) { fails.push(`wayback cache: ${(e.stdout || "") + (e.stderr || "")}`.trim()); }
+}
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} historical-edition checks failed`); process.exit(1); }
 console.log(`  ✓ historical editions: ${files.length} edition(s) valid, ${checks} checks (${mutations} mutations, each caught), identity read off the page, isolated from the live app`);
