@@ -10062,6 +10062,7 @@ function MemoriesScreen({
   };
   React.useEffect(() => {
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
+    if (typeof plurskyNetSaver === "function" && plurskyNetSaver()) return;
     if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     var cancelled = false;
     (async () => {
@@ -16561,44 +16562,7 @@ function _checkinActive(cfg, artists, ms) {
   return (artists || []).filter(a => _checkinActWindows(cfg, a).some(([s, e]) => ms >= s && ms < e));
 }
 function _checkinGps(anchors, fix, atMs, rules = _CHECKIN_GPS) {
-  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return {
-    status: fix && fix.denied ? "denied" : "none"
-  };
-  var accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
-  if (!anchors || !anchors.length) return {
-    status: "no-anchors",
-    accM
-  };
-  var d = anchors.map(a => ({
-    stageId: a.stageId,
-    dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng)
-  })).sort((x, y) => x.dist - y.dist);
-  var out = {
-    accM,
-    distM: d[0].dist,
-    marginM: d.length > 1 ? d[1].dist - d[0].dist : null
-  };
-  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return {
-    ...out,
-    status: "stale"
-  };
-  if (accM == null || accM > rules.maxAccM) return {
-    ...out,
-    status: "coarse"
-  };
-  if (d[0].dist > rules.maxDistM) return {
-    ...out,
-    status: "outside"
-  };
-  if (out.marginM != null && out.marginM < rules.minMarginM) return {
-    ...out,
-    status: "ambiguous"
-  };
-  return {
-    ...out,
-    status: "trusted",
-    stageId: d[0].stageId
-  };
+  return stageFixGate(anchors, fix, atMs, rules);
 }
 function resolveLiveCheckin({
   cfg,
@@ -17227,11 +17191,8 @@ function NowPlayingBar() {
           stage: debugStage,
           artist: debugArtist || null
         }));
-        if (window.joinStagePresence) window.joinStagePresence(debugStage.id);
       }
-      return () => {
-        if (window.leaveStagePresence) window.leaveStagePresence();
-      };
+      return;
     }
     var watchId;
     var anchors = typeof resolvedStageAnchors === "function" ? resolvedStageAnchors(CFG) : CFG.gpsAnchors || [];
@@ -17259,14 +17220,12 @@ function NowPlayingBar() {
         ...s,
         stage: stageObj
       });
-      if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, {
       enableHighAccuracy: true,
       maximumAge: 10000
     });
     return () => {
       if (watchId) navigator.geolocation.clearWatch(watchId);
-      if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
   React.useEffect(() => {

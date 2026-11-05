@@ -2783,6 +2783,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── Escape Halloween 2026: the official set times, as shipped ────────────
+// 118 sets on 7 stages (Fri 58, Sat 60) from escapehalloween.com's per-day
+// set-times pages; every set's instant in PDT, the 02:00 close on the
+// fall-back night included; names as printed; EDC cross-billings agree.
+{
+  console.log("▸ Escape 2026 set times — 118 official sets, PDT instants, names as printed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-escape-set-times.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Escape set times failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Saved sets the lineup still carries ──────────────────────────────────
 // Every saved-set surface reads savedInLineup(); storage, cloud push and the
 // sign-in union keep orphan ids (lane ruling 2026-09-27: no deletion until a
@@ -3453,6 +3469,58 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set attendance failed${detail ? ` — ${detail}` : ""}`);
   }
+
+  console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`signal-aware failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c3c. Set-clash solver (15-feature program #1) ─────────────────────
+// One suggestion per clashing pair, with its reason, or none: plays again on a
+// later night, your Spotify match, or a split of 30+ min each. Both argument
+// orders agree; every rule nudge in the compiled source must be caught.
+{
+  console.log("▸ Clash solver gate — plays again, your music, split 30+ min, no guess, both orders, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-clash-solver.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`clash solver failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c3d. Crew meetups (15-feature program #3) ─────────────────────────
+// A meetup goes to the crew thread on the user's tap, stage and time only, and
+// comes back as a card that adds it to my meetups once. Body round trip,
+// app send + thread render with Supabase blocked, and mutations.
+{
+  console.log("▸ Crew meetups gate — tap to send, stage + time only, card adds once, other festival not added, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-meetups.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew meetups failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Crew beacon gate — tap to send, stage + time only, live 15 min, reply once, report/block, mutations");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-beacon.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew beacon failed${detail ? ` — ${detail}` : ""}`);
+  }
 }
 
 // ── 1z-c4b. Map chat quick replies name the artist in full ────────────────
@@ -3502,22 +3570,6 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
-// ── EDC Orlando map watch: candidates, negatives and UNKNOWN are separate ──
-// The weekly watcher (edco-map-watch.yml) resolves relative, protocol-relative
-// and <base>-relative map links against each page's final URL; an unreadable
-// page is exit 2 (UNKNOWN), never a green "no map". Local fixtures only.
-{
-  console.log("▸ EDC Orlando map watch gate — every URL form found, negatives exit 0, unreadable exit 2");
-  try {
-    const out = execFileSync(process.execPath, ["scripts/test-watch-edco-map.mjs"],
-      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-    process.stdout.write(out);
-  } catch (e) {
-    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
-    fail(`EDC Orlando map watch failed${detail ? ` — ${detail}` : ""}`);
-  }
-}
-
 // ── 1z-c8. An existing festival stamp is corrected only on proof ──────────
 // Capture time can show a stamp is wrong; only festivalStampSource can show the
 // machine wrote it. A proven fallback stamp with one contradicting claimant is
@@ -3532,6 +3584,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`festival stamp provenance failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── Crew radar (15-feature program #2) ───────────────────────────────────
+// Share with crew is stage-only: no GPS option, no public link, no
+// live_shares writes; crew loc payloads carry no coordinates either way, and
+// the stage headcount counts me only while I share. The Crew chip groups my
+// crew by stage.
+{
+  console.log("▸ Crew radar gate — stage-only crew share, radar grouped by stage, expiry across tabs, festival-scoped crew channel");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-crew-radar.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`crew radar failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

@@ -418,6 +418,135 @@
     }
    ]
   },
+  "dreamstate-socal": {
+   "lineages": [
+    {
+     "id": "dreamstate-socal:the-dream",
+     "names": [
+      {
+       "printed": "THE DREAM",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Dream",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-sequence",
+     "names": [
+      {
+       "printed": "THE SEQUENCE",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Sequence",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-vision",
+     "names": [
+      {
+       "printed": "THE VISION",
+       "editions": [
+        "dreamstate-socal-2016",
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Vision",
+       "editions": [
+        "dreamstate-socal-2019",
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:timeless",
+     "names": [
+      {
+       "printed": "TIMELESS",
+       "editions": [
+        "dreamstate-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:the-void",
+     "names": [
+      {
+       "printed": "THE VOID",
+       "editions": [
+        "dreamstate-socal-2023",
+        "dreamstate-socal-2025"
+       ]
+      },
+      {
+       "printed": "The Void",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "dreamstate-socal-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "dreamstate-socal:beatbox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX ART CAR",
+       "editions": [
+        "dreamstate-socal-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "edc-lv": {
    "lineages": [
     {
@@ -618,6 +747,654 @@
        "printed": "Blacklight Bar",
        "editions": [
         "edc-las-vegas-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:forest-house-art-car",
+     "names": [
+      {
+       "printed": "Forest House Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-las-vegas-2022",
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boombox-art-car",
+     "names": [
+      {
+       "printed": "Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:corona-stage",
+     "names": [
+      {
+       "printed": "Corona Stage",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:allegiant-rave-hangar",
+     "names": [
+      {
+       "printed": "Allegiant Rave Hangar",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:pariah-express-art-car",
+     "names": [
+      {
+       "printed": "Pariah Express Art Car",
+       "editions": [
+        "edc-las-vegas-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:house-of-dunkin",
+     "names": [
+      {
+       "printed": "House of Dunkin'",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Boombox Art Car",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:meta-phoenix",
+     "names": [
+      {
+       "printed": "Meta Phoenix",
+       "editions": [
+        "edc-las-vegas-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "edc-orlando": {
+   "lineages": [
+    {
+     "id": "edc-orlando:kineticfield",
+     "names": [
+      {
+       "printed": "kineticFIELD",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neongarden",
+     "names": [
+      {
+       "printed": "neonGARDEN",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019"
+       ]
+      },
+      {
+       "printed": "neonGarden",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuitgrounds",
+     "names": [
+      {
+       "printed": "circuitGROUNDS",
+       "editions": [
+        "edc-orlando-2017",
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "edc-orlando-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereobloom",
+     "names": [
+      {
+       "printed": "stereoBLOOM",
+       "editions": [
+        "edc-orlando-2019",
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:wideawakeartcar",
+     "names": [
+      {
+       "printed": "wideawakeARTCAR",
+       "editions": [
+        "edc-orlando-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022",
+        "edc-orlando-2023",
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus",
+     "names": [
+      {
+       "printed": "Rynobus",
+       "editions": [
+        "edc-orlando-2021",
+        "edc-orlando-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "edc-orlando-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:rynobus-art-car",
+     "names": [
+      {
+       "printed": "Rynobus Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:anniversary-art-car",
+     "names": [
+      {
+       "printed": "Anniversary Art Car",
+       "editions": [
+        "edc-orlando-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casa-bacardi",
+     "names": [
+      {
+       "printed": "Casa BACARDÍ",
+       "editions": [
+        "edc-orlando-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-orlando:casabacardi",
+     "names": [
+      {
+       "printed": "casaBACARDÍ",
+       "editions": [
+        "edc-orlando-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "escape-halloween": {
+   "lineages": [
+    {
+     "id": "escape-halloween:sewer-district",
+     "names": [
+      {
+       "printed": "Sewer District",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cage",
+     "names": [
+      {
+       "printed": "The Cage",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:danse-macabre",
+     "names": [
+      {
+       "printed": "Danse Macabre",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:feeding-grounds",
+     "names": [
+      {
+       "printed": "Feeding Grounds",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-big-top",
+     "names": [
+      {
+       "printed": "The Big Top",
+       "editions": [
+        "escape-halloween-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:slaughterhouse",
+     "names": [
+      {
+       "printed": "SLAUGHTERHOUSE",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:ghouls-graveyard",
+     "names": [
+      {
+       "printed": "GHOULS' GRAVEYARD",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:chopping-block",
+     "names": [
+      {
+       "printed": "CHOPPING BLOCK",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:cannibals-tea-party",
+     "names": [
+      {
+       "printed": "CANNIBALS' TEA PARTY",
+       "editions": [
+        "escape-halloween-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-grimm",
+     "names": [
+      {
+       "printed": "The Grimm",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "THE GRIMM",
+       "editions": [
+        "escape-halloween-2022",
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:psycho-circus",
+     "names": [
+      {
+       "printed": "Psycho Circus",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:sanitarium",
+     "names": [
+      {
+       "printed": "Sanitarium",
+       "editions": [
+        "escape-halloween-2019",
+        "escape-halloween-2021"
+       ]
+      },
+      {
+       "printed": "SANITARIUM",
+       "editions": [
+        "escape-halloween-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:crazy-town",
+     "names": [
+      {
+       "printed": "Crazy Town",
+       "editions": [
+        "escape-halloween-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:wicked-woods",
+     "names": [
+      {
+       "printed": "WICKED WOODS",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:the-cauldron",
+     "names": [
+      {
+       "printed": "THE CAULDRON",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BEATBOX BOOMBOX ART CAR",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "escape-halloween-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "escape-halloween:casa-bacardi-2",
+     "names": [
+      {
+       "printed": "CASA BACARDI",
+       "editions": [
+        "escape-halloween-2025"
        ]
       }
      ],
@@ -1466,6 +2243,140 @@
        "printed": "Beatbox Boombox",
        "editions": [
         "nocturnal-wonderland-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wolves-den",
+     "names": [
+      {
+       "printed": "WOLVES' DEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Wolves' Den",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:labyrinth",
+     "names": [
+      {
+       "printed": "LABYRINTH",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Labyrinth",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:sunken-garden",
+     "names": [
+      {
+       "printed": "SUNKEN GARDEN",
+       "editions": [
+        "nocturnal-wonderland-2017",
+        "nocturnal-wonderland-2018",
+        "nocturnal-wonderland-2022"
+       ]
+      },
+      {
+       "printed": "Sunken Garden",
+       "editions": [
+        "nocturnal-wonderland-2019",
+        "nocturnal-wonderland-2021",
+        "nocturnal-wonderland-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:temple-noctem",
+     "names": [
+      {
+       "printed": "TEMPLE NOCTEM",
+       "editions": [
+        "nocturnal-wonderland-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "nocturnal-wonderland-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:parliament-art-car",
+     "names": [
+      {
+       "printed": "Parliament Art Car",
+       "editions": [
+        "nocturnal-wonderland-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:owloch-grove",
+     "names": [
+      {
+       "printed": "Owloch Grove",
+       "editions": [
+        "nocturnal-wonderland-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:beatbox-art-car",
+     "names": [
+      {
+       "printed": "Beatbox Art Car",
+       "editions": [
+        "nocturnal-wonderland-2024"
        ]
       }
      ],

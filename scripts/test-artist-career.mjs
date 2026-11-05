@@ -6,7 +6,7 @@
 // comparative. Three layers:
 //   1. data: every career-slice row agrees with billings.json field for
 //      field, and every shared-lineup count recounts from the registry;
-//   2. pages: Cloonee, VNSSA (b2b tab), Noizu, a single billing (619) and a
+//   2. pages: Cloonee, VNSSA (b2b tab, ARC), Noizu, a single billing (619) and a
 //      pending key (EAR) in Dark and Light at 393 and 320, plus Cloonee with
 //      one set served untimed, read back claim by claim against the slice
 //      the page was served;
@@ -76,8 +76,16 @@ for (const x of UNTIMED.artists.cloonee.b) if (x[0] === 'edc-lv-2026:k26') { x[4
 const FIX = [
   { name: 'Cloonee', fest: 'iii-points-2026', id: 'iiip-cloonee', key: 'cloonee', kind: 'arc',
     move: '2025 Circuit Grounds 2:00 AM → 2026 Kinetic Field 3:01 AM' },
-  { name: 'VNSSA', fest: 'escape-halloween-2026', id: 'esc-vnssa-b2b-qqqq-d2', tab: 'VNSSA', key: 'vnssa', kind: 'arc', partner: 'Walker & Royce' },
-  { name: 'mystery ???? tab', fest: 'escape-halloween-2026', id: 'esc-vnssa-b2b-qqqq-d2', tab: '????', key: null, kind: 'none' },
+  // ARC's "WALKER & ROYCE B2B VNSSA", both tabs. Escape's "VNSSA B2B ????" was
+  // the b2b fixture until the official lineup dropped it (2026-10-26), and its
+  // '????' no-career page fixture went with it: no other lineup prints an
+  // unnamed partner (parseBilling's unit test in test-artist-registry still
+  // pins that rule). The first-performer mutation runs on the Walker & Royce
+  // tab because its key is NOT the billing's first in the slice ("vnssa"
+  // sorts first), so "[0]" shows VNSSA's career there; on the VNSSA tab
+  // "[0]" happens to be right and the mutation is invisible.
+  { name: 'VNSSA', fest: 'arc-2026', id: 'arc-walker-and-royce-b2b-vnssa-midway-d3', tab: 'VNSSA', key: 'vnssa', kind: 'arc', partner: 'Walker & Royce' },
+  { name: 'Walker & Royce', fest: 'arc-2026', id: 'arc-walker-and-royce-b2b-vnssa-midway-d3', tab: 'WALKER & ROYCE', key: 'walker-and-royce', kind: 'arc', partner: 'VNSSA' },
   { name: 'Noizu', fest: 'edc-lv-2026', id: 's13', key: 'noizu', kind: 'arc', move: '2025 Kinetic Field 8:00 PM → 2026 Stereo Bloom 11:15 PM' },
   { name: '619', fest: 'iii-points-2026', id: 'iiip-619', key: '619', kind: 'single' },
   { name: 'EAR (pending)', fest: 'iii-points-2026', id: 'iiip-ear', key: 'ear', kind: 'pending' },
@@ -91,7 +99,7 @@ const MUTATIONS = [
   { name: 'a move shows times when one side is untimed', from: 'var timed = !!(from[4] && to[4]);', to: 'var timed = true;', fixture: 'Cloonee, EDC 2026 untimed' },
   { name: 'every timed set reads as a closing slot', from: 'if (_x[8] === true && _x[3])', to: 'if (_x[3])', fixture: 'Cloonee' },
   { name: 'a pending key gets an arc', from: 'var m = c.pending ? null : _careerModel', to: 'var m = _careerModel', also: ['if (c.pending) return', 'if (false) return'], fixture: 'EAR (pending)' },
-  { name: 'the page takes the billing\'s first performer, not this name\'s', from: '.find(k => k === want)', to: '[0]', fixture: 'mystery ???? tab' },
+  { name: 'the page takes the billing\'s first performer, not this name\'s', from: '.find(k => k === want)', to: '[0]', fixture: 'Walker & Royce' },
 ];
 
 async function readPage(browser, port, fx, scheme, width, mutation) {

@@ -588,20 +588,6 @@
     "changes": "Resized and converted to WebP. Display may crop and overlay."
   },
   {
-    "artist": "Ice Cube",
-    "author": "Adam Bielawski",
-    "source": "commons",
-    "license": "CC-BY-SA-3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ice-Cube_2014-01-09-Chicago-photoby-Adam-Bielawski.jpg",
-    "reviewedBy": "Plursky artwork research",
-    "reviewedAt": "2026-10-20T20:56:44Z",
-    "allowExport": false,
-    "asset": "artist-photos/ice-cube.webp",
-    "sha256": "3cfd52d35785a48128c5e43e8a0b9b53d0bd4a59b337286acabd0afdd22b8d6f",
-    "changes": "Converted to WebP. Display may crop and overlay."
-  },
-  {
     "artist": "Cascada",
     "author": "9EkieraM1",
     "source": "commons",
