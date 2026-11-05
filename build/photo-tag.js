@@ -804,3 +804,127 @@ function _matchArtistForPhoto({
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined
   };
 }
+function _scanNightWindows(cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  if (!cfg?.dayDates) return [];
+  var H = 3600000,
+    slack = 30 * 60000;
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number)) {
+      var dm = cfg.dayDates[n];
+      if (!dm || typeof dm.midnightUtc !== "number") continue;
+      var midnight = dm.midnightUtc + shift;
+      out.push({
+        night: n,
+        weekend,
+        startMs: midnight + 11 * H - slack,
+        endMs: midnight + 30 * H + slack
+      });
+    }
+  }
+  return out.sort((a, b) => a.startMs - b.startMs);
+}
+function _scanQueryRanges(cfgIn) {
+  var ranges = [];
+  for (var w of _scanNightWindows(cfgIn)) {
+    var last = ranges[ranges.length - 1];
+    if (last && w.startMs <= last.endMs) last.endMs = Math.max(last.endMs, w.endMs);else ranges.push({
+      startMs: w.startMs,
+      endMs: w.endMs
+    });
+  }
+  return ranges;
+}
+function _photoKitAssetMeta(asset, cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var ms = Number(asset?.createdMs);
+  if (!isFinite(ms) || ms <= 0) return null;
+  var lat = Number(asset.lat),
+    lng = Number(asset.lng);
+  var hasGps = asset.lat != null && asset.lng != null && isFinite(lat) && isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
+  var acc = Number(asset.acc);
+  return {
+    date: _wallClockFromUtc(ms, cfg),
+    rawUtcMs: ms,
+    lat: hasGps ? lat : null,
+    lng: hasGps ? lng : null,
+    acc: hasGps && asset.acc != null && isFinite(acc) && acc >= 0 ? acc : null,
+    timestampSource: "photokit",
+    locationSource: hasGps ? "photokit-gps" : "none"
+  };
+}
+function _scanPickAssets(assets, cfgIn, seenIds) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  var keep = [];
+  var outside = 0,
+    already = 0;
+  for (var a of assets || []) {
+    if (!a || !a.id) continue;
+    var ms = Number(a.createdMs);
+    if (!isFinite(ms) || !_photoFestivalNightWeekend(null, cfg, ms)) {
+      outside++;
+      continue;
+    }
+    if (seen.has(a.id)) {
+      already++;
+      continue;
+    }
+    keep.push(a);
+  }
+  keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
+  return {
+    keep,
+    outside,
+    already
+  };
+}
+function _scanChunks(assets, maxPhotos = 20) {
+  var chunks = [];
+  for (var a of assets || []) {
+    var last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);else chunks.push([a]);
+  }
+  return chunks;
+}
+var _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
+var _SCAN_SEEN_MAX = 20000;
+function _scanSeenRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_SEEN_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  } catch {
+    return new Set();
+  }
+}
+function _scanSeenAdd(ids) {
+  var cur = [..._scanSeenRead()];
+  var have = new Set(cur);
+  for (var id of ids || []) if (typeof id === "string" && !have.has(id)) {
+    cur.push(id);
+    have.add(id);
+  }
+  var trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
+  try {
+    localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed));
+  } catch {}
+  return trimmed.length;
+}
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below."
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below."
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now."
+  };
+}
