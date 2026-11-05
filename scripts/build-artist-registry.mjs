@@ -221,13 +221,15 @@ export function build(root = ROOT, overrides = null) {
     // "tba" is the app's placeholder bucket ("Schedule TBA"), not a stage.
     const stageName = new Map((ds.stages || []).filter(s => s.id !== 'tba').map(s => [s.id, s.name]));
     const src = (cfg.scheduleSource || cfg.lineupSource || {}).url || null;
+    // A schedule published one page per day records each day's page, so a set cites the page that prints it.
+    const dayUrls = cfg.scheduleSource?.dayUrls || {};
     for (const a of ds.artists) {
       const dd = cfg.dayDates?.[a.day];
       let date = dd ? new Date(Date.UTC(dd.y, dd.m, dd.d)) : null;
       if (date && a.weekend === 'W2') date = new Date(date.getTime() + 7 * 86400000);
       rows.push({ id: `${fid}:${a.id}`, source: 'live', festivalId: fid, festivalBrand: brandOf(fid), year: cfg.year || null,
         date: date ? date.toISOString().slice(0, 10) : null, day: a.day ?? null, stage: stageName.get(a.stage) || null,
-        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src, festivalName: cfg.name || fid,
+        start: a.start || null, end: a.end || null, printed: a.name, genre: a.genre || null, src: dayUrls[a.day] || src, festivalName: cfg.name || fid,
         // ACL bills a "both" act once and plays it each weekend: the second
         // date, a week on, rides the directory slice (the billing stays one).
         ...(date && a.weekend === 'both' ? { date2: new Date(date.getTime() + 7 * 86400000).toISOString().slice(0, 10) } : {}),
@@ -241,12 +243,18 @@ export function build(root = ROOT, overrides = null) {
     const art = new Map(ed.artists.map(a => [a.id, a])), st = new Map(ed.stages.map(s => [s.id, s.name])), days = new Map((ed.days || []).map(d => [d.day, d.date]));
     // §4.5: an archived day is what the official page printed when it was
     // archived, so each set carries that capture's date, in the edition's zone.
-    const published = new Map((ed.provenance?.captures || []).map(c => [c.day, publishedOn(c.captureTimestamp || c.imageCapture, ed.timezone)]));
+    // An official_sources graphic carries its own publish date; a day printed
+    // by several sources takes the latest.
+    const published = new Map();
+    for (const c of ed.provenance?.captures || []) {
+      const on = c.kind === 'graphic' ? c.published : publishedOn(c.captureTimestamp || c.imageCapture, ed.timezone);
+      if (on && !(published.get(c.day) > on)) published.set(c.day, on);
+    }
     for (const s of ed.sets) {
       const a = art.get(s.artistId);
       rows.push({ id: s.id, source: 'edition', festivalId: ed.id, festivalBrand: brandOf(ed.festivalId || ed.id), year: ed.year,
         date: days.get(s.day) || null, day: s.day ?? null, stage: st.get(s.stageId) || null,
-        start: s.start || null, end: s.end || null, printed: a ? a.name : s.artistId, genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id,
+        start: s.start || null, end: s.end || null, printed: s.billing || (a ? a.name : s.artistId), genre: null, src: ed.provenance?.official || null, festivalName: ed.name || ed.id,
         published: published.get(s.day) || null, ...(s.openEnd ? { openEnd: true } : {}) });
     }
   }

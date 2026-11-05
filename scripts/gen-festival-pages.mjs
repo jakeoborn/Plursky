@@ -430,7 +430,7 @@ function editionSummary(e) {
 
 // A festival not open in Plursky yet (a gated entry, usually next year's)
 // leads with its newest past edition instead of an empty page: clearly a
-// past edition, with its own dates and the date its source was archived, and
+// past edition, with its own dates and the date of its source (sourceDate), and
 // kept apart from everything this page says about the upcoming edition.
 function lookBackSection(entry, editions) {
   if (entry.available || !editions.length) return '';
@@ -439,7 +439,7 @@ function lookBackSection(entry, editions) {
   <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
     <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
     <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
-    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">${e.sourceLabel} ${ymdLabel(e.archived)}.</span>` : ''}</p>
     <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
     <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
   </section>`;

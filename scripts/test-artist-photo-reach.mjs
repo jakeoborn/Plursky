@@ -25,10 +25,12 @@ let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
 
 // Batch 5: Escape Halloween, EDC Orlando and Decadence acts, each also billed at an
-// open festival (see the PR's receipt).
+// open festival (see the PR's receipt). Ice Cube left the list on 2026-10-26:
+// Escape's official lineup dropped him and no other lineup prints him, so his
+// portrait left the ledger too (the Today hero gate wants every row reachable).
 const BATCH5 = [
   "Steve Aoki", "Zedd", "Excision", "Dimitri Vegas & Like Mike", "Nina Kraviz", "Richie Hawtin",
-  "Alok", "Galantis", "Ice Cube", "Cascada", "Martin Garrix", "Hardwell", "Kaskade",
+  "Alok", "Galantis", "Cascada", "Martin Garrix", "Hardwell", "Kaskade",
   "Afrojack", "Alesso", "Alan Walker", "Alison Wonderland", "Deorro", "Boys Noize", "Slander",
   "Marshmello", "DJ Snake", "Lane 8",
 ];

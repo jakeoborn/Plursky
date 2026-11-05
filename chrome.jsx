@@ -1105,8 +1105,8 @@ function _mapDisplayPerm(display) {
 // Real "SETS CAUGHT" stat — replaces the previous hardcoded heuristic
 // (set.day <= NOW.day, which lit up every saved set whether attended
 // or not). Two ways a set ends up here:
-//   (a) Live GPS auto-detect — if the user is within ~140 m of a
-//       stage anchor while one of its artists is mid-set, we mark
+//   (a) Live GPS auto-detect — if a fix the stage fix gate trusts puts
+//       the user at a measured stage while one of its artists is mid-set, we mark
 //       attendance immediately. No history needed; just current GPS
 //       + current time. See `detectCurrentArtist`.
 //   (b) Manual review in the Memories tab — checkbox list per night
@@ -1171,62 +1171,43 @@ function getAttendanceSource(artistId) {
   } catch { return "manual"; }
 }
 
-// Quick equirectangular distance — accurate enough at festival scale.
-function _gpsDistMeters(latA, lngA, latB, lngB) {
-  const toRad = (d) => d * Math.PI / 180;
-  const cosLat = Math.cos(toRad((latA + latB) / 2));
-  const dLat = toRad(latB - latA) * 6371000;
-  const dLng = toRad(lngB - lngA) * 6371000 * cosLat;
-  return Math.hypot(dLat, dLng);
-}
-
-// Given current GPS + current festival time, return the artist the user is
+// Given one GPS fix + current festival time, return the artist the user is
 // most likely watching right now — or null if none matches.
 //
-// "At a set" = within `radiusM` of a stage anchor AND the stage has an
-// artist whose set window contains NOW.time. We use 140 m as the default
-// radius which roughly matches the audible/visible footprint of a stage
-// at LVMS without bleeding into neighbours.
+// "At a set" = the shared stage fix gate (data.jsx stageFixGate) trusts the
+// fix for a MEASURED stage — fresh, ±100 m, within 140 m of the anchor and
+// ≥35 m clearer than the runner-up, Live Set Check-in's rule — AND that stage
+// has an artist whose set window contains NOW. A coarse fix, a fix with no
+// accuracy, or one between two stages marks nothing. opts: { accuracy,
+// timestamp, atMs, saver } from the position; saver uses the 120 s LIVE window.
 function detectCurrentArtist(lat, lng, opts = {}) {
   if (typeof lat !== "number" || typeof lng !== "number") return null;
   const cfg = window.FESTIVAL_CONFIG;
   if (!cfg) return null;
-  // Crowd anchors where measured. This function compares the USER'S live
-  // position against stage pins at a 140 m radius — with kinetic's poster pin
-  // 438 m from its crowd, a user standing at the main stage was 279 m from the
-  // NEAREST anchor and this returned null every time. Live stage detection was
-  // silently dead at the biggest stage on site.
-  // Evidence only (osm / crowd). This is a geofence: a hit auto-marks a set
-  // attended with no tap. A poster read, a provisional pin or a derived point
-  // is a guess about where a stage is, and a guess must not fire it. EDC
-  // Orlando 2026 ships five poster reads off 2025 art (founder, 2026-10-20).
-  const anchors = ((typeof resolvedStageAnchors === "function")
-    ? resolvedStageAnchors(cfg) : (cfg.gpsAnchors || []))
-    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+  // Crowd anchors where measured (resolvedStageAnchors): kinetic's poster pin
+  // sat 438 m from its crowd, so live detection was dead at the main stage.
+  // Evidence only (osm / crowd): this is a geofence, and a hit auto-marks a
+  // set attended with no tap. EDC Orlando 2026 ships five poster reads off
+  // 2025 art (founder, 2026-10-20); a guess must not fire it.
+  const anchors = attendEvidenceAnchors(cfg);
   if (anchors.length === 0) return null;
-  const radius = opts.radiusM || 140;
   const now = window.NOW;
   if (!now || !now.day || !now.time) return null;
-  // Closest stage anchor within radius
-  let best = null;
-  for (const a of anchors) {
-    const d = _gpsDistMeters(lat, lng, a.lat, a.lng);
-    if (d > radius) continue;
-    if (!best || d < best.d) best = { ...a, d };
-  }
-  if (!best) return null;
+  const gate = stageFixGate(anchors, { lat, lng, accuracy: opts.accuracy, timestamp: opts.timestamp },
+    typeof opts.atMs === "number" ? opts.atMs : Date.now(), opts.saver ? STAGE_FIX_ATTEND_SAVER : STAGE_FIX_ATTEND);
+  if (gate.status !== "trusted") return null;
   // Artist on stage at that anchor right now, by real date (isSetLive). The
   // old clock-of-day match against now.day auto-attended a set a week early.
-  const playing = activeLineup().find(a => a.stage === best.stageId && isSetLive(a));
+  const playing = activeLineup().find(a => a.stage === gate.stageId && isSetLive(a));
   if (!playing) return null;
-  return { artistId: playing.id, stageId: best.stageId, night: now.day, distM: Math.round(best.d) };
+  return { artistId: playing.id, stageId: gate.stageId, night: now.day, distM: Math.round(gate.distM) };
 }
 
 // Called from the GPS effect in MapScreen on every successful sample.
 // Idempotent + cheap — silently no-ops when the user is between stages,
 // outside the festival, or it's not set time.
-function recordAttendanceFromGps(lat, lng) {
-  const hit = detectCurrentArtist(lat, lng);
+function recordAttendanceFromGps(lat, lng, opts) {
+  const hit = detectCurrentArtist(lat, lng, opts);
   if (!hit) return null;
   const added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
@@ -1848,9 +1829,32 @@ const _BS = (window._BS = window._BS || {
     catch { return "auto"; }
   })(),
   battery: null,         // { level: 0..1, charging: bool } when supported
+  // What the radio looks like: navigator.connection where the browser has
+  // it (Chrome/Android; iOS WebKit does not), plus crew sends that had to
+  // queue, which works everywhere.
+  net: { effectiveType: null, saveData: false, failTs: [] },
   active: false,
   listeners: new Set(),  // (active) => void
 });
+
+// Weak signal: the browser says 2G or Data Saver, or 2 crew sends queued in
+// the last 5 minutes. Offline is its own state (OFFLINE), not weak signal.
+const _BS_FAIL_WINDOW_MS = 5 * 60 * 1000;
+function _bsLowSignal(now = Date.now()) {
+  if (typeof navigator !== "undefined" && navigator.onLine === false) return false;
+  const n = _BS.net;
+  if (n.saveData || n.effectiveType === "slow-2g" || n.effectiveType === "2g") return true;
+  return n.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS).length >= 2;
+}
+// The one question for anything that talks to the network on a timer:
+// battery saver on, or a weak signal, means go easy on the radio.
+function plurskyNetSaver() { return !!_BS.active || _bsLowSignal(); }
+// supabase.jsx reports each crew send: queued (true) or delivered (false).
+function plurskyNoteNetQueued(queued) {
+  const now = Date.now();
+  _BS.net.failTs = queued ? [..._BS.net.failTs.filter(t => now - t < _BS_FAIL_WINDOW_MS), now] : [];
+  _BS.listeners.forEach(fn => { try { fn(_BS.active); } catch {} });
+}
 
 function _bsHasFestivalContext() {
   // Active during the festival window itself, OR when the user has a saved set
@@ -1935,6 +1939,17 @@ if (!window._bsInited) {
     } catch { _bsApply(); }
   })();
 
+  try {
+    const c = navigator.connection;
+    const syncNet = () => {
+      _BS.net.effectiveType = (c && c.effectiveType) || null;
+      _BS.net.saveData = !!(c && c.saveData);
+      _BS.listeners.forEach(fn => { try { fn(_BS.active); } catch {} });
+    };
+    if (c) { syncNet(); c.addEventListener?.("change", syncNet); }
+    window.addEventListener("online", () => { _BS.net.failTs = []; syncNet(); });
+  } catch {}
+
   // Re-evaluate the night-window every 5 min (cheap, lets auto-mode flip on
   // at 02:00 without waiting for an unrelated battery event).
   setInterval(_bsApply, 5 * 60 * 1000);
@@ -1966,6 +1981,7 @@ function useBatterySaver() {
     active:  _BS.active,
     mode:    _BS.mode,
     battery: _BS.battery,    // { level, charging } | null
+    lowSignal: _bsLowSignal(),
     setMode: setBatterySaverMode,
   };
 }
@@ -2015,7 +2031,7 @@ function BatterySaverToast() {
 
 // Settings card for MeScreen — segmented control + live battery readout.
 function BatterySaverCard() {
-  const { active, mode, battery, setMode } = useBatterySaver();
+  const { active, mode, battery, lowSignal, setMode } = useBatterySaver();
   const segs = [
     { id: "off",  label: "Off" },
     { id: "auto", label: "Auto" },
@@ -2046,7 +2062,10 @@ function BatterySaverCard() {
       </div>
       <div style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
         Dims the screen, freezes animations, and slows GPS polling.
-        Auto kicks in at 2 AM or when battery drops under 25%.
+        Auto kicks in under 25% battery during the festival.
+      </div>
+      <div data-bs-signal-note style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.43, marginBottom: 12 }}>
+        {lowSignal ? "Weak signal now: " : "On a weak signal, "}crew location updates slow to once a minute and auto-backup waits.
       </div>
 
       <div style={{
@@ -2420,7 +2439,7 @@ const _STATUS_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 function StatusStrip() {
   _useTickMs(30000);
   const online = useOnlineStatus();
-  const { active: bsActive } = useBatterySaver();
+  const { active: bsActive, lowSignal } = useBatterySaver();
 
   const now = new Date();
   const day = _STATUS_DAYS[now.getDay()];
@@ -2452,6 +2471,16 @@ function StatusStrip() {
               <path d="M11 9 L13 9 L11 13 L14 13 L10 18"/>
             </svg>
             SAVER
+          </span>
+        )}
+        {online && lowSignal && (
+          <span data-status-weak-signal style={{ display: "inline-flex", alignItems: "center", gap: 4, color: "var(--flare)" }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 13 Q12 8 18 13" opacity="0.55"/>
+              <path d="M9 16 Q12 13.5 15 16"/>
+              <circle cx="12" cy="19" r="0.9" fill="currentColor"/>
+            </svg>
+            WEAK SIGNAL
           </span>
         )}
         {!online && (

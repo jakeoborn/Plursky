@@ -239,7 +239,7 @@ try {
       }
       await page.click('[data-map-cat=crew]'); await page.clock.runFor(300); await page.waitForTimeout(150);
       c = await chips();
-      check(c.n === 0 && c.crew === 'No one in your crew is sharing a locationShare with crew', `${tag}: Crew with no one sharing reads "${c.crew}" (${c.n} amenity marks)`);
+      check(c.n === 0 && c.crew === 'No one in your crew is sharing a stageShare with crew', `${tag}: Crew with no one sharing reads "${c.crew}" (${c.n} amenity marks)`);
       check(!(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)), `${tag}: Map scrolls sideways with Crew open`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();

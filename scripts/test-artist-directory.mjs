@@ -115,17 +115,17 @@ try {
       await page.fill('input[aria-label="Search artists"]', 'charli xcx'); await page.clock.runFor(200); await page.waitForTimeout(150);
       const cx = await page.evaluate(() => document.querySelector('[data-artist-row="charli-xcx"]')?.innerText.replace(/\s+/g, ' ').trim() || null);
       check(cx && /next: .*Oct 9/.test(cx), `${tag}: Playing 2026 + Charli xcx reads ${JSON.stringify(cx)} (want her ACL W2 date, Oct 9)`);
-      // Parents-only records (a name billed only through a project) are listed
-      // with "Also plays as", and are never Playing 2026 on the project's
-      // billing: Bryan Kearney plays 2026 only as Key4050.
+      // A parent is listed with "Also plays as", and is never Playing 2026 on
+      // a project's billing: Bryan Kearney plays 2026 only as Key4050 (his own
+      // billings are past Dreamstate sets).
       const bk = DIR.artists.find(a => a.k === 'bryan-kearney');
-      check(bk && !bk.b.length && bk.p?.includes('Key4050'), `control: bryan-kearney is parents-only in the registry: ${JSON.stringify(bk)}`);
+      check(bk && !bk.b.some(upcoming) && bk.p?.includes('Key4050'), `control: bryan-kearney has no 2026 billing of his own and plays as Key4050: ${JSON.stringify(bk)}`);
       await page.fill('input[aria-label="Search artists"]', 'kearney'); await page.clock.runFor(200); await page.waitForTimeout(150);
       const pk = await page.evaluate(() => [...document.querySelectorAll('[data-artist-row]')].map(b => b.dataset.artistRow));
       check(pk.includes('key4050') && !pk.includes('bryan-kearney'), `${tag}: Playing 2026 + "kearney" lists ${JSON.stringify(pk)} (want Key4050, not Bryan Kearney)`);
       await page.click('[data-artists-playing]'); await page.clock.runFor(200); await page.waitForTimeout(150);
       const bkRow = await page.evaluate(() => document.querySelector('[data-artist-row="bryan-kearney"]')?.innerText.replace(/\s+/g, ' ').trim() || null);
-      check(bkRow && /Also plays as Key4050/.test(bkRow) && !/2026|next:/.test(bkRow), `${tag}: Bryan Kearney reads ${JSON.stringify(bkRow)}`);
+      check(bkRow && /Also plays as [^·]*\bKey4050\b/.test(bkRow) && !/2026|next:/.test(bkRow), `${tag}: Bryan Kearney reads ${JSON.stringify(bkRow)}`);
       const poAll = DIR.artists.filter(a => !a.b.length && a.p).length;
       check(poAll > 0, `control: ${poAll} parents-only records`);
 

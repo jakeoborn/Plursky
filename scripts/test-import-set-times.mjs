@@ -8,11 +8,16 @@
 //      sheet, written as the tuple's 4th element. The fixture is a SYNTHETIC
 //      gated module written into the copy: the real one this used (CRSSD)
 //      flipped on 2026-09-25 and took its only no-day lineup with it.
-//   C  an act whose day is null (Escape's lineup-card acts) matches by name
+//   C  an act whose day is null (Escape's lineup-card acts had this shape
+//      until its 2026-10-26 flip; now a synthetic module) matches by name
 //      and gets the sheet's day; an act with a real day keeps the 3-tuple
 //   D  data.jsx is the target for a festival without a module (EDC Orlando)
 //   E  refusals: a day-2 row without the flag, a festival with no stages,
 //      and --days-from-sheet on a lineup that already has days
+//   F  repeat sets: one printed name on two entries the same day (Escape's
+//      Acyan / Cat & Maomi) fill in START order, whatever the sheet order;
+//      a third row for the pair is refused
+//   G  two DIFFERENT names that normalise together on one day are refused
 // The times in these sheets are test fixtures, written only into the copy.
 
 import { mkdtempSync, mkdirSync, cpSync, readFileSync, writeFileSync, rmSync } from "node:fs";
@@ -57,15 +62,44 @@ try {
   window.PLURSKY_FESTIVALS["${FX}"] = { config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: [], registry: { available: false } };
 })();
 `);
-  // data.jsx registers modules from an explicit id list; add the fixture's.
+  // Escape's pre-flip shape: dated acts, a lineup-card act with day null, and
+  // (F) one act billed twice on day 2. FXG is G's collision, kept apart so it
+  // cannot fail the other cases' imports.
+  const FXC = "fixture-cardacts-2026", FXG = "fixture-collide-2026";
+  const fxModule = (id, artists) => `(function () {
+  const STAGES = [{ id: "top", name: "The Top", short: "TOP", color: "#fff" }, { id: "car", name: "Art Car", short: "CAR", color: "#000" }];
+  const SCHEDULE = {
+    // SCHEDULE:BEGIN ${id}
+    // SCHEDULE:END
+  };
+  const scheduled = act => {
+    const s = SCHEDULE[act.id];
+    if (!s) return act;
+    const { provisional, unscheduled, ...rest } = act;
+    return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day };
+  };
+  const mk = (id, name, day) => scheduled({ id, name, stage: null, day, start: "", end: "", tier: 2, provisional: true });
+  const ARTISTS = [${artists}];
+  const CONFIG = { id: "${id}", name: "Fixture 2026",
+    dayDates: { 1: { y: 2026, m: 9, d: 30, name: "Friday", short: "FRI", midnightUtc: 0 },
+                2: { y: 2026, m: 9, d: 31, name: "Saturday", short: "SAT", midnightUtc: 0 } } };
+  window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
+  window.PLURSKY_FESTIVALS["${id}"] = { config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: [], registry: { available: false } };
+})();
+`;
+  const fxcFile = path.join(tmp, "data", "festivals", `${FXC}.js`);
+  writeFileSync(fxcFile, fxModule(FXC, `mk("c-day", "Dated Act", 1), mk("c-null", "Card Act", null), mk("c-rep1", "Twice", 2), mk("c-rep2", "Twice", 2)`));
+  writeFileSync(path.join(tmp, "data", "festivals", `${FXG}.js`), fxModule(FXG, `mk("g-1", "DJ Kay", 1), mk("g-2", "dj-kay", 1)`));
+
+  // data.jsx registers modules from an explicit id list; add the fixtures'.
   const dataJsx = path.join(tmp, "data.jsx");
   const dataSrc = readFileSync(dataJsx, "utf8");
   check(/^const _WAVE1 = /m.test(dataSrc), "fixture: data.jsx has no `const _WAVE1 = ` line to register the fixture before");
-  writeFileSync(dataJsx, dataSrc.replace(/^const _WAVE1 = /m, `_WAVE1_IDS.push("${FX}");\nconst _WAVE1 = `));
+  writeFileSync(dataJsx, dataSrc.replace(/^const _WAVE1 = /m, `_WAVE1_IDS.push("${FX}", "${FXC}", "${FXG}");\nconst _WAVE1 = `));
   const dataBefore = readFileSync(dataJsx, "utf8");
 
   const before = loadRegistry(tmp).DS;
-  const crssd = before[FX], esc = before["escape-halloween-2026"], edco = before["edc-orlando-2026"];
+  const crssd = before[FX], esc = before[FXC], edco = before["edc-orlando-2026"];
   const cr1 = crssd.artists[0], cr2 = crssd.artists[1];
   const stageName = id => crssd.stages.find(s => s.id === id).name;
   const escDay = esc.artists.find(a => a.day === 1), escNull = esc.artists.find(a => a.day == null);
@@ -93,16 +127,35 @@ try {
   check(crssdOut.includes(`${JSON.stringify(cr1.id)}: [${JSON.stringify(cr1.stage)}, "20:00", "21:00", 2],`), "B: fixture row 1 not written as a 4-tuple with day 2");
   check(readFileSync(dataJsx, "utf8") === dataBefore, "A: a module festival's import must not touch data.jsx");
 
-  // C — Escape: the null-day act takes day 2, the real-day act keeps a 3-tuple.
+  // C — card acts: the null-day act takes day 2, the real-day act keeps a 3-tuple.
+  check(esc && esc.artists.length === 4 && escNull, `fixture: ${FXC} did not load with its null-day act`);
   const escStage = esc.stages[0].name;
-  const c = run("escape-halloween-2026", [
+  const c = run(FXC, [
     [1, escStage, "19:00", "20:00", escDay.name],
     [2, escStage, "21:00", "22:00", escNull.name],
   ], ...SRC);
   check(c.status === 0, `C: import failed (${c.status}): ${c.stderr.trim()}`);
-  const escOut = readFileSync(path.join(tmp, "data", "festivals", "escape-halloween-2026.js"), "utf8");
-  check(escOut.includes(`${JSON.stringify(escDay.id)}: [${JSON.stringify(esc.stages[0].id)}, "19:00", "20:00"],`), "C: Escape day-1 act not written as a 3-tuple");
-  check(escOut.includes(`${JSON.stringify(escNull.id)}: [${JSON.stringify(esc.stages[0].id)}, "21:00", "22:00", 2],`), "C: Escape null-day act not written with day 2");
+  const escOut = readFileSync(fxcFile, "utf8");
+  check(escOut.includes(`${JSON.stringify(escDay.id)}: [${JSON.stringify(esc.stages[0].id)}, "19:00", "20:00"],`), "C: day-1 act not written as a 3-tuple");
+  check(escOut.includes(`${JSON.stringify(escNull.id)}: [${JSON.stringify(esc.stages[0].id)}, "21:00", "22:00", 2],`), "C: null-day act not written with day 2");
+
+  // F — repeat sets fill in start order, in BOTH sheet orders (a tie-break is a policy).
+  const late = [2, "Art Car", "18:30", "20:00", "Twice"], early = [2, "The Top", "16:00", "16:40", "Twice"];
+  for (const [label, rows] of [["early first", [early, late]], ["late first", [late, early]]]) {
+    const f = run(FXC, rows, ...SRC);
+    check(f.status === 0, `F (${label}): import failed (${f.status}): ${f.stderr.trim()}`);
+    const out = readFileSync(fxcFile, "utf8");
+    check(out.includes(`"c-rep1": ["top", "16:00", "16:40"],`) && out.includes(`"c-rep2": ["car", "18:30", "20:00"],`),
+      `F (${label}): the first lineup entry must take the earlier set`);
+  }
+  const f3 = run(FXC, [early, late, [2, "The Top", "22:00", "23:00", "Twice"]], "--check");
+  check(f3.status === 1 && /a second row for the same act/.test(f3.stderr), `F: a third row for a two-entry act must be refused, got ${f3.status}: ${f3.stderr.trim()}`);
+  // Leave C's rows in place for the load-back below.
+  run(FXC, [[1, escStage, "19:00", "20:00", escDay.name], [2, escStage, "21:00", "22:00", escNull.name]], ...SRC);
+
+  // G — "DJ Kay" and "dj-kay" are different printed names on one key: refused.
+  const g = run(FXG, [[1, "The Top", "20:00", "21:00", "DJ Kay"]], "--check");
+  check(g.status === 1 && /normalise to the same key/.test(g.stderr), `G: expected the same-key refusal, got ${g.status}: ${g.stderr.trim()}`);
 
   // D — EDC Orlando has no module: the block lands in data.jsx.
   const d = run("edc-orlando-2026", [[1, edco.stages[0].name, "22:00", "23:00", edco1.name]], ...SRC);
@@ -115,8 +168,8 @@ try {
     `B: fixture act did not load back scheduled: ${JSON.stringify(a1 && { day: a1.day, start: a1.start, provisional: a1.provisional, bio: a1.bio })}`);
   const untouched = after[FX].artists.find(a => a.id === crssd.artists[2].id);
   check(untouched && untouched.start === "" && untouched.provisional === true, "B: an act the sheet did not name must stay untimed and provisional");
-  const n1 = after["escape-halloween-2026"].artists.find(a => a.id === escNull.id);
-  check(n1 && n1.day === 2 && n1.stage === esc.stages[0].id && !n1.unscheduled, `C: Escape null-day act did not load back on day 2: ${JSON.stringify(n1 && { day: n1.day, stage: n1.stage })}`);
+  const n1 = after[FXC].artists.find(a => a.id === escNull.id);
+  check(n1 && n1.day === 2 && n1.stage === esc.stages[0].id && !n1.unscheduled, `C: null-day act did not load back on day 2: ${JSON.stringify(n1 && { day: n1.day, stage: n1.stage })}`);
   const o1 = after["edc-orlando-2026"].artists.find(a => a.id === edco1.id);
   check(o1 && o1.stage === edco.stages[0].id && o1.start === "22:00", `D: EDC Orlando act did not load back scheduled: ${JSON.stringify(o1 && { stage: o1.stage, start: o1.start })}`);
 
@@ -124,7 +177,7 @@ try {
   const e2 = run("decadence-colorado-2026", [[1, "Arena", "20:00", "21:00", "anyone"]], "--check");
   check(e2.status === 2 && /has no stages yet/.test(e2.stderr), `E2: expected exit 2 "has no stages yet", got ${e2.status}: ${e2.stderr.trim()}`);
   // E3 — the flag on a lineup that already has per-act days: refused.
-  const e3 = run("escape-halloween-2026", [[1, escStage, "19:00", "20:00", escDay.name]], "--days-from-sheet", "--check");
+  const e3 = run(FXC, [[1, escStage, "19:00", "20:00", escDay.name]], "--days-from-sheet", "--check");
   check(e3.status === 2 && /already sit on days/.test(e3.stderr), `E3: expected exit 2 for --days-from-sheet on a dated lineup, got ${e3.status}: ${e3.stderr.trim()}`);
 } finally {
   rmSync(tmp, { recursive: true, force: true });
@@ -132,4 +185,4 @@ try {
 
 const real = fails.filter(Boolean);
 if (real.length) { real.forEach(f => console.error(`  ✗ ${f}`)); process.exit(1); }
-console.log("✓ import-set-times: module target, --days-from-sheet, null-day acts, data.jsx target, 3 refusals");
+console.log("✓ import-set-times: module target, --days-from-sheet, null-day acts, repeat sets both orders, data.jsx target, 5 refusals");

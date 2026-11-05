@@ -1,0 +1,37 @@
+{
+ "id": "escape-halloween-2025",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-10-31",
+   "sha256": "e09ac2436a8becd15484a93c5017e76f4addd4c3bc4af21c2f5d3b36b68fed91",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/friday-set-times.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 67,
+   "note": "Header read off the graphic: FRIDAY, OCT 31",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 66,
+   "byEye": [
+    "d1 BEATBOX ART CAR 18:00-19:00 MENA¢E: by eye 6:00PM - 7:00PM; the billing prints a cent sign"
+   ],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2025-11-01",
+   "sha256": "94d42a4aa321cda7eb450ce6ee037d5ef21d3819c4115944c8d06a60bb9cf434",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/saturday-set-times.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 65,
+   "note": "Header read off the graphic: SATURDAY, NOV 1",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 65,
+   "byEye": [],
+   "printedReadings": [
+    "DJ FANTSY BOI: printed spelling; official lineup HTML spells the act differently (see sources.md)"
+   ]
+  }
+ ]
+}
