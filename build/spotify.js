@@ -1859,6 +1859,9 @@ var _momentSyncTimer = null;
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
   try {
+    if (typeof _scanDiagLog === "function") _scanDiagLog("write", all, new Error().stack);
+  } catch {}
+  try {
     window.dispatchEvent(new CustomEvent("plursky-moments-change"));
   } catch {}
   try {
@@ -9631,6 +9634,7 @@ function MemoriesScreen({
     });
   };
   var [scan, setScan] = React.useState(null);
+  var [diagNote, setDiagNote] = React.useState(null);
   var scanAvailable = !!(window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.PhotoScan?.scan && window.FESTIVAL_CONFIG?.dayDates);
   var _scanExportFile = async (PS, asset, cfg) => {
     var meta = _photoKitAssetMeta(asset, cfg);
@@ -9676,6 +9680,9 @@ function MemoriesScreen({
     setScan({
       phase: "access"
     });
+    try {
+      _scanDiagLog("scan-start");
+    } catch {}
     try {
       var access = await PS.requestAccess();
       var limited = access?.status === "limited";
@@ -9756,6 +9763,10 @@ function MemoriesScreen({
       setScan({
         phase: "error"
       });
+    } finally {
+      try {
+        _scanDiagLog("scan-end");
+      } catch {}
     }
   };
   var _scanMessage = st => {
@@ -10085,7 +10096,12 @@ function MemoriesScreen({
   }, review && React.createElement(ImportReview, {
     results: review,
     moments: rawAll,
-    onClose: () => setReview(null),
+    onClose: () => {
+      setReview(null);
+      try {
+        _scanDiagLog("review-close");
+      } catch {}
+    },
     onPatch: handlePatchMany,
     onMove: handleMoveNight
   }), lightbox && React.createElement(MomentLightbox, {
@@ -10302,7 +10318,47 @@ function MemoriesScreen({
         fontWeight: 600,
         fontFamily: "inherit"
       }
-    }, "Dismiss"))));
+    }, "Dismiss"))), React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        flexWrap: "wrap",
+        marginTop: 4
+      }
+    }, React.createElement("button", {
+      "data-scan-diag": true,
+      onClick: async () => {
+        setDiagNote({
+          mode: "busy"
+        });
+        var r = await _scanDiagShare({
+          appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null
+        });
+        setDiagNote(r);
+      },
+      style: {
+        minHeight: 44,
+        padding: "0 4px",
+        border: "none",
+        background: "transparent",
+        color: "var(--text-2)",
+        fontSize: 13,
+        lineHeight: 1.38,
+        fontWeight: 600,
+        textDecoration: "underline",
+        textUnderlineOffset: 3,
+        cursor: "pointer",
+        fontFamily: "inherit"
+      }
+    }, "Share scan diagnostic"), diagNote && diagNote.mode !== "busy" && React.createElement("span", {
+      role: "status",
+      style: {
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: diagNote.ok ? "var(--text-2)" : "var(--warn)"
+      }
+    }, diagNote.mode === "share" ? "Diagnostic ready to send" : diagNote.mode === "copied" ? "Diagnostic copied" : diagNote.mode === "cancelled" ? "Not sent" : diagNote.mode === "unavailable" ? "Sharing isn't available here" : "Couldn't open the share sheet")));
   })(), pickerAvailable && totalCount > 0 && React.createElement("button", {
     onClick: handlePickClick,
     disabled: !!batch && batch.done < batch.total,
