@@ -178,6 +178,218 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "acl:amd",
+     "names": [
+      {
+       "printed": "AMD",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:honda",
+     "names": [
+      {
+       "printed": "Honda",
+       "editions": [
+        "acl-2013",
+        "acl-2014",
+        "acl-2015",
+        "acl-2016",
+        "acl-2017",
+        "acl-2018",
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:austin-ventures",
+     "names": [
+      {
+       "printed": "Austin Ventures",
+       "editions": [
+        "acl-2013",
+        "acl-2014",
+        "acl-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker-tent",
+     "names": [
+      {
+       "printed": "Zilker Tent",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:bud-light",
+     "names": [
+      {
+       "printed": "Bud Light",
+       "editions": [
+        "acl-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:samsung-galaxy",
+     "names": [
+      {
+       "printed": "Samsung Galaxy",
+       "editions": [
+        "acl-2013",
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:sculpture",
+     "names": [
+      {
+       "printed": "Sculpture",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:retailmenot",
+     "names": [
+      {
+       "printed": "RetailMeNot",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:zilker",
+     "names": [
+      {
+       "printed": "Zilker",
+       "editions": [
+        "acl-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:homeaway",
+     "names": [
+      {
+       "printed": "HomeAway",
+       "editions": [
+        "acl-2015",
+        "acl-2016",
+        "acl-2017",
+        "acl-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:samsung",
+     "names": [
+      {
+       "printed": "Samsung",
+       "editions": [
+        "acl-2015",
+        "acl-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:cirrus-logic",
+     "names": [
+      {
+       "printed": "Cirrus Logic",
+       "editions": [
+        "acl-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:tito-s-handmade-vodka-2",
+     "names": [
+      {
+       "printed": "Tito’s Handmade Vodka",
+       "editions": [
+        "acl-2016",
+        "acl-2017",
+        "acl-2018",
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:barton-springs",
+     "names": [
+      {
+       "printed": "Barton Springs",
+       "editions": [
+        "acl-2017",
+        "acl-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "acl:vrbo",
+     "names": [
+      {
+       "printed": "Vrbo",
+       "editions": [
+        "acl-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -1141,6 +1141,34 @@
   {
    "key": "mk",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Tim and the Space Cadets with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tim Kubart with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "The Dynamites feat. Charles Walker",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "LL Cool J feat. DJ Z-Trip",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Sugar + The Hi-Lows",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Florence + The Machine",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "B.A.G. (Blimes x Gifted Gab)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }
