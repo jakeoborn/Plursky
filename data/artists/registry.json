@@ -200,13 +200,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecf37",
    "edc-las-vegas-2025:d1:blacklight-bar:2230:2ar",
    "edc-orlando-2022:d1:rynobus:2300:2ar-b2b-haylee-wood",
    "edc-orlando-2023:d1:rynobus-art-car:1900:2ar",
    "edc-orlando-2025:d2:kineticfield:1300:2ar"
   ],
   "firstSeen": "2022-11-11",
-  "lastSeen": "2025-11-08",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -861,7 +862,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecf1"
+   "edc-orlando-2026:ecf1",
+   "edc-orlando-2026:ecf46"
   ],
   "firstSeen": "2026-11-06",
   "lastSeen": "2026-11-06",
@@ -2794,10 +2796,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecs37",
    "iii-points-2026:iiip-allnightkev-b2b-lo-g"
   ],
   "firstSeen": "2026-10-17",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -2991,11 +2994,12 @@
   "billings": [
    "edc-lv-2026:b17",
    "edc-orlando-2026:ecs6",
+   "edc-orlando-2026:ecu37",
    "edc-las-vegas-2025:d1:metaphoenix:0000:ky-william-b2b-alves",
    "edc-orlando-2025:d2:casabacardi:1500:alves"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-11-07",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -3598,6 +3602,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2025-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andrea-quintero",
+  "name": "Andrea Quintero",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu38"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -6715,6 +6734,21 @@
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2026-09-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bella-grazia",
+  "name": "Bella Grazia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu39"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -9860,17 +9894,20 @@
  {
   "key": "brosa",
   "name": "Brosa",
-  "aliases": [],
-  "kind": "project",
+  "aliases": [
+   "BROSA"
+  ],
+  "kind": "performer",
   "parents": [
    "brody-jenner"
   ],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecu40",
    "edc-las-vegas-2025:d2:beatbox-art-car:2130:brody-jenner-presents-brosa"
   ],
   "firstSeen": "2025-05-17",
-  "lastSeen": "2025-05-17",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -10023,10 +10060,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecu41",
    "edc-orlando-2023:d1:rynobus-art-car:2200:bryan-softwell"
   ],
   "firstSeen": "2023-11-10",
-  "lastSeen": "2023-11-10",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -11531,6 +11569,21 @@
   "links": []
  },
  {
+  "key": "cc-love",
+  "name": "CC Love",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecs38"
+  ],
+  "firstSeen": "2026-11-07",
+  "lastSeen": "2026-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cedric-gervais",
   "name": "Cedric Gervais",
   "aliases": [],
@@ -11834,6 +11887,21 @@
   ],
   "firstSeen": "2026-06-06",
   "lastSeen": "2026-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chantel-jeffries",
+  "name": "Chantel Jeffries",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecf38"
+  ],
+  "firstSeen": "2026-11-06",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -12446,6 +12514,21 @@
   ],
   "firstSeen": "2014-10-03",
   "lastSeen": "2019-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chini",
+  "name": "Chini",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu41"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -14640,16 +14723,19 @@
  },
  {
   "key": "crespo",
-  "name": "CRESPO",
-  "aliases": [],
+  "name": "Crespo",
+  "aliases": [
+   "CRESPO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecf39",
    "edc-orlando-2025:d1:casabacardi:1700:crespo"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2025-11-07",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -17959,11 +18045,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecu11",
    "dreamstate-socal-2026:dssc-discovery-project",
    "countdown-nye-2026:cdny-discovery-project"
   ],
-  "firstSeen": "2026-11-08",
+  "firstSeen": "2026-11-20",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -19272,6 +19357,21 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj3piece",
+  "name": "DJ3piece",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu42"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -22434,6 +22534,21 @@
   "links": []
  },
  {
+  "key": "eve-lauren",
+  "name": "Eve Lauren",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecf40"
+  ],
+  "firstSeen": "2026-11-06",
+  "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "eveava",
   "name": "eveava",
   "aliases": [],
@@ -25025,7 +25140,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecs17"
+   "edc-orlando-2026:ecs17",
+   "edc-orlando-2026:ecs45"
   ],
   "firstSeen": "2026-11-07",
   "lastSeen": "2026-11-07",
@@ -25516,6 +25632,21 @@
   ],
   "firstSeen": "2015-10-02",
   "lastSeen": "2015-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "george-smeddles",
+  "name": "George Smeddles",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecs42"
+  ],
+  "firstSeen": "2026-11-07",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -32178,6 +32309,21 @@
   "links": []
  },
  {
+  "key": "jfuse",
+  "name": "JFUSE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecs39"
+  ],
+  "firstSeen": "2026-11-07",
+  "lastSeen": "2026-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jhene-aiko",
   "name": "Jhené Aiko",
   "aliases": [],
@@ -32475,6 +32621,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "joe-vanditti",
+  "name": "Joe Vanditti",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu43"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
@@ -33221,7 +33382,6 @@
    "edc-lv-2026:n13",
    "edc-lv-2026:s6",
    "edc-orlando-2026:ecf18",
-   "edc-orlando-2026:ecf30",
    "arc-2026:arc-green-velvet-b2b-josh-baker-grid-d4",
    "arc-2026:arc-josh-baker-expansions-d4",
    "edc-las-vegas-2025:d3:bionic-jungle:2330:prospa-b2b-josh-baker"
@@ -33980,6 +34140,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecs40",
    "nocturnal-wonderland-2026:nw-juos",
    "escape-halloween-2026:esc-andruss-b2b-juos-d2",
    "escape-halloween-2026:esc-juos-d2",
@@ -33987,7 +34148,7 @@
    "escape-halloween-2025:d2:casa-bacardi:0045:juos"
   ],
   "firstSeen": "2025-11-01",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -34679,6 +34840,21 @@
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kashovski",
+  "name": "Kashovski",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecf41"
+  ],
+  "firstSeen": "2026-11-06",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -36425,6 +36601,21 @@
   "links": []
  },
  {
+  "key": "kofla",
+  "name": "Kofla",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu44"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kolsch",
   "name": "Kölsch",
   "aliases": [],
@@ -37608,13 +37799,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecs41",
    "edc-orlando-2017:d1:corona-electric-beach:2230:landis",
    "edc-orlando-2017:d2:boombox-art-car:2200:landis",
    "edc-orlando-2021:d3:corona-electric-beach:1730:landis",
    "edc-orlando-2022:d3:corona-electric-beach:1730:landis"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2022-11-13",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -40618,12 +40810,13 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:s5",
+   "edc-orlando-2026:ecs42",
    "iii-points-2026:iiip-max-dean-b2b-luke-dean",
    "arc-2026:arc-max-dean-b2b-luke-dean-expansions-d1",
    "edc-orlando-2025:d1:stereobloom:1730:luke-dean-b2b-ranger-trucco-sunset-set"
   ],
   "firstSeen": "2025-11-07",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -42275,6 +42468,21 @@
   "links": []
  },
  {
+  "key": "marian-br",
+  "name": "Marian (BR)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu45"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marian-hill",
   "name": "Marian Hill",
   "aliases": [],
@@ -43455,21 +43663,6 @@
   "links": []
  },
  {
-  "key": "max-dean-luke-dean",
-  "name": "Max Dean, Luke Dean",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "edc-orlando-2026:ecs25"
-  ],
-  "firstSeen": "2026-11-07",
-  "lastSeen": "2026-11-07",
-  "photo": null,
-  "links": []
- },
- {
   "key": "max-frost",
   "name": "Max Frost",
   "aliases": [],
@@ -43758,6 +43951,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecs26",
+   "edc-orlando-2026:ecf42",
    "ultra-miami-2026:ul115"
   ],
   "firstSeen": "2026-03-29",
@@ -48057,6 +48251,21 @@
   "links": []
  },
  {
+  "key": "night-tales",
+  "name": "Night Tales",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecf43"
+  ],
+  "firstSeen": "2026-11-06",
+  "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "night-tapes",
   "name": "Night Tapes",
   "aliases": [],
@@ -49181,8 +49390,9 @@
  },
  {
   "key": "obskur",
-  "name": "Obskür",
+  "name": "Obskûr",
   "aliases": [
+   "Obskür",
    "OBSKÜR"
   ],
   "kind": "performer",
@@ -49190,10 +49400,11 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:s8",
+   "edc-orlando-2026:ecf44",
    "arc-2026:arc-omarplus-b2b-obsk-r-grid-d2"
   ],
   "firstSeen": "2026-05-15",
-  "lastSeen": "2026-09-05",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -53049,8 +53260,6 @@
   "billings": [
    "edc-lv-2026:n12",
    "edc-lv-2026:n13",
-   "edc-orlando-2026:ecf30",
-   "edc-orlando-2026:ecf31",
    "crssd-fall-2026:crssd-prospa",
    "portola-2026:pt1-prospa",
    "arc-2026:arc-prospa-expansions-d1",
@@ -53060,7 +53269,7 @@
    "lollapalooza-2025:d1:dollapalooza:1510:prospa"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2026-09-27",
   "photo": null,
   "links": []
  },
@@ -53849,10 +54058,11 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecf32",
+   "edc-orlando-2026:ecs43",
    "iii-points-2026:iiip-raje-b2b-slugg"
   ],
   "firstSeen": "2026-10-16",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -56046,11 +56256,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecs44",
    "escape-halloween-2026:esc-rommii-d2",
    "edc-las-vegas-2024:d2:house-of-dunkin:2100:rommii"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2026-10-31",
+  "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
  },
@@ -58223,10 +58434,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-orlando-2026:ecf45",
    "edc-orlando-2023:d1:rynobus-art-car:1500:seeing-double"
   ],
   "firstSeen": "2023-11-10",
-  "lastSeen": "2023-11-10",
+  "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
  },
@@ -72433,6 +72645,21 @@
   ],
   "firstSeen": "2015-10-03",
   "lastSeen": "2015-10-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "william-kiss",
+  "name": "William Kiss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-orlando-2026:ecu46"
+  ],
+  "firstSeen": "2026-11-08",
+  "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
  },
