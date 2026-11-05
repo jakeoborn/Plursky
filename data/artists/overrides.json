@@ -52,7 +52,7 @@
    ],
    "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
    "source": [
-    "https://orlando.edc.com/lineup/",
+    "https://orlando.edc.com/lineup/set-times/day-2/",
     "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
    ]
   },
@@ -477,7 +477,7 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://orlando.edc.com/lineup/"
+   "source": "https://orlando.edc.com/lineup/set-times/day-2/"
   },
   {
    "printed": "DOG BLOOD (SKRILLEX + BOYS NOIZE)",
@@ -599,6 +599,17 @@
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Corrupt\".",
    "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Marian (BR)",
+   "performers": [
+    {
+     "name": "Marian (BR)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Marian\".",
+   "source": "https://orlando.edc.com/lineup/set-times/day-3/"
   },
   {
    "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
@@ -1141,6 +1152,34 @@
   {
    "key": "mk",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Tim and the Space Cadets with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tim Kubart with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "The Dynamites feat. Charles Walker",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "LL Cool J feat. DJ Z-Trip",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Sugar + The Hi-Lows",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Florence + The Machine",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "B.A.G. (Blimes x Gifted Gab)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }
