@@ -18,6 +18,9 @@
 //      sentence; a connect never throws.
 //   5. On the web nothing changes: no plugin, the bundled token, and the
 //      plursky.com origin check still runs.
+//   6. Disconnect sticks: after DISCONNECT, a library read, a playlist build
+//      and a restart each make zero Apple Music calls and no silent token
+//      read; CONNECT again works (control).
 // Mutation: making _amDevToken return APPLE_DEV_TOKEN fails section 2.
 import vm from "node:vm";
 import { readFileSync } from "node:fs";
@@ -107,7 +110,10 @@ const bundled = (ctx) => vm.runInContext("APPLE_DEV_TOKEN", ctx);
 
 // ── 3. After a restart the builder recovers the native token silently ───────
 {
-  const { ctx, calls } = boot({ native: true, plugin: authorized, store: { am_user_token: NATIVE_USER } });
+  // The store a real CONNECT leaves behind, carried into a fresh vm.
+  const first = boot({ native: true, plugin: authorized });
+  await first.ctx.connectAppleMusic();
+  const { ctx, calls } = boot({ native: true, plugin: authorized, store: { ...first.store } });
   await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
   check(calls.authorize === 0, "no prompt after a restart");
   check(calls.tokens >= 1, "the silent token read ran");
@@ -144,6 +150,65 @@ const bundled = (ctx) => vm.runInContext("APPLE_DEV_TOKEN", ctx);
   const lib = web.calls.fetches.filter(f => f.url.includes("/me/library/artists"));
   check(lib.length === 1 && lib[0].auth === `Bearer ${bundled(web.ctx)}`, "web library read carries the bundled token");
   console.log("  ✓ web: unchanged");
+}
+
+// ── 6. Disconnect sticks: no silent token, no API call, across a restart ────
+// MusicKit stays authorized at the system level after a disconnect, so the
+// plugin's silent read keeps returning a token. Before the fix the next
+// library or playlist call stored it back and the playlist POST went out.
+{
+  const apple = c => c.fetches.filter(f => f.url.includes("api.music.apple.com"));
+  // disconnect → library read
+  {
+    const { ctx, calls, store } = boot({ native: true, plugin: authorized });
+    await ctx.connectAppleMusic(); ctx.disconnectAppleMusic();
+    calls.fetches.length = 0; const t0 = calls.tokens;
+    const r = await ctx.fetchAppleMusicArtists();
+    check(r == null, `disconnect → fetchArtists returns nothing (got ${JSON.stringify(r)})`);
+    check(calls.tokens === t0, "disconnect → fetchArtists makes no silent token read");
+    check(apple(calls).length === 0, `disconnect → fetchArtists makes zero Apple Music calls (${apple(calls).length})`);
+    check(!("am_user_token" in store), "disconnect → fetchArtists does not store a token back");
+  }
+  // disconnect → playlist create
+  {
+    const { ctx, calls, store } = boot({ native: true, plugin: authorized });
+    await ctx.connectAppleMusic(); ctx.disconnectAppleMusic();
+    calls.fetches.length = 0; const t0 = calls.tokens;
+    const p = await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    check(p && p.ok === false && p.reason === "not_connected", `disconnect → playlist refuses as not connected (got ${JSON.stringify(p)})`);
+    check(calls.tokens === t0, "disconnect → playlist makes no silent token read");
+    check(apple(calls).length === 0, `disconnect → playlist makes zero Apple Music calls (${apple(calls).length})`);
+    check(!("am_user_token" in store), "disconnect → playlist does not store a token back");
+  }
+  // disconnect → restart → library read + playlist
+  {
+    const first = boot({ native: true, plugin: authorized });
+    await first.ctx.connectAppleMusic(); first.ctx.disconnectAppleMusic();
+    const { ctx, calls, store } = boot({ native: true, plugin: authorized, store: { ...first.store } });
+    await ctx.fetchAppleMusicArtists();
+    const p = await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    check(calls.tokens === 0 && calls.authorize === 0, `disconnect → restart: no token read of any kind (${calls.tokens} silent, ${calls.authorize} prompted)`);
+    check(apple(calls).length === 0, `disconnect → restart: zero Apple Music calls (${apple(calls).length})`);
+    check(p && p.reason === "not_connected" && !("am_user_token" in store), "disconnect → restart: still disconnected");
+  }
+  // positive control: CONNECT again after a disconnect works end to end
+  {
+    const { ctx, calls, store } = boot({ native: true, plugin: authorized });
+    await ctx.connectAppleMusic(); ctx.disconnectAppleMusic();
+    const r = await ctx.connectAppleMusic();
+    calls.fetches.length = 0;
+    const p = await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    check(r.ok === true && store.am_user_token === NATIVE_USER, "control: CONNECT after a disconnect connects again");
+    check(p && p.ok !== false && apple(calls).some(f => f.method === "POST" && f.url.includes("/me/library/playlists")), "control: the playlist POST goes out after re-CONNECT");
+  }
+  // control: a user who never connected still gets the first-time connect
+  // from the playlist button (only an explicit DISCONNECT blocks it)
+  {
+    const { ctx, calls } = boot({ native: true, plugin: authorized });
+    const p = await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    check(calls.authorize === 1 && p && p.ok !== false, `control: never connected → the playlist button connects once (authorize ${calls.authorize}, got ${JSON.stringify(p)})`);
+  }
+  console.log("  ✓ disconnect sticks: library, playlist and restart make zero API calls; re-CONNECT works");
 }
 
 if (failed) { console.log(`\n✗ ${failed} of ${checks} Apple Music native checks failed`); process.exit(1); }

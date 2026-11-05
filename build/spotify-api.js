@@ -49,9 +49,25 @@ var _amNativeDevToken = null;
 function _amDevToken() {
   return _amNativeDevToken || APPLE_DEV_TOKEN;
 }
+var _AM_NATIVE_CONNECTED = "am_native_connected_v1";
+function _amNativeConnected() {
+  try {
+    return localStorage.getItem(_AM_NATIVE_CONNECTED) === "1";
+  } catch {
+    return false;
+  }
+}
+function _amNativeDisconnected() {
+  try {
+    return localStorage.getItem(_AM_NATIVE_CONNECTED) === "0";
+  } catch {
+    return false;
+  }
+}
 async function _amNativeTokens(prompt) {
   var p = _amNative();
   if (!p) return null;
+  if (!prompt && !_amNativeConnected()) return null;
   var args = {
     fallbackDeveloperToken: APPLE_DEV_TOKEN
   };
@@ -60,6 +76,7 @@ async function _amNativeTokens(prompt) {
     _amNativeDevToken = r.developerToken;
     try {
       localStorage.setItem("am_user_token", r.userToken);
+      if (prompt) localStorage.setItem(_AM_NATIVE_CONNECTED, "1");
     } catch {}
   }
   return r;
@@ -135,6 +152,11 @@ async function connectAppleMusic() {
 }
 function disconnectAppleMusic() {
   localStorage.removeItem("am_user_token");
+  if (_amNative()) {
+    try {
+      localStorage.setItem(_AM_NATIVE_CONNECTED, "0");
+    } catch {}
+  }
   _amNativeDevToken = null;
   if (typeof MusicKit !== "undefined") {
     try {
@@ -246,6 +268,13 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   try {
     ut = localStorage.getItem("am_user_token");
   } catch {}
+  if (!ut && _amNative() && _amNativeDisconnected()) {
+    return {
+      ok: false,
+      reason: "not_connected",
+      message: "Apple Music is disconnected. Tap CONNECT to link it again."
+    };
+  }
   if (!ut) {
     var c = await connectAppleMusic();
     if (!c.ok) return {

@@ -84,15 +84,36 @@ function _amNative() {
 // memory only: MusicKit caches it on the device and the plugin re-reads it.
 let _amNativeDevToken = null;
 function _amDevToken() { return _amNativeDevToken || APPLE_DEV_TOKEN; }
-// prompt=true may show the system sheet; prompt=false never does.
+// The user's own choice, kept on the device: "1" only after a CONNECT tap
+// that authorized, removed by disconnect. MusicKit keeps authorizing Plursky
+// at the system level after a disconnect, so without this the next silent
+// read below would hand the token straight back and a playlist could still
+// be written to the account. Survives a restart, so disconnected stays
+// disconnected until the user taps CONNECT again.
+const _AM_NATIVE_CONNECTED = "am_native_connected_v1";
+// "0" = the user tapped DISCONNECT. Distinct from never connected: the
+// playlist builder still offers a first-time connect, but never re-links
+// someone who chose to disconnect (MusicKit would say yes without a sheet).
+function _amNativeConnected() {
+  try { return localStorage.getItem(_AM_NATIVE_CONNECTED) === "1"; } catch { return false; }
+}
+function _amNativeDisconnected() {
+  try { return localStorage.getItem(_AM_NATIVE_CONNECTED) === "0"; } catch { return false; }
+}
+// prompt=true may show the system sheet; prompt=false never does, and runs
+// only for a user who connected and has not disconnected since.
 async function _amNativeTokens(prompt) {
   const p = _amNative();
   if (!p) return null;
+  if (!prompt && !_amNativeConnected()) return null;
   const args = { fallbackDeveloperToken: APPLE_DEV_TOKEN };
   const r = prompt ? await p.authorize(args) : await p.tokens(args);
   if (r?.status === "authorized" && r.userToken && r.developerToken) {
     _amNativeDevToken = r.developerToken;
-    try { localStorage.setItem("am_user_token", r.userToken); } catch {}
+    try {
+      localStorage.setItem("am_user_token", r.userToken);
+      if (prompt) localStorage.setItem(_AM_NATIVE_CONNECTED, "1");
+    } catch {}
   }
   return r;
 }
@@ -151,6 +172,7 @@ async function connectAppleMusic() {
 
 function disconnectAppleMusic() {
   localStorage.removeItem("am_user_token");
+  if (_amNative()) { try { localStorage.setItem(_AM_NATIVE_CONNECTED, "0"); } catch {} }
   _amNativeDevToken = null;
   if (typeof MusicKit !== "undefined") {
     try { MusicKit.getInstance().unauthorize(); } catch {}
@@ -246,6 +268,10 @@ async function createAppleMusicPlaylist(state, opts = {}) {
 
   let ut = null;
   try { ut = localStorage.getItem("am_user_token"); } catch {}
+  if (!ut && _amNative() && _amNativeDisconnected()) {
+    // Disconnected on purpose: only a CONNECT tap links Apple Music again.
+    return { ok: false, reason: "not_connected", message: "Apple Music is disconnected. Tap CONNECT to link it again." };
+  }
   if (!ut) {
     const c = await connectAppleMusic();           // prompts MusicKit authorize
     if (!c.ok) return { ok: false, reason: "not_connected", message: c.error };
