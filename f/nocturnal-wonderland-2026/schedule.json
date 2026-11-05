@@ -1,6 +1,6 @@
 {
   "festivalId": "nocturnal-wonderland-2026",
-  "source": {"url":"https://nocturnalwonderland.com/lineup/set-times/day-1/","observedAt":"2026-09-10","official":true},
+  "source": {"url":"https://nocturnalwonderland.com/lineup/set-times/day-1/","observedAt":"2026-09-10","official":true,"dayUrls":{"1":"https://nocturnalwonderland.com/lineup/set-times/day-1/","2":"https://nocturnalwonderland.com/lineup/set-times/day-2/"}},
   "scheduleHash": "faec0fa0d8f997c5",
   "acts": [
     {"id":"nw-angrybaby","name":"Angrybaby","day":2,"stage":"mysticwild","start":"16:45","end":"17:45"},
