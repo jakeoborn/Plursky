@@ -21,6 +21,9 @@
 //   6. Disconnect sticks: after DISCONNECT, a library read, a playlist build
 //      and a restart each make zero Apple Music calls and no silent token
 //      read; CONNECT again works (control).
+//   7. In-flight race: a silent read or authorize that is already running
+//      when DISCONNECT lands stores nothing and sends nothing when it
+//      resolves (library, playlist, CONNECT); re-CONNECT works (control).
 // Mutation: making _amDevToken return APPLE_DEV_TOKEN fails section 2.
 import vm from "node:vm";
 import { readFileSync } from "node:fs";
@@ -209,6 +212,91 @@ const bundled = (ctx) => vm.runInContext("APPLE_DEV_TOKEN", ctx);
     check(calls.authorize === 1 && p && p.ok !== false, `control: never connected → the playlist button connects once (authorize ${calls.authorize}, got ${JSON.stringify(p)})`);
   }
   console.log("  ✓ disconnect sticks: library, playlist and restart make zero API calls; re-CONNECT works");
+}
+
+// ── 7. In-flight race: a token read already running when DISCONNECT lands ───
+// Section 6 covers reads that START after the tap. Here the silent read (or
+// the authorize) is in flight when the user taps DISCONNECT and resolves
+// after it. Before the epoch the resolve wrote am_user_token back and the
+// library GET / playlist POST went out on the disconnected account.
+{
+  const apple = c => c.fetches.filter(f => f.url.includes("api.music.apple.com"));
+  // A plugin whose next call of `kind` waits until release() is called.
+  function deferredPlugin(kind) {
+    let release; const gate = new Promise(r => { release = r; });
+    let armed = false;
+    const plugin = (k) => (armed && k === kind ? gate.then(authorized) : authorized());
+    return { plugin, arm: () => { armed = true; }, release: () => release() };
+  }
+  const tick = () => new Promise(r => setImmediate(r));
+  // library: silent read in flight → DISCONNECT → resolve
+  {
+    const d = deferredPlugin("tokens");
+    const { ctx, calls, store } = boot({ native: true, plugin: d.plugin });
+    await ctx.connectAppleMusic();
+    d.arm(); calls.fetches.length = 0;
+    const pending = ctx.fetchAppleMusicArtists();
+    await tick();
+    check(calls.tokens === 1, `race library: the silent read is in flight (${calls.tokens})`);
+    ctx.disconnectAppleMusic();
+    d.release();
+    const r = await pending;
+    check(r == null, `race library: returns nothing (got ${JSON.stringify(r)})`);
+    check(apple(calls).length === 0, `race library: zero Apple Music calls (${apple(calls).length})`);
+    check(!("am_user_token" in store), "race library: am_user_token not restored");
+    check(store.am_native_connected_v1 === "0", "race library: still disconnected");
+  }
+  // playlist: silent read in flight → DISCONNECT → resolve
+  {
+    const d = deferredPlugin("tokens");
+    const { ctx, calls, store } = boot({ native: true, plugin: d.plugin });
+    await ctx.connectAppleMusic();
+    d.arm(); calls.fetches.length = 0;
+    const pending = ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    await tick();
+    check(calls.tokens === 1, `race playlist: the silent read is in flight (${calls.tokens})`);
+    ctx.disconnectAppleMusic();
+    d.release();
+    const p = await pending;
+    check(p && p.ok === false && p.reason === "not_connected", `race playlist: refuses as not connected (got ${JSON.stringify(p)})`);
+    check(apple(calls).length === 0, `race playlist: zero Apple Music calls (${apple(calls).length})`);
+    check(!apple(calls).some(f => f.method === "POST"), "race playlist: zero POSTs");
+    check(!("am_user_token" in store), "race playlist: am_user_token not restored");
+  }
+  // CONNECT tap: authorize in flight → DISCONNECT → resolve
+  {
+    const d = deferredPlugin("authorize");
+    const { ctx, calls, store } = boot({ native: true, plugin: d.plugin });
+    d.arm();
+    const pending = ctx.connectAppleMusic();
+    await tick();
+    check(calls.authorize === 1, `race authorize: the authorize is in flight (${calls.authorize})`);
+    ctx.disconnectAppleMusic();
+    d.release();
+    const r = await pending;
+    check(r.ok !== true, `race authorize: the stale authorize does not connect (got ${JSON.stringify(r)})`);
+    check(!("am_user_token" in store) && store.am_native_connected_v1 === "0", "race authorize: no token stored, still disconnected");
+    check(vm.runInContext("_amDevToken()", ctx) === bundled(ctx), "race authorize: native developer token not kept");
+  }
+  // control: re-CONNECT after the race works, and the playlist POST goes out
+  {
+    const d = deferredPlugin("tokens");
+    const { ctx, calls, store } = boot({ native: true, plugin: d.plugin });
+    await ctx.connectAppleMusic();
+    d.arm();
+    const pending = ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    await tick(); ctx.disconnectAppleMusic(); d.release(); await pending;
+    const r = await ctx.connectAppleMusic();
+    calls.fetches.length = 0;
+    // the next silent read resolves immediately again
+    const lib = ctx.fetchAppleMusicArtists();
+    d.release(); await lib;
+    const p = await ctx.createAppleMusicPlaylist({ saved: ["a1"] });
+    check(r.ok === true && store.am_user_token === NATIVE_USER, "race control: re-CONNECT connects");
+    check(apple(calls).some(f => f.url.includes("/me/library/artists")), "race control: the library read goes out after re-CONNECT");
+    check(p && p.ok !== false && apple(calls).some(f => f.method === "POST" && f.url.includes("/me/library/playlists")), `race control: the playlist POST goes out after re-CONNECT (got ${JSON.stringify(p)})`);
+  }
+  console.log("  ✓ in-flight race: a read or authorize resolving after DISCONNECT stores nothing and sends nothing; re-CONNECT works");
 }
 
 if (failed) { console.log(`\n✗ ${failed} of ${checks} Apple Music native checks failed`); process.exit(1); }

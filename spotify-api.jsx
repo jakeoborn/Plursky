@@ -100,6 +100,12 @@ function _amNativeConnected() {
 function _amNativeDisconnected() {
   try { return localStorage.getItem(_AM_NATIVE_CONNECTED) === "0"; } catch { return false; }
 }
+// Bumped by every DISCONNECT. A token read, an authorize or an API call that
+// started before the tap is stale once it resolves: it stores nothing and
+// sends nothing. Without it a silent read already in flight when the user
+// tapped DISCONNECT wrote the token straight back and the call went out.
+let _amEpoch = 0;
+function _amStale(epoch) { return epoch !== _amEpoch; }
 // prompt=true may show the system sheet; prompt=false never does, and runs
 // only for a user who connected and has not disconnected since.
 async function _amNativeTokens(prompt) {
@@ -107,7 +113,9 @@ async function _amNativeTokens(prompt) {
   if (!p) return null;
   if (!prompt && !_amNativeConnected()) return null;
   const args = { fallbackDeveloperToken: APPLE_DEV_TOKEN };
+  const epoch = _amEpoch;
   const r = prompt ? await p.authorize(args) : await p.tokens(args);
+  if (_amStale(epoch)) return { status: "stale" };   // DISCONNECT landed while this was in flight
   if (r?.status === "authorized" && r.userToken && r.developerToken) {
     _amNativeDevToken = r.developerToken;
     try {
@@ -171,6 +179,7 @@ async function connectAppleMusic() {
 }
 
 function disconnectAppleMusic() {
+  _amEpoch++;
   localStorage.removeItem("am_user_token");
   if (_amNative()) { try { localStorage.setItem(_AM_NATIVE_CONNECTED, "0"); } catch {} }
   _amNativeDevToken = null;
@@ -182,7 +191,9 @@ function disconnectAppleMusic() {
 // Paginate through the user's entire Apple Music library and return
 // a flat array of {name} objects (one per unique artist).
 async function fetchAppleMusicArtists() {
+  const epoch = _amEpoch;
   if (_amNative()) { try { await _amNativeTokens(false); } catch {} }
+  if (_amStale(epoch)) return null;
   const ut  = localStorage.getItem("am_user_token");
   if (!ut || !APPLE_DEV_TOKEN) return null;
   const headers = {
@@ -194,6 +205,7 @@ async function fetchAppleMusicArtists() {
   let offset = 0;
   try {
     while (true) {
+      if (_amStale(epoch)) return null;
       const res = await fetch(
         `https://api.music.apple.com/v1/me/library/artists?limit=100&offset=${offset}`,
         { headers }
@@ -264,7 +276,10 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   const prog = (m) => { if (opts.onProgress) opts.onProgress(m); };
   if (!APPLE_DEV_TOKEN) return { ok: false, reason: "not_configured" };
   // iPhone app: pick the native tokens back up after a restart, silently.
+  const epoch = _amEpoch;
+  const disconnected = { ok: false, reason: "not_connected", message: "Apple Music is disconnected. Tap CONNECT to link it again." };
   if (_amNative()) { try { await _amNativeTokens(false); } catch {} }
+  if (_amStale(epoch)) return disconnected;
 
   let ut = null;
   try { ut = localStorage.getItem("am_user_token"); } catch {}
@@ -274,6 +289,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   }
   if (!ut) {
     const c = await connectAppleMusic();           // prompts MusicKit authorize
+    if (_amStale(epoch)) return disconnected;
     if (!c.ok) return { ok: false, reason: "not_connected", message: c.error };
     try { ut = localStorage.getItem("am_user_token"); } catch {}
   }
@@ -353,6 +369,8 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   prog("Creating playlist…");
   const CFG = window.FESTIVAL_CONFIG || {};
   const dateStr = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  // The track searches above await; a DISCONNECT during them stops the write.
+  if (_amStale(epoch)) return disconnected;
   const res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
     method: "POST",
     headers: { ...userHeaders, "Content-Type": "application/json" },

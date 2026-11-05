@@ -64,6 +64,10 @@ function _amNativeDisconnected() {
     return false;
   }
 }
+var _amEpoch = 0;
+function _amStale(epoch) {
+  return epoch !== _amEpoch;
+}
 async function _amNativeTokens(prompt) {
   var p = _amNative();
   if (!p) return null;
@@ -71,7 +75,11 @@ async function _amNativeTokens(prompt) {
   var args = {
     fallbackDeveloperToken: APPLE_DEV_TOKEN
   };
+  var epoch = _amEpoch;
   var r = prompt ? await p.authorize(args) : await p.tokens(args);
+  if (_amStale(epoch)) return {
+    status: "stale"
+  };
   if (r?.status === "authorized" && r.userToken && r.developerToken) {
     _amNativeDevToken = r.developerToken;
     try {
@@ -151,6 +159,7 @@ async function connectAppleMusic() {
   }
 }
 function disconnectAppleMusic() {
+  _amEpoch++;
   localStorage.removeItem("am_user_token");
   if (_amNative()) {
     try {
@@ -165,11 +174,13 @@ function disconnectAppleMusic() {
   }
 }
 async function fetchAppleMusicArtists() {
+  var epoch = _amEpoch;
   if (_amNative()) {
     try {
       await _amNativeTokens(false);
     } catch {}
   }
+  if (_amStale(epoch)) return null;
   var ut = localStorage.getItem("am_user_token");
   if (!ut || !APPLE_DEV_TOKEN) return null;
   var headers = {
@@ -181,6 +192,7 @@ async function fetchAppleMusicArtists() {
   var offset = 0;
   try {
     while (true) {
+      if (_amStale(epoch)) return null;
       var res = await fetch(`https://api.music.apple.com/v1/me/library/artists?limit=100&offset=${offset}`, {
         headers
       });
@@ -259,11 +271,18 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     ok: false,
     reason: "not_configured"
   };
+  var epoch = _amEpoch;
+  var disconnected = {
+    ok: false,
+    reason: "not_connected",
+    message: "Apple Music is disconnected. Tap CONNECT to link it again."
+  };
   if (_amNative()) {
     try {
       await _amNativeTokens(false);
     } catch {}
   }
+  if (_amStale(epoch)) return disconnected;
   var ut = null;
   try {
     ut = localStorage.getItem("am_user_token");
@@ -277,6 +296,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
   }
   if (!ut) {
     var c = await connectAppleMusic();
+    if (_amStale(epoch)) return disconnected;
     if (!c.ok) return {
       ok: false,
       reason: "not_connected",
@@ -390,6 +410,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     month: "short",
     day: "numeric"
   });
+  if (_amStale(epoch)) return disconnected;
   var res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
     method: "POST",
     headers: {
