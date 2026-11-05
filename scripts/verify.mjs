@@ -2312,7 +2312,7 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
   }
 }
-// Scan my weekend (v476): the photo-library scan asks only for festival
+// Scan my weekend (v513): the photo-library scan asks only for festival
 // nights, keeps every act-time asset, and tags it exactly as the EXIF path
 // tags the same instant, with the library's GPS fix carried through.
 {
@@ -2362,6 +2362,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`spotify read-only gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b1. Apple Music signs in natively in the iPhone app ────────────────
+// Inside the app the MusicKit web sign-in can't post back to
+// capacitor://localhost, so the AppleMusicNative plugin supplies both tokens.
+// Every Apple Music call must carry the token the plugin returned, a restart
+// must recover it without a prompt, and the web path must stay as it was.
+{
+  console.log("▸ Apple Music native gate — native tokens on every call, silent restart, web unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-apple-music-native.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`apple music native gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
