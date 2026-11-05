@@ -1065,10 +1065,13 @@ function _scanSeenAdd(ids) {
 //
 // Privacy allowlist, enforced by test-scan-diagnostic.mjs: per record only a
 // locally salted hash of the moment id, festival id, night, artist id (public
-// lineup ids), tag/stamp/time source labels, kind, flags, capture wall clock
-// to the minute and import time. Never a file name, path, PhotoKit id, GPS,
-// location, fingerprint, text, token or email. The export leaves the phone
-// only through the share sheet, when the user taps the button.
+// lineup ids), tag/stamp/time source labels, kind and yes/no flags. No capture
+// time, no import time, never a file name, path, PhotoKit id, GPS, location,
+// fingerprint, text, token or email. Events carry their own timestamps (when
+// the app wrote, not when a photo was taken), counts, the writing function's
+// name and hash-keyed change lines. The export is REBUILT from those fields
+// every time, never copied through from storage, and it leaves the phone only
+// through the share sheet, when the user taps the button.
 const _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
 const _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
 const _SCAN_DIAG_MAX_EVENTS = 60;
@@ -1108,12 +1111,10 @@ const _scanDiagStr = (v, re, max = 40) =>
   (typeof v === "string" && v.length <= max && re.test(v)) ? v : (v == null ? null : "?");
 const _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
 const _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
-const _SCAN_DIAG_WALL_RE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 
 // One moment → the allowlisted record. Built field by field from known
 // names, so a new private field on a moment can never leak through a spread.
 function _scanDiagRecord(m, night, salt) {
-  const imported = typeof m.importedAt === "string" ? m.importedAt.slice(0, 16) : null;
   return {
     h: _scanDiagHash(String(m.id), salt),
     f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
@@ -1123,8 +1124,6 @@ function _scanDiagRecord(m, night, salt) {
     fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
     tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
     k: m.kind === "video" ? "v" : "p",
-    w: _scanDiagStr(m.takenAt, _SCAN_DIAG_WALL_RE, 16),
-    im: imported && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(imported) ? imported : null,
     auto: m.autoTagged ? 1 : 0,
     amb: m.tagAmbiguous ? 1 : 0,
     rt: m.needsRetag ? 1 : 0,
@@ -1242,41 +1241,172 @@ function _scanDiagLog(ev, all, stack) {
   } catch { return false; }
 }
 
-// The text the share sheet carries. Compact JSON; if it is over the size
-// limit the per-record lists shrink first (marked truncated), never silently.
+// ── Export: rebuilt from allowed fields, hard-bounded ─────────────────────
+// Everything persisted is re-validated on the way out. A stored record,
+// summary or event that grew an unexpected field (an older build, a bug, a
+// hand edit) contributes only the fields named here, each checked against
+// its pattern. Nothing from storage is spread or copied through.
+const _SCAN_DIAG_HASH_RE = /^[0-9a-f]{16}$/;
+const _SCAN_DIAG_ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+const _SCAN_DIAG_NIGHT_RE = /^(-|_other|\d{1,3})$/;
+const _SCAN_DIAG_EV_RE = /^[a-z-]{1,20}$/;
+const _SCAN_DIAG_ORIGIN_RE = /^[A-Za-z0-9_$>?-]{1,170}$/;
+const _SCAN_DIAG_SEG = "[A-Za-z0-9_.:?-]{1,40}";
+const _SCAN_DIAG_STATE = `${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}`;
+const _SCAN_DIAG_CHANGE_RE = new RegExp(`^[+~-][0-9a-f]{16}:${_SCAN_DIAG_STATE}(>${_SCAN_DIAG_STATE})?$`);
+const _scanDiagInt = (v) => (Number.isInteger(v) && v >= 0 && v < 1e7) ? v : 0;
+const _scanDiagKey = (k, re) => typeof k === "string" && k.length <= 40 && re.test(k);
+
+function _scanDiagCleanRecord(r) {
+  if (!r || typeof r !== "object" || !_SCAN_DIAG_HASH_RE.test(r.h)) return null;
+  return {
+    h: r.h,
+    f: _scanDiagStr(r.f, _SCAN_DIAG_ID_RE),
+    n: Number.isInteger(r.n) && r.n >= 0 && r.n < 1000 ? r.n : null,
+    a: _scanDiagStr(r.a, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(r.ts, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(r.fs, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(r.tk, _SCAN_DIAG_LABEL_RE),
+    k: r.k === "v" ? "v" : "p",
+    auto: r.auto ? 1 : 0, amb: r.amb ? 1 : 0, rt: r.rt ? 1 : 0, fp: r.fp ? 1 : 0,
+  };
+}
+function _scanDiagCleanCounts(obj, keyRe) {
+  const out = {};
+  if (!obj || typeof obj !== "object") return out;
+  for (const k of Object.keys(obj)) if (_scanDiagKey(k, keyRe)) out[k] = _scanDiagInt(obj[k]);
+  return out;
+}
+function _scanDiagCleanSummary(sIn) {
+  const sum = sIn && typeof sIn === "object" ? sIn : {};
+  const byFest = {};
+  for (const f of Object.keys(sum.byFest || {})) {
+    const fv = sum.byFest[f];
+    if (!_scanDiagKey(f, _SCAN_DIAG_ID_RE) || !fv || typeof fv !== "object") continue;
+    const nights = {};
+    for (const n of Object.keys(fv.nights || {})) {
+      if (_scanDiagKey(n, _SCAN_DIAG_NIGHT_RE)) nights[n] = _scanDiagCleanCounts(fv.nights[n], _SCAN_DIAG_ID_RE);
+    }
+    byFest[f] = { total: _scanDiagInt(fv.total), nights };
+  }
+  return { total: _scanDiagInt(sum.total), byFest, bySource: _scanDiagCleanCounts(sum.bySource, _SCAN_DIAG_ID_RE) };
+}
+function _scanDiagCleanEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  const out = {
+    t: typeof e.t === "string" && _SCAN_DIAG_ISO_RE.test(e.t) ? e.t : null,
+    ev: typeof e.ev === "string" && _SCAN_DIAG_EV_RE.test(e.ev) ? e.ev : "?",
+    origin: typeof e.origin === "string" && _SCAN_DIAG_ORIGIN_RE.test(e.origin) ? e.origin : "?",
+    total: _scanDiagInt(e.total),
+  };
+  if (typeof e.tEnd === "string" && _SCAN_DIAG_ISO_RE.test(e.tEnd)) out.tEnd = e.tEnd;
+  if (e.ev !== "before") {
+    out.added = _scanDiagInt(e.added); out.removed = _scanDiagInt(e.removed); out.changed = _scanDiagInt(e.changed);
+    if (Number.isInteger(e.writes)) out.writes = _scanDiagInt(e.writes);
+    out.changes = Array.isArray(e.changes) ? e.changes.filter(c => typeof c === "string" && c.length <= 260 && _SCAN_DIAG_CHANGE_RE.test(c)) : [];
+  }
+  return out;
+}
+// Keep the k largest entries of a count map; the rest sum into "_other".
+function _scanDiagTop(obj, k, val = (v) => v) {
+  const e = Object.entries(obj);
+  if (e.length <= k) return { out: obj, cut: false };
+  e.sort((x, y) => val(y[1]) - val(x[1]));
+  return { out: Object.fromEntries(e.slice(0, k)), rest: e.slice(k), cut: true };
+}
+function _scanDiagTrimSummary(sum, k) {
+  if (k === Infinity) return { sum, cut: false };
+  let cut = false;
+  const byFest = {};
+  const f = _scanDiagTop(sum.byFest, k, v => v.total);
+  if (f.cut) {
+    cut = true;
+    byFest._other = { total: f.rest.reduce((t, [, v]) => t + v.total, 0), nights: {} };
+  }
+  for (const [fid, fv] of Object.entries(f.out)) {
+    const nights = {};
+    const ns = _scanDiagTop(fv.nights, k, v => Object.values(v).reduce((t, c) => t + c, 0));
+    if (ns.cut) { cut = true; nights._other = { _other: ns.rest.reduce((t, [, v]) => t + Object.values(v).reduce((a, c) => a + c, 0), 0) }; }
+    for (const [n, arts] of Object.entries(ns.out)) {
+      const a = _scanDiagTop(arts, k);
+      if (a.cut) { cut = true; a.out = { ...a.out, _other: (a.out._other || 0) + a.rest.reduce((t, [, c]) => t + c, 0) }; }
+      nights[n] = a.out;
+    }
+    byFest[fid] = { total: fv.total, nights };
+  }
+  const src = _scanDiagTop(sum.bySource, k);
+  if (src.cut) { cut = true; src.out = { ...src.out, _other: (src.out._other || 0) + src.rest.reduce((t, [, c]) => t + c, 0) }; }
+  return { sum: { total: sum.total, byFest, bySource: src.out }, cut };
+}
+
+// The text the share sheet carries: compact JSON, at most 38,000 characters
+// in ALL cases. Over the limit it sheds detail in a fixed order (record
+// lists, then change lines and events, then per-artist detail in the
+// summaries) and says what it shed in `truncated`. Totals are never cut.
 function _scanDiagExportText(meta = {}) {
   const d = _scanDiagRead();
   const salt = _scanDiagSalt();
   const all = (() => { try { return JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); } catch { return {}; } })();
-  const records = _scanDiagRecords(all, salt);
+  const nowRecords = _scanDiagRecords(all, salt).map(_scanDiagCleanRecord).filter(Boolean);
+  const nowSummary = _scanDiagCleanSummary(_scanDiagSummary(nowRecords));
+  const b = d.before && typeof d.before === "object" ? d.before : null;
+  const beforeRecords = b && Array.isArray(b.records) ? b.records.map(_scanDiagCleanRecord).filter(Boolean) : [];
+  const beforeSummary = b ? _scanDiagCleanSummary(b.summary) : null;
+  const beforeT = b && typeof b.t === "string" && _SCAN_DIAG_ISO_RE.test(b.t) ? b.t : null;
+  const beforeCut = !!(b && b.truncated);
+  const events = (Array.isArray(d.events) ? d.events : []).map(_scanDiagCleanEvent).filter(Boolean);
   const ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
-  const build = (n) => ({
-    schema: "plursky-scan-diag/1",
-    created: new Date().toISOString(),
-    app: ver,
+  const created = new Date().toISOString();
+  const head = () => ({
+    schema: "plursky-scan-diag/1", created, app: ver,
     activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
     scanSeen: (() => { try { return _scanSeenRead().size; } catch { return null; } })(),
-    before: d.before ? { t: d.before.t, summary: d.before.summary, truncated: d.before.truncated || d.before.records.length > n, records: d.before.records.slice(0, n) } : null,
-    now: { summary: _scanDiagSummary(records), truncated: records.length > n, records: records.slice(0, n) },
-    events: d.events,
   });
-  let n = _SCAN_DIAG_MAX_RECORDS;
-  let text = JSON.stringify(build(n));
-  while (text.length > _SCAN_DIAG_MAX_CHARS && n > 0) {
-    n = Math.floor(n * 0.7);
-    text = JSON.stringify(build(n));
+  const build = ({ rec, ev, ch, k }) => {
+    const evKeep = ev >= events.length ? events : ev <= 0 ? [] : [events[0], ...events.slice(1).slice(-(ev - 1))];
+    let changesCut = false;
+    const evOut = evKeep.map(e => {
+      if (!e.changes) return e;
+      if (e.changes.length > ch || e.changes.length < e.added + e.removed + e.changed) changesCut = true;
+      return { ...e, changes: e.changes.slice(0, ch) };
+    });
+    const bs = beforeSummary ? _scanDiagTrimSummary(beforeSummary, k) : null;
+    const ns = _scanDiagTrimSummary(nowSummary, k);
+    return {
+      ...head(),
+      truncated: {
+        records: beforeCut || beforeRecords.length > rec || nowRecords.length > rec,
+        events: events.length - evOut.length,
+        changes: changesCut,
+        summary: !!(bs && bs.cut) || ns.cut,
+      },
+      eventsTotal: events.length,
+      before: b ? { t: beforeT, total: beforeSummary.total, summary: bs.sum, truncated: beforeCut || beforeRecords.length > rec, records: beforeRecords.slice(0, rec) } : null,
+      now: { total: nowRecords.length, summary: ns.sum, truncated: nowRecords.length > rec, records: nowRecords.slice(0, rec) },
+      events: evOut,
+    };
+  };
+  const steps = [];
+  for (let n = _SCAN_DIAG_MAX_RECORDS; n > 0; n = Math.floor(n * 0.7)) steps.push({ rec: n, ev: _SCAN_DIAG_MAX_EVENTS, ch: _SCAN_DIAG_MAX_CHANGES, k: Infinity });
+  steps.push({ rec: 0, ev: _SCAN_DIAG_MAX_EVENTS, ch: _SCAN_DIAG_MAX_CHANGES, k: Infinity },
+             { rec: 0, ev: 30, ch: 20, k: Infinity }, { rec: 0, ev: 10, ch: 5, k: Infinity });
+  for (const k of [200, 50, 20, 5, 1, 0]) steps.push({ rec: 0, ev: 10, ch: 5, k });
+  steps.push({ rec: 0, ev: 0, ch: 0, k: 0 });
+  for (const p of steps) {
+    const text = JSON.stringify(build(p));
+    if (text.length <= _SCAN_DIAG_MAX_CHARS) return text;
   }
-  if (text.length > _SCAN_DIAG_MAX_CHARS) {
-    const slim = build(0); slim.events = slim.events.slice(-10).map(e => ({ ...e, changes: (e.changes || []).slice(0, 10) }));
-    text = JSON.stringify(slim);
-  }
-  return text;
+  // Unreachable with sane input; still bounded if it ever is reached.
+  return JSON.stringify({ ...head(), truncated: { records: true, events: events.length, changes: true, summary: true },
+    eventsTotal: events.length, before: b ? { total: beforeSummary.total } : null, now: { total: nowRecords.length } }).slice(0, _SCAN_DIAG_MAX_CHARS);
 }
 
 // One tap → the iOS share sheet with the diagnostic as text (Slack, Messages,
 // Mail all take it). Text, not a file: @capacitor/share hands a data URL to
 // the sheet as a LINK, which is not something a person can send on.
-// Returns { ok, mode } so the button can say what happened.
+// Returns { ok, mode } so the button can say what happened. With no native
+// share, no navigator.share and no clipboard API, the answer is
+// "unavailable": nothing was sent or copied, so nothing claims it was.
 async function _scanDiagShare(meta = {}) {
   _scanDiagLog("share", null, "");
   const text = _scanDiagExportText(meta);
@@ -1290,11 +1420,13 @@ async function _scanDiagShare(meta = {}) {
       return { ok: false, mode: "error", chars: text.length };
     }
   }
-  if (navigator.share) {
+  if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
     try { await navigator.share({ title: "Plursky scan diagnostic", text }); return { ok: true, mode: "share", chars: text.length }; }
     catch (e) { if (e?.name === "AbortError") return { ok: false, mode: "cancelled", chars: text.length }; }
   }
-  try { await navigator.clipboard?.writeText?.(text); return { ok: true, mode: "copied", chars: text.length }; }
+  const clip = typeof navigator !== "undefined" ? navigator.clipboard : null;
+  if (!clip || typeof clip.writeText !== "function") return { ok: false, mode: "unavailable", chars: text.length };
+  try { await clip.writeText(text); return { ok: true, mode: "copied", chars: text.length }; }
   catch { return { ok: false, mode: "error", chars: text.length }; }
 }
 

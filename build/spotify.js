@@ -10358,7 +10358,7 @@ function MemoriesScreen({
         lineHeight: 1.38,
         color: diagNote.ok ? "var(--text-2)" : "var(--warn)"
       }
-    }, diagNote.mode === "share" ? "Diagnostic ready to send" : diagNote.mode === "copied" ? "Diagnostic copied" : diagNote.mode === "cancelled" ? "Not sent" : "Couldn't open the share sheet")));
+    }, diagNote.mode === "share" ? "Diagnostic ready to send" : diagNote.mode === "copied" ? "Diagnostic copied" : diagNote.mode === "cancelled" ? "Not sent" : diagNote.mode === "unavailable" ? "Sharing isn't available here" : "Couldn't open the share sheet")));
   })(), pickerAvailable && totalCount > 0 && React.createElement("button", {
     onClick: handlePickClick,
     disabled: !!batch && batch.done < batch.total,

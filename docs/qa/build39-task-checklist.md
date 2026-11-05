@@ -1,6 +1,6 @@
 # Build 39 task checklist
 
-Assignment: Instinct file F0CFBU12WRY (2026-11-05). Internal-only TestFlight
+Assignment: Instinct build 39 assignment (2026-11-05). Internal-only TestFlight
 1.15 (39) from the final combined main after review. Updated as each PR moves.
 
 | # | Workstream | Branch / PR | State |
@@ -32,9 +32,14 @@ no set times is not scanned and is reported.
       caller fold into one event (an import writes once per file).
 - [x] Scan start, scan end and review close are logged.
 - [x] Records carry salted hashed ids and only festival, night, artist, tag
-      source, stamp source, taken-at minute, kind, flags. No names, paths, raw
-      ids, GPS, location, fingerprints, text or media.
-- [x] Export: allowlisted keys, 38,000-character cap with `truncated` marked.
+      source, stamp source, time-source label, kind and yes/no flags. No
+      capture time, no import time, no names, paths, raw ids, GPS, location,
+      fingerprints, text or media.
+- [x] Export rebuilt field by field from storage (nothing copied through) and
+      hard-bounded at 38,000 characters in every case, summaries and events
+      included; `truncated` says what was shed, totals are never cut.
+- [x] No share sheet, no navigator.share and no clipboard → "unavailable",
+      never "copied".
 - [x] "Share scan diagnostic" on Memories: one tap → native share sheet
       (text), falls back to navigator.share then clipboard. Never uploads.
 - [x] Diagnostics never write the moment store (gate checks byte identity).

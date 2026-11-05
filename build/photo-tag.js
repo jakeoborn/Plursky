@@ -949,9 +949,7 @@ function _scanDiagHash(id, salt) {
 var _scanDiagStr = (v, re, max = 40) => typeof v === "string" && v.length <= max && re.test(v) ? v : v == null ? null : "?";
 var _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
 var _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
-var _SCAN_DIAG_WALL_RE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/;
 function _scanDiagRecord(m, night, salt) {
-  var imported = typeof m.importedAt === "string" ? m.importedAt.slice(0, 16) : null;
   return {
     h: _scanDiagHash(String(m.id), salt),
     f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
@@ -961,8 +959,6 @@ function _scanDiagRecord(m, night, salt) {
     fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
     tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
     k: m.kind === "video" ? "v" : "p",
-    w: _scanDiagStr(m.takenAt, _SCAN_DIAG_WALL_RE, 16),
-    im: imported && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(imported) ? imported : null,
     auto: m.autoTagged ? 1 : 0,
     amb: m.tagAmbiguous ? 1 : 0,
     rt: m.needsRetag ? 1 : 0,
@@ -1114,6 +1110,148 @@ function _scanDiagLog(ev, all, stack) {
     return false;
   }
 }
+var _SCAN_DIAG_HASH_RE = /^[0-9a-f]{16}$/;
+var _SCAN_DIAG_ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+var _SCAN_DIAG_NIGHT_RE = /^(-|_other|\d{1,3})$/;
+var _SCAN_DIAG_EV_RE = /^[a-z-]{1,20}$/;
+var _SCAN_DIAG_ORIGIN_RE = /^[A-Za-z0-9_$>?-]{1,170}$/;
+var _SCAN_DIAG_SEG = "[A-Za-z0-9_.:?-]{1,40}";
+var _SCAN_DIAG_STATE = `${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}`;
+var _SCAN_DIAG_CHANGE_RE = new RegExp(`^[+~-][0-9a-f]{16}:${_SCAN_DIAG_STATE}(>${_SCAN_DIAG_STATE})?$`);
+var _scanDiagInt = v => Number.isInteger(v) && v >= 0 && v < 1e7 ? v : 0;
+var _scanDiagKey = (k, re) => typeof k === "string" && k.length <= 40 && re.test(k);
+function _scanDiagCleanRecord(r) {
+  if (!r || typeof r !== "object" || !_SCAN_DIAG_HASH_RE.test(r.h)) return null;
+  return {
+    h: r.h,
+    f: _scanDiagStr(r.f, _SCAN_DIAG_ID_RE),
+    n: Number.isInteger(r.n) && r.n >= 0 && r.n < 1000 ? r.n : null,
+    a: _scanDiagStr(r.a, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(r.ts, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(r.fs, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(r.tk, _SCAN_DIAG_LABEL_RE),
+    k: r.k === "v" ? "v" : "p",
+    auto: r.auto ? 1 : 0,
+    amb: r.amb ? 1 : 0,
+    rt: r.rt ? 1 : 0,
+    fp: r.fp ? 1 : 0
+  };
+}
+function _scanDiagCleanCounts(obj, keyRe) {
+  var out = {};
+  if (!obj || typeof obj !== "object") return out;
+  for (var k of Object.keys(obj)) if (_scanDiagKey(k, keyRe)) out[k] = _scanDiagInt(obj[k]);
+  return out;
+}
+function _scanDiagCleanSummary(sIn) {
+  var sum = sIn && typeof sIn === "object" ? sIn : {};
+  var byFest = {};
+  for (var f of Object.keys(sum.byFest || {})) {
+    var fv = sum.byFest[f];
+    if (!_scanDiagKey(f, _SCAN_DIAG_ID_RE) || !fv || typeof fv !== "object") continue;
+    var nights = {};
+    for (var n of Object.keys(fv.nights || {})) {
+      if (_scanDiagKey(n, _SCAN_DIAG_NIGHT_RE)) nights[n] = _scanDiagCleanCounts(fv.nights[n], _SCAN_DIAG_ID_RE);
+    }
+    byFest[f] = {
+      total: _scanDiagInt(fv.total),
+      nights
+    };
+  }
+  return {
+    total: _scanDiagInt(sum.total),
+    byFest,
+    bySource: _scanDiagCleanCounts(sum.bySource, _SCAN_DIAG_ID_RE)
+  };
+}
+function _scanDiagCleanEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  var out = {
+    t: typeof e.t === "string" && _SCAN_DIAG_ISO_RE.test(e.t) ? e.t : null,
+    ev: typeof e.ev === "string" && _SCAN_DIAG_EV_RE.test(e.ev) ? e.ev : "?",
+    origin: typeof e.origin === "string" && _SCAN_DIAG_ORIGIN_RE.test(e.origin) ? e.origin : "?",
+    total: _scanDiagInt(e.total)
+  };
+  if (typeof e.tEnd === "string" && _SCAN_DIAG_ISO_RE.test(e.tEnd)) out.tEnd = e.tEnd;
+  if (e.ev !== "before") {
+    out.added = _scanDiagInt(e.added);
+    out.removed = _scanDiagInt(e.removed);
+    out.changed = _scanDiagInt(e.changed);
+    if (Number.isInteger(e.writes)) out.writes = _scanDiagInt(e.writes);
+    out.changes = Array.isArray(e.changes) ? e.changes.filter(c => typeof c === "string" && c.length <= 260 && _SCAN_DIAG_CHANGE_RE.test(c)) : [];
+  }
+  return out;
+}
+function _scanDiagTop(obj, k, val = v => v) {
+  var e = Object.entries(obj);
+  if (e.length <= k) return {
+    out: obj,
+    cut: false
+  };
+  e.sort((x, y) => val(y[1]) - val(x[1]));
+  return {
+    out: Object.fromEntries(e.slice(0, k)),
+    rest: e.slice(k),
+    cut: true
+  };
+}
+function _scanDiagTrimSummary(sum, k) {
+  if (k === Infinity) return {
+    sum,
+    cut: false
+  };
+  var cut = false;
+  var byFest = {};
+  var f = _scanDiagTop(sum.byFest, k, v => v.total);
+  if (f.cut) {
+    cut = true;
+    byFest._other = {
+      total: f.rest.reduce((t, [, v]) => t + v.total, 0),
+      nights: {}
+    };
+  }
+  for (var [fid, fv] of Object.entries(f.out)) {
+    var nights = {};
+    var ns = _scanDiagTop(fv.nights, k, v => Object.values(v).reduce((t, c) => t + c, 0));
+    if (ns.cut) {
+      cut = true;
+      nights._other = {
+        _other: ns.rest.reduce((t, [, v]) => t + Object.values(v).reduce((a, c) => a + c, 0), 0)
+      };
+    }
+    for (var [n, arts] of Object.entries(ns.out)) {
+      var a = _scanDiagTop(arts, k);
+      if (a.cut) {
+        cut = true;
+        a.out = {
+          ...a.out,
+          _other: (a.out._other || 0) + a.rest.reduce((t, [, c]) => t + c, 0)
+        };
+      }
+      nights[n] = a.out;
+    }
+    byFest[fid] = {
+      total: fv.total,
+      nights
+    };
+  }
+  var src = _scanDiagTop(sum.bySource, k);
+  if (src.cut) {
+    cut = true;
+    src.out = {
+      ...src.out,
+      _other: (src.out._other || 0) + src.rest.reduce((t, [, c]) => t + c, 0)
+    };
+  }
+  return {
+    sum: {
+      total: sum.total,
+      byFest,
+      bySource: src.out
+    },
+    cut
+  };
+}
 function _scanDiagExportText(meta = {}) {
   var d = _scanDiagRead();
   var salt = _scanDiagSalt();
@@ -1124,11 +1262,19 @@ function _scanDiagExportText(meta = {}) {
       return {};
     }
   })();
-  var records = _scanDiagRecords(all, salt);
+  var nowRecords = _scanDiagRecords(all, salt).map(_scanDiagCleanRecord).filter(Boolean);
+  var nowSummary = _scanDiagCleanSummary(_scanDiagSummary(nowRecords));
+  var b = d.before && typeof d.before === "object" ? d.before : null;
+  var beforeRecords = b && Array.isArray(b.records) ? b.records.map(_scanDiagCleanRecord).filter(Boolean) : [];
+  var beforeSummary = b ? _scanDiagCleanSummary(b.summary) : null;
+  var beforeT = b && typeof b.t === "string" && _SCAN_DIAG_ISO_RE.test(b.t) ? b.t : null;
+  var beforeCut = !!(b && b.truncated);
+  var events = (Array.isArray(d.events) ? d.events : []).map(_scanDiagCleanEvent).filter(Boolean);
   var ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
-  var build = n => ({
+  var created = new Date().toISOString();
+  var head = () => ({
     schema: "plursky-scan-diag/1",
-    created: new Date().toISOString(),
+    created,
     app: ver,
     activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
     scanSeen: (() => {
@@ -1137,35 +1283,106 @@ function _scanDiagExportText(meta = {}) {
       } catch {
         return null;
       }
-    })(),
-    before: d.before ? {
-      t: d.before.t,
-      summary: d.before.summary,
-      truncated: d.before.truncated || d.before.records.length > n,
-      records: d.before.records.slice(0, n)
+    })()
+  });
+  var build = ({
+    rec,
+    ev,
+    ch,
+    k
+  }) => {
+    var evKeep = ev >= events.length ? events : ev <= 0 ? [] : [events[0], ...events.slice(1).slice(-(ev - 1))];
+    var changesCut = false;
+    var evOut = evKeep.map(e => {
+      if (!e.changes) return e;
+      if (e.changes.length > ch || e.changes.length < e.added + e.removed + e.changed) changesCut = true;
+      return {
+        ...e,
+        changes: e.changes.slice(0, ch)
+      };
+    });
+    var bs = beforeSummary ? _scanDiagTrimSummary(beforeSummary, k) : null;
+    var ns = _scanDiagTrimSummary(nowSummary, k);
+    return {
+      ...head(),
+      truncated: {
+        records: beforeCut || beforeRecords.length > rec || nowRecords.length > rec,
+        events: events.length - evOut.length,
+        changes: changesCut,
+        summary: !!(bs && bs.cut) || ns.cut
+      },
+      eventsTotal: events.length,
+      before: b ? {
+        t: beforeT,
+        total: beforeSummary.total,
+        summary: bs.sum,
+        truncated: beforeCut || beforeRecords.length > rec,
+        records: beforeRecords.slice(0, rec)
+      } : null,
+      now: {
+        total: nowRecords.length,
+        summary: ns.sum,
+        truncated: nowRecords.length > rec,
+        records: nowRecords.slice(0, rec)
+      },
+      events: evOut
+    };
+  };
+  var steps = [];
+  for (var n = _SCAN_DIAG_MAX_RECORDS; n > 0; n = Math.floor(n * 0.7)) steps.push({
+    rec: n,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  });
+  steps.push({
+    rec: 0,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 30,
+    ch: 20,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k: Infinity
+  });
+  for (var k of [200, 50, 20, 5, 1, 0]) steps.push({
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k
+  });
+  steps.push({
+    rec: 0,
+    ev: 0,
+    ch: 0,
+    k: 0
+  });
+  for (var p of steps) {
+    var text = JSON.stringify(build(p));
+    if (text.length <= _SCAN_DIAG_MAX_CHARS) return text;
+  }
+  return JSON.stringify({
+    ...head(),
+    truncated: {
+      records: true,
+      events: events.length,
+      changes: true,
+      summary: true
+    },
+    eventsTotal: events.length,
+    before: b ? {
+      total: beforeSummary.total
     } : null,
     now: {
-      summary: _scanDiagSummary(records),
-      truncated: records.length > n,
-      records: records.slice(0, n)
-    },
-    events: d.events
-  });
-  var n = _SCAN_DIAG_MAX_RECORDS;
-  var text = JSON.stringify(build(n));
-  while (text.length > _SCAN_DIAG_MAX_CHARS && n > 0) {
-    n = Math.floor(n * 0.7);
-    text = JSON.stringify(build(n));
-  }
-  if (text.length > _SCAN_DIAG_MAX_CHARS) {
-    var slim = build(0);
-    slim.events = slim.events.slice(-10).map(e => ({
-      ...e,
-      changes: (e.changes || []).slice(0, 10)
-    }));
-    text = JSON.stringify(slim);
-  }
-  return text;
+      total: nowRecords.length
+    }
+  }).slice(0, _SCAN_DIAG_MAX_CHARS);
 }
 async function _scanDiagShare(meta = {}) {
   _scanDiagLog("share", null, "");
@@ -1196,7 +1413,7 @@ async function _scanDiagShare(meta = {}) {
       };
     }
   }
-  if (navigator.share) {
+  if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
     try {
       await navigator.share({
         title: "Plursky scan diagnostic",
@@ -1215,8 +1432,14 @@ async function _scanDiagShare(meta = {}) {
       };
     }
   }
+  var clip = typeof navigator !== "undefined" ? navigator.clipboard : null;
+  if (!clip || typeof clip.writeText !== "function") return {
+    ok: false,
+    mode: "unavailable",
+    chars: text.length
+  };
   try {
-    await navigator.clipboard?.writeText?.(text);
+    await clip.writeText(text);
     return {
       ok: true,
       mode: "copied",

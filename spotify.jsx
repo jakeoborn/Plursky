@@ -7063,6 +7063,7 @@ function MemoriesScreen({ state, setState }) {
                     {diagNote.mode === "share" ? "Diagnostic ready to send"
                       : diagNote.mode === "copied" ? "Diagnostic copied"
                       : diagNote.mode === "cancelled" ? "Not sent"
+                      : diagNote.mode === "unavailable" ? "Sharing isn't available here"
                       : "Couldn't open the share sheet"}
                   </span>
                 )}
