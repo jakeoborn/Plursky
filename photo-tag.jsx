@@ -1200,8 +1200,10 @@ function _wallClockFromUtcTz(ms, cfg) {
 // by why, so the screen can say what it skipped instead of a bare "nothing":
 //   outside     — on no festival night at all
 //   outsideSets — on a festival night, outside that night's set-time window
-//   noSetTimes  — on a night the app has no set times for (not scanned)
 //   already     — imported by an earlier scan
+// A night the app has no set times for has no hours to keep, so it is
+// scanned in full (Jake 2026-11-05); `fullNight` counts what came from one
+// and `untimedNights` how many such nights this festival has.
 function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   const cfg = cfgIn || window.FESTIVAL_CONFIG;
   const seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
@@ -1209,23 +1211,24 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   const timed = windows.filter(w => w.source === "set-times");
   const untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
   const keep = [];
-  let outside = 0, outsideSets = 0, noSetTimes = 0, already = 0;
+  let outside = 0, outsideSets = 0, fullNight = 0, already = 0;
   for (const a of assets || []) {
     if (!a || !a.id) continue;
     const ms = Number(a.createdMs);
     if (!isFinite(ms)) { outside++; continue; }
+    let whole = false;
     if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
       const nw = _photoFestivalNightWeekend(null, cfg, ms);
-      if (!nw) outside++;
-      else if (untimed.has(`${nw.night}|${nw.weekend}`)) noSetTimes++;
-      else outsideSets++;
-      continue;
+      if (!nw) { outside++; continue; }
+      if (!untimed.has(`${nw.night}|${nw.weekend}`)) { outsideSets++; continue; }
+      whole = true;
     }
     if (seen.has(a.id)) { already++; continue; }
+    if (whole) fullNight++;
     keep.push(a);
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
-  return { keep, outside, outsideSets, noSetTimes, already,
+  return { keep, outside, outsideSets, fullNight, untimedNights: untimed.size, already,
            nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({ night: w.night, weekend: w.weekend })) };
 }
 
