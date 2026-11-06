@@ -74,7 +74,8 @@ function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${m
 
 // ── 2. Patches ──────────────────────────────────────────────────────────────
 {
-  const flags = { autoTagged: false, needsRetag: false, tagAmbiguous: false };
+  // Build 39: a hand choice also answers a saved-set suggestion.
+  const flags = { autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
   check(js(S._retagPatch({ artistId: "x" })) === js({ tagSource: "manual", ...flags, artistId: "x", stageId: null }), "patch: a set clears the stage");
   check(js(S._retagPatch({ stageId: "s" })) === js({ tagSource: "manual", ...flags, artistId: null, stageId: "s" }), "patch: a stage clears the set");
   check(js(S._retagPatch({ unknown: true })) === js({ tagSource: "unknown", ...flags, artistId: null, stageId: null }), "patch: Unknown clears both");

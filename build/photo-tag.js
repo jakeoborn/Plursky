@@ -461,6 +461,14 @@ function _festivalSiteMeters(cfg, lat, lng) {
   if (!g || g.lat == null || g.lng == null) return null;
   return _haversineMeters(lat, lng, g.lat, g.lng);
 }
+var _OFF_VENUE_MARGIN_M = 500;
+function _offVenueMeters(cfg, lat, lng, acc) {
+  var g = cfg?.gps;
+  if (lat == null || lng == null || !g || g.lat == null || g.lng == null || !(g.onSiteRadiusMi > 0)) return null;
+  var err = acc != null && isFinite(acc) && acc >= 0 ? acc : _GPS_STAGE_MAX_ACC_M;
+  var past = _haversineMeters(lat, lng, g.lat, g.lng) - err - g.onSiteRadiusMi * 1609.34;
+  return past > _OFF_VENUE_MARGIN_M ? Math.round(past) : null;
+}
 function _resolveFestivalForPhoto(meta) {
   var active = _activeDataSet();
   var asActive = why => ({
@@ -643,21 +651,83 @@ function _matchArtistForPhoto({
       score: attendedSet.has(a.id) ? 1000 : 500
     } : null;
   }).filter(Boolean).filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
+  var savedDefeatedByGps = false;
   if (priorHits.length) {
     priorHits.sort((x, y) => y.score - x.score || x.endMs - x.startMs - (y.endMs - y.startMs));
     var hit = priorHits[0];
     var topTier = priorHits.filter(h => h.score === hit.score);
     var _ambiguous = topTier.length > 1;
-    return {
+    var attended = attendedSet.has(hit.a.id);
+    if (!attended) {
+      var away = _offVenueMeters(cfg, lat, lng, acc);
+      if (away != null) {
+        return {
+          localDate,
+          gpsRejected,
+          artistId: null,
+          night,
+          festivalId,
+          resolvedBy,
+          reason: "off_venue",
+          evidence: "gps-off-venue",
+          distMeters: away,
+          defeated: hit.a.id
+        };
+      }
+    }
+    var stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
+    var anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
+    var atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
+    var gpsAct = null;
+    if (!attended && !atStage && stageAnchors.length) {
+      var near = null,
+        nearM = Infinity;
+      for (var g of stageAnchors) {
+        var m = _haversineMeters(sLat, sLng, g.lat, g.lng);
+        if (m < nearM) {
+          nearM = m;
+          near = g;
+        }
+      }
+      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
+        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
+          var w = setWindow(a);
+          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+        })()) || null;
+      }
+    }
+    if (!(gpsAct && anchor)) {
+      var evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+      var alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
+      var amb = _ambiguous || !!gpsAct;
+      return {
+        localDate,
+        gpsRejected,
+        artistId: hit.a.id,
+        night: hit.a.day,
+        festivalId,
+        resolvedBy,
+        reason: attended ? "attended_set_time" : "saved_set_time",
+        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
+        suggested: !attended && !atStage,
+        ambiguous: amb,
+        alternatives: amb ? alts : undefined
+      };
+    }
+    savedDefeatedByGps = true;
+  }
+  {
+    var _away = _offVenueMeters(cfg, lat, lng, acc);
+    if (_away != null) return {
       localDate,
       gpsRejected,
-      artistId: hit.a.id,
-      night: hit.a.day,
+      artistId: null,
+      night,
       festivalId,
       resolvedBy,
-      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
-      ambiguous: _ambiguous,
-      alternatives: _ambiguous ? topTier.map(h => h.a.id) : undefined
+      reason: "off_venue",
+      evidence: "gps-off-venue",
+      distMeters: _away
     };
   }
   if (sLat != null && sLng != null) {
@@ -666,9 +736,9 @@ function _matchArtistForPhoto({
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {
-        var m = _haversineMeters(sLat, sLng, a.lat, a.lng);
-        if (m < minMeters) {
-          minMeters = m;
+        var _m = _haversineMeters(sLat, sLng, a.lat, a.lng);
+        if (_m < minMeters) {
+          minMeters = _m;
           nearest = a;
         }
       }
@@ -712,12 +782,12 @@ function _matchArtistForPhoto({
       var nearStage = null,
         nearStageM = Infinity,
         nearSource = null;
-      for (var g of _anchors2) {
-        var _m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (_m < nearStageM) {
-          nearStageM = _m;
-          nearStage = g.stageId;
-          nearSource = g.anchorSource;
+      for (var _g of _anchors2) {
+        var _m2 = _haversineMeters(sLat, sLng, _g.lat, _g.lng);
+        if (_m2 < nearStageM) {
+          nearStageM = _m2;
+          nearStage = _g.stageId;
+          nearSource = _g.anchorSource;
         }
       }
       if (nearStage && nearStageM <= 120) {
@@ -768,7 +838,7 @@ function _matchArtistForPhoto({
   }
   var inAttended = candidates.filter(c => attendedSet.has(c.a.id));
   var inSaved = candidates.filter(c => savedSet.has(c.a.id));
-  var pool = inAttended.length ? inAttended : inSaved.length ? inSaved : candidates;
+  var pool = inAttended.length ? inAttended : inSaved.length && !savedDefeatedByGps ? inSaved : candidates;
   var _anchors = resolvedStageAnchors(cfg);
   var stageDist = a => {
     if (sLat == null || sLng == null) return Infinity;
@@ -778,7 +848,15 @@ function _matchArtistForPhoto({
       dLng = sLng - anchor.lng;
     return dLat * dLat + dLng * dLng;
   };
+  var atAnchor = a => {
+    if (sLat == null || sLng == null) return false;
+    var g = _anchors.find(x => x.stageId === a.stage);
+    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
+  };
   pool.sort((x, y) => {
+    var ax = atAnchor(x.a),
+      ay = atAnchor(y.a);
+    if (ax !== ay) return ax ? -1 : 1;
     var dx = stageDist(x.a),
       dy = stageDist(y.a);
     if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
@@ -857,31 +935,213 @@ function _photoKitAssetMeta(asset, cfgIn) {
     locationSource: hasGps ? "photokit-gps" : "none"
   };
 }
-function _scanPickAssets(assets, cfgIn, seenIds) {
+var _SCAN_SET_BUFFER_MS = 15 * 60000;
+var _SCAN_TIME_RE = /^(\d{1,2}):(\d{2})$/;
+function _zonedWallToUtc(yr, mo, dy, hh, mm, tz) {
+  var guess = Date.UTC(yr, mo - 1, dy, hh, mm);
+  if (!tz || typeof Intl === "undefined") return null;
+  var fmt;
+  try {
+    fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  } catch {
+    return null;
+  }
+  var offsetAt = ms => {
+    var p = {};
+    for (var x of fmt.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute) - ms;
+  };
+  var t = guess - offsetAt(guess);
+  t = guess - offsetAt(t);
+  return t;
+}
+function _scanNightLocalDate(cfg, n, shift) {
+  var dm = cfg?.dayDates?.[n];
+  if (!dm || typeof dm.midnightUtc !== "number") return null;
+  var ms = dm.midnightUtc + shift + 12 * 3600000;
+  if (cfg.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day
+      };
+    } catch {}
+  }
+  var d = new Date(ms + _festivalTzOffsetHours(cfg) * 3600000);
+  return {
+    yr: d.getUTCFullYear(),
+    mo: d.getUTCMonth() + 1,
+    dy: d.getUTCDate()
+  };
+}
+function _scanActUtc(cfg, n, shift, hhmm) {
+  var m = _SCAN_TIME_RE.exec(String(hhmm || ""));
+  if (!m) return null;
+  var h = +m[1];
+  var mi = +m[2];
+  var date = _scanNightLocalDate(cfg, n, shift);
+  if (!date) return null;
+  var dayAdd = 0;
+  if (h < 8) dayAdd = 1;
+  var base = new Date(Date.UTC(date.yr, date.mo - 1, date.dy + dayAdd));
+  var utc = _zonedWallToUtc(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h, mi, cfg.tz);
+  if (utc != null) return utc;
+  var dm = cfg.dayDates[n];
+  return dm.midnightUtc + shift + ((h < 8 ? h + 24 : h) * 60 + mi) * 60000;
+}
+function _scanSetWindows(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var artists = artistsIn || cfg?.id && window._DATA_SETS?.[cfg.id]?.artists || (cfg === window.FESTIVAL_CONFIG ? window.ARTISTS : null) || [];
+  if (!cfg?.dayDates) return [];
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number).sort((a, b) => a - b)) {
+      if (!cfg.dayDates[n] || typeof cfg.dayDates[n].midnightUtc !== "number") continue;
+      var startMs = Infinity,
+        endMs = -Infinity,
+        acts = 0;
+      for (var a of artists) {
+        if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        var s0 = _scanActUtc(cfg, n, shift, a.start),
+          e0 = _scanActUtc(cfg, n, shift, a.end);
+        if (s0 == null || e0 == null) continue;
+        var e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0;
+        acts++;
+        if (s0 < startMs) startMs = s0;
+        if (e1 > endMs) endMs = e1;
+      }
+      out.push(acts ? {
+        night: n,
+        weekend,
+        source: "set-times",
+        startMs: startMs - _SCAN_SET_BUFFER_MS,
+        endMs: endMs + _SCAN_SET_BUFFER_MS,
+        acts
+      } : {
+        night: n,
+        weekend,
+        source: "none",
+        acts: 0
+      });
+    }
+  }
+  return out;
+}
+function _scanWindowReport(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  return _scanSetWindows(cfg, artistsIn).map(w => {
+    if (w.source !== "set-times") return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source
+    };
+    var f = ms => {
+      var d = _wallClockFromUtcTz(ms, cfg);
+      return `${d.yr}-${String(d.mo).padStart(2, "0")}-${String(d.dy).padStart(2, "0")} ${String(d.hh).padStart(2, "0")}:${String(d.mm).padStart(2, "0")}`;
+    };
+    return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source,
+      acts: w.acts,
+      start: f(w.startMs),
+      end: f(w.endMs)
+    };
+  });
+}
+function _wallClockFromUtcTz(ms, cfg) {
+  if (cfg?.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        hourCycle: "h23",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day,
+        hh: +p.hour % 24,
+        mm: +p.minute
+      };
+    } catch {}
+  }
+  return _wallClockFromUtc(ms, cfg);
+}
+function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   var cfg = cfgIn || window.FESTIVAL_CONFIG;
   var seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  var windows = _scanSetWindows(cfg, artistsIn);
+  var timed = windows.filter(w => w.source === "set-times");
+  var untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
   var keep = [];
   var outside = 0,
+    outsideSets = 0,
+    noSetTimes = 0,
     already = 0;
+  var _loop2 = function () {
+      if (!a || !a.id) return 0;
+      var ms = Number(a.createdMs);
+      if (!isFinite(ms)) {
+        outside++;
+        return 0;
+      }
+      if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
+        var nw = _photoFestivalNightWeekend(null, cfg, ms);
+        if (!nw) outside++;else if (untimed.has(`${nw.night}|${nw.weekend}`)) noSetTimes++;else outsideSets++;
+        return 0;
+      }
+      if (seen.has(a.id)) {
+        already++;
+        return 0;
+      }
+      keep.push(a);
+    },
+    _ret2;
   for (var a of assets || []) {
-    if (!a || !a.id) continue;
-    var ms = Number(a.createdMs);
-    if (!isFinite(ms) || !_photoFestivalNightWeekend(null, cfg, ms)) {
-      outside++;
-      continue;
-    }
-    if (seen.has(a.id)) {
-      already++;
-      continue;
-    }
-    keep.push(a);
+    _ret2 = _loop2();
+    if (_ret2 === 0) continue;
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
   return {
     keep,
     outside,
-    already
+    outsideSets,
+    noSetTimes,
+    already,
+    nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({
+      night: w.night,
+      weekend: w.weekend
+    }))
   };
+}
+function _pickerErrorIsCancel(err) {
+  var msg = String(err && (err.message || err.errorMessage) || err || "").trim();
+  return /^pick(Files|Media|Images|Videos)? cancel(l)?ed\.?$/i.test(msg);
 }
 function _scanChunks(assets, maxPhotos = 20) {
   var chunks = [];

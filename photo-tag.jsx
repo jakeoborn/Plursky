@@ -542,6 +542,24 @@ function _festivalSiteMeters(cfg, lat, lng) {
   if (!g || g.lat == null || g.lng == null) return null;
   return _haversineMeters(lat, lng, g.lat, g.lng);
 }
+// Build 39: is this fix OBVIOUSLY outside the festival? Only the festival's
+// own sourced footprint (gps.lat/lng + onSiteRadiusMi) is used; a festival
+// without one gets no verdict, never an invented boundary. The fix's own
+// error is subtracted first, so a coarse fix only counts when even its
+// nearest possible point is outside. A fix with no reported accuracy is
+// given the stage gate's worst usable error. The footprint is a circle, not
+// the fence line, so a fix just past it can still be inside the grounds
+// (EDC LV's speedway runs past its 0.5 mi circle): only a fix more than
+// _OFF_VENUE_MARGIN_M beyond the circle is "away". Returns metres past the
+// circle, or null when there is no verdict (no fix, no footprint, not clear).
+const _OFF_VENUE_MARGIN_M = 500;
+function _offVenueMeters(cfg, lat, lng, acc) {
+  const g = cfg?.gps;
+  if (lat == null || lng == null || !g || g.lat == null || g.lng == null || !(g.onSiteRadiusMi > 0)) return null;
+  const err = acc != null && isFinite(acc) && acc >= 0 ? acc : _GPS_STAGE_MAX_ACC_M;
+  const past = _haversineMeters(lat, lng, g.lat, g.lng) - err - g.onSiteRadiusMi * 1609.34;
+  return past > _OFF_VENUE_MARGIN_M ? Math.round(past) : null;
+}
 function _resolveFestivalForPhoto(meta) {
   const active = _activeDataSet();
   const asActive = (why) => ({ ...active, night: null, siteMeters: null, resolvedBy: why });
@@ -786,6 +804,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // the legacy +10. (2026-08-22 founder field report at EDC.)
     .filter(x => photoMs >= x.startMs - 5 * 60000 &&
                  photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
+  let savedDefeatedByGps = false;
   if (priorHits.length) {
     // Highest tier first (attended > saved); tightest-fit as tiebreak.
     priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
@@ -795,13 +814,62 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // outranking a saved one is a clear win, not a tie.
     const topTier = priorHits.filter(h => h.score === hit.score);
     const ambiguous = topTier.length > 1;
-    return {
-      localDate, gpsRejected,
-      artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
-      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
-      ambiguous,
-      alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
-    };
+    const attended = attendedSet.has(hit.a.id);
+    // Build 39 (food photo under Rüfüs): a SAVED set is intent, not proof you
+    // were there. Saved + time alone is a suggestion the user checks; usable
+    // GPS at that set's own stage confirms it; GPS clearly outside the
+    // festival defeats it. An ATTENDED set stays ground truth (v211).
+    if (!attended) {
+      const away = _offVenueMeters(cfg, lat, lng, acc);
+      if (away != null) {
+        return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "off_venue",
+                 evidence: "gps-off-venue", distMeters: away, defeated: hit.a.id };
+      }
+    }
+    const stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
+    const anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
+    const atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
+    // Usable GPS at a DIFFERENT anchored stage, where an act is playing now,
+    // contradicts a saved guess. If the saved act's stage is anchored too, the
+    // GPS is the better evidence: drop the guess and match on time + GPS
+    // below. If its stage has no anchor we cannot say how far it is, so keep
+    // the guess as a suggestion and offer both acts.
+    let gpsAct = null;
+    if (!attended && !atStage && stageAnchors.length) {
+      let near = null, nearM = Infinity;
+      for (const g of stageAnchors) {
+        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
+        if (m < nearM) { nearM = m; near = g; }
+      }
+      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
+        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
+          const w = setWindow(a);
+          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+        })()) || null;
+      }
+    }
+    if (!(gpsAct && anchor)) {
+      const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+      const alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
+      const amb = ambiguous || !!gpsAct;
+      return {
+        localDate, gpsRejected,
+        artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
+        reason: attended ? "attended_set_time" : "saved_set_time",
+        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
+        suggested: !attended && !atStage,
+        ambiguous: amb,
+        alternatives: amb ? alts : undefined,
+      };
+    }
+    savedDefeatedByGps = true; // fall through; the time + GPS match below decides.
+  }
+
+  // The same off-venue verdict for every other time-only guess: a photo
+  // taken clearly outside the festival is not of whoever was on stage.
+  {
+    const away = _offVenueMeters(cfg, lat, lng, acc);
+    if (away != null) return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "off_venue", evidence: "gps-off-venue", distMeters: away };
   }
 
   // Off-stage check (FALLBACK ONLY — runs after the attended/saved set-time
@@ -889,7 +957,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
   const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
   const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
-  const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
+  const pool = inAttended.length ? inAttended : (inSaved.length && !savedDefeatedByGps ? inSaved : candidates);
   const _anchors = resolvedStageAnchors(cfg);
   const stageDist = (a) => {
     if (sLat == null || sLng == null) return Infinity;
@@ -898,7 +966,18 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     const dLat = sLat - anchor.lat, dLng = sLng - anchor.lng;
     return dLat * dLat + dLng * dLng;
   };
+  // A candidate whose stage anchor is within 120 m of usable GPS is where
+  // the photo was taken; it outranks a candidate whose stage has no anchor,
+  // which used to win on start time alone. The match stays flagged
+  // ambiguous below, since an unanchored stage's distance is unknown.
+  const atAnchor = (a) => {
+    if (sLat == null || sLng == null) return false;
+    const g = _anchors.find(x => x.stageId === a.stage);
+    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
+  };
   pool.sort((x, y) => {
+    const ax = atAnchor(x.a), ay = atAnchor(y.a);
+    if (ax !== ay) return ax ? -1 : 1;
     const dx = stageDist(x.a), dy = stageDist(y.a);
     if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
     return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
@@ -998,23 +1077,162 @@ function _photoKitAssetMeta(asset, cfgIn) {
   };
 }
 
-// Which of the returned assets to import: inside a festival night, not
-// imported by an earlier scan, oldest first. Returns the counts too, so the
-// screen can say what it skipped instead of a bare "nothing found".
-function _scanPickAssets(assets, cfgIn, seenIds) {
+// ── Scan hours from set times (build 39) ─────────────────────────────────
+// Jake, 2026-11-05: "15 min before and after … everything else does not get
+// scanned", "we can do photos/videos between set", "we have set times in the
+// app". So each night's window is the app's own set times: the first set's
+// start − 15 min to the last set's end + 15 min, on that night's weekend, in
+// the festival's timezone. Between-set photos are inside it. Anything outside
+// is counted and skipped: never imported, never marked as seen (a later
+// lineup fix can still pick it up), and nothing already imported is touched.
+// A night with no set times has no window and is not scanned; it is counted
+// and named, never given guessed hours.
+const _SCAN_SET_BUFFER_MS = 15 * 60000;
+const _SCAN_TIME_RE = /^(\d{1,2}):(\d{2})$/;
+// A wall-clock time in an IANA zone → the UTC instant. Two passes of "how far
+// is this zone from UTC at that instant" settle a DST day (the second pass
+// catches an instant whose own offset differs from the first guess's).
+function _zonedWallToUtc(yr, mo, dy, hh, mm, tz) {
+  const guess = Date.UTC(yr, mo - 1, dy, hh, mm);
+  if (!tz || typeof Intl === "undefined") return null;
+  let fmt;
+  try { fmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }); }
+  catch { return null; }
+  const offsetAt = (ms) => {
+    const p = {}; for (const x of fmt.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute) - ms;
+  };
+  let t = guess - offsetAt(guess);
+  t = guess - offsetAt(t);
+  return t;
+}
+// The local calendar date of night n on a weekend: read from the instant
+// at local noon-ish, so a shifted weekend that crossed a DST change still
+// lands on the right day.
+function _scanNightLocalDate(cfg, n, shift) {
+  const dm = cfg?.dayDates?.[n];
+  if (!dm || typeof dm.midnightUtc !== "number") return null;
+  const ms = dm.midnightUtc + shift + 12 * 3600000;
+  if (cfg.tz && typeof Intl !== "undefined") {
+    try {
+      const p = {}; for (const x of new Intl.DateTimeFormat("en-US", { timeZone: cfg.tz, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return { yr: +p.year, mo: +p.month, dy: +p.day };
+    } catch {}
+  }
+  const d = new Date(ms + _festivalTzOffsetHours(cfg) * 3600000);
+  return { yr: d.getUTCFullYear(), mo: d.getUTCMonth() + 1, dy: d.getUTCDate() };
+}
+// One act's set as UTC instants on a given night/weekend. Hours < 8 belong
+// to the night they close (the same rule the matcher and lineup use).
+function _scanActUtc(cfg, n, shift, hhmm) {
+  const m = _SCAN_TIME_RE.exec(String(hhmm || ""));
+  if (!m) return null;
+  let h = +m[1]; const mi = +m[2];
+  const date = _scanNightLocalDate(cfg, n, shift);
+  if (!date) return null;
+  let dayAdd = 0;
+  if (h < 8) dayAdd = 1;
+  const base = new Date(Date.UTC(date.yr, date.mo - 1, date.dy + dayAdd));
+  const utc = _zonedWallToUtc(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h, mi, cfg.tz);
+  if (utc != null) return utc;
+  const dm = cfg.dayDates[n];
+  return dm.midnightUtc + shift + ((h < 8 ? h + 24 : h) * 60 + mi) * 60000;
+}
+// Every night of every weekend: its window from set times, or none.
+//   { night, weekend, source: "set-times", startMs, endMs, acts }
+//   { night, weekend, source: "none", acts: 0 }
+function _scanSetWindows(cfgIn, artistsIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  // The lineup of THIS config's festival. Bare ARTISTS is whichever festival
+  // is active (CLAUDE.md §5), so a non-active config reads _DATA_SETS.
+  const artists = artistsIn
+    || (cfg?.id && window._DATA_SETS?.[cfg.id]?.artists)
+    || (cfg === window.FESTIVAL_CONFIG ? window.ARTISTS : null) || [];
+  if (!cfg?.dayDates) return [];
+  const out = [];
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number).sort((a, b) => a - b)) {
+      if (!cfg.dayDates[n] || typeof cfg.dayDates[n].midnightUtc !== "number") continue;
+      let startMs = Infinity, endMs = -Infinity, acts = 0;
+      // weekend-exempt: builds a window for EVERY weekend; actPlaysWeekend(a, weekend) filters each one below
+      for (const a of artists) {
+        if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        const s0 = _scanActUtc(cfg, n, shift, a.start), e0 = _scanActUtc(cfg, n, shift, a.end);
+        if (s0 == null || e0 == null) continue;
+        const e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0; // a set that ends after midnight but before 08:00 is already +1 day; guard odd data
+        acts++;
+        if (s0 < startMs) startMs = s0;
+        if (e1 > endMs) endMs = e1;
+      }
+      out.push(acts
+        ? { night: n, weekend, source: "set-times", startMs: startMs - _SCAN_SET_BUFFER_MS, endMs: endMs + _SCAN_SET_BUFFER_MS, acts }
+        : { night: n, weekend, source: "none", acts: 0 });
+    }
+  }
+  return out;
+}
+// Per night, in words a person can check against the app's own schedule:
+// local start and end of each window, or "no set times".
+function _scanWindowReport(cfgIn, artistsIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  return _scanSetWindows(cfg, artistsIn).map(w => {
+    if (w.source !== "set-times") return { night: w.night, weekend: w.weekend, source: w.source };
+    const f = (ms) => { const d = _wallClockFromUtcTz(ms, cfg); return `${d.yr}-${String(d.mo).padStart(2, "0")}-${String(d.dy).padStart(2, "0")} ${String(d.hh).padStart(2, "0")}:${String(d.mm).padStart(2, "0")}`; };
+    return { night: w.night, weekend: w.weekend, source: w.source, acts: w.acts, start: f(w.startMs), end: f(w.endMs) };
+  });
+}
+function _wallClockFromUtcTz(ms, cfg) {
+  if (cfg?.tz && typeof Intl !== "undefined") {
+    try {
+      const p = {}; for (const x of new Intl.DateTimeFormat("en-US", { timeZone: cfg.tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return { yr: +p.year, mo: +p.month, dy: +p.day, hh: +p.hour % 24, mm: +p.minute };
+    } catch {}
+  }
+  return _wallClockFromUtc(ms, cfg);
+}
+
+// Which of the returned assets to import: inside a night's set-time window,
+// not imported by an earlier scan, oldest first. Everything else is counted
+// by why, so the screen can say what it skipped instead of a bare "nothing":
+//   outside     — on no festival night at all
+//   outsideSets — on a festival night, outside that night's set-time window
+//   noSetTimes  — on a night the app has no set times for (not scanned)
+//   already     — imported by an earlier scan
+function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   const cfg = cfgIn || window.FESTIVAL_CONFIG;
   const seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  const windows = _scanSetWindows(cfg, artistsIn);
+  const timed = windows.filter(w => w.source === "set-times");
+  const untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
   const keep = [];
-  let outside = 0, already = 0;
+  let outside = 0, outsideSets = 0, noSetTimes = 0, already = 0;
   for (const a of assets || []) {
     if (!a || !a.id) continue;
     const ms = Number(a.createdMs);
-    if (!isFinite(ms) || !_photoFestivalNightWeekend(null, cfg, ms)) { outside++; continue; }
+    if (!isFinite(ms)) { outside++; continue; }
+    if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
+      const nw = _photoFestivalNightWeekend(null, cfg, ms);
+      if (!nw) outside++;
+      else if (untimed.has(`${nw.night}|${nw.weekend}`)) noSetTimes++;
+      else outsideSets++;
+      continue;
+    }
     if (seen.has(a.id)) { already++; continue; }
     keep.push(a);
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
-  return { keep, outside, already };
+  return { keep, outside, outsideSets, noSetTimes, already,
+           nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({ night: w.night, weekend: w.weekend })) };
+}
+
+// Picker cancel is not an error. @capawesome/capacitor-file-picker 6.2.0
+// REJECTS when the sheet is dismissed ("pickFiles canceled."; pickMedia uses
+// the same wording), so the catch below it reported a cancel as a failure
+// and left an orange card up. Only that exact cancel wording counts; any
+// other rejection is still an error.
+function _pickerErrorIsCancel(err) {
+  const msg = String((err && (err.message || err.errorMessage)) || err || "").trim();
+  return /^pick(Files|Media|Images|Videos)? cancel(l)?ed\.?$/i.test(msg);
 }
 
 // Import batches: up to `maxPhotos` photos together, but a video always goes

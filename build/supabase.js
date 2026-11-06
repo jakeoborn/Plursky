@@ -539,20 +539,10 @@ function AccountCard({
           try {
             var cloudMoments = cloud.meta?.moments;
             if (cloudMoments && typeof cloudMoments === "object") {
-              var local = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
-              var added = 0;
-              var _loop = function () {
-                var localArr = Array.isArray(local[night]) ? local[night] : [];
-                var haveIds = new Set(localArr.map(m => m && m.id));
-                var restored = (cloudMoments[night] || []).filter(m => m && m.id && !haveIds.has(m.id));
-                if (restored.length) {
-                  local[night] = [...localArr, ...restored];
-                  added += restored.length;
-                }
-              };
-              for (var night of Object.keys(cloudMoments)) {
-                _loop();
-              }
+              var {
+                local,
+                added
+              } = _mergeCloudMoments(JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"), cloudMoments);
               if (added) {
                 localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
                 try {
@@ -4425,3 +4415,24 @@ Object.assign(window, {
   joinStagePresence,
   leaveStagePresence
 });
+function _mergeCloudMoments(localIn, cloudMoments) {
+  var local = {
+    ...(localIn && typeof localIn === "object" ? localIn : {})
+  };
+  var added = 0;
+  var haveIds = new Set();
+  for (var arr of Object.values(local)) if (Array.isArray(arr)) for (var m of arr) if (m && m.id) haveIds.add(m.id);
+  for (var night of Object.keys(cloudMoments || {})) {
+    var localArr = Array.isArray(local[night]) ? local[night] : [];
+    var restored = (Array.isArray(cloudMoments[night]) ? cloudMoments[night] : []).filter(m => m && m.id && !haveIds.has(m.id));
+    for (var _m of restored) haveIds.add(_m.id);
+    if (restored.length) {
+      local[night] = [...localArr, ...restored];
+      added += restored.length;
+    }
+  }
+  return {
+    local,
+    added
+  };
+}

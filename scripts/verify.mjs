@@ -2341,6 +2341,28 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Scan hours + confidence gate — set-time windows ±15 min, stage/off-venue GPS beats a saved guess, picker cancel");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-hours-confidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan hours + confidence failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Multi-pass scan gate — real app, 3 scans, limited→full, failed exports retried, hand choices + cloud restore survive");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-multi-pass.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 420000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Multi-pass scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
