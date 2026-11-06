@@ -3547,44 +3547,91 @@ function _blobToBase64(blob) {
     fr.readAsDataURL(blob);
   });
 }
-async function identifySongFromVideo(moment, onProgress) {
-  if (!moment?.photoId || moment.kind !== "video") return null;
-  var blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return null;
-  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
-    try {
-      onProgress?.("listening");
-      if (moment.nativePath && window.ShazamPlugin.identifyFile) {
-        onProgress?.("matching");
-        var _r = await window.ShazamPlugin.identifyFile({
-          path: moment.nativePath
-        });
-        if (_r?.matched && _r.title) return {
-          title: _r.title,
-          artist: _r.artist || "",
-          source: "video-shazam"
-        };
-        return null;
-      }
-      if (!window.ShazamPlugin.identifyBase64) return null;
-      var base64 = await _blobToBase64(blob);
-      var ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
-      onProgress?.("matching");
-      var r = await window.ShazamPlugin.identifyBase64({
-        data: base64,
-        ext
-      });
-      if (r?.matched && r.title) return {
-        title: r.title,
-        artist: r.artist || "",
-        source: "video-shazam"
-      };
-      return null;
-    } catch {
-      return null;
-    }
+var _SONG_FAIL_TEXT = {
+  "no-match": "No match — try a louder clip",
+  "missing-file": "This clip’s file isn’t on this phone",
+  "unavailable": "Song ID isn’t available here",
+  "no-audio": "This clip has no sound to match",
+  "audio-failed": "Couldn’t read this clip’s sound",
+  "service-error": "Shazam couldn’t be reached — try again",
+  "timeout": "Shazam took too long — try again",
+  "too-large": "This clip is too long to check here",
+  "recognizer-error": "Song ID hit an unexpected error — try again later"
+};
+var _SONG_NATIVE_REASON = {
+  "missing-file": "missing-file",
+  "no-audio": "no-audio",
+  "audio-failed": "audio-failed",
+  "service-error": "service-error",
+  "timeout": "timeout",
+  "no-match": "no-match",
+  "busy": "service-error",
+  "no-audio-track-or-reader": "no-audio",
+  "no-pcm-appended": "audio-failed",
+  "match-timeout": "timeout",
+  "did-not-find": "no-match",
+  "empty-match": "no-match"
+};
+var _SONG_BLOB_MAX_BYTES = 60 * 1024 * 1024;
+var _SONG_CALL_TIMEOUT_MS = 30000;
+function _songFail(reason) {
+  return {
+    matched: false,
+    reason: _SONG_FAIL_TEXT[reason] ? reason : "recognizer-error"
+  };
+}
+async function _songCall(run, rejectReason) {
+  var timer;
+  try {
+    var r = await Promise.race([Promise.resolve().then(run), new Promise(res => {
+      timer = setTimeout(() => res({
+        __timeout: true
+      }), _SONG_CALL_TIMEOUT_MS);
+    })]);
+    if (r?.__timeout) return _songFail("timeout");
+    if (r?.matched && r.title) return {
+      matched: true,
+      title: r.title,
+      artist: r.artist || "",
+      source: "video-shazam"
+    };
+    var code = r && typeof r === "object" && r.matched === false && r.debug && typeof r.debug.reason === "string" ? r.debug.reason : null;
+    return _songFail(code && Object.prototype.hasOwnProperty.call(_SONG_NATIVE_REASON, code) && _SONG_NATIVE_REASON[code] || "recognizer-error");
+  } catch (e) {
+    var msg = String(e?.message || e || "");
+    return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);
+  } finally {
+    clearTimeout(timer);
   }
-  return null;
+}
+async function identifySongFromVideo(moment, onProgress) {
+  if (!moment?.photoId || moment.kind !== "video") return _songFail("missing-file");
+  var SP = window.ShazamPlugin;
+  if (!(window.Capacitor?.isNativePlatform?.() && SP && (SP.identifyFile || SP.identifyBase64))) return _songFail("unavailable");
+  onProgress?.("listening");
+  if (moment.nativePath && SP.identifyFile) {
+    onProgress?.("matching");
+    var r = await _songCall(() => SP.identifyFile({
+      path: moment.nativePath
+    }), "missing-file");
+    if (r.reason !== "missing-file") return r;
+  }
+  if (!SP.identifyBase64) return _songFail("missing-file");
+  var blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob || !blob.size) return _songFail("missing-file");
+  if (blob.size > _SONG_BLOB_MAX_BYTES) return _songFail("too-large");
+  var base64;
+  try {
+    base64 = await _blobToBase64(blob);
+  } catch {
+    return _songFail("audio-failed");
+  }
+  var ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
+  onProgress?.("matching");
+  return _songCall(() => SP.identifyBase64({
+    data: base64,
+    ext
+  }), "audio-failed");
 }
 function _soleSlotForArtist(artistId) {
   if (!artistId) return null;
@@ -3724,6 +3771,7 @@ function MomentLightbox({
     x: 0
   });
   var [idState, setIdState] = React.useState("idle");
+  var [idFail, setIdFail] = React.useState(null);
   var [mismatch, setMismatch] = React.useState(null);
   var [recovery, setRecovery] = React.useState(null);
   var [sharing, setSharing] = React.useState(false);
@@ -3754,9 +3802,10 @@ function MomentLightbox({
   var runIdentify = async () => {
     setIdState("listening");
     var result = await identifySongFromVideo(m, p => setIdState(p));
-    if (!result) {
+    if (!result?.matched) {
+      setIdFail(result?.reason || "no-match");
       setIdState("fail");
-      setTimeout(() => setIdState("idle"), 2500);
+      setTimeout(() => setIdState("idle"), 4000);
       return;
     }
     setIdState("done");
@@ -4034,7 +4083,7 @@ function MomentLightbox({
     style: {
       display: "block"
     }
-  }, idState === "idle" ? "Shazam this video" : idState === "listening" ? "Listening to your video…" : idState === "matching" ? "Matching with Shazam…" : idState === "fail" ? "No match — try a louder clip" : "Identified"), React.createElement("span", {
+  }, idState === "idle" ? "Shazam this video" : idState === "listening" ? "Listening to your video…" : idState === "matching" ? "Matching with Shazam…" : idState === "fail" ? _SONG_FAIL_TEXT[idFail] || _SONG_FAIL_TEXT["no-match"] : "Identified"), React.createElement("span", {
     style: {
       display: "block",
       marginTop: 2,
@@ -15963,8 +16012,8 @@ function RecapScreen({
         }
         if (!audioUrl && recap.topByPop?.name) {
           try {
-            var _r2 = await fetchPreviewUrl(recap.topByPop.name);
-            audioUrl = _r2?.url;
+            var _r = await fetchPreviewUrl(recap.topByPop.name);
+            audioUrl = _r?.url;
           } catch {}
         }
         await window._shareRecapVideo?.({

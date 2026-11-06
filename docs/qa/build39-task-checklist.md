@@ -110,3 +110,15 @@ that causes it; the cause is named only from a device export.
 scanned in full (Countdown NYE night 1, Decadence nights 1-2, Dreamstate night 1).
 Examples: ACL W1 and W2, each night 12:30-22:15; III Points 15:45-04:15 next
 morning. Full table: `node scripts/test-scan-hours-confidence.mjs --report`.
+
+## Workstream 3: Shazam failure reasons (PR 3)
+
+- [x] Distinct reasons, each with its own words on the button: no match, missing file, recognizer unavailable, no audio track, audio could not be read, service/network error, timeout, clip too large. Older native builds' reasons map onto these (`busy`→service, `match-timeout`→timeout, `no-pcm-appended`→audio).
+- [x] Stale cache path: a `missing-file` from `identifyFile` (or a missing-path rejection) retries once from the clip kept in IndexedDB; a clip over 60 MB is refused before base64 is built (bounded memory).
+- [x] Library recognition never calls the live-mic `identify()`; the Swift file path has no AVAudioSession / record permission.
+- [x] Results carry only `{matched, title, artist, source}` or `{matched, reason}`: no path, no native debug payload, no Apple Music ids. Swift resolves error codes (numbers) only; `localizedDescription` appears only in DEBUG logs.
+- [x] Swift: one in-flight file call (a second resolves `busy` instead of orphaning the first); the timeout is cancellable and tied to its call.
+- [x] Review fix (#385): only the known no-match codes (`no-match`, `did-not-find`, `empty-match`) say "No match". An unknown code (e.g. `unexpected-service-response`), an empty, null or malformed answer, or `matched:true` with no title is `recognizer-error`: "Song ID hit an unexpected error — try again later", never "try a louder clip".
+- [x] Gate `scripts/test-shazam-reasons.mjs`: 116 checks, 6 mutants caught (no blob retry, no size cap, all reasons → no-match, the old unknown → no-match fallback, raw payload passed through, no timeout).
+- [x] Native compile: `npx cap sync ios` + `xcodebuild -sdk iphonesimulator CODE_SIGNING_ALLOWED=NO build` → BUILD SUCCEEDED.
+- [ ] Physical (build 39): Shazam a library clip that matches; one with no music (no-audio / no match words); one whose cache was cleared (retries from the stored copy); airplane mode (service error words). No mic prompt at any point.
