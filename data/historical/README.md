@@ -92,3 +92,9 @@ Then, for any path:
   invented end.
 - Wall times are local; a set before `rolloverHour` belongs to the previous
   festival night on the next calendar date.
+- An edition announced and then canceled before it opened carries
+  `status: "canceled"` in `editions.mjs`, with a reason, an announcement date and two dated
+  sources from different publishers, each published by the first day. Its file keeps every
+  printed row as evidence, but `index.json`, the artist registry and the app's past-edition
+  lists skip it, so no artist is credited with a set that never happened
+  (Nocturnal Wonderland 2024, the Line Fire). A single canceled day stays `cancelledDays`.
