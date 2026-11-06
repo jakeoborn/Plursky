@@ -3015,7 +3015,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           }).catch(() => ({ ok: false, reason: "encode_fail" }));
           setSharing(false);
           const why = _shareMomentFailText(res);
-          if (why) window.plurskyToast?.(why);
+          if (why) window.plurskyToast?.(why, { error: true });
         }} disabled={sharing} style={{
           marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: "var(--rad-md)", width: "100%",
           background: "var(--signal)", color: "var(--on-signal)", border: "none",
@@ -5094,7 +5094,7 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               const s = a ? STAGES.find(x => x.id === a.stage) : null;
               const res = await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => ({ ok: false, reason: "encode_fail" }));
               const why = _shareMomentFailText(res);
-              if (why) window.plurskyToast?.(why);
+              if (why) window.plurskyToast?.(why, { error: true });
             }} style={{ marginTop: 24 }}>Share the night</FieldButton>
           <FieldButton kind="secondary" onClick={() => { setEnded(false); setIdx(0); }} style={{ marginTop: 8 }}>Replay</FieldButton>
           {/* Only with ≥3 moments: RecapScreen gates the recap video on that. */}

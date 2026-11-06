@@ -983,6 +983,7 @@ function SearchModal({
   }))));
 }
 var TOAST_LAYER_Z = 10100;
+var TOAST_ERROR_MS = 6000;
 function ToastHost() {
   var [msg, setMsg] = React.useState(null);
   var queue = React.useRef([]),
@@ -1022,7 +1023,7 @@ function ToastHost() {
       } else showing.current = false;
       return;
     }
-    var t = setTimeout(() => setMsg(null), msg.duration || 1600);
+    var t = setTimeout(() => setMsg(null), msg.duration || (msg.error ? TOAST_ERROR_MS : 1600));
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
@@ -1538,7 +1539,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v525"
+        version: "v526"
       }));
     } catch {}
   }
@@ -1590,7 +1591,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v525"))
+      }, "Plursky · v526"))
     );
   }
 }

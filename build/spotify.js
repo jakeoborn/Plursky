@@ -4190,7 +4190,9 @@ function MomentLightbox({
       }));
       setSharing(false);
       var why = _shareMomentFailText(res);
-      if (why) window.plurskyToast?.(why);
+      if (why) window.plurskyToast?.(why, {
+        error: true
+      });
     },
     disabled: sharing,
     style: {
@@ -7569,7 +7571,9 @@ function MemoryReel({
         reason: "encode_fail"
       }));
       var why = _shareMomentFailText(res);
-      if (why) window.plurskyToast?.(why);
+      if (why) window.plurskyToast?.(why, {
+        error: true
+      });
     },
     style: {
       marginTop: 24
