@@ -516,6 +516,12 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
 
 // ── Lightweight global toast (anyone can call window.plurskyToast) ──
 // Used by save/unsave heart-tap and other quick confirmations.
+// The toast sits above EVERY layer: a share failure is reported while the
+// MomentLightbox (zIndex 200) is open, and at 95 the message was drawn behind
+// it, so the person saw "Preparing…" end with nothing. The highest modal
+// layer is the 10000 scrim; scripts/test-toast-over-modals.mjs fails if any
+// fixed layer in the .jsx sources reaches this value.
+const TOAST_LAYER_Z = 10100;
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
   // Deferred toasts (nudges, not results) wait here while another toast is on
@@ -551,7 +557,7 @@ function ToastHost() {
   const hasAction = msg.actionLabel && typeof msg.onAction === "function";
   return (
     <div style={{
-      position: "absolute", left: 0, right: 0, bottom: 80, zIndex: 95,
+      position: "absolute", left: 0, right: 0, bottom: 80, zIndex: TOAST_LAYER_Z,
       display: "flex", justifyContent: "center", pointerEvents: "none", padding: "0 16px",
     }}>
       {/* Board toast: an elevated card in SF that WRAPS. The old one-line
@@ -1063,7 +1069,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v522",
+        version: "v525",
       }));
     } catch {}
   }
@@ -1094,7 +1100,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v522
+          Plursky · v525
         </div>
       </div>
     );
