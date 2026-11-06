@@ -5,11 +5,11 @@ Assignment: Instinct build 39 assignment (2026-11-05). Internal-only TestFlight
 
 | # | Workstream | Branch / PR | State |
 |---|---|---|---|
-| 4 | Rescan diagnostics (read-only, share sheet) | `feat/scan-diagnostics` | in this PR, draft |
-| 1 | Scan confidence (GPS beats a saved-time guess, weak guesses stay unanswered) | — | next |
-| 2 | Scan hours from set times (first start −15 min → last end +15 min per night, nothing outside scanned) | — | with #1 |
-| — | Picker cancel is not an error (FilePicker 6.2.0 "pickFiles canceled.") | — | with #1 |
-| — | Multi-chunk regression fixture on the real import handler + store | — | with #1 |
+| 4 | Rescan diagnostics (read-only, share sheet) | `feat/scan-diagnostics` (#383) | review cleared at `08ae1ac` |
+| 1 | Scan confidence (GPS beats a saved-time guess, weak guesses stay unanswered) | `feat/scan-confidence-hours` | PR 2, draft |
+| 2 | Scan hours from set times (first start −15 min → last end +15 min per night, nothing outside scanned) | `feat/scan-confidence-hours` | PR 2 |
+| — | Picker cancel is not an error (FilePicker 6.2.0 "pickFiles canceled.") | `feat/scan-confidence-hours` | PR 2 |
+| — | Multi-chunk regression fixture on the real import handler + store | `feat/scan-confidence-hours` | PR 2 |
 | 3 | Shazam failure reasons + IndexedDB blob retry | — | after #1 |
 | — | Build 39: live uniqueness recheck, plugins, usage strings, signing, MusicKit, internal-only upload, VALID | — | after merges (not mine to merge) |
 | — | Physical f17 retest on Jake's phone | — | after build 39 |
@@ -18,7 +18,8 @@ Assignment: Instinct build 39 assignment (2026-11-05). Internal-only TestFlight
 
 "15 min before and after festival ends and everything else does not get
 scanned"; "we can do photos/videos between set"; "we have set times in the
-app". Per night, in the festival's timezone: first set start − 15 min to last
+app"; then "skip" for anything outside (Jake, in the team thread, replacing
+the earlier review pile). Per night, in the festival's timezone: first set start − 15 min to last
 set end + 15 min. Between-set photos count. Outside items are counted as
 skipped, never marked imported, and nothing existing is deleted. A night with
 no set times is not scanned and is reported.
@@ -43,10 +44,69 @@ no set times is not scanned and is reported.
 - [x] "Share scan diagnostic" on Memories: one tap → native share sheet
       (text), falls back to navigator.share then clipboard. Never uploads.
 - [x] Diagnostics never write the moment store (gate checks byte identity).
-- [x] Gate `scripts/test-scan-diagnostic.mjs` in verify; 2 mutants caught.
+- [x] Gate `scripts/test-scan-diagnostic.mjs` in verify: 31 checks, 5 mutants caught.
 - [x] Pixel: button + status on ACL Memories (headless, native stubbed).
-- [ ] Full verify on the pushed head.
+- [x] Full verify on the pushed head (`08ae1ac`, VERIFY_EXIT=0).
 - [ ] Physical: tap the button on device, confirm the share sheet opens.
 
 Not claimed: the cause of the Charli collapse. This build records the write
 that causes it; the cause is named only from a device export.
+
+## Workstreams 1 + 2: confidence, set-time windows, picker cancel (PR 2)
+
+- [x] A match keeps WHY it was picked (`matchReason`, `matchEvidence`) apart
+      from where the capture time came from (`tagSource`).
+- [x] Saved set + time alone is a suggestion (`tagSuggested`): it stays in
+      the review list, so the sheet cannot say "all answered" for a guess.
+- [x] Usable GPS outside the festival footprint beats a saved guess
+      ("📍 AWAY FROM THE FESTIVAL"); coarse or missing GPS leaves it a
+      suggestion. An attended set stays ground truth.
+- [x] Usable GPS at ANOTHER anchored stage where an act is playing: if the
+      saved act's stage is anchored, GPS wins; if not, the guess stays a
+      suggestion and both acts are offered (no invented geometry).
+- [x] Overlapping unsaved acts: GPS at a stage's anchor beats an unanchored
+      stage's act that only started nearer the time (still flagged).
+- [x] Manual and Unknown choices are never re-guessed (scan, recovery, cloud).
+- [x] Scan hours from set times, ±15 min, per night and weekend, in the
+      festival timezone; between-set photos kept; outside counted and shown
+      as skipped, never imported, never marked seen; nothing deleted.
+- [x] Nights without set times (Jake 2026-11-05) are scanned in full, no
+      hours window; the card says "N nights have no set times, scanned in
+      full." on its own line; their photos stay in review like any guess.
+- [x] Picker cancel ("pickFiles canceled.") is a cancel, not an error card.
+- [x] Cloud restore is add-only across all nights (a moment that moved
+      night no longer comes back twice). Not claimed as the Charli cause.
+- [x] Review fix (#384 hold): Pick then Scan of the same photo under a
+      different export name no longer imports it twice, and two DIFFERENT
+      photos that share a size and first 2 KB both import. The content key
+      (FNV-1a of the first 2 KB + byte size, no name) only finds a
+      candidate; a skip needs a full-content check: SHA-256 of the whole
+      original image (`_contentSha256`, new imports, device-local, never
+      synced), else a byte compare with the stored copy (videos raw; older
+      images against the incoming file recompressed). Any doubt imports.
+      Stored records and tags are not rewritten.
+- [x] Review fix (#384 hold): an act whose set time is not confirmed
+      (`timeEvidence` unresolved) never sets a window boundary. All 59 real
+      windows are unchanged by this.
+- [x] Gate `scripts/test-scan-hours-confidence.mjs`: 125 checks, 13 mutants.
+- [x] Gate `scripts/test-scan-multi-pass.mjs` (real app, headless, 35 checks): 27 ACL W2
+      items over 11 acts, 4 saved; scan 1 limited with 2 failed exports;
+      manual + Unknown choices; scan 2 full retries the failures and moves
+      nothing; scan 3 writes nothing; a stale cloud copy adds only its one
+      new moment and undoes no hand choice. A prior manual Pick of asset-0
+      (hand-tagged) is not imported again when Scan exports the same bytes
+      as CHANGED_EXPORT_NAME.jpg (25 moments, not 26), and keeps its tag;
+      the prior's photo is stored recompressed with no hash, as an older
+      build left it. Two valid JPEGs with the same size and identical first
+      2 KB both import (25, not 24). Scan 4: a night with its set times
+      blanked imports both new photos and shows the full-night card line.
+- [ ] Full verify on the pushed head.
+- [ ] Physical: rescan on device; food photo during a saved set is a
+      suggestion or away-from-festival; lunch/hotel photos counted as skipped.
+
+### Scan windows per festival night (from the app's set times)
+
+59 festival-nights: 55 have a window from set times; 4 have none and are
+scanned in full (Countdown NYE night 1, Decadence nights 1-2, Dreamstate night 1).
+Examples: ACL W1 and W2, each night 12:30-22:15; III Points 15:45-04:15 next
+morning. Full table: `node scripts/test-scan-hours-confidence.mjs --report`.

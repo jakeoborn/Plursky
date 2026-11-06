@@ -2182,6 +2182,40 @@ function _mediaFingerprintParts(fp) {
     basename
   };
 }
+function _fingerprintContentKey(fp) {
+  var m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
+async function _blobSha256Hex(blob) {
+  var subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  var d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  var step = 4 * 1048576;
+  for (var o = 0; o < a.size; o += step) {
+    var [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    var u = new Uint8Array(x),
+      v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (var i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    var stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch {
+    return false;
+  }
+}
 function _findArchivedVideoMomentForFingerprint(fp) {
   var cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -3326,6 +3360,10 @@ var _TAG_SOURCE_LABEL = {
   },
   off_stage: {
     text: "📍 BETWEEN SETS",
+    tone: "info"
+  },
+  off_venue: {
+    text: "📍 AWAY FROM THE FESTIVAL",
     tone: "info"
   },
   "stage-neighbor": {
@@ -4891,7 +4929,7 @@ function MomentCard({
       fontWeight: 700,
       cursor: "pointer"
     }
-  }, "+ TAG A SET"), artist && moment.tagAmbiguous && onUpdate && !editing && React.createElement("button", {
+  }, "+ TAG A SET"), artist && (moment.tagAmbiguous || moment.tagSuggested) && onUpdate && !editing && React.createElement("button", {
     onClick: () => setEditing(true),
     className: "mono",
     title: "More than one set overlapped this time — tap to confirm or fix the tag",
@@ -6038,8 +6076,8 @@ async function _purgeAllMoments() {
 var _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOURCE_LABEL[k].tone === "warn"));
 function _momentNeedsReview(m) {
   if (!m || m.tagSource === "unknown") return false;
-  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
-  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+  if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
 }
 function _momentFestival(m) {
   var fid = m && m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
@@ -6065,7 +6103,8 @@ function _retagPatch(choice) {
     tagSource: "manual",
     autoTagged: false,
     needsRetag: false,
-    tagAmbiguous: false
+    tagAmbiguous: false,
+    tagSuggested: false
   };
   if (!choice) return null;
   if (choice.unknown) return {
@@ -9290,10 +9329,13 @@ function MemoriesScreen({
     var current = {
       ..._readMoments()
     };
-    var existingFingerprints = new Set();
+    var existingContent = new Map();
+    var addCandidate = (ck, m) => {
+      if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]);
+    };
     for (var moments of Object.values(current)) {
       for (var m of moments) {
-        if (m._fingerprint) existingFingerprints.add(m._fingerprint);
+        if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m);
       }
     }
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
@@ -9303,7 +9345,16 @@ function MemoriesScreen({
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        var ck = _fingerprintContentKey(fp);
+        var fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        var isDupe = false;
+        for (var cand of ck && existingContent.get(ck) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) {
+            isDupe = true;
+            break;
+          }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({
             name: f.name,
@@ -9335,7 +9386,7 @@ function MemoriesScreen({
         var hadExifDate = !!exif?.date;
         var hadFileTime = meta?.takenAtSource === "file-lastModified";
         var hadTrustedMeta = !!meta?.date && meta.takenAtSource !== "file-lastModified" && meta.takenAtSource !== "none";
-        var tagSource = recovered ? "archive-recovered" : matched.reason === "stage_time_proximity" ? "stage-neighbor" : matched.reason === "off_stage" ? "off_stage" : matched.artistId && hadExifDate ? "exif" : matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" : matched.artistId && hadTrustedMeta ? meta.takenAtSource : matched.artistId && hadFileTime ? "filetime" : matched.night && hadExifDate ? "exif-night-only" : matched.night && /^video-/.test(meta?.takenAtSource || "") ? "video-night-only" : matched.night && hadTrustedMeta ? `${meta.takenAtSource}-night-only` : matched.night && hadFileTime ? "filetime-night-only" : "fallback";
+        var tagSource = recovered ? "archive-recovered" : matched.reason === "stage_time_proximity" ? "stage-neighbor" : matched.reason === "off_stage" ? "off_stage" : matched.reason === "off_venue" ? "off_venue" : matched.artistId && hadExifDate ? "exif" : matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" : matched.artistId && hadTrustedMeta ? meta.takenAtSource : matched.artistId && hadFileTime ? "filetime" : matched.night && hadExifDate ? "exif-night-only" : matched.night && /^video-/.test(meta?.takenAtSource || "") ? "video-night-only" : matched.night && hadTrustedMeta ? `${meta.takenAtSource}-night-only` : matched.night && hadFileTime ? "filetime-night-only" : "fallback";
         var out = await _processMomentMedia(f);
         var id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         var photoId = `p_${id}`;
@@ -9368,6 +9419,9 @@ function MemoriesScreen({
           tagSource,
           nativePath: out.kind === "video" ? f.nativePath || null : null,
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          matchReason: matched.reason || null,
+          matchEvidence: matched.evidence || null,
+          tagSuggested: !!(matched.artistId && matched.suggested),
           anchorSource: matched.anchorSource || null,
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
@@ -9384,10 +9438,11 @@ function MemoriesScreen({
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
-          _fingerprint: fp || null
+          _fingerprint: fp || null,
+          _contentSha256: fileSha || null
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,
@@ -9602,6 +9657,9 @@ function MemoriesScreen({
         unreadable
       };
     } catch (err) {
+      if (_pickerErrorIsCancel(err)) return {
+        status: "cancelled"
+      };
       console.warn('[memories] native pickMedia failed', err);
       return {
         status: "error",
@@ -9705,13 +9763,20 @@ function MemoriesScreen({
       }
       var {
         keep,
-        already
+        already,
+        outsideSets,
+        untimedNights
       } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      var skipped = {
+        outsideSets,
+        untimedNights
+      };
       if (!keep.length) {
         setScan({
           phase: "none",
           already,
-          limited
+          limited,
+          ...skipped
         });
         return;
       }
@@ -9756,7 +9821,8 @@ function MemoriesScreen({
         imported,
         unreadable,
         already,
-        limited
+        limited,
+        ...skipped
       });
     } catch (err) {
       console.warn("[memories] scan failed", err);
@@ -9773,6 +9839,8 @@ function MemoriesScreen({
     if (!st) return null;
     var fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
     var limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    var skipNote = [st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : ""].filter(Boolean).join(" ");
+    var untimedNote = st.untimedNights ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.` : null;
     if (st.phase === "access" || st.phase === "scanning") return {
       busy: true,
       title: `Looking for photos from ${fest} nights…`
@@ -9793,13 +9861,15 @@ function MemoriesScreen({
       retry: true
     };
     if (st.phase === "none") return {
-      title: `No new photos from ${fest} nights`,
-      body: (st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "Nothing in your library was taken during the festival’s nights.") + limitedNote
+      title: `No new photos from ${fest} set times`,
+      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : skipNote ? "" : "Nothing in your library was taken during the festival’s set times.", skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from ${fest}`,
-      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", limitedNote.trim()].filter(Boolean).join(" ") || null,
-      retry: !!st.unreadable
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
+      retry: !!st.unreadable,
+      note: untimedNote
     };
     return null;
   };
@@ -9867,7 +9937,8 @@ function MemoriesScreen({
         autoTagged: false,
         dateUnverified: false,
         needsRetag: false,
-        tagAmbiguous: false
+        tagAmbiguous: false,
+        tagSuggested: false
       };
       next[n] = arr.filter(m => m.id !== moment.id);
     }
@@ -10281,7 +10352,15 @@ function MemoriesScreen({
         lineHeight: 1.38,
         color: "var(--text-2)"
       }
-    }, msg.body), !msg.busy && React.createElement("div", {
+    }, msg.body), msg.note && React.createElement("p", {
+      "data-scan-untimed-note": true,
+      style: {
+        margin: "4px 0 0",
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, msg.note), !msg.busy && React.createElement("div", {
       style: {
         display: "flex",
         gap: 8,
@@ -12511,6 +12590,8 @@ function _recoverCurrentVideoMomentsFromArchive() {
         if (m.festivalId && m.festivalId !== cur) continue;
         var placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;
+        if (m.tagSource === "manual") continue;
+        if (m.tagSource === "off_venue") continue;
         var needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         var archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
@@ -12541,6 +12622,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
+        m.tagSuggested = false;
         if (String(recoveredNight) !== String(night)) moves.push({
           from: night,
           to: String(recoveredNight),

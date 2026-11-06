@@ -1440,6 +1440,58 @@ function _mediaFingerprintParts(fp) {
   return { size, basename };
 }
 
+// The same photo arriving by two doors (Pick, then Scan) gets two export
+// names, so the full fingerprint (hash_size_name) differs and the name-bound
+// check imported it twice (#384 review: 25 → 26). The content key drops the
+// name: FNV-1a of the first 2 KB plus the byte size. A JPEG/HEIC's first 2 KB
+// carry its EXIF block (capture time, camera), so two different shots that
+// share both are not a realistic collision. Stored fingerprints are NOT
+// rewritten; the key is derived from them on read.
+function _fingerprintContentKey(fp) {
+  const m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
+
+// The content key only FINDS a candidate; it never decides. Two different
+// shots can share a size and their first 2 KB (#384 review: 25 → 24, a photo
+// silently lost), so a candidate is skipped only after a full-content check:
+//   - an image imported since build 39 carries _contentSha256, the SHA-256 of
+//     its whole original file, compared against the incoming file's;
+//   - otherwise the stored copy is compared byte for byte: a video is stored
+//     raw, so against the file itself; an older image was stored recompressed,
+//     so against the incoming file run through the same compressor.
+// Any doubt (no stored copy, no WebCrypto, a read error) imports the file:
+// a possible duplicate the person can delete beats a photo that never lands.
+// Videos are never hashed whole (up to 200 MB); the byte compare reads 4 MB
+// slices, and only for a candidate.
+async function _blobSha256Hex(blob) {
+  const subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  const d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  const step = 4 * 1048576;
+  for (let o = 0; o < a.size; o += step) {
+    const [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    const u = new Uint8Array(x), v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (let i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    const stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch { return false; }
+}
+
 function _findArchivedVideoMomentForFingerprint(fp) {
   const cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -2333,6 +2385,9 @@ const _TAG_SOURCE_LABEL = {
   "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
   "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
   off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
+  // Build 39: usable GPS put the photo clearly outside the festival's own
+  // footprint during a set, so no set is claimed. An answer, not a gap.
+  off_venue:            { text: "📍 AWAY FROM THE FESTIVAL", tone: "info" },
   "stage-neighbor":     { text: "NEARBY SET · VERIFY", tone: "warn" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   "song-recovered":     { text: "RECOVERED · SONG",  tone: "ok" },
@@ -3365,7 +3420,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           )}
           {/* Low-confidence auto-tag (2+ overlapping sets): invite a fix
               prominently rather than letting a possibly-wrong tag look sure. */}
-          {artist && moment.tagAmbiguous && onUpdate && !editing && (
+          {artist && (moment.tagAmbiguous || moment.tagSuggested) && onUpdate && !editing && (
             <button onClick={() => setEditing(true)} className="mono" title="More than one set overlapped this time — tap to confirm or fix the tag" style={{
               background: "rgba(var(--signal-rgb),0.12)", color: "var(--ember-ink)",
               border: "1px dashed rgba(var(--signal-rgb),0.5)",
@@ -4268,8 +4323,8 @@ const _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOU
 // (GPS said so) and an explicit Unknown are answers, not gaps.
 function _momentNeedsReview(m) {
   if (!m || m.tagSource === "unknown") return false;
-  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
-  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+  if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
 }
 // The moment's OWN festival — a clip filed to another festival by its capture
 // date is still reviewable here, and must be retagged from that lineup.
@@ -4290,7 +4345,7 @@ function _reviewLineup(m, night) {
 // the same thing. A set carries its own stage; a stage alone is "stage known,
 // set unknown"; Unknown clears both and says so.
 function _retagPatch(choice) {
-  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false };
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
   if (!choice) return null;
   if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
   if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
@@ -6154,9 +6209,11 @@ function MemoriesScreen({ state, setState }) {
     const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
     const current = { ..._readMoments() };
 
-    const existingFingerprints = new Set();
+    // Content key → the moments that share it: candidates, not verdicts.
+    const existingContent = new Map();
+    const addCandidate = (ck, m) => { if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]); };
     for (const moments of Object.values(current)) {
-      for (const m of moments) { if (m._fingerprint) existingFingerprints.add(m._fingerprint); }
+      for (const m of moments) { if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m); }
     }
     // Fallback target night when we can't infer one from EXIF: prefer the
     // current festival day, then yesterday (post-midnight shoot earlier in
@@ -6171,7 +6228,13 @@ function MemoriesScreen({ state, setState }) {
       const f = files[i];
       try {
         const fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        const ck = _fingerprintContentKey(fp);
+        const fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        let isDupe = false;
+        for (const cand of (ck && existingContent.get(ck)) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) { isDupe = true; break; }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
@@ -6201,6 +6264,7 @@ function MemoriesScreen({ state, setState }) {
           recovered ? "archive-recovered" :
           matched.reason === "stage_time_proximity" ? "stage-neighbor" :
           matched.reason === "off_stage"  ? "off_stage" :
+          matched.reason === "off_venue"  ? "off_venue" :
           matched.artistId && hadExifDate ? "exif" :
           matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" :
           matched.artistId && hadTrustedMeta ? meta.takenAtSource :
@@ -6243,6 +6307,13 @@ function MemoriesScreen({ state, setState }) {
           // couldn't separate them. Keep the best guess but flag it so the
           // card surfaces a prominent "fix tag" chip instead of looking sure.
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          // Build 39: WHY the set was picked, kept apart from tagSource (which
+          // says where the capture time came from). A saved set + time alone
+          // is a suggestion: it stays in the review list until someone checks
+          // it, so "all answered" can never be claimed for a guess.
+          matchReason: matched.reason || null,
+          matchEvidence: matched.evidence || null,
+          tagSuggested: !!(matched.artistId && matched.suggested),
           // Which anchor class decided this tag: "crowd" (measured) or
           // "poster" (derived from the map art, known-skewed). null when GPS
           // played no part. Kept on the record so a later re-tag pass can find
@@ -6281,9 +6352,10 @@ function MemoriesScreen({ state, setState }) {
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
           _fingerprint: fp || null,
+          _contentSha256: fileSha || null,
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
@@ -6498,6 +6570,9 @@ function MemoriesScreen({ state, setState }) {
       if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
       return { status: "picked", files: out, unreadable };
     } catch (err) {
+      // FilePicker 6.2.0 rejects a dismissed sheet; that is the user backing
+      // out, not a failure (build 39, the orange card after a cancel).
+      if (_pickerErrorIsCancel(err)) return { status: "cancelled" };
       console.warn('[memories] native pickMedia failed', err);
       // An exception is an ERROR, never a cancel and never a silent web
       // fallback: on a native build that fallback does nothing visible.
@@ -6583,8 +6658,9 @@ function MemoriesScreen({ state, setState }) {
         const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
         assets.push(...(res?.assets || []));
       }
-      const { keep, already } = _scanPickAssets(assets, cfg, _scanSeenRead());
-      if (!keep.length) { setScan({ phase: "none", already, limited }); return; }
+      const { keep, already, outsideSets, untimedNights } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      const skipped = { outsideSets, untimedNights };
+      if (!keep.length) { setScan({ phase: "none", already, limited, ...skipped }); return; }
       const reviewAcc = [];
       const chunks = _scanChunks(keep);
       let imported = 0, unreadable = 0, done = 0;
@@ -6606,7 +6682,7 @@ function MemoriesScreen({ state, setState }) {
         // video's file stays: song recognition reads it from nativePath.
         for (const f of files) if (!/^video\//.test(f.type)) PS.discard?.({ path: f._scanPath })?.catch?.(() => {});
       }
-      setScan({ phase: "done", imported, unreadable, already, limited });
+      setScan({ phase: "done", imported, unreadable, already, limited, ...skipped });
     } catch (err) {
       console.warn("[memories] scan failed", err);
       setScan({ phase: "error" });
@@ -6618,18 +6694,31 @@ function MemoriesScreen({ state, setState }) {
     if (!st) return null;
     const fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
     const limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    // Build 39: Scan keeps only each night's set hours (first set − 15 min to
+    // last set + 15 min). Say how many it left alone, and why; none of them
+    // were imported or marked as seen.
+    const skipNote = [
+      st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : "",
+    ].filter(Boolean).join(" ");
+    // Jake 2026-11-05: a night with no set times is scanned in full, and the
+    // card says so on a line of its own, so it is never silently different.
+    const untimedNote = st.untimedNights
+      ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.`
+      : null;
     if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: `Looking for photos from ${fest} nights…` };
     if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
     if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
     if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Scan again to pick up the rest.", retry: true };
     if (st.phase === "none") return {
-      title: `No new photos from ${fest} nights`,
-      body: (st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "Nothing in your library was taken during the festival’s nights.") + limitedNote,
+      title: `No new photos from ${fest} set times`,
+      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : (skipNote ? "" : "Nothing in your library was taken during the festival’s set times."), skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote,
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from ${fest}`,
-      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", limitedNote.trim()].filter(Boolean).join(" ") || null,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
       retry: !!st.unreadable,
+      note: untimedNote,
     };
     return null;
   };
@@ -6699,7 +6788,7 @@ function MemoriesScreen({ state, setState }) {
       if (!hit) continue;
       found = { ...hit, night: rec.night, artistId: rec.artistId,
                 tagSource: "song-recovered", autoTagged: false,
-                dateUnverified: false, needsRetag: false, tagAmbiguous: false };
+                dateUnverified: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
       next[n] = arr.filter(m => m.id !== moment.id);
     }
     if (!found) return;
@@ -7036,6 +7125,7 @@ function MemoriesScreen({ state, setState }) {
                 <div role="status" style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
                   <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: msg.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{msg.title}</div>
                   {msg.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.body}</p>}
+                  {msg.note && <p data-scan-untimed-note style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.note}</p>}
                   {!msg.busy && (
                     <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
                       {msg.retry && (
@@ -8362,6 +8452,8 @@ function _recoverCurrentVideoMomentsFromArchive() {
         // need recovering, however good its own metadata was.
         const placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;      // the user's answer, not a gap
+        if (m.tagSource === "manual") continue;       // build 39: a hand pick is never re-guessed
+        if (m.tagSource === "off_venue") continue;    // GPS said "not at the festival"; an archive guess does not outrank it
         const needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         const archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
@@ -8407,6 +8499,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
+        m.tagSuggested = false;
         if (String(recoveredNight) !== String(night)) moves.push({ from: night, to: String(recoveredNight), moment: m });
         changed = true;
       }

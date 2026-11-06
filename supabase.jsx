@@ -360,7 +360,7 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint"];
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {
@@ -680,14 +680,7 @@ function AccountCard({ state, setState }) {
           try {
             const cloudMoments = cloud.meta?.moments;
             if (cloudMoments && typeof cloudMoments === "object") {
-              const local = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
-              let added = 0;
-              for (const night of Object.keys(cloudMoments)) {
-                const localArr = Array.isArray(local[night]) ? local[night] : [];
-                const haveIds = new Set(localArr.map(m => m && m.id));
-                const restored = (cloudMoments[night] || []).filter(m => m && m.id && !haveIds.has(m.id));
-                if (restored.length) { local[night] = [...localArr, ...restored]; added += restored.length; }
-              }
+              const { local, added } = _mergeCloudMoments(JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"), cloudMoments);
               if (added) {
                 localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
                 // Build 39 scan diagnostic: this restore bypasses _writeMoments.
@@ -3413,3 +3406,25 @@ Object.assign(window, {
   sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
   joinStagePresence, leaveStagePresence,
 });
+
+// Cloud → device restore of Memories metadata (lifted out of the sync
+// callback in build 39 so the multi-scan regression can run the real merge).
+// ADD-ONLY: a moment id the device already has is never replaced, so a stale
+// cloud copy cannot undo a scan's tags, a manual pick or an Unknown. Moments
+// the cloud has and the device does not (a wiped or new phone) come back.
+function _mergeCloudMoments(localIn, cloudMoments) {
+  const local = { ...(localIn && typeof localIn === "object" ? localIn : {}) };
+  let added = 0;
+  // Ids across EVERY night: a moment the device re-filed to another night
+  // (retag, a later scan) must not come back from the cloud's older copy as
+  // a duplicate in its old night. The per-night check before build 39 let it.
+  const haveIds = new Set();
+  for (const arr of Object.values(local)) if (Array.isArray(arr)) for (const m of arr) if (m && m.id) haveIds.add(m.id);
+  for (const night of Object.keys(cloudMoments || {})) {
+    const localArr = Array.isArray(local[night]) ? local[night] : [];
+    const restored = (Array.isArray(cloudMoments[night]) ? cloudMoments[night] : []).filter(m => m && m.id && !haveIds.has(m.id));
+    for (const m of restored) haveIds.add(m.id);
+    if (restored.length) { local[night] = [...localArr, ...restored]; added += restored.length; }
+  }
+  return { local, added };
+}
