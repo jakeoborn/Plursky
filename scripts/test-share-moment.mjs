@@ -65,8 +65,19 @@ function boot(spotifySrc, recapSrc) {
 
 // One device: which blobs exist, how the frame grabber and encoder behave,
 // and what the native / web share sheets do. Records every call.
-function device(ctx, { media = {}, grab = "frame", encode = true, native = true, cap = "ok", web = "ok" } = {}) {
-  const calls = { read: [], grab: 0, cap: 0, web: 0, capFiles: null, sheets: 0 };
+function device(ctx, { media = {}, grab = "frame", encode = true, native = true, cap = "ok", web = "ok", reader = "ok" } = {}) {
+  const calls = { read: [], grab: 0, cap: 0, web: 0, capFiles: null, sheets: 0, readerAborted: 0 };
+  // The PNG → data URL read before the native sheet: "ok", "hang" (never fires
+  // load or error until aborted), "abort" (fires abort) or "error".
+  ctx.FileReader = function FileReader() {
+    this.abort = () => { calls.readerAborted++; if (reader === "hang") setImmediate(() => this.onabort && this.onabort()); };
+    this.readAsDataURL = () => {
+      if (reader === "hang") return;
+      if (reader === "abort") return setImmediate(() => this.onabort && this.onabort());
+      if (reader === "error") { this.error = new Error("read failed"); return setImmediate(() => this.onerror()); }
+      this.result = "data:image/png;base64,AAAA"; setImmediate(() => this.onload());
+    };
+  };
   ctx._getPhoto = async (id) => { calls.read.push(id); return media[id] || null; };
   ctx._imgFromBlob = async () => ({ img: { width: 640, height: 360 }, revoke: noop });
   ctx._videoPosterBlob = (blob) => { calls.grab++; return grab === "hang" ? new Promise(noop) : Promise.resolve(grab === "none" ? null : { size: 5 }); };
@@ -137,6 +148,32 @@ async function checks(ctx) {
     const r = await share(VIDEO);
     t(r.ok && r.mode === "native" && c.grab === 1, `no readable frame still shares (got ${JSON.stringify(r)})`);
   }
+  // 6. The PNG → data URL read is inside the cap: a reader that never fires
+  // answers timeout within the cap, is aborted, and opens no sheet later.
+  {
+    const c = device(ctx, { media: { [posterKey]: { size: 3 } }, reader: "hang" });
+    const t0 = Date.now();
+    const r = await share(VIDEO, { prepMs: 60 });
+    const took = Date.now() - t0;
+    t(!r.ok && r.reason === "timeout", `reader that never fires → timeout (got ${JSON.stringify(r)})`);
+    t(took < 1000, `stalled reader answered in ${took} ms with a 60 ms cap`);
+    t(c.readerAborted === 1, `the stalled reader is aborted (${c.readerAborted})`);
+    await new Promise(res => setTimeout(res, 80));
+    t(c.sheets === 0, `a stalled read never opens a sheet later (sheets ${c.sheets})`);
+  }
+  // 6b. A reader that aborts or errors settles at once and falls back to the
+  // web sheet, never hangs.
+  for (const how of ["abort", "error"]) {
+    const c = device(ctx, { media: { [posterKey]: { size: 3 } }, reader: how });
+    const r = await share(VIDEO, { prepMs: 500 });
+    t(r.ok && r.mode === "share" && c.cap === 0 && c.web === 1, `reader ${how} → web sheet (got ${JSON.stringify(r)}, cap ${c.cap}, web ${c.web})`);
+  }
+  // 6c. The other share cards pass no deadline: their read is not capped and still shares.
+  {
+    const c = device(ctx, { media: {} });
+    const r = await ctx._shareBlobAsImage(PNG, { filename: "x.png", title: "x" });
+    t(r.ok && r.mode === "native" && c.cap === 1, `uncapped tail still shares natively (got ${JSON.stringify(r)})`);
+  }
   // 5. No media at all → no_photo; encode failure → encode_fail. Both have words.
   {
     const c = device(ctx, {});
@@ -205,7 +242,10 @@ function staticChecks() {
 const MUTANTS = [
   ["no prep cap (await the card directly)", "spotify", [/var ready = await Promise\.race\(\[prep, timeout\]\);/, "var ready = await prep;"]],
   ["read the clip before the poster", "spotify", [/var frame = await _getPhoto\(_posterKey\(moment\.id\)\)\.catch\(\(\) => null\);/, "var frame = null;"]],
-  ["web sheet before native", "recap", [/if \(capShare\?\.share && window\.Capacitor\?\.isNativePlatform\?\.\(\)\) \{\s*try \{\s*(?:const|var) dataUrl[\s\S]*?mode: "native"/, (m) => m.replace(/^if \(/, "if (false && ")]],
+  ["web sheet before native", "recap", [/if \(capShare\?\.share && window\.Capacitor\?\.isNativePlatform\?\.\(\)\) \{/, "if (false) {"]],
+  ["data URL read not capped", "recap", [/var capped = deadline == null \? read :/, "var capped = true ? read :"]],
+  ["reader abort never settles", "recap", [/reader\.onabort = \(\) => reject\(new Error\("read aborted"\)\);/, ""]],
+  ["moment share passes no deadline", "spotify", [/,\s*deadline\s*\}\);/, "});"]],
   ["native cancel falls through", "recap", [/if \(\/cancel\|abort\/i\.test\(e\?\.message \|\| ""\)\) return/, "if (false) return"]],
   ["errors swallowed", "spotify", [/function _shareMomentFailText\(res\) \{/, "function _shareMomentFailText(res) { return null;"]],
   ["encode failure reads as success", "spotify", [/if \(!png\) return \{\s*reason: "encode_fail"\s*\};/, "if (!png) return { png: {} };"]],

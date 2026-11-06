@@ -140,7 +140,8 @@ async function _shareCanvasResult(canvas, opts) {
 }
 async function _shareBlobAsImage(blob, {
   filename,
-  title
+  title,
+  deadline = null
 }) {
   window.plurskyHaptic?.("LIGHT");
   var file = new File([blob], filename, {
@@ -148,13 +149,39 @@ async function _shareBlobAsImage(blob, {
   });
   var capShare = window.Capacitor?.Plugins?.Share;
   if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    var reader = null,
+      timer = null;
+    var read = new Promise((resolve, reject) => {
+      reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error || new Error("read failed"));
+      reader.onabort = () => reject(new Error("read aborted"));
+      reader.readAsDataURL(blob);
+    });
+    var TIMED_OUT = {};
+    var capped = deadline == null ? read : Promise.race([read, new Promise(res => {
+      timer = setTimeout(() => res(TIMED_OUT), Math.max(0, deadline - Date.now()));
+    })]);
+    var dataUrl;
     try {
-      var dataUrl = await new Promise((resolve, reject) => {
-        var r = new FileReader();
-        r.onload = () => resolve(r.result);
-        r.onerror = reject;
-        r.readAsDataURL(blob);
-      });
+      dataUrl = await capped;
+    } catch (e) {
+      dataUrl = null;
+      if (e?.message) console.warn("[plursky-share]", e.message);
+    } finally {
+      clearTimeout(timer);
+    }
+    if (dataUrl === TIMED_OUT) {
+      read.catch(() => {});
+      try {
+        reader.abort();
+      } catch {}
+      return {
+        ok: false,
+        reason: "timeout"
+      };
+    }
+    if (dataUrl) try {
       await capShare.share({
         title,
         files: [dataUrl]

@@ -163,7 +163,11 @@ async function _shareCanvasResult(canvas, opts) {
 // The tail itself, for a caller that already holds the PNG (the moment share
 // encodes inside its own time cap). Returns { ok, mode } — mode is "native",
 // "share", "abort" (the person closed the sheet) or "download".
-async function _shareBlobAsImage(blob, { filename, title }) {
+// `deadline` (a Date.now() time, optional): the native path's PNG → data URL
+// read is the last wait before the sheet, so it must finish by then, or the
+// share answers { ok: false, reason: "timeout" } and opens no sheet at all —
+// not even late. The sheet's own time is never capped.
+async function _shareBlobAsImage(blob, { filename, title, deadline = null }) {
   window.plurskyHaptic?.("LIGHT");
   const file = new File([blob], filename, { type: "image/png" });
 
@@ -172,13 +176,27 @@ async function _shareBlobAsImage(blob, { filename, title }) {
   // which can fail silently in some iOS versions.
   const capShare = window.Capacitor?.Plugins?.Share;
   if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
-    try {
-      const dataUrl = await new Promise((resolve, reject) => {
-        const r = new FileReader();
-        r.onload = () => resolve(r.result);
-        r.onerror = reject;
-        r.readAsDataURL(blob);
-      });
+    let reader = null, timer = null;
+    const read = new Promise((resolve, reject) => {
+      reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error || new Error("read failed"));
+      reader.onabort = () => reject(new Error("read aborted"));
+      reader.readAsDataURL(blob);
+    });
+    const TIMED_OUT = {};
+    const capped = deadline == null ? read
+      : Promise.race([read, new Promise(res => { timer = setTimeout(() => res(TIMED_OUT), Math.max(0, deadline - Date.now())); })]);
+    let dataUrl;
+    try { dataUrl = await capped; }
+    catch (e) { dataUrl = null; if (e?.message) console.warn("[plursky-share]", e.message); }
+    finally { clearTimeout(timer); }
+    if (dataUrl === TIMED_OUT) {
+      read.catch(() => {});
+      try { reader.abort(); } catch {}
+      return { ok: false, reason: "timeout" };
+    }
+    if (dataUrl) try {
       await capShare.share({ title, files: [dataUrl] });
       return { ok: true, mode: "native" };
     } catch (e) {

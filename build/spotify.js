@@ -4609,6 +4609,7 @@ async function _shareMoment(moment, meta, {
 } = {}) {
   var fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
   var timer = null;
+  var deadline = Date.now() + prepMs;
   var timeout = new Promise(res => {
     timer = setTimeout(() => res({
       reason: "timeout"
@@ -4625,7 +4626,8 @@ async function _shareMoment(moment, meta, {
   };
   return _shareBlobAsImage(ready.png, {
     filename: fname,
-    title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky"
+    title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky",
+    deadline
   });
 }
 function _shareMomentFailText(res) {

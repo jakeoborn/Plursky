@@ -3214,7 +3214,7 @@ function _drawCover(ctx, src, dx, dy, dw, dh) {
   ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
 }
 // The whole moment share — reading the media, drawing the card, encoding the
-// PNG — gets this long before the person sees an answer. Before v520 a video
+// PNG, reading it into the native sheet's data URL — gets this long before the person sees an answer. Before v520 a video
 // whose frame never decoded left the button on "Preparing…" forever.
 const _SHARE_PREP_MS = 8000;
 // What the card's hero is drawn from. A video uses its stored poster frame (the
@@ -3243,12 +3243,14 @@ async function _shareMomentSource(moment) {
 async function _shareMoment(moment, meta, { prepMs = _SHARE_PREP_MS } = {}) {
   const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
   let timer = null;
+  const deadline = Date.now() + prepMs;
   const timeout = new Promise(res => { timer = setTimeout(() => res({ reason: "timeout" }), prepMs); });
   const prep = _renderMomentShareCard(moment, meta).catch(() => ({ reason: "encode_fail" }));
   const ready = await Promise.race([prep, timeout]);
   clearTimeout(timer);
   if (!ready || ready.reason) return { ok: false, reason: (ready && ready.reason) || "encode_fail" };
-  return _shareBlobAsImage(ready.png, { filename: fname, title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky" });
+  // The cap runs on through the PNG → data URL read inside the tail.
+  return _shareBlobAsImage(ready.png, { filename: fname, title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky", deadline });
 }
 // What the person is told when a moment share does not reach a share sheet.
 // null = nothing to say (shared, or they closed the sheet). On iOS the
