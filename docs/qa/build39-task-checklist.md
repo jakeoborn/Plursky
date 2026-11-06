@@ -70,25 +70,36 @@ that causes it; the cause is named only from a device export.
 - [x] Scan hours from set times, ±15 min, per night and weekend, in the
       festival timezone; between-set photos kept; outside counted and shown
       as skipped, never imported, never marked seen; nothing deleted.
-- [x] Nights without set times are not scanned and are counted.
+- [x] Nights without set times (Jake 2026-11-05) are scanned in full, no
+      hours window; the card says "N nights have no set times, scanned in
+      full." on its own line; their photos stay in review like any guess.
 - [x] Picker cancel ("pickFiles canceled.") is a cancel, not an error card.
 - [x] Cloud restore is add-only across all nights (a moment that moved
       night no longer comes back twice). Not claimed as the Charli cause.
 - [x] Review fix (#384 hold): Pick then Scan of the same photo under a
-      different export name no longer imports it twice. The duplicate check
-      also compares a content key (FNV-1a of the first 2 KB + byte size, no
-      name); stored fingerprints and tags are not rewritten.
+      different export name no longer imports it twice, and two DIFFERENT
+      photos that share a size and first 2 KB both import. The content key
+      (FNV-1a of the first 2 KB + byte size, no name) only finds a
+      candidate; a skip needs a full-content check: SHA-256 of the whole
+      original image (`_contentSha256`, new imports, device-local, never
+      synced), else a byte compare with the stored copy (videos raw; older
+      images against the incoming file recompressed). Any doubt imports.
+      Stored records and tags are not rewritten.
 - [x] Review fix (#384 hold): an act whose set time is not confirmed
       (`timeEvidence` unresolved) never sets a window boundary. All 59 real
       windows are unchanged by this.
-- [x] Gate `scripts/test-scan-hours-confidence.mjs`: 121 checks, 12 mutants.
-- [x] Gate `scripts/test-scan-multi-pass.mjs` (real app, headless, 30 checks): 27 ACL W2
+- [x] Gate `scripts/test-scan-hours-confidence.mjs`: 125 checks, 13 mutants.
+- [x] Gate `scripts/test-scan-multi-pass.mjs` (real app, headless, 35 checks): 27 ACL W2
       items over 11 acts, 4 saved; scan 1 limited with 2 failed exports;
       manual + Unknown choices; scan 2 full retries the failures and moves
       nothing; scan 3 writes nothing; a stale cloud copy adds only its one
       new moment and undoes no hand choice. A prior manual Pick of asset-0
       (hand-tagged) is not imported again when Scan exports the same bytes
-      as CHANGED_EXPORT_NAME.jpg (25 moments, not 26), and keeps its tag.
+      as CHANGED_EXPORT_NAME.jpg (25 moments, not 26), and keeps its tag;
+      the prior's photo is stored recompressed with no hash, as an older
+      build left it. Two valid JPEGs with the same size and identical first
+      2 KB both import (25, not 24). Scan 4: a night with its set times
+      blanked imports both new photos and shows the full-night card line.
 - [ ] Full verify on the pushed head.
 - [ ] Physical: rescan on device; food photo during a saved set is a
       suggestion or away-from-festival; lunch/hotel photos counted as skipped.
@@ -96,6 +107,6 @@ that causes it; the cause is named only from a device export.
 ### Scan windows per festival night (from the app's set times)
 
 59 festival-nights: 55 have a window from set times; 4 have none and are
-not scanned (Countdown NYE night 1, Decadence nights 1-2, Dreamstate night 1).
+scanned in full (Countdown NYE night 1, Decadence nights 1-2, Dreamstate night 1).
 Examples: ACL W1 and W2, each night 12:30-22:15; III Points 15:45-04:15 next
 morning. Full table: `node scripts/test-scan-hours-confidence.mjs --report`.

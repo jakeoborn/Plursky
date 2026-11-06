@@ -1102,7 +1102,7 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
   var keep = [];
   var outside = 0,
     outsideSets = 0,
-    noSetTimes = 0,
+    fullNight = 0,
     already = 0;
   var _loop2 = function () {
       if (!a || !a.id) return 0;
@@ -1111,15 +1111,24 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
         outside++;
         return 0;
       }
+      var whole = false;
       if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
         var nw = _photoFestivalNightWeekend(null, cfg, ms);
-        if (!nw) outside++;else if (untimed.has(`${nw.night}|${nw.weekend}`)) noSetTimes++;else outsideSets++;
-        return 0;
+        if (!nw) {
+          outside++;
+          return 0;
+        }
+        if (!untimed.has(`${nw.night}|${nw.weekend}`)) {
+          outsideSets++;
+          return 0;
+        }
+        whole = true;
       }
       if (seen.has(a.id)) {
         already++;
         return 0;
       }
+      if (whole) fullNight++;
       keep.push(a);
     },
     _ret2;
@@ -1132,7 +1141,8 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
     keep,
     outside,
     outsideSets,
-    noSetTimes,
+    fullNight,
+    untimedNights: untimed.size,
     already,
     nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({
       night: w.night,

@@ -360,7 +360,7 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint"];
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {

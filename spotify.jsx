@@ -1452,6 +1452,46 @@ function _fingerprintContentKey(fp) {
   return m ? `${m[1]}_${m[2]}` : null;
 }
 
+// The content key only FINDS a candidate; it never decides. Two different
+// shots can share a size and their first 2 KB (#384 review: 25 → 24, a photo
+// silently lost), so a candidate is skipped only after a full-content check:
+//   - an image imported since build 39 carries _contentSha256, the SHA-256 of
+//     its whole original file, compared against the incoming file's;
+//   - otherwise the stored copy is compared byte for byte: a video is stored
+//     raw, so against the file itself; an older image was stored recompressed,
+//     so against the incoming file run through the same compressor.
+// Any doubt (no stored copy, no WebCrypto, a read error) imports the file:
+// a possible duplicate the person can delete beats a photo that never lands.
+// Videos are never hashed whole (up to 200 MB); the byte compare reads 4 MB
+// slices, and only for a candidate.
+async function _blobSha256Hex(blob) {
+  const subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  const d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  const step = 4 * 1048576;
+  for (let o = 0; o < a.size; o += step) {
+    const [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    const u = new Uint8Array(x), v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (let i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    const stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch { return false; }
+}
+
 function _findArchivedVideoMomentForFingerprint(fp) {
   const cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -6169,15 +6209,11 @@ function MemoriesScreen({ state, setState }) {
     const attendedIds = Object.values(window.getAllAttended?.() || {}).flat();
     const current = { ..._readMoments() };
 
-    const existingFingerprints = new Set();
-    const existingContent = new Set();
+    // Content key → the moments that share it: candidates, not verdicts.
+    const existingContent = new Map();
+    const addCandidate = (ck, m) => { if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]); };
     for (const moments of Object.values(current)) {
-      for (const m of moments) {
-        if (!m._fingerprint) continue;
-        existingFingerprints.add(m._fingerprint);
-        const ck = _fingerprintContentKey(m._fingerprint);
-        if (ck) existingContent.add(ck);
-      }
+      for (const m of moments) { if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m); }
     }
     // Fallback target night when we can't infer one from EXIF: prefer the
     // current festival day, then yesterday (post-midnight shoot earlier in
@@ -6193,7 +6229,12 @@ function MemoriesScreen({ state, setState }) {
       try {
         const fp = await _fileFingerprint(f);
         const ck = _fingerprintContentKey(fp);
-        if (fp && (existingFingerprints.has(fp) || (ck && existingContent.has(ck)))) {
+        const fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        let isDupe = false;
+        for (const cand of (ck && existingContent.get(ck)) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) { isDupe = true; break; }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
@@ -6311,10 +6352,10 @@ function MemoriesScreen({ state, setState }) {
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
           _fingerprint: fp || null,
+          _contentSha256: fileSha || null,
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
-        if (ck) existingContent.add(ck);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
@@ -6617,8 +6658,8 @@ function MemoriesScreen({ state, setState }) {
         const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
         assets.push(...(res?.assets || []));
       }
-      const { keep, already, outsideSets, noSetTimes } = _scanPickAssets(assets, cfg, _scanSeenRead());
-      const skipped = { outsideSets, noSetTimes };
+      const { keep, already, outsideSets, untimedNights } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      const skipped = { outsideSets, untimedNights };
       if (!keep.length) { setScan({ phase: "none", already, limited, ...skipped }); return; }
       const reviewAcc = [];
       const chunks = _scanChunks(keep);
@@ -6658,8 +6699,12 @@ function MemoriesScreen({ state, setState }) {
     // were imported or marked as seen.
     const skipNote = [
       st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : "",
-      st.noSetTimes ? `${st.noSetTimes} from ${st.noSetTimes === 1 ? "a night" : "nights"} without set times ${st.noSetTimes === 1 ? "wasn’t" : "weren’t"} scanned.` : "",
     ].filter(Boolean).join(" ");
+    // Jake 2026-11-05: a night with no set times is scanned in full, and the
+    // card says so on a line of its own, so it is never silently different.
+    const untimedNote = st.untimedNights
+      ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.`
+      : null;
     if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: `Looking for photos from ${fest} nights…` };
     if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
     if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
@@ -6667,11 +6712,13 @@ function MemoriesScreen({ state, setState }) {
     if (st.phase === "none") return {
       title: `No new photos from ${fest} set times`,
       body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : (skipNote ? "" : "Nothing in your library was taken during the festival’s set times."), skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote,
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from ${fest}`,
       body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
       retry: !!st.unreadable,
+      note: untimedNote,
     };
     return null;
   };
@@ -7078,6 +7125,7 @@ function MemoriesScreen({ state, setState }) {
                 <div role="status" style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
                   <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: msg.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{msg.title}</div>
                   {msg.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.body}</p>}
+                  {msg.note && <p data-scan-untimed-note style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.note}</p>}
                   {!msg.busy && (
                     <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
                       {msg.retry && (

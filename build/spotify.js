@@ -2186,6 +2186,36 @@ function _fingerprintContentKey(fp) {
   var m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
   return m ? `${m[1]}_${m[2]}` : null;
 }
+async function _blobSha256Hex(blob) {
+  var subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  var d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  var step = 4 * 1048576;
+  for (var o = 0; o < a.size; o += step) {
+    var [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    var u = new Uint8Array(x),
+      v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (var i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    var stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch {
+    return false;
+  }
+}
 function _findArchivedVideoMomentForFingerprint(fp) {
   var cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -9299,14 +9329,13 @@ function MemoriesScreen({
     var current = {
       ..._readMoments()
     };
-    var existingFingerprints = new Set();
-    var existingContent = new Set();
+    var existingContent = new Map();
+    var addCandidate = (ck, m) => {
+      if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]);
+    };
     for (var moments of Object.values(current)) {
       for (var m of moments) {
-        if (!m._fingerprint) continue;
-        existingFingerprints.add(m._fingerprint);
-        var ck = _fingerprintContentKey(m._fingerprint);
-        if (ck) existingContent.add(ck);
+        if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m);
       }
     }
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
@@ -9316,8 +9345,16 @@ function MemoriesScreen({
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
-        var _ck = _fingerprintContentKey(fp);
-        if (fp && (existingFingerprints.has(fp) || _ck && existingContent.has(_ck))) {
+        var ck = _fingerprintContentKey(fp);
+        var fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        var isDupe = false;
+        for (var cand of ck && existingContent.get(ck) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) {
+            isDupe = true;
+            break;
+          }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({
             name: f.name,
@@ -9401,11 +9438,11 @@ function MemoriesScreen({
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
-          _fingerprint: fp || null
+          _fingerprint: fp || null,
+          _contentSha256: fileSha || null
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
-        if (_ck) existingContent.add(_ck);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,
@@ -9728,11 +9765,11 @@ function MemoriesScreen({
         keep,
         already,
         outsideSets,
-        noSetTimes
+        untimedNights
       } = _scanPickAssets(assets, cfg, _scanSeenRead());
       var skipped = {
         outsideSets,
-        noSetTimes
+        untimedNights
       };
       if (!keep.length) {
         setScan({
@@ -9802,7 +9839,8 @@ function MemoriesScreen({
     if (!st) return null;
     var fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
     var limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
-    var skipNote = [st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : "", st.noSetTimes ? `${st.noSetTimes} from ${st.noSetTimes === 1 ? "a night" : "nights"} without set times ${st.noSetTimes === 1 ? "wasn’t" : "weren’t"} scanned.` : ""].filter(Boolean).join(" ");
+    var skipNote = [st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : ""].filter(Boolean).join(" ");
+    var untimedNote = st.untimedNights ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.` : null;
     if (st.phase === "access" || st.phase === "scanning") return {
       busy: true,
       title: `Looking for photos from ${fest} nights…`
@@ -9824,12 +9862,14 @@ function MemoriesScreen({
     };
     if (st.phase === "none") return {
       title: `No new photos from ${fest} set times`,
-      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : skipNote ? "" : "Nothing in your library was taken during the festival’s set times.", skipNote, limitedNote.trim()].filter(Boolean).join(" ")
+      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : skipNote ? "" : "Nothing in your library was taken during the festival’s set times.", skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote
     };
     if (st.phase === "done") return {
       title: `Imported ${st.imported} from ${fest}`,
       body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
-      retry: !!st.unreadable
+      retry: !!st.unreadable,
+      note: untimedNote
     };
     return null;
   };
@@ -10312,7 +10352,15 @@ function MemoriesScreen({
         lineHeight: 1.38,
         color: "var(--text-2)"
       }
-    }, msg.body), !msg.busy && React.createElement("div", {
+    }, msg.body), msg.note && React.createElement("p", {
+      "data-scan-untimed-note": true,
+      style: {
+        margin: "4px 0 0",
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, msg.note), !msg.busy && React.createElement("div", {
       style: {
         display: "flex",
         gap: 8,

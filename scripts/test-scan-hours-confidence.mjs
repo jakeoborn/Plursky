@@ -190,7 +190,12 @@ function checks(C, R) {
     const wins = C._scanSetWindows(cfg, artists);
     t(wins.find(w => w.night === 2)?.source === "none", "a night with only TBA acts got a window");
     const p = C._scanPickAssets([{ id: "y", createdMs: Date.UTC(2026, 5, 7, 2) }], cfg, new Set(), artists); // night 2, 21:00 CDT
-    t(p.keep.length === 0 && p.noSetTimes === 1, `a photo on a night without set times was not counted as not scanned (${JSON.stringify(p)})`);
+    // Jake 2026-11-05: a night with no set times is scanned in full.
+    t(p.keep.length === 1 && p.fullNight === 1 && p.outsideSets === 0 && p.untimedNights === 1, `a photo on a night without set times was not kept for a full-night scan (${JSON.stringify(p)})`);
+    const seenP = C._scanPickAssets([{ id: "y", createdMs: Date.UTC(2026, 5, 7, 2) }], cfg, new Set(["y"]), artists);
+    t(seenP.keep.length === 0 && seenP.already === 1 && seenP.fullNight === 0, "a full-night photo an earlier scan imported came back");
+    const p1 = C._scanPickAssets([{ id: "z", createdMs: Date.UTC(2026, 5, 6, 2) }], cfg, new Set(), artists); // night 1, 21:00 CDT, past 19:15
+    t(p1.keep.length === 0 && p1.outsideSets === 1, "a timed night lost its hours because another night has none");
     t(p.nightsWithoutSetTimes.some(x => x.night === 2), "the untimed night was not named");
     const rep = C._scanWindowReport(cfg, artists);
     t(rep.find(r => r.night === 2)?.source === "none" && rep.find(r => r.night === 1)?.start === "2026-06-05 17:45", `report rows wrong: ${JSON.stringify(rep)}`);
@@ -309,7 +314,8 @@ const SP = readFileSync(join(ROOT, "spotify.jsx"), "utf8");
 const wire = [
   [/if \(_pickerErrorIsCancel\(err\)\) return \{ status: "cancelled" \};/.test(SP), "pickViaNative does not treat a cancel rejection as a cancel"],
   [/matchReason: matched\.reason \|\| null,/.test(SP) && /matchEvidence: matched\.evidence \|\| null,/.test(SP) && /tagSuggested: !!\(matched\.artistId && matched\.suggested\),/.test(SP), "import does not stamp reason, evidence and suggestion"],
-  [/const \{ keep, already, outsideSets, noSetTimes \} = _scanPickAssets\(/.test(SP), "the scan does not take the skipped counts"],
+  [/const \{ keep, already, outsideSets, untimedNights \} = _scanPickAssets\(/.test(SP), "the scan does not take the skipped counts"],
+  [/nights have"\} no set times, scanned in full\./.test(SP) && /\{msg\.note && <p data-scan-untimed-note/.test(SP), "the card does not name full-night scans on their own line"],
   [/_scanSeenAdd\(fileAssets\.filter/.test(SP) && !/_scanSeenAdd\([^)]*outside/.test(SP), "skipped items reach the seen list"],
   [/if \(m\.tagSource === "manual"\) continue;/.test(SP), "archive recovery can re-guess a manual pick"],
 ];
@@ -329,7 +335,8 @@ const MUTANTS = [
   ["saved + time alone is certain", shipped.replace(/suggested: !attended && !atStage,/, "suggested: false,")],
   ["30-minute buffer", shipped.replace(/_SCAN_SET_BUFFER_MS = 15 \* 60000/, "_SCAN_SET_BUFFER_MS = 30 * 60000")],
   ["no timezone path (midnight + hours)", shipped.replace(/var utc = _zonedWallToUtc\(/, "var utc = null && _zonedWallToUtc(")],
-  ["untimed nights scanned on the wide window", shipped.replace(/else if \(untimed\.has\(`\$\{nw\.night\}\|\$\{nw\.weekend\}`\)\) noSetTimes\+\+;/, "else if (untimed.has(`${nw.night}|${nw.weekend}`)) { if (!seen.has(a.id)) keep.push(a); continue; }")],
+  ["untimed nights left unscanned", shipped.replace(/whole = true;/, "outsideSets++; continue;")],
+  ["full-night photos skip the seen list", shipped.replace(/if \(seen\.has\(a\.id\)\) \{(\s*already\+\+;\s*(?:return 0|continue);\s*\}\s*if \(whole\) fullNight\+\+;)/, "if (!whole && seen.has(a.id)) {$1")],
   ["GPS at another anchored stage never defeats a saved guess", shipped.replace(/if \(!\(gpsAct && anchor\)\) \{/, "if (true) {")],
   ["saved guess contradicted by stage GPS is not flagged", shipped.replace(/var amb = (_?ambiguous) \|\| !!gpsAct;/, "var amb = $1;")],
   ["unanchored stage wins on start time", shipped.replace(/if \(ax !== ay\) return ax \? -1 : 1;/, "")],
@@ -359,4 +366,4 @@ if (base.fails.length) {
   console.log(`  ✗ scan hours + confidence: ${base.fails.length} of ${base.n} checks failed`);
   process.exit(1);
 }
-console.log(`  ✓ scan hours + confidence: ${base.n} checks (set-time windows ±15 min for every festival night, edges, between sets, overnight, DST, untimed nights not scanned, off-venue beats a saved guess, stage GPS beats a saved guess, saved + time is a suggestion, picker cancel) · ${MUTANTS.length + 1} mutations caught`);
+console.log(`  ✓ scan hours + confidence: ${base.n} checks (set-time windows ±15 min for every festival night, edges, between sets, overnight, DST, untimed nights scanned in full, off-venue beats a saved guess, stage GPS beats a saved guess, saved + time is a suggestion, picker cancel) · ${MUTANTS.length + 1} mutations caught`);

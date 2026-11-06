@@ -171,7 +171,11 @@ try {
     for (let i = 0; i < Math.min(2048, bytes.length); i++) { h ^= bytes[i]; h = Math.imul(h, 0x01000193); }
     const fp = `${(h >>> 0).toString(36)}_${bytes.length}_${a0.name.replace(/[^a-zA-Z0-9.]/g, "")}`;
     const to = plan.acts[1].id;
-    const m = { id: "m_prior_pick", night: plan.acts[0].night, text: "", artistId: to, photoId: null, kind: "image",
+    // As an older build stored it: the photo recompressed in IndexedDB, and
+    // no _contentSha256 (that field starts with build 39).
+    const stored = await _compressMomentImage(new File([bytes], a0.name, { type: a0.mime }));
+    await _putPhoto("p_m_prior_pick", stored);
+    const m = { id: "m_prior_pick", night: plan.acts[0].night, text: "", artistId: to, photoId: "p_m_prior_pick", kind: "image",
                 createdAt: Date.now(), tagSource: "manual", festivalId: "acl-2026", _fingerprint: fp };
     const all = _readMoments();
     all[m.night] = [...(all[m.night] || []), m];
@@ -179,6 +183,34 @@ try {
     a0.name = "CHANGED_EXPORT_NAME.jpg";
     return { id: m.id, artistId: to, fp };
   }, plan);
+  // 4. Positive control for the content key (#384 review: 25 → 24): two
+  // DIFFERENT valid JPEGs with the same byte size and identical first 2 KB
+  // (a shared 2.2 KB comment segment up front, a filler comment to even the
+  // sizes, then each image's own data). The key finds a candidate; only a
+  // full-content check may skip, so both must import.
+  const pair = await page.evaluate(async () => {
+    const canvas = document.createElement("canvas"); canvas.width = canvas.height = 64;
+    const g = canvas.getContext("2d");
+    const draw = async (hue, label) => { g.fillStyle = `hsl(${hue},80%,45%)`; g.fillRect(0, 0, 64, 64); g.fillStyle = "#000"; g.fillText(label, 10, 34);
+      return new Uint8Array(await (await new Promise(r => canvas.toBlob(r, "image/jpeg", 0.9))).arrayBuffer()); };
+    const x = await draw(10, "A"), y = await draw(200, "B");
+    const com = (n) => { const seg = new Uint8Array(n + 4); seg.set([0xFF, 0xFE, ((n + 2) >> 8) & 255, (n + 2) & 255]); seg.fill(0x41, 4); return seg; };
+    const head = com(2200);
+    const size = 2 + head.length + 4 + Math.max(x.length, y.length) - 2 + 8;
+    const build = (j) => { const fill = size - 2 - head.length - (j.length - 2);
+      const out = new Uint8Array(size); out.set([0xFF, 0xD8]); out.set(head, 2); out.set(com(fill - 4), 2 + head.length); out.set(j.subarray(2), 2 + head.length + fill); return out; };
+    const A = build(x), B = build(y);
+    const okA = await new Promise(r => { const im = new Image(); im.onload = () => r(im.width === 64); im.onerror = () => r(false); im.src = URL.createObjectURL(new Blob([A], { type: "image/jpeg" })); });
+    const okB = await new Promise(r => { const im = new Image(); im.onload = () => r(im.width === 64); im.onerror = () => r(false); im.src = URL.createObjectURL(new Blob([B], { type: "image/jpeg" })); });
+    let samePrefix = A.length === B.length; for (let i = 0; i < 2048; i++) if (A[i] !== B[i]) samePrefix = false;
+    let differ = false; for (let i = 0; i < A.length; i++) if (A[i] !== B[i]) { differ = true; break; }
+    // Two in-window photos that only full access sees, so both land in scan 2.
+    const pick = window.__lib.filter(a => a.mediaType === "image" && !a.shared && a.expect !== "skip" && a.expect !== "off_venue").slice(0, 2);
+    window.__blobs[pick[0].id] = URL.createObjectURL(new Blob([A], { type: "image/jpeg" }));
+    window.__blobs[pick[1].id] = URL.createObjectURL(new Blob([B], { type: "image/jpeg" }));
+    return { ids: pick.map(a => a.id), size: A.length, samePrefix, differ, valid: okA && okB };
+  });
+  t(pair.ids.length === 2 && pair.samePrefix && pair.differ && pair.valid, `fixture: collision pair not two valid, different, same-size, same-first-2KB JPEGs (${JSON.stringify(pair)})`);
   const store = () => page.evaluate(() => JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"));
   const flat = (all) => Object.entries(all).flatMap(([night, arr]) => (arr || []).map(m => ({ ...m, _n: night })));
   const scanOnce = async (label) => {
@@ -242,6 +274,8 @@ try {
   t(new Set(ids2).size === ids2.length, "a moment id appears twice");
   t(after2.filter(m => m._fingerprint && m._fingerprint.split("_").slice(0, 2).join("_") === prior.fp.split("_").slice(0, 2).join("_")).length === 1,
     "the picked photo was imported again under its new export name (Pick then Scan duplicate)");
+  t(after2.filter(m => (m._fingerprint || "").split("_")[1] === String(pair.size)).length === 2,
+    "the two same-size, same-first-2KB photos did not both import (one was taken for a duplicate)");
   t(after2.find(m => m.id === prior.id)?.artistId === prior.artistId && after2.find(m => m.id === prior.id)?.tagSource === "manual", "scan 2 changed the picked moment's tag");
   // Nothing from scan 1 moved, other than the two hand choices.
   const byId2 = new Map(after2.map(m => [m.id, m]));
@@ -300,6 +334,34 @@ try {
   t(merged.added === 1 && mFlat.some(m => m.id === "m_cloud_only_1"), `cloud restore added ${merged.added}, want only the cloud-only moment`);
   t(!mFlat.some(m => m.artistId === "zz-stale"), "a stale cloud copy came back as a duplicate in its old night");
   t(mFlat.find(m => m.id === manualId)?.tagSource === "manual", "cloud restore undid the hand tag");
+
+  // ── Scan 4: a night with no set times is scanned in full ───────────────
+  // Jake 2026-11-05. Night 3's times are blanked in the loaded data (both
+  // weekends), and two new photos are taken on it outside its old hours: a
+  // late lunch and a 23:40 shot. Both import, the card names the full-night
+  // scan on its own line, and neither claims a set.
+  const late = await page.evaluate(() => {
+    const ds = window._DATA_SETS["acl-2026"];
+    for (const a of [...ds.artists, ...(window.ARTISTS || [])]) if (Number(a.day) === 3) { a.start = ""; a.end = ""; }
+    const cfg = ds.config, shift = cfg.weekendStartMs.W2 - cfg.weekendStartMs.W1;
+    const at = (min) => cfg.dayDates[3].midnightUtc + shift + min * 60000;
+    const mk = (id, ms) => ({ id, createdMs: ms, mediaType: "image", name: `${id}.jpg`, mime: "image/jpeg", lat: null, lng: null, acc: null, shared: true });
+    const items = [mk("late-1", at(14 * 60 + 5)), mk("late-2", at(23 * 60 + 40))];
+    return Promise.all(items.map(async (it, k) => {
+      const c = document.createElement("canvas"); c.width = c.height = 48; const g = c.getContext("2d");
+      g.fillStyle = k ? "#1a6" : "#a16"; g.fillRect(0, 0, 48, 48);
+      window.__blobs[it.id] = URL.createObjectURL(await new Promise(r => c.toBlob(r, "image/jpeg", 0.9)));
+      window.__lib.push(it); return it.id;
+    }));
+  });
+  const before4 = flat(await store()).length;
+  const s4 = await scanOnce("scan 4");
+  const after4 = flat(await store());
+  const note4 = await page.evaluate(() => document.querySelector("[data-scan-untimed-note]")?.textContent || "");
+  t(after4.length === before4 + 2, `scan 4 stored ${after4.length - before4} from the night without set times, want 2 (${s4.msg})`);
+  t(/^\d+ nights? ha(s|ve) no set times, scanned in full\.$/.test(note4.trim()), `the card does not name the full-night scan on its own line ("${note4}")`);
+  const new4 = after4.filter(m => !flat(cloudStale).some(x => x.id === m.id) && Number(m._n) === 3 && m._fingerprint && /late[12]\.jpg$/.test(m._fingerprint));
+  t(new4.length === 2 && new4.every(m => !m.artistId || m.tagSuggested), `a full-night photo claimed a set (${JSON.stringify(new4.map(m => [m.artistId, m.tagSuggested, m._n]))})`);
 
   // The scan diagnostic named the writer for every import.
   const diag = await page.evaluate(() => JSON.parse(localStorage.getItem("plursky_scan_diag_v1") || "null"));
