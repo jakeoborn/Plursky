@@ -92,3 +92,25 @@ Then, for any path:
   invented end.
 - Wall times are local; a set before `rolloverHour` belongs to the previous
   festival night on the next calendar date.
+
+## Coverage census (`census/coverage-2010-2026.tsv`)
+
+One row per app festival family per year, 2010-2026 (SPEC-182 step 1). It
+records whether an edition **happened**, with one dated source per row. It is
+a research record: the app does not read it and `scripts/build.mjs` does not
+ship it.
+
+| column | meaning |
+|---|---|
+| `lifecycle` | `occurred`, `partly_canceled` (a day or weekend lost; `note` says which), `canceled`, `not_founded` (before the first edition), `hiatus` (no edition, festival existed before and after), `pending` (2026 edition not yet held on 2026-11-06), `unresearched` (not settled; never a guess) |
+| `dates`, `venue` | as the source prints them; blank when no source prints them |
+| `evidence_url`, `evidence_kind` | the one source for that year's state: `official` (festival or promoter page, live or archived), `press` (dated article), `wikipedia` (edition table; lifecycle only), `research_receipt` (the archived official page or graphic an earlier lineup gather already read) |
+| `fetched` | the date the source was read, or the Wayback capture timestamp |
+| `held_*` | what this repo already holds for that year: the edition id in `editions/`, its set count, sets with a start time, and stages with a map pin. `current-2026-dataset` marks a live 2026 lineup in `data/festivals/`, not counted here |
+
+Lifecycle and held data are **separate measures**. A row can be `occurred`
+with nothing held (the backfill queue) or hold data while its lifecycle says
+otherwise (a finding to report, never to repair here). Lineup, set times and
+stage pins are tracked separately per edition; past editions hold **no**
+stage pins, and 2026 pins are never copied into past years. Two sources that
+disagree leave the row `unresearched`, with both in `note`.
