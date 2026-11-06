@@ -2385,6 +2385,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Lightbox retag search — a III Points clip under ACL: real input, own-festival matches and stage labels, the pick shows the act");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lightbox-retag-search.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Lightbox retag search failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],

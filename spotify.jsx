@@ -2737,8 +2737,12 @@ function _FavBadge({ style }) {
 function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
-  const artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  const stage  = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  // SPEC-179: the clip's OWN festival names its act and stage. A III Points
+  // clip opened while ACL is active looked its artistId up in ACL's lineup,
+  // so a fresh pick showed no act and no stage.
+  const mf = _momentFestival(m);
+  const artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  const stage  = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   const estimatedSong = useSetlistSong(artist, m?.takenAt);
   // Prefer a Shazam-confirmed song over the tracklist estimate.
   const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
@@ -2970,9 +2974,23 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           marginTop: 2, padding: 0, textAlign: "left", fontSize: 15,
         }}>{retagging ? "Cancel" : (artist ? "Wrong act? Fix it" : "Tag this moment")}</button>
         {retagging && (
+          <input type="search" value={retagQuery} onChange={e => setRetagQuery(e.target.value)}
+            placeholder={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            aria-label={`Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`}
+            autoComplete="off" autoCorrect="off" autoCapitalize="none" spellCheck={false} data-retag-search=""
+            style={{
+              marginTop: 8, width: "100%", boxSizing: "border-box", minHeight: 44, padding: "0 12px",
+              borderRadius: "var(--rad-sm)", border: "1px solid rgba(var(--ink-rgb),0.24)",
+              background: "rgba(var(--ink-rgb),0.06)", color: "var(--ink)", fontSize: 16, fontFamily: "inherit",
+            }}/>
+        )}
+        {retagging && retagQuery.trim() && !retagOptions.length && (
+          <div style={{ marginTop: 6, fontSize: 13, color: "var(--text-2)" }}>No act matches “{retagQuery.trim()}”.</div>
+        )}
+        {retagging && (
           <div className="no-scrollbar" style={{ marginTop: 8, maxHeight: 176, overflowY: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             {retagOptions.map(a => {
-              const st = STAGES.find(s => s.id === a.stage);
+              const st = mf.stages.find(s => s.id === a.stage);
               const on = a.id === m.artistId;
               return (
                 <button key={a.id} onClick={() => { onUpdate?.(m, _retagPatch({ artistId: a.id })); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{

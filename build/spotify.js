@@ -3761,8 +3761,9 @@ function MomentLightbox({
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
-  var artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  var mf = _momentFestival(m);
+  var artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  var stage = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   var estimatedSong = useSetlistSong(artist, m?.takenAt);
   var song = m?.confirmedSong ? {
     song: m.confirmedSong
@@ -4092,7 +4093,37 @@ function MomentLightbox({
       textAlign: "left",
       fontSize: 15
     }
-  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("div", {
+  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("input", {
+    type: "search",
+    value: retagQuery,
+    onChange: e => setRetagQuery(e.target.value),
+    placeholder: `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    "aria-label": `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "none",
+    spellCheck: false,
+    "data-retag-search": "",
+    style: {
+      marginTop: 8,
+      width: "100%",
+      boxSizing: "border-box",
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: "var(--rad-sm)",
+      border: "1px solid rgba(var(--ink-rgb),0.24)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      color: "var(--ink)",
+      fontSize: 16,
+      fontFamily: "inherit"
+    }
+  }), retagging && retagQuery.trim() && !retagOptions.length && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      color: "var(--text-2)"
+    }
+  }, "No act matches “", retagQuery.trim(), "”."), retagging && React.createElement("div", {
     className: "no-scrollbar",
     style: {
       marginTop: 8,
@@ -4103,7 +4134,7 @@ function MomentLightbox({
       gap: 6
     }
   }, retagOptions.map(a => {
-    var st = STAGES.find(s => s.id === a.stage);
+    var st = mf.stages.find(s => s.id === a.stage);
     var on = a.id === m.artistId;
     return React.createElement("button", {
       key: a.id,
