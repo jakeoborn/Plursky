@@ -196,6 +196,21 @@ function checks(C, R) {
     t(rep.find(r => r.night === 2)?.source === "none" && rep.find(r => r.night === 1)?.start === "2026-06-05 17:45", `report rows wrong: ${JSON.stringify(rep)}`);
   }
 
+  // ── 4b. an act whose set time is disputed never moves a boundary ───────
+  {
+    const cfg = { id: "unres-test", tz: "America/Chicago", dayDates: { 1: { midnightUtc: Date.UTC(2026, 5, 5, 5) }, 2: { midnightUtc: Date.UTC(2026, 5, 6, 5) } } };
+    const artists = [
+      { id: "u1", day: 1, stage: "s", start: "18:00", end: "19:00" },
+      { id: "u2", day: 1, stage: "s", start: "13:00", end: "23:30", timeEvidence: { status: "unresolved" } },
+      { id: "u3", day: 2, stage: "s", start: "20:00", end: "21:00", timeEvidence: { status: "unresolved" } },
+    ];
+    const wins = C._scanSetWindows(cfg, artists);
+    const w1 = wins.find(w => w.night === 1);
+    t(w1?.startMs === Date.UTC(2026, 5, 5, 23) - 15 * M && w1?.endMs === Date.UTC(2026, 5, 6, 0) + 15 * M && w1?.acts === 1,
+      `an unresolved act widened night 1 (${JSON.stringify(w1)})`);
+    t(wins.find(w => w.night === 2)?.source === "none", "a night whose only act is unresolved got a window");
+  }
+
   // ── 5. confidence ───────────────────────────────────────────────────────
   {
     const cfg = acl.config;
@@ -319,6 +334,7 @@ const MUTANTS = [
   ["saved guess contradicted by stage GPS is not flagged", shipped.replace(/var amb = (_?ambiguous) \|\| !!gpsAct;/, "var amb = $1;")],
   ["unanchored stage wins on start time", shipped.replace(/if \(ax !== ay\) return ax \? -1 : 1;/, "")],
   ["footprint circle edge is the fence", shipped.replace(/return past > _OFF_VENUE_MARGIN_M \? /, "return past > 0 ? ")],
+  ["unresolved set times move a window boundary", shipped.replace(/if \(setTimeStatus\(a\) !== "confirmed"\) continue;/, "")],
   ["every picker rejection is a cancel", shipped.replace(/return \/\^pick\(Files\|Media\|Images\|Videos\)\? cancel\(l\)\?ed\\\.\?\$\/i\.test\(msg\);/, "return true;")],
 ];
 const mutantsOut = [];

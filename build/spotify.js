@@ -2182,6 +2182,10 @@ function _mediaFingerprintParts(fp) {
     basename
   };
 }
+function _fingerprintContentKey(fp) {
+  var m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
 function _findArchivedVideoMomentForFingerprint(fp) {
   var cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -9296,9 +9300,13 @@ function MemoriesScreen({
       ..._readMoments()
     };
     var existingFingerprints = new Set();
+    var existingContent = new Set();
     for (var moments of Object.values(current)) {
       for (var m of moments) {
-        if (m._fingerprint) existingFingerprints.add(m._fingerprint);
+        if (!m._fingerprint) continue;
+        existingFingerprints.add(m._fingerprint);
+        var ck = _fingerprintContentKey(m._fingerprint);
+        if (ck) existingContent.add(ck);
       }
     }
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
@@ -9308,7 +9316,8 @@ function MemoriesScreen({
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        var _ck = _fingerprintContentKey(fp);
+        if (fp && (existingFingerprints.has(fp) || _ck && existingContent.has(_ck))) {
           skippedDupes++;
           results.push({
             name: f.name,
@@ -9396,6 +9405,7 @@ function MemoriesScreen({
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
+        if (_ck) existingContent.add(_ck);
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,

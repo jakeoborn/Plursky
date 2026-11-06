@@ -159,6 +159,26 @@ try {
   }, plan);
   t(lib.length === 27 && lib.filter(a => a.mediaType === "video").length === 2, `fixture: library ${lib.length} items`);
 
+  // 3. A prior manual Pick of asset-0, hand-tagged to another act. Its
+  // fingerprint is the Pick's own (FNV-1a of the first 2 KB, size, the Pick's
+  // file name); Scan then exports the SAME bytes under a different name. The
+  // review reproduced 25 → 26 here (#384): the scan must link to the picked
+  // moment by content and leave its tag alone.
+  const prior = await page.evaluate(async (plan) => {
+    const a0 = window.__lib[0];
+    const bytes = new Uint8Array(await (await (await fetch(window.__blobs[a0.id])).blob()).arrayBuffer());
+    let h = 0x811c9dc5;
+    for (let i = 0; i < Math.min(2048, bytes.length); i++) { h ^= bytes[i]; h = Math.imul(h, 0x01000193); }
+    const fp = `${(h >>> 0).toString(36)}_${bytes.length}_${a0.name.replace(/[^a-zA-Z0-9.]/g, "")}`;
+    const to = plan.acts[1].id;
+    const m = { id: "m_prior_pick", night: plan.acts[0].night, text: "", artistId: to, photoId: null, kind: "image",
+                createdAt: Date.now(), tagSource: "manual", festivalId: "acl-2026", _fingerprint: fp };
+    const all = _readMoments();
+    all[m.night] = [...(all[m.night] || []), m];
+    _writeMoments(all);
+    a0.name = "CHANGED_EXPORT_NAME.jpg";
+    return { id: m.id, artistId: to, fp };
+  }, plan);
   const store = () => page.evaluate(() => JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"));
   const flat = (all) => Object.entries(all).flatMap(([night, arr]) => (arr || []).map(m => ({ ...m, _n: night })));
   const scanOnce = async (label) => {
@@ -199,7 +219,9 @@ try {
   t(lib.filter(a => a.expect === "skip").every(a => !seen1.includes(a.id)), "an outside-set-times item was marked as seen");
 
   // Hand choices: one moment re-tagged to another act, one marked Unknown.
-  const tagged1 = after1.filter(m => m.artistId);
+  t(after1.filter(m => m.id === prior.id).length === 1 && after1.find(m => m.id === prior.id)?.artistId === prior.artistId
+    && after1.find(m => m.id === prior.id)?.tagSource === "manual", "scan 1 changed the picked moment's tag");
+  const tagged1 = after1.filter(m => m.artistId && m.id !== prior.id);
   const manualId = tagged1[0]?.id, unknownId = tagged1[1]?.id;
   const manualTo = plan.acts.find(a => a.id !== tagged1[0]?.artistId)?.id;
   await page.evaluate(({ manualId, unknownId, manualTo }) => {
@@ -218,6 +240,9 @@ try {
   t(after2.length === inWindow.length, `scan 2 stored ${after2.length}, want ${inWindow.length} (${s2.msg})`);
   const ids2 = after2.map(m => m.id);
   t(new Set(ids2).size === ids2.length, "a moment id appears twice");
+  t(after2.filter(m => m._fingerprint && m._fingerprint.split("_").slice(0, 2).join("_") === prior.fp.split("_").slice(0, 2).join("_")).length === 1,
+    "the picked photo was imported again under its new export name (Pick then Scan duplicate)");
+  t(after2.find(m => m.id === prior.id)?.artistId === prior.artistId && after2.find(m => m.id === prior.id)?.tagSource === "manual", "scan 2 changed the picked moment's tag");
   // Nothing from scan 1 moved, other than the two hand choices.
   const byId2 = new Map(after2.map(m => [m.id, m]));
   let moved = 0;

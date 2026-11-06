@@ -74,12 +74,21 @@ that causes it; the cause is named only from a device export.
 - [x] Picker cancel ("pickFiles canceled.") is a cancel, not an error card.
 - [x] Cloud restore is add-only across all nights (a moment that moved
       night no longer comes back twice). Not claimed as the Charli cause.
-- [x] Gate `scripts/test-scan-hours-confidence.mjs`: 114 checks, 10 mutants.
-- [x] Gate `scripts/test-scan-multi-pass.mjs` (real app, headless): 27 ACL W2
+- [x] Review fix (#384 hold): Pick then Scan of the same photo under a
+      different export name no longer imports it twice. The duplicate check
+      also compares a content key (FNV-1a of the first 2 KB + byte size, no
+      name); stored fingerprints and tags are not rewritten.
+- [x] Review fix (#384 hold): an act whose set time is not confirmed
+      (`timeEvidence` unresolved) never sets a window boundary. All 59 real
+      windows are unchanged by this.
+- [x] Gate `scripts/test-scan-hours-confidence.mjs`: 121 checks, 12 mutants.
+- [x] Gate `scripts/test-scan-multi-pass.mjs` (real app, headless, 30 checks): 27 ACL W2
       items over 11 acts, 4 saved; scan 1 limited with 2 failed exports;
       manual + Unknown choices; scan 2 full retries the failures and moves
       nothing; scan 3 writes nothing; a stale cloud copy adds only its one
-      new moment and undoes no hand choice.
+      new moment and undoes no hand choice. A prior manual Pick of asset-0
+      (hand-tagged) is not imported again when Scan exports the same bytes
+      as CHANGED_EXPORT_NAME.jpg (25 moments, not 26), and keeps its tag.
 - [ ] Full verify on the pushed head.
 - [ ] Physical: rescan on device; food photo during a saved set is a
       suggestion or away-from-festival; lunch/hotel photos counted as skipped.

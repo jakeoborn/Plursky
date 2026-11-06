@@ -1021,6 +1021,7 @@ function _scanSetWindows(cfgIn, artistsIn) {
         acts = 0;
       for (var a of artists) {
         if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        if (setTimeStatus(a) !== "confirmed") continue;
         var s0 = _scanActUtc(cfg, n, shift, a.start),
           e0 = _scanActUtc(cfg, n, shift, a.end);
         if (s0 == null || e0 == null) continue;

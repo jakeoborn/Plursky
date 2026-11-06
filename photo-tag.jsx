@@ -1157,6 +1157,10 @@ function _scanSetWindows(cfgIn, artistsIn) {
       // weekend-exempt: builds a window for EVERY weekend; actPlaysWeekend(a, weekend) filters each one below
       for (const a of artists) {
         if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        // Only a confirmed time may move a boundary: an act whose sources
+        // disagree (timeEvidence unresolved) ships blank, but a time that
+        // reaches it some other way must not widen or open a night.
+        if (setTimeStatus(a) !== "confirmed") continue;
         const s0 = _scanActUtc(cfg, n, shift, a.start), e0 = _scanActUtc(cfg, n, shift, a.end);
         if (s0 == null || e0 == null) continue;
         const e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0; // a set that ends after midnight but before 08:00 is already +1 day; guard odd data

@@ -1440,6 +1440,18 @@ function _mediaFingerprintParts(fp) {
   return { size, basename };
 }
 
+// The same photo arriving by two doors (Pick, then Scan) gets two export
+// names, so the full fingerprint (hash_size_name) differs and the name-bound
+// check imported it twice (#384 review: 25 → 26). The content key drops the
+// name: FNV-1a of the first 2 KB plus the byte size. A JPEG/HEIC's first 2 KB
+// carry its EXIF block (capture time, camera), so two different shots that
+// share both are not a realistic collision. Stored fingerprints are NOT
+// rewritten; the key is derived from them on read.
+function _fingerprintContentKey(fp) {
+  const m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
+
 function _findArchivedVideoMomentForFingerprint(fp) {
   const cur = window.FESTIVAL_CONFIG?.id;
   if (!cur || !fp) return null;
@@ -6158,8 +6170,14 @@ function MemoriesScreen({ state, setState }) {
     const current = { ..._readMoments() };
 
     const existingFingerprints = new Set();
+    const existingContent = new Set();
     for (const moments of Object.values(current)) {
-      for (const m of moments) { if (m._fingerprint) existingFingerprints.add(m._fingerprint); }
+      for (const m of moments) {
+        if (!m._fingerprint) continue;
+        existingFingerprints.add(m._fingerprint);
+        const ck = _fingerprintContentKey(m._fingerprint);
+        if (ck) existingContent.add(ck);
+      }
     }
     // Fallback target night when we can't infer one from EXIF: prefer the
     // current festival day, then yesterday (post-midnight shoot earlier in
@@ -6174,7 +6192,8 @@ function MemoriesScreen({ state, setState }) {
       const f = files[i];
       try {
         const fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        const ck = _fingerprintContentKey(fp);
+        if (fp && (existingFingerprints.has(fp) || (ck && existingContent.has(ck)))) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
@@ -6295,6 +6314,7 @@ function MemoriesScreen({ state, setState }) {
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         if (fp) existingFingerprints.add(fp);
+        if (ck) existingContent.add(ck);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         // Persist + refresh after EACH file so a mid-batch Safari crash/OOM
