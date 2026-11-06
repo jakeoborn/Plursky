@@ -142,11 +142,12 @@ try {
     const t = await page.evaluate(() => ({
       pill: document.querySelector("[data-artist-day-pill]")?.textContent || null,
       card: document.querySelector("[data-artist-set-card]")?.innerText || null,
-      body: document.body.innerText,
     }));
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
-    check(!LEGACY.test(t.body), "L. artist: no legacy time anywhere on the page");
+    // Upcoming shows load asynchronously and may legitimately use these times.
+    // Only the selected School of Rock set's own surfaces must exclude them.
+    check(t.pill && t.card && !LEGACY.test(t.pill) && !LEGACY.test(t.card), "L. artist: no legacy time in the day pill or set card");
     await bctx.close();
   }
 
