@@ -102,7 +102,7 @@ ship it.
 
 | column | meaning |
 |---|---|
-| `lifecycle` | `occurred`, `partly_canceled` (a day or weekend lost; `note` says which), `canceled`, `not_founded` (before the first edition), `hiatus` (no edition, festival existed before and after), `pending` (2026 edition not yet held on 2026-11-06), `unresearched` (not settled; never a guess) |
+| `lifecycle` | `occurred` (a source dated after the last day says it ran), `scheduled_unverified` (scheduled, occurrence unverified: the only source is from before or during the event, or the note admits the occurrence was assumed or inferred; evidence and dates kept), `partly_canceled` (a day or weekend lost; `note` says which), `canceled`, `not_founded` (before the first edition), `hiatus` (no edition, festival existed before and after), `pending` (2026 edition not yet held on 2026-11-06), `unresearched` (not settled; never a guess) |
 | `dates`, `venue` | as the source prints them; blank when no source prints them |
 | `evidence_url`, `evidence_kind` | the one source for that year's state: `official` (festival or promoter page, live or archived), `press` (dated article), `wikipedia` (edition table; lifecycle only), `research_receipt` (the archived official page or graphic an earlier lineup gather already read) |
 | `fetched` | the date the source was read, or the Wayback capture timestamp |
@@ -114,3 +114,8 @@ otherwise (a finding to report, never to repair here). Lineup, set times and
 stage pins are tracked separately per edition; past editions hold **no**
 stage pins, and 2026 pins are never copied into past years. Two sources that
 disagree leave the row `unresearched`, with both in `note`.
+
+`scripts/test-coverage-census.mjs` (in verify) holds the bar: an `occurred` or
+`partly_canceled` row needs a source dated on or after the edition's last day
+(after the year when no dates are printed), and a note that admits the
+occurrence was assumed, inferred or pre-event only cannot sit on it.
