@@ -3555,7 +3555,8 @@ var _SONG_FAIL_TEXT = {
   "audio-failed": "Couldn’t read this clip’s sound",
   "service-error": "Shazam couldn’t be reached — try again",
   "timeout": "Shazam took too long — try again",
-  "too-large": "This clip is too long to check here"
+  "too-large": "This clip is too long to check here",
+  "recognizer-error": "Song ID hit an unexpected error — try again later"
 };
 var _SONG_NATIVE_REASON = {
   "missing-file": "missing-file",
@@ -3576,7 +3577,7 @@ var _SONG_CALL_TIMEOUT_MS = 30000;
 function _songFail(reason) {
   return {
     matched: false,
-    reason: _SONG_FAIL_TEXT[reason] ? reason : "no-match"
+    reason: _SONG_FAIL_TEXT[reason] ? reason : "recognizer-error"
   };
 }
 async function _songCall(run, rejectReason) {
@@ -3594,7 +3595,8 @@ async function _songCall(run, rejectReason) {
       artist: r.artist || "",
       source: "video-shazam"
     };
-    return _songFail(_SONG_NATIVE_REASON[r?.debug?.reason] || "no-match");
+    var code = r && typeof r === "object" && r.matched === false && r.debug && typeof r.debug.reason === "string" ? r.debug.reason : null;
+    return _songFail(code && Object.prototype.hasOwnProperty.call(_SONG_NATIVE_REASON, code) && _SONG_NATIVE_REASON[code] || "recognizer-error");
   } catch (e) {
     var msg = String(e?.message || e || "");
     return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);

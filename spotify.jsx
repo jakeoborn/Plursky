@@ -2528,8 +2528,10 @@ function _blobToBase64(blob) {
 }
 
 // Build 39: why a song ID failed, in words the user can act on. "no-match"
-// means ShazamKit heard the clip and found nothing; every other reason is
-// something else going wrong, and says so.
+// means ShazamKit heard the clip and found nothing, and ONLY the native codes
+// that say exactly that may produce it. Anything the bridge sends that is
+// unknown, empty or malformed is "recognizer-error": telling someone to try a
+// louder clip when the recognizer itself misbehaved is a false instruction.
 const _SONG_FAIL_TEXT = {
   "no-match":      "No match — try a louder clip",
   "missing-file":  "This clip’s file isn’t on this phone",
@@ -2539,6 +2541,7 @@ const _SONG_FAIL_TEXT = {
   "service-error": "Shazam couldn’t be reached — try again",
   "timeout":       "Shazam took too long — try again",
   "too-large":     "This clip is too long to check here",
+  "recognizer-error": "Song ID hit an unexpected error — try again later",
 };
 // The native bridge's own reasons → the ones above. Older native builds sent
 // "no-audio-track-or-reader" / "no-pcm-appended" / "match-timeout" /
@@ -2556,7 +2559,7 @@ const _SONG_BLOB_MAX_BYTES = 60 * 1024 * 1024;
 const _SONG_CALL_TIMEOUT_MS = 30000;
 // Only a reason leaves here: never the path, the native debug payload, or
 // anything about the clip.
-function _songFail(reason) { return { matched: false, reason: _SONG_FAIL_TEXT[reason] ? reason : "no-match" }; }
+function _songFail(reason) { return { matched: false, reason: _SONG_FAIL_TEXT[reason] ? reason : "recognizer-error" }; }
 async function _songCall(run, rejectReason) {
   let timer;
   try {
@@ -2566,7 +2569,10 @@ async function _songCall(run, rejectReason) {
     ]);
     if (r?.__timeout) return _songFail("timeout");
     if (r?.matched && r.title) return { matched: true, title: r.title, artist: r.artist || "", source: "video-shazam" };
-    return _songFail(_SONG_NATIVE_REASON[r?.debug?.reason] || "no-match");
+    // A known native code maps; anything else (an unknown code, no debug,
+    // null, a non-object, matched:true with no title) is a recognizer error.
+    const code = r && typeof r === "object" && r.matched === false && r.debug && typeof r.debug.reason === "string" ? r.debug.reason : null;
+    return _songFail((code && Object.prototype.hasOwnProperty.call(_SONG_NATIVE_REASON, code) && _SONG_NATIVE_REASON[code]) || "recognizer-error");
   } catch (e) {
     const msg = String(e?.message || e || "");
     return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);

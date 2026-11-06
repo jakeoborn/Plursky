@@ -101,6 +101,30 @@ async function checks(ctx) {
     t(c.b64 === 0, `native "${native}" retried from IndexedDB (only a missing file should)`);
     clean(r, native);
   }
+  // Review repro (#385): only the known no-match codes may say "no match".
+  // An unknown code, an empty or null answer, or a malformed one is a
+  // recognizer error, never "try a louder clip".
+  const odd = [
+    ["unexpected-service-response", { matched: false, debug: { reason: "unexpected-service-response" } }],
+    ["empty object", {}],
+    ["null", null],
+    ["undefined", undefined],
+    ["matched:false, no debug", { matched: false }],
+    ["debug without reason", { matched: false, debug: {} }],
+    ["non-string reason", { matched: false, debug: { reason: 7 } }],
+    ["prototype key", { matched: false, debug: { reason: "toString" } }],
+    ["a string", "garbage"],
+    ["matched:true, no title", { matched: true, title: "", artist: "A" }],
+  ];
+  for (const [label, resp] of odd) {
+    const c = shell(ctx, { file: () => resp, b64: nm("no-match") });
+    const r = await id();
+    t(r.matched === false && r.reason === "recognizer-error", `${label} → ${r.reason}, want recognizer-error`);
+    t(c.b64 === 0, `${label} retried from IndexedDB (only a missing file should)`);
+    clean(r, label);
+  }
+  { shell(ctx, { file: nm("missing-file"), b64: () => ({ matched: false, debug: { reason: "unexpected-service-response" } }) });
+    const r = await id(); t(r.reason === "recognizer-error", `an unknown answer from the IndexedDB retry → ${r.reason}`); }
   { shell(ctx, { file: () => new Promise(noop), b64: nm("no-match") }); const r = await id();
     t(r.reason === "timeout", `a bridge that never answers → ${r.reason}`); }
   { shell(ctx, { file: () => { throw new Error("Failed to write temp file"); }, b64: nm("no-match") }); const r = await id();
@@ -134,7 +158,7 @@ async function checks(ctx) {
     t(mic === 0, `library recognition called the live mic ${mic}×`); }
 
   // Words: one per reason, and only "no-match" says "No match".
-  const reasons = ["no-match", "missing-file", "unavailable", "no-audio", "audio-failed", "service-error", "timeout", "too-large"];
+  const reasons = ["no-match", "missing-file", "unavailable", "no-audio", "audio-failed", "service-error", "timeout", "too-large", "recognizer-error"];
   t(reasons.every(r => typeof TEXT[r] === "string" && TEXT[r].length > 8), "a failure reason has no words");
   t(new Set(reasons.map(r => TEXT[r])).size === reasons.length, "two failure reasons share words");
   t(reasons.filter(r => /no match/i.test(TEXT[r])).join() === "no-match", "a non-match failure says \"No match\"");
@@ -163,7 +187,9 @@ for (const [ok, msg] of wire) { base.n++; if (!ok) base.fails.push(msg); }
 const MUTANTS = [
   ["stale path is not retried from IndexedDB", SPOTIFY_BUILT.replace(/if \(r\.reason !== "missing-file"\) return r;/, "return r;")],
   ["no size cap on the stored clip", SPOTIFY_BUILT.replace(/if \(blob\.size > _SONG_BLOB_MAX_BYTES\) return _songFail\("too-large"\);/, "")],
-  ["every native failure reads as no-match", SPOTIFY_BUILT.replace(/return _songFail\(_SONG_NATIVE_REASON\[r\?\.debug\?\.reason\] \|\| "no-match"\);/, 'return _songFail("no-match");')],
+  ["every native failure reads as no-match", SPOTIFY_BUILT.replace(/return _songFail\(code && Object\.prototype\.hasOwnProperty\.call\(_SONG_NATIVE_REASON, code\) && _SONG_NATIVE_REASON\[code\] \|\| "recognizer-error"\);/, 'return _songFail("no-match");')],
+  ["old fallback: an unknown answer reads as no-match", SPOTIFY_BUILT.replace(/return _songFail\(code && Object\.prototype\.hasOwnProperty\.call\(_SONG_NATIVE_REASON, code\) && _SONG_NATIVE_REASON\[code\] \|\| "recognizer-error"\);/, 'return _songFail(_SONG_NATIVE_REASON[r?.debug?.reason] || "no-match");')
+     .replace(/reason: _SONG_FAIL_TEXT\[reason\] \? reason : "recognizer-error"/, 'reason: _SONG_FAIL_TEXT[reason] ? reason : "no-match"')],
   ["native payload passed through", SPOTIFY_BUILT.replace(/if \(r\?\.matched && r\.title\) return \{\s*matched: true,\s*title: r\.title,/, "if (r?.matched && r.title) return { ...r, matched: true, title: r.title,")],
   ["no timeout guard", SPOTIFY_BUILT.replace(/if \(r\?\.__timeout\) return _songFail\("timeout"\);/, "").replace(/_SONG_CALL_TIMEOUT_MS\);/, "1e9);")],
 ];
@@ -182,5 +208,5 @@ if (base.fails.length) {
   console.log(`  ✗ shazam reasons: ${base.fails.length} of ${base.n} checks failed`);
   process.exit(1);
 }
-console.log(`  ✓ shazam reasons: ${base.n} checks (8 distinct reasons + words, stale path retried from IndexedDB under a 60 MB cap, never the mic, no path or payload in results, Swift file path) · ${caught.length} mutants caught`);
+console.log(`  ✓ shazam reasons: ${base.n} checks (9 distinct reasons + words, unknown/empty/malformed answers are recognizer errors, stale path retried from IndexedDB under a 60 MB cap, never the mic, no path or payload in results, Swift file path) · ${caught.length} mutants caught`);
 process.exit(0);
