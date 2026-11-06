@@ -102,11 +102,11 @@ ship it.
 
 | column | meaning |
 |---|---|
-| `lifecycle` | `occurred` (a source published strictly after the last day says it ran), `scheduled_unverified` (scheduled, occurrence unverified: the source was published on or before the last day, carries no publication date, or the note admits the occurrence was assumed or inferred; evidence and dates kept), `partly_canceled` (a day or weekend lost; `note` says which), `canceled`, `not_founded` (before the first edition), `hiatus` (no edition, festival existed before and after), `pending` (2026 edition not yet held on 2026-11-06), `unresearched` (not settled; never a guess) |
+| `lifecycle` | `occurred` (a source published strictly after the last day reports that it ran), `scheduled_unverified` (scheduled, occurrence unverified: the source was published on or before the last day, carries no publication date, or the note admits the occurrence was assumed or inferred; evidence and dates kept), `partly_canceled` (a day or weekend lost; `note` says which), `canceled`, `not_founded` (before the first edition), `hiatus` (no edition, festival existed before and after), `pending` (2026 edition not yet held on 2026-11-06), `unresearched` (not settled; never a guess) |
 | `dates`, `venue` | as the source prints them; blank when no source prints them |
 | `evidence_url`, `evidence_kind` | the one source for that year's state: `official` (festival or promoter page, live or archived), `press` (dated article), `wikipedia` (edition table; lifecycle only), `research_receipt` (the archived official page or graphic an earlier lineup gather already read) |
 | `fetched` | the date the source was read, or the Wayback capture timestamp. Never evidence of occurrence |
-| `published` | the source's own date: an article's publication date, a Wayback copy's capture date (matches the URL), or the Wikipedia revision read (`YYYY-MM-DD rev N`); blank when the source has none |
+| `published` | the source's own date: an article's publication date, a Wayback copy's capture date (matches the URL), or a Wikipedia revision's own edit timestamp (`YYYY-MM-DDTHH:MM:SSZ rev N`, never the day it was read); blank when the source has none |
 | `held_*` | what this repo already holds for that year: the edition id in `editions/`, its set count, sets with a start time, and stages with a map pin. `current-2026-dataset` marks a live 2026 lineup in `data/festivals/`, not counted here |
 
 Lifecycle and held data are **separate measures**. A row can be `occurred`
@@ -122,3 +122,21 @@ last day (after the year when no dates are printed); the fetch date never
 counts, and a source with no publication date leaves the row
 `scheduled_unverified`. A note that admits the occurrence was assumed,
 inferred or pre-event only cannot sit on it either.
+
+A date is not enough for the two archive kinds; what the archived text says
+decides:
+
+- **Wikipedia** counts only by the revision's own edit timestamp, and only if
+  that revision's text reports the edition as having happened. The note
+  quotes it: `Revision N (edited TS) reports it: "…"`. The quote names the
+  year (or is tagged `(range statement)` with years that cover it), says the
+  edition was held, drew a crowd, featured acts and so on (or is a table row
+  under an attendance column), and in an article that covers several
+  editions (EDC, Beyond Wonderland) names this edition's place. An editions
+  table that lists only year, dates and venue does not report anything.
+- **A Wayback capture** counts only if the captured content reports the
+  edition in the past tense (a recap, a set list of what was played,
+  attendance), quoted as `Capture reports it: "…"`. A lineup page, set-time
+  page or graphic captured after the event is still a schedule.
+
+Anything else is `scheduled_unverified`, with the reason in `note`.
