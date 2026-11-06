@@ -3003,15 +3003,19 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           if (sharing) return;
           setSharing(true);
           try { window.plurskyHaptic?.("LIGHT"); } catch {}
-          await _shareMoment(m, {
+          const fcfg = _momentFestival(m).cfg || {};
+          const res = await _shareMoment(m, {
             artistName: artist?.name,
             songLabel: song?.song || null,
             stageColor: stage?.color,
             subLabel: [stage?.name, prettyTime].filter(Boolean).join(" · "),
             timeLabel: prettyTime,
-            festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name,
-          }).catch(() => {});
+            // The clip's own festival, not whichever one is active now.
+            festival: fcfg.shortName || fcfg.name,
+          }).catch(() => ({ ok: false, reason: "encode_fail" }));
           setSharing(false);
+          const why = _shareMomentFailText(res);
+          if (why) window.plurskyToast?.(why);
         }} disabled={sharing} style={{
           marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: "var(--rad-md)", width: "100%",
           background: "var(--signal)", color: "var(--on-signal)", border: "none",
@@ -3200,27 +3204,6 @@ function _imgFromBlob(blob) {
     img.src = url;
   });
 }
-function _frameFromVideoBlob(blob) {
-  return new Promise((resolve) => {
-    try {
-      const url = URL.createObjectURL(blob);
-      const v = document.createElement("video");
-      v.muted = true; v.playsInline = true; v.preload = "metadata"; v.src = url;
-      const fail = () => { try { URL.revokeObjectURL(url); } catch {} resolve(null); };
-      v.onloadeddata = () => { try { v.currentTime = Math.min(0.1, (v.duration || 1) * 0.1); } catch { fail(); } };
-      v.onseeked = () => {
-        try {
-          const c = document.createElement("canvas");
-          c.width = v.videoWidth || 1080; c.height = v.videoHeight || 1920;
-          c.getContext("2d").drawImage(v, 0, 0);
-          URL.revokeObjectURL(url);
-          resolve(c);
-        } catch { fail(); }
-      };
-      v.onerror = fail;
-    } catch { resolve(null); }
-  });
-}
 function _drawCover(ctx, src, dx, dy, dw, dh) {
   const sW = src.width || src.videoWidth, sH = src.height || src.videoHeight;
   if (!sW || !sH) return;
@@ -3230,15 +3213,60 @@ function _drawCover(ctx, src, dx, dy, dw, dh) {
   else { sw = sW; sh = sw / r; sx = 0; sy = (sH - sh) / 2; }
   ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
 }
-async function _shareMoment(moment, meta) {
-  const blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return { ok: false, reason: "no_photo" };
-  let source = null, revoke = null;
+// The whole moment share — reading the media, drawing the card, encoding the
+// PNG — gets this long before the person sees an answer. Before v520 a video
+// whose frame never decoded left the button on "Preparing…" forever.
+const _SHARE_PREP_MS = 8000;
+// What the card's hero is drawn from. A video uses its stored poster frame (the
+// same one its thumbnail shows), and only when it has none is a frame grabbed
+// from the clip, through the poster grabber that already has a timeout.
+async function _shareMomentSource(moment) {
   if (moment.kind === "video") {
-    source = await _frameFromVideoBlob(blob);
-  } else {
-    try { const r = await _imgFromBlob(blob); source = r.img; revoke = r.revoke; } catch {}
+    let frame = await _getPhoto(_posterKey(moment.id)).catch(() => null);
+    if (!frame) {
+      const clip = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      if (!clip) return { reason: "no_photo" };
+      frame = await _videoPosterBlob(clip);
+    }
+    // A clip no frame could be read from still shares, on the plain hero.
+    if (!frame) return { source: null };
+    try { const r = await _imgFromBlob(frame); return { source: r.img, revoke: r.revoke }; } catch { return { source: null }; }
   }
+  const blob = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+  if (!blob) return { reason: "no_photo" };
+  try { const r = await _imgFromBlob(blob); return { source: r.img, revoke: r.revoke }; } catch { return { source: null }; }
+}
+// Returns { ok, mode } or { ok: false, reason }: "no_photo" (the media is not
+// on this device), "encode_fail" (the card could not be made into a PNG) or
+// "timeout" (preparing took longer than _SHARE_PREP_MS). The share sheet's own
+// time is not capped; only the wait before it is.
+async function _shareMoment(moment, meta, { prepMs = _SHARE_PREP_MS } = {}) {
+  const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
+  let timer = null;
+  const timeout = new Promise(res => { timer = setTimeout(() => res({ reason: "timeout" }), prepMs); });
+  const prep = _renderMomentShareCard(moment, meta).catch(() => ({ reason: "encode_fail" }));
+  const ready = await Promise.race([prep, timeout]);
+  clearTimeout(timer);
+  if (!ready || ready.reason) return { ok: false, reason: (ready && ready.reason) || "encode_fail" };
+  return _shareBlobAsImage(ready.png, { filename: fname, title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky" });
+}
+// What the person is told when a moment share does not reach a share sheet.
+// null = nothing to say (shared, or they closed the sheet). On iOS the
+// download fallback does nothing inside the app, so it counts as a failure.
+function _shareMomentFailText(res) {
+  if (!res) return "Couldn't share this moment. Try again.";
+  if (res.ok) {
+    const native = !!window.Capacitor?.isNativePlatform?.();
+    return res.mode === "download" && native ? "Couldn't open the share sheet. Try again." : null;
+  }
+  if (res.reason === "no_photo") return "This moment's photo or clip isn't on this phone.";
+  if (res.reason === "timeout") return "The share card took too long to make. Try again.";
+  return "Couldn't make the share card. Try again.";
+}
+async function _renderMomentShareCard(moment, meta) {
+  const got = await _shareMomentSource(moment);
+  if (got.reason) return got;
+  const source = got.source, revoke = got.revoke || null;
   try { await (document.fonts?.ready || Promise.resolve()); } catch {}
 
   const W = 1080, H = 1920, HERO = 1320;
@@ -3296,20 +3324,9 @@ async function _shareMoment(moment, meta) {
   ctx.textAlign = "right";
   ctx.fillText((meta.festival || "").toUpperCase() + "  ·  PLURSKY.COM", W - 80, H - 72);
 
-  const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
-  const out = await new Promise((res) => cv.toBlob(res, "image/png", 0.92));
-  if (!out) return { ok: false, reason: "encode_fail" };
-  const file = new File([out], fname, { type: "image/png" });
-  if (navigator.canShare?.({ files: [file] }) && navigator.share) {
-    try { await navigator.share({ files: [file], title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky" }); return { ok: true, mode: "share" }; }
-    catch (e) { if (e?.name === "AbortError") return { ok: true, mode: "abort" }; }
-  }
-  const url = URL.createObjectURL(out);
-  const link = document.createElement("a");
-  link.href = url; link.download = fname;
-  document.body.appendChild(link); link.click(); document.body.removeChild(link);
-  setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 1500);
-  return { ok: true, mode: "download" };
+  const png = await new Promise((res) => cv.toBlob(res, "image/png", 0.92));
+  if (!png) return { reason: "encode_fail" };
+  return { png };
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
@@ -5073,7 +5090,9 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               if (!hero) return;
               const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
               const s = a ? STAGES.find(x => x.id === a.stage) : null;
-              await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => {});
+              const res = await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => ({ ok: false, reason: "encode_fail" }));
+              const why = _shareMomentFailText(res);
+              if (why) window.plurskyToast?.(why);
             }} style={{ marginTop: 24 }}>Share the night</FieldButton>
           <FieldButton kind="secondary" onClick={() => { setEnded(false); setIdx(0); }} style={{ marginTop: 8 }}>Replay</FieldButton>
           {/* Only with ≥3 moments: RecapScreen gates the recap video on that. */}

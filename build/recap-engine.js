@@ -124,8 +124,24 @@ async function _shareCanvasAsImage(canvas, {
   filename,
   title
 }) {
+  var r = await _shareCanvasResult(canvas, {
+    filename,
+    title
+  });
+  return !!r.ok && r.mode !== "abort";
+}
+async function _shareCanvasResult(canvas, opts) {
   var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
-  if (!blob) return false;
+  if (!blob) return {
+    ok: false,
+    reason: "encode_fail"
+  };
+  return _shareBlobAsImage(blob, opts);
+}
+async function _shareBlobAsImage(blob, {
+  filename,
+  title
+}) {
   window.plurskyHaptic?.("LIGHT");
   var file = new File([blob], filename, {
     type: "image/png"
@@ -143,9 +159,16 @@ async function _shareCanvasAsImage(canvas, {
         title,
         files: [dataUrl]
       });
-      return true;
+      return {
+        ok: true,
+        mode: "native"
+      };
     } catch (e) {
-      if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message);
+      if (/cancel|abort/i.test(e?.message || "")) return {
+        ok: true,
+        mode: "abort"
+      };
+      if (e?.message) console.warn("[plursky-share]", e.message);
     }
   }
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({
@@ -156,9 +179,15 @@ async function _shareCanvasAsImage(canvas, {
         files: [file],
         title
       });
-      return true;
+      return {
+        ok: true,
+        mode: "share"
+      };
     } catch (e) {
-      if (e?.name === "AbortError") return false;
+      if (e?.name === "AbortError") return {
+        ok: true,
+        mode: "abort"
+      };
     }
   }
   var url = URL.createObjectURL(blob);
@@ -169,7 +198,10 @@ async function _shareCanvasAsImage(canvas, {
   a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  return true;
+  return {
+    ok: true,
+    mode: "download"
+  };
 }
 var HERO_CARD_W = 1080,
   HERO_CARD_H = 1350;
@@ -2491,5 +2523,7 @@ Object.assign(window, {
   _shareCrewComparison,
   _renderFestivalYearCard,
   _shareFestivalYearCard,
-  _shareCanvasAsImage
+  _shareCanvasAsImage,
+  _shareCanvasResult,
+  _shareBlobAsImage
 });

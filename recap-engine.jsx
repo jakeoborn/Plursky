@@ -150,9 +150,20 @@ async function _shareRecapCard(recap) {
 // v226: shared PNG share tail — canvas → blob → native Capacitor sheet →
 // web navigator.share({ files }) → download fallback. Extracted verbatim
 // from _shareRecapCard so the Festival Year card uses the same path.
+// Callers that only need "did it share" keep this boolean form.
 async function _shareCanvasAsImage(canvas, { filename, title }) {
+  const r = await _shareCanvasResult(canvas, { filename, title });
+  return !!r.ok && r.mode !== "abort";
+}
+async function _shareCanvasResult(canvas, opts) {
   const blob = await new Promise(r => canvas.toBlob(r, "image/png"));
-  if (!blob) return false;
+  if (!blob) return { ok: false, reason: "encode_fail" };
+  return _shareBlobAsImage(blob, opts);
+}
+// The tail itself, for a caller that already holds the PNG (the moment share
+// encodes inside its own time cap). Returns { ok, mode } — mode is "native",
+// "share", "abort" (the person closed the sheet) or "download".
+async function _shareBlobAsImage(blob, { filename, title }) {
   window.plurskyHaptic?.("LIGHT");
   const file = new File([blob], filename, { type: "image/png" });
 
@@ -169,10 +180,13 @@ async function _shareCanvasAsImage(canvas, { filename, title }) {
         r.readAsDataURL(blob);
       });
       await capShare.share({ title, files: [dataUrl] });
-      return true;
+      return { ok: true, mode: "native" };
     } catch (e) {
-      // Fall through to web flow if the native sheet errors or is cancelled
-      if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message);
+      // Closing the native sheet is an answer, not a failure: before v520 a
+      // cancel fell through and opened the web sheet as a second sheet.
+      if (/cancel|abort/i.test(e?.message || "")) return { ok: true, mode: "abort" };
+      // A real native error falls through to the web flow.
+      if (e?.message) console.warn("[plursky-share]", e.message);
     }
   }
 
@@ -180,9 +194,9 @@ async function _shareCanvasAsImage(canvas, { filename, title }) {
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({ files: [file] })) {
     try {
       await navigator.share({ files: [file], title });
-      return true;
+      return { ok: true, mode: "share" };
     } catch (e) {
-      if (e?.name === "AbortError") return false; // user cancelled — silent
+      if (e?.name === "AbortError") return { ok: true, mode: "abort" }; // user cancelled — silent
     }
   }
   // Final fallback: download
@@ -194,7 +208,7 @@ async function _shareCanvasAsImage(canvas, { filename, title }) {
   a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  return true;
+  return { ok: true, mode: "download" };
 }
 
 // ── HERO CARD (Field Mode) ─────────────────────────────────────────
@@ -2095,5 +2109,5 @@ Object.assign(window, {
   _shareArtistCollage, _shareStageCollage, _shareNightCollage, _shareWeekendCollage, _shareCrewCollage,
   _renderRecapVideo, _shareRecapVideo, _shareScopedRecap, _detectBeats, _VIDEO_TEMPLATES,
   _shareFestivalDNA, _shareFestivalPassport, _shareFilmStrip, _shareCrewComparison,
-  _renderFestivalYearCard, _shareFestivalYearCard, _shareCanvasAsImage,
+  _renderFestivalYearCard, _shareFestivalYearCard, _shareCanvasAsImage, _shareCanvasResult, _shareBlobAsImage,
 });
