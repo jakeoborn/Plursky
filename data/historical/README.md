@@ -97,4 +97,6 @@ Then, for any path:
   sources from different publishers, each published by the first day. Its file keeps every
   printed row as evidence, but `index.json`, the artist registry and the app's past-edition
   lists skip it, so no artist is credited with a set that never happened
-  (Nocturnal Wonderland 2024, the Line Fire). A single canceled day stays `cancelledDays`.
+  (Nocturnal Wonderland 2024, the Line Fire). The hand-written stage lineages
+  (`data/artists/stages.json`) keep it only as a `canceledEditions` record with the same
+  sources, never in a name's held `editions`. A single canceled day stays `cancelledDays`.
