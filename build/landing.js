@@ -301,7 +301,8 @@ function _LandingFestivalCard({
     "data-landing-chip": st.chip,
     className: `landing-chip landing-chip-${st.chip}`,
     style: {
-      marginLeft: "auto"
+      marginLeft: "auto",
+      minWidth: "min-content"
     }
   }, st.label));
 }
