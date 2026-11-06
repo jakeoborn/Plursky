@@ -2763,19 +2763,11 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   // Quick-picks come from the weekend the moment was CAPTURED in, not the
   // session's: from Oct 9 the session is W2 for good, and a Weekend 1 photo
   // was offered only Weekend 2's acts (round 5).
-  const retagOptions = React.useMemo(() => {
-    const q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    const t = hhmm ? toNightMin(hhmm) : null;
-    const night = m.night || NOW.day;
-    const all = momentLineup(m).filter(a => a.day === night);
-    const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  // SPEC-179: both lists read the clip's OWN festival and weekend, never the
+  // active one (a III Points clip opened while ACL is active searched ACL),
+  // and the search folds stylized billing, so "Yukimatsu" finds
+  // "¥ØU$UK€ ¥UK1MAT$U". Acts the matcher offered come first.
+  const retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
 
   const runIdentify = async () => {
     setIdState("listening");
@@ -2983,7 +2975,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
               const st = STAGES.find(s => s.id === a.stage);
               const on = a.id === m.artistId;
               return (
-                <button key={a.id} onClick={() => { onUpdate?.(m, { artistId: a.id, tagSource: "manual", autoTagged: false }); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
+                <button key={a.id} onClick={() => { onUpdate?.(m, _retagPatch({ artistId: a.id })); setRetagging(false); try { window.plurskyHaptic?.("LIGHT"); } catch {} }} style={{
                   display: "flex", alignItems: "center", gap: 8, padding: "8px 10px", borderRadius: "var(--rad-sm)",
                   background: on ? "rgba(var(--ink-rgb),0.18)" : "rgba(var(--ink-rgb),0.06)",
                   border: `1px solid ${on ? "var(--ink)" : "rgba(var(--ink-rgb),0.14)"}`, cursor: "pointer", textAlign: "left",
@@ -4385,6 +4377,28 @@ function _momentFestival(m) {
   const ds = (window._DATA_SETS || {})[fid] || {};
   return { fid, cfg: ds.config || window.FESTIVAL_CONFIG, artists: ds.artists || window.ARTISTS || [], stages: ds.stages || window.STAGES || [] };
 }
+// The "Wrong act? Fix it" list for one moment. With a query: every act of the
+// moment's festival on its weekend whose billed name matches (stylized letters
+// folded). Without: the acts playing at its capture time on its night (all
+// of that night if none), the matcher's alternatives first.
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  const { cfg, artists } = _momentFestival(m);
+  const wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  const lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  const q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  const hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  const t = hhmm ? toNightMin(hhmm) : null;
+  const night = m.night || NOW.day;
+  const all = lineup.filter(a => a.day === night);
+  const playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  const rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  const base = (playing.length ? playing : all).slice();
+  for (const id of rank.keys()) if (!base.some(a => a.id === id)) { const a = lineup.find(x => x.id === id); if (a) base.push(a); }
+  const r = (a) => (rank.has(a.id) ? rank.get(a.id) : 1e6);
+  return base.sort((a, b) => (r(a) - r(b)) || (toNightMin(a.start) - toNightMin(b.start)));
+}
 // The sets a moment can be tagged to on a night: its festival's lineup, on
 // the weekend it was captured.
 function _reviewLineup(m, night) {
@@ -4397,7 +4411,7 @@ function _reviewLineup(m, night) {
 // the same thing. A set carries its own stage; a stage alone is "stage known,
 // set unknown"; Unknown clears both and says so.
 function _retagPatch(choice) {
-  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false, tagAlternatives: null };
   if (!choice) return null;
   if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
   if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
@@ -6366,6 +6380,10 @@ function MemoriesScreen({ state, setState }) {
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          // SPEC-179: every act that could be this clip when the matcher would
+          // not choose (several playing, no trusted fix) or chose with doubt.
+          // The fix-it list offers these first.
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           // Which anchor class decided this tag: "crowd" (measured) or
           // "poster" (derived from the map art, known-skewed). null when GPS
           // played no part. Kept on the record so a later re-tag pass can find
