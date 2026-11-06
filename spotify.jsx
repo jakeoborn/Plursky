@@ -2487,34 +2487,76 @@ function _blobToBase64(blob) {
   });
 }
 
+// Build 39: why a song ID failed, in words the user can act on. "no-match"
+// means ShazamKit heard the clip and found nothing; every other reason is
+// something else going wrong, and says so.
+const _SONG_FAIL_TEXT = {
+  "no-match":      "No match — try a louder clip",
+  "missing-file":  "This clip’s file isn’t on this phone",
+  "unavailable":   "Song ID isn’t available here",
+  "no-audio":      "This clip has no sound to match",
+  "audio-failed":  "Couldn’t read this clip’s sound",
+  "service-error": "Shazam couldn’t be reached — try again",
+  "timeout":       "Shazam took too long — try again",
+  "too-large":     "This clip is too long to check here",
+};
+// The native bridge's own reasons → the ones above. Older native builds sent
+// "no-audio-track-or-reader" / "no-pcm-appended" / "match-timeout" /
+// "did-not-find"; they still map.
+const _SONG_NATIVE_REASON = {
+  "missing-file": "missing-file", "no-audio": "no-audio", "audio-failed": "audio-failed",
+  "service-error": "service-error", "timeout": "timeout", "no-match": "no-match",
+  "busy": "service-error",
+  "no-audio-track-or-reader": "no-audio", "no-pcm-appended": "audio-failed",
+  "match-timeout": "timeout", "did-not-find": "no-match", "empty-match": "no-match",
+};
+// base64 is 4/3 of the clip and the bridge copies the string again, so a
+// stored clip over this is refused instead of risking a memory kill.
+const _SONG_BLOB_MAX_BYTES = 60 * 1024 * 1024;
+const _SONG_CALL_TIMEOUT_MS = 30000;
+// Only a reason leaves here: never the path, the native debug payload, or
+// anything about the clip.
+function _songFail(reason) { return { matched: false, reason: _SONG_FAIL_TEXT[reason] ? reason : "no-match" }; }
+async function _songCall(run, rejectReason) {
+  let timer;
+  try {
+    const r = await Promise.race([
+      Promise.resolve().then(run),
+      new Promise(res => { timer = setTimeout(() => res({ __timeout: true }), _SONG_CALL_TIMEOUT_MS); }),
+    ]);
+    if (r?.__timeout) return _songFail("timeout");
+    if (r?.matched && r.title) return { matched: true, title: r.title, artist: r.artist || "", source: "video-shazam" };
+    return _songFail(_SONG_NATIVE_REASON[r?.debug?.reason] || "no-match");
+  } catch (e) {
+    const msg = String(e?.message || e || "");
+    return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);
+  } finally { clearTimeout(timer); }
+}
+
 async function identifySongFromVideo(moment, onProgress) {
-  if (!moment?.photoId || moment.kind !== "video") return null;
-  const blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return null;
-
-  // Native iOS (focus path): hand the clip to on-device ShazamKit via the
-  // ShazamPlugin — free, accurate, no backend. Browser/PWA returns null
-  // because the web recognition proxy is not deployed.
-  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
-    try {
-      onProgress?.("listening");
-      if (moment.nativePath && window.ShazamPlugin.identifyFile) {
-        onProgress?.("matching");
-        const r = await window.ShazamPlugin.identifyFile({ path: moment.nativePath });
-        if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
-        return null;
-      }
-      if (!window.ShazamPlugin.identifyBase64) return null;
-      const base64 = await _blobToBase64(blob);
-      const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
-      onProgress?.("matching");
-      const r = await window.ShazamPlugin.identifyBase64({ data: base64, ext });
-      if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
-      return null; // native ran but found no match — don't bother the web path
-    } catch { return null; }
+  if (!moment?.photoId || moment.kind !== "video") return _songFail("missing-file");
+  const SP = window.ShazamPlugin;
+  // Library recognition reads the clip's own audio. It never calls the
+  // live-mic identify(), so it can never prompt for the microphone. The web
+  // recognizer is not deployed, so a browser/PWA says "unavailable".
+  if (!(window.Capacitor?.isNativePlatform?.() && SP && (SP.identifyFile || SP.identifyBase64))) return _songFail("unavailable");
+  onProgress?.("listening");
+  if (moment.nativePath && SP.identifyFile) {
+    onProgress?.("matching");
+    const r = await _songCall(() => SP.identifyFile({ path: moment.nativePath }), "missing-file");
+    // A stale cache path (export file cleaned up, app reinstalled) falls
+    // through to the copy kept in IndexedDB.
+    if (r.reason !== "missing-file") return r;
   }
-
-  return null;
+  if (!SP.identifyBase64) return _songFail("missing-file");
+  const blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob || !blob.size) return _songFail("missing-file");
+  if (blob.size > _SONG_BLOB_MAX_BYTES) return _songFail("too-large");
+  let base64;
+  try { base64 = await _blobToBase64(blob); } catch { return _songFail("audio-failed"); }
+  const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
+  onProgress?.("matching");
+  return _songCall(() => SP.identifyBase64({ data: base64, ext }), "audio-failed");
 }
 
 // ── 0.4 recovery: the song is the evidence the metadata lost ─────────────
@@ -2656,6 +2698,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
   const touch  = React.useRef({ x: 0 });
   const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
+  const [idFail, setIdFail] = React.useState(null); // build 39: why the last song ID failed (a _SONG_FAIL_TEXT key)
   const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
   const [recovery, setRecovery] = React.useState(null);  // 0.4: song can rescue an unverified night
   const [sharing, setSharing] = React.useState(false);
@@ -2691,7 +2734,10 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const runIdentify = async () => {
     setIdState("listening");
     const result = await identifySongFromVideo(m, (p) => setIdState(p));
-    if (!result) { setIdState("fail"); setTimeout(() => setIdState("idle"), 2500); return; }
+    if (!result?.matched) {
+      setIdFail(result?.reason || "no-match"); setIdState("fail");
+      setTimeout(() => setIdState("idle"), 4000); return;
+    }
     setIdState("done");
     const confirmed = result.artist ? `${result.artist} — ${result.title}` : result.title;
     // Keep the raw title/artist (not just the display string) so the Weekend
@@ -2867,7 +2913,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
                   {idState === "idle"      ? "Shazam this video"
                    : idState === "listening" ? "Listening to your video…"
                    : idState === "matching"  ? "Matching with Shazam…"
-                   : idState === "fail"      ? "No match — try a louder clip"
+                   : idState === "fail"      ? (_SONG_FAIL_TEXT[idFail] || _SONG_FAIL_TEXT["no-match"])
                    : "Identified"}
                 </span>
                 <span style={{ display: "block", marginTop: 2, fontSize: 13, fontWeight: 400, opacity: 1 }}>

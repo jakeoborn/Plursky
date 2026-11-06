@@ -2363,6 +2363,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Shazam reasons failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
