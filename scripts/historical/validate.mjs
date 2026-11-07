@@ -12,7 +12,12 @@ export const OFFICIAL_HOSTS = {
   "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
   "hard-summer": ["hardsummer.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
-  "acl": ["aclfestival.com", "cdn.prod.website-files.com"],
+  // assets-global.website-files.com is the same Webflow CDN under its older
+  // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
+  // grids from it (/626ab670470f4322713394d1/). Allowed for ACL only (Instinct
+  // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
+  // archived official page and carry its hash and review entry.
+  "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
   "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
