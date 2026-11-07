@@ -4176,15 +4176,21 @@ function MomentLightbox({
       try {
         window.plurskyHaptic?.("LIGHT");
       } catch {}
-      await _shareMoment(m, {
+      var fcfg = _momentFestival(m).cfg || {};
+      var res = await _shareMoment(m, {
         artistName: artist?.name,
         songLabel: song?.song || null,
         stageColor: stage?.color,
         subLabel: [stage?.name, prettyTime].filter(Boolean).join(" · "),
         timeLabel: prettyTime,
-        festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name
-      }).catch(() => {});
+        festival: fcfg.shortName || fcfg.name
+      }).catch(() => ({
+        ok: false,
+        reason: "encode_fail"
+      }));
       setSharing(false);
+      var why = _shareMomentFailText(res);
+      if (why) window.plurskyToast?.(why);
     },
     disabled: sharing,
     style: {
@@ -4536,46 +4542,6 @@ function _imgFromBlob(blob) {
     img.src = url;
   });
 }
-function _frameFromVideoBlob(blob) {
-  return new Promise(resolve => {
-    try {
-      var url = URL.createObjectURL(blob);
-      var v = document.createElement("video");
-      v.muted = true;
-      v.playsInline = true;
-      v.preload = "metadata";
-      v.src = url;
-      var fail = () => {
-        try {
-          URL.revokeObjectURL(url);
-        } catch {}
-        resolve(null);
-      };
-      v.onloadeddata = () => {
-        try {
-          v.currentTime = Math.min(0.1, (v.duration || 1) * 0.1);
-        } catch {
-          fail();
-        }
-      };
-      v.onseeked = () => {
-        try {
-          var c = document.createElement("canvas");
-          c.width = v.videoWidth || 1080;
-          c.height = v.videoHeight || 1920;
-          c.getContext("2d").drawImage(v, 0, 0);
-          URL.revokeObjectURL(url);
-          resolve(c);
-        } catch {
-          fail();
-        }
-      };
-      v.onerror = fail;
-    } catch {
-      resolve(null);
-    }
-  });
-}
 function _drawCover(ctx, src, dx, dy, dw, dh) {
   var sW = src.width || src.videoWidth,
     sH = src.height || src.videoHeight;
@@ -4596,23 +4562,89 @@ function _drawCover(ctx, src, dx, dy, dw, dh) {
   }
   ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
 }
-async function _shareMoment(moment, meta) {
-  var blob = await _getPhoto(moment.photoId).catch(() => null);
+var _SHARE_PREP_MS = 8000;
+async function _shareMomentSource(moment) {
+  if (moment.kind === "video") {
+    var frame = await _getPhoto(_posterKey(moment.id)).catch(() => null);
+    if (!frame) {
+      var clip = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      if (!clip) return {
+        reason: "no_photo"
+      };
+      frame = await _videoPosterBlob(clip);
+    }
+    if (!frame) return {
+      source: null
+    };
+    try {
+      var r = await _imgFromBlob(frame);
+      return {
+        source: r.img,
+        revoke: r.revoke
+      };
+    } catch {
+      return {
+        source: null
+      };
+    }
+  }
+  var blob = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
   if (!blob) return {
-    ok: false,
     reason: "no_photo"
   };
-  var source = null,
-    revoke = null;
-  if (moment.kind === "video") {
-    source = await _frameFromVideoBlob(blob);
-  } else {
-    try {
-      var r = await _imgFromBlob(blob);
-      source = r.img;
-      revoke = r.revoke;
-    } catch {}
+  try {
+    var _r = await _imgFromBlob(blob);
+    return {
+      source: _r.img,
+      revoke: _r.revoke
+    };
+  } catch {
+    return {
+      source: null
+    };
   }
+}
+async function _shareMoment(moment, meta, {
+  prepMs = _SHARE_PREP_MS
+} = {}) {
+  var fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
+  var timer = null;
+  var deadline = Date.now() + prepMs;
+  var timeout = new Promise(res => {
+    timer = setTimeout(() => res({
+      reason: "timeout"
+    }), prepMs);
+  });
+  var prep = _renderMomentShareCard(moment, meta).catch(() => ({
+    reason: "encode_fail"
+  }));
+  var ready = await Promise.race([prep, timeout]);
+  clearTimeout(timer);
+  if (!ready || ready.reason) return {
+    ok: false,
+    reason: ready && ready.reason || "encode_fail"
+  };
+  return _shareBlobAsImage(ready.png, {
+    filename: fname,
+    title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky",
+    deadline
+  });
+}
+function _shareMomentFailText(res) {
+  if (!res) return "Couldn't share this moment. Try again.";
+  if (res.ok) {
+    var native = !!window.Capacitor?.isNativePlatform?.();
+    return res.mode === "download" && native ? "Couldn't open the share sheet. Try again." : null;
+  }
+  if (res.reason === "no_photo") return "This moment's photo or clip isn't on this phone.";
+  if (res.reason === "timeout") return "The share card took too long to make. Try again.";
+  return "Couldn't make the share card. Try again.";
+}
+async function _renderMomentShareCard(moment, meta) {
+  var got = await _shareMomentSource(moment);
+  if (got.reason) return got;
+  var source = got.source,
+    revoke = got.revoke || null;
   try {
     await (document.fonts?.ready || Promise.resolve());
   } catch {}
@@ -4677,49 +4709,12 @@ async function _shareMoment(moment, meta) {
   ctx.font = '600 26px "Geist Mono", monospace';
   ctx.textAlign = "right";
   ctx.fillText((meta.festival || "").toUpperCase() + "  ·  PLURSKY.COM", W - 80, H - 72);
-  var fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
-  var out = await new Promise(res => cv.toBlob(res, "image/png", 0.92));
-  if (!out) return {
-    ok: false,
+  var png = await new Promise(res => cv.toBlob(res, "image/png", 0.92));
+  if (!png) return {
     reason: "encode_fail"
   };
-  var file = new File([out], fname, {
-    type: "image/png"
-  });
-  if (navigator.canShare?.({
-    files: [file]
-  }) && navigator.share) {
-    try {
-      await navigator.share({
-        files: [file],
-        title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky"
-      });
-      return {
-        ok: true,
-        mode: "share"
-      };
-    } catch (e) {
-      if (e?.name === "AbortError") return {
-        ok: true,
-        mode: "abort"
-      };
-    }
-  }
-  var url = URL.createObjectURL(out);
-  var link = document.createElement("a");
-  link.href = url;
-  link.download = fname;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  setTimeout(() => {
-    try {
-      URL.revokeObjectURL(url);
-    } catch {}
-  }, 1500);
   return {
-    ok: true,
-    mode: "download"
+    png
   };
 }
 function _LightboxThumb({
@@ -7563,13 +7558,18 @@ function MemoryReel({
       if (!hero) return;
       var a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
       var s = a ? STAGES.find(x => x.id === a.stage) : null;
-      await _shareMoment(hero, {
+      var res = await _shareMoment(hero, {
         artistName: a?.name,
         songLabel: hero.confirmedSong || null,
         stageColor: s?.color,
         subLabel: nightLabel,
         festival
-      }).catch(() => {});
+      }).catch(() => ({
+        ok: false,
+        reason: "encode_fail"
+      }));
+      var why = _shareMomentFailText(res);
+      if (why) window.plurskyToast?.(why);
     },
     style: {
       marginTop: 24
@@ -16012,8 +16012,8 @@ function RecapScreen({
         }
         if (!audioUrl && recap.topByPop?.name) {
           try {
-            var _r = await fetchPreviewUrl(recap.topByPop.name);
-            audioUrl = _r?.url;
+            var _r2 = await fetchPreviewUrl(recap.topByPop.name);
+            audioUrl = _r2?.url;
           } catch {}
         }
         await window._shareRecapVideo?.({
