@@ -9805,6 +9805,13 @@ function LockedCardPreview({ artist }) {
   );
 }
 
+// Guarded: supabase.jsx can fail to load (offline first boot, blocked CDN), and
+// a missing logger must never turn a completed purchase into an error.
+function _pwEvent(event, fields, waitMs) {
+  try { return typeof logPaywallEvent === "function" ? logPaywallEvent(event, fields, waitMs) : false; }
+  catch { return false; }
+}
+
 function PlusGate({ children, feature, layout = "inline", step = "plans", onStep }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
@@ -9819,6 +9826,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
   const [buyError, setBuyError] = React.useState(null);
   const live = useLivePlusPrices();
   const [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
+  // Funnel event (SPEC-183 E1): once per mount, only when the paywall is what
+  // renders. A no-op while PAYWALL_EVENTS_ON is false.
+  React.useEffect(() => {
+    if (!_isPlusSub()) _pwEvent("offer_shown", { surface: feature });
+  }, []);
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
@@ -9830,7 +9842,12 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
       // even a future unbounded await anywhere in _purchasePlus can never
       // freeze this screen again.
       const result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
-      if (result.success) { window.location.reload(); return; }
+      if (result.success) {
+        // Short wait so the row leaves before the reload; never longer.
+        await _pwEvent("offer_accept", { surface: feature, productId: target }, 1500);
+        window.location.reload(); return;
+      }
+      if (result.cancelled) _pwEvent("offer_decline", { surface: feature, productId: target });
       if (!result.cancelled && !result.unsupported)
         setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
