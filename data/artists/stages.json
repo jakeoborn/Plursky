@@ -390,6 +390,19 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "acl:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "acl-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

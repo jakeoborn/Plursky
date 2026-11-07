@@ -39,6 +39,15 @@ export const GRAPHIC_EDITIONS = {
     image: /ACL25-Schedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2025-10-03", token: /W1-Fri/i }, { day: 2, date: "2025-10-04", token: /W1-Sat/i }, { day: 3, date: "2025-10-05", token: /W1-Sun/i },
       { day: 4, date: "2025-10-10", token: /W2-Fri/i }, { day: 5, date: "2025-10-11", token: /W2-Sat/i }, { day: 6, date: "2025-10-12", token: /W2-Sun/i }] },
+  // ACL 2023 names its grids "ACL_FestivalSchedule_FRI_Weekend-1.png" and
+  // "ACL_Festival_Schedule_SAT_Weekend-1-1080x1350.png"; the chosen W1 Sunday
+  // is "…SUN_Weekend-1080x1350.png" with no weekend number (its printed header
+  // says WEEKEND ONE SUNDAY, OCTOBER 8), so day 3 matches a SUN_Weekend not
+  // followed by -2.
+  "acl-2023": { year: 2023, page: "https://www.aclfestival.com/schedule", window: ["20230801", "20231231"],
+    image: /ACL_Festival_?Schedule_[^"'\s/]+?\.png/i,
+    days: [{ day: 1, date: "2023-10-06", token: /FRI_Weekend-1/i }, { day: 2, date: "2023-10-07", token: /SAT_Weekend-1/i }, { day: 3, date: "2023-10-08", token: /SUN_Weekend(?!-2)/i },
+      { day: 4, date: "2023-10-13", token: /FRI_Weekend-2/i }, { day: 5, date: "2023-10-14", token: /SAT_Weekend-2/i }, { day: 6, date: "2023-10-15", token: /SUN_Weekend-2/i }] },
 };
 
 const fullSize = u => !/-p-\d+\.png$/i.test(u);
