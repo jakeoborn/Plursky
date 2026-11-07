@@ -9970,6 +9970,10 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
           <button onClick={handleRestore} disabled={busy} style={quiet}>Restore purchases</button>
           {_codeRedeemAvailable() && <button onClick={handleRedeem} disabled={busy} style={quiet} data-redeem-code="">Redeem code</button>}
+          {/* With the code entry the four links split two and two at every
+              width (Restore · Redeem / Terms · Privacy), never "Privacy"
+              alone on a second line (#398 review, 2026-11-07). */}
+          {_codeRedeemAvailable() && <span aria-hidden="true" data-redeem-break="" style={{ flexBasis: "100%", height: 0 }} />}
           <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
           <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
         </div>

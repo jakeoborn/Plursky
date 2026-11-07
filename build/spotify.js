@@ -14278,7 +14278,14 @@ function PlusGate({
     disabled: busy,
     style: quiet,
     "data-redeem-code": ""
-  }, "Redeem code"), React.createElement("a", {
+  }, "Redeem code"), _codeRedeemAvailable() && React.createElement("span", {
+    "aria-hidden": "true",
+    "data-redeem-break": "",
+    style: {
+      flexBasis: "100%",
+      height: 0
+    }
+  }), React.createElement("a", {
     href: "./terms.html",
     target: "_blank",
     rel: "noopener",

@@ -125,6 +125,13 @@ async function run(spotify, { shots = null } = {}) {
       });
       c(fits.inside && fits.scroll, `flag on @${width}: the Restore/Redeem/Terms/Privacy row stays inside the sheet`);
       c(/Restore purchases/.test(await btn.evaluate(b => b.parentElement.textContent)), `flag on @${width}: it sits in the Restore row`);
+      const rows = await page.evaluate(() => {
+        const row = document.querySelector("[data-redeem-code]").parentElement;
+        const top = (re) => { const el = [...row.children].find(k => re.test(k.textContent)); return el ? Math.round(el.getBoundingClientRect().top) : null; };
+        return { restore: top(/^Restore purchases$/), redeem: top(/^Redeem code$/), terms: top(/^Terms$/), privacy: top(/^Privacy$/) };
+      });
+      c(rows.restore != null && rows.restore === rows.redeem && rows.terms === rows.privacy && rows.terms > rows.restore,
+        `flag on @${width}: two rows, Restore · Redeem over Terms · Privacy (tops ${JSON.stringify(rows)})`);
       if (shots) await page.screenshot({ path: join(shots, `paywall-plans-redeem-code-${width}.png`) });
       await btn.click();
       await page.waitForTimeout(300);
