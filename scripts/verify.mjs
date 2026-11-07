@@ -2407,6 +2407,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Paywall events — ship off, carry no identity, match their table (SPEC-183 E1)");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-paywall-events.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Paywall events failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],

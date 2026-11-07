@@ -14108,6 +14108,13 @@ function LockedCardPreview({
     }
   }, "🔒 Your card, locked"));
 }
+function _pwEvent(event, fields, waitMs) {
+  try {
+    return typeof logPaywallEvent === "function" ? logPaywallEvent(event, fields, waitMs) : false;
+  } catch {
+    return false;
+  }
+}
 function PlusGate({
   children,
   feature,
@@ -14160,6 +14167,11 @@ function PlusGate({
       displayed_price: rescueOffer.price
     });
   }, [showRescue]);
+  React.useEffect(() => {
+    if (!_isPlusSub()) _pwEvent("offer_shown", {
+      surface: feature
+    });
+  }, []);
   if (plusNow) return children;
   var canBuy = _iapAvailable();
   var handlePurchase = async (productId, {
@@ -14193,9 +14205,17 @@ function PlusGate({
           product_id: target,
           rescue_trigger: trig
         });
+        await _pwEvent("offer_accept", {
+          surface: feature,
+          productId: target
+        }, 1500);
         window.location.reload();
         return;
       }
+      if (result.cancelled) _pwEvent("offer_decline", {
+        surface: feature,
+        productId: target
+      });
       if (result.cancelled && !isRescue && target === RC_PRODUCT_IDS.season && nativeBuy) setRescue(_rescueNoteSeasonCancel());
       if (!result.cancelled && !result.unsupported) setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {

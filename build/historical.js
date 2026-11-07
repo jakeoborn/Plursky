@@ -172,11 +172,14 @@ function _HistStatus({
     onClick: retry
   }, "Try again"));
 }
+function _histListedEditions(index) {
+  return (index && index.editions || []).filter(e => e.status !== "canceled");
+}
 function pastEditionsOf(index, configId) {
   var m = /^(.*)-(\d{4})$/.exec(configId || "");
   if (!m || !index) return [];
   var [, base, year] = m;
-  return (index.editions || []).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
+  return _histListedEditions(index).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
 }
 function usePastEditions(configId) {
   var [res, retry] = useHistorical("index.json");
@@ -289,7 +292,7 @@ function _HistLibrary({
   setState
 }) {
   var [res, retry] = useHistorical("index.json");
-  var editions = res.status === "ready" ? res.data.editions || [] : [];
+  var editions = res.status === "ready" ? _histListedEditions(res.data) : [];
   var years = [...new Set(editions.map(e => e.year))].sort((a, b) => b - a);
   return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
@@ -483,7 +486,7 @@ function HistoricalEditionView({
   setState
 }) {
   var [idx, retryIdx] = useHistorical("index.json");
-  var meta = idx.status === "ready" ? (idx.data.editions || []).find(e => e.id === state.pastEdition) : null;
+  var meta = idx.status === "ready" ? _histListedEditions(idx.data).find(e => e.id === state.pastEdition) : null;
   var back = () => _histBack(state, setState);
   if (idx.status !== "ready") return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
