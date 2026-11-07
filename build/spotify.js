@@ -13483,6 +13483,50 @@ function _iapDevHost() {
 function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
+var PROMO_CODE_REDEEM_ON = false;
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return {
+    success: false,
+    unsupported: true
+  };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return {
+      success: false,
+      unsupported: true,
+      error: "Codes can only be redeemed in the iOS app."
+    };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return {
+      success: false,
+      web: true
+    };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return {
+    success: false,
+    error: "RevenueCat not configured"
+  };
+  try {
+    var Purchases = _rcPlugin();
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    var {
+      customerInfo
+    } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return {
+      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+    };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return {
+      success: false,
+      error: _iapMsg(e)
+    };
+  }
+}
 async function _purchasePlus(productId) {
   if (!window.Capacitor?.isNativePlatform?.()) {
     if (!_iapDevHost()) {
@@ -13987,6 +14031,22 @@ function PlusGate({
       setPending(null);
     }
   };
+  var handleRedeem = async () => {
+    setBusy(true);
+    setBuyError(null);
+    try {
+      var result = await _redeemOfferCode();
+      if (result.success) {
+        window.location.reload();
+        return;
+      }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
+    }
+  };
   var handleRestore = async () => {
     setBusy(true);
     setBuyError(null);
@@ -14213,7 +14273,12 @@ function PlusGate({
     onClick: handleRestore,
     disabled: busy,
     style: quiet
-  }, "Restore purchases"), React.createElement("a", {
+  }, "Restore purchases"), _codeRedeemAvailable() && React.createElement("button", {
+    onClick: handleRedeem,
+    disabled: busy,
+    style: quiet,
+    "data-redeem-code": ""
+  }, "Redeem code"), React.createElement("a", {
     href: "./terms.html",
     target: "_blank",
     rel: "noopener",
