@@ -14002,6 +14002,13 @@ function LockedCardPreview({
     }
   }, "🔒 Your card, locked"));
 }
+function _pwEvent(event, fields, waitMs) {
+  try {
+    return typeof logPaywallEvent === "function" ? logPaywallEvent(event, fields, waitMs) : false;
+  } catch {
+    return false;
+  }
+}
 function PlusGate({
   children,
   feature,
@@ -14014,6 +14021,11 @@ function PlusGate({
   var [buyError, setBuyError] = React.useState(null);
   var live = useLivePlusPrices();
   var [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
+  React.useEffect(() => {
+    if (!_isPlusSub()) _pwEvent("offer_shown", {
+      surface: feature
+    });
+  }, []);
   if (_isPlusSub()) return children;
   var canBuy = _iapAvailable();
   var handlePurchase = async productId => {
@@ -14024,9 +14036,17 @@ function PlusGate({
     try {
       var result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
       if (result.success) {
+        await _pwEvent("offer_accept", {
+          surface: feature,
+          productId: target
+        }, 1500);
         window.location.reload();
         return;
       }
+      if (result.cancelled) _pwEvent("offer_decline", {
+        surface: feature,
+        productId: target
+      });
       if (!result.cancelled && !result.unsupported) setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
       setBuyError(e?.message || "Purchase could not be completed.");

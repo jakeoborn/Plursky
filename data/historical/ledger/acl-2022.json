@@ -1,0 +1,529 @@
+{
+  "id": "acl-2022",
+  "method": "official_image_transcription",
+  "official": "https://www.aclfestival.com/schedule",
+  "window": [
+    "20221001",
+    "20221231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20221005211919",
+      "archivedUrl": "https://web.archive.org/web/20221005211919/https://www.aclfestival.com/schedule",
+      "sha256": "f931dfb3180ec90f5449348a840937bbc69ebba91803e8ccfc8a820067f12959",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20221006094603",
+      "archivedUrl": "https://web.archive.org/web/20221006094603/https://www.aclfestival.com/schedule",
+      "sha256": "382784ec838cf6edd2bfcdb0e6ddde700929db059e0744590cecc2c71a23ad81",
+      "images": [
+        "633e093ed59a44280018ee5f_ACL-Schedule-Fri-Wk1.png",
+        "633e093dd4f09a831e30513c_ACL-Schedule-Sat-Wk1.png",
+        "633e093ebc45a32956c2bb3c_ACL-Schedule-Sun-Wk1.png",
+        "633e093d7682654fc2bb7092_ACL-Schedule-Fri-Wk2.png",
+        "633e093d04754052c42dc392_ACL-Schedule-Sat-Wk2.png",
+        "633e093d0f0c2fb03353cb03_ACL-Schedule-Sun-Wk2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221008042229",
+      "archivedUrl": "https://web.archive.org/web/20221008042229/https://www.aclfestival.com/schedule",
+      "sha256": "15cb8006807737c729750000a561e01b8275a0c7b4ba401e88ec21d34c7e260a",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "63406e298b6efd058da93d97_ACL-Schedule-Sat-Wk1-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "633e093d7682654fc2bb7092_ACL-Schedule-Fri-Wk2.png",
+        "633e093d04754052c42dc392_ACL-Schedule-Sat-Wk2.png",
+        "633e093d0f0c2fb03353cb03_ACL-Schedule-Sun-Wk2.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221011212048",
+      "archivedUrl": "https://web.archive.org/web/20221011212048/https://www.aclfestival.com/schedule",
+      "sha256": "3b69eb7fd169e0f3c608fef1d9fd0994829e446255e333862271026508f63c7d",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "6341b92bb9d4ce7f93a3b210_ACL-Schedule-Sat-Wk2-1008-1080x1350.png",
+        "6341b935b9d4ce47a9a3b21e_ACL-Schedule-Sun-Wk2-1008-1080x1350.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221012203718",
+      "archivedUrl": "https://web.archive.org/web/20221012203718/https://www.aclfestival.com/schedule",
+      "sha256": "9a3b6c14537ff4806fd86a52a602987fa5b1f912464489ac190e9c55740f6947",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "63471c0e6f25070c89898388_ACL_FestivalSchedule_10.12-Sat-Wk2-1080x1350.png",
+        "6341b935b9d4ce47a9a3b21e_ACL-Schedule-Sun-Wk2-1008-1080x1350.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221013212211",
+      "archivedUrl": "https://web.archive.org/web/20221013212211/https://www.aclfestival.com/schedule",
+      "sha256": "31118f11f7ff31df3ec2d3299470d284832a8a30bec67975d9d4cba95f92d51e",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221014170931",
+      "archivedUrl": "https://web.archive.org/web/20221014170931/https://www.aclfestival.com/schedule",
+      "sha256": "3be033c44142b169ce3024d466575934a50d71637703e34a592c6adefe1fb857",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221016152746",
+      "archivedUrl": "https://web.archive.org/web/20221016152746/https://www.aclfestival.com/schedule",
+      "sha256": "1826a05b547ecfe535fa5e148eeb687c57d9ede1931424a2aa7965d2296691fc",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221017161419",
+      "archivedUrl": "https://web.archive.org/web/20221017161419/https://www.aclfestival.com/schedule",
+      "sha256": "473af47ca7ef56df5852688299cc5a2ee42b5cf10c332871e44a05427debdfe7",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221018130512",
+      "archivedUrl": "https://web.archive.org/web/20221018130512/https://www.aclfestival.com/schedule",
+      "sha256": "dd99c71bbe9a033adb83b8ae00338014f77ba5ea8629ff4ccd24bfd8875ce81f",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221021030446",
+      "archivedUrl": "https://web.archive.org/web/20221021030446/https://www.aclfestival.com/schedule",
+      "sha256": "112c1eee54e6e0c479e53d58534151021f6a0295df2d9019475dec15dc770feb",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221128161056",
+      "archivedUrl": "https://web.archive.org/web/20221128161056/https://www.aclfestival.com/schedule",
+      "sha256": "56b865423a6249635bb216ac4659db79813c41321565c269d621e383d9076812",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221206183720",
+      "archivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "sha256": "c412e262db547f35c32837413bcef3ef02d57904051ad6c4cfbf55bf824d5db4",
+      "images": [
+        "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+        "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+        "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+        "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+        "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+        "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-10-07",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+      "imageCapture": "20221021041421",
+      "imageArchivedUrl": "https://web.archive.org/web/20221021041421/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+      "sha256": "1af8a59344573f64901e3c9a2f92b04cd9ea07961cf9e4f6109fec50840a5a47",
+      "bytes": 754846,
+      "contentType": "image/png",
+      "cacheFile": "bbe3a19e1270c50be16fbef8.bin",
+      "revisions": [
+        {
+          "file": "633e093ed59a44280018ee5f_ACL-Schedule-Fri-Wk1.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "63406e12e5db75ff7f3b5e1c_ACL-Schedule-Fri-Wk1-1080x1350.png",
+          "firstSeen": "20221008042229"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-10-08",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+      "imageCapture": "20221021020431",
+      "imageArchivedUrl": "https://web.archive.org/web/20221021020431/https://assets-global.website-files.com/626ab670470f4322713394d1/6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+      "sha256": "f25e5081d9498b5fa295af13e877031e84fa332374c95b74ec8cd5ab2abbd051",
+      "bytes": 763745,
+      "contentType": "image/png",
+      "cacheFile": "67d6e8bc159670432c35c7b0.bin",
+      "revisions": [
+        {
+          "file": "633e093dd4f09a831e30513c_ACL-Schedule-Sat-Wk1.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "63406e298b6efd058da93d97_ACL-Schedule-Sat-Wk1-1080x1350.png",
+          "firstSeen": "20221008042229"
+        },
+        {
+          "file": "6341eeea6a18b640fdbed389_ACL-Schedule-Sat-Wk1-V2-1080x1350.png",
+          "firstSeen": "20221011212048"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-10-09",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+      "imageCapture": "20221021143110",
+      "imageArchivedUrl": "https://web.archive.org/web/20221021143110/https://assets-global.website-files.com/626ab670470f4322713394d1/63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+      "sha256": "5a4771e1fd2b8cf31e019a9d7bdf2a8ab461fb9d0ab6b52ed7428fad21559beb",
+      "bytes": 750694,
+      "contentType": "image/png",
+      "cacheFile": "d323ae5a9dd7539ba4d1d100.bin",
+      "revisions": [
+        {
+          "file": "633e093ebc45a32956c2bb3c_ACL-Schedule-Sun-Wk1.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "63406e3add14990f04952d91_ACL-Schedule-Sun-Wk1-1080x1350.png",
+          "firstSeen": "20221008042229"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2022-10-14",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+      "imageCapture": "20221021144453",
+      "imageArchivedUrl": "https://web.archive.org/web/20221021144453/https://assets-global.website-files.com/626ab670470f4322713394d1/6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+      "sha256": "1a8ada90dbc672757bac16f2358df10cc37aecd416e0a4b6832e8b6243d9280d",
+      "bytes": 733079,
+      "contentType": "image/png",
+      "cacheFile": "52a780eb3b5ee44e597b6ff9.bin",
+      "revisions": [
+        {
+          "file": "633e093d7682654fc2bb7092_ACL-Schedule-Fri-Wk2.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "6341b91fe3265c22ee394973_ACL-Schedule-Fri-Wk2-1007-1080x1350.png",
+          "firstSeen": "20221011212048"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2022-10-15",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+      "imageCapture": "20221021031943",
+      "imageArchivedUrl": "https://web.archive.org/web/20221021031943/https://assets-global.website-files.com/626ab670470f4322713394d1/634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+      "sha256": "d262880eacd83ae8d08de4405631562cd3673cdc14b0b2278d397063962156b3",
+      "bytes": 738976,
+      "contentType": "image/png",
+      "cacheFile": "8f5f4c4ac80b456d79668e3f.bin",
+      "revisions": [
+        {
+          "file": "633e093d04754052c42dc392_ACL-Schedule-Sat-Wk2.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "6341b92bb9d4ce7f93a3b210_ACL-Schedule-Sat-Wk2-1008-1080x1350.png",
+          "firstSeen": "20221011212048"
+        },
+        {
+          "file": "63471c0e6f25070c89898388_ACL_FestivalSchedule_10.12-Sat-Wk2-1080x1350.png",
+          "firstSeen": "20221012203718"
+        },
+        {
+          "file": "634830579408d723a90dff90_ACL-Schedule-Sat-Wk2-1080x1350.png",
+          "firstSeen": "20221013212211"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2022-10-16",
+      "pageCapture": "20221206183720",
+      "pageArchivedUrl": "https://web.archive.org/web/20221206183720/https://www.aclfestival.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/626ab670470f4322713394d1/634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+      "imageCapture": "20221026174018",
+      "imageArchivedUrl": "https://web.archive.org/web/20221026174018/https://assets-global.website-files.com/626ab670470f4322713394d1/634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+      "sha256": "15e865504817f65175e95e42c30695fc48dcd20dbc171b8df907ea56aa9b3af2",
+      "bytes": 3409377,
+      "contentType": "image/png",
+      "cacheFile": "b8d2b66b94ebf1865c1ecdb3.bin",
+      "revisions": [
+        {
+          "file": "633e093d0f0c2fb03353cb03_ACL-Schedule-Sun-Wk2.png",
+          "firstSeen": "20221006094603"
+        },
+        {
+          "file": "6341b935b9d4ce47a9a3b21e_ACL-Schedule-Sun-Wk2-1008-1080x1350.png",
+          "firstSeen": "20221011212048"
+        },
+        {
+          "file": "634836fe977e89571e2a751f_ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2%20(1).png",
+          "firstSeen": "20221013212211"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "KUT: TACOS OF TEXAS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "INTO THE MULTIVERSE: HEALING THROUGH MUSIC W/ NOAH CYRUS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:15",
+      "end": "16:45",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:30",
+      "billing": "SUNSET SHAKEDOWN: A DANCE PARTY WITH DJ MEL",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "AUSTIN KIDDIE LIMITS",
+      "start": "15:30",
+      "end": "15:45",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "A DRAG SALOON: DRAG GONE COUNTRY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "FIERCE AND FABULOUS: A DRAG QUEEN DANCE PARTY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "KUT: TACOS OF TEXAS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "INTO THE MULTIVERSE: HEALING THROUGH MUSIC W/ NOAH CYRUS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "14:15",
+      "end": "14:45",
+      "billing": "KUTX: PAUSE/PLAY",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "BONUS TRACKS",
+      "start": "16:15",
+      "end": "16:45",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "TITO'S HANDMADE VODKA",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "SILENT DISCO",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "AUSTIN KIDDIE LIMITS",
+      "start": "15:30",
+      "end": "15:45",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": "15:15",
+      "billing": "A DRAG COMEDY SHOW: W/ THE BECKIES",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "DRAG DIVAS: A TRIBUTE TO THE STARS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}
