@@ -110,11 +110,18 @@ function _HistStatus({ res, retry, what }) {
 // editions are the library editions of the same festival (the id without the
 // year) from EARLIER years only, newest first: a 2026 look-back can never
 // sit under, or be labelled as, the 2027 entry it hangs off.
+// An edition that never ran (status "canceled", e.g. Nocturnal Wonderland 2024)
+// is never offered: the build already leaves it out of index.json, and this
+// guard keeps a stale or hand-served index from listing it either.
+function _histListedEditions(index) {
+  return ((index && index.editions) || []).filter(e => e.status !== "canceled");
+}
+
 function pastEditionsOf(index, configId) {
   const m = /^(.*)-(\d{4})$/.exec(configId || "");
   if (!m || !index) return [];
   const [, base, year] = m;
-  return (index.editions || []).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
+  return _histListedEditions(index).filter(e => e.festivalId === base && e.year < +year).sort((a, b) => b.year - a.year);
 }
 
 function usePastEditions(configId) {
@@ -176,7 +183,7 @@ function PastFestivalsScreen({ state, setState }) {
 
 function _HistLibrary({ state, setState }) {
   const [res, retry] = useHistorical("index.json");
-  const editions = res.status === "ready" ? res.data.editions || [] : [];
+  const editions = res.status === "ready" ? _histListedEditions(res.data) : [];
   const years = [...new Set(editions.map(e => e.year))].sort((a, b) => b - a);
   return (
     <Screen>
@@ -271,7 +278,7 @@ function HistoricalEditionView({ state, setState }) {
   // The id comes from app state, but only an id the index lists is fetched,
   // so a deep link can never ask for an arbitrary path.
   const [idx, retryIdx] = useHistorical("index.json");
-  const meta = idx.status === "ready" ? (idx.data.editions || []).find(e => e.id === state.pastEdition) : null;
+  const meta = idx.status === "ready" ? _histListedEditions(idx.data).find(e => e.id === state.pastEdition) : null;
   const back = () => _histBack(state, setState);
   if (idx.status !== "ready") return <Screen><_HistHeader title="Past festivals" onBack={back} /><_HistStatus res={idx} retry={retryIdx} what="past festivals" /></Screen>;
   if (!meta) return <Screen><_HistHeader title="Past festivals" onBack={back} /><p style={{ margin: "24px 20px", color: "var(--text-2)" }}>That edition isn't in the library.</p></Screen>;

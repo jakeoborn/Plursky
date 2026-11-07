@@ -97,6 +97,19 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     for (const d of n.days || []) if (!e.days.some(x => x.day === d)) p.push(`${e.id}: a note names day ${d}, which the edition does not have`);
   }
   for (const d of e.days) if (d.untimed && !(e.notes || []).some(n => n.days?.includes(d.day))) p.push(`${e.id}: day ${d.day} is untimed with no note saying why`);
+  // An edition-level status is the registry's, verbatim. "canceled" is the
+  // only one, and it needs two dated sources from different publishers, each
+  // published by the first day, plus an announcement date.
+  if (JSON.stringify(e.status ?? null) !== JSON.stringify(meta.status ?? null) || JSON.stringify(e.canceled ?? null) !== JSON.stringify(meta.canceled ?? null))
+    p.push(`${e.id}: status differs from the edition registry`);
+  if (meta.status != null && meta.status !== "canceled") p.push(`${e.id}: unknown edition status "${meta.status}"`);
+  if (meta.status === "canceled") {
+    const c = meta.canceled || {}, first = meta.dates[0]?.[0] || "";
+    if (!DAY.test(c.announced || "") || c.announced > first) p.push(`${e.id}: canceled with no announcement date on or before ${first}`);
+    if (!c.reason) p.push(`${e.id}: canceled with no reason`);
+    const srcs = (c.sources || []).filter(x => /^https:\/\//.test(x.url || "") && x.publisher && DAY.test(x.published || "") && x.published <= first && DAY.test(x.fetched || ""));
+    if (new Set(srcs.map(x => hostOf(x.url))).size < 2) p.push(`${e.id}: canceled needs two dated sources from different publishers, each published by ${first}`);
+  } else if (meta.canceled) p.push(`${e.id}: carries cancellation evidence but is not canceled`);
   for (const c of meta.cancelledDays || []) {
     if (meta.dates.some(([x]) => x === c.date)) p.push(`${e.id}: cancelled day ${c.date} is still an edition day`);
     if (!(e.notes || []).some(n => !n.days && n.text.includes(c.banner))) p.push(`${e.id}: cancelled day ${c.date} has no edition note quoting its banner`);

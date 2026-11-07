@@ -148,7 +148,18 @@ export const EDITIONS = {
     dates: [["2022-09-17", "Saturday"], ["2022-09-18", "Sunday"]] },
   "nocturnal-wonderland-2024": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2024", year: 2024,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
-    dates: [["2024-09-14", "Saturday"], ["2024-09-15", "Sunday"]] },  "dreamstate-socal-2016": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2016", year: 2016,
+    dates: [["2024-09-14", "Saturday"], ["2024-09-15", "Sunday"]],
+    // Announced, scheduled, then canceled before it opened (the Line Fire). The
+    // rows stay as the archive printed them; the library and the artist
+    // registry skip a canceled edition, so no one is credited with a set that
+    // never happened. Two dated sources, each published before the first day.
+    status: "canceled",
+    canceled: { announced: "2024-09-11", reason: "Canceled before it opened because of the Line Fire near the venue.",
+      sources: [
+        { publisher: "Moon Lvnding", published: "2024-09-11", fetched: "2026-11-06",
+          url: "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/" },
+        { publisher: "Billboard", published: "2024-09-12", fetched: "2026-11-06",
+          url: "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/" }] } },  "dreamstate-socal-2016": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2016", year: 2016,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2016-11-25", "Friday"], ["2016-11-26", "Saturday"]] },
   "dreamstate-socal-2019": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2019", year: 2019,
