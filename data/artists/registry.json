@@ -3414,6 +3414,21 @@
   "links": []
  },
  {
+  "key": "amira-elfeky",
+  "name": "AMIRA ELFEKY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:bmi:1540:amira-elfeky"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amp",
   "name": "AMP",
   "aliases": [],
@@ -3692,6 +3707,22 @@
   ],
   "firstSeen": "2026-11-08",
   "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andrew-and-polly",
+  "name": "ANDREW & POLLY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:austin-kiddie-limits:1245:andrew-and-polly",
+   "acl-2024:d2:austin-kiddie-limits:1245:andrew-and-polly"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -4852,6 +4883,7 @@
    "acl-2018:d1:honda:1200:asleep-at-the-wheel",
    "acl-2019:d1:honda:1245:asleep-at-the-wheel",
    "acl-2022:d1:honda:1300:asleep-at-the-wheel",
+   "acl-2024:d1:honda:1255:asleep-at-the-wheel",
    "acl-2025:d1:t-mobile:1245:asleep-at-the-wheel"
   ],
   "firstSeen": "2013-10-04",
@@ -6114,6 +6146,22 @@
   "links": []
  },
  {
+  "key": "bakar",
+  "name": "BAKAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:t-mobile:1545:bakar",
+   "acl-2024:d6:t-mobile:1545:bakar"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bakke",
   "name": "Bakke",
   "aliases": [],
@@ -6126,6 +6174,22 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "balthvs",
+  "name": "BALTHVS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:tito-s-handmade-vodka:1620:balthvs",
+   "acl-2024:d5:tito-s-handmade-vodka:1505:balthvs"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -6318,10 +6382,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d1:tito-s-handmade-vodka:1830:barry-can-t-swim",
    "hard-summer-2025:d2:hard-stage:1700:barry-can-t-swim",
    "lollapalooza-2025:d1:t-mobile:1700:barry-can-t-swim"
   ],
-  "firstSeen": "2025-07-31",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -6827,6 +6892,21 @@
   "links": []
  },
  {
+  "key": "being-dead",
+  "name": "BEING DEAD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:ihg-hotels-and-resorts:1205:being-dead"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bella-grazia",
   "name": "Bella Grazia",
   "aliases": [],
@@ -7272,9 +7352,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d2:honda:1810:benson-boone",
+   "acl-2024:d5:honda:1810:benson-boone",
    "governors-ball-2025:d1:kiehl-s:1945:benson-boone"
   ],
-  "firstSeen": "2025-06-06",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2025-06-06",
   "photo": null,
   "links": []
@@ -7741,6 +7823,21 @@
   ],
   "firstSeen": "2026-08-07",
   "lastSeen": "2026-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "billy-allen-and-the-pollies",
+  "name": "BILLY ALLEN & THE POLLIES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:honda:1240:billy-allen-and-the-pollies"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -8494,6 +8591,22 @@
   "links": []
  },
  {
+  "key": "blink-182",
+  "name": "BLINK-182",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:honda:2010:blink-182",
+   "acl-2024:d4:honda:2010:blink-182"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bliss",
   "name": "BLiSS",
   "aliases": [],
@@ -8880,6 +8993,21 @@
   ],
   "firstSeen": "2016-10-02",
   "lastSeen": "2022-10-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bob-schneider",
+  "name": "BOB SCHNEIDER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:tito-s-handmade-vodka:1405:bob-schneider"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -9782,6 +9910,21 @@
   "links": []
  },
  {
+  "key": "braxton-keith",
+  "name": "BRAXTON KEITH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:bmi:1710:braxton-keith"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "braydon-terzo",
   "name": "Braydon Terzo",
   "aliases": [],
@@ -9808,6 +9951,21 @@
   ],
   "firstSeen": "2025-05-18",
   "lastSeen": "2025-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bre-kennedy",
+  "name": "BRE KENNEDY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:bmi:1510:bre-kennedy"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -9966,6 +10124,21 @@
   ],
   "firstSeen": "2019-10-05",
   "lastSeen": "2019-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "brittany-davis",
+  "name": "BRITTANY DAVIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:tito-s-handmade-vodka:1505:brittany-davis"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -10697,6 +10870,21 @@
   "links": []
  },
  {
+  "key": "cale-tyson",
+  "name": "CALE TYSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:t-mobile:1230:cale-tyson"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "caleb-de-casper",
   "name": "CALEB DE CASPER",
   "aliases": [],
@@ -11033,14 +11221,18 @@
  {
   "key": "cannons",
   "name": "Cannons",
-  "aliases": [],
+  "aliases": [
+   "CANNONS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2026:au36"
+   "acl-2026:au36",
+   "acl-2024:d3:american-express:1645:cannons",
+   "acl-2024:d6:american-express:1645:cannons"
   ],
-  "firstSeen": "2026-10-04",
+  "firstSeen": "2024-10-06",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -11243,14 +11435,18 @@
  {
   "key": "carin-leon",
   "name": "Carín León",
-  "aliases": [],
+  "aliases": [
+   "CARÍN LEÓN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su97"
+   "summerfest-2026:su97",
+   "acl-2024:d1:american-express:1630:carin-leon",
+   "acl-2024:d4:american-express:1630:carin-leon"
   ],
-  "firstSeen": "2026-06-20",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2026-06-20",
   "photo": null,
   "links": []
@@ -12045,6 +12241,21 @@
   "links": []
  },
  {
+  "key": "chance-pena",
+  "name": "CHANCE PEÑA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:t-mobile:1530:chance-pena"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chance-the-rapper",
   "name": "Chance The Rapper",
   "aliases": [
@@ -12182,6 +12393,37 @@
   ],
   "firstSeen": "2026-09-05",
   "lastSeen": "2026-09-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chaparelle",
+  "name": "CHAPARELLE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:ihg-hotels-and-resorts:1400:chaparelle"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chappell-roan",
+  "name": "CHAPPELL ROAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:american-express:1845:chappell-roan",
+   "acl-2024:d6:american-express:1845:chappell-roan"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -12766,6 +13008,21 @@
   "links": []
  },
  {
+  "key": "chief-cleopatra",
+  "name": "CHIEF CLEOPATRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:ihg-hotels-and-resorts:1230:chief-cleopatra"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "child-support",
   "name": "Child Support",
   "aliases": [],
@@ -13135,15 +13392,19 @@
  {
   "key": "chris-stapleton",
   "name": "Chris Stapleton",
-  "aliases": [],
+  "aliases": [
+   "CHRIS STAPLETON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2016:d3:samsung:1800:chris-stapleton"
+   "acl-2016:d3:samsung:1800:chris-stapleton",
+   "acl-2024:d1:american-express:2030:chris-stapleton",
+   "acl-2024:d4:american-express:2030:chris-stapleton"
   ],
   "firstSeen": "2016-10-02",
-  "lastSeen": "2016-10-02",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -13888,9 +14149,10 @@
   "projects": [],
   "billings": [
    "acl-2026:af45",
-   "lollapalooza-2026:lo35"
+   "lollapalooza-2026:lo35",
+   "acl-2024:d4:tito-s-handmade-vodka:1445:cmat"
   ],
-  "firstSeen": "2026-07-30",
+  "firstSeen": "2024-10-11",
   "lastSeen": "2026-10-02",
   "photo": null,
   "links": []
@@ -14491,14 +14753,17 @@
  {
   "key": "connor-price",
   "name": "Connor Price",
-  "aliases": [],
+  "aliases": [
+   "CONNOR PRICE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su106"
+   "summerfest-2026:su106",
+   "acl-2024:d1:ihg-hotels-and-resorts:1745:connor-price"
   ],
-  "firstSeen": "2026-06-20",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2026-06-20",
   "photo": null,
   "links": []
@@ -15757,6 +16022,21 @@
   "links": []
  },
  {
+  "key": "daiistar",
+  "name": "DAIISTAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:miller-lite:1210:daiistar"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "daizy",
   "name": "Daizy",
   "aliases": [
@@ -16135,6 +16415,21 @@
   "links": []
  },
  {
+  "key": "daniel-seavey",
+  "name": "DANIEL SEAVEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:american-express:1315:daniel-seavey"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "danielle-ponder",
   "name": "DANIELLE PONDER",
   "aliases": [],
@@ -16477,6 +16772,22 @@
   "links": []
  },
  {
+  "key": "dasha",
+  "name": "DASHA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:american-express:1445:dasha",
+   "acl-2024:d4:american-express:1445:dasha"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dateless",
   "name": "DATELESS",
   "aliases": [],
@@ -16742,6 +17053,22 @@
   ],
   "firstSeen": "2023-11-17",
   "lastSeen": "2026-11-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "david-shaw",
+  "name": "DAVID SHAW",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:tito-s-handmade-vodka:1630:david-shaw",
+   "acl-2024:d6:tito-s-handmade-vodka:1630:david-shaw"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -17185,6 +17512,21 @@
   ],
   "firstSeen": "2025-10-31",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deathbyromy",
+  "name": "DEATHBYROMY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:miller-lite:1210:deathbyromy"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -17911,16 +18253,34 @@
  {
   "key": "dexter-and-the-moonrocks",
   "name": "Dexter And The Moonrocks",
-  "aliases": [],
+  "aliases": [
+   "DEXTER AND THE MOONROCKS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2026:au41",
-   "summerfest-2026:su123"
+   "summerfest-2026:su123",
+   "acl-2024:d1:bmi:1710:dexter-and-the-moonrocks"
   ],
-  "firstSeen": "2026-06-20",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2026-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deyaz",
+  "name": "DEYAZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:bmi:1340:deyaz"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -19992,6 +20352,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d3:t-mobile:1945:dom-dolla",
+   "acl-2024:d6:t-mobile:1945:dom-dolla",
    "edc-las-vegas-2022:d1:neon-garden:2330:dom-dolla",
    "edc-las-vegas-2022:d3:kinetic-field:2201:dom-dolla",
    "edc-las-vegas-2024:d2:circuit-grounds:0100:dom-dolla",
@@ -20793,6 +21155,22 @@
   "links": []
  },
  {
+  "key": "dua-lipa",
+  "name": "DUA LIPA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:american-express:2020:dua-lipa",
+   "acl-2024:d5:american-express:2020:dua-lipa"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dua-saleh",
   "name": "DUA SALEH",
   "aliases": [],
@@ -21093,6 +21471,21 @@
   ],
   "firstSeen": "2023-11-18",
   "lastSeen": "2024-11-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dustin-kensrue",
+  "name": "DUSTIN KENSRUE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:miller-lite:1340:dustin-kensrue"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -21701,6 +22094,22 @@
   "links": []
  },
  {
+  "key": "eggy",
+  "name": "EGGY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:tito-s-handmade-vodka:1630:eggy",
+   "acl-2024:d4:tito-s-handmade-vodka:1630:eggy"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "egorythmia",
   "name": "Egorythmia",
   "aliases": [],
@@ -21844,14 +22253,18 @@
  {
   "key": "elderbrook",
   "name": "Elderbrook",
-  "aliases": [],
+  "aliases": [
+   "ELDERBROOK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su207"
+   "summerfest-2026:su207",
+   "acl-2024:d1:miller-lite:1710:elderbrook",
+   "acl-2024:d4:miller-lite:1910:elderbrook"
   ],
-  "firstSeen": "2026-06-26",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2026-06-26",
   "photo": null,
   "links": []
@@ -22361,16 +22774,34 @@
   "links": []
  },
  {
-  "key": "emei",
-  "name": "Emei",
+  "key": "elyanna",
+  "name": "ELYANNA",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su340"
+   "acl-2024:d5:tito-s-handmade-vodka:1620:elyanna"
   ],
-  "firstSeen": "2026-07-03",
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "emei",
+  "name": "Emei",
+  "aliases": [
+   "EMEI"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "summerfest-2026:su340",
+   "acl-2024:d5:bmi:1510:emei"
+  ],
+  "firstSeen": "2024-10-12",
   "lastSeen": "2026-07-03",
   "photo": null,
   "links": []
@@ -22402,6 +22833,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "emily-nenni",
+  "name": "EMILY NENNI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:bmi:1340:emily-nenni"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -22570,6 +23016,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "empress-of",
+  "name": "EMPRESS OF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:american-express:1315:empress-of"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -23158,6 +23619,22 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eyedress",
+  "name": "EYEDRESS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:american-express:1620:eyedress",
+   "acl-2024:d5:american-express:1620:eyedress"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -24188,6 +24665,21 @@
   "links": []
  },
  {
+  "key": "fletcher",
+  "name": "FLETCHER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:ihg-hotels-and-resorts:1930:fletcher"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fleur-shore",
   "name": "Fleur Shore",
   "aliases": [],
@@ -24238,8 +24730,8 @@
   "key": "flipturn",
   "name": "Flipturn",
   "aliases": [
-   "flipturn",
-   "FLIPTURN"
+   "FLIPTURN",
+   "flipturn"
   ],
   "kind": "performer",
   "parents": [],
@@ -24248,9 +24740,11 @@
    "governors-ball-2026:go20",
    "summerfest-2026:su112",
    "summerfest-2026:su143",
+   "acl-2024:d3:american-express:1445:flipturn",
+   "acl-2024:d6:american-express:1445:flipturn",
    "lollapalooza-2025:d2:tito-s-handmade-vodka:1730:flipturn"
   ],
-  "firstSeen": "2025-08-01",
+  "firstSeen": "2024-10-06",
   "lastSeen": "2026-06-20",
   "photo": null,
   "links": []
@@ -24269,6 +24763,21 @@
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2022-11-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "flo",
+  "name": "FLO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:miller-lite:1340:flo"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -24722,6 +25231,8 @@
    "acl-2014:d4:samsung-galaxy:1815:foster-the-people",
    "acl-2017:d1:american-express:1815:foster-the-people",
    "acl-2017:d4:american-express:untimed:foster-the-people",
+   "acl-2024:d1:honda:1810:foster-the-people",
+   "acl-2024:d4:honda:1810:foster-the-people",
    "lollapalooza-2025:d2:t-mobile:1640:foster-the-people"
   ],
   "firstSeen": "2014-10-03",
@@ -25926,7 +26437,9 @@
  {
   "key": "geese",
   "name": "Geese",
-  "aliases": [],
+  "aliases": [
+   "GEESE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -25934,9 +26447,11 @@
    "acl-2026:au06",
    "governors-ball-2026:go42",
    "lollapalooza-2026:lo126",
-   "outside-lands-2026:os18"
+   "outside-lands-2026:os18",
+   "acl-2024:d2:t-mobile:1335:geese",
+   "acl-2024:d5:t-mobile:1335:geese"
   ],
-  "firstSeen": "2026-06-07",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -26746,9 +27261,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d3:tito-s-handmade-vodka:1445:glass-beams",
+   "acl-2024:d6:tito-s-handmade-vodka:1445:glass-beams",
    "lollapalooza-2025:d1:the-grove:1715:glass-beams"
   ],
-  "firstSeen": "2025-07-31",
+  "firstSeen": "2024-10-06",
   "lastSeen": "2025-07-31",
   "photo": null,
   "links": []
@@ -26872,6 +27389,21 @@
   ],
   "firstSeen": "2025-11-01",
   "lastSeen": "2025-11-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "godly-the-ruler",
+  "name": "GODLY THE RULER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:miller-lite:1155:godly-the-ruler"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -27019,15 +27551,19 @@
  {
   "key": "goldie-boutilier",
   "name": "Goldie Boutilier",
-  "aliases": [],
+  "aliases": [
+   "GOLDIE BOUTILIER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lollapalooza-2026:lo120",
-   "outside-lands-2026:os25"
+   "outside-lands-2026:os25",
+   "acl-2024:d2:american-express:1250:goldie-boutilier",
+   "acl-2024:d5:american-express:1250:goldie-boutilier"
   ],
-  "firstSeen": "2026-08-01",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-08-07",
   "photo": null,
   "links": []
@@ -27496,6 +28032,21 @@
   ],
   "firstSeen": "2014-10-05",
   "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "grand-funk-railroad",
+  "name": "GRAND FUNK RAILROAD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:tito-s-handmade-vodka:1820:grand-funk-railroad"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -29175,6 +29726,22 @@
   "links": []
  },
  {
+  "key": "hermanos-gutierrez",
+  "name": "HERMANOS GUTIÉRREZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:t-mobile:1720:hermanos-gutierrez",
+   "acl-2024:d5:t-mobile:1720:hermanos-gutierrez"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hershe",
   "name": "Hershe",
   "aliases": [
@@ -29574,6 +30141,22 @@
   ],
   "firstSeen": "2015-10-10",
   "lastSeen": "2015-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "homescool",
+  "name": "HOMESCOOL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:austin-kiddie-limits:1430:homescool",
+   "acl-2024:d6:austin-kiddie-limits:1245:homescool"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -29979,6 +30562,37 @@
   ],
   "firstSeen": "2019-11-10",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hudson-ingram",
+  "name": "HUDSON INGRAM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:bmi:1210:hudson-ingram"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hudson-westbrook",
+  "name": "HUDSON WESTBROOK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:honda:1425:hudson-westbrook",
+   "acl-2024:d4:honda:1425:hudson-westbrook"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -30589,6 +31203,21 @@
   ],
   "firstSeen": "2026-06-20",
   "lastSeen": "2026-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "idkhow",
+  "name": "IDKHOW",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:miller-lite:1325:idkhow"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -32736,6 +33365,21 @@
   "links": []
  },
  {
+  "key": "jeezy",
+  "name": "JEEZY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:ihg-hotels-and-resorts:1930:jeezy"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jeffrey-sutorius",
   "name": "JEFFREY SUTORIUS",
   "aliases": [],
@@ -32886,10 +33530,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2016:d1:cirrus-logic:1300:jess-glynne"
+   "acl-2016:d1:cirrus-logic:1300:jess-glynne",
+   "acl-2024:d3:miller-lite:1725:jess-glynne",
+   "acl-2024:d6:miller-lite:1725:jess-glynne"
   ],
   "firstSeen": "2016-09-30",
-  "lastSeen": "2016-09-30",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -33356,10 +34002,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d5:miller-lite:1155:joe-p",
    "lollapalooza-2025:d4:lakeshore:1245:joe-p",
    "lollapalooza-2025:d4:toyota-music-den:1500:joe-p"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2024-10-12",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -33822,6 +34469,21 @@
   "links": []
  },
  {
+  "key": "jon-muq",
+  "name": "JON MUQ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:bmi:1325:jon-muq"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jon-pardi",
   "name": "Jon Pardi",
   "aliases": [],
@@ -33839,14 +34501,17 @@
  {
   "key": "jonah-kagen",
   "name": "Jonah Kagen",
-  "aliases": [],
+  "aliases": [
+   "JONAH KAGEN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su406"
+   "summerfest-2026:su406",
+   "acl-2024:d5:t-mobile:1205:jonah-kagen"
   ],
-  "firstSeen": "2026-07-04",
+  "firstSeen": "2024-10-12",
   "lastSeen": "2026-07-04",
   "photo": null,
   "links": []
@@ -33973,6 +34638,21 @@
   ],
   "firstSeen": "2016-11-25",
   "lastSeen": "2025-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jordy",
+  "name": "JORDY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:bmi:1155:jordy"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -34789,16 +35469,20 @@
  {
   "key": "jungle",
   "name": "Jungle",
-  "aliases": [],
+  "aliases": [
+   "JUNGLE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2018:d1:barton-springs:1645:jungle",
-   "acl-2018:d4:barton-springs:1645:jungle"
+   "acl-2018:d4:barton-springs:1645:jungle",
+   "acl-2024:d2:miller-lite:1910:jungle",
+   "acl-2024:d5:miller-lite:1910:jungle"
   ],
   "firstSeen": "2018-10-05",
-  "lastSeen": "2018-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -35365,6 +36049,21 @@
   "links": []
  },
  {
+  "key": "kalu-and-the-electric-joint",
+  "name": "KALU & THE ELECTRIC JOINT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:tito-s-handmade-vodka:1330:kalu-and-the-electric-joint"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kamaiyah",
   "name": "Kamaiyah",
   "aliases": [],
@@ -35741,6 +36440,22 @@
   "links": []
  },
  {
+  "key": "katie-pruitt",
+  "name": "KATIE PRUITT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:miller-lite:1340:katie-pruitt",
+   "acl-2024:d4:miller-lite:1340:katie-pruitt"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "katseye",
   "name": "KATSEYE",
   "aliases": [],
@@ -35988,15 +36703,18 @@
  {
   "key": "kehlani",
   "name": "Kehlani",
-  "aliases": [],
+  "aliases": [
+   "KEHLANI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2015:d3:bmi:1430:kehlani"
+   "acl-2015:d3:bmi:1430:kehlani",
+   "acl-2024:d3:miller-lite:1945:kehlani"
   ],
   "firstSeen": "2015-10-04",
-  "lastSeen": "2015-10-04",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -36165,6 +36883,21 @@
   "links": []
  },
  {
+  "key": "kenny-beats",
+  "name": "KENNY BEATS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:tito-s-handmade-vodka:1820:kenny-beats"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kenny-mason",
   "name": "KENNY MASON",
   "aliases": [],
@@ -36289,6 +37022,22 @@
   ],
   "firstSeen": "2025-11-07",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kevin-abstract",
+  "name": "KEVIN ABSTRACT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:ihg-hotels-and-resorts:1745:kevin-abstract",
+   "acl-2024:d6:ihg-hotels-and-resorts:1745:kevin-abstract"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -36575,16 +37324,20 @@
  {
   "key": "khruangbin",
   "name": "Khruangbin",
-  "aliases": [],
+  "aliases": [
+   "KHRUANGBIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2016:d5:bmi:1630:khruangbin",
-   "acl-2018:d3:tito-s-handmade-vodka:1600:khruangbin"
+   "acl-2018:d3:tito-s-handmade-vodka:1600:khruangbin",
+   "acl-2024:d2:american-express:1820:khruangbin",
+   "acl-2024:d5:american-express:1820:khruangbin"
   ],
   "firstSeen": "2016-10-08",
-  "lastSeen": "2018-10-07",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -38865,6 +39618,21 @@
   "links": []
  },
  {
+  "key": "late-night-drive-home",
+  "name": "LATE NIGHT DRIVE HOME",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:honda:1255:late-night-drive-home"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "latin-mafia",
   "name": "LATIN MAFIA",
   "aliases": [],
@@ -39460,16 +40228,20 @@
  {
   "key": "leon-bridges",
   "name": "Leon Bridges",
-  "aliases": [],
+  "aliases": [
+   "LEON BRIDGES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2015:d1:honda:1600:leon-bridges",
-   "acl-2015:d4:honda:1600:leon-bridges"
+   "acl-2015:d4:honda:1600:leon-bridges",
+   "acl-2024:d1:american-express:1830:leon-bridges",
+   "acl-2024:d4:american-express:1830:leon-bridges"
   ],
   "firstSeen": "2015-10-02",
-  "lastSeen": "2015-10-09",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -40613,14 +41385,18 @@
  {
   "key": "lola-young",
   "name": "Lola Young",
-  "aliases": [],
+  "aliases": [
+   "LOLA YOUNG"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2026:as42"
+   "acl-2026:as42",
+   "acl-2024:d2:american-express:1420:lola-young",
+   "acl-2024:d5:american-express:1420:lola-young"
   ],
-  "firstSeen": "2026-10-03",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-10-03",
   "photo": null,
   "links": []
@@ -41581,10 +42357,12 @@
   "projects": [],
   "billings": [
    "acl-2022:d4:austin-kiddie-limits:1630:lucy-kalantari-and-the-jazz-cats",
-   "acl-2022:d5:austin-kiddie-limits:1300:lucy-kalantari-and-the-jazz-cats"
+   "acl-2022:d5:austin-kiddie-limits:1300:lucy-kalantari-and-the-jazz-cats",
+   "acl-2024:d5:austin-kiddie-limits:1630:lucy-kalantari-and-the-jazz-cats",
+   "acl-2024:d6:austin-kiddie-limits:1615:lucy-kalantari-and-the-jazz-cats"
   ],
   "firstSeen": "2022-10-14",
-  "lastSeen": "2022-10-15",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -42797,6 +43575,22 @@
   "links": []
  },
  {
+  "key": "malcolm-todd",
+  "name": "MALCOLM TODD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:t-mobile:1400:malcolm-todd",
+   "acl-2024:d6:t-mobile:1400:malcolm-todd"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "malcolm-zeller",
   "name": "Malcolm Zeller",
   "aliases": [],
@@ -43056,9 +43850,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d1:miller-lite:1510:mannequin-pussy",
    "governors-ball-2025:d1:kiehl-s:1445:mannequin-pussy"
   ],
-  "firstSeen": "2025-06-06",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2025-06-06",
   "photo": null,
   "links": []
@@ -43729,6 +44524,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2024-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marley-bleu",
+  "name": "MARLEY BLEU",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:bmi:1210:marley-bleu"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -44943,6 +45753,22 @@
   "links": []
  },
  {
+  "key": "medium-build",
+  "name": "MEDIUM BUILD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:miller-lite:1525:medium-build",
+   "acl-2024:d6:miller-lite:1525:medium-build"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mednas",
   "name": "Mednas",
   "aliases": [
@@ -45576,6 +46402,21 @@
   "links": []
  },
  {
+  "key": "mickey-guyton",
+  "name": "MICKEY GUYTON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:ihg-hotels-and-resorts:1530:mickey-guyton"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "micro",
   "name": "Micro",
   "aliases": [],
@@ -45639,6 +46480,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2026-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "midnight-navy",
+  "name": "MIDNIGHT NAVY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:tito-s-handmade-vodka:1315:midnight-navy"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
   "photo": null,
   "links": []
  },
@@ -45769,6 +46625,22 @@
   ],
   "firstSeen": "2015-10-03",
   "lastSeen": "2015-10-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mike",
+  "name": "MIKE.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:honda:1825:mike",
+   "acl-2024:d6:honda:1825:mike"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -46272,15 +47144,19 @@
  {
   "key": "miss-tutti-and-the-fruity-band",
   "name": "Miss Tutti & The Fruity Band",
-  "aliases": [],
+  "aliases": [
+   "MISS TUTTI & THE FRUITY BAND"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lollapalooza-2026:lo51",
-   "lollapalooza-2026:lo102"
+   "lollapalooza-2026:lo102",
+   "acl-2024:d2:austin-kiddie-limits:1630:miss-tutti-and-the-fruity-band",
+   "acl-2024:d3:austin-kiddie-limits:1415:miss-tutti-and-the-fruity-band"
   ],
-  "firstSeen": "2026-07-30",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-07-31",
   "photo": null,
   "links": []
@@ -46304,7 +47180,9 @@
  {
   "key": "mister-g",
   "name": "Mister G",
-  "aliases": [],
+  "aliases": [
+   "MISTER G"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -46312,7 +47190,9 @@
    "lollapalooza-2026:lo49",
    "lollapalooza-2026:lo103",
    "acl-2015:d4:austin-kiddie-limits:1430:mister-g",
-   "acl-2015:d5:austin-kiddie-limits:1400:mister-g"
+   "acl-2015:d5:austin-kiddie-limits:1400:mister-g",
+   "acl-2024:d4:austin-kiddie-limits:1430:mister-g",
+   "acl-2024:d5:austin-kiddie-limits:1245:mister-g"
   ],
   "firstSeen": "2015-10-09",
   "lastSeen": "2026-07-31",
@@ -46337,17 +47217,21 @@
  {
   "key": "misterwives",
   "name": "MisterWives",
-  "aliases": [],
+  "aliases": [
+   "MISTERWIVES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2015:d2:homeaway:1530:misterwives",
    "acl-2015:d5:homeaway:1530:misterwives",
-   "acl-2019:d2:vrbo:1500:misterwives"
+   "acl-2019:d2:vrbo:1500:misterwives",
+   "acl-2024:d3:honda:1425:misterwives",
+   "acl-2024:d6:honda:1425:misterwives"
   ],
   "firstSeen": "2015-10-03",
-  "lastSeen": "2019-10-05",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -46730,6 +47614,21 @@
   "links": []
  },
  {
+  "key": "molecular-steve",
+  "name": "MOLECULAR STEVE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:t-mobile:1230:molecular-steve"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "molly-burch",
   "name": "Molly Burch",
   "aliases": [],
@@ -46788,6 +47687,21 @@
   ],
   "firstSeen": "2018-10-06",
   "lastSeen": "2018-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mon-rovia",
+  "name": "MON ROVÎA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:bmi:1340:mon-rovia"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
   "photo": null,
   "links": []
  },
@@ -47327,6 +48241,21 @@
   ],
   "firstSeen": "2015-10-11",
   "lastSeen": "2015-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "movements",
+  "name": "MOVEMENTS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:honda:1410:movements"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -47960,14 +48889,18 @@
  {
   "key": "myles-smith",
   "name": "Myles Smith",
-  "aliases": [],
+  "aliases": [
+   "MYLES SMITH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su147"
+   "summerfest-2026:su147",
+   "acl-2024:d3:ihg-hotels-and-resorts:1545:myles-smith",
+   "acl-2024:d6:ihg-hotels-and-resorts:1545:myles-smith"
   ],
-  "firstSeen": "2026-06-25",
+  "firstSeen": "2024-10-06",
   "lastSeen": "2026-06-25",
   "photo": null,
   "links": []
@@ -49113,6 +50046,21 @@
   "links": []
  },
  {
+  "key": "nico-vega",
+  "name": "NICO VEGA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:miller-lite:1325:nico-vega"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nicolas-matar",
   "name": "Nicolas Matar",
   "aliases": [],
@@ -50068,6 +51016,22 @@
   "links": []
  },
  {
+  "key": "norah-jones",
+  "name": "NORAH JONES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:honda:1610:norah-jones",
+   "acl-2024:d4:honda:1610:norah-jones"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "norse",
   "name": "NORSE",
   "aliases": [],
@@ -50400,6 +51364,21 @@
   ],
   "firstSeen": "2026-08-08",
   "lastSeen": "2026-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "obed-padilla",
+  "name": "OBED PADILLA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:bmi:1155:obed-padilla"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -51423,15 +52402,19 @@
  {
   "key": "orville-peck",
   "name": "Orville Peck",
-  "aliases": [],
+  "aliases": [
+   "ORVILLE PECK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2019:d5:honda:1230:orville-peck"
+   "acl-2019:d5:honda:1230:orville-peck",
+   "acl-2024:d3:honda:1625:orville-peck",
+   "acl-2024:d6:honda:1625:orville-peck"
   ],
   "firstSeen": "2019-10-12",
-  "lastSeen": "2019-10-12",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -51913,6 +52896,21 @@
   ],
   "firstSeen": "2017-10-28",
   "lastSeen": "2026-09-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paco-versailles",
+  "name": "PACO VERSAILLES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:tito-s-handmade-vodka:1445:paco-versailles"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
   "photo": null,
   "links": []
  },
@@ -52637,6 +53635,21 @@
   "links": []
  },
  {
+  "key": "paul-kelly",
+  "name": "PAUL KELLY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:american-express:1315:paul-kelly"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "paul-mccartney",
   "name": "Paul McCartney",
   "aliases": [],
@@ -52754,15 +53767,18 @@
  {
   "key": "pawpaw-rod",
   "name": "PawPaw Rod",
-  "aliases": [],
+  "aliases": [
+   "PAWPAW ROD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "summerfest-2026:su249",
-   "summerfest-2026:su287"
+   "summerfest-2026:su287",
+   "acl-2024:d2:t-mobile:1205:pawpaw-rod"
   ],
-  "firstSeen": "2026-06-27",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-06-27",
   "photo": null,
   "links": []
@@ -52958,15 +53974,18 @@
  {
   "key": "penny-and-sparrow",
   "name": "Penny & Sparrow",
-  "aliases": [],
+  "aliases": [
+   "PENNY & SPARROW"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2014:d4:austin-ventures:1115:penny-and-sparrow"
+   "acl-2014:d4:austin-ventures:1115:penny-and-sparrow",
+   "acl-2024:d1:ihg-hotels-and-resorts:1530:penny-and-sparrow"
   ],
   "firstSeen": "2014-10-10",
-  "lastSeen": "2014-10-10",
+  "lastSeen": "2024-10-04",
   "photo": null,
   "links": []
  },
@@ -53110,6 +54129,22 @@
   ],
   "firstSeen": "2013-10-06",
   "lastSeen": "2013-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "petey",
+  "name": "PETEY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:ihg-hotels-and-resorts:1400:petey",
+   "acl-2024:d6:ihg-hotels-and-resorts:1400:petey"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -54006,6 +55041,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:k8",
+   "acl-2024:d1:miller-lite:1910:porter-robinson",
    "edc-las-vegas-2022:d1:kinetic-field:0139:porter-robinson-dj-set",
    "edc-orlando-2025:d1:kineticfield:1726:porter-robinson-sunset-dj-set",
    "escape-halloween-2025:d2:the-big-top:0045:porter-robinson-dj-set"
@@ -54152,6 +55188,22 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pretty-lights",
+  "name": "PRETTY LIGHTS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:honda:2010:pretty-lights",
+   "acl-2024:d5:honda:2010:pretty-lights"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -54344,6 +55396,21 @@
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2019-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "promqueen",
+  "name": "PROMQUEEN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:ihg-hotels-and-resorts:1205:promqueen"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -54685,6 +55752,8 @@
    "acl-2018:d6:austin-kiddie-limits:1430:q-brothers",
    "acl-2019:d2:austin-kiddie-limits:1230:q-brothers",
    "acl-2019:d3:austin-kiddie-limits:1700:q-brothers",
+   "acl-2024:d1:austin-kiddie-limits:1615:q-brothers",
+   "acl-2024:d4:austin-kiddie-limits:1615:q-brothers",
    "acl-2025:d1:austin-kiddie-limits:1700:q-brothers",
    "acl-2025:d4:austin-kiddie-limits:1700:q-brothers",
    "lollapalooza-2025:d3:kidzapalooza:1715:q-brothers",
@@ -54865,6 +55934,22 @@
   ],
   "firstSeen": "2017-09-16",
   "lastSeen": "2017-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "qveen-herby",
+  "name": "QVEEN HERBY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:ihg-hotels-and-resorts:1945:qveen-herby",
+   "acl-2024:d6:ihg-hotels-and-resorts:1945:qveen-herby"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -56045,9 +57130,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d5:miller-lite:1710:remi-wolf",
    "lollapalooza-2025:d4:bud-light:1700:remi-wolf"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2024-10-12",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -56101,6 +57187,22 @@
   ],
   "firstSeen": "2017-11-10",
   "lastSeen": "2017-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "renee-rapp",
+  "name": "RENEÉ RAPP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:t-mobile:1920:renee-rapp",
+   "acl-2024:d5:t-mobile:1920:renee-rapp"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -56257,6 +57359,21 @@
   ],
   "firstSeen": "2025-05-17",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rett-madison",
+  "name": "RETT MADISON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:bmi:1710:rett-madison"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -56534,6 +57651,37 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2022-05-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "richy-mitch-and-the-coal-miners",
+  "name": "RICHY MITCH & THE COAL MINERS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:honda:1255:richy-mitch-and-the-coal-miners",
+   "acl-2024:d6:honda:1255:richy-mitch-and-the-coal-miners"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rickshaw-billie-s-burger-patrol",
+  "name": "RICKSHAW BILLIE'S BURGER PATROL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:ihg-hotels-and-resorts:1230:rickshaw-billie-s-burger-patrol"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -57696,10 +58844,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d4:miller-lite:1710:royel-otis",
    "governors-ball-2025:d3:govballnyc:1645:royel-otis",
    "lollapalooza-2025:d1:lakeshore:2000:royel-otis"
   ],
-  "firstSeen": "2025-06-08",
+  "firstSeen": "2024-10-11",
   "lastSeen": "2025-07-31",
   "photo": null,
   "links": []
@@ -58852,6 +60001,8 @@
    "edc-orlando-2026:ecu30",
    "acl-2018:d2:tito-s-handmade-vodka:1830:san-holo",
    "acl-2018:d5:tito-s-handmade-vodka:1830:san-holo",
+   "acl-2024:d3:tito-s-handmade-vodka:1800:san-holo",
+   "acl-2024:d6:tito-s-handmade-vodka:1800:san-holo",
    "edc-las-vegas-2022:d2:corona-stage:0200:san-holo",
    "edc-las-vegas-2022:d3:cosmic-meadow:2305:san-holo",
    "edc-orlando-2019:d2:kineticfield:1916:san-holo",
@@ -58898,6 +60049,21 @@
   ],
   "firstSeen": "2017-10-06",
   "lastSeen": "2017-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "santigold",
+  "name": "SANTIGOLD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:tito-s-handmade-vodka:1830:santigold"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -59139,10 +60305,12 @@
    "acl-2018:d2:austin-kiddie-limits:1630:saulpaul",
    "acl-2018:d6:austin-kiddie-limits:1630:saulpaul",
    "acl-2022:d2:austin-kiddie-limits:1645:saulpaul",
-   "acl-2022:d3:austin-kiddie-limits:1430:saulpaul"
+   "acl-2022:d3:austin-kiddie-limits:1430:saulpaul",
+   "acl-2024:d3:austin-kiddie-limits:1530:saulpaul",
+   "acl-2024:d6:austin-kiddie-limits:1530:saulpaul"
   ],
   "firstSeen": "2018-10-06",
-  "lastSeen": "2022-10-09",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -59180,15 +60348,34 @@
  {
   "key": "sawyer-hill",
   "name": "Sawyer Hill",
+  "aliases": [
+   "SAWYER HILL"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "outside-lands-2026:os23",
+   "acl-2024:d2:bmi:1325:sawyer-hill"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2026-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "say-she-she",
+  "name": "SAY SHE SHE",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "outside-lands-2026:os23"
+   "acl-2024:d2:miller-lite:1510:say-she-she",
+   "acl-2024:d5:miller-lite:1510:say-she-she"
   ],
-  "firstSeen": "2026-08-07",
-  "lastSeen": "2026-08-07",
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -59351,6 +60538,10 @@
    "acl-2022:d3:austin-kiddie-limits:1230:school-of-rock",
    "acl-2022:d4:austin-kiddie-limits:1230:school-of-rock",
    "acl-2022:d6:austin-kiddie-limits:1430:school-of-rock",
+   "acl-2024:d1:austin-kiddie-limits:1430:school-of-rock",
+   "acl-2024:d3:austin-kiddie-limits:1245:school-of-rock",
+   "acl-2024:d4:austin-kiddie-limits:1245:school-of-rock",
+   "acl-2024:d6:austin-kiddie-limits:1415:school-of-rock",
    "acl-2025:d1:austin-kiddie-limits:1500:school-of-rock",
    "acl-2025:d3:austin-kiddie-limits:1315:school-of-rock",
    "acl-2025:d4:austin-kiddie-limits:1330:school-of-rock",
@@ -60647,6 +61838,21 @@
   "links": []
  },
  {
+  "key": "shxwnfresh",
+  "name": "SHXWNFRESH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:tito-s-handmade-vodka:1235:shxwnfresh"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shy-fx",
   "name": "Shy FX",
   "aliases": [],
@@ -61317,6 +62523,22 @@
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sir-chloe",
+  "name": "SIR CHLOE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:t-mobile:1400:sir-chloe",
+   "acl-2024:d4:t-mobile:1400:sir-chloe"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -62620,6 +63842,21 @@
   "links": []
  },
  {
+  "key": "something-corporate",
+  "name": "SOMETHING CORPORATE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:honda:1410:something-corporate"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "somna",
   "name": "Somna",
   "aliases": [
@@ -63416,6 +64653,22 @@
   "links": []
  },
  {
+  "key": "spinall",
+  "name": "SPINALL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:ihg-hotels-and-resorts:1520:spinall",
+   "acl-2024:d5:ihg-hotels-and-resorts:1520:spinall"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "spinorita",
   "name": "Spiñorita",
   "aliases": [],
@@ -63597,10 +64850,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2016:d1:miller-lite:1700:st-lucia"
+   "acl-2016:d1:miller-lite:1700:st-lucia",
+   "acl-2024:d4:ihg-hotels-and-resorts:1730:st-lucia"
   ],
   "firstSeen": "2016-09-30",
-  "lastSeen": "2016-09-30",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -63971,6 +65225,21 @@
   "links": []
  },
  {
+  "key": "stephen-sanchez",
+  "name": "STEPHEN SANCHEZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:t-mobile:1730:stephen-sanchez"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stereotype",
   "name": "STEREOTYPE",
   "aliases": [],
@@ -64133,6 +65402,7 @@
   "billings": [
    "acl-2019:d3:miller-lite:1315:still-woozy",
    "acl-2019:d6:miller-lite:1315:still-woozy",
+   "acl-2024:d2:miller-lite:1710:still-woozy",
    "lollapalooza-2025:d4:lakeshore:1945:still-woozy"
   ],
   "firstSeen": "2019-10-06",
@@ -64354,16 +65624,20 @@
  {
   "key": "sturgill-simpson",
   "name": "Sturgill Simpson",
-  "aliases": [],
+  "aliases": [
+   "STURGILL SIMPSON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2015:d2:honda:1620:sturgill-simpson",
-   "acl-2015:d5:honda:1620:sturgill-simpson"
+   "acl-2015:d5:honda:1620:sturgill-simpson",
+   "acl-2024:d3:honda:2040:sturgill-simpson",
+   "acl-2024:d6:honda:2040:sturgill-simpson"
   ],
   "firstSeen": "2015-10-03",
-  "lastSeen": "2015-10-10",
+  "lastSeen": "2024-10-13",
   "photo": null,
   "links": []
  },
@@ -65694,9 +66968,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d1:bmi:1510:tanner-adell",
    "lollapalooza-2025:d2:t-mobile:1315:tanner-adell"
   ],
-  "firstSeen": "2025-08-01",
+  "firstSeen": "2024-10-04",
   "lastSeen": "2025-08-01",
   "photo": null,
   "links": []
@@ -66070,6 +67345,22 @@
   "links": []
  },
  {
+  "key": "teddy-swims",
+  "name": "TEDDY SWIMS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:honda:1610:teddy-swims",
+   "acl-2024:d5:honda:1610:teddy-swims"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "teezo-touchdown",
   "name": "TEEZO TOUCHDOWN",
   "aliases": [],
@@ -66126,6 +67417,21 @@
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2024-05-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "telescreens",
+  "name": "TELESCREENS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:bmi:1510:telescreens"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
@@ -66412,6 +67718,22 @@
   "links": []
  },
  {
+  "key": "that-mexican-ot",
+  "name": "THAT MEXICAN OT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:t-mobile:1745:that-mexican-ot",
+   "acl-2024:d6:t-mobile:1745:that-mexican-ot"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-4411",
   "name": "The 4411",
   "aliases": [],
@@ -66683,10 +68005,12 @@
    "acl-2019:d1:austin-kiddie-limits:1230:the-barton-hills-choir",
    "acl-2019:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
    "acl-2022:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
-   "acl-2022:d5:austin-kiddie-limits:1130:the-barton-hills-choir"
+   "acl-2022:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
+   "acl-2024:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
+   "acl-2024:d5:austin-kiddie-limits:1130:the-barton-hills-choir"
   ],
   "firstSeen": "2014-10-03",
-  "lastSeen": "2022-10-15",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -66701,6 +68025,8 @@
   "projects": [],
   "billings": [
    "acl-2019:d4:american-express:1230:the-beaches",
+   "acl-2024:d2:t-mobile:1520:the-beaches",
+   "acl-2024:d5:t-mobile:1520:the-beaches",
    "governors-ball-2025:d1:the-grove:1700:the-beaches"
   ],
   "firstSeen": "2019-10-11",
@@ -67010,10 +68336,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d2:honda:1240:the-criticals",
    "lollapalooza-2025:d4:the-grove:1250:the-criticals",
    "lollapalooza-2025:d4:toyota-music-den:1600:the-criticals"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -67111,10 +68438,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d6:bmi:1725:the-droptines",
    "lollapalooza-2025:d1:the-grove:1250:the-droptines",
    "lollapalooza-2025:d4:toyota-music-den:1400:the-droptines"
   ],
-  "firstSeen": "2025-07-31",
+  "firstSeen": "2024-10-13",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -67474,12 +68802,15 @@
  {
   "key": "the-huston-tillotson-university-jazz-collective",
   "name": "THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE",
-  "aliases": [],
+  "aliases": [
+   "THE HUSTON - TILLOTSON UNIVERSITY JAZZ COLLECTIVE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2022:d4:tito-s-handmade-vodka:1330:the-huston-tillotson-university-jazz-collective",
+   "acl-2024:d4:tito-s-handmade-vodka:1315:the-huston-tillotson-university-jazz-collective",
    "acl-2025:d6:tito-s-handmade-vodka:1330:the-huston-tillotson-university-jazz-collective"
   ],
   "firstSeen": "2022-10-14",
@@ -67733,17 +69064,20 @@
  {
   "key": "the-levites",
   "name": "The Levites",
-  "aliases": [],
+  "aliases": [
+   "THE LEVITES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2014:d2:sculpture:1215:the-levites",
    "acl-2015:d2:tito-s-handmade-vodka:1245:the-levites",
-   "acl-2015:d5:tito-s-handmade-vodka:1245:the-levites"
+   "acl-2015:d5:tito-s-handmade-vodka:1245:the-levites",
+   "acl-2024:d3:tito-s-handmade-vodka:1215:the-levites"
   ],
   "firstSeen": "2014-10-04",
-  "lastSeen": "2015-10-10",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -67870,9 +69204,9 @@
  },
  {
   "key": "the-marias",
-  "name": "THE MARIAS",
+  "name": "THE MARÍAS",
   "aliases": [
-   "THE MARÍAS"
+   "THE MARIAS"
   ],
   "kind": "performer",
   "parents": [],
@@ -67880,6 +69214,8 @@
   "billings": [
    "acl-2022:d3:barton-springs:1700:the-marias",
    "acl-2022:d6:barton-springs:1700:the-marias",
+   "acl-2024:d1:t-mobile:1930:the-marias",
+   "acl-2024:d4:t-mobile:1930:the-marias",
    "lollapalooza-2025:d4:bud-light:1900:the-marias"
   ],
   "firstSeen": "2022-10-09",
@@ -67974,14 +69310,17 @@
  {
   "key": "the-moriah-sisters",
   "name": "The Moriah Sisters",
-  "aliases": [],
+  "aliases": [
+   "THE MORIAH SISTERS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2026:au27"
+   "acl-2026:au27",
+   "acl-2024:d6:tito-s-handmade-vodka:1215:the-moriah-sisters"
   ],
-  "firstSeen": "2026-10-04",
+  "firstSeen": "2024-10-13",
   "lastSeen": "2026-10-04",
   "photo": null,
   "links": []
@@ -68208,6 +69547,21 @@
   "links": []
  },
  {
+  "key": "the-paper-kites",
+  "name": "THE PAPER KITES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:t-mobile:1730:the-paper-kites"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-past-lives",
   "name": "THE PAST LIVES",
   "aliases": [],
@@ -68382,6 +69736,21 @@
   "links": []
  },
  {
+  "key": "the-red-clay-strays",
+  "name": "THE RED CLAY STRAYS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d6:miller-lite:1945:the-red-clay-strays"
+  ],
+  "firstSeen": "2024-10-13",
+  "lastSeen": "2024-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-relatives",
   "name": "The Relatives",
   "aliases": [],
@@ -68521,6 +69890,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-saint-cecilia",
+  "name": "THE SAINT CECILIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d1:american-express:1315:the-saint-cecilia"
+  ],
+  "firstSeen": "2024-10-04",
+  "lastSeen": "2024-10-04",
   "photo": null,
   "links": []
  },
@@ -68843,6 +70227,21 @@
   "links": []
  },
  {
+  "key": "the-tiarras",
+  "name": "THE TIARRAS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d5:tito-s-handmade-vodka:1235:the-tiarras"
+  ],
+  "firstSeen": "2024-10-12",
+  "lastSeen": "2024-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-ventures",
   "name": "THE VENTURES",
   "aliases": [],
@@ -69098,6 +70497,36 @@
   ],
   "firstSeen": "2026-06-06",
   "lastSeen": "2026-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "thee-sinseers",
+  "name": "THEE SINSEERS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:miller-lite:1510:thee-sinseers"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "theo-lawrence",
+  "name": "THEO LAWRENCE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:ihg-hotels-and-resorts:1400:theo-lawrence"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -71390,6 +72819,21 @@
   "links": []
  },
  {
+  "key": "tyler-halverson",
+  "name": "TYLER HALVERSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:bmi:1725:tyler-halverson"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tyler-hubbard",
   "name": "Tyler Hubbard",
   "aliases": [],
@@ -71412,10 +72856,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d3:american-express:2045:tyler-the-creator",
+   "acl-2024:d6:american-express:2045:tyler-the-creator",
    "governors-ball-2025:d1:govballnyc:2045:tyler-the-creator",
    "lollapalooza-2025:d1:t-mobile:2100:tyler-the-creator"
   ],
-  "firstSeen": "2025-06-06",
+  "firstSeen": "2024-10-06",
   "lastSeen": "2025-07-31",
   "photo": null,
   "links": []
@@ -71558,6 +73004,22 @@
   ],
   "firstSeen": "2015-10-04",
   "lastSeen": "2015-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "uncle-jumbo",
+  "name": "UNCLE JUMBO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:austin-kiddie-limits:1430:uncle-jumbo",
+   "acl-2024:d3:austin-kiddie-limits:1615:uncle-jumbo"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -71801,14 +73263,18 @@
  {
   "key": "valencia-grace",
   "name": "Valencia Grace",
-  "aliases": [],
+  "aliases": [
+   "VALENCIA GRACE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2026:lo89"
+   "lollapalooza-2026:lo89",
+   "acl-2024:d2:ihg-hotels-and-resorts:1335:valencia-grace",
+   "acl-2024:d5:ihg-hotels-and-resorts:1335:valencia-grace"
   ],
-  "firstSeen": "2026-07-31",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2026-07-31",
   "photo": null,
   "links": []
@@ -71960,6 +73426,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vanilla-is-black",
+  "name": "VANILLA IS BLACK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:bmi:1340:vanilla-is-black"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -72342,17 +73823,21 @@
  {
   "key": "vince-staples",
   "name": "Vince Staples",
-  "aliases": [],
+  "aliases": [
+   "VINCE STAPLES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2015:d2:austin-ventures:1430:vince-staples",
    "acl-2015:d5:austin-ventures:1430:vince-staples",
-   "acl-2018:d6:american-express:1800:vince-staples"
+   "acl-2018:d6:american-express:1800:vince-staples",
+   "acl-2024:d2:ihg-hotels-and-resorts:1920:vince-staples",
+   "acl-2024:d5:ihg-hotels-and-resorts:1920:vince-staples"
   ],
   "firstSeen": "2015-10-03",
-  "lastSeen": "2018-10-14",
+  "lastSeen": "2024-10-12",
   "photo": null,
   "links": []
  },
@@ -72642,6 +74127,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vlad-holiday",
+  "name": "VLAD HOLIDAY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:bmi:1525:vlad-holiday"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -73244,10 +74744,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "acl-2024:d2:ihg-hotels-and-resorts:1720:wave-to-earth",
+   "acl-2024:d5:ihg-hotels-and-resorts:1720:wave-to-earth",
    "governors-ball-2025:d2:the-grove:2045:wave-to-earth",
    "lollapalooza-2025:d4:tito-s-handmade-vodka:1600:wave-to-earth"
   ],
-  "firstSeen": "2025-06-07",
+  "firstSeen": "2024-10-05",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -73501,6 +75003,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2022-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "west-22nd",
+  "name": "WEST 22ND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d3:tito-s-handmade-vodka:1330:west-22nd"
+  ],
+  "firstSeen": "2024-10-06",
+  "lastSeen": "2024-10-06",
   "photo": null,
   "links": []
  },
@@ -73823,6 +75340,21 @@
   ],
   "firstSeen": "2026-09-07",
   "lastSeen": "2026-09-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "whookilledkenny",
+  "name": "WHOOKILLEDKENNY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d4:bmi:1710:whookilledkenny"
+  ],
+  "firstSeen": "2024-10-11",
+  "lastSeen": "2024-10-11",
   "photo": null,
   "links": []
  },
@@ -75595,6 +77127,21 @@
   ],
   "firstSeen": "2022-10-07",
   "lastSeen": "2022-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zach-person",
+  "name": "ZACH PERSON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "acl-2024:d2:tito-s-handmade-vodka:1405:zach-person"
+  ],
+  "firstSeen": "2024-10-05",
+  "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
  },
