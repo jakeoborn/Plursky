@@ -2418,6 +2418,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Error-toast duration gate — a share failure stays on screen long enough to read (f26)");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-error-toast-duration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Error-toast duration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-acl-w2-now.mjs"],
