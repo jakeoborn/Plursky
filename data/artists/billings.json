@@ -103291,6 +103291,5214 @@
   "mainStage": null
  },
  {
+  "id": "acl-2022:d1:honda:1300:asleep-at-the-wheel",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "ASLEEP AT THE WHEEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "asleep-at-the-wheel",
+    "role": "performer"
+   }
+  ],
+  "act": "asleep-at-the-wheel",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:honda:1430:kevin-morby",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "KEVIN MORBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-morby",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-morby",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:honda:1615:jazmine-sullivan",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:00",
+  "printed": "JAZMINE SULLIVAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jazmine-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "jazmine-sullivan",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:honda:1800:james-blake",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "JAMES BLAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:honda:2000:sza",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "20:00",
+  "end": null,
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:miller-lite:1345:nation-of-language",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "NATION OF LANGUAGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nation-of-language",
+    "role": "performer"
+   }
+  ],
+  "act": "nation-of-language",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:miller-lite:1515:gayle",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "GAYLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gayle",
+    "role": "performer"
+   }
+  ],
+  "act": "gayle",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:miller-lite:1700:arlo-parks",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "ARLO PARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlo-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "arlo-parks",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:miller-lite:1900:omar-apollo",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "OMAR APOLLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-apollo",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-apollo",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:bmi:1345:elijah-wolf",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BMI",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "ELIJAH WOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elijah-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "elijah-wolf",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:bmi:1515:lilyisthatyou",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "LILYISTHATYOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilyisthatyou",
+    "role": "performer"
+   }
+  ],
+  "act": "lilyisthatyou",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:bmi:1700:sarah-and-the-sundays",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "SARAH & THE SUNDAYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sarah-and-the-sundays",
+    "role": "performer"
+   }
+  ],
+  "act": "sarah-and-the-sundays",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:barton-springs:1345:cassandra-jenkins",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BARTON SPRINGS",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "CASSANDRA JENKINS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cassandra-jenkins",
+    "role": "performer"
+   }
+  ],
+  "act": "cassandra-jenkins",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:barton-springs:1515:gabriels",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BARTON SPRINGS",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "GABRIELS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabriels",
+    "role": "performer"
+   }
+  ],
+  "act": "gabriels",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:barton-springs:1700:l-imperatrice",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BARTON SPRINGS",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "L'IMPÉRATRICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l-imperatrice",
+    "role": "performer"
+   }
+  ],
+  "act": "l-imperatrice",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:barton-springs:1900:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "BARTON SPRINGS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "CARLY RAE JEPSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:tito-s-handmade-vodka:1330:thebrosfresh",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "THEBROSFRESH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thebrosfresh",
+    "role": "performer"
+   }
+  ],
+  "act": "thebrosfresh",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:tito-s-handmade-vodka:1430:cory-henry",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "CORY HENRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cory-henry",
+    "role": "performer"
+   }
+  ],
+  "act": "cory-henry",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:tito-s-handmade-vodka:1600:genesis-owusu",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "GENESIS OWUSU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genesis-owusu",
+    "role": "performer"
+   }
+  ],
+  "act": "genesis-owusu",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:tito-s-handmade-vodka:1800:big-gigantic",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "BIG GIGANTIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   }
+  ],
+  "act": "big-gigantic",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:austin-kiddie-limits:1230:elena-moon-park",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "ELENA MOON PARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elena-moon-park",
+    "role": "performer"
+   }
+  ],
+  "act": "elena-moon-park",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:austin-kiddie-limits:1430:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:austin-kiddie-limits:1630:qbrothers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "QBROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qbrothers",
+    "role": "performer"
+   }
+  ],
+  "act": "qbrothers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:t-mobile:1400:zai1k",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "ZAI1K",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zai1k",
+    "role": "performer"
+   }
+  ],
+  "act": "zai1k",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:t-mobile:1515:charlotte-cardin",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "CHARLOTTE CARDIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-cardin",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-cardin",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:t-mobile:1700:benee",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "BENEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benee",
+    "role": "performer"
+   }
+  ],
+  "act": "benee",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:t-mobile:1900:billy-strings",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BILLY STRINGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-strings",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-strings",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:american-express:1300:tamino",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "TAMINO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tamino",
+    "role": "performer"
+   }
+  ],
+  "act": "tamino",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:american-express:1430:noah-cyrus",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "NOAH CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noah-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "noah-cyrus",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:american-express:1600:zach-bryan",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "ZACH BRYAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zach-bryan",
+    "role": "performer"
+   }
+  ],
+  "act": "zach-bryan",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:american-express:1800:nathaniel-rateliff-and-the-night-sweats",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "NATHANIEL RATELIFF & THE NIGHT SWEATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathaniel-rateliff-and-the-night-sweats",
+    "role": "performer"
+   }
+  ],
+  "act": "nathaniel-rateliff-and-the-night-sweats",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d1:american-express:2000:the-chicks",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-07",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "THE CHICKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chicks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chicks",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:honda:1245:the-future-x",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "THE FUTURE X",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-future-x",
+    "role": "performer"
+   }
+  ],
+  "act": "the-future-x",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:honda:1415:adrian-quesada-s-boleros-psicodelicos",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "ADRIAN QUESADA'S BOLEROS PSICODÉLICOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adrian-quesada-s-boleros-psicodelicos",
+    "role": "performer"
+   }
+  ],
+  "act": "adrian-quesada-s-boleros-psicodelicos",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:honda:1615:conan-gray",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "CONAN GRAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conan-gray",
+    "role": "performer"
+   }
+  ],
+  "act": "conan-gray",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:honda:1815:big-boi",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "BIG BOI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-boi",
+    "role": "performer"
+   }
+  ],
+  "act": "big-boi",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:honda:2015:flume",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "FLUME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:miller-lite:1200:spill-tab",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "SPILL TAB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spill-tab",
+    "role": "performer"
+   }
+  ],
+  "act": "spill-tab",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:miller-lite:1330:slayyyter",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "SLAYYYTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slayyyter",
+    "role": "performer"
+   }
+  ],
+  "act": "slayyyter",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:miller-lite:1530:samia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "SAMIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samia",
+    "role": "performer"
+   }
+  ],
+  "act": "samia",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:miller-lite:1715:sofi-tukker",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "SOFI TUKKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:miller-lite:1915:diplo",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "DIPLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diplo",
+    "role": "performer"
+   }
+  ],
+  "act": "diplo",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:bmi:1200:katzu-oso",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "KATZU OSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katzu-oso",
+    "role": "performer"
+   }
+  ],
+  "act": "katzu-oso",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:bmi:1330:jessia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "JESSIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessia",
+    "role": "performer"
+   }
+  ],
+  "act": "jessia",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:bmi:1515:charlotte-sands",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "CHARLOTTE SANDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-sands",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-sands",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:bmi:1715:aly-and-aj",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BMI",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "ALY & AJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aly-and-aj",
+    "role": "performer"
+   }
+  ],
+  "act": "aly-and-aj",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:barton-springs:1200:mama-duke",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BARTON SPRINGS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "MAMA DUKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mama-duke",
+    "role": "performer"
+   }
+  ],
+  "act": "mama-duke",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:barton-springs:1330:lido-pimienta",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BARTON SPRINGS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "LIDO PIMIENTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lido-pimienta",
+    "role": "performer"
+   }
+  ],
+  "act": "lido-pimienta",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:barton-springs:1515:tyla-yaweh",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BARTON SPRINGS",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "TYLA YAWEH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla-yaweh",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla-yaweh",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:barton-springs:1715:dj-mel",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BARTON SPRINGS",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "DJ MEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mel",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mel",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:barton-springs:1915:tobe-nwigwe",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "BARTON SPRINGS",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "TOBE NWIGWE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobe-nwigwe",
+    "role": "performer"
+   }
+  ],
+  "act": "tobe-nwigwe",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:tito-s-handmade-vodka:1300:the-past-lives",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "THE PAST LIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-past-lives",
+    "role": "performer"
+   }
+  ],
+  "act": "the-past-lives",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:tito-s-handmade-vodka:1400:cimafunk",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "CIMAFUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cimafunk",
+    "role": "performer"
+   }
+  ],
+  "act": "cimafunk",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:tito-s-handmade-vodka:1500:omah-lay",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "OMAH LAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omah-lay",
+    "role": "performer"
+   }
+  ],
+  "act": "omah-lay",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:tito-s-handmade-vodka:1615:maude-latour",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "MAUDE LATOUR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maude-latour",
+    "role": "performer"
+   }
+  ],
+  "act": "maude-latour",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:tito-s-handmade-vodka:1815:purple-disco-machine",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "PURPLE DISCO MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-disco-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-disco-machine",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:austin-kiddie-limits:1300:elena-moon-park",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "ELENA MOON PARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elena-moon-park",
+    "role": "performer"
+   }
+  ],
+  "act": "elena-moon-park",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:austin-kiddie-limits:1445:123-andres",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:45",
+  "end": "15:15",
+  "printed": "123 ANDRÉS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "123-andres",
+    "role": "performer"
+   }
+  ],
+  "act": "123-andres",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:austin-kiddie-limits:1645:saulpaul",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:45",
+  "end": "17:15",
+  "printed": "SAULPAUL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saulpaul",
+    "role": "performer"
+   }
+  ],
+  "act": "saulpaul",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:t-mobile:1200:walt-disco",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "WALT DISCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walt-disco",
+    "role": "performer"
+   }
+  ],
+  "act": "walt-disco",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:t-mobile:1320:the-aquadolls",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "13:20",
+  "end": "14:05",
+  "printed": "THE AQUADOLLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-aquadolls",
+    "role": "performer"
+   }
+  ],
+  "act": "the-aquadolls",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:t-mobile:1505:role-model",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "15:05",
+  "end": "16:05",
+  "printed": "ROLE MODEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "role-model",
+    "role": "performer"
+   }
+  ],
+  "act": "role-model",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:t-mobile:1705:manchester-orchestra",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "17:05",
+  "end": "18:05",
+  "printed": "MANCHESTER ORCHESTRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manchester-orchestra",
+    "role": "performer"
+   }
+  ],
+  "act": "manchester-orchestra",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:t-mobile:1915:the-war-on-drugs",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "THE WAR ON DRUGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-war-on-drugs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-war-on-drugs",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:american-express:1245:the-ventures",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:45",
+  "end": "13:20",
+  "printed": "THE VENTURES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-ventures",
+    "role": "performer"
+   }
+  ],
+  "act": "the-ventures",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:american-express:1405:the-midnight",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:05",
+  "end": "15:05",
+  "printed": "THE MIDNIGHT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-midnight",
+    "role": "performer"
+   }
+  ],
+  "act": "the-midnight",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:american-express:1605:wallows",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:05",
+  "end": "17:05",
+  "printed": "WALLOWS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:american-express:1805:lil-nas-x",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:05",
+  "end": "19:15",
+  "printed": "LIL NAS X",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-nas-x",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-nas-x",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d2:american-express:2030:p-nk",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-08",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "P!NK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p-nk",
+    "role": "performer"
+   }
+  ],
+  "act": "p-nk",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:honda:1230:taipei-houston",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "TAIPEI HOUSTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taipei-houston",
+    "role": "performer"
+   }
+  ],
+  "act": "taipei-houston",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:honda:1400:larry-june",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "LARRY JUNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "larry-june",
+    "role": "performer"
+   }
+  ],
+  "act": "larry-june",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:honda:1600:spoon",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SPOON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spoon",
+    "role": "performer"
+   }
+  ],
+  "act": "spoon",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:honda:1800:6lack",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "6LACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "6lack",
+    "role": "performer"
+   }
+  ],
+  "act": "6lack",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:honda:2015:kacey-musgraves",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "KACEY MUSGRAVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kacey-musgraves",
+    "role": "performer"
+   }
+  ],
+  "act": "kacey-musgraves",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:miller-lite:1145:happie-hoffman",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "HAPPIE HOFFMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "happie-hoffman",
+    "role": "performer"
+   }
+  ],
+  "act": "happie-hoffman",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:miller-lite:1315:jake-wesley-rogers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "JAKE WESLEY ROGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jake-wesley-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "jake-wesley-rogers",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:miller-lite:1515:bia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "BIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bia",
+    "role": "performer"
+   }
+  ],
+  "act": "bia",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:miller-lite:1700:big-wild",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "BIG WILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-wild",
+    "role": "performer"
+   }
+  ],
+  "act": "big-wild",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:miller-lite:1900:zhu",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "ZHU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "performer"
+   }
+  ],
+  "act": "zhu",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:bmi:1145:chicocurlyhead",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BMI",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "CHICOCURLYHEAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicocurlyhead",
+    "role": "performer"
+   }
+  ],
+  "act": "chicocurlyhead",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:bmi:1315:darkbird",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "DARKBIRD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darkbird",
+    "role": "performer"
+   }
+  ],
+  "act": "darkbird",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:bmi:1500:isaac-dunbar",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "ISAAC DUNBAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaac-dunbar",
+    "role": "performer"
+   }
+  ],
+  "act": "isaac-dunbar",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:bmi:1700:eric-tessmer",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "ERIC TESSMER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eric-tessmer",
+    "role": "performer"
+   }
+  ],
+  "act": "eric-tessmer",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:barton-springs:1145:luna-luna",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BARTON SPRINGS",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "LUNA LUNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luna-luna",
+    "role": "performer"
+   }
+  ],
+  "act": "luna-luna",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:barton-springs:1315:caleb-de-casper",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BARTON SPRINGS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "CALEB DE CASPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caleb-de-casper",
+    "role": "performer"
+   }
+  ],
+  "act": "caleb-de-casper",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:barton-springs:1500:muna",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BARTON SPRINGS",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "MUNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muna",
+    "role": "performer"
+   }
+  ],
+  "act": "muna",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:barton-springs:1700:the-marias",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BARTON SPRINGS",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "THE MARIAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:barton-springs:1900:goose",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "BARTON SPRINGS",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "GOOSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goose",
+    "role": "performer"
+   }
+  ],
+  "act": "goose",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1145:wesley-bray-and-the-disciples-of-joy",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "WESLEY BRAY AND THE DISCIPLES OF JOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wesley-bray-and-the-disciples-of-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "wesley-bray-and-the-disciples-of-joy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1245:primo-the-alien",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "PRIMO THE ALIEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "primo-the-alien",
+    "role": "performer"
+   }
+  ],
+  "act": "primo-the-alien",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1345:buffalo-nichols",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "BUFFALO NICHOLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buffalo-nichols",
+    "role": "performer"
+   }
+  ],
+  "act": "buffalo-nichols",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1445:claire-rosinkranz",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "CLAIRE ROSINKRANZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claire-rosinkranz",
+    "role": "performer"
+   }
+  ],
+  "act": "claire-rosinkranz",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1600:magdalena-bay",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MAGDALENA BAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magdalena-bay",
+    "role": "performer"
+   }
+  ],
+  "act": "magdalena-bay",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:tito-s-handmade-vodka:1800:robert-glasper",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ROBERT GLASPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robert-glasper",
+    "role": "performer"
+   }
+  ],
+  "act": "robert-glasper",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:austin-kiddie-limits:1230:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:austin-kiddie-limits:1430:saulpaul",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "SAULPAUL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saulpaul",
+    "role": "performer"
+   }
+  ],
+  "act": "saulpaul",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:austin-kiddie-limits:1630:123-andres",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "123 ANDRÉS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "123-andres",
+    "role": "performer"
+   }
+  ],
+  "act": "123-andres",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:t-mobile:1145:danielle-ponder",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "DANIELLE PONDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danielle-ponder",
+    "role": "performer"
+   }
+  ],
+  "act": "danielle-ponder",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:t-mobile:1315:dehd",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "DEHD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dehd",
+    "role": "performer"
+   }
+  ],
+  "act": "dehd",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:t-mobile:1500:pinkpantheress",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "PINKPANTHERESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinkpantheress",
+    "role": "performer"
+   }
+  ],
+  "act": "pinkpantheress",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:t-mobile:1700:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "JAPANESE BREAKFAST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:t-mobile:1900:marcus-mumford",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MARCUS MUMFORD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marcus-mumford",
+    "role": "performer"
+   }
+  ],
+  "act": "marcus-mumford",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:american-express:1230:glove",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "GLOVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glove",
+    "role": "performer"
+   }
+  ],
+  "act": "glove",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:american-express:1400:goth-babe",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "GOTH BABE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goth-babe",
+    "role": "performer"
+   }
+  ],
+  "act": "goth-babe",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:american-express:1600:oliver-tree",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "OLIVER TREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-tree",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-tree",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:american-express:1800:paramore",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "PARAMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paramore",
+    "role": "performer"
+   }
+  ],
+  "act": "paramore",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d3:american-express:2000:red-hot-chili-peppers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-09",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "RED HOT CHILI PEPPERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "red-hot-chili-peppers",
+    "role": "performer"
+   }
+  ],
+  "act": "red-hot-chili-peppers",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:honda:1315:happie-hoffman",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "HAPPIE HOFFMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "happie-hoffman",
+    "role": "performer"
+   }
+  ],
+  "act": "happie-hoffman",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:honda:1430:wet-leg",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "WET LEG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wet-leg",
+    "role": "performer"
+   }
+  ],
+  "act": "wet-leg",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:honda:1615:jazmine-sullivan",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:00",
+  "printed": "JAZMINE SULLIVAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jazmine-sullivan",
+    "role": "performer"
+   }
+  ],
+  "act": "jazmine-sullivan",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:honda:1800:phoenix",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "PHOENIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoenix",
+    "role": "performer"
+   }
+  ],
+  "act": "phoenix",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:honda:2000:sza",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "20:00",
+  "end": null,
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:miller-lite:1400:blondshell",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "BLONDSHELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blondshell",
+    "role": "performer"
+   }
+  ],
+  "act": "blondshell",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:miller-lite:1515:vacations",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "VACATIONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vacations",
+    "role": "performer"
+   }
+  ],
+  "act": "vacations",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:miller-lite:1700:arlo-parks",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "ARLO PARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlo-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "arlo-parks",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:miller-lite:1900:omar-apollo",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "OMAR APOLLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-apollo",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-apollo",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:bmi:1345:early-james",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BMI",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "EARLY JAMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "early-james",
+    "role": "performer"
+   }
+  ],
+  "act": "early-james",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:bmi:1515:dro-kenji",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "DRO KENJI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dro-kenji",
+    "role": "performer"
+   }
+  ],
+  "act": "dro-kenji",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:bmi:1700:lily-rose",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "LILY ROSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lily-rose",
+    "role": "performer"
+   }
+  ],
+  "act": "lily-rose",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:barton-springs:1400:dcarr",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BARTON SPRINGS",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "DCARR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dcarr",
+    "role": "performer"
+   }
+  ],
+  "act": "dcarr",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:barton-springs:1515:glaive",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BARTON SPRINGS",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "GLAIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glaive",
+    "role": "performer"
+   }
+  ],
+  "act": "glaive",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:barton-springs:1700:l-imperatrice",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BARTON SPRINGS",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "L'IMPÉRATRICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l-imperatrice",
+    "role": "performer"
+   }
+  ],
+  "act": "l-imperatrice",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:barton-springs:1900:lucky-daye",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "BARTON SPRINGS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "LUCKY DAYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucky-daye",
+    "role": "performer"
+   }
+  ],
+  "act": "lucky-daye",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:tito-s-handmade-vodka:1330:the-huston-tillotson-university-jazz-collective",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-huston-tillotson-university-jazz-collective",
+    "role": "performer"
+   }
+  ],
+  "act": "the-huston-tillotson-university-jazz-collective",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:tito-s-handmade-vodka:1430:sarah-kinsley",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "SARAH KINSLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sarah-kinsley",
+    "role": "performer"
+   }
+  ],
+  "act": "sarah-kinsley",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:tito-s-handmade-vodka:1600:genesis-owusu",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "GENESIS OWUSU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genesis-owusu",
+    "role": "performer"
+   }
+  ],
+  "act": "genesis-owusu",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:tito-s-handmade-vodka:1800:purple-disco-machine",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "PURPLE DISCO MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-disco-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-disco-machine",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:austin-kiddie-limits:1230:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:austin-kiddie-limits:1430:qbrothers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "QBROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qbrothers",
+    "role": "performer"
+   }
+  ],
+  "act": "qbrothers",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:austin-kiddie-limits:1630:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "LUCY KALANTARI & THE JAZZ CATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:t-mobile:1400:bktherula",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "BKTHERULA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bktherula",
+    "role": "performer"
+   }
+  ],
+  "act": "bktherula",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:t-mobile:1530:teezo-touchdown",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "15:30",
+  "end": "16:00",
+  "printed": "TEEZO TOUCHDOWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teezo-touchdown",
+    "role": "performer"
+   }
+  ],
+  "act": "teezo-touchdown",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:t-mobile:1700:benee",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "BENEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benee",
+    "role": "performer"
+   }
+  ],
+  "act": "benee",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:t-mobile:1900:billy-strings",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BILLY STRINGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-strings",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-strings",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:american-express:1315:twen",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "TWEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twen",
+    "role": "performer"
+   }
+  ],
+  "act": "twen",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:american-express:1430:noah-cyrus",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "NOAH CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noah-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "noah-cyrus",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:american-express:1600:conan-gray",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "CONAN GRAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conan-gray",
+    "role": "performer"
+   }
+  ],
+  "act": "conan-gray",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:american-express:1800:nathaniel-rateliff-and-the-night-sweats",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "NATHANIEL RATELIFF & THE NIGHT SWEATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathaniel-rateliff-and-the-night-sweats",
+    "role": "performer"
+   }
+  ],
+  "act": "nathaniel-rateliff-and-the-night-sweats",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d4:american-express:2000:the-chicks",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-14",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "THE CHICKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chicks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chicks",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:honda:1245:como-las-movies",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "COMO LAS MOVIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "como-las-movies",
+    "role": "performer"
+   }
+  ],
+  "act": "como-las-movies",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:honda:1415:tai-verdes",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "TAI VERDES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tai-verdes",
+    "role": "performer"
+   }
+  ],
+  "act": "tai-verdes",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:honda:1615:boy-george-and-culture-club",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "BOY GEORGE & CULTURE CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boy-george-and-culture-club",
+    "role": "performer"
+   }
+  ],
+  "act": "boy-george-and-culture-club",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:honda:1815:death-cab-for-cutie",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "DEATH CAB FOR CUTIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "death-cab-for-cutie",
+    "role": "performer"
+   }
+  ],
+  "act": "death-cab-for-cutie",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:honda:2015:flume",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "FLUME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:miller-lite:1200:spill-tab",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "SPILL TAB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spill-tab",
+    "role": "performer"
+   }
+  ],
+  "act": "spill-tab",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:miller-lite:1330:neil-frances",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "NEIL FRANCES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neil-frances",
+    "role": "performer"
+   }
+  ],
+  "act": "neil-frances",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:miller-lite:1530:samia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "SAMIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samia",
+    "role": "performer"
+   }
+  ],
+  "act": "samia",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:miller-lite:1715:sofi-tukker",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "SOFI TUKKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:miller-lite:1915:diplo",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "DIPLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diplo",
+    "role": "performer"
+   }
+  ],
+  "act": "diplo",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:bmi:1200:izzy-heltai",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "IZZY HELTAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "izzy-heltai",
+    "role": "performer"
+   }
+  ],
+  "act": "izzy-heltai",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:bmi:1330:ben-reilly",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BMI",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "BEN REILLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-reilly",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-reilly",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:bmi:1515:sloppy-jane",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "SLOPPY JANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sloppy-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "sloppy-jane",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:bmi:1715:the-brummies",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BMI",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "THE BRUMMIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-brummies",
+    "role": "performer"
+   }
+  ],
+  "act": "the-brummies",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:barton-springs:1200:lesly-reynaga",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BARTON SPRINGS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "LESLY REYNAGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lesly-reynaga",
+    "role": "performer"
+   }
+  ],
+  "act": "lesly-reynaga",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:barton-springs:1330:lido-pimienta",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BARTON SPRINGS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "LIDO PIMIENTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lido-pimienta",
+    "role": "performer"
+   }
+  ],
+  "act": "lido-pimienta",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:barton-springs:1515:tyla-yaweh",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BARTON SPRINGS",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "TYLA YAWEH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla-yaweh",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla-yaweh",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:barton-springs:1715:sabrina-claudio",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BARTON SPRINGS",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "SABRINA CLAUDIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-claudio",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-claudio",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:barton-springs:1915:tobe-nwigwe",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "BARTON SPRINGS",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "TOBE NWIGWE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobe-nwigwe",
+    "role": "performer"
+   }
+  ],
+  "act": "tobe-nwigwe",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1200:j-soulja",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "J SOULJA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-soulja",
+    "role": "performer"
+   }
+  ],
+  "act": "j-soulja",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1300:good-looks",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "GOOD LOOKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "good-looks",
+    "role": "performer"
+   }
+  ],
+  "act": "good-looks",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1400:southern-avenue",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "SOUTHERN AVENUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "southern-avenue",
+    "role": "performer"
+   }
+  ],
+  "act": "southern-avenue",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1500:josh-fudge",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "JOSH FUDGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josh-fudge",
+    "role": "performer"
+   }
+  ],
+  "act": "josh-fudge",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1615:disko-cowboy",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "DISKO COWBOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disko-cowboy",
+    "role": "performer"
+   }
+  ],
+  "act": "disko-cowboy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:tito-s-handmade-vodka:1815:big-gigantic",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "BIG GIGANTIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-gigantic",
+    "role": "performer"
+   }
+  ],
+  "act": "big-gigantic",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:austin-kiddie-limits:1300:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "LUCY KALANTARI & THE JAZZ CATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:austin-kiddie-limits:1445:joanie-leeds",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:45",
+  "end": "15:15",
+  "printed": "JOANIE LEEDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joanie-leeds",
+    "role": "performer"
+   }
+  ],
+  "act": "joanie-leeds",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:austin-kiddie-limits:1645:alphabet-rockers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:45",
+  "end": "17:15",
+  "printed": "ALPHABET ROCKERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alphabet-rockers",
+    "role": "performer"
+   }
+  ],
+  "act": "alphabet-rockers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:t-mobile:1200:jake-lloyd",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "JAKE LLOYD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jake-lloyd",
+    "role": "performer"
+   }
+  ],
+  "act": "jake-lloyd",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:t-mobile:1330:ripe",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "RIPE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ripe",
+    "role": "performer"
+   }
+  ],
+  "act": "ripe",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:t-mobile:1515:princess-nokia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "PRINCESS NOKIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "princess-nokia",
+    "role": "performer"
+   }
+  ],
+  "act": "princess-nokia",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:t-mobile:1700:the-front-bottoms",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "THE FRONT BOTTOMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-front-bottoms",
+    "role": "performer"
+   }
+  ],
+  "act": "the-front-bottoms",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:t-mobile:1910:the-war-on-drugs",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "19:10",
+  "end": "20:25",
+  "printed": "THE WAR ON DRUGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-war-on-drugs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-war-on-drugs",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:american-express:1245:habibi",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "HABIBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "habibi",
+    "role": "performer"
+   }
+  ],
+  "act": "habibi",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:american-express:1415:the-midnight",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "THE MIDNIGHT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-midnight",
+    "role": "performer"
+   }
+  ],
+  "act": "the-midnight",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:american-express:1600:wallows",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "WALLOWS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:american-express:1805:lil-nas-x",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:05",
+  "end": "19:10",
+  "printed": "LIL NAS X",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-nas-x",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-nas-x",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d5:american-express:2025:p-nk",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-15",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:25",
+  "end": "22:00",
+  "printed": "P!NK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p-nk",
+    "role": "performer"
+   }
+  ],
+  "act": "p-nk",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:honda:1230:taipei-houston",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "TAIPEI HOUSTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taipei-houston",
+    "role": "performer"
+   }
+  ],
+  "act": "taipei-houston",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:honda:1400:larry-june",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "LARRY JUNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "larry-june",
+    "role": "performer"
+   }
+  ],
+  "act": "larry-june",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:honda:1600:spoon",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SPOON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spoon",
+    "role": "performer"
+   }
+  ],
+  "act": "spoon",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:honda:1800:james-blake",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "JAMES BLAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-blake",
+    "role": "performer"
+   }
+  ],
+  "act": "james-blake",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:honda:2015:kacey-musgraves",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "KACEY MUSGRAVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kacey-musgraves",
+    "role": "performer"
+   }
+  ],
+  "act": "kacey-musgraves",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:miller-lite:1145:flora-and-fawna",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "FLORA & FAWNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flora-and-fawna",
+    "role": "performer"
+   }
+  ],
+  "act": "flora-and-fawna",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:miller-lite:1315:jake-wesley-rogers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "JAKE WESLEY ROGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jake-wesley-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "jake-wesley-rogers",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:miller-lite:1515:bia",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "BIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bia",
+    "role": "performer"
+   }
+  ],
+  "act": "bia",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:miller-lite:1700:big-wild",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "BIG WILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-wild",
+    "role": "performer"
+   }
+  ],
+  "act": "big-wild",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:miller-lite:1900:zhu",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "ZHU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "performer"
+   }
+  ],
+  "act": "zhu",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:bmi:1145:siena-liggins",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BMI",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "SIENA LIGGINS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "siena-liggins",
+    "role": "performer"
+   }
+  ],
+  "act": "siena-liggins",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:bmi:1315:joshua-ray-walker",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BMI",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "JOSHUA RAY WALKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joshua-ray-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "joshua-ray-walker",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:bmi:1500:urban-heat",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BMI",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "URBAN HEAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "urban-heat",
+    "role": "performer"
+   }
+  ],
+  "act": "urban-heat",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:bmi:1700:jackson-dean",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "JACKSON DEAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackson-dean",
+    "role": "performer"
+   }
+  ],
+  "act": "jackson-dean",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:barton-springs:1145:pleasure-venom",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BARTON SPRINGS",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "PLEASURE VENOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pleasure-venom",
+    "role": "performer"
+   }
+  ],
+  "act": "pleasure-venom",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:barton-springs:1315:tom-odell",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BARTON SPRINGS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "TOM ODELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-odell",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-odell",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:barton-springs:1500:faye-webster",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BARTON SPRINGS",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "FAYE WEBSTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "faye-webster",
+    "role": "performer"
+   }
+  ],
+  "act": "faye-webster",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:barton-springs:1700:the-marias",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BARTON SPRINGS",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "THE MARIAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:barton-springs:1900:goose",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "BARTON SPRINGS",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "GOOSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goose",
+    "role": "performer"
+   }
+  ],
+  "act": "goose",
+  "closing": true,
+  "stageLineage": "acl:barton-springs",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1145:the-spiritualettes",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "THE SPIRITUALETTES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-spiritualettes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-spiritualettes",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1245:me-nd-adam",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "ME ND ADAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "me-nd-adam",
+    "role": "performer"
+   }
+  ],
+  "act": "me-nd-adam",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1345:buffalo-nichols",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "BUFFALO NICHOLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buffalo-nichols",
+    "role": "performer"
+   }
+  ],
+  "act": "buffalo-nichols",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1445:wilderado",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "WILDERADO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wilderado",
+    "role": "performer"
+   }
+  ],
+  "act": "wilderado",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1600:magdalena-bay",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MAGDALENA BAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "magdalena-bay",
+    "role": "performer"
+   }
+  ],
+  "act": "magdalena-bay",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:tito-s-handmade-vodka:1800:robert-glasper",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ROBERT GLASPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robert-glasper",
+    "role": "performer"
+   }
+  ],
+  "act": "robert-glasper",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:austin-kiddie-limits:1230:alphabet-rockers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "ALPHABET ROCKERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alphabet-rockers",
+    "role": "performer"
+   }
+  ],
+  "act": "alphabet-rockers",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:austin-kiddie-limits:1430:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:austin-kiddie-limits:1630:joanie-leeds",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "JOANIE LEEDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joanie-leeds",
+    "role": "performer"
+   }
+  ],
+  "act": "joanie-leeds",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:t-mobile:1145:danielle-ponder",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "DANIELLE PONDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danielle-ponder",
+    "role": "performer"
+   }
+  ],
+  "act": "danielle-ponder",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:t-mobile:1315:dehd",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "DEHD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dehd",
+    "role": "performer"
+   }
+  ],
+  "act": "dehd",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:t-mobile:1515:pinkpantheress",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "PINKPANTHERESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinkpantheress",
+    "role": "performer"
+   }
+  ],
+  "act": "pinkpantheress",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:t-mobile:1700:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "JAPANESE BREAKFAST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:t-mobile:1900:marcus-mumford",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MARCUS MUMFORD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marcus-mumford",
+    "role": "performer"
+   }
+  ],
+  "act": "marcus-mumford",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:american-express:1230:glove",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "GLOVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glove",
+    "role": "performer"
+   }
+  ],
+  "act": "glove",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:american-express:1400:yungblud",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "YUNGBLUD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yungblud",
+    "role": "performer"
+   }
+  ],
+  "act": "yungblud",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:american-express:1600:oliver-tree",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "OLIVER TREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-tree",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-tree",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:american-express:1800:paramore",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "PARAMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paramore",
+    "role": "performer"
+   }
+  ],
+  "act": "paramore",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2022:d6:american-express:2000:red-hot-chili-peppers",
+  "source": "edition",
+  "festivalId": "acl-2022",
+  "festivalBrand": "acl",
+  "year": 2022,
+  "date": "2022-10-16",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "RED HOT CHILI PEPPERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "red-hot-chili-peppers",
+    "role": "performer"
+   }
+  ],
+  "act": "red-hot-chili-peppers",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
   "id": "acl-2025:d1:t-mobile:1245:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2025",
