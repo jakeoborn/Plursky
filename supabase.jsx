@@ -102,6 +102,30 @@ create policy "anon insert reports" on crew_message_reports for insert
   with check (length(body_snapshot) <= 600 and reporter_pid <> sender_pid);
 -- No SELECT policy → anon clients cannot read other users' reports. Reports
 -- are accessed via the Supabase dashboard or a future admin view only.
+
+-- Paywall funnel events (SPEC-183 E1). Counts only: what was offered, on which
+-- surface, and what the person did. NO user id, NO device id, NO crew code,
+-- NO free text. Rows cannot be tied to a person or to each other.
+-- The client sends nothing until PAYWALL_EVENTS_ON is true (it ships false);
+-- turning it on also needs the privacy policy and App Privacy label updated.
+-- scripts/test-paywall-events.mjs checks the event list below against the
+-- client's PAYWALL_EVENT_NAMES, so the two can't drift.
+create table if not exists paywall_events (
+  id          bigint generated always as identity primary key,
+  event       text not null check (event in ('offer_shown','offer_accept','offer_decline','cancel_save')),
+  surface     text not null check (surface ~ '^[a-z0-9_]{1,40}$'),
+  product_id  text check (product_id is null or product_id ~ '^[a-z0-9_.]{1,80}$'),
+  offer_id    text check (offer_id is null or offer_id ~ '^[a-z0-9_.]{1,40}$'),
+  platform    text not null check (platform in ('ios','web')),
+  app_version text check (app_version is null or app_version ~ '^v[0-9]{1,5}$'),
+  created_at  timestamptz not null default now()
+);
+create index if not exists paywall_events_ts_idx on paywall_events (created_at desc);
+alter table paywall_events enable row level security;
+create policy "anon insert paywall events" on paywall_events
+  for insert to anon, authenticated with check (true);
+-- No SELECT, UPDATE or DELETE policy → clients can only append. Read the
+-- counts in the Supabase dashboard (SQL editor).
 ─────────────────────────────────────────────────────────────────── */
 
 const SUPABASE_URL  = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
@@ -110,6 +134,51 @@ const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 const _sb = (SUPABASE_URL && SUPABASE_ANON)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
   : null;
+
+// ── Paywall funnel events (SPEC-183 E1) ───────────────────────
+// OFF. Nothing is sent until this is true. Turning it on is Jake's call, and
+// it comes with a privacy-policy line and an App Privacy label update
+// ("Product Interaction", not linked to the user), because privacy.html
+// currently lists no interaction data. The table SQL is in the header above.
+const PAYWALL_EVENTS_ON = false;
+// Must equal the table's `event` check list (scripts/test-paywall-events.mjs).
+const PAYWALL_EVENT_NAMES = ["offer_shown", "offer_accept", "offer_decline", "cancel_save"];
+
+// "cloud backup" → "cloud_backup". Surfaces are our own feature labels; the
+// table only accepts [a-z0-9_]{1,40}, so anything else is dropped, not stored.
+function _paywallSlug(s) {
+  return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 40);
+}
+
+// Builds the row, or null when it must not be sent. Exposed for the gate.
+// Carries no user id, device id or free text by construction: only these
+// seven keys can leave.
+function _paywallEventRow(event, { surface, productId, offerId } = {}) {
+  if (!PAYWALL_EVENT_NAMES.includes(event)) return null;
+  const s = _paywallSlug(surface);
+  if (!s) return null;
+  const id = v => (typeof v === "string" && /^[a-z0-9_.]{1,80}$/.test(v) ? v : null);
+  const ver = typeof APP_VERSION === "string" && /^v\d{1,5}$/.test(APP_VERSION) ? APP_VERSION : null;
+  const offer = id(offerId);
+  return {
+    event, surface: s,
+    product_id: id(productId),
+    offer_id: offer && offer.length <= 40 ? offer : null,
+    platform: window.Capacitor?.isNativePlatform?.() ? "ios" : "web",
+    app_version: ver,
+  };
+}
+
+// Fire and forget. Never throws, never blocks longer than `waitMs` (callers
+// that reload right after, like a successful purchase, pass a short wait).
+async function logPaywallEvent(event, fields, waitMs = 0) {
+  if (!PAYWALL_EVENTS_ON || !_sb) return false;
+  const row = _paywallEventRow(event, fields);
+  if (!row) return false;
+  const send = Promise.resolve().then(() => _sb.from("paywall_events").insert(row)).then(r => !r?.error, () => false);
+  if (!waitMs) { send.catch(() => {}); return true; }
+  return Promise.race([send, new Promise(res => setTimeout(() => res(false), waitMs))]);
+}
 
 // ── Auth ──────────────────────────────────────────────────────
 // Sign in with Spotify via Supabase OAuth — requires Spotify enabled in
