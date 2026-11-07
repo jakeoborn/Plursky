@@ -6421,12 +6421,7 @@ function MemoriesScreen({ state, setState }) {
           // ARTIST was found, never who stamped the festival, so it cannot
           // stand in for this. Only "active-fallback" may later be corrected
           // automatically (_reconcileFestivalStamps).
-          // A past-edition scan stamps the edition its library scan matched
-          // (on site + in that edition's set hours); no live festival can
-          // claim a past capture time, so _reconcileFestivalStamps must leave
-          // it alone rather than flag it "no-claimant".
-          festivalStampSource: opts.ds?.config?.historical && matched.festivalId ? "past-edition"
-            : matched.festivalId ? "capture-time" : "active-fallback",
+          festivalStampSource: matched.festivalId ? "capture-time" : "active-fallback",
           parsedGps: meta?.lat != null && meta?.lng != null ? { lat: meta.lat, lng: meta.lng } : null,
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
@@ -6434,6 +6429,12 @@ function MemoriesScreen({ state, setState }) {
           _fingerprint: fp || null,
           _contentSha256: fileSha || null,
         };
+        // A past-edition scan stamps the edition its library scan matched
+        // (on site + in that edition's set hours). No live festival can claim
+        // a past capture time, so _reconcileFestivalStamps must leave it alone
+        // rather than flag it "no-claimant". Only a resolved edition qualifies:
+        // an unresolved one keeps "active-fallback" above.
+        if (opts.ds?.config?.historical && matched.festivalId) moment.festivalStampSource = "past-edition";
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];

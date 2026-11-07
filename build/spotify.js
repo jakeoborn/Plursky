@@ -9483,7 +9483,7 @@ function MemoriesScreen({
           heading: meta?.heading != null ? Math.round(meta.heading) : null,
           headingRef: meta?.headingRef || null,
           festivalId: matched.festivalId || window.FESTIVAL_CONFIG?.id || null,
-          festivalStampSource: opts.ds?.config?.historical && matched.festivalId ? "past-edition" : matched.festivalId ? "capture-time" : "active-fallback",
+          festivalStampSource: matched.festivalId ? "capture-time" : "active-fallback",
           parsedGps: meta?.lat != null && meta?.lng != null ? {
             lat: meta.lat,
             lng: meta.lng
@@ -9494,6 +9494,7 @@ function MemoriesScreen({
           _fingerprint: fp || null,
           _contentSha256: fileSha || null
         };
+        if (opts.ds?.config?.historical && matched.festivalId) moment.festivalStampSource = "past-edition";
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
         addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
