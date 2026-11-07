@@ -243,6 +243,15 @@ export function build({ memDir, sources }) {
     if (s.line && findSecrets(s.line).length) throw new Error(`state line "${s.name}" carries a credential value`);
   }
   const out = render(memories, state);
+  // Last gate over the complete rendered output (both files, every line incl.
+  // diagnostics): any credential pattern left fails the build, naming the
+  // file and line only.
+  for (const [f, t] of [["MEMORY.md", out.hot], ["MEMORY-ARCHIVE.md", out.archive]]) {
+    t.split("\n").forEach((l, i) => {
+      const kinds = findSecrets(l);
+      if (kinds.length) throw new Error(`${f} line ${i + 1} would carry a credential value (${kinds.join(", ")})`);
+    });
+  }
   const bytes = Buffer.byteLength(out.hot);
   if (bytes > LOAD_CAP) {
     throw new Error(`MEMORY.md would be ${bytes} B, over the ${LOAD_CAP} B load cap (the tail is silently dropped). Un-pin a memory or shorten a hook.`);
@@ -326,6 +335,14 @@ function selfTest() {
   let threw = ""; try { build({ memDir: dir, sources }); } catch (e) { threw = e.message; }
   check("a credential value in a hook fails the build, naming the file", /feedback_a\.md/.test(threw) && !/ghp_/.test(threw));
   w("feedback_a.md", fm("a", "rule A", "  pin: true\n"));
+  // A path no field check covers (the link's file name) still meets the
+  // whole-output scan, which names file + line and never the value.
+  const badName = "note-ghp_" + "n".repeat(30) + ".md";
+  w(badName, fm("n", "plain hook"));
+  threw = ""; try { build({ memDir: dir, sources }); } catch (e) { threw = e.message; }
+  check("a credential anywhere in the rendered output fails the build, naming file + line only",
+    /MEMORY-ARCHIVE\.md line \d+/.test(threw) && !/ghp_/.test(threw));
+  fs.unlinkSync(path.join(dir, badName));
   for (let i = 0; i < 70; i++) w(`feedback_big${i}.md`, fm(`big${i}`, "z ".repeat(190), "  pin: true\n"));
   threw = ""; try { build({ memDir: dir, sources }); } catch (e) { threw = e.message; }
   check("over the load cap fails the build", /load cap/.test(threw));

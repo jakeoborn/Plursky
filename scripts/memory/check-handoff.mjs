@@ -85,8 +85,14 @@ export function validateHandoff(text) {
     errors.push("first line must be `# … handoff — YYYY-MM-DD …`");
   }
   if (Buffer.byteLength(text) > MAX_BYTES) errors.push(`over ${MAX_BYTES} bytes: a handoff is pointers, not a log`);
-  const secrets = findSecrets(text);
-  if (secrets.length) errors.push(`contains a credential value (${secrets.join(", ")})`);
+  // Errors name a line number and a kind, never the line's text: a row that
+  // carries a credential would otherwise be printed back with it.
+  const lines = text.split("\n");
+  const lineOf = row => lines.indexOf(row) + 1;
+  lines.forEach((l, i) => {
+    const kinds = findSecrets(l);
+    if (kinds.length) errors.push(`line ${i + 1}: contains a credential value (${kinds.join(", ")})`);
+  });
 
   const secs = sectionsOf(text);
   const order = [...secs.keys()].filter(k => SECTIONS.includes(k));
@@ -108,7 +114,7 @@ export function validateHandoff(text) {
       if (/none open/i.test(r)) continue;
       const sha = r.match(SHA40);
       const pr = r.match(/(?:\b([\w.-]+\/[\w.-]+))?#(\d+)/);
-      if (!sha) errors.push(`Open heads row without a full 40-hex SHA: ${r.slice(0, 80)}`);
+      if (!sha) errors.push(`line ${lineOf(r)}: Open heads row without a full 40-hex SHA`);
       if (sha) prs.push({ pr: pr ? Number(pr[2]) : null, repo: pr?.[1] || null, sha: sha[0] });
     }
   }
@@ -118,7 +124,7 @@ export function validateHandoff(text) {
     if (!items.length) errors.push("Rulings needs bullet rows (write `- none this session — Claude, YYYY-MM-DD` if none)");
     for (const l of items) {
       if (/^\s*-\s+none\b/i.test(l)) continue;
-      if (!RULING_SOURCE.test(l)) errors.push(`ruling without who + date: ${l.trim().slice(0, 80)}`);
+      if (!RULING_SOURCE.test(l)) errors.push(`line ${lineOf(l)}: ruling without who + date`);
     }
   }
 
@@ -128,10 +134,14 @@ export function validateHandoff(text) {
   if (secs.has("Next") && !body("Next").some(l => /^\s*\d+\.\s+\S/.test(l))) {
     errors.push("Next needs numbered rows");
   }
-  return { ok: errors.length === 0, errors: errors.map(redact), prs };
+  return { ok: errors.length === 0, errors, prs };
 }
 
 // --live: every #PR row's head must equal the PR's current head on GitHub.
+// Every printed error goes through here: --live errors embed gh's error text,
+// which can carry a credential, so the value is redacted before printing.
+export function formatError(file, e) { return `  ✗ ${file}: ${redact(e)}`; }
+
 function liveErrors(prs) {
   const errs = [];
   for (const { pr, repo, sha } of prs) {
@@ -174,13 +184,17 @@ function selfTest() {
   // A credential in a row that also breaks another rule must not be quoted back.
   const tok = "ghp_" + "z".repeat(30);
   const leak = validateHandoff(good.replace("a".repeat(40), tok)).errors.join(" ");
-  if (leak.includes(tok) || !/redacted GitHub token/.test(leak)) { bad++; console.log("  ✗ an error quoting a row echoed the token it found"); }
+  if (leak.includes(tok) || leak.includes("feat/past-edition-scan") || !/line \d+: Open heads row/.test(leak)) {
+    bad++; console.log("  ✗ an error about a credential-bearing row quoted the row instead of naming its line");
+  }
+  const ghErr = formatError("h.md", "#401: cannot read GitHub (HTTP 401 Authorization: token " + tok + "), so the head is UNVERIFIED");
+  if (ghErr.includes(tok) || !/redacted GitHub token/.test(ghErr)) { bad++; console.log("  ✗ a --live gh error printed the credential it carried"); }
   const prs = validateHandoff(good).prs;
   const x = validateHandoff(good.replace("| #401 |", "| Dim-hour/Dim-Hour#5674 |")).prs[0];
   if (!(x && x.pr === 5674 && x.repo === "Dim-hour/Dim-Hour")) { bad++; console.log("  ✗ owner/repo#N row did not parse"); }
   if (!(prs.length === 1 && prs[0].pr === 401)) { bad++; console.log("  ✗ open-heads row did not parse to #401"); }
-  console.log(bad ? `✗ handoff format: ${bad} of ${cases.length + 3} self-test cases wrong`
-    : `  ✓ handoff format: ${cases.length + 3} self-test cases (sections, full SHAs, dated rulings, secrets, size)`);
+  console.log(bad ? `✗ handoff format: ${bad} of ${cases.length + 4} self-test cases wrong`
+    : `  ✓ handoff format: ${cases.length + 4} self-test cases (sections, full SHAs, dated rulings, secrets, size)`);
   return bad ? 1 : 0;
 }
 
@@ -192,6 +206,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   if (!file) { console.error("usage: check-handoff.mjs <file> [--live] | --template | --self-test"); process.exit(2); }
   const res = validateHandoff(fs.readFileSync(file, "utf8"));
   const errs = [...res.errors, ...(args.includes("--live") ? liveErrors(res.prs) : [])];
-  if (errs.length) { for (const e of errs) console.log(`  ✗ ${redact(e)}`); process.exit(1); }
+  if (errs.length) { for (const e of errs) console.log(formatError(file, e)); process.exit(1); }
   console.log(`  ✓ handoff ${file}: ${SECTIONS.length} sections, ${res.prs.length} full head(s)${args.includes("--live") ? ", heads match GitHub" : ""}`);
 }
