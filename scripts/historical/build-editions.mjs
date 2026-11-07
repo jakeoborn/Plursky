@@ -90,6 +90,8 @@ export function buildEdition(id, rows, ledger) {
   return {
     id, festivalId: ed.festivalId, name: ed.name, year: ed.year, timezone: ed.timezone, rolloverHour: ed.rolloverHour,
     completeness: sets.length ? "complete_schedule" : "lineup_only",
+    // A canceled edition keeps every row it printed and says why it never ran.
+    ...(ed.status && { status: ed.status, canceled: ed.canceled }),
     days, stages, artists, sets, provenance,
     // Dated notes the schedule needs to be read right (a cancelled day, a
     // weekend whose times the archive cannot confirm), each with its source.
@@ -100,9 +102,14 @@ export function buildEdition(id, rows, ledger) {
 // The library's table of contents: what the Past Festivals list needs to draw
 // every edition row without fetching every edition file. Generated, and
 // --check fails on drift like the editions themselves.
+// An edition that never ran (status "canceled") is not listed: its file and
+// rows are kept as evidence, but nothing the app or the artist registry reads
+// treats it as a festival that happened.
+export const listedEdition = e => e.status !== "canceled";
+
 export function editionIndex(editions) {
   return {
-    editions: editions.map(e => ({
+    editions: editions.filter(listedEdition).map(e => ({
       id: e.id, festivalId: e.festivalId, festivalName: e.name.replace(/\s+\d{4}$/, ""), name: e.name, year: e.year,
       timezone: e.timezone, completeness: e.completeness,
       days: e.days.map(d => ({ day: d.day, date: d.date, label: d.label })),

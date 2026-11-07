@@ -152,7 +152,8 @@ function _paywallSlug(s) {
 
 // Builds the row, or null when it must not be sent. Exposed for the gate.
 // Carries no user id, device id or free text by construction: only these
-// seven keys can leave.
+// six keys can leave (event, surface, product_id, offer_id, platform,
+// app_version).
 function _paywallEventRow(event, { surface, productId, offerId } = {}) {
   if (!PAYWALL_EVENT_NAMES.includes(event)) return null;
   const s = _paywallSlug(surface);
