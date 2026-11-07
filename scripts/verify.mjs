@@ -1509,6 +1509,28 @@ const REGISTRATION_TOL_M = 25;
             "verizon and snapchat agree with the official 2026 patron map " +
             "(snapchat N/S conflict settled 2026-10-18)",
     },
+    "edc-orlando-2026": {
+      excuses: ["unsourced", "blind"],
+      // Added 2026-11-04, when the official 2026 set times opened the
+      // festival (#262). This overrides the 2026-10-29 "no waiver" line for
+      // this festival only (ruled in the PR thread, 2026-11-04). All five
+      // anchors are poster reads off the official 2026 map (street-corner
+      // fit, rms 9.5 m), so they cannot be evidence. Esri Wayback was
+      // checked the same day: Tinker Field has only three captures
+      // (2021-01-28, 2023-02-06, 2024-04-26, State of Florida 7.6 cm), none
+      // during an EDC build, and the 2026 stages go up the week of the
+      // festival (Nov 6-8). No published imagery can measure them in time.
+      // While this stands, distance readouts and GPS auto-attend stay OFF,
+      // because both refuse poster anchors. Clears with a measured basis
+      // plus one independent anchor, from a post-festival capture or an
+      // on-site survey. Delete it then, or let it expire and gate the
+      // festival again.
+      expires: "2026-12-01",
+      note: "all 5 anchors are poster reads off the official 2026 map; no " +
+            "satellite capture shows an EDC Orlando build (Esri Wayback at " +
+            "Tinker Field: 2021-01-28, 2023-02-06, 2024-04-26 only). " +
+            "Distance readouts and GPS auto-attend stay off.",
+    },
   };
   const regProblems = [];
   const waived = new Set();
@@ -2290,6 +2312,100 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`weekend photo tagging failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+// Scan my weekend (v513): the photo-library scan asks only for festival
+// nights, keeps every act-time asset, and tags it exactly as the EXIF path
+// tags the same instant, with the library's GPS fix carried through.
+{
+  console.log("▸ Scan my weekend gate — night ranges, keep rules, same tags as EXIF");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-my-weekend.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan my weekend failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+// Scan diagnostic (build 39): read-only, allowlisted, size-capped export of
+// the moment store and every write, so a device can name the write that
+// collapsed a scan. Never repairs.
+{
+  console.log("▸ Scan diagnostic gate — before snapshot, read-only, allowlist, size cap");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-diagnostic.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan diagnostic failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Scan hours + confidence gate — set-time windows ±15 min, stage/off-venue GPS beats a saved guess, picker cancel");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-hours-confidence.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Scan hours + confidence failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Multi-pass scan gate — real app, 3 scans, limited→full, failed exports retried, hand choices + cloud restore survive");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-scan-multi-pass.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 420000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Multi-pass scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Shazam reasons failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Share-moment gate — poster first, 8 s prep cap, native sheet first, every failure has words");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-share-moment.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Share-moment failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Toast-over-modals gate — the share-failure toast is drawn above the open lightbox");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-toast-over-modals.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Toast-over-modals failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Error-toast duration gate — a share failure stays on screen long enough to read (f26)");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-error-toast-duration.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Error-toast duration failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 {
   console.log("▸ ACL W2 now-playing — real grid at real W2 times, W2 begins when its first day opens");
   try {
@@ -2326,6 +2442,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`spotify read-only gate failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b1. Apple Music signs in natively in the iPhone app ────────────────
+// Inside the app the MusicKit web sign-in can't post back to
+// capacitor://localhost, so the AppleMusicNative plugin supplies both tokens.
+// Every Apple Music call must carry the token the plugin returned, a restart
+// must recover it without a prompt, and the web path must stay as it was.
+{
+  console.log("▸ Apple Music native gate — native tokens on every call, silent restart, web unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-apple-music-native.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`apple music native gate failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
@@ -3304,6 +3437,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`historical editions failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Coverage census — occurred needs a post-event dated source; no assumed occurrence");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coverage-census.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

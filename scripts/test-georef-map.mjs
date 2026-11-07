@@ -169,7 +169,9 @@ caught([{ ...anchors[2], lng: anchors[2].lng + 0.012 }].every(a => miles(a) < co
   ok(/'\.\/edco-tinker-2026\.webp'/.test(readFileSync(join(ROOT, "sw.js"), "utf8")), "sw.js precaches the plate for offline");
   ok(M.sourcePage === "https://orlando.edc.com/guide/map/" && /^https:\/\/[^/]+\/.*\/edco_2026_[^/]*\.png$/.test(M.sourceUrl),
     `the source is the 2026 file the official Festival Map page shows (${M.sourcePage})`);
-  ok(entry && entry.available === false, "the festival stays gated until the official 2026 set times are out");
+  // Gated, or open only on an official, fully timed 2026 schedule (opened 2026-11-04, #262).
+  const acts = (loadRegistry(ROOT).DS[FID] || {}).artists || [];
+  ok(entry && (entry.available === false || (!!entry.config.scheduleSource?.official && !entry.config.setTimesProvisional && acts.length > 0 && acts.every(a => a.start && a.end))), "the festival stays gated until the official 2026 set times are out");
 
   caught(checkEdcoMap(M, { mapImage: M.placeholder }).ok, "the registry still shipping the placeholder once the plate is pinned");
   const unpinned = { ...clone(M), sourceUrl: null, sourceObservedAt: null, sourceSha256: null, sourceSize: null, crop: null, pad: null, source: "map-sources/no-such-map.png" };

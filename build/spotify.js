@@ -53,7 +53,7 @@ function SpotifyScreen({
     });
   }, [amConnected]);
   React.useEffect(() => {
-    if (APPLE_DEV_TOKEN && !amConnected) {
+    if (APPLE_DEV_TOKEN && !amConnected && !_amNative()) {
       _ensureMusicKitConfigured().catch(() => {});
     }
   }, []);
@@ -1859,6 +1859,9 @@ var _momentSyncTimer = null;
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
   try {
+    if (typeof _scanDiagLog === "function") _scanDiagLog("write", all, new Error().stack);
+  } catch {}
+  try {
     window.dispatchEvent(new CustomEvent("plursky-moments-change"));
   } catch {}
   try {
@@ -2178,6 +2181,40 @@ function _mediaFingerprintParts(fp) {
     size,
     basename
   };
+}
+function _fingerprintContentKey(fp) {
+  var m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
+async function _blobSha256Hex(blob) {
+  var subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  var d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  var step = 4 * 1048576;
+  for (var o = 0; o < a.size; o += step) {
+    var [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    var u = new Uint8Array(x),
+      v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (var i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    var stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch {
+    return false;
+  }
 }
 function _findArchivedVideoMomentForFingerprint(fp) {
   var cur = window.FESTIVAL_CONFIG?.id;
@@ -3325,6 +3362,10 @@ var _TAG_SOURCE_LABEL = {
     text: "📍 BETWEEN SETS",
     tone: "info"
   },
+  off_venue: {
+    text: "📍 AWAY FROM THE FESTIVAL",
+    tone: "info"
+  },
   "stage-neighbor": {
     text: "NEARBY SET · VERIFY",
     tone: "warn"
@@ -3352,6 +3393,14 @@ var _TAG_SOURCE_LABEL = {
   "archive-recovered": {
     text: "RECOVERED · ARCHIVE",
     tone: "ok"
+  },
+  photokit: {
+    text: "AUTO · PHOTO LIBRARY",
+    tone: "ok"
+  },
+  "photokit-night-only": {
+    text: "LIBRARY NIGHT · PICK A SET",
+    tone: "warn"
   },
   unknown: {
     text: "MARKED UNKNOWN",
@@ -3498,44 +3547,91 @@ function _blobToBase64(blob) {
     fr.readAsDataURL(blob);
   });
 }
-async function identifySongFromVideo(moment, onProgress) {
-  if (!moment?.photoId || moment.kind !== "video") return null;
-  var blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return null;
-  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
-    try {
-      onProgress?.("listening");
-      if (moment.nativePath && window.ShazamPlugin.identifyFile) {
-        onProgress?.("matching");
-        var _r = await window.ShazamPlugin.identifyFile({
-          path: moment.nativePath
-        });
-        if (_r?.matched && _r.title) return {
-          title: _r.title,
-          artist: _r.artist || "",
-          source: "video-shazam"
-        };
-        return null;
-      }
-      if (!window.ShazamPlugin.identifyBase64) return null;
-      var base64 = await _blobToBase64(blob);
-      var ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
-      onProgress?.("matching");
-      var r = await window.ShazamPlugin.identifyBase64({
-        data: base64,
-        ext
-      });
-      if (r?.matched && r.title) return {
-        title: r.title,
-        artist: r.artist || "",
-        source: "video-shazam"
-      };
-      return null;
-    } catch {
-      return null;
-    }
+var _SONG_FAIL_TEXT = {
+  "no-match": "No match — try a louder clip",
+  "missing-file": "This clip’s file isn’t on this phone",
+  "unavailable": "Song ID isn’t available here",
+  "no-audio": "This clip has no sound to match",
+  "audio-failed": "Couldn’t read this clip’s sound",
+  "service-error": "Shazam couldn’t be reached — try again",
+  "timeout": "Shazam took too long — try again",
+  "too-large": "This clip is too long to check here",
+  "recognizer-error": "Song ID hit an unexpected error — try again later"
+};
+var _SONG_NATIVE_REASON = {
+  "missing-file": "missing-file",
+  "no-audio": "no-audio",
+  "audio-failed": "audio-failed",
+  "service-error": "service-error",
+  "timeout": "timeout",
+  "no-match": "no-match",
+  "busy": "service-error",
+  "no-audio-track-or-reader": "no-audio",
+  "no-pcm-appended": "audio-failed",
+  "match-timeout": "timeout",
+  "did-not-find": "no-match",
+  "empty-match": "no-match"
+};
+var _SONG_BLOB_MAX_BYTES = 60 * 1024 * 1024;
+var _SONG_CALL_TIMEOUT_MS = 30000;
+function _songFail(reason) {
+  return {
+    matched: false,
+    reason: _SONG_FAIL_TEXT[reason] ? reason : "recognizer-error"
+  };
+}
+async function _songCall(run, rejectReason) {
+  var timer;
+  try {
+    var r = await Promise.race([Promise.resolve().then(run), new Promise(res => {
+      timer = setTimeout(() => res({
+        __timeout: true
+      }), _SONG_CALL_TIMEOUT_MS);
+    })]);
+    if (r?.__timeout) return _songFail("timeout");
+    if (r?.matched && r.title) return {
+      matched: true,
+      title: r.title,
+      artist: r.artist || "",
+      source: "video-shazam"
+    };
+    var code = r && typeof r === "object" && r.matched === false && r.debug && typeof r.debug.reason === "string" ? r.debug.reason : null;
+    return _songFail(code && Object.prototype.hasOwnProperty.call(_SONG_NATIVE_REASON, code) && _SONG_NATIVE_REASON[code] || "recognizer-error");
+  } catch (e) {
+    var msg = String(e?.message || e || "");
+    return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);
+  } finally {
+    clearTimeout(timer);
   }
-  return null;
+}
+async function identifySongFromVideo(moment, onProgress) {
+  if (!moment?.photoId || moment.kind !== "video") return _songFail("missing-file");
+  var SP = window.ShazamPlugin;
+  if (!(window.Capacitor?.isNativePlatform?.() && SP && (SP.identifyFile || SP.identifyBase64))) return _songFail("unavailable");
+  onProgress?.("listening");
+  if (moment.nativePath && SP.identifyFile) {
+    onProgress?.("matching");
+    var r = await _songCall(() => SP.identifyFile({
+      path: moment.nativePath
+    }), "missing-file");
+    if (r.reason !== "missing-file") return r;
+  }
+  if (!SP.identifyBase64) return _songFail("missing-file");
+  var blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob || !blob.size) return _songFail("missing-file");
+  if (blob.size > _SONG_BLOB_MAX_BYTES) return _songFail("too-large");
+  var base64;
+  try {
+    base64 = await _blobToBase64(blob);
+  } catch {
+    return _songFail("audio-failed");
+  }
+  var ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
+  onProgress?.("matching");
+  return _songCall(() => SP.identifyBase64({
+    data: base64,
+    ext
+  }), "audio-failed");
 }
 function _soleSlotForArtist(artistId) {
   if (!artistId) return null;
@@ -3675,6 +3771,7 @@ function MomentLightbox({
     x: 0
   });
   var [idState, setIdState] = React.useState("idle");
+  var [idFail, setIdFail] = React.useState(null);
   var [mismatch, setMismatch] = React.useState(null);
   var [recovery, setRecovery] = React.useState(null);
   var [sharing, setSharing] = React.useState(false);
@@ -3705,9 +3802,10 @@ function MomentLightbox({
   var runIdentify = async () => {
     setIdState("listening");
     var result = await identifySongFromVideo(m, p => setIdState(p));
-    if (!result) {
+    if (!result?.matched) {
+      setIdFail(result?.reason || "no-match");
       setIdState("fail");
-      setTimeout(() => setIdState("idle"), 2500);
+      setTimeout(() => setIdState("idle"), 4000);
       return;
     }
     setIdState("done");
@@ -3985,7 +4083,7 @@ function MomentLightbox({
     style: {
       display: "block"
     }
-  }, idState === "idle" ? "Shazam this video" : idState === "listening" ? "Listening to your video…" : idState === "matching" ? "Matching with Shazam…" : idState === "fail" ? "No match — try a louder clip" : "Identified"), React.createElement("span", {
+  }, idState === "idle" ? "Shazam this video" : idState === "listening" ? "Listening to your video…" : idState === "matching" ? "Matching with Shazam…" : idState === "fail" ? _SONG_FAIL_TEXT[idFail] || _SONG_FAIL_TEXT["no-match"] : "Identified"), React.createElement("span", {
     style: {
       display: "block",
       marginTop: 2,
@@ -4078,15 +4176,23 @@ function MomentLightbox({
       try {
         window.plurskyHaptic?.("LIGHT");
       } catch {}
-      await _shareMoment(m, {
+      var fcfg = _momentFestival(m).cfg || {};
+      var res = await _shareMoment(m, {
         artistName: artist?.name,
         songLabel: song?.song || null,
         stageColor: stage?.color,
         subLabel: [stage?.name, prettyTime].filter(Boolean).join(" · "),
         timeLabel: prettyTime,
-        festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name
-      }).catch(() => {});
+        festival: fcfg.shortName || fcfg.name
+      }).catch(() => ({
+        ok: false,
+        reason: "encode_fail"
+      }));
       setSharing(false);
+      var why = _shareMomentFailText(res);
+      if (why) window.plurskyToast?.(why, {
+        error: true
+      });
     },
     disabled: sharing,
     style: {
@@ -4438,46 +4544,6 @@ function _imgFromBlob(blob) {
     img.src = url;
   });
 }
-function _frameFromVideoBlob(blob) {
-  return new Promise(resolve => {
-    try {
-      var url = URL.createObjectURL(blob);
-      var v = document.createElement("video");
-      v.muted = true;
-      v.playsInline = true;
-      v.preload = "metadata";
-      v.src = url;
-      var fail = () => {
-        try {
-          URL.revokeObjectURL(url);
-        } catch {}
-        resolve(null);
-      };
-      v.onloadeddata = () => {
-        try {
-          v.currentTime = Math.min(0.1, (v.duration || 1) * 0.1);
-        } catch {
-          fail();
-        }
-      };
-      v.onseeked = () => {
-        try {
-          var c = document.createElement("canvas");
-          c.width = v.videoWidth || 1080;
-          c.height = v.videoHeight || 1920;
-          c.getContext("2d").drawImage(v, 0, 0);
-          URL.revokeObjectURL(url);
-          resolve(c);
-        } catch {
-          fail();
-        }
-      };
-      v.onerror = fail;
-    } catch {
-      resolve(null);
-    }
-  });
-}
 function _drawCover(ctx, src, dx, dy, dw, dh) {
   var sW = src.width || src.videoWidth,
     sH = src.height || src.videoHeight;
@@ -4498,23 +4564,89 @@ function _drawCover(ctx, src, dx, dy, dw, dh) {
   }
   ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
 }
-async function _shareMoment(moment, meta) {
-  var blob = await _getPhoto(moment.photoId).catch(() => null);
+var _SHARE_PREP_MS = 8000;
+async function _shareMomentSource(moment) {
+  if (moment.kind === "video") {
+    var frame = await _getPhoto(_posterKey(moment.id)).catch(() => null);
+    if (!frame) {
+      var clip = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      if (!clip) return {
+        reason: "no_photo"
+      };
+      frame = await _videoPosterBlob(clip);
+    }
+    if (!frame) return {
+      source: null
+    };
+    try {
+      var r = await _imgFromBlob(frame);
+      return {
+        source: r.img,
+        revoke: r.revoke
+      };
+    } catch {
+      return {
+        source: null
+      };
+    }
+  }
+  var blob = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
   if (!blob) return {
-    ok: false,
     reason: "no_photo"
   };
-  var source = null,
-    revoke = null;
-  if (moment.kind === "video") {
-    source = await _frameFromVideoBlob(blob);
-  } else {
-    try {
-      var r = await _imgFromBlob(blob);
-      source = r.img;
-      revoke = r.revoke;
-    } catch {}
+  try {
+    var _r = await _imgFromBlob(blob);
+    return {
+      source: _r.img,
+      revoke: _r.revoke
+    };
+  } catch {
+    return {
+      source: null
+    };
   }
+}
+async function _shareMoment(moment, meta, {
+  prepMs = _SHARE_PREP_MS
+} = {}) {
+  var fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
+  var timer = null;
+  var deadline = Date.now() + prepMs;
+  var timeout = new Promise(res => {
+    timer = setTimeout(() => res({
+      reason: "timeout"
+    }), prepMs);
+  });
+  var prep = _renderMomentShareCard(moment, meta).catch(() => ({
+    reason: "encode_fail"
+  }));
+  var ready = await Promise.race([prep, timeout]);
+  clearTimeout(timer);
+  if (!ready || ready.reason) return {
+    ok: false,
+    reason: ready && ready.reason || "encode_fail"
+  };
+  return _shareBlobAsImage(ready.png, {
+    filename: fname,
+    title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky",
+    deadline
+  });
+}
+function _shareMomentFailText(res) {
+  if (!res) return "Couldn't share this moment. Try again.";
+  if (res.ok) {
+    var native = !!window.Capacitor?.isNativePlatform?.();
+    return res.mode === "download" && native ? "Couldn't open the share sheet. Try again." : null;
+  }
+  if (res.reason === "no_photo") return "This moment's photo or clip isn't on this phone.";
+  if (res.reason === "timeout") return "The share card took too long to make. Try again.";
+  return "Couldn't make the share card. Try again.";
+}
+async function _renderMomentShareCard(moment, meta) {
+  var got = await _shareMomentSource(moment);
+  if (got.reason) return got;
+  var source = got.source,
+    revoke = got.revoke || null;
   try {
     await (document.fonts?.ready || Promise.resolve());
   } catch {}
@@ -4579,49 +4711,12 @@ async function _shareMoment(moment, meta) {
   ctx.font = '600 26px "Geist Mono", monospace';
   ctx.textAlign = "right";
   ctx.fillText((meta.festival || "").toUpperCase() + "  ·  PLURSKY.COM", W - 80, H - 72);
-  var fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
-  var out = await new Promise(res => cv.toBlob(res, "image/png", 0.92));
-  if (!out) return {
-    ok: false,
+  var png = await new Promise(res => cv.toBlob(res, "image/png", 0.92));
+  if (!png) return {
     reason: "encode_fail"
   };
-  var file = new File([out], fname, {
-    type: "image/png"
-  });
-  if (navigator.canShare?.({
-    files: [file]
-  }) && navigator.share) {
-    try {
-      await navigator.share({
-        files: [file],
-        title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky"
-      });
-      return {
-        ok: true,
-        mode: "share"
-      };
-    } catch (e) {
-      if (e?.name === "AbortError") return {
-        ok: true,
-        mode: "abort"
-      };
-    }
-  }
-  var url = URL.createObjectURL(out);
-  var link = document.createElement("a");
-  link.href = url;
-  link.download = fname;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  setTimeout(() => {
-    try {
-      URL.revokeObjectURL(url);
-    } catch {}
-  }, 1500);
   return {
-    ok: true,
-    mode: "download"
+    png
   };
 }
 function _LightboxThumb({
@@ -4880,7 +4975,7 @@ function MomentCard({
       fontWeight: 700,
       cursor: "pointer"
     }
-  }, "+ TAG A SET"), artist && moment.tagAmbiguous && onUpdate && !editing && React.createElement("button", {
+  }, "+ TAG A SET"), artist && (moment.tagAmbiguous || moment.tagSuggested) && onUpdate && !editing && React.createElement("button", {
     onClick: () => setEditing(true),
     className: "mono",
     title: "More than one set overlapped this time — tap to confirm or fix the tag",
@@ -6027,8 +6122,8 @@ async function _purgeAllMoments() {
 var _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOURCE_LABEL[k].tone === "warn"));
 function _momentNeedsReview(m) {
   if (!m || m.tagSource === "unknown") return false;
-  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
-  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+  if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
 }
 function _momentFestival(m) {
   var fid = m && m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;
@@ -6054,7 +6149,8 @@ function _retagPatch(choice) {
     tagSource: "manual",
     autoTagged: false,
     needsRetag: false,
-    tagAmbiguous: false
+    tagAmbiguous: false,
+    tagSuggested: false
   };
   if (!choice) return null;
   if (choice.unknown) return {
@@ -7464,13 +7560,20 @@ function MemoryReel({
       if (!hero) return;
       var a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
       var s = a ? STAGES.find(x => x.id === a.stage) : null;
-      await _shareMoment(hero, {
+      var res = await _shareMoment(hero, {
         artistName: a?.name,
         songLabel: hero.confirmedSong || null,
         stageColor: s?.color,
         subLabel: nightLabel,
         festival
-      }).catch(() => {});
+      }).catch(() => ({
+        ok: false,
+        reason: "encode_fail"
+      }));
+      var why = _shareMomentFailText(res);
+      if (why) window.plurskyToast?.(why, {
+        error: true
+      });
     },
     style: {
       marginTop: 24
@@ -9263,10 +9366,10 @@ function MemoriesScreen({
       return null;
     }
   };
-  var processImportedFiles = async files => {
+  var processImportedFiles = async (files, opts = {}) => {
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
-      return;
+      return [];
     }
     var results = [];
     setBatch({
@@ -9279,10 +9382,13 @@ function MemoriesScreen({
     var current = {
       ..._readMoments()
     };
-    var existingFingerprints = new Set();
+    var existingContent = new Map();
+    var addCandidate = (ck, m) => {
+      if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]);
+    };
     for (var moments of Object.values(current)) {
       for (var m of moments) {
-        if (m._fingerprint) existingFingerprints.add(m._fingerprint);
+        if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m);
       }
     }
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
@@ -9292,7 +9398,16 @@ function MemoriesScreen({
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        var ck = _fingerprintContentKey(fp);
+        var fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        var isDupe = false;
+        for (var cand of ck && existingContent.get(ck) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) {
+            isDupe = true;
+            break;
+          }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({
             name: f.name,
@@ -9307,8 +9422,12 @@ function MemoriesScreen({
           });
           return 1;
         }
-        var exif = await _parseExifMeta(f).catch(() => null);
-        var baseMeta = _metaFromFile(f, exif);
+        var pk = f.photoKitMeta || null;
+        var exif = pk ? null : await _parseExifMeta(f).catch(() => null);
+        var baseMeta = pk ? {
+          ...pk,
+          takenAtSource: "photokit"
+        } : _metaFromFile(f, exif);
         var recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         var meta = recovered?.meta || baseMeta;
         var matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : {
@@ -9320,7 +9439,7 @@ function MemoriesScreen({
         var hadExifDate = !!exif?.date;
         var hadFileTime = meta?.takenAtSource === "file-lastModified";
         var hadTrustedMeta = !!meta?.date && meta.takenAtSource !== "file-lastModified" && meta.takenAtSource !== "none";
-        var tagSource = recovered ? "archive-recovered" : matched.reason === "stage_time_proximity" ? "stage-neighbor" : matched.reason === "off_stage" ? "off_stage" : matched.artistId && hadExifDate ? "exif" : matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" : matched.artistId && hadTrustedMeta ? meta.takenAtSource : matched.artistId && hadFileTime ? "filetime" : matched.night && hadExifDate ? "exif-night-only" : matched.night && /^video-/.test(meta?.takenAtSource || "") ? "video-night-only" : matched.night && hadTrustedMeta ? `${meta.takenAtSource}-night-only` : matched.night && hadFileTime ? "filetime-night-only" : "fallback";
+        var tagSource = recovered ? "archive-recovered" : matched.reason === "stage_time_proximity" ? "stage-neighbor" : matched.reason === "off_stage" ? "off_stage" : matched.reason === "off_venue" ? "off_venue" : matched.artistId && hadExifDate ? "exif" : matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" : matched.artistId && hadTrustedMeta ? meta.takenAtSource : matched.artistId && hadFileTime ? "filetime" : matched.night && hadExifDate ? "exif-night-only" : matched.night && /^video-/.test(meta?.takenAtSource || "") ? "video-night-only" : matched.night && hadTrustedMeta ? `${meta.takenAtSource}-night-only` : matched.night && hadFileTime ? "filetime-night-only" : "fallback";
         var out = await _processMomentMedia(f);
         var id = `m_${Date.now()}_${i}_${Math.random().toString(36).slice(2, 6)}`;
         var photoId = `p_${id}`;
@@ -9353,6 +9472,9 @@ function MemoriesScreen({
           tagSource,
           nativePath: out.kind === "video" ? f.nativePath || null : null,
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          matchReason: matched.reason || null,
+          matchEvidence: matched.evidence || null,
+          tagSuggested: !!(matched.artistId && matched.suggested),
           anchorSource: matched.anchorSource || null,
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
@@ -9369,10 +9491,11 @@ function MemoriesScreen({
           location: matched.location || null,
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
-          _fingerprint: fp || null
+          _fingerprint: fp || null,
+          _contentSha256: fileSha || null
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({
           name: f.name,
@@ -9434,8 +9557,12 @@ function MemoriesScreen({
     } else if (failedResults.length) {
       window.plurskyToast?.(`Imported ${landed.length} · ${failedResults.length} failed`);
     }
-    if (landed.length) setReview(landed);
+    if (Array.isArray(opts.reviewAcc)) {
+      opts.reviewAcc.push(...landed);
+      if (opts.reviewAcc.length) setReview(opts.reviewAcc.slice());
+    } else if (landed.length) setReview(landed);
     setTimeout(() => setBatch(b => b && b.done === b.total ? null : b), 6000);
+    return settledResults;
   };
   var deleteMomentMedia = async moment => {
     var key = _mediaIdentity(moment);
@@ -9583,6 +9710,9 @@ function MemoriesScreen({
         unreadable
       };
     } catch (err) {
+      if (_pickerErrorIsCancel(err)) return {
+        status: "cancelled"
+      };
       console.warn('[memories] native pickMedia failed', err);
       return {
         status: "error",
@@ -9613,6 +9743,188 @@ function MemoriesScreen({
       status: res.status,
       detail: res.unreadable || res.error || null
     });
+  };
+  var [scan, setScan] = React.useState(null);
+  var [diagNote, setDiagNote] = React.useState(null);
+  var scanAvailable = !!(window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.PhotoScan?.scan && window.FESTIVAL_CONFIG?.dayDates);
+  var _scanExportFile = async (PS, asset, cfg) => {
+    var meta = _photoKitAssetMeta(asset, cfg);
+    if (!meta) return null;
+    try {
+      var ex = await PS.export({
+        id: asset.id
+      });
+      if (!ex?.path) return null;
+      var cap = window.Capacitor;
+      var src = cap.convertFileSrc ? cap.convertFileSrc(ex.path) : ex.path;
+      var blob = await fetch(src).then(r => r.blob());
+      if (!blob || !blob.size) return null;
+      var isVideo = asset.mediaType === "video";
+      var type = ex.mimeType || blob.type || (isVideo ? "video/quicktime" : "image/jpeg");
+      var file = new File([blob], ex.name || `scan-${Number(asset.createdMs)}.${isVideo ? "mov" : "jpg"}`, {
+        type,
+        lastModified: Number(asset.createdMs)
+      });
+      var tag = (k, v) => {
+        try {
+          Object.defineProperty(file, k, {
+            value: v
+          });
+        } catch {
+          file[k] = v;
+        }
+      };
+      tag("photoKitMeta", meta);
+      tag("_scanPath", ex.path);
+      if (isVideo) tag("nativePath", ex.path);
+      return file;
+    } catch (err) {
+      console.warn("[memories] scan export failed", err);
+      return null;
+    }
+  };
+  var handleScanWeekend = async () => {
+    var PS = window.Capacitor?.Plugins?.PhotoScan;
+    var cfg = window.FESTIVAL_CONFIG;
+    if (!PS || !cfg?.dayDates) return;
+    if (batch && batch.done < batch.total || scan && ["access", "scanning", "importing"].includes(scan.phase)) return;
+    setScan({
+      phase: "access"
+    });
+    try {
+      _scanDiagLog("scan-start");
+    } catch {}
+    try {
+      var access = await PS.requestAccess();
+      var limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) {
+        setScan({
+          phase: "denied"
+        });
+        return;
+      }
+      setScan({
+        phase: "scanning"
+      });
+      var assets = [];
+      for (var r of _scanQueryRanges(cfg)) {
+        var res = await PS.scan({
+          startMs: r.startMs,
+          endMs: r.endMs
+        });
+        assets.push(...(res?.assets || []));
+      }
+      var {
+        keep,
+        already,
+        outsideSets,
+        untimedNights
+      } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      var skipped = {
+        outsideSets,
+        untimedNights
+      };
+      if (!keep.length) {
+        setScan({
+          phase: "none",
+          already,
+          limited,
+          ...skipped
+        });
+        return;
+      }
+      var reviewAcc = [];
+      var chunks = _scanChunks(keep);
+      var imported = 0,
+        unreadable = 0,
+        done = 0;
+      var _loop6 = async function () {
+        setScan({
+          phase: "importing",
+          done,
+          total: keep.length
+        });
+        done += chunk.length;
+        var files = [],
+          fileAssets = [];
+        for (var a of chunk) {
+          var f = await _scanExportFile(PS, a, cfg);
+          if (f) {
+            files.push(f);
+            fileAssets.push(a);
+          } else unreadable++;
+        }
+        if (!files.length) return 1;
+        var results = (await processImportedFiles(files, {
+          reviewAcc
+        })) || [];
+        var failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+        _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+        imported += results.filter(r => r.momentId).length;
+        unreadable += failed.size;
+        for (var _f of files) if (!/^video\//.test(_f.type)) PS.discard?.({
+          path: _f._scanPath
+        })?.catch?.(() => {});
+      };
+      for (var chunk of chunks) {
+        if (await _loop6()) continue;
+      }
+      setScan({
+        phase: "done",
+        imported,
+        unreadable,
+        already,
+        limited,
+        ...skipped
+      });
+    } catch (err) {
+      console.warn("[memories] scan failed", err);
+      setScan({
+        phase: "error"
+      });
+    } finally {
+      try {
+        _scanDiagLog("scan-end");
+      } catch {}
+    }
+  };
+  var _scanMessage = st => {
+    if (!st) return null;
+    var fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
+    var limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    var skipNote = [st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : ""].filter(Boolean).join(" ");
+    var untimedNote = st.untimedNights ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.` : null;
+    if (st.phase === "access" || st.phase === "scanning") return {
+      busy: true,
+      title: `Looking for photos from ${fest} nights…`
+    };
+    if (st.phase === "importing") return {
+      busy: true,
+      title: `Importing ${st.done} of ${st.total}…`
+    };
+    if (st.phase === "denied") return {
+      tone: "warn",
+      title: "Plursky can’t see your photos",
+      body: "Turn on photo access in Settings, Plursky, Photos, then scan again."
+    };
+    if (st.phase === "error") return {
+      tone: "warn",
+      title: "Couldn’t finish the scan",
+      body: "Anything already imported is saved. Scan again to pick up the rest.",
+      retry: true
+    };
+    if (st.phase === "none") return {
+      title: `No new photos from ${fest} set times`,
+      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : skipNote ? "" : "Nothing in your library was taken during the festival’s set times.", skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from ${fest}`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
+      retry: !!st.unreadable,
+      note: untimedNote
+    };
+    return null;
   };
   var _pickerMessage = st => {
     if (!st) return null;
@@ -9678,7 +9990,8 @@ function MemoriesScreen({
         autoTagged: false,
         dateUnverified: false,
         needsRetag: false,
-        tagAmbiguous: false
+        tagAmbiguous: false,
+        tagSuggested: false
       };
       next[n] = arr.filter(m => m.id !== moment.id);
     }
@@ -9907,7 +10220,12 @@ function MemoriesScreen({
   }, review && React.createElement(ImportReview, {
     results: review,
     moments: rawAll,
-    onClose: () => setReview(null),
+    onClose: () => {
+      setReview(null);
+      try {
+        _scanDiagLog("review-close");
+      } catch {}
+    },
     onPatch: handlePatchMany,
     onMove: handleMoveNight
   }), lightbox && React.createElement(MomentLightbox, {
@@ -9983,7 +10301,197 @@ function MemoriesScreen({
     style: {
       display: "none"
     }
-  }), pickerAvailable && totalCount > 0 && React.createElement("button", {
+  }), scanAvailable && (() => {
+    var msg = _scanMessage(scan);
+    var busy = !!msg?.busy || !!batch && batch.done < batch.total;
+    return React.createElement("div", {
+      style: {
+        marginTop: 12
+      }
+    }, React.createElement("button", {
+      onClick: handleScanWeekend,
+      disabled: busy,
+      "data-scan-weekend": true,
+      className: "duo-card",
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        minHeight: 64,
+        padding: "10px 16px",
+        border: "none",
+        color: "var(--ink)",
+        textAlign: "left",
+        fontFamily: "inherit",
+        cursor: busy ? "default" : "pointer"
+      }
+    }, React.createElement("span", {
+      "aria-hidden": "true",
+      className: "duo-well",
+      style: {
+        width: 40,
+        height: 40,
+        flexShrink: 0,
+        display: "grid",
+        placeItems: "center",
+        color: "var(--acc-ink)"
+      }
+    }, React.createElement("svg", {
+      width: "20",
+      height: "20",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "1.8",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }, React.createElement("circle", {
+      cx: "11",
+      cy: "11",
+      r: "6.5"
+    }), React.createElement("path", {
+      d: "M20 20 l-4.2-4.2"
+    }), React.createElement("path", {
+      d: "M8.5 11 h5 M11 8.5 v5"
+    }))), React.createElement("span", {
+      style: {
+        flex: "1 1 150px",
+        minWidth: 0
+      }
+    }, React.createElement("span", {
+      "data-fit-words": true,
+      "data-fit-min": "13",
+      className: "duo-headline",
+      style: {
+        display: "block"
+      }
+    }, "Scan my weekend"), React.createElement("span", {
+      "data-fit-words": true,
+      "data-fit-min": "11",
+      className: "duo-body-s duo-ink2",
+      style: {
+        display: "block",
+        fontWeight: 400
+      }
+    }, "Finds every photo and video from festival nights")), React.createElement("span", {
+      className: "duo-body-s",
+      style: {
+        color: "var(--acc-ink)",
+        fontWeight: 650,
+        fontSize: 15
+      }
+    }, busy ? "…" : "Scan")), msg && React.createElement("div", {
+      role: "status",
+      style: {
+        marginTop: 8,
+        padding: "12px 14px",
+        borderRadius: 14,
+        background: "var(--paper-2)",
+        border: "1px solid var(--line)"
+      }
+    }, React.createElement("div", {
+      style: {
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        color: msg.tone === "warn" ? "var(--warn)" : "var(--ink)"
+      }
+    }, msg.title), msg.body && React.createElement("p", {
+      style: {
+        margin: "4px 0 0",
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, msg.body), msg.note && React.createElement("p", {
+      "data-scan-untimed-note": true,
+      style: {
+        margin: "4px 0 0",
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: "var(--text-2)"
+      }
+    }, msg.note), !msg.busy && React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        marginTop: 8,
+        flexWrap: "wrap"
+      }
+    }, msg.retry && React.createElement("button", {
+      onClick: handleScanWeekend,
+      style: {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--paper-3)",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Scan again"), React.createElement("button", {
+      onClick: () => setScan(null),
+      style: {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "transparent",
+        color: "var(--text-2)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      }
+    }, "Dismiss"))), React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        flexWrap: "wrap",
+        marginTop: 4
+      }
+    }, React.createElement("button", {
+      "data-scan-diag": true,
+      onClick: async () => {
+        setDiagNote({
+          mode: "busy"
+        });
+        var r = await _scanDiagShare({
+          appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null
+        });
+        setDiagNote(r);
+      },
+      style: {
+        minHeight: 44,
+        padding: "0 4px",
+        border: "none",
+        background: "transparent",
+        color: "var(--text-2)",
+        fontSize: 13,
+        lineHeight: 1.38,
+        fontWeight: 600,
+        textDecoration: "underline",
+        textUnderlineOffset: 3,
+        cursor: "pointer",
+        fontFamily: "inherit"
+      }
+    }, "Share scan diagnostic"), diagNote && diagNote.mode !== "busy" && React.createElement("span", {
+      role: "status",
+      style: {
+        fontSize: 13,
+        lineHeight: 1.38,
+        color: diagNote.ok ? "var(--text-2)" : "var(--warn)"
+      }
+    }, diagNote.mode === "share" ? "Diagnostic ready to send" : diagNote.mode === "copied" ? "Diagnostic copied" : diagNote.mode === "cancelled" ? "Not sent" : diagNote.mode === "unavailable" ? "Sharing isn't available here" : "Couldn't open the share sheet")));
+  })(), pickerAvailable && totalCount > 0 && React.createElement("button", {
     onClick: handlePickClick,
     disabled: !!batch && batch.done < batch.total,
     className: "duo-card",
@@ -10318,7 +10826,7 @@ function MemoriesScreen({
       lineHeight: 1.4,
       color: "var(--text-2)"
     }
-  }, pickerAvailable ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap." : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."), pickerAvailable ? React.createElement(FieldButton, {
+  }, _memoriesImportCopy(pickerAvailable, scanAvailable).invite), pickerAvailable ? React.createElement(FieldButton, {
     onClick: handlePickClick
   }, "Import from camera roll") : React.createElement("p", {
     style: {
@@ -10344,7 +10852,7 @@ function MemoriesScreen({
       lineHeight: 1.38,
       color: "var(--text-2)"
     }
-  }, pickerAvailable ? "Import photos or videos and they’ll land on the sets below." : "This build can’t open your photo library, so the sets below are your library for now."), pickerAvailable && React.createElement("button", {
+  }, _memoriesImportCopy(pickerAvailable, scanAvailable).withSets), pickerAvailable && React.createElement("button", {
     onClick: handlePickClick,
     style: {
       marginTop: 8,
@@ -12135,6 +12643,8 @@ function _recoverCurrentVideoMomentsFromArchive() {
         if (m.festivalId && m.festivalId !== cur) continue;
         var placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;
+        if (m.tagSource === "manual") continue;
+        if (m.tagSource === "off_venue") continue;
         var needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         var archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
@@ -12165,6 +12675,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
+        m.tagSuggested = false;
         if (String(recoveredNight) !== String(night)) moves.push({
           from: night,
           to: String(recoveredNight),
@@ -12173,12 +12684,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop6 = function (move) {
+    var _loop7 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop6(move);
+      _loop7(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -12255,13 +12766,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop7 = function (move) {
+  var _loop8 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop7(move);
+    _loop8(move);
   }
   return changed;
 }
@@ -12574,7 +13085,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop8 = function (m) {
+  var _loop9 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -12597,7 +13108,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop8(m);
+    _ret3 = _loop9(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -14578,7 +15089,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop9 = async function (a) {
+      var _loop0 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -14595,7 +15106,7 @@ function HeroCards({
         },
         _ret4;
       for (var a of want) {
-        _ret4 = await _loop9(a);
+        _ret4 = await _loop0(a);
         if (_ret4 === 0) continue;
       }
     })();
@@ -16583,7 +17094,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop0 = function (rows) {
+  var _loop1 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -16597,7 +17108,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop0(rows);
+    _loop1(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

@@ -37,6 +37,7 @@ import { citeToken, postSlides, setTimesGraphics, sameGraphic, receiptGaps } fro
 import { parseDay } from "../fetch-insomniac-settimes.mjs";
 import { sheetRow } from "./extract-insomniac.mjs";
 import { readSheet } from "./build-editions.mjs";
+import { parseAclSchedule } from "./acl-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
@@ -123,10 +124,19 @@ export async function importGather(id, dir) {
   const excluded = [], bySource = new Map(rc.sources.map((s, i) => [i, []]));
 
   for (const r of rows) {
+    const ex = (rc.exclude || []).find(x => new RegExp(x.note).test(r.note || ""));
+    // A row of a cancelled day (ACL 2013's flooded Sunday) is not a day of the
+    // edition: it must be excluded as cancelled, and is recorded by its date.
+    if ((ed.cancelledDays || []).some(c => c.date === r.date)) {
+      // (A row an earlier capture printed and the final page replaced stays
+      // excluded as superseded; only the final page's blocks are "cancelled".)
+      if (!ex) throw new Error(`row ${r.artist}: ${r.date} is a cancelled day, but the row is not excluded`);
+      excluded.push({ date: r.date, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }) });
+      continue;
+    }
     const date = ed.dates[+r.day - 1]?.[0];
     if (r.date !== date) throw new Error(`row ${r.artist}: day ${r.day} is ${r.date}, the edition says ${date}`);
-    const ex = (rc.exclude || []).find(x => new RegExp(x.note).test(r.note || ""));
-    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason }); continue; }
+    if (ex) { excluded.push({ day: +r.day, stage: r.stage, start: r.start, end: r.end, billing: r.artist, reason: ex.reason, ...(ex.canceled && { canceled: true }), ...(ex.duplicate && { duplicate: true }) }); continue; }
     const hits = rc.sources.map((s, i) => [s, i]).filter(([s]) => (r.source_ref || "").includes(s.match)
       && (!s.when?.stage || new RegExp(s.when.stage).test(r.stage)) && (!s.when?.stageNot || !new RegExp(s.when.stageNot).test(r.stage)));
     if (hits.length !== 1) throw new Error(`row d${r.day} ${r.stage} ${r.start} ${r.artist}: ${hits.length} sources match its source_ref`);
@@ -136,6 +146,7 @@ export async function importGather(id, dir) {
   }
 
   const ledgerDays = ed.dates.map(([date], i) => ({ day: i + 1, date, sources: [] }));
+  const cancelledLedger = [];
   const reviewDays = [], out = [];
   for (const [i, s] of rc.sources.entries()) {
     const got = bySource.get(i);
@@ -152,7 +163,47 @@ export async function importGather(id, dir) {
         ledgerDays[day - 1].sources.push({ kind: "page", url: s.url, archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp,
           printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: mine.length, ...(s.format && { format: s.format }) });
       };
-      if (s.format === "day-tabs") {
+      if (s.format === "acl-grid") {
+        // One page per weekend: every day it prints is cited, each read off
+        // its own hour axis (acl-schedule.mjs). A cancelled block (2014's
+        // "*canceled*") is not a set: it must be a sheet row excluded as
+        // cancelled, one for one.
+        const page = parseAclSchedule(cap.text);
+        const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
+        const key = x => [x.stage, x.start, x.end, x.artist ?? x.billing].join("|");
+        // A cancelled day the page still prints: the page must print the
+        // cancellation banner, and every block of it is a cancelled sheet row.
+        for (const c of ed.cancelledDays || []) {
+          const d = page.days.find(x => x.date === c.date);
+          if (!d) continue;
+          if (!cap.text.includes(c.banner)) throw new Error(`${s.url} @${s.captureTimestamp}: prints cancelled day ${c.date} without the banner "${c.banner}"`);
+          const blocks = d.sets.map(key).sort(), ex = excluded.filter(x => x.date === c.date && x.canceled).map(key).sort();
+          if (blocks.join("\n") !== ex.join("\n")) throw new Error(`${s.url} @${s.captureTimestamp}: cancelled day ${c.date} prints ${blocks.length} block(s), the sheet excludes ${ex.length}`);
+          cancelledLedger.push({ date: c.date, banner: c.banner, archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, blocks: blocks.length });
+        }
+        page.days = page.days.filter(d => !(ed.cancelledDays || []).some(c => c.date === d.date));
+        const printedDays = page.days.map(d => dayOf(d.date));
+        if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
+        if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
+        for (const d of page.days) {
+          const day = dayOf(d.date), tab = page.tabs.find(t => t.date === d.date);
+          if (tab?.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s tab prints "${tab?.label}", the receipt says "${s.printed[day]}"`);
+          if (!d.timed) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} cannot be read off its hour axis (untimed days are not supported for gather rows)`);
+          // A block printed twice (once off the axis) is one set: the sheet
+          // must exclude its second row as a duplicate, one for one.
+          const dupKey = x => [x.stage, x.artist ?? x.billing].join("|");
+          const dups = d.duplicates.map(dupKey).sort(), dupRows = excluded.filter(x => x.day === day && x.duplicate).map(dupKey).sort();
+          if (dups.join("\n") !== dupRows.join("\n")) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${dups.length} duplicate off-axis block(s) (${d.duplicates.map(x => `${x.artist} ${x.printed}`).join(", ")}), the sheet excludes ${dupRows.length} as duplicates`);
+          const cancelled = d.sets.filter(x => x.canceled).map(key).sort();
+          const excludedHere = excluded.filter(x => x.day === day && x.canceled).map(key).sort();
+          if (cancelled.join("\n") !== excludedHere.join("\n")) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${cancelled.length} cancelled block(s), the sheet excludes ${excludedHere.length} as cancelled\n  page: ${cancelled.join("\n  page: ")}\n  sheet: ${excludedHere.join("\n  sheet: ")}`);
+          agree(day, d.sets.filter(x => !x.canceled).map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { meridiem: "printed hour axis",
+            axis: `${d.axis.labels[0]} … ${d.axis.labels.at(-1)}`, emPerMinute: Math.round(page.scale * 1e4) / 1e4,
+            ...(cancelled.length && { cancelled: cancelled.length }), ...(dups.length && { duplicateBlocks: dups.length }),
+            ...((ed.untimedDays || []).includes(day) && { timesConfirmed: false }) });
+        }
+      } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.
         const panes = parseDayTabs(cap.text);
         for (const day of days) {
@@ -169,7 +220,10 @@ export async function importGather(id, dir) {
         if (tab !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: the active day tab prints "${tab}", the receipt says "${s.printed[day]}"`);
         agree(day, parseDay(cap.text));
       }
-      out.push(...got.map(r => ({ ...r, source: `page ${cap.captureTimestamp}` })));
+      // An untimed day (ACL 2017's pre-weekend W2 capture) keeps its lineup
+      // and drops the times: they were checked against the page above, but
+      // the page cannot confirm them (Instinct's ruling, 2026-11-04).
+      out.push(...got.map(r => ({ ...r, ...((ed.untimedDays || []).includes(r.day) && { start: "", end: "" }), source: `page ${cap.captureTimestamp}` })));
     } else if (s.kind === "graphic") {
       const buf = readFileSync(join(dir, s.file)), hash = sha256(buf), receipt = await receiptFor(s, dir);
       for (const day of days) {
@@ -201,7 +255,9 @@ export async function importGather(id, dir) {
   const { unused, stale } = receiptGaps(ledgerDays.flatMap(d => d.sources), notUsedGraphics);
   if (unused.length) throw new Error(`set-times graphics no source uses and none excludes:\n  ${unused.map(u => `${u.cites} (${u.page})`).join("\n  ")}`);
   if (stale.length) throw new Error(`notUsedGraphics entries that are used, on no receipt page, or have no reason: ${stale.map(n => n.cites).join(", ")}`);
-  const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded, ...(notUsedGraphics.length && { notUsedGraphics }) };
+  for (const c of ed.cancelledDays || []) if (!cancelledLedger.some(x => x.date === c.date)) throw new Error(`no source prints cancelled day ${c.date} with its banner`);
+  const ledger = { id, method: "official_sources", official: rc.official, days: ledgerDays, excluded,
+    ...(cancelledLedger.length && { cancelledDays: cancelledLedger }), ...(notUsedGraphics.length && { notUsedGraphics }) };
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
   if (reviewDays.length) {
     mkdirSync(join(ROOT, "data/historical/review"), { recursive: true });

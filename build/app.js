@@ -982,6 +982,8 @@ function SearchModal({
     })));
   }))));
 }
+var TOAST_LAYER_Z = 10100;
+var TOAST_ERROR_MS = 6000;
 function ToastHost() {
   var [msg, setMsg] = React.useState(null);
   var queue = React.useRef([]),
@@ -1021,7 +1023,7 @@ function ToastHost() {
       } else showing.current = false;
       return;
     }
-    var t = setTimeout(() => setMsg(null), msg.duration || 1600);
+    var t = setTimeout(() => setMsg(null), msg.duration || (msg.error ? TOAST_ERROR_MS : 1600));
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
@@ -1032,7 +1034,7 @@ function ToastHost() {
       left: 0,
       right: 0,
       bottom: 80,
-      zIndex: 95,
+      zIndex: TOAST_LAYER_Z,
       display: "flex",
       justifyContent: "center",
       pointerEvents: "none",
@@ -1537,7 +1539,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v509"
+        version: "v532"
       }));
     } catch {}
   }
@@ -1589,7 +1591,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v509"))
+      }, "Plursky · v532"))
     );
   }
 }

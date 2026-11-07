@@ -531,7 +531,7 @@ function _HistEdition({
     if (!e) return null;
     var artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
     var stage = Object.fromEntries(e.stages.map(s => [s.id, s]));
-    var byTime = (a, b) => _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
+    var byTime = (a, b) => a.start == null || b.start == null ? 0 : _histMinutes(a.start, e.rolloverHour) - _histMinutes(b.start, e.rolloverHour);
     return {
       artist,
       stage,
@@ -558,7 +558,32 @@ function _HistEdition({
     d: "M12 11 V16.5 M12 7.6 V7.5"
   })));
   var query = _histFold(q.trim());
-  var time = s => s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  var time = s => s.start == null ? "Time not confirmed" : s.end ? `${fmt12(s.start)} – ${fmt12(s.end)}` : fmt12(s.start);
+  var notes = (e?.notes || []).filter(n => !n.days || query || n.days.includes(day));
+  var noteBlock = notes.length > 0 && React.createElement("div", {
+    "data-edition-notes": true,
+    style: {
+      margin: "8px 0 4px",
+      display: "grid",
+      gap: 6
+    }
+  }, notes.map((n, i) => React.createElement("p", {
+    key: i,
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, n.text, " ", React.createElement("span", {
+    style: {
+      color: "var(--text-3)"
+    }
+  }, "(noted ", _histDate(n.asOf, {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  }), ")"))));
   var setRow = (s, sub) => React.createElement("li", {
     key: s.id,
     style: {
@@ -817,7 +842,7 @@ function _HistEdition({
     res: res,
     retry: retry,
     what: meta.name
-  }) : body), about && e && React.createElement(_HistProvenance, {
+  }) : React.createElement(React.Fragment, null, noteBlock, body)), about && e && React.createElement(_HistProvenance, {
     edition: e,
     onClose: () => setAbout(false)
   }));

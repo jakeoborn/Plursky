@@ -1,0 +1,572 @@
+{
+  "id": "acl-2013",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2013-10-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131127003753/http://www.aclfestival.com/2013-schedule/",
+          "captureTimestamp": "20131127003753",
+          "printed": "Friday Oct 4th",
+          "sha256": "0e5333ddf2909a5161b6b2895a861d608c0cc1fe2e0f2cdce5588e5d425cf435",
+          "bytes": 343921,
+          "rows": 44,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.1
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2013-10-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131127003753/http://www.aclfestival.com/2013-schedule/",
+          "captureTimestamp": "20131127003753",
+          "printed": "Saturday Oct 5th",
+          "sha256": "0e5333ddf2909a5161b6b2895a861d608c0cc1fe2e0f2cdce5588e5d425cf435",
+          "bytes": 343921,
+          "rows": 43,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.1
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2013-10-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com/2013-schedule/",
+          "archivedUrl": "https://web.archive.org/web/20131127003753/http://www.aclfestival.com/2013-schedule/",
+          "captureTimestamp": "20131127003753",
+          "printed": "Sunday Oct 6th",
+          "sha256": "0e5333ddf2909a5161b6b2895a861d608c0cc1fe2e0f2cdce5588e5d425cf435",
+          "bytes": 343921,
+          "rows": 44,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.1
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2013-10-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com/2013-schedule/weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20140215094751/http://www.aclfestival.com/2013-schedule/weekend-two/",
+          "captureTimestamp": "20140215094751",
+          "printed": "Friday Oct 11th",
+          "sha256": "16888ac8f013cb9f6823d5f1bce3e7d0de4287aa7340d5d890f23f1eff1f3dfd",
+          "bytes": 347407,
+          "rows": 45,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.1,
+          "duplicateBlocks": 1
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2013-10-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com/2013-schedule/weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20140215094751/http://www.aclfestival.com/2013-schedule/weekend-two/",
+          "captureTimestamp": "20140215094751",
+          "printed": "Saturday Oct 12th",
+          "sha256": "16888ac8f013cb9f6823d5f1bce3e7d0de4287aa7340d5d890f23f1eff1f3dfd",
+          "bytes": 347407,
+          "rows": 43,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00 am … 10:00 pm",
+          "emPerMinute": 0.1
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Zilker Tent",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "The Hensley Ensemble",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 3,
+      "stage": "AMD",
+      "start": "15:30",
+      "end": "16:30",
+      "billing": "D'Angelo",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 3,
+      "stage": "Skyline",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Foxygen",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 4,
+      "stage": "Austin Kiddie Limits",
+      "start": "11:30",
+      "end": "11:55",
+      "billing": "School of Rock",
+      "reason": "the official page prints this block twice in the same column; one set",
+      "duplicate": true
+    },
+    {
+      "day": 4,
+      "stage": "Zilker Tent",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "The Hensley Ensemble",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Honda",
+      "start": "12:45",
+      "end": "13:30",
+      "billing": "Typhoon",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Honda",
+      "start": "14:30",
+      "end": "15:30",
+      "billing": "Noah and the Whale",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Honda",
+      "start": "16:30",
+      "end": "17:30",
+      "billing": "Divine Fits",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Honda",
+      "start": "18:30",
+      "end": "19:30",
+      "billing": "Tame Impala",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "11:20",
+      "end": "12:00",
+      "billing": "Not In The Face",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "12:20",
+      "end": "13:00",
+      "billing": "The Band of Heathens",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "13:20",
+      "end": "14:00",
+      "billing": "Roadkill Ghost Choir",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "14:30",
+      "end": "15:15",
+      "billing": "Twin Forks",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "15:45",
+      "end": "16:30",
+      "billing": "The Lone Bellow",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "17:00",
+      "end": "17:45",
+      "billing": "White Denim",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "18:15",
+      "end": "19:00",
+      "billing": "Phosphorescent",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Ventures",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "Neko Case",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "11:30",
+      "end": "11:55",
+      "billing": "The Ohmies",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "12:30",
+      "end": "12:55",
+      "billing": "The Q Brothers",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "13:30",
+      "end": "13:55",
+      "billing": "The Q Brothers",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "14:30",
+      "end": "14:55",
+      "billing": "Grace London",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "Peter DiStefano & Tor",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Austin Kiddie Limits",
+      "start": "16:05",
+      "end": "16:30",
+      "billing": "School of Rock",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "BMI",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "CALEB",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "BMI",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Wild Feathers",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "BMI",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "X Ambassadors",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "BMI",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Alanna Royale",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "The Durdens",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "The McCrary Sisters",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Kings Of Harmony Plus One",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "16:30",
+      "end": "17:30",
+      "billing": "JC Brooks and the Uptown Sound",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Red Baraat",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "Shuggie Otis",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Bud Light",
+      "start": "11:15",
+      "end": "12:00",
+      "billing": "Bear Mountain",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Bud Light",
+      "start": "13:00",
+      "end": "14:00",
+      "billing": "The Mowgli's",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Bud Light",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Paper Diamond",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Bud Light",
+      "start": "17:00",
+      "end": "18:00",
+      "billing": "Toro Y Moi",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Bud Light",
+      "start": "19:00",
+      "end": "20:30",
+      "billing": "Phoenix",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Samsung Galaxy",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Lance Herbstrong",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Samsung Galaxy",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "Dawes",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Samsung Galaxy",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Franz Ferdinand",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Samsung Galaxy",
+      "start": "18:00",
+      "end": "19:00",
+      "billing": "Eric Church",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Samsung Galaxy",
+      "start": "20:30",
+      "end": "22:00",
+      "billing": "Lionel Richie",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "12:00",
+      "end": "12:45",
+      "billing": "Smallpools",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "MS MR",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "15:30",
+      "end": "16:30",
+      "billing": "Grouplove",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "17:30",
+      "end": "18:30",
+      "billing": "The National",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "19:40",
+      "end": "21:40",
+      "billing": "Atoms For Peace",
+      "reason": "Weekend 2 Sunday was cancelled by flooding: the final official W2 page prints its grid under the banner \"Sunday Performances Have Been Canceled Due To Flooding\"",
+      "canceled": true
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Lady Bird",
+      "start": "15:30",
+      "end": "16:30",
+      "billing": "D'Angelo",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Zilker Tent",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Heavenly Voices Choir",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "date": "2013-10-13",
+      "stage": "Skyline",
+      "start": "12:00",
+      "end": "13:00",
+      "billing": "Foxygen",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    }
+  ],
+  "cancelledDays": [
+    {
+      "date": "2013-10-13",
+      "banner": "Sunday Performances Have Been Canceled Due To Flooding",
+      "archivedUrl": "https://web.archive.org/web/20140215094751/http://www.aclfestival.com/2013-schedule/weekend-two/",
+      "captureTimestamp": "20140215094751",
+      "blocks": 43
+    }
+  ],
+  "dropped": []
+}

@@ -18,10 +18,15 @@ export const weekdayOf = iso => WEEKDAYS[new Date(iso + "T12:00:00Z").getUTCDay(
 // true of that date in that year. This is the edition check that survives a
 // site whose <title> has already rolled forward (EDC LV's June 2025 capture is
 // titled "EDC Las Vegas 2026" over the 2025 set list).
+// ACL's grid prints "Friday Oct 4th": a month may be its 3-letter
+// abbreviation, and a day may carry its ordinal suffix, but only the right one.
+const ordinal = n => n % 100 >= 11 && n % 100 <= 13 ? "th" : ["th", "st", "nd", "rd"][n % 10] || "th";
 export function datedLabel(label, year) {
-  const m = /^(\w+),?\s+(\w+)\s+(\d{1,2})$/.exec(String(label).trim());
+  const m = /^(\w+),?\s+(\w+)\s+(\d{1,2})(st|nd|rd|th)?$/i.exec(String(label).trim());
   if (!m) return null;
-  const mi = MONTHS.indexOf(m[2].toLowerCase());
+  if (m[4] && m[4].toLowerCase() !== ordinal(+m[3])) return null;
+  const word = m[2].toLowerCase();
+  const mi = word.length === 3 ? MONTHS.findIndex(n => n.slice(0, 3) === word) : MONTHS.indexOf(word);
   if (mi < 0) return null;
   const iso = `${year}-${String(mi + 1).padStart(2, "0")}-${String(+m[3]).padStart(2, "0")}`;
   return weekdayOf(iso) === m[1].toLowerCase() ? iso : null;
