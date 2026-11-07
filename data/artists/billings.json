@@ -108499,6 +108499,5166 @@
   "mainStage": null
  },
  {
+  "id": "acl-2024:d1:honda:1255:asleep-at-the-wheel",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "ASLEEP AT THE WHEEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "asleep-at-the-wheel",
+    "role": "performer"
+   }
+  ],
+  "act": "asleep-at-the-wheel",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:honda:1425:hudson-westbrook",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "HUDSON WESTBROOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hudson-westbrook",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-westbrook",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:honda:1610:norah-jones",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "NORAH JONES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "norah-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "norah-jones",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:honda:1810:foster-the-people",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "FOSTER THE PEOPLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:honda:2010:blink-182",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "BLINK-182",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blink-182",
+    "role": "performer"
+   }
+  ],
+  "act": "blink-182",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:miller-lite:1340:katie-pruitt",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "KATIE PRUITT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katie-pruitt",
+    "role": "performer"
+   }
+  ],
+  "act": "katie-pruitt",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:miller-lite:1510:mannequin-pussy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "MANNEQUIN PUSSY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mannequin-pussy",
+    "role": "performer"
+   }
+  ],
+  "act": "mannequin-pussy",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:miller-lite:1710:elderbrook",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "ELDERBROOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elderbrook",
+    "role": "performer"
+   }
+  ],
+  "act": "elderbrook",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:miller-lite:1910:porter-robinson",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "PORTER ROBINSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "porter-robinson",
+    "role": "performer"
+   }
+  ],
+  "act": "porter-robinson",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:bmi:1340:mon-rovia",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "MON ROVÎA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mon-rovia",
+    "role": "performer"
+   }
+  ],
+  "act": "mon-rovia",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:bmi:1510:tanner-adell",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:10",
+  "end": "15:55",
+  "printed": "TANNER ADELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tanner-adell",
+    "role": "performer"
+   }
+  ],
+  "act": "tanner-adell",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:bmi:1710:dexter-and-the-moonrocks",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "DEXTER AND THE MOONROCKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dexter-and-the-moonrocks",
+    "role": "performer"
+   }
+  ],
+  "act": "dexter-and-the-moonrocks",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:ihg-hotels-and-resorts:1400:chaparelle",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "CHAPARELLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chaparelle",
+    "role": "performer"
+   }
+  ],
+  "act": "chaparelle",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:ihg-hotels-and-resorts:1530:penny-and-sparrow",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "PENNY & SPARROW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "penny-and-sparrow",
+    "role": "performer"
+   }
+  ],
+  "act": "penny-and-sparrow",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:ihg-hotels-and-resorts:1745:connor-price",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "CONNOR PRICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "connor-price",
+    "role": "performer"
+   }
+  ],
+  "act": "connor-price",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:ihg-hotels-and-resorts:1930:fletcher",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "FLETCHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fletcher",
+    "role": "performer"
+   }
+  ],
+  "act": "fletcher",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:tito-s-handmade-vodka:1315:midnight-navy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "MIDNIGHT NAVY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "midnight-navy",
+    "role": "performer"
+   }
+  ],
+  "act": "midnight-navy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:tito-s-handmade-vodka:1445:paco-versailles",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "PACO VERSAILLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paco-versailles",
+    "role": "performer"
+   }
+  ],
+  "act": "paco-versailles",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:tito-s-handmade-vodka:1630:eggy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "EGGY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eggy",
+    "role": "performer"
+   }
+  ],
+  "act": "eggy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:tito-s-handmade-vodka:1830:barry-can-t-swim",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:20",
+  "printed": "BARRY CAN'T SWIM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barry-can-t-swim",
+    "role": "performer"
+   }
+  ],
+  "act": "barry-can-t-swim",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:t-mobile:1400:sir-chloe",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "SIR CHLOE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir-chloe",
+    "role": "performer"
+   }
+  ],
+  "act": "sir-chloe",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:t-mobile:1530:chance-pena",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "CHANCE PEÑA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chance-pena",
+    "role": "performer"
+   }
+  ],
+  "act": "chance-pena",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:t-mobile:1730:stephen-sanchez",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "STEPHEN SANCHEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stephen-sanchez",
+    "role": "performer"
+   }
+  ],
+  "act": "stephen-sanchez",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:t-mobile:1930:the-marias",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "THE MARÍAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:american-express:1315:the-saint-cecilia",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "THE SAINT CECILIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-saint-cecilia",
+    "role": "performer"
+   }
+  ],
+  "act": "the-saint-cecilia",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:american-express:1445:dasha",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "DASHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dasha",
+    "role": "performer"
+   }
+  ],
+  "act": "dasha",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:american-express:1630:carin-leon",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "CARÍN LEÓN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carin-leon",
+    "role": "performer"
+   }
+  ],
+  "act": "carin-leon",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:american-express:1830:leon-bridges",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "LEON BRIDGES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:american-express:2030:chris-stapleton",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:30",
+  "end": null,
+  "printed": "CHRIS STAPLETON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stapleton",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stapleton",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:austin-kiddie-limits:1245:andrew-and-polly",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "ANDREW & POLLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-and-polly",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-and-polly",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:austin-kiddie-limits:1430:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d1:austin-kiddie-limits:1615:q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-04",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:honda:1240:the-criticals",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "12:40",
+  "end": "13:25",
+  "printed": "THE CRITICALS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-criticals",
+    "role": "performer"
+   }
+  ],
+  "act": "the-criticals",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:honda:1410:something-corporate",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "14:10",
+  "end": "15:10",
+  "printed": "SOMETHING CORPORATE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "something-corporate",
+    "role": "performer"
+   }
+  ],
+  "act": "something-corporate",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:honda:1610:teddy-swims",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "TEDDY SWIMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teddy-swims",
+    "role": "performer"
+   }
+  ],
+  "act": "teddy-swims",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:honda:1810:benson-boone",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "BENSON BOONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benson-boone",
+    "role": "performer"
+   }
+  ],
+  "act": "benson-boone",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:honda:2010:pretty-lights",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "PRETTY LIGHTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-lights",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:miller-lite:1155:godly-the-ruler",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "11:55",
+  "end": "12:40",
+  "printed": "GODLY THE RULER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "godly-the-ruler",
+    "role": "performer"
+   }
+  ],
+  "act": "godly-the-ruler",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:miller-lite:1325:idkhow",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "13:25",
+  "end": "14:10",
+  "printed": "IDKHOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "idkhow",
+    "role": "performer"
+   }
+  ],
+  "act": "idkhow",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:miller-lite:1510:say-she-she",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "SAY SHE SHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "say-she-she",
+    "role": "performer"
+   }
+  ],
+  "act": "say-she-she",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:miller-lite:1710:still-woozy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "STILL WOOZY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:miller-lite:1910:jungle",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "JUNGLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:bmi:1155:obed-padilla",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "BMI",
+  "start": "11:55",
+  "end": "12:40",
+  "printed": "OBED PADILLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "obed-padilla",
+    "role": "performer"
+   }
+  ],
+  "act": "obed-padilla",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:bmi:1325:sawyer-hill",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:25",
+  "end": "14:10",
+  "printed": "SAWYER HILL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sawyer-hill",
+    "role": "performer"
+   }
+  ],
+  "act": "sawyer-hill",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:bmi:1510:telescreens",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "TELESCREENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telescreens",
+    "role": "performer"
+   }
+  ],
+  "act": "telescreens",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:bmi:1710:rett-madison",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "RETT MADISON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rett-madison",
+    "role": "performer"
+   }
+  ],
+  "act": "rett-madison",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:ihg-hotels-and-resorts:1205:promqueen",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "PROMQUEEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "promqueen",
+    "role": "performer"
+   }
+  ],
+  "act": "promqueen",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:ihg-hotels-and-resorts:1335:valencia-grace",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "VALENCIA GRACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valencia-grace",
+    "role": "performer"
+   }
+  ],
+  "act": "valencia-grace",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:ihg-hotels-and-resorts:1520:spinall",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "SPINALL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spinall",
+    "role": "performer"
+   }
+  ],
+  "act": "spinall",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:ihg-hotels-and-resorts:1720:wave-to-earth",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "WAVE TO EARTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wave-to-earth",
+    "role": "performer"
+   }
+  ],
+  "act": "wave-to-earth",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:ihg-hotels-and-resorts:1920:vince-staples",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "VINCE STAPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:tito-s-handmade-vodka:1235:shxwnfresh",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:35",
+  "end": "13:20",
+  "printed": "SHXWNFRESH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shxwnfresh",
+    "role": "performer"
+   }
+  ],
+  "act": "shxwnfresh",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:tito-s-handmade-vodka:1405:zach-person",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "ZACH PERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zach-person",
+    "role": "performer"
+   }
+  ],
+  "act": "zach-person",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:tito-s-handmade-vodka:1505:brittany-davis",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:05",
+  "end": "15:50",
+  "printed": "BRITTANY DAVIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brittany-davis",
+    "role": "performer"
+   }
+  ],
+  "act": "brittany-davis",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:tito-s-handmade-vodka:1620:balthvs",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "BALTHVS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "balthvs",
+    "role": "performer"
+   }
+  ],
+  "act": "balthvs",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:tito-s-handmade-vodka:1820:kenny-beats",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "KENNY BEATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kenny-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "kenny-beats",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:t-mobile:1205:pawpaw-rod",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "PAWPAW ROD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pawpaw-rod",
+    "role": "performer"
+   }
+  ],
+  "act": "pawpaw-rod",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:t-mobile:1335:geese",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "GEESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:t-mobile:1520:the-beaches",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "THE BEACHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-beaches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-beaches",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:t-mobile:1720:hermanos-gutierrez",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "HERMANOS GUTIÉRREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hermanos-gutierrez",
+    "role": "performer"
+   }
+  ],
+  "act": "hermanos-gutierrez",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:t-mobile:1920:renee-rapp",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "RENEÉ RAPP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "renee-rapp",
+    "role": "performer"
+   }
+  ],
+  "act": "renee-rapp",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:american-express:1250:goldie-boutilier",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "GOLDIE BOUTILIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldie-boutilier",
+    "role": "performer"
+   }
+  ],
+  "act": "goldie-boutilier",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:american-express:1420:lola-young",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "LOLA YOUNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:american-express:1620:eyedress",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "EYEDRESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:american-express:1820:khruangbin",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "KHRUANGBIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "khruangbin",
+    "role": "performer"
+   }
+  ],
+  "act": "khruangbin",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:american-express:2020:dua-lipa",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:20",
+  "end": null,
+  "printed": "DUA LIPA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dua-lipa",
+    "role": "performer"
+   }
+  ],
+  "act": "dua-lipa",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:austin-kiddie-limits:1245:andrew-and-polly",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "ANDREW & POLLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-and-polly",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-and-polly",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:austin-kiddie-limits:1430:uncle-jumbo",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "UNCLE JUMBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uncle-jumbo",
+    "role": "performer"
+   }
+  ],
+  "act": "uncle-jumbo",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d2:austin-kiddie-limits:1630:miss-tutti-and-the-fruity-band",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-05",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "MISS TUTTI & THE FRUITY BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-tutti-and-the-fruity-band",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-tutti-and-the-fruity-band",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:honda:1255:richy-mitch-and-the-coal-miners",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "RICHY MITCH & THE COAL MINERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richy-mitch-and-the-coal-miners",
+    "role": "performer"
+   }
+  ],
+  "act": "richy-mitch-and-the-coal-miners",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:honda:1425:misterwives",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:25",
+  "printed": "MISTERWIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "misterwives",
+    "role": "performer"
+   }
+  ],
+  "act": "misterwives",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:honda:1625:orville-peck",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "16:25",
+  "end": "17:25",
+  "printed": "ORVILLE PECK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orville-peck",
+    "role": "performer"
+   }
+  ],
+  "act": "orville-peck",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:honda:1825:mike",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "18:25",
+  "end": "19:25",
+  "printed": "MIKE.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike",
+    "role": "performer"
+   }
+  ],
+  "act": "mike",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:honda:2040:sturgill-simpson",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "20:40",
+  "end": null,
+  "printed": "STURGILL SIMPSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sturgill-simpson",
+    "role": "performer"
+   }
+  ],
+  "act": "sturgill-simpson",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:miller-lite:1210:deathbyromy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "12:10",
+  "end": "12:55",
+  "printed": "DEATHBYROMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deathbyromy",
+    "role": "performer"
+   }
+  ],
+  "act": "deathbyromy",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:miller-lite:1340:flo",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "FLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flo",
+    "role": "performer"
+   }
+  ],
+  "act": "flo",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:miller-lite:1525:medium-build",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "15:25",
+  "end": "16:25",
+  "printed": "MEDIUM BUILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:miller-lite:1725:jess-glynne",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "JESS GLYNNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jess-glynne",
+    "role": "performer"
+   }
+  ],
+  "act": "jess-glynne",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:miller-lite:1945:kehlani",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "19:45",
+  "end": "20:40",
+  "printed": "KEHLANI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kehlani",
+    "role": "performer"
+   }
+  ],
+  "act": "kehlani",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:bmi:1210:marley-bleu",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:10",
+  "end": "12:55",
+  "printed": "MARLEY BLEU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marley-bleu",
+    "role": "performer"
+   }
+  ],
+  "act": "marley-bleu",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:bmi:1340:deyaz",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "DEYAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deyaz",
+    "role": "performer"
+   }
+  ],
+  "act": "deyaz",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:bmi:1525:vlad-holiday",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:25",
+  "end": "16:25",
+  "printed": "VLAD HOLIDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vlad-holiday",
+    "role": "performer"
+   }
+  ],
+  "act": "vlad-holiday",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:bmi:1725:tyler-halverson",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "TYLER HALVERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-halverson",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-halverson",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:ihg-hotels-and-resorts:1230:chief-cleopatra",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "CHIEF CLEOPATRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chief-cleopatra",
+    "role": "performer"
+   }
+  ],
+  "act": "chief-cleopatra",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:ihg-hotels-and-resorts:1400:petey",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "PETEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "petey",
+    "role": "performer"
+   }
+  ],
+  "act": "petey",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:ihg-hotels-and-resorts:1545:myles-smith",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "MYLES SMITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "myles-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "myles-smith",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:ihg-hotels-and-resorts:1745:kevin-abstract",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "KEVIN ABSTRACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-abstract",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-abstract",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:ihg-hotels-and-resorts:1945:qveen-herby",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "QVEEN HERBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qveen-herby",
+    "role": "performer"
+   }
+  ],
+  "act": "qveen-herby",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:tito-s-handmade-vodka:1215:the-levites",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "THE LEVITES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-levites",
+    "role": "performer"
+   }
+  ],
+  "act": "the-levites",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:tito-s-handmade-vodka:1330:west-22nd",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "WEST 22ND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "west-22nd",
+    "role": "performer"
+   }
+  ],
+  "act": "west-22nd",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:tito-s-handmade-vodka:1445:glass-beams",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "GLASS BEAMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glass-beams",
+    "role": "performer"
+   }
+  ],
+  "act": "glass-beams",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:tito-s-handmade-vodka:1630:david-shaw",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "DAVID SHAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-shaw",
+    "role": "performer"
+   }
+  ],
+  "act": "david-shaw",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:tito-s-handmade-vodka:1800:san-holo",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "SAN HOLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-holo",
+    "role": "performer"
+   }
+  ],
+  "act": "san-holo",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:t-mobile:1230:cale-tyson",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "CALE TYSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cale-tyson",
+    "role": "performer"
+   }
+  ],
+  "act": "cale-tyson",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:t-mobile:1400:malcolm-todd",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:t-mobile:1545:bakar",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "BAKAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bakar",
+    "role": "performer"
+   }
+  ],
+  "act": "bakar",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:t-mobile:1745:that-mexican-ot",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "THAT MEXICAN OT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "that-mexican-ot",
+    "role": "performer"
+   }
+  ],
+  "act": "that-mexican-ot",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:t-mobile:1945:dom-dolla",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "DOM DOLLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:american-express:1315:empress-of",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "EMPRESS OF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "empress-of",
+    "role": "performer"
+   }
+  ],
+  "act": "empress-of",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:american-express:1445:flipturn",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "FLIPTURN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flipturn",
+    "role": "performer"
+   }
+  ],
+  "act": "flipturn",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:american-express:1645:cannons",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "CANNONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cannons",
+    "role": "performer"
+   }
+  ],
+  "act": "cannons",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:american-express:1845:chappell-roan",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "CHAPPELL ROAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chappell-roan",
+    "role": "performer"
+   }
+  ],
+  "act": "chappell-roan",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:american-express:2045:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:45",
+  "end": null,
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:austin-kiddie-limits:1245:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:austin-kiddie-limits:1415:miss-tutti-and-the-fruity-band",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "MISS TUTTI & THE FRUITY BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-tutti-and-the-fruity-band",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-tutti-and-the-fruity-band",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:austin-kiddie-limits:1530:saulpaul",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "15:30",
+  "end": "15:45",
+  "printed": "SAULPAUL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saulpaul",
+    "role": "performer"
+   }
+  ],
+  "act": "saulpaul",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d3:austin-kiddie-limits:1615:uncle-jumbo",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-06",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "UNCLE JUMBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uncle-jumbo",
+    "role": "performer"
+   }
+  ],
+  "act": "uncle-jumbo",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:honda:1255:late-night-drive-home",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "LATE NIGHT DRIVE HOME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "late-night-drive-home",
+    "role": "performer"
+   }
+  ],
+  "act": "late-night-drive-home",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:honda:1425:hudson-westbrook",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "HUDSON WESTBROOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hudson-westbrook",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-westbrook",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:honda:1610:norah-jones",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "NORAH JONES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "norah-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "norah-jones",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:honda:1810:foster-the-people",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "FOSTER THE PEOPLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:honda:2010:blink-182",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "BLINK-182",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blink-182",
+    "role": "performer"
+   }
+  ],
+  "act": "blink-182",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:miller-lite:1340:katie-pruitt",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "KATIE PRUITT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katie-pruitt",
+    "role": "performer"
+   }
+  ],
+  "act": "katie-pruitt",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:miller-lite:1510:thee-sinseers",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "THEE SINSEERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-sinseers",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-sinseers",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:miller-lite:1710:royel-otis",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "ROYEL OTIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royel-otis",
+    "role": "performer"
+   }
+  ],
+  "act": "royel-otis",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:miller-lite:1910:elderbrook",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "ELDERBROOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elderbrook",
+    "role": "performer"
+   }
+  ],
+  "act": "elderbrook",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:bmi:1340:vanilla-is-black",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "VANILLA IS BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vanilla-is-black",
+    "role": "performer"
+   }
+  ],
+  "act": "vanilla-is-black",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:bmi:1510:bre-kennedy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "BMI",
+  "start": "15:10",
+  "end": "15:55",
+  "printed": "BRE KENNEDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bre-kennedy",
+    "role": "performer"
+   }
+  ],
+  "act": "bre-kennedy",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:bmi:1710:whookilledkenny",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "WHOOKILLEDKENNY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whookilledkenny",
+    "role": "performer"
+   }
+  ],
+  "act": "whookilledkenny",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:ihg-hotels-and-resorts:1400:theo-lawrence",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "THEO LAWRENCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "theo-lawrence",
+    "role": "performer"
+   }
+  ],
+  "act": "theo-lawrence",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:ihg-hotels-and-resorts:1530:mickey-guyton",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "MICKEY GUYTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mickey-guyton",
+    "role": "performer"
+   }
+  ],
+  "act": "mickey-guyton",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:ihg-hotels-and-resorts:1730:st-lucia",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "ST. LUCIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "st-lucia",
+    "role": "performer"
+   }
+  ],
+  "act": "st-lucia",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:ihg-hotels-and-resorts:1930:jeezy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "JEEZY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeezy",
+    "role": "performer"
+   }
+  ],
+  "act": "jeezy",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:tito-s-handmade-vodka:1315:the-huston-tillotson-university-jazz-collective",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "THE HUSTON - TILLOTSON UNIVERSITY JAZZ COLLECTIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-huston-tillotson-university-jazz-collective",
+    "role": "performer"
+   }
+  ],
+  "act": "the-huston-tillotson-university-jazz-collective",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:tito-s-handmade-vodka:1445:cmat",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "CMAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cmat",
+    "role": "performer"
+   }
+  ],
+  "act": "cmat",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:tito-s-handmade-vodka:1630:eggy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "EGGY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eggy",
+    "role": "performer"
+   }
+  ],
+  "act": "eggy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:tito-s-handmade-vodka:1830:santigold",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "SANTIGOLD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santigold",
+    "role": "performer"
+   }
+  ],
+  "act": "santigold",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:t-mobile:1400:sir-chloe",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "SIR CHLOE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir-chloe",
+    "role": "performer"
+   }
+  ],
+  "act": "sir-chloe",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:t-mobile:1730:the-paper-kites",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "THE PAPER KITES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-paper-kites",
+    "role": "performer"
+   }
+  ],
+  "act": "the-paper-kites",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:t-mobile:1930:the-marias",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "THE MARÍAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:american-express:1315:paul-kelly",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "PAUL KELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-kelly",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-kelly",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:american-express:1445:dasha",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "DASHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dasha",
+    "role": "performer"
+   }
+  ],
+  "act": "dasha",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:american-express:1630:carin-leon",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "CARÍN LEÓN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carin-leon",
+    "role": "performer"
+   }
+  ],
+  "act": "carin-leon",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:american-express:1830:leon-bridges",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "LEON BRIDGES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:american-express:2030:chris-stapleton",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:30",
+  "end": null,
+  "printed": "CHRIS STAPLETON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stapleton",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stapleton",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:austin-kiddie-limits:1245:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:austin-kiddie-limits:1430:mister-g",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "MISTER G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mister-g",
+    "role": "performer"
+   }
+  ],
+  "act": "mister-g",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d4:austin-kiddie-limits:1615:q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-11",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:honda:1240:billy-allen-and-the-pollies",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "12:40",
+  "end": "13:25",
+  "printed": "BILLY ALLEN & THE POLLIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-allen-and-the-pollies",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-allen-and-the-pollies",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:honda:1410:movements",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "14:10",
+  "end": "15:10",
+  "printed": "MOVEMENTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "movements",
+    "role": "performer"
+   }
+  ],
+  "act": "movements",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:honda:1610:teddy-swims",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "TEDDY SWIMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teddy-swims",
+    "role": "performer"
+   }
+  ],
+  "act": "teddy-swims",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:honda:1810:benson-boone",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "BENSON BOONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benson-boone",
+    "role": "performer"
+   }
+  ],
+  "act": "benson-boone",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:honda:2010:pretty-lights",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "PRETTY LIGHTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-lights",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:miller-lite:1155:joe-p",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "11:55",
+  "end": "12:40",
+  "printed": "JOE P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joe-p",
+    "role": "performer"
+   }
+  ],
+  "act": "joe-p",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:miller-lite:1325:nico-vega",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "13:25",
+  "end": "14:10",
+  "printed": "NICO VEGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nico-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "nico-vega",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:miller-lite:1510:say-she-she",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "SAY SHE SHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "say-she-she",
+    "role": "performer"
+   }
+  ],
+  "act": "say-she-she",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:miller-lite:1710:remi-wolf",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "REMI WOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "remi-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "remi-wolf",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:miller-lite:1910:jungle",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "JUNGLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:bmi:1155:jordy",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "BMI",
+  "start": "11:55",
+  "end": "12:40",
+  "printed": "JORDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jordy",
+    "role": "performer"
+   }
+  ],
+  "act": "jordy",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:bmi:1325:jon-muq",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "BMI",
+  "start": "13:25",
+  "end": "14:10",
+  "printed": "JON MUQ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-muq",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-muq",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:bmi:1510:emei",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "BMI",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "EMEI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emei",
+    "role": "performer"
+   }
+  ],
+  "act": "emei",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:bmi:1710:braxton-keith",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "BRAXTON KEITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "braxton-keith",
+    "role": "performer"
+   }
+  ],
+  "act": "braxton-keith",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:ihg-hotels-and-resorts:1205:being-dead",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "BEING DEAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "being-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "being-dead",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:ihg-hotels-and-resorts:1335:valencia-grace",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "VALENCIA GRACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valencia-grace",
+    "role": "performer"
+   }
+  ],
+  "act": "valencia-grace",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:ihg-hotels-and-resorts:1520:spinall",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "SPINALL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spinall",
+    "role": "performer"
+   }
+  ],
+  "act": "spinall",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:ihg-hotels-and-resorts:1720:wave-to-earth",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "WAVE TO EARTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wave-to-earth",
+    "role": "performer"
+   }
+  ],
+  "act": "wave-to-earth",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:ihg-hotels-and-resorts:1920:vince-staples",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "VINCE STAPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:tito-s-handmade-vodka:1235:the-tiarras",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:35",
+  "end": "13:20",
+  "printed": "THE TIARRAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-tiarras",
+    "role": "performer"
+   }
+  ],
+  "act": "the-tiarras",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:tito-s-handmade-vodka:1405:bob-schneider",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "BOB SCHNEIDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-schneider",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-schneider",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:tito-s-handmade-vodka:1505:balthvs",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:05",
+  "end": "15:50",
+  "printed": "BALTHVS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "balthvs",
+    "role": "performer"
+   }
+  ],
+  "act": "balthvs",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:tito-s-handmade-vodka:1620:elyanna",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "ELYANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elyanna",
+    "role": "performer"
+   }
+  ],
+  "act": "elyanna",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:tito-s-handmade-vodka:1820:grand-funk-railroad",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "GRAND FUNK RAILROAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grand-funk-railroad",
+    "role": "performer"
+   }
+  ],
+  "act": "grand-funk-railroad",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:t-mobile:1205:jonah-kagen",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "JONAH KAGEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jonah-kagen",
+    "role": "performer"
+   }
+  ],
+  "act": "jonah-kagen",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:t-mobile:1335:geese",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "GEESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:t-mobile:1520:the-beaches",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "THE BEACHES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-beaches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-beaches",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:t-mobile:1720:hermanos-gutierrez",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "HERMANOS GUTIÉRREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hermanos-gutierrez",
+    "role": "performer"
+   }
+  ],
+  "act": "hermanos-gutierrez",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:t-mobile:1920:renee-rapp",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "RENEÉ RAPP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "renee-rapp",
+    "role": "performer"
+   }
+  ],
+  "act": "renee-rapp",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:american-express:1250:goldie-boutilier",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "GOLDIE BOUTILIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldie-boutilier",
+    "role": "performer"
+   }
+  ],
+  "act": "goldie-boutilier",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:american-express:1420:lola-young",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "LOLA YOUNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:american-express:1620:eyedress",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "EYEDRESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:american-express:1820:khruangbin",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "KHRUANGBIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "khruangbin",
+    "role": "performer"
+   }
+  ],
+  "act": "khruangbin",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:american-express:2020:dua-lipa",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:20",
+  "end": null,
+  "printed": "DUA LIPA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dua-lipa",
+    "role": "performer"
+   }
+  ],
+  "act": "dua-lipa",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:austin-kiddie-limits:1245:mister-g",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "MISTER G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mister-g",
+    "role": "performer"
+   }
+  ],
+  "act": "mister-g",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:austin-kiddie-limits:1430:homescool",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "HOMESCOOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "homescool",
+    "role": "performer"
+   }
+  ],
+  "act": "homescool",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d5:austin-kiddie-limits:1630:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-12",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "LUCY KALANTARI & THE JAZZ CATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:honda:1255:richy-mitch-and-the-coal-miners",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "RICHY MITCH & THE COAL MINERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richy-mitch-and-the-coal-miners",
+    "role": "performer"
+   }
+  ],
+  "act": "richy-mitch-and-the-coal-miners",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:honda:1425:misterwives",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:25",
+  "printed": "MISTERWIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "misterwives",
+    "role": "performer"
+   }
+  ],
+  "act": "misterwives",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:honda:1625:orville-peck",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "16:25",
+  "end": "17:25",
+  "printed": "ORVILLE PECK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orville-peck",
+    "role": "performer"
+   }
+  ],
+  "act": "orville-peck",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:honda:1825:mike",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "18:25",
+  "end": "19:25",
+  "printed": "MIKE.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike",
+    "role": "performer"
+   }
+  ],
+  "act": "mike",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:honda:2040:sturgill-simpson",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "20:40",
+  "end": null,
+  "printed": "STURGILL SIMPSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sturgill-simpson",
+    "role": "performer"
+   }
+  ],
+  "act": "sturgill-simpson",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:miller-lite:1210:daiistar",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "12:10",
+  "end": "12:55",
+  "printed": "DAIISTAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daiistar",
+    "role": "performer"
+   }
+  ],
+  "act": "daiistar",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:miller-lite:1340:dustin-kensrue",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "DUSTIN KENSRUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dustin-kensrue",
+    "role": "performer"
+   }
+  ],
+  "act": "dustin-kensrue",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:miller-lite:1525:medium-build",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "15:25",
+  "end": "16:25",
+  "printed": "MEDIUM BUILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:miller-lite:1725:jess-glynne",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "JESS GLYNNE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jess-glynne",
+    "role": "performer"
+   }
+  ],
+  "act": "jess-glynne",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:miller-lite:1945:the-red-clay-strays",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "19:45",
+  "end": "20:40",
+  "printed": "THE RED CLAY STRAYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-red-clay-strays",
+    "role": "performer"
+   }
+  ],
+  "act": "the-red-clay-strays",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:bmi:1210:hudson-ingram",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "BMI",
+  "start": "12:10",
+  "end": "12:55",
+  "printed": "HUDSON INGRAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hudson-ingram",
+    "role": "performer"
+   }
+  ],
+  "act": "hudson-ingram",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:bmi:1340:emily-nenni",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "EMILY NENNI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emily-nenni",
+    "role": "performer"
+   }
+  ],
+  "act": "emily-nenni",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:bmi:1540:amira-elfeky",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "BMI",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "AMIRA ELFEKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amira-elfeky",
+    "role": "performer"
+   }
+  ],
+  "act": "amira-elfeky",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:bmi:1725:the-droptines",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "BMI",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "THE DROPTINES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-droptines",
+    "role": "performer"
+   }
+  ],
+  "act": "the-droptines",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:ihg-hotels-and-resorts:1230:rickshaw-billie-s-burger-patrol",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "RICKSHAW BILLIE'S BURGER PATROL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rickshaw-billie-s-burger-patrol",
+    "role": "performer"
+   }
+  ],
+  "act": "rickshaw-billie-s-burger-patrol",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:ihg-hotels-and-resorts:1400:petey",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "PETEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "petey",
+    "role": "performer"
+   }
+  ],
+  "act": "petey",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:ihg-hotels-and-resorts:1545:myles-smith",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "MYLES SMITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "myles-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "myles-smith",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:ihg-hotels-and-resorts:1745:kevin-abstract",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "KEVIN ABSTRACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-abstract",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-abstract",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:ihg-hotels-and-resorts:1945:qveen-herby",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "QVEEN HERBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qveen-herby",
+    "role": "performer"
+   }
+  ],
+  "act": "qveen-herby",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:tito-s-handmade-vodka:1215:the-moriah-sisters",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "THE MORIAH SISTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-moriah-sisters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-moriah-sisters",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:tito-s-handmade-vodka:1330:kalu-and-the-electric-joint",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "KALU & THE ELECTRIC JOINT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kalu-and-the-electric-joint",
+    "role": "performer"
+   }
+  ],
+  "act": "kalu-and-the-electric-joint",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:tito-s-handmade-vodka:1445:glass-beams",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "GLASS BEAMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glass-beams",
+    "role": "performer"
+   }
+  ],
+  "act": "glass-beams",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:tito-s-handmade-vodka:1630:david-shaw",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "DAVID SHAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-shaw",
+    "role": "performer"
+   }
+  ],
+  "act": "david-shaw",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:tito-s-handmade-vodka:1800:san-holo",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "SAN HOLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-holo",
+    "role": "performer"
+   }
+  ],
+  "act": "san-holo",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:t-mobile:1230:molecular-steve",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "MOLECULAR STEVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "molecular-steve",
+    "role": "performer"
+   }
+  ],
+  "act": "molecular-steve",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:t-mobile:1400:malcolm-todd",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:t-mobile:1545:bakar",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "BAKAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bakar",
+    "role": "performer"
+   }
+  ],
+  "act": "bakar",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:t-mobile:1745:that-mexican-ot",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "THAT MEXICAN OT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "that-mexican-ot",
+    "role": "performer"
+   }
+  ],
+  "act": "that-mexican-ot",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:t-mobile:1945:dom-dolla",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "DOM DOLLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:american-express:1315:daniel-seavey",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "DANIEL SEAVEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-seavey",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-seavey",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:american-express:1445:flipturn",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "FLIPTURN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flipturn",
+    "role": "performer"
+   }
+  ],
+  "act": "flipturn",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:american-express:1645:cannons",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "CANNONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cannons",
+    "role": "performer"
+   }
+  ],
+  "act": "cannons",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:american-express:1845:chappell-roan",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "CHAPPELL ROAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chappell-roan",
+    "role": "performer"
+   }
+  ],
+  "act": "chappell-roan",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:american-express:2045:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:45",
+  "end": null,
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:austin-kiddie-limits:1245:homescool",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "HOMESCOOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "homescool",
+    "role": "performer"
+   }
+  ],
+  "act": "homescool",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:austin-kiddie-limits:1415:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:austin-kiddie-limits:1530:saulpaul",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "15:30",
+  "end": "15:45",
+  "printed": "SAULPAUL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saulpaul",
+    "role": "performer"
+   }
+  ],
+  "act": "saulpaul",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2024:d6:austin-kiddie-limits:1615:lucy-kalantari-and-the-jazz-cats",
+  "source": "edition",
+  "festivalId": "acl-2024",
+  "festivalBrand": "acl",
+  "year": 2024,
+  "date": "2024-10-13",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "LUCY KALANTARI & THE JAZZ CATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-kalantari-and-the-jazz-cats",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-kalantari-and-the-jazz-cats",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
   "id": "acl-2025:d1:t-mobile:1245:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2025",
