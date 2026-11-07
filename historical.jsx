@@ -280,15 +280,8 @@ function _HistChip({ on, onClick, children, label }) {
 // stamped with an edition id is never on a live festival's screens, so this
 // is where it shows. The act line comes from THIS edition's printed lineup,
 // and a photo the matcher could not place says so instead of guessing.
-function _histEditionMoments(editionId) {
-  let all = {};
-  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
-  const out = [];
-  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
-    if (m && m.festivalId === editionId) out.push(m);
-  }
-  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
-}
+// _histEditionMoments (photo-tag.jsx) reads the moment store; this archive
+// module stays read-only and never touches storage itself.
 
 function _HistPhotoTile({ moment, actName, guess }) {
   const thumb = useMomentThumb(moment);

@@ -481,17 +481,6 @@ function _HistChip({
     className: "duo-chip"
   }, React.createElement("span", null, children));
 }
-function _histEditionMoments(editionId) {
-  var all = {};
-  try {
-    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
-  } catch {}
-  var out = [];
-  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
-    if (m && m.festivalId === editionId) out.push(m);
-  }
-  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
-}
 function _HistPhotoTile({
   moment,
   actName,

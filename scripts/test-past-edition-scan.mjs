@@ -276,7 +276,7 @@ try {
   const MUTANTS = [
     ["GPS gate removed", mut("spotify", "assets.filter(a => _histAssetOnSite(a, t.cfg))", "assets.filter(a => true)")],
     ["edition data set not passed to the matcher", mut("spotify", "_matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined)", "_matchArtistForPhoto(meta, savedIds, attendedIds)")],
-    ["edition page lists every moment", mut("historical", "m.festivalId === editionId", "m.festivalId")],
+    ["edition page lists every moment", mut("photoTag", "m.festivalId === editionId", "m.festivalId")],
     ["reconciler flags past stamps", mut("spotify", 'if (m.festivalStampSource === "past-edition") continue;', "")],
     ["open-ended closing sets dropped", mut("photoTag", "if (close[_s.day] == null || close[_s.day] <= st) continue;", "continue;")],
   ];

@@ -1296,6 +1296,18 @@ function _histEditionArtists(edition) {
 }
 
 // The data set processImportedFiles matches a past edition's photos against.
+// The moments a past-edition scan filed under one edition, oldest first.
+// Lives here, not in historical.jsx: the archive module never touches storage.
+function _histEditionMoments(editionId) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const out = [];
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+
 function _histDataSet(edition, cfg) {
   return { id: cfg.id, config: cfg, artists: _histEditionArtists(edition), amenities: [], resolvedBy: "past-edition-scan" };
 }
