@@ -3450,6 +3450,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`historical editions failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+{
+  console.log("▸ Coverage census — occurred needs a post-event dated source; no assumed occurrence");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-coverage-census.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
 
 // ── 1z-c6. Past Festivals UI ─────────────────────────────────────────────
 // The library screens at 393pt, driven through the switcher: every count and
