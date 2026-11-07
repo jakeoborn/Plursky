@@ -25,7 +25,8 @@
 //      old centre put both outside the 644 m radius: OFF-SITE, no dot).
 //   f73 ruling: with GPS off, the demo "you" dot shows only where checked
 //      geometry places it; on unchecked festivals it is hidden.
-// MapLibre comes from unpkg (pinned 4.7.1, like React here); basemap tiles are
+// MapLibre 4.7.1 is served from scripts/vendor/ by wireVendor (sha384 pin in
+// scripts/vendor/manifest.json; never the live unpkg CDN); basemap tiles are
 // stubbed with a blank tile so the gate never depends on Esri or OpenFreeMap.
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
