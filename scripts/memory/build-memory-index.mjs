@@ -30,7 +30,7 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { findSecrets, validateHandoff } from "./check-handoff.mjs";
+import { findSecrets, redact, validateHandoff } from "./check-handoff.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, "../..");
@@ -146,8 +146,10 @@ function listCap(items, fmt) {
   const head = items.slice(0, STATE_ITEM_CAP).map(fmt).join(" · ");
   return items.length > STATE_ITEM_CAP ? `${head} · +${items.length - STATE_ITEM_CAP} more` : head;
 }
+// Error text comes from gh, git and the filesystem, so it is redacted before
+// it can reach MEMORY.md (a gh error can quote a URL or header verbatim).
 function guard(name, fn) {
-  try { return { name, ...fn() }; } catch (e) { return { name, unavailable: clip(String(e.message || e).split("\n")[0], 120) }; }
+  try { return { name, ...fn() }; } catch (e) { return { name, unavailable: clip(redact(String(e.message || e).split("\n")[0]), 120) }; }
 }
 function gh(args) {
   return JSON.parse(execFileSync("gh", args, { cwd: REPO, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 }));
@@ -234,7 +236,10 @@ export function build({ memDir, sources }) {
     if (hits.length) throw new Error(`${m.file}: its index line would carry a credential value (${hits.join(", ")}). Fix the memory file.`);
   }
   const state = sources();
+  // Both a line and an UNAVAILABLE reason are written to MEMORY.md; redact
+  // the reason, and refuse a line (a source's data must never carry one).
   for (const s of state) {
+    if (s.unavailable) s.unavailable = redact(s.unavailable);
     if (s.line && findSecrets(s.line).length) throw new Error(`state line "${s.name}" carries a credential value`);
   }
   const out = render(memories, state);
@@ -311,6 +316,10 @@ function selfTest() {
   check("a moved PR head → check 1 (stale vs source)", checkCode(dir, sources) === 1);
   state = [{ name: "open PRs", unavailable: "gh: not logged in" }];
   check("an unreadable source → check 2, never green", checkCode(dir, sources) === 2);
+  const tok = "ghp_" + "q".repeat(30);
+  state = [{ name: "open PRs", unavailable: `gh: bad header Authorization: token ${tok}` }];
+  const leaked = build({ memDir: dir, sources }).hot;
+  check("an UNAVAILABLE reason carrying a token is redacted in MEMORY.md", !leaked.includes(tok) && /redacted GitHub token/.test(leaked));
   state = [{ name: "open PRs", line: "Open PRs (1): #401 3b7447c4 draft" }];
 
   w("feedback_a.md", setMetadata(fs.readFileSync(path.join(dir, "feedback_a.md"), "utf8"), { hook: "token ghp_" + "y".repeat(30) }));

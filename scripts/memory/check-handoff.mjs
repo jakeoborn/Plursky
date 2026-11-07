@@ -32,6 +32,14 @@ export function findSecrets(text) {
   for (const [label, re] of SECRET_PATTERNS) if (re.test(text)) hits.push(label);
   return hits;
 }
+// Every string this tooling prints or writes goes through here, so a detected
+// credential is named by its kind and never echoed (an error that quotes the
+// offending row would otherwise print the very token it found).
+export function redact(text) {
+  let out = String(text);
+  for (const [label, re] of SECRET_PATTERNS) out = out.replace(new RegExp(re.source, "g"), `[redacted ${label}]`);
+  return out;
+}
 
 export const SECTIONS = ["Queue position", "Open heads", "Rulings", "Blocked on Jake", "Next"];
 const MAX_BYTES = 8000;
@@ -120,7 +128,7 @@ export function validateHandoff(text) {
   if (secs.has("Next") && !body("Next").some(l => /^\s*\d+\.\s+\S/.test(l))) {
     errors.push("Next needs numbered rows");
   }
-  return { ok: errors.length === 0, errors, prs };
+  return { ok: errors.length === 0, errors: errors.map(redact), prs };
 }
 
 // --live: every #PR row's head must equal the PR's current head on GitHub.
@@ -163,12 +171,16 @@ function selfTest() {
     const got = validateHandoff(text).ok;
     if (got !== want) { bad++; console.log(`  ✗ ${name}: got ${got}, want ${want} — ${validateHandoff(text).errors.join("; ")}`); }
   }
+  // A credential in a row that also breaks another rule must not be quoted back.
+  const tok = "ghp_" + "z".repeat(30);
+  const leak = validateHandoff(good.replace("a".repeat(40), tok)).errors.join(" ");
+  if (leak.includes(tok) || !/redacted GitHub token/.test(leak)) { bad++; console.log("  ✗ an error quoting a row echoed the token it found"); }
   const prs = validateHandoff(good).prs;
   const x = validateHandoff(good.replace("| #401 |", "| Dim-hour/Dim-Hour#5674 |")).prs[0];
   if (!(x && x.pr === 5674 && x.repo === "Dim-hour/Dim-Hour")) { bad++; console.log("  ✗ owner/repo#N row did not parse"); }
   if (!(prs.length === 1 && prs[0].pr === 401)) { bad++; console.log("  ✗ open-heads row did not parse to #401"); }
-  console.log(bad ? `✗ handoff format: ${bad} of ${cases.length + 2} self-test cases wrong`
-    : `  ✓ handoff format: ${cases.length + 2} self-test cases (sections, full SHAs, dated rulings, secrets, size)`);
+  console.log(bad ? `✗ handoff format: ${bad} of ${cases.length + 3} self-test cases wrong`
+    : `  ✓ handoff format: ${cases.length + 3} self-test cases (sections, full SHAs, dated rulings, secrets, size)`);
   return bad ? 1 : 0;
 }
 
@@ -180,6 +192,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   if (!file) { console.error("usage: check-handoff.mjs <file> [--live] | --template | --self-test"); process.exit(2); }
   const res = validateHandoff(fs.readFileSync(file, "utf8"));
   const errs = [...res.errors, ...(args.includes("--live") ? liveErrors(res.prs) : [])];
-  if (errs.length) { for (const e of errs) console.log(`  ✗ ${e}`); process.exit(1); }
+  if (errs.length) { for (const e of errs) console.log(`  ✗ ${redact(e)}`); process.exit(1); }
   console.log(`  ✓ handoff ${file}: ${SECTIONS.length} sections, ${res.prs.length} full head(s)${args.includes("--live") ? ", heads match GitHub" : ""}`);
 }
