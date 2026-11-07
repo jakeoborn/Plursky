@@ -6,6 +6,25 @@
  "timezone": "America/Los_Angeles",
  "rolloverHour": 6,
  "completeness": "complete_schedule",
+ "status": "canceled",
+ "canceled": {
+  "announced": "2024-09-11",
+  "reason": "Canceled before it opened because of the Line Fire near the venue.",
+  "sources": [
+   {
+    "publisher": "Moon Lvnding",
+    "published": "2024-09-11",
+    "fetched": "2026-11-06",
+    "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+   },
+   {
+    "publisher": "Billboard",
+    "published": "2024-09-12",
+    "fetched": "2026-11-06",
+    "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+   }
+  ]
+ },
  "days": [
   {
    "day": 1,

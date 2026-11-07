@@ -536,6 +536,71 @@ for (const [printed, date, year, dates, want] of [
 
 // 7. The Wayback cache never hands back a neighbouring capture under the
 // requested key: a poisoned entry is refetched, a redirect is never cached.
+// ── 6. a canceled edition is kept but never offered ──
+// Nocturnal Wonderland 2024 was canceled before it opened (Line Fire). Its
+// printed rows stay as evidence; the index, the artist registry and the app's
+// past-edition lists all skip it. Each rule has a mutant.
+{
+  const canceled = Object.entries(EDITIONS).filter(([, m]) => m.status === "canceled").map(([id]) => id);
+  ok(canceled.includes("nocturnal-wonderland-2024"), "nocturnal-wonderland-2024 must be registered as canceled");
+  const index = JSON.parse(readFileSync(H("index.json"), "utf8"));
+  const indexProblems = ix => canceled.filter(id => ix.editions.some(e => e.id === id)).map(id => `index.json lists canceled ${id}`);
+  ok(!indexProblems(index).length, indexProblems(index).join("; "));
+  for (const id of canceled) {
+    const e = editions[id], want = expected[id]?.setsPerDay?.reduce((a, b) => a + b, 0);
+    ok(e && e.status === "canceled" && e.sets.length === want, `${id}: the edition file must keep all ${want} printed sets and say it was canceled (has ${e?.sets.length}, status ${e?.status})`);
+  }
+  const billings = JSON.parse(readFileSync(join(ROOT, "data/artists/billings.json"), "utf8"));
+  const registry = JSON.parse(readFileSync(join(ROOT, "data/artists/registry.json"), "utf8"));
+  const credited = id => billings.some(b => b.festivalId === id) || registry.some(a => a.billings.some(x => x.startsWith(id + ":")));
+  ok(billings.length > 1000 && billings.some(b => b.festivalId === "nocturnal-wonderland-2022"), "control: billings.json carries Nocturnal Wonderland 2022");
+  for (const id of canceled) ok(!credited(id), `the artist registry credits sets from canceled ${id}`);
+  // The stage lineages (data/artists/stages.json, hand-written) may keep a
+  // canceled edition only as a canceledEditions record carrying the
+  // registry's sources, never in a name's held `editions` list.
+  const lineageProblems = doc => Object.values(doc.brands).flatMap(br => br.lineages).flatMap(l => l.names.flatMap(nm => [
+    ...canceled.filter(id => (nm.editions || []).includes(id)).map(id => `${l.id} "${nm.printed}" lists canceled ${id} as held`),
+    ...(nm.canceledEditions || []).flatMap(c => {
+      const m = EDITIONS[c.id];
+      if (m?.status !== "canceled") return [`${l.id} "${nm.printed}" marks ${c.id} canceled, the edition registry does not`];
+      const want = m.canceled.sources.map(x => x.url).sort().join(" "), got = (c.sources || []).map(x => x.url).sort().join(" ");
+      return got === want ? [] : [`${l.id} "${nm.printed}": ${c.id}'s sources differ from the edition registry`];
+    })]));
+  const stagesDoc = JSON.parse(readFileSync(join(ROOT, "data/artists/stages.json"), "utf8"));
+  ok(!lineageProblems(stagesDoc).length, lineageProblems(stagesDoc).slice(0, 4).join("; "));
+  const marked = Object.values(stagesDoc.brands).flatMap(br => br.lineages).flatMap(l => l.names).filter(nm => (nm.canceledEditions || []).some(c => c.id === "nocturnal-wonderland-2024"));
+  ok(marked.length === 4, `the 4 Nocturnal stage names that printed the 2024 grid must keep it as a canceled-edition record (found ${marked.length})`);
+  ok(Object.values(stagesDoc.brands).flatMap(br => br.lineages).some(l => l.names.some(nm => nm.editions.includes("nocturnal-wonderland-2022"))), "control: lineages list Nocturnal Wonderland 2022 as held");
+  { const m = clone(stagesDoc), nm = Object.values(m.brands).flatMap(br => br.lineages).flatMap(l => l.names).find(x => x.canceledEditions);
+    nm.editions.push("nocturnal-wonderland-2024"); mutations++; ok(lineageProblems(m).length > 0, "mutation not caught: a lineage listing the canceled edition as held"); }
+  { const m = clone(stagesDoc), nm = Object.values(m.brands).flatMap(br => br.lineages).flatMap(l => l.names).find(x => x.canceledEditions);
+    nm.canceledEditions[0].sources.pop(); mutations++; ok(lineageProblems(m).length > 0, "mutation not caught: a lineage's canceled record missing a source"); }
+  // The app: the compiled screen's own list function, against an index that
+  // (stale or hand-served) still lists a canceled edition with its status.
+  const vm = await import("node:vm");
+  const appList = src => { const c = { React: {}, console }; vm.createContext(c); vm.runInContext(src + "\n;globalThis.__f = { pastEditionsOf };", c); return c.__f; };
+  const src = readFileSync(join(ROOT, "build/historical.js"), "utf8");
+  const fx = { editions: [
+    { id: "nocturnal-wonderland-2024", festivalId: "nocturnal-wonderland", year: 2024, status: "canceled" },
+    { id: "nocturnal-wonderland-2022", festivalId: "nocturnal-wonderland", year: 2022 }] };
+  const shown = f => f.pastEditionsOf(fx, "nocturnal-wonderland-2026").map(e => e.id);
+  ok(JSON.stringify(shown(appList(src))) === JSON.stringify(["nocturnal-wonderland-2022"]), `the app offers a canceled edition: ${shown(appList(src))}`);
+  // Mutants.
+  const nw = editions["nocturnal-wonderland-2024"];
+  const meta = EDITIONS["nocturnal-wonderland-2024"], keep = clone(meta);
+  const withMeta = (label, change, by) => { change(meta); try { mustFail(label, () => {}, nw, () => {}, by); } finally { Object.keys(meta).forEach(k => delete meta[k]); Object.assign(meta, clone(keep)); } };
+  withMeta("canceled with one source", m => m.canceled.sources.pop(), /two dated sources/);
+  withMeta("a source published after the first day", m => { m.canceled.sources[1].published = "2024-09-20"; }, /two dated sources/);
+  withMeta("both sources from one publisher", m => { m.canceled.sources[1].url = m.canceled.sources[0].url + "?b"; }, /two dated sources/);
+  withMeta("canceled with no announcement date", m => { delete m.canceled.announced; }, /announcement/);
+  mustFail("the edition file drops its canceled status", m => { delete m.status; }, nw, () => {}, /status differs/);
+  mutations++; ok(indexProblems({ editions: [...index.editions, { id: "nocturnal-wonderland-2024" }] }).length > 0, "mutation not caught: an index that lists the canceled edition");
+  ok(credited("nocturnal-wonderland-2022"), "control: the credit check finds a real edition's sets (else the canceled check passes vacuously)");
+  const unguarded = src.replace(/\.filter\(e => e\.status !== "canceled"\)/, "");
+  ok(unguarded !== src, "the app's canceled guard pattern must be present in build/historical.js for its mutant");
+  mutations++; ok(shown(appList(unguarded)).includes("nocturnal-wonderland-2024"), "mutation not caught: the app with no canceled guard");
+}
+
 // Own process: it isolates the cache dir and stubs fetch.
 {
   checks++;
