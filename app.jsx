@@ -522,6 +522,11 @@ function SearchModal({ onClose, onSelectArtist, saved = [] }) {
 // layer is the 10000 scrim; scripts/test-toast-over-modals.mjs fails if any
 // fixed layer in the .jsx sources reaches this value.
 const TOAST_LAYER_Z = 10100;
+// An error toast stays long enough to read. The 1600 ms default suits a
+// quick "Saved"; a two-line failure ("The share card took too long to make.
+// Try again.") at 320 px was gone before it could be read. Callers mark a
+// failure with { error: true }; an explicit duration still wins.
+const TOAST_ERROR_MS = 6000;
 function ToastHost() {
   const [msg, setMsg] = React.useState(null);
   // Deferred toasts (nudges, not results) wait here while another toast is on
@@ -530,7 +535,7 @@ function ToastHost() {
   // result ("Imported 1 · 1 failed"), wiping it before anyone could read it.
   const queue = React.useRef([]), showing = React.useRef(false);
   React.useEffect(() => {
-    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer }.
+    // window.plurskyToast(text, opts?) — opts: { actionLabel, onAction, duration, defer, error }.
     // Text-only calls keep the old 1600ms quick-confirm behaviour; passing an
     // action turns it into an actionable toast (e.g. a 3s UNDO). `defer`
     // queues the toast behind whatever is showing.
@@ -550,7 +555,7 @@ function ToastHost() {
       else showing.current = false;
       return;
     }
-    const t = setTimeout(() => setMsg(null), msg.duration || 1600);
+    const t = setTimeout(() => setMsg(null), msg.duration || (msg.error ? TOAST_ERROR_MS : 1600));
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
