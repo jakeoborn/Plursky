@@ -643,6 +643,58 @@ function _matchArtistForPhoto({
   var attendedSet = new Set(attendedIds || []);
   var savedSet = new Set(savedIds || []);
   var priorIds = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
+  var stageAnchorsAll = resolvedStageAnchors(cfg);
+  var fixGate = lat != null && lng != null ? stageFixGate(stageAnchorsAll, {
+    lat,
+    lng,
+    accuracy: acc
+  }, null, STAGE_FIX_PHOTO) : {
+    status: "none"
+  };
+  var trustedStage = fixGate.status === "trusted" ? fixGate.stageId : null;
+  var gpsGate = fixGate.status === "none" ? undefined : {
+    status: fixGate.status,
+    stageId: trustedStage,
+    distM: fixGate.distM != null ? Math.round(fixGate.distM) : null,
+    marginM: fixGate.marginM != null ? Math.round(fixGate.marginM) : null
+  };
+  var playingIn = a => {
+    var w = setWindow(a);
+    return !!w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+  };
+  var playingNow = artists.filter(playingIn).sort((x, y) => setWindow(x).startMs - setWindow(y).startMs || String(x.id).localeCompare(String(y.id)));
+  if (trustedStage) {
+    var here = playingNow.filter(a => a.stage === trustedStage);
+    if (here.length) {
+      var edge = a => {
+        var w = setWindow(a);
+        return photoMs < w.startMs ? w.startMs - photoMs : photoMs > w.endMs ? photoMs - w.endMs : 0;
+      };
+      var act = here.slice().sort((x, y) => edge(x) - edge(y))[0];
+      var anchor = stageAnchorsAll.find(g => g.stageId === trustedStage);
+      var surveyGrade = !!anchor && (anchor.anchorSource === "osm" || anchor.anchorSource === "crowd");
+      var unpinned = playingNow.some(a => a.id !== act.id && !stageAnchorsAll.some(g => g.stageId === a.stage));
+      var priorPlaying = priorIds.filter(id => id !== act.id && playingNow.some(a => a.id === id));
+      var ambiguous = !surveyGrade || unpinned || here.length > 1 || priorPlaying.length > 0;
+      var own = attendedSet.has(act.id) ? "attended" : savedSet.has(act.id) ? "saved" : null;
+      var over = priorPlaying.length ? ";over-" + (priorPlaying.some(id => attendedSet.has(id)) ? "attended" : "saved") : "";
+      return {
+        localDate,
+        gpsRejected,
+        artistId: act.id,
+        night: act.day,
+        festivalId,
+        resolvedBy,
+        reason: own ? own + "_set_time" : "stage_gps_time",
+        evidence: (own ? own + "+time+stage-gps" : "trusted-gps+time") + over,
+        suggested: false,
+        anchorSource: anchor ? anchor.anchorSource : null,
+        ambiguous,
+        alternatives: ambiguous ? [act.id, ...playingNow.filter(a => a.id !== act.id).map(a => a.id)] : undefined,
+        gpsGate
+      };
+    }
+  }
   var priorHits = priorIds.map(id => artists.find(a => a.id === id)).filter(Boolean).map(a => {
     var w = setWindow(a);
     return w ? {
@@ -651,7 +703,6 @@ function _matchArtistForPhoto({
       score: attendedSet.has(a.id) ? 1000 : 500
     } : null;
   }).filter(Boolean).filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
-  var savedDefeatedByGps = false;
   if (priorHits.length) {
     priorHits.sort((x, y) => y.score - x.score || x.endMs - x.startMs - (y.endMs - y.startMs));
     var hit = priorHits[0];
@@ -675,46 +726,22 @@ function _matchArtistForPhoto({
         };
       }
     }
-    var stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
-    var anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
-    var atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
-    var gpsAct = null;
-    if (!attended && !atStage && stageAnchors.length) {
-      var near = null,
-        nearM = Infinity;
-      for (var g of stageAnchors) {
-        var m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (m < nearM) {
-          nearM = m;
-          near = g;
-        }
-      }
-      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
-        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
-          var w = setWindow(a);
-          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
-        })()) || null;
-      }
-    }
-    if (!(gpsAct && anchor)) {
-      var evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
-      var alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
-      var amb = _ambiguous || !!gpsAct;
-      return {
-        localDate,
-        gpsRejected,
-        artistId: hit.a.id,
-        night: hit.a.day,
-        festivalId,
-        resolvedBy,
-        reason: attended ? "attended_set_time" : "saved_set_time",
-        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
-        suggested: !attended && !atStage,
-        ambiguous: amb,
-        alternatives: amb ? alts : undefined
-      };
-    }
-    savedDefeatedByGps = true;
+    var atStage = trustedStage != null && trustedStage === hit.a.stage;
+    var evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+    return {
+      localDate,
+      gpsRejected,
+      artistId: hit.a.id,
+      night: hit.a.day,
+      festivalId,
+      resolvedBy,
+      reason: attended ? "attended_set_time" : "saved_set_time",
+      evidence,
+      suggested: !attended && !atStage,
+      ambiguous: _ambiguous,
+      alternatives: _ambiguous ? topTier.map(h => h.a.id) : undefined,
+      gpsGate
+    };
   }
   {
     var _away = _offVenueMeters(cfg, lat, lng, acc);
@@ -736,9 +763,9 @@ function _matchArtistForPhoto({
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {
-        var _m = _haversineMeters(sLat, sLng, a.lat, a.lng);
-        if (_m < minMeters) {
-          minMeters = _m;
+        var m = _haversineMeters(sLat, sLng, a.lat, a.lng);
+        if (m < minMeters) {
+          minMeters = m;
           nearest = a;
         }
       }
@@ -777,20 +804,11 @@ function _matchArtistForPhoto({
     }
   }
   if (candidates.length === 0) {
-    if (sLat != null && sLng != null) {
-      var _anchors2 = resolvedStageAnchors(cfg);
-      var nearStage = null,
-        nearStageM = Infinity,
-        nearSource = null;
-      for (var _g of _anchors2) {
-        var _m2 = _haversineMeters(sLat, sLng, _g.lat, _g.lng);
-        if (_m2 < nearStageM) {
-          nearStageM = _m2;
-          nearStage = _g.stageId;
-          nearSource = _g.anchorSource;
-        }
-      }
-      if (nearStage && nearStageM <= 120) {
+    {
+      var nearStage = trustedStage;
+      var nearStageM = fixGate.distM;
+      var nearSource = (stageAnchorsAll.find(g => g.stageId === trustedStage) || {}).anchorSource || null;
+      if (nearStage) {
         var best = null,
           bestGap = Infinity;
         for (var _a2 of artists) {
@@ -836,50 +854,68 @@ function _matchArtistForPhoto({
       reason: "no_artist_at_time"
     };
   }
-  var inAttended = candidates.filter(c => attendedSet.has(c.a.id));
-  var inSaved = candidates.filter(c => savedSet.has(c.a.id));
-  var pool = inAttended.length ? inAttended : inSaved.length && !savedDefeatedByGps ? inSaved : candidates;
-  var _anchors = resolvedStageAnchors(cfg);
-  var stageDist = a => {
-    if (sLat == null || sLng == null) return Infinity;
-    var anchor = _anchors.find(g => g.stageId === a.stage);
-    if (!anchor) return Infinity;
-    var dLat = sLat - anchor.lat,
-      dLng = sLng - anchor.lng;
-    return dLat * dLat + dLng * dLng;
-  };
-  var atAnchor = a => {
-    if (sLat == null || sLng == null) return false;
-    var g = _anchors.find(x => x.stageId === a.stage);
-    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
-  };
-  pool.sort((x, y) => {
-    var ax = atAnchor(x.a),
-      ay = atAnchor(y.a);
-    if (ax !== ay) return ax ? -1 : 1;
-    var dx = stageDist(x.a),
-      dy = stageDist(y.a);
-    if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
-    return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
-  });
-  var dists = pool.map(c => stageDist(c.a));
-  var gpsSeparated = dists.every(d => d !== Infinity) && [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
-  var winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
-  var gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
-  var anchorSource = gpsDecided ? winnerAnchor ? winnerAnchor.anchorSource : null : null;
-  var surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
-  var ambiguous = pool.length > 1 && !gpsSeparated || anchorSource != null && !surveyGrade;
+  if (fixGate.status === "outside" && candidates.length > 1) {
+    var pinned = a => stageAnchorsAll.some(g => g.stageId === a.stage);
+    var left = candidates.filter(c => !pinned(c.a));
+    if (left.length === 1) {
+      return {
+        localDate,
+        gpsRejected,
+        artistId: left[0].a.id,
+        night,
+        festivalId,
+        resolvedBy,
+        reason: "unpinned_by_exclusion",
+        ambiguous: true,
+        anchorSource: null,
+        gpsGate,
+        alternatives: [left[0].a.id, ...candidates.filter(c => c !== left[0]).sort((x, y) => x.startMin - y.startMin).map(c => c.a.id)]
+      };
+    }
+    if (left.length > 1) {
+      var ordered = [...left.sort((x, y) => x.startMin - y.startMin), ...candidates.filter(c => pinned(c.a)).sort((x, y) => x.startMin - y.startMin)];
+      return {
+        localDate,
+        gpsRejected,
+        artistId: null,
+        night,
+        festivalId,
+        resolvedBy,
+        reason: "several_playing",
+        ambiguous: true,
+        anchorSource: null,
+        gpsGate,
+        alternatives: ordered.map(c => c.a.id)
+      };
+    }
+  }
+  if (candidates.length === 1) {
+    return {
+      localDate,
+      gpsRejected,
+      artistId: candidates[0].a.id,
+      night,
+      festivalId,
+      resolvedBy,
+      reason: "matched",
+      ambiguous: false,
+      anchorSource: null,
+      gpsGate
+    };
+  }
+  var several = candidates.slice().sort((x, y) => x.startMin - y.startMin || String(x.a.id).localeCompare(String(y.a.id)));
   return {
     localDate,
     gpsRejected,
-    artistId: pool[0].a.id,
+    artistId: null,
     night,
     festivalId,
     resolvedBy,
-    reason: "matched",
-    ambiguous,
-    anchorSource,
-    alternatives: ambiguous ? pool.map(c => c.a.id) : undefined
+    reason: "several_playing",
+    ambiguous: true,
+    anchorSource: null,
+    alternatives: several.map(c => c.a.id),
+    gpsGate
   };
 }
 function _scanNightWindows(cfgIn) {
