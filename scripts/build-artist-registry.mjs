@@ -39,6 +39,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { dropReason } from './historical/editions.mjs';
+import { listedEdition } from './historical/build-editions.mjs';
 
 const ROOT = process.cwd();
 
@@ -240,6 +241,9 @@ export function build(root = ROOT, overrides = null) {
   const H = `${root}/data/historical/editions`;
   for (const fn of readdirSync(H).filter(f => f.endsWith('.json')).sort()) {
     const ed = JSON.parse(readFileSync(`${H}/${fn}`, 'utf8'));
+    // A canceled edition never ran: its printed sets are kept in the library
+    // as evidence, but nobody is credited with playing it.
+    if (!listedEdition(ed)) continue;
     const art = new Map(ed.artists.map(a => [a.id, a])), st = new Map(ed.stages.map(s => [s.id, s.name])), days = new Map((ed.days || []).map(d => [d.day, d.date]));
     // §4.5: an archived day is what the official page printed when it was
     // archived, so each set carries that capture's date, in the edition's zone.
