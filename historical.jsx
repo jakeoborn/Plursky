@@ -274,6 +274,58 @@ function _HistChip({ on, onClick, children, label }) {
   );
 }
 
+// ── Your photos from this edition (2026-11-07) ──────────────────────
+// Moments the library scan ("Scan past festivals" in Memories) filed under
+// this edition's id. Read from the same local store Memories uses; a moment
+// stamped with an edition id is never on a live festival's screens, so this
+// is where it shows. The act line comes from THIS edition's printed lineup,
+// and a photo the matcher could not place says so instead of guessing.
+function _histEditionMoments(editionId) {
+  let all = {};
+  try { all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {}; } catch {}
+  const out = [];
+  for (const night of Object.keys(all)) for (const m of (Array.isArray(all[night]) ? all[night] : [])) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+
+function _HistPhotoTile({ moment, actName, guess }) {
+  const thumb = useMomentThumb(moment);
+  return (
+    <li data-edition-photo style={{ flex: "0 0 auto", width: 112 }}>
+      <div style={{ width: 112, height: 112, borderRadius: 12, overflow: "hidden", background: "var(--paper-2)" }}>
+        <_ThumbMedia moment={moment} thumb={thumb} />
+      </div>
+      <div data-edition-photo-act={actName ? (guess ? "guess" : "sure") : "none"} style={{ marginTop: 4, fontSize: 12, lineHeight: "16px", color: actName && !guess ? "var(--ink)" : "var(--text-2)", fontWeight: actName && !guess ? 600 : 400, overflowWrap: "anywhere" }}>
+        {actName ? (guess ? `Maybe ${actName}` : actName) : "No act matched"}
+      </div>
+    </li>
+  );
+}
+
+function _HistYourPhotos({ editionId, artistName }) {
+  const moments = React.useMemo(() => _histEditionMoments(editionId), [editionId]);
+  if (!moments.length) return null;
+  return (
+    <section data-edition-your-photos aria-label="Your photos" style={{ display: "grid", gap: 6 }}>
+      <h2 style={{ margin: 0, fontSize: 13, lineHeight: "18px", fontWeight: 600, color: "var(--ink)" }}>
+        Your photos · {moments.length}
+      </h2>
+      <ul style={{ listStyle: "none", margin: 0, padding: "0 0 4px", display: "flex", gap: 8, overflowX: "auto" }}>
+        {moments.map(m => {
+          // A past edition has no stage positions and no saved acts, so when
+          // sets overlap the matcher can only offer its nearest-start guess
+          // (tagAmbiguous). That guess is labelled as one, never as fact.
+          const name = m.artistId ? artistName(m.artistId) : null;
+          const guess = !!name && (m.tagAmbiguous || m.tagSuggested);
+          return <_HistPhotoTile key={m.id} moment={m} actName={name} guess={guess} />;
+        })}
+      </ul>
+    </section>
+  );
+}
+
 function HistoricalEditionView({ state, setState }) {
   // The id comes from app state, but only an id the index lists is fetched,
   // so a deep link can never ask for an arbitrary path.
@@ -418,6 +470,7 @@ function _HistEdition({ meta, back }) {
           <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
           {checked && <> · {e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
         </p>
+        <_HistYourPhotos editionId={meta.id} artistName={id => view?.artist[id]?.name || null} />
         {!lineupOnly && !query && groups.map(g => (
           <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 6 }}>
             {g.name && <span style={{ width: 84, font: "600 13px/1.3 var(--f-ui)", color: "var(--ink-2)" }}>{g.name}</span>}

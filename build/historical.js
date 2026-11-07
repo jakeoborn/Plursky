@@ -481,6 +481,93 @@ function _HistChip({
     className: "duo-chip"
   }, React.createElement("span", null, children));
 }
+function _histEditionMoments(editionId) {
+  var all = {};
+  try {
+    all = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}") || {};
+  } catch {}
+  var out = [];
+  for (var night of Object.keys(all)) for (var m of Array.isArray(all[night]) ? all[night] : []) {
+    if (m && m.festivalId === editionId) out.push(m);
+  }
+  return out.sort((a, b) => String(a.takenAt || "").localeCompare(String(b.takenAt || "")));
+}
+function _HistPhotoTile({
+  moment,
+  actName,
+  guess
+}) {
+  var thumb = useMomentThumb(moment);
+  return React.createElement("li", {
+    "data-edition-photo": true,
+    style: {
+      flex: "0 0 auto",
+      width: 112
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 112,
+      height: 112,
+      borderRadius: 12,
+      overflow: "hidden",
+      background: "var(--paper-2)"
+    }
+  }, React.createElement(_ThumbMedia, {
+    moment: moment,
+    thumb: thumb
+  })), React.createElement("div", {
+    "data-edition-photo-act": actName ? guess ? "guess" : "sure" : "none",
+    style: {
+      marginTop: 4,
+      fontSize: 12,
+      lineHeight: "16px",
+      color: actName && !guess ? "var(--ink)" : "var(--text-2)",
+      fontWeight: actName && !guess ? 600 : 400,
+      overflowWrap: "anywhere"
+    }
+  }, actName ? guess ? `Maybe ${actName}` : actName : "No act matched"));
+}
+function _HistYourPhotos({
+  editionId,
+  artistName
+}) {
+  var moments = React.useMemo(() => _histEditionMoments(editionId), [editionId]);
+  if (!moments.length) return null;
+  return React.createElement("section", {
+    "data-edition-your-photos": true,
+    "aria-label": "Your photos",
+    style: {
+      display: "grid",
+      gap: 6
+    }
+  }, React.createElement("h2", {
+    style: {
+      margin: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      fontWeight: 600,
+      color: "var(--ink)"
+    }
+  }, "Your photos · ", moments.length), React.createElement("ul", {
+    style: {
+      listStyle: "none",
+      margin: 0,
+      padding: "0 0 4px",
+      display: "flex",
+      gap: 8,
+      overflowX: "auto"
+    }
+  }, moments.map(m => {
+    var name = m.artistId ? artistName(m.artistId) : null;
+    var guess = !!name && (m.tagAmbiguous || m.tagSuggested);
+    return React.createElement(_HistPhotoTile, {
+      key: m.id,
+      moment: m,
+      actName: name,
+      guess: guess
+    });
+  })));
+}
 function HistoricalEditionView({
   state,
   setState
@@ -788,7 +875,10 @@ function _HistEdition({
       fontWeight: 600,
       color: "var(--ink)"
     }
-  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), !lineupOnly && !query && groups.map(g => React.createElement("div", {
+  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), React.createElement(_HistYourPhotos, {
+    editionId: meta.id,
+    artistName: id => view?.artist[id]?.name || null
+  }), !lineupOnly && !query && groups.map(g => React.createElement("div", {
     key: g.name || "days",
     role: "group",
     "aria-label": g.name || "Days",

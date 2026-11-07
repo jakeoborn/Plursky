@@ -2363,6 +2363,17 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Past-edition scan gate — real app, on-site photos only, filed under their edition, shown on its page, rescan adds nothing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-past-edition-scan.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 420000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Past-edition scan failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Shazam reasons gate — library clips say why they failed, stale path retried from IndexedDB, never the mic");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-shazam-reasons.mjs"],

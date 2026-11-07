@@ -9430,7 +9430,7 @@ function MemoriesScreen({
         } : _metaFromFile(f, exif);
         var recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         var meta = recovered?.meta || baseMeta;
-        var matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : {
+        var matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds, opts.ds || undefined) : {
           artistId: null,
           night: null,
           reason: "no_date"
@@ -9483,7 +9483,7 @@ function MemoriesScreen({
           heading: meta?.heading != null ? Math.round(meta.heading) : null,
           headingRef: meta?.headingRef || null,
           festivalId: matched.festivalId || window.FESTIVAL_CONFIG?.id || null,
-          festivalStampSource: matched.festivalId ? "capture-time" : "active-fallback",
+          festivalStampSource: opts.ds?.config?.historical && matched.festivalId ? "past-edition" : matched.festivalId ? "capture-time" : "active-fallback",
           parsedGps: meta?.lat != null && meta?.lng != null ? {
             lat: meta.lat,
             lng: meta.lng
@@ -9543,12 +9543,16 @@ function MemoriesScreen({
     var duplicateResults = settledResults.filter(r => r.skipped === "duplicate");
     var activeFid = window.FESTIVAL_CONFIG?.id || null;
     var elsewhere = landed.filter(r => r.festivalId && r.festivalId !== activeFid);
-    if (elsewhere.length) {
+    if (elsewhere.length && !opts.ds?.config?.historical) {
       var byFest = {};
       for (var r of elsewhere) byFest[r.festivalId] = (byFest[r.festivalId] || 0) + 1;
       var label = id => window._DATA_SETS?.[id]?.config?.shortName || window._DATA_SETS?.[id]?.config?.name || id;
       var parts = Object.keys(byFest).map(id => `${byFest[id]} to ${label(id)}`);
       window.plurskyToast?.(`Filed by capture date — ${parts.join(", ")}. Switch festivals to see them.`);
+    }
+    if (opts.ds?.config?.historical) {
+      setBatch(null);
+      return settledResults;
     }
     if (landed.length === 0) {
       var failed = failedResults.length;
@@ -9887,6 +9891,159 @@ function MemoriesScreen({
         _scanDiagLog("scan-end");
       } catch {}
     }
+  };
+  var [pastScan, setPastScan] = React.useState(null);
+  var _scanBusy = st => !!st && ["access", "scanning", "importing"].includes(st.phase);
+  var handleScanPast = async () => {
+    var PS = window.Capacitor?.Plugins?.PhotoScan;
+    if (!PS?.scan) return;
+    if (batch && batch.done < batch.total || _scanBusy(scan) || _scanBusy(pastScan)) return;
+    setPastScan({
+      phase: "access"
+    });
+    try {
+      var access = await PS.requestAccess();
+      var limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) {
+        setPastScan({
+          phase: "denied"
+        });
+        return;
+      }
+      setPastScan({
+        phase: "scanning"
+      });
+      var targets = _histScanTargets(await _histFetch("index.json"));
+      var seen = _scanSeenRead();
+      var found = [];
+      var already = 0;
+      var _loop7 = async function (t) {
+        var assets = [];
+        for (var r of _scanQueryRanges(t.cfg)) {
+          var res = await PS.scan({
+            startMs: r.startMs,
+            endMs: r.endMs
+          });
+          assets.push(...(res?.assets || []));
+        }
+        var onSite = assets.filter(a => _histAssetOnSite(a, t.cfg));
+        if (!onSite.length) return 1;
+        var ds = _histDataSet(await _histFetch(`editions/${t.entry.id}.json`), t.cfg);
+        var pick = _scanPickAssets(onSite, t.cfg, seen, ds.artists);
+        already += pick.already;
+        if (pick.keep.length) found.push({
+          t,
+          ds,
+          keep: pick.keep
+        });
+      };
+      for (var t of targets) {
+        if (await _loop7(t)) continue;
+      }
+      var total = found.reduce((n, f) => n + f.keep.length, 0);
+      if (!total) {
+        setPastScan({
+          phase: "none",
+          already,
+          limited,
+          editions: targets.length
+        });
+        return;
+      }
+      var imported = 0,
+        unreadable = 0,
+        done = 0;
+      var byEdition = [];
+      for (var f of found) {
+        var got = 0;
+        var _loop8 = async function () {
+          setPastScan({
+            phase: "importing",
+            done,
+            total
+          });
+          done += chunk.length;
+          var files = [],
+            fileAssets = [];
+          for (var a of chunk) {
+            var file = await _scanExportFile(PS, a, f.t.cfg);
+            if (file) {
+              files.push(file);
+              fileAssets.push(a);
+            } else unreadable++;
+          }
+          if (!files.length) return 1;
+          var results = (await processImportedFiles(files, {
+            ds: f.ds
+          })) || [];
+          var failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+          _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+          var n = results.filter(r => r.momentId).length;
+          got += n;
+          imported += n;
+          unreadable += failed.size;
+          for (var _file of files) if (!/^video\//.test(_file.type)) PS.discard?.({
+            path: _file._scanPath
+          })?.catch?.(() => {});
+        };
+        for (var chunk of _scanChunks(f.keep)) {
+          if (await _loop8()) continue;
+        }
+        if (got) byEdition.push({
+          id: f.t.entry.id,
+          name: f.t.entry.name,
+          count: got
+        });
+      }
+      setPastScan({
+        phase: "done",
+        imported,
+        unreadable,
+        already,
+        limited,
+        byEdition
+      });
+    } catch (err) {
+      console.warn("[memories] past scan failed", err);
+      setPastScan({
+        phase: "error"
+      });
+    }
+  };
+  var _pastScanMessage = st => {
+    if (!st) return null;
+    var limitedNote = st.limited ? "Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    var alreadyNote = st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : "";
+    if (st.phase === "access" || st.phase === "scanning") return {
+      busy: true,
+      title: "Looking for photos from past festivals…"
+    };
+    if (st.phase === "importing") return {
+      busy: true,
+      title: `Importing ${st.done} of ${st.total}…`
+    };
+    if (st.phase === "denied") return {
+      tone: "warn",
+      title: "Plursky can’t see your photos",
+      body: "Turn on photo access in Settings, Plursky, Photos, then scan again."
+    };
+    if (st.phase === "error") return {
+      tone: "warn",
+      title: "Couldn’t finish the scan",
+      body: "Anything already imported is saved. Past festivals need a connection the first time; scan again to pick up the rest.",
+      retry: true
+    };
+    if (st.phase === "none") return {
+      title: "No new photos from past festivals",
+      body: [alreadyNote || "Nothing in your library was taken on a past festival’s grounds during its set times.", limitedNote].filter(Boolean).join(" ")
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from past festivals`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", alreadyNote, limitedNote].filter(Boolean).join(" ") || null,
+      editions: st.byEdition || [],
+      retry: !!st.unreadable
+    };
+    return null;
   };
   var _scanMessage = st => {
     if (!st) return null;
@@ -10450,7 +10607,151 @@ function MemoriesScreen({
         fontWeight: 600,
         fontFamily: "inherit"
       }
-    }, "Dismiss"))), React.createElement("div", {
+    }, "Dismiss"))), (() => {
+      var pm = _pastScanMessage(pastScan);
+      var pbusy = !!pm?.busy || busy;
+      var ghost = {
+        minHeight: 44,
+        padding: "0 14px",
+        borderRadius: 12,
+        border: "none",
+        cursor: "pointer",
+        background: "var(--paper-3)",
+        color: "var(--ink)",
+        fontSize: 15,
+        lineHeight: 1.33,
+        fontWeight: 600,
+        fontFamily: "inherit"
+      };
+      return React.createElement("div", {
+        style: {
+          marginTop: 8
+        }
+      }, React.createElement("button", {
+        onClick: handleScanPast,
+        disabled: pbusy,
+        "data-scan-past": true,
+        className: "duo-card",
+        style: {
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: 12,
+          width: "100%",
+          minHeight: 64,
+          padding: "10px 16px",
+          border: "none",
+          color: "var(--ink)",
+          textAlign: "left",
+          fontFamily: "inherit",
+          cursor: pbusy ? "default" : "pointer"
+        }
+      }, React.createElement("span", {
+        "aria-hidden": "true",
+        className: "duo-well",
+        style: {
+          width: 40,
+          height: 40,
+          flexShrink: 0,
+          display: "grid",
+          placeItems: "center",
+          color: "var(--acc-ink)"
+        }
+      }, React.createElement("svg", {
+        width: "20",
+        height: "20",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.8",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }, React.createElement("path", {
+        d: "M4 12 a8 8 0 1 0 2.4-5.7"
+      }), React.createElement("path", {
+        d: "M4 4 v4.5 h4.5"
+      }), React.createElement("path", {
+        d: "M12 8 v4.2 l2.8 1.8"
+      }))), React.createElement("span", {
+        style: {
+          flex: "1 1 150px",
+          minWidth: 0
+        }
+      }, React.createElement("span", {
+        "data-fit-words": true,
+        "data-fit-min": "13",
+        className: "duo-headline",
+        style: {
+          display: "block"
+        }
+      }, "Scan past festivals"), React.createElement("span", {
+        "data-fit-words": true,
+        "data-fit-min": "11",
+        className: "duo-body-s duo-ink2",
+        style: {
+          display: "block",
+          fontWeight: 400
+        }
+      }, "Finds photos from past years you were there")), React.createElement("span", {
+        className: "duo-body-s",
+        style: {
+          color: "var(--acc-ink)",
+          fontWeight: 650,
+          fontSize: 15
+        }
+      }, pbusy ? "…" : "Scan")), pm && React.createElement("div", {
+        role: "status",
+        "data-scan-past-card": true,
+        style: {
+          marginTop: 8,
+          padding: "12px 14px",
+          borderRadius: 14,
+          background: "var(--paper-2)",
+          border: "1px solid var(--line)"
+        }
+      }, React.createElement("div", {
+        style: {
+          fontSize: 15,
+          lineHeight: 1.33,
+          fontWeight: 600,
+          color: pm.tone === "warn" ? "var(--warn)" : "var(--ink)"
+        }
+      }, pm.title), pm.body && React.createElement("p", {
+        style: {
+          margin: "4px 0 0",
+          fontSize: 13,
+          lineHeight: 1.38,
+          color: "var(--text-2)"
+        }
+      }, pm.body), !pm.busy && React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          marginTop: 8,
+          flexWrap: "wrap"
+        }
+      }, (pm.editions || []).map(e => React.createElement("button", {
+        key: e.id,
+        "data-scan-past-open": e.id,
+        style: ghost,
+        onClick: () => (window._pushNav || (() => {}))({
+          tab: "past",
+          pastEdition: e.id,
+          pastDirect: true,
+          artist: null
+        })
+      }, e.name, " · ", e.count)), pm.retry && React.createElement("button", {
+        onClick: handleScanPast,
+        style: ghost
+      }, "Scan again"), React.createElement("button", {
+        onClick: () => setPastScan(null),
+        style: {
+          ...ghost,
+          background: "transparent",
+          color: "var(--text-2)"
+        }
+      }, "Dismiss"))));
+    })(), React.createElement("div", {
       style: {
         display: "flex",
         alignItems: "center",
@@ -12684,12 +12985,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop7 = function (move) {
+    var _loop9 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop7(move);
+      _loop9(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -12715,6 +13016,7 @@ function _reconcileFestivalStamps(moments) {
     if (!Array.isArray(arr)) continue;
     for (var m of arr) {
       if (!m || !m.festivalId || !m.takenAt) continue;
+      if (m.festivalStampSource === "past-edition") continue;
       if (!_momentTakenAtToDateParts(m.takenAt)) {
         if (m.festivalReview && m.festivalReview.reason === "no-claimant") {
           delete m.festivalReview;
@@ -12766,13 +13068,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop8 = function (move) {
+  var _loop0 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop8(move);
+    _loop0(move);
   }
   return changed;
 }
@@ -13085,7 +13387,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop9 = function (m) {
+  var _loop1 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13108,7 +13410,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop9(m);
+    _ret3 = _loop1(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -14803,7 +15105,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop0 = async function (a) {
+      var _loop10 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -14820,7 +15122,7 @@ function HeroCards({
         },
         _ret4;
       for (var a of want) {
-        _ret4 = await _loop0(a);
+        _ret4 = await _loop10(a);
         if (_ret4 === 0) continue;
       }
     })();
@@ -16808,7 +17110,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop1 = function (rows) {
+  var _loop11 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -16822,7 +17124,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop1(rows);
+    _loop11(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }
