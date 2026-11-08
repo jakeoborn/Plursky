@@ -93,6 +93,52 @@
    }
   },
   {
+   "id": "acl-2023",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2023",
+   "year": 2023,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-10-06",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-10-07",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-10-08",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2023-10-13",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2023-10-14",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2023-10-15",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 145,
+    "sets": 215
+   }
+  },
+  {
    "id": "acl-2022",
    "festivalId": "acl",
    "festivalName": "Austin City Limits",
