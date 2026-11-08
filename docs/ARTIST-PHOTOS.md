@@ -40,9 +40,10 @@ page, author, license link, review time, change note and the WebP's SHA-256.
 Capture them with:
 - node scripts/capture-artist-pilot.mjs <out-dir> "Lorde" "Charli XCX" ...
 
-Batch 3 (ACL 2026 billing, Commons only): Steve Aoki, Bleachers, Brandon
-Flowers, Rebecca Black, Sofi Tukker, The Chainsmokers, The xx. Same row
-evidence as batch 2.
+Batch 3 (ACL 2026 billing, Commons only): Bleachers, Brandon Flowers,
+Rebecca Black, Sofi Tukker, The Chainsmokers, The xx. Same row evidence as
+batch 2. Its Steve Aoki photo (Gage Skidmore) was superseded by batch 5's
+reviewed row (Jalil Arfaoui), which stays the live asset.
 
 Spotify remains the 24-hour fallback. Unknown legacy caches stay refused. All
 permanent-image recap/share exports remain off in this increment. Enabling them

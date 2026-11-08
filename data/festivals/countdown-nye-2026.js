@@ -150,6 +150,8 @@
     locationShort: "NOS Events Center",
     dates: "Dec 31, 2026 – Jan 1, 2027",
     year: 2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#6000DF", source: { url: "https://countdownnye.com/wp-content/assets/css/countdown.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, active nav link, blockquote, .card__category (15 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and category label to this violet; no theme-color meta." },
     officialEvent: {
       id: 554480,
       url: "https://www.insomniac.com/events/our-world/countdown/",

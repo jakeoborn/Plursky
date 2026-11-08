@@ -1,0 +1,63 @@
+{
+  "id": "nocturnal-wonderland-2018",
+  "method": "official_sources",
+  "official": "https://www.nocturnalwonderland.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-09-14",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+          "foundAt": "https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+          "published": "2018-09-10",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY (SEPTEMBER 14 • 15, 2018)",
+          "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+          "bytes": 460292,
+          "rows": 32,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20190723175625/https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+            "captureTimestamp": "20190723175625",
+            "sha256": "68477a769e5df023f3e559106e67a11736f5c92e514db78ca14b1f6e2a1ba2a2",
+            "cites": "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times",
+            "setTimesGraphics": [
+              "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-09-15",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times.jpg",
+          "foundAt": "https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+          "published": "2018-09-10",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY (SEPTEMBER 14 • 15, 2018)",
+          "sha256": "5895cb0b1a498b872be96b7e58dd4e4c5c04d87c88fe693ad21d1668e606316f",
+          "bytes": 460292,
+          "rows": 30,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20190723175625/https://edmidentity.com/2018/09/10/nocturnal-wonderland-2018-essentials/",
+            "captureTimestamp": "20190723175625",
+            "sha256": "68477a769e5df023f3e559106e67a11736f5c92e514db78ca14b1f6e2a1ba2a2",
+            "cites": "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times",
+            "setTimesGraphics": [
+              "wp-content/uploads/2018/09/Nocturnal-Wonderland-2018-Set-Times"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

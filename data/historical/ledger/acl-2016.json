@@ -1,0 +1,129 @@
+{
+  "id": "acl-2016",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-09-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "archivedUrl": "https://web.archive.org/web/20161011212848/http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "captureTimestamp": "20161011212848",
+          "printed": "Friday Sep 30th",
+          "sha256": "00ba7644b1a59ff46fe3eef7190b53b2d7c65ab097da088d7414aca20aca4d2e",
+          "bytes": 445184,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-10-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "archivedUrl": "https://web.archive.org/web/20161011212848/http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "captureTimestamp": "20161011212848",
+          "printed": "Saturday Oct 1st",
+          "sha256": "00ba7644b1a59ff46fe3eef7190b53b2d7c65ab097da088d7414aca20aca4d2e",
+          "bytes": 445184,
+          "rows": 38,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-10-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "archivedUrl": "https://web.archive.org/web/20161011212848/http://www.aclfestival.com:80/schedule-weekend-one/?utm_content=btn-schedule",
+          "captureTimestamp": "20161011212848",
+          "printed": "Sunday Oct 2nd",
+          "sha256": "00ba7644b1a59ff46fe3eef7190b53b2d7c65ab097da088d7414aca20aca4d2e",
+          "bytes": 445184,
+          "rows": 40,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2016-10-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20161016181312/http://www.aclfestival.com:80/schedule-weekend-two/",
+          "captureTimestamp": "20161016181312",
+          "printed": "Friday Oct 7th",
+          "sha256": "63111129565b00c222294c2f725cafa60ebcc576bc9c342bae7ab4e00cb9ba4e",
+          "bytes": 444838,
+          "rows": 39,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2016-10-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20161016181312/http://www.aclfestival.com:80/schedule-weekend-two/",
+          "captureTimestamp": "20161016181312",
+          "printed": "Saturday Oct 8th",
+          "sha256": "63111129565b00c222294c2f725cafa60ebcc576bc9c342bae7ab4e00cb9ba4e",
+          "bytes": 444838,
+          "rows": 38,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2016-10-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.aclfestival.com:80/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20161016181312/http://www.aclfestival.com:80/schedule-weekend-two/",
+          "captureTimestamp": "20161016181312",
+          "printed": "Sunday Oct 9th",
+          "sha256": "63111129565b00c222294c2f725cafa60ebcc576bc9c342bae7ab4e00cb9ba4e",
+          "bytes": 444838,
+          "rows": 40,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

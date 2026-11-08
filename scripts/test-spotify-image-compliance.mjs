@@ -30,6 +30,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const reservePort = () => new Promise((resolve, reject) => { const s = createServer(); s.once('error', reject); s.listen(0, '127.0.0.1', () => { const a = s.address(); s.close(e => e ? reject(e) : resolve(a.port)); }); });
 
@@ -81,6 +82,7 @@ try {
 
   const newCtx = async (width, seed) => {
     const ctx = await browser.newContext({ viewport: { width, height: 800 }, deviceScaleFactor: 2, serviceWorkers: 'block' });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.addInitScript(({ FEST, seed }) => {
       localStorage.setItem('onboarded', 'v1');
       localStorage.setItem('active_festival_id', FEST);
@@ -254,6 +256,8 @@ try {
         check(r.img.fit !== 'cover', `${at} image uses object-fit: cover`);
         check(r.img.radius === '4px', `${at} artwork corner radius is ${r.img.radius}, guidelines say 4px on small devices`);
         check(r.img.right <= r.img.vw, `${at} image runs off the screen`);
+        // Design, not compliance (L2): the whole image spans the screen.
+        check(r.img.w >= r.img.vw - 1, `${at} the Spotify hero is ${Math.round(r.img.w)}px of a ${r.img.vw}px screen (want edge to edge)`);
         check(r.overlaps.length === 0, `${at} something is drawn over the Spotify image: ${r.overlaps.join(' | ')}`);
         check(!r.parallax, `${at} the Spotify image sits in a translated (parallax) layer`);
       }
@@ -329,15 +333,19 @@ try {
     const page = await ctx.newPage(); await boot(page);
     const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name)); return { id: a.id, name: a.name }; });
     const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
-    // The first search answers with an image; later ones find nothing, so a
-    // refetch after expiry cannot put the old image back.
-    // Only THIS artist's first search gets the image: other faces on the page
-    // (the stage-night neighbours) search too, and must not take it.
-    let served = 0, hit = false;
+    // Every search for THIS artist answers with the image until the clock
+    // passes the expiry below; after that every search finds nothing, so a
+    // refetch cannot put the old image back. Other faces on the page (the
+    // stage-night neighbours) search too and never get it. Two consumers
+    // search for the artist: the hero's own fetch and the strip's photo
+    // queue (useArtistPhoto for the artist's own face), and which asks
+    // first depends on which neighbours already hold a ledger portrait, so
+    // the stub must not assume the hero's search is the first one.
+    let served = 0, hit = false, expired = false;
     await ctx.route(/api\.spotify\.com\/v1\/search/, r => {
       served++;
       const q = (new URL(r.request().url()).searchParams.get('q') || '').toLowerCase();
-      const mine = !hit && q.includes(artist.name.toLowerCase());
+      const mine = !expired && q.includes(artist.name.toLowerCase());
       if (mine) hit = true;
       return r.fulfill({ status: 200, contentType: 'application/json',
         body: JSON.stringify(mine ? { artists: { items: [{ name: artist.name, id: 'FETCHED1', images: [{ url: img }] }] } } : {}) });
@@ -348,11 +356,53 @@ try {
     await page.clock.runFor(2000);
     const before = await page.evaluate(() => !!document.querySelector('[data-hero="spotify"]'));
     check(before && hit, `[expiry, fetched] control: the fetched Spotify image was not showing (searches served: ${served}, this artist's: ${hit})`);
+    expired = true;
     await page.clock.fastForward(DAY + 60000);
     await page.clock.runFor(1000);
     const after = await page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), stored: Object.keys(JSON.parse(localStorage.getItem('artist_images_v1') || '{}')).length }));
     check(after.stored === 0, '[expiry, fetched] the fetched Spotify entry is still in storage a day later');
     check(!after.hero, '[expiry, fetched] the hero still shows an image fetched from Spotify a day ago');
+    await ctx.close();
+  }
+  // (c) f24: the strip's photo queue caches the artist AFTER the hero mounted
+  // and the hero's own search came back empty. The hero and a mounted
+  // useArtistPhoto must re-read the store and show the entry, with no second
+  // search for the artist; a write for another artist must not reach them.
+  {
+    const ctx = await newCtx(393, null);
+    await ctx.addInitScript(DAY => { localStorage.setItem('spotify_token', 'test-token'); localStorage.setItem('spotify_expires', String(Date.now() + 10 * DAY)); }, DAY);
+    const page = await ctx.newPage(); await boot(page);
+    const artist = await page.evaluate(() => { const a = window.ARTISTS.find(x => x.start && !/\bb2b\b/i.test(x.name) && !getPermanentArtistImage(x.name)); return { id: a.id, name: a.name }; });
+    const img = await page.evaluate(() => { const c = document.createElement('canvas'); c.width = 60; c.height = 40; c.getContext('2d').fillRect(0, 0, 60, 40); return c.toDataURL('image/png'); });
+    // Every search answers empty; count the ones for this artist.
+    let mine = 0;
+    await ctx.route(/api\.spotify\.com\/v1\//, r => {
+      const q = (new URL(r.request().url()).searchParams.get('q') || '').toLowerCase();
+      if (q && q.includes(artist.name.toLowerCase())) mine++;
+      return r.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+    await page.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?artist=${encodeURIComponent(artist.id)}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => !!document.querySelector('[aria-label="Back"]') && typeof putArtistImage === 'function', null, { timeout: 60000 });
+    await page.evaluate(name => {
+      const el = document.createElement('div'); el.id = 'photo-probe-root'; document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(React.createElement(function Probe() { const p = useArtistPhoto(name); return React.createElement('i', { id: 'photo-probe', 'data-p': p ? 'img' : '' }); }));
+    }, artist.name);
+    await sleep(1500);
+    const read = () => page.evaluate(() => ({ hero: !!document.querySelector('[data-hero="spotify"]'), probe: document.getElementById('photo-probe')?.dataset.p }));
+    const before = await read();
+    check(!before.hero && before.probe === '' && mine > 0, `[f24] control: an image showed before any entry existed, or no search ran for the artist (searches: ${mine})`);
+    await page.evaluate(img => putArtistImage('Plursky Not This Artist', img, 'spotify', { spotifyId: 'OTHER1' }), img);
+    await sleep(300);
+    const other = await read();
+    check(!other.hero && other.probe === '', '[f24] another artist\'s cache write put an image on this artist');
+    const searched = mine;
+    await page.evaluate(({ name, img }) => putArtistImage(name, img, 'spotify', { spotifyId: 'QUEUE1' }), { name: artist.name, img });
+    await sleep(300);
+    const after = await read();
+    check(after.hero, '[f24] the hero ignores a cache entry written after it mounted (the strip queue asked first)');
+    check(after.probe === 'img', '[f24] a mounted useArtistPhoto ignores a cache entry written after it mounted');
+    check(mine === searched, `[f24] the write set off another search for the artist (${searched} → ${mine})`);
     await ctx.close();
   }
   // ── 5. Song previews: Spotify only ────────────────────────────────────────
