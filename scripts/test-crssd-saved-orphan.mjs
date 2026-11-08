@@ -27,6 +27,7 @@ import vm from "node:vm";
 import { chromium } from "playwright";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FID = "crssd-fall-2026";
 const SKEPTA = "crssd-skepta-mas-tiempo";
@@ -66,6 +67,7 @@ try {
   // with Skepta's recorded reAdd row put back.
   const open = async (saved, tab, { rebill = false } = {}) => {
     const bctx = await browser.newContext({ viewport: { width: 393, height: 844 }, serviceWorkers: "block" });
+    await wireVendor(bctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await bctx.clock.install({ time: new Date("2026-09-28T18:00:00Z") });
     if (rebill) {
       await bctx.route(new RegExp(`/data/festivals/${FID}\\.js`), async route => {
@@ -78,6 +80,7 @@ try {
       if (sessionStorage.getItem("seeded")) return;
       sessionStorage.setItem("seeded", "1");
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", FID);
+      localStorage.setItem("plursky_display_name", "");   // quick-name ask already skipped: Me opens unobstructed
       localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
       localStorage.setItem("plursky_lineup_view", "list");
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(saved));

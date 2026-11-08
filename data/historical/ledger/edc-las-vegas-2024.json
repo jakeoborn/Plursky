@@ -1,0 +1,178 @@
+{
+  "id": "edc-las-vegas-2024",
+  "method": "structured_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+  "window": [
+    "20240517",
+    "20241231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "date": "2024-05-17",
+      "chosen": "20240520144508",
+      "archivedUrl": "https://web.archive.org/web/20240520144508/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "sha256": "53987dcfe94c5e3fdfc978512706579063bff4ab0b5e00831b9ad0cb2ffc8798",
+      "rows": 134,
+      "stages": {
+        "Kinetic Field": 10,
+        "Cosmic Meadow": 10,
+        "Circuit Grounds": 8,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 10,
+        "Bionic Jungle": 8,
+        "Rynobus": 9,
+        "House of Dunkin'": 8,
+        "Beatbox Boombox Art Car": 10,
+        "Meta Phoenix": 8,
+        "YeeDC!": 7,
+        "Blacklight Bar": 8
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20240520144508",
+          "archivedUrl": "https://web.archive.org/web/20240520144508/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "53987dcfe94c5e3fdfc978512706579063bff4ab0b5e00831b9ad0cb2ffc8798",
+          "bytes": 693010,
+          "tabs": [
+            "Friday, May 17",
+            "Saturday, May 18",
+            "Sunday, May 19"
+          ],
+          "date": "2024-05-17",
+          "valid": true,
+          "rows": 134,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "date": "2024-05-18",
+      "chosen": "20240520150551",
+      "archivedUrl": "https://web.archive.org/web/20240520150551/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "sha256": "0193030581ce3e85cd09116fed52c59e2aa5edf65c8c6c6083c24042941c25e5",
+      "rows": 130,
+      "stages": {
+        "Kinetic Field": 10,
+        "Cosmic Meadow": 8,
+        "Circuit Grounds": 9,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 9,
+        "Bionic Jungle": 7,
+        "Rynobus": 10,
+        "House of Dunkin'": 9,
+        "Beatbox Boombox Art Car": 7,
+        "Meta Phoenix": 8,
+        "YeeDC!": 7,
+        "Blacklight Bar": 8
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20240520150551",
+          "archivedUrl": "https://web.archive.org/web/20240520150551/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "0193030581ce3e85cd09116fed52c59e2aa5edf65c8c6c6083c24042941c25e5",
+          "bytes": 706388,
+          "tabs": [
+            "Friday, May 17",
+            "Saturday, May 18",
+            "Sunday, May 19"
+          ],
+          "date": "2024-05-18",
+          "valid": true,
+          "rows": 130,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "date": "2024-05-19",
+      "chosen": "20240520144446",
+      "archivedUrl": "https://web.archive.org/web/20240520144446/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "sha256": "7750fa016a6fe2fd47c2bbc564829d9635a27220427aaab00eab4c0995021dc8",
+      "rows": 134,
+      "stages": {
+        "Kinetic Field": 10,
+        "Cosmic Meadow": 8,
+        "Circuit Grounds": 9,
+        "Neon Garden": 6,
+        "Basspod": 11,
+        "Wasteland": 10,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 10,
+        "Bionic Jungle": 7,
+        "Rynobus": 10,
+        "House of Dunkin'": 9,
+        "Beatbox Boombox Art Car": 9,
+        "Meta Phoenix": 9,
+        "YeeDC!": 7,
+        "Blacklight Bar": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20240520144446",
+          "archivedUrl": "https://web.archive.org/web/20240520144446/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "sha256": "7750fa016a6fe2fd47c2bbc564829d9635a27220427aaab00eab4c0995021dc8",
+          "bytes": 605491,
+          "tabs": [
+            "Friday, May 17",
+            "Saturday, May 18",
+            "Sunday, May 19"
+          ],
+          "date": "2024-05-19",
+          "valid": true,
+          "rows": 134,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Circuit Grounds",
+      "start": "23:30",
+      "end": "01:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Kinetic Field",
+      "start": "01:41",
+      "end": "01:47",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}

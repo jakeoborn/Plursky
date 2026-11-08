@@ -1840,7 +1840,8 @@
     // hours only when that block is for this edition.
     hours: { label: "Festival", open: "15:00", close: "00:00", daily: true, url: "https://www.nocturnalwonderland.com/guide/hours-and-info/", dated: "September 19 + 20, 2026", observedAt: "2026-09-24" },
     // From the SOURCE note above: nocturnalwonderland.com/lineup/set-times/day-1/ + /day-2/, accessed 2026-09-10. Feeds /f/<id>/schedule.json.
-    scheduleSource: { url: "https://nocturnalwonderland.com/lineup/set-times/day-1/", observedAt: "2026-09-10", official: true },
+    scheduleSource: { url: "https://nocturnalwonderland.com/lineup/set-times/day-1/", observedAt: "2026-09-10", official: true,
+      dayUrls: { 1: "https://nocturnalwonderland.com/lineup/set-times/day-1/", 2: "https://nocturnalwonderland.com/lineup/set-times/day-2/" } },
     name:      "Nocturnal Wonderland 2026",
     shortName: "Nocturnal",
     brand:     "Nocturnal Wonderland",
@@ -1849,6 +1850,8 @@
     locationShort: "Glen Helen Regional Park",
     dates:     "Sep 19\u201320, 2026",
     year:      2026,
+    // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+    print: { accent: "#48FF7F", source: { url: "https://www.nocturnalwonderland.com/wp-content/assets/css/nocturnal.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "a{color}, .button{background-color}, .bg-theme{background-color}, active nav link, blockquote (15 uses)", confidence: "high" }, note: "The per-festival stylesheet of Insomniac's shared 'festival' theme sets every link, primary button and theme background to this green; no theme-color meta." },
     officialStages: ["Mystic Wild", "Dawn Mountain", "Aurora Plains", "Rave Cave", "Beatbox Boombox"],
     officialEvent: {
       id: 510542,

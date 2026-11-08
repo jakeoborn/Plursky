@@ -1,0 +1,168 @@
+{
+ "id": "acl-2024",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-10-04",
+   "sha256": "047ec29ec5a9c2a9239934195e84e9c41538348c989e4a87313f1610003e48de",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/67000642556e06e4aff65be8_ACL-2024-Schedule-W1-Fri-10.4.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20241024015310/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/67000642556e06e4aff65be8_ACL-2024-Schedule-W1-Fri-10.4.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.485Z",
+   "rowsConfirmed": 35,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND ONE FRIDAY, OCTOBER 04. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 30,
+   "corrections": [
+    "PORTER ROBINSON: artist \"PORTER®9 ROBINSON\" → \"PORTER ROBINSON\"",
+    "PENNY & SPARROW: artist \"PENNY &69 SPARROW\" → \"PENNY & SPARROW\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 ANDREW & POLLY",
+    "AUSTIN KIDDIE LIMITS 14:30-15:00 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 16:15-16:45 Q BROTHERS",
+    "BONUS TRACKS 15:00-15:30 COWBOY CAN CAN",
+    "BONUS TRACKS 18:15-19:00 SUNDAY SAUCE ON A FRIDAY W/ COURTNEY & RICKY"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2024-10-05",
+   "sha256": "f465b1c9accc91abe68ec3cfff47348c5a06345f08fc5a70da147b0a0cea1bfd",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/6701807ff1c1464c11f1946d_ACL-2024-Schedule-W1-Sat-10.4-D.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20241024015301/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/6701807ff1c1464c11f1946d_ACL-2024-Schedule-W1-Sat-10.4-D.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.486Z",
+   "rowsConfirmed": 41,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND ONE SATURDAY, OCTOBER 05. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. BONUS TRACKS end printed \"6:15-7PM\".",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 35,
+   "corrections": [
+    "HERMANOS GUTIÉRREZ: artist \"HERMANOS GUTIERREZ\" → \"HERMANOS GUTIÉRREZ\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 11:30-12:00 THE BARTON HILLS CHOIR",
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 ANDREW & POLLY",
+    "AUSTIN KIDDIE LIMITS 14:30-15:00 UNCLE JUMBO",
+    "AUSTIN KIDDIE LIMITS 16:30-17:00 MISS TUTTI & THE FRUITY BAND",
+    "BONUS TRACKS 16:00-16:30 SUNDAY SAUCE ON A SATURDAY W/ COURTNEY & RICKY",
+    "BONUS TRACKS 18:15-19:00 THE BEACHES BLAME BONUS TRACKS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2024-10-06",
+   "sha256": "6c4ebca8c82187308d0b890841acf93fb74153d1072ee879872881a3a334f509",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/6701811cbb00397449a86001_ACL-2024-Schedule-W1-Sun-10.4-E.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20241024015307/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/6701811cbb00397449a86001_ACL-2024-Schedule-W1-Sun-10.4-E.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.486Z",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND ONE SUNDAY, OCTOBER 06. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. BONUS TRACKS prints DRAG BINGO WITH EXTRAGRAMS!.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 34,
+   "corrections": [
+    "MEDIUM BUILD: artist \"MEDIUM 59 BUILD\" → \"MEDIUM BUILD\"",
+    "JESS GLYNNE: artist \"kg JESS GLYNNE\" → \"JESS GLYNNE\"",
+    "CHAPPELL ROAN: artist \"CANNONS CHAPPELL9 ROAN\" → \"CHAPPELL ROAN\""
+   ],
+   "ocrMissed": [
+    "AMERICAN EXPRESS 16:45-17:45 CANNONS",
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 14:15-14:45 MISS TUTTI & THE FRUITY BAND",
+    "AUSTIN KIDDIE LIMITS 15:30-15:45 SAULPAUL",
+    "AUSTIN KIDDIE LIMITS 16:15-16:45 UNCLE JUMBO",
+    "BONUS TRACKS 14:45-15:15 DRAG BINGO WITH EXTRAGRAMS!",
+    "BONUS TRACKS 16:45-17:15 TEXAS TRIBUTE DRAG SHOW BY EXTRAGRAMS!",
+    "BONUS TRACKS 19:45-20:30 DJ CASSANDRA"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2024-10-11",
+   "sha256": "e8e1290f4aa737218abd07701e7d1e08a9215a10f76ea856f6ed71412fb60e90",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670975a54c719c852b69b56a_ACL-2024-Schedule-W2-Fri-10.11B.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260329192746/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670975a54c719c852b69b56a_ACL-2024-Schedule-W2-Fri-10.11B.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.487Z",
+   "rowsConfirmed": 34,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND TWO FRIDAY, OCTOBER 11. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. Re-issue 10.11B: T-MOBILE prints SIR CHLOE, THE PAPER KITES 5:30 - 6:30, THE MARÍAS; the earlier 10.04-C grid's STEPHEN SANCHEZ 5:30 - 6:30 and THE PAPER KITES 3:30 - 4:30 are gone.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 29,
+   "corrections": [
+    "FOSTER THE PEOPLE: artist \"FOSTER b9 THE PEOPLE\" → \"FOSTER THE PEOPLE\"",
+    "EGGY: artist \"EGGYR\" → \"EGGY\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 14:30-15:00 MISTER G",
+    "AUSTIN KIDDIE LIMITS 16:15-16:45 Q BROTHERS",
+    "BONUS TRACKS 14:00-16:30 GET SKETCHY WITH THE ARTIST ZAC",
+    "BONUS TRACKS 16:45-17:15 !VAMOS VERDE! W/ AUSTIN FC GOALKEEPER BRAD STUVER"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 5,
+   "date": "2024-10-12",
+   "sha256": "34a80925ac924ef5c17d98f434c9c488d335a3a38bd27674dbdc21b4c9d12fdf",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670966b48b4103662cd6aee1_ACL-2024-Schedule-W2-Sat-10.11.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20260329192746/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670966b48b4103662cd6aee1_ACL-2024-Schedule-W2-Sat-10.11.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.487Z",
+   "rowsConfirmed": 41,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND TWO SATURDAY, OCTOBER 12. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 35,
+   "corrections": [
+    "BILLY ALLEN & THE POLLIES: artist \"BILLY ALLEN &THE POLLIES\" → \"BILLY ALLEN & THE POLLIES\"",
+    "BENSON BOONE: artist \"BENSON 59 BOONE\" → \"BENSON BOONE\"",
+    "JOE P: artist \"JOEP\" → \"JOE P\"",
+    "VINCE STAPLES: artist \"VINCE g STAPLES\" → \"VINCE STAPLES\"",
+    "THE BEACHES: artist \"kg THE BEACHES\" → \"THE BEACHES\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 11:30-12:00 THE BARTON HILLS CHOIR",
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 MISTER G",
+    "AUSTIN KIDDIE LIMITS 14:30-15:00 HOMESCOOL",
+    "AUSTIN KIDDIE LIMITS 16:30-17:00 LUCY KALANTARI & THE JAZZ CATS",
+    "BONUS TRACKS 14:00-14:30 TACO MAFIA",
+    "BONUS TRACKS 16:00-16:30 CHASING THE TIDE"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 6,
+   "date": "2024-10-13",
+   "sha256": "df9b8eac18c55e9ebb0e0dca8626595845a44e28624b98a455bb0006fd4e1b03",
+   "originalUrl": "https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670bdafb4fd1eacd2d950a6f_ACL-2024-Schedule-W2-Sun-10.13A.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20250114221901/https://cdn.prod.website-files.com/655dc0e47f49e5b9cdcbd920/670bdafb4fd1eacd2d950a6f_ACL-2024-Schedule-W2-Sun-10.13A.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-07T05:47:36.488Z",
+   "rowsConfirmed": 43,
+   "note": "Header read off the graphic: AUSTIN CITY LIMITS MUSIC FESTIVAL 2024, OCTOBER 04-06 + OCTOBER 11-13, WEEKEND TWO SUNDAY, OCTOBER 13. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis (11:30, 11:55 print above the 12 PM line: AM). Footer AUSTIN KIDDIE LIMITS and BONUS TRACKS strips hand-transcribed (Bonus Tracks dropped by rule). Stages printed IHG HOTELS & RESORTS, TITO'S HANDMADE VODKA, AUSTIN KIDDIE LIMITS PRESENTED BY LIFEWAY KEFIR. Re-issue 10.13A adds the BONUS TRACKS block MEDIUM BUILD'S SUNDAY SERVICE 1:15 - 2:00 (dropped by rule).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 35,
+   "corrections": [
+    "ORVILLE PECK: artist \"ORVILLE®9 PECK\" → \"ORVILLE PECK\"",
+    "STURGILL SIMPSON: artist \"lg STURGILL SIMPSON\" → \"STURGILL SIMPSON\"",
+    "DUSTIN KENSRUE: artist \"DUSTIN kg KENSRUE\" → \"DUSTIN KENSRUE\"",
+    "THE RED CLAY STRAYS: artist \"THE RED69 CLAY STRAYS\" → \"THE RED CLAY STRAYS\""
+   ],
+   "ocrMissed": [
+    "AUSTIN KIDDIE LIMITS 12:45-13:15 HOMESCOOL",
+    "AUSTIN KIDDIE LIMITS 14:15-14:45 SCHOOL OF ROCK",
+    "AUSTIN KIDDIE LIMITS 15:30-15:45 SAULPAUL",
+    "AUSTIN KIDDIE LIMITS 16:15-16:45 LUCY KALANTARI & THE JAZZ CATS",
+    "BONUS TRACKS 13:15-14:00 MEDIUM BUILD'S SUNDAY SERVICE",
+    "BONUS TRACKS 14:45-15:15 DRAG BINGO! WITH EXTRAGRAMS",
+    "BONUS TRACKS 16:45-17:15 POP GIRLIES DRAG SHOW BY EXTRAGRAMS!",
+    "BONUS TRACKS 19:45-20:30 DJ CASSANDRA"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

@@ -443,17 +443,77 @@ function OnboardingModal({
     onClick: () => finish(null)
   }, "Continue with ", FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name))));
 }
+function QuickNameSheet({
+  onDone
+}) {
+  var [name, setName] = React.useState("");
+  var ok = !!name.trim();
+  var save = () => {
+    if (!ok) return;
+    onDone(plurskySetLocalName(name.trim().slice(0, 20)));
+  };
+  var skip = () => {
+    plurskySkipQuickName();
+    onDone(null);
+  };
+  return React.createElement(FieldSheet, {
+    title: "What should Plursky call you?",
+    onClose: skip
+  }, React.createElement("div", {
+    "data-quick-name": true
+  }, React.createElement("p", {
+    style: {
+      margin: "2px 0 14px",
+      fontSize: 15,
+      lineHeight: "21px",
+      color: "var(--text-2)"
+    }
+  }, "Your crew sees this name next to your picks. No account needed."), React.createElement("input", {
+    "data-quick-name-input": true,
+    value: name,
+    onChange: e => setName(e.target.value),
+    onKeyDown: e => {
+      if (e.key === "Enter") save();
+    },
+    "aria-label": "Your name",
+    placeholder: "First name",
+    autoComplete: "given-name",
+    autoFocus: true,
+    maxLength: 20,
+    style: {
+      width: "100%",
+      height: 48,
+      borderRadius: 14,
+      border: "none",
+      background: "var(--paper-2)",
+      color: "var(--ink)",
+      padding: "0 16px",
+      fontSize: 17,
+      outline: "none",
+      fontFamily: "inherit"
+    }
+  }), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 10,
+      marginTop: 16
+    }
+  }, React.createElement(FieldButton, {
+    "data-quick-name-save": true,
+    onClick: save,
+    disabled: !ok
+  }, "Save"), React.createElement(FieldButton, {
+    "data-quick-name-skip": true,
+    kind: "secondary",
+    onClick: skip
+  }, "Not now"))));
+}
 function PersonalizeSheet({
   state,
   onClose
 }) {
-  var [name, setName] = React.useState(() => {
-    try {
-      return localStorage.getItem("user_name") || "";
-    } catch {
-      return "";
-    }
-  });
+  var [name, setName] = React.useState(plurskyLocalName);
   var {
     supported: notifSupported,
     perm: notifPerm,
@@ -973,6 +1033,8 @@ function SearchModal({
     })));
   }))));
 }
+var TOAST_LAYER_Z = 10100;
+var TOAST_ERROR_MS = 6000;
 function ToastHost() {
   var [msg, setMsg] = React.useState(null);
   var queue = React.useRef([]),
@@ -1012,7 +1074,7 @@ function ToastHost() {
       } else showing.current = false;
       return;
     }
-    var t = setTimeout(() => setMsg(null), msg.duration || 1600);
+    var t = setTimeout(() => setMsg(null), msg.duration || (msg.error ? TOAST_ERROR_MS : 1600));
     return () => clearTimeout(t);
   }, [msg?.id]);
   if (!msg) return null;
@@ -1023,13 +1085,13 @@ function ToastHost() {
       left: 0,
       right: 0,
       bottom: 80,
-      zIndex: 95,
+      zIndex: TOAST_LAYER_Z,
       display: "flex",
       justifyContent: "center",
       pointerEvents: "none",
       padding: "0 16px"
     }
-  }, "// Board toast: an elevated card in SF that WRAPS. The old one-line // pill ellipsised every long message (\"No photos received — pick a // few at a time; if they're in iCloud…\" lost its instruction).", React.createElement("div", {
+  }, React.createElement("div", {
     key: msg.id,
     role: "status",
     "aria-live": "polite",
@@ -1076,6 +1138,24 @@ function App() {
   });
   var [searchOpen, setSearchOpen] = React.useState(false);
   var [personalizeOpen, setPersonalizeOpen] = React.useState(false);
+  var [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  var quickNameWaiters = React.useRef([]);
+  React.useLayoutEffect(() => {
+    window.plurskyAskQuickName = () => {
+      if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
+      return new Promise(resolve => {
+        quickNameWaiters.current.push(resolve);
+        setQuickNameOpen(true);
+      });
+    };
+    return () => {
+      delete window.plurskyAskQuickName;
+    };
+  }, []);
+  var quickNameDone = name => {
+    setQuickNameOpen(false);
+    quickNameWaiters.current.splice(0).forEach(resolve => resolve(name));
+  };
   var modalOpen = useModalOpen();
   React.useEffect(() => {
     window.plurskyOpenOnboarding = () => setShowOnboarding(true);
@@ -1152,7 +1232,7 @@ function App() {
     var dlFrom = params.get("from");
     var dlCrew = params.get("crew");
     var validArtist = dlArtist && ARTISTS.find(a => a.id === dlArtist) ? dlArtist : null;
-    var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(dlTab) ? dlTab : null;
+    var validTab = ["home", "map", "lineup", "spotify", "me", "memories", "past", "artists"].includes(dlTab) ? dlTab : null;
     var dlEdition = params.get("edition");
     var validEdition = validTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(dlEdition || "") ? dlEdition : null;
     var validStage = dlStage && STAGES.find(s => s.id === dlStage || (s.code || s.short || "").toLowerCase() === dlStage.toLowerCase()) ? dlStage : null;
@@ -1219,7 +1299,7 @@ function App() {
         var raw = u.search || (u.hash?.startsWith("#?") ? u.hash.slice(1) : "");
         var params = new URLSearchParams(raw);
         var tab = params.get("tab");
-        if (["home", "map", "lineup", "spotify", "me", "memories", "past"].includes(tab)) {
+        if (["home", "map", "lineup", "spotify", "me", "memories", "past", "artists"].includes(tab)) {
           var edition = params.get("edition");
           var pastEdition = tab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
           setState(prev => ({
@@ -1293,9 +1373,11 @@ function App() {
     window._pushNav = _pushNav;
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
+  var attendV = useAttendVersion();
   React.useEffect(() => {
+    pruneAlertsKept(state.saved);
     if (notifPerm === "granted") scheduleReminders(state, showLocal);
-  }, [state.saved.join(","), notifPerm]);
+  }, [state.saved.join(","), notifPerm, attendV]);
   React.useEffect(() => {
     var cancelled = false;
     var t = setTimeout(async () => {
@@ -1363,11 +1445,15 @@ function App() {
   });else if (state.tab === "past") body = React.createElement(PastFestivalsScreen, {
     state: state,
     setState: setState
+  });else if (state.tab === "artists") body = React.createElement(ArtistsDirectoryScreen, {
+    state: state,
+    setState: setState
   });
   var statusBarStyle = state.tab === "map" && !state.artist ? "light" : "dark";
   return React.createElement(IOSDevice, {
     dark: statusBarStyle === "light"
   }, React.createElement("div", {
+    className: state.tab === "home" && !state.artist ? "np" : undefined,
     style: {
       position: "absolute",
       inset: 0,
@@ -1388,7 +1474,7 @@ function App() {
         return false;
       }
     })();
-    var meFold = postFest ? ["spotify", "recap", "past"] : ["spotify", "memories", "recap", "past"];
+    var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
       onChange: t => setState({
@@ -1410,6 +1496,8 @@ function App() {
   }), personalizeOpen && React.createElement(PersonalizeSheet, {
     state: state,
     onClose: () => setPersonalizeOpen(false)
+  }), quickNameOpen && !showOnboarding && React.createElement(QuickNameSheet, {
+    onDone: quickNameDone
   }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null));
 }
 var styleTag = document.createElement("style");
@@ -1502,7 +1590,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v426"
+        version: "v545"
       }));
     } catch {}
   }
@@ -1554,7 +1642,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v426"))
+      }, "Plursky · v545"))
     );
   }
 }

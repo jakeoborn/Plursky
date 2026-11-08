@@ -17,9 +17,11 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { ACTIVITIES, EDITIONS } from "./historical/editions.mjs";
-import { datedLabel, instant, to24 } from "./historical/lib.mjs";
+import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
+import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
+import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
+import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -92,6 +94,9 @@ if (base && edc) {
   // ANY form. Every category, and every listed activity, is put back as an
   // artist set, as an event, and as a stage, into the edition it came from.
   const dropSamples = [["edc-las-vegas-2025", "Fireworks"], ["acl-2025", "SILENT DISCO"], ["edc-las-vegas-2025", "Special Guest"],
+    ["escape-halloween-2025", "SECRET GUEST"], ["escape-halloween-2022", "DANSE MACABRE - SILENT DISCO"],
+    ["escape-halloween-2024", "AFTER PARTY SET TIMES – THE CAULDRON"],
+    ["edc-orlando-2019", "CHANGEOVER"], ["edc-orlando-2022", "DISCOVERY PROJECT"],
     ...Object.entries(ACTIVITIES).flatMap(([id, list]) => list.map(a => [id, a]))];
   for (const [id, billing] of dropSamples) {
     const e = editions[id]; if (!e) continue;
@@ -99,6 +104,56 @@ if (base && edc) {
     mustFail(`${billing} back as an artist set`, m => { m.artists.push(back); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: back.id }); }, e, undefined, /: dropped /);
     mustFail(`${billing} back as an event`, m => { m.events = [{ id: `${id}:d1:x:0000:${artistKey(billing)}`, label: billing, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }]; }, e, undefined, /: dropped .*appears/);
     mustFail(`${billing} back as a stage`, m => { m.stages[0].name = billing; }, e, undefined, /: dropped /);
+  }
+  // Stage-scoped drops: a Kinetic Field show segment is only dropped on
+  // Kinetic Field, so each is put back as a set there, and the same name on
+  // another stage stays a performer. "Discovery Project" is an unnamed slot
+  // only on a printed stage; the stageless 2026 lineup entries keep it.
+  {
+    const o = editions["edc-orlando-2022"], o25 = editions["edc-orlando-2025"];
+    ok(o && o25, "the EDC Orlando 2022 and 2025 editions must exist for the show-segment mutations");
+    for (const [e, billing] of [[o, "GROW"], [o, "KINETIC BLOOM"], [o25, "INTERMEZZO: TECHNOPOLIS"], [o25, "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS"]]) if (e) {
+      const kf = e.stages.find(s => /^kinetic ?field$/i.test(s.name));
+      mustFail(`${billing} back as a Kinetic Field set (${e.id})`, m => {
+        const a = { id: `${e.id}:${artistKey(billing)}-back`, name: billing, key: artistKey(billing), performers: performerKeys(billing) };
+        m.artists.push(a); m.sets.push({ ...m.sets[0], id: `${m.sets[0].id}-${artistKey(billing)}`, artistId: a.id, stageId: kf.id });
+      }, e, undefined, /: dropped show-segment /);
+    }
+    ok(!dropReason("GROW", "Neon Garden") && !dropReason("Discovery Project", ""), "a show-segment name off Kinetic Field, or a stageless Discovery Project, must not be dropped");
+    // An unnamed B2B partner stays in the billing but is no performer.
+    const dw = editions["edc-orlando-2021"]?.artists.find(a => a.name === "DRINKURWATER B2B Special Guest");
+    ok(dw && dw.performers.join() === "drinkurwater", `Orlando 2021's "DRINKURWATER B2B Special Guest" must keep its billing with drinkurwater as its only performer: ${JSON.stringify(dw)}`);
+    // The importer: a stage map may only re-case and re-space a name, and a
+    // page's day is its active tab, never the dates in its site translations.
+    ok(stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "kineticFIELD") === "Kinetic Field" && stageFor({ stageAs: { kineticFIELD: "Kinetic Field" } }, "neonGARDEN") === "neonGARDEN",
+      "stageAs must carry a mapped stage and leave an unmapped one as printed");
+    let renamed = false; try { stageFor({ stageAs: { rynobusARTCAR: "Rynobus" } }, "rynobusARTCAR"); } catch { renamed = true; }
+    mutations++; ok(renamed, "mutation not caught: a stageAs map that renames a stage (rynobusARTCAR → Rynobus)");
+    const tabHtml = `<a class="button-blocks"> Friday, November 07</a><a href="/day-2/" class="button-blocks button-blocks--active">Saturday, November 09</a>`;
+    ok(activeTab(tabHtml) === "Saturday, November 09" && activeTab(`_siteTranslations={"d":"Saturday, November 08"}`) === undefined,
+      "the active day tab must be read from the tab, never from other dates on the page");
+    // Dreamstate 2016's theme: every day on one page, a pane per day, stage
+    // headers in order, then one ds-stage column per stage.
+    const box = (a, t) => `<div class="ds-event-box"><div class="ds-event-container"><div class="ds-tooltip"><img></div><strong class="ds-event-title">${a}</strong> <span class="ds-time-range">${t}</span></div></div>`;
+    const pane = (id, stages, cols) => `<div role="tabpanel" class="tab-pane" id="${id}"><div class="ds-schedule-header">${stages.map(x => `<div class="stg ">${x}</div>`).join("")}</div>`
+      + cols.map(c => `<div class="ds-stage "><div class="ds-bands">${c.join("")}</div></div>`).join("") + `</div>`;
+    const tabs = `<li id="day_fri" data-day="fri" class="active">Friday, November 25 </li><li id="day_sat" data-day="sat">Saturday, November 26</li>`;
+    const dt = parseDayTabs(tabs + pane("fri", ["THE DREAM", "TIMELESS"], [[box("UCast", "5:00 PM - 6:00 PM")], [box("Tom &amp; Jerry", "1:00 AM - 2:00 AM")]])
+      + pane("sat", ["THE DREAM"], [[box("KhoMha", "6:00 PM - 7:00 PM"), box("Special Guest", "11:00 PM - 12:00 AM")]]));
+    ok(JSON.stringify(dt) === JSON.stringify([{ tab: "Friday, November 25", sets: [{ stage: "THE DREAM", artist: "UCast", printed: "5:00 PM - 6:00 PM" },
+      { stage: "TIMELESS", artist: "Tom & Jerry", printed: "1:00 AM - 2:00 AM" }] }, { tab: "Saturday, November 26", sets: [
+      { stage: "THE DREAM", artist: "KhoMha", printed: "6:00 PM - 7:00 PM" }, { stage: "THE DREAM", artist: "Special Guest", printed: "11:00 PM - 12:00 AM" }] }]),
+      `a day-tabs page must come back pane by pane, each set under its own stage and tab: ${JSON.stringify(dt)}`);
+    let short = false; try { parseDayTabs(tabs + pane("fri", ["THE DREAM", "TIMELESS"], [[box("UCast", "5:00 PM - 6:00 PM")]])); } catch { short = true; }
+    mutations++; ok(short, "mutation not caught: a day-tabs pane with more stage headers than columns");
+    const o23 = editions["edc-orlando-2023"], sa23 = m => m.provenance.captures.find(c => c.stagesAs);
+    if (o23) {
+      mustFail("a stagesAs map that renames a stage", m => { sa23(m).stagesAs.rynobusARTCAR = "Rynobus"; }, o23, undefined, /renames the stage/);
+      mustFail("a stagesAs target that is not a stage of the edition", m => { m.stages[5].name = "Anniversary Stage"; }, o23, undefined, /not a stage of the edition/);
+    }
+    // A graphic's styled stage name carried onto the page printing is recorded.
+    const sa = editions["edc-orlando-2023"]?.stages.map(s => s.name).join("|");
+    ok(sa === "Kinetic Field|Circuit Grounds|Neon Garden|Stereo Bloom|Rynobus Art Car|Anniversary Art Car", `Orlando 2023's day-2 graphic stages must join the pages' six: ${sa}`);
   }
   // Founder ruling 2: the Bonus Tracks stage is dropped whole. Every printed
   // Bonus Tracks row is put back on a restored stage, and a stage renamed to
@@ -114,6 +169,127 @@ if (base && edc) {
     }, e, undefined, /: dropped bonus-tracks-stage /);
     mustFail(`${id}: a kept stage renamed BONUS TRACKS`, m => { m.stages[0].name = "BONUS TRACKS"; }, e, undefined, /: dropped bonus-tracks-stage /);
   }
+  // official_sources (Escape): every receipt rule is proven live on a real
+  // edition. 2024 is all re-hosted graphics; 2019 mixes a next-year Wayback
+  // page (day 1) with a re-hosted graphic (day 2).
+  const e24 = editions["escape-halloween-2024"], e19 = editions["escape-halloween-2019"];
+  ok(e24 && e19, "the Escape 2024 and 2019 editions must exist for the official_sources mutations");
+  if (e24 && e19) {
+    const g = m => m.provenance.captures.find(c => c.kind === "graphic");
+    const pg = m => m.provenance.captures.find(c => c.kind === "page");
+    mustFail("graphic from a non-approved host (Clashfinder)", m => { g(m).imageUrl = "https://clashfinder.com/s/escape2024/x.png"; }, e24, undefined, /approved re-host/);
+    mustFail("re-host published after the edition's last day", m => { g(m).published = "2024-11-10"; }, e24, undefined, /re-host published/);
+    mustFail("re-host published in another year", m => { g(m).published = "2023-10-18"; }, e24, undefined, /re-host published/);
+    mustFail("graphic with no page it was found on", m => { delete g(m).foundAt; }, e24, undefined, /found on/);
+    mustFail("graphic with no re-host named", m => { delete g(m).rehostedBy; }, e24, undefined, /re-hosted/);
+    mustFail("graphic with no printed header", m => { delete g(m).printed; }, e24, undefined, /printed header/);
+    mustFail("graphic with no fetch date", m => { delete g(m).fetchedAt; }, e24, undefined, /fetch date/);
+    mustFail("graphic whose hash is not the reviewed file", m => { g(m).sha256 = "0".repeat(64); }, e24, undefined, /review manifest/);
+    mustFail("a source claims one row more than it printed", m => { g(m).rows += 1; }, e24, undefined, /sources account/);
+    mustFail("a source of unknown kind", m => { g(m).kind = "screenshot"; }, e24, undefined, /neither page nor graphic/);
+    mustFail("a day left with no source", m => { m.provenance.captures = m.provenance.captures.filter(c => c.day !== 2); }, e24, undefined, /day 2: no source/);
+    mustFail("a page capture two years after the edition", m => { const c = pg(m); c.archivedUrl = c.archivedUrl.replace("/web/2020", "/web/2021"); c.captureTimestamp = c.captureTimestamp.replace(/^2020/, "2021"); }, e19, undefined, /not from 2019 or the year after/);
+    mustFail("a page capture timestamp that is not its URL's", m => { pg(m).captureTimestamp = "20200101000000"; }, e19, undefined, /captureTimestamp/);
+    mustFail("a page whose day tab prints another day", m => { pg(m).printed = "Saturday, October 26"; }, e19, undefined, /day tab/);
+    mustFail("a page capture from a non-official host", m => { const c = pg(m); c.archivedUrl = c.archivedUrl.replace("escapehalloween.com", "edmidentity.com"); }, e19, undefined, /not an official escape-halloween property/);
+    // Completeness against the receipt pages: Orlando 2017's essentials post
+    // carries a Corona Electric Beach graphic beside the main one, and Escape
+    // 2025's carries a pre-party and an afterparty graphic it excludes.
+    const o17 = editions["edc-orlando-2017"], e25 = editions["escape-halloween-2025"];
+    const eb = c => /electricbeach2017/.test(c.receipt?.cites || "");
+    ok(o17?.provenance.captures.filter(eb).length === 2 && e25?.provenance.notUsedGraphics?.length === 2, "Orlando 2017 must cite its Corona Electric Beach graphic on both days, and Escape 2025 must exclude 2 graphics");
+    if (o17 && e25) {
+      mustFail("Orlando 2017 without its Corona Electric Beach source", m => { m.provenance.captures = m.provenance.captures.filter(c => !eb(c)); }, o17, undefined, /shows set-times graphic wp-content\/uploads\/2017\/11\/electricbeach2017, which no source uses/);
+      mustFail("Escape 2025 with its afterparty exclusion removed", m => { m.provenance.notUsedGraphics = m.provenance.notUsedGraphics.filter(n => !/after-party/.test(n.cites)); }, e25, undefined, /official-after-party, which no source uses/);
+      mustFail("an exclusion with no reason", m => { delete m.provenance.notUsedGraphics[0].reason; }, e25, undefined, /notUsedGraphics .* has no reason/);
+      mustFail("an exclusion naming a graphic on no receipt page", m => { m.provenance.notUsedGraphics[0].cites = "wp-content/uploads/2025/10/other"; }, e25, undefined, /notUsedGraphics wp-content\/uploads\/2025\/10\/other/);
+      mustFail("an exclusion of a graphic a source uses", m => { m.provenance.notUsedGraphics.push({ cites: "wp-content/uploads/2025/10/friday-set-times", reason: "x" }); }, e25, undefined, /notUsedGraphics .*friday-set-times/);
+      mustFail("a receipt that does not list its page's graphics", m => { delete m.provenance.captures.find(c => c.kind === "graphic").receipt.setTimesGraphics; }, o17, undefined, /does not list the set-times graphics/);
+      // An Instagram post is held to every slide: Dreamstate 2025's carousel
+      // has 2 and the edition uses both.
+      const d25 = editions["dreamstate-socal-2025"], ig = m => m.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || ""));
+      ok(d25 && ig(d25).length && ig(d25).every(c => c.receipt.setTimesGraphics?.length === 2), "Dreamstate 2025 must list both slides of its Instagram post");
+      if (d25) {
+        mustFail("an Instagram post with a third slide no source uses", m => { for (const c of ig(m)) c.receipt.setTimesGraphics.push("999_999_999_n"); }, d25, undefined, /shows set-times graphic 999_999_999_n, which no source uses/);
+        mustFail("an Instagram receipt with no slide list", m => { delete ig(m)[0].receipt.setTimesGraphics; }, d25, undefined, /does not list the set-times graphics/);
+        // Slide lists from one post are unioned too: dropping the second
+        // slide's sources and trimming a later list to its own slide still flags it.
+        const slide2 = [...new Set(ig(d25).map(c => c.receipt.cites))][1];
+        mustFail("Dreamstate 2025 without its second slide, a later same-post list naming only its own slide", m => {
+          m.provenance.captures = m.provenance.captures.filter(c => c.receipt?.cites !== slide2);
+          const last = ig(m).pop();
+          last.receipt.setTimesGraphics = [last.receipt.cites];
+        }, d25, undefined, new RegExp(`shows set-times graphic ${slide2}, which no source uses`));
+      }
+      mustFail("a receipt whose list leaves out the graphic it cites", m => { const r = m.provenance.captures.find(eb).receipt; r.setTimesGraphics = r.setTimesGraphics.filter(t => !/electricbeach/.test(t)); }, o17, undefined, /without the one it cites/);
+      // Lists from sources sharing one receipt page are unioned: a later
+      // source listing only its own graphic cannot hide the omitted beach one.
+      mustFail("Orlando 2017 without its beach source, a later same-page source listing only its own graphic", m => {
+        m.provenance.captures = m.provenance.captures.filter(c => !eb(c));
+        const last = m.provenance.captures.filter(c => c.kind === "graphic" && c.receipt?.setTimesGraphics).pop();
+        last.receipt.setTimesGraphics = last.receipt.setTimesGraphics.filter(t => sameGraphic(t, last.receipt.cites));
+      }, o17, undefined, /shows set-times graphic wp-content\/uploads\/2017\/11\/electricbeach2017, which no source uses/);
+    }
+    // The header must print the cited day: the 2017 graphic's Saturday header
+    // swapped for another edition's date fails, the real combined-day one passes.
+    const e17 = editions["escape-halloween-2017"], g2 = m => m.provenance.captures.find(c => c.kind === "graphic" && c.day === 2);
+    ok(e17 && g2(e17)?.printed === "SATURDAY · OCTOBER 27 & 28, 2017", "Escape 2017 day 2 must cite the combined-day graphic header");
+    mustFail("Escape 2017 day 2's header swapped for SATURDAY OCTOBER 29 2022", m => { g2(m).printed = "SATURDAY OCTOBER 29 2022"; }, e17, undefined, /header .* does not print saturday 2017-10-28/);
+    mustFail("Escape 2017 day 2 cited with day 1's header", m => { g2(m).printed = "FRIDAY · OCTOBER 27 & 28, 2017"; }, e17, undefined, /does not print saturday/);
+    mustFail("a combined-day header listing a day the edition does not have", m => { g2(m).printed = "SATURDAY · OCTOBER 28 & 29, 2017"; }, e17, undefined, /does not print saturday/);
+    // Source linkage: the page a graphic was found on must be a capture that
+    // cites that graphic, and the review must name the same image.
+    mustFail("an unrelated HTTPS found-at page", m => { g(m).foundAt = "https://example.com/escape-2024-set-times/"; }, e24, undefined, /found-at page example\.com|is not a capture of/);
+    mustFail("a found-at EDM Identity post from another day", m => { g(m).foundAt = "https://edmidentity.com/2024/10/11/escape-halloween-2024-set-times/"; }, e24, undefined, /is not dated 2024-10-18/);
+    mustFail("a graphic with no receipt capture", m => { delete g(m).receipt; }, e24, undefined, /no receipt capture/);
+    mustFail("a receipt capture of another page", m => { const r = g(m).receipt; r.archivedUrl = r.archivedUrl.replace("escape-halloween-2024-set-times", "edc-orlando-2024-set-times"); }, e24, undefined, /is not a capture of/);
+    mustFail("a receipt whose timestamp is not its URL's", m => { g(m).receipt.captureTimestamp = "20250101000000"; }, e24, undefined, /receipt captureTimestamp/);
+    mustFail("a receipt that cites another image", m => { g(m).receipt.cites = "Gac-P1vWEAA_2dT"; }, e24, undefined, /receipt cites/);
+    mustFail("a graphic whose image is swapped under its receipt", m => { g(m).imageUrl = "https://pbs.twimg.com/media/Gac-XXXXXXXXXXX?format=jpg&name=orig"; }, e24, undefined, /receipt cites/);
+    // The festival's own Instagram post (Dreamstate 2023, 2025): the CDN host
+    // is approved only with the post it belongs to as the page it was found on.
+    const ds23 = editions["dreamstate-socal-2023"];
+    ok(ds23, "the Dreamstate SoCal 2023 edition must exist for the Instagram-graphic mutations");
+    if (ds23) {
+      mustFail("an Instagram graphic that cites no post", m => { g(m).foundAt = "https://www.instagram.com/dreamstateusa/"; }, ds23, undefined, /must cite its post/);
+      mustFail("an Instagram graphic found on a re-host page", m => { g(m).foundAt = "https://edmidentity.com/2023/11/15/dreamstate-socal-2023/"; }, ds23, undefined, /must cite its post/);
+      mustFail("a graphic on a look-alike of Instagram's CDN", m => { g(m).imageUrl = "https://scontent.cdninstagram.com.example.net/x.jpg"; }, ds23, undefined, /approved re-host/);
+      // Its receipt is that post's own embed, read on a recorded date.
+      mustFail("an Instagram receipt from another post's embed", m => { g(m).receipt.url = "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/"; }, ds23, undefined, /is not the embed of/);
+      mustFail("an Instagram receipt with no read date", m => { delete g(m).receipt.fetchedAt; }, ds23, undefined, /no read date/);
+      // No printed date, none inferred: the post leaves published blank, but
+      // a date it carries must still fall in the edition's year, and only an
+      // Instagram post may leave it blank.
+      ok(ds23.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || "")).every(c => c.published == null), "Dreamstate 2023's Instagram graphics must carry no inferred published date");
+      mustFail("an Instagram graphic dated in another year", m => { g(m).published = "2022-11-15"; }, ds23, undefined, /re-host published/);
+      // The exception is bound to the festival's own listed posts: the lane's
+      // repro (an unrelated post, its embed, another account) still fails, and
+      // so does the right post re-hosted by another account.
+      const igCaps = m => m.provenance.captures.filter(c => /instagram\.com/.test(c.foundAt || ""));
+      mustFail("an unrelated post by another account, undated", m => { for (const c of igCaps(m)) { c.foundAt = "https://www.instagram.com/p/UNRELATED_POST/"; c.receipt.url = "https://www.instagram.com/p/UNRELATED_POST/embed/captioned/"; c.rehostedBy = "Another Instagram account"; } }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("the festival's post credited to another account, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@someoneelse)"; }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("a look-alike account handle, undated", m => { for (const c of igCaps(m)) c.rehostedBy = "Instagram (@dreamstateusa.fan)"; }, ds23, undefined, /re-host published \(no date\)/);
+      mustFail("a non-Instagram re-host with no published date", m => { delete g(m).published; }, e24, undefined, /re-host published \(no date\)/);
+      mustFail("an Instagram receipt citing another slide", m => { g(m).receipt.cites = "581251862_18534320416060183_3114781477568202383_n"; }, ds23, undefined, /receipt cites/);
+    }
+    {
+      const r = clone(reviewFor(e24.id)); r.days[0].rowsConfirmed -= 1; mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: r, dropped: droppedFor(e24.id) }).some(x => /rows confirmed/.test(x)), "mutation not caught: a graphic's review confirms fewer rows than it printed");
+      const w = clone(reviewFor(e24.id)); w.days[0].imageUrl = "https://edmidentity.com/wp-content/uploads/2024/10/other.jpg"; mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: w, dropped: droppedFor(e24.id) }).some(x => /names image/.test(x)), "mutation not caught: a review naming a different image than the graphic's");
+      const u = clone(reviewFor(e24.id)); delete u.days[1].reviewer; mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: u, dropped: droppedFor(e24.id) }).some(x => /not signed/.test(x)), "mutation not caught: an unsigned graphic review");
+      mutations++;
+      ok(validateEdition(clone(e24), { expected: expected[e24.id], review: undefined, dropped: droppedFor(e24.id) }).some(x => /no visual-review manifest/.test(x)), "mutation not caught: re-hosted graphics with no review manifest");
+    }
+    // A styled non-Latin billing is allowed only where it was read by eye.
+    mustFail("DAKЯΣD's allowance carried to another edition", m => { m.artists[0].name = "DAKЯΣD"; }, editions["escape-halloween-2025"], undefined, /non-Latin/);
+    // One act printed in two casings is one artist; the set keeps its printing.
+    const nk = e19.artists.filter(a => a.key === "nukid"), nkSets = e19.sets.filter(s => s.artistId === nk[0]?.id);
+    ok(nk.length === 1 && nkSets.length === 2 && nkSets.some(s => s.billing === "NUKID") && nk[0].name === "NuKid",
+      `Escape 2019's NuKid (page) and NUKID (graphic) must be one artist with both sets, the graphic's set keeping its billing: ${JSON.stringify(nk)}`);
+  }
+
   // The named kids-stage act the ruling keeps.
   const hc = editions["lollapalooza-2025"]?.artists.find(a => a.name === "SPECIAL GUEST: THE HAPPINESS CLUB");
   ok(hc && editions["lollapalooza-2025"].sets.filter(x => x.artistId === hc.id).map(x => x.day).join() === "3,4",
@@ -167,11 +343,31 @@ for (const id of Object.keys(editions)) {
 
 // ── dates come from the page, not from editions.mjs alone ──
 const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+// Numeric headers (Dreamstate's "FRI 11.17.23") read through the same
+// graphicPrints as named ones; a printed year must be the edition's.
+{
+  const DS23 = ["2023-11-17", "2023-11-18"], DS25 = ["2025-11-21", "2025-11-22"], ORL22 = ["2022-11-11", "2022-11-12", "2022-11-13"];
+  for (const [printed, date, year, dates, want] of [["FRI 11.17.23", "2023-11-17", 2023, DS23, true], ["BEATBOX ART CAR · SAT 11.22", "2025-11-22", 2025, DS25, true],
+    ["FRIDAY NOV 11", "2022-11-11", 2022, ORL22, true], ["FRI 11.17.22", "2023-11-17", 2023, DS23, false], ["FRI 11.18.23", "2023-11-17", 2023, DS23, false],
+    ["SAT 11.17.23", "2023-11-17", 2023, DS23, false], ["FRI 10.17.23", "2023-11-17", 2023, DS23, false], ["FRIDAY NOV 12", "2022-11-11", 2022, ORL22, false]])
+    ok(graphicPrints(printed, date, year, dates) === want, `graphic header "${printed}" should ${want ? "" : "not "}print ${date}`);
+}
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {
     if (led.method === "structured_html") {
       ok(led.days.find(x => x.day === d.day)?.date === d.date, `${id} day ${d.day}: ${d.date} is not what the archived page's day tab printed`);
+    } else if (led.method === "official_sources") {
+      // Every source cited for a day prints that day: a page's own day tab,
+      // or the header read off a graphic (weekday, month, day of month).
+      const [, m, dd] = d.date.split("-").map(Number);
+      const wd = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" }).toUpperCase();
+      const srcs = led.days.find(x => x.day === d.day)?.sources || [];
+      ok(srcs.length > 0, `${id} day ${d.day}: no source in the ledger`);
+      for (const s of srcs) {
+        ok(s.kind === "page" ? datedLabel(s.printed, e.year) === d.date : graphicPrints(s.printed, d.date, e.year, e.days.map(x => x.date)),
+          `${id} day ${d.day}: ${s.kind} ${s.captureTimestamp || s.sha256?.slice(0, 12)} prints "${s.printed}", not ${wd} ${MONTH[m - 1]} ${dd}`);
+      }
     } else {
       // The reviewer copied each graphic's printed header into its note;
       // it must name this day's weekday and month (full or abbreviated).
@@ -260,6 +456,159 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   const walk = d => readdirSync(d, { withFileTypes: true }).flatMap(x => x.isDirectory() ? walk(join(d, x.name)) : [join(d, x.name)]);
   const art = walk(H("")).filter(f => /\.(png|jpe?g|webp|gif|svg|html?)$/i.test(f));
   ok(!art.length, `archived creative assets must never be committed: ${art.join(", ")}`);
+  // Public manifests carry public URLs, hashes and a stable reviewer label:
+  // never a session id, a local path or the private gather folder.
+  const PRIVATE = /\bsession [0-9a-f]{6,}|historical-gather|\/Users\/|~\/Plursky-private\/(?!historical-cache)/;
+  ok(PRIVATE.test("reviewer, session d3003194") && PRIVATE.test("gathered: historical-gather/x") && !PRIVATE.test("~/Plursky-private/historical-cache/"),
+    "the private-reference pattern must catch a session id and a gather path (control)");
+  const pub = [...walk(H("")), ...readdirSync(join(ROOT, "scripts/historical")).map(f => join(ROOT, "scripts/historical", f))];
+  for (const f of pub) {
+    const hit = PRIVATE.exec(readFileSync(f, "utf8"));
+    ok(!hit, `${f.slice(ROOT.length + 1)} carries a private reference "${hit?.[0]}"; use a public source, hash or the stable reviewer label`);
+  }
+}
+
+// ── 5. graphic headers: what a header must print to cite a day ──
+for (const [printed, date, year, dates, want] of [
+  ["SATURDAY · OCTOBER 27 & 28, 2017", "2017-10-28", 2017, ["2017-10-27", "2017-10-28"], true],
+  ["AFTER PARTY SET TIMES · FRIDAY, OCT 25 · OCTOBER 25 + 26, 2024", "2024-10-25", 2024, ["2024-10-25", "2024-10-26"], true],
+  ["FRIDAY (SEPTEMBER 15 • 16, 2017)", "2017-09-15", 2017, ["2017-09-15", "2017-09-16"], true],
+  ["SAT 11.18.23", "2023-11-18", 2023, ["2023-11-17", "2023-11-18"], true],
+  ["SATURDAY OCTOBER 29 2022", "2017-10-28", 2017, ["2017-10-27", "2017-10-28"], false],
+  ["SATURDAY · OCTOBER 27 & 28, 2018", "2017-10-28", 2017, ["2017-10-27", "2017-10-28"], false],
+  ["FRIDAY, OCT 26", "2024-10-26", 2024, ["2024-10-25", "2024-10-26"], false],
+  ["SAT 11.18.22", "2023-11-18", 2023, ["2023-11-17", "2023-11-18"], false],
+  ["SET TIMES", "2024-10-25", 2024, ["2024-10-25"], false],
+]) ok(graphicPrints(printed, date, year, dates) === want, `graphic header "${printed}" should ${want ? "" : "not "}print ${date}`);
+
+// ── 6. ACL's grid: every start's am/pm is read off the page's own hour axis ──
+// A synthetic page in the 2016-19 markup (no archived HTML in the repo). The
+// scale is 0.2 em/min and the axis starts at 11:00am, so top = (start − 660) × 0.2.
+{
+  const AXIS = ["11:00am", "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm"];
+  const block = (title, time, top, h) => `<div class="o-session" style="top: ${top}em"><div class="o-session__inner" style="height: ${h}em"><p class="o-session__title">${title}</p><p class="o-session__time">${time}</p></div></div>`;
+  const D = "friday-2017-10-06";
+  const grid = ({ axis = AXIS, honda = [], kids = [] } = {}) => `<a data-value="${D}">Friday Oct 6th</a>
+<option data-target="#schedule-column-date-${D}-location-1">Honda</option><option data-target="#schedule-column-date-${D}-location-2">Austin Kiddie Limits presented by Lifeway</option>
+<ol class="c-schedule__timeslots">${axis.map(a => `<li><span>${a}</span></li>`).join("")}</ol>
+<div id="schedule-column-date-${D}-location-1">${honda.join("")}</div><div id="schedule-column-date-${D}-location-2">${kids.join("")}</div>`;
+  const HONDA = [block("Early Act", "12:30-1:15", 18, 9), block("Evening Act", "6:15-7:15", 87, 12)];
+  const KIDS = [block("School of Rock", "11:30-11:55", 6, 5)];
+  const day = html => parseAclSchedule(html).days[0];
+  const good = day(grid({ honda: HONDA, kids: KIDS }));
+  ok(good.timed && good.sets.map(x => `${x.artist} ${x.start}-${x.end}`).join(" | ") === "Early Act 12:30-13:15 | Evening Act 18:15-19:15 | School of Rock 11:30-11:55",
+    `the ACL grid must read each start's meridiem off its axis: ${good.sets.map(x => `${x.artist} ${x.start}-${x.end}`).join(" | ")}`);
+  ok(good.sets[2].stage === "Austin Kiddie Limits" && good.sets[2].stageSub === "presented by Lifeway", "the kids stage's sponsor must be split off as stageSub");
+  ok(axisMinutes("12:00pm") === 720 && axisMinutes("12:00 am") === 0 && axisMinutes("12:00") === null && readAxis(["11:00am", "1:00pm"]) === null,
+    "axis labels: noon and midnight read right, a label with no meridiem or a skipped hour is no axis");
+  ok(datedLabel("Friday Oct 4th", 2013) === "2013-10-04" && datedLabel("Friday Sep 30th", 2016) === "2016-09-30" && datedLabel("Friday Oct 4rd", 2013) === null && datedLabel("Saturday Oct 4th", 2013) === null,
+    "ACL day tabs: a 3-letter month and the right ordinal read; a wrong ordinal or weekday does not");
+  ok(dropReason("Silent Disco powered by Quiet Events", "Tito’s Handmade Vodka") && !dropReason("Silent Discovery", ""), "a sponsored Silent Disco is dropped; another billing starting with the words is not");
+  const untimed = (label, html, test = d => !d.timed && d.sets.every(x => x.start === "" && x.end === "" && x.meridiem === null)) => {
+    mutations++; ok(test(day(html)), `mutation not caught: ${label}`);
+  };
+  untimed("an axis that prints no meridiem", grid({ axis: AXIS.map(a => a.replace(/[ap]m$/, "")), honda: HONDA, kids: KIDS }));
+  untimed("an axis that wraps past midnight / skips an hour", grid({ axis: [...AXIS.slice(0, 11), "12:00am"], honda: HONDA, kids: KIDS }));
+  untimed("a block whose top fits neither reading", grid({ honda: [HONDA[0], block("Evening Act", "6:15-7:15", 87 + 30, 12)], kids: KIDS }));
+  untimed("a block placed off the axis that duplicates nothing", grid({ honda: [...HONDA, block("Ghost", "11:30-11:55", 150, 5)], kids: KIDS }));
+  untimed("a page with one duration only has no scale", grid({ honda: [block("Early Act", "12:30-1:15", 18, 9)] }));
+  untimed("an off-axis repeat of an on-axis block is reported, not kept", grid({ honda: HONDA, kids: [...KIDS, block("School of Rock", "11:30-11:55", 150, 5)] }),
+    d => d.timed && d.duplicates.length === 1 && d.sets.filter(x => x.artist === "School of Rock").length === 1);
+  untimed("a cancelled block is flagged and its billing kept clean", grid({ honda: [...HONDA, block("*canceled* Gone Band", "3:00-4:00", 48, 12)], kids: KIDS }),
+    d => d.sets.some(x => x.canceled && x.artist === "Gone Band"));
+
+  // Untimed days, notes and cancelled days are each held by a rule.
+  const a17 = editions["acl-2017"], a13 = editions["acl-2013"];
+  ok(a17 && a13, "the ACL 2017 and 2013 editions must exist for the untimed/cancelled mutations");
+  if (a17 && a13) {
+    ok(a17.days.filter(d => d.untimed).map(d => d.day).join() === "4,5,6" && a17.sets.filter(x => x.day >= 4).every(x => x.start === null && x.end === null)
+      && a17.sets.filter(x => x.day < 4).every(x => /^\d{2}:\d{2}$/.test(x.start)), "ACL 2017: W2 ships lineup-only (no times), W1 timed");
+    ok(a13.days.length === 5 && !a13.days.some(d => d.date === "2013-10-13") && a13.provenance.cancelledDays?.[0]?.blocks === 43, "ACL 2013: the flooded W2 Sunday has no day, and its 43 printed blocks are the ledger's proof");
+    mustFail("a set on an untimed day given a time", m => { const x = m.sets.find(x => x.day === 5); x.start = "18:15"; x.end = "19:15"; }, a17, undefined, /untimed day carries a time/);
+    mustFail("an untimed day losing its flag", m => { delete m.days[3].untimed; }, a17, undefined, /untimed is false/);
+    mustFail("a timed day flagged untimed", m => { m.days[0].untimed = true; }, a17, undefined, /untimed is true/);
+    mustFail("an untimed day with no note", m => { delete m.notes; }, a17, undefined, /no note saying why/);
+    mustFail("a note reworded off the registry", m => { m.notes[0].text = "Times probably fine."; }, a13, undefined, /notes differ/);
+    mustFail("a cancelled day with no ledger proof", m => { delete m.provenance.cancelledDays; }, a13, undefined, /no ledger proof/);
+    mustFail("a cancelled day's proof without its blocks", m => { m.provenance.cancelledDays[0].blocks = 0; }, a13, undefined, /no ledger proof/);
+  }
+}
+
+// 7. The Wayback cache never hands back a neighbouring capture under the
+// requested key: a poisoned entry is refetched, a redirect is never cached.
+// ── 6. a canceled edition is kept but never offered ──
+// Nocturnal Wonderland 2024 was canceled before it opened (Line Fire). Its
+// printed rows stay as evidence; the index, the artist registry and the app's
+// past-edition lists all skip it. Each rule has a mutant.
+{
+  const canceled = Object.entries(EDITIONS).filter(([, m]) => m.status === "canceled").map(([id]) => id);
+  ok(canceled.includes("nocturnal-wonderland-2024"), "nocturnal-wonderland-2024 must be registered as canceled");
+  const index = JSON.parse(readFileSync(H("index.json"), "utf8"));
+  const indexProblems = ix => canceled.filter(id => ix.editions.some(e => e.id === id)).map(id => `index.json lists canceled ${id}`);
+  ok(!indexProblems(index).length, indexProblems(index).join("; "));
+  for (const id of canceled) {
+    const e = editions[id], want = expected[id]?.setsPerDay?.reduce((a, b) => a + b, 0);
+    ok(e && e.status === "canceled" && e.sets.length === want, `${id}: the edition file must keep all ${want} printed sets and say it was canceled (has ${e?.sets.length}, status ${e?.status})`);
+  }
+  const billings = JSON.parse(readFileSync(join(ROOT, "data/artists/billings.json"), "utf8"));
+  const registry = JSON.parse(readFileSync(join(ROOT, "data/artists/registry.json"), "utf8"));
+  const credited = id => billings.some(b => b.festivalId === id) || registry.some(a => a.billings.some(x => x.startsWith(id + ":")));
+  ok(billings.length > 1000 && billings.some(b => b.festivalId === "nocturnal-wonderland-2022"), "control: billings.json carries Nocturnal Wonderland 2022");
+  for (const id of canceled) ok(!credited(id), `the artist registry credits sets from canceled ${id}`);
+  // The stage lineages (data/artists/stages.json, hand-written) may keep a
+  // canceled edition only as a canceledEditions record carrying the
+  // registry's sources, never in a name's held `editions` list.
+  const lineageProblems = doc => Object.values(doc.brands).flatMap(br => br.lineages).flatMap(l => l.names.flatMap(nm => [
+    ...canceled.filter(id => (nm.editions || []).includes(id)).map(id => `${l.id} "${nm.printed}" lists canceled ${id} as held`),
+    ...(nm.canceledEditions || []).flatMap(c => {
+      const m = EDITIONS[c.id];
+      if (m?.status !== "canceled") return [`${l.id} "${nm.printed}" marks ${c.id} canceled, the edition registry does not`];
+      const want = m.canceled.sources.map(x => x.url).sort().join(" "), got = (c.sources || []).map(x => x.url).sort().join(" ");
+      return got === want ? [] : [`${l.id} "${nm.printed}": ${c.id}'s sources differ from the edition registry`];
+    })]));
+  const stagesDoc = JSON.parse(readFileSync(join(ROOT, "data/artists/stages.json"), "utf8"));
+  ok(!lineageProblems(stagesDoc).length, lineageProblems(stagesDoc).slice(0, 4).join("; "));
+  const marked = Object.values(stagesDoc.brands).flatMap(br => br.lineages).flatMap(l => l.names).filter(nm => (nm.canceledEditions || []).some(c => c.id === "nocturnal-wonderland-2024"));
+  ok(marked.length === 4, `the 4 Nocturnal stage names that printed the 2024 grid must keep it as a canceled-edition record (found ${marked.length})`);
+  ok(Object.values(stagesDoc.brands).flatMap(br => br.lineages).some(l => l.names.some(nm => nm.editions.includes("nocturnal-wonderland-2022"))), "control: lineages list Nocturnal Wonderland 2022 as held");
+  { const m = clone(stagesDoc), nm = Object.values(m.brands).flatMap(br => br.lineages).flatMap(l => l.names).find(x => x.canceledEditions);
+    nm.editions.push("nocturnal-wonderland-2024"); mutations++; ok(lineageProblems(m).length > 0, "mutation not caught: a lineage listing the canceled edition as held"); }
+  { const m = clone(stagesDoc), nm = Object.values(m.brands).flatMap(br => br.lineages).flatMap(l => l.names).find(x => x.canceledEditions);
+    nm.canceledEditions[0].sources.pop(); mutations++; ok(lineageProblems(m).length > 0, "mutation not caught: a lineage's canceled record missing a source"); }
+  // The app: the compiled screen's own list function, against an index that
+  // (stale or hand-served) still lists a canceled edition with its status.
+  const vm = await import("node:vm");
+  const appList = src => { const c = { React: {}, console }; vm.createContext(c); vm.runInContext(src + "\n;globalThis.__f = { pastEditionsOf };", c); return c.__f; };
+  const src = readFileSync(join(ROOT, "build/historical.js"), "utf8");
+  const fx = { editions: [
+    { id: "nocturnal-wonderland-2024", festivalId: "nocturnal-wonderland", year: 2024, status: "canceled" },
+    { id: "nocturnal-wonderland-2022", festivalId: "nocturnal-wonderland", year: 2022 }] };
+  const shown = f => f.pastEditionsOf(fx, "nocturnal-wonderland-2026").map(e => e.id);
+  ok(JSON.stringify(shown(appList(src))) === JSON.stringify(["nocturnal-wonderland-2022"]), `the app offers a canceled edition: ${shown(appList(src))}`);
+  // Mutants.
+  const nw = editions["nocturnal-wonderland-2024"];
+  const meta = EDITIONS["nocturnal-wonderland-2024"], keep = clone(meta);
+  const withMeta = (label, change, by) => { change(meta); try { mustFail(label, () => {}, nw, () => {}, by); } finally { Object.keys(meta).forEach(k => delete meta[k]); Object.assign(meta, clone(keep)); } };
+  withMeta("canceled with one source", m => m.canceled.sources.pop(), /two dated sources/);
+  withMeta("a source published after the first day", m => { m.canceled.sources[1].published = "2024-09-20"; }, /two dated sources/);
+  withMeta("both sources from one publisher", m => { m.canceled.sources[1].url = m.canceled.sources[0].url + "?b"; }, /two dated sources/);
+  withMeta("canceled with no announcement date", m => { delete m.canceled.announced; }, /announcement/);
+  mustFail("the edition file drops its canceled status", m => { delete m.status; }, nw, () => {}, /status differs/);
+  mutations++; ok(indexProblems({ editions: [...index.editions, { id: "nocturnal-wonderland-2024" }] }).length > 0, "mutation not caught: an index that lists the canceled edition");
+  ok(credited("nocturnal-wonderland-2022"), "control: the credit check finds a real edition's sets (else the canceled check passes vacuously)");
+  const unguarded = src.replace(/\.filter\(e => e\.status !== "canceled"\)/, "");
+  ok(unguarded !== src, "the app's canceled guard pattern must be present in build/historical.js for its mutant");
+  mutations++; ok(shown(appList(unguarded)).includes("nocturnal-wonderland-2024"), "mutation not caught: the app with no canceled guard");
+}
+
+// Own process: it isolates the cache dir and stubs fetch.
+{
+  checks++;
+  try {
+    const out = execFileSync(process.execPath, [join(ROOT, "scripts/test-wayback-cache.mjs")],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out.trimEnd().replace(/^/gm, "  ") + "\n");
+  } catch (e) { fails.push(`wayback cache: ${(e.stdout || "") + (e.stderr || "")}`.trim()); }
 }
 
 if (fails.length) { fails.forEach(f => console.error(`  ✗ ${f}`)); console.error(`  ${fails.length} of ${checks} historical-edition checks failed`); process.exit(1); }
