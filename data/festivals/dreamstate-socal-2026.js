@@ -2,9 +2,17 @@
 // DREAMSTATE SOCAL 2026 — Queen Mary Waterfront · Long Beach, CA
 // Nov 20–21, 2026
 // ═══════════════════════════════════════════════════════════════════════
-// GATED SCAFFOLD. The LINEUP is real and complete and the four STAGE NAMES
-// are shipped; the day split, the set times and the site map are not
-// published, and none of them are invented below.
+// GATED SCAFFOLD. The LINEUP is real and complete. The official 2026
+// FESTIVAL MAP is published (2026-11-04) and supplies the stage names, the
+// map plate and the amenities below. The day split and the set times are
+// still not published, and none of them are invented below.
+//
+// SOURCE festival map (2026-11-07): socal.dreamstateusa.com/festival-map/ →
+//   dssc_2026_de_festival_map_1080x1350_r03-1.png (uploads 2026/11/04,
+//   1080x1350, sha256 a7a11e57a5e8bfbc…). Plate = dreamstate-socal-2026-map.webp:
+//   crop x 10..1060, y 280..1005 of that file (title block and legend
+//   removed), centre-padded to 1050x1050 with #0B1030. A pixel (px,py) on
+//   the official file is x% = (px-10)/10.5, y% = (py-117.5)/10.5 on the plate.
 //
 // ── SOURCES ──
 //
@@ -64,10 +72,10 @@
 //   writes "Key4050". The act styles itself Key4050, so the site spelling
 //   ships. One space, flagged rather than silently picked.
 //
-// STAGES: NONE SHIPPED. Four LEADS only — the asset filenames on
-//   socal.dreamstateusa.com/experience/stages/ (dssc_the_dream_stage,
-//   dssc_the_sequence_stage, dssc_the_vision_stage, dssc_the_void_stage),
-//   read 2026-09-09. See the leads block on STAGES below.
+// STAGES: from the official 2026 festival map (SOURCE above). Its four
+//   names match the 2025 asset-filename leads on /experience/stages/
+//   (dssc_the_dream/sequence/vision/void_stage, read 2026-09-09), plus the
+//   Beatbox Art Car. See the block on STAGES below.
 // SOURCE dates: socal.dreamstateusa.com — "November 20+21, 2026"; the press
 //   release names them "Friday, November 20 and Saturday, November 21, 2026".
 // SOURCE venue + hours + age policy: socal.dreamstateusa.com/hours-and-info/,
@@ -86,16 +94,18 @@
 //
 // DAY SPLIT. One flat list covering both nights, no Fri/Sat tabs.
 // SET TIMES. Absent; Insomniac posts them in the days before the festival.
-// STAGE NAMES. Not published as text for 2026 — see the leads block below.
 // STAGE ASSIGNMENTS. Every act is stage: null.
-// STAGE POSITIONS. No 2026 site map, and the build does not exist to measure
-//   off satellite either, so no stage carries x/y — the CRSSD precedent.
-// SITE MAP. None.
+// MAIN STAGE. The map does not say which stage is the main stage, so
+//   mainStageId stays null and the four stages share one size.
 //
 // ── SPATIAL MODEL ──
-// mapMode: "real" — real street tiles on the surveyed centroid and the live
-// blue dot, which is all true, and no map art, no grid and no gpsAnchors,
-// because there is nothing to register. Same posture as III Points (#79).
+// The official map is ART, drawn oblique (an isometric 3-D view with the
+// Queen Mary floating in space), not a survey. It ships as an image-overlay
+// plate, the Escape posture: stage x/y are percent positions ON THE ART,
+// measured off each stage STRUCTURE (never its label), and they are poster
+// positions, not places on the ground. No gpsAnchors, mapArtIsGeoregistered
+// false, so the v257/v260 gate suppresses every distance and walk-time
+// readout. No lat/lng on any stage or amenity.
 //
 // ⚠ THE CENTROID IS THE SHIP, AND THE FESTIVAL IS NOT ON THE SHIP. "Queen
 // Mary Waterfront" is the open ground beside the permanently moored liner.
@@ -111,56 +121,65 @@
 // with room to spare. No venue.footprint at all — the festival perimeter is
 // not a surveyable feature today, and saying so is the honest answer.
 //
-// ── FLIP CHECKLIST (set times + site map, ~mid-Nov) ──
-//   1. Build STAGES from the official 2026 grid or map — check the four
-//      filename leads against it, and resolve the Long Beach Amphitheater
-//      and Beatbox Art Car questions below.
-//   2. Real lat/lng per stage; derive x/y from them, never the reverse.
-//   3. day + start/end + stage per act; drop the `provisional` flag.
-//   4. Replace the single TBA bucket with the real Fri/Sat pair.
-//   5. venue.footprint from the official map's perimeter — never estimated.
-//   6. amenities from the official map's legend.
-//   7. mainStageId once the grid says which stage is the main stage.
-//   8. registry.available → true.
-//   9. Re-run node scripts/gen-festival-pages.mjs and commit the result.
+// ── FLIP CHECKLIST (set times, ~mid-Nov) ──
+//   1. DONE 2026-11-07: STAGES, map plate and amenities from the official map.
+//   2. day + start/end + stage per act from the official set times; drop the
+//      `provisional` flag. Re-check the stage list against the grid.
+//   3. Replace the single TBA bucket with the real Fri/Sat pair.
+//   4. mainStageId once the grid says which stage is the main stage.
+//   5. venue.footprint: still none. The map's perimeter is art, not a survey.
+//   6. Re-run node scripts/gen-festival-pages.mjs and commit the result.
 (function () {
   "use strict";
 
-  // ── STAGES: EMPTY. FOUR LEADS FOR THE FLIP SESSION, NOT SHIPPED ──
+  // ── STAGES: from the official 2026 festival map (see SOURCE above) ──
   //
-  // Flagged is not picked, so nothing ships until the official 2026 grid or
-  // map names the stages.
+  // The map prints SEQUENCE, VOID, VISION and DREAM, which confirms the four
+  // 2025 asset-filename leads, plus BEATBOX ART CAR (named in the 2026 press
+  // release as "Beatbox's Art Car stage featuring local trance artists").
   //
-  // socal.dreamstateusa.com/experience/stages/ renders each stage as an IMAGE
-  // with no text and an EMPTY alt attribute. The names survive only as asset
-  // filenames, and those filenames date from July 2025:
-  //   dssc_the_dream_stage    → "The Dream"
-  //   dssc_the_sequence_stage → "The Sequence"
-  //   dssc_the_vision_stage   → "The Vision"
-  //   dssc_the_void_stage     → "The Void"
-  // The press release's "four stages" agrees in COUNT only. A filename is not
-  // a published stage name, and a 2025 asset is not evidence of the 2026
-  // edition.
+  // ⚠ Still open: the 2026 press release says the four stages include "the
+  // new Long Beach Amphitheater". No stage on the map carries that name. It
+  // may be the venue of one of the four; nothing published says which, so it
+  // is not mapped onto any of them. Flagged, not picked.
   //
-  // ⚠ Also open, and it conflicts with the four leads:
-  //   1. The 2026 press release says the four stages include "the new Long
-  //      Beach Amphitheater", a name NOT in the filename set.
-  //   2. It also announces "Beatbox's Art Car stage featuring local trance
-  //      artists" — text-published and officially named. It is left for the
-  //      flip, together with the rest of the grid. (Nocturnal ships the same
-  //      sponsor car as "Beatbox Boombox".)
-  //
-  // ⛔ Nocturnal's warning applies with full force: a search for this
-  // festival's stage names will confidently return names from earlier
-  // editions. The grid or the official map, or nothing.
-  //
-  // When the flip adds stages: no x/y without a measured position (the CRSSD
-  // precedent), no `desc` unless programming is published, and mainStageId
-  // only if the grid says which stage is the main stage.
-  const STAGES = [];
+  // x/y: the centre of each stage STRUCTURE on the plate, measured on 3x
+  // zooms of the official file (official px in each comment). Colours are
+  // APP-ASSIGNED to echo each stage's own art; Insomniac publishes no stage
+  // palette, so do not cite them as official. No desc: no programming is
+  // published per stage.
+  const STAGES = [
+    { id: "sequence", name: "Sequence", short: "SEQNCE", color: "#E040FB", size: 1.4,
+      x: 12.9, y: 24.0 },   // truss + deck at official px (145, 370)
+    { id: "void",     name: "Void",     short: "VOID",   color: "#7C4DFF", size: 1.4,
+      x: 47.3, y: 62.8 },   // lit stage box facing the grey seating, (507, 777)
+    { id: "vision",   name: "Vision",   short: "VISION", color: "#00E676", size: 1.4,
+      x: 61.2, y: 55.8 },   // green-panel truss deck, (653, 703)
+    { id: "dream",    name: "Dream",    short: "DREAM",  color: "#29B6F6", size: 1.4,
+      x: 94.6, y: 73.3 },   // blue cylinder stage, (1003, 887)
+    { id: "beatbox-art-car", name: "Beatbox Art Car", short: "BEATBOX", color: "#FFB300", size: 1.1,
+      x: 41.6, y: 45.0 },   // the boombox car, (447, 590)
+  ];
 
-  // No amenity map published.
-  const AMENITIES = [];
+  // From the official map's legend icons (same plate maths; official px in
+  // each comment). A subset: the medical, water, restroom, info, locker and
+  // charging icons. Bars, food and VIP icons are left to the map art itself.
+  const AMENITIES = [
+    { id: "dssc-med1",    type: "med",    label: "First Aid",      x: 9.3,  y: 29.9 },  // (108, 431) by Sequence
+    { id: "dssc-med2",    type: "med",    label: "First Aid",      x: 56.2, y: 72.4 },  // (600, 878) by the shuttle gate
+    { id: "dssc-med3",    type: "med",    label: "First Aid",      x: 79.2, y: 78.6 },  // (842, 943) by Dream
+    { id: "dssc-water1",  type: "water",  label: "Water Station",  x: 13.3, y: 41.9 },  // (150, 557)
+    { id: "dssc-water2",  type: "water",  label: "Water Station",  x: 34.5, y: 64.5 },  // (372, 795) by Void
+    { id: "dssc-water3",  type: "water",  label: "Water Station",  x: 62.4, y: 68.1 },  // (665, 833) by Vision
+    { id: "dssc-wc1",     type: "toilet", label: "Restrooms",      x: 17.7, y: 43.6 },  // (196, 575)
+    { id: "dssc-wc2",     type: "toilet", label: "Restrooms",      x: 46.5, y: 49.2 },  // (498, 634)
+    { id: "dssc-wc3",     type: "toilet", label: "Restrooms",      x: 68.5, y: 61.4 },  // (729, 762)
+    { id: "dssc-wc4",     type: "toilet", label: "Restrooms",      x: 49.1, y: 77.9 },  // (526, 935)
+    { id: "dssc-info",    type: "info",   label: "Info Booth",     x: 33.3, y: 50.2 },  // (360, 645)
+    { id: "dssc-lockers", type: "locker", label: "Lockers",        x: 29.2, y: 48.3 },  // (317, 625)
+    { id: "dssc-charge1", type: "charge", label: "Charge Station", x: 15.4, y: 42.6 },  // (172, 565)
+    { id: "dssc-charge2", type: "charge", label: "Charge Station", x: 33.1, y: 56.0 },  // (358, 705)
+  ];
 
   // Every act is unplaced and untimed. `tier` drives lineup card weighting
   // elsewhere; with no set times there is no basis to rank, so all acts sit
@@ -341,11 +360,12 @@
     weatherEndpoint: "https://api.weather.gov/points/33.7528,-118.1896",
     mainStageId: null,
     // ── THE MAP ──
-    // No mapImage, no mapStyle: "image-overlay", no gpsAnchors. This festival
-    // opens straight into the real basemap.
-    mapMode: "real",
-    mapPrintsStageNames: false,
-    // Nothing to register — not a waiver.
+    // The official 2026 map as an image-overlay plate (see SOURCE). The art
+    // is oblique and unregistered: no gpsAnchors, so no distance claims.
+    mapImage: "dreamstate-socal-2026-map.webp",
+    mapStyle: "image-overlay",
+    mapTheme: "park",
+    mapPrintsStageNames: true,
     mapArtIsGeoregistered: false,
     // Published policy, drives FAQ copy only.
     policies: { reentry: false, alcoholAge: 21 },
@@ -354,9 +374,8 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["dreamstate-socal-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // GATED: the day split, the set times, every act's stage assignment and
-    // the official map are all unpublished, and so are the 2026 stage names
-    // (STAGES is empty; see the leads block).
+    // GATED: the day split, the set times and every act's stage assignment
+    // are unpublished. Stages, map and amenities come from the official map.
     registry: { available: true, scheduleTBA: true, accent: "#6366f1", emoji: "🌀", region: "North America" },
   };
 })();
