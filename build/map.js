@@ -7714,6 +7714,13 @@ var AMENITY_KEY = [{
   label: "Art"
 }];
 var AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
 function TopDownMap({
   avatar,
   heading,
@@ -7843,6 +7850,23 @@ function TopDownMap({
     w: 0,
     h: 0
   });
+  var clampAvatarChip = React.useCallback(() => {
+    var boxEl = boxRef.current;
+    var chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    var r = chip.getBoundingClientRect(),
+      b = boxEl.getBoundingClientRect();
+    var vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    var dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    var t = -mapRotate * Math.PI / 180,
+      z = zoom || 1;
+    chip.style.translate = `${dx * Math.cos(t) / z}px ${dx * Math.sin(t) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => {
+    clampAvatarChip();
+  });
   React.useEffect(() => {
     var el = boxRef.current;
     if (!el) return;
@@ -7897,6 +7921,7 @@ function TopDownMap({
     onTouchMove: onTouchMove,
     onTouchEnd: onTouchEnd
   }, React.createElement("div", {
+    onTransitionEnd: clampAvatarChip,
     style: {
       position: "absolute",
       inset: 0,
