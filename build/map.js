@@ -599,6 +599,9 @@ function _realMapPanLimit(cfg, lib) {
   var fb = v.festivalBounds;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
+function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
+  return !!liveOnSite && !hasAffine && !onRealMap;
+}
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -2879,6 +2882,7 @@ function MapScreen({
     live: true,
     gps: liveAvatar.gps
   } : demoAvatar;
+  var fixUnplaced = _liveFixUnplaced(isLiveOnSite, !!MAP_AFFINE, useRealMap);
   var {
     active: bsActive
   } = useBatterySaver();
@@ -3081,7 +3085,7 @@ function MapScreen({
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? fixUnplaced ? "ON SITE" : isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
   var mapCachedOffline = useMapCachedOffline(FESTIVAL_CONFIG);
   return React.createElement(Screen, {
@@ -4428,7 +4432,10 @@ function MapScreen({
     },
     onFatal: _disableRealMap
   }) : React.createElement(TopDownMap, {
-    avatar: avatar,
+    avatar: fixUnplaced ? {
+      ...avatar,
+      unplaced: true
+    } : avatar,
     heading: heading,
     friends: friends,
     stages: PLACED_STAGES,
@@ -8428,7 +8435,7 @@ function TopDownMap({
       fontFamily: "Geist Mono, monospace",
       fontWeight: "900"
     }, cfg.letter));
-  }), (sel || meetTarget) && (() => {
+  }), !avatar.unplaced && (sel || meetTarget) && (() => {
     var target = meetTarget || sel;
     var c = meetTarget ? "#e85d2e" : "#e85d2e";
     return React.createElement("g", null, React.createElement("path", {
@@ -8572,7 +8579,7 @@ function TopDownMap({
       fill: "var(--signal-ink)",
       fontFamily: "Geist Mono, monospace"
     }, "★")));
-  }), friends.map(f => {
+  }), !avatar.unplaced && friends.map(f => {
     var dist = Math.hypot(f.x - avatar.x, f.y - avatar.y);
     if (dist > 8) return null;
     var mx = (f.x + avatar.x) / 2,
@@ -8599,7 +8606,7 @@ function TopDownMap({
     }));
   }), friends.map(f => {
     var focused = meetGroup.includes(f.id);
-    var nearby = Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
+    var nearby = !avatar.unplaced && Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
     return React.createElement("g", {
       key: f.id
     }, React.createElement("circle", {
@@ -8646,7 +8653,7 @@ function TopDownMap({
     fill: "var(--signal-ink)",
     stroke: "var(--ink)",
     strokeWidth: "0.5"
-  })), selected && !meetMode && (() => {
+  })), !avatar.unplaced && selected && !meetMode && (() => {
     var target = stages.find(s => s.id === selected);
     if (!target) return null;
     var dist = Math.hypot(target.x - avatar.x, target.y - avatar.y);
@@ -8678,7 +8685,7 @@ function TopDownMap({
       fill: target.color,
       opacity: "0.85"
     }, etaLabel, " MIN"));
-  })(), React.createElement("g", null, React.createElement("path", {
+  })(), !avatar.unplaced && React.createElement("g", null, React.createElement("path", {
     d: `M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`,
@@ -8948,7 +8955,7 @@ function TopDownMap({
         fontWeight: 500
       }
     }, "· ", seen.label)));
-  }), React.createElement("div", {
+  }), !avatar.unplaced && React.createElement("div", {
     "data-avatar-label": true,
     style: {
       position: "absolute",
