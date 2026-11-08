@@ -103291,6 +103291,4520 @@
   "mainStage": null
  },
  {
+  "id": "acl-2021:d1:honda:1600:machine-gun-kelly",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MACHINE GUN KELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "machine-gun-kelly",
+    "role": "performer"
+   }
+  ],
+  "act": "machine-gun-kelly",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:honda:1800:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "MEGAN THEE STALLION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:honda:2000:miley-cyrus",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "MILEY CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miley-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "miley-cyrus",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:miller-lite:1515:skip-marley",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "SKIP MARLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skip-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "skip-marley",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:miller-lite:1700:moses-sumney",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "MOSES SUMNEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moses-sumney",
+    "role": "performer"
+   }
+  ],
+  "act": "moses-sumney",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:miller-lite:1900:chet-faker",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "CHET FAKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chet-faker",
+    "role": "performer"
+   }
+  ],
+  "act": "chet-faker",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:bmi:1515:carolesdaughter",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "CAROLESDAUGHTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carolesdaughter",
+    "role": "performer"
+   }
+  ],
+  "act": "carolesdaughter",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:bmi:1700:zella-day",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "ZELLA DAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zella-day",
+    "role": "performer"
+   }
+  ],
+  "act": "zella-day",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:bmi:1900:bexley",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BEXLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bexley",
+    "role": "performer"
+   }
+  ],
+  "act": "bexley",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:vrbo:1515:emotional-oranges",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "VRBO",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "EMOTIONAL ORANGES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emotional-oranges",
+    "role": "performer"
+   }
+  ],
+  "act": "emotional-oranges",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:vrbo:1700:finneas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "VRBO",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "FINNEAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "finneas",
+    "role": "performer"
+   }
+  ],
+  "act": "finneas",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:vrbo:1900:dermot-kennedy",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "VRBO",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "DERMOT KENNEDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dermot-kennedy",
+    "role": "performer"
+   }
+  ],
+  "act": "dermot-kennedy",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:tito-s-handmade-vodka:1600:disko-cowboy-vinyl-ranch",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "DISKO COWBOY (VINYL RANCH)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disko-cowboy-vinyl-ranch",
+    "role": "act"
+   }
+  ],
+  "act": "disko-cowboy-vinyl-ranch",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "acl-2021:d1:tito-s-handmade-vodka:1800:zhu",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ZHU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "performer"
+   }
+  ],
+  "act": "zhu",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:t-mobile:1515:the-backseat-lovers",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "THE BACKSEAT LOVERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-backseat-lovers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-backseat-lovers",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:t-mobile:1700:tkay-maidza",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TKAY MAIDZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tkay-maidza",
+    "role": "performer"
+   }
+  ],
+  "act": "tkay-maidza",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:t-mobile:1900:jon-pardi",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "JON PARDI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-pardi",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-pardi",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:lady-bird:1600:joy-oladokun",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "LADY BIRD",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "JOY OLADOKUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joy-oladokun",
+    "role": "performer"
+   }
+  ],
+  "act": "joy-oladokun",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:lady-bird:1800:black-pumas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "LADY BIRD",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "BLACK PUMAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-pumas",
+    "role": "performer"
+   }
+  ],
+  "act": "black-pumas",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d1:lady-bird:2000:george-strait",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-01",
+  "day": 1,
+  "stage": "LADY BIRD",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "GEORGE STRAIT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "george-strait",
+    "role": "performer"
+   }
+  ],
+  "act": "george-strait",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:honda:1250:frances-forever",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "FRANCES FOREVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frances-forever",
+    "role": "performer"
+   }
+  ],
+  "act": "frances-forever",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:honda:1420:surfaces",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "SURFACES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surfaces",
+    "role": "performer"
+   }
+  ],
+  "act": "surfaces",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:honda:1620:future-islands",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "FUTURE ISLANDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-islands",
+    "role": "performer"
+   }
+  ],
+  "act": "future-islands",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:honda:1820:modest-mouse",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "MODEST MOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "modest-mouse",
+    "role": "performer"
+   }
+  ],
+  "act": "modest-mouse",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:honda:2020:rufus-du-sol",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "20:20",
+  "end": null,
+  "printed": "RÜFÜS DU SOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rufus-du-sol",
+    "role": "performer"
+   }
+  ],
+  "act": "rufus-du-sol",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:miller-lite:1205:payday",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "PAYDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "payday",
+    "role": "performer"
+   }
+  ],
+  "act": "payday",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:miller-lite:1335:gracie-abrams",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "GRACIE ABRAMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gracie-abrams",
+    "role": "performer"
+   }
+  ],
+  "act": "gracie-abrams",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:miller-lite:1520:ag-club",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "AG CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ag-club",
+    "role": "performer"
+   }
+  ],
+  "act": "ag-club",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:miller-lite:1720:arizona-zervas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "ARIZONA ZERVAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arizona-zervas",
+    "role": "performer"
+   }
+  ],
+  "act": "arizona-zervas",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:miller-lite:1920:jack-harlow",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "JACK HARLOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-harlow",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-harlow",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:bmi:1205:sun-room",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "SUN ROOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sun-room",
+    "role": "performer"
+   }
+  ],
+  "act": "sun-room",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:bmi:1335:yendry",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "YENDRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yendry",
+    "role": "performer"
+   }
+  ],
+  "act": "yendry",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:bmi:1520:katie-pruitt",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "KATIE PRUITT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katie-pruitt",
+    "role": "performer"
+   }
+  ],
+  "act": "katie-pruitt",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:bmi:1720:gina-chavez",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "GINA CHAVEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gina-chavez",
+    "role": "performer"
+   }
+  ],
+  "act": "gina-chavez",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:vrbo:1205:aaron-stephens",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "VRBO",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "AARON STEPHENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-stephens",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-stephens",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:vrbo:1335:mob-rich",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "VRBO",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "MOB RICH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mob-rich",
+    "role": "performer"
+   }
+  ],
+  "act": "mob-rich",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:vrbo:1520:charley-crockett",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "VRBO",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "CHARLEY CROCKETT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charley-crockett",
+    "role": "performer"
+   }
+  ],
+  "act": "charley-crockett",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:vrbo:1720:missio",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "VRBO",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "MISSIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "missio",
+    "role": "performer"
+   }
+  ],
+  "act": "missio",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:vrbo:1920:dayglow",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "VRBO",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "DAYGLOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dayglow",
+    "role": "performer"
+   }
+  ],
+  "act": "dayglow",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1205:the-mighty-sincere-voices",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "THE MIGHTY SINCERE VOICES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mighty-sincere-voices",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mighty-sincere-voices",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1300:sir-woman",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SIR WOMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir-woman",
+    "role": "performer"
+   }
+  ],
+  "act": "sir-woman",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1400:moziah",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "MOZIAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moziah",
+    "role": "performer"
+   }
+  ],
+  "act": "moziah",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1500:la-dona",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "LA DOÑA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-dona",
+    "role": "performer"
+   }
+  ],
+  "act": "la-dona",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1620:lunay",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "LUNAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lunay",
+    "role": "performer"
+   }
+  ],
+  "act": "lunay",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:tito-s-handmade-vodka:1830:the-hu",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "THE HU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hu",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hu",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:t-mobile:1205:skyler-day",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "SKYLER DAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skyler-day",
+    "role": "performer"
+   }
+  ],
+  "act": "skyler-day",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:t-mobile:1335:arlie",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "ARLIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlie",
+    "role": "performer"
+   }
+  ],
+  "act": "arlie",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:t-mobile:1520:remi-wolf",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "REMI WOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "remi-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "remi-wolf",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:t-mobile:1720:freddie-gibbs",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "FREDDIE GIBBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freddie-gibbs",
+    "role": "performer"
+   }
+  ],
+  "act": "freddie-gibbs",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:t-mobile:1920:alison-wonderland",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "ALISON WONDERLAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:lady-bird:1250:amber-mark",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "LADY BIRD",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "AMBER MARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-mark",
+    "role": "performer"
+   }
+  ],
+  "act": "amber-mark",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:lady-bird:1420:girl-in-red",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "LADY BIRD",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "GIRL IN RED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-in-red",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-in-red",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:lady-bird:1620:phoebe-bridgers",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "LADY BIRD",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "PHOEBE BRIDGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoebe-bridgers",
+    "role": "performer"
+   }
+  ],
+  "act": "phoebe-bridgers",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:lady-bird:1820:doja-cat",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "LADY BIRD",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "DOJA CAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doja-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "doja-cat",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d2:lady-bird:2030:billie-eilish",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-02",
+  "day": 2,
+  "stage": "LADY BIRD",
+  "start": "20:30",
+  "end": null,
+  "printed": "BILLIE EILISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:honda:1300:mother-mother",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "MOTHER MOTHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mother-mother",
+    "role": "performer"
+   }
+  ],
+  "act": "mother-mother",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:honda:1430:white-reaper",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "WHITE REAPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "white-reaper",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:honda:1630:polo-g",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "POLO G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polo-g",
+    "role": "performer"
+   }
+  ],
+  "act": "polo-g",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:honda:1830:karol-g",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "KAROL G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:honda:2030:duran-duran",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "DURAN DURAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duran-duran",
+    "role": "performer"
+   }
+  ],
+  "act": "duran-duran",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:miller-lite:1215:deezie-brown",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "DEEZIE BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deezie-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "deezie-brown",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:miller-lite:1345:sofia-valdes",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "SOFÍA VALDÉS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofia-valdes",
+    "role": "performer"
+   }
+  ],
+  "act": "sofia-valdes",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:miller-lite:1530:cautious-clay",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "CAUTIOUS CLAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cautious-clay",
+    "role": "performer"
+   }
+  ],
+  "act": "cautious-clay",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:miller-lite:1730:chris-lake",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "CHRIS LAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:miller-lite:1930:erykah-badu",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "ERYKAH BADU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erykah-badu",
+    "role": "performer"
+   }
+  ],
+  "act": "erykah-badu",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:bmi:1215:jany-green",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "JANY GREEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jany-green",
+    "role": "performer"
+   }
+  ],
+  "act": "jany-green",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:bmi:1345:public-library-commute",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "PUBLIC LIBRARY COMMUTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "public-library-commute",
+    "role": "performer"
+   }
+  ],
+  "act": "public-library-commute",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:bmi:1530:tenille-arts",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "TENILLE ARTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tenille-arts",
+    "role": "performer"
+   }
+  ],
+  "act": "tenille-arts",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:bmi:1730:hardy",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "HARDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hardy",
+    "role": "performer"
+   }
+  ],
+  "act": "hardy",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:vrbo:1215:shooks",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "VRBO",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "SHOOKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shooks",
+    "role": "performer"
+   }
+  ],
+  "act": "shooks",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:vrbo:1345:noga-erez",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "VRBO",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "NOGA EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noga-erez",
+    "role": "performer"
+   }
+  ],
+  "act": "noga-erez",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:vrbo:1530:cam",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "VRBO",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "CAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cam",
+    "role": "performer"
+   }
+  ],
+  "act": "cam",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:vrbo:1730:channel-tres",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "VRBO",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "CHANNEL TRES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:vrbo:1930:tierra-whack",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "VRBO",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "TIERRA WHACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tierra-whack",
+    "role": "performer"
+   }
+  ],
+  "act": "tierra-whack",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1145:shields-of-faith",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "SHIELDS OF FAITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shields-of-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "shields-of-faith",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1300:calder-allen",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "CALDER ALLEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calder-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "calder-allen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1415:tc-superstar",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "TC SUPERSTAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tc-superstar",
+    "role": "performer"
+   }
+  ],
+  "act": "tc-superstar",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1515:claud",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "CLAUD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claud",
+    "role": "performer"
+   }
+  ],
+  "act": "claud",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1630:070-shake",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "070 SHAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "070-shake",
+    "role": "performer"
+   }
+  ],
+  "act": "070-shake",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:tito-s-handmade-vodka:1830:lane-8",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "LANE 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:t-mobile:1215:allison-ponthier",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "ALLISON PONTHIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "allison-ponthier",
+    "role": "performer"
+   }
+  ],
+  "act": "allison-ponthier",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:t-mobile:1345:kennyhoopla",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "KENNYHOOPLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kennyhoopla",
+    "role": "performer"
+   }
+  ],
+  "act": "kennyhoopla",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:t-mobile:1530:toosii",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "TOOSII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toosii",
+    "role": "performer"
+   }
+  ],
+  "act": "toosii",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:t-mobile:1730:marc-rebillet",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "MARC REBILLET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marc-rebillet",
+    "role": "performer"
+   }
+  ],
+  "act": "marc-rebillet",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:t-mobile:1930:st-vincent",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "ST. VINCENT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "st-vincent",
+    "role": "performer"
+   }
+  ],
+  "act": "st-vincent",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:lady-bird:1300:jessie-murph",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "LADY BIRD",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "JESSIE MURPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-murph",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:lady-bird:1430:tate-mcrae",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "LADY BIRD",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "TATE MCRAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tate-mcrae",
+    "role": "performer"
+   }
+  ],
+  "act": "tate-mcrae",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:lady-bird:1630:band-of-horses",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "LADY BIRD",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "BAND OF HORSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "band-of-horses",
+    "role": "performer"
+   }
+  ],
+  "act": "band-of-horses",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:lady-bird:1830:greta-van-fleet",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "LADY BIRD",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "GRETA VAN FLEET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "greta-van-fleet",
+    "role": "performer"
+   }
+  ],
+  "act": "greta-van-fleet",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d3:lady-bird:2030:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-03",
+  "day": 3,
+  "stage": "LADY BIRD",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:honda:1300:saleka",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SALEKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saleka",
+    "role": "performer"
+   }
+  ],
+  "act": "saleka",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:honda:1430:jxdn",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "JXDN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jxdn",
+    "role": "performer"
+   }
+  ],
+  "act": "jxdn",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:honda:1600:machine-gun-kelly",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MACHINE GUN KELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "machine-gun-kelly",
+    "role": "performer"
+   }
+  ],
+  "act": "machine-gun-kelly",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:honda:1800:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "MEGAN THEE STALLION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:honda:2000:miley-cyrus",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "MILEY CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miley-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "miley-cyrus",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:miller-lite:1345:daydream-masi",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "DAYDREAM MASI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daydream-masi",
+    "role": "performer"
+   }
+  ],
+  "act": "daydream-masi",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:miller-lite:1515:skip-marley",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "SKIP MARLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skip-marley",
+    "role": "performer"
+   }
+  ],
+  "act": "skip-marley",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:miller-lite:1700:moses-sumney",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "MOSES SUMNEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moses-sumney",
+    "role": "performer"
+   }
+  ],
+  "act": "moses-sumney",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:miller-lite:1900:erykah-badu",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ERYKAH BADU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erykah-badu",
+    "role": "performer"
+   }
+  ],
+  "act": "erykah-badu",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:bmi:1345:leah-blevins",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "BMI",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "LEAH BLEVINS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leah-blevins",
+    "role": "performer"
+   }
+  ],
+  "act": "leah-blevins",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:bmi:1515:the-teeta",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "THE TEETA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-teeta",
+    "role": "performer"
+   }
+  ],
+  "act": "the-teeta",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:bmi:1700:omb-peezy",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "OMB PEEZY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omb-peezy",
+    "role": "performer"
+   }
+  ],
+  "act": "omb-peezy",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:vrbo:1345:claud",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "VRBO",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "CLAUD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claud",
+    "role": "performer"
+   }
+  ],
+  "act": "claud",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:vrbo:1515:hinds",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "VRBO",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "HINDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hinds",
+    "role": "performer"
+   }
+  ],
+  "act": "hinds",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:vrbo:1700:finneas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "VRBO",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "FINNEAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "finneas",
+    "role": "performer"
+   }
+  ],
+  "act": "finneas",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:vrbo:1900:dermot-kennedy",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "VRBO",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "DERMOT KENNEDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dermot-kennedy",
+    "role": "performer"
+   }
+  ],
+  "act": "dermot-kennedy",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:tito-s-handmade-vodka:1330:riders-against-the-storm",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "RIDERS AGAINST THE STORM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riders-against-the-storm",
+    "role": "performer"
+   }
+  ],
+  "act": "riders-against-the-storm",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:tito-s-handmade-vodka:1430:q",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "Q",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q",
+    "role": "performer"
+   }
+  ],
+  "act": "q",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:tito-s-handmade-vodka:1615:disko-cowboy-vinyl-ranch",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "DISKO COWBOY (VINYL RANCH)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disko-cowboy-vinyl-ranch",
+    "role": "act"
+   }
+  ],
+  "act": "disko-cowboy-vinyl-ranch",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "acl-2021:d4:tito-s-handmade-vodka:1800:lane-8",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "LANE 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:t-mobile:1345:maggie-rose",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "MAGGIE ROSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rose",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rose",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:t-mobile:1515:durand-jones-and-the-indications",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "DURAND JONES & THE INDICATIONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "durand-jones-and-the-indications",
+    "role": "performer"
+   }
+  ],
+  "act": "durand-jones-and-the-indications",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:t-mobile:1700:leann-rimes",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "LEANN RIMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leann-rimes",
+    "role": "performer"
+   }
+  ],
+  "act": "leann-rimes",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:t-mobile:1900:jon-pardi",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "JON PARDI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-pardi",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-pardi",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:lady-bird:1300:vincent-neil-emerson",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "LADY BIRD",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "VINCENT NEIL EMERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vincent-neil-emerson",
+    "role": "performer"
+   }
+  ],
+  "act": "vincent-neil-emerson",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:lady-bird:1430:heartless-bastards",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "LADY BIRD",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "HEARTLESS BASTARDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "heartless-bastards",
+    "role": "performer"
+   }
+  ],
+  "act": "heartless-bastards",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:lady-bird:1600:bleachers",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "LADY BIRD",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "BLEACHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bleachers",
+    "role": "performer"
+   }
+  ],
+  "act": "bleachers",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:lady-bird:1800:black-pumas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "LADY BIRD",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "BLACK PUMAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-pumas",
+    "role": "performer"
+   }
+  ],
+  "act": "black-pumas",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d4:lady-bird:2000:george-strait",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-08",
+  "day": 4,
+  "stage": "LADY BIRD",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "GEORGE STRAIT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "george-strait",
+    "role": "performer"
+   }
+  ],
+  "act": "george-strait",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:honda:1250:frances-forever",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "FRANCES FOREVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frances-forever",
+    "role": "performer"
+   }
+  ],
+  "act": "frances-forever",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:honda:1420:surfaces",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "SURFACES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surfaces",
+    "role": "performer"
+   }
+  ],
+  "act": "surfaces",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:honda:1620:future-islands",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "FUTURE ISLANDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-islands",
+    "role": "performer"
+   }
+  ],
+  "act": "future-islands",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:honda:1820:modest-mouse",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "MODEST MOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "modest-mouse",
+    "role": "performer"
+   }
+  ],
+  "act": "modest-mouse",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:honda:2020:rufus-du-sol",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "20:20",
+  "end": null,
+  "printed": "RÜFÜS DU SOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rufus-du-sol",
+    "role": "performer"
+   }
+  ],
+  "act": "rufus-du-sol",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:miller-lite:1205:wizthemc",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "WIZTHEMC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wizthemc",
+    "role": "performer"
+   }
+  ],
+  "act": "wizthemc",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:miller-lite:1335:gracie-abrams",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "GRACIE ABRAMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gracie-abrams",
+    "role": "performer"
+   }
+  ],
+  "act": "gracie-abrams",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:miller-lite:1520:white-reaper",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "WHITE REAPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "white-reaper",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:miller-lite:1720:arizona-zervas",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "ARIZONA ZERVAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arizona-zervas",
+    "role": "performer"
+   }
+  ],
+  "act": "arizona-zervas",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:miller-lite:1920:jack-harlow",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "JACK HARLOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-harlow",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-harlow",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:bmi:1205:gigi",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "BMI",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "GIGI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gigi",
+    "role": "performer"
+   }
+  ],
+  "act": "gigi",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:bmi:1335:leyla-blue",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "BMI",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "LEYLA BLUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leyla-blue",
+    "role": "performer"
+   }
+  ],
+  "act": "leyla-blue",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:bmi:1520:samantha-sanchez",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "SAMANTHA SANCHEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samantha-sanchez",
+    "role": "performer"
+   }
+  ],
+  "act": "samantha-sanchez",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:bmi:1720:raiche",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "BMI",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "RAICHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raiche",
+    "role": "performer"
+   }
+  ],
+  "act": "raiche",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:vrbo:1205:mike-melinoe",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "VRBO",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "MIKE MELINOE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-melinoe",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-melinoe",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:vrbo:1335:arlie",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "VRBO",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "ARLIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlie",
+    "role": "performer"
+   }
+  ],
+  "act": "arlie",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:vrbo:1520:charley-crockett",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "VRBO",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "CHARLEY CROCKETT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charley-crockett",
+    "role": "performer"
+   }
+  ],
+  "act": "charley-crockett",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:vrbo:1720:missio",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "VRBO",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "MISSIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "missio",
+    "role": "performer"
+   }
+  ],
+  "act": "missio",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:vrbo:1920:dayglow",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "VRBO",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "DAYGLOW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dayglow",
+    "role": "performer"
+   }
+  ],
+  "act": "dayglow",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1205:disciples-of-christ",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "DISCIPLES OF CHRIST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disciples-of-christ",
+    "role": "performer"
+   }
+  ],
+  "act": "disciples-of-christ",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1300:the-tender-things",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "THE TENDER THINGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-tender-things",
+    "role": "performer"
+   }
+  ],
+  "act": "the-tender-things",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1400:lp-giobbi",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "LP GIOBBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp-giobbi",
+    "role": "performer"
+   }
+  ],
+  "act": "lp-giobbi",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1500:la-dona",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "LA DOÑA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-dona",
+    "role": "performer"
+   }
+  ],
+  "act": "la-dona",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1615:070-shake",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "070 SHAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "070-shake",
+    "role": "performer"
+   }
+  ],
+  "act": "070-shake",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:tito-s-handmade-vodka:1830:the-hu",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "THE HU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hu",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hu",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:t-mobile:1205:jade-bird",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "12:05",
+  "end": "12:50",
+  "printed": "JADE BIRD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jade-bird",
+    "role": "performer"
+   }
+  ],
+  "act": "jade-bird",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:t-mobile:1335:aaron-frazer",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "13:35",
+  "end": "14:20",
+  "printed": "AARON FRAZER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-frazer",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-frazer",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:t-mobile:1520:remi-wolf",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "REMI WOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "remi-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "remi-wolf",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:t-mobile:1720:freddie-gibbs",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "FREDDIE GIBBS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freddie-gibbs",
+    "role": "performer"
+   }
+  ],
+  "act": "freddie-gibbs",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:t-mobile:1920:alison-wonderland",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "ALISON WONDERLAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:lady-bird:1250:holly-humberstone",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "LADY BIRD",
+  "start": "12:50",
+  "end": "13:35",
+  "printed": "HOLLY HUMBERSTONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-humberstone",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-humberstone",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:lady-bird:1420:girl-in-red",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "LADY BIRD",
+  "start": "14:20",
+  "end": "15:20",
+  "printed": "GIRL IN RED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-in-red",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-in-red",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:lady-bird:1620:phoebe-bridgers",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "LADY BIRD",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "PHOEBE BRIDGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoebe-bridgers",
+    "role": "performer"
+   }
+  ],
+  "act": "phoebe-bridgers",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:lady-bird:1820:doja-cat",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "LADY BIRD",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "DOJA CAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doja-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "doja-cat",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d5:lady-bird:2030:billie-eilish",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-09",
+  "day": 5,
+  "stage": "LADY BIRD",
+  "start": "20:30",
+  "end": null,
+  "printed": "BILLIE EILISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:honda:1300:serena-isioma",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SERENA ISIOMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "serena-isioma",
+    "role": "performer"
+   }
+  ],
+  "act": "serena-isioma",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:honda:1430:ag-club",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "AG CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ag-club",
+    "role": "performer"
+   }
+  ],
+  "act": "ag-club",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:honda:1630:polo-g",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "POLO G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polo-g",
+    "role": "performer"
+   }
+  ],
+  "act": "polo-g",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:honda:1830:karol-g",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "KAROL G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:honda:2030:duran-duran",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "DURAN DURAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duran-duran",
+    "role": "performer"
+   }
+  ],
+  "act": "duran-duran",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:miller-lite:1200:nane",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "NANÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nane",
+    "role": "performer"
+   }
+  ],
+  "act": "nane",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:miller-lite:1345:amber-mark",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "AMBER MARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-mark",
+    "role": "performer"
+   }
+  ],
+  "act": "amber-mark",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:miller-lite:1530:cautious-clay",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "CAUTIOUS CLAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cautious-clay",
+    "role": "performer"
+   }
+  ],
+  "act": "cautious-clay",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:miller-lite:1730:chris-lake",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "CHRIS LAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:miller-lite:1930:madeon",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "MADEON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:bmi:1200:zach-person",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "ZACH PERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zach-person",
+    "role": "performer"
+   }
+  ],
+  "act": "zach-person",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:bmi:1345:mattiel",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "BMI",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "MATTIEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mattiel",
+    "role": "performer"
+   }
+  ],
+  "act": "mattiel",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:bmi:1530:superfonicos",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "BMI",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "SUPERFÓNICOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "superfonicos",
+    "role": "performer"
+   }
+  ],
+  "act": "superfonicos",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:bmi:1730:david-ramirez",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "BMI",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "DAVID RAMIREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-ramirez",
+    "role": "performer"
+   }
+  ],
+  "act": "david-ramirez",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:vrbo:1200:blk-odyssy",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "VRBO",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "BLK ODYSSY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blk-odyssy",
+    "role": "performer"
+   }
+  ],
+  "act": "blk-odyssy",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:vrbo:1345:noga-erez",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "VRBO",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "NOGA EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noga-erez",
+    "role": "performer"
+   }
+  ],
+  "act": "noga-erez",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:vrbo:1530:cam",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "VRBO",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "CAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cam",
+    "role": "performer"
+   }
+  ],
+  "act": "cam",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:vrbo:1730:channel-tres",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "VRBO",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "CHANNEL TRES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:vrbo:1930:tierra-whack",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "VRBO",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "TIERRA WHACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tierra-whack",
+    "role": "performer"
+   }
+  ],
+  "act": "tierra-whack",
+  "closing": true,
+  "stageLineage": "acl:vrbo",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:tito-s-handmade-vodka:1300:calder-allen",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "CALDER ALLEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calder-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "calder-allen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:tito-s-handmade-vodka:1415:shiela",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "SHIELA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shiela",
+    "role": "performer"
+   }
+  ],
+  "act": "shiela",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:tito-s-handmade-vodka:1515:ant-clemmons",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "ANT CLEMMONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ant-clemmons",
+    "role": "performer"
+   }
+  ],
+  "act": "ant-clemmons",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:tito-s-handmade-vodka:1630:lunay",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "LUNAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lunay",
+    "role": "performer"
+   }
+  ],
+  "act": "lunay",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:tito-s-handmade-vodka:1830:trixie-mattel",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "TRIXIE MATTEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trixie-mattel",
+    "role": "performer"
+   }
+  ],
+  "act": "trixie-mattel",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:t-mobile:1200:payday",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "PAYDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "payday",
+    "role": "performer"
+   }
+  ],
+  "act": "payday",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:t-mobile:1345:kennyhoopla",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "KENNYHOOPLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kennyhoopla",
+    "role": "performer"
+   }
+  ],
+  "act": "kennyhoopla",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:t-mobile:1530:toosii",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "TOOSII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toosii",
+    "role": "performer"
+   }
+  ],
+  "act": "toosii",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:t-mobile:1730:marc-rebillet",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "MARC REBILLET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marc-rebillet",
+    "role": "performer"
+   }
+  ],
+  "act": "marc-rebillet",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:t-mobile:1930:jon-batiste",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "JON BATISTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jon-batiste",
+    "role": "performer"
+   }
+  ],
+  "act": "jon-batiste",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:lady-bird:1300:jessie-murph",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "LADY BIRD",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "JESSIE MURPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-murph",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:lady-bird:1430:tate-mcrae",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "LADY BIRD",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "TATE MCRAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tate-mcrae",
+    "role": "performer"
+   }
+  ],
+  "act": "tate-mcrae",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:lady-bird:1630:band-of-horses",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "LADY BIRD",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "BAND OF HORSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "band-of-horses",
+    "role": "performer"
+   }
+  ],
+  "act": "band-of-horses",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:lady-bird:1830:greta-van-fleet",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "LADY BIRD",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "GRETA VAN FLEET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "greta-van-fleet",
+    "role": "performer"
+   }
+  ],
+  "act": "greta-van-fleet",
+  "closing": false,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2021:d6:lady-bird:2030:tyler-the-creator",
+  "source": "edition",
+  "festivalId": "acl-2021",
+  "festivalBrand": "acl",
+  "year": 2021,
+  "date": "2021-10-10",
+  "day": 6,
+  "stage": "LADY BIRD",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "TYLER, THE CREATOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyler-the-creator",
+    "role": "performer"
+   }
+  ],
+  "act": "tyler-the-creator",
+  "closing": true,
+  "stageLineage": "acl:lady-bird",
+  "mainStage": null
+ },
+ {
   "id": "acl-2022:d1:honda:1300:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2022",
