@@ -2,23 +2,29 @@
 // COUNTDOWN NYE 2026 — NOS Events Center · San Bernardino, CA
 // Dec 31, 2026–Jan 1, 2027
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY BUILD. The official poster names the artists, but no official
-// 2026 day split, stage assignments, set times or site map are published.
-// Those gaps stay empty rather than borrowing 2025 data or guessing.
+// LINEUP + NIGHT SPLIT. The official lineup page names the artists and the
+// night each plays. No stage assignments, set times or site map are
+// published. Those gaps stay empty rather than borrowing 2025 data or guessing.
 //
-// SOURCE lineup, source of record: official poster embedded on
+// SOURCE poster (the record until 2026-11-08), embedded on
 // countdownnye.com/, uploaded 2026-09-21:
 // https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/sites/59/2026/09/21114928/lineup.png
 // Parsed and visually checked 2026-09-21: 71 billed rows. Collaboration,
 // project and takeover text is preserved as one billing exactly as printed.
 //
-// CORROBORATION: countdownnye.com/lineup/, read 2026-09-21. Its underlying
-// lineup payload agrees on the ordinary artist rows, but the visible heading
-// still says "2025 LINEUP" and its stale stage groupings are not 2026 proof.
-// The poster is canonical where the payload flattens or omits poster billings:
-//   HEYZ B2B Tynan; LYNY B2B Peekaboo; Mija B2B sim0ne;
-//   S.Y.N (SVDDEN DEATH, yvm3, NIMDA); Bassrush Experience;
-//   Insomniac Records Takeover; Sincera.
+// SOURCE night split, now the source of record for the rows:
+// countdownnye.com/lineup/ "By Day", re-read 2026-11-08. The stale "2025
+// LINEUP" heading seen on 2026-09-21 is gone. It lists 70 acts:
+// "Thursday, December 31" 35 and "Friday, January 01" 35, with no act on
+// both nights. Thursday Dec 31 + Friday Jan 1 is this edition's calendar.
+// Lane ruling 2026-11-08: the official page wins where it differs from the
+// poster. Against the 71 poster rows that means:
+//   + Of The Trees (Jan 1), on the page but not the poster;
+//   - Bassrush Experience and Insomniac Records Takeover, poster billings
+//     the page lists on neither night (kept in git history, not deleted data);
+//   spelling as the page prints it: S.Y.N (Svdden Death, yvm3, NIMDA); SINCERA.
+// The page keeps the poster's B2B billings (HEYZ B2B Tynan, LYNY B2B
+// Peekaboo, Mija B2B sim0ne) as single rows.
 //
 // SOURCE dates + venue: countdownnye.com/ and Insomniac's official event page,
 // read 2026-09-21 — Dec 31 + Jan 1, 2027, San Bernardino; official homepage
@@ -36,9 +42,9 @@
 // Orange Show & Event Center". The same surveyed venue data already used by
 // Escape 2026 is reused here; no festival layout is inferred from it.
 //
-// NOT PUBLISHED: day split, stage assignments, set times, 2026 stage names,
-// stage positions and 2026 map. Every act is unplaced and untimed in one TBA
-// bucket. The app uses real basemap tiles and the surveyed venue footprint.
+// NOT PUBLISHED: stage assignments, set times, 2026 stage names, stage
+// positions and 2026 map. Every act sits on its night, unplaced and untimed.
+// The app uses real basemap tiles and the surveyed venue footprint.
 (function () {
   "use strict";
 
@@ -52,87 +58,86 @@
     return { ...rest, stage: s[0], start: s[1], end: s[2], day: s[3] ?? act.day,
       bio: "Playing Countdown NYE 2026." };
   };
-  const mk = (id, name) => scheduled({
+  const mk = (id, name, day) => scheduled({
     id, name, genre: "—", country: "—",
-    stage: null, day: 1, start: "", end: "", tier: 2,
+    stage: null, day, start: "", end: "", tier: 2,
     img: "linear-gradient(135deg, #06b6d4, #07031a)",
-    bio: "Playing Countdown NYE 2026. Stage, night and set time are not " +
+    bio: "Playing Countdown NYE 2026. Stage and set time are not " +
          "published yet.",
     provisional: true,
   });
 
   const ARTISTS = [
-    mk("cdny-33-below", "33 Below"),
-    mk("cdny-acraze", "ACRAZE"),
-    mk("cdny-ahee", "AHEE"),
-    mk("cdny-alesso", "Alesso"),
-    mk("cdny-archie-hamilton", "Archie Hamilton"),
-    mk("cdny-arlo", "Arlo"),
-    mk("cdny-aych", "AYCH"),
-    mk("cdny-bassrush-experience", "Bassrush Experience"),
-    mk("cdny-blaise-bracic", "Blaise Bracic"),
-    mk("cdny-borne", "borne"),
-    mk("cdny-brandon", "Brandon"),
-    mk("cdny-bunt", "BUNT."),
-    mk("cdny-bushbaby", "Bushbaby"),
-    mk("cdny-chozen", "CHOZEN"),
-    mk("cdny-crumb-pit", "Crumb Pit"),
-    mk("cdny-deathpact", "Deathpact"),
-    mk("cdny-discovery-project", "Discovery Project"),
-    mk("cdny-dj-diesel", "DJ Diesel"),
-    mk("cdny-dj-guestlist", "DJ Guestlist"),
-    mk("cdny-dj-snake", "DJ Snake"),
-    mk("cdny-dmina", "DØMINA"),
-    mk("cdny-ecchi-mp4", "ECCHI.MP4"),
-    mk("cdny-esse", "ESSE"),
-    mk("cdny-flosstradamus", "Flosstradamus"),
-    mk("cdny-ghengar", "Ghengar"),
-    mk("cdny-gordo", "Gordo"),
-    mk("cdny-gorillat", "GorillaT"),
-    mk("cdny-gravedgr", "GRAVEDGR"),
-    mk("cdny-green-matter", "Green Matter"),
-    mk("cdny-heyz-b2b-tynan", "HEYZ B2B Tynan"),
-    mk("cdny-hills", "Hills"),
-    mk("cdny-hol", "HOL!"),
-    mk("cdny-insomniac-records-takeover", "Insomniac Records Takeover"),
-    mk("cdny-jaden-bojsen", "Jaden Bojsen"),
-    mk("cdny-james-hype", "James Hype"),
-    mk("cdny-jessica-audiffred", "Jessica Audiffred"),
-    mk("cdny-jev", "Jev"),
-    mk("cdny-joshwa", "Joshwa"),
-    mk("cdny-kelland", "Kelland"),
-    mk("cdny-khrome", "KHROME"),
-    mk("cdny-kloud", "Kloud"),
-    mk("cdny-lavern", "Lavern"),
-    mk("cdny-loud-luxury", "Loud Luxury"),
-    mk("cdny-lucky", "Lucky"),
-    mk("cdny-lyny-b2b-peekaboo", "LYNY B2B Peekaboo"),
-    mk("cdny-madvktm", "MADVKTM"),
-    mk("cdny-marshmello", "Marshmello"),
-    mk("cdny-matroda", "Matroda"),
-    mk("cdny-mija-b2b-sim0ne", "Mija B2B sim0ne"),
-    mk("cdny-nghtmre", "NGHTMRE"),
-    mk("cdny-noise-mafia", "Noise Mafia"),
-    mk("cdny-oliver-heldens", "Oliver Heldens"),
-    mk("cdny-r3hab", "R3HAB"),
-    mk("cdny-ranger-trucco", "Ranger Trucco"),
-    mk("cdny-rinzen", "Rinzen"),
-    mk("cdny-rz", "RØZ"),
-    mk("cdny-s-y-n-svdden-death-yvm3-nimda", "S.Y.N (SVDDEN DEATH, yvm3, NIMDA)"),
-    mk("cdny-seven-lions", "Seven Lions"),
-    mk("cdny-sincera", "Sincera"),
-    mk("cdny-skilah", "Skilah"),
-    mk("cdny-smoakland", "Smoakland"),
-    mk("cdny-space-laces", "Space Laces"),
-    mk("cdny-subtronics", "Subtronics"),
-    mk("cdny-taiki-nulight", "Taiki Nulight"),
-    mk("cdny-tchami", "Tchami"),
-    mk("cdny-tobehonest", "TOBEHONEST"),
-    mk("cdny-tokimonsta", "TOKiMONSTA"),
-    mk("cdny-troyboi", "TroyBoi"),
-    mk("cdny-walker-and-royce", "Walker & Royce"),
-    mk("cdny-wax-motif", "Wax Motif"),
-    mk("cdny-zingara", "Zingara"),
+    mk("cdny-33-below", "33 Below", 2),
+    mk("cdny-acraze", "ACRAZE", 1),
+    mk("cdny-ahee", "AHEE", 1),
+    mk("cdny-alesso", "Alesso", 2),
+    mk("cdny-archie-hamilton", "Archie Hamilton", 2),
+    mk("cdny-arlo", "Arlo", 2),
+    mk("cdny-aych", "AYCH", 2),
+    mk("cdny-blaise-bracic", "Blaise Bracic", 2),
+    mk("cdny-borne", "borne", 2),
+    mk("cdny-brandon", "Brandon", 1),
+    mk("cdny-bunt", "BUNT.", 2),
+    mk("cdny-bushbaby", "Bushbaby", 2),
+    mk("cdny-chozen", "CHOZEN", 2),
+    mk("cdny-crumb-pit", "Crumb Pit", 1),
+    mk("cdny-deathpact", "Deathpact", 1),
+    mk("cdny-discovery-project", "Discovery Project", 1),
+    mk("cdny-dj-diesel", "DJ Diesel", 1),
+    mk("cdny-dj-guestlist", "DJ Guestlist", 1),
+    mk("cdny-dj-snake", "DJ Snake", 1),
+    mk("cdny-dmina", "DØMINA", 1),
+    mk("cdny-ecchi-mp4", "ECCHI.MP4", 2),
+    mk("cdny-esse", "ESSE", 1),
+    mk("cdny-flosstradamus", "Flosstradamus", 2),
+    mk("cdny-ghengar", "Ghengar", 2),
+    mk("cdny-gordo", "Gordo", 2),
+    mk("cdny-gorillat", "GorillaT", 2),
+    mk("cdny-gravedgr", "GRAVEDGR", 1),
+    mk("cdny-green-matter", "Green Matter", 1),
+    mk("cdny-heyz-b2b-tynan", "HEYZ B2B Tynan", 2),
+    mk("cdny-hills", "Hills", 1),
+    mk("cdny-hol", "HOL!", 1),
+    mk("cdny-jaden-bojsen", "Jaden Bojsen", 1),
+    mk("cdny-james-hype", "James Hype", 1),
+    mk("cdny-jessica-audiffred", "Jessica Audiffred", 2),
+    mk("cdny-jev", "Jev", 2),
+    mk("cdny-joshwa", "Joshwa", 2),
+    mk("cdny-kelland", "Kelland", 2),
+    mk("cdny-khrome", "KHROME", 1),
+    mk("cdny-kloud", "Kloud", 1),
+    mk("cdny-lavern", "Lavern", 1),
+    mk("cdny-loud-luxury", "Loud Luxury", 2),
+    mk("cdny-lucky", "Lucky", 1),
+    mk("cdny-lyny-b2b-peekaboo", "LYNY B2B Peekaboo", 2),
+    mk("cdny-madvktm", "MADVKTM", 2),
+    mk("cdny-marshmello", "Marshmello", 2),
+    mk("cdny-matroda", "Matroda", 1),
+    mk("cdny-mija-b2b-sim0ne", "Mija B2B sim0ne", 1),
+    mk("cdny-nghtmre", "NGHTMRE", 2),
+    mk("cdny-noise-mafia", "Noise Mafia", 1),
+    mk("cdny-of-the-trees", "Of The Trees", 2),
+    mk("cdny-oliver-heldens", "Oliver Heldens", 1),
+    mk("cdny-r3hab", "R3HAB", 1),
+    mk("cdny-ranger-trucco", "Ranger Trucco", 2),
+    mk("cdny-rinzen", "Rinzen", 1),
+    mk("cdny-rz", "RØZ", 1),
+    mk("cdny-seven-lions", "Seven Lions", 2),
+    mk("cdny-sincera", "SINCERA", 2),
+    mk("cdny-skilah", "Skilah", 1),
+    mk("cdny-smoakland", "Smoakland", 1),
+    mk("cdny-space-laces", "Space Laces", 2),
+    mk("cdny-subtronics", "Subtronics", 1),
+    mk("cdny-s-y-n-svdden-death-yvm3-nimda", "S.Y.N (Svdden Death, yvm3, NIMDA)", 1),
+    mk("cdny-taiki-nulight", "Taiki Nulight", 2),
+    mk("cdny-tchami", "Tchami", 1),
+    mk("cdny-tobehonest", "TOBEHONEST", 2),
+    mk("cdny-tokimonsta", "TOKiMONSTA", 2),
+    mk("cdny-troyboi", "TroyBoi", 2),
+    mk("cdny-walker-and-royce", "Walker & Royce", 1),
+    mk("cdny-wax-motif", "Wax Motif", 2),
+    mk("cdny-zingara", "Zingara", 1),
   ];
 
   const CONFIG = {
@@ -141,7 +146,7 @@
     // hours above). Add one only with a `dated` block for this edition.
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    lineupSource: { url: "https://countdownnye.com/lineup/", observedAt: "2026-09-21", official: true },
+    lineupSource: { url: "https://countdownnye.com/lineup/", observedAt: "2026-11-08", official: true },
     name: "Countdown NYE 2026",
     shortName: "Countdown",
     brand: "Countdown",
@@ -164,14 +169,17 @@
     tz: "America/Los_Angeles",
     tzAbbr: "PST",
     utcOffsetHours: -8,
-    // The official poster does not publish a night split. One TBA bucket keeps
-    // all billings browsable without claiming an artist performs both nights.
+    // Night split from countdownnye.com/lineup/ "By Day", read 2026-11-08:
+    // 35 acts on Thursday, December 31 and 35 on Friday, January 01.
     dayDates: {
-      1: { y: 2026, m: 11, d: 31, name: "Dec 31–Jan 1", short: "TBA",
+      1: { y: 2026, m: 11, d: 31, name: "Dec 31", short: "NYE",
            midnightUtc: Date.UTC(2026, 11, 31, 8, 0, 0) },
+      2: { y: 2027, m: 0, d: 1, name: "Jan 1", short: "FRI",
+           midnightUtc: Date.UTC(2027, 0, 1, 8, 0, 0) },
     },
-    // api.sunrise-sunset.org at the surveyed venue centroid, 2026-09-21.
-    sunTimes: { 1: { rise: "06:53", set: "16:51" } },
+    // api.sunrise-sunset.org at the surveyed venue centroid, read 2026-11-08.
+    // Dec 31 and Jan 1 are identical to the minute at both ends.
+    sunTimes: { 1: { rise: "06:54", set: "16:50" }, 2: { rise: "06:54", set: "16:50" } },
     gps: { lat: 34.085405, lng: -117.292632, onSiteRadiusMi: 0.5 },
     venue: {
       name: "NOS Events Center",
