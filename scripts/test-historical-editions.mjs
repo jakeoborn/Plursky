@@ -441,7 +441,13 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 // ── 3b. lineup-only editions (official lineup page, no times) ──
 {
   const lineups = Object.values(editions).filter(e => e.completeness === "lineup_only");
-  ok(lineups.length === 5, `expected the 5 Insomniac 2025 lineup editions, found ${lineups.length}`);
+  // Nocturnal and Beyond SoCal 2025 survive only as lineup pages. Escape, EDC
+  // Orlando and Dreamstate 2025 have complete official schedules (#368/#369/
+  // #371); a lineup page must never replace them.
+  const LINEUP_2025 = ["beyond-wonderland-socal-2025", "nocturnal-wonderland-2025"];
+  ok(JSON.stringify(lineups.map(e => e.id).sort()) === JSON.stringify(LINEUP_2025), `expected the lineup editions ${LINEUP_2025.join(", ")}, found ${lineups.map(e => e.id).join(", ") || "none"}`);
+  for (const id of ["escape-halloween-2025", "edc-orlando-2025", "dreamstate-socal-2025"])
+    ok(editions[id]?.completeness === "complete_schedule" && editions[id].sets.length > 0, `${id}: downgraded to ${editions[id]?.completeness} with ${editions[id]?.sets?.length} sets`);
   for (const e of lineups) {
     ok(e.provenance.extractionMethod === "official_lineup_html" && !e.sets.length, `${e.id}: lineup_only must come from a lineup page and carry no sets`);
     ok(!JSON.stringify(e.artists).match(/"(start|end|time)"/), `${e.id}: an artist carries a time`);
@@ -450,7 +456,7 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     ok(led.chosen === led.considered.filter(c => c.valid && c.billings).at(-1)?.captureTimestamp, `${e.id}: the chosen capture is not the latest one that proves the edition`);
     ok(JSON.stringify(e.stages.map(s => s.name)) === JSON.stringify(led.stageOrder || []), `${e.id}: stages are not in the order the By Stage tab printed (${e.stages.map(s => s.name).join(", ")})`);
   }
-  const noc = editions["nocturnal-wonderland-2025"], esc = editions["escape-halloween-2025"];
+  const noc = editions["nocturnal-wonderland-2025"], esc = editions["beyond-wonderland-socal-2025"];
   if (noc && esc) {
     mustFail("a lineup edition gains a set", m => { m.sets.push({ id: `${m.id}:d1:x:2000:y`, artistId: m.artists[0].id, day: 1, stageId: m.stages[0].id, start: "20:00", end: "21:00" }); }, noc, undefined, /no sets/);
     mustFail("a lineup appearance gains a time", m => { m.artists[0].appearances[0].start = "20:00"; }, noc, undefined, /other than a day and a stage/);
