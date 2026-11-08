@@ -22,6 +22,7 @@ import { createServer } from "node:net";
 import { chromium } from "playwright";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FID = "summerfest-2026";
 const SOR4 = ["su152", "su157", "su168", "su173", "su179"];
@@ -51,6 +52,15 @@ try {
 
   const open = async ({ saved = [], query = "tab=lineup&day=4", view = "list", at = "2026-10-13T15:00:00Z", legacy = false, moments = null, width = 390 } = {}) => {
     const bctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: "block" });
+    await wireVendor(bctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
+    // Artist enrichment is unrelated to festival set times. Live upcoming
+    // shows can contain legitimate 12:00 times, so never read those APIs here.
+    await bctx.route(url =>
+      /(^|\.)(ticketmaster\.com|audioscrobbler\.com|last\.fm|youtube\.com|youtube-nocookie\.com|youtu\.be|ytimg\.com|googlevideo\.com|mixcloud\.com|setlist\.fm)$/.test(url.hostname)
+      || (url.hostname === "www.googleapis.com" && url.pathname.startsWith("/youtube/"))
+      || (url.hostname === "pzoijbqsbbwyuyjinjtj.functions.supabase.co" && url.pathname === "/proxy-setlist"),
+    route => route.fulfill({ status: 200, contentType: "application/json", body: "{}",
+      headers: { "access-control-allow-origin": "*" } }));
     await bctx.clock.install({ time: new Date(at) });
     if (legacy) {
       await bctx.route(new RegExp(`/data/festivals/${FID}\\.js`), r => r.fulfill({ status: 200, contentType: "application/javascript", body: LEGACY_MOD }));
@@ -59,7 +69,7 @@ try {
       if (sessionStorage.getItem("seeded")) return;
       sessionStorage.setItem("seeded", "1");
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", FID);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
       localStorage.setItem("plursky_lineup_view", view);
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(saved));
       if (moments) localStorage.setItem("plursky_moments_v1", moments);

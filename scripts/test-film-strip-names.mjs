@@ -18,6 +18,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -30,6 +31,7 @@ try {
   const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
   const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const ctx = await browser.newContext({ viewport: { width: 393, height: 844 }, serviceWorkers: "block" });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(() => { localStorage.setItem("onboarded", "v1"); localStorage.setItem("cloud_nudge_seen", "1"); });
   const page = await ctx.newPage();
   await page.goto(`http://127.0.0.1:${PORT}/index.html`, { waitUntil: "domcontentloaded" });
