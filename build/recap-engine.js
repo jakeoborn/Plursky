@@ -124,28 +124,78 @@ async function _shareCanvasAsImage(canvas, {
   filename,
   title
 }) {
+  var r = await _shareCanvasResult(canvas, {
+    filename,
+    title
+  });
+  return !!r.ok && r.mode !== "abort";
+}
+async function _shareCanvasResult(canvas, opts) {
   var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
-  if (!blob) return false;
+  if (!blob) return {
+    ok: false,
+    reason: "encode_fail"
+  };
+  return _shareBlobAsImage(blob, opts);
+}
+async function _shareBlobAsImage(blob, {
+  filename,
+  title,
+  deadline = null
+}) {
   window.plurskyHaptic?.("LIGHT");
   var file = new File([blob], filename, {
     type: "image/png"
   });
   var capShare = window.Capacitor?.Plugins?.Share;
   if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    var reader = null,
+      timer = null;
+    var read = new Promise((resolve, reject) => {
+      reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error || new Error("read failed"));
+      reader.onabort = () => reject(new Error("read aborted"));
+      reader.readAsDataURL(blob);
+    });
+    var TIMED_OUT = {};
+    var capped = deadline == null ? read : Promise.race([read, new Promise(res => {
+      timer = setTimeout(() => res(TIMED_OUT), Math.max(0, deadline - Date.now()));
+    })]);
+    var dataUrl;
     try {
-      var dataUrl = await new Promise((resolve, reject) => {
-        var r = new FileReader();
-        r.onload = () => resolve(r.result);
-        r.onerror = reject;
-        r.readAsDataURL(blob);
-      });
+      dataUrl = await capped;
+    } catch (e) {
+      dataUrl = null;
+      if (e?.message) console.warn("[plursky-share]", e.message);
+    } finally {
+      clearTimeout(timer);
+    }
+    if (dataUrl === TIMED_OUT) {
+      read.catch(() => {});
+      try {
+        reader.abort();
+      } catch {}
+      return {
+        ok: false,
+        reason: "timeout"
+      };
+    }
+    if (dataUrl) try {
       await capShare.share({
         title,
         files: [dataUrl]
       });
-      return true;
+      return {
+        ok: true,
+        mode: "native"
+      };
     } catch (e) {
-      if (e?.message && !/cancel|abort/i.test(e.message)) console.warn("[plursky-share]", e.message);
+      if (/cancel|abort/i.test(e?.message || "")) return {
+        ok: true,
+        mode: "abort"
+      };
+      if (e?.message) console.warn("[plursky-share]", e.message);
     }
   }
   if (navigator.share && typeof navigator.canShare === "function" && navigator.canShare({
@@ -156,9 +206,15 @@ async function _shareCanvasAsImage(canvas, {
         files: [file],
         title
       });
-      return true;
+      return {
+        ok: true,
+        mode: "share"
+      };
     } catch (e) {
-      if (e?.name === "AbortError") return false;
+      if (e?.name === "AbortError") return {
+        ok: true,
+        mode: "abort"
+      };
     }
   }
   var url = URL.createObjectURL(blob);
@@ -169,7 +225,10 @@ async function _shareCanvasAsImage(canvas, {
   a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-  return true;
+  return {
+    ok: true,
+    mode: "download"
+  };
 }
 var HERO_CARD_W = 1080,
   HERO_CARD_H = 1350;
@@ -2488,5 +2547,7 @@ Object.assign(window, {
   _shareCrewComparison,
   _renderFestivalYearCard,
   _shareFestivalYearCard,
-  _shareCanvasAsImage
+  _shareCanvasAsImage,
+  _shareCanvasResult,
+  _shareBlobAsImage
 });

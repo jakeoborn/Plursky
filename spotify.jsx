@@ -48,7 +48,9 @@ function SpotifyScreen({ state, setState }) {
   // blocks the authorize popup when the gesture is spent awaiting the
   // script load — this was the Apple Music "can't connect" bug.
   React.useEffect(() => {
-    if (APPLE_DEV_TOKEN && !amConnected) { _ensureMusicKitConfigured().catch(() => {}); }
+    // The iPhone app signs in natively (AppleMusicNative), so the web
+    // MusicKit script is never needed there.
+    if (APPLE_DEV_TOKEN && !amConnected && !_amNative()) { _ensureMusicKitConfigured().catch(() => {}); }
   }, []);
 
   const handleAmConnect = async () => {
@@ -179,9 +181,6 @@ function SpotifyScreen({ state, setState }) {
             </div>
           )}
 
-          {connected && (savedInLineup(state.saved).length > 0 || (window._collectMomentSongs?.() || []).length > 0) && (
-            <div style={{ marginBottom: 8 }}><PlaylistVisibilityToggle /></div>
-          )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {connected && matched.length > 0 && (
               <button onClick={handleSaveAll} style={{
@@ -194,17 +193,13 @@ function SpotifyScreen({ state, setState }) {
                 {saveFlash ? `Saved ${matched.length} artists` : `Save all ${matched.length} artists`}
               </button>
             )}
-            {connected && savedInLineup(state.saved).length > 0 && (
-              <BuildPlaylistButton state={state} />
-            )}
             {savedInLineup(state.saved).length > 0 && <AppleMusicPlaylistButton state={state} />}
             {/* "Your Weekend Soundtrack" — appears once Shazam has confirmed
                 songs in your moments: the real tracks you were there for,
-                exportable to either service. */}
-            {(window._collectMomentSongs?.() || []).length > 0 && (<>
-              {connected && <BuildPlaylistButton state={state} soundtrack />}
+                built as an Apple Music playlist. */}
+            {(window._collectMomentSongs?.() || []).length > 0 && (
               <AppleMusicPlaylistButton state={state} soundtrack />
-            </>)}
+            )}
             <button
               onClick={() => { if (!connected) window.plurskyHaptic?.("MEDIUM"); connected ? disconnectSpotify(setState, state) : startSpotifyAuth(); }}
               style={{
@@ -220,18 +215,14 @@ function SpotifyScreen({ state, setState }) {
               {connected && spotifyArtists === null ? "Loading…" : connected ? "Connected" : "Connect Spotify"}
             </button>
           </div>
-          {/* #6 service-agnostic framing: your saved sets are the source;
-              export to whichever service you have. Lets non-Spotify users
-              (or anyone hitting Spotify's 5-user cap) still get a playlist. */}
+          {/* Your saved sets are the source; Apple Music is where a playlist
+              gets built. Spotify is read-only: it brings your listening in. */}
           {APPLE_DEV_TOKEN && savedInLineup(state.saved).length > 0 && (
             <div style={{ marginTop: 10, font: "400 13px/1.45 var(--f-ui)", color: "var(--ink-2)" }}>
-              Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Spotify or Apple Music</span> — import your taste from one, export to either. No Spotify needed for the Apple Music playlist.
+              Your saved sets build a playlist on <span style={{ color: "var(--ink)", fontWeight: 700 }}>Apple Music</span>. Spotify brings your listening in; it doesn't build playlists.
             </div>
           )}
         </div>
-
-        {/* ── Board playlist — preview, then create ─────── */}
-        <BoardPlaylistCard state={state} spotifyArtists={spotifyArtists} connected={connected} />
 
         {/* ── Followed artists nudge ────────────────────── */}
         {connected && <FollowedNudge state={state} setState={setState} />}
@@ -1095,6 +1086,9 @@ function _readMoments() {
 let _momentSyncTimer = null;
 function _writeMoments(all) {
   localStorage.setItem(MOMENTS_KEY, JSON.stringify(all));
+  // Build 39 scan diagnostic: record which caller changed which records.
+  // Read-only bookkeeping; it never alters what was just written.
+  try { if (typeof _scanDiagLog === "function") _scanDiagLog("write", all, new Error().stack); } catch {}
   // Fire so cross-screen consumers (per-artist strip on Artist screen,
   // Recap counts, etc.) re-read without prop-drilling.
   try { window.dispatchEvent(new CustomEvent("plursky-moments-change")); } catch {}
@@ -1444,6 +1438,58 @@ function _mediaFingerprintParts(fp) {
   const basename = parts.slice(2).join("_").toLowerCase();
   if (!/^\d+$/.test(size) || !basename) return null;
   return { size, basename };
+}
+
+// The same photo arriving by two doors (Pick, then Scan) gets two export
+// names, so the full fingerprint (hash_size_name) differs and the name-bound
+// check imported it twice (#384 review: 25 → 26). The content key drops the
+// name: FNV-1a of the first 2 KB plus the byte size. A JPEG/HEIC's first 2 KB
+// carry its EXIF block (capture time, camera), so two different shots that
+// share both are not a realistic collision. Stored fingerprints are NOT
+// rewritten; the key is derived from them on read.
+function _fingerprintContentKey(fp) {
+  const m = /^([0-9a-z]+)_(\d+)_/.exec(String(fp || ""));
+  return m ? `${m[1]}_${m[2]}` : null;
+}
+
+// The content key only FINDS a candidate; it never decides. Two different
+// shots can share a size and their first 2 KB (#384 review: 25 → 24, a photo
+// silently lost), so a candidate is skipped only after a full-content check:
+//   - an image imported since build 39 carries _contentSha256, the SHA-256 of
+//     its whole original file, compared against the incoming file's;
+//   - otherwise the stored copy is compared byte for byte: a video is stored
+//     raw, so against the file itself; an older image was stored recompressed,
+//     so against the incoming file run through the same compressor.
+// Any doubt (no stored copy, no WebCrypto, a read error) imports the file:
+// a possible duplicate the person can delete beats a photo that never lands.
+// Videos are never hashed whole (up to 200 MB); the byte compare reads 4 MB
+// slices, and only for a candidate.
+async function _blobSha256Hex(blob) {
+  const subtle = typeof crypto !== "undefined" ? crypto.subtle : null;
+  if (!subtle || !blob) return null;
+  const d = await subtle.digest("SHA-256", await blob.arrayBuffer());
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+async function _blobsEqual(a, b) {
+  if (!a || !b || a.size !== b.size) return false;
+  const step = 4 * 1048576;
+  for (let o = 0; o < a.size; o += step) {
+    const [x, y] = await Promise.all([a.slice(o, o + step).arrayBuffer(), b.slice(o, o + step).arrayBuffer()]);
+    const u = new Uint8Array(x), v = new Uint8Array(y);
+    if (u.length !== v.length) return false;
+    for (let i = 0; i < u.length; i++) if (u[i] !== v[i]) return false;
+  }
+  return true;
+}
+async function _confirmSameMedia(m, file, fileSha) {
+  try {
+    if (m?._contentSha256 && fileSha) return m._contentSha256 === fileSha;
+    const stored = m?.photoId ? await _getPhoto(m.photoId) : null;
+    if (!stored) return false;
+    if (await _blobsEqual(stored, file)) return true;
+    if (!/^image\//.test(file?.type || "")) return false;
+    return await _blobsEqual(stored, await _compressMomentImage(file));
+  } catch { return false; }
 }
 
 function _findArchivedVideoMomentForFingerprint(fp) {
@@ -2339,6 +2385,9 @@ const _TAG_SOURCE_LABEL = {
   "exif-night-only":    { text: "EXIF NIGHT · PICK A SET", tone: "warn" },
   "filetime-night-only":{ text: "FILE TIME · PICK A SET",  tone: "warn" },
   off_stage:            { text: "📍 BETWEEN SETS",    tone: "info" },
+  // Build 39: usable GPS put the photo clearly outside the festival's own
+  // footprint during a set, so no set is claimed. An answer, not a gap.
+  off_venue:            { text: "📍 AWAY FROM THE FESTIVAL", tone: "info" },
   "stage-neighbor":     { text: "NEARBY SET · VERIFY", tone: "warn" },
   fallback:             { text: "FALLBACK · RETAG",  tone: "warn" },
   "song-recovered":     { text: "RECOVERED · SONG",  tone: "ok" },
@@ -2349,6 +2398,9 @@ const _TAG_SOURCE_LABEL = {
   "video-metadata":     { text: "AUTO · VIDEO TIME", tone: "ok" },
   "video-night-only":   { text: "VIDEO NIGHT · PICK A SET", tone: "warn" },
   "archive-recovered":  { text: "RECOVERED · ARCHIVE", tone: "ok" },
+  // Scan my weekend: time and place read from the photo library itself.
+  photokit:             { text: "AUTO · PHOTO LIBRARY", tone: "ok" },
+  "photokit-night-only":{ text: "LIBRARY NIGHT · PICK A SET", tone: "warn" },
   // The user said they don't know. A choice, not a gap: it leaves the review
   // list and the archive-recovery pass never re-guesses it.
   unknown:              { text: "MARKED UNKNOWN",    tone: "info" },
@@ -2475,34 +2527,82 @@ function _blobToBase64(blob) {
   });
 }
 
+// Build 39: why a song ID failed, in words the user can act on. "no-match"
+// means ShazamKit heard the clip and found nothing, and ONLY the native codes
+// that say exactly that may produce it. Anything the bridge sends that is
+// unknown, empty or malformed is "recognizer-error": telling someone to try a
+// louder clip when the recognizer itself misbehaved is a false instruction.
+const _SONG_FAIL_TEXT = {
+  "no-match":      "No match — try a louder clip",
+  "missing-file":  "This clip’s file isn’t on this phone",
+  "unavailable":   "Song ID isn’t available here",
+  "no-audio":      "This clip has no sound to match",
+  "audio-failed":  "Couldn’t read this clip’s sound",
+  "service-error": "Shazam couldn’t be reached — try again",
+  "timeout":       "Shazam took too long — try again",
+  "too-large":     "This clip is too long to check here",
+  "recognizer-error": "Song ID hit an unexpected error — try again later",
+};
+// The native bridge's own reasons → the ones above. Older native builds sent
+// "no-audio-track-or-reader" / "no-pcm-appended" / "match-timeout" /
+// "did-not-find"; they still map.
+const _SONG_NATIVE_REASON = {
+  "missing-file": "missing-file", "no-audio": "no-audio", "audio-failed": "audio-failed",
+  "service-error": "service-error", "timeout": "timeout", "no-match": "no-match",
+  "busy": "service-error",
+  "no-audio-track-or-reader": "no-audio", "no-pcm-appended": "audio-failed",
+  "match-timeout": "timeout", "did-not-find": "no-match", "empty-match": "no-match",
+};
+// base64 is 4/3 of the clip and the bridge copies the string again, so a
+// stored clip over this is refused instead of risking a memory kill.
+const _SONG_BLOB_MAX_BYTES = 60 * 1024 * 1024;
+const _SONG_CALL_TIMEOUT_MS = 30000;
+// Only a reason leaves here: never the path, the native debug payload, or
+// anything about the clip.
+function _songFail(reason) { return { matched: false, reason: _SONG_FAIL_TEXT[reason] ? reason : "recognizer-error" }; }
+async function _songCall(run, rejectReason) {
+  let timer;
+  try {
+    const r = await Promise.race([
+      Promise.resolve().then(run),
+      new Promise(res => { timer = setTimeout(() => res({ __timeout: true }), _SONG_CALL_TIMEOUT_MS); }),
+    ]);
+    if (r?.__timeout) return _songFail("timeout");
+    if (r?.matched && r.title) return { matched: true, title: r.title, artist: r.artist || "", source: "video-shazam" };
+    // A known native code maps; anything else (an unknown code, no debug,
+    // null, a non-object, matched:true with no title) is a recognizer error.
+    const code = r && typeof r === "object" && r.matched === false && r.debug && typeof r.debug.reason === "string" ? r.debug.reason : null;
+    return _songFail((code && Object.prototype.hasOwnProperty.call(_SONG_NATIVE_REASON, code) && _SONG_NATIVE_REASON[code]) || "recognizer-error");
+  } catch (e) {
+    const msg = String(e?.message || e || "");
+    return _songFail(/missing file path|no such file|not found|doesn.t exist/i.test(msg) ? "missing-file" : rejectReason);
+  } finally { clearTimeout(timer); }
+}
+
 async function identifySongFromVideo(moment, onProgress) {
-  if (!moment?.photoId || moment.kind !== "video") return null;
-  const blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return null;
-
-  // Native iOS (focus path): hand the clip to on-device ShazamKit via the
-  // ShazamPlugin — free, accurate, no backend. Browser/PWA returns null
-  // because the web recognition proxy is not deployed.
-  if (window.Capacitor?.isNativePlatform?.() && window.ShazamPlugin) {
-    try {
-      onProgress?.("listening");
-      if (moment.nativePath && window.ShazamPlugin.identifyFile) {
-        onProgress?.("matching");
-        const r = await window.ShazamPlugin.identifyFile({ path: moment.nativePath });
-        if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
-        return null;
-      }
-      if (!window.ShazamPlugin.identifyBase64) return null;
-      const base64 = await _blobToBase64(blob);
-      const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
-      onProgress?.("matching");
-      const r = await window.ShazamPlugin.identifyBase64({ data: base64, ext });
-      if (r?.matched && r.title) return { title: r.title, artist: r.artist || "", source: "video-shazam" };
-      return null; // native ran but found no match — don't bother the web path
-    } catch { return null; }
+  if (!moment?.photoId || moment.kind !== "video") return _songFail("missing-file");
+  const SP = window.ShazamPlugin;
+  // Library recognition reads the clip's own audio. It never calls the
+  // live-mic identify(), so it can never prompt for the microphone. The web
+  // recognizer is not deployed, so a browser/PWA says "unavailable".
+  if (!(window.Capacitor?.isNativePlatform?.() && SP && (SP.identifyFile || SP.identifyBase64))) return _songFail("unavailable");
+  onProgress?.("listening");
+  if (moment.nativePath && SP.identifyFile) {
+    onProgress?.("matching");
+    const r = await _songCall(() => SP.identifyFile({ path: moment.nativePath }), "missing-file");
+    // A stale cache path (export file cleaned up, app reinstalled) falls
+    // through to the copy kept in IndexedDB.
+    if (r.reason !== "missing-file") return r;
   }
-
-  return null;
+  if (!SP.identifyBase64) return _songFail("missing-file");
+  const blob = await _getPhoto(moment.photoId).catch(() => null);
+  if (!blob || !blob.size) return _songFail("missing-file");
+  if (blob.size > _SONG_BLOB_MAX_BYTES) return _songFail("too-large");
+  let base64;
+  try { base64 = await _blobToBase64(blob); } catch { return _songFail("audio-failed"); }
+  const ext = (blob.type || "").includes("quicktime") ? "mov" : "mp4";
+  onProgress?.("matching");
+  return _songCall(() => SP.identifyBase64({ data: base64, ext }), "audio-failed");
 }
 
 // ── 0.4 recovery: the song is the evidence the metadata lost ─────────────
@@ -2644,6 +2744,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const song   = m?.confirmedSong ? { song: m.confirmedSong } : estimatedSong;
   const touch  = React.useRef({ x: 0 });
   const [idState, setIdState] = React.useState("idle"); // idle|listening|matching|done|fail
+  const [idFail, setIdFail] = React.useState(null); // build 39: why the last song ID failed (a _SONG_FAIL_TEXT key)
   const [mismatch, setMismatch] = React.useState(null);  // suggested artist if audio disagrees with tag
   const [recovery, setRecovery] = React.useState(null);  // 0.4: song can rescue an unverified night
   const [sharing, setSharing] = React.useState(false);
@@ -2679,7 +2780,10 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
   const runIdentify = async () => {
     setIdState("listening");
     const result = await identifySongFromVideo(m, (p) => setIdState(p));
-    if (!result) { setIdState("fail"); setTimeout(() => setIdState("idle"), 2500); return; }
+    if (!result?.matched) {
+      setIdFail(result?.reason || "no-match"); setIdState("fail");
+      setTimeout(() => setIdState("idle"), 4000); return;
+    }
     setIdState("done");
     const confirmed = result.artist ? `${result.artist} — ${result.title}` : result.title;
     // Keep the raw title/artist (not just the display string) so the Weekend
@@ -2855,7 +2959,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
                   {idState === "idle"      ? "Shazam this video"
                    : idState === "listening" ? "Listening to your video…"
                    : idState === "matching"  ? "Matching with Shazam…"
-                   : idState === "fail"      ? "No match — try a louder clip"
+                   : idState === "fail"      ? (_SONG_FAIL_TEXT[idFail] || _SONG_FAIL_TEXT["no-match"])
                    : "Identified"}
                 </span>
                 <span style={{ display: "block", marginTop: 2, fontSize: 13, fontWeight: 400, opacity: 1 }}>
@@ -2899,15 +3003,19 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           if (sharing) return;
           setSharing(true);
           try { window.plurskyHaptic?.("LIGHT"); } catch {}
-          await _shareMoment(m, {
+          const fcfg = _momentFestival(m).cfg || {};
+          const res = await _shareMoment(m, {
             artistName: artist?.name,
             songLabel: song?.song || null,
             stageColor: stage?.color,
             subLabel: [stage?.name, prettyTime].filter(Boolean).join(" · "),
             timeLabel: prettyTime,
-            festival: FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name,
-          }).catch(() => {});
+            // The clip's own festival, not whichever one is active now.
+            festival: fcfg.shortName || fcfg.name,
+          }).catch(() => ({ ok: false, reason: "encode_fail" }));
           setSharing(false);
+          const why = _shareMomentFailText(res);
+          if (why) window.plurskyToast?.(why, { error: true });
         }} disabled={sharing} style={{
           marginTop: 14, minHeight: 48, padding: "0 16px", borderRadius: "var(--rad-md)", width: "100%",
           background: "var(--signal)", color: "var(--on-signal)", border: "none",
@@ -3096,27 +3204,6 @@ function _imgFromBlob(blob) {
     img.src = url;
   });
 }
-function _frameFromVideoBlob(blob) {
-  return new Promise((resolve) => {
-    try {
-      const url = URL.createObjectURL(blob);
-      const v = document.createElement("video");
-      v.muted = true; v.playsInline = true; v.preload = "metadata"; v.src = url;
-      const fail = () => { try { URL.revokeObjectURL(url); } catch {} resolve(null); };
-      v.onloadeddata = () => { try { v.currentTime = Math.min(0.1, (v.duration || 1) * 0.1); } catch { fail(); } };
-      v.onseeked = () => {
-        try {
-          const c = document.createElement("canvas");
-          c.width = v.videoWidth || 1080; c.height = v.videoHeight || 1920;
-          c.getContext("2d").drawImage(v, 0, 0);
-          URL.revokeObjectURL(url);
-          resolve(c);
-        } catch { fail(); }
-      };
-      v.onerror = fail;
-    } catch { resolve(null); }
-  });
-}
 function _drawCover(ctx, src, dx, dy, dw, dh) {
   const sW = src.width || src.videoWidth, sH = src.height || src.videoHeight;
   if (!sW || !sH) return;
@@ -3126,15 +3213,62 @@ function _drawCover(ctx, src, dx, dy, dw, dh) {
   else { sw = sW; sh = sw / r; sx = 0; sy = (sH - sh) / 2; }
   ctx.drawImage(src, sx, sy, sw, sh, dx, dy, dw, dh);
 }
-async function _shareMoment(moment, meta) {
-  const blob = await _getPhoto(moment.photoId).catch(() => null);
-  if (!blob) return { ok: false, reason: "no_photo" };
-  let source = null, revoke = null;
+// The whole moment share — reading the media, drawing the card, encoding the
+// PNG, reading it into the native sheet's data URL — gets this long before the person sees an answer. Before v520 a video
+// whose frame never decoded left the button on "Preparing…" forever.
+const _SHARE_PREP_MS = 8000;
+// What the card's hero is drawn from. A video uses its stored poster frame (the
+// same one its thumbnail shows), and only when it has none is a frame grabbed
+// from the clip, through the poster grabber that already has a timeout.
+async function _shareMomentSource(moment) {
   if (moment.kind === "video") {
-    source = await _frameFromVideoBlob(blob);
-  } else {
-    try { const r = await _imgFromBlob(blob); source = r.img; revoke = r.revoke; } catch {}
+    let frame = await _getPhoto(_posterKey(moment.id)).catch(() => null);
+    if (!frame) {
+      const clip = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+      if (!clip) return { reason: "no_photo" };
+      frame = await _videoPosterBlob(clip);
+    }
+    // A clip no frame could be read from still shares, on the plain hero.
+    if (!frame) return { source: null };
+    try { const r = await _imgFromBlob(frame); return { source: r.img, revoke: r.revoke }; } catch { return { source: null }; }
   }
+  const blob = moment.photoId ? await _getPhoto(moment.photoId).catch(() => null) : null;
+  if (!blob) return { reason: "no_photo" };
+  try { const r = await _imgFromBlob(blob); return { source: r.img, revoke: r.revoke }; } catch { return { source: null }; }
+}
+// Returns { ok, mode } or { ok: false, reason }: "no_photo" (the media is not
+// on this device), "encode_fail" (the card could not be made into a PNG) or
+// "timeout" (preparing took longer than _SHARE_PREP_MS). The share sheet's own
+// time is not capped; only the wait before it is.
+async function _shareMoment(moment, meta, { prepMs = _SHARE_PREP_MS } = {}) {
+  const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
+  let timer = null;
+  const deadline = Date.now() + prepMs;
+  const timeout = new Promise(res => { timer = setTimeout(() => res({ reason: "timeout" }), prepMs); });
+  const prep = _renderMomentShareCard(moment, meta).catch(() => ({ reason: "encode_fail" }));
+  const ready = await Promise.race([prep, timeout]);
+  clearTimeout(timer);
+  if (!ready || ready.reason) return { ok: false, reason: (ready && ready.reason) || "encode_fail" };
+  // The cap runs on through the PNG → data URL read inside the tail.
+  return _shareBlobAsImage(ready.png, { filename: fname, title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky", deadline });
+}
+// What the person is told when a moment share does not reach a share sheet.
+// null = nothing to say (shared, or they closed the sheet). On iOS the
+// download fallback does nothing inside the app, so it counts as a failure.
+function _shareMomentFailText(res) {
+  if (!res) return "Couldn't share this moment. Try again.";
+  if (res.ok) {
+    const native = !!window.Capacitor?.isNativePlatform?.();
+    return res.mode === "download" && native ? "Couldn't open the share sheet. Try again." : null;
+  }
+  if (res.reason === "no_photo") return "This moment's photo or clip isn't on this phone.";
+  if (res.reason === "timeout") return "The share card took too long to make. Try again.";
+  return "Couldn't make the share card. Try again.";
+}
+async function _renderMomentShareCard(moment, meta) {
+  const got = await _shareMomentSource(moment);
+  if (got.reason) return got;
+  const source = got.source, revoke = got.revoke || null;
   try { await (document.fonts?.ready || Promise.resolve()); } catch {}
 
   const W = 1080, H = 1920, HERO = 1320;
@@ -3192,20 +3326,9 @@ async function _shareMoment(moment, meta) {
   ctx.textAlign = "right";
   ctx.fillText((meta.festival || "").toUpperCase() + "  ·  PLURSKY.COM", W - 80, H - 72);
 
-  const fname = `plursky-${(meta.artistName || "moment").toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png`;
-  const out = await new Promise((res) => cv.toBlob(res, "image/png", 0.92));
-  if (!out) return { ok: false, reason: "encode_fail" };
-  const file = new File([out], fname, { type: "image/png" });
-  if (navigator.canShare?.({ files: [file] }) && navigator.share) {
-    try { await navigator.share({ files: [file], title: meta.artistName ? `${meta.artistName} — Plursky` : "Plursky" }); return { ok: true, mode: "share" }; }
-    catch (e) { if (e?.name === "AbortError") return { ok: true, mode: "abort" }; }
-  }
-  const url = URL.createObjectURL(out);
-  const link = document.createElement("a");
-  link.href = url; link.download = fname;
-  document.body.appendChild(link); link.click(); document.body.removeChild(link);
-  setTimeout(() => { try { URL.revokeObjectURL(url); } catch {} }, 1500);
-  return { ok: true, mode: "download" };
+  const png = await new Promise((res) => cv.toBlob(res, "image/png", 0.92));
+  if (!png) return { reason: "encode_fail" };
+  return { png };
 }
 
 function _LightboxThumb({ moment, active, onClick }) {
@@ -3368,7 +3491,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
           )}
           {/* Low-confidence auto-tag (2+ overlapping sets): invite a fix
               prominently rather than letting a possibly-wrong tag look sure. */}
-          {artist && moment.tagAmbiguous && onUpdate && !editing && (
+          {artist && (moment.tagAmbiguous || moment.tagSuggested) && onUpdate && !editing && (
             <button onClick={() => setEditing(true)} className="mono" title="More than one set overlapped this time — tap to confirm or fix the tag" style={{
               background: "rgba(var(--signal-rgb),0.12)", color: "var(--ember-ink)",
               border: "1px dashed rgba(var(--signal-rgb),0.5)",
@@ -4271,8 +4394,8 @@ const _REVIEW_WARN = new Set(Object.keys(_TAG_SOURCE_LABEL).filter(k => _TAG_SOU
 // (GPS said so) and an explicit Unknown are answers, not gaps.
 function _momentNeedsReview(m) {
   if (!m || m.tagSource === "unknown") return false;
-  if (m.needsRetag || m.tagAmbiguous || _REVIEW_WARN.has(m.tagSource)) return true;
-  return !m.artistId && !m.stageId && m.tagSource !== "off_stage";
+  if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
+  return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
 }
 // The moment's OWN festival — a clip filed to another festival by its capture
 // date is still reviewable here, and must be retagged from that lineup.
@@ -4293,7 +4416,7 @@ function _reviewLineup(m, night) {
 // the same thing. A set carries its own stage; a stage alone is "stage known,
 // set unknown"; Unknown clears both and says so.
 function _retagPatch(choice) {
-  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false };
+  const base = { tagSource: "manual", autoTagged: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
   if (!choice) return null;
   if (choice.unknown) return { ...base, tagSource: "unknown", artistId: null, stageId: null };
   if (choice.artistId) return { ...base, artistId: choice.artistId, stageId: null };
@@ -4464,8 +4587,8 @@ function ImportReview({ results, moments, onClose, onPatch, onMove }) {
     const t = typeof m.takenAt === "string" && m.takenAt.length >= 16 ? m.takenAt.slice(11, 16) : null;
     return [src, t && `shot ${t}`, m.locationSource === "gps" ? "GPS" : null].filter(Boolean).join(" · ");
   };
-  // Board label: Michroma caps at the 11px floor (these were 8–10px Geist Mono).
-  const mono = { fontFamily: "var(--f-display)", letterSpacing: "0.14em", fontWeight: 400, textTransform: "uppercase", lineHeight: 1.27 };
+  // Board label: Space Grotesk caps at the 11px floor (these were 8–10px Geist Mono).
+  const mono = { fontFamily: "var(--f-ui)", letterSpacing: "0.14em", fontWeight: 400, textTransform: "uppercase", lineHeight: 1.27 };
 
   return (
     <div onClick={onClose} style={{
@@ -4969,7 +5092,9 @@ function MemoryReel({ moments, festival, nightLabel, night, onClose, onOpenArtis
               if (!hero) return;
               const a = hero.artistId ? ARTISTS.find(x => x.id === hero.artistId) : null;
               const s = a ? STAGES.find(x => x.id === a.stage) : null;
-              await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => {});
+              const res = await _shareMoment(hero, { artistName: a?.name, songLabel: hero.confirmedSong || null, stageColor: s?.color, subLabel: nightLabel, festival }).catch(() => ({ ok: false, reason: "encode_fail" }));
+              const why = _shareMomentFailText(res);
+              if (why) window.plurskyToast?.(why, { error: true });
             }} style={{ marginTop: 24 }}>Share the night</FieldButton>
           <FieldButton kind="secondary" onClick={() => { setEnded(false); setIdx(0); }} style={{ marginTop: 8 }}>Replay</FieldButton>
           {/* Only with ≥3 moments: RecapScreen gates the recap video on that. */}
@@ -6143,10 +6268,13 @@ function MemoriesScreen({ state, setState }) {
     } catch { return null; }
   };
 
-  const processImportedFiles = async (files) => {
+  // opts.reviewAcc (Scan my weekend): an array shared across chunks, so the
+  // review after each chunk lists everything the scan has landed so far
+  // rather than only the latest chunk. Returns the settled results.
+  const processImportedFiles = async (files, opts = {}) => {
     if (files.length === 0) {
       window.plurskyToast?.("No photos received — pick a few at a time; if they're in iCloud, open them in Photos first so they download.");
-      return;
+      return [];
     }
     const results = [];
     setBatch({ total: files.length, done: 0, results });
@@ -6158,9 +6286,11 @@ function MemoriesScreen({ state, setState }) {
     const current = { ..._readMoments() };
     _importLog("batch_start", { files: files.length, active: window.FESTIVAL_CONFIG?.id || null, saved: savedIds.length, attended: attendedIds.length });
 
-    const existingFingerprints = new Set();
+    // Content key → the moments that share it: candidates, not verdicts.
+    const existingContent = new Map();
+    const addCandidate = (ck, m) => { if (ck) existingContent.set(ck, [...(existingContent.get(ck) || []), m]); };
     for (const moments of Object.values(current)) {
-      for (const m of moments) { if (m._fingerprint) existingFingerprints.add(m._fingerprint); }
+      for (const m of moments) { if (m._fingerprint) addCandidate(_fingerprintContentKey(m._fingerprint), m); }
     }
     // Fallback target night when we can't infer one from EXIF: prefer the
     // current festival day, then yesterday (post-midnight shoot earlier in
@@ -6175,15 +6305,26 @@ function MemoriesScreen({ state, setState }) {
       const f = files[i];
       try {
         const fp = await _fileFingerprint(f);
-        if (fp && existingFingerprints.has(fp)) {
+        const ck = _fingerprintContentKey(fp);
+        const fileSha = /^image\//.test(f.type || "") ? await _blobSha256Hex(f).catch(() => null) : null;
+        let isDupe = false;
+        for (const cand of (ck && existingContent.get(ck)) || []) {
+          if (await _confirmSameMedia(cand, f, fileSha)) { isDupe = true; break; }
+        }
+        if (isDupe) {
           skippedDupes++;
           results.push({ name: f.name, night: null, artistId: null, skipped: "duplicate" });
           _importLog("file_duplicate", { i, name: f.name });
           setBatch({ total: files.length, done: i + 1, results: results.slice() });
           continue;
         }
-        const exif = await _parseExifMeta(f).catch(() => null);
-        const baseMeta = _metaFromFile(f, exif);
+        // A file from Scan my weekend carries the photo library's own
+        // capture instant and GPS fix. Those beat anything EXIF could say
+        // (a real UTC time, no timezone guess, accuracy included), so the
+        // EXIF read is skipped for it entirely.
+        const pk = f.photoKitMeta || null;
+        const exif = pk ? null : await _parseExifMeta(f).catch(() => null);
+        const baseMeta = pk ? { ...pk, takenAtSource: "photokit" } : _metaFromFile(f, exif);
         const recovered = _recoverVideoMetaFromArchive(f, fp, baseMeta);
         const meta = recovered?.meta || baseMeta;
         const matched = meta?.date ? _matchArtistForPhoto(meta, savedIds, attendedIds) : { artistId: null, night: null, reason: "no_date" };
@@ -6201,6 +6342,7 @@ function MemoriesScreen({ state, setState }) {
           recovered ? "archive-recovered" :
           matched.reason === "stage_time_proximity" ? "stage-neighbor" :
           matched.reason === "off_stage"  ? "off_stage" :
+          matched.reason === "off_venue"  ? "off_venue" :
           matched.artistId && hadExifDate ? "exif" :
           matched.artistId && /^video-/.test(meta?.takenAtSource || "") ? "video-metadata" :
           matched.artistId && hadTrustedMeta ? meta.takenAtSource :
@@ -6243,6 +6385,13 @@ function MemoriesScreen({ state, setState }) {
           // couldn't separate them. Keep the best guess but flag it so the
           // card surfaces a prominent "fix tag" chip instead of looking sure.
           tagAmbiguous: !!(matched.artistId && matched.ambiguous),
+          // Build 39: WHY the set was picked, kept apart from tagSource (which
+          // says where the capture time came from). A saved set + time alone
+          // is a suggestion: it stays in the review list until someone checks
+          // it, so "all answered" can never be claimed for a guess.
+          matchReason: matched.reason || null,
+          matchEvidence: matched.evidence || null,
+          tagSuggested: !!(matched.artistId && matched.suggested),
           // Which anchor class decided this tag: "crowd" (measured) or
           // "poster" (derived from the map art, known-skewed). null when GPS
           // played no part. Kept on the record so a later re-tag pass can find
@@ -6281,9 +6430,10 @@ function MemoriesScreen({ state, setState }) {
           hasGps: !!(meta?.lat != null && meta?.lng != null),
           fileType: f.type || null,
           _fingerprint: fp || null,
+          _contentSha256: fileSha || null,
         };
         if (recovered?.moment?.artistId && !moment.artistId) moment.artistId = recovered.moment.artistId;
-        if (fp) existingFingerprints.add(fp);
+        addCandidate(ck, moment);
         current[night] = [...(current[night] || []), moment];
         results.push({ name: f.name, fileIndex: i, momentId: id, night, artistId: matched.artistId, fallback: !matched.night, tagSource, festivalId: moment.festivalId });
         _importLog("file", {
@@ -6357,9 +6507,13 @@ function MemoriesScreen({ state, setState }) {
     // reports a score cannot tell you WHICH clip went to the wrong set, and
     // by the time you scroll the wall to find out you no longer remember what
     // you imported.
-    if (landed.length) setReview(landed);
+    if (Array.isArray(opts.reviewAcc)) {
+      opts.reviewAcc.push(...landed);
+      if (opts.reviewAcc.length) setReview(opts.reviewAcc.slice());
+    } else if (landed.length) setReview(landed);
     // Auto-dismiss summary banner after 6s if user doesn't tap it
     setTimeout(() => setBatch(b => (b && b.done === b.total ? null : b)), 6000);
+    return settledResults;
   };
 
   // Deletes one piece of MEDIA: the record the user is looking at and every
@@ -6510,6 +6664,9 @@ function MemoriesScreen({ state, setState }) {
       if (out.length === 0) return { status: unreadable.length ? "nofile" : "cancelled", unreadable };
       return { status: "picked", files: out, unreadable };
     } catch (err) {
+      // FilePicker 6.2.0 rejects a dismissed sheet; that is the user backing
+      // out, not a failure (build 39, the orange card after a cancel).
+      if (_pickerErrorIsCancel(err)) return { status: "cancelled" };
       console.warn('[memories] native pickMedia failed', err);
       // An exception is an ERROR, never a cancel and never a silent web
       // fallback: on a native build that fallback does nothing visible.
@@ -6537,6 +6694,127 @@ function MemoriesScreen({ state, setState }) {
     // cancelled is a deliberate no-op: no message, no state change.
     if (res.status === "cancelled") return;
     setPickerState({ status: res.status, detail: res.unreadable || res.error || null });
+  };
+
+  // ── Scan my weekend (v513) ───────────────────────────────────────────────
+  // One tap finds every photo and video from the festival's nights in the
+  // library, with no picking, no 50-item cap, and GPS intact (PHPicker strips
+  // it without full access). The PhotoScan plugin lists assets and writes
+  // them out one at a time; which nights to ask for, what to keep and how
+  // each is tagged all live in photo-tag.jsx (_scanQueryRanges,
+  // _scanPickAssets, _photoKitAssetMeta). Import runs in chunks so a weekend
+  // of video never sits in memory at once, and each chunk persists before
+  // the next starts. A library id is remembered only once its import landed,
+  // so a second scan picks up exactly what the first missed.
+  const [scan, setScan] = React.useState(null); // null | { phase, ... }
+  const [diagNote, setDiagNote] = React.useState(null); // build 39: last "Share scan diagnostic" outcome
+  const scanAvailable = !!(window.Capacitor?.isNativePlatform?.()
+    && window.Capacitor?.Plugins?.PhotoScan?.scan
+    && window.FESTIVAL_CONFIG?.dayDates);
+  const _scanExportFile = async (PS, asset, cfg) => {
+    const meta = _photoKitAssetMeta(asset, cfg);
+    if (!meta) return null;
+    try {
+      const ex = await PS.export({ id: asset.id });
+      if (!ex?.path) return null;
+      const cap = window.Capacitor;
+      const src = cap.convertFileSrc ? cap.convertFileSrc(ex.path) : ex.path;
+      const blob = await fetch(src).then(r => r.blob());
+      if (!blob || !blob.size) return null;
+      const isVideo = asset.mediaType === "video";
+      const type = ex.mimeType || blob.type || (isVideo ? "video/quicktime" : "image/jpeg");
+      const file = new File([blob], ex.name || `scan-${Number(asset.createdMs)}.${isVideo ? "mov" : "jpg"}`,
+        { type, lastModified: Number(asset.createdMs) });
+      const tag = (k, v) => { try { Object.defineProperty(file, k, { value: v }); } catch { file[k] = v; } };
+      tag("photoKitMeta", meta);
+      tag("_scanPath", ex.path);
+      if (isVideo) tag("nativePath", ex.path);
+      return file;
+    } catch (err) {
+      console.warn("[memories] scan export failed", err);
+      return null;
+    }
+  };
+  const handleScanWeekend = async () => {
+    const PS = window.Capacitor?.Plugins?.PhotoScan;
+    const cfg = window.FESTIVAL_CONFIG;
+    if (!PS || !cfg?.dayDates) return;
+    if ((batch && batch.done < batch.total) || (scan && ["access", "scanning", "importing"].includes(scan.phase))) return;
+    setScan({ phase: "access" });
+    try { _scanDiagLog("scan-start"); } catch {}
+    try {
+      const access = await PS.requestAccess();
+      const limited = access?.status === "limited";
+      if (access?.status !== "authorized" && !limited) { setScan({ phase: "denied" }); return; }
+      setScan({ phase: "scanning" });
+      const assets = [];
+      for (const r of _scanQueryRanges(cfg)) {
+        const res = await PS.scan({ startMs: r.startMs, endMs: r.endMs });
+        assets.push(...(res?.assets || []));
+      }
+      const { keep, already, outsideSets, untimedNights } = _scanPickAssets(assets, cfg, _scanSeenRead());
+      const skipped = { outsideSets, untimedNights };
+      if (!keep.length) { setScan({ phase: "none", already, limited, ...skipped }); return; }
+      const reviewAcc = [];
+      const chunks = _scanChunks(keep);
+      let imported = 0, unreadable = 0, done = 0;
+      for (const chunk of chunks) {
+        setScan({ phase: "importing", done, total: keep.length });
+        done += chunk.length;
+        const files = [], fileAssets = [];
+        for (const a of chunk) {
+          const f = await _scanExportFile(PS, a, cfg);
+          if (f) { files.push(f); fileAssets.push(a); } else unreadable++;
+        }
+        if (!files.length) continue;
+        const results = (await processImportedFiles(files, { reviewAcc })) || [];
+        const failed = new Set(results.filter(r => r.err).map(r => r.fileIndex));
+        _scanSeenAdd(fileAssets.filter((_, k) => !failed.has(k)).map(a => a.id));
+        imported += results.filter(r => r.momentId).length;
+        unreadable += failed.size;
+        // A photo is in IndexedDB now, so its export file is dead weight. A
+        // video's file stays: song recognition reads it from nativePath.
+        for (const f of files) if (!/^video\//.test(f.type)) PS.discard?.({ path: f._scanPath })?.catch?.(() => {});
+      }
+      setScan({ phase: "done", imported, unreadable, already, limited, ...skipped });
+    } catch (err) {
+      console.warn("[memories] scan failed", err);
+      setScan({ phase: "error" });
+    } finally {
+      try { _scanDiagLog("scan-end"); } catch {}
+    }
+  };
+  const _scanMessage = (st) => {
+    if (!st) return null;
+    const fest = window.FESTIVAL_CONFIG?.shortName || window.FESTIVAL_CONFIG?.name || "the festival";
+    const limitedNote = st.limited ? " Plursky can see only the photos you shared with it; allow full access in Settings to scan the rest." : "";
+    // Build 39: Scan keeps only each night's set hours (first set − 15 min to
+    // last set + 15 min). Say how many it left alone, and why; none of them
+    // were imported or marked as seen.
+    const skipNote = [
+      st.outsideSets ? `${st.outsideSets} taken outside set times ${st.outsideSets === 1 ? "was" : "were"} left out.` : "",
+    ].filter(Boolean).join(" ");
+    // Jake 2026-11-05: a night with no set times is scanned in full, and the
+    // card says so on a line of its own, so it is never silently different.
+    const untimedNote = st.untimedNights
+      ? `${st.untimedNights} ${st.untimedNights === 1 ? "night has" : "nights have"} no set times, scanned in full.`
+      : null;
+    if (st.phase === "access" || st.phase === "scanning") return { busy: true, title: `Looking for photos from ${fest} nights…` };
+    if (st.phase === "importing") return { busy: true, title: `Importing ${st.done} of ${st.total}…` };
+    if (st.phase === "denied") return { tone: "warn", title: "Plursky can’t see your photos", body: "Turn on photo access in Settings, Plursky, Photos, then scan again." };
+    if (st.phase === "error") return { tone: "warn", title: "Couldn’t finish the scan", body: "Anything already imported is saved. Scan again to pick up the rest.", retry: true };
+    if (st.phase === "none") return {
+      title: `No new photos from ${fest} set times`,
+      body: [st.already ? `${st.already} ${st.already === 1 ? "was" : "were"} already imported.` : (skipNote ? "" : "Nothing in your library was taken during the festival’s set times."), skipNote, limitedNote.trim()].filter(Boolean).join(" "),
+      note: untimedNote,
+    };
+    if (st.phase === "done") return {
+      title: `Imported ${st.imported} from ${fest}`,
+      body: [st.unreadable ? `${st.unreadable} couldn’t be read; they may still be downloading from iCloud, so scan again later.` : "", skipNote, limitedNote.trim()].filter(Boolean).join(" ") || null,
+      retry: !!st.unreadable,
+      note: untimedNote,
+    };
+    return null;
   };
 
   // What the user is told for each non-success picker state. `cancelled` is
@@ -6604,7 +6882,7 @@ function MemoriesScreen({ state, setState }) {
       if (!hit) continue;
       found = { ...hit, night: rec.night, artistId: rec.artistId,
                 tagSource: "song-recovered", autoTagged: false,
-                dateUnverified: false, needsRetag: false, tagAmbiguous: false };
+                dateUnverified: false, needsRetag: false, tagAmbiguous: false, tagSuggested: false };
       next[n] = arr.filter(m => m.id !== moment.id);
     }
     if (!found) return;
@@ -6821,7 +7099,10 @@ function MemoriesScreen({ state, setState }) {
   // on mount and whenever moments change (e.g. after an import). Ref-guarded
   // against concurrent runs; no-ops when nothing is pending.
   React.useEffect(() => {
+    // Auto-backup waits out a weak signal (or battery saver); the manual
+    // BACK UP button still works.
     if (!autoOn || !_isPlusSub() || !_onWifi() || _autoBusy.current) return;
+    if (typeof plurskyNetSaver === "function" && plurskyNetSaver()) return;
     if (!everyMoment.some(m => m.photoId && !m.backedUp)) return;
     let cancelled = false;
     (async () => {
@@ -6844,7 +7125,7 @@ function MemoriesScreen({ state, setState }) {
           // resolves to a DIFFERENT festival is still a row in this list, and
           // it has to be reachable to be fixed.
           moments={rawAll}
-          onClose={() => setReview(null)}
+          onClose={() => { setReview(null); try { _scanDiagLog("review-close"); } catch {} }}
           onPatch={handlePatchMany}
           onMove={handleMoveNight}
         />
@@ -6914,6 +7195,66 @@ function MemoriesScreen({ state, setState }) {
           onChange={handleBatchPick}
           style={{ display: "none" }}
         />
+        {/* Scan my weekend (v513): the iPhone app reads the festival's nights
+            straight from the photo library. Shown only where the plugin is
+            present and the festival has dates to scan; the picker below
+            stays for anything taken outside those nights. */}
+        {scanAvailable && (() => {
+          const msg = _scanMessage(scan);
+          const busy = !!msg?.busy || (!!batch && batch.done < batch.total);
+          return (
+            <div style={{ marginTop: 12 }}>
+              <button onClick={handleScanWeekend} disabled={busy} data-scan-weekend
+                className="duo-card" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, width: "100%", minHeight: 64, padding: "10px 16px", border: "none", color: "var(--ink)", textAlign: "left", fontFamily: "inherit", cursor: busy ? "default" : "pointer" }}>
+                <span aria-hidden="true" className="duo-well" style={{ width: 40, height: 40, flexShrink: 0, display: "grid", placeItems: "center", color: "var(--acc-ink)" }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20 l-4.2-4.2"/><path d="M8.5 11 h5 M11 8.5 v5"/></svg>
+                </span>
+                <span style={{ flex: "1 1 150px", minWidth: 0 }}>
+                  <span data-fit-words data-fit-min="13" className="duo-headline" style={{ display: "block" }}>Scan my weekend</span>
+                  <span data-fit-words data-fit-min="11" className="duo-body-s duo-ink2" style={{ display: "block", fontWeight: 400 }}>Finds every photo and video from festival nights</span>
+                </span>
+                <span className="duo-body-s" style={{ color: "var(--acc-ink)", fontWeight: 650, fontSize: 15 }}>{busy ? "…" : "Scan"}</span>
+              </button>
+              {msg && (
+                <div role="status" style={{ marginTop: 8, padding: "12px 14px", borderRadius: 14, background: "var(--paper-2)", border: "1px solid var(--line)" }}>
+                  <div style={{ fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: msg.tone === "warn" ? "var(--warn)" : "var(--ink)" }}>{msg.title}</div>
+                  {msg.body && <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.body}</p>}
+                  {msg.note && <p data-scan-untimed-note style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>{msg.note}</p>}
+                  {!msg.busy && (
+                    <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
+                      {msg.retry && (
+                        <button onClick={handleScanWeekend} style={{ minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "var(--paper-3)", color: "var(--ink)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" }}>Scan again</button>
+                      )}
+                      <button onClick={() => setScan(null)} style={{ minHeight: 44, padding: "0 14px", borderRadius: 12, border: "none", cursor: "pointer", background: "transparent", color: "var(--text-2)", fontSize: 15, lineHeight: 1.33, fontWeight: 600, fontFamily: "inherit" }}>Dismiss</button>
+                    </div>
+                  )}
+                </div>
+              )}
+              {/* Build 39: one tap opens the share sheet with a privacy-safe
+                  summary of the moment store and its recent writes (no
+                  photos, names, paths or GPS). Read-only. */}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginTop: 4 }}>
+                <button data-scan-diag onClick={async () => {
+                    setDiagNote({ mode: "busy" });
+                    const r = await _scanDiagShare({ appVersion: typeof APP_VERSION !== "undefined" ? APP_VERSION : null });
+                    setDiagNote(r);
+                  }}
+                  style={{ minHeight: 44, padding: "0 4px", border: "none", background: "transparent", color: "var(--text-2)", fontSize: 13, lineHeight: 1.38, fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3, cursor: "pointer", fontFamily: "inherit" }}>
+                  Share scan diagnostic
+                </button>
+                {diagNote && diagNote.mode !== "busy" && (
+                  <span role="status" style={{ fontSize: 13, lineHeight: 1.38, color: diagNote.ok ? "var(--text-2)" : "var(--warn)" }}>
+                    {diagNote.mode === "share" ? "Diagnostic ready to send"
+                      : diagNote.mode === "copied" ? "Diagnostic copied"
+                      : diagNote.mode === "cancelled" ? "Not sent"
+                      : diagNote.mode === "unavailable" ? "Sharing isn't available here"
+                      : "Couldn't open the share sheet"}
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })()}
         {/* ONE import CTA (v341). The old screen drew this card AND a
             full-width "Import from camera roll" button inside the empty
             state, so the first thing a new user saw was the same action
@@ -7066,14 +7407,14 @@ function MemoriesScreen({ state, setState }) {
               no media, attended sets     → a compact import line ABOVE the
                                             set library, which renders as normal
               no picker                   → an honest explanation, never a
-                                            dead picker button */}
+                                            dead picker button; with Scan
+                                            available it points at Scan
+                                            instead (_memoriesImportCopy) */}
         {totalCount === 0 && attendedTotal === 0 && (
           <div style={{ marginTop: 24 }}>
             <div style={{ fontSize: 20, lineHeight: 1.25, fontWeight: 600 }}>Your weekend, remembered</div>
             <p style={{ margin: "6px 0 16px", fontSize: 15, lineHeight: 1.4, color: "var(--text-2)" }}>
-              {pickerAvailable
-                ? "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap."
-                : "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet."}
+              {_memoriesImportCopy(pickerAvailable, scanAvailable).invite}
             </p>
             {pickerAvailable
               ? <FieldButton onClick={handlePickClick}>Import from camera roll</FieldButton>
@@ -7090,9 +7431,7 @@ function MemoriesScreen({ state, setState }) {
               {attendedTotal} {attendedTotal === 1 ? "set" : "sets"} caught · no clips yet
             </div>
             <p style={{ margin: "4px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
-              {pickerAvailable
-                ? "Import photos or videos and they’ll land on the sets below."
-                : "This build can’t open your photo library, so the sets below are your library for now."}
+              {_memoriesImportCopy(pickerAvailable, scanAvailable).withSets}
             </p>
             {pickerAvailable && (
               <button onClick={handlePickClick} style={{
@@ -7511,9 +7850,7 @@ function MeScreen({ state, setState }) {
   const _mePostFest = Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
   // Build identity from Spotify profile when available, else fall back to user-set name
   const [profile, setProfile] = React.useState(getSpotifyProfileSync);
-  const [localName, setLocalName] = React.useState(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
-  });
+  const [localName, setLocalName] = React.useState(plurskyLocalName);
   React.useEffect(() => {
     if (state.spotifyConnected && !profile) {
       ensureSpotifyProfile().then(setProfile);
@@ -7525,16 +7862,21 @@ function MeScreen({ state, setState }) {
     window.addEventListener("plursky:display-name", onName);
     return () => window.removeEventListener("plursky:display-name", onName);
   }, []);
+  // Opening Me is one of the places the quick-name ask appears: once, only
+  // while no name is set and the ask was never skipped.
+  React.useEffect(() => {
+    if (plurskyQuickNameDue()) window.plurskyAskQuickName?.();
+  }, []);
 
-  // Resolve display name from Spotify profile → display_name → user_name
-  // (matches Runbuds-style identity: serif name + ping chip + tagline).
-  const rawName = profile?.name || localName || "";
+  // The local name first — it is what your crew sees (plurskyLocalName) — then
+  // the Spotify profile's name for a user who never typed one.
+  const rawName = localName || profile?.name || "";
   const displayName = rawName || "—";
   const initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
   const promptName = () => {
     const next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
     if (!next) return;
-    try { localStorage.setItem("plursky_display_name", next); } catch {}
+    plurskySetLocalName(next);
     setLocalName(next);
   };
 
@@ -7831,6 +8173,7 @@ function MeScreen({ state, setState }) {
                   <span style={{ fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>Your plan is kept</span>
                 </span>
               </button>
+              {typeof ArtistsDirectoryRow === "function" && <ArtistsDirectoryRow />}
               <HistoryRecordsSection state={state} setState={setState} />
               <div style={{ marginTop: 14 }}/>
               <div id="plursky-badges-anchor"/>
@@ -7861,7 +8204,7 @@ function MeScreen({ state, setState }) {
                     {state.spotifyConnected ? "Music · matched" : "Match the lineup to your Spotify"}
                   </div>
                   <div className="duo-body-s duo-ink2" style={{ marginTop: 2 }}>
-                    {state.spotifyConnected ? "Top artists, discoveries, build a playlist" : "Tap to connect"}
+                    {state.spotifyConnected ? "Top artists and discoveries" : "Tap to connect"}
                   </div>
                 </div>
                 <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -8075,272 +8418,8 @@ function FollowedNudge({ state, setState }) {
   );
 }
 
-// ── Board playlist: preview, then create ──────────────────────
-// Nothing is written until the user has seen the plan (planBoardPlaylist,
-// spotify-api.jsx): every saved set is in, and each discovery pick shows why
-// it is there and can be dropped. CREATE writes exactly the plan on screen.
-// Spotify only for now; Apple Music follows once its certificate is in.
-function BoardPlaylistCard({ state, spotifyArtists, connected }) {
-  // Coming back from Spotify OAuth mid-create: reopen so the resume can run.
-  const [open, setOpen] = React.useState(() => { try { return localStorage.getItem("plursky_pending_build") === "board"; } catch { return false; } });
-  const [dropped, setDropped] = React.useState(() => new Set());
-  const [showDiag, setShowDiag] = React.useState(false);
-  const [lastResult, setLastResult] = React.useState(null);
-  const CFG = FESTIVAL_CONFIG;
-  const affinity = React.useMemo(() => (spotifyArtists || []).map(a => a.name), [spotifyArtists]);
-  const plan = React.useMemo(() => planBoardPlaylist({
-    artists: ARTISTS, savedIds: state.saved, stages: STAGES,
-    affinityNames: affinity, affinityLabel: "your Spotify",
-    dayLabel: d => CFG.dayDates?.[d]?.short || `Day ${d}`,
-  }), [state.saved.join(","), affinity, CFG.id]);
-  const kept = React.useMemo(() => {
-    const picks = plan.picks.filter(p => !dropped.has(p.artist.id));
-    const keep = new Set(picks.map(p => p.artist.id));
-    return { ...plan, picks, order: plan.order.filter(o => o.role === "seed" || keep.has(o.artist.id)) };
-  }, [plan, dropped]);
-  React.useEffect(() => { window.__plurskyBoardPlaylist = { plan: kept, result: lastResult }; }, [kept, lastResult]);
-  if (!plan.seeds.length) return null;
-
-  const toggle = id => setDropped(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const tracks = kept.order.reduce((n, o) => n + o.trackLimit * Math.max(1, _b2bParts(o.artist.name).length), 0);
-  const card = {
-    borderRadius: 20, padding: 20, marginBottom: 14,
-    background: "var(--paper-2)", border: "1px solid var(--line)", color: "var(--ink)",
-  };
-  // The board's meta line (13px SF, quiet ink), not 8-9px tracked caps.
-  const mono = { font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" };
-
-  if (!open) {
-    return (
-      <button onClick={() => { window.plurskyHaptic?.("LIGHT"); setOpen(true); }}
-        style={{ ...card, display: "block", width: "100%", textAlign: "left", cursor: "pointer", fontFamily: "inherit" }}>
-        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-          <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
-          <div style={{ ...mono, color: "var(--acc-ink)", fontWeight: 600, flexShrink: 0 }}>Preview →</div>
-        </div>
-        <div style={{ ...mono, marginTop: 4 }}>
-          {plan.seeds.length} saved set{plan.seeds.length === 1 ? "" : "s"}{plan.picks.length ? ` + ${plan.picks.length} pick${plan.picks.length === 1 ? "" : "s"}` : ""} · nothing is built until you say so
-        </div>
-      </button>
-    );
-  }
-
-  const names = plan.seeds.map(s => s.artist.name);
-  const d = plan.diagnostics, e = d.excluded;
-  return (
-    <div style={card}>
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-        <div className="serif" style={{ fontSize: 22, letterSpacing: -0.3 }}>Board playlist</div>
-        <button onClick={() => setOpen(false)} aria-label="Close preview"
-          style={{ background: "transparent", border: "none", color: "var(--muted)", fontSize: 18, cursor: "pointer", padding: 4 }}>×</button>
-      </div>
-      <div style={{ ...mono, marginTop: 2, marginBottom: 14 }}>
-        {kept.seeds.length} saved · {kept.picks.length} pick{kept.picks.length === 1 ? "" : "s"} · ≈{tracks} tracks · in set order
-      </div>
-
-      <div style={{ ...mono, color: "var(--ink)", marginBottom: 4 }}>Your saved sets · always in</div>
-      <div style={{ fontSize: 13, lineHeight: 1.45, marginBottom: 16 }}>
-        {names.slice(0, 6).join(" · ")}{names.length > 6 ? ` · +${names.length - 6} more` : ""}
-      </div>
-
-      <div style={{ ...mono, color: "var(--ink)", marginBottom: 2 }}>Picks from the same lineup</div>
-      {plan.picks.length === 0 ? (
-        <div style={{ fontSize: 12, lineHeight: 1.5, color: "var(--muted)", padding: "6px 0 12px" }}>
-          Nothing on the lineup ties to your board yet. {connected ? "Save a few more sets and picks will show up here." : "Save a few more sets, or connect Spotify so picks can come from what you listen to."}
-        </div>
-      ) : plan.picks.map(p => {
-        const a = p.artist, off = dropped.has(a.id);
-        const stg = STAGES.find(s => s.id === a.stage);
-        const when = a.day != null && setTimesUnconfirmed(a) ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${SET_TIMES_UNCONFIRMED}`
-          : a.day != null && a.start ? `${CFG.dayDates?.[a.day]?.short || `Day ${a.day}`} · ${fmt12(a.start)}` : "Set time TBA";
-        return (
-          <div key={a.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid var(--line)", opacity: off ? 0.45 : 1 }}>
-            <ArtistSwatch artist={a} size={40} />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="serif" style={{ fontSize: 16, lineHeight: 1.15, textDecoration: off ? "line-through" : "none" }}>{a.name}</div>
-              <div style={{ ...mono, marginTop: 2 }}>{stg?.short || stg?.name || "Stage TBA"} · {when}</div>
-              <div style={{ fontSize: 11, fontStyle: "italic", color: "var(--horizon)", marginTop: 3, lineHeight: 1.3 }}>{p.reason}</div>
-            </div>
-            <button onClick={() => toggle(a.id)} aria-label={off ? `Add ${a.name} back` : `Drop ${a.name}`}
-              style={{
-                width: 34, height: 34, borderRadius: 34, flexShrink: 0,
-                background: off ? "transparent" : "var(--ember)", color: off ? "var(--ink)" : "var(--ink)",
-                border: off ? "1px solid var(--line-2)" : "none",
-                cursor: "pointer", fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
-              }}>{off ? "+" : "✓"}</button>
-          </div>
-        );
-      })}
-
-      <div style={{ marginTop: 12 }}><PlaylistVisibilityToggle /></div>
-      <div style={{ marginTop: 8, display: "flex", gap: 8, flexWrap: "wrap" }}>
-        {/* Keyed on the plan so toggling a pick resets a finished build. */}
-        <BuildPlaylistButton key={kept.order.map(o => o.artist.id).join(",")}
-          state={state} plan={kept} label="CREATE IN SPOTIFY" onResult={setLastResult} />
-      </div>
-
-      <button onClick={() => setShowDiag(v => !v)}
-        style={{ ...mono, background: "transparent", border: "none", padding: "14px 0 0", cursor: "pointer" }}>
-        Diagnostics {showDiag ? "▴" : "▾"}
-      </button>
-      {showDiag && (
-        <div style={{ ...mono, lineHeight: 1.7, textTransform: "none", letterSpacing: 0.4, marginTop: 6 }}>
-          <div>lineup {d.lineup} · saved {d.saved} · seeds {d.seeds}{d.dupSaved.length ? ` · ${d.dupSaved.length} repeat-day save(s) merged` : ""}{d.unknownSaved.length ? ` · ${d.unknownSaved.length} saved id(s) not on this lineup` : ""}</div>
-          <div>candidates {d.candidates} · cap {plan.cap} · left out by the cap {d.capped} · dropped by you {plan.picks.length - kept.picks.length}</div>
-          <div>skipped: saved {e.saved} · same act {e.sameAct} · no reason {e.noSignal}</div>
-          <div>picks by reason: {Object.entries(d.byKind).map(([k, n]) => `${k} ${n}`).join(" · ") || "none"} · listening names {d.affinityNames}</div>
-          {lastResult && (lastResult.ok
-            ? <div>written {lastResult.added} track(s){lastResult.missed ? ` · not found on Spotify: ${(lastResult.missedNames || []).join(", ")}` : " · every act found"}</div>
-            : <div>last build: {lastResult.reason}{lastResult.status ? ` (${lastResult.status})` : ""}</div>)}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// "Public playlist": off by default, so a built playlist stays private on
-// Spotify until the user chooses otherwise. Flipping it re-applies to the
-// playlist already built; if that write fails the next build applies it.
-function PlaylistVisibilityToggle() {
-  const [on, setOn] = React.useState(() => _playlistPublicPref());
-  const [note, setNote] = React.useState("");
-  const flip = async () => {
-    const next = !on;
-    setOn(next); setNote("");
-    _setPlaylistPublicPref(next);
-    const r = await _applyPlaylistVisibility(next);
-    if (!r.ok && r.reason !== "no_playlist") setNote("Spotify didn't update. It applies on your next build.");
-  };
-  return (
-    <div>
-      <button type="button" role="switch" aria-checked={on} onClick={flip} style={{
-        display: "flex", alignItems: "center", gap: 12, width: "100%", minHeight: 44, padding: "8px 0",
-        background: "transparent", border: "none", color: "var(--ink)", textAlign: "left",
-        fontFamily: "inherit", cursor: "pointer",
-      }}>
-        <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: "block", fontSize: 15, lineHeight: "20px", fontWeight: 500 }}>Public playlist</span>
-          <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
-            {on ? "Anyone can find and play it on Spotify." : "Private. Only you see it on Spotify."}
-          </span>
-        </span>
-        <span aria-hidden="true" style={{
-          position: "relative", width: 44, height: 26, borderRadius: 26, flexShrink: 0,
-          background: on ? "var(--signal)" : "var(--paper-3)", border: "1px solid var(--line-2)",
-          transition: "background .2s",
-        }}>
-          <span style={{
-            position: "absolute", top: 2, left: on ? 20 : 2, width: 20, height: 20, borderRadius: 20,
-            background: on ? "var(--on-signal)" : "var(--text-2)", transition: "left .2s",
-          }} />
-        </span>
-      </button>
-      {note && <div role="status" style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", paddingBottom: 4 }}>{note}</div>}
-    </div>
-  );
-}
-
-function BuildPlaylistButton({ state, soundtrack, plan, label: idleLabel, onResult }) {
-  // plan: a previewed board plan (BoardPlaylistCard), written exactly as shown.
-  // Its OAuth resume flag is its own, so a plain build never resumes as a
-  // board build or the other way round.
-  const pendingKind = plan ? "board" : "1";
-  const [status, setStatus] = React.useState("idle"); // idle | working | done | err
-  const [result, setResult] = React.useState(null);
-  const [buildProgress, setBuildProgress] = React.useState("");
-
-  const run = async () => {
-    setStatus("working");
-    setBuildProgress("");
-    try {
-      const r = await createSetsPlaylist(state, { soundtrack, plan, onProgress: (msg) => setBuildProgress(msg) });
-      setResult(r);
-      onResult?.(r);
-      if (r.ok) {
-        setStatus("done");
-      } else {
-        setStatus("err");
-        // Persist actionable errors (reconnect, missing target playlist) so the
-        // user has time to read + click. Auto-clear only transient failures.
-        if (r.reason !== "reconnect" && r.reason !== "no_target_playlist") {
-          setTimeout(() => setStatus("idle"), 4500);
-        }
-      }
-    } catch (e) {
-      setResult({ ok: false, reason: "create_fail", message: String(e?.message || e) });
-      setStatus("err");
-      setTimeout(() => setStatus("idle"), 4500);
-    }
-  };
-
-  // After the user reconnects via OAuth and returns to the app, resume the
-  // build automatically if they were mid-flow. Removes the otherwise required
-  // third click ("connect", "back", "build again").
-  React.useEffect(() => {
-    let pending = null;
-    try { pending = localStorage.getItem("plursky_pending_build"); } catch {}
-    if (pending === pendingKind && state.spotifyConnected && _hasPlaylistWriteScope()) {
-      try { localStorage.removeItem("plursky_pending_build"); } catch {}
-      run();
-    }
-  }, []); // mount-only — pending flag is one-shot
-
-  const onClick = async () => {
-    if (status === "working") return;
-    if (status === "err" && (result?.reason === "reconnect" || result?.reason === "not_connected")) {
-      // Mark intent so we auto-resume after the OAuth round-trip.
-      try { localStorage.setItem("plursky_pending_build", pendingKind); } catch {}
-      startSpotifyAuth(); return;
-    }
-    if (status === "err" && result?.reason === "no_target_playlist") {
-      window.open("https://open.spotify.com/", "_blank", "noopener"); return;
-    }
-    // When done, clicking opens the playlist (user-initiated — not blocked)
-    if (status === "done" && result?.url) {
-      window.open(result.url, "_blank", "noopener"); return;
-    }
-    window.plurskyHaptic?.("MEDIUM");
-    run();
-  };
-
-  // Readable ink on the brand tint: brand green as text on its own tint
-  // falls under AA in Light (the Apple Music button learned the same).
-  let label, bg = "rgba(var(--spotify-rgb),0.14)", color = "var(--ink)", border = "1px solid var(--spotify)";
-  if (status === "working") {
-    label = buildProgress ? `Building · ${buildProgress}` : "Building…";
-  } else if (status === "done") {
-    const sm = result?.songsMatched || 0;
-    label = soundtrack && sm > 0
-      ? `✓ ${sm} of your songs + ${result?.added - sm} more — open ↗`
-      : `✓ ${result?.added} tracks · in set order — open ↗`;
-    bg = "var(--spotify)"; color = "var(--on-spotify)"; border = "none";
-  } else if (status === "err") {
-    if (result?.reason === "reconnect" || result?.reason === "not_connected") label = "Tap to grant Spotify access";
-    else if (result?.reason === "no_target_playlist") label = "Create a “Plursky” playlist in Spotify";
-    else if (result?.reason === "rate_limited") label = "Spotify is busy · wait 30s, then tap again";
-    else if (result?.reason === "empty") label = "Save sets first";
-    else if (result?.reason === "create_fail") {
-      const msg = (result?.message || "").slice(0, 28);
-      label = msg ? `Failed · ${result?.status} · ${msg}` : `Failed · ${result?.status || "?"}`;
-    } else label = "Try again";
-    bg = "rgba(var(--alert-rgb),0.16)"; color = "var(--ink)"; border = "1px solid var(--alert)";
-  } else {
-    label = idleLabel || (soundtrack ? "Soundtrack to Spotify" : "Build my playlist");
-  }
-
-  return (
-    <button onClick={onClick} disabled={status === "working"} style={{
-      background: bg, color, border,
-      borderRadius: 999, padding: "10px 16px",
-      cursor: status === "working" ? "wait" : "pointer",
-      fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.2, fontWeight: 700,
-      transition: "all .2s",
-    }}>{label}</button>
-  );
-}
-
-// Apple Music playlist builder — sibling of BuildPlaylistButton. Apple Music
-// has no Dev-Mode user cap or creation block, so this is the unblocked path.
+// Apple Music playlist builder. The only playlist Plursky builds: Spotify is
+// read-only here (listening import and artist photos).
 // Renders nothing until APPLE_DEV_TOKEN is configured (see spotify-api.jsx),
 // so it's invisible until Apple Music is wired up.
 function AppleMusicPlaylistButton({ state, soundtrack }) {
@@ -8364,8 +8443,8 @@ function AppleMusicPlaylistButton({ state, soundtrack }) {
   };
   const onClick = () => {
     if (status === "working") return;
-    // When done, clicking opens the playlist in Apple Music (parity with
-    // the Spotify button) — user-initiated, so popup-safe.
+    // When done, clicking opens the playlist in Apple Music (user-initiated,
+    // so popup-safe).
     if (status === "done" && result?.url) { window.open(result.url, "_blank", "noopener"); return; }
     window.plurskyHaptic?.("MEDIUM"); run();
   };
@@ -8469,6 +8548,8 @@ function _recoverCurrentVideoMomentsFromArchive() {
         // need recovering, however good its own metadata was.
         const placeable = _festivalClaimantsFor(m.takenAt).length > 0;
         if (m.tagSource === "unknown") continue;      // the user's answer, not a gap
+        if (m.tagSource === "manual") continue;       // build 39: a hand pick is never re-guessed
+        if (m.tagSource === "off_venue") continue;    // GPS said "not at the festival"; an archive guess does not outrank it
         const needsRecovery = !placeable || !m.artistId || m.tagSource === "fallback" || m.needsRetag;
         if (!needsRecovery) continue;
         const archived = _findArchivedVideoMomentForFingerprint(m._fingerprint);
@@ -8514,6 +8595,7 @@ function _recoverCurrentVideoMomentsFromArchive() {
         m.autoTagged = !!m.artistId;
         m.needsRetag = false;
         m.tagAmbiguous = false;
+        m.tagSuggested = false;
         if (String(recoveredNight) !== String(night)) moves.push({ from: night, to: String(recoveredNight), moment: m });
         changed = true;
       }
@@ -9709,6 +9791,13 @@ function LockedCardPreview({ artist }) {
   );
 }
 
+// Guarded: supabase.jsx can fail to load (offline first boot, blocked CDN), and
+// a missing logger must never turn a completed purchase into an error.
+function _pwEvent(event, fields, waitMs) {
+  try { return typeof logPaywallEvent === "function" ? logPaywallEvent(event, fields, waitMs) : false; }
+  catch { return false; }
+}
+
 function PlusGate({ children, feature, layout = "inline", step = "plans", onStep }) {
   // Hook first: an early `return children` above a useState is a conditional
   // hook call, which React only tolerates while the condition never flips.
@@ -9723,6 +9812,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
   const [buyError, setBuyError] = React.useState(null);
   const live = useLivePlusPrices();
   const [plan, setPlan] = React.useState(RC_PRODUCT_IDS.season);
+  // Funnel event (SPEC-183 E1): once per mount, only when the paywall is what
+  // renders. A no-op while PAYWALL_EVENTS_ON is false.
+  React.useEffect(() => {
+    if (!_isPlusSub()) _pwEvent("offer_shown", { surface: feature });
+  }, []);
   if (_isPlusSub()) return children;
   const canBuy = _iapAvailable();
 
@@ -9734,7 +9828,12 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
       // even a future unbounded await anywhere in _purchasePlus can never
       // freeze this screen again.
       const result = await _withTimeout(_purchasePlus(target), 50000, "Purchase");
-      if (result.success) { window.location.reload(); return; }
+      if (result.success) {
+        // Short wait so the row leaves before the reload; never longer.
+        await _pwEvent("offer_accept", { surface: feature, productId: target }, 1500);
+        window.location.reload(); return;
+      }
+      if (result.cancelled) _pwEvent("offer_decline", { surface: feature, productId: target });
       if (!result.cancelled && !result.unsupported)
         setBuyError(result.error || "Purchase could not be completed.");
     } catch (e) {
@@ -10343,31 +10442,6 @@ function RecapScreen({ state, setState }) {
     } catch {}
     return () => { cancelled = true; };
   }, []);
-
-  // v147: build a Spotify playlist of what the user actually CAUGHT (attended)
-  // — separate from the existing build-playlist flow which uses saved sets.
-  const [playlistState, setPlaylistState] = React.useState({ status: "idle" });
-  const buildAttendedPlaylist = async () => {
-    setPlaylistState({ status: "building" });
-    try {
-      const result = await createSetsPlaylist(state, { source: "attended" });
-      if (result.ok) {
-        setPlaylistState({ status: "done", url: result.url, added: result.added });
-      } else {
-        const reason = result.reason || "fail";
-        const msg = {
-          not_connected:     "Connect Spotify on the Me tab first.",
-          empty:             "Mark sets you caught in Memories first.",
-          reconnect:         "Reconnect Spotify (needs playlist permission).",
-          no_target_playlist: "Create an empty Spotify playlist named 'Plursky' first.",
-          rate_limited:      "Spotify is throttling — wait 30s and retry.",
-        }[reason] || (result.message || "Couldn't build playlist.");
-        setPlaylistState({ status: "error", msg });
-      }
-    } catch (e) {
-      setPlaylistState({ status: "error", msg: e?.message || "Couldn't build playlist." });
-    }
-  };
 
   // Empty-state guard — nothing to recap (for the current festival).
   // Still show past festival archives if any exist.
@@ -11161,50 +11235,7 @@ function RecapScreen({ state, setState }) {
           );
         })()}
 
-        {/* WEEKEND PLAYLIST */}
-        {state.spotifyConnected && recap.setsCount > 0 && (
-          <RecapCard kicker="YOUR SOUNDTRACK" paper="var(--paper)">
-            <div className="serif" style={{ fontSize: 28, lineHeight: 1.05, letterSpacing: -0.3, marginBottom: 14 }}>
-              Take the weekend <span style={{ fontStyle: "italic", color: "var(--horizon)" }}>home</span> with you.
-            </div>
-            <div style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.5, marginBottom: 14 }}>
-              Build a Spotify playlist of every set you actually caught — top tracks from each, in chronological set order.
-            </div>
-            <div style={{ marginBottom: 12 }}><PlaylistVisibilityToggle /></div>
-            {playlistState.status === "done" ? (
-              <div style={{
-                padding: "10px 12px", borderRadius: 10,
-                background: "rgba(var(--signal-rgb),0.12)", border: "1px solid rgba(var(--signal-rgb),0.4)",
-              }}>
-                <div className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700, marginBottom: 6 }}>
-                  ✓ {playlistState.added} TRACKS ADDED
-                </div>
-                {playlistState.url && (
-                  <a href={playlistState.url} target="_blank" rel="noopener noreferrer" className="mono" style={{
-                    fontSize: 10, letterSpacing: 1.1, color: "var(--ink)", fontWeight: 700,
-                    textDecoration: "underline",
-                  }}>OPEN IN SPOTIFY ↗</a>
-                )}
-              </div>
-            ) : (
-              <button onClick={buildAttendedPlaylist} disabled={playlistState.status === "building"} style={{
-                background: playlistState.status === "building" ? "var(--paper-2)" : "var(--spotify)",
-                color: playlistState.status === "building" ? "var(--muted)" : "var(--on-spotify)",
-                border: "none", borderRadius: 999, padding: "11px 18px",
-                fontFamily: "Geist Mono, monospace", fontSize: 10, letterSpacing: 1.3, fontWeight: 700,
-                cursor: playlistState.status === "building" ? "default" : "pointer",
-                alignSelf: "flex-start",
-              }}>
-                {playlistState.status === "building" ? "BUILDING…" : "↗ BUILD WEEKEND PLAYLIST"}
-              </button>
-            )}
-            {playlistState.status === "error" && (
-              <div className="mono" style={{ fontSize: 10, letterSpacing: 1, color: "var(--alert)", marginTop: 8, fontWeight: 600 }}>
-                {playlistState.msg}
-              </div>
-            )}
-          </RecapCard>
-        )}
+
 
         {/* DISCOVERY — saved but didn't catch */}
         {recap.missedSaved.length > 0 && (
@@ -11351,21 +11382,10 @@ function _checkinActive(cfg, artists, ms) {
   return (artists || []).filter(a => _checkinActWindows(cfg, a).some(([s, e]) => ms >= s && ms < e));
 }
 
-// One GPS fix → a trusted stage, or the reason there isn't one. Stale,
-// coarse, outside the venue, or too close to call between two stages all
-// give no stage. The measurements come back either way, for the trial sheet.
+// One GPS fix → a trusted stage, or the reason there isn't one: the shared
+// stage fix gate (data.jsx) on Check-in's rules.
 function _checkinGps(anchors, fix, atMs, rules = _CHECKIN_GPS) {
-  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
-  const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
-  if (!anchors || !anchors.length) return { status: "no-anchors", accM };
-  const d = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng) }))
-    .sort((x, y) => x.dist - y.dist);
-  const out = { accM, distM: d[0].dist, marginM: d.length > 1 ? d[1].dist - d[0].dist : null };
-  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return { ...out, status: "stale" };
-  if (accM == null || accM > rules.maxAccM) return { ...out, status: "coarse" };
-  if (d[0].dist > rules.maxDistM) return { ...out, status: "outside" };
-  if (out.marginM != null && out.marginM < rules.minMarginM) return { ...out, status: "ambiguous" };
-  return { ...out, status: "trusted", stageId: d[0].stageId };
+  return stageFixGate(anchors, fix, atMs, rules);
 }
 
 // The whole proposal, pure: which night, which sets are on, which stage the
@@ -11713,9 +11733,8 @@ function NowPlayingBar() {
       const debugArtist = artists.find(a => a.stage === debugStage?.id && a.day === 1) || artists[0];
       if (debugStage) {
         setLiveState(s => ({ ...s, stage: debugStage, artist: debugArtist || null }));
-        if (window.joinStagePresence) window.joinStagePresence(debugStage.id);
       }
-      return () => { if (window.leaveStagePresence) window.leaveStagePresence(); };
+      return;
     }
 
     let watchId;
@@ -11734,13 +11753,13 @@ function NowPlayingBar() {
 
       const stageObj = (window.STAGES || []).find(s => s.id === nearest.stageId);
       // The fix only names the stage; the effect below names the set.
+      // This fix stays on the device. The headcount joins only the stage I
+      // declared to my crew (supabase.jsx _syncStageHeadcount), never this.
       setLiveState(s => (s.stage?.id === stageObj?.id ? s : { ...s, stage: stageObj }));
-      if (stageObj?.id && window.joinStagePresence) window.joinStagePresence(stageObj.id);
     }, null, { enableHighAccuracy: true, maximumAge: 10000 });
 
     return () => {
       if (watchId) navigator.geolocation.clearWatch(watchId);
-      if (window.leaveStagePresence) window.leaveStagePresence();
     };
   }, [isFestivalLive, debugLive]);
 
@@ -12056,7 +12075,7 @@ Object.assign(window, {
   _isPlusSub, _setPlusSub, PlusGate, _purchasePlus, _restorePurchases, RC_PRODUCT_IDS, _canShare, _getCustomAccent, _setCustomAccent, _archiveRecap, _getRecapArchive, _canAccessFestival,
   _getTracklistForArtist,
   // Spotify/Apple-Music API moved to spotify-api.jsx (startSpotifyAuth,
-  // ensureSpotifyProfile, getSpotifyProfileSync, createEdcPlaylist,
+  // ensureSpotifyProfile, getSpotifyProfileSync, createAppleMusicPlaylist,
   // fetchPreviewUrl). recap/share engine moved to recap-engine.jsx
   // (_renderCollage/_shareRecapVideo/_share*Collage/DNA/Passport/etc.).
 });

@@ -8,17 +8,19 @@
 // real counts; an edition renders every set of a day under its printed stage,
 // sorted across midnight; open-ended closers show no invented end; ACL's six
 // days group into two weekends; search spans every day; the provenance sheet
-// lists every archived capture; a lineup_only edition (a fixture served by
+// lists every archived capture, each row readable apart from the others
+// (several graphics on one day are numbered); a lineup_only edition (a fixture served by
 // route interception, since no real one exists yet) shows names and no times;
 // a failed fetch offers a retry; and nothing scrolls sideways at 393pt.
 //
-//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes 6 screenshots
+//   PLURSKY_PAST_SHOTS=<dir> node scripts/test-past-festivals-ui.mjs   # also writes 9 screenshots
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 
 const ROOT = process.cwd();
 const H = p => JSON.parse(readFileSync(join(ROOT, "data/historical", p), "utf8"));
@@ -67,6 +69,7 @@ try {
   });
   await ctx.route(`**/data/historical/editions/${FIXTURE.id}.json`, r => r.fulfill({ json: FIXTURE }));
   await ctx.route("**/data/historical/editions/*.json", r => failEdition && r.request().url().includes(failEdition) ? r.abort() : r.fallback());
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
 
   const page = await ctx.newPage();
   const errors = [];
@@ -85,7 +88,7 @@ try {
   await row.waitFor({ timeout: 10000 });
   await row.click();
   await page.getByRole("heading", { name: "Past festivals", level: 1 }).waitFor({ timeout: 10000 });
-  await page.getByText(INDEX.editions[0].festivalName, { exact: true }).waitFor({ timeout: 10000 });
+  await page.getByText(INDEX.editions[0].festivalName, { exact: true }).first().waitFor({ timeout: 10000 });
   for (const e of INDEX.editions) {
     const want = `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets`;
     ok(await page.getByText(want, { exact: true }).count() >= 1, `library row for ${e.id} does not read "${want}"`);
@@ -96,7 +99,8 @@ try {
 
   // ── ACL: two weekends of day tabs, day 1 in full ──
   const acl = ED["acl-2025"];
-  await page.getByRole("button", { name: /^Austin City Limits/ }).click();
+  // ACL has several past editions now; each row names its year.
+  await page.getByRole("button", { name: /^Austin City Limits .*\b2025\b/ }).click();
   await page.getByText("Official 2025 schedule · archived", { exact: true }).waitFor({ timeout: 10000 });
   await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
   const groups = [...new Set(acl.days.map(d => d.label.split(" · ")[0]))];
@@ -120,9 +124,30 @@ try {
   ok(await page.locator("[data-stage] li").count() === d6.length, `ACL day 6 renders ${await page.locator("[data-stage] li").count()} sets, data has ${d6.length}`);
   ok(await page.getByText("no end time printed", { exact: true }).count() === d6.filter(s => s.openEnd).length, "open-ended closers are not all marked, or a timed set is");
 
+  // ── ACL 2017: Weekend 2 is lineup-only (Instinct's ruling 2026-11-04) ──
+  // Its sets say "Time not confirmed" under the dated note; Weekend 1 keeps
+  // its times and shows no such note.
+  const a17 = ED["acl-2017"];
+  if (a17) {
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.getByRole("button", { name: /^Austin City Limits .*\b2017\b/ }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    const note = a17.notes.find(n => n.days?.includes(4)).text;
+    ok(await page.getByText(note).count() === 0 && await page.getByText("Time not confirmed").count() === 0, "ACL 2017 W1 shows the W2 note or an unconfirmed time");
+    const w2 = a17.sets.filter(s => s.day === 4);
+    await page.getByRole("group", { name: "Weekend 2" }).getByRole("button").first().click();
+    await page.waitForFunction(n => document.querySelectorAll("[data-stage] li").length === n, w2.length, { timeout: 5000 }).catch(() => {});
+    ok(await page.getByText(note).count() === 1, "ACL 2017 W2 Friday does not show the dated note on its untimed day");
+    ok(await page.getByText("Time not confirmed", { exact: true }).count() === w2.length, `ACL 2017 W2 Friday: ${await page.getByText("Time not confirmed", { exact: true }).count()} rows say "Time not confirmed", data has ${w2.length} untimed sets`);
+    ok(await page.locator("[data-stage] li").getByText(/\d:\d\d [AP]M/).count() === 0, "ACL 2017 W2 Friday shows a clock time on an untimed day");
+    await noSideScroll("ACL 2017 W2 Friday");
+    await shot("2b-acl-2017-w2-untimed");
+  }
+
   // ── EDC: overnight sets sort after the evening, not before noon ──
   await page.getByRole("button", { name: "Back" }).click();
-  await page.getByRole("button", { name: /^EDC Las Vegas/ }).click();
+  // EDC LV has several past editions; this block reads 2025's data, so open 2025's row.
+  await page.getByRole("button", { name: /^EDC Las Vegas\b.*\b2025\b/ }).click();
   await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
   const edc = ED["edc-las-vegas-2025"];
   const firstStage = edc.stages.find(st => edc.sets.some(s => s.day === 1 && s.stageId === st.id));
@@ -150,6 +175,43 @@ try {
   ok(await sheet.getByText(edc.provenance.official.replace(/^https?:\/\//, "")).count() === 1, "provenance does not name the official source");
   await shot("5-edc-provenance");
   await page.keyboard.press("Escape");
+
+  // ── several graphics on one day: each source row reads differently ──
+  const multi = Object.values(ED).find(e => (e.provenance.captures || []).some((c, i, all) =>
+    c.kind === "graphic" && all.filter(x => x.kind === "graphic" && x.day === c.day).length > 1));
+  if (multi) {
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: String(multi.year), exact: true }) })
+      .getByRole("button", { name: new RegExp("^" + INDEX.editions.find(e => e.id === multi.id).festivalName) }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    await page.getByRole("button", { name: "About this schedule" }).click();
+    const about = page.getByRole("dialog", { name: "About this schedule" });
+    await about.waitFor({ timeout: 5000 });
+    const rows = await about.getByRole("link").evaluateAll(as => as.map(a => a.parentElement.parentElement.textContent));
+    ok(rows.length === multi.provenance.captures.length && new Set(rows).size === rows.length,
+      `${multi.id}: the About sheet has ${rows.length} source rows, ${new Set(rows).size} distinct (ledger has ${multi.provenance.captures.length})`);
+    await shot("5b-multi-graphic-provenance");
+    await page.keyboard.press("Escape");
+  }
+
+  // ── undated Instagram posts: the sheet renders and says so, no date shown ──
+  for (const id of ["dreamstate-socal-2023", "dreamstate-socal-2025"]) {
+    const ed = ED[id], undated = ed.provenance.captures.filter(c => c.kind === "graphic" && c.published == null);
+    ok(undated.length > 0, `${id}: expected undated Instagram sources`);
+    await page.getByRole("button", { name: "Back" }).click();
+    await page.locator("section", { has: page.getByRole("heading", { name: String(ed.year), exact: true }) })
+      .getByRole("button", { name: new RegExp("^" + INDEX.editions.find(e => e.id === id).festivalName) }).click();
+    await page.locator("[data-stage]").first().waitFor({ timeout: 10000 });
+    await page.getByRole("button", { name: "About this schedule" }).click();
+    const about = page.getByRole("dialog", { name: "About this schedule" });
+    await about.waitFor({ timeout: 5000 });
+    const rows = await about.getByRole("link").allTextContents();
+    ok(rows.length === ed.provenance.captures.length && rows.filter(t => / · no printed date$/.test(t)).length === undated.length,
+      `${id}: ${rows.filter(t => /no printed date/.test(t)).length} of ${rows.length} source rows say "no printed date", ledger has ${undated.length} undated`);
+    ok(!rows.some(t => /no printed date/.test(t) && /\b20\d\d\b/.test(t)), `${id}: an undated source row shows a year`);
+    await shot(`5c-${id}-undated-provenance`);
+    await page.keyboard.press("Escape");
+  }
 
   // ── lineup_only fixture: names, no times, no day tabs ──
   await page.getByRole("button", { name: "Back" }).click();

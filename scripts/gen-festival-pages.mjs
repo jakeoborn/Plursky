@@ -231,9 +231,9 @@ function stageProgrammingSection(entry) {
   return `
   <section aria-labelledby="stage-programming-h" class="stage-programming">
     <h2 id="stage-programming-h">Friday &amp; Saturday stage schedules</h2>
-    <p class="note">Set times from the III Points-branded grids supplied on October 5. Both days, 13 stages and 231 intervals. The source is the supplied screenshot, not a clock-time page on the official website.</p>
+    <p class="note">Set times from III Points' official "Updated set times for the weekend" grids, published October 16 on the festival's Instagram. Both days, 13 stages and 231 intervals. The Saturday RC95 close reflects that update: Charlotte de Witte 1:30 – 2:45 AM, then 999999999 2:45 – 4:00 AM.</p>
     <p class="note">Times are local to Miami (EDT). Midnight belongs to the preceding festival night: Friday 12:00 AM is early Saturday; Saturday 12:00 AM is early Sunday. The venue map is still pending.</p>
-    <p class="note"><a href="${esc(data.source.url)}">III Points official site</a> · source: attendee-supplied III Points-branded set-time grid · checked ${esc(data.source.observedAt)}</p>
+    <p class="note"><a href="${esc(data.source.url)}">III Points on Instagram</a> · source: official III Points "Updated set times for the weekend" grid · checked ${esc(data.source.observedAt)}</p>
 ${[1,2].map(day => `    <h3>${day === 1 ? 'Friday, October 16' : 'Saturday, October 17'}</h3>
 ` + data.stages.map(stage => {
     const block = stage.days.find(d => d.day === day);
@@ -430,7 +430,7 @@ function editionSummary(e) {
 
 // A festival not open in Plursky yet (a gated entry, usually next year's)
 // leads with its newest past edition instead of an empty page: clearly a
-// past edition, with its own dates and the date its source was archived, and
+// past edition, with its own dates and the date of its source (sourceDate), and
 // kept apart from everything this page says about the upcoming edition.
 function lookBackSection(entry, editions) {
   if (entry.available || !editions.length) return '';
@@ -439,7 +439,7 @@ function lookBackSection(entry, editions) {
   <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
     <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
     <p class="meta"><span class="chip chip-past">Past edition</span>${esc(e.name)} · ${ymdLabel(e.first, e.last)}</p>
-    <p>${editionSummary(e)}${e.archived ? ` <span class="note">Official source archived ${ymdLabel(e.archived)}.</span>` : ''}</p>
+    <p>${editionSummary(e)}${e.archived ? ` <span class="note">${e.sourceLabel} ${ymdLabel(e.archived)}.</span>` : ''}</p>
     <p><a href="${editionHref(e)}">Open ${esc(e.name)} in Plursky</a></p>
     <p class="note">This is the ${e.year} edition. Nothing here is ${esc(entry.config.name)}'s lineup or schedule.</p>
   </section>`;
@@ -493,12 +493,7 @@ function faqItems(entry, { names, hasTimes, stages, blocks, plate }) {
   // so "yes, times are published" and an actual grid can never disagree. A
   // festival with no times gets the honest answer, not a softer one.
   if (stageProgrammingFor(cfg.id)?.scope === 'official-set-times') {
-    // Provenance follows scheduleSource, like every other festival's answer:
-    // this sentence said "community sources" after the source went official.
-    const src = cfg.scheduleSource;
-    items.push({q: `Have the ${cfg.name} set times been announced?`, a: src && src.official === true
-      ? `Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, from the official set times${src.observedAt ? ` confirmed ${src.observedAt}` : ''}.`
-      : 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, transcribed from the III Points-branded screenshot supplied October 5, gathered from community sources.'});
+    items.push({q: `Have the ${cfg.name} set times been announced?`, a: 'Yes. Both days of the stage timetable are on this page: 231 sets on 13 stages, from III Points\' official updated set-time grids published October 16.'});
   } else if (hasTimes) {
     const src = cfg.scheduleSource;
     items.push({

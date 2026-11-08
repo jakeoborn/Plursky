@@ -21,7 +21,7 @@
 //
 // Its predecessor _anyFestivalNight DID return {festivalId, night}, and both
 // fields were unusable here: it filtered through _allDataSets() to
-// registry-`available` festivals, so a GATED one like edc-orlando-2026 was
+// registry-`available` festivals, so a GATED one (edc-orlando-2026 then) was
 // invisible — the very festival whose clips get orphaned — and it stopped at the
 // FIRST claimant with no tie-break, so on the 10 ambiguous night-windows (of 53)
 // it attributed by _DATA_SETS declaration order. Neither was a live defect at
@@ -34,6 +34,7 @@ import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { addSyntheticGatedFestival, SYNTH_GATED_ID } from "./lib/synthetic-gated-festival.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const MODS = readdirSync(join(ROOT, "data", "festivals")).filter(f => f.endsWith(".js")).sort()
@@ -69,6 +70,10 @@ function boot(seed = {}) {
   for (const n of ["data", "photo-tag", "spotify"]) {
     vm.runInContext(readFileSync(join(ROOT, "build", `${n}.js`), "utf8"), ctx, { filename: `build/${n}.js` });
   }
+  // The gated fixture: a clone of a real data set, gated in this vm only.
+  // It was edc-orlando-2026 until that festival opened (2026-11-04, #262);
+  // a synthetic one can't open out from under this test.
+  addSyntheticGatedFestival(ctx, "edc-lv-2026");
   return { ctx, store, run: (src) => vm.runInContext(src, ctx) };
 }
 
@@ -88,6 +93,7 @@ function dayOneTakenAt(cfg) {
 }
 
 const ACTIVE = "acl-2026";
+const GATED = SYNTH_GATED_ID;
 const probe = boot();
 if (probe.run("typeof _maybeAutoArchive") !== "function") dead("_maybeAutoArchive not reachable from build/spotify.js");
 if (probe.run("typeof _activeMoments") !== "function") dead("_activeMoments not reachable from build/spotify.js");
@@ -99,7 +105,7 @@ const cfgOf = (id) => DS[id]?.config || {};
 const T = {
   edclv:   dayOneTakenAt(cfgOf("edc-lv-2026")),
   acl:     dayOneTakenAt(cfgOf(ACTIVE)),
-  orlando: dayOneTakenAt(cfgOf("edc-orlando-2026")),
+  gated:   dayOneTakenAt(cfgOf(GATED)),
   ambig:   dayOneTakenAt(cfgOf("portola-2026")),
 };
 for (const [k, v] of Object.entries(T)) if (!v) dead(`fixture date for ${k} is ${v} — dayDates shape changed`);
@@ -107,8 +113,8 @@ for (const [k, v] of Object.entries(T)) if (!v) dead(`fixture date for ${k} is $
 // The gated festival is the whole point of walking _DATA_SETS rather than the
 // registry-filtered _allDataSets(). Assert it really IS gated, or this fixture
 // silently stops testing anything.
-const orlandoGated = !REG.find(f => f?.config?.id === "edc-orlando-2026" && f.available);
-check(orlandoGated, "fixture sanity: edc-orlando-2026 must be GATED for the gated-festival case to mean anything");
+const gatedIsGated = !!DS[GATED] && !REG.find(f => f?.config?.id === GATED && f.available);
+check(gatedIsGated, `fixture sanity: ${GATED} must be GATED for the gated-festival case to mean anything`);
 
 // Which festivals' night windows claim a given capture time? Computed here from
 // _DATA_SETS + the shipped _photoFestivalNight, so the test derives the truth
@@ -124,7 +130,7 @@ function claimants(takenAt) {
 const legacy = {
   1: [
     { id: "m-edclv",   night: 1, artistId: null, takenAt: T.edclv,   photoId: "p1", kind: "photo", createdAt: 1 },
-    { id: "m-orlando", night: 1, artistId: null, takenAt: T.orlando, photoId: "p2", kind: "photo", createdAt: 2 },
+    { id: "m-gated",   night: 1, artistId: null, takenAt: T.gated,   photoId: "p2", kind: "photo", createdAt: 2 },
     { id: "m-ambig",   night: 1, artistId: null, takenAt: T.ambig,   photoId: "p3", kind: "photo", createdAt: 3 },
     { id: "m-nodate",  night: 1, artistId: null, takenAt: null,      photoId: "p4", kind: "photo", createdAt: 4 },
     { id: "m-active",  night: 1, artistId: null, takenAt: T.acl,     photoId: "p5", kind: "photo", createdAt: 5 },
@@ -189,8 +195,8 @@ for (const m of Object.values(byId)) {
 // ── Rule B — recovery: a single claimant is proof, including a GATED one ────
 check(byId["m-edclv"].festivalId === "edc-lv-2026",
   `m-edclv: capture time ${T.edclv} is claimed only by edc-lv-2026 — expected that stamp, got ${JSON.stringify(byId["m-edclv"].festivalId)}`);
-check(byId["m-orlando"].festivalId === "edc-orlando-2026",
-  `m-orlando: capture time ${T.orlando} is claimed only by edc-orlando-2026 (GATED) — expected that stamp, got ${JSON.stringify(byId["m-orlando"].festivalId)}. ` +
+check(byId["m-gated"].festivalId === GATED,
+  `m-gated: capture time ${T.gated} is claimed only by ${GATED} (GATED) — expected that stamp, got ${JSON.stringify(byId["m-gated"].festivalId)}. ` +
   `A registry-filtered walk cannot see a gated festival.`);
 
 // ── Rule C — no evidence means no evidence-shaped stamp ────────────────────
@@ -211,7 +217,7 @@ check(byId["m-stamped"].festivalId === "edc-lv-2026",
 
 // ── Rule E — reachability, the user-visible consequence ────────────────────
 // Attribution only matters because _activeMoments filters on it.
-for (const [fid, wantId] of [["edc-lv-2026", "m-edclv"], ["edc-orlando-2026", "m-orlando"]]) {
+for (const [fid, wantId] of [["edc-lv-2026", "m-edclv"], [GATED, "m-gated"]]) {
   run(`FESTIVAL_CONFIG = _DATA_SETS[${JSON.stringify(fid)}].config`);
   const vis = Object.values(run("_activeMoments(_readMoments())")).flat().map(m => m.id);
   check(vis.includes(wantId),
@@ -261,4 +267,4 @@ if (failed) {
   process.exit(1);
 }
 console.log(`  ✓ festival migration: ${checks} checks — legacy moments attributed from their own capture time`);
-console.log(`    fixtures: edc-lv=${T.edclv} orlando=${T.orlando} (gated) ambiguous=${T.ambig} active=${ACTIVE}`);
+console.log(`    fixtures: edc-lv=${T.edclv} ${GATED}=${T.gated} (gated) ambiguous=${T.ambig} active=${ACTIVE}`);

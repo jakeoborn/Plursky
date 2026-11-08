@@ -1,0 +1,396 @@
+{
+  "id": "acl-2019",
+  "method": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-10-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20191120012356/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20191120012356",
+          "printed": "Friday Oct 4th",
+          "sha256": "4f63ccf5d799cf136a194de6aaef17b38f04cae59158574daabd75c597d57a10",
+          "bytes": 452320,
+          "rows": 36,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "12:00pm … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-10-05",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20191120012356/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20191120012356",
+          "printed": "Saturday Oct 5th",
+          "sha256": "4f63ccf5d799cf136a194de6aaef17b38f04cae59158574daabd75c597d57a10",
+          "bytes": 452320,
+          "rows": 42,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-10-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-one/",
+          "archivedUrl": "https://web.archive.org/web/20191120012356/https://www.aclfestival.com/schedule-weekend-one/",
+          "captureTimestamp": "20191120012356",
+          "printed": "Sunday Oct 6th",
+          "sha256": "4f63ccf5d799cf136a194de6aaef17b38f04cae59158574daabd75c597d57a10",
+          "bytes": 452320,
+          "rows": 43,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-10-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20191018172235/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20191018172235",
+          "printed": "Friday Oct 11th",
+          "sha256": "a5fb9da5635d0ec1fc9c00ea8b6a911efc02b99d6e2918e3f34ab947c5e086d3",
+          "bytes": 457482,
+          "rows": 37,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "12:00pm … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2019-10-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20191018172235/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20191018172235",
+          "printed": "Saturday Oct 12th",
+          "sha256": "a5fb9da5635d0ec1fc9c00ea8b6a911efc02b99d6e2918e3f34ab947c5e086d3",
+          "bytes": 457482,
+          "rows": 43,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2019-10-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.aclfestival.com/schedule-weekend-two/",
+          "archivedUrl": "https://web.archive.org/web/20191018172235/https://www.aclfestival.com/schedule-weekend-two/",
+          "captureTimestamp": "20191018172235",
+          "printed": "Sunday Oct 13th",
+          "sha256": "a5fb9da5635d0ec1fc9c00ea8b6a911efc02b99d6e2918e3f34ab947c5e086d3",
+          "bytes": 457482,
+          "rows": 43,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:00am … 10:00pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Honda",
+      "start": "17:30",
+      "end": "18:30",
+      "billing": "Lil Uzi Vert",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 1,
+      "stage": "Vrbo",
+      "start": "13:15",
+      "end": "14:00",
+      "billing": "Sam Fender",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 2,
+      "stage": "Honda",
+      "start": "14:00",
+      "end": "15:00",
+      "billing": "The Kooks",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 2,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "14:45",
+      "end": "15:30",
+      "billing": "Dylan LeBlanc",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    },
+    {
+      "day": 5,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "14:45",
+      "end": "15:30",
+      "billing": "Dylan LeBlanc",
+      "reason": "printed on a pre-festival capture of the official schedule; the final page replaced it"
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Bonus Tracks",
+      "start": "13:00",
+      "end": "13:15",
+      "billing": "ACL Cares: Leap of Joy",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "Bonus Tracks",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "NPR Music: All Songs Considered ft. Jenny Lewis",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "Bonus Tracks",
+      "start": "15:30",
+      "end": "16:30",
+      "billing": "Andrew Knowlton w/ Aaron Franklin",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Bonus Tracks",
+      "start": "12:30",
+      "end": "13:15",
+      "billing": "Breathwork and Meditation by goop",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "Bonus Tracks",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "NPR Music: All Songs Considered w/ Billie Eilish",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "Bonus Tracks",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Andrew Knowlton w/ Joe Beddia",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Bonus Tracks",
+      "start": "12:45",
+      "end": "13:15",
+      "billing": "KUTX: Enough About Music w/ Savannah Welch & Billy Strings",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "Bonus Tracks",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "NPR Music: All Songs Considered w/ & Nilüfer Yanya",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "Bonus Tracks",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Andrew Knowlton w/ Veronica & Miguel Garza",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Bonus Tracks",
+      "start": "12:30",
+      "end": "12:55",
+      "billing": "ACL Cares: HOPE Campaign",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "Bonus Tracks",
+      "start": "13:00",
+      "end": "13:15",
+      "billing": "ACL Cares: Oxfam & RAICES",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "Bonus Tracks",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "KUTX: The Breaks ft. Alessia Lani",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "Bonus Tracks",
+      "start": "15:30",
+      "end": "16:30",
+      "billing": "Andrew Knowlton w/ Liz Lambert",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 5,
+      "stage": "Bonus Tracks",
+      "start": "12:30",
+      "end": "13:15",
+      "billing": "DANCE DANCE OV w/ Outdoor Voices",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "Bonus Tracks",
+      "start": "14:00",
+      "end": "14:30",
+      "billing": "NPR Music: All Songs Considered ft. Pink Sweat$",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "Bonus Tracks",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Andrew Knowlton w/ Alison Roman",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 5,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 6,
+      "stage": "Bonus Tracks",
+      "start": "12:45",
+      "end": "13:15",
+      "billing": "KUTX: This Song w/ Shura",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "Bonus Tracks",
+      "start": "15:00",
+      "end": "15:30",
+      "billing": "NPR Music: All Songs Considered ft. DUCKWRTH",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "Bonus Tracks",
+      "start": "16:00",
+      "end": "17:00",
+      "billing": "Andrew Knowlton w/ Brad Leone",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 6,
+      "stage": "Tito’s Handmade Vodka",
+      "start": "20:00",
+      "end": "22:00",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}
