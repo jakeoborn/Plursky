@@ -113013,6 +113013,5166 @@
   "mainStage": null
  },
  {
+  "id": "acl-2023:d1:honda:1255:asleep-at-the-wheel",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "ASLEEP AT THE WHEEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "asleep-at-the-wheel",
+    "role": "performer"
+   }
+  ],
+  "act": "asleep-at-the-wheel",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:honda:1425:thee-sacred-souls",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "THEE SACRED SOULS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-sacred-souls",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-sacred-souls",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:honda:1610:portugal-the-man",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "PORTUGAL. THE MAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "portugal-the-man",
+    "role": "performer"
+   }
+  ],
+  "act": "portugal-the-man",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:honda:1810:maggie-rogers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "MAGGIE ROGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rogers",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:honda:2010:the-lumineers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "THE LUMINEERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-lumineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-lumineers",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:miller-lite:1340:the-national-parks",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "THE NATIONAL PARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-national-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-national-parks",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:miller-lite:1510:breland",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "BRELAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "breland",
+    "role": "performer"
+   }
+  ],
+  "act": "breland",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:miller-lite:1710:the-teskey-brothers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "THE TESKEY BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-teskey-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-teskey-brothers",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:miller-lite:1910:the-mars-volta",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "THE MARS VOLTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-mars-volta",
+    "role": "performer"
+   }
+  ],
+  "act": "the-mars-volta",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:bmi:1340:delacey",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "DELACEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delacey",
+    "role": "performer"
+   }
+  ],
+  "act": "delacey",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:bmi:1515:brother-thunder",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "BROTHER THUNDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brother-thunder",
+    "role": "performer"
+   }
+  ],
+  "act": "brother-thunder",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:bmi:1710:bass-drum-of-death",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "BASS DRUM OF DEATH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bass-drum-of-death",
+    "role": "performer"
+   }
+  ],
+  "act": "bass-drum-of-death",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:ihg-hotels-and-resorts:1340:the-altons",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "THE ALTONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-altons",
+    "role": "performer"
+   }
+  ],
+  "act": "the-altons",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:ihg-hotels-and-resorts:1510:abraham-alexander",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "ABRAHAM ALEXANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abraham-alexander",
+    "role": "performer"
+   }
+  ],
+  "act": "abraham-alexander",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:ihg-hotels-and-resorts:1710:brittney-spencer",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "BRITTNEY SPENCER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brittney-spencer",
+    "role": "performer"
+   }
+  ],
+  "act": "brittney-spencer",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:ihg-hotels-and-resorts:1910:the-revivalists",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "THE REVIVALISTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-revivalists",
+    "role": "performer"
+   }
+  ],
+  "act": "the-revivalists",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:tito-s-handmade-vodka:1315:julia-wolf",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "JULIA WOLF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-wolf",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:tito-s-handmade-vodka:1425:bailen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "BAILEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bailen",
+    "role": "performer"
+   }
+  ],
+  "act": "bailen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:tito-s-handmade-vodka:1610:blond-ish",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "BLOND:ISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blond-ish",
+    "role": "performer"
+   }
+  ],
+  "act": "blond-ish",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:tito-s-handmade-vodka:1810:fkj",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "FKJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fkj",
+    "role": "performer"
+   }
+  ],
+  "act": "fkj",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:austin-kiddie-limits:1245:sonia-de-los-santos",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SONIA DE LOS SANTOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonia-de-los-santos",
+    "role": "performer"
+   }
+  ],
+  "act": "sonia-de-los-santos",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:austin-kiddie-limits:1430:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:austin-kiddie-limits:1615:q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:t-mobile:1510:half-alive",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "HALF.ALIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "half-alive",
+    "role": "performer"
+   }
+  ],
+  "act": "half-alive",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:t-mobile:1710:little-simz",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "LITTLE SIMZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-simz",
+    "role": "performer"
+   }
+  ],
+  "act": "little-simz",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:t-mobile:1900:above-and-beyond",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "ABOVE & BEYOND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:american-express:1255:devon-gilfillian",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "DEVON GILFILLIAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devon-gilfillian",
+    "role": "performer"
+   }
+  ],
+  "act": "devon-gilfillian",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:american-express:1425:nessa-barrett",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "NESSA BARRETT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nessa-barrett",
+    "role": "performer"
+   }
+  ],
+  "act": "nessa-barrett",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:american-express:1610:lil-yachty",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "LIL YACHTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-yachty",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-yachty",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:american-express:1810:major-lazer",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "MAJOR LAZER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d1:american-express:2040:kendrick-lamar",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-06",
+  "day": 1,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:40",
+  "end": null,
+  "printed": "KENDRICK LAMAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kendrick-lamar",
+    "role": "performer"
+   }
+  ],
+  "act": "kendrick-lamar",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:honda:1230:mac-saturn",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "MAC SATURN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mac-saturn",
+    "role": "performer"
+   }
+  ],
+  "act": "mac-saturn",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:honda:1400:jessie-ware",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "JESSIE WARE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-ware",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-ware",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:honda:1600:rina-sawayama",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "RINA SAWAYAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rina-sawayama",
+    "role": "performer"
+   }
+  ],
+  "act": "rina-sawayama",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:honda:1800:thirty-seconds-to-mars",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "THIRTY SECONDS TO MARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thirty-seconds-to-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "thirty-seconds-to-mars",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:honda:2000:shania-twain",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "HONDA",
+  "start": "20:00",
+  "end": null,
+  "printed": "SHANIA TWAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shania-twain",
+    "role": "performer"
+   }
+  ],
+  "act": "shania-twain",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:miller-lite:1315:yaya-bey",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "YAYA BEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yaya-bey",
+    "role": "performer"
+   }
+  ],
+  "act": "yaya-bey",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:miller-lite:1500:ben-kweller",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "BEN KWELLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-kweller",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-kweller",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:miller-lite:1700:poolside",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "POOLSIDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "poolside",
+    "role": "performer"
+   }
+  ],
+  "act": "poolside",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:miller-lite:1900:bob-moses",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BOB MOSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:bmi:1145:patrick-martin",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "BMI",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "PATRICK MARTIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-martin",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:bmi:1315:serayah",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "SERAYAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "serayah",
+    "role": "performer"
+   }
+  ],
+  "act": "serayah",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:bmi:1500:husbands",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "HUSBANDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "husbands",
+    "role": "performer"
+   }
+  ],
+  "act": "husbands",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:bmi:1700:shaed",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "SHAED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shaed",
+    "role": "performer"
+   }
+  ],
+  "act": "shaed",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:ihg-hotels-and-resorts:1200:gus-clark",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "GUS CLARK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gus-clark",
+    "role": "performer"
+   }
+  ],
+  "act": "gus-clark",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:ihg-hotels-and-resorts:1330:eddie-zuko",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "EDDIE ZUKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eddie-zuko",
+    "role": "performer"
+   }
+  ],
+  "act": "eddie-zuko",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:ihg-hotels-and-resorts:1515:amaarae",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "AMAARAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amaarae",
+    "role": "performer"
+   }
+  ],
+  "act": "amaarae",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:ihg-hotels-and-resorts:1715:coi-leray",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "COI LERAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coi-leray",
+    "role": "performer"
+   }
+  ],
+  "act": "coi-leray",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:ihg-hotels-and-resorts:1900:tove-lo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "TOVE LO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tove-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "tove-lo",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1145:die-spitz",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "DIE SPITZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-spitz",
+    "role": "performer"
+   }
+  ],
+  "act": "die-spitz",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1245:shooks",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "SHOOKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shooks",
+    "role": "performer"
+   }
+  ],
+  "act": "shooks",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1345:angel-white",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "ANGEL WHITE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angel-white",
+    "role": "performer"
+   }
+  ],
+  "act": "angel-white",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1445:calder-allen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "CALDER ALLEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calder-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "calder-allen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1600:christone-kingfish-ingram",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "CHRISTONE \"KINGFISH\" INGRAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christone-kingfish-ingram",
+    "role": "performer"
+   }
+  ],
+  "act": "christone-kingfish-ingram",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:tito-s-handmade-vodka:1800:chromeo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CHROMEO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chromeo",
+    "role": "performer"
+   }
+  ],
+  "act": "chromeo",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:austin-kiddie-limits:1245:sonia-de-los-santos",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SONIA DE LOS SANTOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonia-de-los-santos",
+    "role": "performer"
+   }
+  ],
+  "act": "sonia-de-los-santos",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:austin-kiddie-limits:1430:tim-kubart",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "TIM KUBART",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-kubart",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-kubart",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:austin-kiddie-limits:1630:smith-and-yarn",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "SMITH & YARN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "smith-and-yarn",
+    "role": "performer"
+   }
+  ],
+  "act": "smith-and-yarn",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:t-mobile:1145:arya",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "ARYA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arya",
+    "role": "performer"
+   }
+  ],
+  "act": "arya",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:t-mobile:1315:abby-sage",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "ABBY SAGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abby-sage",
+    "role": "performer"
+   }
+  ],
+  "act": "abby-sage",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:t-mobile:1500:gus-dapperton",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "GUS DAPPERTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gus-dapperton",
+    "role": "performer"
+   }
+  ],
+  "act": "gus-dapperton",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:t-mobile:1700:tanya-tucker",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TANYA TUCKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tanya-tucker",
+    "role": "performer"
+   }
+  ],
+  "act": "tanya-tucker",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:t-mobile:1900:noah-kahan",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "NOAH KAHAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noah-kahan",
+    "role": "performer"
+   }
+  ],
+  "act": "noah-kahan",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:american-express:1230:bigxthaplug",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "BIGXTHAPLUG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigxthaplug",
+    "role": "performer"
+   }
+  ],
+  "act": "bigxthaplug",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:american-express:1400:declan-mckenna",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "DECLAN MCKENNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "declan-mckenna",
+    "role": "performer"
+   }
+  ],
+  "act": "declan-mckenna",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:american-express:1600:mt-joy",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MT. JOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mt-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "mt-joy",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:american-express:1800:alanis-morissette",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ALANIS MORISSETTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alanis-morissette",
+    "role": "performer"
+   }
+  ],
+  "act": "alanis-morissette",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d2:american-express:2000:foo-fighters",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-07",
+  "day": 2,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": null,
+  "printed": "FOO FIGHTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foo-fighters",
+    "role": "performer"
+   }
+  ],
+  "act": "foo-fighters",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:honda:1245:michigander",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "MICHIGANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michigander",
+    "role": "performer"
+   }
+  ],
+  "act": "michigander",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:honda:1415:dope-lemon",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "DOPE LEMON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dope-lemon",
+    "role": "performer"
+   }
+  ],
+  "act": "dope-lemon",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:honda:1615:tash-sultana",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "TASH SULTANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tash-sultana",
+    "role": "performer"
+   }
+  ],
+  "act": "tash-sultana",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:honda:1815:yeah-yeah-yeahs",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "YEAH YEAH YEAHS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeah-yeah-yeahs",
+    "role": "performer"
+   }
+  ],
+  "act": "yeah-yeah-yeahs",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:honda:2015:odesza",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": null,
+  "printed": "ODESZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odesza",
+    "role": "performer"
+   }
+  ],
+  "act": "odesza",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:miller-lite:1200:katy-kirby",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "KATY KIRBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katy-kirby",
+    "role": "performer"
+   }
+  ],
+  "act": "katy-kirby",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:miller-lite:1330:mimi-webb",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "MIMI WEBB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mimi-webb",
+    "role": "performer"
+   }
+  ],
+  "act": "mimi-webb",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:miller-lite:1515:suki-waterhouse",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "SUKI WATERHOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suki-waterhouse",
+    "role": "performer"
+   }
+  ],
+  "act": "suki-waterhouse",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:miller-lite:1715:ivan-cornejo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "IVAN CORNEJO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivan-cornejo",
+    "role": "performer"
+   }
+  ],
+  "act": "ivan-cornejo",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:miller-lite:1915:cigarettes-after-sex",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "MILLER LITE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "CIGARETTES AFTER SEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cigarettes-after-sex",
+    "role": "performer"
+   }
+  ],
+  "act": "cigarettes-after-sex",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:bmi:1200:major",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "MAJOR.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major",
+    "role": "performer"
+   }
+  ],
+  "act": "major",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:bmi:1330:grace-sorensen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "GRACE SORENSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grace-sorensen",
+    "role": "performer"
+   }
+  ],
+  "act": "grace-sorensen",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:bmi:1515:sunrose",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "SUNROSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sunrose",
+    "role": "performer"
+   }
+  ],
+  "act": "sunrose",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:bmi:1715:tanner-usrey",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "TANNER USREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tanner-usrey",
+    "role": "performer"
+   }
+  ],
+  "act": "tanner-usrey",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:ihg-hotels-and-resorts:1200:ellis-bullard",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "ELLIS BULLARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ellis-bullard",
+    "role": "performer"
+   }
+  ],
+  "act": "ellis-bullard",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:ihg-hotels-and-resorts:1330:randall-king",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "RANDALL KING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "randall-king",
+    "role": "performer"
+   }
+  ],
+  "act": "randall-king",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:ihg-hotels-and-resorts:1515:morgan-wade",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "MORGAN WADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morgan-wade",
+    "role": "performer"
+   }
+  ],
+  "act": "morgan-wade",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:ihg-hotels-and-resorts:1715:the-breeders",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "THE BREEDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-breeders",
+    "role": "performer"
+   }
+  ],
+  "act": "the-breeders",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:ihg-hotels-and-resorts:1915:death-grips",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "DEATH GRIPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "death-grips",
+    "role": "performer"
+   }
+  ],
+  "act": "death-grips",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1200:wesley-bray-and-the-disciples-of-joy",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "WESLEY BRAY AND THE DISCIPLES OF JOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wesley-bray-and-the-disciples-of-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "wesley-bray-and-the-disciples-of-joy",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1300:jane-leo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "JANE LEO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jane-leo",
+    "role": "performer"
+   }
+  ],
+  "act": "jane-leo",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1400:ali-sethi",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "ALI SETHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ali-sethi",
+    "role": "performer"
+   }
+  ],
+  "act": "ali-sethi",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1515:charlotte-adigery-and-bolis-pupul",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "CHARLOTTE ADIGÉRY & BOLIS PUPUL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-adigery-and-bolis-pupul",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-adigery-and-bolis-pupul",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1630:yves-tumor",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:15",
+  "printed": "YVES TUMOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yves-tumor",
+    "role": "performer"
+   }
+  ],
+  "act": "yves-tumor",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:tito-s-handmade-vodka:1815:sidepiece",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "SIDEPIECE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sidepiece",
+    "role": "performer"
+   }
+  ],
+  "act": "sidepiece",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:austin-kiddie-limits:1245:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:austin-kiddie-limits:1415:smith-and-yarn",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "SMITH & YARN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "smith-and-yarn",
+    "role": "performer"
+   }
+  ],
+  "act": "smith-and-yarn",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:austin-kiddie-limits:1615:tim-kubart",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "TIM KUBART",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-kubart",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-kubart",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:t-mobile:1200:matt-maltese",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "MATT MALTESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-maltese",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-maltese",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:t-mobile:1330:becky-hill",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "BECKY HILL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "becky-hill",
+    "role": "performer"
+   }
+  ],
+  "act": "becky-hill",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:t-mobile:1515:the-walkmen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "THE WALKMEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-walkmen",
+    "role": "performer"
+   }
+  ],
+  "act": "the-walkmen",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:t-mobile:1730:glorilla",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "GLORILLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glorilla",
+    "role": "performer"
+   }
+  ],
+  "act": "glorilla",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:t-mobile:1915:labrinth",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "LABRINTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:american-express:1245:madison-cunningham",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "MADISON CUNNINGHAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madison-cunningham",
+    "role": "performer"
+   }
+  ],
+  "act": "madison-cunningham",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:american-express:1415:kevin-kaarl",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "KEVIN KAARL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-kaarl",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-kaarl",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:american-express:1615:niall-horan",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "NIALL HORAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niall-horan",
+    "role": "performer"
+   }
+  ],
+  "act": "niall-horan",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:american-express:1815:hozier",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "HOZIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hozier",
+    "role": "performer"
+   }
+  ],
+  "act": "hozier",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d3:american-express:2030:mumford-and-sons",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-08",
+  "day": 3,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:30",
+  "end": null,
+  "printed": "MUMFORD & SONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mumford-and-sons",
+    "role": "performer"
+   }
+  ],
+  "act": "mumford-and-sons",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:honda:1255:jimmie-vaughan-and-tilt-a-whirl-band",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "JIMMIE VAUGHAN & TILT-A-WHIRL BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmie-vaughan-and-tilt-a-whirl-band",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmie-vaughan-and-tilt-a-whirl-band",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:honda:1425:thee-sacred-souls",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "THEE SACRED SOULS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-sacred-souls",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-sacred-souls",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:honda:1610:raye",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "RAYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raye",
+    "role": "performer"
+   }
+  ],
+  "act": "raye",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:honda:1810:maggie-rogers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "MAGGIE ROGERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rogers",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:honda:2010:the-lumineers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "HONDA",
+  "start": "20:10",
+  "end": null,
+  "printed": "THE LUMINEERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-lumineers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-lumineers",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:miller-lite:1340:we-don-t-ride-llamas",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "WE DON'T RIDE LLAMAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "we-don-t-ride-llamas",
+    "role": "performer"
+   }
+  ],
+  "act": "we-don-t-ride-llamas",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:miller-lite:1510:breland",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "BRELAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "breland",
+    "role": "performer"
+   }
+  ],
+  "act": "breland",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:miller-lite:1710:the-teskey-brothers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "THE TESKEY BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-teskey-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-teskey-brothers",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:miller-lite:1910:portugal-the-man",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "MILLER LITE",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "PORTUGAL. THE MAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "portugal-the-man",
+    "role": "performer"
+   }
+  ],
+  "act": "portugal-the-man",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:bmi:1340:emyln",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "BMI",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "EMYLN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emyln",
+    "role": "performer"
+   }
+  ],
+  "act": "emyln",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:bmi:1515:oliver-hazard",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "OLIVER HAZARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-hazard",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-hazard",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:bmi:1710:the-moss",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "BMI",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "THE MOSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-moss",
+    "role": "performer"
+   }
+  ],
+  "act": "the-moss",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:ihg-hotels-and-resorts:1340:the-altons",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "THE ALTONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-altons",
+    "role": "performer"
+   }
+  ],
+  "act": "the-altons",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:ihg-hotels-and-resorts:1525:ethel-cain",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:25",
+  "end": "16:10",
+  "printed": "ETHEL CAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ethel-cain",
+    "role": "performer"
+   }
+  ],
+  "act": "ethel-cain",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:ihg-hotels-and-resorts:1710:d4vd",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:10",
+  "end": "18:10",
+  "printed": "D4VD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d4vd",
+    "role": "performer"
+   }
+  ],
+  "act": "d4vd",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:ihg-hotels-and-resorts:1910:the-revivalists",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "THE REVIVALISTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-revivalists",
+    "role": "performer"
+   }
+  ],
+  "act": "the-revivalists",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:tito-s-handmade-vodka:1315:the-huston-tillotson-university-jazz-collective",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "THE HUSTON-TILLOTSON UNIVERSITY JAZZ COLLECTIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-huston-tillotson-university-jazz-collective",
+    "role": "performer"
+   }
+  ],
+  "act": "the-huston-tillotson-university-jazz-collective",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:tito-s-handmade-vodka:1425:bailen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "BAILEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bailen",
+    "role": "performer"
+   }
+  ],
+  "act": "bailen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:tito-s-handmade-vodka:1610:blond-ish",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "BLOND:ISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blond-ish",
+    "role": "performer"
+   }
+  ],
+  "act": "blond-ish",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:tito-s-handmade-vodka:1810:fkj",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "FKJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fkj",
+    "role": "performer"
+   }
+  ],
+  "act": "fkj",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:austin-kiddie-limits:1245:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:austin-kiddie-limits:1430:resonate",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "RESONATE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "resonate",
+    "role": "performer"
+   }
+  ],
+  "act": "resonate",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:austin-kiddie-limits:1615:q-brothers",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:t-mobile:1340:jaime-wyatt",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "13:40",
+  "end": "14:25",
+  "printed": "JAIME WYATT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaime-wyatt",
+    "role": "performer"
+   }
+  ],
+  "act": "jaime-wyatt",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:t-mobile:1510:abraham-alexander",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "15:10",
+  "end": "16:10",
+  "printed": "ABRAHAM ALEXANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abraham-alexander",
+    "role": "performer"
+   }
+  ],
+  "act": "abraham-alexander",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:t-mobile:1710:glorilla",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "17:10",
+  "end": "17:55",
+  "printed": "GLORILLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glorilla",
+    "role": "performer"
+   }
+  ],
+  "act": "glorilla",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:t-mobile:1900:above-and-beyond",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "ABOVE & BEYOND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:american-express:1255:font",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "FONT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "font",
+    "role": "performer"
+   }
+  ],
+  "act": "font",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:american-express:1425:nessa-barrett",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:25",
+  "end": "15:10",
+  "printed": "NESSA BARRETT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nessa-barrett",
+    "role": "performer"
+   }
+  ],
+  "act": "nessa-barrett",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:american-express:1610:lil-yachty",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "LIL YACHTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-yachty",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-yachty",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d4:american-express:2040:kendrick-lamar",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-13",
+  "day": 4,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:40",
+  "end": null,
+  "printed": "KENDRICK LAMAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kendrick-lamar",
+    "role": "performer"
+   }
+  ],
+  "act": "kendrick-lamar",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:honda:1230:sincere-engineer",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "SINCERE ENGINEER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sincere-engineer",
+    "role": "performer"
+   }
+  ],
+  "act": "sincere-engineer",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:honda:1400:jessie-ware",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "JESSIE WARE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-ware",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-ware",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:honda:1600:rina-sawayama",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "RINA SAWAYAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rina-sawayama",
+    "role": "performer"
+   }
+  ],
+  "act": "rina-sawayama",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:honda:1800:thirty-seconds-to-mars",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "THIRTY SECONDS TO MARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thirty-seconds-to-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "thirty-seconds-to-mars",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:honda:2015:the-1975",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": null,
+  "printed": "THE 1975",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-1975",
+    "role": "performer"
+   }
+  ],
+  "act": "the-1975",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:miller-lite:1145:miya-folick",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "MIYA FOLICK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miya-folick",
+    "role": "performer"
+   }
+  ],
+  "act": "miya-folick",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:miller-lite:1315:eloise",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "ELOISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eloise",
+    "role": "performer"
+   }
+  ],
+  "act": "eloise",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:miller-lite:1500:ben-kweller",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "BEN KWELLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-kweller",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-kweller",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:miller-lite:1700:poolside",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "POOLSIDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "poolside",
+    "role": "performer"
+   }
+  ],
+  "act": "poolside",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:miller-lite:1900:bob-moses",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "MILLER LITE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "BOB MOSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:bmi:1145:pony-bradshaw",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "BMI",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "PONY BRADSHAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pony-bradshaw",
+    "role": "performer"
+   }
+  ],
+  "act": "pony-bradshaw",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:bmi:1315:rattlesnake-milk",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "BMI",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "RATTLESNAKE MILK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rattlesnake-milk",
+    "role": "performer"
+   }
+  ],
+  "act": "rattlesnake-milk",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:bmi:1500:snooper",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "BMI",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "SNÕÕPER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snooper",
+    "role": "performer"
+   }
+  ],
+  "act": "snooper",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:bmi:1700:new-west",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "BMI",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "NEW WEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "new-west",
+    "role": "performer"
+   }
+  ],
+  "act": "new-west",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:ihg-hotels-and-resorts:1200:nemegata",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "NEMEGATA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nemegata",
+    "role": "performer"
+   }
+  ],
+  "act": "nemegata",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:ihg-hotels-and-resorts:1330:eddie-zuko",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "EDDIE ZUKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eddie-zuko",
+    "role": "performer"
+   }
+  ],
+  "act": "eddie-zuko",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:ihg-hotels-and-resorts:1515:amaarae",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "AMAARAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amaarae",
+    "role": "performer"
+   }
+  ],
+  "act": "amaarae",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:ihg-hotels-and-resorts:1715:coi-leray",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "COI LERAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coi-leray",
+    "role": "performer"
+   }
+  ],
+  "act": "coi-leray",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:ihg-hotels-and-resorts:1900:tove-lo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "TOVE LO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tove-lo",
+    "role": "performer"
+   }
+  ],
+  "act": "tove-lo",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1145:blakchyl",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "BLAKCHYL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blakchyl",
+    "role": "performer"
+   }
+  ],
+  "act": "blakchyl",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1245:valley-james",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "VALLEY JAMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valley-james",
+    "role": "performer"
+   }
+  ],
+  "act": "valley-james",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1345:angel-white",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:30",
+  "printed": "ANGEL WHITE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angel-white",
+    "role": "performer"
+   }
+  ],
+  "act": "angel-white",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1445:calder-allen",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "CALDER ALLEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calder-allen",
+    "role": "performer"
+   }
+  ],
+  "act": "calder-allen",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1600:sudan-archives",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SUDAN ARCHIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sudan-archives",
+    "role": "performer"
+   }
+  ],
+  "act": "sudan-archives",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:tito-s-handmade-vodka:1800:tegan-and-sara",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "TEGAN AND SARA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tegan-and-sara",
+    "role": "performer"
+   }
+  ],
+  "act": "tegan-and-sara",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:austin-kiddie-limits:1130:the-barton-hills-choir",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "11:30",
+  "end": "12:00",
+  "printed": "THE BARTON HILLS CHOIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-barton-hills-choir",
+    "role": "performer"
+   }
+  ],
+  "act": "the-barton-hills-choir",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:austin-kiddie-limits:1245:resonate",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "RESONATE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "resonate",
+    "role": "performer"
+   }
+  ],
+  "act": "resonate",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:austin-kiddie-limits:1430:fyutch",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "FYÜTCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fyutch",
+    "role": "performer"
+   }
+  ],
+  "act": "fyutch",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:austin-kiddie-limits:1630:ralph-s-world",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "RALPH'S WORLD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ralph-s-world",
+    "role": "performer"
+   }
+  ],
+  "act": "ralph-s-world",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:t-mobile:1145:goodnight-texas",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "11:45",
+  "end": "12:30",
+  "printed": "GOODNIGHT, TEXAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goodnight-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "goodnight-texas",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:t-mobile:1315:devon-gilfillian",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "DEVON GILFILLIAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devon-gilfillian",
+    "role": "performer"
+   }
+  ],
+  "act": "devon-gilfillian",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:t-mobile:1500:gus-dapperton",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "GUS DAPPERTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gus-dapperton",
+    "role": "performer"
+   }
+  ],
+  "act": "gus-dapperton",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:t-mobile:1700:tanya-tucker",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TANYA TUCKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tanya-tucker",
+    "role": "performer"
+   }
+  ],
+  "act": "tanya-tucker",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:t-mobile:1900:noah-kahan",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "NOAH KAHAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noah-kahan",
+    "role": "performer"
+   }
+  ],
+  "act": "noah-kahan",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:american-express:1230:cvc",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "CVC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cvc",
+    "role": "performer"
+   }
+  ],
+  "act": "cvc",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:american-express:1400:declan-mckenna",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "DECLAN MCKENNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "declan-mckenna",
+    "role": "performer"
+   }
+  ],
+  "act": "declan-mckenna",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:american-express:1600:mt-joy",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "MT. JOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mt-joy",
+    "role": "performer"
+   }
+  ],
+  "act": "mt-joy",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:american-express:1800:alanis-morissette",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ALANIS MORISSETTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alanis-morissette",
+    "role": "performer"
+   }
+  ],
+  "act": "alanis-morissette",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d5:american-express:2000:foo-fighters",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-14",
+  "day": 5,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:00",
+  "end": null,
+  "printed": "FOO FIGHTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foo-fighters",
+    "role": "performer"
+   }
+  ],
+  "act": "foo-fighters",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:honda:1245:michigander",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "MICHIGANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michigander",
+    "role": "performer"
+   }
+  ],
+  "act": "michigander",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:honda:1415:dope-lemon",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "DOPE LEMON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dope-lemon",
+    "role": "performer"
+   }
+  ],
+  "act": "dope-lemon",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:honda:1615:m83",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "M83",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "m83",
+    "role": "performer"
+   }
+  ],
+  "act": "m83",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:honda:1815:yeah-yeah-yeahs",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "YEAH YEAH YEAHS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeah-yeah-yeahs",
+    "role": "performer"
+   }
+  ],
+  "act": "yeah-yeah-yeahs",
+  "closing": false,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:honda:2015:odesza",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "HONDA",
+  "start": "20:15",
+  "end": null,
+  "printed": "ODESZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odesza",
+    "role": "performer"
+   }
+  ],
+  "act": "odesza",
+  "closing": true,
+  "stageLineage": "acl:honda",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:miller-lite:1200:katy-kirby",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "KATY KIRBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katy-kirby",
+    "role": "performer"
+   }
+  ],
+  "act": "katy-kirby",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:miller-lite:1330:mimi-webb",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "MIMI WEBB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mimi-webb",
+    "role": "performer"
+   }
+  ],
+  "act": "mimi-webb",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:miller-lite:1515:suki-waterhouse",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "SUKI WATERHOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suki-waterhouse",
+    "role": "performer"
+   }
+  ],
+  "act": "suki-waterhouse",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:miller-lite:1715:ivan-cornejo",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "IVAN CORNEJO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivan-cornejo",
+    "role": "performer"
+   }
+  ],
+  "act": "ivan-cornejo",
+  "closing": false,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:miller-lite:1915:cigarettes-after-sex",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "MILLER LITE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "CIGARETTES AFTER SEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cigarettes-after-sex",
+    "role": "performer"
+   }
+  ],
+  "act": "cigarettes-after-sex",
+  "closing": true,
+  "stageLineage": "acl:miller-lite",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:bmi:1200:myron-elkins",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "BMI",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "MYRON ELKINS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "myron-elkins",
+    "role": "performer"
+   }
+  ],
+  "act": "myron-elkins",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:bmi:1330:corook",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "BMI",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "COROOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corook",
+    "role": "performer"
+   }
+  ],
+  "act": "corook",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:bmi:1515:caramelo-haze",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "BMI",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "CARAMELO HAZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caramelo-haze",
+    "role": "performer"
+   }
+  ],
+  "act": "caramelo-haze",
+  "closing": false,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:bmi:1715:corey-kent",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "BMI",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "COREY KENT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corey-kent",
+    "role": "performer"
+   }
+  ],
+  "act": "corey-kent",
+  "closing": true,
+  "stageLineage": "acl:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:ihg-hotels-and-resorts:1200:kathryn-legendre",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "KATHRYN LEGENDRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kathryn-legendre",
+    "role": "performer"
+   }
+  ],
+  "act": "kathryn-legendre",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:ihg-hotels-and-resorts:1330:randall-king",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "RANDALL KING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "randall-king",
+    "role": "performer"
+   }
+  ],
+  "act": "randall-king",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:ihg-hotels-and-resorts:1515:morgan-wade",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "MORGAN WADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morgan-wade",
+    "role": "performer"
+   }
+  ],
+  "act": "morgan-wade",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:ihg-hotels-and-resorts:1715:the-breeders",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "THE BREEDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-breeders",
+    "role": "performer"
+   }
+  ],
+  "act": "the-breeders",
+  "closing": false,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:ihg-hotels-and-resorts:1915:death-grips",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "DEATH GRIPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "death-grips",
+    "role": "performer"
+   }
+  ],
+  "act": "death-grips",
+  "closing": true,
+  "stageLineage": "acl:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1200:the-moriah-sisters",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "THE MORIAH SISTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-moriah-sisters",
+    "role": "performer"
+   }
+  ],
+  "act": "the-moriah-sisters",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1300:sisi",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SISI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sisi",
+    "role": "performer"
+   }
+  ],
+  "act": "sisi",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1400:quin-nfn",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "QUIN NFN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quin-nfn",
+    "role": "performer"
+   }
+  ],
+  "act": "quin-nfn",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1515:celisse",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "CELISSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "celisse",
+    "role": "performer"
+   }
+  ],
+  "act": "celisse",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1630:yves-tumor",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:30",
+  "end": "17:15",
+  "printed": "YVES TUMOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yves-tumor",
+    "role": "performer"
+   }
+  ],
+  "act": "yves-tumor",
+  "closing": false,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:tito-s-handmade-vodka:1815:sidepiece",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "SIDEPIECE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sidepiece",
+    "role": "performer"
+   }
+  ],
+  "act": "sidepiece",
+  "closing": true,
+  "stageLineage": "acl:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:austin-kiddie-limits:1245:ralph-s-world",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "RALPH'S WORLD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ralph-s-world",
+    "role": "performer"
+   }
+  ],
+  "act": "ralph-s-world",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:austin-kiddie-limits:1415:school-of-rock",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "SCHOOL OF ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock",
+  "closing": false,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:austin-kiddie-limits:1615:fyutch",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AUSTIN KIDDIE LIMITS",
+  "start": "16:15",
+  "end": "16:45",
+  "printed": "FYÜTCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fyutch",
+    "role": "performer"
+   }
+  ],
+  "act": "fyutch",
+  "closing": true,
+  "stageLineage": "acl:austin-kiddie-limits",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:t-mobile:1200:leon-iii",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "LEON III",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-iii",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-iii",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:t-mobile:1330:quarters-of-change",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "QUARTERS OF CHANGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quarters-of-change",
+    "role": "performer"
+   }
+  ],
+  "act": "quarters-of-change",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:t-mobile:1515:del-water-gap",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "DEL WATER GAP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "del-water-gap",
+    "role": "performer"
+   }
+  ],
+  "act": "del-water-gap",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:t-mobile:1715:little-simz",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "LITTLE SIMZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-simz",
+    "role": "performer"
+   }
+  ],
+  "act": "little-simz",
+  "closing": false,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:t-mobile:1915:labrinth",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "T-MOBILE",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "LABRINTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": true,
+  "stageLineage": "acl:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:american-express:1245:madison-cunningham",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "MADISON CUNNINGHAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madison-cunningham",
+    "role": "performer"
+   }
+  ],
+  "act": "madison-cunningham",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:american-express:1415:kevin-kaarl",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "KEVIN KAARL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-kaarl",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-kaarl",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:american-express:1615:niall-horan",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "NIALL HORAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niall-horan",
+    "role": "performer"
+   }
+  ],
+  "act": "niall-horan",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:american-express:1815:hozier",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "HOZIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hozier",
+    "role": "performer"
+   }
+  ],
+  "act": "hozier",
+  "closing": false,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
+  "id": "acl-2023:d6:american-express:2030:mumford-and-sons",
+  "source": "edition",
+  "festivalId": "acl-2023",
+  "festivalBrand": "acl",
+  "year": 2023,
+  "date": "2023-10-15",
+  "day": 6,
+  "stage": "AMERICAN EXPRESS",
+  "start": "20:30",
+  "end": null,
+  "printed": "MUMFORD & SONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mumford-and-sons",
+    "role": "performer"
+   }
+  ],
+  "act": "mumford-and-sons",
+  "closing": true,
+  "stageLineage": "acl:american-express",
+  "mainStage": null
+ },
+ {
   "id": "acl-2024:d1:honda:1255:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2024",
