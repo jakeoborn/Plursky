@@ -45,6 +45,12 @@ export const GRAPHIC_EDITIONS = {
     image: /ACL-2024-Schedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2024-10-04", token: /W1-Fri/i }, { day: 2, date: "2024-10-05", token: /W1-Sat/i }, { day: 3, date: "2024-10-06", token: /W1-Sun/i },
       { day: 4, date: "2024-10-11", token: /W2-Fri/i }, { day: 5, date: "2024-10-12", token: /W2-Sat/i }, { day: 6, date: "2024-10-13", token: /W2-Sun/i }] },
+  // ACL 2021: "ACL21-Grid-v14_FRI.png" for weekend one, "…_FRI_2.png" for
+  // weekend two (one copy is "…_FRI_2%20(1).png").
+  "acl-2021": { year: 2021, page: "https://www.aclfestival.com/schedule", window: ["20210901", "20211231"],
+    image: /ACL21-Grid-[^"'\s/]+?\.png/i,
+    days: [{ day: 1, date: "2021-10-01", token: /_FRI\.png$/i }, { day: 2, date: "2021-10-02", token: /_SAT\.png$/i }, { day: 3, date: "2021-10-03", token: /_SUN\.png$/i },
+      { day: 4, date: "2021-10-08", token: /_FRI_2/i }, { day: 5, date: "2021-10-09", token: /_SAT_2/i }, { day: 6, date: "2021-10-10", token: /_SUN_2/i }] },
   // ACL 2022 names its grids two ways: "ACL-Schedule-Sat-Wk2-…" and the
   // revised Sunday "ACL_FestivalSchedule_10.13_ACL-Schedule-Sun-Wk2 (1).png".
   "acl-2022": { year: 2022, page: "https://www.aclfestival.com/schedule", window: ["20221001", "20221231"],

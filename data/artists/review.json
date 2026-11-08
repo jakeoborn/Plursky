@@ -98,6 +98,20 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "acl-2021:d1:tito-s-handmade-vodka:1600:disko-cowboy-vinyl-ranch",
+  "printed": "DISKO COWBOY (VINYL RANCH)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed (ACL 2021 grids, both Fridays): whether VINYL RANCH names the set, a venue or a separate act is not sourced, so it is neither split off as a set tag nor credited to anyone else."
+ },
+ {
+  "id": "acl-2021:d4:tito-s-handmade-vodka:1615:disko-cowboy-vinyl-ranch",
+  "printed": "DISKO COWBOY (VINYL RANCH)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed (ACL 2021 grids, both Fridays): whether VINYL RANCH names the set, a venue or a separate act is not sourced, so it is neither split off as a set tag nor credited to anyone else."
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
   "reason": "\"+\" billing",
