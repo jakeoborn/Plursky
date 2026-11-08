@@ -119,7 +119,7 @@ async function run(browser, build, { shots = false } = {}) {
         rows: rows.length, timed: timed.length, openEnd: openEnd.length,
         badEnd: rows.filter(r => _hhmmNightMin(r.end) == null || _hhmmNightMin(r.end) <= _hhmmNightMin(r.start)).length,
         tyler: tyler ? { end: tyler.end, printed: tyler.endPrinted } : null,
-        match: match ? { festivalId: match.festivalId, night: match.night, artistId: match.artistId, reason: match.reason } : null,
+        match: match ? { festivalId: match.festivalId, night: match.night, artistId: match.artistId, reason: match.reason, alternatives: match.alternatives || null } : null,
       };
     }, ED);
     t(pure.hasLolla && pure.n >= 20, `targets: ${pure.n}, Lollapalooza 2025 listed ${pure.hasLolla}`);
@@ -133,7 +133,13 @@ async function run(browser, build, { shots = false } = {}) {
     t(pure.noFix === false && pure.zero === false, `on site: no fix ${pure.noFix}, 0,0 ${pure.zero} (both must be false)`);
     t(pure.rows === pure.timed && pure.badEnd === 0, `rows: ${pure.rows} of ${pure.timed} timed sets, ${pure.badEnd} without a usable end`);
     t(pure.openEnd >= 4 && pure.tyler?.end === "22:00" && pure.tyler?.printed === false, `open end: Tyler day 1 ${JSON.stringify(pure.tyler)} (want 22:00, not printed)`);
-    t(pure.match?.festivalId === ED && pure.match?.night === 1 && !!pure.match?.artistId?.startsWith(`${ED}:`), `matcher with ds: ${JSON.stringify(pure.match)}`);
+    // The matcher must answer from the EDITION's lineup. Since SPEC-179 (#387)
+    // an overlap with no trusted stage fix is left untagged, with every act
+    // playing offered; before it, the nearest start won. Either is from ED.
+    const fromEd = id => typeof id === "string" && id.startsWith(`${ED}:`);
+    const edAnswer = fromEd(pure.match?.artistId)
+      || (pure.match?.artistId == null && pure.match?.reason === "several_playing" && pure.match?.alternatives?.length > 0 && pure.match.alternatives.every(fromEd));
+    t(pure.match?.festivalId === ED && pure.match?.night === 1 && edAnswer, `matcher with ds: ${JSON.stringify(pure.match)}`);
 
     // ── The library ────────────────────────────────────────────────────────
     // Rebuilt after every reload: the init script starts each page empty.
@@ -195,7 +201,7 @@ async function run(browser, build, { shots = false } = {}) {
     t(m1.length === 2 && mine.length === 2, `scan 1: ${m1.length} moments stored, ${mine.length} stamped ${ED} (want 2 and 2)`);
     t(mine.every(m => m.festivalStampSource === "past-edition"), `scan 1: stamp source ${mine.map(m => m.festivalStampSource).join(",")} (want past-edition)`);
     t(mine.every(m => !m.artistId || m.artistId.startsWith(`${ED}:`)), `scan 1: an act from another lineup ${mine.map(m => m.artistId).join(",")}`);
-    const tylerMoment = mine.find(m => /T21:3/.test(m.takenAt || "") || m.artistId === `${ED}:tyler-the-creator`);
+    const tylerMoment = mine.find(m => /[T ]21:3/.test(m.takenAt || "") || m.artistId === `${ED}:tyler-the-creator`);
     t(!!tylerMoment, `scan 1: no moment at 21:30 (takenAt ${mine.map(m => m.takenAt).join(", ")})`);
     const openBtn = page.locator(`[data-scan-past-open="${ED}"]`);
     t((await openBtn.count()) === 1 && /Lollapalooza 2025 · 2/.test((await openBtn.textContent()) || ""), "scan 1: no 'Lollapalooza 2025 · 2' button on the card");
