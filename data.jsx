@@ -84,6 +84,75 @@ const FESTIVAL_CONFIG = {
   locationShort:"Las Vegas Motor Speedway",
   dates:        "May 15–17, 2026",
   year:         2026,
+  // The Basics sheet's guide: gates, lingo, the desert, shuttles and a first
+  // night, from the official EDC Festival Guide and DanceSafe. Festival data,
+  // not renderer copy: home.jsx printed this for EVERY festival until round 8
+  // (ACL's Basics read "Survive the desert" and "18+ event"). A festival with
+  // no `guide` gets the neutral one in home.jsx, built from its own config.
+  guide: [
+    {
+      id: "gates",
+      icon: "🚪",
+      title: "Gates & entry",
+      items: [
+        "Gates open 4 PM Friday\u2013Sunday. Music runs 7\u00a0PM\u00a0\u2013\u00a05:30\u00a0AM.",
+        "Bring a valid government-issued photo ID. 18+ event.",
+        "Wristband activates online before you arrive — don't show up with it unpaired.",
+        "One re-entry per day, only between 4 PM and midnight.",
+        "Clear bag, max 12\" × 6\" × 12\". Hydration packs OK if empty.",
+      ],
+    },
+    {
+      id: "lingo",
+      icon: "🗣️",
+      title: "Words you'll hear",
+      items: [
+        "PLUR — Peace, Love, Unity, Respect. The unspoken code.",
+        "Kandi — beaded bracelets. Trade them with strangers.",
+        "Totem — tall flag/sign so your group can find you in the crowd.",
+        "Sunrise set — the legendary final set as the sun comes up at Kinetic Field.",
+        "Headliner — top-billed act, usually 11 PM – 5 AM at the biggest stages.",
+        "B2B — back-to-back DJ set; two artists trading on the decks.",
+      ],
+    },
+    {
+      id: "survive",
+      icon: "💧",
+      title: "Survive the desert",
+      items: [
+        "Drink water before you're thirsty. Free refill stations all over the map (tap the 💧 chip).",
+        "Days are warm (~70°F), nights are cold (~50°F). Bring a light jacket.",
+        "Earplugs. Your future self will thank you.",
+        "Eat real food before headliners. The food halls in Daisy Lane stay open all night.",
+        "If you or a friend feels off, the Ground Control & GroundedSpace tents are no-questions-asked safe spaces.",
+      ],
+    },
+    {
+      id: "travel",
+      icon: "🚌",
+      title: "Getting there & back",
+      items: [
+        "Shuttles run from Strip hotels all night. Last departure ~5:30 AM.",
+        "Driving: lots fill 6–8 PM, exiting at 5 AM is a 90-min crawl.",
+        "Rideshare: Uber/Lyft pickup is the South Lot — tap the 🚗 button on the map for one-tap deep links.",
+        "Phone signal at the venue is unreliable. Set a meeting point with your group BEFORE entering.",
+      ],
+    },
+    {
+      id: "day1",
+      icon: "🌅",
+      title: "Recommended Day 1",
+      items: [
+        "Arrive by 7 PM. Walk the perimeter once to find your bearings — it's huge.",
+        "Hit Kinetic Field for the opening; the stage drop at sundown is the moment.",
+        "Anchor for one full headliner set, then wander. Don't try to chase 12 sets.",
+        "Eat at midnight. Sleep is for after the sunrise set.",
+        "End at Cosmic Meadow, Stereo Bloom, or stay at Kinetic for the sunrise.",
+      ],
+    },
+  ],
+  // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+  print: { accent: "#ED3895", source: { url: "https://lasvegas.edc.com/wp-content/assets/css/edc-las-vegas.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#ed3895 }`, `button { background-color:#ed3895 }`, `.button--outline` border/text; hover darkens to #db187c (10 uses, the most of any non-grey colour).", confidence: "high" }, note: "No <meta theme-color> (the only custom property is WordPress's admin default #007cba), so the first-party sheet's link + primary-button colour is the accent." },
   officialEvent: {
     // Historical record frozen: the official site has rolled to the separate 2027 cycle.
     website: "https://lasvegas.edc.com/", observedAt: "2026-09-10",
@@ -388,6 +457,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Double JJ Ranch",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#6244BB", source: { url: "https://www.electricforestfestival.com/", observedAt: "2026-10-09", seenAs: "Inline <style> in the homepage HTML: `.c-button.primary { background-color:#6244BB; border:3px solid #6244BB }`, `a:hover { color:#6244BB }`, `.c-primaryButton:hover` text/border (21 uses); the AEG template sheet style.v3.css carries no site colour.", confidence: "high" }, note: "No <meta theme-color> and no custom properties; the site-specific inline CSS makes purple #6244BB the primary button and link-hover colour (dark green #2d4031 is used for borders/pass headers, teal #02A1A9 for info bars)." },
     },
     available: false,
     accent:    "#34d399",
@@ -413,6 +484,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Legend Valley",
       dates:     "Sep 18–20, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F8D861", source: { url: "https://www.lostlandsfestival.com/wp-content/themes/lostlands-2017/css/main.min.css?v=10.349", observedAt: "2026-10-09", seenAs: "Theme stylesheet: `section h1..h4 { color:#f8d861 }`, content links `a { color:#f8d861 }`, `a:hover { color:#f8d861 }`, `.read-more { background:#f8d861 }`, ticket accordion active/price state (33 uses, the dominant non-grey colour).", confidence: "high" }, note: "data.jsx records no official website for this festival, so the well-known official domain lostlandsfestival.com was used; its <meta theme-color> is plain #ffffff, so the theme sheet's heading/link/button yellow is the accent." },
       startMs: Date.UTC(2026, 8, 16, 16, 0, 0), // Sep 16 noon EDT (early-entry Wed opens)
       endMs:   Date.UTC(2026, 8, 21, 7, 0, 0),  // Sep 21 03:00 EDT (last Sunday-night sets end)
       tz:      "America/New_York",
@@ -600,17 +673,19 @@ const FESTIVALS_REGISTRY = [
     // weeks out). Flip `available: true` ONLY after the flip session
     // replaces times/stages/map.
     //
-    // GEO IS DONE (2026-09-06, #68): centroid, the five gpsAnchors and the
-    // EDCO_STAGES x/y grid are all measured — see the block comments below.
-    // The flip session no longer owns recalibration; it owns (1) per-artist
-    // stage + set times from the Insomniac app, (2) the official 2026 map art
-    // replacing edco-tinker-2026.jpg, and (3) re-deriving ONLY the anchors of
-    // stages the 2026 layout actually moves.
+    // THE OFFICIAL 2026 MAP IS IN (2026-10-29): the plate, every stage and
+    // amenity x/y and the five gpsAnchors come from the official Festival Map
+    // page (orlando.edc.com/guide/map/) — see the block comments below. The
+    // flip session now owns only per-artist stage + set times from the
+    // official schedule, in one import for all 108 acts.
     config: {
       id:        "edc-orlando-2026",
       // Where the lineup rows came from (the SOURCE note above), as data so the
       // public /f/ page can cite it. observedAt = the date it was read.
-      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-09-13", official: true },
+      lineupSource: { url: "https://orlando.edc.com/lineup/", observedAt: "2026-11-04", official: true },
+      // Each night is its own page; dayUrls lets a set cite the page that prints it.
+      scheduleSource: { url: "https://orlando.edc.com/lineup/set-times/day-1/", observedAt: "2026-11-04", official: true,
+        dayUrls: { 1: "https://orlando.edc.com/lineup/set-times/day-1/", 2: "https://orlando.edc.com/lineup/set-times/day-2/", 3: "https://orlando.edc.com/lineup/set-times/day-3/" } },
       name:      "EDC Orlando 2026",
       shortName: "EDC Orlando",
       brand:     "EDC",
@@ -619,6 +694,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Tinker Field",
       dates:     "Nov 6–8, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#FF0100", accent2: "#ED3895", source: { url: "https://orlando.edc.com/wp-content/assets/css/edc-orlando.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `.custom-form button, .global-footer button { background-color:#ff0100 }`, `.button--outline` border, lineup/nav/tab hover `color:#ff0100` (8 uses); base links stay the shared EDC pink `a { color:#ed3895 }` (7 uses).", confidence: "medium" }, note: "No <meta theme-color>; the Orlando sheet overrides the shared EDC theme's buttons and hover states to red #ff0100 while leaving link text pink, so red is the edition-specific accent but the sheet is split between the two." },
       // Five published stages; "Schedule TBA" below is an app placeholder, not a sixth stage.
       officialStages: ["Kinetic Field", "Circuit Grounds", "Neon Garden", "Stereo Bloom", "CASA BACARDÍ"],
       officialEvent: {
@@ -645,13 +722,20 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "06:39", set: "17:34" },
         3: { rise: "06:40", set: "17:33" },
       },
-      // Grounds centroid, MEASURED 2026-09-06 from the festival polygon
-      // (Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / S Tampa
-      // -81.40353 W / S Nashville -81.39935 E). This replaces a Nominatim
-      // "Tinker Field Plaza" hit that sat 378 m WEST of the grounds, in the
-      // residential block on the far side of Tampa. onSiteRadiusMi 0.6 clears
-      // every anchor with room to spare — the farthest, neon, is 0.19 mi out.
+      // Grounds centroid, taken 2026-09-06 as the midpoint of four edges:
+      // Church St 28.54022 N / SR-408 + W Anderson ~28.5363 S / a west edge
+      // at -81.40353 / S Nashville -81.39935 E. That comment called the west
+      // edge "S Tampa"; it is not. Checked 2026-09-30 against OpenStreetMap:
+      // Tampa Avenue runs at -81.40549 (Church x Tampa 28.54014, -81.40549),
+      // and -81.40353 falls inside the stadium's footprint (-81.40393 to
+      // -81.40157). The centroid value is kept as it was (founder ruling on
+      // #262, 2026-09-30: fix the comment). With Tampa as the west edge the
+      // midpoint would sit about 95 m further west. It is not an input to the
+      // map's affine, which reads only the first three anchors and their pins.
+      // It replaced a Nominatim "Tinker Field Plaza" hit 378 m west of the
+      // grounds. onSiteRadiusMi 0.6 clears every anchor with room to spare.
       gps: { lat: 28.53826, lng: -81.40144, onSiteRadiusMi: 0.6 },
+      // HISTORY, superseded 2026-10-29 by the 2026 fit further down.
       // Anchors MEASURED 2026-09-06, replacing five venue-centroid offsets
       // that were 170–481 m from the real stage positions. Method: the
       // official EDCO 2025 map (Insomniac; north-up, real street frame)
@@ -685,39 +769,64 @@ const FESTIVALS_REGISTRY = [
       // stale: it measured the centroid-offset artifact, never a real layout
       // signal. The five stages are internally consistent once measured.
       //
-      // FLIP SESSION: re-derive an anchor ONLY if the official 2026 map moves
-      // that stage. Same method, and re-check the x/y grid in EDCO_STAGES if
-      // you do — the two are derived together.
+      // THE 2026 FIT (2026-10-29). Every anchor is re-fitted on the official
+      // 2026 plate, all five together with the x/y in EDCO_STAGES (the two are
+      // derived together, never separately). Four street intersections the
+      // 2026 art draws, each read on the plate and matched to OpenStreetMap,
+      // least squares with scripts/georef-map.mjs. The points and their
+      // sources are map-sources/edco-map-2026-control-points.json; re-run
+      //   node scripts/georef-map.mjs fit map-sources/edco-map-2026-control-points.json
+      // Residuals 7-12 m (rms 9.5). Each anchor is that fit applied to its
+      // stage's measured pin (scripts/build-edco-map-2026.mjs).
+      //
+      // Why every anchor moved, not only the ones the 2026 layout moved: the
+      // #73 values above were fitted on other art and against a west edge
+      // that is not Tampa Avenue, and they disagree with this fit by 18 m
+      // (neon) to 240 m (circuit; #73 put it inside the stadium's east half).
+      // Two checks side with the new fit: the stadium, which the art draws and
+      // the fit does not use, lands 11 m from OpenStreetMap's stadium centre;
+      // and #262's independent street-corner fit on the 2025 art put kinetic,
+      // circuit and neon within 2-21 m of these.
+      //
+      // basis: every anchor here is a POSTER READ off the official 2026 map
+      // art, never surveyed. src stays "poster": a small residual does not
+      // promote an anchor. The basis string is DATA so a gate can read it, and
+      // detectCurrentArtist (chrome.jsx) refuses any non-evidence anchor, so
+      // none of these five can trigger GPS auto-attend. Distances and walk
+      // minutes stay withheld.
       gpsAnchors: [
-        { stageId: "kinetic", lat: 28.53700, lng: -81.40040, src: "poster" }, // SE of the stadium, N of W Anderson, W of Nashville
-        { stageId: "circuit", lat: 28.53999, lng: -81.40219, src: "poster" }, // Tinker Field mowed rectangle, NE part
-        { stageId: "neon",    lat: 28.53900, lng: -81.39850, src: "poster" }, // practice field EAST of Nashville Ave — outside the core rectangle by design
-        { stageId: "stereo",  lat: 28.53730, lng: -81.40310, src: "poster" }, // field S of W South St, E of Tampa
-        { stageId: "bacardi", lat: 28.53660, lng: -81.40240, src: "poster" }, // N of SR-408, between Tampa and Lake Beardall
+        { stageId: "kinetic", lat: 28.536981, lng: -81.400040, src: "poster", basis: "poster-read, 2026 art, unsurveyed" }, // the diagonal stage, SE field, N of W Anderson
+        { stageId: "circuit", lat: 28.539796, lng: -81.404655, src: "poster", basis: "poster-read, 2026 art, unsurveyed" }, // Tinker Field on W Church St, between Tampa Ave and the stadium
+        { stageId: "neon",    lat: 28.539150, lng: -81.398575, src: "poster", basis: "poster-read, 2026 art, unsurveyed" }, // practice field EAST of Nashville Ave
+        { stageId: "stereo",  lat: 28.536714, lng: -81.404781, src: "poster", basis: "poster-read, 2026 art, unsurveyed" }, // SW corner, E of Tampa Ave
+        { stageId: "bacardi", lat: 28.535824, lng: -81.402511, src: "poster", basis: "poster-read, 2026 art, unsurveyed" }, // N of SR-408 (low confidence: the art draws a medallion, no stage)
       ],
       mainStageId: "kinetic",
-      // edco-tinker-2026.jpg = PROVISIONAL generated abstract overlay
-      // (ImageMagick plasma, not traced). Replace with the processed
-      // official 2026 map when it drops.
-      mapImage: "edco-tinker-2026.jpg",
+      // edco-tinker-2026.webp = the official EDC Orlando 2026 festival map
+      // (edco_2026_de_festival_map_1080x1350_r02.png, sha256 4d0196f6…): map
+      // art cropped out from under the title block and above the legend, then
+      // padded to a square, never scaled. Built by
+      // scripts/build-edco-map-2026.mjs from the unedited source in
+      // map-sources/. It replaces a generated placeholder.
+      mapImage: "edco-tinker-2026.webp",
       mapStyle: "image-overlay",
       mapTheme: "park",
       weatherEndpoint: "https://api.weather.gov/points/28.54,-81.41",
-      setTimesProvisional: true,
+      setTimesProvisional: false,
     },
-    // STAYS GATED, and not for schedule reasons. The 2026-09-15 call opens a
-    // festival whose set times are unpublished, and EDC Orlando qualifies on
-    // that axis — but opening it makes it LIVE, and a live festival has to
-    // clear the map-registration gate. EDCO has no sourced registration by
-    // design: no OSM polygon matches the fence, so it carries no footprint and
-    // waits on the official 2026 map (the same map the hourly watch probes).
-    // Verify says it plainly: "unsourced, blind with no waiver".
-    //
-    // A waiver here would be a judgement about map accuracy with no evidence
-    // behind it, which is the founder's call and not a drive-by in this PR.
-    // Flip this to `available: true, scheduleTBA: true` the day the official
-    // map lands — the schedule side is already ready for it.
-    available: false,
+    // OPEN since 2026-11-04: the official 2026 set times are out
+    // (orlando.edc.com/lineup/set-times/day-1..3, 133 sets), imported into
+    // EDCO_SCHEDULE in this same change, as the 2026-10-29 ruling requires
+    // ("2026 map only, no waiver, and it stays closed until the official 2026
+    // set times are out"). The map is the official 2026 map only. Its
+    // registration is still poster-class (no OSM polygon matches the fence,
+    // so it carries no footprint), so verify reports it unsourced and blind.
+    // That is excused by a dated waiver in verify.mjs REGISTRATION_WAIVERS
+    // (expires 2026-12-01). It overrides the "no waiver" line for this
+    // festival only, because no satellite capture of an EDC build exists.
+    // Distance readouts and GPS auto-attend stay off: the anchors are poster
+    // reads.
+    available: true,
     accent:    "#22c55e",
     emoji:     "🌴",
     region:    "North America",
@@ -747,6 +856,8 @@ const FESTIVALS_REGISTRY = [
       location:  "De Schorre · Boom, Belgium",
       dates:     "Dates TBA",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#73123A", accent2: "#D63A76", source: { url: "https://belgium.tomorrowland.com/_next/static/css/310ad92fa7d6d932.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom property `[data-theme=belgium] { --theme-color:335,73%,26% }` (HSL triplet, converted to hex #73123a); the legacy fallback sheet tml-fallback-2.x.css styles its buttons/bar with a magenta gradient #d63a76 -> #9a0b44 -> #8c0038.", confidence: "medium" }, note: "The <meta theme-color> is plain #000000 and the Next.js chunks define eight different per-section `--accent-1-base` values, so the Belgium theme's own `--theme-color` token is the one site-wide accent; the hex is a conversion of an HSL token, not a literal." },
     },
     available: false,
     accent:    "#fbbf24",
@@ -767,6 +878,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Zilker Park",
       dates:     "Oct 2–4 & 9–11, 2026",
       year:      2026,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#F03250", source: { url: "https://cdn.prod.website-files.com/67456b412d0e4219d58ef6c2/css/acl-2026.shared.26bfb3548.min.css", observedAt: "2026-10-09", seenAs: "Site stylesheet custom properties: `--swatches--red:#f03250`, `--button-color--primary:var(--swatches--red)`, `--link-color--default:var(--swatches--red)`; hover `--button-color--primary-hover:#f34b66`, `--link-color--hover:#f34b66`.", confidence: "high" }, note: "No <meta theme-color>, but the Webflow sheet names a primary button colour and default link colour and both resolve to the red swatch #f03250." },
       startMs: Date.UTC(2026, 9, 2, 17, 0, 0),
       endMs:   Date.UTC(2026, 9, 12, 5, 0, 0),
       weekendStartMs: {
@@ -794,7 +907,13 @@ const FESTIVALS_REGISTRY = [
         2: { rise: "07:20", set: "19:08" },
         3: { rise: "07:21", set: "19:07" },
       },
-      gps: { lat: 30.2630, lng: -97.7730, onSiteRadiusMi: 0.4 },
+      // Centre = the centroid of the three satellite-measured anchors below
+      // (amex, miller, tmobile; Esri Wayback 2024-11-18 at z19), so the
+      // on-site radius covers every measured stage: 431 m to the farthest
+      // (amex). The old centre (30.2630, -97.7730) sat south-west of the
+      // grounds, 616–1049 m from them, so a real fix at AMEX or Miller Lite
+      // read OFF-SITE and the real map opened off the park (#313 item 8, #314).
+      gps: { lat: 30.268090, lng: -97.767611, onSiteRadiusMi: 0.4 },
       // ⚠ GPS anchors for Zilker Park — RE-SURVEYED 2026-09-06.
       //
       // The old trio (amex/miller/beatbox) was read off the ACL patron map
@@ -814,8 +933,17 @@ const FESTIVALS_REGISTRY = [
         { stageId: "amex",    lat: 30.267233, lng: -97.763236, src: "osm" },
         { stageId: "miller",  lat: 30.269017, lng: -97.769316, src: "osm" },
         { stageId: "tmobile", lat: 30.268021, lng: -97.770282, src: "osm" },
+        // Independent evidence, NOT in the basis: the grove-footprint stage
+        // structure, measured on the same Esri Wayback 2024-11-18 capture at
+        // z19. The official patron maps run that footprint T-Mobile (2024) ->
+        // Lady Bird (2025) -> Snapchat (2026), so the 2024 capture's structure
+        // is the stage the 2026 lineup brands Snapchat. First read by the
+        // 2026-09-06 desk survey (as "ladybird"); re-anchored to snapchat
+        // 2026-10-18 after the 2024/2025 archived patron maps settled the
+        // footprint. Centre of the main stage roof.
+        { stageId: "snapchat", lat: 30.266712, lng: -97.766540, src: "osm" },
         //
-        // ⛔ NOT ANCHORED, deliberately — four reasons:
+        // ⛔ NOT ANCHORED, deliberately — three reasons:
         //
         // `bmi`: dropped 2026-09-23 (founder ruling). It was never measured:
         // tree cover and teardown hid it in the capture, so it was derived
@@ -832,12 +960,10 @@ const FESTIVALS_REGISTRY = [
         // declines to geo-match a stage it cannot place, which is the correct
         // failure mode.
         //
-        // `snapchat`: new for 2026 (15 sets). The official 2026 patron map
-        // (2026-09-22) now places it on the ART, in the middle of the park by
-        // The Grove, and ACL_STAGES x/y is measured there. That is still not
-        // a world position: the poster is not a survey, so no anchor is read
-        // or projected off it. It also must not inherit Lady Bird's old
-        // coords. A guessed anchor mis-tags photos silently.
+        // `snapchat`: ANCHORED 2026-10-18 (see above), so no longer in this
+        // list. The 2026 patron map places it on the art by The Grove; the
+        // world anchor is the satellite measurement of that footprint's
+        // stage structure, not a poster read — the poster stays art-only.
         //
         // `ladybird` / `bonus`: not stages in the current app model. Bonus
         // Tracks now has September 30 programming in its separate readiness
@@ -845,8 +971,11 @@ const FESTIVALS_REGISTRY = [
         // up as anchor targets in the 2026-09-06 desk survey, and `ladybird`
         // is where that survey's "independent 34 m cross-check" lived — a real
         // measurement against a stage this lineup does not have, so it cannot
-        // carry ACL's case. That is why the 2026-10-19 registration waiver
-        // STAYS: the basis is now measured, but nothing independent checks it.
+        // carry ACL's case then. Settled 2026-10-18: the archived 2024 and
+        // 2025 patron maps show the same grove footprint (T-Mobile 2024,
+        // Lady Bird 2025, Snapchat 2026), so that survey's structure
+        // measurement is Snapchat's anchor and the registration waiver is
+        // gone.
         // ⚠ For whoever reconciles this next: the comment replaced here (dated
         // 2026-09-04) recorded both as real park stages with zero programmed
         // sets, while Instinct records `ladybird` as 2024-only and `bonus` as
@@ -898,6 +1027,8 @@ const FESTIVALS_REGISTRY = [
       location:  "Empire Polo Club · Indio, CA",
       dates:     "Apr 9–18, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#4E6234", accent2: "#44A1A4", source: { url: "https://media.coachella.com/templates/template10c/css/style.v7.css?t=7522fab35e14c254d8ced93290f5922c", observedAt: "2026-10-09", seenAs: "Site stylesheet token `html { --color-green-2:#4e6234 }`; the default `.c-button` background is an image, `--_button-bg:url(.../coachella-2026/button-bg-green.webp)`, whose sampled mean colour is #496330 (modal bucket #405828), matching that token; page headers use a teal gradient #337190 -> #44a1a4 -> #85cfc4 and link hover is `--color-yellow-1:#ffab37`.", confidence: "medium" }, note: "No <meta theme-color> and the 2026 site spreads a 20-colour palette across gradients, so the primary button's olive green is the accent, identified by sampling the button image (sips -> BMP, 27,078 opaque pixels) and matching it to the nearest first-party token." },
     },
     available: false,
     accent:    "#ec4899",
@@ -928,6 +1059,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Autódromo Hermanos Rodríguez",
       dates:     "Feb 19–21, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
       officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -949,6 +1082,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "NOS Events Center",
       dates:     "Mar 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://socal.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the site's primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; most-used non-grey hex in the site's own stylesheet (8 of 27)", confidence: "medium" }, note: "No theme-color meta (only WP admin defaults); the site-specific stylesheet linked from the homepage paints every CTA/button teal #00babc, while the 2027 homepage's inline hero typography uses gold #fbd34d with a purple #4b1b6b stroke (key-art, not UI chrome)." },
       officialEvent: { id: 550731, url: "https://www.insomniac.com/events/beyond-wonderland-southern-california-2027-2027-03-26-san-bernardino-ca/", website: "https://socal.beyondwonderland.com/", tickets: "https://beyondsocal.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
     available: false,
@@ -974,6 +1109,8 @@ const FESTIVALS_REGISTRY = [
       locationShort: "Gorge Amphitheatre",
       dates:     "Jun 26–27, 2027",
       year:      2027,
+      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
+      print: { accent: "#00BABC", accent2: "#FBD34D", source: { url: "https://pnw.beyondwonderland.com/wp-content/assets/css/pnw-socal-beyond.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "background-color of the primary button rules (.custom-form .button, .global-footer button, .layout-ticketButton-blocks .button; hover #008c8e) and .lineup a:hover; PNW's stylesheet is byte-identical to SoCal's (cmp)", confidence: "medium" }, note: "No theme-color meta; the shared pnw-socal-beyond.min.css is byte-identical across both Beyond sites and paints every CTA teal #00babc, with the same inline gold #fbd34d / purple #4b1b6b 2027 hero typography as SoCal." },
       officialStages: ["Queen's Valley", "Mad Hatter's Castle", "Caterpillar's Garden"],
       officialEvent: { id: 566426, url: "https://www.insomniac.com/events/beyond-wonderland-at-the-gorge-2027-2027-06-26-george-wa/", website: "https://pnw.beyondwonderland.com/", tickets: "https://beyondpnw.frontgatetickets.com/", observedAt: "2026-09-10" },
     },
@@ -1377,6 +1514,66 @@ function fmt12(t) {
   const h12 = h === 0 ? 12 : (h > 12 ? h - 12 : h);
   const ap  = h < 12 ? "AM" : "PM";
   return `${h12}:${mStr} ${ap}`;
+}
+
+// ── Set-time status: one answer every surface asks ──────────────────────────
+//   "confirmed"   — the act has a start time.
+//   "tba"         — no time yet and nothing disputed (a gated festival's acts):
+//                   today's behaviour, the em dash from fmt12.
+//   "unconfirmed" — the festival module's timeEvidence says the sources disagree
+//                   (Summerfest's School of Rock showcases). The act ships with
+//                   start "" / end "", and a surface prints SET_TIMES_UNCONFIRMED:
+//                   never a dash, a range, a duration or a live state.
+// Evidence is checked FIRST, so a time that reaches an unresolved act some other
+// way (a feed, a stored overlay) can never read as confirmed. timeEvidence rides
+// on the act object itself, attached per edition in the _DATA_SETS loop, so two
+// festivals that share an id can never borrow each other's record.
+const SET_TIMES_UNCONFIRMED = "Set times unconfirmed";
+function _hhmmNightMin(t) {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(typeof t === "string" ? t : "");
+  if (!m) return null;
+  const h = +m[1];
+  return (h < 8 ? h + 24 : h) * 60 + +m[2];
+}
+function setTimeStatus(a) {
+  if (!a) return "tba";
+  if (a.timeEvidence && a.timeEvidence.status === "unresolved") return "unconfirmed";
+  return _hhmmNightMin(a.start) != null ? "confirmed" : "tba";
+}
+function setTimesUnconfirmed(a) { return setTimeStatus(a) === "unconfirmed"; }
+// Item 4: "Top billed" is a claim about the festival's own poster, so it is
+// made only where the tier came from it (a module's BILLING block, see
+// scripts/build-poster-billing.mjs) — never from the set-time tier guess.
+const TOP_BILLED = "Top billed";
+function isTopBilled(a) { return !!a && a.tierSource === "poster" && a.tier === 3; }
+// Jake, Oct 18: "Top billed" wherever the tier comes from the poster. A
+// festival tiered from its official graphic names tier 3 that way on every
+// surface (23 acts a night share the top size at III Points: none is "the"
+// headliner); a set-time-tiered festival keeps "Headliner".
+function posterBilled() { return !!(typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.posterBilling); }
+function topTierLabel(plural = false) { return posterBilled() ? TOP_BILLED : plural ? "Headliners" : "Headliner"; }
+// A row's start, as text: the words for an unconfirmed set, otherwise exactly
+// what fmt12(a.start) printed before (an em dash for TBA).
+function setTimeLabel(a) { return setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : fmt12(a && a.start); }
+// Night minutes for anything that does precise timing (live/next, stars, grid
+// placement, gaps). null unless the act is "confirmed"; end is null if absent.
+function setTimingMin(a) {
+  if (setTimeStatus(a) !== "confirmed") return null;
+  return { start: _hhmmNightMin(a.start), end: _hhmmNightMin(a.end) };
+}
+// The one order for a list of sets: timed sets by start (equal starts keep
+// their input order, as every list did before), then untimed ones by stage
+// order and id — deterministic whatever order they arrive in, and never a NaN
+// comparison (a comparator that answers NaN lets the engine order them
+// arbitrarily). `stages` is the festival's stage list; day grouping is the caller's.
+function compareSetsByTime(a, b, stages) {
+  const ta = setTimingMin(a), tb = setTimingMin(b);
+  if (ta && tb) return ta.start - tb.start;
+  if (ta || tb) return ta ? -1 : 1;
+  const order = id => { const i = (stages || []).findIndex(s => s.id === id); return i < 0 ? Infinity : i; };
+  const oa = order(a.stage), ob = order(b.stage);
+  if (oa !== ob) return oa < ob ? -1 : 1;
+  return String(a.id) < String(b.id) ? -1 : String(a.id) > String(b.id) ? 1 : 0;
 }
 
 const ARTISTS = [
@@ -1852,6 +2049,290 @@ function savedInLineup(savedIds) {
   return savedIds.filter(id => known.has(id));
 }
 
+// ── Split the night (L3, Oct 16 spec) ─────────────────────────────────────
+// A saved set can carry an ATTEND WINDOW: the part of it the user plans to be
+// there for ("Vintage Culture 2:00–3:00, then PAWSA 3:00–4:00"). Clashes are
+// computed over those windows, so a split that removes the overlap clears the
+// clash everywhere. "Keep both" accepts a pair: it still overlaps, but it is a
+// choice, not an alarm. ONE predicate (setsClash) answers "is this a clash?"
+// for every door: Lineup chips and day counts, Tonight's plan, its banner and
+// resolver, alerts, the switcher's per-festival count.
+// Stores: `${fid}_attend_v1` = { setId: { start, end, with } } (with = the set
+// it was split against, so the row can reopen that split); accepted pairs keep
+// the v141 key plursky_conflicts_kept_both_v1 so earlier "Keep both" taps hold.
+// v1 scope: device only — no share card, crew, recap or server sync.
+const CLASH_KEPT_BOTH_KEY = "plursky_conflicts_kept_both_v1";
+const SPLIT_STEP_MIN = 5;
+function _l3Read(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key) || "null"); return v == null ? fallback : v; } catch { return fallback; }
+}
+function _l3Changed() { try { window.dispatchEvent(new CustomEvent("plursky:attend-change")); } catch {} }
+function _attendKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_attend_v1`; }
+function attendWindows(fid) {
+  const v = _l3Read(_attendKey(fid), {});
+  return v && typeof v === "object" && !Array.isArray(v) ? v : {};
+}
+// Minutes on the festival night → "HH:MM" (folds past midnight back to 00–07).
+function nightMinToHHMM(m) {
+  const h = Math.floor(m / 60) % 24, mm = m % 60;
+  return `${String(h).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+}
+// The lineup a festival carries now (identity, every weekend): the active
+// festival's from window ARTISTS, any other from its own data set (bare
+// ARTISTS is always the ACTIVE festival's, CLAUDE.md §5).
+function _attendLineup(fid) {
+  const id = fid || FESTIVAL_CONFIG.id;
+  if (id === FESTIVAL_CONFIG.id) return lineupFor("all");
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) || {};
+  return (ds[id] && Array.isArray(ds[id].artists)) ? ds[id].artists : [];
+}
+// A stored window is usable for `a` when it is a non-empty part of the set's
+// published time and not the whole of it. Malformed state (null, a string,
+// missing or non-"HH:MM" ends) reads NaN and fails every comparison.
+function _attendFits(a, w) {
+  if (!a || !w || typeof w !== "object") return false;
+  const s = toNightMin(a.start), e = toNightMin(a.end), ws = toNightMin(w.start), we = toNightMin(w.end);
+  return ws >= s && we <= e && ws < we && !(ws === s && we === e);
+}
+// Same festival night: the act's festival day (its night, so a 01:00 set
+// belongs to the evening before) and a weekend both play, the rule
+// _schedClash and the plan status use. Not calendar dates.
+function _attendSameNight(a, b) {
+  return a.day === b.day && _attendSameWeekend(a, b);
+}
+// Both can be seen on one weekend: untagged, "both", or the same tag.
+function _attendSameWeekend(a, b) {
+  const wa = a.weekend, wb = b.weekend;
+  return !wa || !wb || wa === "both" || wb === "both" || wa === wb;
+}
+// The part of `a` the user will be at: their window while it still sits inside
+// the set's published time, else the whole set. A schedule change that moves
+// the set out from under a window drops the window rather than trusting it.
+// `savedIds` stands in for the stored saves when a screen previews a selection
+// it has not written yet (Build My Night: Codex P2 on #335).
+function attendWindow(a, fid, savedIds) {
+  const whole = { start: a && a.start, end: a && a.end, partial: false, with: null };
+  if (!a || !a.start || !a.end) return whole;
+  const all = attendWindows(fid), w = all[a.id];
+  if (!_attendFits(a, w)) return whole;
+  // A split only holds while BOTH halves do. The partner must still be saved
+  // (drop "Keep this", an unsave or a sync of the partner, and the window goes
+  // with it), still in this festival's lineup (a schedule update can drop the
+  // act while its raw saved id stays, see savedInLineup), still on the same
+  // festival night (an update can move it to another night or weekend while
+  // its clock times still contain the old half: Codex P2 on #335), and still
+  // carry its own valid half pointing back here. Otherwise the user's plan for this set
+  // is the whole set again: clash, status and reminders follow it. The stored
+  // windows are kept, not deleted, the way an orphan saved id is kept.
+  if (w.with) {
+    const saved = savedIds || _l3Read(`${fid || FESTIVAL_CONFIG.id}_saved_v1`, []);
+    if (Array.isArray(saved) && !saved.includes(w.with)) return whole;
+    const partner = _attendLineup(fid).find(x => x.id === w.with);
+    const back = all[w.with];
+    if (!partner || !_attendSameNight(a, partner) || !back || back.with !== a.id || !_attendFits(partner, back)) return whole;
+  }
+  return { start: w.start, end: w.end, partial: true, with: w.with || null };
+}
+// The row line for a partial window: "2:00 AM → you leave 3:00 AM" (you leave
+// early), "you arrive 3:00 AM" (you come late), or both ends when it is both.
+function attendWindowLabel(a, win) {
+  const w = win || attendWindow(a);
+  if (!w.partial) return "";
+  const late = w.start !== a.start, early = w.end !== a.end;
+  if (late && early) return `You're there ${fmt12(w.start)} → ${fmt12(w.end)}`;
+  return late ? `You arrive ${fmt12(w.start)} → ${fmt12(a.end)}` : `${fmt12(a.start)} → you leave ${fmt12(w.end)}`;
+}
+function setAttendWindow(id, start, end, withId, fid) {
+  const all = attendWindows(fid);
+  all[id] = { start, end, ...(withId ? { with: withId } : {}) };
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function resetAttendWindow(id, fid) {
+  const all = attendWindows(fid);
+  if (!(id in all)) return;
+  delete all[id];
+  try { localStorage.setItem(_attendKey(fid), JSON.stringify(all)); } catch {}
+  _l3Changed();
+}
+function clashPairKey(idA, idB) { return [idA, idB].sort().join("|"); }
+function _acceptedPairs() { const v = _l3Read(CLASH_KEPT_BOTH_KEY, []); return new Set(Array.isArray(v) ? v : []); }
+function clashAccepted(a, b) { return !!a && !!b && _acceptedPairs().has(clashPairKey(a.id, b.id)); }
+function acceptClash(a, b) {
+  const s = _acceptedPairs(); s.add(clashPairKey(a.id, b.id));
+  try { localStorage.setItem(CLASH_KEPT_BOTH_KEY, JSON.stringify([...s])); } catch {}
+  _l3Changed();
+}
+// Overlap of what the user will actually attend.
+function attendOverlaps(a, b, fid, savedIds) { return overlaps(attendWindow(a, fid, savedIds), attendWindow(b, fid, savedIds)); }
+// THE clash predicate: the attend windows overlap and the pair is not accepted.
+function setsClash(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && !clashAccepted(a, b); }
+// Kept both: they still overlap, by the user's choice.
+function setsOverlapAccepted(a, b, fid, savedIds) { return attendOverlaps(a, b, fid, savedIds) && clashAccepted(a, b); }
+// The split of an overlapping pair at `switchMin`: the set that starts first
+// keeps [its start, switch), the other keeps [switch, its end]. Both halves
+// must be non-empty or attendWindow drops the window and the clash survives
+// the confirm (Codex P1 on #335: two sets starting together made a zero-length
+// first half). So the range is [max(later start, first start + step),
+// min(earlier end, second end - step)]; `ok` is false when no such split
+// exists (or either set is missing or untimed) and no split is offered.
+// Default: the low end.
+function splitRange(a, b) {
+  if (!a || !b || !a.start || !a.end || !b.start || !b.end) return { first: null, second: null, lo: 0, hi: -1, def: 0, ok: false };
+  // Same start and end: the lower id goes first, so argument order never
+  // decides which set keeps the early half (a tie-break is a policy).
+  const [first, second] = [a, b].sort((x, y) => toNightMin(x.start) - toNightMin(y.start) || toNightMin(x.end) - toNightMin(y.end) || String(x.id).localeCompare(String(y.id)));
+  const lo = Math.max(toNightMin(second.start), toNightMin(first.start) + SPLIT_STEP_MIN);
+  const hi = Math.min(toNightMin(first.end), toNightMin(second.end) - SPLIT_STEP_MIN);
+  return { first, second, lo, hi, def: lo, ok: lo <= hi };
+}
+// THE switch grid, one rule for the slider, its preview, the confirm and what
+// is saved: 5-minute steps anchored at `lo` (the range input's own step base),
+// never past `hi`. Rounding from midnight instead saved 22:10 for a previewed
+// 22:12 when lo was 22:07 (Codex P2 on #335). Anything unreadable is `lo`.
+function snapSplitSwitch(v, lo, hi) {
+  const n = Number(v);
+  if (!Number.isFinite(n) || !(lo <= hi)) return lo;
+  const top = lo + Math.floor((hi - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN;
+  return Math.min(top, Math.max(lo, lo + Math.round((n - lo) / SPLIT_STEP_MIN) * SPLIT_STEP_MIN));
+}
+// One split per act: each act stores one window with one partner, so
+// splitting it again with a different act would overwrite the first split and
+// bring its cleared clash back (Codex P1 on #335). The new split is refused
+// instead and the first one kept; the user resets the first split to choose
+// another partner. "Paired" is attendWindow's answer, so
+// a partner that was unsaved or left the lineup locks nothing; re-splitting
+// the same pair adjusts it. Returns { act, partner } for the blocking split,
+// or null when the pair may be split.
+function splitBlocker(a, b, fid) {
+  for (const [x, other] of [[a, b], [b, a]]) {
+    if (!x || !other) continue;
+    const w = attendWindow(x, fid);
+    if (w.partial && w.with && w.with !== other.id) {
+      const partner = _attendLineup(fid).find(p => p.id === w.with);
+      if (partner) return { act: x, partner };
+    }
+  }
+  return null;
+}
+// Writes both halves or nothing; true when the split was saved.
+function splitNight(a, b, switchMin, fid) {
+  const { first, second, lo, hi, ok } = splitRange(a, b);
+  if (!ok || splitBlocker(a, b, fid)) return false;
+  const sw = snapSplitSwitch(switchMin, lo, hi);
+  setAttendWindow(first.id, first.start, nightMinToHHMM(sw), second.id, fid);
+  setAttendWindow(second.id, nightMinToHHMM(sw), second.end, first.id, fid);
+  return true;
+}
+// ── Clash solver ─────────────────────────────────────────────────────────
+// One suggestion per clashing pair, with the reason that decided it, or null
+// when nothing on record tells the two apart: the solver never guesses. The
+// rules run in order and the first one that separates the pair decides:
+//   1. plays again: only one of the two has another timed set on a LATER
+//      night the user can reach (same weekend), so keeping the other loses
+//      nothing. Later only: an earlier night may already be over;
+//   2. your music: only one is in the Spotify matches;
+//   3. split: a switch exists that gives each set CLASH_SPLIT_MIN_MIN or more;
+//      the switch is the middle of the split range, on the 5-minute grid.
+// No rule ranks by tier: most lineups derive it from the start hour
+// (data.jsx _aclMk, the EDC builder), so it is a time slot, not a billing,
+// and "headline" would be a claim the data does not make.
+// Pure for a given ctx { lineup, matchedIds, dayLabel }, and the answer is the
+// same for (a, b) and (b, a): a tie-break is a policy, never argument order.
+const CLASH_SPLIT_MIN_MIN = 30;
+function _clashName(a) { return String((a && a.name) || "").trim().toLowerCase(); }
+function clashPlaysAgain(a, lineup) {
+  if (!a) return null;
+  const n = _clashName(a);
+  const again = (lineup || []).filter(x => x && x.id !== a.id && x.start && x.end && _clashName(x) === n
+    && x.day > a.day && _attendSameWeekend(a, x));
+  return again.sort((x, y) => x.day - y.day || toNightMin(x.start) - toNightMin(y.start) || String(x.id).localeCompare(String(y.id)))[0] || null;
+}
+function clashSuggestion(a, b, ctx) {
+  if (!a || !b || a.id === b.id) return null;
+  const c = ctx || {};
+  const lineup = c.lineup || _attendLineup(c.fid);
+  const matched = new Set(c.matchedIds || _l3Read("spotify_matched_ids_v1", []) || []);
+  const dayLabel = c.dayLabel || (d => { const x = (typeof DAYS !== "undefined" ? DAYS : []).find(y => y.n === d); return x ? x.label : `Day ${d}`; });
+  const keep = (k, d, rule, reason) => ({ kind: "keep", keepId: k.id, dropId: d.id, rule, reason });
+  // 1. plays again
+  const againA = clashPlaysAgain(a, lineup), againB = clashPlaysAgain(b, lineup);
+  if (!!againA !== !!againB) {
+    const [goes, stays, at] = againA ? [a, b, againA] : [b, a, againB];
+    return keep(stays, goes, "plays-again", `Keep ${actDisplayName(stays.name)}. ${actDisplayName(goes.name)} plays again ${dayLabel(at.day)} at ${fmt12(at.start)}.`);
+  }
+  // 2. your music
+  const mA = matched.has(a.id), mB = matched.has(b.id);
+  if (mA !== mB) {
+    const [k, d] = mA ? [a, b] : [b, a];
+    return keep(k, d, "your-music", `Keep ${actDisplayName(k.name)}. It is in your Spotify artists.`);
+  }
+  // 3. split
+  const r = splitRange(a, b);
+  if (r.ok) {
+    const sw = snapSplitSwitch((r.lo + r.hi) / 2, r.lo, r.hi);
+    const firstMin = sw - toNightMin(r.first.start), secondMin = toNightMin(r.second.end) - sw;
+    if (firstMin >= CLASH_SPLIT_MIN_MIN && secondMin >= CLASH_SPLIT_MIN_MIN) {
+      return { kind: "split", firstId: r.first.id, secondId: r.second.id, switchMin: sw, rule: "split",
+        reason: `Split: ${actDisplayName(r.first.name)} until ${fmt12(nightMinToHHMM(sw))}, then ${actDisplayName(r.second.name)} (${firstMin} and ${secondMin} min).` };
+    }
+  }
+  return null;
+}
+
+// Re-renders a screen when a window or an accepted pair changes (any screen,
+// any tab). Read it into a memo's deps so counts recompute.
+function useAttendVersion() {
+  const [v, setV] = React.useState(0);
+  React.useEffect(() => {
+    const f = () => setV(x => x + 1);
+    window.addEventListener("plursky:attend-change", f);
+    return () => window.removeEventListener("plursky:attend-change", f);
+  }, []);
+  return v;
+}
+
+// ── Keep alerts (L5) ──────────────────────────────────────────────────────
+// A set that loses a clash ("Keep this" on the other one) is unsaved, so the
+// saved-set reminder for it goes silent. The user can keep its reminder, per
+// set: `${fid}_alerts_kept_v1` = [setId]. Keeping alerts is NOT a save: the
+// set stays out of `saved`, so clashes, the banner, counts and the resolver
+// never see it. Only the reminder paths read it, through reminderSetIds.
+// Changes fire plursky:attend-change so the app's reschedule effect re-runs.
+// Losers are remembered for this session only (a quiet offer at resolve time);
+// what the user keeps is persisted.
+function _alertsKeptKey(fid) { return `${fid || FESTIVAL_CONFIG.id}_alerts_kept_v1`; }
+function alertsKeptIds(fid) {
+  const v = _l3Read(_alertsKeptKey(fid), []);
+  return Array.isArray(v) ? v.filter(x => typeof x === "string") : [];
+}
+function setAlertsKept(id, on, fid) {
+  const cur = alertsKeptIds(fid);
+  const next = on ? (cur.includes(id) ? cur : [...cur, id]) : cur.filter(x => x !== id);
+  if (next.length === cur.length && next.every((x, i) => x === cur[i])) return;
+  try { localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(next)); } catch {}
+  _l3Changed();
+}
+// A set saved again is reminded as a saved set; its keep-alerts entry goes so
+// a later unsave silences it, the way an unsave always has.
+function pruneAlertsKept(savedIds, fid) {
+  const saved = new Set(savedIds || []);
+  const cur = alertsKeptIds(fid);
+  if (cur.some(id => saved.has(id))) {
+    try { localStorage.setItem(_alertsKeptKey(fid), JSON.stringify(cur.filter(id => !saved.has(id)))); } catch {}
+    _l3Changed();
+  }
+}
+// THE reminder list: saved sets, then alerts-kept sets not saved. Every
+// reminder path (native, web, in-app) reads this; clashes never do.
+function reminderSetIds(savedIds, fid) {
+  const saved = Array.isArray(savedIds) ? savedIds : [];
+  return [...saved, ...alertsKeptIds(fid).filter(id => !saved.includes(id))];
+}
+const _CLASH_LOSERS = new Set();
+function noteClashLoser(id) { if (id && !_CLASH_LOSERS.has(id)) { _CLASH_LOSERS.add(id); _l3Changed(); } }
+function clashLoserIds() { return [..._CLASH_LOSERS]; }
+
 // The weekend a MOMENT belongs to, read off its own capture time — the
 // moment's datum, the way artistDayDate reads the act's. The session resolver
 // is clock-first, so from W1's wrap (Oct 5) it answers W2 for good, and a
@@ -1923,6 +2404,10 @@ function artistDayDate(a, nowMs, savedIds) {
 // Oct 31 → Nov 1 falls back at 02:00, and midnightUtc + hours put every later
 // set an hour late. A night with no transition (every live festival today)
 // returns that plain sum. Null for a blank (TBA) time or an unknown day.
+// On a FALL-BACK night the transition wall time itself (02:00) is read as the
+// end of the first pass, i.e. the transition instant: Escape's "Festival Hours
+// 4PM-2AM" close is 02:00 PDT = 09:00Z, not 02:00 PST an hour later (lane
+// ruling 2026-10-26). 01:xx stays the first (PDT) pass; 02:01 on is PST.
 const _tzFmt = {};
 const _tzNightShifts = {};
 function _utcOffsetMs(tz, ms) {
@@ -1947,8 +2432,13 @@ function _wallMs(dayDate, hhmm, tz) {
     }
     const o0 = _tzNightShifts[key];
     if (o0 === null) return naive;
+    // Fall-back night (the offset drops overnight): read the offset one
+    // second before the candidate instant, so the 02:00 boundary keeps the
+    // pre-transition offset. A whole second, because _utcOffsetMs works in
+    // whole seconds. A spring-forward night keeps the exact-instant read.
+    const back = _utcOffsetMs(tz, dayDate.midnightUtc + 32 * 3600000) < o0 ? 1000 : 0;
     let ms = naive;
-    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms);
+    for (let i = 0; i < 2; i++) ms = naive + o0 - _utcOffsetMs(tz, ms - back);
     return ms;
   } catch { return naive; }
 }
@@ -1964,6 +2454,177 @@ function _cfgActDayDate(cfg, a) {
   return shift > 0 ? _shiftDayDate(d, shift) : d;
 }
 
+// ── Set-level attendance: presence intervals → full / partial verdict ──────
+// Pure logic only (set-attendance spec PR 1): nothing here reads GPS, stores
+// anything or renders. What was observed is a list of presence intervals per
+// stage; the verdict is DERIVED from them and the set's published window,
+// never stored on its own. Every surface asks attendanceVerdict, none
+// re-derives it (one policy, many doors).
+//   full     presence ≥ 85% of the set, and within 10 min of BOTH ends
+//   partial  ≥ 15 min or ≥ 25% of the set, not full ("≈ 30 of 60 min")
+//   brief    less than that: not caught, not shown
+//   unknown  caught, length not claimable: a photo point only, or a
+//            third_party window (an unverified time never earns full/partial)
+//   none     no evidence at this stage
+// Blank times (TBA or an unresolved time) never claim the set: the verdict
+// is "unknown", caught false, and only the stage + clock span is reported.
+const ATTEND_GAP_MS = 5 * 60000;          // a fix gap longer than this closes a run
+const ATTEND_GRACE_MS = 5 * 60000;        // late starts and walk-ups, either side
+const ATTEND_FULL_SHARE = 0.85;
+const ATTEND_FULL_EDGE_MS = 10 * 60000;
+const ATTEND_PARTIAL_MS = 15 * 60000;
+const ATTEND_PARTIAL_SHARE = 0.25;
+const ATTEND_PHOTO_MS = 2 * 60000;        // a photo is a point, capture time ± 2 min
+
+// Great-circle distance in meters. Here, not in photo-tag.jsx, because the
+// stage fix gate below needs it and data.jsx loads first.
+function _haversineMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = (d) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 +
+            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+// The one fix gate (set-attendance spec PR 2): a GPS fix → a trusted stage,
+// or the reason there isn't one. Stale, coarse (no accuracy counts as
+// coarse), outside the radius, or too close to call between two stages all
+// give no stage, and the measurements come back either way. Live Set Check-in
+// and the attendance geofence both ask this; only their rules differ.
+// Attendance: LIVE is the map's freshness (60 s, 120 s in battery saver), the
+// radius stays today's 140 m, accuracy and margin are Check-in's.
+const STAGE_FIX_ATTEND = { maxAgeMs: 60000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+const STAGE_FIX_ATTEND_SAVER = { maxAgeMs: 120000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+function stageFixGate(anchors, fix, atMs, rules) {
+  if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
+  const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
+  if (!anchors || !anchors.length) return { status: "no-anchors", accM };
+  const d = anchors.map(a => ({ stageId: a.stageId, dist: _haversineMeters(fix.lat, fix.lng, a.lat, a.lng) }))
+    .sort((x, y) => x.dist - y.dist || String(x.stageId).localeCompare(String(y.stageId)));
+  const out = { accM, distM: d[0].dist, marginM: d.length > 1 ? d[1].dist - d[0].dist : null };
+  if (typeof fix.timestamp === "number" && atMs - fix.timestamp > rules.maxAgeMs) return { ...out, status: "stale" };
+  if (accM == null || accM > rules.maxAccM) return { ...out, status: "coarse" };
+  if (d[0].dist > rules.maxDistM) return { ...out, status: "outside" };
+  if (out.marginM != null && out.marginM < rules.minMarginM) return { ...out, status: "ambiguous" };
+  return { ...out, status: "trusted", stageId: d[0].stageId };
+}
+
+// Only measured stage positions (osm / crowd) may fire automatic attendance.
+// A poster read, a provisional pin or a derived point is a guess about where
+// a stage is, and a guess must not mark a set (founder, 2026-10-20).
+function attendEvidenceAnchors(cfg) {
+  return ((typeof resolvedStageAnchors === "function") ? resolvedStageAnchors(cfg) : ((cfg && cfg.gpsAnchors) || []))
+    .filter(a => { const s = a.anchorSource || a.src; return s === "osm" || s === "crowd"; });
+}
+
+// Raw samples ({ lat, lng, accuracy, timestamp, atMs }) → the qualifying
+// fixes attendFixesToIntervals takes. atMs is when the app received the
+// sample (freshness); the fix counts at its own timestamp. A sample the gate
+// does not trust is dropped, never guessed onto a stage.
+function attendQualifyFixes(samples, anchors, rules = STAGE_FIX_ATTEND) {
+  const out = [];
+  for (const f of samples || []) {
+    if (!f) continue;
+    const ms = typeof f.timestamp === "number" ? f.timestamp : f.atMs;
+    const g = stageFixGate(anchors, f, typeof f.atMs === "number" ? f.atMs : ms, rules);
+    if (g.status === "trusted" && typeof ms === "number") out.push({ ms, stageId: g.stageId });
+  }
+  return out;
+}
+
+// Qualifying GPS fixes ({ ms, stageId }, already through the fix gate) →
+// runs per stage. Sorted by time then stage, so the input's array order can
+// never decide a run (a tie-break is a policy). A fix for another stage, or a
+// gap over gapMs, closes the run; a lone fix is a zero-length run.
+function attendFixesToIntervals(fixes, gapMs = ATTEND_GAP_MS) {
+  const ok = (fixes || []).filter(f => f && typeof f.ms === "number" && isFinite(f.ms) && f.stageId != null)
+    .slice().sort((x, y) => x.ms - y.ms || String(x.stageId).localeCompare(String(y.stageId)));
+  const out = {};
+  let run = null;
+  for (const f of ok) {
+    if (run && run.stageId === f.stageId && f.ms - run.to <= gapMs) { run.to = f.ms; continue; }
+    run = { stageId: f.stageId, from: f.ms, to: f.ms };
+    (out[f.stageId] = out[f.stageId] || []).push(run);
+  }
+  for (const k of Object.keys(out)) out[k] = out[k].map(r => ({ from: r.from, to: r.to, src: "gps" }));
+  return out;
+}
+
+// How far a set's published time can be trusted. Live lineups are the
+// festival's own; a historical row carries its gather class (sourceClass).
+function attendTimeClass(a) {
+  if (!a || setTimeStatus(a) !== "confirmed" || _hhmmNightMin(a.end) == null) return "blank";
+  return a.sourceClass === "third_party" ? "third_party" : "settled";
+}
+
+// The set's window as instants, on the weekend the evidence says. A W1/W2
+// tag answers it; a both-weekend act on a two-weekend festival takes the
+// weekend its presence falls in (more presence wins, W1 when there is none).
+function attendSetWindowMs(a, cfg, runs) {
+  const base = _cfgActDayDate(cfg, a);
+  if (!base) return null;
+  const win = d => {
+    const s = _wallMs(d, a.start, cfg && cfg.tz), e = _wallMs(d, a.end, cfg && cfg.tz);
+    return s != null && e != null && e > s ? { startMs: s, endMs: e } : null;
+  };
+  const w1 = win(base);
+  const wk = cfg && cfg.weekendStartMs;
+  const shift = a.weekend === "W1" || a.weekend === "W2" || !wk ? 0
+    : (typeof wk.W1 === "number" && typeof wk.W2 === "number" ? wk.W2 - wk.W1 : 0);
+  if (!(shift > 0) || !w1) return w1;
+  const w2 = win(_shiftDayDate(base, shift));
+  if (!w2) return w1;
+  // A photo point counts as one millisecond here, so photo-only evidence on
+  // Weekend 2 still picks Weekend 2.
+  const score = w => _attendPresenceMs(runs, w) + (runs || []).filter(r => r.src === "photo" && r.from >= w.startMs - ATTEND_GRACE_MS && r.from <= w.endMs + ATTEND_GRACE_MS).length;
+  return score(w2) > score(w1) ? w2 : w1;
+}
+
+function _attendPresenceMs(runs, w) {
+  let ms = 0;
+  for (const r of runs || []) if (r.src !== "photo") ms += Math.max(0, Math.min(r.to, w.endMs) - Math.max(r.from, w.startMs));
+  return ms;
+}
+
+// intervals: { [stageId]: [{ from, to, src: "gps" | "photo" }] }.
+// opts.manual ("full" | "partial") always wins and GPS never downgrades it.
+function attendanceVerdict(a, intervals, cfg, opts = {}) {
+  const timeClass = attendTimeClass(a);
+  const runs = ((intervals && a && intervals[a.stage]) || []).filter(r => r && typeof r.from === "number" && typeof r.to === "number" && r.to >= r.from);
+  const res = (verdict, caught, minutes, setMin, span) => ({ verdict, caught, minutes, setMin, timeClass, span: span || null });
+  const span = rs => rs.length ? { from: Math.min(...rs.map(r => r.from)), to: Math.max(...rs.map(r => r.to)) } : null;
+  const w = timeClass === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+  const setMin = w ? Math.round((w.endMs - w.startMs) / 60000) : null;
+  if (opts.manual === "full" || opts.manual === "partial") return res(opts.manual, true, null, setMin, span(runs));
+  if (!w) return runs.length ? res("unknown", false, null, null, span(runs)) : res("none", false, null, null, null);
+  const lo = w.startMs - ATTEND_GRACE_MS, hi = w.endMs + ATTEND_GRACE_MS;
+  const inside = runs.filter(r => r.to >= (r.src === "photo" ? lo - ATTEND_PHOTO_MS : lo) && r.from <= (r.src === "photo" ? hi + ATTEND_PHOTO_MS : hi));
+  if (!inside.length) return res("none", false, null, setMin, null);
+  const gps = inside.filter(r => r.src !== "photo");
+  const P = _attendPresenceMs(gps, w), L = w.endMs - w.startMs;
+  const minutes = Math.round(P / 60000);
+  const reached = P >= ATTEND_PARTIAL_MS || P >= ATTEND_PARTIAL_SHARE * L;
+  if (timeClass === "third_party") return reached || gps.length < inside.length ? res("unknown", true, minutes, setMin, span(inside)) : res("brief", false, minutes, setMin, span(inside));
+  const first = gps.length ? Math.min(...gps.map(r => r.from)) : Infinity;
+  const last = gps.length ? Math.max(...gps.map(r => r.to)) : -Infinity;
+  if (P >= ATTEND_FULL_SHARE * L && first <= w.startMs + ATTEND_FULL_EDGE_MS && last >= w.endMs - ATTEND_FULL_EDGE_MS) return res("full", true, minutes, setMin, span(inside));
+  if (reached) return res("partial", true, minutes, setMin, span(inside));
+  if (gps.length < inside.length) return res("unknown", true, minutes, setMin, span(inside));   // a photo lifts it to caught, never to full
+  return res("brief", false, minutes, setMin, span(inside));
+}
+
+// "Full set" / "≈ 30 of 60 min": the minutes round to 5 and always say ≈.
+function attendanceVerdictLabel(v) {
+  if (!v) return "";
+  if (v.verdict === "full") return "Full set";
+  const r5 = n => Math.max(5, Math.round(n / 5) * 5);
+  if (v.verdict === "partial") return v.minutes != null && v.setMin ? `≈ ${r5(v.minutes)} of ${r5(v.setMin)} min` : "Part of the set";
+  if (v.verdict === "unknown" && v.caught && v.minutes) return `≈ ${r5(v.minutes)} min`;
+  return "";
+}
+
 // ── Schedule Sync: the feed shape, the diff, the replay ────────────────────
 // The schedule as f/<id>/schedule.json publishes it and as the diff reads it.
 // gen-festival-pages calls this same function, so the feed and the app's own
@@ -1972,6 +2633,9 @@ function _scheduleActs(artists) {
   return (artists || []).map(a => {
     const o = { id: a.id, name: a.name, day: a.day, stage: a.stage ?? null, start: a.start || "", end: a.end || "" };
     if (a.weekend != null) o.weekend = a.weekend;   // ACL: "both" / W1 / W2
+    // Only on a disputed act, so every other festival's feed (and its
+    // fingerprint) is byte-for-byte what it was. The diff ignores the key.
+    if (setTimeStatus(a) === "unconfirmed") o.timeStatus = "unconfirmed";
     return o;
   });
 }
@@ -2098,6 +2762,28 @@ function _schedFill(a, artists) {
   const low = (artists || []).reduce((m, x) => (m == null || x.tier > m.tier ? x : m), null) || {};
   return { genre: "", country: "—", tier: low.tier ?? 3, img: low.img || "linear-gradient(135deg, #3a3a3a, #111)", bio: "", ...a };
 }
+// A disputed act's time can only come back through a source-reviewed edit of its
+// festival module (its timeEvidence, header list and row, in one diff). A feed or
+// a stored overlay carries no source proof — an old schedule.json, a stale CDN
+// copy or a hand-made overlay could all say 12:00 — so their times are pinned
+// back to blank for every id the edition's timeEvidence lists as unresolved.
+// Stage moves and cancellations still go through review as before; only start
+// and end are pinned. `attach` puts the record on the act (lineup objects); a
+// feed's bare acts stay bare.
+function _unresolvedTimeRecord(ev, id) {
+  const r = ev && Object.prototype.hasOwnProperty.call(ev, id) ? ev[id] : null;
+  return r && r.status === "unresolved" ? r : null;
+}
+function _pinUnresolvedTimes(acts, ev, attach) {
+  if (!ev || !Array.isArray(acts)) return acts;
+  return acts.map(a => {
+    const r = a && _unresolvedTimeRecord(ev, a.id);
+    if (!r) return a;
+    const o = { ...a, start: "", end: "" };
+    if (attach) o.timeEvidence = r;
+    return o;
+  });
+}
 function _applyScheduleOverlays(sets) {
   const all = _schedOverlays();
   let dirty = false;
@@ -2108,7 +2794,7 @@ function _applyScheduleOverlays(sets) {
     }
     try {
       const bundled = ds.artists;
-      ds.artists = applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled));
+      ds.artists = _pinUnresolvedTimes(applyScheduleDiff(bundled, ov.diff).map(a => _schedFill(a, bundled)), ds.timeEvidence, true);
       ds.bundledArtists = bundled;
     } catch { delete all[fid]; dirty = true; }
   }
@@ -2147,7 +2833,7 @@ function scheduleReview(fid, feed, opts = {}) {
   if (!ds || !feed || feed.festivalId !== fid || !Array.isArray(feed.acts)) return { error: "bad-feed" };
   const cfg = ds.config;
   const stageIds = new Set((ds.stages || []).map(s => s.id));
-  const acts = feed.acts.map(a => (a && a.stage != null && !stageIds.has(a.stage) ? { ...a, stage: null } : a));
+  const acts = _pinUnresolvedTimes(feed.acts.map(a => (a && a.stage != null && !stageIds.has(a.stage) ? { ...a, stage: null } : a)), ds.timeEvidence);
   const now = opts.now ?? Date.now();
   const saved = opts.saved || [];
   const shown = diffSchedule(_scheduleActs(ds.artists), acts, cfg);
@@ -2694,9 +3380,9 @@ const ACL_AMENITIES = [
 // ══════════════════════ EDC ORLANDO 2026 (revival scaffold 2026-08-22) ══════
 // Lineup + DAY SPLITS are REAL (official orlando.edc.com/lineup day
 // filters, 108 acts; audited vs Insomniac press release 2026-06-23).
-// Set times + per-artist stage assignments + official 2026 map are NOT
-// published — every artist sits on stage "tba" with placeholder
-// 12:00-13:00 times until the flip session. Stage names verified from
+// Flipped 2026-11-04: set times + stages come from the official set-times
+// pages (EDCO_SCHEDULE), and the lineup was re-diffed the same day (133
+// entries). The official 2026 map is in. Stage names verified from
 // orlando.edc.com/experience/stages (incl. 5th stage CASA BACARDÍ).
 
 // Stage x/y are a 0–100 GRID, and since v264 they are DERIVED from the
@@ -2713,23 +3399,160 @@ const ACL_AMENITIES = [
 // real distortion, not a viewport artifact. The n/s margin is the honest
 // cost of preserving aspect.
 //
-// The plasma overlay art stays abstract, so nothing registers against it;
-// re-derive this grid with the anchors if the official 2026 map moves a stage.
+// ⚠ SUPERSEDED 2026-10-29. Everything above describes the abstract grid that
+// sat over the plasma placeholder. With the official 2026 map as the plate,
+// x/y are where each stage is DRAWN on that plate: its measured pin in
+// scripts/build-edco-map-2026.mjs as a percentage of the 960 px square, to
+// 0.1. The five gpsAnchors are the same pins through the street-corner fit,
+// so the map's 3-anchor affine and the art agree by construction.
 const EDCO_STAGES = [
-  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 57, y: 76, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
-  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 26, y: 17, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
-  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 90, y: 36, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
-  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 10, y: 70, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
-  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 22, y: 83, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
-  { id: "tba",    name: "Schedule TBA",    short: "TBA",      color: "#9ca3af", x: 50, y: 50, size: 0.1, desc: "PROVISIONAL: stage assignments drop with the official schedule", vibe: "Unscheduled", vibeNote: "Every artist sits here until the official schedule assigns stages + times.", peak: "—" },
+  { id: "kinetic", name: "kineticFIELD",   short: "KINETIC",  color: "#f97316", x: 70.3, y: 63.8, size: 1.7, desc: "Main stage",               vibe: "Main Event",      vibeNote: "Headliners under the electric sky.",                 peak: "18:00–00:00" },
+  { id: "circuit", name: "circuitGROUNDS", short: "CIRCUIT",  color: "#38bdf8", x: 15.1, y: 25.5, size: 1.4, desc: "Epic-melody big room",     vibe: "Big Melodies",    vibeNote: "Trance, melodic bass, anthem energy.",               peak: "16:00–00:00" },
+  { id: "neon",    name: "neonGARDEN",     short: "NEON",     color: "#a855f7", x: 87.4, y: 37.5, size: 1.3, desc: "Factory 93 home base",     vibe: "House & Techno",  vibeNote: "Factory 93 takeover territory, four-on-the-floor.",  peak: "15:00–00:00" },
+  { id: "stereo",  name: "stereoBLOOM",    short: "STEREO",   color: "#f43f5e", x: 14.1, y: 64.1, size: 1.1, desc: "Insomniac Records stage",  vibe: "Label Sounds",    vibeNote: "Insomniac Records + Dreamstate hosting.",            peak: "14:00–23:00" },
+  { id: "bacardi", name: "CASA BACARDÍ",   short: "BACARDÍ",  color: "#22c55e", x: 41.1, y: 76.7, size: 0.9, desc: "Lounge stage",             vibe: "Lounge Sessions", vibeNote: "Day-party energy under the palms.",                  peak: "13:00–20:00" },
 ];
 
 // The flip fills this block from the OFFICIAL schedule:
 //   node scripts/fetch-insomniac-settimes.mjs https://orlando.edc.com/lineup/set-times --days 3 --out sheet.tsv
 //   node scripts/import-set-times.mjs edc-orlando-2026 sheet.tsv --source <official-url>
-// id → [stageId, start, end]. Empty until then: every act stays on "tba".
+// id → [stageId, start, end]. An act the sheet does not name keeps stage null.
 const EDCO_SCHEDULE = {
   // SCHEDULE:BEGIN edc-orlando-2026
+  // source: https://orlando.edc.com/lineup/set-times/ · imported 2026-11-04 · 133 of 133 acts
+  "ecf36": ["kinetic", "13:00", "14:25"],  // Zack Martino
+  "ecf17": ["kinetic", "14:25", "15:25"],  // JOA
+  "ecf13": ["kinetic", "15:25", "16:25"],  // HAYLA
+  "ecf29": ["kinetic", "16:25", "17:28"],  // Pegassi
+  "ecf4": ["kinetic", "17:28", "18:43"],  // Alesso (Sunset Set)
+  "ecf21": ["kinetic", "18:47", "19:57"],  // KREAM
+  "ecf3": ["kinetic", "20:00", "21:10"],  // Afrojack
+  "ecf26": ["kinetic", "21:13", "22:28"],  // Mau P
+  "ecf12": ["kinetic", "22:31", "23:56"],  // David Guetta
+  "ecf33": ["circuit", "13:00", "14:15"],  // Sloth
+  "ecf6": ["circuit", "14:15", "15:30"],  // Benda B2B Vastive
+  "ecf7": ["circuit", "15:30", "16:30"],  // Big Florida
+  "ecf20": ["circuit", "16:30", "17:30"],  // Kompany
+  "ecf2": ["circuit", "17:30", "18:30"],  // Adventure Club (Sunset Set)
+  "ecf8": ["circuit", "18:30", "19:30"],  // Bou B2B Kanine
+  "ecf22": ["circuit", "19:30", "20:30"],  // Level Up
+  "ecf34": ["circuit", "20:30", "21:35"],  // Whethan
+  "ecf23": ["circuit", "21:35", "22:45"],  // Levity
+  "ecf35": ["circuit", "22:45", "00:00"],  // Wooli
+  "ecf25": ["neon", "13:00", "15:00"],  // Matthias
+  "ecf15": ["neon", "15:00", "16:30"],  // Inbal
+  "ecf5": ["neon", "16:30", "18:00"],  // Azzecca
+  "ecf44": ["neon", "18:00", "19:30"],  // Obskûr (Sunset Set)
+  "ecf28": ["neon", "19:30", "21:00"],  // Omar+
+  "ecf9": ["neon", "21:00", "22:30"],  // Brunello
+  "ecf18": ["neon", "22:30", "00:00"],  // Josh Baker
+  "ecf32": ["stereo", "13:00", "14:15"],  // RAJE
+  "ecf1": ["stereo", "14:15", "15:30"],  // AAT
+  "ecf14": ["stereo", "15:30", "16:30"],  // IDEMI
+  "ecf19": ["stereo", "16:30", "17:30"],  // Joshwa
+  "ecf24": ["stereo", "17:30", "18:45"],  // MALUGI (Sunset Set)
+  "ecf10": ["stereo", "18:45", "20:00"],  // Bullet Tooth B2B Sidney Charles
+  "ecf16": ["stereo", "20:00", "21:15"],  // Interplanetary Criminal
+  "ecf27": ["stereo", "21:15", "22:30"],  // MPH
+  "ecf11": ["stereo", "22:30", "00:00"],  // Chris Lorenzo
+  "ecf37": ["bacardi", "13:00", "14:00"],  // 2AR
+  "ecf45": ["bacardi", "14:00", "15:00"],  // Seeing Double
+  "ecf43": ["bacardi", "15:00", "16:30"],  // Night Tales
+  "ecf42": ["bacardi", "16:30", "17:45"],  // Me n ü
+  "ecf46": ["bacardi", "17:45", "19:00"],  // AAT
+  "ecf40": ["bacardi", "19:00", "20:15"],  // Eve Lauren
+  "ecf39": ["bacardi", "20:15", "21:30"],  // Crespo
+  "ecf41": ["bacardi", "21:30", "22:45"],  // Kashovski
+  "ecf38": ["bacardi", "22:45", "00:00"],  // Chantel Jeffries
+  "ecs28": ["kinetic", "13:00", "13:33"],  // Monoky
+  "ecs26": ["kinetic", "13:33", "14:33"],  // Me n ü
+  "ecs36": ["kinetic", "14:33", "15:33"],  // Twinsick
+  "ecs1": ["kinetic", "15:33", "16:33"],  // Aaron Hibell
+  "ecs2": ["kinetic", "16:33", "17:38"],  // ACRAZE B2B CID
+  "ecs3": ["kinetic", "17:38", "18:53"],  // Alan Walker (Sunset Set)
+  "ecs29": ["kinetic", "18:57", "20:02"],  // Nico Moreno
+  "ecs34": ["kinetic", "20:05", "21:10"],  // Steve Aoki
+  "ecs13": ["kinetic", "21:13", "22:28"],  // Disco Lines
+  "ecs20": ["kinetic", "22:31", "00:00"],  // Kaskade
+  "ecs16": ["circuit", "13:00", "14:30"],  // Fury with MC Dino
+  "ecs23": ["circuit", "14:30", "15:30"],  // MADVKTM
+  "ecs35": ["circuit", "15:30", "16:30"],  // Subsonic
+  "ecs7": ["circuit", "16:30", "17:30"],  // AVELLO
+  "ecs19": ["circuit", "17:30", "18:30"],  // Jkyl & Hyde
+  "ecs22": ["circuit", "18:30", "19:30"],  // LAYZ
+  "ecs5": ["circuit", "19:30", "20:30"],  // ALLEYCVT
+  "ecs30": ["circuit", "20:30", "21:30"],  // Ray Volpe
+  "ecs33": ["circuit", "21:35", "22:45"],  // Skull Machine (Black Tiger Sex Machine x Kai Wachi)
+  "ecs4": ["circuit", "22:45", "00:00"],  // Alison Wonderland
+  "ecs24": ["neon", "13:00", "14:30"],  // Mai Iachetti
+  "ecs21": ["neon", "14:30", "16:00"],  // KinAhau
+  "ecs27": ["neon", "16:00", "17:30"],  // Miguelle & Tons
+  "ecs42": ["neon", "17:30", "19:00"],  // Luke Dean B2B George Smeddles (Sunset Set)
+  "ecs32": ["neon", "19:00", "20:30"],  // Rossi.
+  "ecs10": ["neon", "20:30", "22:00"],  // Dennis Cruz
+  "ecs15": ["neon", "22:00", "00:00"],  // Franky Rizardo
+  "ecs6": ["stereo", "13:00", "14:30"],  // Alves
+  "ecs17": ["stereo", "14:30", "15:30"],  // Gabss
+  "ecs18": ["stereo", "15:30", "16:30"],  // Greg 99
+  "ecs14": ["stereo", "16:30", "17:30"],  // Fallon
+  "ecs11": ["stereo", "17:30", "18:45"],  // Devault (Sunset Set)
+  "ecs12": ["stereo", "18:45", "20:00"],  // Discip
+  "ecs31": ["stereo", "20:00", "21:15"],  // Roddy Lima
+  "ecs8": ["stereo", "21:15", "22:30"],  // AYYBO
+  "ecs9": ["stereo", "22:30", "00:00"],  // ChaseWest
+  "ecs39": ["bacardi", "13:00", "14:00"],  // JFUSE
+  "ecs41": ["bacardi", "14:00", "15:00"],  // Landis
+  "ecs43": ["bacardi", "15:00", "16:30"],  // RAJE
+  "ecs37": ["bacardi", "16:30", "18:00"],  // Allnightkev
+  "ecs45": ["bacardi", "18:00", "19:30"],  // Gabss
+  "ecs38": ["bacardi", "19:30", "21:00"],  // CC Love
+  "ecs40": ["bacardi", "21:00", "22:30"],  // Juos
+  "ecs44": ["bacardi", "22:30", "00:00"],  // Rommii
+  "ecu12": ["kinetic", "13:00", "14:35"],  // ESSE
+  "ecu4": ["kinetic", "14:35", "15:35"],  // AR/CO
+  "ecu17": ["kinetic", "15:35", "16:35"],  // Jessica Audiffred
+  "ecu16": ["kinetic", "16:35", "17:35"],  // Ian Asher
+  "ecu33": ["kinetic", "17:35", "18:50"],  // SLANDER (Sunset Set)
+  "ecu15": ["kinetic", "18:54", "19:59"],  // I Hate Models
+  "ecu3": ["kinetic", "20:02", "21:12"],  // Alok
+  "ecu13": ["kinetic", "21:15", "22:25"],  // Hardwell
+  "ecu25": ["kinetic", "22:28", "23:56"],  // Martin Garrix
+  "ecu42": ["circuit", "13:00", "13:10"],  // DJ3piece
+  "ecu39": ["circuit", "13:10", "14:25"],  // Bella Grazia
+  "ecu1": ["circuit", "14:25", "15:25"],  // A Little Sound
+  "ecu18": ["circuit", "15:25", "16:25"],  // Kaivon
+  "ecu30": ["circuit", "16:35", "17:25"],  // San Holo (Wholesome Riddim Set)
+  "ecu27": ["circuit", "17:25", "18:40"],  // Of The Trees (Sunset Set)
+  "ecu26": ["circuit", "18:40", "19:45"],  // Meduza
+  "ecu23": ["circuit", "19:45", "20:45"],  // Maddix
+  "ecu10": ["circuit", "20:45", "21:50"],  // Deorro B2B DJ Diesel
+  "ecu5": ["circuit", "21:50", "22:55"],  // ATLiens
+  "ecu14": ["circuit", "22:55", "00:00"],  // Holy Priest
+  "ecu36": ["neon", "13:00", "15:00"],  // Ultrathem
+  "ecu31": ["neon", "15:00", "16:30"],  // SHDW
+  "ecu2": ["neon", "16:30", "18:00"],  // Adrián Mills
+  "ecu24": ["neon", "18:00", "19:30"],  // Marlon Hoffstadt (Sunset Set)
+  "ecu7": ["neon", "19:30", "21:00"],  // Boys Noize B2B Brutalismus 3000
+  "ecu19": ["neon", "21:00", "22:30"],  // KI/KI
+  "ecu20": ["neon", "22:30", "00:00"],  // Klangkuenstler
+  "ecu22": ["stereo", "13:00", "14:10"],  // M81!
+  "ecu9": ["stereo", "14:10", "15:10"],  // CØNTRA
+  "ecu8": ["stereo", "15:10", "16:10"],  // Chef Boyarbeatz
+  "ecu28": ["stereo", "16:10", "17:10"],  // phrva
+  "ecu32": ["stereo", "17:10", "18:10"],  // Sippy
+  "ecu21": ["stereo", "18:15", "19:20"],  // Know Good
+  "ecu34": ["stereo", "19:20", "20:30"],  // Taiki Nulight
+  "ecu29": ["stereo", "20:30", "21:40"],  // Ravenscoon
+  "ecu6": ["stereo", "21:40", "22:50"],  // Boogie T
+  "ecu35": ["stereo", "22:50", "00:00"],  // TroyBoi
+  "ecu41": ["bacardi", "13:00", "14:00"],  // Bryan Softwell B2B Chini
+  "ecu45": ["bacardi", "14:00", "15:00"],  // Marian (BR)
+  "ecu40": ["bacardi", "15:00", "16:00"],  // BROSA
+  "ecu37": ["bacardi", "16:30", "18:00"],  // Alves
+  "ecu43": ["bacardi", "18:00", "19:30"],  // Joe Vanditti
+  "ecu38": ["bacardi", "19:30", "21:00"],  // Andrea Quintero
+  "ecu44": ["bacardi", "21:00", "22:30"],  // Kofla
+  "ecu46": ["bacardi", "22:30", "00:00"],  // William Kiss
   // SCHEDULE:END
 };
 const _edcoMk = (id, name, genre, day) => {
@@ -2738,15 +3561,16 @@ const _edcoMk = (id, name, genre, day) => {
   // as a schedule. Blank is the form the UI already understands.
   // EDCO_SCHEDULE above is the only way a time gets in.
   const s = EDCO_SCHEDULE[id];
-  return { id, name, genre, country: "—", stage: s ? s[0] : "tba", day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
+  return { id, name, genre, country: "—", stage: s ? s[0] : null, day, start: s ? s[1] : "", end: s ? s[2] : "", tier: 1,
     img: `linear-gradient(135deg, #22c55e, #04170c)`,
     bio: s ? "Playing EDC Orlando 2026."
-           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time + stage are placeholders until the official schedule drops in the Insomniac app (~1-2 weeks out)." };
+           : "Playing EDC Orlando 2026. Day is official (orlando.edc.com day filters); set time and stage are not on the official schedule." };
 };
 
 // Official day-by-day lineup (orlando.edc.com/lineup day filters, audited
 // 2026-08-22; re-diffed 2026-09-13 against the page's day <li> elements:
-// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name). id prefix:
+// Fri 36 / Sat 36 / Sun 36 = 108 acts, name-for-name; re-diffed again
+// 2026-11-04: Fri 43 / Sat 43 / Sun 45 + 2 same-day repeat sets = 133). id prefix:
 // ecf Fri Nov 6 / ecs Sat Nov 7 / ecu Sun Nov 8. Genre tags agent-assigned
 // for the press-release groupings, default "Electronic" otherwise.
 const EDCO_ARTISTS = [
@@ -2758,7 +3582,7 @@ const EDCO_ARTISTS = [
   _edcoMk("ecf6", "Benda B2B Vastive",                        "Electronic", 1),
   _edcoMk("ecf7", "Big Florida",                              "Bass", 1),
   _edcoMk("ecf8", "Bou B2B Kanine",                           "Electronic", 1),
-  _edcoMk("ecf9", "Brunello (Sunset Set)",                    "House", 1),
+  _edcoMk("ecf9", "Brunello",                    "House", 1),
   _edcoMk("ecf10", "Bullet Tooth B2B Sidney Charles",          "Techno", 1),
   _edcoMk("ecf11", "Chris Lorenzo",                            "House", 1),
   _edcoMk("ecf12", "David Guetta",                             "Electronic", 1),
@@ -2779,8 +3603,6 @@ const EDCO_ARTISTS = [
   _edcoMk("ecf27", "MPH",                                      "Electronic", 1),
   _edcoMk("ecf28", "Omar+",                                    "House", 1),
   _edcoMk("ecf29", "Pegassi",                                  "Electronic", 1),
-  _edcoMk("ecf30", "Prospa B2B Josh Baker",                    "House", 1),
-  _edcoMk("ecf31", "Prospa",                                   "Electronic", 1),
   _edcoMk("ecf32", "RAJE",                                     "Electronic", 1),
   _edcoMk("ecf33", "Sloth",                                    "Electronic", 1),
   _edcoMk("ecf34", "Whethan",                                  "Electronic", 1),
@@ -2810,14 +3632,13 @@ const EDCO_ARTISTS = [
   _edcoMk("ecs22", "LAYZ",                                     "Bass", 2),
   _edcoMk("ecs23", "MADVKTM",                                  "Electronic", 2),
   _edcoMk("ecs24", "Mai Iachetti",                             "Electronic", 2),
-  _edcoMk("ecs25", "Max Dean, Luke Dean",                      "Electronic", 2),
   _edcoMk("ecs26", "Me n ü",                                   "Electronic", 2),
   _edcoMk("ecs27", "Miguelle & Tons",                          "Electronic", 2),
   _edcoMk("ecs28", "Monoky",                                   "Electronic", 2),
   _edcoMk("ecs29", "Nico Moreno",                              "Techno", 2),
   _edcoMk("ecs30", "Ray Volpe",                                "Bass", 2),
   _edcoMk("ecs31", "Roddy Lima",                               "Electronic", 2),
-  _edcoMk("ecs32", "Rossi. (Sunset Set)",                      "House", 2),
+  _edcoMk("ecs32", "Rossi.",                      "House", 2),
   _edcoMk("ecs33", "Skull Machine (Black Tiger Sex Machine x Kai Wachi)", "Electronic", 2),
   _edcoMk("ecs34", "Steve Aoki",                               "Electronic", 2),
   _edcoMk("ecs35", "Subsonic",                                 "Electronic", 2),
@@ -2832,7 +3653,6 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu8", "Chef Boyarbeatz",                          "Electronic", 3),
   _edcoMk("ecu9", "CØNTRA",                                   "Electronic", 3),
   _edcoMk("ecu10", "Deorro B2B DJ Diesel",                     "Electronic", 3),
-  _edcoMk("ecu11", "Discovery Project",                        "Electronic", 3),
   _edcoMk("ecu12", "ESSE",                                     "Electronic", 3),
   _edcoMk("ecu13", "Hardwell",                                 "Electronic", 3),
   _edcoMk("ecu14", "Holy Priest",                              "Electronic", 3),
@@ -2858,17 +3678,70 @@ const EDCO_ARTISTS = [
   _edcoMk("ecu34", "Taiki Nulight",                            "Electronic", 3),
   _edcoMk("ecu35", "TroyBoi",                                  "Electronic", 3),
   _edcoMk("ecu36", "Ultrathem",                                "Electronic", 3),
+  // ── Re-diffed 2026-11-04 against orlando.edc.com/lineup/ (day lists
+  // Fri 43 / Sat 43 / Sun 45) and the official set-times pages: these acts
+  // joined the official lineup after the 09-13 audit (mostly CASA BACARDÍ).
+  // A second same-day entry with the SAME name is that act's repeat set
+  // (AAT Fri, Gabss Sat each play Stereo Bloom and CASA BACARDÍ).
+  _edcoMk("ecf37", "2AR",                                        "Electronic", 1),
+  _edcoMk("ecf38", "Chantel Jeffries",                           "Electronic", 1),
+  _edcoMk("ecf39", "Crespo",                                     "Electronic", 1),
+  _edcoMk("ecf40", "Eve Lauren",                                 "Electronic", 1),
+  _edcoMk("ecf41", "Kashovski",                                  "Electronic", 1),
+  _edcoMk("ecf42", "Me n ü",                                     "Electronic", 1),
+  _edcoMk("ecf43", "Night Tales",                                "Electronic", 1),
+  _edcoMk("ecf44", "Obskûr (Sunset Set)",                        "Electronic", 1),
+  _edcoMk("ecf45", "Seeing Double",                              "Electronic", 1),
+  _edcoMk("ecf46", "AAT",                                        "Electronic", 1),
+  _edcoMk("ecs37", "Allnightkev",                                "Electronic", 2),
+  _edcoMk("ecs38", "CC Love",                                    "Electronic", 2),
+  _edcoMk("ecs39", "JFUSE",                                      "Electronic", 2),
+  _edcoMk("ecs40", "Juos",                                       "Electronic", 2),
+  _edcoMk("ecs41", "Landis",                                     "Electronic", 2),
+  _edcoMk("ecs42", "Luke Dean B2B George Smeddles (Sunset Set)", "Electronic", 2),
+  _edcoMk("ecs43", "RAJE",                                       "Electronic", 2),
+  _edcoMk("ecs44", "Rommii",                                     "Electronic", 2),
+  _edcoMk("ecs45", "Gabss",                                      "Electronic", 2),
+  _edcoMk("ecu37", "Alves",                                      "Electronic", 3),
+  _edcoMk("ecu38", "Andrea Quintero",                            "Electronic", 3),
+  _edcoMk("ecu39", "Bella Grazia",                               "Electronic", 3),
+  _edcoMk("ecu40", "BROSA",                                      "Electronic", 3),
+  _edcoMk("ecu41", "Bryan Softwell B2B Chini",                   "Electronic", 3),
+  _edcoMk("ecu42", "DJ3piece",                                   "Electronic", 3),
+  _edcoMk("ecu43", "Joe Vanditti",                               "Electronic", 3),
+  _edcoMk("ecu44", "Kofla",                                      "Electronic", 3),
+  _edcoMk("ecu45", "Marian (BR)",                                "Electronic", 3),
+  _edcoMk("ecu46", "William Kiss",                               "Electronic", 3),
 ];
 
+// Every First Aid, Info, Water Station, Restroom / GA+ Restroom and Food
+// badge printed on the official 2026 map, measured on the glyph
+// (scripts/build-edco-map-2026.mjs, 2026-10-29). They replace eight
+// unsourced pins placed on the 2026-08-22 scaffold over the plasma
+// placeholder. VIP-only badges, bars, lockers and the rest of the legend are
+// not pinned. `src` is DATA so test-georef-map.mjs can refuse an amenity
+// that loses its label.
 const EDCO_AMENITIES = [
-  { id: "eoa1", type: "water",  label: "Hydration",            x: 44, y: 30 },
-  { id: "eoa2", type: "water",  label: "Hydration",            x: 60, y: 62 },
-  { id: "eoa3", type: "food",   label: "Vendor Village",       x: 50, y: 50 },
-  { id: "eoa4", type: "food",   label: "Westside Eats",        x: 22, y: 58 },
-  { id: "eoa5", type: "med",    label: "Medical",              x: 54, y: 40 },
-  { id: "eoa6", type: "toilet", label: "Restrooms",            x: 30, y: 40 },
-  { id: "eoa7", type: "toilet", label: "Restrooms",            x: 70, y: 56 },
-  { id: "eoa8", type: "info",   label: "Info & Guest Services", x: 48, y: 18 },
+  { id: "eom1", type: "med",   label: "First Aid",                 x: 10.6, y: 49.0, src: "official-2026-map" },
+  { id: "eom2", type: "med",   label: "First Aid",                 x: 29.1, y: 47.5, src: "official-2026-map" },
+  { id: "eom3", type: "med",   label: "First Aid",                 x: 44.2, y: 47.0, src: "official-2026-map" },
+  { id: "eom4", type: "med",   label: "First Aid",                 x: 75.9, y: 33.5, src: "official-2026-map" },
+  { id: "eoi1", type: "info",  label: "Info",                      x: 38.6, y: 46.9, src: "official-2026-map" },
+  { id: "eow1", type: "water", label: "Water Station · 40 taps",   x: 9.9, y: 56.8, src: "official-2026-map" },
+  { id: "eow2", type: "water", label: "Water Station · 64 taps",   x: 50.0, y: 76.8, src: "official-2026-map" },
+  { id: "eot1", type: "toilet", label: "Restrooms",                 x: 30.1, y: 38.6, src: "official-2026-map" },
+  { id: "eot2", type: "toilet", label: "GA+ Restrooms",             x: 32.5, y: 38.6, src: "official-2026-map" },
+  { id: "eot3", type: "toilet", label: "Restrooms",                 x: 43.6, y: 37.3, src: "official-2026-map" },
+  { id: "eot4", type: "toilet", label: "GA+ Restrooms",             x: 45.8, y: 37.3, src: "official-2026-map" },
+  { id: "eot5", type: "toilet", label: "Restrooms",                 x: 55.0, y: 17.5, src: "official-2026-map" },
+  { id: "eot6", type: "toilet", label: "GA+ Restrooms",             x: 81.9, y: 49.1, src: "official-2026-map" },
+  { id: "eot7", type: "toilet", label: "Restrooms",                 x: 81.9, y: 52.3, src: "official-2026-map" },
+  { id: "eof1", type: "food",  label: "Food",                      x: 8.1, y: 43.6, src: "official-2026-map" },
+  { id: "eof2", type: "food",  label: "Food",                      x: 42.7, y: 56.1, src: "official-2026-map" },
+  { id: "eof3", type: "food",  label: "Food",                      x: 72.7, y: 36.5, src: "official-2026-map" },
+  { id: "eof4", type: "food",  label: "Food",                      x: 52.2, y: 55.8, src: "official-2026-map" },
+  { id: "eof5", type: "food",  label: "Food",                      x: 57.4, y: 58.5, src: "official-2026-map" },
+  { id: "eof6", type: "food",  label: "Food",                      x: 52.5, y: 63.1, src: "official-2026-map" },
 ];
 
 // ── Lost Lands 2026 — Legend Valley, Thornville OH (Sep 18–20; early entry Sep 16–17) ──
@@ -3528,7 +4401,13 @@ const _DATA_SETS = {
 };
 for (const _id of _WAVE1_IDS) {
   const _f = _WAVE1[_id];
-  if (_f) _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
+  if (!_f) continue;
+  _DATA_SETS[_id] = { stages: _f.stages, artists: _f.artists, amenities: _f.amenities, config: _f.config };
+  // Edition-scoped: the record and the acts it marks come from the same module.
+  if (_f.timeEvidence) {
+    _DATA_SETS[_id].timeEvidence = _f.timeEvidence;
+    _DATA_SETS[_id].artists = _pinUnresolvedTimes(_f.artists, _f.timeEvidence, true);
+  }
 }
 // Confirmed schedule updates, BEFORE anything reads a lineup (see scheduleReview).
 _applyScheduleOverlays(_DATA_SETS);
@@ -3552,6 +4431,7 @@ Object.assign(window, {
   NOW, ALERTS, ESSENTIALS, fmt12,
   FESTIVALS_REGISTRY, getActiveFestivalId, festivalCanBeActive, setActiveFestivalAndReload, isScheduleTBA,
   _resolveDefaultFestivalId,
+  SET_TIMES_UNCONFIRMED, setTimeStatus, setTimesUnconfirmed, setTimeLabel, setTimingMin, compareSetsByTime,
   resolvedStageAnchors, resolvedStageAnchor, dayDateFor, _weekendShiftMs,
   _DATA_SETS, WALK_TABLE_FESTIVAL_ID,
 });

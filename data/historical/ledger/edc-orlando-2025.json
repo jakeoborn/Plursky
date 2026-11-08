@@ -1,0 +1,235 @@
+{
+  "id": "edc-orlando-2025",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-11-07",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n.jpg",
+          "foundAt": "https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+          "published": "2025-11-05",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "FRIDAY NOV 7",
+          "sha256": "3fe947fba3b1392c84d15ecffbf7c486f103db24418aee65245aa703c6164fac",
+          "bytes": 301482,
+          "rows": 47,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+            "captureTimestamp": "20251106020111",
+            "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+            "cites": "wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n",
+              "wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n",
+              "wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-11-08",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n.jpg",
+          "foundAt": "https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+          "published": "2025-11-05",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY NOV 8",
+          "sha256": "9efbc7243bea4fa9ad72ee49aa22a904416d5079904232256349c5e6d24565f5",
+          "bytes": 295088,
+          "rows": 49,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+            "captureTimestamp": "20251106020111",
+            "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+            "cites": "wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n",
+              "wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n",
+              "wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-11-09",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://edmidentity.com/wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n.jpg",
+          "foundAt": "https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+          "published": "2025-11-05",
+          "rehostedBy": "EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SUNDAY NOV 9",
+          "sha256": "cc7c7b7eb82bb61d9f1db05db87c5179ca673ceda9f96446c0820d3316325a74",
+          "bytes": 295798,
+          "rows": 47,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20251106020111/https://edmidentity.com/2025/11/05/edc-orlando-2025-set-times-essential-info/",
+            "captureTimestamp": "20251106020111",
+            "sha256": "f56cbaa4ae9e7bb3e045231492563c4fdd51655635b8380ae4b1da022ddaf96d",
+            "cites": "wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n",
+            "setTimesGraphics": [
+              "wp-content/uploads/2025/10/571841929_18365808781086386_7232256409316835884_n",
+              "wp-content/uploads/2025/10/574211786_18365808802086386_4906458259030576662_n",
+              "wp-content/uploads/2025/10/562664202_18365808826086386_7869827018701075636_n"
+            ]
+          },
+          "stagesAs": {
+            "neonGARDEN": "neonGarden"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "18:41",
+      "end": "18:44",
+      "billing": "INTERMEZZO: METROPOLIS BASS CITY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "19:54",
+      "end": "19:57",
+      "billing": "INTERMEZZO: TECHNOPOLIS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "21:02",
+      "end": "21:05",
+      "billing": "INTERMEZZO: THIS IS HOUSE MUSIC",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "22:20",
+      "end": "22:23",
+      "billing": "INTERMEZZO: TRANCEFORMATION",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 1,
+      "stage": "kineticFIELD",
+      "start": "23:48",
+      "end": "00:00",
+      "billing": "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "18:41",
+      "end": "18:44",
+      "billing": "INTERMEZZO: TECHNOPOLIS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "19:54",
+      "end": "19:57",
+      "billing": "INTERMEZZO: THIS IS HOUSE MUSIC",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "21:02",
+      "end": "21:05",
+      "billing": "INTERMEZZO: METROPOLIS BASS CITY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "22:20",
+      "end": "22:23",
+      "billing": "INTERMEZZO: TRANCEFORMATION",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "kineticFIELD",
+      "start": "23:48",
+      "end": "00:00",
+      "billing": "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "18:41",
+      "end": "18:44",
+      "billing": "INTERMEZZO: TRANCEFORMATION",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "19:54",
+      "end": "19:57",
+      "billing": "INTERMEZZO: THIS IS HOUSE MUSIC",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "21:02",
+      "end": "21:05",
+      "billing": "INTERMEZZO: TECHNOPOLIS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "22:20",
+      "end": "22:23",
+      "billing": "INTERMEZZO: METROPOLIS BASS CITY",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "kineticFIELD",
+      "start": "23:48",
+      "end": "00:00",
+      "billing": "KINETIC CELEBRATION: CITY OF SOUND & FIREWORKS",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    }
+  ]
+}

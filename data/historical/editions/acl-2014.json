@@ -1,0 +1,3167 @@
+{
+ "id": "acl-2014",
+ "festivalId": "acl",
+ "name": "Austin City Limits 2014",
+ "year": 2014,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-10-03",
+   "label": "Weekend 1 · Friday"
+  },
+  {
+   "day": 2,
+   "date": "2014-10-04",
+   "label": "Weekend 1 · Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2014-10-05",
+   "label": "Weekend 1 · Sunday"
+  },
+  {
+   "day": 4,
+   "date": "2014-10-10",
+   "label": "Weekend 2 · Friday"
+  },
+  {
+   "day": 5,
+   "date": "2014-10-11",
+   "label": "Weekend 2 · Saturday"
+  },
+  {
+   "day": 6,
+   "date": "2014-10-12",
+   "label": "Weekend 2 · Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "acl-2014:honda",
+   "name": "Honda"
+  },
+  {
+   "id": "acl-2014:miller-lite",
+   "name": "Miller Lite"
+  },
+  {
+   "id": "acl-2014:austin-ventures",
+   "name": "Austin Ventures"
+  },
+  {
+   "id": "acl-2014:austin-kiddie-limits",
+   "name": "Austin Kiddie Limits"
+  },
+  {
+   "id": "acl-2014:sculpture",
+   "name": "Sculpture"
+  },
+  {
+   "id": "acl-2014:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "acl-2014:retailmenot",
+   "name": "RetailMeNot"
+  },
+  {
+   "id": "acl-2014:samsung-galaxy",
+   "name": "Samsung Galaxy"
+  },
+  {
+   "id": "acl-2014:zilker",
+   "name": "Zilker"
+  }
+ ],
+ "artists": [
+  {
+   "id": "acl-2014:asleep-at-the-wheel",
+   "name": "Asleep at the Wheel",
+   "key": "asleep-at-the-wheel",
+   "performers": [
+    "asleep-at-the-wheel"
+   ]
+  },
+  {
+   "id": "acl-2014:jimmy-cliff",
+   "name": "Jimmy Cliff",
+   "key": "jimmy-cliff",
+   "performers": [
+    "jimmy-cliff"
+   ]
+  },
+  {
+   "id": "acl-2014:chvrches",
+   "name": "CHVRCHES",
+   "key": "chvrches",
+   "performers": [
+    "chvrches"
+   ]
+  },
+  {
+   "id": "acl-2014:childish-gambino",
+   "name": "Childish Gambino",
+   "key": "childish-gambino",
+   "performers": [
+    "childish-gambino"
+   ]
+  },
+  {
+   "id": "acl-2014:outkast",
+   "name": "Outkast",
+   "key": "outkast",
+   "performers": [
+    "outkast"
+   ]
+  },
+  {
+   "id": "acl-2014:young-and-sick",
+   "name": "Young & Sick",
+   "key": "young-and-sick",
+   "performers": [
+    "young-and-sick"
+   ]
+  },
+  {
+   "id": "acl-2014:temples",
+   "name": "Temples",
+   "key": "temples",
+   "performers": [
+    "temples"
+   ]
+  },
+  {
+   "id": "acl-2014:bleachers",
+   "name": "Bleachers",
+   "key": "bleachers",
+   "performers": [
+    "bleachers"
+   ]
+  },
+  {
+   "id": "acl-2014:sam-smith",
+   "name": "Sam Smith",
+   "key": "sam-smith",
+   "performers": [
+    "sam-smith"
+   ]
+  },
+  {
+   "id": "acl-2014:the-glitch-mob",
+   "name": "The Glitch Mob",
+   "key": "the-glitch-mob",
+   "performers": [
+    "the-glitch-mob"
+   ]
+  },
+  {
+   "id": "acl-2014:arum-rae",
+   "name": "Arum Rae",
+   "key": "arum-rae",
+   "performers": [
+    "arum-rae"
+   ]
+  },
+  {
+   "id": "acl-2014:sphynx",
+   "name": "Sphynx",
+   "key": "sphynx",
+   "performers": [
+    "sphynx"
+   ]
+  },
+  {
+   "id": "acl-2014:the-preatures",
+   "name": "The Preatures",
+   "key": "the-preatures",
+   "performers": [
+    "the-preatures"
+   ]
+  },
+  {
+   "id": "acl-2014:robert-ellis",
+   "name": "Robert Ellis",
+   "key": "robert-ellis",
+   "performers": [
+    "robert-ellis"
+   ]
+  },
+  {
+   "id": "acl-2014:lake-street-dive",
+   "name": "Lake Street Dive",
+   "key": "lake-street-dive",
+   "performers": [
+    "lake-street-dive"
+   ]
+  },
+  {
+   "id": "acl-2014:j-roddy-walston-and-the-business",
+   "name": "J. Roddy Walston & The Business",
+   "key": "j-roddy-walston-and-the-business",
+   "performers": [
+    "j-roddy-walston-and-the-business"
+   ]
+  },
+  {
+   "id": "acl-2014:blackberry-smoke",
+   "name": "Blackberry Smoke",
+   "key": "blackberry-smoke",
+   "performers": [
+    "blackberry-smoke"
+   ]
+  },
+  {
+   "id": "acl-2014:school-of-rock",
+   "name": "School of Rock",
+   "key": "school-of-rock",
+   "performers": [
+    "school-of-rock"
+   ]
+  },
+  {
+   "id": "acl-2014:elizabeth-mcqueen",
+   "name": "Elizabeth McQueen",
+   "key": "elizabeth-mcqueen",
+   "performers": [
+    "elizabeth-mcqueen"
+   ]
+  },
+  {
+   "id": "acl-2014:sugar-free-allstars",
+   "name": "Sugar Free Allstars",
+   "key": "sugar-free-allstars",
+   "performers": [
+    "sugar-free-allstars"
+   ]
+  },
+  {
+   "id": "acl-2014:ralph-s-world",
+   "name": "Ralph’s World",
+   "key": "ralph-s-world",
+   "performers": [
+    "ralph-s-world"
+   ]
+  },
+  {
+   "id": "acl-2014:the-barton-hills-choir",
+   "name": "The Barton Hills Choir",
+   "key": "the-barton-hills-choir",
+   "performers": [
+    "the-barton-hills-choir"
+   ]
+  },
+  {
+   "id": "acl-2014:shields-of-faith",
+   "name": "Shields of Faith",
+   "key": "shields-of-faith",
+   "performers": [
+    "shields-of-faith"
+   ]
+  },
+  {
+   "id": "acl-2014:the-jones-family-singers",
+   "name": "The Jones Family Singers",
+   "key": "the-jones-family-singers",
+   "performers": [
+    "the-jones-family-singers"
+   ]
+  },
+  {
+   "id": "acl-2014:jon-batiste-and-stay-human",
+   "name": "Jon Batiste and Stay Human",
+   "key": "jon-batiste-and-stay-human",
+   "performers": [
+    "jon-batiste-and-stay-human"
+   ]
+  },
+  {
+   "id": "acl-2014:ana-tijoux",
+   "name": "Ana Tijoux",
+   "key": "ana-tijoux",
+   "performers": [
+    "ana-tijoux"
+   ]
+  },
+  {
+   "id": "acl-2014:ozomatli",
+   "name": "Ozomatli",
+   "key": "ozomatli",
+   "performers": [
+    "ozomatli"
+   ]
+  },
+  {
+   "id": "acl-2014:marc-scibilia",
+   "name": "Marc Scibilia",
+   "key": "marc-scibilia",
+   "performers": [
+    "marc-scibilia"
+   ]
+  },
+  {
+   "id": "acl-2014:blank-range",
+   "name": "Blank Range",
+   "key": "blank-range",
+   "performers": [
+    "blank-range"
+   ]
+  },
+  {
+   "id": "acl-2014:los-colognes",
+   "name": "Los Colognes",
+   "key": "los-colognes",
+   "performers": [
+    "los-colognes"
+   ]
+  },
+  {
+   "id": "acl-2014:jon-pardi",
+   "name": "Jon Pardi",
+   "key": "jon-pardi",
+   "performers": [
+    "jon-pardi"
+   ]
+  },
+  {
+   "id": "acl-2014:night-terrors-of-1927",
+   "name": "Night Terrors of 1927",
+   "key": "night-terrors-of-1927",
+   "performers": [
+    "night-terrors-of-1927"
+   ]
+  },
+  {
+   "id": "acl-2014:moats",
+   "name": "Moats",
+   "key": "moats",
+   "performers": [
+    "moats"
+   ]
+  },
+  {
+   "id": "acl-2014:saints-of-valory",
+   "name": "Saints of Valory",
+   "key": "saints-of-valory",
+   "performers": [
+    "saints-of-valory"
+   ]
+  },
+  {
+   "id": "acl-2014:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ]
+  },
+  {
+   "id": "acl-2014:belle-and-sebastian",
+   "name": "Belle & Sebastian",
+   "key": "belle-and-sebastian",
+   "performers": [
+    "belle-and-sebastian"
+   ]
+  },
+  {
+   "id": "acl-2014:james-bay",
+   "name": "James Bay",
+   "key": "james-bay",
+   "performers": [
+    "james-bay"
+   ]
+  },
+  {
+   "id": "acl-2014:capital-cities",
+   "name": "Capital Cities",
+   "key": "capital-cities",
+   "performers": [
+    "capital-cities"
+   ]
+  },
+  {
+   "id": "acl-2014:paolo-nutini",
+   "name": "Paolo Nutini",
+   "key": "paolo-nutini",
+   "performers": [
+    "paolo-nutini"
+   ]
+  },
+  {
+   "id": "acl-2014:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ]
+  },
+  {
+   "id": "acl-2014:beck",
+   "name": "Beck",
+   "key": "beck",
+   "performers": [
+    "beck"
+   ]
+  },
+  {
+   "id": "acl-2014:empires",
+   "name": "Empires",
+   "key": "empires",
+   "performers": [
+    "empires"
+   ]
+  },
+  {
+   "id": "acl-2014:trombone-shorty-and-orleans-avenue",
+   "name": "Trombone Shorty & Orleans Avenue",
+   "key": "trombone-shorty-and-orleans-avenue",
+   "performers": [
+    "trombone-shorty-and-orleans-avenue"
+   ]
+  },
+  {
+   "id": "acl-2014:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ]
+  },
+  {
+   "id": "acl-2014:the-avett-brothers",
+   "name": "The Avett Brothers",
+   "key": "the-avett-brothers",
+   "performers": [
+    "the-avett-brothers"
+   ]
+  },
+  {
+   "id": "acl-2014:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ]
+  },
+  {
+   "id": "acl-2014:wild-moccasins",
+   "name": "Wild Moccasins",
+   "key": "wild-moccasins",
+   "performers": [
+    "wild-moccasins"
+   ]
+  },
+  {
+   "id": "acl-2014:the-rosebuds",
+   "name": "The Rosebuds",
+   "key": "the-rosebuds",
+   "performers": [
+    "the-rosebuds"
+   ]
+  },
+  {
+   "id": "acl-2014:zoe",
+   "name": "Zoé",
+   "key": "zoe",
+   "performers": [
+    "zoe"
+   ]
+  },
+  {
+   "id": "acl-2014:icona-pop",
+   "name": "Icona Pop",
+   "key": "icona-pop",
+   "performers": [
+    "icona-pop"
+   ]
+  },
+  {
+   "id": "acl-2014:broken-bells",
+   "name": "Broken Bells",
+   "key": "broken-bells",
+   "performers": [
+    "broken-bells"
+   ]
+  },
+  {
+   "id": "acl-2014:blue-bear",
+   "name": "Blue Bear",
+   "key": "blue-bear",
+   "performers": [
+    "blue-bear"
+   ]
+  },
+  {
+   "id": "acl-2014:mike-and-the-moonpies",
+   "name": "Mike and the Moonpies",
+   "key": "mike-and-the-moonpies",
+   "performers": [
+    "mike-and-the-moonpies"
+   ]
+  },
+  {
+   "id": "acl-2014:benjamin-booker",
+   "name": "Benjamin Booker",
+   "key": "benjamin-booker",
+   "performers": [
+    "benjamin-booker"
+   ]
+  },
+  {
+   "id": "acl-2014:falls",
+   "name": "Falls",
+   "key": "falls",
+   "performers": [
+    "falls"
+   ]
+  },
+  {
+   "id": "acl-2014:polica",
+   "name": "Poliça",
+   "key": "polica",
+   "performers": [
+    "polica"
+   ]
+  },
+  {
+   "id": "acl-2014:lucius",
+   "name": "Lucius",
+   "key": "lucius",
+   "performers": [
+    "lucius"
+   ]
+  },
+  {
+   "id": "acl-2014:juanes",
+   "name": "Juanes",
+   "key": "juanes",
+   "performers": [
+    "juanes"
+   ]
+  },
+  {
+   "id": "acl-2014:steve-songs",
+   "name": "Steve Songs",
+   "key": "steve-songs",
+   "performers": [
+    "steve-songs"
+   ]
+  },
+  {
+   "id": "acl-2014:wesley-bray-and-the-disciples-of-joy",
+   "name": "Wesley Bray and The Disciples of Joy",
+   "key": "wesley-bray-and-the-disciples-of-joy",
+   "performers": [
+    "wesley-bray-and-the-disciples-of-joy"
+   ]
+  },
+  {
+   "id": "acl-2014:the-levites",
+   "name": "The Levites",
+   "key": "the-levites",
+   "performers": [
+    "the-levites"
+   ]
+  },
+  {
+   "id": "acl-2014:nightbox",
+   "name": "Nightbox",
+   "key": "nightbox",
+   "performers": [
+    "nightbox"
+   ]
+  },
+  {
+   "id": "acl-2014:tor-miller",
+   "name": "Tor Miller",
+   "key": "tor-miller",
+   "performers": [
+    "tor-miller"
+   ]
+  },
+  {
+   "id": "acl-2014:my-brightest-diamond",
+   "name": "My Brightest Diamond",
+   "key": "my-brightest-diamond",
+   "performers": [
+    "my-brightest-diamond"
+   ]
+  },
+  {
+   "id": "acl-2014:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ]
+  },
+  {
+   "id": "acl-2014:the-hunts",
+   "name": "The Hunts",
+   "key": "the-hunts",
+   "performers": [
+    "the-hunts"
+   ]
+  },
+  {
+   "id": "acl-2014:rey-pila",
+   "name": "Rey Pila",
+   "key": "rey-pila",
+   "performers": [
+    "rey-pila"
+   ]
+  },
+  {
+   "id": "acl-2014:snowmine",
+   "name": "Snowmine",
+   "key": "snowmine",
+   "performers": [
+    "snowmine"
+   ]
+  },
+  {
+   "id": "acl-2014:the-wans",
+   "name": "The Wans",
+   "key": "the-wans",
+   "performers": [
+    "the-wans"
+   ]
+  },
+  {
+   "id": "acl-2014:the-chain-gang-of-1974",
+   "name": "The Chain Gang of 1974",
+   "key": "the-chain-gang-of-1974",
+   "performers": [
+    "the-chain-gang-of-1974"
+   ]
+  },
+  {
+   "id": "acl-2014:mac-demarco",
+   "name": "Mac DeMarco",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "acl-2014:tune-yards",
+   "name": "tUnE-yArDs",
+   "key": "tune-yards",
+   "performers": [
+    "tune-yards"
+   ]
+  },
+  {
+   "id": "acl-2014:iggy-azalea",
+   "name": "Iggy Azalea",
+   "key": "iggy-azalea",
+   "performers": [
+    "iggy-azalea"
+   ]
+  },
+  {
+   "id": "acl-2014:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "acl-2014:spanish-gold",
+   "name": "Spanish Gold",
+   "key": "spanish-gold",
+   "performers": [
+    "spanish-gold"
+   ]
+  },
+  {
+   "id": "acl-2014:rebelution",
+   "name": "Rebelution",
+   "key": "rebelution",
+   "performers": [
+    "rebelution"
+   ]
+  },
+  {
+   "id": "acl-2014:the-head-and-the-heart",
+   "name": "The Head and the Heart",
+   "key": "the-head-and-the-heart",
+   "performers": [
+    "the-head-and-the-heart"
+   ]
+  },
+  {
+   "id": "acl-2014:lana-del-rey",
+   "name": "Lana Del Rey",
+   "key": "lana-del-rey",
+   "performers": [
+    "lana-del-rey"
+   ]
+  },
+  {
+   "id": "acl-2014:eminem",
+   "name": "Eminem",
+   "key": "eminem",
+   "performers": [
+    "eminem"
+   ]
+  },
+  {
+   "id": "acl-2014:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ]
+  },
+  {
+   "id": "acl-2014:afi",
+   "name": "AFI",
+   "key": "afi",
+   "performers": [
+    "afi"
+   ]
+  },
+  {
+   "id": "acl-2014:fitz-and-the-tantrums",
+   "name": "Fitz & The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ]
+  },
+  {
+   "id": "acl-2014:spoon",
+   "name": "Spoon",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ]
+  },
+  {
+   "id": "acl-2014:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ]
+  },
+  {
+   "id": "acl-2014:haerts",
+   "name": "Haerts",
+   "key": "haerts",
+   "performers": [
+    "haerts"
+   ]
+  },
+  {
+   "id": "acl-2014:reuben-and-the-dark",
+   "name": "Reuben and the Dark",
+   "key": "reuben-and-the-dark",
+   "performers": [
+    "reuben-and-the-dark"
+   ]
+  },
+  {
+   "id": "acl-2014:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ]
+  },
+  {
+   "id": "acl-2014:phantogram",
+   "name": "Phantogram",
+   "key": "phantogram",
+   "performers": [
+    "phantogram"
+   ]
+  },
+  {
+   "id": "acl-2014:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "acl-2014:hard-proof",
+   "name": "Hard Proof",
+   "key": "hard-proof",
+   "performers": [
+    "hard-proof"
+   ]
+  },
+  {
+   "id": "acl-2014:dawn-and-hawkes",
+   "name": "Dawn and Hawkes",
+   "key": "dawn-and-hawkes",
+   "performers": [
+    "dawn-and-hawkes"
+   ]
+  },
+  {
+   "id": "acl-2014:miniature-tigers",
+   "name": "Miniature Tigers",
+   "key": "miniature-tigers",
+   "performers": [
+    "miniature-tigers"
+   ]
+  },
+  {
+   "id": "acl-2014:nikki-lane",
+   "name": "Nikki Lane",
+   "key": "nikki-lane",
+   "performers": [
+    "nikki-lane"
+   ]
+  },
+  {
+   "id": "acl-2014:cults",
+   "name": "Cults",
+   "key": "cults",
+   "performers": [
+    "cults"
+   ]
+  },
+  {
+   "id": "acl-2014:jenny-lewis",
+   "name": "Jenny Lewis",
+   "key": "jenny-lewis",
+   "performers": [
+    "jenny-lewis"
+   ]
+  },
+  {
+   "id": "acl-2014:turnpike-troubadours",
+   "name": "Turnpike Troubadours",
+   "key": "turnpike-troubadours",
+   "performers": [
+    "turnpike-troubadours"
+   ]
+  },
+  {
+   "id": "acl-2014:the-q-brothers",
+   "name": "The Q Brothers",
+   "key": "the-q-brothers",
+   "performers": [
+    "the-q-brothers"
+   ]
+  },
+  {
+   "id": "acl-2014:peter-distefano-and-tor",
+   "name": "Peter DiStefano & Tor",
+   "key": "peter-distefano-and-tor",
+   "performers": [
+    "peter-distefano-and-tor"
+   ]
+  },
+  {
+   "id": "acl-2014:gospel-silvertones",
+   "name": "Gospel Silvertones",
+   "key": "gospel-silvertones",
+   "performers": [
+    "gospel-silvertones"
+   ]
+  },
+  {
+   "id": "acl-2014:the-river-city-christianettes",
+   "name": "The River City Christianettes",
+   "key": "the-river-city-christianettes",
+   "performers": [
+    "the-river-city-christianettes"
+   ]
+  },
+  {
+   "id": "acl-2014:the-legendary-soul-stirrers",
+   "name": "The Legendary Soul Stirrers",
+   "key": "the-legendary-soul-stirrers",
+   "performers": [
+    "the-legendary-soul-stirrers"
+   ]
+  },
+  {
+   "id": "acl-2014:jamestown-revival",
+   "name": "Jamestown Revival",
+   "key": "jamestown-revival",
+   "performers": [
+    "jamestown-revival"
+   ]
+  },
+  {
+   "id": "acl-2014:imelda-may",
+   "name": "Imelda May",
+   "key": "imelda-may",
+   "performers": [
+    "imelda-may"
+   ]
+  },
+  {
+   "id": "acl-2014:lettuce",
+   "name": "Lettuce",
+   "key": "lettuce",
+   "performers": [
+    "lettuce"
+   ]
+  },
+  {
+   "id": "acl-2014:modoc",
+   "name": "MODOC",
+   "key": "modoc",
+   "performers": [
+    "modoc"
+   ]
+  },
+  {
+   "id": "acl-2014:a-thousand-horses",
+   "name": "A Thousand Horses",
+   "key": "a-thousand-horses",
+   "performers": [
+    "a-thousand-horses"
+   ]
+  },
+  {
+   "id": "acl-2014:the-last-internationale",
+   "name": "The Last Internationale",
+   "key": "the-last-internationale",
+   "performers": [
+    "the-last-internationale"
+   ]
+  },
+  {
+   "id": "acl-2014:nostalghia",
+   "name": "Nostalghia",
+   "key": "nostalghia",
+   "performers": [
+    "nostalghia"
+   ]
+  },
+  {
+   "id": "acl-2014:vic-mensa",
+   "name": "Vic Mensa",
+   "key": "vic-mensa",
+   "performers": [
+    "vic-mensa"
+   ]
+  },
+  {
+   "id": "acl-2014:jhene-aiko",
+   "name": "Jhené Aiko",
+   "key": "jhene-aiko",
+   "performers": [
+    "jhene-aiko"
+   ]
+  },
+  {
+   "id": "acl-2014:real-estate",
+   "name": "Real Estate",
+   "key": "real-estate",
+   "performers": [
+    "real-estate"
+   ]
+  },
+  {
+   "id": "acl-2014:chromeo",
+   "name": "Chromeo",
+   "key": "chromeo",
+   "performers": [
+    "chromeo"
+   ]
+  },
+  {
+   "id": "acl-2014:the-districts",
+   "name": "The Districts",
+   "key": "the-districts",
+   "performers": [
+    "the-districts"
+   ]
+  },
+  {
+   "id": "acl-2014:kongos",
+   "name": "KONGOS",
+   "key": "kongos",
+   "performers": [
+    "kongos"
+   ]
+  },
+  {
+   "id": "acl-2014:the-gaslight-anthem",
+   "name": "The Gaslight Anthem",
+   "key": "the-gaslight-anthem",
+   "performers": [
+    "the-gaslight-anthem"
+   ]
+  },
+  {
+   "id": "acl-2014:the-replacements",
+   "name": "The Replacements",
+   "key": "the-replacements",
+   "performers": [
+    "the-replacements"
+   ]
+  },
+  {
+   "id": "acl-2014:pearl-jam",
+   "name": "Pearl Jam",
+   "key": "pearl-jam",
+   "performers": [
+    "pearl-jam"
+   ]
+  },
+  {
+   "id": "acl-2014:ray-benson-and-milkdrive",
+   "name": "Ray Benson & MilkDrive",
+   "key": "ray-benson-and-milkdrive",
+   "performers": [
+    "ray-benson-and-milkdrive"
+   ]
+  },
+  {
+   "id": "acl-2014:penny-and-sparrow",
+   "name": "Penny & Sparrow",
+   "key": "penny-and-sparrow",
+   "performers": [
+    "penny-and-sparrow"
+   ]
+  },
+  {
+   "id": "acl-2014:black-pistol-fire",
+   "name": "Black Pistol Fire",
+   "key": "black-pistol-fire",
+   "performers": [
+    "black-pistol-fire"
+   ]
+  },
+  {
+   "id": "acl-2014:catfish-and-the-bottlemen",
+   "name": "Catfish and the Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ]
+  },
+  {
+   "id": "acl-2014:the-lonely-biscuits",
+   "name": "The Lonely Biscuits",
+   "key": "the-lonely-biscuits",
+   "performers": [
+    "the-lonely-biscuits"
+   ]
+  },
+  {
+   "id": "acl-2014:future-unlimited",
+   "name": "Future Unlimited",
+   "key": "future-unlimited",
+   "performers": [
+    "future-unlimited"
+   ]
+  },
+  {
+   "id": "acl-2014:broods",
+   "name": "Broods",
+   "key": "broods",
+   "performers": [
+    "broods"
+   ]
+  },
+  {
+   "id": "acl-2014:von-grey",
+   "name": "von Grey",
+   "key": "von-grey",
+   "performers": [
+    "von-grey"
+   ]
+  },
+  {
+   "id": "acl-2014:bully",
+   "name": "Bully",
+   "key": "bully",
+   "performers": [
+    "bully"
+   ]
+  },
+  {
+   "id": "acl-2014:beat-connection",
+   "name": "Beat Connection",
+   "key": "beat-connection",
+   "performers": [
+    "beat-connection"
+   ]
+  },
+  {
+   "id": "acl-2014:ashley-cleveland",
+   "name": "Ashley Cleveland",
+   "key": "ashley-cleveland",
+   "performers": [
+    "ashley-cleveland"
+   ]
+  },
+  {
+   "id": "acl-2014:emily-wolfe",
+   "name": "Emily Wolfe",
+   "key": "emily-wolfe",
+   "performers": [
+    "emily-wolfe"
+   ]
+  },
+  {
+   "id": "acl-2014:wood-and-wire",
+   "name": "Wood & Wire",
+   "key": "wood-and-wire",
+   "performers": [
+    "wood-and-wire"
+   ]
+  },
+  {
+   "id": "acl-2014:knox-hamilton",
+   "name": "Knox Hamilton",
+   "key": "knox-hamilton",
+   "performers": [
+    "knox-hamilton"
+   ]
+  },
+  {
+   "id": "acl-2014:colony-house",
+   "name": "Colony House",
+   "key": "colony-house",
+   "performers": [
+    "colony-house"
+   ]
+  },
+  {
+   "id": "acl-2014:johnnyswim",
+   "name": "JOHNNYSWIM",
+   "key": "johnnyswim",
+   "performers": [
+    "johnnyswim"
+   ]
+  },
+  {
+   "id": "acl-2014:melanie-martinez",
+   "name": "Melanie Martinez",
+   "key": "melanie-martinez",
+   "performers": [
+    "melanie-martinez"
+   ]
+  },
+  {
+   "id": "acl-2014:taylor-bennett",
+   "name": "Taylor Bennett",
+   "key": "taylor-bennett",
+   "performers": [
+    "taylor-bennett"
+   ]
+  },
+  {
+   "id": "acl-2014:lorde",
+   "name": "Lorde",
+   "key": "lorde",
+   "performers": [
+    "lorde"
+   ]
+  },
+  {
+   "id": "acl-2014:the-stapletones",
+   "name": "The Stapletones",
+   "key": "the-stapletones",
+   "performers": [
+    "the-stapletones"
+   ]
+  },
+  {
+   "id": "acl-2014:parker-millsap",
+   "name": "Parker Millsap",
+   "key": "parker-millsap",
+   "performers": [
+    "parker-millsap"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "acl-2014:d1:honda:1215:asleep-at-the-wheel",
+   "artistId": "acl-2014:asleep-at-the-wheel",
+   "day": 1,
+   "stageId": "acl-2014:honda",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d1:honda:1415:jimmy-cliff",
+   "artistId": "acl-2014:jimmy-cliff",
+   "day": 1,
+   "stageId": "acl-2014:honda",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d1:honda:1615:chvrches",
+   "artistId": "acl-2014:chvrches",
+   "day": 1,
+   "stageId": "acl-2014:honda",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d1:honda:1815:childish-gambino",
+   "artistId": "acl-2014:childish-gambino",
+   "day": 1,
+   "stageId": "acl-2014:honda",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d1:honda:2015:outkast",
+   "artistId": "acl-2014:outkast",
+   "day": 1,
+   "stageId": "acl-2014:honda",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d1:miller-lite:1130:young-and-sick",
+   "artistId": "acl-2014:young-and-sick",
+   "day": 1,
+   "stageId": "acl-2014:miller-lite",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d1:miller-lite:1315:temples",
+   "artistId": "acl-2014:temples",
+   "day": 1,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2014:d1:miller-lite:1515:bleachers",
+   "artistId": "acl-2014:bleachers",
+   "day": 1,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d1:miller-lite:1715:sam-smith",
+   "artistId": "acl-2014:sam-smith",
+   "day": 1,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d1:miller-lite:1915:the-glitch-mob",
+   "artistId": "acl-2014:the-glitch-mob",
+   "day": 1,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1115:arum-rae",
+   "artistId": "acl-2014:arum-rae",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1200:sphynx",
+   "artistId": "acl-2014:sphynx",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1300:the-preatures",
+   "artistId": "acl-2014:the-preatures",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1400:robert-ellis",
+   "artistId": "acl-2014:robert-ellis",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1515:lake-street-dive",
+   "artistId": "acl-2014:lake-street-dive",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1715:j-roddy-walston-and-the-business",
+   "artistId": "acl-2014:j-roddy-walston-and-the-business",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d1:austin-ventures:1915:blackberry-smoke",
+   "artistId": "acl-2014:blackberry-smoke",
+   "day": 1,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d1:austin-kiddie-limits:1230:school-of-rock",
+   "artistId": "acl-2014:school-of-rock",
+   "day": 1,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d1:austin-kiddie-limits:1330:elizabeth-mcqueen",
+   "artistId": "acl-2014:elizabeth-mcqueen",
+   "day": 1,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d1:austin-kiddie-limits:1430:sugar-free-allstars",
+   "artistId": "acl-2014:sugar-free-allstars",
+   "day": 1,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d1:austin-kiddie-limits:1530:ralph-s-world",
+   "artistId": "acl-2014:ralph-s-world",
+   "day": 1,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1115:the-barton-hills-choir",
+   "artistId": "acl-2014:the-barton-hills-choir",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "11:15",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1215:shields-of-faith",
+   "artistId": "acl-2014:shields-of-faith",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1315:the-jones-family-singers",
+   "artistId": "acl-2014:the-jones-family-singers",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1415:jon-batiste-and-stay-human",
+   "artistId": "acl-2014:jon-batiste-and-stay-human",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1615:ana-tijoux",
+   "artistId": "acl-2014:ana-tijoux",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d1:sculpture:1815:ozomatli",
+   "artistId": "acl-2014:ozomatli",
+   "day": 1,
+   "stageId": "acl-2014:sculpture",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d1:bmi:1215:marc-scibilia",
+   "artistId": "acl-2014:marc-scibilia",
+   "day": 1,
+   "stageId": "acl-2014:bmi",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d1:bmi:1415:blank-range",
+   "artistId": "acl-2014:blank-range",
+   "day": 1,
+   "stageId": "acl-2014:bmi",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d1:bmi:1615:los-colognes",
+   "artistId": "acl-2014:los-colognes",
+   "day": 1,
+   "stageId": "acl-2014:bmi",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d1:bmi:1815:jon-pardi",
+   "artistId": "acl-2014:jon-pardi",
+   "day": 1,
+   "stageId": "acl-2014:bmi",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d1:retailmenot:1130:night-terrors-of-1927",
+   "artistId": "acl-2014:night-terrors-of-1927",
+   "day": 1,
+   "stageId": "acl-2014:retailmenot",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d1:retailmenot:1315:moats",
+   "artistId": "acl-2014:moats",
+   "day": 1,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2014:d1:retailmenot:1515:saints-of-valory",
+   "artistId": "acl-2014:saints-of-valory",
+   "day": 1,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d1:retailmenot:1715:st-vincent",
+   "artistId": "acl-2014:st-vincent",
+   "day": 1,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d1:retailmenot:1915:belle-and-sebastian",
+   "artistId": "acl-2014:belle-and-sebastian",
+   "day": 1,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d1:samsung-galaxy:1215:james-bay",
+   "artistId": "acl-2014:james-bay",
+   "day": 1,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d1:samsung-galaxy:1415:capital-cities",
+   "artistId": "acl-2014:capital-cities",
+   "day": 1,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d1:samsung-galaxy:1615:paolo-nutini",
+   "artistId": "acl-2014:paolo-nutini",
+   "day": 1,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d1:samsung-galaxy:1815:foster-the-people",
+   "artistId": "acl-2014:foster-the-people",
+   "day": 1,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d1:samsung-galaxy:2015:beck",
+   "artistId": "acl-2014:beck",
+   "day": 1,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2014:d2:honda:1230:empires",
+   "artistId": "acl-2014:empires",
+   "day": 2,
+   "stageId": "acl-2014:honda",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d2:honda:1430:trombone-shorty-and-orleans-avenue",
+   "artistId": "acl-2014:trombone-shorty-and-orleans-avenue",
+   "day": 2,
+   "stageId": "acl-2014:honda",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d2:honda:1630:interpol",
+   "artistId": "acl-2014:interpol",
+   "day": 2,
+   "stageId": "acl-2014:honda",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d2:honda:1830:the-avett-brothers",
+   "artistId": "acl-2014:the-avett-brothers",
+   "day": 2,
+   "stageId": "acl-2014:honda",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d2:honda:2030:skrillex",
+   "artistId": "acl-2014:skrillex",
+   "day": 2,
+   "stageId": "acl-2014:honda",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "acl-2014:d2:miller-lite:1130:wild-moccasins",
+   "artistId": "acl-2014:wild-moccasins",
+   "day": 2,
+   "stageId": "acl-2014:miller-lite",
+   "start": "11:30",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2014:d2:miller-lite:1330:the-rosebuds",
+   "artistId": "acl-2014:the-rosebuds",
+   "day": 2,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2014:d2:miller-lite:1530:zoe",
+   "artistId": "acl-2014:zoe",
+   "day": 2,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d2:miller-lite:1730:icona-pop",
+   "artistId": "acl-2014:icona-pop",
+   "day": 2,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d2:miller-lite:1930:broken-bells",
+   "artistId": "acl-2014:broken-bells",
+   "day": 2,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1115:blue-bear",
+   "artistId": "acl-2014:blue-bear",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1200:mike-and-the-moonpies",
+   "artistId": "acl-2014:mike-and-the-moonpies",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1300:benjamin-booker",
+   "artistId": "acl-2014:benjamin-booker",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1400:falls",
+   "artistId": "acl-2014:falls",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1530:polica",
+   "artistId": "acl-2014:polica",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1730:lucius",
+   "artistId": "acl-2014:lucius",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d2:austin-ventures:1930:juanes",
+   "artistId": "acl-2014:juanes",
+   "day": 2,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d2:austin-kiddie-limits:1230:sugar-free-allstars",
+   "artistId": "acl-2014:sugar-free-allstars",
+   "day": 2,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d2:austin-kiddie-limits:1330:school-of-rock",
+   "artistId": "acl-2014:school-of-rock",
+   "day": 2,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d2:austin-kiddie-limits:1430:steve-songs",
+   "artistId": "acl-2014:steve-songs",
+   "day": 2,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d2:austin-kiddie-limits:1530:ralph-s-world",
+   "artistId": "acl-2014:ralph-s-world",
+   "day": 2,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1115:wesley-bray-and-the-disciples-of-joy",
+   "artistId": "acl-2014:wesley-bray-and-the-disciples-of-joy",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "11:15",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1215:the-levites",
+   "artistId": "acl-2014:the-levites",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1315:nightbox",
+   "artistId": "acl-2014:nightbox",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1430:tor-miller",
+   "artistId": "acl-2014:tor-miller",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1630:my-brightest-diamond",
+   "artistId": "acl-2014:my-brightest-diamond",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d2:sculpture:1830:beats-antique",
+   "artistId": "acl-2014:beats-antique",
+   "day": 2,
+   "stageId": "acl-2014:sculpture",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d2:bmi:1230:the-hunts",
+   "artistId": "acl-2014:the-hunts",
+   "day": 2,
+   "stageId": "acl-2014:bmi",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d2:bmi:1430:rey-pila",
+   "artistId": "acl-2014:rey-pila",
+   "day": 2,
+   "stageId": "acl-2014:bmi",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d2:bmi:1630:snowmine",
+   "artistId": "acl-2014:snowmine",
+   "day": 2,
+   "stageId": "acl-2014:bmi",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d2:bmi:1830:the-wans",
+   "artistId": "acl-2014:the-wans",
+   "day": 2,
+   "stageId": "acl-2014:bmi",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d2:retailmenot:1130:the-chain-gang-of-1974",
+   "artistId": "acl-2014:the-chain-gang-of-1974",
+   "day": 2,
+   "stageId": "acl-2014:retailmenot",
+   "start": "11:30",
+   "end": "12:30"
+  },
+  {
+   "id": "acl-2014:d2:retailmenot:1330:mac-demarco",
+   "artistId": "acl-2014:mac-demarco",
+   "day": 2,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2014:d2:retailmenot:1530:tune-yards",
+   "artistId": "acl-2014:tune-yards",
+   "day": 2,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d2:retailmenot:1730:iggy-azalea",
+   "artistId": "acl-2014:iggy-azalea",
+   "day": 2,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d2:retailmenot:1930:major-lazer",
+   "artistId": "acl-2014:major-lazer",
+   "day": 2,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d2:samsung-galaxy:1230:spanish-gold",
+   "artistId": "acl-2014:spanish-gold",
+   "day": 2,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d2:samsung-galaxy:1430:rebelution",
+   "artistId": "acl-2014:rebelution",
+   "day": 2,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d2:samsung-galaxy:1630:the-head-and-the-heart",
+   "artistId": "acl-2014:the-head-and-the-heart",
+   "day": 2,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d2:samsung-galaxy:1830:lana-del-rey",
+   "artistId": "acl-2014:lana-del-rey",
+   "day": 2,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d2:samsung-galaxy:2030:eminem",
+   "artistId": "acl-2014:eminem",
+   "day": 2,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d3:honda:1215:m",
+   "artistId": "acl-2014:m",
+   "day": 3,
+   "stageId": "acl-2014:honda",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d3:honda:1400:afi",
+   "artistId": "acl-2014:afi",
+   "day": 3,
+   "stageId": "acl-2014:honda",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d3:honda:1600:fitz-and-the-tantrums",
+   "artistId": "acl-2014:fitz-and-the-tantrums",
+   "day": 3,
+   "stageId": "acl-2014:honda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d3:honda:1800:spoon",
+   "artistId": "acl-2014:spoon",
+   "day": 3,
+   "stageId": "acl-2014:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d3:honda:2000:calvin-harris",
+   "artistId": "acl-2014:calvin-harris",
+   "day": 3,
+   "stageId": "acl-2014:honda",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "acl-2014:d3:miller-lite:1130:haerts",
+   "artistId": "acl-2014:haerts",
+   "day": 3,
+   "stageId": "acl-2014:miller-lite",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d3:miller-lite:1300:reuben-and-the-dark",
+   "artistId": "acl-2014:reuben-and-the-dark",
+   "day": 3,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d3:miller-lite:1500:gramatik",
+   "artistId": "acl-2014:gramatik",
+   "day": 3,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d3:miller-lite:1700:phantogram",
+   "artistId": "acl-2014:phantogram",
+   "day": 3,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d3:miller-lite:1900:zedd",
+   "artistId": "acl-2014:zedd",
+   "day": 3,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1115:hard-proof",
+   "artistId": "acl-2014:hard-proof",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1200:dawn-and-hawkes",
+   "artistId": "acl-2014:dawn-and-hawkes",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1300:miniature-tigers",
+   "artistId": "acl-2014:miniature-tigers",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1400:nikki-lane",
+   "artistId": "acl-2014:nikki-lane",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1500:cults",
+   "artistId": "acl-2014:cults",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1700:jenny-lewis",
+   "artistId": "acl-2014:jenny-lewis",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d3:austin-ventures:1900:turnpike-troubadours",
+   "artistId": "acl-2014:turnpike-troubadours",
+   "day": 3,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d3:austin-kiddie-limits:1230:the-q-brothers",
+   "artistId": "acl-2014:the-q-brothers",
+   "day": 3,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d3:austin-kiddie-limits:1330:elizabeth-mcqueen",
+   "artistId": "acl-2014:elizabeth-mcqueen",
+   "day": 3,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d3:austin-kiddie-limits:1430:peter-distefano-and-tor",
+   "artistId": "acl-2014:peter-distefano-and-tor",
+   "day": 3,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d3:austin-kiddie-limits:1530:steve-songs",
+   "artistId": "acl-2014:steve-songs",
+   "day": 3,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1115:gospel-silvertones",
+   "artistId": "acl-2014:gospel-silvertones",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "11:15",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1215:the-river-city-christianettes",
+   "artistId": "acl-2014:the-river-city-christianettes",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1315:the-legendary-soul-stirrers",
+   "artistId": "acl-2014:the-legendary-soul-stirrers",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1415:jamestown-revival",
+   "artistId": "acl-2014:jamestown-revival",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1600:imelda-may",
+   "artistId": "acl-2014:imelda-may",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d3:sculpture:1800:lettuce",
+   "artistId": "acl-2014:lettuce",
+   "day": 3,
+   "stageId": "acl-2014:sculpture",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d3:bmi:1215:modoc",
+   "artistId": "acl-2014:modoc",
+   "day": 3,
+   "stageId": "acl-2014:bmi",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d3:bmi:1400:rey-pila",
+   "artistId": "acl-2014:rey-pila",
+   "day": 3,
+   "stageId": "acl-2014:bmi",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d3:bmi:1600:a-thousand-horses",
+   "artistId": "acl-2014:a-thousand-horses",
+   "day": 3,
+   "stageId": "acl-2014:bmi",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d3:bmi:1800:the-last-internationale",
+   "artistId": "acl-2014:the-last-internationale",
+   "day": 3,
+   "stageId": "acl-2014:bmi",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d3:retailmenot:1130:nostalghia",
+   "artistId": "acl-2014:nostalghia",
+   "day": 3,
+   "stageId": "acl-2014:retailmenot",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d3:retailmenot:1300:vic-mensa",
+   "artistId": "acl-2014:vic-mensa",
+   "day": 3,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d3:retailmenot:1500:jhene-aiko",
+   "artistId": "acl-2014:jhene-aiko",
+   "day": 3,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d3:retailmenot:1700:real-estate",
+   "artistId": "acl-2014:real-estate",
+   "day": 3,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d3:retailmenot:1900:chromeo",
+   "artistId": "acl-2014:chromeo",
+   "day": 3,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d3:samsung-galaxy:1215:the-districts",
+   "artistId": "acl-2014:the-districts",
+   "day": 3,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d3:samsung-galaxy:1400:kongos",
+   "artistId": "acl-2014:kongos",
+   "day": 3,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d3:samsung-galaxy:1600:the-gaslight-anthem",
+   "artistId": "acl-2014:the-gaslight-anthem",
+   "day": 3,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d3:samsung-galaxy:1800:the-replacements",
+   "artistId": "acl-2014:the-replacements",
+   "day": 3,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d3:samsung-galaxy:2000:pearl-jam",
+   "artistId": "acl-2014:pearl-jam",
+   "day": 3,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d4:honda:1215:ray-benson-and-milkdrive",
+   "artistId": "acl-2014:ray-benson-and-milkdrive",
+   "day": 4,
+   "stageId": "acl-2014:honda",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d4:honda:1415:jimmy-cliff",
+   "artistId": "acl-2014:jimmy-cliff",
+   "day": 4,
+   "stageId": "acl-2014:honda",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d4:honda:1615:chvrches",
+   "artistId": "acl-2014:chvrches",
+   "day": 4,
+   "stageId": "acl-2014:honda",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d4:honda:1815:childish-gambino",
+   "artistId": "acl-2014:childish-gambino",
+   "day": 4,
+   "stageId": "acl-2014:honda",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d4:honda:2015:outkast",
+   "artistId": "acl-2014:outkast",
+   "day": 4,
+   "stageId": "acl-2014:honda",
+   "start": "20:15",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d4:miller-lite:1130:young-and-sick",
+   "artistId": "acl-2014:young-and-sick",
+   "day": 4,
+   "stageId": "acl-2014:miller-lite",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d4:miller-lite:1315:temples",
+   "artistId": "acl-2014:temples",
+   "day": 4,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2014:d4:miller-lite:1515:bleachers",
+   "artistId": "acl-2014:bleachers",
+   "day": 4,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d4:miller-lite:1715:sam-smith",
+   "artistId": "acl-2014:sam-smith",
+   "day": 4,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d4:miller-lite:1915:the-glitch-mob",
+   "artistId": "acl-2014:the-glitch-mob",
+   "day": 4,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1115:penny-and-sparrow",
+   "artistId": "acl-2014:penny-and-sparrow",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1200:black-pistol-fire",
+   "artistId": "acl-2014:black-pistol-fire",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1300:the-preatures",
+   "artistId": "acl-2014:the-preatures",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1400:robert-ellis",
+   "artistId": "acl-2014:robert-ellis",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1515:lake-street-dive",
+   "artistId": "acl-2014:lake-street-dive",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1715:j-roddy-walston-and-the-business",
+   "artistId": "acl-2014:j-roddy-walston-and-the-business",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d4:austin-ventures:1915:blackberry-smoke",
+   "artistId": "acl-2014:blackberry-smoke",
+   "day": 4,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d4:austin-kiddie-limits:1230:elizabeth-mcqueen",
+   "artistId": "acl-2014:elizabeth-mcqueen",
+   "day": 4,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d4:austin-kiddie-limits:1330:school-of-rock",
+   "artistId": "acl-2014:school-of-rock",
+   "day": 4,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d4:austin-kiddie-limits:1430:sugar-free-allstars",
+   "artistId": "acl-2014:sugar-free-allstars",
+   "day": 4,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d4:austin-kiddie-limits:1530:ralph-s-world",
+   "artistId": "acl-2014:ralph-s-world",
+   "day": 4,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d4:bmi:1215:catfish-and-the-bottlemen",
+   "artistId": "acl-2014:catfish-and-the-bottlemen",
+   "day": 4,
+   "stageId": "acl-2014:bmi",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d4:bmi:1415:blank-range",
+   "artistId": "acl-2014:blank-range",
+   "day": 4,
+   "stageId": "acl-2014:bmi",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d4:bmi:1615:the-lonely-biscuits",
+   "artistId": "acl-2014:the-lonely-biscuits",
+   "day": 4,
+   "stageId": "acl-2014:bmi",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d4:bmi:1815:future-unlimited",
+   "artistId": "acl-2014:future-unlimited",
+   "day": 4,
+   "stageId": "acl-2014:bmi",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d4:retailmenot:1130:night-terrors-of-1927",
+   "artistId": "acl-2014:night-terrors-of-1927",
+   "day": 4,
+   "stageId": "acl-2014:retailmenot",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d4:retailmenot:1315:saints-of-valory",
+   "artistId": "acl-2014:saints-of-valory",
+   "day": 4,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:15",
+   "end": "14:15"
+  },
+  {
+   "id": "acl-2014:d4:retailmenot:1515:james-bay",
+   "artistId": "acl-2014:james-bay",
+   "day": 4,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "acl-2014:d4:retailmenot:1715:st-vincent",
+   "artistId": "acl-2014:st-vincent",
+   "day": 4,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "acl-2014:d4:retailmenot:1915:belle-and-sebastian",
+   "artistId": "acl-2014:belle-and-sebastian",
+   "day": 4,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "acl-2014:d4:samsung-galaxy:1215:broods",
+   "artistId": "acl-2014:broods",
+   "day": 4,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:15",
+   "end": "13:15"
+  },
+  {
+   "id": "acl-2014:d4:samsung-galaxy:1415:capital-cities",
+   "artistId": "acl-2014:capital-cities",
+   "day": 4,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d4:samsung-galaxy:1615:paolo-nutini",
+   "artistId": "acl-2014:paolo-nutini",
+   "day": 4,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d4:samsung-galaxy:1815:foster-the-people",
+   "artistId": "acl-2014:foster-the-people",
+   "day": 4,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d4:samsung-galaxy:2015:beck",
+   "artistId": "acl-2014:beck",
+   "day": 4,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1115:the-barton-hills-choir",
+   "artistId": "acl-2014:the-barton-hills-choir",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "11:15",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1215:shields-of-faith",
+   "artistId": "acl-2014:shields-of-faith",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1315:the-jones-family-singers",
+   "artistId": "acl-2014:the-jones-family-singers",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1415:jon-batiste-and-stay-human",
+   "artistId": "acl-2014:jon-batiste-and-stay-human",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1615:ana-tijoux",
+   "artistId": "acl-2014:ana-tijoux",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "acl-2014:d4:zilker:1815:ozomatli",
+   "artistId": "acl-2014:ozomatli",
+   "day": 4,
+   "stageId": "acl-2014:zilker",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "acl-2014:d5:honda:1230:empires",
+   "artistId": "acl-2014:empires",
+   "day": 5,
+   "stageId": "acl-2014:honda",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d5:honda:1430:trombone-shorty-and-orleans-avenue",
+   "artistId": "acl-2014:trombone-shorty-and-orleans-avenue",
+   "day": 5,
+   "stageId": "acl-2014:honda",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d5:honda:1630:interpol",
+   "artistId": "acl-2014:interpol",
+   "day": 5,
+   "stageId": "acl-2014:honda",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d5:honda:1830:the-avett-brothers",
+   "artistId": "acl-2014:the-avett-brothers",
+   "day": 5,
+   "stageId": "acl-2014:honda",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d5:honda:2030:skrillex",
+   "artistId": "acl-2014:skrillex",
+   "day": 5,
+   "stageId": "acl-2014:honda",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "acl-2014:d5:miller-lite:1330:the-rosebuds",
+   "artistId": "acl-2014:the-rosebuds",
+   "day": 5,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2014:d5:miller-lite:1530:zoe",
+   "artistId": "acl-2014:zoe",
+   "day": 5,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d5:miller-lite:1730:icona-pop",
+   "artistId": "acl-2014:icona-pop",
+   "day": 5,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d5:miller-lite:1930:broken-bells",
+   "artistId": "acl-2014:broken-bells",
+   "day": 5,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d5:austin-ventures:1300:benjamin-booker",
+   "artistId": "acl-2014:benjamin-booker",
+   "day": 5,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d5:austin-ventures:1400:falls",
+   "artistId": "acl-2014:falls",
+   "day": 5,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d5:austin-ventures:1530:polica",
+   "artistId": "acl-2014:polica",
+   "day": 5,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d5:austin-ventures:1730:lucius",
+   "artistId": "acl-2014:lucius",
+   "day": 5,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d5:austin-ventures:1930:juanes",
+   "artistId": "acl-2014:juanes",
+   "day": 5,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d5:austin-kiddie-limits:1230:sugar-free-allstars",
+   "artistId": "acl-2014:sugar-free-allstars",
+   "day": 5,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d5:austin-kiddie-limits:1330:elizabeth-mcqueen",
+   "artistId": "acl-2014:elizabeth-mcqueen",
+   "day": 5,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d5:austin-kiddie-limits:1430:ralph-s-world",
+   "artistId": "acl-2014:ralph-s-world",
+   "day": 5,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d5:austin-kiddie-limits:1530:steve-songs",
+   "artistId": "acl-2014:steve-songs",
+   "day": 5,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d5:bmi:1230:von-grey",
+   "artistId": "acl-2014:von-grey",
+   "day": 5,
+   "stageId": "acl-2014:bmi",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d5:bmi:1430:rey-pila",
+   "artistId": "acl-2014:rey-pila",
+   "day": 5,
+   "stageId": "acl-2014:bmi",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d5:bmi:1630:bully",
+   "artistId": "acl-2014:bully",
+   "day": 5,
+   "stageId": "acl-2014:bmi",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d5:bmi:1830:beat-connection",
+   "artistId": "acl-2014:beat-connection",
+   "day": 5,
+   "stageId": "acl-2014:bmi",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d5:retailmenot:1330:mac-demarco",
+   "artistId": "acl-2014:mac-demarco",
+   "day": 5,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "acl-2014:d5:retailmenot:1530:tune-yards",
+   "artistId": "acl-2014:tune-yards",
+   "day": 5,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "acl-2014:d5:retailmenot:1730:iggy-azalea",
+   "artistId": "acl-2014:iggy-azalea",
+   "day": 5,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "acl-2014:d5:retailmenot:1930:major-lazer",
+   "artistId": "acl-2014:major-lazer",
+   "day": 5,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "acl-2014:d5:samsung-galaxy:1230:spanish-gold",
+   "artistId": "acl-2014:spanish-gold",
+   "day": 5,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "acl-2014:d5:samsung-galaxy:1430:rebelution",
+   "artistId": "acl-2014:rebelution",
+   "day": 5,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d5:samsung-galaxy:1630:the-head-and-the-heart",
+   "artistId": "acl-2014:the-head-and-the-heart",
+   "day": 5,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d5:samsung-galaxy:1830:lana-del-rey",
+   "artistId": "acl-2014:lana-del-rey",
+   "day": 5,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d5:samsung-galaxy:2030:eminem",
+   "artistId": "acl-2014:eminem",
+   "day": 5,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d5:zilker:1315:ashley-cleveland",
+   "artistId": "acl-2014:ashley-cleveland",
+   "day": 5,
+   "stageId": "acl-2014:zilker",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d5:zilker:1430:tor-miller",
+   "artistId": "acl-2014:tor-miller",
+   "day": 5,
+   "stageId": "acl-2014:zilker",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "acl-2014:d5:zilker:1630:my-brightest-diamond",
+   "artistId": "acl-2014:my-brightest-diamond",
+   "day": 5,
+   "stageId": "acl-2014:zilker",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "acl-2014:d5:zilker:1830:beats-antique",
+   "artistId": "acl-2014:beats-antique",
+   "day": 5,
+   "stageId": "acl-2014:zilker",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "acl-2014:d6:honda:1215:m",
+   "artistId": "acl-2014:m",
+   "day": 6,
+   "stageId": "acl-2014:honda",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d6:honda:1400:afi",
+   "artistId": "acl-2014:afi",
+   "day": 6,
+   "stageId": "acl-2014:honda",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d6:honda:1600:fitz-and-the-tantrums",
+   "artistId": "acl-2014:fitz-and-the-tantrums",
+   "day": 6,
+   "stageId": "acl-2014:honda",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d6:honda:1800:spoon",
+   "artistId": "acl-2014:spoon",
+   "day": 6,
+   "stageId": "acl-2014:honda",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d6:honda:2000:calvin-harris",
+   "artistId": "acl-2014:calvin-harris",
+   "day": 6,
+   "stageId": "acl-2014:honda",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "acl-2014:d6:miller-lite:1130:haerts",
+   "artistId": "acl-2014:haerts",
+   "day": 6,
+   "stageId": "acl-2014:miller-lite",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d6:miller-lite:1300:reuben-and-the-dark",
+   "artistId": "acl-2014:reuben-and-the-dark",
+   "day": 6,
+   "stageId": "acl-2014:miller-lite",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d6:miller-lite:1500:gramatik",
+   "artistId": "acl-2014:gramatik",
+   "day": 6,
+   "stageId": "acl-2014:miller-lite",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d6:miller-lite:1700:phantogram",
+   "artistId": "acl-2014:phantogram",
+   "day": 6,
+   "stageId": "acl-2014:miller-lite",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d6:miller-lite:1900:zedd",
+   "artistId": "acl-2014:zedd",
+   "day": 6,
+   "stageId": "acl-2014:miller-lite",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1115:emily-wolfe",
+   "artistId": "acl-2014:emily-wolfe",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1200:wood-and-wire",
+   "artistId": "acl-2014:wood-and-wire",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1300:miniature-tigers",
+   "artistId": "acl-2014:miniature-tigers",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1400:nikki-lane",
+   "artistId": "acl-2014:nikki-lane",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1500:cults",
+   "artistId": "acl-2014:cults",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1700:jenny-lewis",
+   "artistId": "acl-2014:jenny-lewis",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d6:austin-ventures:1900:turnpike-troubadours",
+   "artistId": "acl-2014:turnpike-troubadours",
+   "day": 6,
+   "stageId": "acl-2014:austin-ventures",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d6:austin-kiddie-limits:1230:school-of-rock",
+   "artistId": "acl-2014:school-of-rock",
+   "day": 6,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "12:30",
+   "end": "12:55"
+  },
+  {
+   "id": "acl-2014:d6:austin-kiddie-limits:1330:the-q-brothers",
+   "artistId": "acl-2014:the-q-brothers",
+   "day": 6,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "13:30",
+   "end": "13:55"
+  },
+  {
+   "id": "acl-2014:d6:austin-kiddie-limits:1430:peter-distefano-and-tor",
+   "artistId": "acl-2014:peter-distefano-and-tor",
+   "day": 6,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "14:30",
+   "end": "14:55"
+  },
+  {
+   "id": "acl-2014:d6:austin-kiddie-limits:1530:steve-songs",
+   "artistId": "acl-2014:steve-songs",
+   "day": 6,
+   "stageId": "acl-2014:austin-kiddie-limits",
+   "start": "15:30",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d6:bmi:1215:knox-hamilton",
+   "artistId": "acl-2014:knox-hamilton",
+   "day": 6,
+   "stageId": "acl-2014:bmi",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d6:bmi:1400:colony-house",
+   "artistId": "acl-2014:colony-house",
+   "day": 6,
+   "stageId": "acl-2014:bmi",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d6:bmi:1600:johnnyswim",
+   "artistId": "acl-2014:johnnyswim",
+   "day": 6,
+   "stageId": "acl-2014:bmi",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d6:bmi:1800:melanie-martinez",
+   "artistId": "acl-2014:melanie-martinez",
+   "day": 6,
+   "stageId": "acl-2014:bmi",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d6:retailmenot:1130:nostalghia",
+   "artistId": "acl-2014:nostalghia",
+   "day": 6,
+   "stageId": "acl-2014:retailmenot",
+   "start": "11:30",
+   "end": "12:15"
+  },
+  {
+   "id": "acl-2014:d6:retailmenot:1300:taylor-bennett",
+   "artistId": "acl-2014:taylor-bennett",
+   "day": 6,
+   "stageId": "acl-2014:retailmenot",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d6:retailmenot:1500:real-estate",
+   "artistId": "acl-2014:real-estate",
+   "day": 6,
+   "stageId": "acl-2014:retailmenot",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "acl-2014:d6:retailmenot:1700:chromeo",
+   "artistId": "acl-2014:chromeo",
+   "day": 6,
+   "stageId": "acl-2014:retailmenot",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "acl-2014:d6:retailmenot:1900:lorde",
+   "artistId": "acl-2014:lorde",
+   "day": 6,
+   "stageId": "acl-2014:retailmenot",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "acl-2014:d6:samsung-galaxy:1215:the-districts",
+   "artistId": "acl-2014:the-districts",
+   "day": 6,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d6:samsung-galaxy:1400:kongos",
+   "artistId": "acl-2014:kongos",
+   "day": 6,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d6:samsung-galaxy:1600:the-gaslight-anthem",
+   "artistId": "acl-2014:the-gaslight-anthem",
+   "day": 6,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d6:samsung-galaxy:1800:the-replacements",
+   "artistId": "acl-2014:the-replacements",
+   "day": 6,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "acl-2014:d6:samsung-galaxy:2000:pearl-jam",
+   "artistId": "acl-2014:pearl-jam",
+   "day": 6,
+   "stageId": "acl-2014:samsung-galaxy",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1115:the-stapletones",
+   "artistId": "acl-2014:the-stapletones",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "11:15",
+   "end": "12:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1215:the-river-city-christianettes",
+   "artistId": "acl-2014:the-river-city-christianettes",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1315:the-legendary-soul-stirrers",
+   "artistId": "acl-2014:the-legendary-soul-stirrers",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1415:parker-millsap",
+   "artistId": "acl-2014:parker-millsap",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1600:imelda-may",
+   "artistId": "acl-2014:imelda-may",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "acl-2014:d6:zilker:1800:lettuce",
+   "artistId": "acl-2014:lettuce",
+   "day": 6,
+   "stageId": "acl-2014:zilker",
+   "start": "18:00",
+   "end": "19:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.aclfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+    "captureTimestamp": "20141007085130",
+    "printed": "Friday Oct 3rd",
+    "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+    "rows": 41
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+    "captureTimestamp": "20141007085130",
+    "printed": "Saturday Oct 4th",
+    "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+    "rows": 41
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141007085130/http://www.aclfestival.com:80/2014-schedule-weekend-one/",
+    "captureTimestamp": "20141007085130",
+    "printed": "Sunday Oct 5th",
+    "sha256": "b89929c515896ddbf7c09abfc441cf49c2975b1169fcc0292377633b17a8ad19",
+    "rows": 41
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+    "captureTimestamp": "20141016210458",
+    "printed": "Friday Oct 10th",
+    "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+    "rows": 41
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+    "captureTimestamp": "20141016210458",
+    "printed": "Saturday Oct 11th",
+    "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+    "rows": 35
+   },
+   {
+    "day": 6,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20141016210458/http://www.aclfestival.com:80/2014-schedule-weekend-two/",
+    "captureTimestamp": "20141016210458",
+    "printed": "Sunday Oct 12th",
+    "sha256": "4c5b798c7f97e809ab035c7a6216d9536798e2c1f5674add89d0a655dfc2d0b0",
+    "rows": 41
+   }
+  ]
+ }
+}

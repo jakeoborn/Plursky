@@ -37,6 +37,7 @@ import { createServer } from 'node:net';
 import { mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const OUT = process.env.PIXEL_OUT || '/tmp/pixels-v341';
 mkdirSync(OUT, { recursive: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -55,14 +56,24 @@ const RICH = JSON.stringify({ 1: [
 ] });
 
 let checks = 0, failed = 0;
+const liveChipShown = (page) => page.evaluate(() => [...document.querySelectorAll('[data-landing-chip="fill"]')]
+  .some(el => /^Happening now$/.test(el.textContent.trim()) && el.getBoundingClientRect().width > 0));
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 const note = (msg) => console.log(`  · ${msg}`);
 
-async function open(browser, { url, width, big, reduced, themePref, font }) {
+// Landing is pinned to a night EDC Orlando 2026 (Nov 6-8, in the data) is live,
+// so its HAPPENING NOW row and "Happening now" chip are measured every day of
+// the year, not only while a real festival happens to be on (f31: the chip
+// overflowed at 200% text the day EDC Orlando went live, and nothing had ever
+// measured it). setFixedTime freezes Date only; the app's timers keep running.
+const LIVE_AT = new Date('2026-11-07T19:00:00-05:00');
+
+async function open(browser, { url, width, big, reduced, themePref, font, liveAt }) {
   const ctx = await browser.newContext({
     viewport: { width, height: 844 }, deviceScaleFactor: 2, serviceWorkers: 'block',
     reducedMotion: reduced ? 'reduce' : 'no-preference', timezoneId: 'America/Los_Angeles',
   });
+  await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
   await ctx.addInitScript(([rich, pref]) => {
     localStorage.setItem('onboarded', 'v1'); localStorage.setItem('user_name', 'Jake');
     for (const k of ['cloud_nudge_seen', 'ft_guide_seen', 'notif_nudge_dismissed', 'plursky_recap_seen_v1']) localStorage.setItem(k, '1');
@@ -79,6 +90,7 @@ async function open(browser, { url, width, big, reduced, themePref, font }) {
   }, [RICH, themePref || null]);
   if (font) await ctx.addInitScript((f) => { document.addEventListener('DOMContentLoaded', () => { const st = document.createElement('style'); st.textContent = `*{font-family:${f} !important}`; document.head.appendChild(st); }); }, font);
   const page = await ctx.newPage();
+  if (liveAt) await page.clock.setFixedTime(liveAt);
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => Array.isArray(window.ARTISTS) && window.ARTISTS.length > 0, null, { timeout: 30000 });
   await sleep(1300);
@@ -226,9 +238,11 @@ try {
       // The wide pass also runs with Reduce Motion on, the setting that gives
       // every element a 0.01ms transition: a fit that measured mid-transition
       // never saw its own steps and ran to its floor.
-      const { ctx, page } = await open(browser, { url, width, big: true, font, reduced: !!font });
+      const { ctx, page } = await open(browser, { url, width, big: true, font, reduced: !!font, liveAt: label === 'landing' ? LIVE_AT : null });
       const a = await audit(page);
       const tag = `${label}${font ? '-wide' : ''}`;
+      if (label === 'landing') check(await liveChipShown(page),
+        `${tag} @${width}: the pinned clock put a festival under HAPPENING NOW with its "Happening now" chip (positive control: otherwise the chip is never measured)`);
       if (label === 'memories') check(a.h1.includes('Memories') && a.currentTab === 'Memories',
         `${tag} @${width}: the Memories screen is what mounted (h1 ${JSON.stringify(a.h1)}, tab "${a.currentTab}")`);
       await page.screenshot({ path: join(OUT, `${tag}-largetext__${width}.png`) });
@@ -247,8 +261,9 @@ try {
 
   // ── Target size + labelling at normal type ───────────────────────────────
   for (const [label, url] of [['landing', BASE], ['memories', BASE + '?tab=memories']]) {
-    const { ctx, page } = await open(browser, { url, width: 393 });
+    const { ctx, page } = await open(browser, { url, width: 393, liveAt: label === 'landing' ? LIVE_AT : null });
     const a = await audit(page);
+    if (label === 'landing') check(await liveChipShown(page), `landing: the pinned clock shows a "Happening now" chip at normal type (positive control)`);
     check(a.small.length === 0, `${label}: every target ≥44x44 (${JSON.stringify(a.small)})`);
     check(a.unlabelled.length === 0, `${label}: every control has an accessible name (${JSON.stringify(a.unlabelled)})`);
     check(a.midWord.length === 0, `${label}: no word breaks inside itself at normal type (${JSON.stringify(a.midWord)})`);

@@ -13,7 +13,8 @@
 // map point. Pills come from a FIXTURE: `mapPrintsStageNames` forced off on
 // the active festival, so this keeps testing pills whichever live festival's
 // art prints its own names. The avatar is checked in the demo corner and at a
-// mocked GPS fix.
+// mocked GPS fix. The label says what the dot is: YOU only on a live on-site
+// fix, DEMO for the demo walk (GPS off, or a fix away from the grounds).
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
@@ -22,6 +23,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
 
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 let checks = 0, failed = 0;
 function check(ok, msg) { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } }
@@ -43,10 +45,11 @@ try {
   const measure = async (width, height, { pills = false, geo = null } = {}) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height },
       ...(geo ? { geolocation: { latitude: geo[0], longitude: geo[1], accuracy: 8 }, permissions: ["geolocation"] } : {}) });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
     }, FID);
     const page = await ctx.newPage();
     const errors = []; page.on("pageerror", e => errors.push(e.message));
@@ -76,7 +79,7 @@ try {
       });
       return { portrait: vb.height > 100, vbH: vb.height, box: [box.width, box.height],
         dot: [dot.left + dot.width / 2, dot.top + dot.height / 2], label: origin(label),
-        labelRect: (r => [r.left, r.top, r.right, r.bottom])(label.getBoundingClientRect()), pillRows, live: /LIVE/.test(document.body.innerText) };
+        labelRect: (r => [r.left, r.top, r.right, r.bottom])(label.getBoundingClientRect()), labelText: label.textContent.trim(), pillRows, live: /LIVE/.test(document.body.innerText) };
     });
     await ctx.close();
     return { ...out, errors };
@@ -87,6 +90,7 @@ try {
     const s = await measure(w, h);
     check(s.errors.length === 0, `${w}x${h}: the map throws nothing (${JSON.stringify(s.errors)})`);
     check(s.portrait, `${w}x${h}: the map container is taller than wide, the case this gate exists for (viewBox height ${s.vbH.toFixed(1)})`);
+    check(s.labelText === "DEMO", `${w}x${h}: GPS off, the demo avatar's label reads DEMO ("${s.labelText}")`);
     check(gap(s.label, s.dot) <= TOL, `${w}x${h}: the YOU label is placed on its dot (label origin ${s.label.map(v => v.toFixed(1))}, dot ${s.dot.map(v => v.toFixed(1))}, ${gap(s.label, s.dot).toFixed(1)} px apart)`);
     // What a person sees: the label is the pill just above the dot.
     const [l, t, r, b] = s.labelRect;
@@ -107,10 +111,18 @@ try {
     check(placed.length > 0 && gap(worst.at, worst.want) <= TOL, `every stage pill is anchored on its stage's point (worst ${worst.id}: ${gap(worst.at, worst.want).toFixed(1)} px)`);
   }
 
+  // A fix far from the grounds (Manhattan): still the demo walk, still DEMO.
+  // The off-site pill is that state's own disclosure and is not asserted here.
+  {
+    const s = await measure(393, 852, { geo: [40.7580, -73.9855] });
+    check(s.labelText === "DEMO", `mocked GPS off site: the label reads DEMO ("${s.labelText}")`);
+    check(gap(s.label, s.dot) <= TOL, `mocked GPS off site: the label is placed on its dot (${gap(s.label, s.dot).toFixed(1)} px apart)`);
+  }
   // A real fix: Zilker Park, on site. The label follows the dot there too.
   {
     const s = await measure(393, 852, { geo: [30.2669, -97.7729] });
     check(s.live, "mocked GPS: the map reads LIVE, so the dot is the real position");
+    check(s.labelText === "YOU", `mocked GPS on site: the live avatar's label reads YOU ("${s.labelText}")`);
     check(gap(s.label, s.dot) <= TOL, `mocked GPS: the YOU label is placed on its dot (${gap(s.label, s.dot).toFixed(1)} px apart)`);
   }
   // Every zoom level, read off the rendered PIXELS. Step the map in four
@@ -121,10 +133,11 @@ try {
   // positions come from the image, not from the layout.
   {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width: 393, height: 852 }, hasTouch: true, reducedMotion: "reduce" });
+    await wireVendor(ctx);   // React, ReactDOM, supabase-js from scripts/vendor/, never the live CDN
     await ctx.clock.install({ time: new Date(AT) });
     await ctx.addInitScript(fid => {
       localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", fid);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("plursky_use_realmap", "0"); localStorage.setItem("cloud_nudge_seen", "1");
     }, FID);
     const page = await ctx.newPage();
     await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=lineup`, { waitUntil: "domcontentloaded" });

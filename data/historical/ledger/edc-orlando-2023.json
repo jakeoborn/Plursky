@@ -1,0 +1,143 @@
+{
+  "id": "edc-orlando-2023",
+  "method": "official_sources",
+  "official": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2023-11-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20231130025626/https://orlando.electricdaisycarnival.com/lineup/set-times/",
+          "captureTimestamp": "20231130025626",
+          "printed": "Friday, November 10",
+          "sha256": "8d7091e5cae938792827ec37389736cd88865ff881991b7b3e38063b405d8b26",
+          "bytes": 284376,
+          "rows": 55
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2023-11-11",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://pbs.twimg.com/media/F-A7uSJXQAAvJ4r?format=jpg&name=orig",
+          "foundAt": "https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
+          "published": "2023-11-03",
+          "rehostedBy": "X media, via EDM Identity",
+          "fetchedAt": "2026-10-27",
+          "printed": "SATURDAY NOV 11",
+          "sha256": "d054cc94f373bc4b67bb4423c293bd26ad97a65a41135bc3e611a1acc9601678",
+          "bytes": 322861,
+          "rows": 62,
+          "receipt": {
+            "archivedUrl": "https://web.archive.org/web/20231103172234/https://edmidentity.com/2023/11/03/edc-orlando-2023-essentials/",
+            "captureTimestamp": "20231103172234",
+            "sha256": "c0d838c8409589d3bc510d1b1a356c1043a1a3abcee11c54b93eb6cbcadf080b",
+            "cites": "F-A7uSJXQAAvJ4r",
+            "setTimesGraphics": [
+              "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+              "wp-content/uploads/2023/11/F-A7uSJXQAAvJ4r",
+              "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn"
+            ]
+          },
+          "stagesAs": {
+            "kineticFIELD": "Kinetic Field",
+            "circuitGROUNDS": "Circuit Grounds",
+            "neonGARDEN": "Neon Garden",
+            "stereoBLOOM": "Stereo Bloom",
+            "rynobusARTCAR": "Rynobus Art Car",
+            "anniversaryARTCAR": "Anniversary Art Car"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2023-11-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "archivedUrl": "https://web.archive.org/web/20231117232412/https://orlando.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "captureTimestamp": "20231117232412",
+          "printed": "Sunday, November 12",
+          "sha256": "292d1ac20140192e34a7141c8694e36ec983950d03b9162a02951f801f9e25ea",
+          "bytes": 311395,
+          "rows": 59
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "notUsedGraphics": [
+    {
+      "cites": "wp-content/uploads/2023/11/F-A7tvQXoAA_4Ym",
+      "reason": "the pre-event FRIDAY NOV 10 graphic; day 1 comes from the festival's own archived set-times page (Wayback 20231130025626), which supersedes it"
+    },
+    {
+      "cites": "wp-content/uploads/2023/11/F-A7u1yWIAAZ6Sn",
+      "reason": "the pre-event SUNDAY NOV 12 graphic; day 3 comes from the festival's own archived set-times page (Wayback 20231117232412), which supersedes it"
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "18:42",
+      "end": "18:48",
+      "billing": "OPENING CEREMONY: AWAKENING",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "19:53",
+      "end": "19:56",
+      "billing": "INTERMEZZO: REWIND",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "21:11",
+      "end": "21:14",
+      "billing": "INTERMEZZO: CONNECT",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "22:29",
+      "end": "22:32",
+      "billing": "INTERMEZZO: ALIVE",
+      "category": "show-segment",
+      "reason": "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Kinetic Field",
+      "start": "23:57",
+      "end": "00:00",
+      "billing": "CLOSING CEREMONY: RISE",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Anniversary Art Car",
+      "start": "18:30",
+      "end": "19:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

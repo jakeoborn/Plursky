@@ -56,7 +56,7 @@ print('<body><div id="root"></div>')
 for f in sys.argv[1].split():
     print(f'<script type="text/babel" src="/{f}?v=probe"></script>')
 # EDIT the fns to assert relevant to your change:
-print('''<script>setTimeout(()=>{const fns=['MapScreen','createEdcPlaylist'];
+print('''<script>setTimeout(()=>{const fns=['MapScreen','createAppleMusicPlaylist'];
 const r=fns.map(f=>f+'='+typeof window[f]);r.push('root='+document.getElementById('root').childElementCount);
 const p=document.createElement('pre');p.id='probe';p.textContent=r.join(' | ');document.body.appendChild(p)},6500)</script>''')
 PY
