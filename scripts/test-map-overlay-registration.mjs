@@ -96,6 +96,7 @@ try {
     const [l, t, r, b] = s.labelRect;
     check(l <= s.dot[0] && r >= s.dot[0] && b <= s.dot[1] + 1 && s.dot[1] - b <= 14,
       `${w}x${h}: the YOU label is drawn directly above its dot (label ${[l, t, r, b].map(v => v.toFixed(0))}, dot ${s.dot.map(v => v.toFixed(0))})`);
+    check(l >= 0 && r <= w, `${w}x${h}: the DEMO chip is fully on screen (#357: left ${l.toFixed(1)}, right ${r.toFixed(1)}, viewport 0..${w})`);
   }
 
   // Stage pills, from the fixture.
@@ -124,6 +125,12 @@ try {
     check(s.live, "mocked GPS: the map reads LIVE, so the dot is the real position");
     check(s.labelText === "YOU", `mocked GPS on site: the live avatar's label reads YOU ("${s.labelText}")`);
     check(gap(s.label, s.dot) <= TOL, `mocked GPS: the YOU label is placed on its dot (${gap(s.label, s.dot).toFixed(1)} px apart)`);
+    // #357: this fix sits near the map's west edge, where the centred chip
+    // used to hang off screen (left = -11.5). It must stay fully visible and
+    // still cover its dot's x.
+    const [l, , r] = s.labelRect;
+    check(l >= 0 && r <= 393, `mocked GPS on site: the YOU chip is fully on screen (#357: left ${l.toFixed(1)}, right ${r.toFixed(1)}, viewport 0..393)`);
+    check(l <= s.dot[0] && r >= s.dot[0], `mocked GPS on site: the clamped YOU chip still spans its dot's x (chip ${l.toFixed(0)}..${r.toFixed(0)}, dot x ${s.dot[0].toFixed(0)})`);
   }
   // Every zoom level, read off the rendered PIXELS. Step the map in four
   // times and back out to its floor. At each level the map is panned (a real
