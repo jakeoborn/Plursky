@@ -2552,6 +2552,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3b2. SVG map: no live dot on unregistered art (#311) ──────────────
+// With poster art and no gpsAnchors (Escape, Nocturnal, HARD Summer) gpsToMap()
+// returns the grid centre for every fix, so a live fix was drawn mid-poster
+// and labelled LIVE. The SVG map now draws no "you" there and the pill reads
+// ON SITE. No browser: compiled code in a vm plus map.jsx source checks.
+{
+  console.log("▸ Unregistered-art live fix gate — no YOU dot, no LIVE, on art no affine registers");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-unregistered-art-live-fix.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`unregistered-art live fix failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3c. Poster over the real map ──────────────────────────────────────
 // The real map is the default; the festival's art shows at full strength only
 // where geometryVerifiedFor() passes, faded and labelled NOT TO SCALE where
@@ -3472,6 +3489,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+// Memory index + handoff format: fixture self-tests only. The live --check
+// reads a home-dir memory store and GitHub, so it runs locally at close-out,
+// never in CI.
+{
+  console.log("▸ Memory index gate — generated from source, one line per file, check 0/1/2, no credential values");
+  for (const s of ["scripts/memory/build-memory-index.mjs", "scripts/memory/check-handoff.mjs"]) {
+    try {
+      const out = execFileSync(process.execPath, [s, "--self-test"],
+        { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+      process.stdout.write(out);
+    } catch (e) {
+      const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+      fail(`memory self-test failed (${s})${detail ? ` — ${detail}` : ""}`);
+    }
+  }
+}
 
 // ── 1z-c6. Past Festivals UI ─────────────────────────────────────────────
 // The library screens at 393pt, driven through the switcher: every count and
@@ -3498,6 +3531,39 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`Past look-backs failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-c7. Season Pass rescue ─────────────────────────────────────────────
+// The $9.99 rescue card (spotify.jsx PlusGate) against a mocked StoreKit
+// bridge: it shows only on the second native paywall view or a cancelled
+// full-price Season Pass, fails closed on six store states, reads the store's
+// priceString, buys the promo package from its own offering, and leaves the
+// full-price, monthly and restore paths working. Events are allowlisted.
+{
+  console.log("▸ Season Pass rescue gate — two triggers, fail-closed, live price");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-season-rescue.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Season Pass rescue failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// TestFlight uploads stay internal-only: the export plist sets
+// testFlightInternalTestingOnly, and an external beta group or public link
+// stops build-upload-testflight.mjs before anything uploads.
+{
+  console.log("▸ TestFlight internal-only guard — no external group, no public link, internal-only export");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-testflight-guard.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`TestFlight internal-only guard failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
