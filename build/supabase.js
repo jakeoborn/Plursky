@@ -1,6 +1,42 @@
 var SUPABASE_URL = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
 var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6b2lqYnFzYmJ3eXV5amluanRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczNTY4OTYsImV4cCI6MjA5MjkzMjg5Nn0.193dyHNHbc_zsm6l6UfQnpz4jXqRoPFBC4TWylyFPfA";
 var _sb = SUPABASE_URL && SUPABASE_ANON ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON) : null;
+var PAYWALL_EVENTS_ON = false;
+var PAYWALL_EVENT_NAMES = ["offer_shown", "offer_accept", "offer_decline", "cancel_save"];
+function _paywallSlug(s) {
+  return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 40);
+}
+function _paywallEventRow(event, {
+  surface,
+  productId,
+  offerId
+} = {}) {
+  if (!PAYWALL_EVENT_NAMES.includes(event)) return null;
+  var s = _paywallSlug(surface);
+  if (!s) return null;
+  var id = v => typeof v === "string" && /^[a-z0-9_.]{1,80}$/.test(v) ? v : null;
+  var ver = typeof APP_VERSION === "string" && /^v\d{1,5}$/.test(APP_VERSION) ? APP_VERSION : null;
+  var offer = id(offerId);
+  return {
+    event,
+    surface: s,
+    product_id: id(productId),
+    offer_id: offer && offer.length <= 40 ? offer : null,
+    platform: window.Capacitor?.isNativePlatform?.() ? "ios" : "web",
+    app_version: ver
+  };
+}
+async function logPaywallEvent(event, fields, waitMs = 0) {
+  if (!PAYWALL_EVENTS_ON || !_sb) return false;
+  var row = _paywallEventRow(event, fields);
+  if (!row) return false;
+  var send = Promise.resolve().then(() => _sb.from("paywall_events").insert(row)).then(r => !r?.error, () => false);
+  if (!waitMs) {
+    send.catch(() => {});
+    return true;
+  }
+  return Promise.race([send, new Promise(res => setTimeout(() => res(false), waitMs))]);
+}
 async function sbSignInWithSpotify() {
   if (!_sb) return {
     error: "Supabase not configured"

@@ -397,7 +397,8 @@
       {
        "printed": "IHG HOTELS & RESORTS",
        "editions": [
-        "acl-2023"
+        "acl-2023",
+        "acl-2024"
        ]
       }
      ],
@@ -2489,8 +2490,26 @@
        "printed": "Wolves' Den",
        "editions": [
         "nocturnal-wonderland-2019",
-        "nocturnal-wonderland-2021",
-        "nocturnal-wonderland-2024"
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
        ]
       }
      ],
@@ -2512,8 +2531,26 @@
        "printed": "Labyrinth",
        "editions": [
         "nocturnal-wonderland-2019",
-        "nocturnal-wonderland-2021",
-        "nocturnal-wonderland-2024"
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
        ]
       }
      ],
@@ -2535,8 +2572,26 @@
        "printed": "Sunken Garden",
        "editions": [
         "nocturnal-wonderland-2019",
-        "nocturnal-wonderland-2021",
-        "nocturnal-wonderland-2024"
+        "nocturnal-wonderland-2021"
+       ],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
        ]
       }
      ],
@@ -2600,8 +2655,25 @@
      "names": [
       {
        "printed": "Beatbox Art Car",
-       "editions": [
-        "nocturnal-wonderland-2024"
+       "editions": [],
+       "canceledEditions": [
+        {
+         "id": "nocturnal-wonderland-2024",
+         "status": "canceled",
+         "note": "Announced, then canceled before it opened (the Line Fire). Kept as a record; no set was played.",
+         "sources": [
+          {
+           "publisher": "Moon Lvnding",
+           "published": "2024-09-11",
+           "url": "https://moonlvnding.com/featured/breaking-nocturnal-wonderland-2024-canceled-as-wildfires-threaten-venue/"
+          },
+          {
+           "publisher": "Billboard",
+           "published": "2024-09-12",
+           "url": "https://www.billboard.com/pro/nocturnal-wonderland-2024-canceled-southern-california-wildfires/"
+          }
+         ]
+        }
        ]
       }
      ],

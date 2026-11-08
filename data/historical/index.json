@@ -47,6 +47,52 @@
    }
   },
   {
+   "id": "acl-2024",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2024",
+   "year": 2024,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-10-04",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-10-05",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-10-06",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2024-10-11",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2024-10-12",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2024-10-13",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 149,
+    "sets": 215
+   }
+  },
+  {
    "id": "acl-2023",
    "festivalId": "acl",
    "festivalName": "Austin City Limits",
@@ -90,6 +136,52 @@
     "stages": 8,
     "artists": 145,
     "sets": 215
+   }
+  },
+  {
+   "id": "acl-2022",
+   "festivalId": "acl",
+   "festivalName": "Austin City Limits",
+   "name": "Austin City Limits 2022",
+   "year": 2022,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-10-07",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-10-08",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-10-09",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2022-10-14",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2022-10-15",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2022-10-16",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 155,
+    "sets": 217
    }
   },
   {
@@ -1143,32 +1235,6 @@
     "stages": 11,
     "artists": 190,
     "sets": 225
-   }
-  },
-  {
-   "id": "nocturnal-wonderland-2024",
-   "festivalId": "nocturnal-wonderland",
-   "festivalName": "Nocturnal Wonderland",
-   "name": "Nocturnal Wonderland 2024",
-   "year": 2024,
-   "timezone": "America/Los_Angeles",
-   "completeness": "complete_schedule",
-   "days": [
-    {
-     "day": 1,
-     "date": "2024-09-14",
-     "label": "Saturday"
-    },
-    {
-     "day": 2,
-     "date": "2024-09-15",
-     "label": "Sunday"
-    }
-   ],
-   "counts": {
-    "stages": 4,
-    "artists": 65,
-    "sets": 66
    }
   },
   {
