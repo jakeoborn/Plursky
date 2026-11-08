@@ -2563,6 +2563,23 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-b3b2. SVG map: no live dot on unregistered art (#311) ──────────────
+// With poster art and no gpsAnchors (Escape, Nocturnal, HARD Summer) gpsToMap()
+// returns the grid centre for every fix, so a live fix was drawn mid-poster
+// and labelled LIVE. The SVG map now draws no "you" there and the pill reads
+// ON SITE. No browser: compiled code in a vm plus map.jsx source checks.
+{
+  console.log("▸ Unregistered-art live fix gate — no YOU dot, no LIVE, on art no affine registers");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-unregistered-art-live-fix.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`unregistered-art live fix failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3c. Poster over the real map ──────────────────────────────────────
 // The real map is the default; the festival's art shows at full strength only
 // where geometryVerifiedFor() passes, faded and labelled NOT TO SCALE where
