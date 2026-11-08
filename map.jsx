@@ -5980,6 +5980,17 @@ const AMENITY_KEY = [
 ];
 const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
 
+// #357: how far (screen px) a chip spanning [left, right] must move to sit
+// inside [lo, hi]. 0 when it already fits; a chip wider than the room is
+// pinned to its left edge.
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
+
 // ---- TOP-DOWN NAVIGATION MAP ----
 function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, amenityFilter = null, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
   // Compass mode: rotate the entire map by -heading so the user's facing
@@ -6103,6 +6114,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // overlay. One offset, both systems.
   const boxRef = React.useRef(null);
   const [box, setBox] = React.useState({ w: 0, h: 0 });
+
+  // #357: the avatar chip is centred over its dot, so a dot near the map's
+  // edge (a live fix at ACL's west side) pushed half the chip off screen
+  // (x = -11.5 at 393 wide). After every render, and after the zoom/pan/
+  // compass transition settles, measure the chip on screen and shift it back
+  // inside the visible map with a 4 px margin. The shift is converted into
+  // the map's rotated, zoomed frame (the chip's parent), so it moves straight
+  // across the screen at any compass heading and zoom.
+  const clampAvatarChip = React.useCallback(() => {
+    const boxEl = boxRef.current;
+    const chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    const r = chip.getBoundingClientRect(), b = boxEl.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    const dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    const t = (-mapRotate * Math.PI) / 180, z = zoom || 1;
+    chip.style.translate = `${(dx * Math.cos(t)) / z}px ${(dx * Math.sin(t)) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => { clampAvatarChip(); });
   React.useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
@@ -6161,7 +6193,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-    <div style={{
+    <div onTransitionEnd={clampAvatarChip} style={{
       position: "absolute", inset: 0,
       transform: `${compass ? `rotate(${mapRotate}deg) ` : ""}translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
       transformOrigin: "50% 50%",
