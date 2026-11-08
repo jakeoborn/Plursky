@@ -1,163 +1,105 @@
 {
   "id": "dreamstate-socal-2025",
-  "method": "official_lineup_html",
-  "official": "https://socal.dreamstateusa.com/lineup/",
-  "chosen": "20251110134255",
-  "archivedUrl": "https://web.archive.org/web/20251110134255/https://socal.dreamstateusa.com/lineup/",
-  "sha256": "4e652c54c614ed919771eee467d4253f4f2b86473159f18b23a713e09fad2d36",
-  "title": "Lineup – Dreamstate SoCal 2025",
-  "tabs": [
-    "Alphabetical 72",
-    "By Day 72"
-  ],
-  "stageOrder": [],
-  "crossTab": [],
-  "considered": [
+  "method": "official_sources",
+  "official": "https://socal.dreamstateusa.com/lineup/set-times/",
+  "days": [
     {
-      "captureTimestamp": "20250119143534",
-      "archivedUrl": "https://web.archive.org/web/20250119143534/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "f5c9c21288e501330e5caed5c860aaf76383c6b3af8068e80dc06f8af012d470",
-      "bytes": 139234,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
+      "day": 1,
+      "date": "2025-11-21",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581776729_18534320413060183_3932077034120035890_n.jpg",
+          "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-24",
+          "printed": "FRI 11.21.25",
+          "sha256": "7ca6ec2d04b8ac9ab95800a1f4c9c819dd0b644bf66b4f5a63e0caabc55089f4",
+          "bytes": 271689,
+          "rows": 36,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581776729_18534320413060183_3932077034120035890_n",
+            "setTimesGraphics": [
+              "581776729_18534320413060183_3932077034120035890_n",
+              "581251862_18534320416060183_3114781477568202383_n"
+            ]
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581251862_18534320416060183_3114781477568202383_n.jpg",
+          "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-24",
+          "printed": "BEATBOX ART CAR · FRI 11.21",
+          "sha256": "93ccfec2277c9ed6dcdbe316a633b49eb61c8e44bdf7d40ea394aca355891028",
+          "bytes": 240776,
+          "rows": 6,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581251862_18534320416060183_3114781477568202383_n",
+            "setTimesGraphics": [
+              "581776729_18534320413060183_3932077034120035890_n",
+              "581251862_18534320416060183_3114781477568202383_n"
+            ]
+          }
+        }
+      ]
     },
     {
-      "captureTimestamp": "20250121121504",
-      "archivedUrl": "https://web.archive.org/web/20250121121504/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "331fa46e5f3bd4f7406e246854c848a2a692bdc02f38689635a260217038115a",
-      "bytes": 139234,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250130142921",
-      "archivedUrl": "https://web.archive.org/web/20250130142921/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "b735df867796630b5eeea0c4343c0c5c3365d7bd1f68440ae85399e9d02b08a4",
-      "bytes": 137189,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250212141323",
-      "archivedUrl": "https://web.archive.org/web/20250212141323/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "77105fdad0b2829aaffca8c10740b3b22179c0d2b44ca4bd523937c2a25314a1",
-      "bytes": 136417,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250428124148",
-      "archivedUrl": "https://web.archive.org/web/20250428124148/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "5765acea2108a9ed9a6c9d70c396a20c2da5cd9298b635e584eb5d88c734a957",
-      "bytes": 137247,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250522095849",
-      "archivedUrl": "https://web.archive.org/web/20250522095849/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "f9bf3680749fa5ef9e8f08c7c7b9237789104ea96e947e1d2a0a5dcd07e34a21",
-      "bytes": 137311,
-      "title": "Lineup – Dreamstate SoCal 2024",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [
-        "Friday, November 22 ✗",
-        "Saturday, November 23 ✗"
-      ],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250720190725",
-      "archivedUrl": "https://web.archive.org/web/20250720190725/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "17c07e82a6c0817cc771613a1de7bccfff20df902294ccd44ce88bb0e864c046",
-      "bytes": 123377,
-      "title": "Lineup – Dreamstate SoCal 2025",
-      "valid": false,
-      "titled": true,
-      "dated": false,
-      "days": [],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20250907235916",
-      "archivedUrl": "https://web.archive.org/web/20250907235916/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "a9e3c298747ffa5d8147ce026615bae46d839fb0e3339d512ea22dfb82556de9",
-      "bytes": 130454,
-      "title": "Lineup – Dreamstate SoCal 2025",
-      "valid": false,
-      "titled": true,
-      "dated": false,
-      "days": [],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20251110134255",
-      "archivedUrl": "https://web.archive.org/web/20251110134255/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "4e652c54c614ed919771eee467d4253f4f2b86473159f18b23a713e09fad2d36",
-      "bytes": 167366,
-      "title": "Lineup – Dreamstate SoCal 2025",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, November 21",
-        "Saturday, November 22"
-      ],
-      "billings": 72,
-      "diffVsChosen": []
-    },
-    {
-      "captureTimestamp": "20251203204728",
-      "archivedUrl": "https://web.archive.org/web/20251203204728/https://socal.dreamstateusa.com/lineup/",
-      "sha256": "3e865d1b68e57a54fabe4abbf60f6bf9c6ba6a7c23949d7356811b05f35ebe7a",
-      "bytes": 206609,
-      "title": "Lineup – Dreamstate SoCal 2026",
-      "valid": false,
-      "titled": false,
-      "dated": true,
-      "days": [
-        "Friday, November 21",
-        "Saturday, November 22"
-      ],
-      "billings": 0
+      "day": 2,
+      "date": "2025-11-22",
+      "sources": [
+        {
+          "kind": "graphic",
+          "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581776729_18534320413060183_3932077034120035890_n.jpg",
+          "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-24",
+          "printed": "SAT 11.22.25",
+          "sha256": "7ca6ec2d04b8ac9ab95800a1f4c9c819dd0b644bf66b4f5a63e0caabc55089f4",
+          "bytes": 271689,
+          "rows": 36,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581776729_18534320413060183_3932077034120035890_n",
+            "setTimesGraphics": [
+              "581776729_18534320413060183_3932077034120035890_n",
+              "581251862_18534320416060183_3114781477568202383_n"
+            ]
+          }
+        },
+        {
+          "kind": "graphic",
+          "imageUrl": "https://scontent-dfw6-1.cdninstagram.com/v/t51.82787-15/581251862_18534320416060183_3114781477568202383_n.jpg",
+          "foundAt": "https://www.instagram.com/p/DRK5JIlkh91/",
+          "rehostedBy": "Instagram (the festival's own post, @dreamstateusa)",
+          "fetchedAt": "2026-10-24",
+          "printed": "BEATBOX ART CAR · SAT 11.22",
+          "sha256": "93ccfec2277c9ed6dcdbe316a633b49eb61c8e44bdf7d40ea394aca355891028",
+          "bytes": 240776,
+          "rows": 6,
+          "receipt": {
+            "url": "https://www.instagram.com/p/DRK5JIlkh91/embed/captioned/",
+            "fetchedAt": "2026-10-24",
+            "sha256": "7aaa13ff57b35084d712ae72e72b4a1adabe31cfc89608b7920f1d14ec164851",
+            "cites": "581251862_18534320416060183_3114781477568202383_n",
+            "setTimesGraphics": [
+              "581776729_18534320413060183_3932077034120035890_n",
+              "581251862_18534320416060183_3114781477568202383_n"
+            ]
+          }
+        }
+      ]
     }
   ],
+  "excluded": [],
   "dropped": []
 }

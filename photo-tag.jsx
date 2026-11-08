@@ -475,17 +475,7 @@ function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   return null;
 }
 
-// Great-circle distance in meters. Only used for off-stage detection so
-// precision isn't critical, but haversine is ~5 lines and exact.
-function _haversineMeters(lat1, lng1, lat2, lng2) {
-  const R = 6371000;
-  const toRad = (d) => d * Math.PI / 180;
-  const dLat = toRad(lat2 - lat1);
-  const dLng = toRad(lng2 - lng1);
-  const a = Math.sin(dLat / 2) ** 2 +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(a));
-}
+// _haversineMeters lives in data.jsx with the stage fix gate, which needs it.
 
 // ── Which festival is this photo actually FROM? (v235) ────────────────────
 // Everything downstream used to read window.FESTIVAL_CONFIG / window.ARTISTS,
@@ -551,6 +541,24 @@ function _festivalSiteMeters(cfg, lat, lng) {
   const g = cfg?.gps;
   if (!g || g.lat == null || g.lng == null) return null;
   return _haversineMeters(lat, lng, g.lat, g.lng);
+}
+// Build 39: is this fix OBVIOUSLY outside the festival? Only the festival's
+// own sourced footprint (gps.lat/lng + onSiteRadiusMi) is used; a festival
+// without one gets no verdict, never an invented boundary. The fix's own
+// error is subtracted first, so a coarse fix only counts when even its
+// nearest possible point is outside. A fix with no reported accuracy is
+// given the stage gate's worst usable error. The footprint is a circle, not
+// the fence line, so a fix just past it can still be inside the grounds
+// (EDC LV's speedway runs past its 0.5 mi circle): only a fix more than
+// _OFF_VENUE_MARGIN_M beyond the circle is "away". Returns metres past the
+// circle, or null when there is no verdict (no fix, no footprint, not clear).
+const _OFF_VENUE_MARGIN_M = 500;
+function _offVenueMeters(cfg, lat, lng, acc) {
+  const g = cfg?.gps;
+  if (lat == null || lng == null || !g || g.lat == null || g.lng == null || !(g.onSiteRadiusMi > 0)) return null;
+  const err = acc != null && isFinite(acc) && acc >= 0 ? acc : _GPS_STAGE_MAX_ACC_M;
+  const past = _haversineMeters(lat, lng, g.lat, g.lng) - err - g.onSiteRadiusMi * 1609.34;
+  return past > _OFF_VENUE_MARGIN_M ? Math.round(past) : null;
 }
 function _resolveFestivalForPhoto(meta) {
   const active = _activeDataSet();
@@ -796,6 +804,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // the legacy +10. (2026-08-22 founder field report at EDC.)
     .filter(x => photoMs >= x.startMs - 5 * 60000 &&
                  photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
+  let savedDefeatedByGps = false;
   if (priorHits.length) {
     // Highest tier first (attended > saved); tightest-fit as tiebreak.
     priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
@@ -805,13 +814,62 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // outranking a saved one is a clear win, not a tie.
     const topTier = priorHits.filter(h => h.score === hit.score);
     const ambiguous = topTier.length > 1;
-    return {
-      localDate, gpsRejected,
-      artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
-      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
-      ambiguous,
-      alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
-    };
+    const attended = attendedSet.has(hit.a.id);
+    // Build 39 (food photo under Rüfüs): a SAVED set is intent, not proof you
+    // were there. Saved + time alone is a suggestion the user checks; usable
+    // GPS at that set's own stage confirms it; GPS clearly outside the
+    // festival defeats it. An ATTENDED set stays ground truth (v211).
+    if (!attended) {
+      const away = _offVenueMeters(cfg, lat, lng, acc);
+      if (away != null) {
+        return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "off_venue",
+                 evidence: "gps-off-venue", distMeters: away, defeated: hit.a.id };
+      }
+    }
+    const stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
+    const anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
+    const atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
+    // Usable GPS at a DIFFERENT anchored stage, where an act is playing now,
+    // contradicts a saved guess. If the saved act's stage is anchored too, the
+    // GPS is the better evidence: drop the guess and match on time + GPS
+    // below. If its stage has no anchor we cannot say how far it is, so keep
+    // the guess as a suggestion and offer both acts.
+    let gpsAct = null;
+    if (!attended && !atStage && stageAnchors.length) {
+      let near = null, nearM = Infinity;
+      for (const g of stageAnchors) {
+        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
+        if (m < nearM) { nearM = m; near = g; }
+      }
+      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
+        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
+          const w = setWindow(a);
+          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+        })()) || null;
+      }
+    }
+    if (!(gpsAct && anchor)) {
+      const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+      const alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
+      const amb = ambiguous || !!gpsAct;
+      return {
+        localDate, gpsRejected,
+        artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
+        reason: attended ? "attended_set_time" : "saved_set_time",
+        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
+        suggested: !attended && !atStage,
+        ambiguous: amb,
+        alternatives: amb ? alts : undefined,
+      };
+    }
+    savedDefeatedByGps = true; // fall through; the time + GPS match below decides.
+  }
+
+  // The same off-venue verdict for every other time-only guess: a photo
+  // taken clearly outside the festival is not of whoever was on stage.
+  {
+    const away = _offVenueMeters(cfg, lat, lng, acc);
+    if (away != null) return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "off_venue", evidence: "gps-off-venue", distMeters: away };
   }
 
   // Off-stage check (FALLBACK ONLY — runs after the attended/saved set-time
@@ -899,7 +957,7 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
   const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
   const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
-  const pool = inAttended.length ? inAttended : (inSaved.length ? inSaved : candidates);
+  const pool = inAttended.length ? inAttended : (inSaved.length && !savedDefeatedByGps ? inSaved : candidates);
   const _anchors = resolvedStageAnchors(cfg);
   const stageDist = (a) => {
     if (sLat == null || sLng == null) return Infinity;
@@ -908,7 +966,18 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     const dLat = sLat - anchor.lat, dLng = sLng - anchor.lng;
     return dLat * dLat + dLng * dLng;
   };
+  // A candidate whose stage anchor is within 120 m of usable GPS is where
+  // the photo was taken; it outranks a candidate whose stage has no anchor,
+  // which used to win on start time alone. The match stays flagged
+  // ambiguous below, since an unanchored stage's distance is unknown.
+  const atAnchor = (a) => {
+    if (sLat == null || sLng == null) return false;
+    const g = _anchors.find(x => x.stageId === a.stage);
+    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
+  };
   pool.sort((x, y) => {
+    const ax = atAnchor(x.a), ay = atAnchor(y.a);
+    if (ax !== ay) return ax ? -1 : 1;
     const dx = stageDist(x.a), dy = stageDist(y.a);
     if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
     return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
@@ -942,5 +1011,670 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
     ambiguous, anchorSource,
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
+  };
+}
+
+// ── Scan my weekend (v513) ────────────────────────────────────
+// The iPhone app can read the photo library directly (PhotoScan plugin)
+// instead of the user hand-picking files in PHPicker, which strips GPS
+// without full access and caps a pick at 50. These are the pure parts: which
+// time ranges to ask the library for, which assets it returned belong to a
+// festival night, and how an asset's own capture data becomes the meta the
+// matcher reads. Nothing here touches the plugin, so it all runs in a vm test.
+
+// Every night of the festival as a UTC window, per weekend. The same
+// 11:00 → 06:00 local span (±30 min) _photoFestivalNightWeekend accepts, so
+// anything the scan keeps is something the matcher can place on a night.
+function _scanNightWindows(cfgIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  if (!cfg?.dayDates) return [];
+  const H = 3600000, slack = 30 * 60000;
+  const out = [];
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number)) {
+      const dm = cfg.dayDates[n];
+      if (!dm || typeof dm.midnightUtc !== "number") continue;
+      const midnight = dm.midnightUtc + shift;
+      out.push({ night: n, weekend, startMs: midnight + 11 * H - slack, endMs: midnight + 30 * H + slack });
+    }
+  }
+  return out.sort((a, b) => a.startMs - b.startMs);
+}
+
+// The library is asked once per contiguous run of nights, not once for the
+// whole envelope: ACL's two weekends sit a week apart, and the week between
+// is not the festival.
+function _scanQueryRanges(cfgIn) {
+  const ranges = [];
+  for (const w of _scanNightWindows(cfgIn)) {
+    const last = ranges[ranges.length - 1];
+    if (last && w.startMs <= last.endMs) last.endMs = Math.max(last.endMs, w.endMs);
+    else ranges.push({ startMs: w.startMs, endMs: w.endMs });
+  }
+  return ranges;
+}
+
+// One PhotoKit asset → the meta processImportedFiles hands the matcher.
+// creationDate is a real instant, so rawUtcMs is authoritative and no
+// timezone is guessed; the wall clock is derived for display only. A 0,0
+// location is PhotoKit's "no fix", never a place.
+function _photoKitAssetMeta(asset, cfgIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  const ms = Number(asset?.createdMs);
+  if (!isFinite(ms) || ms <= 0) return null;
+  const lat = Number(asset.lat), lng = Number(asset.lng);
+  const hasGps = asset.lat != null && asset.lng != null && isFinite(lat) && isFinite(lng)
+    && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
+  const acc = Number(asset.acc);
+  return {
+    date: _wallClockFromUtc(ms, cfg),
+    rawUtcMs: ms,
+    lat: hasGps ? lat : null,
+    lng: hasGps ? lng : null,
+    acc: hasGps && asset.acc != null && isFinite(acc) && acc >= 0 ? acc : null,
+    timestampSource: "photokit",
+    locationSource: hasGps ? "photokit-gps" : "none",
+  };
+}
+
+// ── Scan hours from set times (build 39) ─────────────────────────────────
+// Jake, 2026-11-05: "15 min before and after … everything else does not get
+// scanned", "we can do photos/videos between set", "we have set times in the
+// app". So each night's window is the app's own set times: the first set's
+// start − 15 min to the last set's end + 15 min, on that night's weekend, in
+// the festival's timezone. Between-set photos are inside it. Anything outside
+// is counted and skipped: never imported, never marked as seen (a later
+// lineup fix can still pick it up), and nothing already imported is touched.
+// A night with no set times has no window and is not scanned; it is counted
+// and named, never given guessed hours.
+const _SCAN_SET_BUFFER_MS = 15 * 60000;
+const _SCAN_TIME_RE = /^(\d{1,2}):(\d{2})$/;
+// A wall-clock time in an IANA zone → the UTC instant. Two passes of "how far
+// is this zone from UTC at that instant" settle a DST day (the second pass
+// catches an instant whose own offset differs from the first guess's).
+function _zonedWallToUtc(yr, mo, dy, hh, mm, tz) {
+  const guess = Date.UTC(yr, mo - 1, dy, hh, mm);
+  if (!tz || typeof Intl === "undefined") return null;
+  let fmt;
+  try { fmt = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }); }
+  catch { return null; }
+  const offsetAt = (ms) => {
+    const p = {}; for (const x of fmt.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute) - ms;
+  };
+  let t = guess - offsetAt(guess);
+  t = guess - offsetAt(t);
+  return t;
+}
+// The local calendar date of night n on a weekend: read from the instant
+// at local noon-ish, so a shifted weekend that crossed a DST change still
+// lands on the right day.
+function _scanNightLocalDate(cfg, n, shift) {
+  const dm = cfg?.dayDates?.[n];
+  if (!dm || typeof dm.midnightUtc !== "number") return null;
+  const ms = dm.midnightUtc + shift + 12 * 3600000;
+  if (cfg.tz && typeof Intl !== "undefined") {
+    try {
+      const p = {}; for (const x of new Intl.DateTimeFormat("en-US", { timeZone: cfg.tz, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return { yr: +p.year, mo: +p.month, dy: +p.day };
+    } catch {}
+  }
+  const d = new Date(ms + _festivalTzOffsetHours(cfg) * 3600000);
+  return { yr: d.getUTCFullYear(), mo: d.getUTCMonth() + 1, dy: d.getUTCDate() };
+}
+// One act's set as UTC instants on a given night/weekend. Hours < 8 belong
+// to the night they close (the same rule the matcher and lineup use).
+function _scanActUtc(cfg, n, shift, hhmm) {
+  const m = _SCAN_TIME_RE.exec(String(hhmm || ""));
+  if (!m) return null;
+  let h = +m[1]; const mi = +m[2];
+  const date = _scanNightLocalDate(cfg, n, shift);
+  if (!date) return null;
+  let dayAdd = 0;
+  if (h < 8) dayAdd = 1;
+  const base = new Date(Date.UTC(date.yr, date.mo - 1, date.dy + dayAdd));
+  const utc = _zonedWallToUtc(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h, mi, cfg.tz);
+  if (utc != null) return utc;
+  const dm = cfg.dayDates[n];
+  return dm.midnightUtc + shift + ((h < 8 ? h + 24 : h) * 60 + mi) * 60000;
+}
+// Every night of every weekend: its window from set times, or none.
+//   { night, weekend, source: "set-times", startMs, endMs, acts }
+//   { night, weekend, source: "none", acts: 0 }
+function _scanSetWindows(cfgIn, artistsIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  // The lineup of THIS config's festival. Bare ARTISTS is whichever festival
+  // is active (CLAUDE.md §5), so a non-active config reads _DATA_SETS.
+  const artists = artistsIn
+    || (cfg?.id && window._DATA_SETS?.[cfg.id]?.artists)
+    || (cfg === window.FESTIVAL_CONFIG ? window.ARTISTS : null) || [];
+  if (!cfg?.dayDates) return [];
+  const out = [];
+  for (const { weekend, shift } of festivalWeekendShifts(cfg)) {
+    for (const n of Object.keys(cfg.dayDates).map(Number).sort((a, b) => a - b)) {
+      if (!cfg.dayDates[n] || typeof cfg.dayDates[n].midnightUtc !== "number") continue;
+      let startMs = Infinity, endMs = -Infinity, acts = 0;
+      // weekend-exempt: builds a window for EVERY weekend; actPlaysWeekend(a, weekend) filters each one below
+      for (const a of artists) {
+        if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        // Only a confirmed time may move a boundary: an act whose sources
+        // disagree (timeEvidence unresolved) ships blank, but a time that
+        // reaches it some other way must not widen or open a night.
+        if (setTimeStatus(a) !== "confirmed") continue;
+        const s0 = _scanActUtc(cfg, n, shift, a.start), e0 = _scanActUtc(cfg, n, shift, a.end);
+        if (s0 == null || e0 == null) continue;
+        const e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0; // a set that ends after midnight but before 08:00 is already +1 day; guard odd data
+        acts++;
+        if (s0 < startMs) startMs = s0;
+        if (e1 > endMs) endMs = e1;
+      }
+      out.push(acts
+        ? { night: n, weekend, source: "set-times", startMs: startMs - _SCAN_SET_BUFFER_MS, endMs: endMs + _SCAN_SET_BUFFER_MS, acts }
+        : { night: n, weekend, source: "none", acts: 0 });
+    }
+  }
+  return out;
+}
+// Per night, in words a person can check against the app's own schedule:
+// local start and end of each window, or "no set times".
+function _scanWindowReport(cfgIn, artistsIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  return _scanSetWindows(cfg, artistsIn).map(w => {
+    if (w.source !== "set-times") return { night: w.night, weekend: w.weekend, source: w.source };
+    const f = (ms) => { const d = _wallClockFromUtcTz(ms, cfg); return `${d.yr}-${String(d.mo).padStart(2, "0")}-${String(d.dy).padStart(2, "0")} ${String(d.hh).padStart(2, "0")}:${String(d.mm).padStart(2, "0")}`; };
+    return { night: w.night, weekend: w.weekend, source: w.source, acts: w.acts, start: f(w.startMs), end: f(w.endMs) };
+  });
+}
+function _wallClockFromUtcTz(ms, cfg) {
+  if (cfg?.tz && typeof Intl !== "undefined") {
+    try {
+      const p = {}; for (const x of new Intl.DateTimeFormat("en-US", { timeZone: cfg.tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return { yr: +p.year, mo: +p.month, dy: +p.day, hh: +p.hour % 24, mm: +p.minute };
+    } catch {}
+  }
+  return _wallClockFromUtc(ms, cfg);
+}
+
+// Which of the returned assets to import: inside a night's set-time window,
+// not imported by an earlier scan, oldest first. Everything else is counted
+// by why, so the screen can say what it skipped instead of a bare "nothing":
+//   outside     — on no festival night at all
+//   outsideSets — on a festival night, outside that night's set-time window
+//   already     — imported by an earlier scan
+// A night the app has no set times for has no hours to keep, so it is
+// scanned in full (Jake 2026-11-05); `fullNight` counts what came from one
+// and `untimedNights` how many such nights this festival has.
+function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
+  const cfg = cfgIn || window.FESTIVAL_CONFIG;
+  const seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  const windows = _scanSetWindows(cfg, artistsIn);
+  const timed = windows.filter(w => w.source === "set-times");
+  const untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
+  const keep = [];
+  let outside = 0, outsideSets = 0, fullNight = 0, already = 0;
+  for (const a of assets || []) {
+    if (!a || !a.id) continue;
+    const ms = Number(a.createdMs);
+    if (!isFinite(ms)) { outside++; continue; }
+    let whole = false;
+    if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
+      const nw = _photoFestivalNightWeekend(null, cfg, ms);
+      if (!nw) { outside++; continue; }
+      if (!untimed.has(`${nw.night}|${nw.weekend}`)) { outsideSets++; continue; }
+      whole = true;
+    }
+    if (seen.has(a.id)) { already++; continue; }
+    if (whole) fullNight++;
+    keep.push(a);
+  }
+  keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
+  return { keep, outside, outsideSets, fullNight, untimedNights: untimed.size, already,
+           nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({ night: w.night, weekend: w.weekend })) };
+}
+
+// Picker cancel is not an error. @capawesome/capacitor-file-picker 6.2.0
+// REJECTS when the sheet is dismissed ("pickFiles canceled."; pickMedia uses
+// the same wording), so the catch below it reported a cancel as a failure
+// and left an orange card up. Only that exact cancel wording counts; any
+// other rejection is still an error.
+function _pickerErrorIsCancel(err) {
+  const msg = String((err && (err.message || err.errorMessage)) || err || "").trim();
+  return /^pick(Files|Media|Images|Videos)? cancel(l)?ed\.?$/i.test(msg);
+}
+
+// Import batches: up to `maxPhotos` photos together, but a video always goes
+// alone. A clip can be hundreds of MB, and holding several at once in the
+// WebView is how an import runs out of memory. Order is kept.
+function _scanChunks(assets, maxPhotos = 20) {
+  const chunks = [];
+  for (const a of assets || []) {
+    const last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);
+    else chunks.push([a]);
+  }
+  return chunks;
+}
+
+// Library ids an earlier scan already imported. Device-local on purpose: a
+// PhotoKit id means nothing on another phone. Capped so it cannot grow
+// without bound across seasons; the oldest fall off first, and the import's
+// own fingerprint check still catches a repeat.
+const _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
+const _SCAN_SEEN_MAX = 20000;
+function _scanSeenRead() {
+  try {
+    const v = JSON.parse(localStorage.getItem(_SCAN_SEEN_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  } catch { return new Set(); }
+}
+function _scanSeenAdd(ids) {
+  const cur = [..._scanSeenRead()];
+  const have = new Set(cur);
+  for (const id of ids || []) if (typeof id === "string" && !have.has(id)) { cur.push(id); have.add(id); }
+  const trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
+  try { localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed)); } catch {}
+  return trimmed.length;
+}
+
+// ── Scan diagnostic (build 39) ───────────────────────────────────────────
+// WHY THIS EXISTS: on a real phone a second Scan of ACL left 60 clips under
+// one Charli XCX card, after the first scan had filed 17 across their own
+// sets. The code paths we could read (the grouping, "Looks right", a 2-old /
+// 2-new rescan) do not reproduce it, so the cause is unknown. This records
+// what the moment store looks like and which write changed it, so the next
+// on-device run names the responsible write instead of us guessing one.
+//
+// It only READS the store. Nothing here migrates, retags, repairs or deletes
+// a moment — the recorded state is evidence, and a repair needs its own
+// approval.
+//
+// Privacy allowlist, enforced by test-scan-diagnostic.mjs: per record only a
+// locally salted hash of the moment id, festival id, night, artist id (public
+// lineup ids), tag/stamp/time source labels, kind and yes/no flags. No capture
+// time, no import time, never a file name, path, PhotoKit id, GPS, location,
+// fingerprint, text, token or email. Events carry their own timestamps (when
+// the app wrote, not when a photo was taken), counts, the writing function's
+// name and hash-keyed change lines. The export is REBUILT from those fields
+// every time, never copied through from storage, and it leaves the phone only
+// through the share sheet, when the user taps the button.
+const _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
+const _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
+const _SCAN_DIAG_MAX_EVENTS = 60;
+const _SCAN_DIAG_MAX_CHANGES = 80;   // per event
+const _SCAN_DIAG_MAX_RECORDS = 1500; // per snapshot
+const _SCAN_DIAG_MAX_CHARS = 38000;  // the shared text; a Slack message holds 40k
+
+function _scanDiagSalt() {
+  try {
+    let s = localStorage.getItem(_SCAN_DIAG_SALT_KEY);
+    if (!s || !/^[0-9a-f]{32}$/.test(s)) {
+      const b = new Uint8Array(16);
+      if (window.crypto?.getRandomValues) window.crypto.getRandomValues(b);
+      else for (let i = 0; i < 16; i++) b[i] = Math.floor(Math.random() * 256);
+      s = [...b].map(x => x.toString(16).padStart(2, "0")).join("");
+      localStorage.setItem(_SCAN_DIAG_SALT_KEY, s);
+    }
+    return s;
+  } catch { return "nosalt"; }
+}
+
+// Two FNV-1a passes over salt+id → 16 hex. Not a secret store: it only has to
+// let a before/after comparison follow one record without exporting its id.
+function _scanDiagHash(id, salt) {
+  const str = `${salt}|${id}`;
+  let h1 = 0x811c9dc5, h2 = 0x01000193 ^ 0x5bd1e995;
+  for (let i = 0; i < str.length; i++) {
+    const c = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 ^ c, 0x5bd1e995) >>> 0;
+    h2 = (h2 ^ (h2 >>> 13)) >>> 0;
+  }
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+}
+
+const _scanDiagStr = (v, re, max = 40) =>
+  (typeof v === "string" && v.length <= max && re.test(v)) ? v : (v == null ? null : "?");
+const _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
+const _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
+
+// One moment → the allowlisted record. Built field by field from known
+// names, so a new private field on a moment can never leak through a spread.
+function _scanDiagRecord(m, night, salt) {
+  return {
+    h: _scanDiagHash(String(m.id), salt),
+    f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
+    n: Number.isFinite(Number(night)) ? Number(night) : null,
+    a: _scanDiagStr(m.artistId, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(m.tagSource, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
+    k: m.kind === "video" ? "v" : "p",
+    auto: m.autoTagged ? 1 : 0,
+    amb: m.tagAmbiguous ? 1 : 0,
+    rt: m.needsRetag ? 1 : 0,
+    fp: m._fingerprint ? 1 : 0,
+  };
+}
+
+function _scanDiagRecords(all, salt) {
+  const out = [];
+  for (const night of Object.keys(all || {})) {
+    const arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (const m of arr) if (m && m.id != null) out.push(_scanDiagRecord(m, night, salt));
+  }
+  return out;
+}
+
+// Counts by festival → night → artist ("-" = untagged), plus tag sources.
+function _scanDiagSummary(records) {
+  const byFest = {}, bySource = {};
+  for (const r of records) {
+    const f = r.f || "-", n = r.n == null ? "-" : String(r.n), a = r.a || "-";
+    byFest[f] = byFest[f] || { total: 0, nights: {} };
+    byFest[f].total++;
+    const nn = byFest[f].nights[n] = byFest[f].nights[n] || {};
+    nn[a] = (nn[a] || 0) + 1;
+    const s = r.ts || "-";
+    bySource[s] = (bySource[s] || 0) + 1;
+  }
+  return { total: records.length, byFest, bySource };
+}
+
+function _scanDiagRead() {
+  try {
+    const v = JSON.parse(localStorage.getItem(_SCAN_DIAG_KEY) || "null");
+    if (v && typeof v === "object" && Array.isArray(v.events)) return v;
+  } catch {}
+  return { v: 1, before: null, last: null, events: [] };
+}
+function _scanDiagWrite(d) {
+  try { localStorage.setItem(_SCAN_DIAG_KEY, JSON.stringify(d)); return true; } catch { return false; }
+}
+
+// Which code wrote: function names off the call stack, nothing else. Safari
+// frames look like "name@capacitor://localhost/build/x.js:1:2" and V8 frames
+// like "at name (file:1:2)"; only the bare name is kept.
+function _scanDiagOrigin(stack) {
+  const names = [];
+  for (const line of String(stack || "").split("\n")) {
+    const m = line.match(/^\s*(?:at\s+)?(?:async\s+)?([A-Za-z_$][\w$.]*)\s*(?:@|\()/);
+    const nm = m && m[1].split(".").pop();
+    if (!nm || /^_scanDiag|^_writeMoments$|^Error$/.test(nm)) continue;
+    if (nm.length <= 40) names.push(nm);
+    if (names.length >= 4) break;
+  }
+  return names.join(">") || "?";
+}
+
+// The very first time this build runs, before any scan or cloud restore can
+// write, keep the store exactly as it was found. Never overwritten.
+function _scanDiagEnsureBefore(allIn) {
+  try {
+    const d = _scanDiagRead();
+    if (d.before) return false;
+    const salt = _scanDiagSalt();
+    const all = allIn || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    const records = _scanDiagRecords(all, salt);
+    d.before = { t: new Date().toISOString(), summary: _scanDiagSummary(records), records: records.slice(0, _SCAN_DIAG_MAX_RECORDS), truncated: records.length > _SCAN_DIAG_MAX_RECORDS };
+    d.last = Object.fromEntries(records.map(r => [r.h, `${r.f}|${r.n}|${r.a}|${r.ts}`]));
+    d.events.push({ t: d.before.t, ev: "before", origin: "boot", total: records.length });
+    return _scanDiagWrite(d);
+  } catch { return false; }
+}
+
+// Log one event against the store as it is NOW. For a write, `all` is the
+// object being written; the change list says which records appeared,
+// vanished, or moved festival/night/artist/source since the previous event.
+function _scanDiagLog(ev, all, stack) {
+  try {
+    const d = _scanDiagRead();
+    const salt = _scanDiagSalt();
+    const cur = all || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    const records = _scanDiagRecords(cur, salt);
+    const now = {};
+    for (const r of records) now[r.h] = `${r.f}|${r.n}|${r.a}|${r.ts}`;
+    const prev = d.last || {};
+    let added = 0, removed = 0, changed = 0;
+    const changes = [];
+    for (const h of Object.keys(now)) {
+      if (!(h in prev)) { added++; if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`+${h}:${now[h]}`); }
+      else if (prev[h] !== now[h]) { changed++; if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`~${h}:${prev[h]}>${now[h]}`); }
+    }
+    for (const h of Object.keys(prev)) if (!(h in now)) { removed++; if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`-${h}:${prev[h]}`); }
+    // An import persists after EVERY file, so one scan is dozens of writes
+    // from the same caller. Back-to-back writes from one origin fold into a
+    // single event (counts summed, changes appended to the cap), so a scan
+    // cannot push the "before" history out of the event cap.
+    const origin = ev === "write" ? _scanDiagOrigin(stack) : ev;
+    const lastEv = d.events[d.events.length - 1];
+    if (ev === "write" && lastEv && lastEv.ev === "write" && lastEv.origin === origin) {
+      lastEv.writes = (lastEv.writes || 1) + 1;
+      lastEv.tEnd = new Date().toISOString();
+      lastEv.total = records.length;
+      lastEv.added += added; lastEv.removed += removed; lastEv.changed += changed;
+      for (const c of changes) if (lastEv.changes.length < _SCAN_DIAG_MAX_CHANGES) lastEv.changes.push(c);
+    } else {
+      d.events.push({ t: new Date().toISOString(), ev, origin, total: records.length, added, removed, changed, changes });
+      if (d.events.length > _SCAN_DIAG_MAX_EVENTS) {
+        // Keep the "before" line; drop the oldest after it.
+        d.events.splice(1, d.events.length - _SCAN_DIAG_MAX_EVENTS);
+      }
+    }
+    d.last = now;
+    return _scanDiagWrite(d);
+  } catch { return false; }
+}
+
+// ── Export: rebuilt from allowed fields, hard-bounded ─────────────────────
+// Everything persisted is re-validated on the way out. A stored record,
+// summary or event that grew an unexpected field (an older build, a bug, a
+// hand edit) contributes only the fields named here, each checked against
+// its pattern. Nothing from storage is spread or copied through.
+const _SCAN_DIAG_HASH_RE = /^[0-9a-f]{16}$/;
+const _SCAN_DIAG_ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+const _SCAN_DIAG_NIGHT_RE = /^(-|_other|\d{1,3})$/;
+const _SCAN_DIAG_EV_RE = /^[a-z-]{1,20}$/;
+const _SCAN_DIAG_ORIGIN_RE = /^[A-Za-z0-9_$>?-]{1,170}$/;
+const _SCAN_DIAG_SEG = "[A-Za-z0-9_.:?-]{1,40}";
+const _SCAN_DIAG_STATE = `${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}`;
+const _SCAN_DIAG_CHANGE_RE = new RegExp(`^[+~-][0-9a-f]{16}:${_SCAN_DIAG_STATE}(>${_SCAN_DIAG_STATE})?$`);
+const _scanDiagInt = (v) => (Number.isInteger(v) && v >= 0 && v < 1e7) ? v : 0;
+const _scanDiagKey = (k, re) => typeof k === "string" && k.length <= 40 && re.test(k);
+
+function _scanDiagCleanRecord(r) {
+  if (!r || typeof r !== "object" || !_SCAN_DIAG_HASH_RE.test(r.h)) return null;
+  return {
+    h: r.h,
+    f: _scanDiagStr(r.f, _SCAN_DIAG_ID_RE),
+    n: Number.isInteger(r.n) && r.n >= 0 && r.n < 1000 ? r.n : null,
+    a: _scanDiagStr(r.a, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(r.ts, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(r.fs, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(r.tk, _SCAN_DIAG_LABEL_RE),
+    k: r.k === "v" ? "v" : "p",
+    auto: r.auto ? 1 : 0, amb: r.amb ? 1 : 0, rt: r.rt ? 1 : 0, fp: r.fp ? 1 : 0,
+  };
+}
+function _scanDiagCleanCounts(obj, keyRe) {
+  const out = {};
+  if (!obj || typeof obj !== "object") return out;
+  for (const k of Object.keys(obj)) if (_scanDiagKey(k, keyRe)) out[k] = _scanDiagInt(obj[k]);
+  return out;
+}
+function _scanDiagCleanSummary(sIn) {
+  const sum = sIn && typeof sIn === "object" ? sIn : {};
+  const byFest = {};
+  for (const f of Object.keys(sum.byFest || {})) {
+    const fv = sum.byFest[f];
+    if (!_scanDiagKey(f, _SCAN_DIAG_ID_RE) || !fv || typeof fv !== "object") continue;
+    const nights = {};
+    for (const n of Object.keys(fv.nights || {})) {
+      if (_scanDiagKey(n, _SCAN_DIAG_NIGHT_RE)) nights[n] = _scanDiagCleanCounts(fv.nights[n], _SCAN_DIAG_ID_RE);
+    }
+    byFest[f] = { total: _scanDiagInt(fv.total), nights };
+  }
+  return { total: _scanDiagInt(sum.total), byFest, bySource: _scanDiagCleanCounts(sum.bySource, _SCAN_DIAG_ID_RE) };
+}
+function _scanDiagCleanEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  const out = {
+    t: typeof e.t === "string" && _SCAN_DIAG_ISO_RE.test(e.t) ? e.t : null,
+    ev: typeof e.ev === "string" && _SCAN_DIAG_EV_RE.test(e.ev) ? e.ev : "?",
+    origin: typeof e.origin === "string" && _SCAN_DIAG_ORIGIN_RE.test(e.origin) ? e.origin : "?",
+    total: _scanDiagInt(e.total),
+  };
+  if (typeof e.tEnd === "string" && _SCAN_DIAG_ISO_RE.test(e.tEnd)) out.tEnd = e.tEnd;
+  if (e.ev !== "before") {
+    out.added = _scanDiagInt(e.added); out.removed = _scanDiagInt(e.removed); out.changed = _scanDiagInt(e.changed);
+    if (Number.isInteger(e.writes)) out.writes = _scanDiagInt(e.writes);
+    out.changes = Array.isArray(e.changes) ? e.changes.filter(c => typeof c === "string" && c.length <= 260 && _SCAN_DIAG_CHANGE_RE.test(c)) : [];
+  }
+  return out;
+}
+// Keep the k largest entries of a count map; the rest sum into "_other".
+function _scanDiagTop(obj, k, val = (v) => v) {
+  const e = Object.entries(obj);
+  if (e.length <= k) return { out: obj, cut: false };
+  e.sort((x, y) => val(y[1]) - val(x[1]));
+  return { out: Object.fromEntries(e.slice(0, k)), rest: e.slice(k), cut: true };
+}
+function _scanDiagTrimSummary(sum, k) {
+  if (k === Infinity) return { sum, cut: false };
+  let cut = false;
+  const byFest = {};
+  const f = _scanDiagTop(sum.byFest, k, v => v.total);
+  if (f.cut) {
+    cut = true;
+    byFest._other = { total: f.rest.reduce((t, [, v]) => t + v.total, 0), nights: {} };
+  }
+  for (const [fid, fv] of Object.entries(f.out)) {
+    const nights = {};
+    const ns = _scanDiagTop(fv.nights, k, v => Object.values(v).reduce((t, c) => t + c, 0));
+    if (ns.cut) { cut = true; nights._other = { _other: ns.rest.reduce((t, [, v]) => t + Object.values(v).reduce((a, c) => a + c, 0), 0) }; }
+    for (const [n, arts] of Object.entries(ns.out)) {
+      const a = _scanDiagTop(arts, k);
+      if (a.cut) { cut = true; a.out = { ...a.out, _other: (a.out._other || 0) + a.rest.reduce((t, [, c]) => t + c, 0) }; }
+      nights[n] = a.out;
+    }
+    byFest[fid] = { total: fv.total, nights };
+  }
+  const src = _scanDiagTop(sum.bySource, k);
+  if (src.cut) { cut = true; src.out = { ...src.out, _other: (src.out._other || 0) + src.rest.reduce((t, [, c]) => t + c, 0) }; }
+  return { sum: { total: sum.total, byFest, bySource: src.out }, cut };
+}
+
+// The text the share sheet carries: compact JSON, at most 38,000 characters
+// in ALL cases. Over the limit it sheds detail in a fixed order (record
+// lists, then change lines and events, then per-artist detail in the
+// summaries) and says what it shed in `truncated`. Totals are never cut.
+function _scanDiagExportText(meta = {}) {
+  const d = _scanDiagRead();
+  const salt = _scanDiagSalt();
+  const all = (() => { try { return JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"); } catch { return {}; } })();
+  const nowRecords = _scanDiagRecords(all, salt).map(_scanDiagCleanRecord).filter(Boolean);
+  const nowSummary = _scanDiagCleanSummary(_scanDiagSummary(nowRecords));
+  const b = d.before && typeof d.before === "object" ? d.before : null;
+  const beforeRecords = b && Array.isArray(b.records) ? b.records.map(_scanDiagCleanRecord).filter(Boolean) : [];
+  const beforeSummary = b ? _scanDiagCleanSummary(b.summary) : null;
+  const beforeT = b && typeof b.t === "string" && _SCAN_DIAG_ISO_RE.test(b.t) ? b.t : null;
+  const beforeCut = !!(b && b.truncated);
+  const events = (Array.isArray(d.events) ? d.events : []).map(_scanDiagCleanEvent).filter(Boolean);
+  const ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
+  const created = new Date().toISOString();
+  const head = () => ({
+    schema: "plursky-scan-diag/1", created, app: ver,
+    activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
+    scanSeen: (() => { try { return _scanSeenRead().size; } catch { return null; } })(),
+  });
+  const build = ({ rec, ev, ch, k }) => {
+    const evKeep = ev >= events.length ? events : ev <= 0 ? [] : [events[0], ...events.slice(1).slice(-(ev - 1))];
+    let changesCut = false;
+    const evOut = evKeep.map(e => {
+      if (!e.changes) return e;
+      if (e.changes.length > ch || e.changes.length < e.added + e.removed + e.changed) changesCut = true;
+      return { ...e, changes: e.changes.slice(0, ch) };
+    });
+    const bs = beforeSummary ? _scanDiagTrimSummary(beforeSummary, k) : null;
+    const ns = _scanDiagTrimSummary(nowSummary, k);
+    return {
+      ...head(),
+      truncated: {
+        records: beforeCut || beforeRecords.length > rec || nowRecords.length > rec,
+        events: events.length - evOut.length,
+        changes: changesCut,
+        summary: !!(bs && bs.cut) || ns.cut,
+      },
+      eventsTotal: events.length,
+      before: b ? { t: beforeT, total: beforeSummary.total, summary: bs.sum, truncated: beforeCut || beforeRecords.length > rec, records: beforeRecords.slice(0, rec) } : null,
+      now: { total: nowRecords.length, summary: ns.sum, truncated: nowRecords.length > rec, records: nowRecords.slice(0, rec) },
+      events: evOut,
+    };
+  };
+  const steps = [];
+  for (let n = _SCAN_DIAG_MAX_RECORDS; n > 0; n = Math.floor(n * 0.7)) steps.push({ rec: n, ev: _SCAN_DIAG_MAX_EVENTS, ch: _SCAN_DIAG_MAX_CHANGES, k: Infinity });
+  steps.push({ rec: 0, ev: _SCAN_DIAG_MAX_EVENTS, ch: _SCAN_DIAG_MAX_CHANGES, k: Infinity },
+             { rec: 0, ev: 30, ch: 20, k: Infinity }, { rec: 0, ev: 10, ch: 5, k: Infinity });
+  for (const k of [200, 50, 20, 5, 1, 0]) steps.push({ rec: 0, ev: 10, ch: 5, k });
+  steps.push({ rec: 0, ev: 0, ch: 0, k: 0 });
+  for (const p of steps) {
+    const text = JSON.stringify(build(p));
+    if (text.length <= _SCAN_DIAG_MAX_CHARS) return text;
+  }
+  // Unreachable with sane input; still bounded if it ever is reached.
+  return JSON.stringify({ ...head(), truncated: { records: true, events: events.length, changes: true, summary: true },
+    eventsTotal: events.length, before: b ? { total: beforeSummary.total } : null, now: { total: nowRecords.length } }).slice(0, _SCAN_DIAG_MAX_CHARS);
+}
+
+// One tap → the iOS share sheet with the diagnostic as text (Slack, Messages,
+// Mail all take it). Text, not a file: @capacitor/share hands a data URL to
+// the sheet as a LINK, which is not something a person can send on.
+// Returns { ok, mode } so the button can say what happened. With no native
+// share, no navigator.share and no clipboard API, the answer is
+// "unavailable": nothing was sent or copied, so nothing claims it was.
+async function _scanDiagShare(meta = {}) {
+  _scanDiagLog("share", null, "");
+  const text = _scanDiagExportText(meta);
+  const capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      await capShare.share({ title: "Plursky scan diagnostic", text, dialogTitle: "Send scan diagnostic" });
+      return { ok: true, mode: "share", chars: text.length };
+    } catch (e) {
+      if (/cancel|abort/i.test(e?.message || "")) return { ok: false, mode: "cancelled", chars: text.length };
+      return { ok: false, mode: "error", chars: text.length };
+    }
+  }
+  if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+    try { await navigator.share({ title: "Plursky scan diagnostic", text }); return { ok: true, mode: "share", chars: text.length }; }
+    catch (e) { if (e?.name === "AbortError") return { ok: false, mode: "cancelled", chars: text.length }; }
+  }
+  const clip = typeof navigator !== "undefined" ? navigator.clipboard : null;
+  if (!clip || typeof clip.writeText !== "function") return { ok: false, mode: "unavailable", chars: text.length };
+  try { await clip.writeText(text); return { ok: true, mode: "copied", chars: text.length }; }
+  catch { return { ok: false, mode: "error", chars: text.length }; }
+}
+
+// Capture the untouched store as soon as this file loads: before React
+// mounts, so before any Scan, cloud restore or retag can write.
+try { _scanDiagEnsureBefore(); } catch {}
+
+// Memories' empty-state copy, by what this build can do. Scan my weekend and
+// the picker are separate doors: a build with Scan but no picker can still
+// bring the library in, so the "can't open your photo library" line belongs
+// only to a build with neither. One function, so the copy under the Scan card
+// can never contradict it (#365).
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below.",
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below.",
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now.",
   };
 }

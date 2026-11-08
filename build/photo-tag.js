@@ -432,14 +432,6 @@ function _photoFestivalNightWeekend(date, cfgIn, utcMs) {
   }
   return null;
 }
-function _haversineMeters(lat1, lng1, lat2, lng2) {
-  var R = 6371000;
-  var toRad = d => d * Math.PI / 180;
-  var dLat = toRad(lat2 - lat1);
-  var dLng = toRad(lng2 - lng1);
-  var a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return 2 * R * Math.asin(Math.sqrt(a));
-}
 function _activeDataSet() {
   return {
     id: window.FESTIVAL_CONFIG?.id || null,
@@ -468,6 +460,14 @@ function _festivalSiteMeters(cfg, lat, lng) {
   var g = cfg?.gps;
   if (!g || g.lat == null || g.lng == null) return null;
   return _haversineMeters(lat, lng, g.lat, g.lng);
+}
+var _OFF_VENUE_MARGIN_M = 500;
+function _offVenueMeters(cfg, lat, lng, acc) {
+  var g = cfg?.gps;
+  if (lat == null || lng == null || !g || g.lat == null || g.lng == null || !(g.onSiteRadiusMi > 0)) return null;
+  var err = acc != null && isFinite(acc) && acc >= 0 ? acc : _GPS_STAGE_MAX_ACC_M;
+  var past = _haversineMeters(lat, lng, g.lat, g.lng) - err - g.onSiteRadiusMi * 1609.34;
+  return past > _OFF_VENUE_MARGIN_M ? Math.round(past) : null;
 }
 function _resolveFestivalForPhoto(meta) {
   var active = _activeDataSet();
@@ -651,21 +651,83 @@ function _matchArtistForPhoto({
       score: attendedSet.has(a.id) ? 1000 : 500
     } : null;
   }).filter(Boolean).filter(x => photoMs >= x.startMs - 5 * 60000 && photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
+  var savedDefeatedByGps = false;
   if (priorHits.length) {
     priorHits.sort((x, y) => y.score - x.score || x.endMs - x.startMs - (y.endMs - y.startMs));
     var hit = priorHits[0];
     var topTier = priorHits.filter(h => h.score === hit.score);
     var _ambiguous = topTier.length > 1;
-    return {
+    var attended = attendedSet.has(hit.a.id);
+    if (!attended) {
+      var away = _offVenueMeters(cfg, lat, lng, acc);
+      if (away != null) {
+        return {
+          localDate,
+          gpsRejected,
+          artistId: null,
+          night,
+          festivalId,
+          resolvedBy,
+          reason: "off_venue",
+          evidence: "gps-off-venue",
+          distMeters: away,
+          defeated: hit.a.id
+        };
+      }
+    }
+    var stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
+    var anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
+    var atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
+    var gpsAct = null;
+    if (!attended && !atStage && stageAnchors.length) {
+      var near = null,
+        nearM = Infinity;
+      for (var g of stageAnchors) {
+        var m = _haversineMeters(sLat, sLng, g.lat, g.lng);
+        if (m < nearM) {
+          nearM = m;
+          near = g;
+        }
+      }
+      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
+        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
+          var w = setWindow(a);
+          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+        })()) || null;
+      }
+    }
+    if (!(gpsAct && anchor)) {
+      var evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+      var alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
+      var amb = _ambiguous || !!gpsAct;
+      return {
+        localDate,
+        gpsRejected,
+        artistId: hit.a.id,
+        night: hit.a.day,
+        festivalId,
+        resolvedBy,
+        reason: attended ? "attended_set_time" : "saved_set_time",
+        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
+        suggested: !attended && !atStage,
+        ambiguous: amb,
+        alternatives: amb ? alts : undefined
+      };
+    }
+    savedDefeatedByGps = true;
+  }
+  {
+    var _away = _offVenueMeters(cfg, lat, lng, acc);
+    if (_away != null) return {
       localDate,
       gpsRejected,
-      artistId: hit.a.id,
-      night: hit.a.day,
+      artistId: null,
+      night,
       festivalId,
       resolvedBy,
-      reason: attendedSet.has(hit.a.id) ? "attended_set_time" : "saved_set_time",
-      ambiguous: _ambiguous,
-      alternatives: _ambiguous ? topTier.map(h => h.a.id) : undefined
+      reason: "off_venue",
+      evidence: "gps-off-venue",
+      distMeters: _away
     };
   }
   if (sLat != null && sLng != null) {
@@ -674,9 +736,9 @@ function _matchArtistForPhoto({
       var nearest = null,
         minMeters = Infinity;
       for (var a of anchors) {
-        var m = _haversineMeters(sLat, sLng, a.lat, a.lng);
-        if (m < minMeters) {
-          minMeters = m;
+        var _m = _haversineMeters(sLat, sLng, a.lat, a.lng);
+        if (_m < minMeters) {
+          minMeters = _m;
           nearest = a;
         }
       }
@@ -720,12 +782,12 @@ function _matchArtistForPhoto({
       var nearStage = null,
         nearStageM = Infinity,
         nearSource = null;
-      for (var g of _anchors2) {
-        var _m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (_m < nearStageM) {
-          nearStageM = _m;
-          nearStage = g.stageId;
-          nearSource = g.anchorSource;
+      for (var _g of _anchors2) {
+        var _m2 = _haversineMeters(sLat, sLng, _g.lat, _g.lng);
+        if (_m2 < nearStageM) {
+          nearStageM = _m2;
+          nearStage = _g.stageId;
+          nearSource = _g.anchorSource;
         }
       }
       if (nearStage && nearStageM <= 120) {
@@ -776,7 +838,7 @@ function _matchArtistForPhoto({
   }
   var inAttended = candidates.filter(c => attendedSet.has(c.a.id));
   var inSaved = candidates.filter(c => savedSet.has(c.a.id));
-  var pool = inAttended.length ? inAttended : inSaved.length ? inSaved : candidates;
+  var pool = inAttended.length ? inAttended : inSaved.length && !savedDefeatedByGps ? inSaved : candidates;
   var _anchors = resolvedStageAnchors(cfg);
   var stageDist = a => {
     if (sLat == null || sLng == null) return Infinity;
@@ -786,7 +848,15 @@ function _matchArtistForPhoto({
       dLng = sLng - anchor.lng;
     return dLat * dLat + dLng * dLng;
   };
+  var atAnchor = a => {
+    if (sLat == null || sLng == null) return false;
+    var g = _anchors.find(x => x.stageId === a.stage);
+    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
+  };
   pool.sort((x, y) => {
+    var ax = atAnchor(x.a),
+      ay = atAnchor(y.a);
+    if (ax !== ay) return ax ? -1 : 1;
     var dx = stageDist(x.a),
       dy = stageDist(y.a);
     if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
@@ -810,5 +880,864 @@ function _matchArtistForPhoto({
     ambiguous,
     anchorSource,
     alternatives: ambiguous ? pool.map(c => c.a.id) : undefined
+  };
+}
+function _scanNightWindows(cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  if (!cfg?.dayDates) return [];
+  var H = 3600000,
+    slack = 30 * 60000;
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number)) {
+      var dm = cfg.dayDates[n];
+      if (!dm || typeof dm.midnightUtc !== "number") continue;
+      var midnight = dm.midnightUtc + shift;
+      out.push({
+        night: n,
+        weekend,
+        startMs: midnight + 11 * H - slack,
+        endMs: midnight + 30 * H + slack
+      });
+    }
+  }
+  return out.sort((a, b) => a.startMs - b.startMs);
+}
+function _scanQueryRanges(cfgIn) {
+  var ranges = [];
+  for (var w of _scanNightWindows(cfgIn)) {
+    var last = ranges[ranges.length - 1];
+    if (last && w.startMs <= last.endMs) last.endMs = Math.max(last.endMs, w.endMs);else ranges.push({
+      startMs: w.startMs,
+      endMs: w.endMs
+    });
+  }
+  return ranges;
+}
+function _photoKitAssetMeta(asset, cfgIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var ms = Number(asset?.createdMs);
+  if (!isFinite(ms) || ms <= 0) return null;
+  var lat = Number(asset.lat),
+    lng = Number(asset.lng);
+  var hasGps = asset.lat != null && asset.lng != null && isFinite(lat) && isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0);
+  var acc = Number(asset.acc);
+  return {
+    date: _wallClockFromUtc(ms, cfg),
+    rawUtcMs: ms,
+    lat: hasGps ? lat : null,
+    lng: hasGps ? lng : null,
+    acc: hasGps && asset.acc != null && isFinite(acc) && acc >= 0 ? acc : null,
+    timestampSource: "photokit",
+    locationSource: hasGps ? "photokit-gps" : "none"
+  };
+}
+var _SCAN_SET_BUFFER_MS = 15 * 60000;
+var _SCAN_TIME_RE = /^(\d{1,2}):(\d{2})$/;
+function _zonedWallToUtc(yr, mo, dy, hh, mm, tz) {
+  var guess = Date.UTC(yr, mo - 1, dy, hh, mm);
+  if (!tz || typeof Intl === "undefined") return null;
+  var fmt;
+  try {
+    fmt = new Intl.DateTimeFormat("en-US", {
+      timeZone: tz,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  } catch {
+    return null;
+  }
+  var offsetAt = ms => {
+    var p = {};
+    for (var x of fmt.formatToParts(new Date(ms))) p[x.type] = x.value;
+    return Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute) - ms;
+  };
+  var t = guess - offsetAt(guess);
+  t = guess - offsetAt(t);
+  return t;
+}
+function _scanNightLocalDate(cfg, n, shift) {
+  var dm = cfg?.dayDates?.[n];
+  if (!dm || typeof dm.midnightUtc !== "number") return null;
+  var ms = dm.midnightUtc + shift + 12 * 3600000;
+  if (cfg.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day
+      };
+    } catch {}
+  }
+  var d = new Date(ms + _festivalTzOffsetHours(cfg) * 3600000);
+  return {
+    yr: d.getUTCFullYear(),
+    mo: d.getUTCMonth() + 1,
+    dy: d.getUTCDate()
+  };
+}
+function _scanActUtc(cfg, n, shift, hhmm) {
+  var m = _SCAN_TIME_RE.exec(String(hhmm || ""));
+  if (!m) return null;
+  var h = +m[1];
+  var mi = +m[2];
+  var date = _scanNightLocalDate(cfg, n, shift);
+  if (!date) return null;
+  var dayAdd = 0;
+  if (h < 8) dayAdd = 1;
+  var base = new Date(Date.UTC(date.yr, date.mo - 1, date.dy + dayAdd));
+  var utc = _zonedWallToUtc(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h, mi, cfg.tz);
+  if (utc != null) return utc;
+  var dm = cfg.dayDates[n];
+  return dm.midnightUtc + shift + ((h < 8 ? h + 24 : h) * 60 + mi) * 60000;
+}
+function _scanSetWindows(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var artists = artistsIn || cfg?.id && window._DATA_SETS?.[cfg.id]?.artists || (cfg === window.FESTIVAL_CONFIG ? window.ARTISTS : null) || [];
+  if (!cfg?.dayDates) return [];
+  var out = [];
+  for (var {
+    weekend,
+    shift
+  } of festivalWeekendShifts(cfg)) {
+    for (var n of Object.keys(cfg.dayDates).map(Number).sort((a, b) => a - b)) {
+      if (!cfg.dayDates[n] || typeof cfg.dayDates[n].midnightUtc !== "number") continue;
+      var startMs = Infinity,
+        endMs = -Infinity,
+        acts = 0;
+      for (var a of artists) {
+        if (Number(a?.day) !== n || !actPlaysWeekend(a, weekend)) continue;
+        if (setTimeStatus(a) !== "confirmed") continue;
+        var s0 = _scanActUtc(cfg, n, shift, a.start),
+          e0 = _scanActUtc(cfg, n, shift, a.end);
+        if (s0 == null || e0 == null) continue;
+        var e1 = e0 <= s0 ? e0 + 24 * 3600000 : e0;
+        acts++;
+        if (s0 < startMs) startMs = s0;
+        if (e1 > endMs) endMs = e1;
+      }
+      out.push(acts ? {
+        night: n,
+        weekend,
+        source: "set-times",
+        startMs: startMs - _SCAN_SET_BUFFER_MS,
+        endMs: endMs + _SCAN_SET_BUFFER_MS,
+        acts
+      } : {
+        night: n,
+        weekend,
+        source: "none",
+        acts: 0
+      });
+    }
+  }
+  return out;
+}
+function _scanWindowReport(cfgIn, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  return _scanSetWindows(cfg, artistsIn).map(w => {
+    if (w.source !== "set-times") return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source
+    };
+    var f = ms => {
+      var d = _wallClockFromUtcTz(ms, cfg);
+      return `${d.yr}-${String(d.mo).padStart(2, "0")}-${String(d.dy).padStart(2, "0")} ${String(d.hh).padStart(2, "0")}:${String(d.mm).padStart(2, "0")}`;
+    };
+    return {
+      night: w.night,
+      weekend: w.weekend,
+      source: w.source,
+      acts: w.acts,
+      start: f(w.startMs),
+      end: f(w.endMs)
+    };
+  });
+}
+function _wallClockFromUtcTz(ms, cfg) {
+  if (cfg?.tz && typeof Intl !== "undefined") {
+    try {
+      var p = {};
+      for (var x of new Intl.DateTimeFormat("en-US", {
+        timeZone: cfg.tz,
+        hourCycle: "h23",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).formatToParts(new Date(ms))) p[x.type] = x.value;
+      return {
+        yr: +p.year,
+        mo: +p.month,
+        dy: +p.day,
+        hh: +p.hour % 24,
+        mm: +p.minute
+      };
+    } catch {}
+  }
+  return _wallClockFromUtc(ms, cfg);
+}
+function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
+  var cfg = cfgIn || window.FESTIVAL_CONFIG;
+  var seen = seenIds instanceof Set ? seenIds : new Set(seenIds || []);
+  var windows = _scanSetWindows(cfg, artistsIn);
+  var timed = windows.filter(w => w.source === "set-times");
+  var untimed = new Set(windows.filter(w => w.source !== "set-times").map(w => `${w.night}|${w.weekend}`));
+  var keep = [];
+  var outside = 0,
+    outsideSets = 0,
+    fullNight = 0,
+    already = 0;
+  var _loop2 = function () {
+      if (!a || !a.id) return 0;
+      var ms = Number(a.createdMs);
+      if (!isFinite(ms)) {
+        outside++;
+        return 0;
+      }
+      var whole = false;
+      if (!timed.some(w => ms >= w.startMs && ms <= w.endMs)) {
+        var nw = _photoFestivalNightWeekend(null, cfg, ms);
+        if (!nw) {
+          outside++;
+          return 0;
+        }
+        if (!untimed.has(`${nw.night}|${nw.weekend}`)) {
+          outsideSets++;
+          return 0;
+        }
+        whole = true;
+      }
+      if (seen.has(a.id)) {
+        already++;
+        return 0;
+      }
+      if (whole) fullNight++;
+      keep.push(a);
+    },
+    _ret2;
+  for (var a of assets || []) {
+    _ret2 = _loop2();
+    if (_ret2 === 0) continue;
+  }
+  keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
+  return {
+    keep,
+    outside,
+    outsideSets,
+    fullNight,
+    untimedNights: untimed.size,
+    already,
+    nightsWithoutSetTimes: windows.filter(w => w.source !== "set-times").map(w => ({
+      night: w.night,
+      weekend: w.weekend
+    }))
+  };
+}
+function _pickerErrorIsCancel(err) {
+  var msg = String(err && (err.message || err.errorMessage) || err || "").trim();
+  return /^pick(Files|Media|Images|Videos)? cancel(l)?ed\.?$/i.test(msg);
+}
+function _scanChunks(assets, maxPhotos = 20) {
+  var chunks = [];
+  for (var a of assets || []) {
+    var last = chunks[chunks.length - 1];
+    if (a?.mediaType !== "video" && last && last.length < maxPhotos && last[0]?.mediaType !== "video") last.push(a);else chunks.push([a]);
+  }
+  return chunks;
+}
+var _SCAN_SEEN_KEY = "plursky_scan_seen_v1";
+var _SCAN_SEEN_MAX = 20000;
+function _scanSeenRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_SEEN_KEY) || "[]");
+    return new Set(Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  } catch {
+    return new Set();
+  }
+}
+function _scanSeenAdd(ids) {
+  var cur = [..._scanSeenRead()];
+  var have = new Set(cur);
+  for (var id of ids || []) if (typeof id === "string" && !have.has(id)) {
+    cur.push(id);
+    have.add(id);
+  }
+  var trimmed = cur.length > _SCAN_SEEN_MAX ? cur.slice(cur.length - _SCAN_SEEN_MAX) : cur;
+  try {
+    localStorage.setItem(_SCAN_SEEN_KEY, JSON.stringify(trimmed));
+  } catch {}
+  return trimmed.length;
+}
+var _SCAN_DIAG_KEY = "plursky_scan_diag_v1";
+var _SCAN_DIAG_SALT_KEY = "plursky_scan_diag_salt_v1";
+var _SCAN_DIAG_MAX_EVENTS = 60;
+var _SCAN_DIAG_MAX_CHANGES = 80;
+var _SCAN_DIAG_MAX_RECORDS = 1500;
+var _SCAN_DIAG_MAX_CHARS = 38000;
+function _scanDiagSalt() {
+  try {
+    var s = localStorage.getItem(_SCAN_DIAG_SALT_KEY);
+    if (!s || !/^[0-9a-f]{32}$/.test(s)) {
+      var b = new Uint8Array(16);
+      if (window.crypto?.getRandomValues) window.crypto.getRandomValues(b);else for (var i = 0; i < 16; i++) b[i] = Math.floor(Math.random() * 256);
+      s = [...b].map(x => x.toString(16).padStart(2, "0")).join("");
+      localStorage.setItem(_SCAN_DIAG_SALT_KEY, s);
+    }
+    return s;
+  } catch {
+    return "nosalt";
+  }
+}
+function _scanDiagHash(id, salt) {
+  var str = `${salt}|${id}`;
+  var h1 = 0x811c9dc5,
+    h2 = 0x01000193 ^ 0x5bd1e995;
+  for (var i = 0; i < str.length; i++) {
+    var c = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 ^ c, 0x5bd1e995) >>> 0;
+    h2 = (h2 ^ h2 >>> 13) >>> 0;
+  }
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+}
+var _scanDiagStr = (v, re, max = 40) => typeof v === "string" && v.length <= max && re.test(v) ? v : v == null ? null : "?";
+var _SCAN_DIAG_ID_RE = /^[A-Za-z0-9_.:-]+$/;
+var _SCAN_DIAG_LABEL_RE = /^[a-z0-9_-]+$/i;
+function _scanDiagRecord(m, night, salt) {
+  return {
+    h: _scanDiagHash(String(m.id), salt),
+    f: _scanDiagStr(m.festivalId, _SCAN_DIAG_ID_RE),
+    n: Number.isFinite(Number(night)) ? Number(night) : null,
+    a: _scanDiagStr(m.artistId, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(m.tagSource, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(m.festivalStampSource, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(m.takenAtSource, _SCAN_DIAG_LABEL_RE),
+    k: m.kind === "video" ? "v" : "p",
+    auto: m.autoTagged ? 1 : 0,
+    amb: m.tagAmbiguous ? 1 : 0,
+    rt: m.needsRetag ? 1 : 0,
+    fp: m._fingerprint ? 1 : 0
+  };
+}
+function _scanDiagRecords(all, salt) {
+  var out = [];
+  for (var night of Object.keys(all || {})) {
+    var arr = all[night];
+    if (!Array.isArray(arr)) continue;
+    for (var m of arr) if (m && m.id != null) out.push(_scanDiagRecord(m, night, salt));
+  }
+  return out;
+}
+function _scanDiagSummary(records) {
+  var byFest = {},
+    bySource = {};
+  for (var r of records) {
+    var f = r.f || "-",
+      n = r.n == null ? "-" : String(r.n),
+      a = r.a || "-";
+    byFest[f] = byFest[f] || {
+      total: 0,
+      nights: {}
+    };
+    byFest[f].total++;
+    var nn = byFest[f].nights[n] = byFest[f].nights[n] || {};
+    nn[a] = (nn[a] || 0) + 1;
+    var s = r.ts || "-";
+    bySource[s] = (bySource[s] || 0) + 1;
+  }
+  return {
+    total: records.length,
+    byFest,
+    bySource
+  };
+}
+function _scanDiagRead() {
+  try {
+    var v = JSON.parse(localStorage.getItem(_SCAN_DIAG_KEY) || "null");
+    if (v && typeof v === "object" && Array.isArray(v.events)) return v;
+  } catch {}
+  return {
+    v: 1,
+    before: null,
+    last: null,
+    events: []
+  };
+}
+function _scanDiagWrite(d) {
+  try {
+    localStorage.setItem(_SCAN_DIAG_KEY, JSON.stringify(d));
+    return true;
+  } catch {
+    return false;
+  }
+}
+function _scanDiagOrigin(stack) {
+  var names = [];
+  for (var line of String(stack || "").split("\n")) {
+    var m = line.match(/^\s*(?:at\s+)?(?:async\s+)?([A-Za-z_$][\w$.]*)\s*(?:@|\()/);
+    var nm = m && m[1].split(".").pop();
+    if (!nm || /^_scanDiag|^_writeMoments$|^Error$/.test(nm)) continue;
+    if (nm.length <= 40) names.push(nm);
+    if (names.length >= 4) break;
+  }
+  return names.join(">") || "?";
+}
+function _scanDiagEnsureBefore(allIn) {
+  try {
+    var d = _scanDiagRead();
+    if (d.before) return false;
+    var salt = _scanDiagSalt();
+    var all = allIn || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(all, salt);
+    d.before = {
+      t: new Date().toISOString(),
+      summary: _scanDiagSummary(records),
+      records: records.slice(0, _SCAN_DIAG_MAX_RECORDS),
+      truncated: records.length > _SCAN_DIAG_MAX_RECORDS
+    };
+    d.last = Object.fromEntries(records.map(r => [r.h, `${r.f}|${r.n}|${r.a}|${r.ts}`]));
+    d.events.push({
+      t: d.before.t,
+      ev: "before",
+      origin: "boot",
+      total: records.length
+    });
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+function _scanDiagLog(ev, all, stack) {
+  try {
+    var d = _scanDiagRead();
+    var salt = _scanDiagSalt();
+    var cur = all || JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    var records = _scanDiagRecords(cur, salt);
+    var now = {};
+    for (var r of records) now[r.h] = `${r.f}|${r.n}|${r.a}|${r.ts}`;
+    var prev = d.last || {};
+    var added = 0,
+      removed = 0,
+      changed = 0;
+    var changes = [];
+    for (var h of Object.keys(now)) {
+      if (!(h in prev)) {
+        added++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`+${h}:${now[h]}`);
+      } else if (prev[h] !== now[h]) {
+        changed++;
+        if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`~${h}:${prev[h]}>${now[h]}`);
+      }
+    }
+    for (var _h of Object.keys(prev)) if (!(_h in now)) {
+      removed++;
+      if (changes.length < _SCAN_DIAG_MAX_CHANGES) changes.push(`-${_h}:${prev[_h]}`);
+    }
+    var origin = ev === "write" ? _scanDiagOrigin(stack) : ev;
+    var lastEv = d.events[d.events.length - 1];
+    if (ev === "write" && lastEv && lastEv.ev === "write" && lastEv.origin === origin) {
+      lastEv.writes = (lastEv.writes || 1) + 1;
+      lastEv.tEnd = new Date().toISOString();
+      lastEv.total = records.length;
+      lastEv.added += added;
+      lastEv.removed += removed;
+      lastEv.changed += changed;
+      for (var c of changes) if (lastEv.changes.length < _SCAN_DIAG_MAX_CHANGES) lastEv.changes.push(c);
+    } else {
+      d.events.push({
+        t: new Date().toISOString(),
+        ev,
+        origin,
+        total: records.length,
+        added,
+        removed,
+        changed,
+        changes
+      });
+      if (d.events.length > _SCAN_DIAG_MAX_EVENTS) {
+        d.events.splice(1, d.events.length - _SCAN_DIAG_MAX_EVENTS);
+      }
+    }
+    d.last = now;
+    return _scanDiagWrite(d);
+  } catch {
+    return false;
+  }
+}
+var _SCAN_DIAG_HASH_RE = /^[0-9a-f]{16}$/;
+var _SCAN_DIAG_ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/;
+var _SCAN_DIAG_NIGHT_RE = /^(-|_other|\d{1,3})$/;
+var _SCAN_DIAG_EV_RE = /^[a-z-]{1,20}$/;
+var _SCAN_DIAG_ORIGIN_RE = /^[A-Za-z0-9_$>?-]{1,170}$/;
+var _SCAN_DIAG_SEG = "[A-Za-z0-9_.:?-]{1,40}";
+var _SCAN_DIAG_STATE = `${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}\\|${_SCAN_DIAG_SEG}`;
+var _SCAN_DIAG_CHANGE_RE = new RegExp(`^[+~-][0-9a-f]{16}:${_SCAN_DIAG_STATE}(>${_SCAN_DIAG_STATE})?$`);
+var _scanDiagInt = v => Number.isInteger(v) && v >= 0 && v < 1e7 ? v : 0;
+var _scanDiagKey = (k, re) => typeof k === "string" && k.length <= 40 && re.test(k);
+function _scanDiagCleanRecord(r) {
+  if (!r || typeof r !== "object" || !_SCAN_DIAG_HASH_RE.test(r.h)) return null;
+  return {
+    h: r.h,
+    f: _scanDiagStr(r.f, _SCAN_DIAG_ID_RE),
+    n: Number.isInteger(r.n) && r.n >= 0 && r.n < 1000 ? r.n : null,
+    a: _scanDiagStr(r.a, _SCAN_DIAG_ID_RE),
+    ts: _scanDiagStr(r.ts, _SCAN_DIAG_LABEL_RE),
+    fs: _scanDiagStr(r.fs, _SCAN_DIAG_LABEL_RE),
+    tk: _scanDiagStr(r.tk, _SCAN_DIAG_LABEL_RE),
+    k: r.k === "v" ? "v" : "p",
+    auto: r.auto ? 1 : 0,
+    amb: r.amb ? 1 : 0,
+    rt: r.rt ? 1 : 0,
+    fp: r.fp ? 1 : 0
+  };
+}
+function _scanDiagCleanCounts(obj, keyRe) {
+  var out = {};
+  if (!obj || typeof obj !== "object") return out;
+  for (var k of Object.keys(obj)) if (_scanDiagKey(k, keyRe)) out[k] = _scanDiagInt(obj[k]);
+  return out;
+}
+function _scanDiagCleanSummary(sIn) {
+  var sum = sIn && typeof sIn === "object" ? sIn : {};
+  var byFest = {};
+  for (var f of Object.keys(sum.byFest || {})) {
+    var fv = sum.byFest[f];
+    if (!_scanDiagKey(f, _SCAN_DIAG_ID_RE) || !fv || typeof fv !== "object") continue;
+    var nights = {};
+    for (var n of Object.keys(fv.nights || {})) {
+      if (_scanDiagKey(n, _SCAN_DIAG_NIGHT_RE)) nights[n] = _scanDiagCleanCounts(fv.nights[n], _SCAN_DIAG_ID_RE);
+    }
+    byFest[f] = {
+      total: _scanDiagInt(fv.total),
+      nights
+    };
+  }
+  return {
+    total: _scanDiagInt(sum.total),
+    byFest,
+    bySource: _scanDiagCleanCounts(sum.bySource, _SCAN_DIAG_ID_RE)
+  };
+}
+function _scanDiagCleanEvent(e) {
+  if (!e || typeof e !== "object") return null;
+  var out = {
+    t: typeof e.t === "string" && _SCAN_DIAG_ISO_RE.test(e.t) ? e.t : null,
+    ev: typeof e.ev === "string" && _SCAN_DIAG_EV_RE.test(e.ev) ? e.ev : "?",
+    origin: typeof e.origin === "string" && _SCAN_DIAG_ORIGIN_RE.test(e.origin) ? e.origin : "?",
+    total: _scanDiagInt(e.total)
+  };
+  if (typeof e.tEnd === "string" && _SCAN_DIAG_ISO_RE.test(e.tEnd)) out.tEnd = e.tEnd;
+  if (e.ev !== "before") {
+    out.added = _scanDiagInt(e.added);
+    out.removed = _scanDiagInt(e.removed);
+    out.changed = _scanDiagInt(e.changed);
+    if (Number.isInteger(e.writes)) out.writes = _scanDiagInt(e.writes);
+    out.changes = Array.isArray(e.changes) ? e.changes.filter(c => typeof c === "string" && c.length <= 260 && _SCAN_DIAG_CHANGE_RE.test(c)) : [];
+  }
+  return out;
+}
+function _scanDiagTop(obj, k, val = v => v) {
+  var e = Object.entries(obj);
+  if (e.length <= k) return {
+    out: obj,
+    cut: false
+  };
+  e.sort((x, y) => val(y[1]) - val(x[1]));
+  return {
+    out: Object.fromEntries(e.slice(0, k)),
+    rest: e.slice(k),
+    cut: true
+  };
+}
+function _scanDiagTrimSummary(sum, k) {
+  if (k === Infinity) return {
+    sum,
+    cut: false
+  };
+  var cut = false;
+  var byFest = {};
+  var f = _scanDiagTop(sum.byFest, k, v => v.total);
+  if (f.cut) {
+    cut = true;
+    byFest._other = {
+      total: f.rest.reduce((t, [, v]) => t + v.total, 0),
+      nights: {}
+    };
+  }
+  for (var [fid, fv] of Object.entries(f.out)) {
+    var nights = {};
+    var ns = _scanDiagTop(fv.nights, k, v => Object.values(v).reduce((t, c) => t + c, 0));
+    if (ns.cut) {
+      cut = true;
+      nights._other = {
+        _other: ns.rest.reduce((t, [, v]) => t + Object.values(v).reduce((a, c) => a + c, 0), 0)
+      };
+    }
+    for (var [n, arts] of Object.entries(ns.out)) {
+      var a = _scanDiagTop(arts, k);
+      if (a.cut) {
+        cut = true;
+        a.out = {
+          ...a.out,
+          _other: (a.out._other || 0) + a.rest.reduce((t, [, c]) => t + c, 0)
+        };
+      }
+      nights[n] = a.out;
+    }
+    byFest[fid] = {
+      total: fv.total,
+      nights
+    };
+  }
+  var src = _scanDiagTop(sum.bySource, k);
+  if (src.cut) {
+    cut = true;
+    src.out = {
+      ...src.out,
+      _other: (src.out._other || 0) + src.rest.reduce((t, [, c]) => t + c, 0)
+    };
+  }
+  return {
+    sum: {
+      total: sum.total,
+      byFest,
+      bySource: src.out
+    },
+    cut
+  };
+}
+function _scanDiagExportText(meta = {}) {
+  var d = _scanDiagRead();
+  var salt = _scanDiagSalt();
+  var all = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
+    } catch {
+      return {};
+    }
+  })();
+  var nowRecords = _scanDiagRecords(all, salt).map(_scanDiagCleanRecord).filter(Boolean);
+  var nowSummary = _scanDiagCleanSummary(_scanDiagSummary(nowRecords));
+  var b = d.before && typeof d.before === "object" ? d.before : null;
+  var beforeRecords = b && Array.isArray(b.records) ? b.records.map(_scanDiagCleanRecord).filter(Boolean) : [];
+  var beforeSummary = b ? _scanDiagCleanSummary(b.summary) : null;
+  var beforeT = b && typeof b.t === "string" && _SCAN_DIAG_ISO_RE.test(b.t) ? b.t : null;
+  var beforeCut = !!(b && b.truncated);
+  var events = (Array.isArray(d.events) ? d.events : []).map(_scanDiagCleanEvent).filter(Boolean);
+  var ver = typeof meta.appVersion === "string" && /^v\d+$/.test(meta.appVersion) ? meta.appVersion : null;
+  var created = new Date().toISOString();
+  var head = () => ({
+    schema: "plursky-scan-diag/1",
+    created,
+    app: ver,
+    activeFestival: _scanDiagStr(window.FESTIVAL_CONFIG?.id, _SCAN_DIAG_ID_RE),
+    scanSeen: (() => {
+      try {
+        return _scanSeenRead().size;
+      } catch {
+        return null;
+      }
+    })()
+  });
+  var build = ({
+    rec,
+    ev,
+    ch,
+    k
+  }) => {
+    var evKeep = ev >= events.length ? events : ev <= 0 ? [] : [events[0], ...events.slice(1).slice(-(ev - 1))];
+    var changesCut = false;
+    var evOut = evKeep.map(e => {
+      if (!e.changes) return e;
+      if (e.changes.length > ch || e.changes.length < e.added + e.removed + e.changed) changesCut = true;
+      return {
+        ...e,
+        changes: e.changes.slice(0, ch)
+      };
+    });
+    var bs = beforeSummary ? _scanDiagTrimSummary(beforeSummary, k) : null;
+    var ns = _scanDiagTrimSummary(nowSummary, k);
+    return {
+      ...head(),
+      truncated: {
+        records: beforeCut || beforeRecords.length > rec || nowRecords.length > rec,
+        events: events.length - evOut.length,
+        changes: changesCut,
+        summary: !!(bs && bs.cut) || ns.cut
+      },
+      eventsTotal: events.length,
+      before: b ? {
+        t: beforeT,
+        total: beforeSummary.total,
+        summary: bs.sum,
+        truncated: beforeCut || beforeRecords.length > rec,
+        records: beforeRecords.slice(0, rec)
+      } : null,
+      now: {
+        total: nowRecords.length,
+        summary: ns.sum,
+        truncated: nowRecords.length > rec,
+        records: nowRecords.slice(0, rec)
+      },
+      events: evOut
+    };
+  };
+  var steps = [];
+  for (var n = _SCAN_DIAG_MAX_RECORDS; n > 0; n = Math.floor(n * 0.7)) steps.push({
+    rec: n,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  });
+  steps.push({
+    rec: 0,
+    ev: _SCAN_DIAG_MAX_EVENTS,
+    ch: _SCAN_DIAG_MAX_CHANGES,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 30,
+    ch: 20,
+    k: Infinity
+  }, {
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k: Infinity
+  });
+  for (var k of [200, 50, 20, 5, 1, 0]) steps.push({
+    rec: 0,
+    ev: 10,
+    ch: 5,
+    k
+  });
+  steps.push({
+    rec: 0,
+    ev: 0,
+    ch: 0,
+    k: 0
+  });
+  for (var p of steps) {
+    var text = JSON.stringify(build(p));
+    if (text.length <= _SCAN_DIAG_MAX_CHARS) return text;
+  }
+  return JSON.stringify({
+    ...head(),
+    truncated: {
+      records: true,
+      events: events.length,
+      changes: true,
+      summary: true
+    },
+    eventsTotal: events.length,
+    before: b ? {
+      total: beforeSummary.total
+    } : null,
+    now: {
+      total: nowRecords.length
+    }
+  }).slice(0, _SCAN_DIAG_MAX_CHARS);
+}
+async function _scanDiagShare(meta = {}) {
+  _scanDiagLog("share", null, "");
+  var text = _scanDiagExportText(meta);
+  var capShare = window.Capacitor?.Plugins?.Share;
+  if (capShare?.share && window.Capacitor?.isNativePlatform?.()) {
+    try {
+      await capShare.share({
+        title: "Plursky scan diagnostic",
+        text,
+        dialogTitle: "Send scan diagnostic"
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (/cancel|abort/i.test(e?.message || "")) return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+      return {
+        ok: false,
+        mode: "error",
+        chars: text.length
+      };
+    }
+  }
+  if (typeof navigator !== "undefined" && typeof navigator.share === "function") {
+    try {
+      await navigator.share({
+        title: "Plursky scan diagnostic",
+        text
+      });
+      return {
+        ok: true,
+        mode: "share",
+        chars: text.length
+      };
+    } catch (e) {
+      if (e?.name === "AbortError") return {
+        ok: false,
+        mode: "cancelled",
+        chars: text.length
+      };
+    }
+  }
+  var clip = typeof navigator !== "undefined" ? navigator.clipboard : null;
+  if (!clip || typeof clip.writeText !== "function") return {
+    ok: false,
+    mode: "unavailable",
+    chars: text.length
+  };
+  try {
+    await clip.writeText(text);
+    return {
+      ok: true,
+      mode: "copied",
+      chars: text.length
+    };
+  } catch {
+    return {
+      ok: false,
+      mode: "error",
+      chars: text.length
+    };
+  }
+}
+try {
+  _scanDiagEnsureBefore();
+} catch {}
+function _memoriesImportCopy(pickerAvailable, scanAvailable) {
+  if (pickerAvailable) return {
+    invite: "Import your festival photos & videos — Plursky auto-tags each to the set you were watching, finds the song that was playing, and turns them into a recap.",
+    withSets: "Import photos or videos and they’ll land on the sets below."
+  };
+  if (scanAvailable) return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. Tap Scan my weekend above to bring in your festival nights.",
+    withSets: "Scan my weekend above and your clips will land on the sets below."
+  };
+  return {
+    invite: "Plursky organises your festival photos and videos by the set you were watching. This build can’t open your photo library, so there’s nothing to import from here yet.",
+    withSets: "This build can’t open your photo library, so the sets below are your library for now."
   };
 }
