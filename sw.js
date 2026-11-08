@@ -82,6 +82,7 @@ const LOCAL = [
   './iiip-map-2026.webp',
   './edc-map-2026.jpg',
   './edco-tinker-2026.webp',
+  './dreamstate-socal-2026-map.webp',
   './artist-photos/afrojack.webp',
   './artist-photos/alan-walker.webp',
   './artist-photos/alesso.webp',

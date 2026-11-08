@@ -3478,6 +3478,22 @@ if (process.argv.includes("--parse-only")) process.exit(0);
     fail(`coverage census failed${detail ? ` — ${detail}` : ""}`);
   }
 }
+// Memory index + handoff format: fixture self-tests only. The live --check
+// reads a home-dir memory store and GitHub, so it runs locally at close-out,
+// never in CI.
+{
+  console.log("▸ Memory index gate — generated from source, one line per file, check 0/1/2, no credential values");
+  for (const s of ["scripts/memory/build-memory-index.mjs", "scripts/memory/check-handoff.mjs"]) {
+    try {
+      const out = execFileSync(process.execPath, [s, "--self-test"],
+        { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 60000 });
+      process.stdout.write(out);
+    } catch (e) {
+      const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+      fail(`memory self-test failed (${s})${detail ? ` — ${detail}` : ""}`);
+    }
+  }
+}
 
 // ── 1z-c6. Past Festivals UI ─────────────────────────────────────────────
 // The library screens at 393pt, driven through the switcher: every count and
