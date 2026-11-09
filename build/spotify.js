@@ -3761,8 +3761,9 @@ function MomentLightbox({
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
-  var artist = m?.artistId ? ARTISTS.find(a => a.id === m.artistId) : null;
-  var stage = artist ? STAGES.find(s => s.id === artist.stage) : null;
+  var mf = _momentFestival(m);
+  var artist = m?.artistId ? mf.artists.find(a => a.id === m.artistId) || null : null;
+  var stage = artist ? mf.stages.find(s => s.id === artist.stage) || null : null;
   var estimatedSong = useSetlistSong(artist, m?.takenAt);
   var song = m?.confirmedSong ? {
     song: m.confirmedSong
@@ -3786,19 +3787,7 @@ function MomentLightbox({
     setRetagQuery("");
     setConfirmDelete(false);
   }, [index]);
-  var retagOptions = React.useMemo(() => {
-    var q = retagQuery.trim().toLowerCase();
-    if (q) {
-      return ARTISTS.filter(a => a.name.toLowerCase().includes(q)).slice(0, 24);
-    }
-    if (!m) return [];
-    var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
-    var t = hhmm ? toNightMin(hhmm) : null;
-    var night = m.night || NOW.day;
-    var all = momentLineup(m).filter(a => a.day === night);
-    var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
-    return (playing.length ? playing : all).slice().sort((a, b) => toNightMin(a.start) - toNightMin(b.start));
-  }, [m, retagQuery]);
+  var retagOptions = React.useMemo(() => _retagOptionsFor(m, retagQuery), [m, retagQuery]);
   var runIdentify = async () => {
     setIdState("listening");
     var result = await identifySongFromVideo(m, p => setIdState(p));
@@ -4104,7 +4093,37 @@ function MomentLightbox({
       textAlign: "left",
       fontSize: 15
     }
-  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("div", {
+  }, retagging ? "Cancel" : artist ? "Wrong act? Fix it" : "Tag this moment"), retagging && React.createElement("input", {
+    type: "search",
+    value: retagQuery,
+    onChange: e => setRetagQuery(e.target.value),
+    placeholder: `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    "aria-label": `Search ${mf.cfg?.shortName || mf.cfg?.name || "this festival"}'s lineup`,
+    autoComplete: "off",
+    autoCorrect: "off",
+    autoCapitalize: "none",
+    spellCheck: false,
+    "data-retag-search": "",
+    style: {
+      marginTop: 8,
+      width: "100%",
+      boxSizing: "border-box",
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: "var(--rad-sm)",
+      border: "1px solid rgba(var(--ink-rgb),0.24)",
+      background: "rgba(var(--ink-rgb),0.06)",
+      color: "var(--ink)",
+      fontSize: 16,
+      fontFamily: "inherit"
+    }
+  }), retagging && retagQuery.trim() && !retagOptions.length && React.createElement("div", {
+    style: {
+      marginTop: 6,
+      fontSize: 13,
+      color: "var(--text-2)"
+    }
+  }, "No act matches “", retagQuery.trim(), "”."), retagging && React.createElement("div", {
     className: "no-scrollbar",
     style: {
       marginTop: 8,
@@ -4115,16 +4134,14 @@ function MomentLightbox({
       gap: 6
     }
   }, retagOptions.map(a => {
-    var st = STAGES.find(s => s.id === a.stage);
+    var st = mf.stages.find(s => s.id === a.stage);
     var on = a.id === m.artistId;
     return React.createElement("button", {
       key: a.id,
       onClick: () => {
-        onUpdate?.(m, {
-          artistId: a.id,
-          tagSource: "manual",
-          autoTagged: false
-        });
+        onUpdate?.(m, _retagPatch({
+          artistId: a.id
+        }));
         setRetagging(false);
         try {
           window.plurskyHaptic?.("LIGHT");
@@ -6135,6 +6152,35 @@ function _momentFestival(m) {
     stages: ds.stages || window.STAGES || []
   };
 }
+function _retagOptionsFor(m, query) {
+  if (!m) return [];
+  var {
+    cfg,
+    artists
+  } = _momentFestival(m);
+  var wk = typeof momentWeekend === "function" ? momentWeekend(m.takenAt, cfg) : null;
+  var lineup = artists.filter(a => !wk || !a.weekend || a.weekend === "both" || a.weekend === wk);
+  var q = String(query || "").trim();
+  if (q) return lineup.filter(a => billedNameMatches(a.name, q)).slice(0, 24);
+  var hhmm = (m.takenAt?.split(" ")[1] || "").slice(0, 5);
+  var t = hhmm ? toNightMin(hhmm) : null;
+  var night = m.night || NOW.day;
+  var all = lineup.filter(a => a.day === night);
+  var playing = t != null ? all.filter(a => toNightMin(a.start) <= t && t < toNightMin(a.end)) : [];
+  var rank = new Map((m.tagAlternatives || []).map((id, i) => [id, i]));
+  var base = (playing.length ? playing : all).slice();
+  var _loop3 = function (id) {
+    if (!base.some(a => a.id === id)) {
+      var a = lineup.find(x => x.id === id);
+      if (a) base.push(a);
+    }
+  };
+  for (var id of rank.keys()) {
+    _loop3(id);
+  }
+  var r = a => rank.has(a.id) ? rank.get(a.id) : 1e6;
+  return base.sort((a, b) => r(a) - r(b) || toNightMin(a.start) - toNightMin(b.start));
+}
 function _reviewLineup(m, night) {
   var {
     cfg,
@@ -6150,7 +6196,8 @@ function _retagPatch(choice) {
     autoTagged: false,
     needsRetag: false,
     tagAmbiguous: false,
-    tagSuggested: false
+    tagSuggested: false,
+    tagAlternatives: null
   };
   if (!choice) return null;
   if (choice.unknown) return {
@@ -8289,7 +8336,7 @@ function MemoriesMapLens({
   } = React.useMemo(() => {
     var byStage = new Map();
     var unplaced = 0;
-    var _loop3 = function (m) {
+    var _loop4 = function (m) {
         if (!m.photoId) return 0;
         var stageId = null;
         if (m.parsedGps && typeof gpsToMap === "function") {
@@ -8308,7 +8355,7 @@ function MemoriesMapLens({
       },
       _ret;
     for (var m of moments || []) {
-      _ret = _loop3(m);
+      _ret = _loop4(m);
       if (_ret === 0) continue;
     }
     var pins = [...byStage.entries()].map(([id, items]) => ({
@@ -8577,7 +8624,7 @@ function MemoriesPhotoMapLens({
   } = React.useMemo(() => {
     var placed = [];
     var unplaced = 0;
-    var _loop4 = function (m) {
+    var _loop5 = function (m) {
         if (!m.photoId) return 0;
         var xy = null,
           stageId = null;
@@ -8617,7 +8664,7 @@ function MemoriesPhotoMapLens({
       },
       _ret2;
     for (var m of moments || []) {
-      _ret2 = _loop4(m);
+      _ret2 = _loop5(m);
       if (_ret2 === 0) continue;
     }
     var sorted = placed.slice().sort((a, b) => b.t - a.t);
@@ -9400,7 +9447,7 @@ function MemoriesScreen({
     var allNights = Object.keys(window.FESTIVAL_CONFIG?.dayDates || {}).map(Number).sort((a, b) => a - b);
     var fallbackNight = window.NOW?.day && allNights.includes(window.NOW.day) ? window.NOW.day : allNights[allNights.length - 1] || 1;
     var skippedDupes = 0;
-    var _loop5 = async function (i) {
+    var _loop6 = async function (i) {
       var f = files[i];
       try {
         var fp = await _fileFingerprint(f);
@@ -9485,6 +9532,7 @@ function MemoriesScreen({
           matchReason: matched.reason || null,
           matchEvidence: matched.evidence || null,
           tagSuggested: !!(matched.artistId && matched.suggested),
+          tagAlternatives: Array.isArray(matched.alternatives) && matched.alternatives.length ? matched.alternatives.slice(0, 12) : null,
           anchorSource: matched.anchorSource || null,
           gpsAccM: meta?.acc != null ? Math.round(meta.acc) : null,
           gpsRejected: !!matched.gpsRejected,
@@ -9570,7 +9618,7 @@ function MemoriesScreen({
       });
     };
     for (var i = 0; i < files.length; i++) {
-      if (await _loop5(i)) continue;
+      if (await _loop6(i)) continue;
     }
     _writeMoments(current);
     setAll({
@@ -9888,7 +9936,7 @@ function MemoriesScreen({
       var imported = 0,
         unreadable = 0,
         done = 0;
-      var _loop6 = async function () {
+      var _loop7 = async function () {
         setScan({
           phase: "importing",
           done,
@@ -9917,7 +9965,7 @@ function MemoriesScreen({
         })?.catch?.(() => {});
       };
       for (var chunk of chunks) {
-        if (await _loop6()) continue;
+        if (await _loop7()) continue;
       }
       setScan({
         phase: "done",
@@ -12741,12 +12789,12 @@ function _recoverCurrentVideoMomentsFromArchive() {
         changed = true;
       }
     }
-    var _loop7 = function (move) {
+    var _loop8 = function (move) {
       all[move.from] = (all[move.from] || []).filter(m => m !== move.moment);
       all[move.to] = [...(all[move.to] || []), move.moment];
     };
     for (var move of moves) {
-      _loop7(move);
+      _loop8(move);
     }
     if (changed) _writeMoments(all);
   } catch {}
@@ -12823,13 +12871,13 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
-  var _loop8 = function (move) {
+  var _loop9 = function (move) {
     moments[move.from] = moments[move.from].filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
-    _loop8(move);
+    _loop9(move);
   }
   return changed;
 }
@@ -13142,7 +13190,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop9 = function (m) {
+  var _loop0 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13165,7 +13213,7 @@ function _aggregateSoundtrack(moments) {
     },
     _ret3;
   for (var m of Object.values(moments)) {
-    _ret3 = _loop9(m);
+    _ret3 = _loop0(m);
     if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
@@ -15238,7 +15286,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop0 = async function (a) {
+      var _loop1 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15255,7 +15303,7 @@ function HeroCards({
         },
         _ret4;
       for (var a of want) {
-        _ret4 = await _loop0(a);
+        _ret4 = await _loop1(a);
         if (_ret4 === 0) continue;
       }
     })();
@@ -17243,7 +17291,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop1 = function (rows) {
+  var _loop10 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17257,7 +17305,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop1(rows);
+    _loop10(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

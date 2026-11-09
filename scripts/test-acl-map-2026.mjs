@@ -217,11 +217,15 @@ const bmiBusy = aclA.find(a => a.stage === "bmi" && a.day === 1 && a.start === "
 ok(bmiSolo && bmiBusy, "the ACL BMI fixture sets moved; re-pick them");
 // a. BMI set, GPS far from all three anchors: tagged to the BMI set, not off_stage.
 const ra = bmiSolo && photoAt(liveM, "acl-2026", bmiSolo.id, 5, ...BMI_CROWD);
-ok(ra?.reason !== "off_stage" && ra?.artistId === bmiSolo.id,
+// SPEC-179: the precise fix rules out every pinned stage; BMI and Tito's (both
+// unpinned) start at 12:45, so nobody is tagged and BMI is offered first.
+ok(ra?.reason !== "off_stage" && (ra?.artistId === bmiSolo.id || (ra?.artistId === null && ra?.alternatives?.[0] === bmiSolo.id)),
   `ACL photo in the BMI crowd during ${bmiSolo?.id} was ${ra?.reason} / ${ra?.artistId}, not tagged to the BMI set`);
 // a'. Mid-afternoon, 11 sets overlap: still not off_stage, and BMI stays one tap away.
 const rb = bmiBusy && photoAt(liveM, "acl-2026", bmiBusy.id, 20, ...BMI_CROWD);
-ok(rb?.reason !== "off_stage" && rb?.artistId && (rb.artistId === bmiBusy.id || (rb.ambiguous && rb.alternatives?.includes(bmiBusy.id))),
+// SPEC-179: with several unpinned stages playing, nobody is tagged; BMI is
+// one of the offered acts.
+ok(rb?.reason !== "off_stage" && (rb?.artistId === bmiBusy.id || (rb?.ambiguous && rb.alternatives?.includes(bmiBusy.id))),
   `ACL photo in the BMI crowd during a busy slot was ${rb?.reason} / ${rb?.artistId}; BMI must be the tag or a FIX TAG alternative`);
 // b. Positive control: EDC LV anchors every stage, so a photo >120 m from all of them is off_stage.
 const edcA = ctx.__o.DS["edc-lv-2026"].artists.find(a => a.day === 1);
