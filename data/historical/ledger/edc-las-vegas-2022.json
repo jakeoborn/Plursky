@@ -1,0 +1,191 @@
+{
+  "id": "edc-las-vegas-2022",
+  "method": "structured_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+  "window": [
+    "20220520",
+    "20221231"
+  ],
+  "days": [
+    {
+      "day": 1,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "date": "2022-05-20",
+      "chosen": "20220521050742",
+      "archivedUrl": "https://web.archive.org/web/20220521050742/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+      "sha256": "17fec0767e529cb91b44746e904b1e18f31f5fa956d461941310c5fb50bb97df",
+      "rows": 145,
+      "stages": {
+        "Kinetic Field": 11,
+        "Cosmic Meadow": 12,
+        "Circuit Grounds": 9,
+        "Neon Garden": 7,
+        "Basspod": 11,
+        "Wasteland": 11,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 9,
+        "Bionic Jungle": 6,
+        "Parliament Art Car": 8,
+        "Forest House Art Car": 9,
+        "Rynobus": 10,
+        "Boombox Art Car": 9,
+        "Corona Stage": 7,
+        "Allegiant Rave Hangar": 8,
+        "Pariah Express Art Car": 8
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20220520130100",
+          "archivedUrl": "https://web.archive.org/web/20220520130100/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "dee4c6d37e637079d3b13177aa97e09944e1bc644d27340909256e8c27037b53",
+          "bytes": 764352,
+          "tabs": [
+            "Friday, May 20",
+            "Saturday, May 21",
+            "Sunday, May 22"
+          ],
+          "date": "2022-05-20",
+          "valid": true,
+          "rows": 144,
+          "diffVsChosen": [
+            "only in chosen: Fireworks Kinetic Field 01:32-01:39",
+            "Alix Perez: artist Alix Perez B2B IMANU → Alix Perez",
+            "SKYE: artist Skye → SKYE"
+          ]
+        },
+        {
+          "captureTimestamp": "20220521050742",
+          "archivedUrl": "https://web.archive.org/web/20220521050742/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-1/",
+          "sha256": "17fec0767e529cb91b44746e904b1e18f31f5fa956d461941310c5fb50bb97df",
+          "bytes": 768020,
+          "tabs": [
+            "Friday, May 20",
+            "Saturday, May 21",
+            "Sunday, May 22"
+          ],
+          "date": "2022-05-20",
+          "valid": true,
+          "rows": 145,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "date": "2022-05-21",
+      "chosen": "20220520130102",
+      "archivedUrl": "https://web.archive.org/web/20220520130102/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+      "sha256": "3d46e900e803025d872711cc0487d9d005037561019a7a7780b0ea3cb05015ed",
+      "rows": 145,
+      "stages": {
+        "Kinetic Field": 9,
+        "Cosmic Meadow": 12,
+        "Circuit Grounds": 9,
+        "Neon Garden": 6,
+        "Basspod": 11,
+        "Wasteland": 11,
+        "Quantum Valley": 10,
+        "Stereo Bloom": 10,
+        "Bionic Jungle": 6,
+        "Parliament Art Car": 9,
+        "Forest House Art Car": 8,
+        "Rynobus": 12,
+        "Boombox Art Car": 8,
+        "Corona Stage": 9,
+        "Allegiant Rave Hangar": 7,
+        "Pariah Express Art Car": 8
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20220520130102",
+          "archivedUrl": "https://web.archive.org/web/20220520130102/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-2/",
+          "sha256": "3d46e900e803025d872711cc0487d9d005037561019a7a7780b0ea3cb05015ed",
+          "bytes": 755115,
+          "tabs": [
+            "Friday, May 20",
+            "Saturday, May 21",
+            "Sunday, May 22"
+          ],
+          "date": "2022-05-21",
+          "valid": true,
+          "rows": 145,
+          "diffVsChosen": []
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "url": "https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "date": "2022-05-22",
+      "chosen": "20220520130100",
+      "archivedUrl": "https://web.archive.org/web/20220520130100/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+      "sha256": "f384010b3158a42bfda212d3fd3169dc7911560953ee6c15d12fb52599893913",
+      "rows": 142,
+      "stages": {
+        "Kinetic Field": 9,
+        "Cosmic Meadow": 12,
+        "Circuit Grounds": 9,
+        "Neon Garden": 6,
+        "Basspod": 11,
+        "Wasteland": 11,
+        "Quantum Valley": 9,
+        "Stereo Bloom": 10,
+        "Bionic Jungle": 6,
+        "Parliament Art Car": 9,
+        "Forest House Art Car": 8,
+        "Rynobus": 8,
+        "Boombox Art Car": 9,
+        "Corona Stage": 9,
+        "Allegiant Rave Hangar": 7,
+        "Pariah Express Art Car": 9
+      },
+      "considered": [
+        {
+          "captureTimestamp": "20220520130100",
+          "archivedUrl": "https://web.archive.org/web/20220520130100/https://lasvegas.electricdaisycarnival.com/lineup/set-times/day-3/",
+          "sha256": "f384010b3158a42bfda212d3fd3169dc7911560953ee6c15d12fb52599893913",
+          "bytes": 724408,
+          "tabs": [
+            "Friday, May 20",
+            "Saturday, May 21",
+            "Sunday, May 22"
+          ],
+          "date": "2022-05-22",
+          "valid": true,
+          "rows": 142,
+          "diffVsChosen": []
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Kinetic Field",
+      "start": "01:32",
+      "end": "01:39",
+      "billing": "Fireworks",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "Rynobus",
+      "start": "02:00",
+      "end": "02:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Parliament Art Car",
+      "start": "21:30",
+      "end": "22:45",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

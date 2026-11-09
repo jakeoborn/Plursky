@@ -35,7 +35,7 @@
    "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
    "source": [
     "https://festivaldust.com/",
-    "https://nocturnalwonderland.com/lineup/set-times/day-1/"
+    "https://nocturnalwonderland.com/lineup/set-times/day-2/"
    ]
   },
   {
@@ -52,7 +52,7 @@
    ],
    "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
    "source": [
-    "https://orlando.edc.com/lineup/",
+    "https://orlando.edc.com/lineup/set-times/day-2/",
     "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
    ]
   },
@@ -203,7 +203,7 @@
    ],
    "setTag": "Live",
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. \"(Live)\" is the set tag.",
-   "source": "https://nocturnalwonderland.com/lineup/set-times/day-1/"
+   "source": "https://nocturnalwonderland.com/lineup/set-times/day-2/"
   },
   {
    "printed": "Allen Watts + Talla 2XLC",
@@ -477,7 +477,7 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://orlando.edc.com/lineup/"
+   "source": "https://orlando.edc.com/lineup/set-times/day-2/"
   },
   {
    "printed": "DOG BLOOD (SKRILLEX + BOYS NOIZE)",
@@ -618,11 +618,357 @@
    ],
    "why": "Billing and identity are separate here. The official set grids (this carousel's Friday slide 2 and https://www.iiipoints.com/set-times/) print the set as \"MACCABIII B2B PEZLO MD\"; the festival's own A-Z (https://www.iiipoints.com/lineup/) lists the performers individually as \"Maccabi\" and \"Pezlo MD\". The printed billing follows the grid; the performers stay on their existing keys, because a spelling difference between two official pages is not evidence of a different artist. Whether \"MACCABIII\" and \"Maccabi\" are one name is unresolved; no alias is claimed.",
    "source": "https://www.instagram.com/iiipoints/p/Dej7LGMlHyZ/"
+  },
+  {
+   "printed": "CORRUPT (UK)",
+   "performers": [
+    {
+     "name": "CORRUPT (UK)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Corrupt\".",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Marian (BR)",
+   "performers": [
+    {
+     "name": "Marian (BR)",
+     "role": "performer"
+    }
+   ],
+   "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Marian\".",
+   "source": "https://orlando.edc.com/lineup/set-times/day-3/"
+  },
+  {
+   "printed": "AFROKI (AFROJACK B2B STEVE AOKI)",
+   "performers": [
+    {
+     "name": "AFROKI",
+     "role": "project",
+     "parents": [
+      "AFROJACK",
+      "STEVE AOKI"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://escapehalloween.com/lineup/set-times/"
+  },
+  {
+   "printed": "DOG EAT DOG (CRANKDAT B2B RIOT TEN)",
+   "performers": [
+    {
+     "name": "DOG EAT DOG",
+     "role": "project",
+     "parents": [
+      "CRANKDAT",
+      "RIOT TEN"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://escapehalloween.com/lineup/set-times/"
+  },
+  {
+   "printed": "FURY + MC DINO",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Fury + MC Dino",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "FURY WITH MC DINO",
+   "performers": [
+    {
+     "name": "Fury",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Afroki (Afrojack B2B Steve Aoki)",
+   "performers": [
+    {
+     "name": "Afroki",
+     "role": "project",
+     "parents": [
+      "Afrojack",
+      "Steve Aoki"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Disco Wrek (Disco Lines B2B Ship Wrek)",
+   "performers": [
+    {
+     "name": "Disco Wrek",
+     "role": "project",
+     "parents": [
+      "Disco Lines",
+      "Ship Wrek"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Waxtroda (Wax Motif B2B Matroda)",
+   "performers": [
+    {
+     "name": "Waxtroda",
+     "role": "project",
+     "parents": [
+      "Wax Motif",
+      "Matroda"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Worship (Sub Focus B2B Dimension B2B Culture Shock B2B 1991)",
+   "performers": [
+    {
+     "name": "Worship",
+     "role": "project",
+     "parents": [
+      "Sub Focus",
+      "Dimension",
+      "Culture Shock",
+      "1991"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+  },
+  {
+   "printed": "Crissy Criss + MC Dino",
+   "performers": [
+    {
+     "name": "Crissy Criss",
+     "role": "performer"
+    },
+    {
+     "name": "MC Dino",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "JACK BEATS + TAIKI NULIGHT PRESENT: REEL MOOD",
+   "performers": [
+    {
+     "name": "REEL MOOD",
+     "role": "project",
+     "parents": [
+      "JACK BEATS",
+      "TAIKI NULIGHT"
+     ]
+    }
+   ],
+   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "Sian (Techno Classics)",
+   "performers": [
+    {
+     "name": "Sian",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Techno Classics",
+   "why": "\"Techno Classics\" names the set's music, not a person: it is the set tag, and the billing counts on Sian (the Above & Beyond (Anjunabeats Classics) rule).",
+   "source": "https://www.nocturnalwonderland.com/lineup/set-times/"
+  },
+  {
+   "printed": "PureNRG (Giuseppe Ottaviani & Solarstone)",
+   "performers": [
+    {
+     "name": "PureNRG",
+     "role": "project",
+     "parents": [
+      "Giuseppe Ottaviani",
+      "Solarstone"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://www.dreamstateusa.com/set-times/"
+  },
+  {
+   "printed": "Gentech (Mark Sherry & Scot Project)",
+   "performers": [
+    {
+     "name": "Gentech",
+     "role": "project",
+     "parents": [
+      "Mark Sherry",
+      "Scot Project"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Pathfinders (James Dymond & Chris Schweizer)",
+   "performers": [
+    {
+     "name": "Pathfinders",
+     "role": "project",
+     "parents": [
+      "James Dymond",
+      "Chris Schweizer"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Fables (Dan Stone & Ferry Tayle)",
+   "performers": [
+    {
+     "name": "Fables",
+     "role": "project",
+     "parents": [
+      "Dan Stone",
+      "Ferry Tayle"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Skypatrol (Standerwick & ReOrder)",
+   "performers": [
+    {
+     "name": "Skypatrol",
+     "role": "project",
+     "parents": [
+      "Standerwick",
+      "ReOrder"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "AA Meeting (John Askew & Activa)",
+   "performers": [
+    {
+     "name": "AA Meeting",
+     "role": "project",
+     "parents": [
+      "John Askew",
+      "Activa"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Abraxis (Seven Lions & Dimibo)",
+   "performers": [
+    {
+     "name": "Abraxis",
+     "role": "project",
+     "parents": [
+      "Seven Lions",
+      "Dimibo"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "Paul Oakenfold (Full On Fluoro)",
+   "performers": [
+    {
+     "name": "Paul Oakenfold",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Full On Fluoro",
+   "why": "\"Full On Fluoro\" names the set's music, not a person: it is the set tag, and the billing counts on Paul Oakenfold (the Sian (Techno Classics) rule).",
+   "source": "https://www.dreamstateusa.com/set-times/"
+  },
+  {
+   "printed": "Paul Oakenfold (Perfecto Classics)",
+   "performers": [
+    {
+     "name": "Paul Oakenfold",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Perfecto Classics",
+   "why": "\"Perfecto Classics\" names the set's music, not a person: it is the set tag, and the billing counts on Paul Oakenfold (the Sian (Techno Classics) rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "JEFFREY SUTORIUS (THE CLASSICS)",
+   "performers": [
+    {
+     "name": "JEFFREY SUTORIUS",
+     "role": "performer"
+    }
+   ],
+   "setTag": "THE CLASSICS",
+   "why": "\"THE CLASSICS\" names the set's music, not a person: it is the set tag, and the billing counts on JEFFREY SUTORIUS (the Sian (Techno Classics) rule).",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   }
  ],
  "pending": [
   {
    "printed": "Sultan + Shepard",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Machinedrum + Holly",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   },
   {
@@ -640,6 +986,10 @@
   {
    "printed": "Wave X Nile",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "DISKO COWBOY (VINYL RANCH)",
+   "why": "Left as printed (ACL 2021 grids, both Fridays): whether VINYL RANCH names the set, a venue or a separate act is not sourced, so it is neither split off as a set tag nor credited to anyone else."
   },
   {
    "printed": "Bunny (Rabbit in the Moon)",
@@ -696,6 +1046,174 @@
   {
    "key": "d-o-d",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "CLIPS X AHOY & HYPE TURNER",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "BONNIE X CLYDE",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Truth x Lies",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "TRUTH X LIES",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "zhu",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "2ar",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "tdj",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "i-o",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Ed Rush + Optical",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bunny (from Rabbit In The Moon)",
+   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+  },
+  {
+   "key": "k-d",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "4b",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "YOSHI + RAZNER PRES GENESIS",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Infected Mushroom + Blastoyz",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Paul Denton + Sneijder",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Amy Wiles + Leena Punks",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Mauro Picotto + Bryan Kearney",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "SunrYse + Dan Miles",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "PAUL VAN DYK + ALY & FILA",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "OMIKI + VEGAS",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "CRISTOPH + INNELLEA",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Joint Operations Centre (JOC)",
+   "why": "Left as printed: the parenthetical reads as the act's own initials, a case no ruling covers yet, so it is neither a set tag nor split. Renders as its own billing until a ruling does."
+  },
+  {
+   "key": "t78",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "atb",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Piques + Lāsh",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "On Deck + Skemaddox",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Creeds + Helen Ka",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Odd Mob x Omnom: Hyperbeam",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hulk Gang (4B + Valentino Khan)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hivemind (Kayzo x Space Laces x Must Die!)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fallen B2B Fury B2B Nightstalker with Dknow (MC Dino)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bunny (Rabbit In The Moon)",
+   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+  },
+  {
+   "key": "dot",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "geo",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "mk",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Tim and the Space Cadets with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tim Kubart with Mother Falcon",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "The Dynamites feat. Charles Walker",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "LL Cool J feat. DJ Z-Trip",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Sugar + The Hi-Lows",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Florence + The Machine",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "B.A.G. (Blimes x Gifted Gab)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }

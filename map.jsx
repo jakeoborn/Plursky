@@ -137,14 +137,6 @@ function getMyStatus() {
 function persistMyStatus(stageId) {
   try { localStorage.setItem("status_me", JSON.stringify({ stage: stageId, ts: Date.now() })); } catch {}
 }
-function broadcastMyLocation(stageId) {
-  const stage = STAGES.find(s => s.id === stageId);
-  if (!stage) return;
-  const msg = `I'm at ${stage.name} 👋 come through`;
-  FRIENDS.forEach(f => {
-    saveThread(f.id, [...loadThread(f.id), { from: "me", text: msg, ts: Date.now(), status: "sent" }]);
-  });
-}
 
 
 // ── Wellness state ── persists across sessions in localStorage
@@ -364,6 +356,12 @@ const MAP_REGISTRATION_TOL_M = 25;
 // lineup cards, search. It just gets no pin. Passing it into the map layers
 // instead would feed mapToGps(undefined, undefined) to every geo builder and
 // draw a marker at NaN, which renders as an invisible-but-clickable ghost.
+// Is this festival's map plate the art of a DIFFERENT edition? `mapArtYear` is
+// the year the shipped art was drawn for; unset means the festival's own.
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
+
 const PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : [])
   .filter(s => typeof s.x === "number" && typeof s.y === "number");
 
@@ -564,6 +562,12 @@ function _realMapPanLimit(cfg, lib) {
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 
+// #311: true when a live on-site fix would be drawn on SVG art that no affine
+// registers — gpsToMap() would put it at the grid centre wherever the user is.
+function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
+  return !!liveOnSite && !hasAffine && !onRealMap;
+}
+
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
@@ -596,10 +600,12 @@ function readMeetups() {
 function writeMeetups(arr) {
   try { localStorage.setItem(MEETUPS_KEY, JSON.stringify(arr)); } catch {}
 }
-function addMeetup({ name, stageId, atTs, notes }) {
+// Every row carries its festival: stage ids only mean something there.
+function addMeetup({ festivalId, name, stageId, atTs, notes }) {
   const list = readMeetups();
   list.push({
     id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    festivalId: festivalId || FESTIVAL_CONFIG.id,
     name: (name || "").slice(0, 60),
     stageId: stageId || null,
     atTs: Number(atTs) || Date.now(),
@@ -616,14 +622,17 @@ function removeMeetup(id) {
   writeMeetups(list);
   return list;
 }
-// Surface only upcoming entries (not in the past). Anything older than
-// 30 min is also stale-removed automatically — keeps the list tidy.
+// Surface only upcoming entries (not in the past) for the active festival.
+// Anything older than 30 min is also stale-removed automatically, whatever
+// its festival. A legacy row saved with no festival is hidden, never
+// relabelled as this one (its stage id may belong elsewhere); it ages out.
 function upcomingMeetups() {
   const cutoff = Date.now() - 30 * 60 * 1000;
-  const list = readMeetups().filter(m => m.atTs > cutoff);
+  const all = readMeetups();
+  const live = all.filter(m => m.atTs > cutoff);
   // Rewrite if we pruned anything stale
-  if (list.length !== readMeetups().length) writeMeetups(list);
-  return list;
+  if (live.length !== all.length) writeMeetups(live);
+  return live.filter(m => m.festivalId === FESTIVAL_CONFIG.id);
 }
 
 // "Last seen" staleness for friend pins. Buckets that match festival reality:
@@ -674,7 +683,7 @@ function useGeolocation(enabled) {
         // footprint AND the timing matches. Idempotent + cheap; no record
         // means we're between stages or it's not set time.
         try {
-          const hit = window.recordAttendanceFromGps?.(lat, lng);
+          const hit = window.recordAttendanceFromGps?.(lat, lng, { accuracy: p.coords.accuracy, timestamp: p.timestamp, atMs: lastTs, saver: bsActive });
           if (hit && typeof window.plurskyToast === "function") {
             const a = (window.ARTISTS || []).find(x => x.id === hit.artistId);
             if (a) window.plurskyToast(`✓ Caught ${a.name}`);
@@ -1077,7 +1086,9 @@ function PingSheet({ onClose, onDropPin, friends }) {
 
 function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
   const [selected, setSelected] = React.useState(initialStage || null);
-  const [sent, setSent] = React.useState(false);
+  // "sending" | "sent" | "queued" | "failed" for the find-me beacon.
+  const [sent, setSent] = React.useState(null);
+  const crewCode = (() => { try { return localStorage.getItem("plursky_group_code") || ""; } catch { return ""; } })();
 
   const stage = STAGES.find(s => s.id === selected);
 
@@ -1094,14 +1105,20 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
     onClose();
   };
 
-  const tellCrew = () => {
-    if (!stage) return;
+  // Find-me beacon: the stage I picked goes to the crew thread, nothing else.
+  const tellCrew = async () => {
+    if (!stage || !crewCode || sent === "sending" || sent === "sent") return;
+    const body = _formatBeaconBody(selected, FESTIVAL_CONFIG.id, Date.now());
+    if (!body) return;
     persistMyStatus(selected);
     onStatusSet(selected);
-    broadcastMyLocation(selected);
-    setSent(true);
-    setTimeout(onClose, 900);
+    setSent("sending");
+    const { error, queued } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    const r = queued ? "queued" : error ? "failed" : "sent";
+    setSent(r);
+    if (r !== "failed") setTimeout(onClose, 900);
   };
+  const canTell = !!stage && !!crewCode;
 
   return (
     <div onClick={onClose} style={{
@@ -1151,15 +1168,18 @@ function IAmAtSheet({ onClose, initialStage, onStatusSet }) {
           </div>
         )}
 
+        <div className="mono" data-find-me-note style={{ fontSize: 9, letterSpacing: 0.8, color: "var(--muted)", marginBottom: 10, lineHeight: 1.4 }}>
+          {crewCode ? "YOUR CREW SEES THE STAGE FOR 15 MIN · NO GPS" : "START OR JOIN A CREW ON THE MAP TO SEND A FIND-ME"}
+        </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={tellCrew} disabled={!stage} style={{
+          <button data-find-me-send={sent || "idle"} onClick={tellCrew} disabled={!canTell || sent === "sending" || sent === "sent"} style={{
             flex: 1, padding: "10px 12px", borderRadius: 999,
-            background: sent ? "var(--success)" : (stage ? "var(--ink)" : "var(--paper-2)"),
-            color: stage ? "var(--paper)" : "var(--muted)",
-            border: "none", cursor: stage ? "pointer" : "default",
+            background: sent === "sent" || sent === "queued" ? "var(--success)" : (canTell ? "var(--ink)" : "var(--paper-2)"),
+            color: canTell ? "var(--paper)" : "var(--muted)",
+            border: "none", cursor: canTell ? "pointer" : "default",
             fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.1, fontWeight: 700,
             transition: "background .2s",
-          }}>{sent ? "✓ CREW NOTIFIED" : "TELL MY CREW"}</button>
+          }}>{sent === "sending" ? "SENDING…" : sent === "sent" ? "✓ CREW CAN FIND YOU" : sent === "queued" ? "✓ QUEUED · SENDS ONLINE" : sent === "failed" ? "DIDN'T SEND · RETRY" : crewCode ? "FIND ME · TELL CREW" : "JOIN A CREW FIRST"}</button>
           <button onClick={shareLink} disabled={!stage} style={{
             flex: 1, padding: "10px 12px", borderRadius: 999,
             background: stage ? "var(--ember)" : "var(--paper-2)",
@@ -1211,73 +1231,28 @@ function _expiryKeyFromState(shareState) {
   return "festival";
 }
 
-// Inline "shareable link" row used inside the Share With Crew sheet. Builds
-// the public viewer URL from the token, supports navigator.share when
-// available, falls back to clipboard. Shows "COPIED" for 1.5s.
-function ShareLinkRow({ token }) {
-  const [copied, setCopied] = React.useState(false);
-  const url = React.useMemo(() => {
-    if (typeof window === "undefined") return `share.html?t=${token}`;
-    const base = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}`;
-    return `${base}share.html?t=${token}`;
-  }, [token]);
-  const onShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: `Find me at ${FESTIVAL_CONFIG.brand || "the festival"}`, text: "Live location on Plursky", url });
-      } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      }
-    } catch { /* user canceled or no clipboard */ }
-  };
-  return (
-    <div style={{
-      padding: "10px 12px", borderRadius: 10, background: "var(--paper-2)",
-      marginBottom: 14, display: "flex", alignItems: "center", gap: 10,
-    }}>
-      <span style={{ fontSize: 18 }}>🔗</span>
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Shareable link</div>
-        <div className="mono" style={{
-          fontSize: 9, letterSpacing: 0.6, color: "var(--muted)",
-          marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-        }}>{url}</div>
-      </div>
-      <button onClick={onShare} style={{
-        background: copied ? "var(--success)" : "var(--ink)",
-        color: "var(--paper)", border: "none", borderRadius: 999,
-        padding: "7px 12px", cursor: "pointer",
-        fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-      }}>{copied ? "COPIED" : "COPY"}</button>
-    </div>
-  );
-}
 
 function ShareLocationSheet({
   onClose, shareState, crewCount, crewCode,
-  gpsPos, gpsStatus, myStatusStage,
-  onSave, onStop,
+  myStatusStage,
+  onSave, onStop, onPickStage,
 }) {
-  const [includeGps,   setIncludeGps]   = React.useState(shareState?.includeGps   ?? true);
-  const [includeStage, setIncludeStage] = React.useState(shareState?.includeStage ?? true);
+  // Stage-level only (15-feature program #2): the crew sees the stage I
+  // picked in "I'm at", never my GPS. There is no GPS option to turn on.
   const [expiryKey,    setExpiryKey]    = React.useState(() => _expiryKeyFromState(shareState));
 
   const active = !!shareState?.active &&
                  (!shareState?.expiresAt || shareState.expiresAt > Date.now());
-  const isDenied      = gpsStatus === "denied";
-  const isUnavailable = gpsStatus === "unavailable";
-  const canShareGps   = !isDenied && !isUnavailable;
   const stage         = myStatusStage ? STAGES.find(s => s.id === myStatusStage) : null;
 
   const handleStart = () => {
-    if (!includeGps && !includeStage) return;
+    if (!stage) return;
     const opt = _SHARE_EXPIRY_OPTIONS.find(o => o.key === expiryKey) || _SHARE_EXPIRY_OPTIONS[1];
     onSave({
       active: true,
-      includeGps: includeGps && canShareGps,
-      includeStage,
+      includeGps: false,
+      includeStage: true,
+      stageOnly: 2, // this build's format; _migrateShareState leaves it alone
       expiresAt: opt.compute(),
     });
     onClose();
@@ -1357,67 +1332,28 @@ function ShareLocationSheet({
           fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700,
           marginBottom: 8,
         }}>WHAT'S SHARED</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
-          <label style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "10px 12px", borderRadius: 10,
-            background: "var(--paper-2)",
-            cursor: canShareGps ? "pointer" : "not-allowed",
-            opacity: canShareGps ? 1 : 0.55,
-          }}>
-            <input type="checkbox"
-              checked={includeGps && canShareGps}
-              disabled={!canShareGps}
-              onChange={(e) => setIncludeGps(e.target.checked)}
-              style={{ accentColor: "var(--ember)", width: 16, height: 16 }}
-            />
-            <span style={{ fontSize: 18 }}>📍</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>My GPS location</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                {gpsStatus === "live" && gpsPos
-                  ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m`
-                  : gpsStatus === "locating" ? "FINDING…"
-                  : gpsStatus === "stale"    ? "NO RECENT FIX"
-                  : gpsStatus === "denied"   ? "DENIED IN BROWSER"
-                  : gpsStatus === "unavailable" ? "UNSUPPORTED"
-                  : "OFF"}
-              </div>
+        <div data-share-stage-row style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: "10px 12px", borderRadius: 10,
+          background: "var(--paper-2)", marginBottom: 6,
+        }}>
+          <span style={{ fontSize: 18 }}>🎪</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>My stage</div>
+            <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
+              {stage ? stage.name.toUpperCase() : "NOT SET"}
             </div>
-          </label>
-
-          <label style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "10px 12px", borderRadius: 10,
-            background: "var(--paper-2)", cursor: "pointer",
-          }}>
-            <input type="checkbox"
-              checked={includeStage}
-              onChange={(e) => setIncludeStage(e.target.checked)}
-              style={{ accentColor: "var(--ember)", width: 16, height: 16 }}
-            />
-            <span style={{ fontSize: 18 }}>🎪</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: "Geist", fontSize: 13, fontWeight: 500 }}>Current stage</div>
-              <div className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginTop: 2 }}>
-                {stage ? stage.name.toUpperCase() : "NOT SET — TAP “I'M AT” FIRST"}
-              </div>
-            </div>
-          </label>
-        </div>
-
-        {/* GPS-denied inline banner */}
-        {includeGps && isDenied && (
-          <div style={{
-            padding: "8px 11px", borderRadius: 999,
-            background: "rgba(var(--alert-rgb),0.10)", border: "1px solid rgba(var(--alert-rgb),0.35)",
-            marginBottom: 12,
-          }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--alert)", fontWeight: 700 }}>
-              GPS DENIED · ENABLE LOCATION IN BROWSER
-            </span>
           </div>
-        )}
+          {onPickStage && (
+            <button type="button" data-share-pick-stage onClick={onPickStage} className="mono" style={{
+              background: "var(--ink)", color: "var(--paper)", border: "none", borderRadius: 999,
+              padding: "7px 12px", cursor: "pointer", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
+            }}>{stage ? "CHANGE" : "PICK STAGE"}</button>
+          )}
+        </div>
+        <div data-share-no-gps className="mono" style={{ fontSize: 9, letterSpacing: 1, color: "var(--muted)", marginBottom: 14, lineHeight: 1.4 }}>
+          STAGE ONLY · YOUR CREW NEVER SEES YOUR GPS
+        </div>
 
         {/* Auto-expire picker */}
         <div className="mono" style={{
@@ -1440,12 +1376,6 @@ function ShareLocationSheet({
           })}
         </div>
 
-        {/* Shareable link — only meaningful while sharing AND we have a token.
-            Copies a URL friends can open without installing Plursky. */}
-        {active && shareState?.token && (
-          <ShareLinkRow token={shareState.token} />
-        )}
-
         {/* Battery callout */}
         <div className="mono" style={{
           fontSize: 9, letterSpacing: 1.1, color: "var(--muted)",
@@ -1465,20 +1395,70 @@ function ShareLocationSheet({
           }}>STOP SHARING</button>
         ) : (
           <button onClick={handleStart}
-            disabled={(!includeGps || !canShareGps) && !includeStage}
+            data-share-start
+            disabled={!stage}
             style={{
               width: "100%", padding: "12px 16px", borderRadius: 999,
-              background: ((!includeGps || !canShareGps) && !includeStage)
-                ? "var(--paper-2)" : "var(--ember)",
-              color: ((!includeGps || !canShareGps) && !includeStage)
-                ? "var(--muted)" : "#fff",
+              background: !stage ? "var(--paper-2)" : "var(--ember)",
+              color: !stage ? "var(--muted)" : "#fff",
               border: "none",
-              cursor: ((!includeGps || !canShareGps) && !includeStage) ? "default" : "pointer",
+              cursor: !stage ? "default" : "pointer",
               fontFamily: "Geist Mono, monospace", fontSize: 10,
               letterSpacing: 1.3, fontWeight: 700,
-            }}>START SHARING</button>
+            }}>{stage ? "START SHARING MY STAGE" : "PICK YOUR STAGE FIRST"}</button>
         )}
       </div>
+    </div>
+  );
+}
+
+// Crew radar (15-feature program #2): who in my crew is at which stage,
+// from the stage each of them picked. Stage-level only, never a position.
+// Biggest group first; ties by stage name so the order never flickers.
+// A share saved before stage-only sharing (it may say includeGps: true, and
+// carry a public-link token) stays off until a fresh tap: an old share never
+// resumes broadcasting on its own. A share this build started is stamped
+// stageOnly: 2 and is left alone, so leaving Map and coming back keeps it.
+function _migrateShareState(s) {
+  if (!s || s.stageOnly === 2) return s;
+  return { ...s, active: false, includeGps: false, includeStage: true, token: undefined };
+}
+function crewRadarRows(crewFriends, now = Date.now()) {
+  const by = {};
+  for (const f of crewFriends || []) {
+    if (!f || !f.stageId) continue;
+    const st = STAGES.find(s => s.id === f.stageId);
+    if (!st) continue;
+    (by[st.id] = by[st.id] || { stage: st, members: [] }).members.push(f);
+  }
+  return Object.values(by).map(r => {
+    const newest = Math.max(...r.members.map(m => m.ts || 0));
+    const members = r.members.slice().sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    return { stage: r.stage, members, minsAgo: newest ? Math.max(0, Math.floor((now - newest) / 60000)) : null };
+  }).sort((a, b) => b.members.length - a.members.length || a.stage.name.localeCompare(b.stage.name));
+}
+
+function CrewRadar({ crewFriends }) {
+  const rows = crewRadarRows(crewFriends);
+  if (!rows.length) return null;
+  return (
+    <div data-crew-radar style={{ flexBasis: "100%", display: "flex", flexDirection: "column", gap: 6 }}>
+      <div className="duo-label" style={{ color: "var(--ink-3)" }}>CREW RADAR · BY STAGE</div>
+      {rows.map(r => (
+        <div key={r.stage.id} data-crew-radar-row={r.stage.id} style={{
+          display: "flex", alignItems: "center", gap: 10, padding: "8px 12px",
+          borderRadius: 10, background: "var(--s2)", borderLeft: `3px solid ${r.stage.color}`,
+          font: "400 13px/1.385 var(--f-ui)", color: "var(--ink)",
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontWeight: 600 }}>{r.stage.name}</div>
+            <div style={{ color: "var(--ink-2)", overflowWrap: "anywhere" }}>{r.members.map(m => m.name).join(", ")}</div>
+          </div>
+          <span style={{ color: "var(--ink-2)", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+            {r.members.length}{r.minsAgo == null ? "" : r.minsAgo < 1 ? " · now" : ` · ${r.minsAgo}m`}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -1510,13 +1490,24 @@ function MeetupsSheet({ onClose }) {
     const atTs = new Date(whenLocal).getTime();
     if (!atTs || Number.isNaN(atTs)) return;
     const finalName = name.trim() || (STAGES.find(s => s.id === stageId)?.name || "Meetup");
-    const next = addMeetup({ name: finalName, stageId, atTs, notes: notes.trim() });
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    addMeetup({ festivalId: FESTIVAL_CONFIG.id, name: finalName, stageId, atTs, notes: notes.trim() });
+    setList(upcomingMeetups());
     reset();
   };
   const handleRemove = (id) => {
-    const next = removeMeetup(id);
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    removeMeetup(id);
+    setList(upcomingMeetups());
+  };
+  // Send to crew (15-feature program #3): the user's tap posts the meetup to
+  // the crew thread, stage and time only. No crew code, no button.
+  const crewCode = (() => { try { return localStorage.getItem("plursky_group_code") || ""; } catch { return ""; } })();
+  const [sent, setSent] = React.useState({});
+  const sendToCrew = async (m) => {
+    const body = _formatMeetupBody(m, FESTIVAL_CONFIG.id);
+    if (!crewCode || !body) return;
+    setSent(x => ({ ...x, [m.id]: "sending" }));
+    const { error, queued } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    setSent(x => ({ ...x, [m.id]: queued ? "queued" : error ? "failed" : "sent" }));
   };
 
   const fmtWhen = (ts) => {
@@ -1594,6 +1585,13 @@ function MeetupsSheet({ onClose }) {
                       <span style={{ opacity: 0.6 }}>· {tFmt.rel}</span>
                     </div>
                   </div>
+                  {crewCode && (
+                    <button type="button" data-meetup-send={m.id} disabled={sent[m.id] === "sending" || sent[m.id] === "sent" || sent[m.id] === "queued"}
+                      onClick={() => sendToCrew(m)} className="mono" style={{
+                        minHeight: 44, padding: "0 10px", borderRadius: 10, background: "transparent",
+                        border: "1px solid var(--line-2)", color: "var(--ink)", fontSize: 10, letterSpacing: 1.1, fontWeight: 700, cursor: "pointer",
+                      }}>{({ sending: "SENDING", sent: "SENT", queued: "QUEUED", failed: "RETRY" })[sent[m.id]] || "SEND TO CREW"}</button>
+                  )}
                   <button onClick={() => handleRemove(m.id)} aria-label="Remove" style={{
                     background: "transparent", border: "none", color: "var(--muted)",
                     fontSize: 16, cursor: "pointer", lineHeight: 1, padding: 4,
@@ -1988,6 +1986,9 @@ function MapScreen({ state, setState }) {
   // declined so the 20s re-broadcast doesn't keep re-popping the banner.
   const [rallySent, setRallySent] = React.useState(false);
   const [incomingRally, setIncomingRally] = React.useState(null);
+  // The rally's stage on this festival's map. A rally carries no position, so
+  // one naming a stage this festival does not have shows nothing.
+  const rallyStage = incomingRally ? (STAGES || []).find(s => s.id === incomingRally.stageId) || null : null;
   const dismissedRallyRef = React.useRef(new Set());
   // "Crew gathered here": dismissed cluster signature (stageId:count) so the
   // nudge only re-appears when the gathering grows.
@@ -2083,11 +2084,16 @@ function MapScreen({ state, setState }) {
   const canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
   // The posture label says what the map on screen can claim (POSTER_TIER).
   // Unchecked art is drawn faded AND its stages are pending, so it says both.
-  const mapPostureLabel = REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
+  // Wherever a plate drawn for another edition is on screen, the label names
+  // that edition first: last year's layout is true of the art, not of this
+  // festival. The real map draws no art at tier "none", so it stays unprefixed.
+  const artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
+  const artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
+  const mapPostureLabel = artYear + (REAL_MAP_ONLY || (useRealMap && !REAL_MAP_PLACES_CHECKED)
     ? (useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING")
     : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3
         ? "OFFICIAL MAP"
-        : "LAYOUT ONLY";
+        : "LAYOUT ONLY");
   // The amenities the map on screen can place: all of them on the drawn map,
   // only checked-geometry ones on the real map (the same rule as stage pins).
   const mapAmenities = useRealMap ? REAL_MAP_AMENITIES : (typeof AMENITIES !== "undefined" ? AMENITIES : []);
@@ -2103,7 +2109,9 @@ function MapScreen({ state, setState }) {
     if (REAL_MAP_ONLY) return;
     try { sessionStorage.setItem("plursky_realmap_failed", "1"); } catch {}
     setUseRealMap(false);
-    setRealMapNote((why || "Real map unavailable") + " — festival map shown");
+    // Offline is said as offline (L7): the festival map below is the cached one.
+    const offline = (typeof navigator !== "undefined" && navigator.onLine === false) || why === "No network connection";
+    setRealMapNote((offline ? "Offline" : (why || "Real map unavailable")) + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
   };
   // v133: pinch/button zoom + pan over the SVG TopDownMap. zoom=1 is fit-screen
@@ -2155,14 +2163,14 @@ function MapScreen({ state, setState }) {
     try {
       const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
       if (s && s.expiresAt && s.expiresAt <= Date.now()) return null; // expired
-      return s;
+      return _migrateShareState(s);
     } catch { return null; }
   });
   const isSharing = !!shareState?.active &&
                     (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   const [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   const crewName = React.useMemo(() => {
-    try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; } catch { return ""; }
+    return plurskyLocalName();
   }, []);
   // Push-style reminders for saved sets — see useSavedSetReminders below.
   const [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
@@ -2258,6 +2266,11 @@ function MapScreen({ state, setState }) {
   // distance taken from it a claim rather than a simulation. It rides on the
   // avatar so every consumer inherits it — see readoutHonest().
   const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true, gps: liveAvatar.gps } : demoAvatar;
+  // #311: with no affine (no gpsAnchors) gpsToMap() returns the grid centre
+  // for EVERY fix, so a live fix has no place on the SVG art. The SVG map
+  // draws no "you" for it and the pill says ON SITE, never LIVE. The real
+  // basemap is unaffected: it places the raw fix itself (#310, _lngLatOf).
+  const fixUnplaced = _liveFixUnplaced(isLiveOnSite, !!MAP_AFFINE, useRealMap);
 
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
@@ -2331,22 +2344,14 @@ function MapScreen({ state, setState }) {
     return Object.entries(crewSnap)
       .filter(([id]) => id !== myPresId)
       .map(([id, e]) => {
-        // Prefer real GPS (set via Share With Crew → "📍 My GPS location");
-        // fall back to stage centroid when only stage is broadcast.
-        let x, y;
-        if (e.gps && Number.isFinite(e.gps.lat) && Number.isFinite(e.gps.lng)) {
-          const m = gpsToMap(e.gps.lat, e.gps.lng);
-          x = Math.max(2, Math.min(98, m.x));
-          y = Math.max(2, Math.min(98, m.y));
-        } else {
-          const st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
-          if (!st) return null;
-          x = st.x; y = st.y;
-        }
+        // Stage-level only: a crewmate sits at the stage they picked. GPS
+        // an older app version still sends is ignored, never drawn.
+        const st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
+        if (!st) return null;
         return {
           id, name: e.name || "?",
           color: e.color || "var(--text-2)",
-          x, y, gps: e.gps || null,
+          x: st.x, y: st.y, gps: null,
           stageId: e.stageId, ts: e.ts,
         };
       }).filter(Boolean);
@@ -2359,7 +2364,8 @@ function MapScreen({ state, setState }) {
     if (!crewFriends.length) return null;
     const byStage = {};
     for (const f of crewFriends) {
-      const sid = f.stageId || _nearestStageId(f.x, f.y);
+      // Only a friend's declared stage counts (shares are stage-only).
+      const sid = f.stageId;
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
@@ -2386,56 +2392,20 @@ function MapScreen({ state, setState }) {
   // through dedicated effects below.
   React.useEffect(() => {
     if (!isSharing) { sbPresenceLeave(); return; }
-    const stageId = shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
-    const gps = (shareState.includeGps && gpsPos)
-      ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-      : undefined;
-    sbPresenceJoin({ name: crewName || "Anon", stageId, gps });
+    // Only the stage I picked: no GPS, and no stand-in stage I never chose.
+    sbPresenceJoin({ name: crewName || "Anon", stageId: myStatusStage || null });
     return () => { /* leave handled by the next effect run or unmount */ };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSharing]);
 
-  // Unified broadcast heartbeat — fan out GPS/stage updates to both Supabase
-  // Realtime presence (crew view) and the live_shares row (public link). One
-  // effect avoids duplicate work; both write paths are idempotent.
+  // A new "I'm at" pick moves my crew dot. Stage id only.
   React.useEffect(() => {
     if (!isSharing) return;
-    const gps = (shareState?.includeGps && gpsPos)
-      ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-      : undefined;
-    const stageId = shareState?.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null;
-    if (gps || stageId !== undefined) sbPresenceUpdate({ gps, stageId });
-    if (shareState?.token) sbLiveShareUpdate(shareState.token, { gps, stageId });
-  }, [
-    isSharing, shareState?.includeGps, shareState?.includeStage, shareState?.token,
-    gpsPos?.lat, gpsPos?.lng, gpsPos?.accuracy, myStatusStage,
-  ]);
+    sbPresenceUpdate({ stageId: myStatusStage || null });
+  }, [isSharing, myStatusStage]);
 
-  // Live share lifecycle: mint a token on first activation, upsert the row,
-  // tear down on stop. Cleanup function fires when isSharing flips off or
-  // shareState is cleared by the expiry watchdog.
-  React.useEffect(() => {
-    if (!isSharing) return;
-    // First time → generate token, then wait for next render to actually start.
-    if (!shareState.token) {
-      const token = sbGenerateShareToken();
-      setShareState(s => s ? { ...s, token } : s);
-      return;
-    }
-    sbLiveShareStart({
-      token: shareState.token,
-      pid: sbGetMyPresId?.() || "anon",
-      name: crewName || "Friend",
-      expiresAt: shareState.expiresAt,
-      gps: (shareState.includeGps && gpsPos)
-        ? { lat: gpsPos.lat, lng: gpsPos.lng, accuracy: gpsPos.accuracy }
-        : undefined,
-      stageId: shareState.includeStage ? (myStatusStage || STAGES[0]?.id || null) : null,
-    });
-    const tokenCapture = shareState.token;
-    return () => { sbLiveShareStop(tokenCapture); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSharing, shareState?.token]);
+  // No public link: the live_shares writes are gone (that table was never
+  // created in prod, so every write failed silently), and so is the link.
 
   // Auto-expiry watchdog. Schedules a one-shot timer for the remaining
   // window so we wake exactly when sharing should stop, without polling.
@@ -2522,13 +2492,16 @@ function MapScreen({ state, setState }) {
 
   // GPS pill label — reflects real status
   const gpsLabel = !gpsLive ? "OFF"
-    : gpsStatus === "live"        ? (isLiveOnSite ? "LIVE" : "OFF-SITE")
+    : gpsStatus === "live"        ? (fixUnplaced ? "ON SITE" : isLiveOnSite ? "LIVE" : "OFF-SITE")
     : gpsStatus === "locating"    ? "FINDING…"
     : gpsStatus === "stale"       ? "NO FIX"
     : gpsStatus === "denied"      ? "OFF"
     : gpsStatus === "unavailable" ? "N/A"
     : "DEMO";
   const gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
+  // L7: the locate button says it works with no signal only where this
+  // festival's map is on the device (one predicate, _mapCachedOffline).
+  const mapCachedOffline = useMapCachedOffline(FESTIVAL_CONFIG);
 
   // Unified sheet handles visibility internally based on stage/meetMode/search state.
 
@@ -2545,9 +2518,11 @@ function MapScreen({ state, setState }) {
         )}
         {/* The title never shrinks under the posture label: a long label
             ("NOT TO SCALE · STAGES PENDING") wraps to its own line instead
-            of printing over "Map" (#313 review, 320–393 pt). */}
+            of printing over "Map" (#313 review, 320–393 pt), and a label
+            longer than the header ("2025 MAP · NOT TO SCALE · STAGES
+            PENDING" at 280) wraps inside it instead of running off screen. */}
         <h1 className="duo-title" style={{ margin: 0, flex: "1 0 auto" }}>Map</h1>
-        <span data-map-posture className="duo-code">{mapPostureLabel}</span>
+        <span data-map-posture className="duo-code" style={{ whiteSpace: "normal", maxWidth: "100%", boxSizing: "border-box" }}>{mapPostureLabel}</span>
         {(() => {
           const has = t => mapAmenities.some(a => a.type === t);
           const cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
@@ -2563,14 +2538,23 @@ function MapScreen({ state, setState }) {
               {cat === "crew" && (
                 <div data-map-crew-line style={{ flexBasis: "100%", display: "flex", alignItems: "center", gap: 10, font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
                   <span style={{ flex: 1, minWidth: 0 }}>
-                    {crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"}
+                    {crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a stage"}
                   </span>
                   <button className="duo-chip" onClick={() => setShareOpen(true)}><span>Share with crew</span></button>
                 </div>
               )}
+              {cat === "crew" && crewFriends.length > 0 && <CrewRadar crewFriends={crewFriends} />}
             </div>
           );
         })()}
+        {/* Why the festival map is on screen instead of the real one. In the
+            header, on solid ground (L7): floating at the top of the map it
+            sat on the locate button and the battery pill at 320 wide. */}
+        {realMapNote && (
+          <div data-map-fallback-note role="status" style={{ flexBasis: "100%", font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
+            {realMapNote}
+          </div>
+        )}
         {gpsLive && gpsStatus === "denied" && (
           <div data-map-gps-denied style={{ flexBasis: "100%", font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>
             Location off · allow it to see yourself on the map
@@ -2586,25 +2570,41 @@ function MapScreen({ state, setState }) {
             background so it reads over any map style. */}
         <div style={{
           position: "absolute", top: 12, right: 10, zIndex: 4,
-          display: "flex", flexDirection: "column", gap: 6,
+          display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6,
         }}>
-          <button onClick={() => setGpsLive(g => !g)} aria-label="Toggle GPS" aria-pressed={gpsActive} style={{
-            minWidth: 46, minHeight: 44, padding: "6px 8px", borderRadius: "var(--rad-sm)",
+          {/* The locate button (L7). Off, it says what it does — "Show me on
+              the map" — and, only where this festival's map is on the
+              device, "Works with no signal". On, it is the status chip
+              (LIVE / FINDING… / NO FIX), unchanged: LIVE stays the one
+              fresh-fix predicate. Same GPS path, no new permission flow. */}
+          <button data-map-locate={gpsLive ? "on" : "off"} onClick={() => setGpsLive(g => !g)} aria-label="Show me on the map" aria-pressed={gpsActive} style={{
+            alignSelf: "flex-end",
+            minWidth: 46, minHeight: 44, padding: gpsLive ? "6px 8px" : "7px 12px 7px 10px", borderRadius: "var(--rad-sm)",
             background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
             color: gpsActive ? "var(--on-acc)" : "var(--ink)", // denial is said by the banner; the chip stays quiet
             border: gpsActive ? "none" : "1px solid var(--line-2)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
             cursor: "pointer",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 2,
+            display: "flex", flexDirection: gpsLive ? "column" : "row", alignItems: "center", gap: gpsLive ? 2 : 8,
+            textAlign: "left",
             boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)",
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0 }}>
               <path d="M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"/>
               <circle cx="12" cy="12" r="6"/>
               {gpsActive && <circle cx="12" cy="12" r="2.5" fill="currentColor" stroke="none"/>}
             </svg>
-            <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
+            {gpsLive ? (
+              <span style={{ font: "500 10px/1 var(--f-data)", letterSpacing: "-0.01em" }}>{gpsLabel}</span>
+            ) : (
+              <span style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <span style={{ font: "500 13px/1.2 var(--f-ui)", whiteSpace: "nowrap" }}>Show me on the map</span>
+                {mapCachedOffline && (
+                  <span data-map-no-signal style={{ font: "400 11px/1.2 var(--f-ui)", color: "var(--ink-2)", whiteSpace: "nowrap" }}>Works with no signal</span>
+                )}
+              </span>
+            )}
           </button>
           {/* Unified control capsule — layers + zoom in one glass pill */}
           <div style={{
@@ -2748,7 +2748,7 @@ function MapScreen({ state, setState }) {
             Tap a row to isolate that type on the map; tap again to clear. */}
         {amenityKey && !meetMode && (
           <div role="group" aria-label="Amenity key" style={{
-            position: "absolute", left: 10, top: 90, zIndex: 6,
+            position: "absolute", left: 10, top: isSharing ? 130 : 90, zIndex: 6,
             background: "rgba(var(--glass),0.94)",
             border: "none", borderRadius: "var(--rad-md)",
             padding: 4, minWidth: 140,
@@ -2797,16 +2797,19 @@ function MapScreen({ state, setState }) {
         {/* #6 Persistent live-sharing badge — sharing state is the trust
             backbone of the crew moat, so it's unmissable + one tap to stop
             (was buried in the overflow menu / a fumbleable GPS icon). */}
+        {/* Left column, under the Stylized/Satellite toggle (top 58): centred
+            at top 46 it covered that toggle at 390 and wrapped over it at 320.
+            One line, and it names what is shared: the stage, never a position. */}
         {isSharing && (
-          <button onClick={() => setShareState(null)} aria-label="Stop sharing your location" style={{
-            position: "absolute", top: 46, left: "50%", transform: "translateX(-50%)",
+          <button data-sharing-pill onClick={() => setShareState(null)} aria-label="Stop sharing your stage with your crew" style={{
+            position: "absolute", top: 98, left: 10, whiteSpace: "nowrap",
             zIndex: 6, display: "flex", alignItems: "center", gap: 7,
             padding: "5px 12px", borderRadius: 999, cursor: "pointer", border: "none",
             background: "rgba(var(--signal-rgb),0.96)", color: "var(--ink)",
             boxShadow: "0 2px 10px rgba(var(--shade-rgb),0.35)", backdropFilter: "blur(8px)",
           }}>
             <span style={{ width: 7, height: 7, borderRadius: 7, background: "var(--ink)", animation: "pulse 1.6s infinite" }}/>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING · TAP TO STOP</span>
+            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 800 }}>SHARING STAGE · TAP TO STOP</span>
           </button>
         )}
 
@@ -3182,7 +3185,7 @@ function MapScreen({ state, setState }) {
           />
         ) : (
           <TopDownMap
-            avatar={avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
+            avatar={fixUnplaced ? { ...avatar, unplaced: true } : avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
             saved={state.saved} showLabels={showLabels} showHeat={showHeat}
             showAmenities={searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med"}
             amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
@@ -3195,18 +3198,6 @@ function MapScreen({ state, setState }) {
             onPickStage={(id) => { setSelectedStage(id); setPeek(false); }}
             onClick={handleMapClick}
           />
-        )}
-        {realMapNote && (
-          <div style={{
-            position: "absolute", top: 12, left: "50%", transform: "translateX(-50%)",
-            zIndex: 4, padding: "4px 10px", borderRadius: 999,
-            background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
-            backdropFilter: "blur(8px)", maxWidth: "88%", textAlign: "center",
-          }}>
-            <span className="mono" style={{ fontSize: 9, letterSpacing: 1.2, fontWeight: 700 }}>
-              {realMapNote.toUpperCase()}
-            </span>
-          </div>
         )}
 
         {/* Ground-level peek window (picture-in-picture) */}
@@ -3242,10 +3233,10 @@ function MapScreen({ state, setState }) {
             </span>
             {meetPin && isSharing && (
               <button onClick={() => {
+                // A rally names a stage, never the pin's x/y or lat/lng.
                 const ok = sbBroadcastRally({
-                  x: meetTarget.x, y: meetTarget.y, label: meetTarget.label,
+                  label: meetTarget.label,
                   stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
-                  gps: meetTarget.gps || null,
                 });
                 if (ok) setRallySent(true);
               }} disabled={rallySent} style={{
@@ -3265,7 +3256,7 @@ function MapScreen({ state, setState }) {
         )}
 
         {/* Incoming rally — a crew member dropped a meet point and pinged us */}
-        {incomingRally && (
+        {incomingRally && rallyStage && (
           <div style={{
             position: "absolute", top: 0, left: 0, right: 0, zIndex: 9,
             background: "linear-gradient(135deg, var(--signal), var(--ember))",
@@ -3281,13 +3272,13 @@ function MapScreen({ state, setState }) {
                 {(incomingRally.fromName || "CREW").toUpperCase()} WANTS TO MEET
               </span>
               <span style={{ display: "block", fontSize: 13, fontWeight: 700, marginTop: 1, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {incomingRally.label}{minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar)}
+                {incomingRally.label}{minsAwaySuffix(Math.hypot(rallyStage.x - avatar.x, rallyStage.y - avatar.y), avatar)}
               </span>
             </span>
             <button onClick={() => {
               dismissedRallyRef.current.add(incomingRally.rallyId);
               setMeetMode(true);
-              setMeet({ x: incomingRally.x, y: incomingRally.y, ...(_validGps(incomingRally.gps) ? { gps: { lat: incomingRally.gps.lat, lng: incomingRally.gps.lng } } : {}), label: incomingRally.label, isRally: true });
+              setMeet({ x: rallyStage.x, y: rallyStage.y, label: incomingRally.label, stageId: rallyStage.id, isRally: true });
               setIncomingRally(null);
             }} className="mono" style={{
               background: "var(--ink)", color: "var(--on-ink-accent)", border: "none", borderRadius: 999,
@@ -3302,7 +3293,7 @@ function MapScreen({ state, setState }) {
 
         {/* "Crew gathered here" — serendipity nudge when >=2 crew share a stage */}
         {(() => {
-          if (!crewCluster || meetMode || incomingRally) return null;
+          if (!crewCluster || meetMode || rallyStage) return null;
           const sig = `${crewCluster.stage.id}:${crewCluster.members.length}`;
           if (sig === clusterDismissed) return null;
           const headOver = () => {
@@ -3525,9 +3516,8 @@ function MapScreen({ state, setState }) {
           shareState={shareState}
           crewCount={crewFriends.length}
           crewCode={sbGetOrCreateGroupCode?.() || ""}
-          gpsPos={gpsPos}
-          gpsStatus={gpsStatus}
           myStatusStage={myStatusStage}
+          onPickStage={() => { setShareOpen(false); setIAmAtOpen(true); }}
           onClose={() => setShareOpen(false)}
           onSave={(s) => setShareState(s)}
           onStop={() => setShareState(null)}
@@ -3790,6 +3780,46 @@ function _packMirror() {
   try { return JSON.parse(localStorage.getItem(PACK_MIRROR_KEY) || "{}") || {}; } catch { return {}; }
 }
 function _packMirrorWrite(all) { try { localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all)); } catch {} }
+
+// ── Is this festival's map on the device? (L7) ──────────────────────
+// The ONE predicate behind the map tab's "Works with no signal" line. True
+// only when a map for this festival will draw with no network:
+//   • a saved offline street pack (the same mirror RealMap opens on when
+//     offline at mount), or
+//   • its ground plate (cfg.mapImage). sw.js LOCAL precaches every mapImage —
+//     the "precache integrity" gate in verify.mjs holds that in both
+//     directions — but on the web the plate is asked of Cache Storage itself,
+//     because an install that failed (addAll is atomic) or has not finished
+//     caches nothing. The native app has no service worker; build.mjs bundles
+//     the plate into dist/, so there it is on the device.
+// A mapMode:"real" festival has no plate, and its basemap tiles are cached
+// only as they are viewed, which is no promise: without a pack it is false.
+function _mapPlateFor(cfg) {
+  return cfg && cfg.mapMode !== "real" && typeof cfg.mapImage === "string" && cfg.mapImage ? cfg.mapImage : null;
+}
+async function _mapCachedOffline(cfg) {
+  if (!cfg || !cfg.id) return false;
+  if (_packMirror()[cfg.id]) return true;
+  const plate = _mapPlateFor(cfg);
+  if (!plate) return false;
+  try { if (window.Capacitor?.isNativePlatform?.()) return true; } catch {}
+  if (typeof caches === "undefined") return false;
+  try { return !!(await caches.match(new URL(plate, location.href).href)); } catch { return false; }
+}
+function useMapCachedOffline(cfg) {
+  const fid = cfg && cfg.id;
+  const [cached, setCached] = React.useState(false);
+  React.useEffect(() => {
+    let alive = true;
+    const check = () => _mapCachedOffline(cfg).then(v => { if (alive) setCached(!!v); }, () => {});
+    check();
+    // A first visit installs the worker after the map has opened: ask again
+    // once it is active (its install is what fills the cache).
+    try { navigator.serviceWorker?.ready?.then(check, () => {}); } catch {}
+    return () => { alive = false; };
+  }, [fid]);
+  return cached;
+}
 
 function _packEntry(fid) {
   const reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
@@ -4340,9 +4370,10 @@ function mapToGps(x, y) {
 // preserveAspectRatio="xMidYMid slice"> — "slice" means COVER: scale until the
 // short edge fills, centre, crop the overflow. Three of the five assets are
 // deliberately square (acl-park 1708², ef-forest 1200², lostlands 1400²) so
-// cover is exact and the extent is the plain 0-100 box. Two are NOT:
-// edc-map-2026.jpg is 1080×1350 and edco-tinker-2026.jpg is 960×1200, both
-// 0.80 aspect, so the SVG crops 12.5% off the top AND bottom.
+// cover is exact and the extent is the plain 0-100 box. Some are NOT:
+// edc-map-2026.jpg is 1080×1350, 0.80 aspect, so the SVG crops 12.5% off the
+// top AND bottom. (edco-tinker-2026.jpg was 960×1200 too, until the official
+// 2026 plate, a 960² square, replaced it.)
 //
 // MapLibre's `image` source does no cropping — it stretches the WHOLE image
 // into the quad it is given. Feeding it the plain 0-100 corners would squash
@@ -5811,10 +5842,10 @@ function RealMap({
       {packMode ? (
         <div role="status" className="duo-code" style={{
           position: "absolute", top: 58, left: 10, zIndex: 4,
-          background: "rgba(var(--shade-rgb),0.78)", color: "var(--ink)",
+          background: "var(--offline-badge-bg, rgba(var(--shade-rgb),0.78))", color: "var(--ink)",
           borderColor: "rgba(var(--ink-rgb),0.18)", padding: "8px 10px 7px",
           backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
-        }}>OFFLINE · SAVED STREET MAP</div>
+        }}>OFFLINE — SHOWING CACHED MAP</div>
       ) : (
       <div ref={styleSwitchRef} data-realmap-style-switch style={{
         position: "absolute", top: 58, left: 10, zIndex: 4,
@@ -5853,7 +5884,11 @@ function RealMap({
           gap: 6, padding: 20, textAlign: "center",
         }}>
           <div>MAP ERROR</div>
-          <div style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>{err}</div>
+          {/* Offline is said as offline (L7). Here nothing is cached — a saved
+              pack would have opened instead (pack mode) — so it says so. */}
+          <div data-realmap-err style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
+            {err === "No network connection" ? "Offline — no cached map for this festival yet" : err}
+          </div>
           {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
               map EXISTS. On a mapMode:"real" festival there is no art and no
               stage grid, so that button drops the user onto a blank plate —
@@ -5944,6 +5979,17 @@ const AMENITY_KEY = [
   { type: "art",    color: "var(--signal-ink)", ink: "var(--paper)", letter: "",  label: "Art" },
 ];
 const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
+
+// #357: how far (screen px) a chip spanning [left, right] must move to sit
+// inside [lo, hi]. 0 when it already fits; a chip wider than the room is
+// pinned to its left edge.
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
 
 // ---- TOP-DOWN NAVIGATION MAP ----
 function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, amenityFilter = null, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
@@ -6068,6 +6114,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // overlay. One offset, both systems.
   const boxRef = React.useRef(null);
   const [box, setBox] = React.useState({ w: 0, h: 0 });
+
+  // #357: the avatar chip is centred over its dot, so a dot near the map's
+  // edge (a live fix at ACL's west side) pushed half the chip off screen
+  // (x = -11.5 at 393 wide). After every render, and after the zoom/pan/
+  // compass transition settles, measure the chip on screen and shift it back
+  // inside the visible map with a 4 px margin. The shift is converted into
+  // the map's rotated, zoomed frame (the chip's parent), so it moves straight
+  // across the screen at any compass heading and zoom.
+  const clampAvatarChip = React.useCallback(() => {
+    const boxEl = boxRef.current;
+    const chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    const r = chip.getBoundingClientRect(), b = boxEl.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    const dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    const t = (-mapRotate * Math.PI) / 180, z = zoom || 1;
+    chip.style.translate = `${(dx * Math.cos(t)) / z}px ${(dx * Math.sin(t)) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => { clampAvatarChip(); });
   React.useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
@@ -6126,7 +6193,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-    <div style={{
+    <div onTransitionEnd={clampAvatarChip} style={{
       position: "absolute", inset: 0,
       transform: `${compass ? `rotate(${mapRotate}deg) ` : ""}translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
       transformOrigin: "50% 50%",
@@ -6353,7 +6420,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         {/* Route line to selected stage or meet point */}
-        {(sel || meetTarget) && (() => {
+        {!avatar.unplaced && (sel || meetTarget) && (() => {
           const target = meetTarget || sel;
           const c = meetTarget ? "#e85d2e" : "#e85d2e";
           return (
@@ -6424,7 +6491,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         {/* Crew proximity glow — shared ring when you and a friend are near the same spot */}
-        {friends.map(f => {
+        {!avatar.unplaced && friends.map(f => {
           const dist = Math.hypot(f.x - avatar.x, f.y - avatar.y);
           if (dist > 8) return null;
           const mx = (f.x + avatar.x) / 2, my = (f.y + avatar.y) / 2;
@@ -6439,7 +6506,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         {/* Friends */}
         {friends.map(f => {
           const focused = meetGroup.includes(f.id);
-          const nearby = Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
+          const nearby = !avatar.unplaced && Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
           return (
             <g key={f.id}>
               <circle cx={f.x} cy={f.y} r="2.5" fill={f.color} opacity={nearby ? 0.35 : 0.22}>
@@ -6462,7 +6529,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         )}
 
         {/* Walking route line — animated dashed path from avatar to selected stage */}
-        {selected && !meetMode && (() => {
+        {!avatar.unplaced && selected && !meetMode && (() => {
           const target = stages.find(s => s.id === selected);
           if (!target) return null;
           const dist = Math.hypot(target.x - avatar.x, target.y - avatar.y);
@@ -6496,8 +6563,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })()}
 
-        {/* Avatar — you */}
-        <g>
+        {/* Avatar — you. Not drawn for a live fix the art cannot place (#311). */}
+        {!avatar.unplaced && <g>
           <path d={`M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`}
@@ -6507,7 +6574,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </circle>
           <circle data-avatar-dot cx={avatar.x} cy={avatar.y} r="1.8" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
           <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="var(--ink)"/>
-        </g>
+        </g>}
         </g>
       </svg>
 
@@ -6735,14 +6802,14 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })}
 
-        <div data-avatar-label style={{
+        {!avatar.unplaced && <div data-avatar-label style={{
           position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
           padding: "2px 8px", borderRadius: 999,
           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
           pointerEvents: "none", boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)",
-        }}>YOU</div>
+        }}>{avatar.live ? "YOU" : "DEMO"}</div>}
       </div>
     </div>
 
@@ -7392,13 +7459,7 @@ function _crewRowToThreadItem(row, myPid) {
 }
 function MessageDrawer({ friend, myPresId, avatarStage, saved = [], onClose, onSwitchToMeet }) {
   const isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  const myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "Me";
-    } catch { return "Me"; }
-  })();
+  const myName = plurskyLocalName() || "Me";
 
   const [thread, setThread] = React.useState(() => loadThread(friend.id));
   const [draft, setDraft] = React.useState("");

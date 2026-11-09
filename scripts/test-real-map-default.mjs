@@ -17,7 +17,7 @@
 //   6. (this file) a rendered check of the default path, in verify.
 //   7. Nothing pins, routes or navigates to a poster coordinate: on Ultra a
 //      crew member sharing only a stage gets no marker, meet-at-stage (crew
-//      HEAD OVER) and a rally with no lat/lng are text-only with no meet pin
+//      HEAD OVER) and a rally (a stage id, no position) are text-only with no meet pin
 //      and no route, and a saved stage offers no GO HERE. Summerfest is the
 //      control: the same steps DO pin, route and offer GO HERE.
 //   8. The opening camera frames the grounds (ACL opened ~600 m off them),
@@ -25,7 +25,8 @@
 //      old centre put both outside the 644 m radius: OFF-SITE, no dot).
 //   f73 ruling: with GPS off, the demo "you" dot shows only where checked
 //      geometry places it; on unchecked festivals it is hidden.
-// MapLibre comes from unpkg (pinned 4.7.1, like React here); basemap tiles are
+// MapLibre 4.7.1 is served from scripts/vendor/ by wireVendor (sha384 pin in
+// scripts/vendor/manifest.json; never the live unpkg CDN); basemap tiles are
 // stubbed with a blank tile so the gate never depends on Esri or OpenFreeMap.
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
@@ -150,7 +151,13 @@ try {
     // f73: the demo dot only where checked geometry places it. (GPS starts on;
     // with no permission granted the dot is the demo position.)
     const you = () => page.evaluate(() => document.querySelector("[data-realmap-you]")?.getAttribute("data-realmap-you") || "missing");
-    const gpsText = () => page.evaluate(() => document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim());
+    const gpsText = () => page.evaluate(() => document.querySelector('button[data-map-locate]')?.innerText.trim());
+    // Wait for a state instead of reading once: the dot re-renders a beat after
+    // the pill, and on a loaded machine that beat is longer than a fixed sleep
+    // (a loaded full verify failed one Miller check, 182/183). A
+    // state that never arrives still fails, with what was there at the end.
+    const youBecomes = want => page.waitForFunction(w => document.querySelector("[data-realmap-you]")?.getAttribute("data-realmap-you") === w, want, { timeout: 15000 }).then(() => want, () => you());
+    const gpsOff = () => page.waitForFunction(() => /^Show me on the map/.test(document.querySelector('button[data-map-locate]')?.innerText.trim() || ""), null, { timeout: 15000 }).catch(() => {});
     if (!C.fix) {
       const you0 = await you();
       check(you0 === (C.pins ? "shown" : "hidden"), `${C.fid}: demo "you" dot with no fix is ${you0} (want ${C.pins ? "shown" : "hidden"})`);
@@ -161,14 +168,16 @@ try {
       // map load can take longer than that on a busy machine.
       await ctx.setGeolocation({ latitude: C.fix.latitude + 1e-6, longitude: C.fix.longitude, accuracy: 8 });
       const label = await page.waitForFunction(() => {
-        const t = document.querySelector('button[aria-label="Toggle GPS"]')?.innerText.trim();
+        const t = document.querySelector('button[data-map-locate]')?.innerText.trim();
         return t === "LIVE" || t === "OFF-SITE" ? t : null;   // the on-site verdict, not a transient state
-      }, null, { timeout: 15000 }).then(h => h.jsonValue(), async () => `timeout (pill "${await gpsText()}")`);
+      }, null, { timeout: 30000 }).then(h => h.jsonValue(), async () => `timeout (pill "${await gpsText()}")`);
       check(label === "LIVE", `${tag0(C)}: a real fix at ${C.fix.stage} reads "${label}" (want LIVE, not OFF-SITE)`);
-      check(await you() === "shown", `${tag0(C)}: the live dot at ${C.fix.stage} is ${await you()}`);
+      const live = await youBecomes("shown");
+      check(live === "shown", `${tag0(C)}: the live dot at ${C.fix.stage} is ${live}`);
       // GPS off → the dot falls back to the demo position, which ACL cannot place.
-      await page.click('button[aria-label="Toggle GPS"]'); await page.waitForTimeout(500);
-      check(await gpsText() === "OFF" && await you() === "hidden", `${tag0(C)}: GPS off leaves the dot ${await you()} (pill "${await gpsText()}"), want hidden`);
+      await page.click('button[data-map-locate]'); await gpsOff();
+      const off = await youBecomes("hidden");
+      check(/^Show me on the map/.test(await gpsText() || "") && off === "hidden", `${tag0(C)}: GPS off leaves the dot ${off} (pill "${await gpsText()}"), want hidden`);
     }
     if (C.only === "fix") { check(!errors.length, `${tag0(C)}: no page errors (${errors.slice(0, 2).join(" | ")})`); await ctx.close(); continue; }
     // 1. pins
@@ -313,8 +322,8 @@ try {
         }
         await page.locator("button", { hasText: "CANCEL" }).first().click().catch(() => {}); await page.waitForTimeout(300);
       }
-      // A rally with no lat/lng (an older client sends poster x/y).
-      await page.evaluate(st => window.__rallyCb({ rallyId: "gate-r1", fromName: "Gate Ava", x: st.x, y: st.y, label: st.name }), st);
+      // A rally names a stage only (stage-only crew sharing, #376).
+      await page.evaluate(st => window.__rallyCb({ rallyId: "gate-r1", fromName: "Gate Ava", stageId: st.id, label: st.name }), st);
       await page.waitForTimeout(300);
       const rh = page.locator("button", { hasText: "HEAD OVER" });
       if (await rh.count()) {

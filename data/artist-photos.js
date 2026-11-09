@@ -29,7 +29,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/lorde.webp"
   },
-  "charli xcx": {
+  "charli-xcx": {
     "artist": "Charli XCX",
     "author": "Elena Ternovaja",
     "source": "commons",
@@ -44,7 +44,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/charli-xcx.webp"
   },
-  "amyl and the sniffers": {
+  "amyl-and-the-sniffers": {
     "artist": "Amyl And The Sniffers",
     "author": "kingArthur_aus",
     "source": "commons",
@@ -59,7 +59,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/amyl-and-the-sniffers.webp"
   },
-  "the war on drugs": {
+  "the-war-on-drugs": {
     "artist": "The War On Drugs",
     "author": "Jeff Marquis",
     "source": "commons",
@@ -74,7 +74,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/the-war-on-drugs.webp"
   },
-  "kings of leon": {
+  "kings-of-leon": {
     "artist": "Kings of Leon",
     "author": "Raph_PH",
     "source": "commons",
@@ -89,7 +89,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/kings-of-leon.webp"
   },
-  "john summit": {
+  "john-summit": {
     "artist": "John Summit",
     "author": "Wynneplaga",
     "source": "commons",
@@ -104,7 +104,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Rotated to the file's EXIF orientation (6; the 2026-10-04 copy had shipped sideways), cropped to the face (1300px square of the 2419px original at 551,230), resized to 1024px and converted to WebP on 2026-10-11. Display may crop and overlay.",
     "url": "./artist-photos/john-summit.webp"
   },
-  "laidback luke": {
+  "laidback-luke": {
     "artist": "Laidback Luke",
     "author": "Shawn Tron",
     "source": "commons",
@@ -119,7 +119,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/laidback-luke.webp"
   },
-  "tiësto": {
+  "tiesto": {
     "artist": "Tiësto",
     "author": "Brandon Lim",
     "source": "commons",
@@ -134,7 +134,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/tiesto.webp"
   },
-  "ki/ki": {
+  "ki-ki": {
     "artist": "Ki/Ki",
     "author": "Charlestpt",
     "source": "commons",
@@ -164,7 +164,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/luciano.webp"
   },
-  "da tweekaz": {
+  "da-tweekaz": {
     "artist": "Da Tweekaz",
     "author": "KaiKnight2",
     "source": "commons",
@@ -194,7 +194,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/chuckie.webp"
   },
-  "bone thugs-n-harmony": {
+  "bone-thugs-n-harmony": {
     "artist": "Bone Thugs-N-Harmony",
     "author": "Kmilo from NY/TX",
     "source": "commons",
@@ -209,7 +209,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/bone-thugs-n-harmony.webp"
   },
-  "connan mockasin": {
+  "connan-mockasin": {
     "artist": "Connan Mockasin",
     "author": "Paul Hudson",
     "source": "commons",
@@ -224,7 +224,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/connan-mockasin.webp"
   },
-  "danny brown": {
+  "danny-brown": {
     "artist": "Danny Brown",
     "author": "Julio Enriquez",
     "source": "commons",
@@ -239,7 +239,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/danny-brown.webp"
   },
-  "dj harvey": {
+  "dj-harvey": {
     "artist": "DJ Harvey",
     "author": "Saltyrobot",
     "source": "commons",
@@ -254,7 +254,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/dj-harvey.webp"
   },
-  "floating points": {
+  "floating-points": {
     "artist": "Floating Points",
     "author": "basic_sounds",
     "source": "commons",
@@ -269,7 +269,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/floating-points.webp"
   },
-  "flying lotus": {
+  "flying-lotus": {
     "artist": "Flying Lotus",
     "author": "Simon Fernandez",
     "source": "commons",
@@ -284,7 +284,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/flying-lotus.webp"
   },
-  "honey dijon": {
+  "honey-dijon": {
     "artist": "Honey Dijon",
     "author": "LOVE Magazine",
     "source": "commons",
@@ -299,7 +299,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/honey-dijon.webp"
   },
-  "jane remover": {
+  "jane-remover": {
     "artist": "Jane Remover",
     "author": "Angel",
     "source": "commons",
@@ -314,7 +314,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/jane-remover.webp"
   },
-  "lil' kim": {
+  "lil-kim": {
     "artist": "Lil' Kim",
     "author": "Monique Tatum",
     "source": "commons",
@@ -329,7 +329,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/lil-kim.webp"
   },
-  "men i trust": {
+  "men-i-trust": {
     "artist": "Men I Trust",
     "author": "Justin Higuchi",
     "source": "commons",
@@ -359,7 +359,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/parcels.webp"
   },
-  "purity ring": {
+  "purity-ring": {
     "artist": "Purity Ring",
     "author": "Henry Laurisch",
     "source": "commons",
@@ -389,7 +389,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/tokischa.webp"
   },
-  "charlotte de witte": {
+  "charlotte-de-witte": {
     "artist": "Charlotte de Witte",
     "author": "Alan Overbeek",
     "source": "commons",
@@ -404,7 +404,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/charlotte-de-witte.webp"
   },
-  "four tet": {
+  "four-tet": {
     "artist": "Four Tet",
     "author": "Chris Pimlott",
     "source": "commons",
@@ -434,7 +434,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/kelela.webp"
   },
-  "marco carola": {
+  "marco-carola": {
     "artist": "Marco Carola",
     "author": "Dave Walker",
     "source": "commons",
@@ -464,7 +464,7 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/rusowsky.webp"
   },
-  "seth troxler": {
+  "seth-troxler": {
     "artist": "Seth Troxler",
     "author": "Ben Price",
     "source": "commons",
@@ -508,5 +508,335 @@ window.PLURSKY_ARTIST_PHOTOS = {
     "sha256": "af35e1532903cd415a80c2fdb7c4eac307d90ac23213e3edda25a7c6fc1443e1",
     "changes": "Converted to WebP. Display may crop and overlay.",
     "url": "./artist-photos/underworld.webp"
+  },
+  "steve-aoki": {
+    "artist": "Steve Aoki",
+    "author": "Jalil Arfaoui",
+    "source": "commons",
+    "license": "CC-BY-SA-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Steve_Aoki_2011.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/steve-aoki.webp",
+    "sha256": "1eb79a7119ef186f3dffcc39e0394ffd95d2bb18d4c8f2a895d757e128d455dc",
+    "changes": "Converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/steve-aoki.webp"
+  },
+  "zedd": {
+    "artist": "Zedd",
+    "author": "Charito Yap",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zedd_at_Veld_2017_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/zedd.webp",
+    "sha256": "9d04a6fe8986c8b3a71c17e0e8dccef8167df53ea0205411353a34abb7b21368",
+    "changes": "Converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/zedd.webp"
+  },
+  "excision": {
+    "artist": "Excision",
+    "author": "swimfinfan from Chicago",
+    "source": "commons",
+    "license": "CC-BY-SA-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spring_Awakening_Music_Festival_6_16_2013_(9157130674)_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/excision.webp",
+    "sha256": "c645fe66b3acd747468008f554cad0c59a2bd6329a85a91a33a91c52b2b79dc8",
+    "changes": "Converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/excision.webp"
+  },
+  "dimitri-vegas-and-like-mike": {
+    "artist": "Dimitri Vegas & Like Mike",
+    "author": "Mixtribe",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dimitri_Vegas_&_Like_Mike_in_TomorrowWorld_2013.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/dimitri-vegas-and-like-mike.webp",
+    "sha256": "f135bbbf0812c3ab7dd2d79bf8e2939f159f1a898d72b4554648b78cc3db2280",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/dimitri-vegas-and-like-mike.webp"
+  },
+  "nina-kraviz": {
+    "artist": "Nina Kraviz",
+    "author": "Alec Luhn",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nina_Kraviz,_2012.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/nina-kraviz.webp",
+    "sha256": "b3b50a9855c64e381890bd16c66e51a3e5dbaa5f473da0a8fbc9a4d7766cc8f9",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/nina-kraviz.webp"
+  },
+  "richie-hawtin": {
+    "artist": "Richie Hawtin",
+    "author": "Sven Volkens",
+    "source": "commons",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Richie_Hawtin-SMS-2018-4.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/richie-hawtin.webp",
+    "sha256": "ecc3bc3bccfb4ee52b2799c654c555c6735b8a57bbba6c83342a615710c3138c",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/richie-hawtin.webp"
+  },
+  "alok": {
+    "artist": "Alok",
+    "author": "Renato Alves/Agência Brasília",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:19_03_2024_-_Aniversário_de_Brasília_terá_mega_show_do_DJ_Alok_na_Esplanada_dos_Ministérios_(53596862497)_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/alok.webp",
+    "sha256": "bc5c7de4cd1d00d63313fde056f89931f819e843ebff1920c7a90d5c97947752",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/alok.webp"
+  },
+  "galantis": {
+    "artist": "Galantis",
+    "author": "Shawn Ahmed",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Galantis_-_Coachella_2014.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/galantis.webp",
+    "sha256": "7451d2c196d52697f730b891705819182381a26ffdbd6ef0a32f19e59c11695f",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/galantis.webp"
+  },
+  "cascada": {
+    "artist": "Cascada",
+    "author": "9EkieraM1",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016-02-01_Cascada.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/cascada.webp",
+    "sha256": "e9a42903850e0f4289b339160fdc1c62246a2586c74d46c425a275d42319f8f5",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/cascada.webp"
+  },
+  "martin-garrix": {
+    "artist": "Martin Garrix",
+    "author": "Moiyeah",
+    "source": "commons",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Martin_Garrix_-_Superbloom_Festival_2023_-_DSC2689_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/martin-garrix.webp",
+    "sha256": "58bea8d3f214ca97a93de245028b29bb4235c00c26da630532bfb2fb536c3d84",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/martin-garrix.webp"
+  },
+  "hardwell": {
+    "artist": "Hardwell",
+    "author": "Rudgrcom",
+    "source": "commons",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hardwell_2018_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/hardwell.webp",
+    "sha256": "3036b8aefd7bb4a96c09eb1895acd61201c0b85729e9d98a8b85597fd3affc65",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/hardwell.webp"
+  },
+  "kaskade": {
+    "artist": "Kaskade",
+    "author": "Collision Conf",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kaskade_(34323227671)_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/kaskade.webp",
+    "sha256": "28a60775a3683831eb7daf861ddef80a6605765b9929400be8afd0ef398b8b4e",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/kaskade.webp"
+  },
+  "afrojack": {
+    "artist": "Afrojack",
+    "author": "Michael Grech",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Afrojack_close_up_2011.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/afrojack.webp",
+    "sha256": "5b6745f4badcfcb1f77d82f6224798271823c89c2cc727bed9817d3547af3238",
+    "changes": "Converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/afrojack.webp"
+  },
+  "alesso": {
+    "artist": "Alesso",
+    "author": "Fiesta Hotels & Resorts S.L.",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alesso_playing_live_at_Ushuaia_Ibiza.jpeg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/alesso.webp",
+    "sha256": "941bd2f3e6d2fa7d47daba09aed8a05f092f15b6199fde478e6ec23e53ca50d9",
+    "changes": "Converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/alesso.webp"
+  },
+  "alan-walker": {
+    "artist": "Alan Walker",
+    "author": "Maximilian Wild",
+    "source": "commons",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alan_Walker_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/alan-walker.webp",
+    "sha256": "3687e34e396cee5b1d5ad861c419c9e42b679dd423f3061dc708134610b880de",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/alan-walker.webp"
+  },
+  "alison-wonderland": {
+    "artist": "Alison Wonderland",
+    "author": "Eva Rinaldi",
+    "source": "commons",
+    "license": "CC-BY-SA-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alison_Wonderland_ARIA_2013_(2).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/alison-wonderland.webp",
+    "sha256": "48e6d440a109eed48277d4fdedf7c21ea6c6f01c035403927c7fe321314b5a6c",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/alison-wonderland.webp"
+  },
+  "deorro": {
+    "artist": "Deorro",
+    "author": "demxx",
+    "source": "commons",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Deorro_live.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/deorro.webp",
+    "sha256": "b93d1ec1ace043867a81c96f2bc8767e8d4703fec0e19b62fcd99c63edba74f5",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/deorro.webp"
+  },
+  "boys-noize": {
+    "artist": "Boys Noize",
+    "author": "Arne Müseler",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Boys_noize_juicy_beats_2011_5.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/boys-noize.webp",
+    "sha256": "d9a47813e7aa99f7f7d8eb68e47c22e88c35b859fc8880dd41405fc32651f338",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/boys-noize.webp"
+  },
+  "slander": {
+    "artist": "Slander",
+    "author": "Stefan Brending (2eight)",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0-DE",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016_Open_Beatz_-_Slander_-_by_2eight_-DSC_2989.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/slander.webp",
+    "sha256": "401308a7a27b70ed7d818a7eab0ec92893b5b031e406463c6dead32924f203af",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/slander.webp"
+  },
+  "marshmello": {
+    "artist": "Marshmello",
+    "author": "Stefan Brending (2eight)",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0-DE",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2016_Open_Beatz_-_Marshmello_-_by_2eight_-DSC_4448.jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/marshmello.webp",
+    "sha256": "47f31f0ba9a74ee3ad704295b651d65dacc7c88a911e9640bf812165bab515f3",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/marshmello.webp"
+  },
+  "dj-snake": {
+    "artist": "DJ Snake",
+    "author": "Arno Partissimo",
+    "source": "commons",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:DJS-Presskit05_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/dj-snake.webp",
+    "sha256": "9604f8b4ec4a0b57b119ceda110318568e6110b769e34f68f4bfce4f9e27f1ac",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/dj-snake.webp"
+  },
+  "lane-8": {
+    "artist": "Lane 8",
+    "author": "swimfinfan from Chicago",
+    "source": "commons",
+    "license": "CC-BY-SA-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Spring_Awakening_Music_Festival,_Chicago_6_13_2015_(20045356531)_(cropped).jpg",
+    "reviewedBy": "Plursky artwork research",
+    "reviewedAt": "2026-10-20T20:56:44Z",
+    "allowExport": false,
+    "asset": "artist-photos/lane-8.webp",
+    "sha256": "d7bad009ab4081269259867e07ccc3f864a442bb34d4d698618827a96341f3cf",
+    "changes": "Resized and converted to WebP. Display may crop and overlay.",
+    "url": "./artist-photos/lane-8.webp"
   }
 };

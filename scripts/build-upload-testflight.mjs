@@ -5,13 +5,13 @@
 //
 //   node scripts/build-upload-testflight.mjs              # ship origin/main
 //   node scripts/build-upload-testflight.mjs --dry-run    # build + archive only; no ASC call, no upload
-//   node scripts/build-upload-testflight.mjs --marketing 1.14 --wait-valid
+//   node scripts/build-upload-testflight.mjs --marketing 1.14
 //
 // Options:
 //   --ref <git-ref>      what to build (default origin/main, fetched first)
 //   --marketing <x.y>    force the marketing version (must beat every closed ASC train)
-//   --wait <min>         how long to wait for the build to appear in ASC (default 30)
-//   --wait-valid         keep polling until processing finishes (VALID / INVALID)
+//   --wait <min>         how long to wait for processing to reach VALID (default 60)
+//   --wait-valid         accepted for old callers; waiting for VALID is always on
 //   --keep               keep the temp worktree afterwards
 //   --dry-run            skip ASC and upload; version = project's, build = project's + 1
 //
@@ -34,6 +34,7 @@ import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
+import { awaitValidBuild, exportOptionsPlist, exportOptionsProblems, externalDistribution } from "./testflight-guard.mjs";
 
 const APP_ID = "6768888507";
 const ASC_API = "https://api.appstoreconnect.apple.com";
@@ -61,8 +62,7 @@ for (let i = 2; i < process.argv.length; i++) {
 const DRY = !!args["--dry-run"];
 const REF = args["--ref"] || "origin/main";
 const FORCE_MKT = args["--marketing"] || null;
-const WAIT_MIN = Number(args["--wait"] || "30");
-const WAIT_VALID = !!args["--wait-valid"];
+const WAIT_MIN = Number(args["--wait"] || "60");
 const KEEP = !!args["--keep"];
 // Finite and bounded: `Infinity` or `1e309` would make the poll deadline infinite.
 if (!(Number.isFinite(WAIT_MIN) && WAIT_MIN > 0 && WAIT_MIN <= 1440)) {
@@ -315,19 +315,19 @@ if (DRY) {
   process.exit(0);
 }
 
-// ── 5. cloud-signed export straight to App Store Connect ────────────────────
+// ── 5. internal-only guard, then cloud-signed export to App Store Connect ───
+// Read-only ASC check BEFORE anything uploads: an external beta group or a
+// public link means a build could reach people outside the team, so the run
+// stops (testflight-guard.mjs). No bypass flag.
+const groups = await ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`);
+const external = externalDistribution(groups);
+if (external.length) die(`internal-only guard: ${external.join("; ")} — not uploading`);
+say(`internal-only guard: ${groups.length} beta group(s), all internal, no public link`);
+
 const exportOpts = path.join(LOG_DIR, "ExportOptions.plist");
-fs.writeFileSync(exportOpts, `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-  <key>method</key><string>app-store-connect</string>
-  <key>destination</key><string>upload</string>
-  <key>teamID</key><string>${TEAM_ID}</string>
-  <key>signingStyle</key><string>automatic</string>
-  <key>uploadSymbols</key><true/>
-  <key>manageAppVersionAndBuildNumber</key><false/>
-</dict></plist>
-`);
+fs.writeFileSync(exportOpts, exportOptionsPlist(TEAM_ID));
+const optProblems = exportOptionsProblems(fs.readFileSync(exportOpts, "utf8"));
+if (optProblems.length) die(`internal-only guard: ${optProblems.join("; ")}`);
 const upLog = run("upload", "xcodebuild", [
   "-exportArchive", "-archivePath", ARCHIVE, "-exportOptionsPlist", exportOpts,
   "-exportPath", path.join(LOG_DIR, "export"), ...authFlags,
@@ -337,19 +337,21 @@ if (!/Upload succeeded|EXPORT SUCCEEDED/.test(upText)) die("xcodebuild exited 0 
 say("upload accepted by xcodebuild");
 
 // ── 6. confirm in App Store Connect ─────────────────────────────────────────
-const deadline = Date.now() + WAIT_MIN * 60_000;
-let state = null;
-while (Date.now() < deadline) {
-  const j = await asc(`/v1/builds?filter[app]=${APP_ID}&filter[version]=${build}` +
-    `&filter[preReleaseVersion.version]=${marketing}&fields[builds]=version,processingState,uploadedDate`);
-  state = j.data[0]?.attributes?.processingState || null;
-  if (state && (!WAIT_VALID || state !== "PROCESSING")) break;
-  say(state ? `ASC: ${state}, waiting…` : "ASC: not visible yet, waiting…");
-  await new Promise((r) => setTimeout(r, 30_000));
-}
-if (!state) die(`uploaded, but ${marketing} (${build}) did not appear in ASC within ${WAIT_MIN} min — check TestFlight`);
-if (WAIT_VALID && state === "PROCESSING") die(`${marketing} (${build}) is still PROCESSING after ${WAIT_MIN} min — --wait-valid never saw VALID`);
-if (state === "INVALID" || state === "FAILED") die(`ASC marked ${marketing} (${build}) ${state} — check the email from App Store Connect`);
+// Mandatory: wait for VALID before reading the build's groups (testflight-guard.mjs).
+const { state, groups: buildGroups, problems } = await awaitValidBuild({
+  poll: async () => {
+    const j = await asc(`/v1/builds?filter[app]=${APP_ID}&filter[version]=${build}` +
+      `&filter[preReleaseVersion.version]=${marketing}&fields[builds]=version,processingState,uploadedDate`);
+    return { state: j.data[0]?.attributes?.processingState || null, buildId: j.data[0]?.id || null };
+  },
+  readGroups: (id) => ascAll(`/v1/builds/${id}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`),
+  sleep: () => new Promise((r) => setTimeout(r, 30_000)),
+  now: () => Date.now(),
+  deadline: Date.now() + WAIT_MIN * 60_000,
+  onWait: (s) => say(s ? `ASC: ${s}, waiting for VALID…` : "ASC: not visible yet, waiting…"),
+});
+if (problems.length) die(`internal-only guard: ${marketing} (${build}) — ${problems.join("; ")} (waited up to ${WAIT_MIN} min)`);
+say(`internal-only guard: ${marketing} (${build}) is in ${buildGroups.length} group(s), none external`);
 
 console.log(`\n✓ Plursky ${marketing} (${build}) is in App Store Connect — ${state}`);
 console.log(`  source ${REF} @ ${sha} · web v${webVer}`);

@@ -486,7 +486,7 @@ try {
           if (t.clock) check(Math.abs(t.clock.px - (width === 390 ? 28 : 22)) <= 0.6 && t.clock.lines === 1 && !t.clock.clipped && /^Sora\b/.test(t.clock.family) && /\d.*→.*\d/.test(t.clock.text),
             `${tag}: the schedule range is ${t.clock.px}px, ${t.clock.lines} line(s)${t.clock.clipped ? ', clipped' : ''}, ${t.clock.family.split(',')[0]} "${t.clock.text}" (want one line at ${width === 390 ? 28 : 22}px, start → end)`);
           // The credit: author and licence visible under the hero.
-          const row = await o.page.evaluate((n) => (window.PLURSKY_ARTIST_PHOTOS || {})[n.toLowerCase()] || null, a.name);
+          const row = await o.page.evaluate((n) => (window.PLURSKY_ARTIST_PHOTOS || {})[window.PlurskyArtistKey.artistKey(n)] || null, a.name);
           check(!!t.credit && !!row && t.credit.includes(row.author) && /CC[0 ]|Public|Press/.test(t.credit), `${tag}: the credit reads "${t.credit}" (want ${row?.author} and the licence)`);
           const hf = await fontEvidence(o.page, HERO_FONT_SAMPLES);
           const wrong = hf.samples.filter(s => !s.absent && !s.ok);

@@ -4,7 +4,8 @@
 // them, review rows are flagged and never guessed, and the generated files
 // are current. No network.
 import { readFileSync } from 'node:fs';
-import { build, parseBilling, keyOf } from './build-artist-registry.mjs';
+import { build, parseBilling, keyOf, indexStages } from './build-artist-registry.mjs';
+import { undatedOwnPost } from './historical/lib.mjs';
 
 const problems = []; let checks = 0;
 const check = (ok, msg) => { checks++; if (!ok) problems.push(msg); };
@@ -15,6 +16,10 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
 {
   const p = parseBilling('Above & Beyond (Sunrise Set)');
   check(same(keys(p), ['above-and-beyond:performer']) && p.setTag === 'Sunrise Set' && !p.review, `set tag: "Above & Beyond (Sunrise Set)" → ${JSON.stringify(p)}`);
+  // EDC Orlando prints a bare "(SUNSET)" for the sunset slot: a set tag, so
+  // the act keeps one key with its untagged sets.
+  const ss = parseBilling('KASKADE (SUNSET)');
+  check(same(keys(ss), ['kaskade:performer']) && ss.setTag === 'SUNSET' && !ss.review, `set tag: "KASKADE (SUNSET)" → ${JSON.stringify(ss)}`);
   const t = parseBilling('Adventure Club (Throwback Set)');
   check(same(keys(t), ['adventure-club:performer']) && t.setTag === 'Throwback Set', `set tag: "Adventure Club (Throwback Set)" → ${JSON.stringify(t)}`);
   const amp = parseBilling('Walker & Royce');
@@ -25,6 +30,8 @@ const keys = p => p.performers.map(x => `${x.key}:${x.role}`);
   check(same(keys(b3b), ['josh-baker:b2b', 'kettama:b2b', 'prospa:b2b']), `b3b: ${JSON.stringify(b3b)}`);
   const unnamed = parseBilling('VNSSA B2B ????');
   check(same(keys(unnamed), ['vnssa:b2b']), `an unnamed partner never becomes an artist: ${JSON.stringify(unnamed)}`);
+  const present = parseBilling('Bicep present Chroma');
+  check(present.kind === 'project' && present.performers[0].key === 'chroma' && same(present.performers[0].parents, ['bicep']), `"present" is "presents": ${JSON.stringify(present)}`);
   const proj = parseBilling('Levity presents Lasership');
   check(proj.kind === 'project' && proj.performers[0].key === 'lasership' && same(proj.performers[0].parents, ['levity']), `presents: ${JSON.stringify(proj)}`);
   const people = parseBilling('Skull Machine (Black Tiger Sex Machine x Kai Wachi)');
@@ -81,6 +88,35 @@ const out = build();
   check(cl && cl.closing !== null && cl.date, `control: a timed live billing has no closing flag or date: ${JSON.stringify(cl)}`);
 }
 
+// ── Every archived set carries its source's date ─────────────────────────
+// An official_sources graphic has no Wayback timestamp: its own publish date
+// stands in (Escape 2024 read null until the graphic kind was handled).
+{
+  const ed = out.rows.filter(r => r.source === 'edition');
+  check(ed.length > 1000, `control: ${ed.length} archived rows read`);
+  // The one exception: a day whose only sources are the festival's own listed
+  // Instagram posts, which print no date (none is inferred from a shortcode),
+  // so the card shows none. Dreamstate 2023 and 2025 are that case; the
+  // predicate is the validator's own (undatedOwnPost), so the two cannot drift.
+  const undated = (id, day) => {
+    const caps = JSON.parse(readFileSync(new URL(`../data/historical/editions/${id}.json`, import.meta.url), 'utf8')).provenance.captures.filter(c => c.day === day);
+    return caps.length > 0 && caps.every(c => undatedOwnPost(id, c));
+  };
+  const missing = ed.filter(r => !r.published && !undated(r.festivalId, r.day));
+  check(missing.length === 0, `archived sets with no "as published" date: ${[...new Set(missing.map(r => r.festivalId))]}`);
+  {
+    const real = JSON.parse(readFileSync(new URL('../data/historical/editions/dreamstate-socal-2023.json', import.meta.url), 'utf8')).provenance.captures[0];
+    const other = { ...real, foundAt: 'https://www.instagram.com/p/UNRELATED_POST/', receipt: { ...real.receipt, url: 'https://www.instagram.com/p/UNRELATED_POST/embed/captioned/' }, rehostedBy: 'Another Instagram account' };
+    check(undatedOwnPost('dreamstate-socal-2023', real), 'control: the real undated Dreamstate 2023 post is accepted');
+    check(!undatedOwnPost('dreamstate-socal-2023', other), 'an unrelated post by another account is accepted as undated');
+    check(!undatedOwnPost('escape-halloween-2024', real), "another festival's edition borrows Dreamstate's undated post");
+  }
+  const ig = ed.filter(r => /^dreamstate-socal-202[35]$/.test(r.festivalId));
+  check(ig.length === 154 && ig.every(r => r.published == null), `Dreamstate 2023 + 2025 sets carry no inferred date: ${ig.length} rows, ${ig.filter(r => r.published).length} dated`);
+  const nk = ed.filter(r => r.festivalId === 'escape-halloween-2019' && /^nukid$/i.test(r.printed)).map(r => `${r.printed} ${r.published}`).sort();
+  check(nk.join() === 'NUKID 2019-10-21,NuKid 2020-08-17', `a set keeps its own printing and its own source's date (Escape 2019 NuKid): ${nk}`);
+}
+
 // ── M2: every review row is ruled or explicitly pending ───────────────────
 {
   const { review, billings, registry, sources, overrides: ov, counts } = out;
@@ -112,6 +148,55 @@ const out = build();
   check(threw, 'a merge override was silently ignored');
 }
 
+// ── M3: the app's photo key is the registry's key ─────────────────────────
+{
+  const { slug } = await import('./historical/lib.mjs');
+  const { artistKey } = globalThis.PlurskyArtistKey;
+  const ruledPrinted = new Set((out.overrides.billing || []).map(o => o.printed));
+  let solo = 0; const off = [];
+  for (const b of out.billings) {
+    if (b.performers.length !== 1 || b.performers[0].role !== 'performer' || ruledPrinted.has(b.printed)) continue;
+    solo++; if (artistKey(b.printed) !== b.performers[0].key) off.push(b.printed);
+  }
+  check(solo >= 3000, `control: only ${solo} solo billings compared`);
+  check(!off.length, `app photo key differs from the registry key for ${off.length}: ${off.slice(0, 3)}`);
+  // Outside the folded letters, the key is the historical library's slug.
+  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþð]/.test(t));
+  check(plain.every(t => keyOf(t) === slug(t)), 'keyOf drifted from the historical slug');
+}
+
+// ── M4: stage overlay ─────────────────────────────────────────────────────
+{
+  const { billings, stageErrors } = out;
+  const doc = JSON.parse(readFileSync('data/artists/stages.json', 'utf8'));
+  const lineages = Object.values(doc.brands).flatMap(b => b.lineages);
+  check(lineages.length >= 120, `control: only ${lineages.length} stage lineages read`);
+  check(!stageErrors.length, `stage overlay: ${stageErrors.slice(0, 3).join(' · ')}`);
+  const staged = billings.filter(b => b.stage != null);
+  check(staged.length >= 3000 && staged.every(b => b.stageLineage), `${staged.filter(b => !b.stageLineage).length} billings with a stage have no lineage`);
+  check(billings.filter(b => b.stage == null).every(b => b.stageLineage === null && b.mainStage === null), 'a billing without a stage carries a lineage or a main-stage claim');
+  check(!billings.some(b => b.stage === 'Schedule TBA'), 'the app placeholder "Schedule TBA" is read as a stage');
+  const lin = (fid, stage) => billings.find(b => b.festivalId === fid && b.stage === stage)?.stageLineage;
+  check(lin('governors-ball-2025', 'GOVBALLNYC') === lin('governors-ball-2026', 'GovBallNYC'), 'case variants of one stage name are two lineages');
+  check(lin('acl-2025', 'T-MOBILE') !== lin('acl-2026', 'T-Mobile Stage') && lin('hard-summer-2025', 'HARD Stage') !== lin('hard-summer-2026', 'HARD'), 'a rename was joined without a source');
+  // Main stage: only where an official page names it, per edition, and every
+  // other stage of that edition is false; every other edition makes no claim.
+  const claims = billings.filter(b => b.mainStage !== null);
+  check(claims.length && claims.every(b => b.festivalId === 'ultra-miami-2026'), `main-stage claims outside the sourced edition: ${[...new Set(claims.filter(b => b.festivalId !== 'ultra-miami-2026').map(b => b.festivalId))]}`);
+  check(claims.filter(b => b.mainStage).every(b => b.stage === 'ULTRA Main Stage') && claims.some(b => b.mainStage) && claims.some(b => b.mainStage === false), 'Ultra 2026 main stage is not exactly ULTRA Main Stage');
+  check(!billings.some(b => b.festivalBrand === 'edc-lv' && b.mainStage !== null), 'EDC LV carries a main-stage claim (no official page names one)');
+  // The rules reject what they should, on planted documents.
+  const L = (id, names, extra = {}) => ({ id, names: names.map(p => ({ printed: p, editions: ['x-2026'] })), joins: [], mainStage: null, ...extra });
+  const bad = brands => indexStages({ version: 1, brands }).errors.length > 0;
+  check(bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'])] } }), 'two names in one lineage without a join were accepted');
+  check(bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'], { joins: [{ from: 'A Stage', to: 'B Stage', why: 'w' }] })] } }), 'a join without a source was accepted');
+  check(!bad({ x: { lineages: [L('x:a', ['A Stage', 'B Stage'], { joins: [{ from: 'A Stage', to: 'B Stage', why: 'w', source: 'https://x', observedAt: '2026-10-06' }] })] } }), 'control: a sourced join was rejected');
+  check(bad({ x: { lineages: [L('x:a', ['A']), L('x:b', ['a'])] } }), 'one printed name in two lineages was accepted');
+  check(bad({ x: { lineages: [L('x:a', ['A'], { mainStage: { editions: ['x-2026'], source: 'https://x', observedAt: '2026-10-06' } })] } }), 'a main stage without its quote was accepted');
+  const ms = { editions: ['x-2026'], source: 'https://x', quote: 'q', observedAt: '2026-10-06' };
+  check(bad({ x: { lineages: [L('x:a', ['A'], { mainStage: ms }), L('x:b', ['B'], { mainStage: ms })] } }), 'two main stages in one edition were accepted');
+}
+
 // ── Overrides need a why and a source ─────────────────────────────────────
 {
   let threw = false;
@@ -125,6 +210,13 @@ const out = build();
   for (const [f, v] of Object.entries({ 'registry.json': out.registry, 'billings.json': out.billings, 'review.json': out.review, 'excluded.json': out.excluded })) {
     let disk = null; try { disk = readFileSync(`data/artists/${f}`, 'utf8'); } catch {}
     check(disk === text(v), `data/artists/${f} is stale — run: node scripts/build-artist-registry.mjs`);
+  }
+  // The slices the app ships are written compact. directory.json went stale
+  // on main (ecda893 moved III Points' RC95 close) while this checked only
+  // the four files above.
+  for (const [f, v] of Object.entries({ 'directory.json': out.directory, 'careers.json': out.careers })) {
+    let disk = null; try { disk = readFileSync(`data/artists/${f}`, 'utf8'); } catch {}
+    check(disk === JSON.stringify(v) + '\n', `data/artists/${f} is stale — run: node scripts/build-artist-registry.mjs`);
   }
 }
 

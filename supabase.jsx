@@ -102,6 +102,30 @@ create policy "anon insert reports" on crew_message_reports for insert
   with check (length(body_snapshot) <= 600 and reporter_pid <> sender_pid);
 -- No SELECT policy → anon clients cannot read other users' reports. Reports
 -- are accessed via the Supabase dashboard or a future admin view only.
+
+-- Paywall funnel events (SPEC-183 E1). Counts only: what was offered, on which
+-- surface, and what the person did. NO user id, NO device id, NO crew code,
+-- NO free text. Rows cannot be tied to a person or to each other.
+-- The client sends nothing until PAYWALL_EVENTS_ON is true (it ships false);
+-- turning it on also needs the privacy policy and App Privacy label updated.
+-- scripts/test-paywall-events.mjs checks the event list below against the
+-- client's PAYWALL_EVENT_NAMES, so the two can't drift.
+create table if not exists paywall_events (
+  id          bigint generated always as identity primary key,
+  event       text not null check (event in ('offer_shown','offer_accept','offer_decline','cancel_save')),
+  surface     text not null check (surface ~ '^[a-z0-9_]{1,40}$'),
+  product_id  text check (product_id is null or product_id ~ '^[a-z0-9_.]{1,80}$'),
+  offer_id    text check (offer_id is null or offer_id ~ '^[a-z0-9_.]{1,40}$'),
+  platform    text not null check (platform in ('ios','web')),
+  app_version text check (app_version is null or app_version ~ '^v[0-9]{1,5}$'),
+  created_at  timestamptz not null default now()
+);
+create index if not exists paywall_events_ts_idx on paywall_events (created_at desc);
+alter table paywall_events enable row level security;
+create policy "anon insert paywall events" on paywall_events
+  for insert to anon, authenticated with check (true);
+-- No SELECT, UPDATE or DELETE policy → clients can only append. Read the
+-- counts in the Supabase dashboard (SQL editor).
 ─────────────────────────────────────────────────────────────────── */
 
 const SUPABASE_URL  = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
@@ -110,6 +134,52 @@ const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 const _sb = (SUPABASE_URL && SUPABASE_ANON)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
   : null;
+
+// ── Paywall funnel events (SPEC-183 E1) ───────────────────────
+// OFF. Nothing is sent until this is true. Turning it on is Jake's call, and
+// it comes with a privacy-policy line and an App Privacy label update
+// ("Product Interaction", not linked to the user), because privacy.html
+// currently lists no interaction data. The table SQL is in the header above.
+const PAYWALL_EVENTS_ON = false;
+// Must equal the table's `event` check list (scripts/test-paywall-events.mjs).
+const PAYWALL_EVENT_NAMES = ["offer_shown", "offer_accept", "offer_decline", "cancel_save"];
+
+// "cloud backup" → "cloud_backup". Surfaces are our own feature labels; the
+// table only accepts [a-z0-9_]{1,40}, so anything else is dropped, not stored.
+function _paywallSlug(s) {
+  return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 40);
+}
+
+// Builds the row, or null when it must not be sent. Exposed for the gate.
+// Carries no user id, device id or free text by construction: only these
+// six keys can leave (event, surface, product_id, offer_id, platform,
+// app_version).
+function _paywallEventRow(event, { surface, productId, offerId } = {}) {
+  if (!PAYWALL_EVENT_NAMES.includes(event)) return null;
+  const s = _paywallSlug(surface);
+  if (!s) return null;
+  const id = v => (typeof v === "string" && /^[a-z0-9_.]{1,80}$/.test(v) ? v : null);
+  const ver = typeof APP_VERSION === "string" && /^v\d{1,5}$/.test(APP_VERSION) ? APP_VERSION : null;
+  const offer = id(offerId);
+  return {
+    event, surface: s,
+    product_id: id(productId),
+    offer_id: offer && offer.length <= 40 ? offer : null,
+    platform: window.Capacitor?.isNativePlatform?.() ? "ios" : "web",
+    app_version: ver,
+  };
+}
+
+// Fire and forget. Never throws, never blocks longer than `waitMs` (callers
+// that reload right after, like a successful purchase, pass a short wait).
+async function logPaywallEvent(event, fields, waitMs = 0) {
+  if (!PAYWALL_EVENTS_ON || !_sb) return false;
+  const row = _paywallEventRow(event, fields);
+  if (!row) return false;
+  const send = Promise.resolve().then(() => _sb.from("paywall_events").insert(row)).then(r => !r?.error, () => false);
+  if (!waitMs) { send.catch(() => {}); return true; }
+  return Promise.race([send, new Promise(res => setTimeout(() => res(false), waitMs))]);
+}
 
 // ── Auth ──────────────────────────────────────────────────────
 // Sign in with Spotify via Supabase OAuth — requires Spotify enabled in
@@ -231,6 +301,9 @@ async function sbSignInWithApple() {
           });
         } catch {}
       }
+      // Apple's first name becomes the local name only when none is set: a
+      // name typed before signing in stays.
+      plurskyClaimProviderName(who.givenName);
       return { error: null };
     } catch (e) {
       // User-cancellation should not surface as a scary error.
@@ -329,7 +402,9 @@ function sbOnAuthChange(cb) {
         }).then(r => r.ok ? r.json() : null).then(p => {
           if (!p) return;
           localStorage.setItem("spotify_profile", JSON.stringify({
-            id: p.id, name: p.display_name || p.id,
+            // No display name → no name. The raw Spotify id is not a name and
+            // must never reach the Me tab or a crew card.
+            id: p.id, name: p.display_name || null,
             email: p.email || null, image: p.images?.[0]?.url || null,
             country: p.country || null, product: p.product || null,
           }));
@@ -342,6 +417,8 @@ function sbOnAuthChange(cb) {
         const meta = session?.user?.user_metadata;
         const name = meta?.full_name || meta?.name;
         if (name) localStorage.setItem("plursky_apple_name", name);
+        // Web Apple sign-in: same rule as the native path, fill only when unset.
+        if (name && session?.user?.app_metadata?.provider === "apple") plurskyClaimProviderName(name);
       } catch {}
     }
   });
@@ -353,7 +430,7 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint"];
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {
@@ -562,7 +639,7 @@ async function sbExportUserData(state) {
     crewCode: safeLs("plursky_group_code"),
     settings: {
       reminderLeadMin: parseJson(safeLs("plursky_reminder_lead_min")),
-      batterySaver:    safeLs("plursky_battery_saver"),
+      batterySaver:    safeLs("battery_saver_mode"),
       pinger:          safeLs("plursky_pinger_v1"),
     },
     // Conflicts the user explicitly chose to keep both
@@ -673,16 +750,11 @@ function AccountCard({ state, setState }) {
           try {
             const cloudMoments = cloud.meta?.moments;
             if (cloudMoments && typeof cloudMoments === "object") {
-              const local = JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}");
-              let added = 0;
-              for (const night of Object.keys(cloudMoments)) {
-                const localArr = Array.isArray(local[night]) ? local[night] : [];
-                const haveIds = new Set(localArr.map(m => m && m.id));
-                const restored = (cloudMoments[night] || []).filter(m => m && m.id && !haveIds.has(m.id));
-                if (restored.length) { local[night] = [...localArr, ...restored]; added += restored.length; }
-              }
+              const { local, added } = _mergeCloudMoments(JSON.parse(localStorage.getItem("plursky_moments_v1") || "{}"), cloudMoments);
               if (added) {
                 localStorage.setItem("plursky_moments_v1", JSON.stringify(local));
+                // Build 39 scan diagnostic: this restore bypasses _writeMoments.
+                try { if (typeof _scanDiagLog === "function") _scanDiagLog("cloud-restore", local); } catch {}
                 try { window.dispatchEvent(new Event("plursky-moments-change")); } catch {}
               }
             }
@@ -809,7 +881,7 @@ function AccountCard({ state, setState }) {
       )}
 
       {configured && sbUser && (() => {
-        const sp = (() => { try { return JSON.parse(localStorage.getItem("spotify_profile") || "null"); } catch { return null; } })();
+        const sp = typeof getSpotifyProfileSync === "function" ? getSpotifyProfileSync() : null;
         const appleName = (() => { try { return localStorage.getItem("plursky_apple_name"); } catch { return null; } })();
         const isApple = sbUser.app_metadata?.provider === "apple";
         const avatar = sp?.image || null;
@@ -837,6 +909,11 @@ function AccountCard({ state, setState }) {
                   {displayName}
                 </div>
                 <div className="mono" style={{ fontSize: 8, letterSpacing: 1.1, color: "var(--acc-ink)", marginTop: 2 }}>● SIGNED IN{sp ? " · SPOTIFY LINKED" : isApple ? " · APPLE" : ""}</div>
+                {plurskyNameStaysYours(displayName) && (
+                  <div data-name-stays style={{ fontSize: 12, color: "var(--ink-2)", marginTop: 4 }}>
+                    Signed in — name stays yours: {plurskyLocalName()}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -983,9 +1060,9 @@ function AccountCard({ state, setState }) {
 // No DB table needed — presence is ephemeral, managed by Supabase
 // Realtime. Channel is scoped per CREW so a stranger running Plursky
 // can't see your location: only people who joined your crew code do.
-// Falls back to a festival-wide demo channel if no crew is set yet.
+// With no crew code there is no channel: the old festival-wide fallback sent
+// my stage to every Plursky user at the festival.
 
-const PRESENCE_FALLBACK = `presence-${FESTIVAL_CONFIG?.id || "festival"}`;
 // Crew identity hues, the one place a friend's colour comes from: their map
 // pin, chat avatar and (for you) the PING chip on Me. Six hues far apart on
 // the wheel and bright on the dark canvas. The dark theme folded every accent
@@ -999,10 +1076,16 @@ const PRESENCE_COLORS = [
 // Reuse the existing crew/group code (CrewCard already manages it under
 // plursky_group_code) so the presence channel is scoped to your crew —
 // only members see each other's stage, not the whole festival.
+// Scoped to the festival too: the same crew code at two festivals is two
+// channels, so a friend at Vegas kinetic never lands on Orlando's kinetic.
+function _crewFid() {
+  return (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id) || null;
+}
 function _presChannelName() {
   let code = null;
   try { code = localStorage.getItem("plursky_group_code") || null; } catch {}
-  return code ? `crew-${code}` : PRESENCE_FALLBACK;
+  const fid = _crewFid();
+  return code && fid ? `crew-${code}:${fid}` : null;
 }
 
 function _presColor(id) {
@@ -1059,27 +1142,36 @@ function _presNotify() {
   _presCbs.forEach(fn => { try { fn(s); } catch {} });
 }
 
+// What a crew "loc" carries: who, which stage, and when. Stage-level only
+// (15-feature program #2): no lat/lng goes out, and none is kept from a
+// crewmate on an older version that still sends it.
+function _crewLocPayload(l) {
+  return { pid: l.pid, name: l.name, fid: l.fid || null, stageId: l.stageId || null, color: l.color, pingCode: l.pingCode, ts: l.ts || Date.now() };
+}
 function _broadcastMyLoc() {
-  if (!_presCh || !_myLoc) return;
-  try { _presCh.send({ type: "broadcast", event: "loc", payload: { ..._myLoc, ts: Date.now() } }); } catch {}
+  if (!_presCh || !_myLoc || !_presenceGuard()) return;
+  try { _presCh.send({ type: "broadcast", event: "loc", payload: _crewLocPayload({ ..._myLoc, ts: Date.now() }) }); } catch {}
 }
 
-function sbPresenceJoin({ name, stageId, gps }) {
-  if (!_sb) return;
+function sbPresenceJoin({ name, stageId }) {
+  const chName = _presChannelName();
+  if (!_sb || !chName) return;
   _presMyId = _myPresId();
   const color = _presColor(_presMyId);
   if (_presCh) { _sb.removeChannel(_presCh); _presCh = null; }
 
   let pingCode;
   try { pingCode = localStorage.getItem("ping_code") || undefined; } catch {}
-  _myLoc = { pid: _presMyId, name, stageId, color, pingCode, gps, ts: Date.now() };
+  _myLoc = { pid: _presMyId, name, fid: _crewFid(), stageId, color, pingCode, ts: Date.now() };
+  _syncStageHeadcount();
+  _armShareExpiry();
 
-  _presCh = _sb.channel(_presChannelName(), { config: { broadcast: { self: false } } });
+  _presCh = _sb.channel(chName, { config: { broadcast: { self: false } } });
   _presCh
     // Someone shared their location → merge into the snapshot
     .on("broadcast", { event: "loc" }, ({ payload }) => {
-      if (!payload?.pid || payload.pid === _presMyId) return;
-      _presSnap[payload.pid] = payload;
+      if (!payload?.pid || payload.pid === _presMyId || payload.fid !== _crewFid()) return;
+      _presSnap[payload.pid] = _crewLocPayload(payload);
       _presNotify();
     })
     // A late joiner asked everyone to re-announce → re-broadcast mine
@@ -1092,7 +1184,9 @@ function sbPresenceJoin({ name, stageId, gps }) {
     // A crew member called a rally point → surface it to converge on
     .on("broadcast", { event: "rally" }, ({ payload }) => {
       if (!payload?.rallyId || payload.fromPid === _presMyId) return;
-      _activeRally = payload;
+      const r = _rallyPayload(payload);
+      if (!r || r.fid !== _crewFid()) return;
+      _activeRally = r;
       _rallyNotify();
     })
     // Rally caller cleared it → drop it everywhere
@@ -1112,43 +1206,85 @@ function sbPresenceJoin({ name, stageId, gps }) {
 }
 
 // Accepts either a plain stageId (legacy, kept so old call sites still work)
-// or a partial { stageId?, gps? } update merged onto the current state.
+// or a partial { stageId? } update merged onto the current state (stage only).
 async function sbPresenceUpdate(arg) {
   if (!_presCh || !_myLoc) return;
-  const patch = typeof arg === "string" ? { stageId: arg } : (arg || {});
+  // An explicit stageId: null withdraws my stage; only a missing key keeps it.
+  const patch = typeof arg === "string" ? { stageId: arg }
+    : (arg && Object.prototype.hasOwnProperty.call(arg, "stageId")) ? { stageId: arg.stageId || null }
+    : { stageId: _myLoc.stageId };
   _myLoc = { ..._myLoc, ...patch, ts: Date.now() };
+  _syncStageHeadcount();
   _presSnap[_presMyId] = { ..._myLoc };
   _broadcastMyLoc();
   _presNotify();
 }
 
-let _heartbeatId = null;
+let _heartbeatId = null, _heartbeatGen = 0;
+// 20s heartbeat: fire-and-forget broadcast has no history, so periodic
+// re-announce keeps everyone fresh and beats the 90s stale cutoff. On battery
+// saver or a weak signal it stretches to 60s, still inside that cutoff; each
+// beat re-reads the policy, so it eases off and recovers without a restart.
+const PRES_HEARTBEAT_MS = 20000, PRES_HEARTBEAT_SAVER_MS = 60000;
+function _presHeartbeatMs() {
+  return (typeof plurskyNetSaver === "function" && plurskyNetSaver()) ? PRES_HEARTBEAT_SAVER_MS : PRES_HEARTBEAT_MS;
+}
 function _startPresenceHeartbeat() {
-  if (_heartbeatId) clearInterval(_heartbeatId);
-  // 20s heartbeat: fire-and-forget broadcast has no history, so periodic
-  // re-announce keeps everyone fresh and beats the 90s stale cutoff.
-  _heartbeatId = setInterval(() => { _broadcastMyLoc(); _broadcastMyRally(); _presNotify(); }, 20000);
+  _stopPresenceHeartbeat();
+  const gen = _heartbeatGen;
+  const beat = () => {
+    _heartbeatId = null;
+    _broadcastMyLoc(); _broadcastMyRally(); _presNotify();
+    // A beat that ended the share (past expiresAt the guard leaves, which stops
+    // the heartbeat) or that a Stop overtook schedules nothing more.
+    if (gen === _heartbeatGen) _heartbeatId = setTimeout(beat, _presHeartbeatMs());
+  };
+  _heartbeatId = setTimeout(beat, _presHeartbeatMs());
 }
 function _stopPresenceHeartbeat() {
-  if (_heartbeatId) { clearInterval(_heartbeatId); _heartbeatId = null; }
+  _heartbeatGen++;
+  if (_heartbeatId) { clearTimeout(_heartbeatId); _heartbeatId = null; }
 }
 
 // Re-join on the channel matching the current crew code. Called after a
 // crew code change so a sharing user moves to the new crew's channel.
 function sbPresenceRefresh() {
   if (!_myLoc) return false;
-  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId, gps: _myLoc.gps });
+  sbPresenceJoin({ name: _myLoc.name, stageId: _myLoc.stageId });
   return true;
 }
 
+// The share's expiry lives here, not only in MapScreen: its timer is cleared
+// when Map unmounts, and the heartbeat, loc-req and rally kept broadcasting
+// past expiresAt from any other tab. Past expiresAt (or once the share is
+// stopped) this persists active:false, leaves the headcount and stops.
+let _shareExpiryId = null;
+function _presenceGuard() {
+  if (_crewShareActive()) return true;
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    if (s && s.active) localStorage.setItem("plursky_share_state", JSON.stringify({ ...s, active: false }));
+  } catch {}
+  sbPresenceLeave();
+  return false;
+}
+function _armShareExpiry() {
+  if (_shareExpiryId) { clearTimeout(_shareExpiryId); _shareExpiryId = null; }
+  let exp = null;
+  try { exp = (JSON.parse(localStorage.getItem("plursky_share_state") || "null") || {}).expiresAt || null; } catch {}
+  if (!exp) return;
+  _shareExpiryId = setTimeout(() => { _shareExpiryId = null; _presenceGuard(); }, Math.min(Math.max(0, exp - Date.now()) + 50, 2147483000));
+}
 function sbPresenceLeave() {
   _stopPresenceHeartbeat();
+  if (_shareExpiryId) { clearTimeout(_shareExpiryId); _shareExpiryId = null; }
   if (_presCh && _sb) {
     try { _presCh.send({ type: "broadcast", event: "loc-bye", payload: { pid: _presMyId } }); } catch {}
     _sb.removeChannel(_presCh); _presCh = null;
   }
   _presSnap = {};
   _myLoc = null;
+  leaveStagePresence();
   _myRally = null;
   _activeRally = null;
   _presMyId = null;
@@ -1161,26 +1297,36 @@ function sbOnPresenceChange(cb) {
 }
 
 // ── Rally point (shared meet-up) ─────────────────────────────
-// One crew member calls a rally; everyone else receives { x, y, label,
-// stageId, fromName } and can converge on it. Rides the same crew broadcast
+// One crew member calls a rally; everyone else receives { label, stageId,
+// fromName } and can converge on that stage. No x/y and no lat/lng: a rally
+// names a stage, never a spot (stage-only crew sharing). Rides the same crew broadcast
 // channel as location, so it's scoped to your crew. Re-broadcast on the
 // heartbeat + on loc-req (fire-and-forget has no history), and cleared
 // explicitly or when the caller leaves.
 function _broadcastMyRally() {
-  if (!_presCh || !_myRally) return;
-  try { _presCh.send({ type: "broadcast", event: "rally", payload: { ..._myRally, ts: Date.now() } }); } catch {}
+  if (!_presCh || !_myRally || !_presenceGuard()) return;
+  const p = _rallyPayload({ ..._myRally, ts: Date.now() });
+  if (!p) return;
+  try { _presCh.send({ type: "broadcast", event: "rally", payload: p }); } catch {}
+}
+// The only fields a rally carries, on send and on receive. A rally with no
+// stage is dropped.
+function _rallyPayload(r) {
+  if (!r || !r.rallyId || !r.stageId) return null;
+  return {
+    rallyId: String(r.rallyId), fid: r.fid || null, label: String(r.label || "").slice(0, 60),
+    stageId: String(r.stageId), fromPid: r.fromPid || null,
+    fromName: r.fromName || "Someone", ts: r.ts || Date.now(),
+  };
 }
 function _rallyNotify() { const r = _activeRally; _rallyCbs.forEach(fn => { try { fn(r); } catch {} }); }
 
 // Call a rally. Requires being joined to the crew channel (i.e. sharing).
-function sbBroadcastRally({ x, y, label, stageId, gps }) {
-  if (!_presCh) return false;
-  // gps: the pin's raw lat/lng when it was dropped on the real basemap. On a
-  // festival with no affine, x/y alone would put every rally on the centroid.
-  const g = gps && Number.isFinite(gps.lat) && Number.isFinite(gps.lng) && Math.abs(gps.lat) <= 90 && Math.abs(gps.lng) <= 180 ? { lat: gps.lat, lng: gps.lng } : null;
+function sbBroadcastRally({ label, stageId }) {
+  if (!_presCh || !stageId) return false;
   _myRally = {
     rallyId: (_presMyId || "me") + "_" + Date.now(),
-    x, y, label, stageId: stageId || null, ...(g ? { gps: g } : {}),
+    fid: _crewFid(), label, stageId,
     fromPid: _presMyId, fromName: (_myLoc && _myLoc.name) || "Someone",
   };
   _broadcastMyRally();
@@ -1211,6 +1357,53 @@ function sbFindByPingCode(code) {
   return null;
 }
 
+// ── Local name: what Plursky calls you, signed in or not ─────
+// One answer for every door: crew presence, the picks a crew sees, crew
+// recaps and the Me tab all read plurskyLocalName(). It is the name typed on
+// this phone (plursky_display_name, or user_name from the older Personalize
+// sheet). No account and no server are involved in setting it.
+// A sign-in fills it only while it is empty, so a typed name is never
+// replaced by an account's name (plurskyClaimProviderName).
+// Skipping the quick-name ask stores an EMPTY plursky_display_name: the key
+// then exists, so the ask is not shown again, but it still reads as "no name"
+// everywhere (every reader uses ||), and a later sign-in still fills it.
+function plurskyLocalName() {
+  try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || ""; }
+  catch { return ""; }
+}
+function plurskySetLocalName(value) {
+  const name = String(value || "").trim();
+  if (!name) return "";
+  try { localStorage.setItem("plursky_display_name", name); } catch {}
+  // Screens already mounted (Me, the crew cards) hold the name in state.
+  try { window.dispatchEvent(new CustomEvent("plursky:display-name", { detail: name })); } catch {}
+  return name;
+}
+function plurskyQuickNameDue() {
+  try { return !plurskyLocalName() && localStorage.getItem("plursky_display_name") === null; }
+  catch { return false; }
+}
+function plurskySkipQuickName() {
+  try { if (localStorage.getItem("plursky_display_name") === null) localStorage.setItem("plursky_display_name", ""); } catch {}
+}
+// A provider's name (Apple sends it once, on the first authorize) becomes the
+// local name only when there is none. Returns the name in force afterwards.
+function plurskyClaimProviderName(fullName) {
+  const current = plurskyLocalName();
+  if (current) return current;
+  const first = String(fullName || "").trim().split(/\s+/)[0] || "";
+  return first ? plurskySetLocalName(first) : "";
+}
+// The Me tab's account row says so when the account's name and the local
+// name differ, so a signed-in user knows which one their crew sees.
+function plurskyNameStaysYours(accountName) {
+  const local = plurskyLocalName();
+  const acct = String(accountName || "").trim();
+  if (!local || !acct) return false;
+  const first = acct.split(/\s+/)[0].toLowerCase();
+  return local.trim().toLowerCase() !== first && local.trim().toLowerCase() !== acct.toLowerCase();
+}
+
 // ── FriendsCard ───────────────────────────────────────────────
 // Replaces the hardcoded friends array in MeScreen.
 // Demo mode (no Supabase) shows mock data. Live mode uses presence.
@@ -1218,19 +1411,20 @@ function FriendsCard({ state, setState }) {
   const configured = !!(SUPABASE_URL && SUPABASE_ANON);
 
   const [sharing,   setSharing]   = React.useState(false);
-  const [myName,    setMyName]    = React.useState(() => {
-    try {
-      return localStorage.getItem("plursky_display_name")
-          || localStorage.getItem("user_name")
-          || "";
-    } catch { return ""; }
-  });
+  const [myName,    setMyName]    = React.useState(plurskyLocalName);
   const [stageId,   setStageId]   = React.useState(() => STAGES?.[0]?.id || "");
   const [editName,  setEditName]  = React.useState(false);
   const [nameInput, setNameInput] = React.useState("");
   const [snap,      setSnap]      = React.useState(() => sbGetPresSnap());
 
   React.useEffect(() => sbOnPresenceChange(setSnap), []);
+  // The quick-name ask (or Personalize) can set the name while this card is
+  // mounted on Me; follow it so Go live broadcasts that name.
+  React.useEffect(() => {
+    const onName = e => { if (e.detail) setMyName(e.detail); };
+    window.addEventListener("plursky:display-name", onName);
+    return () => window.removeEventListener("plursky:display-name", onName);
+  }, []);
 
   React.useEffect(() => {
     if (!myName && state.spotifyConnected) {
@@ -1250,7 +1444,7 @@ function FriendsCard({ state, setState }) {
     const v = val.trim().slice(0, 20);
     if (!v) return;
     setMyName(v);
-    try { localStorage.setItem("plursky_display_name", v); } catch {}
+    plurskySetLocalName(v);
     setEditName(false);
     setNameInput("");
   };
@@ -1667,8 +1861,10 @@ async function sbCrewSendMessage(code, pid, name, body) {
     // optimistic stub shows "⏱ QUEUED" instead of "FAILED · TAP TO RETRY"
     // (which would create a duplicate when the drainer eventually succeeds).
     sbOutboxAdd({ type: "crew_msg", code, pid, name, body: trimmed });
+    window.plurskyNoteNetQueued?.(true);
     return { error: null, queued: true };
   }
+  window.plurskyNoteNetQueued?.(false);
   return { error: null, queued: false };
 }
 
@@ -1752,6 +1948,9 @@ function sbGenerateShareToken() {
   }
 }
 
+// No caller since #2 (stage-only crew share): the live_shares table these
+// write to was never created in prod, so every write failed silently, and a
+// public link is out of scope. Kept only so an old share.html link fails soft.
 async function sbLiveShareStart({ token, pid, name, color, expiresAt, gps, stageId }) {
   if (!_sb || !token) return { error: "no_supabase_or_token" };
   const row = {
@@ -1888,6 +2087,169 @@ function _formatPollBody(id, question, options) {
 }
 function _formatVoteBody(pollId, option) {
   return `[VOTE ${pollId}] ${option}`;
+}
+
+// A meetup sent to the crew thread (15-feature program #3), on the poll
+// pattern: [MEETUP <festivalId> <stageId|-> <atMs>] <name> || <notes>.
+// Stage level only, never coordinates, and only on the user's tap ("Send to
+// crew" on a meetup). Name and notes lose "||" and line breaks so the body
+// always parses back to what was sent.
+const MEETUP_RE = /^\[MEETUP ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\] (.+?)(?: \|\| (.+))?$/;
+function _meetupText(s, max) { return String(s || "").replace(/\|\|/g, "|").replace(/\s+/g, " ").trim().slice(0, max); }
+// A meetup's stage must be one of its festival's stages. A non-active
+// festival's stages come from _DATA_SETS (bare STAGES is the active one).
+// true / false, or null when this build doesn't know the festival.
+function _meetupStageKnown(festivalId, stageId) {
+  if (!stageId) return true;
+  const ds = (typeof window !== "undefined" && window._DATA_SETS) ? window._DATA_SETS[festivalId] : null;
+  if (!ds) return null;
+  return (ds.stages || []).some(s => s.id === stageId);
+}
+// Only a meetup saved for this festival goes out under its id: a row from
+// another festival (or a legacy row with no festival) is never relabelled.
+function _formatMeetupBody(m, festivalId) {
+  const name = _meetupText(m && m.name, 60), notes = _meetupText(m && m.notes, 200);
+  const at = Math.round(Number(m && m.atTs));
+  if (!festivalId || !name || !Number.isFinite(at)) return null;
+  if (m.festivalId !== festivalId || _meetupStageKnown(festivalId, m.stageId) !== true) return null;
+  const body = `[MEETUP ${festivalId} ${(m && m.stageId) || "-"} ${at}] ${name}${notes ? ` || ${notes}` : ""}`;
+  return _parseMeetup(body) ? body : null;
+}
+function _parseMeetup(body) {
+  const m = MEETUP_RE.exec(body || "");
+  if (!m) return null;
+  // A stage the named festival doesn't have is not a meetup. A festival this
+  // build doesn't know still parses: its card names it and offers no Add.
+  if (m[2] !== "-" && _meetupStageKnown(m[1], m[2]) === false) return null;
+  return { festivalId: m[1], stageId: m[2] === "-" ? null : m[2], atTs: +m[3], name: m[4].trim(), notes: (m[5] || "").trim() };
+}
+// The same meetup, wherever it came from: one place, one time, one name.
+function meetupKey(m) { return `${(m && m.festivalId) || "-"}|${(m && m.stageId) || "-"}|${Math.round(Number(m && m.atTs))}|${_meetupText(m && m.name, 60).toLowerCase()}`; }
+
+// A find-me beacon: one tap in "Where are you?" tells the crew which stage
+// I'm at. Stage id and the tap time only, never coordinates and never free
+// text, and it reads as live for 15 minutes from the tap.
+const BEACON_TTL_MS = 15 * 60 * 1000;
+const BEACON_RE = /^\[BEACON ([a-z0-9][a-z0-9-]{1,63}) ([A-Za-z0-9_-]{1,40}) (\d{12,14})\]$/;
+function _formatBeaconBody(stageId, festivalId, ts) {
+  const at = Math.round(Number(ts));
+  if (!festivalId || !stageId || !Number.isFinite(at)) return null;
+  const body = `[BEACON ${festivalId} ${stageId} ${at}]`;
+  return _parseBeacon(body) ? body : null;
+}
+// As with meetups: a stage the named festival doesn't have is not a beacon
+// (a festival this build doesn't know still parses, and is only named).
+function _parseBeacon(body) {
+  const m = BEACON_RE.exec(body || "");
+  if (!m || _meetupStageKnown(m[1], m[2]) === false) return null;
+  return { festivalId: m[1], stageId: m[2], ts: +m[3] };
+}
+// Live for 15 minutes from the tap. A tap time ahead of the clock (a skewed
+// phone) counts from when this device first saw the beacon, held once per
+// message, so a beacon can never read live for longer (#375 review: anchoring
+// to each tick's "now" kept a future beacon live forever). The server's insert
+// time caps it too, so a reload (which forgets first sight) can't re-arm one.
+const _beaconSeen = new Map();
+function _beaconFirstSeen(key, now) {
+  if (!_beaconSeen.has(key)) _beaconSeen.set(key, now);
+  return _beaconSeen.get(key);
+}
+function beaconLiveUntil(b, now, seenAt = now, receivedAt) {
+  return Math.min(b.ts, seenAt, Number.isFinite(receivedAt) ? receivedAt : Infinity) + BEACON_TTL_MS;
+}
+
+function BeaconCard({ beacon, msgId, receivedAt, from, sentAt, onReply }) {
+  const [now, setNow] = React.useState(() => Date.now());
+  const [seenAt] = React.useState(() => _beaconFirstSeen(`${msgId}|${beacon.festivalId}|${beacon.stageId}|${beacon.ts}`, Date.now()));
+  const until = beaconLiveUntil(beacon, now, seenAt, receivedAt);
+  const live = now < until;
+  React.useEffect(() => {
+    if (!live) return;
+    const t = setInterval(() => setNow(Date.now()), 30000);
+    return () => clearInterval(t);
+  }, [live]);
+  const [reply, setReply] = React.useState(null);
+  const here = beacon.festivalId === FESTIVAL_CONFIG.id;
+  const stage = here ? STAGES.find(s => s.id === beacon.stageId) : null;
+  const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === beacon.festivalId) || {}).config || null);
+  // A festival this build doesn't know is named by its raw id, as meetups are (#374).
+  const where = stage ? stage.name : here ? null : ((other && (other.shortName || other.name)) || beacon.festivalId);
+  let ended = "";
+  try { ended = new Date(until).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); } catch {}
+  const mins = Math.max(1, Math.ceil((until - now) / 60000));
+  const send = async () => {
+    setReply("sending");
+    const r = await onReply(`On my way to ${stage.name}`);
+    setReply(r && r.queued ? "queued" : r && r.error ? "failed" : "sent");
+  };
+  return (
+    <div data-crew-beacon={live ? "live" : "ended"} style={{
+      background: "var(--paper-2)", borderRadius: 14, padding: "12px 14px", margin: "4px 0",
+      border: "1px solid var(--line)", borderLeft: stage && live ? `3px solid ${stage.color}` : "1px solid var(--line)",
+      opacity: live ? 1 : 0.7,
+    }}>
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+        FIND ME · {String(from).toUpperCase()} · {sentAt}
+      </div>
+      <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>
+        {where ? `${from} ${from === "You" ? "are" : "is"} at ${where}` : `${from} sent a find-me`}
+      </div>
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+        {live ? `Live for ${mins} more min` : `Ended ${ended}`}
+      </div>
+      {onReply && live && stage && (
+        <button type="button" data-crew-beacon-reply disabled={!!reply && reply !== "failed"} onClick={send} style={{
+          marginTop: 10, minHeight: 44, padding: "0 14px", borderRadius: 10,
+          background: reply && reply !== "failed" ? "transparent" : "var(--ink)",
+          color: reply && reply !== "failed" ? "var(--text-2)" : "var(--paper)",
+          border: reply && reply !== "failed" ? "1px solid var(--line-2)" : "none",
+          fontSize: 15, fontWeight: 600, cursor: reply && reply !== "failed" ? "default" : "pointer",
+        }}>{reply === "sending" ? "Sending…" : reply === "sent" ? "Sent: on my way" : reply === "queued" ? "Queued: sends when online" : reply === "failed" ? "Didn't send. Retry" : "On my way"}</button>
+      )}
+    </div>
+  );
+}
+
+// A crew meetup in the thread: where and when, and one tap to put it in my
+// own meetups (the list the Map's MEETUPS sheet shows). A meetup for another
+// festival names that festival and is not added: its stage ids belong there.
+function MeetupCard({ meet, from, sentAt }) {
+  const [mine, setMine] = React.useState(() => readMeetups().some(x => meetupKey(x) === meetupKey(meet)));
+  const here = meet.festivalId === FESTIVAL_CONFIG.id;
+  const stage = here && meet.stageId ? STAGES.find(s => s.id === meet.stageId) : null;
+  const other = here ? null : ((FESTIVALS_REGISTRY.find(f => f.config.id === meet.festivalId) || {}).config || null);
+  // A festival this build doesn't know is still named, by its raw id, so an elsewhere meetup never reads as local.
+  const forName = here ? null : ((other && (other.shortName || other.name)) || meet.festivalId);
+  const past = meet.atTs < Date.now() - 30 * 60 * 1000;
+  let when = "";
+  try { when = new Date(meet.atTs).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" }); } catch {}
+  const add = () => {
+    if (!readMeetups().some(x => meetupKey(x) === meetupKey(meet))) addMeetup({ festivalId: meet.festivalId, name: meet.name, stageId: meet.stageId, atTs: meet.atTs, notes: meet.notes });
+    window.plurskyHaptic?.("LIGHT");
+    setMine(true);
+  };
+  return (
+    <div data-crew-meetup style={{
+      background: "var(--paper-2)", borderRadius: 14, padding: "12px 14px", margin: "4px 0",
+      border: "1px solid var(--line)", borderLeft: stage ? `3px solid ${stage.color}` : "1px solid var(--line)",
+    }}>
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1.2, color: "var(--muted)", fontWeight: 700, marginBottom: 6 }}>
+        MEETUP · {String(from).toUpperCase()} · {sentAt}
+      </div>
+      <div className="serif" style={{ fontSize: 16, lineHeight: 1.25, overflowWrap: "anywhere" }}>{meet.name}</div>
+      <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>
+        {[stage && stage.name, when, forName && `for ${forName}`].filter(Boolean).join(" · ")}
+      </div>
+      {meet.notes && <div style={{ fontSize: 13, lineHeight: "18px", marginTop: 4, overflowWrap: "anywhere" }}>{meet.notes}</div>}
+      {here && !past && (
+        <button type="button" data-crew-meetup-add aria-pressed={mine} disabled={mine} onClick={add} style={{
+          marginTop: 10, minHeight: 44, padding: "0 14px", borderRadius: 10,
+          background: mine ? "transparent" : "var(--ink)", color: mine ? "var(--text-2)" : "var(--paper)",
+          border: mine ? "1px solid var(--line-2)" : "none", fontSize: 15, fontWeight: 600, cursor: mine ? "default" : "pointer",
+        }}>{mine ? "In your meetups" : "Add to my meetups"}</button>
+      )}
+    </div>
+  );
 }
 
 // Inline action sheet shown when the user taps "Report message" on a bubble.
@@ -2262,6 +2624,60 @@ function CrewChat({ code, myPid, myName }) {
     } catch { return ""; }
   };
 
+  // Report / block for anything another crewmate sent: plain bubbles,
+  // polls and meetup cards all carry free text, so all three get the menu.
+  const msgMenuButton = (m, menuOpen) => (
+    <button
+      onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
+      aria-label="Message options"
+      title="Report or block"
+      style={{
+        background: "transparent", border: "none", padding: "2px 6px",
+        borderRadius: 8, color: "var(--muted)", cursor: "pointer",
+        fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
+        minHeight: 18, lineHeight: 1,
+      }}
+    >⋯</button>
+  );
+  const msgMenu = (m) => (
+      <div style={{
+        marginTop: 6, padding: 6, borderRadius: 12,
+        background: "var(--paper)", border: "1px solid var(--line)",
+        boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
+        display: "flex", flexDirection: "column", gap: 2,
+        minWidth: 200, maxWidth: "85%",
+      }}>
+        <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
+          <span>Report message</span>
+        </button>
+        <button onClick={() => {
+          sbBlockPid(m.sender_pid);
+          setMenuMsgId(null);
+        }} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--ember-ink)", textAlign: "left",
+          fontFamily: "inherit", fontSize: 13,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
+          <span>Block {(m.sender_name || "Friend")}</span>
+        </button>
+        <button onClick={() => setMenuMsgId(null)} style={{
+          padding: "9px 12px", borderRadius: 8,
+          background: "transparent", border: "none", cursor: "pointer",
+          color: "var(--muted)", textAlign: "left",
+          fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
+        }}>CANCEL</button>
+      </div>
+  );
   return (
     <div style={{ marginTop: 10 }}>
       <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", marginBottom: 6, padding: "0 2px" }}>
@@ -2324,6 +2740,33 @@ function CrewChat({ code, myPid, myName }) {
           const parsedPoll = _parsePoll(m.body);
           const mine = m.sender_pid === myPid;
           const menuOpen = menuMsgId === m.id;
+          const beacon = _parseBeacon(m.body);
+          if (beacon) {
+            return (<React.Fragment key={m.id}>
+              {_promoCard}
+              <BeaconCard beacon={beacon} msgId={m.id} receivedAt={Date.parse(m.created_at)} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)}
+                onReply={mine ? null : (body) => sbCrewSendMessage(code, myPid, myName, body)} />
+              {!mine && (
+                <div data-crew-card-moderation="beacon" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
+            </React.Fragment>);
+          }
+          const meet = _parseMeetup(m.body);
+          if (meet) {
+            return (<React.Fragment key={m.id}>
+              {_promoCard}
+              <MeetupCard meet={meet} from={mine ? "You" : (m.sender_name || "Friend")} sentAt={fmtTime(m.created_at)} />
+              {!mine && (
+                <div data-crew-card-moderation="meetup" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
+            </React.Fragment>);
+          }
           if (parsedPoll) {
             const live = pollState[parsedPoll.id];
             const tally = {};
@@ -2400,6 +2843,12 @@ function CrewChat({ code, myPid, myName }) {
                   {totalVotes} {totalVotes === 1 ? "VOTE" : "VOTES"} · {fmtTime(m.created_at)}
                 </div>
               </div>
+              {!mine && (
+                <div data-crew-card-moderation="poll" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", marginTop: -2 }}>
+                  {msgMenuButton(m, menuOpen)}
+                  {menuOpen && msgMenu(m)}
+                </div>
+              )}
             </React.Fragment>);
           }
           return (<React.Fragment key={m.id}>
@@ -2437,59 +2886,9 @@ function CrewChat({ code, myPid, myName }) {
                     : m._queued ? "⏱ QUEUED · WILL SEND WHEN ONLINE"
                     : fmtTime(m.created_at)}
                 </span>
-                {!mine && !m._pending && !m._failed && !m._queued && (
-                  <button
-                    onClick={() => setMenuMsgId(menuOpen ? null : m.id)}
-                    aria-label="Message options"
-                    title="Report or block"
-                    style={{
-                      background: "transparent", border: "none", padding: "2px 6px",
-                      borderRadius: 8, color: "var(--muted)", cursor: "pointer",
-                      fontFamily: "inherit", fontSize: 12, letterSpacing: 1,
-                      minHeight: 18, lineHeight: 1,
-                    }}
-                  >⋯</button>
-                )}
+                {!mine && !m._pending && !m._failed && !m._queued && msgMenuButton(m, menuOpen)}
               </div>
-              {menuOpen && !mine && (
-                <div style={{
-                  marginTop: 6, padding: 6, borderRadius: 12,
-                  background: "var(--paper)", border: "1px solid var(--line)",
-                  boxShadow: "0 4px 14px rgba(var(--shade-rgb),0.05)",
-                  display: "flex", flexDirection: "column", gap: 2,
-                  minWidth: 200, maxWidth: "85%",
-                }}>
-                  <button onClick={() => { setReportMsg(m); setMenuMsgId(null); }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚩</span>
-                    <span>Report message</span>
-                  </button>
-                  <button onClick={() => {
-                    sbBlockPid(m.sender_pid);
-                    setMenuMsgId(null);
-                  }} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--ember-ink)", textAlign: "left",
-                    fontFamily: "inherit", fontSize: 13,
-                    display: "flex", alignItems: "center", gap: 8,
-                  }}>
-                    <span aria-hidden style={{ fontSize: 13 }}>🚫</span>
-                    <span>Block {(m.sender_name || "Friend")}</span>
-                  </button>
-                  <button onClick={() => setMenuMsgId(null)} style={{
-                    padding: "9px 12px", borderRadius: 8,
-                    background: "transparent", border: "none", cursor: "pointer",
-                    color: "var(--muted)", textAlign: "left",
-                    fontFamily: "Geist Mono, monospace", fontSize: 9.5, letterSpacing: 1.2, fontWeight: 700,
-                  }}>CANCEL</button>
-                </div>
-              )}
+              {menuOpen && !mine && msgMenu(m)}
             </div>
           </React.Fragment>);
         })}
@@ -2627,15 +3026,19 @@ function CrewCard({ state }) {
   const leaveRef = React.useRef(null);
 
   const myPid  = sbGetMyPresId();
-  const myName = (() => { try { return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "Me"; } catch { return "Me"; } })();
+  const myName = plurskyLocalName() || "Me";
 
-  const joinCrew = (c) => {
+  const joinCrew = async (c) => {
     const newCode = (c || code).toUpperCase().trim().slice(0, 6);
     if (newCode.length < 4) return;
+    // Joining shares your picks under your name: the first join is one of the
+    // places the quick-name ask appears (skippable; it never asks twice).
+    if (plurskyQuickNameDue() && window.plurskyAskQuickName) await window.plurskyAskQuickName();
+    const joinName = plurskyLocalName() || "Me";
     setCode(newCode);
     try { localStorage.setItem("plursky_group_code", newCode); } catch {}
     if (leaveRef.current) leaveRef.current();
-    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: myName, artistIds: savedInLineup(state.saved) }, setMembers);
+    leaveRef.current = sbGroupJoin(newCode, { pid: myPid, name: joinName, artistIds: savedInLineup(state.saved) }, setMembers);
     setJoined(true);
     setJoining(false);
     setCodeInput("");
@@ -2940,9 +3343,32 @@ function CrewCard({ state }) {
 let _stagePresChannel = null;
 let _currentPresenceStage = null;
 
+// Opt-in (15-feature program #2): the headcount only counts me while I'm
+// sharing my stage with my crew. It used to join anyone the live-mode GPS
+// placed near a stage, without asking.
+function _crewShareActive() {
+  try {
+    const s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
+    return !!(s && s.active && (!s.expiresAt || s.expiresAt > Date.now()));
+  } catch { return false; }
+}
+// The headcount follows the stage I declared to my crew, never a GPS fix:
+// sbPresenceJoin/Update call this, and sbPresenceLeave (Stop) leaves.
+function _syncStageHeadcount() {
+  const sid = _myLoc && _myLoc.stageId;
+  if (sid) joinStagePresence(sid); else leaveStagePresence();
+}
+// One channel per festival and crew: my crew's headcount, not everyone's.
+function _stagePresChannelName(stageId) {
+  const crew = _presChannelName();
+  return crew ? `stage:${crew}:${stageId}` : null;
+}
 function joinStagePresence(stageId) {
-  if (!_sb || !stageId) return;
-  if (_currentPresenceStage === stageId) return;
+  // Re-checked on every call: a share that stopped or expired never joins.
+  if (!_sb || !stageId || !_crewShareActive()) { leaveStagePresence(); return; }
+  const chName = _stagePresChannelName(stageId);
+  if (!chName) { leaveStagePresence(); return; }
+  if (_currentPresenceStage === chName) return;
 
   // Leave previous stage channel
   if (_stagePresChannel) {
@@ -2950,14 +3376,14 @@ function joinStagePresence(stageId) {
     _stagePresChannel = null;
   }
 
-  _currentPresenceStage = stageId;
+  _currentPresenceStage = chName;
   const deviceId = localStorage.getItem("plursky-device-id") || (() => {
     const id = `anon_${Math.random().toString(36).slice(2, 8)}`;
     try { localStorage.setItem("plursky-device-id", id); } catch {}
     return id;
   })();
 
-  _stagePresChannel = _sb.channel(`stage:${stageId}`, {
+  _stagePresChannel = _sb.channel(chName, {
     config: { presence: { key: deviceId } },
   });
 
@@ -3050,3 +3476,25 @@ Object.assign(window, {
   sbGenerateShareToken, sbLiveShareStart, sbLiveShareUpdate, sbLiveShareStop, sbLiveShareFetch,
   joinStagePresence, leaveStagePresence,
 });
+
+// Cloud → device restore of Memories metadata (lifted out of the sync
+// callback in build 39 so the multi-scan regression can run the real merge).
+// ADD-ONLY: a moment id the device already has is never replaced, so a stale
+// cloud copy cannot undo a scan's tags, a manual pick or an Unknown. Moments
+// the cloud has and the device does not (a wiped or new phone) come back.
+function _mergeCloudMoments(localIn, cloudMoments) {
+  const local = { ...(localIn && typeof localIn === "object" ? localIn : {}) };
+  let added = 0;
+  // Ids across EVERY night: a moment the device re-filed to another night
+  // (retag, a later scan) must not come back from the cloud's older copy as
+  // a duplicate in its old night. The per-night check before build 39 let it.
+  const haveIds = new Set();
+  for (const arr of Object.values(local)) if (Array.isArray(arr)) for (const m of arr) if (m && m.id) haveIds.add(m.id);
+  for (const night of Object.keys(cloudMoments || {})) {
+    const localArr = Array.isArray(local[night]) ? local[night] : [];
+    const restored = (Array.isArray(cloudMoments[night]) ? cloudMoments[night] : []).filter(m => m && m.id && !haveIds.has(m.id));
+    for (const m of restored) haveIds.add(m.id);
+    if (restored.length) { local[night] = [...localArr, ...restored]; added += restored.length; }
+  }
+  return { local, added };
+}

@@ -331,6 +331,15 @@ async function fetchLastfm(artistName, lineupGenre) {
   } catch { return null; }
 }
 
+// L4 artist-page pops. Genre chips speak the landing state chip's language
+// (Item 6 .landing-chip-accent): no fill, accent text, accent outline. A stat
+// card keeps its own elevation and gains a thin accent rule along the bottom.
+const _ACCENT_CHIP = {
+  fontSize: 9, padding: "4px 10px", borderRadius: 999, fontWeight: 600,
+  background: "transparent", border: "1.5px solid var(--acc)", color: "var(--acc-ink)",
+};
+const _STAT_CARD_SHADOW = "var(--e1), inset 0 -2px 0 var(--acc-55)";
+
 function _fmtCount(n) {
   if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
   if (n >= 1_000)     return `${Math.round(n / 1_000)}K`;
@@ -666,9 +675,16 @@ function YourPhotosStrip({ artistId, night, accent, onOpen, artistObj, onOpenMap
     // The set card at the top of the page carries the stage and time, so
     // the empty state is one quiet line that says the feature exists.
     return (
-      <div data-artist-moments-empty style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18, padding: "10px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
-        <span className="duo-sect" style={{ flexShrink: 0 }}>Your moments</span>
-        <span style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>Photos and clips from this set will show here.</span>
+      // L4: an invitation, never fake content. A dashed accent outline and
+      // the accent camera say "this fills up"; no placeholder thumbnails.
+      <div data-artist-moments-empty style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18, padding: "10px 14px", border: "1.5px dashed var(--acc-55)", borderRadius: "var(--rad-md)" }}>
+        <svg data-artist-moments-glyph aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, color: "var(--acc-ink)" }}>
+          <path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>
+        </svg>
+        <div style={{ minWidth: 0 }}>
+          <div className="duo-sect">Your moments</div>
+          <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)", marginTop: 2 }}>Photos and clips from this set will show here.</div>
+        </div>
       </div>
     );
   }
@@ -912,15 +928,19 @@ function ArtistScreen({ state, setState }) {
   // activeName, so the note still shows and other screens still hit the cache.
   const lookupName = _lookupName(activeName);
 
-  // The cached entry for the tab on screen, or null when it is missing,
-  // expired (Spotify, 24 h) or of unknown source — see getArtistImage.
-  // expiry ticks when a Spotify entry turns 24 h while this page is open: the
-  // cached record is re-read and the fetched Spotify URL is let go.
-  const artistImageExpiry = useArtistImageExpiry();
-  const heroCacheRec = React.useMemo(() => getArtistImage(activeName), [a.id, activeName, artistImageExpiry]);
-  // On-demand photo: use cached image or fetch from Spotify search
-  const [fetchedPhoto, setFetchedPhoto] = React.useState(null);
-  React.useEffect(() => { if (artistImageExpiry) setFetchedPhoto(null); }, [artistImageExpiry]);
+  // The hero photo, through the artist photo machine (chrome.jsx): the cached
+  // entry for the tab on screen (heroPhoto.rec, null when it is missing,
+  // expired or of unknown source — see getArtistImage), else this screen's own
+  // Spotify search, reported below. The machine re-reads on a write for this
+  // artist (f24: the strip's photo queue can cache it first) and lets an
+  // expired Spotify URL go (24 h); the hero does not search again on expiry.
+  // Keyed on the act and the B2B tab, as the search effect is.
+  const heroPhotoMachine = useArtistPhotoMachine(activeName, {
+    key: a.id + "|" + activeName,
+    canFetch: reason => reason === "mount"
+      && !!(localStorage.getItem("spotify_token") || localStorage.getItem("spotify_refresh_token")),
+  });
+  const heroCacheRec = heroPhotoMachine.rec;
   // heroPhoto is computed further down, with the rest of the hero's state.
   const saved = state.saved.includes(a.id);
   const [saveFlash, setSaveFlash] = React.useState(false);
@@ -967,8 +987,8 @@ function ArtistScreen({ state, setState }) {
   // connection sees the gradient: TheAudioDB and the iTunes Search API are not
   // sources (lane ruling 2026-09-24, on their terms), and api.deezer.com sends
   // no access-control-allow-origin (measured 2026-09-05; removed in v254).
-  const heroPhoto = heroCacheRec?.url || fetchedPhoto || null;
-  const heroSource = heroCacheRec ? heroCacheRec.source : fetchedPhoto ? "spotify" : null;
+  const heroPhoto = heroPhotoMachine.url;
+  const heroSource = heroPhoto ? heroPhotoMachine.source : null;
   const [slError,   setSlError]   = React.useState(false);
   const [ytError,   setYtError]   = React.useState(false);
   const [edcTracklist, setEdcTracklist] = React.useState(undefined);
@@ -999,7 +1019,6 @@ function ArtistScreen({ state, setState }) {
   }, [a.id]);
 
   React.useEffect(() => {
-    setFetchedPhoto(null);
     // Load stats from cache immediately (no network needed)
     let hasCachedStats = false;
     try {
@@ -1015,7 +1034,9 @@ function ArtistScreen({ state, setState }) {
     if (!localStorage.getItem("spotify_token") && !localStorage.getItem("spotify_refresh_token")) return;
     const ctrl = new AbortController();
     getValidToken().then(token => {
-    if (!token) return;
+    // The hero machine must not wait in loading: no token means no lookup
+    // could be made (none); a failed request below is offline.
+    if (!token) { if (!heroCacheRec) heroPhotoMachine.noLookup(); return; }
     fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(lookupName)}&type=artist&limit=3`, {
       headers: { Authorization: "Bearer " + token }, signal: ctrl.signal,
     }).then(r => r.ok ? r.json() : null).then(async d => {
@@ -1023,14 +1044,12 @@ function ArtistScreen({ state, setState }) {
       const items = d?.artists?.items || [];
       const match = items.find(x => x.name.toLowerCase() === ln)
         || items.find(x => ln.includes(x.name.toLowerCase())) || items[0];
-      if (!match) return;
+      if (!match) { if (!heroCacheRec) heroPhotoMachine.report(null); return; }
       // Photo
       if (!heroCacheRec) {
-        const img = match?.images?.[0]?.url;
-        if (img) {
-          setFetchedPhoto(img);
-          putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
-        }
+        const img = match?.images?.[0]?.url || null;
+        heroPhotoMachine.report(img);
+        if (img) putArtistImage(activeName, img, "spotify", { spotifyId: match.id });
       }
       // Stats + top track names (for setlist highlighting)
       let topTrackNames = [];
@@ -1060,7 +1079,7 @@ function ArtistScreen({ state, setState }) {
         cache[ln] = stats;
         localStorage.setItem("spotify_artist_data_v1", JSON.stringify(cache));
       } catch {}
-    }).catch(() => {});
+    }).catch(e => { if (e?.name !== "AbortError") heroPhotoMachine.fail(); });
     }); // getValidToken
     return () => ctrl.abort();
   }, [a.id, activeB2B]);
@@ -1272,7 +1291,7 @@ function ArtistScreen({ state, setState }) {
           </div>
         </div>
       ) : (
-      <div className="media-scope" data-artist-hero={heroPhoto ? "photo" : "gradient"} style={{
+      <div className="media-scope" data-artist-hero={heroPhoto ? "photo" : "gradient"} data-photo-status={heroPhotoMachine.status} style={{
         height: 300, position: "relative",
         overflow: "hidden",
         color: "var(--ink)",
@@ -1366,6 +1385,9 @@ function ArtistScreen({ state, setState }) {
       )}
 
       <div style={{ padding: "18px 20px 24px" }}>
+        {/* The career arc opens the body (B6 spec §4): this act's history on
+            festival lineups, from the career slice (artists.jsx). */}
+        {typeof ArtistCareer === "function" && <ArtistCareer part="arc" festivalId={FESTIVAL_CONFIG.id} artistId={a.id} name={activeName} setState={setState} />}
         {/* Stage & time: the board's set card. Lifted while the set is on,
             with minutes left and progress (Today's math); otherwise the day
             and the clock. A billed act no official schedule has placed
@@ -1443,6 +1465,9 @@ function ArtistScreen({ state, setState }) {
             </section>
           );
         })()}
+
+        {/* The rest of the career: coming up, year by year, partners, shared lineups. */}
+        {typeof ArtistCareer === "function" && <ArtistCareer part="detail" festivalId={FESTIVAL_CONFIG.id} artistId={a.id} name={activeName} setState={setState} />}
 
         {/* Glance stats — only render cells with values; hide row entirely if none */}
         {(() => {
@@ -1542,22 +1567,27 @@ function ArtistScreen({ state, setState }) {
             fetch); falls back to the search-by-artist URL otherwise. */}
         <div style={{ display: "flex", gap: 6, marginBottom: 18, flexWrap: "wrap" }}>
           {[
-            { label: "Spotify", url: spotifyStats?.spotifyId
+            { label: "Spotify", dot: "var(--spotify)", url: spotifyStats?.spotifyId
                 ? `https://open.spotify.com/artist/${spotifyStats.spotifyId}`
                 : `https://open.spotify.com/search/${encodeURIComponent(lookupName)}/artists` },
-            { label: "SoundCloud", url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}` },
-            { label: "RA", url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}` },
-            { label: "Instagram", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g,"").toLowerCase())}` },
-            { label: "𝕏", url: `https://x.com/search?q=${encodeURIComponent(lookupName)}` },
-          ].map(({ label, url }) => (
-            <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{
-              display: "inline-flex", alignItems: "center", minHeight: 36,
+            { label: "SoundCloud", dot: "var(--brand-soundcloud)", url: `https://soundcloud.com/search?q=${encodeURIComponent(lookupName)}` },
+            { label: "RA", dot: "var(--brand-ra)", url: `https://ra.co/search?query=${encodeURIComponent(lookupName)}` },
+            { label: "Instagram", dot: "var(--brand-instagram)", url: `https://www.instagram.com/explore/tags/${encodeURIComponent(lookupName.replace(/\s+/g,"").toLowerCase())}` },
+            { label: "𝕏", dot: "var(--ink)", url: `https://x.com/search?q=${encodeURIComponent(lookupName)}` },
+          ].map(({ label, dot, url }) => (
+            <a key={label} data-artist-link={label} href={url} target="_blank" rel="noopener noreferrer" style={{
+              display: "inline-flex", alignItems: "center", gap: 7, minHeight: 36,
               fontSize: 13, lineHeight: "18px", fontWeight: 600,
               padding: "0 12px", borderRadius: 999,
               background: "var(--paper-2)", border: "1px solid var(--line-2)",
               color: "var(--ink)", textDecoration: "none",
               transition: "background 0.15s",
-            }}>{label} ↗</a>
+            }}>
+              {/* L4: a brand-colour dot names the service at a glance;
+                  identification only, the pill itself is unchanged. */}
+              <span data-brand-dot aria-hidden="true" style={{ width: 8, height: 8, borderRadius: "50%", background: dot, flexShrink: 0 }} />
+              {label} ↗
+            </a>
           ))}
         </div>
 
@@ -1659,7 +1689,7 @@ function ArtistScreen({ state, setState }) {
               )}
               {spotifyStats.followers > 0 && (
                 <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                  <span className="duo-headline" style={{ letterSpacing: -0.5 }}>
+                  <span data-artist-stat className="duo-headline" style={{ letterSpacing: -0.5, color: "var(--acc-ink)" }}>
                     {_fmtCount(spotifyStats.followers)}
                   </span>
                   <span className="mono" style={{ fontSize: 8, letterSpacing: 1.3, color: "var(--ink-2)" }}>SPOTIFY FOLLOWERS</span>
@@ -1669,11 +1699,7 @@ function ArtistScreen({ state, setState }) {
             {spotifyStats.genres?.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {spotifyStats.genres.slice(0, 5).map(g => (
-                  <span key={g} className="mono" style={{
-                    fontSize: 9, letterSpacing: 1, padding: "4px 10px",
-                    background: `rgba(var(--signal-rgb),0.09)`, border: `1px solid rgba(var(--signal-rgb),0.22)`,
-                    borderRadius: 999, color: "var(--signal-ink)", fontWeight: 600,
-                  }}>{g.toUpperCase()}</span>
+                  <span key={g} data-artist-chip className="mono" style={{ ..._ACCENT_CHIP, letterSpacing: 1 }}>{g.toUpperCase()}</span>
                 ))}
               </div>
             )}
@@ -1709,11 +1735,11 @@ function ArtistScreen({ state, setState }) {
                 display: "flex", gap: 10, marginBottom: 12,
               }}>
                 {lfm.listeners > 0 && (
-                  <div style={{
-                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  <div data-artist-stat-card style={{
+                    flex: 1, background: "var(--s2)", boxShadow: _STAT_CARD_SHADOW, border: "none",
                     borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="duo-clock" style={{ fontSize: 26 }}>
+                    <div data-artist-stat className="duo-clock" style={{ fontSize: 26, color: "var(--acc-ink)" }}>
                       {_fmtCount(lfm.listeners)}
                     </div>
                     <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
@@ -1722,11 +1748,11 @@ function ArtistScreen({ state, setState }) {
                   </div>
                 )}
                 {lfm.playcount > 0 && (
-                  <div style={{
-                    flex: 1, background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
+                  <div data-artist-stat-card style={{
+                    flex: 1, background: "var(--s2)", boxShadow: _STAT_CARD_SHADOW, border: "none",
                     borderRadius: "var(--rad-md)", padding: "10px 14px",
                   }}>
-                    <div className="duo-clock" style={{ fontSize: 26 }}>
+                    <div data-artist-stat className="duo-clock" style={{ fontSize: 26, color: "var(--acc-ink)" }}>
                       {_fmtCount(lfm.playcount)}
                     </div>
                     <div className="duo-label duo-ink3" style={{ marginTop: 6 }}>
@@ -1741,14 +1767,7 @@ function ArtistScreen({ state, setState }) {
             {lfm.tags.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
                 {lfm.tags.map(tag => (
-                  <span key={tag} className="mono" style={{
-                    fontSize: 9, letterSpacing: 1.1,
-                    padding: "4px 10px",
-                    background: "var(--paper-2)",
-                    border: "1px solid var(--line-2)",
-                    borderRadius: 999,
-                    color: "var(--ink-2)",
-                  }}>{tag.toUpperCase()}</span>
+                  <span key={tag} data-artist-chip className="mono" style={{ ..._ACCENT_CHIP, letterSpacing: 1.1 }}>{tag.toUpperCase()}</span>
                 ))}
               </div>
             )}
@@ -2110,7 +2129,7 @@ function ArtistScreen({ state, setState }) {
                 background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
-                <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
+                <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>🎤</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {tmError ? "COULDN'T LOAD SHOWS" : "NO UPCOMING SHOWS FOUND"}
                 </div>
@@ -2206,7 +2225,7 @@ function ArtistScreen({ state, setState }) {
                 background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
                 textAlign: "center",
               }}>
-                <div style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>♫</div>
+                <div aria-hidden="true" style={{ fontSize: 20, color: "var(--ink-2)", marginBottom: 4 }}>♫</div>
                 <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
                   {slError ? "COULDN'T LOAD SETLISTS" : "NO DOCUMENTED SETLISTS"}
                 </div>

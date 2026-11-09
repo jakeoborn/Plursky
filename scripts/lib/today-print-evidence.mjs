@@ -65,7 +65,7 @@ export const faceEvidence = (page) => page.evaluate(() => {
   const np = document.querySelector('[data-night-print]') || document;
   const vis = el => el.getClientRects().length > 0;
   const faces = [...np.querySelectorAll('.duo-av[data-face]')].filter(vis).map(el => {
-    const img = el.querySelector('img'); const name = el.dataset.face; const row = ledger[name.trim().toLowerCase()] || null;
+    const img = el.querySelector('img'); const name = el.dataset.face; const row = ledger[window.PlurskyArtistKey.artistKey(name)] || null;
     const r = el.getBoundingClientRect(); const ir = img && img.getBoundingClientRect();
     const box = q => [Math.round(q.left), Math.round(q.top), Math.round(q.width), Math.round(q.height)];
     return { name, source: el.dataset.photoSource || '', src: img ? img.getAttribute('src') : null, rect: box(r), imgRect: ir ? box(ir) : null,
@@ -93,7 +93,7 @@ export const faceEvidence = (page) => page.evaluate(() => {
 export const ledgerActs = (page) => page.evaluate(() => {
   const sets = typeof _DATA_SETS !== 'undefined' ? _DATA_SETS : {};
   const led = window.PLURSKY_ARTIST_PHOTOS || {};
-  const key = (n) => String(n || '').trim().toLowerCase();
+  const key = (n) => window.PlurskyArtistKey.artistKey(String(n || ''));   // the app's own lookup key (data/artist-key.js)
   // A gated festival refuses the artist deep link, so its hero is unreachable for a user too.
   const reg = window.FESTIVALS_REGISTRY || [];
   const reachable = (fid) => { const e = reg.find(x => x && x.config && x.config.id === fid); return !!e && typeof festivalCanBeActive === 'function' && festivalCanBeActive(e); };

@@ -182,19 +182,6 @@ function persistMyStatus(stageId) {
     }));
   } catch {}
 }
-function broadcastMyLocation(stageId) {
-  var stage = STAGES.find(s => s.id === stageId);
-  if (!stage) return;
-  var msg = `I'm at ${stage.name} 👋 come through`;
-  FRIENDS.forEach(f => {
-    saveThread(f.id, [...loadThread(f.id), {
-      from: "me",
-      text: msg,
-      ts: Date.now(),
-      status: "sent"
-    }]);
-  });
-}
 var HYD_DRIFT_PER_MIN = 60 / 90;
 var HYD_DRIFT_CAP_MIN = 6 * 60;
 function readWellness() {
@@ -501,6 +488,9 @@ function _solveMapAffine(cfg, stages) {
 }
 var MAP_AFFINE = _solveMapAffine();
 var MAP_REGISTRATION_TOL_M = 25;
+function _mapArtIsOtherEdition(cfg) {
+  return !!(cfg && cfg.mapImage && cfg.mapArtYear != null && cfg.year != null && cfg.mapArtYear !== cfg.year);
+}
 var PLACED_STAGES = (typeof STAGES !== "undefined" ? STAGES : []).filter(s => typeof s.x === "number" && typeof s.y === "number");
 function _gpsFromAffine(affine, cfg, x, y) {
   if (!affine) return null;
@@ -609,6 +599,9 @@ function _realMapPanLimit(cfg, lib) {
   var fb = v.festivalBounds;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
+function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
+  return !!liveOnSite && !hasAffine && !onRealMap;
+}
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return {
     x: 50,
@@ -640,6 +633,7 @@ function writeMeetups(arr) {
   } catch {}
 }
 function addMeetup({
+  festivalId,
   name,
   stageId,
   atTs,
@@ -648,6 +642,7 @@ function addMeetup({
   var list = readMeetups();
   list.push({
     id: Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+    festivalId: festivalId || FESTIVAL_CONFIG.id,
     name: (name || "").slice(0, 60),
     stageId: stageId || null,
     atTs: Number(atTs) || Date.now(),
@@ -665,9 +660,10 @@ function removeMeetup(id) {
 }
 function upcomingMeetups() {
   var cutoff = Date.now() - 30 * 60 * 1000;
-  var list = readMeetups().filter(m => m.atTs > cutoff);
-  if (list.length !== readMeetups().length) writeMeetups(list);
-  return list;
+  var all = readMeetups();
+  var live = all.filter(m => m.atTs > cutoff);
+  if (live.length !== all.length) writeMeetups(live);
+  return live.filter(m => m.festivalId === FESTIVAL_CONFIG.id);
 }
 function formatLastSeen(ts) {
   if (!ts) return {
@@ -748,7 +744,12 @@ function useGeolocation(enabled) {
       });
       setStatus("live");
       try {
-        var hit = window.recordAttendanceFromGps?.(lat, lng);
+        var hit = window.recordAttendanceFromGps?.(lat, lng, {
+          accuracy: p.coords.accuracy,
+          timestamp: p.timestamp,
+          atMs: lastTs,
+          saver: bsActive
+        });
         if (hit && typeof window.plurskyToast === "function") {
           var a = (window.ARTISTS || []).find(x => x.id === hit.artistId);
           if (a) window.plurskyToast(`✓ Caught ${a.name}`);
@@ -1217,7 +1218,14 @@ function IAmAtSheet({
   onStatusSet
 }) {
   var [selected, setSelected] = React.useState(initialStage || null);
-  var [sent, setSent] = React.useState(false);
+  var [sent, setSent] = React.useState(null);
+  var crewCode = (() => {
+    try {
+      return localStorage.getItem("plursky_group_code") || "";
+    } catch {
+      return "";
+    }
+  })();
   var stage = STAGES.find(s => s.id === selected);
   var shareLink = async () => {
     if (!stage) return;
@@ -1238,14 +1246,22 @@ function IAmAtSheet({
     }
     onClose();
   };
-  var tellCrew = () => {
-    if (!stage) return;
+  var tellCrew = async () => {
+    if (!stage || !crewCode || sent === "sending" || sent === "sent") return;
+    var body = _formatBeaconBody(selected, FESTIVAL_CONFIG.id, Date.now());
+    if (!body) return;
     persistMyStatus(selected);
     onStatusSet(selected);
-    broadcastMyLocation(selected);
-    setSent(true);
-    setTimeout(onClose, 900);
+    setSent("sending");
+    var {
+      error,
+      queued
+    } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    var r = queued ? "queued" : error ? "failed" : "sent";
+    setSent(r);
+    if (r !== "failed") setTimeout(onClose, 900);
   };
+  var canTell = !!stage && !!crewCode;
   return React.createElement("div", {
     onClick: onClose,
     style: {
@@ -1357,28 +1373,39 @@ function IAmAtSheet({
       marginLeft: 8
     }
   }, stage.name)), React.createElement("div", {
+    className: "mono",
+    "data-find-me-note": true,
+    style: {
+      fontSize: 9,
+      letterSpacing: 0.8,
+      color: "var(--muted)",
+      marginBottom: 10,
+      lineHeight: 1.4
+    }
+  }, crewCode ? "YOUR CREW SEES THE STAGE FOR 15 MIN · NO GPS" : "START OR JOIN A CREW ON THE MAP TO SEND A FIND-ME"), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8
     }
   }, React.createElement("button", {
+    "data-find-me-send": sent || "idle",
     onClick: tellCrew,
-    disabled: !stage,
+    disabled: !canTell || sent === "sending" || sent === "sent",
     style: {
       flex: 1,
       padding: "10px 12px",
       borderRadius: 999,
-      background: sent ? "var(--success)" : stage ? "var(--ink)" : "var(--paper-2)",
-      color: stage ? "var(--paper)" : "var(--muted)",
+      background: sent === "sent" || sent === "queued" ? "var(--success)" : canTell ? "var(--ink)" : "var(--paper-2)",
+      color: canTell ? "var(--paper)" : "var(--muted)",
       border: "none",
-      cursor: stage ? "pointer" : "default",
+      cursor: canTell ? "pointer" : "default",
       fontFamily: "Geist Mono, monospace",
       fontSize: 9,
       letterSpacing: 1.1,
       fontWeight: 700,
       transition: "background .2s"
     }
-  }, sent ? "✓ CREW NOTIFIED" : "TELL MY CREW"), React.createElement("button", {
+  }, sent === "sending" ? "SENDING…" : sent === "sent" ? "✓ CREW CAN FIND YOU" : sent === "queued" ? "✓ QUEUED · SENDS ONLINE" : sent === "failed" ? "DIDN'T SEND · RETRY" : crewCode ? "FIND ME · TELL CREW" : "JOIN A CREW FIRST"), React.createElement("button", {
     onClick: shareLink,
     disabled: !stage,
     style: {
@@ -1433,108 +1460,27 @@ function _expiryKeyFromState(shareState) {
   if (shareState.expiresAt < (FESTIVAL_CONFIG.endMs || Infinity) - 60000) return "sunrise";
   return "festival";
 }
-function ShareLinkRow({
-  token
-}) {
-  var [copied, setCopied] = React.useState(false);
-  var url = React.useMemo(() => {
-    if (typeof window === "undefined") return `share.html?t=${token}`;
-    var base = `${window.location.origin}${window.location.pathname.replace(/\/[^/]*$/, "/")}`;
-    return `${base}share.html?t=${token}`;
-  }, [token]);
-  var onShare = async () => {
-    try {
-      if (navigator.share) {
-        await navigator.share({
-          title: `Find me at ${FESTIVAL_CONFIG.brand || "the festival"}`,
-          text: "Live location on Plursky",
-          url
-        });
-      } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      }
-    } catch {}
-  };
-  return React.createElement("div", {
-    style: {
-      padding: "10px 12px",
-      borderRadius: 10,
-      background: "var(--paper-2)",
-      marginBottom: 14,
-      display: "flex",
-      alignItems: "center",
-      gap: 10
-    }
-  }, React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "🔗"), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    style: {
-      fontFamily: "Geist",
-      fontSize: 13,
-      fontWeight: 500
-    }
-  }, "Shareable link"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 0.6,
-      color: "var(--muted)",
-      marginTop: 2,
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
-    }
-  }, url)), React.createElement("button", {
-    onClick: onShare,
-    style: {
-      background: copied ? "var(--success)" : "var(--ink)",
-      color: "var(--paper)",
-      border: "none",
-      borderRadius: 999,
-      padding: "7px 12px",
-      cursor: "pointer",
-      fontFamily: "Geist Mono, monospace",
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, copied ? "COPIED" : "COPY"));
-}
 function ShareLocationSheet({
   onClose,
   shareState,
   crewCount,
   crewCode,
-  gpsPos,
-  gpsStatus,
   myStatusStage,
   onSave,
-  onStop
+  onStop,
+  onPickStage
 }) {
-  var [includeGps, setIncludeGps] = React.useState(shareState?.includeGps ?? true);
-  var [includeStage, setIncludeStage] = React.useState(shareState?.includeStage ?? true);
   var [expiryKey, setExpiryKey] = React.useState(() => _expiryKeyFromState(shareState));
   var active = !!shareState?.active && (!shareState?.expiresAt || shareState.expiresAt > Date.now());
-  var isDenied = gpsStatus === "denied";
-  var isUnavailable = gpsStatus === "unavailable";
-  var canShareGps = !isDenied && !isUnavailable;
   var stage = myStatusStage ? STAGES.find(s => s.id === myStatusStage) : null;
   var handleStart = () => {
-    if (!includeGps && !includeStage) return;
+    if (!stage) return;
     var opt = _SHARE_EXPIRY_OPTIONS.find(o => o.key === expiryKey) || _SHARE_EXPIRY_OPTIONS[1];
     onSave({
       active: true,
-      includeGps: includeGps && canShareGps,
-      includeStage,
+      includeGps: false,
+      includeStage: true,
+      stageOnly: 2,
       expiresAt: opt.compute()
     });
     onClose();
@@ -1651,13 +1597,7 @@ function ShareLocationSheet({
       marginBottom: 8
     }
   }, "WHAT'S SHARED"), React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      marginBottom: 14
-    }
-  }, React.createElement("label", {
+    "data-share-stage-row": true,
     style: {
       display: "flex",
       alignItems: "center",
@@ -1665,61 +1605,9 @@ function ShareLocationSheet({
       padding: "10px 12px",
       borderRadius: 10,
       background: "var(--paper-2)",
-      cursor: canShareGps ? "pointer" : "not-allowed",
-      opacity: canShareGps ? 1 : 0.55
+      marginBottom: 6
     }
-  }, React.createElement("input", {
-    type: "checkbox",
-    checked: includeGps && canShareGps,
-    disabled: !canShareGps,
-    onChange: e => setIncludeGps(e.target.checked),
-    style: {
-      accentColor: "var(--ember)",
-      width: 16,
-      height: 16
-    }
-  }), React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "📍"), React.createElement("div", {
-    style: {
-      flex: 1
-    }
-  }, React.createElement("div", {
-    style: {
-      fontFamily: "Geist",
-      fontSize: 13,
-      fontWeight: 500
-    }
-  }, "My GPS location"), React.createElement("div", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1,
-      color: "var(--muted)",
-      marginTop: 2
-    }
-  }, gpsStatus === "live" && gpsPos ? `LIVE · ±${Math.round(gpsPos.accuracy || 0)}m` : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO RECENT FIX" : gpsStatus === "denied" ? "DENIED IN BROWSER" : gpsStatus === "unavailable" ? "UNSUPPORTED" : "OFF"))), React.createElement("label", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 10,
-      padding: "10px 12px",
-      borderRadius: 10,
-      background: "var(--paper-2)",
-      cursor: "pointer"
-    }
-  }, React.createElement("input", {
-    type: "checkbox",
-    checked: includeStage,
-    onChange: e => setIncludeStage(e.target.checked),
-    style: {
-      accentColor: "var(--ember)",
-      width: 16,
-      height: 16
-    }
-  }), React.createElement("span", {
+  }, React.createElement("span", {
     style: {
       fontSize: 18
     }
@@ -1733,7 +1621,7 @@ function ShareLocationSheet({
       fontSize: 13,
       fontWeight: 500
     }
-  }, "Current stage"), React.createElement("div", {
+  }, "My stage"), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -1741,23 +1629,33 @@ function ShareLocationSheet({
       color: "var(--muted)",
       marginTop: 2
     }
-  }, stage ? stage.name.toUpperCase() : "NOT SET — TAP “I'M AT” FIRST")))), includeGps && isDenied && React.createElement("div", {
+  }, stage ? stage.name.toUpperCase() : "NOT SET")), onPickStage && React.createElement("button", {
+    type: "button",
+    "data-share-pick-stage": true,
+    onClick: onPickStage,
+    className: "mono",
     style: {
-      padding: "8px 11px",
+      background: "var(--ink)",
+      color: "var(--paper)",
+      border: "none",
       borderRadius: 999,
-      background: "rgba(var(--alert-rgb),0.10)",
-      border: "1px solid rgba(var(--alert-rgb),0.35)",
-      marginBottom: 12
+      padding: "7px 12px",
+      cursor: "pointer",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700
     }
-  }, React.createElement("span", {
+  }, stage ? "CHANGE" : "PICK STAGE")), React.createElement("div", {
+    "data-share-no-gps": true,
     className: "mono",
     style: {
       fontSize: 9,
-      letterSpacing: 1.2,
-      color: "var(--alert)",
-      fontWeight: 700
+      letterSpacing: 1,
+      color: "var(--muted)",
+      marginBottom: 14,
+      lineHeight: 1.4
     }
-  }, "GPS DENIED · ENABLE LOCATION IN BROWSER")), React.createElement("div", {
+  }, "STAGE ONLY · YOUR CREW NEVER SEES YOUR GPS"), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -1791,9 +1689,7 @@ function ShareLocationSheet({
         cursor: "pointer"
       }
     }, opt.label);
-  })), active && shareState?.token && React.createElement(ShareLinkRow, {
-    token: shareState.token
-  }), React.createElement("div", {
+  })), React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 9,
@@ -1819,21 +1715,112 @@ function ShareLocationSheet({
     }
   }, "STOP SHARING") : React.createElement("button", {
     onClick: handleStart,
-    disabled: (!includeGps || !canShareGps) && !includeStage,
+    "data-share-start": true,
+    disabled: !stage,
     style: {
       width: "100%",
       padding: "12px 16px",
       borderRadius: 999,
-      background: (!includeGps || !canShareGps) && !includeStage ? "var(--paper-2)" : "var(--ember)",
-      color: (!includeGps || !canShareGps) && !includeStage ? "var(--muted)" : "#fff",
+      background: !stage ? "var(--paper-2)" : "var(--ember)",
+      color: !stage ? "var(--muted)" : "#fff",
       border: "none",
-      cursor: (!includeGps || !canShareGps) && !includeStage ? "default" : "pointer",
+      cursor: !stage ? "default" : "pointer",
       fontFamily: "Geist Mono, monospace",
       fontSize: 10,
       letterSpacing: 1.3,
       fontWeight: 700
     }
-  }, "START SHARING")));
+  }, stage ? "START SHARING MY STAGE" : "PICK YOUR STAGE FIRST")));
+}
+function _migrateShareState(s) {
+  if (!s || s.stageOnly === 2) return s;
+  return {
+    ...s,
+    active: false,
+    includeGps: false,
+    includeStage: true,
+    token: undefined
+  };
+}
+function crewRadarRows(crewFriends, now = Date.now()) {
+  var by = {};
+  var _loop = function (f) {
+      if (!f || !f.stageId) return 0;
+      var st = STAGES.find(s => s.id === f.stageId);
+      if (!st) return 0;
+      (by[st.id] = by[st.id] || {
+        stage: st,
+        members: []
+      }).members.push(f);
+    },
+    _ret;
+  for (var f of crewFriends || []) {
+    _ret = _loop(f);
+    if (_ret === 0) continue;
+  }
+  return Object.values(by).map(r => {
+    var newest = Math.max(...r.members.map(m => m.ts || 0));
+    var members = r.members.slice().sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    return {
+      stage: r.stage,
+      members,
+      minsAgo: newest ? Math.max(0, Math.floor((now - newest) / 60000)) : null
+    };
+  }).sort((a, b) => b.members.length - a.members.length || a.stage.name.localeCompare(b.stage.name));
+}
+function CrewRadar({
+  crewFriends
+}) {
+  var rows = crewRadarRows(crewFriends);
+  if (!rows.length) return null;
+  return React.createElement("div", {
+    "data-crew-radar": true,
+    style: {
+      flexBasis: "100%",
+      display: "flex",
+      flexDirection: "column",
+      gap: 6
+    }
+  }, React.createElement("div", {
+    className: "duo-label",
+    style: {
+      color: "var(--ink-3)"
+    }
+  }, "CREW RADAR · BY STAGE"), rows.map(r => React.createElement("div", {
+    key: r.stage.id,
+    "data-crew-radar-row": r.stage.id,
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "8px 12px",
+      borderRadius: 10,
+      background: "var(--s2)",
+      borderLeft: `3px solid ${r.stage.color}`,
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink)"
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontWeight: 600
+    }
+  }, r.stage.name), React.createElement("div", {
+    style: {
+      color: "var(--ink-2)",
+      overflowWrap: "anywhere"
+    }
+  }, r.members.map(m => m.name).join(", "))), React.createElement("span", {
+    style: {
+      color: "var(--ink-2)",
+      whiteSpace: "nowrap",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, r.members.length, r.minsAgo == null ? "" : r.minsAgo < 1 ? " · now" : ` · ${r.minsAgo}m`))));
 }
 function MeetupsSheet({
   onClose
@@ -1858,18 +1845,43 @@ function MeetupsSheet({
     var atTs = new Date(whenLocal).getTime();
     if (!atTs || Number.isNaN(atTs)) return;
     var finalName = name.trim() || STAGES.find(s => s.id === stageId)?.name || "Meetup";
-    var next = addMeetup({
+    addMeetup({
+      festivalId: FESTIVAL_CONFIG.id,
       name: finalName,
       stageId,
       atTs,
       notes: notes.trim()
     });
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    setList(upcomingMeetups());
     reset();
   };
   var handleRemove = id => {
-    var next = removeMeetup(id);
-    setList(next.filter(m => m.atTs > Date.now() - 30 * 60 * 1000));
+    removeMeetup(id);
+    setList(upcomingMeetups());
+  };
+  var crewCode = (() => {
+    try {
+      return localStorage.getItem("plursky_group_code") || "";
+    } catch {
+      return "";
+    }
+  })();
+  var [sent, setSent] = React.useState({});
+  var sendToCrew = async m => {
+    var body = _formatMeetupBody(m, FESTIVAL_CONFIG.id);
+    if (!crewCode || !body) return;
+    setSent(x => ({
+      ...x,
+      [m.id]: "sending"
+    }));
+    var {
+      error,
+      queued
+    } = await sbCrewSendMessage(crewCode, sbGetMyPresId(), plurskyLocalName() || "Me", body);
+    setSent(x => ({
+      ...x,
+      [m.id]: queued ? "queued" : error ? "failed" : "sent"
+    }));
   };
   var fmtWhen = ts => {
     try {
@@ -2028,7 +2040,30 @@ function MeetupsSheet({
       style: {
         opacity: 0.6
       }
-    }, "· ", tFmt.rel))), React.createElement("button", {
+    }, "· ", tFmt.rel))), crewCode && React.createElement("button", {
+      type: "button",
+      "data-meetup-send": m.id,
+      disabled: sent[m.id] === "sending" || sent[m.id] === "sent" || sent[m.id] === "queued",
+      onClick: () => sendToCrew(m),
+      className: "mono",
+      style: {
+        minHeight: 44,
+        padding: "0 10px",
+        borderRadius: 10,
+        background: "transparent",
+        border: "1px solid var(--line-2)",
+        color: "var(--ink)",
+        fontSize: 10,
+        letterSpacing: 1.1,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, {
+      sending: "SENDING",
+      sent: "SENT",
+      queued: "QUEUED",
+      failed: "RETRY"
+    }[sent[m.id]] || "SEND TO CREW"), React.createElement("button", {
       onClick: () => handleRemove(m.id),
       "aria-label": "Remove",
       style: {
@@ -2609,6 +2644,7 @@ function MapScreen({
   var [meetGroup, setMeetGroup] = React.useState([]);
   var [rallySent, setRallySent] = React.useState(false);
   var [incomingRally, setIncomingRally] = React.useState(null);
+  var rallyStage = incomingRally ? (STAGES || []).find(s => s.id === incomingRally.stageId) || null : null;
   var dismissedRallyRef = React.useRef(new Set());
   var [clusterDismissed, setClusterDismissed] = React.useState(null);
   var clearMeet = () => {
@@ -2669,7 +2705,9 @@ function MapScreen({
   }, [useRealMap]);
   var meetPin = meetTarget && !meetTarget.textOnly ? meetTarget : null;
   var canRouteToStage = !useRealMap || REAL_MAP_PLACES_CHECKED;
-  var mapPostureLabel = REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY";
+  var artOnScreen = useRealMap ? POSTER_TIER !== "none" : !!FESTIVAL_CONFIG.mapImage;
+  var artYear = artOnScreen && _mapArtIsOtherEdition(FESTIVAL_CONFIG) ? `${FESTIVAL_CONFIG.mapArtYear} MAP · ` : "";
+  var mapPostureLabel = artYear + (REAL_MAP_ONLY || useRealMap && !REAL_MAP_PLACES_CHECKED ? useRealMap && POSTER_TIER === "unchecked" ? "NOT TO SCALE · STAGES PENDING" : "VENUE MAP · STAGES PENDING" : FESTIVAL_CONFIG.mapImage && (FESTIVAL_CONFIG.gpsAnchors || []).length >= 3 ? "OFFICIAL MAP" : "LAYOUT ONLY");
   var mapAmenities = useRealMap ? REAL_MAP_AMENITIES : typeof AMENITIES !== "undefined" ? AMENITIES : [];
   var [realMapNote, setRealMapNote] = React.useState(null);
   var _disableRealMap = why => {
@@ -2678,7 +2716,8 @@ function MapScreen({
       sessionStorage.setItem("plursky_realmap_failed", "1");
     } catch {}
     setUseRealMap(false);
-    setRealMapNote((why || "Real map unavailable") + " — festival map shown");
+    var offline = typeof navigator !== "undefined" && navigator.onLine === false || why === "No network connection";
+    setRealMapNote((offline ? "Offline" : why || "Real map unavailable") + " — festival map shown");
     setTimeout(() => setRealMapNote(null), 7000);
   };
   var [mapZoom, setMapZoom] = React.useState(1);
@@ -2735,7 +2774,7 @@ function MapScreen({
     try {
       var s = JSON.parse(localStorage.getItem("plursky_share_state") || "null");
       if (s && s.expiresAt && s.expiresAt <= Date.now()) return null;
-      return s;
+      return _migrateShareState(s);
     } catch {
       return null;
     }
@@ -2743,11 +2782,7 @@ function MapScreen({
   var isSharing = !!shareState?.active && (!shareState?.expiresAt || shareState.expiresAt > Date.now());
   var [crewSnap, setCrewSnap] = React.useState(() => sbGetPresSnap());
   var crewName = React.useMemo(() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "";
-    } catch {
-      return "";
-    }
+    return plurskyLocalName();
   }, []);
   var [notifyEnabled, setNotifyEnabled] = React.useState(readNotifyEnabled);
   useSavedSetReminders(state.saved, notifyEnabled);
@@ -2847,6 +2882,7 @@ function MapScreen({
     live: true,
     gps: liveAvatar.gps
   } : demoAvatar;
+  var fixUnplaced = _liveFixUnplaced(isLiveOnSite, !!MAP_AFFINE, useRealMap);
   var {
     active: bsActive
   } = useBatterySaver();
@@ -2917,24 +2953,15 @@ function MapScreen({
   var myPresId = sbGetMyPresId();
   var crewFriends = React.useMemo(() => {
     return Object.entries(crewSnap).filter(([id]) => id !== myPresId).map(([id, e]) => {
-      var x, y;
-      if (e.gps && Number.isFinite(e.gps.lat) && Number.isFinite(e.gps.lng)) {
-        var m = gpsToMap(e.gps.lat, e.gps.lng);
-        x = Math.max(2, Math.min(98, m.x));
-        y = Math.max(2, Math.min(98, m.y));
-      } else {
-        var st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
-        if (!st) return null;
-        x = st.x;
-        y = st.y;
-      }
+      var st = e.stageId ? STAGES.find(s => s.id === e.stageId) : null;
+      if (!st) return null;
       return {
         id,
         name: e.name || "?",
         color: e.color || "var(--text-2)",
-        x,
-        y,
-        gps: e.gps || null,
+        x: st.x,
+        y: st.y,
+        gps: null,
         stageId: e.stageId,
         ts: e.ts
       };
@@ -2944,12 +2971,12 @@ function MapScreen({
     if (!crewFriends.length) return null;
     var byStage = {};
     for (var f of crewFriends) {
-      var sid = f.stageId || _nearestStageId(f.x, f.y);
+      var sid = f.stageId;
       if (!sid) continue;
       (byStage[sid] = byStage[sid] || []).push(f);
     }
     var best = null;
-    var _loop = function (_sid) {
+    var _loop2 = function (_sid) {
       if (arr.length >= 2 && (!best || arr.length > best.members.length)) {
         var st = STAGES.find(s => s.id === _sid);
         if (st) best = {
@@ -2959,7 +2986,7 @@ function MapScreen({
       }
     };
     for (var [_sid, arr] of Object.entries(byStage)) {
-      _loop(_sid);
+      _loop2(_sid);
     }
     return best;
   }, [crewFriends]);
@@ -2973,63 +3000,18 @@ function MapScreen({
       sbPresenceLeave();
       return;
     }
-    var stageId = shareState.includeStage ? myStatusStage || STAGES[0]?.id || null : null;
-    var gps = shareState.includeGps && gpsPos ? {
-      lat: gpsPos.lat,
-      lng: gpsPos.lng,
-      accuracy: gpsPos.accuracy
-    } : undefined;
     sbPresenceJoin({
       name: crewName || "Anon",
-      stageId,
-      gps
+      stageId: myStatusStage || null
     });
     return () => {};
   }, [isSharing]);
   React.useEffect(() => {
     if (!isSharing) return;
-    var gps = shareState?.includeGps && gpsPos ? {
-      lat: gpsPos.lat,
-      lng: gpsPos.lng,
-      accuracy: gpsPos.accuracy
-    } : undefined;
-    var stageId = shareState?.includeStage ? myStatusStage || STAGES[0]?.id || null : null;
-    if (gps || stageId !== undefined) sbPresenceUpdate({
-      gps,
-      stageId
+    sbPresenceUpdate({
+      stageId: myStatusStage || null
     });
-    if (shareState?.token) sbLiveShareUpdate(shareState.token, {
-      gps,
-      stageId
-    });
-  }, [isSharing, shareState?.includeGps, shareState?.includeStage, shareState?.token, gpsPos?.lat, gpsPos?.lng, gpsPos?.accuracy, myStatusStage]);
-  React.useEffect(() => {
-    if (!isSharing) return;
-    if (!shareState.token) {
-      var token = sbGenerateShareToken();
-      setShareState(s => s ? {
-        ...s,
-        token
-      } : s);
-      return;
-    }
-    sbLiveShareStart({
-      token: shareState.token,
-      pid: sbGetMyPresId?.() || "anon",
-      name: crewName || "Friend",
-      expiresAt: shareState.expiresAt,
-      gps: shareState.includeGps && gpsPos ? {
-        lat: gpsPos.lat,
-        lng: gpsPos.lng,
-        accuracy: gpsPos.accuracy
-      } : undefined,
-      stageId: shareState.includeStage ? myStatusStage || STAGES[0]?.id || null : null
-    });
-    var tokenCapture = shareState.token;
-    return () => {
-      sbLiveShareStop(tokenCapture);
-    };
-  }, [isSharing, shareState?.token]);
+  }, [isSharing, myStatusStage]);
   React.useEffect(() => {
     if (!shareState?.active || !shareState.expiresAt) return;
     var remaining = shareState.expiresAt - Date.now();
@@ -3103,8 +3085,9 @@ function MapScreen({
       label: `Meet ${selected.map(f => f.name).join(" + ")}`
     });
   };
-  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
+  var gpsLabel = !gpsLive ? "OFF" : gpsStatus === "live" ? fixUnplaced ? "ON SITE" : isLiveOnSite ? "LIVE" : "OFF-SITE" : gpsStatus === "locating" ? "FINDING…" : gpsStatus === "stale" ? "NO FIX" : gpsStatus === "denied" ? "OFF" : gpsStatus === "unavailable" ? "N/A" : "DEMO";
   var gpsActive = gpsLive && (gpsStatus === "live" || gpsStatus === "locating");
+  var mapCachedOffline = useMapCachedOffline(FESTIVAL_CONFIG);
   return React.createElement(Screen, {
     bg: "var(--paper)",
     ink: "var(--ink)"
@@ -3146,7 +3129,12 @@ function MapScreen({
     }
   }, "Map"), React.createElement("span", {
     "data-map-posture": true,
-    className: "duo-code"
+    className: "duo-code",
+    style: {
+      whiteSpace: "normal",
+      maxWidth: "100%",
+      boxSizing: "border-box"
+    }
   }, mapPostureLabel), (() => {
     var has = t => mapAmenities.some(a => a.type === t);
     var cats = [["stages", "Stages"], ...(has("water") ? [["water", "Water"]] : []), ...(has("med") ? [["med", "Medical"]] : []), ["crew", "Crew"]];
@@ -3189,11 +3177,21 @@ function MapScreen({
         flex: 1,
         minWidth: 0
       }
-    }, crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a location"), React.createElement("button", {
+    }, crewFriends.length ? `${crewFriends.length} in your crew on the map` : "No one in your crew is sharing a stage"), React.createElement("button", {
       className: "duo-chip",
       onClick: () => setShareOpen(true)
-    }, React.createElement("span", null, "Share with crew"))));
-  })(), gpsLive && gpsStatus === "denied" && React.createElement("div", {
+    }, React.createElement("span", null, "Share with crew"))), cat === "crew" && crewFriends.length > 0 && React.createElement(CrewRadar, {
+      crewFriends: crewFriends
+    }));
+  })(), realMapNote && React.createElement("div", {
+    "data-map-fallback-note": true,
+    role: "status",
+    style: {
+      flexBasis: "100%",
+      font: "400 13px/1.385 var(--f-ui)",
+      color: "var(--ink-2)"
+    }
+  }, realMapNote), gpsLive && gpsStatus === "denied" && React.createElement("div", {
     "data-map-gps-denied": true,
     style: {
       flexBasis: "100%",
@@ -3215,16 +3213,19 @@ function MapScreen({
       zIndex: 4,
       display: "flex",
       flexDirection: "column",
+      alignItems: "flex-end",
       gap: 6
     }
   }, React.createElement("button", {
+    "data-map-locate": gpsLive ? "on" : "off",
     onClick: () => setGpsLive(g => !g),
-    "aria-label": "Toggle GPS",
+    "aria-label": "Show me on the map",
     "aria-pressed": gpsActive,
     style: {
+      alignSelf: "flex-end",
       minWidth: 46,
       minHeight: 44,
-      padding: "6px 8px",
+      padding: gpsLive ? "6px 8px" : "7px 12px 7px 10px",
       borderRadius: "var(--rad-sm)",
       background: gpsActive ? "var(--acc)" : "rgba(var(--glass),0.92)",
       color: gpsActive ? "var(--on-acc)" : "var(--ink)",
@@ -3233,9 +3234,10 @@ function MapScreen({
       WebkitBackdropFilter: "blur(10px)",
       cursor: "pointer",
       display: "flex",
-      flexDirection: "column",
+      flexDirection: gpsLive ? "column" : "row",
       alignItems: "center",
-      gap: 2,
+      gap: gpsLive ? 2 : 8,
+      textAlign: "left",
       boxShadow: "0 4px 12px rgba(var(--shade-rgb),0.10)"
     }
   }, React.createElement("svg", {
@@ -3245,7 +3247,10 @@ function MapScreen({
     fill: "none",
     stroke: "currentColor",
     strokeWidth: "2",
-    strokeLinecap: "round"
+    strokeLinecap: "round",
+    style: {
+      flexShrink: 0
+    }
   }, React.createElement("path", {
     d: "M12 2 L12 5 M12 19 L12 22 M2 12 L5 12 M19 12 L22 12"
   }), React.createElement("circle", {
@@ -3258,12 +3263,30 @@ function MapScreen({
     r: "2.5",
     fill: "currentColor",
     stroke: "none"
-  })), React.createElement("span", {
+  })), gpsLive ? React.createElement("span", {
     style: {
       font: "500 10px/1 var(--f-data)",
       letterSpacing: "-0.01em"
     }
-  }, gpsLabel)), React.createElement("div", {
+  }, gpsLabel) : React.createElement("span", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 2
+    }
+  }, React.createElement("span", {
+    style: {
+      font: "500 13px/1.2 var(--f-ui)",
+      whiteSpace: "nowrap"
+    }
+  }, "Show me on the map"), mapCachedOffline && React.createElement("span", {
+    "data-map-no-signal": true,
+    style: {
+      font: "400 11px/1.2 var(--f-ui)",
+      color: "var(--ink-2)",
+      whiteSpace: "nowrap"
+    }
+  }, "Works with no signal"))), React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
@@ -3547,7 +3570,7 @@ function MapScreen({
     style: {
       position: "absolute",
       left: 10,
-      top: 90,
+      top: isSharing ? 130 : 90,
       zIndex: 6,
       background: "rgba(var(--glass),0.94)",
       border: "none",
@@ -3613,13 +3636,14 @@ function MapScreen({
       }
     }, a.label));
   })), isSharing && React.createElement("button", {
+    "data-sharing-pill": true,
     onClick: () => setShareState(null),
-    "aria-label": "Stop sharing your location",
+    "aria-label": "Stop sharing your stage with your crew",
     style: {
       position: "absolute",
-      top: 46,
-      left: "50%",
-      transform: "translateX(-50%)",
+      top: 98,
+      left: 10,
+      whiteSpace: "nowrap",
       zIndex: 6,
       display: "flex",
       alignItems: "center",
@@ -3648,7 +3672,7 @@ function MapScreen({
       letterSpacing: 1.2,
       fontWeight: 800
     }
-  }, "SHARING · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
+  }, "SHARING STAGE · TAP TO STOP")), liveAvatar?.offSite && !(gpsLive && gpsStatus === "denied") && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
@@ -4408,7 +4432,10 @@ function MapScreen({
     },
     onFatal: _disableRealMap
   }) : React.createElement(TopDownMap, {
-    avatar: avatar,
+    avatar: fixUnplaced ? {
+      ...avatar,
+      unplaced: true
+    } : avatar,
     heading: heading,
     friends: friends,
     stages: PLACED_STAGES,
@@ -4435,29 +4462,7 @@ function MapScreen({
       setPeek(false);
     },
     onClick: handleMapClick
-  }), realMapNote && React.createElement("div", {
-    style: {
-      position: "absolute",
-      top: 12,
-      left: "50%",
-      transform: "translateX(-50%)",
-      zIndex: 4,
-      padding: "4px 10px",
-      borderRadius: 999,
-      background: "rgba(var(--signal-rgb),0.95)",
-      color: "var(--ink)",
-      backdropFilter: "blur(8px)",
-      maxWidth: "88%",
-      textAlign: "center"
-    }
-  }, React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 9,
-      letterSpacing: 1.2,
-      fontWeight: 700
-    }
-  }, realMapNote.toUpperCase())), stage && peek && React.createElement(GroundPeek, {
+  }), stage && peek && React.createElement(GroundPeek, {
     stage: stage,
     onClose: () => setPeek(false)
   }), meetMode && React.createElement("div", {
@@ -4499,11 +4504,8 @@ function MapScreen({
   }), meetTarget.isAmenity ? `→ ${meetTarget.label.toUpperCase()}` : `${meetTarget.label.toUpperCase()}${meetGroup.length ? ` · YOU + ${meetGroup.length}` : ""}`) : meetGroup.length ? "TAP THE MAP TO DROP A PIN" : "MEET MODE — TAP MAP TO DROP A PIN"), meetPin && isSharing && React.createElement("button", {
     onClick: () => {
       var ok = sbBroadcastRally({
-        x: meetTarget.x,
-        y: meetTarget.y,
         label: meetTarget.label,
-        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y),
-        gps: meetTarget.gps || null
+        stageId: meetTarget.stageId || _nearestStageId(meetTarget.x, meetTarget.y)
       });
       if (ok) setRallySent(true);
     },
@@ -4534,7 +4536,7 @@ function MapScreen({
       letterSpacing: 1.2,
       fontWeight: 700
     }
-  }, "× CANCEL")), incomingRally && React.createElement("div", {
+  }, "× CANCEL")), incomingRally && rallyStage && React.createElement("div", {
     style: {
       position: "absolute",
       top: 0,
@@ -4579,20 +4581,15 @@ function MapScreen({
       overflow: "hidden",
       textOverflow: "ellipsis"
     }
-  }, incomingRally.label, minsAwaySuffix(Math.hypot(incomingRally.x - avatar.x, incomingRally.y - avatar.y), avatar))), React.createElement("button", {
+  }, incomingRally.label, minsAwaySuffix(Math.hypot(rallyStage.x - avatar.x, rallyStage.y - avatar.y), avatar))), React.createElement("button", {
     onClick: () => {
       dismissedRallyRef.current.add(incomingRally.rallyId);
       setMeetMode(true);
       setMeet({
-        x: incomingRally.x,
-        y: incomingRally.y,
-        ...(_validGps(incomingRally.gps) ? {
-          gps: {
-            lat: incomingRally.gps.lat,
-            lng: incomingRally.gps.lng
-          }
-        } : {}),
+        x: rallyStage.x,
+        y: rallyStage.y,
         label: incomingRally.label,
+        stageId: rallyStage.id,
         isRally: true
       });
       setIncomingRally(null);
@@ -4628,7 +4625,7 @@ function MapScreen({
       flexShrink: 0
     }
   }, "✕")), (() => {
-    if (!crewCluster || meetMode || incomingRally) return null;
+    if (!crewCluster || meetMode || rallyStage) return null;
     var sig = `${crewCluster.stage.id}:${crewCluster.members.length}`;
     if (sig === clusterDismissed) return null;
     var headOver = () => {
@@ -5068,9 +5065,11 @@ function MapScreen({
     shareState: shareState,
     crewCount: crewFriends.length,
     crewCode: sbGetOrCreateGroupCode?.() || "",
-    gpsPos: gpsPos,
-    gpsStatus: gpsStatus,
     myStatusStage: myStatusStage,
+    onPickStage: () => {
+      setShareOpen(false);
+      setIAmAtOpen(true);
+    },
     onClose: () => setShareOpen(false),
     onSave: s => setShareState(s),
     onStop: () => setShareState(null)
@@ -5373,6 +5372,42 @@ function _packMirrorWrite(all) {
   try {
     localStorage.setItem(PACK_MIRROR_KEY, JSON.stringify(all));
   } catch {}
+}
+function _mapPlateFor(cfg) {
+  return cfg && cfg.mapMode !== "real" && typeof cfg.mapImage === "string" && cfg.mapImage ? cfg.mapImage : null;
+}
+async function _mapCachedOffline(cfg) {
+  if (!cfg || !cfg.id) return false;
+  if (_packMirror()[cfg.id]) return true;
+  var plate = _mapPlateFor(cfg);
+  if (!plate) return false;
+  try {
+    if (window.Capacitor?.isNativePlatform?.()) return true;
+  } catch {}
+  if (typeof caches === "undefined") return false;
+  try {
+    return !!(await caches.match(new URL(plate, location.href).href));
+  } catch {
+    return false;
+  }
+}
+function useMapCachedOffline(cfg) {
+  var fid = cfg && cfg.id;
+  var [cached, setCached] = React.useState(false);
+  React.useEffect(() => {
+    var alive = true;
+    var check = () => _mapCachedOffline(cfg).then(v => {
+      if (alive) setCached(!!v);
+    }, () => {});
+    check();
+    try {
+      navigator.serviceWorker?.ready?.then(check, () => {});
+    } catch {}
+    return () => {
+      alive = false;
+    };
+  }, [fid]);
+  return cached;
 }
 function _packEntry(fid) {
   var reg = typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : [];
@@ -5679,7 +5714,7 @@ async function downloadFestivalPack(fid) {
       feedBuf = null;
     var all = files.map(([p, u]) => [packId + "|" + p, u]).concat(shared);
     var worker = async () => {
-      var _loop2 = async function () {
+      var _loop3 = async function () {
         var [key, url] = all[i++];
         try {
           var buf = await _packFetch(url);
@@ -5695,7 +5730,7 @@ async function downloadFestivalPack(fid) {
         }
       };
       while (!failed && i < all.length) {
-        await _loop2();
+        await _loop3();
       }
     };
     await Promise.all(Array.from({
@@ -7490,14 +7525,14 @@ function RealMap({
       top: 58,
       left: 10,
       zIndex: 4,
-      background: "rgba(var(--shade-rgb),0.78)",
+      background: "var(--offline-badge-bg, rgba(var(--shade-rgb),0.78))",
       color: "var(--ink)",
       borderColor: "rgba(var(--ink-rgb),0.18)",
       padding: "8px 10px 7px",
       backdropFilter: "blur(8px)",
       WebkitBackdropFilter: "blur(8px)"
     }
-  }, "OFFLINE · SAVED STREET MAP") : React.createElement("div", {
+  }, "OFFLINE — SHOWING CACHED MAP") : React.createElement("div", {
     ref: styleSwitchRef,
     "data-realmap-style-switch": true,
     style: {
@@ -7550,12 +7585,13 @@ function RealMap({
       textAlign: "center"
     }
   }, React.createElement("div", null, "MAP ERROR"), React.createElement("div", {
+    "data-realmap-err": true,
     style: {
       color: "var(--text-3)",
       fontSize: 9,
       maxWidth: 240
     }
-  }, err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, err === "No network connection" ? "Offline — no cached map for this festival yet" : err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       color: "var(--text-2)",
       fontSize: 10,
@@ -7685,6 +7721,13 @@ var AMENITY_KEY = [{
   label: "Art"
 }];
 var AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
 function TopDownMap({
   avatar,
   heading,
@@ -7814,6 +7857,23 @@ function TopDownMap({
     w: 0,
     h: 0
   });
+  var clampAvatarChip = React.useCallback(() => {
+    var boxEl = boxRef.current;
+    var chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    var r = chip.getBoundingClientRect(),
+      b = boxEl.getBoundingClientRect();
+    var vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    var dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    var t = -mapRotate * Math.PI / 180,
+      z = zoom || 1;
+    chip.style.translate = `${dx * Math.cos(t) / z}px ${dx * Math.sin(t) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => {
+    clampAvatarChip();
+  });
   React.useEffect(() => {
     var el = boxRef.current;
     if (!el) return;
@@ -7868,6 +7928,7 @@ function TopDownMap({
     onTouchMove: onTouchMove,
     onTouchEnd: onTouchEnd
   }, React.createElement("div", {
+    onTransitionEnd: clampAvatarChip,
     style: {
       position: "absolute",
       inset: 0,
@@ -8374,7 +8435,7 @@ function TopDownMap({
       fontFamily: "Geist Mono, monospace",
       fontWeight: "900"
     }, cfg.letter));
-  }), (sel || meetTarget) && (() => {
+  }), !avatar.unplaced && (sel || meetTarget) && (() => {
     var target = meetTarget || sel;
     var c = meetTarget ? "#e85d2e" : "#e85d2e";
     return React.createElement("g", null, React.createElement("path", {
@@ -8518,7 +8579,7 @@ function TopDownMap({
       fill: "var(--signal-ink)",
       fontFamily: "Geist Mono, monospace"
     }, "★")));
-  }), friends.map(f => {
+  }), !avatar.unplaced && friends.map(f => {
     var dist = Math.hypot(f.x - avatar.x, f.y - avatar.y);
     if (dist > 8) return null;
     var mx = (f.x + avatar.x) / 2,
@@ -8545,7 +8606,7 @@ function TopDownMap({
     }));
   }), friends.map(f => {
     var focused = meetGroup.includes(f.id);
-    var nearby = Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
+    var nearby = !avatar.unplaced && Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
     return React.createElement("g", {
       key: f.id
     }, React.createElement("circle", {
@@ -8592,7 +8653,7 @@ function TopDownMap({
     fill: "var(--signal-ink)",
     stroke: "var(--ink)",
     strokeWidth: "0.5"
-  })), selected && !meetMode && (() => {
+  })), !avatar.unplaced && selected && !meetMode && (() => {
     var target = stages.find(s => s.id === selected);
     if (!target) return null;
     var dist = Math.hypot(target.x - avatar.x, target.y - avatar.y);
@@ -8624,7 +8685,7 @@ function TopDownMap({
       fill: target.color,
       opacity: "0.85"
     }, etaLabel, " MIN"));
-  })(), React.createElement("g", null, React.createElement("path", {
+  })(), !avatar.unplaced && React.createElement("g", null, React.createElement("path", {
     d: `M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`,
@@ -8894,7 +8955,7 @@ function TopDownMap({
         fontWeight: 500
       }
     }, "· ", seen.label)));
-  }), React.createElement("div", {
+  }), !avatar.unplaced && React.createElement("div", {
     "data-avatar-label": true,
     style: {
       position: "absolute",
@@ -8912,7 +8973,7 @@ function TopDownMap({
       pointerEvents: "none",
       boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)"
     }
-  }, "YOU"))), compass && React.createElement("div", {
+  }, avatar.live ? "YOU" : "DEMO"))), compass && React.createElement("div", {
     style: {
       position: "absolute",
       top: 12,
@@ -9646,13 +9707,13 @@ function YourStagePhotosStrip({
   var mine = React.useMemo(() => {
     var out = [];
     for (var n of Object.keys(moments)) {
-      var _loop3 = function (m) {
+      var _loop4 = function (m) {
         if (!m.artistId) return 1;
         var a = ARTISTS.find(x => x.id === m.artistId);
         if (a?.stage === stageId) out.push(m);
       };
       for (var m of moments[n] || []) {
-        if (_loop3(m)) continue;
+        if (_loop4(m)) continue;
       }
     }
     return out.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
@@ -10229,13 +10290,7 @@ function MessageDrawer({
   onSwitchToMeet
 }) {
   var isRealDM = !!(myPresId && friend.presId && typeof sbDMSend === "function");
-  var myName = (() => {
-    try {
-      return localStorage.getItem("plursky_display_name") || localStorage.getItem("user_name") || "Me";
-    } catch {
-      return "Me";
-    }
-  })();
+  var myName = plurskyLocalName() || "Me";
   var [thread, setThread] = React.useState(() => loadThread(friend.id));
   var [draft, setDraft] = React.useState("");
   var [typing, setTyping] = React.useState(false);

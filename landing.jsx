@@ -327,8 +327,12 @@ function _LandingFestivalCard({ entry, saved, memoryCount, onEnter, onUpsell, pl
           that (phones, or large text), the chip drops to its own line, still
           at the right edge, so a name takes at most two lines. 150px held on
           this Mac but not on CI, where a classic scrollbar and the runner's
-          glyphs left "Beyond Wonderland at The Gorge 2027" three lines at 390. */}
-      <span data-landing-chip={st.chip} className={`landing-chip landing-chip-${st.chip}`} style={{ marginLeft: "auto" }}>{st.label}</span>
+          glyphs left "Beyond Wonderland at The Gorge 2027" three lines at 390.
+          The chip wraps between words inside its 118px cap, but never narrower
+          than its longest word (min-content beats max-width): at 200% text
+          "Happening" alone is ~135px, so the capped chip panned +19 the day
+          EDC Orlando went live. Normal text never reaches the cap's limit. */}
+      <span data-landing-chip={st.chip} className={`landing-chip landing-chip-${st.chip}`} style={{ marginLeft: "auto", minWidth: "min-content" }}>{st.label}</span>
     </button>
   );
 }

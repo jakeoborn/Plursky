@@ -1,0 +1,65 @@
+{
+ "id": "escape-halloween-2022",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-10-28",
+   "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRieXgBsMspW.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 34,
+   "note": "Header read off the graphic: FRIDAY, OCT 28",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 34,
+   "byEye": [],
+   "printedReadings": [
+    "DEORRO B2B VALENTINO KHAN: billing wraps over 2 printed lines, joined"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2022-10-29",
+   "sha256": "d12fd27b80e01fed69a611c849ad95af1541270ffeb677763c28e5b51fd5a695",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRieXgBsMspW.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 31,
+   "note": "Header read off the graphic: SATURDAY, OCT 29",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 31,
+   "byEye": [],
+   "printedReadings": []
+  },
+  {
+   "day": 1,
+   "date": "2022-10-28",
+   "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 10,
+   "note": "Header read off the graphic: FRIDAY, OCT 28",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 10,
+   "byEye": [],
+   "printedReadings": [
+    "TOKYO T B2B CAT & MAOMI: DROP? silent disco (non-main stage) — keep or drop per build policy; CRAZY TOWN silent disco; printed \"MAOMI\" (as in 2023), not corrected"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2022-10-29",
+   "sha256": "3923ba5bcf9801df165438a70d94a61c4148afc4836a866d6f6edf434a7f2dee",
+   "imageUrl": "https://edmidentity.com/wp-content/uploads/2022/10/Ff8GRx7XgAIIqSi.jpg",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-10-27",
+   "rowsConfirmed": 8,
+   "note": "Header read off the graphic: SATURDAY, OCT 29",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 8,
+   "byEye": [],
+   "printedReadings": []
+  }
+ ]
+}

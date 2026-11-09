@@ -100,7 +100,7 @@
               const p = await profRes.json();
               localStorage.setItem("spotify_profile", JSON.stringify({
                 id: p.id,
-                name: p.display_name || p.id,
+                name: p.display_name || null,
                 email: p.email || null,
                 image: p.images?.[0]?.url || null,
                 country: p.country || null,

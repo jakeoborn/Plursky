@@ -51,6 +51,7 @@ try {
         localStorage.setItem('onboarded', 'v1'); localStorage.setItem('active_festival_id', FID); localStorage.setItem('active_festival_explicit', '1'); localStorage.setItem('plursky_use_realmap', '0');
         localStorage.setItem('cloud_nudge_seen', '1'); localStorage.setItem('plursky.appearance', scheme);
         if (populated) { localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(['k15', 'k16', 'q17', 'bp8'])); localStorage.setItem('plursky_display_name', 'Test Raver'); }
+        else localStorage.setItem('plursky_display_name', '');   // quick-name ask already skipped: the empty account's Me, unobstructed
       }, { FID, scheme, populated });
       await ctx.addInitScript(() => { if (navigator.getBattery) navigator.getBattery = () => Promise.resolve({ level: 1, charging: true, chargingTime: 0, dischargingTime: Infinity, addEventListener() {}, removeEventListener() {} }); });
       const page = await ctx.newPage();
@@ -238,7 +239,7 @@ try {
       }
       await page.click('[data-map-cat=crew]'); await page.clock.runFor(300); await page.waitForTimeout(150);
       c = await chips();
-      check(c.n === 0 && c.crew === 'No one in your crew is sharing a locationShare with crew', `${tag}: Crew with no one sharing reads "${c.crew}" (${c.n} amenity marks)`);
+      check(c.n === 0 && c.crew === 'No one in your crew is sharing a stageShare with crew', `${tag}: Crew with no one sharing reads "${c.crew}" (${c.n} amenity marks)`);
       check(!(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)), `${tag}: Map scrolls sideways with Crew open`);
     } catch (err) { check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`); }
     await ctx.close();

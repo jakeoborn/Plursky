@@ -40,10 +40,96 @@ function _appleMusicOriginOk() {
     return false;
   }
 }
+function _amNative() {
+  var cap = window.Capacitor;
+  if (!cap?.isNativePlatform?.()) return null;
+  return cap.Plugins?.AppleMusicNative || null;
+}
+var _amNativeDevToken = null;
+function _amDevToken() {
+  return _amNativeDevToken || APPLE_DEV_TOKEN;
+}
+var _AM_NATIVE_CONNECTED = "am_native_connected_v1";
+function _amNativeConnected() {
+  try {
+    return localStorage.getItem(_AM_NATIVE_CONNECTED) === "1";
+  } catch {
+    return false;
+  }
+}
+function _amNativeDisconnected() {
+  try {
+    return localStorage.getItem(_AM_NATIVE_CONNECTED) === "0";
+  } catch {
+    return false;
+  }
+}
+var _amEpoch = 0;
+function _amStale(epoch) {
+  return epoch !== _amEpoch;
+}
+async function _amNativeTokens(prompt) {
+  var p = _amNative();
+  if (!p) return null;
+  if (!prompt && !_amNativeConnected()) return null;
+  var args = {
+    fallbackDeveloperToken: APPLE_DEV_TOKEN
+  };
+  var epoch = _amEpoch;
+  var r = prompt ? await p.authorize(args) : await p.tokens(args);
+  if (_amStale(epoch)) return {
+    status: "stale"
+  };
+  if (r?.status === "authorized" && r.userToken && r.developerToken) {
+    _amNativeDevToken = r.developerToken;
+    try {
+      localStorage.setItem("am_user_token", r.userToken);
+      if (prompt) localStorage.setItem(_AM_NATIVE_CONNECTED, "1");
+    } catch {}
+  }
+  return r;
+}
+function _amNativeErrorMessage(e) {
+  var msg = String(e?.message || e?.errorMessage || "");
+  if (/userNotSignedIn/i.test(msg)) return "Sign in to Apple Music in the Music app first, then tap CONNECT again.";
+  if (/privacyAcknowledgementRequired/i.test(msg)) return "Open the Music app once and accept Apple's terms, then tap CONNECT again.";
+  if (/permissionDenied/i.test(msg)) return "Apple Music access is off for Plursky. Turn it on in Settings → Plursky, then tap CONNECT again.";
+  if (e?.code === "developer_token_failed") return "Apple Music isn't set up for this build yet. Try again after the next update.";
+  return "Apple Music didn't connect. Check you're signed in to the Music app, then tap CONNECT again.";
+}
 async function connectAppleMusic() {
   if (!APPLE_DEV_TOKEN) return {
     error: "not_configured"
   };
+  if (_amNative()) {
+    try {
+      var r = await _amNativeTokens(true);
+      if (r?.status === "authorized" && r.userToken) {
+        if (r.hasCloudLibraryEnabled === false) {
+          return {
+            ok: true,
+            warning: "Turn on Sync Library in Settings → Music so Plursky can add playlists to your library."
+          };
+        }
+        return {
+          ok: true
+        };
+      }
+      if (r?.status === "denied" || r?.status === "restricted") {
+        return {
+          error: "Apple Music access is off for Plursky. Turn it on in Settings → Plursky, then tap CONNECT again."
+        };
+      }
+      return {
+        error: "Apple Music didn't connect. Tap CONNECT to try again."
+      };
+    } catch (e) {
+      console.warn("[plursky:applemusic] native connect failed", e?.code, e?.message);
+      return {
+        error: _amNativeErrorMessage(e)
+      };
+    }
+  }
   if (!_appleMusicOriginOk()) {
     return {
       error: "Apple Music connect only works on plursky.com. Open the live site (not localhost) and tap CONNECT there."
@@ -73,7 +159,14 @@ async function connectAppleMusic() {
   }
 }
 function disconnectAppleMusic() {
+  _amEpoch++;
   localStorage.removeItem("am_user_token");
+  if (_amNative()) {
+    try {
+      localStorage.setItem(_AM_NATIVE_CONNECTED, "0");
+    } catch {}
+  }
+  _amNativeDevToken = null;
   if (typeof MusicKit !== "undefined") {
     try {
       MusicKit.getInstance().unauthorize();
@@ -81,10 +174,17 @@ function disconnectAppleMusic() {
   }
 }
 async function fetchAppleMusicArtists() {
+  var epoch = _amEpoch;
+  if (_amNative()) {
+    try {
+      await _amNativeTokens(false);
+    } catch {}
+  }
+  if (_amStale(epoch)) return null;
   var ut = localStorage.getItem("am_user_token");
   if (!ut || !APPLE_DEV_TOKEN) return null;
   var headers = {
-    Authorization: `Bearer ${APPLE_DEV_TOKEN}`,
+    Authorization: `Bearer ${_amDevToken()}`,
     "Music-User-Token": ut
   };
   var seen = new Set();
@@ -92,6 +192,7 @@ async function fetchAppleMusicArtists() {
   var offset = 0;
   try {
     while (true) {
+      if (_amStale(epoch)) return null;
       var res = await fetch(`https://api.music.apple.com/v1/me/library/artists?limit=100&offset=${offset}`, {
         headers
       });
@@ -170,12 +271,32 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     ok: false,
     reason: "not_configured"
   };
+  var epoch = _amEpoch;
+  var disconnected = {
+    ok: false,
+    reason: "not_connected",
+    message: "Apple Music is disconnected. Tap CONNECT to link it again."
+  };
+  if (_amNative()) {
+    try {
+      await _amNativeTokens(false);
+    } catch {}
+  }
+  if (_amStale(epoch)) return disconnected;
   var ut = null;
   try {
     ut = localStorage.getItem("am_user_token");
   } catch {}
+  if (!ut && _amNative() && _amNativeDisconnected()) {
+    return {
+      ok: false,
+      reason: "not_connected",
+      message: "Apple Music is disconnected. Tap CONNECT to link it again."
+    };
+  }
   if (!ut) {
     var c = await connectAppleMusic();
+    if (_amStale(epoch)) return disconnected;
     if (!c.ok) return {
       ok: false,
       reason: "not_connected",
@@ -190,7 +311,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     reason: "not_connected"
   };
   var devHeaders = {
-    Authorization: `Bearer ${APPLE_DEV_TOKEN}`
+    Authorization: `Bearer ${_amDevToken()}`
   };
   var userHeaders = {
     ...devHeaders,
@@ -289,6 +410,7 @@ async function createAppleMusicPlaylist(state, opts = {}) {
     month: "short",
     day: "numeric"
   });
+  if (_amStale(epoch)) return disconnected;
   var res = await fetch("https://api.music.apple.com/v1/me/library/playlists", {
     method: "POST",
     headers: {
@@ -529,7 +651,7 @@ async function _spotifyExchangeCode(code, redirectUri) {
         var p = await profRes.json();
         localStorage.setItem("spotify_profile", JSON.stringify({
           id: p.id,
-          name: p.display_name || p.id,
+          name: p.display_name || null,
           email: p.email || null,
           image: p.images?.[0]?.url || null,
           country: p.country || null,
@@ -723,7 +845,9 @@ async function getValidToken() {
 function getSpotifyProfileSync() {
   try {
     var raw = localStorage.getItem("spotify_profile");
-    return raw ? JSON.parse(raw) : null;
+    var prof = raw ? JSON.parse(raw) : null;
+    if (prof && prof.name && prof.name === prof.id) prof.name = null;
+    return prof;
   } catch {
     return null;
   }
@@ -743,7 +867,7 @@ async function ensureSpotifyProfile() {
     var p = await res.json();
     var prof = {
       id: p.id,
-      name: p.display_name || p.id,
+      name: p.display_name || null,
       email: p.email || null,
       image: p.images?.[0]?.url || null,
       country: p.country || null,
@@ -1172,5 +1296,6 @@ Object.assign(window, {
   createAppleMusicPlaylist,
   _appleMusicConfigured,
   _ensureMusicKitConfigured,
+  _amNative,
   _collectMomentSongs
 });
