@@ -2406,6 +2406,28 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 {
+  console.log("▸ Tagger trusted-GPS gate — GPS names a stage only through the fix gate; Fix-it searches the clip's festival, stylized names folded");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-tagger-trusted-gps.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 120000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Tagger trusted-GPS failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
+  console.log("▸ Lightbox retag search — a III Points clip under ACL: real input, own-festival matches and stage labels, the pick shows the act");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-lightbox-retag-search.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 600000 });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Lightbox retag search failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+{
   console.log("▸ Share-moment gate — poster first, 8 s prep cap, native sheet first, every failure has words");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-share-moment.mjs"],
