@@ -9502,6 +9502,43 @@ function _iapAvailable() {
   return !!window.Capacitor?.isNativePlatform?.() || _iapDevHost();
 }
 
+// ── Offer-code redemption (SPEC-183 2b) ──────────────────────
+// OFF. While false, the paywall shows no code entry at all. Turning it on is
+// Jake's call after his design review, and it only does something once offer
+// codes exist in App Store Connect (none do yet). The sheet is Apple's own:
+// Apple checks the code, shows the discounted price and takes the payment;
+// Plursky never sees or stores the code.
+const PROMO_CODE_REDEEM_ON = false;
+
+function _codeRedeemAvailable() {
+  return PROMO_CODE_REDEEM_ON && _iapAvailable();
+}
+
+// Opens Apple's offer-code sheet, then re-reads the entitlement. A code
+// redeemed for Plursky+ shows up there; the customer-info listener also
+// catches one that settles after the sheet closes.
+async function _redeemOfferCode() {
+  if (!PROMO_CODE_REDEEM_ON) return { success: false, unsupported: true };
+  if (!window.Capacitor?.isNativePlatform?.()) {
+    if (!_iapDevHost()) return { success: false, unsupported: true, error: "Codes can only be redeemed in the iOS app." };
+    console.log("[plursky-iap] local dev host: would open Apple's offer-code sheet");
+    return { success: false, web: true };
+  }
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return { success: false, error: "RevenueCat not configured" };
+  try {
+    const Purchases = _rcPlugin();
+    // 5 min: the person may be typing a code or switching apps to copy one.
+    await _withTimeout(Purchases.presentCodeRedemptionSheet(), 300000, "Offer code sheet");
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 15000, "Entitlement check");
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    console.error("[plursky-iap] offer code error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
+  }
+}
+
 // `offeringId` names a non-current offering to buy from (the Season Pass
 // rescue lives in its own "season_rescue" offering, never in `current`).
 async function _purchasePlus(productId, { offeringId } = {}) {
@@ -10043,6 +10080,19 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     }
   };
 
+  const handleRedeem = async () => {
+    setBusy(true); setBuyError(null);
+    try {
+      const result = await _redeemOfferCode();
+      if (result.success) { window.location.reload(); return; }
+      if (result.error) setBuyError(result.error);
+    } catch (e) {
+      setBuyError(e?.message || "The code could not be redeemed.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleRestore = async () => {
     setBusy(true); setBuyError(null);
     try {
@@ -10189,6 +10239,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         ))}
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", marginTop: 8 }}>
           <button onClick={handleRestore} disabled={busy} style={quiet}>Restore purchases</button>
+          {_codeRedeemAvailable() && <button onClick={handleRedeem} disabled={busy} style={quiet} data-redeem-code="">Redeem code</button>}
+          {/* With the code entry the four links split two and two at every
+              width (Restore · Redeem / Terms · Privacy), never "Privacy"
+              alone on a second line (#398 review, 2026-11-07). */}
+          {_codeRedeemAvailable() && <span aria-hidden="true" data-redeem-break="" style={{ flexBasis: "100%", height: 0 }} />}
           <a href="./terms.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Terms</a>
           <a href="./privacy.html" target="_blank" rel="noopener" style={{ ...quiet, textDecoration: "underline" }}>Privacy</a>
         </div>
