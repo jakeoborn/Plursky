@@ -11,13 +11,13 @@
       "checkedAt": "2026-10-28"
     },
     "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn": {
-      "ok": false,
-      "reason": "accountSourceUrl does not link the official account",
+      "ok": true,
+      "reason": null,
       "festival": "tomorrowland-2027",
       "platform": "spotify",
-      "sig": "acaad0099b6daa8b",
+      "sig": "dde95e7517012f82",
       "publishedAt": null,
-      "checkedAt": "2026-10-28"
+      "checkedAt": "2026-11-09"
     },
     "https://open.spotify.com/playlist/14fOWfs7TBF4kQhZQUE8El": {
       "ok": true,
@@ -939,6 +939,16 @@
       "platform": "x",
       "sig": "ea1e55396b2512e3",
       "publishedAt": "2026-11-09",
+      "checkedAt": "2026-11-09"
+    },
+    "https://www.youtube.com/watch?v=EOQjhM4FnrE": {
+      "ok": true,
+      "reason": null,
+      "festival": "beyond-wonderland-socal-2027",
+      "platform": "youtube",
+      "sig": "d0dc699234925cbb",
+      "publishedAt": "2026-04-03",
+      "accountName": "Insomniac",
       "checkedAt": "2026-11-09"
     }
   }

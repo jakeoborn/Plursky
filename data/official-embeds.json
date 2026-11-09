@@ -282,6 +282,14 @@
       "accountSourceUrl": "https://socal.beyondwonderland.com/",
       "observedAt": "2026-09-24",
       "kind": "playlist"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/watch?v=EOQjhM4FnrE",
+      "officialAccount": "https://www.youtube.com/@Insomniac",
+      "accountSourceUrl": "https://www.insomniac.com/",
+      "observedAt": "2026-11-09",
+      "kind": "aftermovie"
     }
   ],
   "beyond-wonderland-gorge-2027": [
@@ -451,7 +459,7 @@
       "platform": "spotify",
       "url": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
       "officialAccount": "https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn",
-      "accountSourceUrl": "https://belgium.tomorrowland.com/",
+      "accountSourceUrl": "https://www.tomorrowland.com/en/festival/welcome",
       "observedAt": "2026-09-24",
       "kind": "playlist"
     }
