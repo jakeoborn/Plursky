@@ -52,10 +52,10 @@ const SHOTS = process.env.PLAN_SHARE_SHOTS;
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   const browser = await chromium.launch({ headless: true });
-  const open = async ({ flagOn, width = 393, mode = "dark", saved = [], tab = "home" }) => {
+  const open = async ({ flagOn, width = 393, mode = "dark", saved = [], tab = "home", fid = FID, at = AT }) => {
     const bctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: "block", colorScheme: mode });
     await wireVendor(bctx);
-    await bctx.clock.install({ time: new Date(AT) });
+    await bctx.clock.install({ time: new Date(at) });
     if (flagOn) await bctx.route(/\/build\/lineup\.js/, async route => {
       const src = await (await route.fetch()).text();
       const body = src.replace(/\b(var|let|const) PLAN_SHARE_LINK_ON = false;/, "$1 PLAN_SHARE_LINK_ON = true;");   // compile.mjs emits var
@@ -70,12 +70,12 @@ try {
       localStorage.setItem("plursky_lineup_view", "list");
       localStorage.setItem("plursky.appearance", mode);
       localStorage.setItem(`${FID}_saved_v1`, JSON.stringify(saved));
-    }, { FID, saved, mode });
+    }, { FID: fid, saved, mode });
     const page = await bctx.newPage();
     const requests = []; page.on("request", r => requests.push({ url: r.url(), method: r.method() }));
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=${tab}`, { waitUntil: "domcontentloaded" });
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${fid}&tab=${tab}`, { waitUntil: "domcontentloaded" });
     await page.waitForFunction(({ fid, wantShare }) => window.FESTIVAL_CONFIG?.id === fid && typeof window.activeLineup === "function"
-      && (!wantShare || document.querySelector("[data-share-lineup]")), { fid: FID, wantShare: saved.length > 0 }, { timeout: 60000 });
+      && (!wantShare || document.querySelector("[data-share-lineup]")), { fid, wantShare: saved.length > 0 }, { timeout: 60000 });
     return { bctx, page, requests };
   };
 
@@ -167,27 +167,32 @@ try {
   // D. multi-weekend: ACL 2026, before the festival, a Weekend-2 selection.
   // af02 Happy Landing is W2-only (Fri Oct 9 13:00-13:45 CDT); af05 Jesse Welles
   // plays both weekends and follows the selection's weekend (Fri Oct 9 16:15-17:15).
+  // Payload AND the sheet's day header must say the same date.
   {
     const ACL = "acl-2026", ACL_AT = "2026-09-20T18:00:00Z";
-    const bctx = await browser.newContext({ viewport: { width: 393, height: 844 }, serviceWorkers: "block" });
-    await wireVendor(bctx);
-    await bctx.clock.install({ time: new Date(ACL_AT) });
-    await bctx.addInitScript(({ FID }) => {
-      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", FID);
-      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
-      localStorage.setItem(`${FID}_saved_v1`, "[]");   // the selection is passed in, not stored
-    }, { FID: ACL });
-    const page = await bctx.newPage();
-    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${ACL}&tab=home`, { waitUntil: "domcontentloaded" });
-    await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && typeof window.planShareDraft === "function", ACL, { timeout: 60000 });
-    const d = await page.evaluate(() => window.planShareDraft(["af02", "af05"], ""));
+    const sheetFor = async ids => {
+      const o = await open({ flagOn: true, fid: ACL, at: ACL_AT, saved: ids });
+      await o.page.locator("[data-share-lineup]").first().click();
+      await o.page.getByText("Share as a link").click();
+      await o.page.waitForSelector("[data-plan-share-sheet]");
+      o.heads = await o.page.$$eval("[data-plan-share-day]", els => els.map(e => e.textContent.trim().toUpperCase()));
+      return o;
+    };
+    const w2 = await sheetFor(["af02", "af05"]);
+    const d = await w2.page.evaluate(() => window.planShareDraft(["af02", "af05"], ""));
     const got = Object.fromEntries((d.payload?.sets || []).map(s => [s.id, [s.startsAt, s.endsAt]]));
     check(!d.error && d.left === 0, `D. ACL W2 draft builds with nothing left off (error ${d.error}, left ${d.left})`);
     check(JSON.stringify(got.af02) === JSON.stringify(["2026-10-09T18:00:00.000Z", "2026-10-09T18:45:00.000Z"]), `D. W2-only Happy Landing is on Fri Oct 9, not Oct 2 (${JSON.stringify(got.af02)})`);
     check(JSON.stringify(got.af05) === JSON.stringify(["2026-10-09T21:15:00.000Z", "2026-10-09T22:15:00.000Z"]), `D. a both-weekend set follows the W2 selection (${JSON.stringify(got.af05)})`);
-    const w1 = await page.evaluate(() => window.planShareDraft(["af05"], ""));
-    check(w1.payload?.sets?.[0]?.startsAt === "2026-10-02T21:15:00.000Z", `D. the same set alone stays on Weekend 1 before the festival (${w1.payload?.sets?.[0]?.startsAt})`);
-    await bctx.close();
+    check(JSON.stringify(w2.heads) === JSON.stringify(["FRIDAY · OCT 9"]), `D. the W2 sheet header reads FRIDAY · OCT 9 (${JSON.stringify(w2.heads)})`);
+    if (SHOTS) await w2.page.screenshot({ path: join(SHOTS, "plan-share-sheet-acl-w2-393-dark.png") });
+    await w2.bctx.close();
+    const w1 = await sheetFor(["af05"]);
+    const d1 = await w1.page.evaluate(() => window.planShareDraft(["af05"], ""));
+    check(d1.payload?.sets?.[0]?.startsAt === "2026-10-02T21:15:00.000Z", `D. the same set alone stays on Weekend 1 before the festival (${d1.payload?.sets?.[0]?.startsAt})`);
+    check(JSON.stringify(w1.heads) === JSON.stringify(["FRIDAY · OCT 2"]), `D. the same set alone: header FRIDAY · OCT 2 (${JSON.stringify(w1.heads)})`);
+    if (SHOTS) await w1.page.screenshot({ path: join(SHOTS, "plan-share-sheet-acl-w1-393-dark.png") });
+    await w1.bctx.close();
   }
   if (SHOTS) for (const width of [320, 393]) for (const mode of ["dark", "light"]) await runSheet({ width, mode, assert: false });
   await browser.close();

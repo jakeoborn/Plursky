@@ -3024,11 +3024,14 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     const e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
     if (s == null || e == null || !(e > s)) { left++; continue; }
     const stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
-    rows.push({ act: a, stageName: stage.name, set: {
+    rows.push({ act: a, night: dd, stageName: stage.name, set: {
       id: String(a.id), artist: a.name, stage: stage.name,
       startsAt: new Date(s).toISOString(), endsAt: new Date(e).toISOString(),
     } });
   }
+  // Group order follows the resolved night, so a W1 and a W2 set on the same
+  // day number land under their own dates (stable sort keeps time order).
+  rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
   if (typeof cfg.endMs !== "number") return { error: "no_edition_end", rows, left };
   try {
     const payload = contract.makePublicPlan({
@@ -3051,10 +3054,11 @@ function PlanShareLinkSheet({ saved, onClose }) {
   const byDay = [];
   for (const r of d.rows) {
     const g = byDay[byDay.length - 1];
-    if (g && g.day === r.act.day) g.rows.push(r); else byDay.push({ day: r.act.day, rows: [r] });
+    if (g && g.night.midnightUtc === r.night.midnightUtc) g.rows.push(r); else byDay.push({ day: r.act.day, night: r.night, rows: [r] });
   }
-  const dayLabel = n => {
-    const m = cfg.dayDates && cfg.dayDates[n];
+  // The header reads the SAME resolved night as the payload's instants
+  // (artistDayDate via planShareDraft), never the base W1 dayDates.
+  const dayLabel = (n, m) => {
     if (!m) return `Day ${n}`;
     const date = Number.isFinite(m.y) ? new Date(Date.UTC(m.y, m.m, m.d)).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) : "";
     return date ? `${m.name} · ${date}` : m.name;
@@ -3093,7 +3097,7 @@ function PlanShareLinkSheet({ saved, onClose }) {
               <div style={{ ...label, marginTop: 2 }}>{d.rows.length} {d.rows.length === 1 ? "set" : "sets"}</div>
               {byDay.map(g => (
                 <div key={g.day} style={{ marginTop: 12 }}>
-                  <div className="duo-label duo-ink3" style={{ marginBottom: 4 }}>{dayLabel(g.day)}</div>
+                  <div data-plan-share-day className="duo-label duo-ink3" style={{ marginBottom: 4 }}>{dayLabel(g.day, g.night)}</div>
                   {g.rows.map(r => (
                     <div key={r.set.id} data-plan-share-set={r.set.id} style={{ display: "flex", gap: 10, padding: "6px 0", borderTop: "1px solid var(--line)" }}>
                       <div className="duo-data-s" style={{ width: 64, flexShrink: 0, fontSize: 13, color: "var(--text-2)" }}>{fmt12(r.act.start)}</div>

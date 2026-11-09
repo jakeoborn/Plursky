@@ -4408,6 +4408,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     var stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
     rows.push({
       act: a,
+      night: dd,
       stageName: stage.name,
       set: {
         id: String(a.id),
@@ -4421,6 +4422,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
   for (var a of acts) {
     if (_loop4(a)) continue;
   }
+  rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
   if (typeof cfg.endMs !== "number") return {
     error: "no_edition_end",
     rows,
@@ -4468,13 +4470,13 @@ function PlanShareLinkSheet({
   var byDay = [];
   for (var r of d.rows) {
     var g = byDay[byDay.length - 1];
-    if (g && g.day === r.act.day) g.rows.push(r);else byDay.push({
+    if (g && g.night.midnightUtc === r.night.midnightUtc) g.rows.push(r);else byDay.push({
       day: r.act.day,
+      night: r.night,
       rows: [r]
     });
   }
-  var dayLabel = n => {
-    var m = cfg.dayDates && cfg.dayDates[n];
+  var dayLabel = (n, m) => {
     if (!m) return `Day ${n}`;
     var date = Number.isFinite(m.y) ? new Date(Date.UTC(m.y, m.m, m.d)).toLocaleDateString("en-US", {
       month: "short",
@@ -4565,11 +4567,12 @@ function PlanShareLinkSheet({
       marginTop: 12
     }
   }, React.createElement("div", {
+    "data-plan-share-day": true,
     className: "duo-label duo-ink3",
     style: {
       marginBottom: 4
     }
-  }, dayLabel(g.day)), g.rows.map(r => React.createElement("div", {
+  }, dayLabel(g.day, g.night)), g.rows.map(r => React.createElement("div", {
     key: r.set.id,
     "data-plan-share-set": r.set.id,
     style: {
