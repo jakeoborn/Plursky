@@ -562,6 +562,12 @@ function _realMapPanLimit(cfg, lib) {
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 
+// #311: true when a live on-site fix would be drawn on SVG art that no affine
+// registers — gpsToMap() would put it at the grid centre wherever the user is.
+function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
+  return !!liveOnSite && !hasAffine && !onRealMap;
+}
+
 function gpsToMap(lat, lng) {
   if (!MAP_AFFINE) return { x: 50, y: 50 };
   return {
@@ -2260,6 +2266,11 @@ function MapScreen({ state, setState }) {
   // distance taken from it a claim rather than a simulation. It rides on the
   // avatar so every consumer inherits it — see readoutHonest().
   const avatar = isLiveOnSite ? { x: liveAvatar.x, y: liveAvatar.y, live: true, gps: liveAvatar.gps } : demoAvatar;
+  // #311: with no affine (no gpsAnchors) gpsToMap() returns the grid centre
+  // for EVERY fix, so a live fix has no place on the SVG art. The SVG map
+  // draws no "you" for it and the pill says ON SITE, never LIVE. The real
+  // basemap is unaffected: it places the raw fix itself (#310, _lngLatOf).
+  const fixUnplaced = _liveFixUnplaced(isLiveOnSite, !!MAP_AFFINE, useRealMap);
 
   // Demo wander tick — only runs when not pinned to real on-site GPS.
   // Slows from 600ms → 2400ms in battery-saver mode (still feels alive,
@@ -2481,7 +2492,7 @@ function MapScreen({ state, setState }) {
 
   // GPS pill label — reflects real status
   const gpsLabel = !gpsLive ? "OFF"
-    : gpsStatus === "live"        ? (isLiveOnSite ? "LIVE" : "OFF-SITE")
+    : gpsStatus === "live"        ? (fixUnplaced ? "ON SITE" : isLiveOnSite ? "LIVE" : "OFF-SITE")
     : gpsStatus === "locating"    ? "FINDING…"
     : gpsStatus === "stale"       ? "NO FIX"
     : gpsStatus === "denied"      ? "OFF"
@@ -3174,7 +3185,7 @@ function MapScreen({ state, setState }) {
           />
         ) : (
           <TopDownMap
-            avatar={avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
+            avatar={fixUnplaced ? { ...avatar, unplaced: true } : avatar} heading={heading} friends={friends} stages={PLACED_STAGES}
             saved={state.saved} showLabels={showLabels} showHeat={showHeat}
             showAmenities={searchSheetExpanded || amenityKey || mapCat === "water" || mapCat === "med"}
             amenityFilter={mapCat === "water" || mapCat === "med" ? mapCat : amenityKey ? amenityFilter : null}
@@ -5969,6 +5980,17 @@ const AMENITY_KEY = [
 ];
 const AMENITY_STYLE = Object.fromEntries(AMENITY_KEY.map(a => [a.type, a]));
 
+// #357: how far (screen px) a chip spanning [left, right] must move to sit
+// inside [lo, hi]. 0 when it already fits; a chip wider than the room is
+// pinned to its left edge.
+function _chipShift(left, right, lo, hi) {
+  if (!(hi > lo)) return 0;
+  if (right - left >= hi - lo) return lo - left;
+  if (left < lo) return lo - left;
+  if (right > hi) return hi - right;
+  return 0;
+}
+
 // ---- TOP-DOWN NAVIGATION MAP ----
 function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels = false, showHeat = false, showAmenities = false, amenityFilter = null, compass = false, compassHeading = 0, selected, meetMode, meetTarget, meetGroup = [], crewFriends = [], zoom = 1, pan = { x: 0, y: 0 }, zoomMin = 0.7, zoomMax = 3.5, onZoomChange, onPanChange, onPickStage, onClick }) {
   // Compass mode: rotate the entire map by -heading so the user's facing
@@ -6092,6 +6114,27 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
   // overlay. One offset, both systems.
   const boxRef = React.useRef(null);
   const [box, setBox] = React.useState({ w: 0, h: 0 });
+
+  // #357: the avatar chip is centred over its dot, so a dot near the map's
+  // edge (a live fix at ACL's west side) pushed half the chip off screen
+  // (x = -11.5 at 393 wide). After every render, and after the zoom/pan/
+  // compass transition settles, measure the chip on screen and shift it back
+  // inside the visible map with a 4 px margin. The shift is converted into
+  // the map's rotated, zoomed frame (the chip's parent), so it moves straight
+  // across the screen at any compass heading and zoom.
+  const clampAvatarChip = React.useCallback(() => {
+    const boxEl = boxRef.current;
+    const chip = boxEl && boxEl.querySelector("[data-avatar-label]");
+    if (!chip) return;
+    chip.style.translate = "";
+    const r = chip.getBoundingClientRect(), b = boxEl.getBoundingClientRect();
+    const vw = window.innerWidth || document.documentElement.clientWidth || b.right;
+    const dx = _chipShift(r.left, r.right, Math.max(b.left, 0) + 4, Math.min(b.right, vw) - 4);
+    if (!dx) return;
+    const t = (-mapRotate * Math.PI) / 180, z = zoom || 1;
+    chip.style.translate = `${(dx * Math.cos(t)) / z}px ${(dx * Math.sin(t)) / z}px`;
+  }, [mapRotate, zoom]);
+  React.useLayoutEffect(() => { clampAvatarChip(); });
   React.useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
@@ -6150,7 +6193,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-    <div style={{
+    <div onTransitionEnd={clampAvatarChip} style={{
       position: "absolute", inset: 0,
       transform: `${compass ? `rotate(${mapRotate}deg) ` : ""}translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
       transformOrigin: "50% 50%",
@@ -6377,7 +6420,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         {/* Route line to selected stage or meet point */}
-        {(sel || meetTarget) && (() => {
+        {!avatar.unplaced && (sel || meetTarget) && (() => {
           const target = meetTarget || sel;
           const c = meetTarget ? "#e85d2e" : "#e85d2e";
           return (
@@ -6448,7 +6491,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         })}
 
         {/* Crew proximity glow — shared ring when you and a friend are near the same spot */}
-        {friends.map(f => {
+        {!avatar.unplaced && friends.map(f => {
           const dist = Math.hypot(f.x - avatar.x, f.y - avatar.y);
           if (dist > 8) return null;
           const mx = (f.x + avatar.x) / 2, my = (f.y + avatar.y) / 2;
@@ -6463,7 +6506,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         {/* Friends */}
         {friends.map(f => {
           const focused = meetGroup.includes(f.id);
-          const nearby = Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
+          const nearby = !avatar.unplaced && Math.hypot(f.x - avatar.x, f.y - avatar.y) <= 8;
           return (
             <g key={f.id}>
               <circle cx={f.x} cy={f.y} r="2.5" fill={f.color} opacity={nearby ? 0.35 : 0.22}>
@@ -6486,7 +6529,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
         )}
 
         {/* Walking route line — animated dashed path from avatar to selected stage */}
-        {selected && !meetMode && (() => {
+        {!avatar.unplaced && selected && !meetMode && (() => {
           const target = stages.find(s => s.id === selected);
           if (!target) return null;
           const dist = Math.hypot(target.x - avatar.x, target.y - avatar.y);
@@ -6520,8 +6563,8 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })()}
 
-        {/* Avatar — you */}
-        <g>
+        {/* Avatar — you. Not drawn for a live fix the art cannot place (#311). */}
+        {!avatar.unplaced && <g>
           <path d={`M${avatar.x},${avatar.y}
                     L${avatar.x + Math.cos(heading - 0.38) * 6.5},${avatar.y + Math.sin(heading - 0.38) * 6.5}
                     L${avatar.x + Math.cos(heading + 0.38) * 6.5},${avatar.y + Math.sin(heading + 0.38) * 6.5} Z`}
@@ -6531,7 +6574,7 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           </circle>
           <circle data-avatar-dot cx={avatar.x} cy={avatar.y} r="1.8" fill="var(--signal-ink)" stroke="rgba(255,255,255,0.95)" strokeWidth="0.6"/>
           <circle cx={avatar.x} cy={avatar.y} r="0.7" fill="var(--ink)"/>
-        </g>
+        </g>}
         </g>
       </svg>
 
@@ -6759,14 +6802,14 @@ function TopDownMap({ avatar, heading, friends, stages, saved = [], showLabels =
           );
         })}
 
-        <div data-avatar-label style={{
+        {!avatar.unplaced && <div data-avatar-label style={{
           position: "absolute", left: `${avatar.x}%`, top: `${mapY(avatar.y)}%`,
           transform: `translate(-50%, -22px)${counterRot}`,
           background: "rgba(var(--signal-rgb),0.95)", color: "var(--ink)",
           padding: "2px 8px", borderRadius: 999,
           fontFamily: "Geist Mono, monospace", fontSize: 9, letterSpacing: 1.3, fontWeight: 700,
           pointerEvents: "none", boxShadow: "0 3px 10px rgba(var(--signal-rgb),0.45)",
-        }}>{avatar.live ? "YOU" : "DEMO"}</div>
+        }}>{avatar.live ? "YOU" : "DEMO"}</div>}
       </div>
     </div>
 
