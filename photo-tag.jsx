@@ -822,6 +822,63 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
   const attendedSet = new Set(attendedIds || []);
   const savedSet    = new Set(savedIds || []);
   const priorIds    = [...new Set([...(attendedIds || []), ...(savedIds || [])])];
+
+  // SPEC-179: GPS speaks for a STAGE only through the one fix gate (#366):
+  // accuracy 100 m or better (unknown counts as coarse), within 140 m of the
+  // nearest stage, and that stage at least 35 m nearer than the runner-up.
+  // At III Points the pins sit 42-121 m apart, so the old "within 120 m at
+  // ±200 m" read one spot as two to five stages, and a clip filmed at RC95
+  // during Yousuke Yukimatsu was tagged horsegiirL at Sector 3.
+  const stageAnchorsAll = resolvedStageAnchors(cfg);
+  const fixGate = (lat != null && lng != null)
+    ? stageFixGate(stageAnchorsAll, { lat, lng, accuracy: acc }, null, STAGE_FIX_PHOTO)
+    : { status: "none" };
+  const trustedStage = fixGate.status === "trusted" ? fixGate.stageId : null;
+  const gpsGate = fixGate.status === "none" ? undefined : {
+    status: fixGate.status, stageId: trustedStage,
+    distM: fixGate.distM != null ? Math.round(fixGate.distM) : null,
+    marginM: fixGate.marginM != null ? Math.round(fixGate.marginM) : null,
+  };
+  // Every act whose set (5 min early, 10 min late) contains the capture time.
+  const playingIn = (a) => {
+    const w = setWindow(a);
+    return !!w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
+  };
+  const playingNow = artists.filter(playingIn)
+    .sort((x, y) => (setWindow(x).startMs - setWindow(y).startMs) || String(x.id).localeCompare(String(y.id)));
+  // A trusted fix at a stage where an act is playing tags that act, even over
+  // a set you saved or marked attended: being measured at RC95 outranks a
+  // plan, and a tap on the wrong row. Anything else that could be true stays
+  // on the record as an alternative.
+  if (trustedStage) {
+    const here = playingNow.filter(a => a.stage === trustedStage);
+    if (here.length) {
+      // Two acts at one stage only overlap in the changeover slack: the one
+      // whose real set contains the time, else the nearer edge.
+      const edge = (a) => { const w = setWindow(a); return photoMs < w.startMs ? w.startMs - photoMs : photoMs > w.endMs ? photoMs - w.endMs : 0; };
+      const act = here.slice().sort((x, y) => edge(x) - edge(y))[0];
+      const anchor = stageAnchorsAll.find(g => g.stageId === trustedStage);
+      const surveyGrade = !!anchor && (anchor.anchorSource === "osm" || anchor.anchorSource === "crowd");
+      // An act at a stage with no pin could be where the fix really was.
+      const unpinned = playingNow.some(a => a.id !== act.id && !stageAnchorsAll.some(g => g.stageId === a.stage));
+      const priorPlaying = priorIds.filter(id => id !== act.id && playingNow.some(a => a.id === id));
+      const ambiguous = !surveyGrade || unpinned || here.length > 1 || priorPlaying.length > 0;
+      // The act GPS found may also be the one you saved or attended: say so.
+      const own = attendedSet.has(act.id) ? "attended" : savedSet.has(act.id) ? "saved" : null;
+      const over = priorPlaying.length ? ";over-" + (priorPlaying.some(id => attendedSet.has(id)) ? "attended" : "saved") : "";
+      return {
+        localDate, gpsRejected,
+        artistId: act.id, night: act.day, festivalId, resolvedBy,
+        reason: own ? own + "_set_time" : "stage_gps_time",
+        evidence: (own ? own + "+time+stage-gps" : "trusted-gps+time") + over,
+        suggested: false,
+        anchorSource: anchor ? anchor.anchorSource : null,
+        ambiguous,
+        alternatives: ambiguous ? [act.id, ...playingNow.filter(a => a.id !== act.id).map(a => a.id)] : undefined,
+        gpsGate,
+      };
+    }
+  }
   const priorHits = priorIds
     .map(id => artists.find(a => a.id === id))
     .filter(Boolean)
@@ -832,7 +889,6 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // the legacy +10. (2026-08-22 founder field report at EDC.)
     .filter(x => photoMs >= x.startMs - 5 * 60000 &&
                  photoMs <= x.endMs + (attendedSet.has(x.a.id) ? 20 : 10) * 60000);
-  let savedDefeatedByGps = false;
   if (priorHits.length) {
     // Highest tier first (attended > saved); tightest-fit as tiebreak.
     priorHits.sort((x, y) => (y.score - x.score) || ((x.endMs - x.startMs) - (y.endMs - y.startMs)));
@@ -854,43 +910,21 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
                  evidence: "gps-off-venue", distMeters: away, defeated: hit.a.id };
       }
     }
-    const stageAnchors = sLat != null && sLng != null ? resolvedStageAnchors(cfg) : [];
-    const anchor = stageAnchors.find(g => g.stageId === hit.a.stage) || null;
-    const atStage = !!anchor && _haversineMeters(sLat, sLng, anchor.lat, anchor.lng) <= 120;
-    // Usable GPS at a DIFFERENT anchored stage, where an act is playing now,
-    // contradicts a saved guess. If the saved act's stage is anchored too, the
-    // GPS is the better evidence: drop the guess and match on time + GPS
-    // below. If its stage has no anchor we cannot say how far it is, so keep
-    // the guess as a suggestion and offer both acts.
-    let gpsAct = null;
-    if (!attended && !atStage && stageAnchors.length) {
-      let near = null, nearM = Infinity;
-      for (const g of stageAnchors) {
-        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (m < nearM) { nearM = m; near = g; }
-      }
-      if (near && nearM <= 120 && near.stageId !== hit.a.stage) {
-        gpsAct = artists.find(a => a.stage === near.stageId && (() => {
-          const w = setWindow(a);
-          return w && photoMs >= w.startMs - 5 * 60000 && photoMs <= w.endMs + 10 * 60000;
-        })()) || null;
-      }
-    }
-    if (!(gpsAct && anchor)) {
-      const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
-      const alts = gpsAct ? [...new Set([...topTier.map(h => h.a.id), gpsAct.id])] : topTier.map(h => h.a.id);
-      const amb = ambiguous || !!gpsAct;
-      return {
-        localDate, gpsRejected,
-        artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
-        reason: attended ? "attended_set_time" : "saved_set_time",
-        evidence: gpsAct ? "saved+time;gps-other-stage" : evidence,
-        suggested: !attended && !atStage,
-        ambiguous: amb,
-        alternatives: amb ? alts : undefined,
-      };
-    }
-    savedDefeatedByGps = true; // fall through; the time + GPS match below decides.
+    // A trusted fix at this set's own stage confirms a saved guess. A fix
+    // that is coarse, ambiguous or elsewhere with nobody playing says nothing
+    // (a trusted fix at a stage WITH an act playing already returned above).
+    const atStage = trustedStage != null && trustedStage === hit.a.stage;
+    const evidence = attended ? "attended+time" : atStage ? "saved+time+stage-gps" : "saved+time";
+    return {
+      localDate, gpsRejected,
+      artistId: hit.a.id, night: hit.a.day, festivalId, resolvedBy,
+      reason: attended ? "attended_set_time" : "saved_set_time",
+      evidence,
+      suggested: !attended && !atStage,
+      ambiguous,
+      alternatives: ambiguous ? topTier.map(h => h.a.id) : undefined,
+      gpsGate,
+    };
   }
 
   // The same off-venue verdict for every other time-only guess: a photo
@@ -952,14 +986,12 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // within 120m of a stage anchor, tag that stage's temporally-nearest set
     // when it's within 60 min — flagged `ambiguous` so the card shows the
     // FIX TAG chip instead of pretending certainty.
-    if (sLat != null && sLng != null) {
-      const anchors = resolvedStageAnchors(cfg);
-      let nearStage = null, nearStageM = Infinity, nearSource = null;
-      for (const g of anchors) {
-        const m = _haversineMeters(sLat, sLng, g.lat, g.lng);
-        if (m < nearStageM) { nearStageM = m; nearStage = g.stageId; nearSource = g.anchorSource; }
-      }
-      if (nearStage && nearStageM <= 120) {
+    // SPEC-179: only a TRUSTED fix names the stage here too.
+    {
+      const nearStage = trustedStage;
+      const nearStageM = fixGate.distM;
+      const nearSource = (stageAnchorsAll.find(g => g.stageId === trustedStage) || {}).anchorSource || null;
+      if (nearStage) {
         let best = null, bestGap = Infinity;
         for (const a of artists) {
           if (a.day !== night || a.stage !== nearStage) continue;
@@ -982,63 +1014,42 @@ function _matchArtistForPhoto({ date, lat, lng, rawUtcMs, acc }, savedIds, atten
     // shuttle line, etc.).
     return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "no_artist_at_time" };
   }
-  // Prefer ATTENDED, then SAVED, then any; GPS tiebreaker; then tightest fit.
-  const inAttended = candidates.filter(c => attendedSet.has(c.a.id));
-  const inSaved    = candidates.filter(c => savedSet.has(c.a.id));
-  const pool = inAttended.length ? inAttended : (inSaved.length && !savedDefeatedByGps ? inSaved : candidates);
-  const _anchors = resolvedStageAnchors(cfg);
-  const stageDist = (a) => {
-    if (sLat == null || sLng == null) return Infinity;
-    const anchor = _anchors.find(g => g.stageId === a.stage);
-    if (!anchor) return Infinity;
-    const dLat = sLat - anchor.lat, dLng = sLng - anchor.lng;
-    return dLat * dLat + dLng * dLng;
-  };
-  // A candidate whose stage anchor is within 120 m of usable GPS is where
-  // the photo was taken; it outranks a candidate whose stage has no anchor,
-  // which used to win on start time alone. The match stays flagged
-  // ambiguous below, since an unanchored stage's distance is unknown.
-  const atAnchor = (a) => {
-    if (sLat == null || sLng == null) return false;
-    const g = _anchors.find(x => x.stageId === a.stage);
-    return !!g && _haversineMeters(sLat, sLng, g.lat, g.lng) <= 120;
-  };
-  pool.sort((x, y) => {
-    const ax = atAnchor(x.a), ay = atAnchor(y.a);
-    if (ax !== ay) return ax ? -1 : 1;
-    const dx = stageDist(x.a), dy = stageDist(y.a);
-    if (dx !== Infinity && dy !== Infinity && Math.abs(dx - dy) > 1e-9) return dx - dy;
-    return Math.abs(adjustedMin - x.startMin) - Math.abs(adjustedMin - y.startMin);
-  });
-  // Two+ sets overlap this timestamp and GPS didn't cleanly separate the
-  // stages → keep the best guess but flag it so the card shows a fix-tag chip.
-  const dists = pool.map(c => stageDist(c.a));
-  const gpsSeparated = dists.every(d => d !== Infinity) &&
-    [...dists].sort((a, b) => a - b).slice(0, 2).reduce((a, b) => b - a, 0) > 1e-9;
-  // Provenance of the anchor that actually decided this match. Only meaningful
-  // when GPS did the separating — with no fix, or with a single candidate, the
-  // anchor never entered into it and flagging would be noise.
-  const winnerAnchor = _anchors.find(g => g.stageId === pool[0].a.stage) || null;
-  const gpsDecided = sLat != null && sLng != null && pool.length > 1 && gpsSeparated;
-  const anchorSource = gpsDecided ? (winnerAnchor ? winnerAnchor.anchorSource : null) : null;
-  // POSTER-FALLBACK HONESTY FLAG. A match separated by a pin we know was
-  // measured off a poster is a guess wearing a confident face — keep it (it
-  // still beats no tag) but surface the FIX TAG chip, same as a GPS tie.
-  // An anchor only stops a match being "ambiguous" if it came from something
-  // outside the app's own map art. This used to read `anchorSource === "poster"`,
-  // which was correct only because resolvedStageAnchors labelled EVERY gpsAnchor
-  // "poster" regardless of origin. Anchors now carry real provenance, so test
-  // the property that matters — surveyed or measured — rather than one label.
-  // Effect: OSM-sourced anchors (the wave-1 festivals) stop being flagged
-  // ambiguous, which they never should have been; poster/prov/derived are
-  // unchanged.
-  const surveyGrade = anchorSource === "osm" || anchorSource === "crowd";
-  const ambiguous = (pool.length > 1 && !gpsSeparated) || (anchorSource != null && !surveyGrade);
+  // A precise fix more than 140 m from every pinned stage (the gate's
+  // "outside") rules out the acts AT pinned stages: you were not within 140 m
+  // of them. What is left plays on a stage with no pin, where the fix could
+  // be. ACL pins 3 of 7 stages, so a photo in the BMI crowd is BMI's.
+  if (fixGate.status === "outside" && candidates.length > 1) {
+    const pinned = (a) => stageAnchorsAll.some(g => g.stageId === a.stage);
+    const left = candidates.filter(c => !pinned(c.a));
+    if (left.length === 1) {
+      return { localDate, gpsRejected, artistId: left[0].a.id, night, festivalId, resolvedBy, reason: "unpinned_by_exclusion",
+               ambiguous: true, anchorSource: null, gpsGate,
+               alternatives: [left[0].a.id, ...candidates.filter(c => c !== left[0]).sort((x, y) => x.startMin - y.startMin).map(c => c.a.id)] };
+    }
+    if (left.length > 1) {
+      const ordered = [...left.sort((x, y) => x.startMin - y.startMin), ...candidates.filter(c => pinned(c.a)).sort((x, y) => x.startMin - y.startMin)];
+      return { localDate, gpsRejected, artistId: null, night, festivalId, resolvedBy, reason: "several_playing",
+               ambiguous: true, anchorSource: null, gpsGate, alternatives: ordered.map(c => c.a.id) };
+    }
+  }
+  // One act playing: that's the act, whatever GPS says (a trusted fix at
+  // its stage already returned above; a fix elsewhere with nobody playing
+  // there is a walk between stages, not a different set).
+  if (candidates.length === 1) {
+    return { localDate, gpsRejected, artistId: candidates[0].a.id, night, festivalId, resolvedBy, reason: "matched",
+             ambiguous: false, anchorSource: null, gpsGate };
+  }
+  // Several acts playing and no trusted fix to choose between them. Before
+  // SPEC-179 the act that started most recently won, flagged ambiguous; a
+  // guess is not a tag, so this stays untagged with every act that was
+  // playing offered as a suggestion, earliest start first.
+  const several = candidates.slice().sort((x, y) => (x.startMin - y.startMin) || String(x.a.id).localeCompare(String(y.a.id)));
   return {
-      localDate, gpsRejected,
-    artistId: pool[0].a.id, night, festivalId, resolvedBy, reason: "matched",
-    ambiguous, anchorSource,
-    alternatives: ambiguous ? pool.map(c => c.a.id) : undefined,
+    localDate, gpsRejected,
+    artistId: null, night, festivalId, resolvedBy, reason: "several_playing",
+    ambiguous: true, anchorSource: null,
+    alternatives: several.map(c => c.a.id),
+    gpsGate,
   };
 }
 

@@ -1879,6 +1879,24 @@ const ARTISTS = [
 // Falling back to a known-skewed poster pin (rather than refusing to match)
 // is the deliberate call: for the six stages with no measurement yet, a
 // flagged guess beats tagging nothing at all.
+// Folds a billed name for search: accents dropped, case ignored, and the
+// stylized letters festivals bill with read as the letters they stand for
+// (III Points bills Yousuke Yukimatsu as "¥ØU$UK€ ¥UK1MAT$U"). Spaces and
+// punctuation are dropped, so "yuki matsu" and "Yukimatsu" both match.
+// Apply it to BOTH sides of a comparison.
+const _STYLIZED_LETTERS = { "¥": "y", "ø": "o", "$": "s", "€": "e", "1": "i" };
+function foldBilledName(s) {
+  return String(s || "").toLowerCase().normalize("NFKD").replace(/\p{M}/gu, "")
+    .replace(/[¥ø$€1]/g, c => _STYLIZED_LETTERS[c]).replace(/[^\p{L}\p{N}]+/gu, "");
+}
+// Does `query` find `name`? A plain substring, or the folded forms.
+function billedNameMatches(name, query) {
+  const q = String(query || "").trim().toLowerCase();
+  if (!q) return false;
+  if (String(name || "").toLowerCase().includes(q)) return true;
+  const fq = foldBilledName(q);
+  return !!fq && foldBilledName(name).includes(fq);
+}
 function resolvedStageAnchors(cfg) {
   const byId = new Map();
   for (const g of (cfg?.gpsAnchors || [])) {
@@ -2497,6 +2515,9 @@ function _haversineMeters(lat1, lng1, lat2, lng2) {
 // radius stays today's 140 m, accuracy and margin are Check-in's.
 const STAGE_FIX_ATTEND = { maxAgeMs: 60000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
 const STAGE_FIX_ATTEND_SAVER = { maxAgeMs: 120000, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
+// The photo tagger (SPEC-179): the same accuracy, radius and margin, with no
+// freshness rule, because a photo's fix is read at the moment it was taken.
+const STAGE_FIX_PHOTO = { maxAgeMs: Infinity, maxAccM: 100, maxDistM: 140, minMarginM: 35 };
 function stageFixGate(anchors, fix, atMs, rules) {
   if (!fix || !Number.isFinite(fix.lat) || !Number.isFinite(fix.lng)) return { status: fix && fix.denied ? "denied" : "none" };
   const accM = Number.isFinite(fix.accuracy) ? fix.accuracy : null;
