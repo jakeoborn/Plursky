@@ -101,7 +101,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | EDC Orlando 2026 | `edc-orlando-2026` | Nov 6–8, 2026 | 133 | 133 | 0 | 5 | live |
 | Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 5 | live |
 | Decadence Colorado 2026 | `decadence-colorado-2026` | Dec 30–31, 2026 | 23 | 0 | 23 | 0 | live |
-| Countdown NYE 2026 | `countdown-nye-2026` | Dec 31, 2026 – Jan 1, 2027 | 71 | 0 | 71 | 0 | live |
+| Countdown NYE 2026 | `countdown-nye-2026` | Dec 31, 2026 – Jan 1, 2027 | 70 | 0 | 70 | 0 | live |
 <!-- festival-status:end -->
 
 ### Ordering (Jake, 2026-09-12)
