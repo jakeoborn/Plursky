@@ -2,8 +2,8 @@
  "festivalsInRegistry": 25,
  "festivalsWithLineup": 19,
  "billingRows2026": 2583,
- "distinctBillingStrings2026": 2071,
- "distinctFolded2026": 1967,
+ "distinctBillingStrings2026": 2070,
+ "distinctFolded2026": 1966,
  "spellingGroups": [
   [
    "10CUST",
@@ -414,8 +414,8 @@
   ]
  ],
  "separators2026": {
-  "b2b": 213,
-  "amp": 42,
+  "b2b": 212,
+  "amp": 41,
   "x": 7,
   "presents": 6,
   "paren": 59
@@ -464,8 +464,8 @@
  "performersAll": 2575,
  "performersArchivedAnd2026": 305,
  "billingsPerPerformer": {
-  "1": 1935,
-  "2": 352,
+  "1": 1936,
+  "2": 351,
   "3": 151,
   "4": 76,
   "5": 38,
