@@ -163,6 +163,32 @@ try {
     await bctx.close();
   };
   await runSheet({ width: 393, mode: "dark", assert: true });
+
+  // D. multi-weekend: ACL 2026, before the festival, a Weekend-2 selection.
+  // af02 Happy Landing is W2-only (Fri Oct 9 13:00-13:45 CDT); af05 Jesse Welles
+  // plays both weekends and follows the selection's weekend (Fri Oct 9 16:15-17:15).
+  {
+    const ACL = "acl-2026", ACL_AT = "2026-09-20T18:00:00Z";
+    const bctx = await browser.newContext({ viewport: { width: 393, height: 844 }, serviceWorkers: "block" });
+    await wireVendor(bctx);
+    await bctx.clock.install({ time: new Date(ACL_AT) });
+    await bctx.addInitScript(({ FID }) => {
+      localStorage.setItem("onboarded", "v1"); localStorage.setItem("active_festival_id", FID);
+      localStorage.setItem("active_festival_explicit", "1"); localStorage.setItem("cloud_nudge_seen", "1");
+      localStorage.setItem(`${FID}_saved_v1`, "[]");   // the selection is passed in, not stored
+    }, { FID: ACL });
+    const page = await bctx.newPage();
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${ACL}&tab=home`, { waitUntil: "domcontentloaded" });
+    await page.waitForFunction(fid => window.FESTIVAL_CONFIG?.id === fid && typeof window.planShareDraft === "function", ACL, { timeout: 60000 });
+    const d = await page.evaluate(() => window.planShareDraft(["af02", "af05"], ""));
+    const got = Object.fromEntries((d.payload?.sets || []).map(s => [s.id, [s.startsAt, s.endsAt]]));
+    check(!d.error && d.left === 0, `D. ACL W2 draft builds with nothing left off (error ${d.error}, left ${d.left})`);
+    check(JSON.stringify(got.af02) === JSON.stringify(["2026-10-09T18:00:00.000Z", "2026-10-09T18:45:00.000Z"]), `D. W2-only Happy Landing is on Fri Oct 9, not Oct 2 (${JSON.stringify(got.af02)})`);
+    check(JSON.stringify(got.af05) === JSON.stringify(["2026-10-09T21:15:00.000Z", "2026-10-09T22:15:00.000Z"]), `D. a both-weekend set follows the W2 selection (${JSON.stringify(got.af05)})`);
+    const w1 = await page.evaluate(() => window.planShareDraft(["af05"], ""));
+    check(w1.payload?.sets?.[0]?.startsAt === "2026-10-02T21:15:00.000Z", `D. the same set alone stays on Weekend 1 before the festival (${w1.payload?.sets?.[0]?.startsAt})`);
+    await bctx.close();
+  }
   if (SHOTS) for (const width of [320, 393]) for (const mode of ["dark", "light"]) await runSheet({ width, mode, assert: false });
   await browser.close();
 } finally { server.kill(); }

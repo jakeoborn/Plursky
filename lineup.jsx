@@ -3008,14 +3008,20 @@ const PLAN_SHARE_LINK_ON = false;
 function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date.now()) {
   const contract = typeof window !== "undefined" ? window.PlurskyPlanShare : null;
   if (!contract) return { error: "unavailable", rows: [], left: 0 };
-  const ids = new Set(savedIds || []);
-  const acts = activeLineup().filter(a => ids.has(a.id))
+  const list = Array.from(savedIds || []);
+  const ids = new Set(list);
+  // The weekend comes from THIS selection, and each act's dates from the app's
+  // one per-act resolver (artistDayDate): a W2-only set is on Weekend 2's dates
+  // whatever the session says. A hardcoded shift put ACL W2 a week early.
+  const acts = activeLineup(list).filter(a => ids.has(a.id))
     .sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   const rows = []; let left = 0;
   for (const a of acts) {
     const t = setTimingMin(a);
-    const s = t && t.end != null ? _scanActUtc(cfg, a.day, 0, a.start) : null;
-    const e = s != null ? _scanActUtc(cfg, a.day, 0, a.end) : null;
+    const dd = artistDayDate(a, now, list), base = cfg.dayDates && cfg.dayDates[a.day];
+    const shift = dd && base ? dd.midnightUtc - base.midnightUtc : null;
+    const s = t && t.end != null && shift != null ? _scanActUtc(cfg, a.day, shift, a.start) : null;
+    const e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
     if (s == null || e == null || !(e > s)) { left++; continue; }
     const stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
     rows.push({ act: a, stageName: stage.name, set: {

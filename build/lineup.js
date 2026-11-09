@@ -4389,14 +4389,18 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     rows: [],
     left: 0
   };
-  var ids = new Set(savedIds || []);
-  var acts = activeLineup().filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
+  var list = Array.from(savedIds || []);
+  var ids = new Set(list);
+  var acts = activeLineup(list).filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   var rows = [];
   var left = 0;
   var _loop4 = function (a) {
     var t = setTimingMin(a);
-    var s = t && t.end != null ? _scanActUtc(cfg, a.day, 0, a.start) : null;
-    var e = s != null ? _scanActUtc(cfg, a.day, 0, a.end) : null;
+    var dd = artistDayDate(a, now, list),
+      base = cfg.dayDates && cfg.dayDates[a.day];
+    var shift = dd && base ? dd.midnightUtc - base.midnightUtc : null;
+    var s = t && t.end != null && shift != null ? _scanActUtc(cfg, a.day, shift, a.start) : null;
+    var e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
     if (s == null || e == null || !(e > s)) {
       left++;
       return 1;
