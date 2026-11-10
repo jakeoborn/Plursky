@@ -30,20 +30,25 @@ export const IPHONE_ITEMS = [
   ["com.apple.quicktime.model", "iPhone 17 Pro Max"],
 ];
 
-function mvhd() {
+function mvhd(slack = false) {
   const p = Buffer.alloc(100);
   p.writeUInt32BE(CAPTURE_UNIX_S + 2082844800, 4); // creation, 1904 epoch
   p.writeUInt32BE(CAPTURE_UNIX_S + 2082844800, 8);
   p.writeUInt32BE(600, 12); p.writeUInt32BE(6000, 16);
-  return box("mvhd", p);
+  return box("mvhd", slack ? Buffer.concat([p, BIN_PLANT]) : p);
 }
-function trak(timedKey, format = "mebx", second = null, nested = false) {
+function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false) {
   const mebx = box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey))));
   const entries = second ? [mebx, box(second, Buffer.alloc(6), u16(1), BIN_PLANT)] : [mebx];
   const stsd = box("stsd", u32(0), u32(entries.length), ...entries);
   // nested: a vendor box holding a binary fix at every container level
   const v = t => nested ? [box(t, BIN_PLANT)] : [];
-  return box("trak", ...v("vgps"), box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), box("stbl", stsd, ...v("gpst")))));
+  // opaque: a fix inside the small containers (gmhd, dinf, tref);
+  // slack: a fix in the bytes past an stco table's last entry.
+  const o = opaque ? [box("gmhd", box("gmin", Buffer.alloc(16)), box("gpsg", BIN_PLANT)), box("dinf", box("gpsd", BIN_PLANT))] : [];
+  const tref = opaque ? [box("tref", box("gpsr", BIN_PLANT))] : [];
+  const stco = slack ? [box("stco", u32(0), u32(0), BIN_PLANT)] : [];
+  return box("trak", ...v("vgps"), ...tref, box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), ...o, box("stbl", stsd, ...stco, ...v("gpst")))));
 }
 // Deterministic filler that never spells a coordinate.
 function filler(n, seed = 7) {
@@ -62,7 +67,7 @@ export const XMP_UUID = Buffer.from("BE7ACFCB97A942E89C71999491E3AFAC", "hex");
 export const XMP_DM = { lat: "28,32.472N", lng: "81,23.922W" };
 export const XMP_GPS = Buffer.from(`<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:GPSLatitude="${XMP_DM.lat}" exif:GPSLongitude="${XMP_DM.lng}" exif:GPSVersionID="2.2.0.0"/></rdf:RDF></x:xmpmeta><?xpacket end="w"?>`, "latin1");
 
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, mdatBytes, straddleAt, noGps }
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, shortLeaf, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
@@ -71,7 +76,7 @@ export function buildMov(opts = {}) {
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);
-  const moov = box("moov", mvhd(), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
+  const moov = box("moov", mvhd(!!opts.leafSlack), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, !!opts.opaqueGps, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
   let media = filler(opts.mdatBytes || 64 * 1024);
   if (!opts.noGps) {
     // orphaned meta copy + a bare coordinate string, as real clips carry

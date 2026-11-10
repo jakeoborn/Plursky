@@ -475,12 +475,46 @@ function _vgpsLatin1(u8, a, b) {
 // box it does not know. udta and meta have their own rules below.
 const _VGPS_CHILDREN = {
   moov: new Set(["mvhd", "trak", "udta", "meta", "iods", "mvex"]),
-  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load", "txas", "clip", "matt", "imap"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load", "txas"]),
   edts: new Set(["elst"]),
   mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
   minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
   stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd", "subs", "saiz", "saio", "padb"]),
+  gmhd: new Set(["gmin", "text", "tmcd"]),
+  dinf: new Set(["dref"]),
+  mvex: new Set(["mehd", "trex", "leva"]),
+  tapt: new Set(["clef", "prof", "enof"]),
+  tref: new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]),
 };
+// Leaf boxes with a defined length: payload bytes past the parsed structure
+// are slack a vendor could fill, so they are zeroed; a payload SHORTER than its
+// structure is refused. Returns the expected payload length, or null when the
+// box has no fixed shape (hdlr/elng names, dref, sgpd, sdtp, …).
+const _VGPS_LEAF_LEN = (type, dv, p, P) => {
+  const v = P >= 1 ? dv.getUint8(p) : 0, n = off => (P >= off + 4 ? dv.getUint32(p + off) : 0);
+  switch (type) {
+    case "mvhd": return v === 1 ? 112 : 100;
+    case "tkhd": return v === 1 ? 96 : 84;
+    case "mdhd": return v === 1 ? 36 : 24;
+    case "mehd": return v === 1 ? 12 : 8;
+    case "vmhd": return 12;
+    case "smhd": return 8;
+    case "nmhd": case "sthd": return 4;
+    case "hmhd": return 20;
+    case "gmin": return 16;
+    case "trex": return 24;
+    case "cslg": return v === 1 ? 44 : 24;
+    case "clef": case "prof": case "enof": return 12;
+    case "elst": return 8 + n(4) * (v === 1 ? 20 : 12);
+    case "stts": case "ctts": case "co64": return 8 + n(4) * 8;
+    case "stss": case "stps": case "stco": return 8 + n(4) * 4;
+    case "stsc": return 8 + n(4) * 12;
+    case "stsz": return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "sbgp": return (v === 1 ? 16 : 12) + n(v === 1 ? 12 : 8) * 8;
+    default: return _VGPS_TREF_KINDS.has(type) ? P - (P % 4) : null;
+  }
+};
+const _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
 // Redacts one in-memory box region. Returns { n } (items redacted) or
 // { refuse: reason }.
 function _stripVideoGpsRegion(u8) {
@@ -511,6 +545,10 @@ function _stripVideoGpsRegion(u8) {
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
         zero(payload, boxEnd); toFree(pos); n++;
+      } else if (_VGPS_CHILDREN[parentType] && _VGPS_LEAF_LEN(type, dv, payload, boxEnd - payload) !== null) {
+        const want = _VGPS_LEAF_LEN(type, dv, payload, boxEnd - payload);
+        if (want > boxEnd - payload) { refuse = "short " + type; return; }
+        if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }
       } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
         // udta is user data, never needed for playback. Location can sit in
         // it as text (©xyz, loci) or in a vendor's BINARY box no regex can
@@ -566,7 +604,7 @@ function _stripVideoGpsRegion(u8) {
       } else if (scope && parentType === "ilst") {
         scope.items.push({ idx: dv.getUint32(pos + 4), payload, boxEnd });
       }
-      if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
+      if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts", "gmhd", "dinf", "mvex", "tapt", "tref"].includes(type)) {
         const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
         const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [], keysSeen: 0 } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);

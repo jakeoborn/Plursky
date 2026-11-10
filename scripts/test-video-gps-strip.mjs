@@ -102,6 +102,21 @@ async function suite(strip, slim) {
   const rn = await strip(blobOf(nest.bytes));
   const nb = rn ? await bytesOf(rn.blob) : Buffer.alloc(0);
   ok(rn && nb.length === nest.bytes.length && !nb.includes(BIN_PLANT), "V24 an unknown box at any container level is blanked (no binary fix left)");
+  // Review on fa686865: a fix inside the small containers kept whole before
+  // (gmhd, dinf, tref), and in slack bytes past an allowlisted leaf's structure.
+  const opq = buildMov({ noGps: true, opaqueGps: true });
+  ok(opq.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1 === 3, "V25 setup: binary fixes inside gmhd, dinf and tref");
+  const rq = await strip(blobOf(opq.bytes));
+  const qb = rq ? await bytesOf(rq.blob) : Buffer.alloc(0);
+  ok(rq && qb.length === opq.bytes.length && !qb.includes(BIN_PLANT), "V25 an unknown box inside gmhd, dinf or tref is blanked");
+  const slk = buildMov({ noGps: true, leafSlack: true });
+  ok(slk.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1 === 2, "V26 setup: binary fixes past mvhd's 100 bytes and past an empty stco table");
+  const rs = await strip(blobOf(slk.bytes));
+  const sb = rs ? await bytesOf(rs.blob) : Buffer.alloc(0);
+  ok(rs && sb.length === slk.bytes.length && !sb.includes(BIN_PLANT), "V26 slack bytes past a fixed-shape leaf are zeroed");
+  const short = Buffer.from(buildMov({ noGps: true, leafSlack: true }).bytes);
+  { const at = short.indexOf("stco", 0, "latin1"); short.writeUInt32BE(9, at + 8); } // stco claims 9 entries, holds 4
+  ok((await strip(blobOf(short))) === null, "V27 a leaf shorter than its own entry count is refused");
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -171,6 +186,9 @@ const MUTANTS = [
   ["top-level boxes allowlist off (uuid/XMP passes)", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["container child allowlist off (unknown box inside moov passes)", STRIP_SRC.replace("} else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {", "} else if (false) {"), SLIM_SRC],
+  ["small containers kept whole (gmhd/dinf/tref not walked)", STRIP_SRC.replace(', "gmhd", "dinf", "mvex", "tapt", "tref"].includes(type)) {', '].includes(type)) {'), SLIM_SRC],
+  ["leaf slack kept", STRIP_SRC.replace("if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }", ""), SLIM_SRC],
+  ["short leaf accepted", STRIP_SRC.replace('if (want > boxEnd - payload) { refuse = "short " + type; return; }', ""), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];
