@@ -68,7 +68,39 @@ export const XMP_UUID = Buffer.from("BE7ACFCB97A942E89C71999491E3AFAC", "hex");
 export const XMP_DM = { lat: "28,32.472N", lng: "81,23.922W" };
 export const XMP_GPS = Buffer.from(`<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:GPSLatitude="${XMP_DM.lat}" exif:GPSLongitude="${XMP_DM.lng}" exif:GPSVersionID="2.2.0.0"/></rdf:RDF></x:xmpmeta><?xpacket end="w"?>`, "latin1");
 
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, shortLeaf, mdatBytes, straddleAt, noGps }
+// A video track whose samples sit at the start of mdat, so the strip has to
+// walk NAL units. video: { fam: "avc"|"hevc", samples: [[nalBuf, …], …],
+// hvccSei: Buffer (an SEI NAL in hvcC), countSkew: n (stsz says n more) }.
+export const SEI_TEXT = "GPSLatitude=28.5412 GPSLongitude=-81.3987";
+export const SLICE_BODY = Buffer.alloc(40, 0x88);
+export function nal(fam, type, body) {
+  const h = fam === "avc" ? Buffer.from([type & 0x1f | (type === 5 ? 0x60 : 0)]) : Buffer.from([(type & 0x3f) << 1, 0x01]);
+  return Buffer.concat([h, body]);
+}
+export function seiNal(fam, text = SEI_TEXT, extra = BIN_PLANT) {
+  const payload = Buffer.concat([Buffer.alloc(16, 0xab), Buffer.from(text, "latin1"), extra]);
+  return nal(fam, fam === "avc" ? 6 : 39, Buffer.concat([Buffer.from([5, payload.length]), payload, Buffer.from([0x80])]));
+}
+function videoTrak(v, mdatStart) {
+  const L4 = b => Buffer.concat([u32(b.length), b]);
+  const samples = v.samples.map(s => Buffer.concat(s.map(L4)));
+  const visual = Buffer.alloc(70);
+  let cfg;
+  if (v.fam === "avc") cfg = box("avcC", Buffer.from([1, 0x64, 0, 0x1f, 0xff, 0xe0, 0]));
+  else {
+    const h = Buffer.alloc(23); h[0] = 1; h[21] = 0x03;
+    const arrays = v.hvccSei ? Buffer.concat([Buffer.from([0x80 | 39]), u16(1), u16(v.hvccSei.length), v.hvccSei]) : Buffer.alloc(0);
+    h[22] = v.hvccSei ? 1 : 0;
+    cfg = box("hvcC", h, arrays);
+  }
+  const entry = box(v.fam === "avc" ? "avc1" : "hvc1", Buffer.alloc(6), u16(1), visual, cfg);
+  const stsd = box("stsd", u32(0), u32(1), entry);
+  const stsz = box("stsz", u32(0), u32(0), u32(samples.length + (v.countSkew || 0)), ...samples.map(s => u32(s.length)), ...Array(v.countSkew || 0).fill(u32(1)));
+  const stsc = box("stsc", u32(0), u32(1), u32(1), u32(samples.length), u32(1));
+  const stco = box("stco", u32(0), u32(1), u32(mdatStart));
+  return { trak: box("trak", box("mdia", box("minf", box("stbl", stsd, stsz, stsc, stco)))), bytes: Buffer.concat(samples) };
+}
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
@@ -77,8 +109,11 @@ export function buildMov(opts = {}) {
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);
-  const moov = box("moov", mvhd(!!opts.leafSlack), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
+  const ftypLen = 8 + 12, mdatStart = ftypLen + 8 + 8;
+  const vt = opts.video ? videoTrak(opts.video, mdatStart) : null;
+  const moov = box("moov", mvhd(!!opts.leafSlack), ...(vt ? [vt.trak] : []), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
   let media = filler(opts.mdatBytes || 64 * 1024);
+  if (vt) vt.bytes.copy(media, 0);
   if (!opts.noGps) {
     // orphaned meta copy + a bare coordinate string, as real clips carry
     meta.copy(media, 4096);
@@ -86,6 +121,7 @@ export function buildMov(opts = {}) {
     if (opts.straddleAt) Buffer.from(PLANT.iso, "latin1").copy(media, opts.straddleAt - 8);
   }
   const ftyp = box("ftyp", "qt  ", u32(0), "qt  ");
+  if (ftyp.length !== ftypLen) throw new Error("fixture: ftyp length changed");
   const mdat = box("mdat", media);
   const free = box("free", opts.noGps ? Buffer.alloc(64) : meta);
   const tail = opts.xmpUuid ? [box("uuid", Buffer.alloc(16, 0xbe), BIN_PLANT)] : [];

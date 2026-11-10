@@ -16,11 +16,12 @@
 //      reads it), and a payload with a planted coordinate trips the detector.
 //   M. Mutations: each must turn a check red, or the check proves nothing.
 //   R. Local only: every real clip under ~/Plursky-private (skipped on CI).
-import { readFileSync, existsSync, readdirSync, openAsBlob } from "node:fs";
+import { readFileSync, existsSync, readdirSync, openAsBlob, writeFileSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
-import { homedir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
-import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT, XMP_DM } from "./lib/mov-fixture.mjs";
+import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT, XMP_DM, SEI_TEXT, SLICE_BODY, nal, seiNal } from "./lib/mov-fixture.mjs";
+import { execFileSync } from "node:child_process";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PT = readFileSync(join(ROOT, "photo-tag.jsx"), "utf8");
@@ -127,6 +128,60 @@ async function suite(strip, slim) {
   const rsg = await strip(blobOf(sg.bytes));
   const sgb = rsg ? await bytesOf(rsg.blob) : Buffer.alloc(0);
   ok(rsg && sgb.length === sg.bytes.length && !sgb.includes(BIN_PLANT), "V29 an allowlisted leaf with no checkable shape is blanked (fail closed)");
+  // Review on eb797909: GPS in the FRAMES. An H.264/HEVC sample is a run of
+  // length-prefixed NAL units; SEI user data can hold any text. Every video
+  // sample is walked; SEI/filler (and HEVC's Dolby Vision RPU) become filler
+  // of the same length; slices are untouched; anything unparseable refuses.
+  const vclean = async (opts, label) => {
+    const f = buildMov({ noGps: true, ...opts });
+    const raw = f.bytes.toString("latin1");
+    ok(raw.includes(SEI_TEXT) && f.bytes.includes(BIN_PLANT), `${label} setup: SEI text and a binary fix sit inside a video sample`);
+    const r = await strip(blobOf(f.bytes));
+    const o = r ? await bytesOf(r.blob) : Buffer.alloc(0);
+    return { r, o, f };
+  };
+  {
+    const slice = nal("avc", 5, SLICE_BODY);
+    const { r, o, f } = await vclean({ video: { fam: "avc", samples: [[seiNal("avc"), slice], [nal("avc", 1, SLICE_BODY)]] } }, "V30");
+    ok(r && o.length === f.bytes.length && !o.toString("latin1").includes(SEI_TEXT) && !o.includes(BIN_PLANT), "V30 an H.264 SEI user-data NAL in a sample is rewritten (no text, no binary fix left)");
+    ok(r && o.includes(slice) && o.includes(Buffer.concat([Buffer.from([0x01]), SLICE_BODY])), "V30b the slices around it are byte-identical");
+  }
+  {
+    const slice = nal("hevc", 19, SLICE_BODY), rpu = nal("hevc", 62, Buffer.concat([BIN_PLANT, Buffer.from([0x80])]));
+    const { r, o, f } = await vclean({ video: { fam: "hevc", samples: [[seiNal("hevc"), slice, rpu]] } }, "V31");
+    ok(r && o.length === f.bytes.length && !o.toString("latin1").includes(SEI_TEXT) && !o.includes(BIN_PLANT) && o.includes(slice), "V31 HEVC prefix SEI and a Dolby Vision RPU are rewritten, the slice is kept");
+  }
+  {
+    const display = Buffer.from([0x4e, 0x01, 148, 8, 0, 0x2f, 0xe9, 0xa0, 0x3d, 0x13, 0x40, 0x42, 0x80]);
+    const okHv = buildMov({ noGps: true, video: { fam: "hevc", samples: [[nal("hevc", 19, SLICE_BODY)]], hvccSei: display } });
+    ok((await strip(blobOf(okHv.bytes))) !== null, "V32 hvcC with the iPhone's fixed-size display SEI (ambient viewing, 8 bytes) passes");
+    const userHv = buildMov({ noGps: true, video: { fam: "hevc", samples: [[nal("hevc", 19, SLICE_BODY)]], hvccSei: seiNal("hevc", "28.5412,-81.3987") } });  // no "gps" word for a keyword check to catch
+    ok((await strip(blobOf(userHv.bytes))) === null, "V32b hvcC carrying a user-data SEI is refused");
+  }
+  {
+    const over = Buffer.concat([nal("avc", 5, SLICE_BODY)]);
+    const bad = buildMov({ noGps: true, video: { fam: "avc", samples: [[over]] } });
+    const at = bad.mdatStart; bad.bytes.writeUInt32BE(over.length + 9, at);       // NAL claims 9 bytes past its sample
+    ok((await strip(blobOf(bad.bytes))) === null, "V33 a NAL length that overruns its sample is refused");
+    ok((await strip(blobOf(buildMov({ noGps: true, video: { fam: "hevc", samples: [[nal("hevc", 19, SLICE_BODY), nal("hevc", 45, BIN_PLANT)]] } }).bytes))) === null, "V33b a reserved NAL type is refused");
+    ok((await strip(blobOf(buildMov({ noGps: true, video: { fam: "avc", samples: [[nal("avc", 5, SLICE_BODY)]], countSkew: 2 } }).bytes))) === null, "V34 sample tables that disagree are refused");
+  }
+  {
+    // The reviewer's own file (fake coordinates): x264 H.264 + AAC, with
+    // "GPSLatitude=… GPSLongitude=…" in an SEI user-data NAL.
+    const sf = readFileSync(join(ROOT, "scripts/fixtures/sei-gps-fixture.mp4"));
+    ok(sf.toString("latin1").includes("GPSLatitude=28.5412"), "V35 setup: the reviewer's sei-gps fixture carries GPSLatitude in an SEI");
+    const rs = await strip(blobOf(sf));
+    const so = rs ? await bytesOf(rs.blob) : Buffer.alloc(0);
+    ok(rs && so.length === sf.length && !/GPSLatitude|GPSLongitude|28\.5412|81\.3987/.test(so.toString("latin1")), "V35 the reviewer's sei-gps fixture uploads with no GPS text left");
+    let ff = null; try { execFileSync("ffmpeg", ["-version"], { stdio: "ignore" }); ff = true; } catch {}
+    if (ff && rs) {
+      const tmp = join(tmpdir(), `sei-gps-stripped-${process.pid}.mp4`); writeFileSync(tmp, so);
+      let err = "x"; try { err = execFileSync("ffmpeg", ["-nostdin", "-v", "error", "-i", tmp, "-f", "null", "-"], { stdio: ["ignore", "pipe", "pipe"] }).toString(); } catch (e) { err = String(e.stderr || e); }
+      rmSync(tmp, { force: true });
+      ok(err.trim() === "", `V35b local: the stripped fixture decodes with ffmpeg, no errors (${err.trim().slice(0, 80)})`);
+    }
+  }
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -183,7 +238,15 @@ const MUTANTS = [
   ["udta location boxes left in place", STRIP_SRC.replace('type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")', "false"), SLIM_SRC],
   ["top-level free copy left in place", STRIP_SRC.replace('if (type === "free" || type === "skip") {\n        zero(payload, boxEnd);', 'if (type === "free" || type === "skip") {'), SLIM_SRC],
   ["location keys not recognised", STRIP_SRC.replace("if (_VGPS_KEY_RE.test(name)) {", "if (false) {"), SLIM_SRC],
-  ["mdat passed through unscanned", STRIP_SRC.replace("const r = await _vgpsScanMedia(blob, pos + hdr, pos + boxSize);", "const r = { parts: [blob.slice(pos + hdr, pos + boxSize)], n: 0 };"), SLIM_SRC],
+  ["mdat passed through unscanned", STRIP_SRC.replace("const r = await _vgpsScanMedia(blob, a, z, np.patches);", "const r = { parts: [blob.slice(a, z)], n: 0 };"), SLIM_SRC],
+  ["video samples not walked", STRIP_SRC.replace("const np = await _vgpsNalPatches(blob, mine, a, z);", "const np = { patches: [] };"), SLIM_SRC],
+  ["H.264 SEI kept", STRIP_SRC.replace('if (t === 6 || t === 12) return "fill";', 'if (t === 6 || t === 12) return "keep";'), SLIM_SRC],
+  ["HEVC SEI kept", STRIP_SRC.replace('if (t >= 38 && t <= 40) return "fill";', 'if (t >= 38 && t <= 40) return "keep";'), SLIM_SRC],
+  ["Dolby Vision RPU kept", STRIP_SRC.replace('if (t === 62) return "fill";', 'if (t === 62) return "keep";'), SLIM_SRC],
+  ["unknown NAL types kept", STRIP_SRC.replace('if (t === 62) return "fill";\n  return "refuse";', 'if (t === 62) return "fill";\n  return "keep";'), SLIM_SRC],
+  ["NAL length overrun not checked", STRIP_SRC.replace("if (len < 1 || q + len > z) return", "if (len < 1) return"), SLIM_SRC],
+  ["hvcC SEI not vetted", STRIP_SRC.replace("if (nt === 39 && !_vgpsFixedSei(u8, a + 2, nl))", "if (false)"), SLIM_SRC],
+  ["sample tables not cross-checked", STRIP_SRC.replace('if (i !== sizes.count) return { refuse: "sample tables disagree" };', ""), SLIM_SRC],
   ["no window overlap", STRIP_SRC.replace("_VGPS_OVERLAP = 4096", "_VGPS_OVERLAP = 0"), SLIM_SRC],
   ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
   ["only the first sample entry checked", STRIP_SRC.replace("k < count; k++", "k < Math.min(count, 1); k++"), SLIM_SRC],
