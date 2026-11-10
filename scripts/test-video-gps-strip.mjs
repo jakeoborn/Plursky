@@ -95,6 +95,13 @@ async function suite(strip, slim) {
   const ro = await strip(blobOf(orphan.bytes));
   ok(ro && !(await bytesOf(ro.blob)).includes(BIN_PLANT), "V20 an ilst item past the keys table is blanked (keep-by-allowlist)");
   ok((await strip(blobOf(buildMov({ dupKeys: true }).bytes))) === null, "V21 a meta with two keys tables (ambiguous index) is refused");
+  // Review on eb797909: a box this does not know, INSIDE moov (a dashcam's
+  // moov-level `gps `, vendor boxes in trak/mdia/minf/stbl), passed through.
+  const nest = buildMov({ noGps: true, nestedGps: true });
+  ok(nest.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1 === 5 && !leaksIn(nest.bytes), "V24 setup: five binary fixes in unknown boxes under moov, trak, mdia, minf and stbl");
+  const rn = await strip(blobOf(nest.bytes));
+  const nb = rn ? await bytesOf(rn.blob) : Buffer.alloc(0);
+  ok(rn && nb.length === nest.bytes.length && !nb.includes(BIN_PLANT), "V24 an unknown box at any container level is blanked (no binary fix left)");
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -163,6 +170,7 @@ const MUTANTS = [
   ["ilst index past the keys table kept (blank-list, fail open)", STRIP_SRC.replace("if (!inner.keep.has(it.idx) || inner.hit.has(it.idx))", "if (inner.hit.has(it.idx) || (it.idx <= inner.keep.size + inner.hit.size && !inner.keep.has(it.idx)))"), SLIM_SRC],
   ["top-level boxes allowlist off (uuid/XMP passes)", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
+  ["container child allowlist off (unknown box inside moov passes)", STRIP_SRC.replace("} else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {", "} else if (false) {"), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];

@@ -468,6 +468,19 @@ function _vgpsLatin1(u8, a, b) {
   for (let i = a; i < b; i++) s += String.fromCharCode(u8[i]);
   return s;
 }
+// Deny by default INSIDE the movie too: each container the walker enters
+// keeps only the children named here (the boxes real iPhone clips carry, plus
+// the standard ISO/QuickTime ones). Anything else (a dashcam's moov-level
+// `gps `, a vendor box in a trak) is blanked to `free`; a player never needs a
+// box it does not know. udta and meta have their own rules below.
+const _VGPS_CHILDREN = {
+  moov: new Set(["mvhd", "trak", "udta", "meta", "iods", "mvex"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load", "txas", "clip", "matt", "imap"]),
+  edts: new Set(["elst"]),
+  mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
+  minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
+  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd", "subs", "saiz", "saio", "padb"]),
+};
 // Redacts one in-memory box region. Returns { n } (items redacted) or
 // { refuse: reason }.
 function _stripVideoGpsRegion(u8) {
@@ -495,6 +508,8 @@ function _stripVideoGpsRegion(u8) {
         // box this does not understand is blanked.
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (type === "uuid" || type === "XMP_" || (parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type))) {
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
         // udta is user data, never needed for playback. Location can sit in
