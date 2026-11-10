@@ -2956,6 +2956,24 @@ for (const [script, label] of [
   }
 }
 
+// Imported videos: no coordinate leaves the device. The backup uploads a copy
+// with every capture fix redacted (or holds the clip back), and the moments
+// backup drops a video's parsedGps/gpsAccM/heading/headingRef.
+for (const [label, file] of [
+  ["Video GPS strip — every fix redacted, fail closed, moments backup", "scripts/test-video-gps-strip.mjs"],
+  ["Video GPS strip — real backup flow, nothing on the wire carries a coordinate", "scripts/test-video-gps-backup-browser.mjs"],
+]) {
+  console.log(`▸ ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [file],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${file} failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // L3: Split the night — a split clears the clash everywhere, persists and
 // resets; Keep both accepts; the banner counts clashes and tight transitions apart.
 {

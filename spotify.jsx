@@ -1260,19 +1260,27 @@ const _POSTER_TIMEOUT_MS = 8000;
 // lead-in, a pocket, a lens cap. A dark night-set clip still has stage lights
 // in it and passes, so only a frame with no highlights at all is skipped.
 const _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+// "ok" | "black" | "unpainted". A frame read right after `seeked` can come
+// back with nothing drawn (every pixel alpha 0) before the decoder has
+// presented it (seen on CI Chromium as 19/20 posters). That is not a black
+// frame: it is re-read, not skipped.
+function _frameState(v) {
   try {
     const c = document.createElement("canvas");
     c.width = c.height = 24;
     const g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     const d = g.getImageData(0, 0, 24, 24).data;
+    let painted = false;
     for (let i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
-  } catch { return false; }
+    return painted ? "black" : "unpainted";
+  } catch { return "ok"; }
 }
+const _POSTER_PAINT_RETRIES = 6, _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise((resolve) => {
     let url = null, v = null, settled = false, timer = null;
@@ -1321,11 +1329,15 @@ function _videoPosterBlob(blob) {
           .filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      const judge = (tries) => {
+        if (settled) return;
+        const st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch { done(null); }
@@ -1974,7 +1986,8 @@ function _backedUpBytes(all) {
 // Mirror every not-yet-backed-up moment photo/video to Supabase Storage, then
 // stamp `backedUp` + `backedUpBytes` on the moment (one batched write at the
 // end so we don't fire N re-renders). Stops at the hard cap. Returns
-// {done, failed, total, capped, usedBytes} or {error}.
+// {done, failed, total, capped, usedBytes, gpsHeld} or {error}; gpsHeld
+// counts videos kept back because their GPS could not be proven stripped.
 async function _backupMyWeekend(onProgress) {
   if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
   const user = window.sbGetUser ? await window.sbGetUser() : null;
@@ -1987,10 +2000,20 @@ async function _backupMyWeekend(onProgress) {
   }
   let done = 0, failed = 0, capped = false;
   const succeeded = {}; // id -> bytes
+  let gpsHeld = 0;
   for (const m of pending) {
-    const blob = await _getPhoto(m.photoId).catch(() => null);
+    let blob = await _getPhoto(m.photoId).catch(() => null);
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
+    // A stored video is the raw file, capture GPS included; only a copy with
+    // the phone's own location metadata removed may leave the device (see
+    // _stripVideoGps for what is and is not vetted). If the strip refuses
+    // (null), the clip is held back, never sent as-is.
+    if (m.kind === "video" || /^video\//.test(blob.type || "")) {
+      const clean = await _stripVideoGps(blob);
+      if (!clean) { gpsHeld++; onProgress?.({ done, failed, total: pending.length }); continue; }
+      blob = clean.blob;
+    }
     const ok = await window.sbUploadMomentMedia(m.photoId, blob);
     if (ok) { succeeded[m.id] = blob.size; usedBytes += blob.size; done++; } else failed++;
     onProgress?.({ done, failed, total: pending.length });
@@ -2001,7 +2024,7 @@ async function _backupMyWeekend(onProgress) {
     for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded[x.id] != null ? { ...x, backedUp: true, backedUpBytes: succeeded[x.id] } : x);
     _writeMoments(cur);
   }
-  return { done, failed, total: pending.length, capped, usedBytes };
+  return { done, failed, total: pending.length, capped, usedBytes, gpsHeld };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -7115,7 +7138,7 @@ function MemoriesScreen({ state, setState }) {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
     else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);
-    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   const handleBackup = async () => {
     if (!_isPlusSub()) { setShowPlus(true); return; }
