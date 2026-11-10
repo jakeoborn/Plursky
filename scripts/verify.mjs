@@ -27,6 +27,7 @@ execFileSync(process.execPath, ["scripts/test-artist-photo-ledger.mjs"], { cwd: 
 execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-qa-press.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -2228,6 +2229,25 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`mixed-import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-v. Native picker video batch ──────────────────────────────────────
+// Twenty clips land through the web input AND through the mocked PHPicker
+// bridge one fetch at a time; a failed SAVE is not reported as unreadable.
+// A mock, not iPhone evidence: real-device QA stays on the device lane.
+for (const [script, label] of [
+  ["scripts/test-video-batch-20.mjs", "20-video batch (web + native mock, one in flight)"],
+  ["scripts/test-video-native-failures.mjs", "native read vs save failures"],
+]) {
+  console.log(`▸ Video import gate — ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [script],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${label} regression failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

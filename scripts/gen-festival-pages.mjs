@@ -619,7 +619,17 @@ function stub(entry, statusOverride, lastmod) {
     && allStages.every(s => s && s.x != null && s.y != null)
     && !!(cfg.mapImage || cfg.mapMode);
   const answers = faqItems(entry, { names, hasTimes, stages, blocks, plate });
-  const watchHtml = embedsSection(cfg.name, selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates)));
+  const sel = selectEmbeds(id, EMBEDS, embedWindowStart(cfg, dates));
+  // A recap's day and act are claims about the edition: each must match the
+  // official schedule this page renders, or the build stops.
+  for (const g of sel.recap.days) {
+    if (!(cfg.dayDates || {})[g.day]) throw new Error(`${id}: recap embed names day ${g.day}, which the festival does not have`);
+    for (const e of [...g.youtube, ...g.social]) {
+      if (e.artist && !scheduleActs(ds?.artists).some(x => x.name === e.artist && Number(x.day) === g.day))
+        throw new Error(`${id}: recap embed names ${e.artist} on day ${g.day}, which the official schedule does not`);
+    }
+  }
+  const watchHtml = embedsSection(cfg.name, sel, d => dayLabel(cfg.dayDates, d, dates).label);
 
   const desc = hasTimes
     ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
