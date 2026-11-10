@@ -532,14 +532,13 @@ function _stripVideoGpsRegion(u8) {
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
-        scope.keyed = true;
         const count = dv.getUint32(payload + 4);
         let k = payload + 8;
         for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
           const ks = dv.getUint32(k);
           if (ks < 8 || k + ks > boxEnd) break;
           const name = _vgpsLatin1(u8, k + 8, k + ks);
-          if (!_VGPS_KEEP_KEYS.has(name)) scope.blank.add(i);
+          if (_VGPS_KEEP_KEYS.has(name)) scope.keep.add(i);
           if (_VGPS_KEY_RE.test(name)) {
             scope.hit.add(i);
             const red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
@@ -552,13 +551,14 @@ function _stripVideoGpsRegion(u8) {
       }
       if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
         const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
-        const inner = type === "meta" ? { hit: new Set(), blank: new Set(), items: [] } : scope;
+        const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [] } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {
-          // Values are typed by key index; zero the whole value of every item
-          // not on the keep list (its `data` box keeps its header). Items in a
-          // meta with no keys (iTunes-style) have no name, so all are zeroed.
-          for (const it of inner.items) if (inner.hit.has(it.idx) || inner.blank.has(it.idx) || !inner.keyed) {
+          // Values are typed by key index. Keep-by-allowlist: an item keeps its
+          // value ONLY when its index names a keep-listed key; every other item
+          // (unknown key, index past a truncated keys table, a keyless
+          // iTunes-style meta) is zeroed (its `data` box keeps its header).
+          for (const it of inner.items) if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
             const dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
             zero(it.payload + dataHdr, it.boxEnd); n++;
           }

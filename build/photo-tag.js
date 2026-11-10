@@ -517,14 +517,13 @@ function _stripVideoGpsRegion(u8) {
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
-        scope.keyed = true;
         var _count = dv.getUint32(payload + 4);
         var _k = payload + 8;
         for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
           var _ks = dv.getUint32(_k);
           if (_ks < 8 || _k + _ks > boxEnd) break;
           var _name = _vgpsLatin1(u8, _k + 8, _k + _ks);
-          if (!_VGPS_KEEP_KEYS.has(_name)) scope.blank.add(i);
+          if (_VGPS_KEEP_KEYS.has(_name)) scope.keep.add(i);
           if (_VGPS_KEY_RE.test(_name)) {
             scope.hit.add(i);
             var red = "plursky.redacted.".padEnd(_ks - 8, "x").slice(0, _ks - 8);
@@ -543,12 +542,12 @@ function _stripVideoGpsRegion(u8) {
         var isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
         var inner = type === "meta" ? {
           hit: new Set(),
-          blank: new Set(),
+          keep: new Set(),
           items: []
         } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {
-          for (var it of inner.items) if (inner.hit.has(it.idx) || inner.blank.has(it.idx) || !inner.keyed) {
+          for (var it of inner.items) if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
             var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
             zero(it.payload + dataHdr, it.boxEnd);
             n++;
