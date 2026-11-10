@@ -532,6 +532,8 @@ function _stripVideoGpsRegion(u8) {
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        // Two keys tables make an index ambiguous (a player may read either).
+        if (scope.keysSeen++) { refuse = "duplicate keys table"; return; }
         const count = dv.getUint32(payload + 4);
         let k = payload + 8;
         for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
@@ -551,7 +553,7 @@ function _stripVideoGpsRegion(u8) {
       }
       if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
         const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
-        const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [] } : scope;
+        const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [], keysSeen: 0 } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {
           // Values are typed by key index. Keep-by-allowlist: an item keeps its

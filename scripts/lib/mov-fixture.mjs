@@ -15,13 +15,13 @@ const u16 = n => { const b = Buffer.alloc(2); b.writeUInt16BE(n); return b; };
 const typ = t => (Buffer.isBuffer(t) ? t : Buffer.from(t, "latin1"));
 export const box = (t, ...kids) => { const body = Buffer.concat(kids.map(k => (Buffer.isBuffer(k) ? k : Buffer.from(k, "latin1")))); return Buffer.concat([u32(8 + body.length), typ(t), body]); };
 
-export function metaBox(items, orphan = null) {
+export function metaBox(items, orphan = null, dupKeys = false) {
   const hdlr = box("hdlr", u32(0), u32(0), "mdta", Buffer.alloc(12), Buffer.alloc(1));
   const keys = box("keys", u32(0), u32(items.length), ...items.map(([k]) => { const name = Buffer.from(k, "latin1"); return Buffer.concat([u32(8 + name.length), Buffer.from("mdta"), name]); }));
   // orphan: an item whose index is past the keys table (no key names it).
   const extra = orphan ? [box(u32(items.length + 7), box("data", u32(1), u32(0), orphan))] : [];
   const ilst = box("ilst", ...items.map(([, v], i) => box(u32(i + 1), box("data", u32(1), u32(0), v))), ...extra);
-  return box("meta", hdlr, keys, ilst);
+  return box("meta", hdlr, keys, ...(dupKeys ? [box("keys", u32(0), u32(1), Buffer.concat([u32(8 + 22), Buffer.from("mdta"), Buffer.from("com.vendor.capture.pos")]))] : []), ilst);
 }
 export const IPHONE_ITEMS = [
   ["com.apple.quicktime.location.accuracy.horizontal", PLANT.acc],
@@ -54,12 +54,12 @@ function filler(n, seed = 7) {
 // carries it: no text for a regex to find.
 export const BIN_PLANT = (() => { const b = Buffer.alloc(16); b.writeDoubleBE(PLANT.lat, 0); b.writeDoubleBE(PLANT.lng, 8); return b; })();
 
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, xmpUuid, mdatBytes, straddleAt, noGps }
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
   if (opts.oddItem) items = [...items, ["com.vendor.capture.pos", BIN_PLANT]];
-  const meta = metaBox(items, opts.orphanItem ? BIN_PLANT : null);
+  const meta = metaBox(items, opts.orphanItem ? BIN_PLANT : null, !!opts.dupKeys);
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);

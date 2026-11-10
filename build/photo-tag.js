@@ -517,6 +517,10 @@ function _stripVideoGpsRegion(u8) {
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        if (scope.keysSeen++) {
+          refuse = "duplicate keys table";
+          return;
+        }
         var _count = dv.getUint32(payload + 4);
         var _k = payload + 8;
         for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
@@ -543,7 +547,8 @@ function _stripVideoGpsRegion(u8) {
         var inner = type === "meta" ? {
           hit: new Set(),
           keep: new Set(),
-          items: []
+          items: [],
+          keysSeen: 0
         } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {

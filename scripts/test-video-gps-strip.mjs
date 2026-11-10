@@ -94,6 +94,7 @@ async function suite(strip, slim) {
   ok(orphan.bytes.includes(BIN_PLANT), "V20 setup: an ilst item whose index no key names carries a binary fix");
   const ro = await strip(blobOf(orphan.bytes));
   ok(ro && !(await bytesOf(ro.blob)).includes(BIN_PLANT), "V20 an ilst item past the keys table is blanked (keep-by-allowlist)");
+  ok((await strip(blobOf(buildMov({ dupKeys: true }).bytes))) === null, "V21 a meta with two keys tables (ambiguous index) is refused");
   const clean = buildMov({ noGps: true });
   const rc = await strip(blobOf(clean.bytes));
   ok(rc && (await bytesOf(rc.blob)).equals(clean.bytes), "V14 a clip with no GPS uploads byte-identical");
@@ -143,6 +144,7 @@ const MUTANTS = [
   ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}").replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
   ["timed-key allowlist off (unknown non-location-named key passes)", STRIP_SRC.replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
   ["static meta items not on the keep list kept", STRIP_SRC.replace("if (!inner.keep.has(it.idx) || inner.hit.has(it.idx))", "if (inner.hit.has(it.idx))"), SLIM_SRC],
+  ["duplicate keys table accepted", STRIP_SRC.replace('if (scope.keysSeen++) { refuse = "duplicate keys table"; return; }', ""), SLIM_SRC],
   ["ilst index past the keys table kept (blank-list, fail open)", STRIP_SRC.replace("if (!inner.keep.has(it.idx) || inner.hit.has(it.idx))", "if (inner.hit.has(it.idx) || (it.idx <= inner.keep.size + inner.hit.size && !inner.keep.has(it.idx)))"), SLIM_SRC],
   ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
