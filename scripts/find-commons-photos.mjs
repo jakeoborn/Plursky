@@ -130,8 +130,9 @@ async function wmFetch(url) {
   throw new Error('request failed (' + last + '): ' + url.slice(0, 120));
 }
 async function api(base, params) {
-  const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '5', ...params });
-  // maxlag: the servers ask bots to pause while replication is behind.
+  const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '20', ...params });
+  // maxlag: the servers ask bots to pause while replication is behind. Reads
+  // here use 20 s, since Wikidata's lag often sits near 10 s for long spells.
   // Wikidata often lags for minutes, so wait it out (up to ~10 minutes).
   for (let i = 0; i < 40; i++) {
     const j = await (await wmFetch(url)).json();
