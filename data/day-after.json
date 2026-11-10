@@ -1,0 +1,68 @@
+{
+  "_about": "Day-after cards (scripts/lib/day-after.mjs). Link-only: every source is an official recap post already verified in official-embeds.json for the same festival and day. Plur drafts; Instinct checks every claim (claimCheck); Jake looks before it goes out (approval). Only status published with both sign-offs renders, from 08:00 festival-local the day after. Set times are printed from the schedule via `artist`, never typed into copy.",
+  "edc-orlando-2026": [
+    {
+      "id": "edco-2026-day-1",
+      "day": 1,
+      "status": "draft",
+      "title": "Night one at Tinker Field",
+      "summary": "EDC Orlando 2026 opened on Friday, November 6. Insomniac posted its official Day 1 recap the next day.",
+      "chapters": [
+        {
+          "title": "The official Day 1 recap",
+          "caption": "Insomniac's own look back at the first night, posted on YouTube as \"EDC Orlando 2026 | Day 1 Recap\".",
+          "sources": ["https://www.youtube.com/watch?v=fqvmqwXxyns"]
+        }
+      ],
+      "drafted": { "by": "Claude Plur", "at": "2026-11-09" }
+    },
+    {
+      "id": "edco-2026-day-2",
+      "day": 2,
+      "status": "draft",
+      "title": "Kaskade closes kineticFIELD",
+      "summary": "Saturday was night two. Kaskade had the last set on kineticFIELD, and Insomniac posted its official Day 2 recap the next day.",
+      "chapters": [
+        {
+          "title": "Kaskade, the last set on kineticFIELD",
+          "artist": "Kaskade",
+          "caption": "The final kineticFIELD slot of the night in the official set times. EDC Orlando's official account posted about the set.",
+          "sources": ["https://x.com/EDC_Orlando/status/2119365567987474463"]
+        },
+        {
+          "title": "The official Day 2 recap",
+          "caption": "Insomniac's own look back at night two, posted on YouTube as \"EDC Orlando 2026 | Day 2 Recap\".",
+          "sources": ["https://www.youtube.com/watch?v=nk5sosoCouE"]
+        }
+      ],
+      "drafted": { "by": "Claude Plur", "at": "2026-11-09" }
+    },
+    {
+      "id": "edco-2026-day-3",
+      "day": 3,
+      "status": "draft",
+      "title": "Sunday, the final night",
+      "summary": "EDC Orlando 2026 closed on Sunday, November 8. EDC Orlando's official account posted about the night, including Maddix and ATLiens on circuitGROUNDS.",
+      "chapters": [
+        {
+          "title": "Maddix on circuitGROUNDS",
+          "artist": "Maddix",
+          "caption": "EDC Orlando's official account posted about the set.",
+          "sources": ["https://x.com/EDC_Orlando/status/2119651878287855713"]
+        },
+        {
+          "title": "ATLiens on circuitGROUNDS",
+          "artist": "ATLiens",
+          "caption": "EDC Orlando's official account posted about the set.",
+          "sources": ["https://x.com/EDC_Orlando/status/2119760943810838863"]
+        },
+        {
+          "title": "From the final night",
+          "caption": "Another official EDC Orlando post about Sunday.",
+          "sources": ["https://x.com/EDC_Orlando/status/2119822328779665911"]
+        }
+      ],
+      "drafted": { "by": "Claude Plur", "at": "2026-11-09" }
+    }
+  ]
+}

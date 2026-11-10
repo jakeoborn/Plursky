@@ -22,11 +22,16 @@ import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
+import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://plursky.com';
 const OUT_DIR = path.join(root, 'f');
 const EMBEDS = loadEmbedData(root);
+const NOW_MS = Date.now();
+// Day-after cards (row 9): every record is checked, whatever its status, so a
+// bad draft stops the build instead of waiting to be published.
+const DAY_AFTER = loadDayAfter(root);
 
 // ── Load the registry out of data.jsx ────────────────────────────────
 // scripts/lib/load-registry.mjs runs data/festivals/*.js before data.jsx, the
@@ -568,6 +573,7 @@ ${items.map(it => `      <dt>${esc(it.q)}</dt>\n      <dd>${esc(it.a)}</dd>`).jo
 }
 
 const TODAY = new Date().toISOString().slice(0, 10);
+assertDayAfter(DAY_AFTER, fid => ({ cfg: REG.find(f => f.config.id === fid)?.config, acts: scheduleActs(DS[fid]?.artists), embeds: EMBEDS }));
 
 // Other festivals, nearest in time first, eight at most. A festival with no
 // dates sorts last rather than guessing where it belongs.
@@ -630,6 +636,11 @@ function stub(entry, statusOverride, lastmod) {
     }
   }
   const watchHtml = embedsSection(cfg.name, sel, d => dayLabel(cfg.dayDates, d, dates).label);
+  const dayAfterHtml = dayAfterSection(cfg.name, selectDayAfter(id, DAY_AFTER, cfg, NOW_MS), {
+    cfg, acts: scheduleActs(ds?.artists), embeds: EMBEDS,
+    dayTitle: d => dayLabel(cfg.dayDates, d, dates).label,
+    stageName: sid => (ds?.stages || []).find(t => t.id === sid)?.name || sid,
+  });
 
   const desc = hasTimes
     ? `${cfg.name} set times and lineup — ${names.length} artists at ${venue}, ${cfg.dates}. Full schedule by day and stage. Plan your weekend with Plursky.`
@@ -805,7 +816,7 @@ ${stageProgrammingFor(entry.config.id) ? STAGE_PROGRAMMING_CSS : ''}  section.so
   section.watch .embed-tap-note { color:var(--muted); font-size:13px; margin:8px 0 0; }
   section.watch figure.tapped .embed-tap { display:none; }
   section.watch .embed-sp iframe { display:block; border:0; border-radius:12px; min-height:352px; }
-  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }
+  section.watch .embed-cap { color:var(--muted); font-size:13px; margin:6px 0 0; }${dayAfterHtml ? DAY_AFTER_CSS : ''}
 </style>
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -823,7 +834,7 @@ ${JSON.stringify(crumbLd, null, 2)}
   <h1>${esc(cfg.name)}</h1>
   <p class="meta">${status ? `<span class="chip chip-${status}">${STATUS_LABEL[status]}</span>` : ''}${esc(cfg.dates)}${where ? ' · ' + esc(where) : ''}</p>
   <p>${esc(cfg.tagline || '')}</p>${lookBackSection(entry, editions)}
-${answersSection(entry, answers)}${watchHtml}
+${answersSection(entry, answers)}${dayAfterHtml}${watchHtml}
 ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
@@ -975,7 +986,7 @@ const fileFp = (rel) => fp(existsSync(path.join(root, rel)) ? readFileSync(path.
 // live in scripts/lib/sitemap-fingerprint.mjs — shared with
 // scripts/test-sitemap-fingerprint.mjs so the generator and its regression
 // mutants hash through one function rather than two copies of a rule.
-const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY });
+const festivalFp = (entry) => festivalFingerprint(entry, { DS, scheduleActs, eventDates, TODAY, NOW_MS });
 
 // First run has no ledger. Seeding from the sitemap already committed keeps
 // every published date that is still true, rather than announcing that all 28
