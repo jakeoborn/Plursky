@@ -45,7 +45,11 @@ const UA = 'ArtistPhotoLedgerBot/1.0 (openly licensed artist portraits; low rate
 // Music databases: an item with one of these is a musical act.
 // P434 MusicBrainz artist, P1953 Discogs artist, P1902 Spotify artist,
 // P2850 Apple Music artist, P3192 Last.fm.
-export const MUSIC_IDS = ['P434', 'P1953', 'P1902', 'P2850', 'P3192'];
+export const MUSIC_IDS = ['P434', 'P1953', 'P1902', 'P2850', 'P3192', 'P1728', 'P2722', 'P3040', 'P3283', 'P2373'];
+// Or the item says what it is: a music occupation (DJ, musician, record
+// producer, singer, composer, singer-songwriter, rapper) or a musical group.
+export const MUSIC_OCC = ['Q130857', 'Q639669', 'Q183945', 'Q177220', 'Q36834', 'Q488205', 'Q2252262', 'Q855091'];
+export const MUSIC_GROUP = ['Q215380', 'Q2088357', 'Q5741069'];
 
 // Commons LicenseShortName → ledger license id. Anything else is skipped.
 const LICENSE_MAP = new Map([
@@ -53,6 +57,7 @@ const LICENSE_MAP = new Map([
   ['CC BY 2.0', 'CC-BY-2.0'], ['CC BY 3.0', 'CC-BY-3.0'], ['CC BY 4.0', 'CC-BY-4.0'],
   ['CC BY-SA 2.0', 'CC-BY-SA-2.0'], ['CC BY-SA 3.0', 'CC-BY-SA-3.0'], ['CC BY-SA 4.0', 'CC-BY-SA-4.0'],
   ['CC BY-SA 3.0 DE', 'CC-BY-SA-3.0-DE'],
+  ['Public domain', 'Public-Domain'],
 ]);
 const LICENSE_URL = {
   'CC0-1.0': 'https://creativecommons.org/publicdomain/zero/1.0/',
@@ -63,6 +68,7 @@ const LICENSE_URL = {
   'CC-BY-SA-3.0': 'https://creativecommons.org/licenses/by-sa/3.0/',
   'CC-BY-SA-4.0': 'https://creativecommons.org/licenses/by-sa/4.0/',
   'CC-BY-SA-3.0-DE': 'https://creativecommons.org/licenses/by-sa/3.0/de/',
+  'Public-Domain': 'https://creativecommons.org/publicdomain/mark/1.0/',
 };
 export function mapLicense(shortName) {
   const k = String(shortName || '').replace(/\s+/g, ' ').trim().replace(/\bde$/i, 'DE');
@@ -97,9 +103,12 @@ const names = ent => [
 // The match rule (1-3 above), pure so the gate can test it.
 export function pickEntity(billing, entities) {
   const key = artistKey(billing);
-  const ok = entities.filter(e => e && !e.missing
-    && names(e).some(n => artistKey(n) === key)
-    && MUSIC_IDS.some(p => claimIds(e, p).length));
+  const named = entities.filter(e => e && !e.missing && names(e).some(n => artistKey(n) === key));
+  if (!named.length) return { entity: null, reason: 'no-item' };
+  const qids = (e, p) => claimIds(e, p).map(v => v && v.id).filter(Boolean);
+  const ok = named.filter(e => MUSIC_IDS.some(p => claimIds(e, p).length)
+    || qids(e, 'P106').some(q => MUSIC_OCC.includes(q))
+    || qids(e, 'P31').some(q => MUSIC_GROUP.includes(q)));
   if (ok.length !== 1) return { entity: null, reason: ok.length ? 'ambiguous' : 'no-music-item' };
   const image = claimIds(ok[0], 'P18')[0];
   return image ? { entity: ok[0], image } : { entity: null, reason: 'no-image', qid: ok[0].id };
@@ -180,11 +189,14 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const ledger = JSON.parse(readFileSync(LEDGER, 'utf8'));
   const have = new Set(ledger.map(r => artistKey(r.artist)));
-  let artists = loadArtists(args).filter(a => !have.has(a.key));
+  // Slice the stable source order first, so --offset means the same artists
+  // however many photos earlier chunks added to the ledger.
+  const all = loadArtists(args);
+  const from = args.offset || 0, to = args.limit ? from + args.limit : all.length;
+  let artists = all.slice(from, to).filter(a => !have.has(a.key));
   // A billing that names several acts never gets one face.
   artists = artists.filter(a => !/\sb[23]b\s|\s[x×]\s|\spresents\s|\svs\.?\s/i.test(a.name));
   if (args.gap) GAP = args.gap;
-  if (args.offset || args.limit) artists = artists.slice(args.offset || 0, args.limit ? (args.offset || 0) + args.limit : undefined);
   const skips = {}, added = [];
   const skip = (a, reason, extra = {}) => { (skips[reason] ||= []).push({ artist: a.name, ...extra }); };
 
@@ -249,6 +261,7 @@ async function main() {
   if (!args.dry) writeFileSync(LEDGER, JSON.stringify([...ledger, ...added], null, 2) + '\n');
   const report = {
     ranAt: new Date().toISOString(), scope: args.festival || 'registry', width: args.width,
+    total: all.length, offset: from, nextOffset: to < all.length ? to : null,
     considered: artists.length, added: added.length,
     skipped: Object.fromEntries(Object.entries(skips).map(([k, v]) => [k, v.length])),
     addedRows: added.map(r => ({ artist: r.artist, wikidata: r.wikidata, license: r.license, author: r.author })),

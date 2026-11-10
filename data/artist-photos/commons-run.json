@@ -1,1 +1,1 @@
-{ "args": ["--festival", "decadence-colorado-2026"] }
+{ "args": ["--all", "--offset", "0", "--limit", "1500"] }

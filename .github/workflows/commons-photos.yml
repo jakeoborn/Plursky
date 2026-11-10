@@ -3,17 +3,26 @@ name: commons-photos
 # Runs scripts/find-commons-photos.mjs where Wikimedia is reachable and
 # commits what it found (WebP portraits, ledger rows, the run report) back to
 # the branch that asked. A run is requested by editing
-# data/artist-photos/commons-run.json on a photos/** branch, or by hand.
-# It never touches main: the rows land on a branch and reach the app only
-# through a reviewed pull request.
+# data/artist-photos/commons-run.json on a photos/** branch, or by hand with
+# `args`. It never touches main: the rows land on a branch and reach the app
+# only through a reviewed pull request.
+#
+# The whole catalog takes hours at Wikimedia's rate limit, so a run with
+# --limit hands the next chunk to a fresh run until the catalog is done.
 on:
   push:
     branches: ['photos/**']
     paths: ['data/artist-photos/commons-run.json']
   workflow_dispatch:
+    inputs:
+      args:
+        description: 'Arguments for find-commons-photos.mjs (default: commons-run.json)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: commons-photos-${{ github.ref }}
@@ -22,7 +31,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,9 +40,16 @@ jobs:
       - name: WebP encoder
         run: sudo apt-get update -qq && sudo apt-get install -y -qq webp
       - name: Find openly licensed portraits
+        env:
+          INPUT_ARGS: ${{ github.event.inputs.args }}
         run: |
-          ARGS=$(jq -r '.args | join(" ")' data/artist-photos/commons-run.json)
-          node scripts/find-commons-photos.mjs $ARGS --report docs/qa/reports/artist-photos-commons/last-run.json
+          ARGS="$INPUT_ARGS"
+          [ -n "$ARGS" ] || ARGS=$(jq -r '.args | join(" ")' data/artist-photos/commons-run.json)
+          case "$ARGS" in *[\;\&\|\`\$\(\)\<\>]*) echo "unexpected characters in args"; exit 1;; esac
+          echo "ARGS=$ARGS" >> "$GITHUB_ENV"
+          OFF=$(echo "$ARGS" | sed -n 's/.*--offset \([0-9]*\).*/\1/p')
+          echo "REPORT=docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json" >> "$GITHUB_ENV"
+          node scripts/find-commons-photos.mjs $ARGS --report "docs/qa/reports/artist-photos-commons/last-run${OFF:+-$OFF}.json"
       - name: Ledger still validates
         run: node scripts/build-artist-photo-ledger.mjs
       - name: Commit results to this branch
@@ -42,5 +58,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add artist-photos data/artist-photos data/artist-photos.js docs/qa/reports/artist-photos-commons
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
-          git commit -m "data(photos): Commons pipeline run ($(jq -r '.args | join(" ")' data/artist-photos/commons-run.json))"
-          git push
+          git commit -m "data(photos): Commons pipeline run ($ARGS)"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
+      - name: Hand the next chunk to a fresh run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NEXT=$(jq -r '.nextOffset // empty' "$REPORT")
+          LIMIT=$(echo "$ARGS" | sed -n 's/.*--limit \([0-9]*\).*/\1/p')
+          if [ -z "$NEXT" ] || [ -z "$LIMIT" ]; then echo "done"; exit 0; fi
+          BASE=$(echo "$ARGS" | sed 's/--offset [0-9]*//')
+          gh workflow run commons-photos.yml --ref "$GITHUB_REF_NAME" -f args="$BASE --offset $NEXT"
