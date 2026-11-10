@@ -678,6 +678,27 @@
    }
   },
   {
+   "id": "beyond-wonderland-socal-2013",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-03-16",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 41,
+    "sets": 42
+   }
+  },
+  {
    "id": "beyond-wonderland-socal-2012",
    "festivalId": "beyond-wonderland-socal",
    "festivalName": "Beyond Wonderland SoCal",
@@ -1873,6 +1894,53 @@
     "stages": 4,
     "artists": 63,
     "sets": 63
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2013",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2013",
+   "year": 2013,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-09-21",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 45,
+    "sets": 45
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2012",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-09-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-09-22",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 94,
+    "sets": 95
    }
   },
   {

@@ -2,7 +2,7 @@
 // Returns a list of problems; empty means valid. Used by the verify gate
 // (scripts/test-historical-editions.mjs) and by the build during review.
 
-import { EDITIONS, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
+import { EDITIONS, KEPT_STAGES, PRINTED_NON_LATIN, dropReason } from "./editions.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -147,7 +147,12 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   // event, a stage or an id). The ledger holds them as the audit trail.
   if ("events" in e) p.push(`${e.id}: carries an events list; operational rows are dropped, not stored`);
   const hit = new Set();
+  // A stage the founder ruled to keep as printed (KEPT_STAGES) is not checked
+  // by its name or the slug its ids carry; every billing on it, and every
+  // other edition, still is (the set check below).
+  const kept = new Set(e.stages.filter(s => (KEPT_STAGES[e.id] || []).includes(s.name)).flatMap(s => [s.name, s.id.split(":").pop()]));
   for (const x of strings({ stages: e.stages, artists: e.artists, sets: e.sets, events: e.events })) {
+    if (kept.has(x)) continue;
     // Each string is tried as a billing and as a stage name.
     const why = dropReason(x, x);
     if (why && !hit.has(x)) { hit.add(x); p.push(`${e.id}: dropped ${why.category} "${x}" appears in the edition`); }

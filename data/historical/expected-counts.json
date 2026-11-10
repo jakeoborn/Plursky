@@ -61,5 +61,8 @@
  "edc-orlando-2018": { "artists": 77, "stages": 0, "appearancesPerDay": [40, 38], "dropped": 0 },
  "edc-mexico-2020": { "artists": 251, "stages": 0, "appearancesPerDay": [74, 87, 90], "dropped": 0 },
  "nocturnal-wonderland-2011": { "stages": 5, "setsPerDay": [24, 38], "droppedPerDay": [0, 0] },
- "beyond-wonderland-socal-2012": { "stages": 6, "setsPerDay": [46], "droppedPerDay": [0] }
+ "beyond-wonderland-socal-2012": { "stages": 6, "setsPerDay": [46], "droppedPerDay": [0] },
+ "nocturnal-wonderland-2012": { "stages": 7, "setsPerDay": [39, 56], "droppedPerDay": [0, 0] },
+ "nocturnal-wonderland-2013": { "stages": 5, "setsPerDay": [45], "droppedPerDay": [0] },
+ "beyond-wonderland-socal-2013": { "stages": 5, "setsPerDay": [42], "droppedPerDay": [0] }
 }

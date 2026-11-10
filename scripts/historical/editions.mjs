@@ -241,6 +241,15 @@ export const EDITIONS = {
   "beyond-wonderland-socal-2012": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2012", year: 2012,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
     dates: [["2012-03-17", "Saturday"]] },
+  "nocturnal-wonderland-2012": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2012-09-21", "Friday"], ["2012-09-22", "Saturday"]] },
+  "nocturnal-wonderland-2013": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2013", year: 2013,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2013-09-21", "Saturday"]] },
+  "beyond-wonderland-socal-2013": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2013", year: 2013,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2013-03-16", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
@@ -279,6 +288,18 @@ export const DROP_RULES = [
   { category: "unnamed-slot", stage: /\S/, test: /^discovery project$/i,
     reason: "unnamed slot: no performer was billed" },
 ];
+
+// Stage names kept exactly as printed although a drop rule's words match them.
+// In 2012 and 2013 Insomniac's lineup.php pages printed "Discovery Project" as
+// a whole stage of named, billed DJs (Danny Avila, Dr. Fresch, Crizzly), not
+// as an unnamed contest slot. Jake's ruling, 2026-11-10: keep the stage and
+// its sets. Only the stage name is exempt: a bare "Discovery Project" billing
+// is still an unnamed slot, on this stage or any other.
+export const KEPT_STAGES = {
+  "nocturnal-wonderland-2012": ["Discovery Project"],
+  "nocturnal-wonderland-2013": ["Discovery Project"],
+  "beyond-wonderland-socal-2013": ["Discovery Project"],
+};
 
 // Non-music activities (talks, bingo, drag shows, classes, food, podcast
 // tapings, brand activations), billed exactly as printed. The Bonus Tracks

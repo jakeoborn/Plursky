@@ -113,6 +113,12 @@ records were shared across years and later edits reached back into earlier
 lineups. A block the page labels as an alphabetical list ("alpha") prints
 zero-length times and is left out, listed in the ledger.
 
+In 2012 and 2013 these pages print "Discovery Project" as a whole stage of
+named, billed DJs. The founder's ruling (2026-11-10) keeps that stage as
+printed in those three editions; `KEPT_STAGES` in editions.mjs names them,
+and only the stage name is exempt from the drop check. A bare "Discovery
+Project" billing is still an unnamed slot everywhere.
+
 The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
 hold the lineup only as a poster image, so they are graphic sources and go
 through the review path above, not a page extractor.

@@ -112,6 +112,34 @@
   "why": "Left as printed (ACL 2021 grids, both Fridays): whether VINYL RANCH names the set, a venue or a separate act is not sourced, so it is neither split off as a set tag nor credited to anyone else."
  },
  {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:0000:camo-and-krooked-w-dynamite-mc",
+  "printed": "Camo & Krooked w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:2300:high-contrast-w-dynamite-mc",
+  "printed": "High Contrast w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:1900:fred-v-and-grafix-w-dynamite-mc",
+  "printed": "Fred V & Grafix w/ Dynamite MC",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "beyond-wonderland-socal-2013:d1:chess-village:1600:fury-w-mc-dino",
+  "printed": "Fury w/ MC Dino",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
   "reason": "\"+\" billing",
@@ -362,6 +390,20 @@
   "reason": "feat / with billing",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2012:d2:alice-s-house:1800:myon-and-shane54-with-aruna",
+  "printed": "Myon & Shane54 with Aruna",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "nocturnal-wonderland-2013:d1:queen-s-grounds:1700:heroes-x-villains",
+  "printed": "Heroes x Villains",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "nocturnal-wonderland-2019:d2:labyrinth:1745:ed-rush-optical",

@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { ACTIVITIES, EDITIONS, dropReason } from "./historical/editions.mjs";
+import { ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
@@ -121,6 +121,20 @@ if (base && edc) {
       }, e, undefined, /: dropped show-segment /);
     }
     ok(!dropReason("GROW", "Neon Garden") && !dropReason("Discovery Project", ""), "a show-segment name off Kinetic Field, or a stageless Discovery Project, must not be dropped");
+    // The 2012 and 2013 lineup.php "Discovery Project" stage of named DJs is
+    // kept by name (KEPT_STAGES), and nothing else about it is exempt: a bare
+    // "Discovery Project" set on it is still an unnamed slot.
+    for (const id of Object.keys(KEPT_STAGES)) {
+      const k = editions[id];
+      ok(k, `${id} must exist: its kept stage is locked by this test`);
+      if (!k) continue;
+      const st = k.stages.find(s => KEPT_STAGES[id].includes(s.name));
+      ok(st && k.sets.some(s => s.stageId === st.id), `${id} must keep its "${KEPT_STAGES[id][0]}" stage with its sets`);
+      mustFail(`a bare Discovery Project set back on ${id}'s kept stage`, m => {
+        const a = { id: `${id}:discovery-project-back`, name: "Discovery Project", key: artistKey("Discovery Project"), performers: [] };
+        m.artists.push(a); m.sets.push({ ...m.sets.find(s => s.stageId === st.id), id: `${id}:d1:x:9999:discovery-project`, artistId: a.id });
+      }, k, undefined, /: dropped unnamed-slot /);
+    }
     // An unnamed B2B partner stays in the billing but is no performer.
     const dw = editions["edc-orlando-2021"]?.artists.find(a => a.name === "DRINKURWATER B2B Special Guest");
     ok(dw && dw.performers.join() === "drinkurwater", `Orlando 2021's "DRINKURWATER B2B Special Guest" must keep its billing with drinkurwater as its only performer: ${JSON.stringify(dw)}`);

@@ -650,6 +650,19 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "beyond-wonderland-socal-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2765,6 +2778,33 @@
        "printed": "Upside Down Room",
        "editions": [
         "nocturnal-wonderland-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "nocturnal-wonderland-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "nocturnal-wonderland:discovery-project",
+     "names": [
+      {
+       "printed": "Discovery Project",
+       "editions": [
+        "nocturnal-wonderland-2012",
+        "nocturnal-wonderland-2013"
        ]
       }
      ],
