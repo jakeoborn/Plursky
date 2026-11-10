@@ -54,7 +54,13 @@ function filler(n, seed = 7) {
 // carries it: no text for a regex to find.
 export const BIN_PLANT = (() => { const b = Buffer.alloc(16); b.writeDoubleBE(PLANT.lat, 0); b.writeDoubleBE(PLANT.lng, 8); return b; })();
 
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, mdatBytes, straddleAt, noGps }
+// A top-level XMP packet (Adobe's XMP UUID) carrying the fix in EXIF
+// degrees,minutes form: nothing coordinate-shaped for a regex to match.
+export const XMP_UUID = Buffer.from("BE7ACFCB97A942E89C71999491E3AFAC", "hex");
+export const XMP_DM = { lat: "28,32.472N", lng: "81,23.922W" };
+export const XMP_GPS = Buffer.from(`<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description xmlns:exif="http://ns.adobe.com/exif/1.0/" exif:GPSLatitude="${XMP_DM.lat}" exif:GPSLongitude="${XMP_DM.lng}" exif:GPSVersionID="2.2.0.0"/></rdf:RDF></x:xmpmeta><?xpacket end="w"?>`, "latin1");
+
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
@@ -75,5 +81,6 @@ export function buildMov(opts = {}) {
   const mdat = box("mdat", media);
   const free = box("free", opts.noGps ? Buffer.alloc(64) : meta);
   const tail = opts.xmpUuid ? [box("uuid", Buffer.alloc(16, 0xbe), BIN_PLANT)] : [];
+  if (opts.xmpGps) tail.push(box("uuid", XMP_UUID, XMP_GPS));
   return { bytes: Buffer.concat([ftyp, box("wide"), mdat, moov, free, ...tail]), mdatStart: ftyp.length + 8 + 8 };
 }

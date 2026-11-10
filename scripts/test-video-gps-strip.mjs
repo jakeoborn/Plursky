@@ -20,7 +20,7 @@ import { readFileSync, existsSync, readdirSync, openAsBlob } from "node:fs";
 import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
-import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT } from "./lib/mov-fixture.mjs";
+import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT, XMP_DM } from "./lib/mov-fixture.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PT = readFileSync(join(ROOT, "photo-tag.jsx"), "utf8");
@@ -95,6 +95,14 @@ async function suite(strip, slim) {
   const ro = await strip(blobOf(orphan.bytes));
   ok(ro && !(await bytesOf(ro.blob)).includes(BIN_PLANT), "V20 an ilst item past the keys table is blanked (keep-by-allowlist)");
   ok((await strip(blobOf(buildMov({ dupKeys: true }).bytes))) === null, "V21 a meta with two keys tables (ambiguous index) is refused");
+  // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
+  // GPSLongitude in degrees,minutes form went through byte-identical.
+  const xmp = buildMov({ noGps: true, xmpGps: true });
+  const xs = xmp.bytes.toString("latin1");
+  ok(xs.includes("exif:GPSLatitude") && xs.includes(XMP_DM.lat) && !leaksIn(xmp.bytes), "V22 setup: XMP GPS in degrees,minutes, invisible to the coordinate detector");
+  const rx = await strip(blobOf(xmp.bytes));
+  const xo = rx ? (await bytesOf(rx.blob)).toString("latin1") : "";
+  ok(rx && xo.length === xmp.bytes.length && !xo.includes("GPSLatitude") && !xo.includes(XMP_DM.lat) && !xo.includes(XMP_DM.lng) && !xo.includes("xmpmeta"), "V22 a top-level XMP uuid is blanked whole (no GPSLatitude, no degrees,minutes, no packet)");
   const clean = buildMov({ noGps: true });
   const rc = await strip(blobOf(clean.bytes));
   ok(rc && (await bytesOf(rc.blob)).equals(clean.bytes), "V14 a clip with no GPS uploads byte-identical");
@@ -146,6 +154,7 @@ const MUTANTS = [
   ["static meta items not on the keep list kept", STRIP_SRC.replace("if (!inner.keep.has(it.idx) || inner.hit.has(it.idx))", "if (inner.hit.has(it.idx))"), SLIM_SRC],
   ["duplicate keys table accepted", STRIP_SRC.replace('if (scope.keysSeen++) { refuse = "duplicate keys table"; return; }', ""), SLIM_SRC],
   ["ilst index past the keys table kept (blank-list, fail open)", STRIP_SRC.replace("if (!inner.keep.has(it.idx) || inner.hit.has(it.idx))", "if (inner.hit.has(it.idx) || (it.idx <= inner.keep.size + inner.hit.size && !inner.keep.has(it.idx)))"), SLIM_SRC],
+  ["top-level boxes allowlist off (uuid/XMP passes)", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
