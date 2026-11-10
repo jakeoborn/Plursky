@@ -108,15 +108,19 @@ export function pickEntity(billing, entities) {
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function api(base, params, tries = 5) {
   const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '5', ...params });
+  let last = '';
   for (let i = 0; i < tries; i++) {
-    const res = await fetch(url, { headers: { 'User-Agent': UA } }).catch(() => null);
+    const res = await fetch(url, { headers: { 'User-Agent': UA } }).catch(e => { last = 'network: ' + e.message; return null; });
     if (res && res.ok) {
       const j = await res.json();
       if (!j.error || j.error.code !== 'maxlag') return j;
+      last = 'maxlag';
+    } else if (res) {
+      last = res.status + ' ' + (await res.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
     }
     await sleep(2000 * (i + 1));
   }
-  throw new Error('request failed: ' + url.slice(0, 120));
+  throw new Error('request failed (' + last + '): ' + url.slice(0, 120));
 }
 const WD = 'https://www.wikidata.org/w/api.php';
 const COMMONS = 'https://commons.wikimedia.org/w/api.php';
