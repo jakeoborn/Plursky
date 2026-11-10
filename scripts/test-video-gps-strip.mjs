@@ -81,6 +81,15 @@ async function suite(strip, slim) {
   ok((await strip(blobOf(buildMov({ trackFormat: "gpmd" }).bytes))) === null, "V16 a track with a non-allowlisted sample format (GoPro gpmd) is refused");
   ok((await strip(blobOf(buildMov({ trackFormat: "camm" }).bytes))) === null, "V16b a camm (camera motion/GPS) track is refused");
   ok((await strip(blobOf(buildMov({ secondEntry: "gpmd" }).bytes))) === null, "V16c a gpmd sample entry behind an allowed first entry is refused");
+  // Deny by default: a timed key with no location in its name, a static
+  // item under an unknown key, a top-level XMP uuid, a subtitle track.
+  ok((await strip(blobOf(buildMov({ timedKey: "com.vendor.track.pos" }).bytes))) === null, "V17 a timed key that is not on the known list is refused (whatever it is called)");
+  const odd = buildMov({ oddItem: true, xmpUuid: true });
+  ok(odd.bytes.includes(BIN_PLANT), "V18 setup: the fixture carries a binary fix under an odd key and in a uuid box");
+  const rodd = await strip(blobOf(odd.bytes));
+  ok(rodd && !(await bytesOf(rodd.blob)).includes(BIN_PLANT), "V18 a static item under an unknown key and a top-level uuid are blanked");
+  ok(rodd && (await bytesOf(rodd.blob)).toString("latin1").includes("iPhone 17 Pro Max"), "V18b keep-listed items (model) survive");
+  ok((await strip(blobOf(buildMov({ trackFormat: "tx3g" }).bytes))) === null, "V19 a subtitle (tx3g) track is refused");
   const clean = buildMov({ noGps: true });
   const rc = await strip(blobOf(clean.bytes));
   ok(rc && (await bytesOf(rc.blob)).equals(clean.bytes), "V14 a clip with no GPS uploads byte-identical");
@@ -127,7 +136,11 @@ const MUTANTS = [
   ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
   ["only the first sample entry checked", STRIP_SRC.replace("k < count; k++", "k < Math.min(count, 1); k++"), SLIM_SRC],
   ["track-format allowlist off", STRIP_SRC.replace("if (!_VGPS_TRACK_FORMATS.has(fmt))", "if (false)"), SLIM_SRC],
-  ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}"), SLIM_SRC],
+  ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}").replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
+  ["timed-key allowlist off (unknown non-location-named key passes)", STRIP_SRC.replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
+  ["static meta items not on the keep list kept", STRIP_SRC.replace("if (!_VGPS_KEEP_KEYS.has(name)) scope.blank.add(i);", ""), SLIM_SRC],
+  ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
+  ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];
 for (const [name, strip, slimSrc] of MUTANTS) {

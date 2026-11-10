@@ -444,10 +444,25 @@ const _VGPS_MAX_BOX = 64 * 1024 * 1024;
 const _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
 const _VGPS_KEY_RE = /location|ISO6709|gps/i;
 const _VGPS_TRACK_FORMATS = new Set([
-  "hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe", "jpeg", "mjpa",
+  // Only formats whose samples cannot carry free text or EXIF. Text,
+  // subtitle and (M)JPEG tracks are refused: their samples could hold a fix.
+  "hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe",
   "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "ac-3", "ec-3", "Opus", "fLaC", "samr", "sawb", ".mp3",
-  "mebx", "tmcd", "text", "tx3g", "wvtt", "c608",
+  "mebx", "tmcd",
 ]);
+// Timed (mebx) keys whose per-frame values live in mdat, where they cannot
+// be blanked: only these Apple keys pass; any other key refuses the clip.
+const _VGPS_TIMED_KEYS = new Set([
+  "video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle",
+  "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center",
+  "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber",
+].map(k => "com.apple.quicktime." + k));
+// Static (moov/meta) item values that are kept. Every other item's value
+// is blanked in place, whatever its key is called.
+const _VGPS_KEEP_KEYS = new Set([
+  "make", "model", "software", "creationdate", "full-frame-rate-playback-intent",
+  "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber",
+].map(k => "com.apple.quicktime." + k));
 function _vgpsLatin1(u8, a, b) {
   let s = "";
   for (let i = a; i < b; i++) s += String.fromCharCode(u8[i]);
@@ -475,6 +490,12 @@ function _stripVideoGpsRegion(u8) {
       const payload = pos + hdr, boxEnd = pos + size;
       if (type === "free" || type === "skip") {
         zero(payload, boxEnd);
+      } else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {
+        // Deny by default at the top level: uuid (XMP can carry GPS) or any
+        // box this does not understand is blanked.
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "uuid" || type === "XMP_" || (parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type))) {
+        zero(payload, boxEnd); toFree(pos); n++;
       } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
         // udta is user data, never needed for playback. Location can sit in
         // it as text (©xyz, loci) or in a vendor's BINARY box no regex can
@@ -495,15 +516,30 @@ function _stripVideoGpsRegion(u8) {
           if (es < 8 || e + es > boxEnd) { refuse = "unreadable sample table"; return; }
           const fmt = type4(e + 4);
           if (!_VGPS_TRACK_FORMATS.has(fmt)) { refuse = "unknown track format " + JSON.stringify(fmt); return; }
+          if (fmt === "mebx") {
+            // Every keyd name in the entry must be a known non-location key.
+            const body = _vgpsLatin1(u8, e, e + es);
+            let at = body.indexOf("keyd"), seen = 0;
+            while (at >= 4) {
+              const ks = dv.getUint32(e + at - 4);
+              if (ks < 12 || at - 4 + ks > es) { refuse = "unreadable timed key"; return; }
+              const name = body.slice(at + 8, at - 4 + ks);
+              if (!_VGPS_TIMED_KEYS.has(name)) { refuse = "timed key " + JSON.stringify(name); return; }
+              seen++; at = body.indexOf("keyd", at - 4 + ks);
+            }
+            if (!seen && body.includes("keys")) { refuse = "unreadable timed keys"; return; }
+          }
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        scope.keyed = true;
         const count = dv.getUint32(payload + 4);
         let k = payload + 8;
         for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
           const ks = dv.getUint32(k);
           if (ks < 8 || k + ks > boxEnd) break;
           const name = _vgpsLatin1(u8, k + 8, k + ks);
+          if (!_VGPS_KEEP_KEYS.has(name)) scope.blank.add(i);
           if (_VGPS_KEY_RE.test(name)) {
             scope.hit.add(i);
             const red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
@@ -516,12 +552,13 @@ function _stripVideoGpsRegion(u8) {
       }
       if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
         const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
-        const inner = type === "meta" ? { hit: new Set(), items: [] } : scope;
+        const inner = type === "meta" ? { hit: new Set(), blank: new Set(), items: [] } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {
-          // Values are typed by key index; zero the whole value of each
-          // location item (its `data` box keeps its header).
-          for (const it of inner.items) if (inner.hit.has(it.idx)) {
+          // Values are typed by key index; zero the whole value of every item
+          // not on the keep list (its `data` box keeps its header). Items in a
+          // meta with no keys (iTunes-style) have no name, so all are zeroed.
+          for (const it of inner.items) if (inner.hit.has(it.idx) || inner.blank.has(it.idx) || !inner.keyed) {
             const dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
             zero(it.payload + dataHdr, it.boxEnd); n++;
           }

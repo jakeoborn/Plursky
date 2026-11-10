@@ -52,10 +52,11 @@ function filler(n, seed = 7) {
 // carries it: no text for a regex to find.
 export const BIN_PLANT = (() => { const b = Buffer.alloc(16); b.writeDoubleBE(PLANT.lat, 0); b.writeDoubleBE(PLANT.lng, 8); return b; })();
 
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, mdatBytes, straddleAt, noGps }
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, xmpUuid, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
-  const items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
+  let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
+  if (opts.oddItem) items = [...items, ["com.vendor.capture.pos", BIN_PLANT]];
   const meta = metaBox(items);
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
@@ -71,5 +72,6 @@ export function buildMov(opts = {}) {
   const ftyp = box("ftyp", "qt  ", u32(0), "qt  ");
   const mdat = box("mdat", media);
   const free = box("free", opts.noGps ? Buffer.alloc(64) : meta);
-  return { bytes: Buffer.concat([ftyp, box("wide"), mdat, moov, free]), mdatStart: ftyp.length + 8 + 8 };
+  const tail = opts.xmpUuid ? [box("uuid", Buffer.alloc(16, 0xbe), BIN_PLANT)] : [];
+  return { bytes: Buffer.concat([ftyp, box("wide"), mdat, moov, free, ...tail]), mdatStart: ftyp.length + 8 + 8 };
 }

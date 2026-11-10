@@ -418,7 +418,9 @@ async function _parseVideoMeta(file) {
 var _VGPS_MAX_BOX = 64 * 1024 * 1024;
 var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
 var _VGPS_KEY_RE = /location|ISO6709|gps/i;
-var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe", "jpeg", "mjpa", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "ac-3", "ec-3", "Opus", "fLaC", "samr", "sawb", ".mp3", "mebx", "tmcd", "text", "tx3g", "wvtt", "c608"]);
+var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "ac-3", "ec-3", "Opus", "fLaC", "samr", "sawb", ".mp3", "mebx", "tmcd"]);
+var _VGPS_TIMED_KEYS = new Set(["video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle", "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center", "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
+var _VGPS_KEEP_KEYS = new Set(["make", "model", "software", "creationdate", "full-frame-rate-playback-intent", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
 function _vgpsLatin1(u8, a, b) {
   var s = "";
   for (var i = a; i < b; i++) s += String.fromCharCode(u8[i]);
@@ -459,6 +461,14 @@ function _stripVideoGpsRegion(u8) {
         boxEnd = pos + size;
       if (type === "free" || type === "skip") {
         zero(payload, boxEnd);
+      } else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (type === "uuid" || type === "XMP_" || parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type)) {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
       } else if (type === "©xyz" || type === "loci" || parentType === "udta" && type !== "meta") {
         zero(payload, boxEnd);
         toFree(pos);
@@ -481,21 +491,46 @@ function _stripVideoGpsRegion(u8) {
             refuse = "unknown track format " + JSON.stringify(fmt);
             return;
           }
+          if (fmt === "mebx") {
+            var body = _vgpsLatin1(u8, e, e + es);
+            var at = body.indexOf("keyd"),
+              seen = 0;
+            while (at >= 4) {
+              var ks = dv.getUint32(e + at - 4);
+              if (ks < 12 || at - 4 + ks > es) {
+                refuse = "unreadable timed key";
+                return;
+              }
+              var name = body.slice(at + 8, at - 4 + ks);
+              if (!_VGPS_TIMED_KEYS.has(name)) {
+                refuse = "timed key " + JSON.stringify(name);
+                return;
+              }
+              seen++;
+              at = body.indexOf("keyd", at - 4 + ks);
+            }
+            if (!seen && body.includes("keys")) {
+              refuse = "unreadable timed keys";
+              return;
+            }
+          }
           e += es;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        scope.keyed = true;
         var _count = dv.getUint32(payload + 4);
         var _k = payload + 8;
         for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
-          var ks = dv.getUint32(_k);
-          if (ks < 8 || _k + ks > boxEnd) break;
-          var name = _vgpsLatin1(u8, _k + 8, _k + ks);
-          if (_VGPS_KEY_RE.test(name)) {
+          var _ks = dv.getUint32(_k);
+          if (_ks < 8 || _k + _ks > boxEnd) break;
+          var _name = _vgpsLatin1(u8, _k + 8, _k + _ks);
+          if (!_VGPS_KEEP_KEYS.has(_name)) scope.blank.add(i);
+          if (_VGPS_KEY_RE.test(_name)) {
             scope.hit.add(i);
-            var red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
-            for (var j = 0; j < ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
+            var red = "plursky.redacted.".padEnd(_ks - 8, "x").slice(0, _ks - 8);
+            for (var j = 0; j < _ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
           }
-          _k += ks;
+          _k += _ks;
         }
       } else if (scope && parentType === "ilst") {
         scope.items.push({
@@ -508,11 +543,12 @@ function _stripVideoGpsRegion(u8) {
         var isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
         var inner = type === "meta" ? {
           hit: new Set(),
+          blank: new Set(),
           items: []
         } : scope;
         visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
         if (type === "meta") {
-          for (var it of inner.items) if (inner.hit.has(it.idx)) {
+          for (var it of inner.items) if (inner.hit.has(it.idx) || inner.blank.has(it.idx) || !inner.keyed) {
             var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
             zero(it.payload + dataHdr, it.boxEnd);
             n++;
