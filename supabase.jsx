@@ -430,7 +430,12 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
+// SPEC-178 (locked 2026-11-05): capture location stays on the device. Before
+// this, `parsedGps` (raw lat/lng), its accuracy and the compass heading rode
+// every backup to user_data.meta.moments. A restored phone gets its moments
+// back without map pins, which is the lock working, not a loss to repair.
+// `location` stays: it is an amenity label + metres, no coordinates.
+const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256", "parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {

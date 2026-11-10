@@ -260,7 +260,7 @@ function sbOnAuthChange(cb) {
   });
   return () => data.subscription.unsubscribe();
 }
-var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
+var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256", "parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   var out = {};
   for (var night of Object.keys(all || {})) {
