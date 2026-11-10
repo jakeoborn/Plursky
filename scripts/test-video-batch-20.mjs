@@ -33,6 +33,17 @@ try {
  await page.waitForTimeout(300); await page.screenshot({path:'/tmp/plursky-20-video-wall.png',fullPage:true});
  console.log(JSON.stringify({elapsedSec:(Date.now()-start)/1000,fileCount:20,bytesEach:buffer.length,codec:'H.264 sample',...results,pageErrors:errors},null,2));
  if(results.moments!==20||results.video!==20||results.saved!==20||results.poster!==20||errors.length)process.exitCode=1;
+ // Poster regression (sanity 2026-11-10: 19/20 web posters). A frame read right
+ // after `seeked` can come back unpainted (nothing drawn, alpha 0). That must be
+ // re-read, not judged black: with drawImage drawing NOTHING for the first four
+ // video reads (one per candidate time, enough to null every poster before the
+ // fix), the poster must still come back. Control: an always-unpainted video
+ // still resolves null, so this cannot pass by skipping the check.
+ const unpainted=await page.evaluate(async({bytes})=>{const proto=CanvasRenderingContext2D.prototype;const real=proto.drawImage;let skip=0;proto.drawImage=function(src,...a){if(src instanceof HTMLVideoElement&&skip>0){skip--;return;}return real.call(this,src,...a);};
+   const blob=new Blob([Uint8Array.from(bytes)],{type:'video/mp4'});
+   try{skip=4;const healed=await _videoPosterBlob(blob);skip=1e9;const never=await _videoPosterBlob(blob);return {healed:!!healed,never:!!never};}finally{proto.drawImage=real;}},{bytes:[...buffer]});
+ console.log(JSON.stringify({posterUnpaintedRetry:unpainted}));
+ if(!unpainted.healed||unpainted.never)process.exitCode=1;
  // The native bridge returns paths. Verify the refactored importer fetches one
  // at a time, commits each video, and does not hold all 20 Blob/File objects.
  const nctx=await browser.newContext({timezoneId:'America/Los_Angeles',viewport:{width:393,height:852},deviceScaleFactor:1});

@@ -430,7 +430,7 @@ function sbOnAuthChange(cb) {
 // file:// path that means nothing on another device; `_fingerprint` is a
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
-// SPEC-178 (locked 2026-11-05): capture location stays on the device. Before
+// Capture location stays on the device (SPEC-178, and imported videos). Before
 // this, `parsedGps` (raw lat/lng), its accuracy and the compass heading rode
 // every backup to user_data.meta.moments. A restored phone gets its moments
 // back without map pins, which is the lock working, not a loss to repair.

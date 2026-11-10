@@ -415,6 +415,859 @@ async function _parseVideoMeta(file) {
   } catch {}
   return out;
 }
+var _VGPS_MAX_BOX = 64 * 1024 * 1024;
+var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
+var _VGPS_KEY_RE = /location|ISO6709|gps/i;
+var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "Opus", "fLaC", "mebx", "tmcd"]);
+var _VGPS_TIMED_KEYS = new Set(["video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle", "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center", "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
+var _VGPS_KEEP_KEYS = new Set(["make", "model", "software", "creationdate", "full-frame-rate-playback-intent", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
+function _vgpsLatin1(u8, a, b) {
+  var s = "";
+  for (var i = a; i < b; i++) s += String.fromCharCode(u8[i]);
+  return s;
+}
+var _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
+var _VGPS_CHILDREN = {
+  moov: new Set(["mvhd", "trak", "udta", "meta", "mvex"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load"]),
+  edts: new Set(["elst"]),
+  mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
+  minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
+  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd"]),
+  gmhd: new Set(["gmin", "text", "tmcd"]),
+  tmcd: new Set(["tcmi"]),
+  dinf: new Set(["dref"]),
+  dref: new Set(["url ", "alis"]),
+  mvex: new Set(["mehd", "trex"]),
+  tapt: new Set(["clef", "prof", "enof"]),
+  tref: _VGPS_TREF_KINDS
+};
+var _VGPS_WALK = {
+  moov: 0,
+  trak: 0,
+  mdia: 0,
+  minf: 0,
+  stbl: 0,
+  udta: 0,
+  meta: 0,
+  ilst: 0,
+  edts: 0,
+  gmhd: 0,
+  dinf: 0,
+  mvex: 0,
+  tapt: 0,
+  tref: 0,
+  dref: 8
+};
+var _vgpsWalks = (type, parentType) => type in _VGPS_WALK || type === "tmcd" && parentType === "gmhd";
+var _VGPS_LEAF_LEN = (type, parentType, dv, p, P, ctx) => {
+  var v = P >= 1 ? dv.getUint8(p) : 0,
+    n = off => P >= off + 4 ? dv.getUint32(p + off) : 0;
+  if (parentType === "tref") {
+    if (P % 4) return -1;
+    for (var o = 0; o < P; o += 4) {
+      var id = dv.getUint32(p + o);
+      if (id < 1 || id > 1024) return -1;
+    }
+    return P;
+  }
+  switch (type) {
+    case "mvhd":
+      return v === 1 ? 112 : 100;
+    case "tkhd":
+      return v === 1 ? 96 : 84;
+    case "mdhd":
+      return v === 1 ? 36 : 24;
+    case "mehd":
+      return v === 1 ? 12 : 8;
+    case "vmhd":
+      return 12;
+    case "smhd":
+      return 8;
+    case "nmhd":
+    case "sthd":
+      return 4;
+    case "hmhd":
+      return 20;
+    case "gmin":
+      return 16;
+    case "text":
+      return 36;
+    case "load":
+      return 16;
+    case "trex":
+      return 24;
+    case "cslg":
+      return v === 1 ? 44 : 24;
+    case "clef":
+    case "prof":
+    case "enof":
+      return 12;
+    case "url ":
+    case "alis":
+      return 4;
+    case "hdlr":
+      return 24;
+    case "elng":
+      return 4;
+    case "tcmi":
+      return 24;
+    case "elst":
+      return 8 + n(4) * (v === 1 ? 20 : 12);
+    case "stts":
+    case "ctts":
+    case "co64":
+    case "stsh":
+      return 8 + n(4) * 8;
+    case "stss":
+    case "stps":
+    case "stco":
+      return 8 + n(4) * 4;
+    case "stsc":
+      return 8 + n(4) * 12;
+    case "stsz":
+      ctx.samples = n(8);
+      return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "stz2":
+      ctx.samples = n(8);
+      return 12 + Math.ceil(n(8) * (P >= 8 ? dv.getUint8(p + 7) : 0) / 8);
+    case "sdtp":
+      return ctx.samples == null ? null : 4 + ctx.samples;
+    case "sbgp":
+      return (v === 1 ? 16 : 12) + n(v === 1 ? 12 : 8) * 8;
+    case "sgpd":
+      {
+        if (v !== 1 && v !== 2) return null;
+        var hdr = v === 1 ? 16 : 20,
+          dl = n(8),
+          count = n(hdr - 4);
+        if (dl) return hdr + count * dl;
+        if (v !== 1) return null;
+        var at = hdr;
+        for (var i = 0; i < count; i++) {
+          if (at + 4 > P) return P + 1;
+          at += 4 + dv.getUint32(p + at);
+        }
+        return at;
+      }
+    default:
+      return null;
+  }
+};
+function _stripVideoGpsRegion(u8, layout = null) {
+  var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  var len = u8.byteLength;
+  var type4 = i => _vgpsLatin1(u8, i, i + 4);
+  var zero = (a, b) => {
+    for (var i = a; i < b && i < len; i++) u8[i] = 0;
+  };
+  var toFree = pos => {
+    u8[pos + 4] = 0x66;
+    u8[pos + 5] = 0x72;
+    u8[pos + 6] = 0x65;
+    u8[pos + 7] = 0x65;
+  };
+  var n = 0,
+    refuse = null,
+    curTrak = null;
+  var visit = (start, end, depth, parentType, scope) => {
+    if (depth > 8 || refuse) return;
+    var pos = start;
+    var scopeCtx = {};
+    if (parentType === "stbl") {
+      for (var q = start; q + 20 <= end;) {
+        var qs = dv.getUint32(q);
+        if (qs < 8 || q + qs > end) break;
+        if (qs >= 20 && (type4(q + 4) === "stsz" || type4(q + 4) === "stz2")) scopeCtx.samples = dv.getUint32(q + 16);
+        q += qs;
+      }
+    }
+    while (pos + 8 <= end) {
+      var size = dv.getUint32(pos);
+      var type = type4(pos + 4);
+      var hdr = 8;
+      if (size === 1) {
+        if (pos + 16 > end) break;
+        size = dv.getUint32(pos + 8) * 4294967296 + dv.getUint32(pos + 12);
+        hdr = 16;
+      } else if (size === 0) size = end - pos;
+      if (size < hdr || pos + size > end) {
+        refuse = "malformed box";
+        return;
+      }
+      var payload = pos + hdr,
+        boxEnd = pos + size;
+      if (type === "free" || type === "skip") {
+        zero(payload, boxEnd);
+      } else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (type === "uuid" || type === "XMP_" || parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type)) {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (type === "mvex") {
+        refuse = "fragmented movie";
+        return;
+      } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (_VGPS_CHILDREN[parentType] && type !== "stsd" && !_vgpsWalks(type, parentType)) {
+        var want = _VGPS_LEAF_LEN(type, parentType, dv, payload, boxEnd - payload, scopeCtx);
+        if (want === null) {
+          zero(payload, boxEnd);
+          toFree(pos);
+          n++;
+        } else if (want < 0 || want > boxEnd - payload) {
+          refuse = "unreadable " + type;
+          return;
+        } else if (want < boxEnd - payload) {
+          zero(payload + want, boxEnd);
+          n++;
+        }
+        if (layout && curTrak && /^(stsz|stz2|stsc|stco|co64)$/.test(type)) {
+          if (curTrak[type]) {
+            refuse = "duplicate " + type;
+            return;
+          }
+          curTrak[type] = payload;
+        }
+      } else if (type === "©xyz" || type === "loci" || parentType === "udta" && type !== "meta") {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (type === "stsd") {
+        if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) {
+          refuse = "timed location track";
+          return;
+        }
+        var count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
+        var e = payload + 8;
+        for (var k = 0; k < count; k++) {
+          var es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+          if (es < 8 || e + es > boxEnd) {
+            refuse = "unreadable sample table";
+            return;
+          }
+          var fmt = type4(e + 4);
+          if (!_VGPS_TRACK_FORMATS.has(fmt)) {
+            refuse = "unknown track format " + JSON.stringify(fmt);
+            return;
+          }
+          var fam = _VGPS_NAL_FAMILY[fmt];
+          if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
+          if (fam) {
+            var cfg = fam === "avc" ? "avcC" : "hvcC";
+            var c = e + 86,
+              L = 0;
+            while (c + 8 <= e + es) {
+              var cs = dv.getUint32(c);
+              if (cs < 8 || c + cs > e + es) break;
+              if (type4(c + 4) === cfg) {
+                var r = _vgpsConfig(fam, u8, c + 8, c + cs);
+                if (r.refuse) {
+                  refuse = r.refuse;
+                  return;
+                }
+                L = r.L;
+              }
+              c += cs;
+            }
+            if (L !== 1 && L !== 2 && L !== 4) {
+              refuse = "unreadable " + cfg;
+              return;
+            }
+            if (layout && curTrak) {
+              if (curTrak.fam && curTrak.fam !== fam || curTrak.lenSize && curTrak.lenSize !== L) {
+                refuse = "mixed video sample entries";
+                return;
+              }
+              curTrak.fam = fam;
+              curTrak.lenSize = L;
+            }
+          }
+          if (fmt === "mebx") {
+            var body = _vgpsLatin1(u8, e, e + es);
+            var at = body.indexOf("keyd"),
+              seen = 0;
+            while (at >= 4) {
+              var ks = dv.getUint32(e + at - 4);
+              if (ks < 12 || at - 4 + ks > es) {
+                refuse = "unreadable timed key";
+                return;
+              }
+              var name = body.slice(at + 8, at - 4 + ks);
+              if (!_VGPS_TIMED_KEYS.has(name)) {
+                refuse = "timed key " + JSON.stringify(name);
+                return;
+              }
+              seen++;
+              at = body.indexOf("keyd", at - 4 + ks);
+            }
+            if (!seen && body.includes("keys")) {
+              refuse = "unreadable timed keys";
+              return;
+            }
+          }
+          e += es;
+        }
+      } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        if (scope.keysSeen++) {
+          refuse = "duplicate keys table";
+          return;
+        }
+        var _count = dv.getUint32(payload + 4);
+        var _k = payload + 8;
+        for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
+          var _ks = dv.getUint32(_k);
+          if (_ks < 8 || _k + _ks > boxEnd) break;
+          var _name = _vgpsLatin1(u8, _k + 8, _k + _ks);
+          if (_VGPS_KEEP_KEYS.has(_name)) scope.keep.add(i);
+          if (_VGPS_KEY_RE.test(_name)) {
+            scope.hit.add(i);
+            var red = "plursky.redacted.".padEnd(_ks - 8, "x").slice(0, _ks - 8);
+            for (var j = 0; j < _ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
+          }
+          _k += _ks;
+        }
+      } else if (scope && parentType === "ilst") {
+        scope.items.push({
+          idx: dv.getUint32(pos + 4),
+          payload,
+          boxEnd
+        });
+      }
+      if (_vgpsWalks(type, parentType)) {
+        var isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
+        var inner = type === "meta" ? {
+          hit: new Set(),
+          keep: new Set(),
+          items: [],
+          keysSeen: 0
+        } : scope;
+        var skip = isoMeta ? 4 : type === "tmcd" ? 0 : _VGPS_WALK[type] || 0;
+        var prevTrak = curTrak;
+        if (type === "trak" && layout) {
+          curTrak = {};
+          layout.push(curTrak);
+        }
+        visit(Math.min(boxEnd, payload + skip), boxEnd, depth + 1, type, inner);
+        curTrak = prevTrak;
+        if (type === "meta") {
+          for (var it of inner.items) if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
+            var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
+            zero(it.payload + dataHdr, it.boxEnd);
+            n++;
+          }
+        }
+      }
+      pos = boxEnd;
+    }
+  };
+  visit(0, len, 0, null, null);
+  return refuse ? {
+    refuse
+  } : {
+    n
+  };
+}
+var _VGPS_NAL_FAMILY = {
+  avc1: "avc",
+  avc3: "avc",
+  hvc1: "hevc",
+  hev1: "hevc",
+  dvh1: "hevc",
+  dvhe: "hevc"
+};
+var _VGPS_HVCC_SEI = {
+  137: 24,
+  144: 4,
+  147: 1,
+  148: 8
+};
+function _vgpsFixedSei(b, p, len) {
+  if (len < 3 || (b[p] >> 1 & 0x3f) !== 39) return false;
+  var i = p + 2;
+  var z = p + len;
+  while (i < z) {
+    if (i === z - 1 && b[i] === 0x80) return true;
+    var t = 0,
+      s = 0;
+    while (i < z && b[i] === 0xff) {
+      t += 255;
+      i++;
+    }
+    if (i >= z) return false;
+    t += b[i++];
+    while (i < z && b[i] === 0xff) {
+      s += 255;
+      i++;
+    }
+    if (i >= z) return false;
+    s += b[i++];
+    if (_VGPS_HVCC_SEI[t] !== s || i + s > z) return false;
+    for (var k = i; k < i + s - 2; k++) if (b[k] === 0 && b[k + 1] === 0 && b[k + 2] === 3) return false;
+    i += s;
+  }
+  return false;
+}
+var _VGPS_PS_MAX = 128;
+function _vgpsConfig(fam, u8, p, z) {
+  var ps = (t, at, len) => len >= 1 && len <= _VGPS_PS_MAX && at + len <= z && !(u8[at] & 0x80) && (fam === "avc" ? (u8[at] & 0x1f) === t : (u8[at] >> 1 & 0x3f) === t);
+  if (fam === "avc") {
+    if (z - p < 7) return {
+      refuse: "unreadable avcC"
+    };
+    var _L = (u8[p + 4] & 3) + 1;
+    var _a = p + 6;
+    var lists = [[u8[p + 5] & 0x1f, 7]];
+    var walk = (n, t) => {
+      for (var i = 0; i < n; i++) {
+        if (_a + 2 > z) return false;
+        var len = u8[_a] << 8 | u8[_a + 1];
+        if (!ps(t, _a + 2, len)) return false;
+        _a += 2 + len;
+      }
+      return true;
+    };
+    if (!walk(u8[p + 5] & 0x1f, 7)) return {
+      refuse: "avcC carries a NAL it cannot vouch for"
+    };
+    if (_a + 1 > z) return {
+      refuse: "unreadable avcC"
+    };
+    var npps = u8[_a++];
+    if (!walk(npps, 8)) return {
+      refuse: "avcC carries a NAL it cannot vouch for"
+    };
+    if (_a < z && [100, 110, 122, 144].includes(u8[p + 1])) {
+      if (_a + 4 > z) return {
+        refuse: "unreadable avcC"
+      };
+      _a += 3;
+      var next = u8[_a++];
+      if (!walk(next, 13)) return {
+        refuse: "avcC carries a NAL it cannot vouch for"
+      };
+    }
+    if (_a !== z) return {
+      refuse: "avcC has trailing bytes"
+    };
+    return {
+      L: _L
+    };
+  }
+  if (z - p < 23) return {
+    refuse: "unreadable hvcC"
+  };
+  var L = (u8[p + 21] & 3) + 1;
+  var a = p + 23;
+  for (var k = 0, na = u8[p + 22]; k < na; k++) {
+    if (a + 3 > z) return {
+      refuse: "unreadable hvcC"
+    };
+    var nt = u8[a] & 0x3f,
+      nn = u8[a + 1] << 8 | u8[a + 2];
+    a += 3;
+    for (var q = 0; q < nn; q++) {
+      if (a + 2 > z) return {
+        refuse: "unreadable hvcC"
+      };
+      var len = u8[a] << 8 | u8[a + 1],
+        at = a + 2;
+      if (at + len > z) return {
+        refuse: "unreadable hvcC"
+      };
+      if (nt === 39 ? !_vgpsFixedSei(u8, at, len) : !(nt >= 32 && nt <= 34 && ps(nt, at, len))) return {
+        refuse: "hvcC carries an SEI it cannot vouch for"
+      };
+      a = at + len;
+    }
+  }
+  if (a !== z) return {
+    refuse: "hvcC has trailing bytes"
+  };
+  return {
+    L
+  };
+}
+function _vgpsNalAction(fam, b, q, len) {
+  var h = b[q];
+  if (h & 0x80) return "refuse";
+  if (fam === "avc") {
+    var _t = h & 0x1f;
+    if (_t >= 1 && _t <= 5) return "keep";
+    if (_t === 7 || _t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+    if (_t === 9) return len === 2 ? "keep" : "refuse";
+    if (_t === 10 || _t === 11) return len === 1 ? "keep" : "refuse";
+    if (_t === 6 || _t === 12) return "fill";
+    return "refuse";
+  }
+  if (len < 2) return "refuse";
+  var t = h >> 1 & 0x3f;
+  if (t <= 9 || t >= 16 && t <= 21) return "keep";
+  if (t >= 32 && t <= 34) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
+  if (t === 35) return len === 3 ? "keep" : "refuse";
+  if (t === 36 || t === 37) return len === 2 ? "keep" : "refuse";
+  if (t >= 38 && t <= 40) return "fill";
+  if (t === 62) return "fill";
+  return "refuse";
+}
+function _vgpsFiller(fam, b, q, len) {
+  var out = new Uint8Array(len).fill(0xff);
+  var hl = fam === "avc" ? 1 : 2;
+  out[0] = fam === "avc" ? 0x0c : 0x4c;
+  if (fam === "hevc") out[1] = b[q + 1] & 7 || 1;
+  if (len > hl) out[len - 1] = 0x80;
+  return out;
+}
+function _vgpsSamples(u8, layout) {
+  var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  var out = [];
+  var _loop2 = function (t) {
+      if (!t.fmts || !t.fmts.length) return {
+        v: {
+          refuse: "track without a sample description"
+        }
+      };
+      if (t.fmts.some(f => _VGPS_NAL_FAMILY[f] !== undefined && _VGPS_NAL_FAMILY[f] !== t.fam)) return {
+        v: {
+          refuse: "mixed video sample entries"
+        }
+      };
+      var co = t.stco != null ? t.stco : t.co64;
+      if (t.stsz == null && t.stz2 == null || t.stsc == null || co == null || t.stco != null && t.co64 != null) return {
+        v: {
+          refuse: "track without sample tables"
+        }
+      };
+      var sizes;
+      if (t.stsz != null) {
+        var fixed = dv.getUint32(t.stsz + 4),
+          cnt = dv.getUint32(t.stsz + 8);
+        sizes = i => fixed || dv.getUint32(t.stsz + 12 + i * 4);
+        sizes.count = cnt;
+      } else {
+        var fs = u8[t.stz2 + 7],
+          _cnt = dv.getUint32(t.stz2 + 8),
+          base = t.stz2 + 12;
+        if (fs !== 4 && fs !== 8 && fs !== 16) return {
+          v: {
+            refuse: "unreadable stz2"
+          }
+        };
+        sizes = i => fs === 16 ? dv.getUint16(base + i * 2) : fs === 8 ? u8[base + i] : u8[base + (i >> 1)] >> (i & 1 ? 0 : 4) & 15;
+        sizes.count = _cnt;
+      }
+      var nChunks = dv.getUint32(co + 4),
+        wide = t.co64 != null;
+      var chunkOff = c => wide ? dv.getUint32(co + 8 + c * 8) * 4294967296 + dv.getUint32(co + 12 + c * 8) : dv.getUint32(co + 8 + c * 4);
+      var runs = dv.getUint32(t.stsc + 4);
+      var i = 0;
+      for (var r = 0; r < runs; r++) {
+        var first = dv.getUint32(t.stsc + 8 + r * 12),
+          spc = dv.getUint32(t.stsc + 12 + r * 12);
+        var next = r + 1 < runs ? dv.getUint32(t.stsc + 8 + (r + 1) * 12) : nChunks + 1;
+        if (first < 1 || next <= first || next > nChunks + 1) return {
+          v: {
+            refuse: "unreadable stsc"
+          }
+        };
+        for (var c = first; c < next; c++) {
+          var off = chunkOff(c - 1);
+          for (var k = 0; k < spc; k++, i++) {
+            if (i >= sizes.count) return {
+              v: {
+                refuse: "sample tables disagree"
+              }
+            };
+            var sz = sizes(i);
+            out.push({
+              off,
+              size: sz,
+              fam: t.fam || null,
+              L: t.lenSize || 0
+            });
+            off += sz;
+          }
+        }
+      }
+      if (i !== sizes.count) return {
+        v: {
+          refuse: "sample tables disagree"
+        }
+      };
+    },
+    _ret2;
+  for (var t of layout) {
+    _ret2 = _loop2(t);
+    if (_ret2) return _ret2.v;
+  }
+  out.sort((x, y) => x.off - y.off);
+  return {
+    samples: out
+  };
+}
+async function _vgpsNalPatches(blob, samples, start, end) {
+  var patches = [];
+  var buf = null,
+    bs = 0;
+  for (var s of samples) {
+    if (!buf || s.off < bs || s.off + s.size > bs + buf.length) {
+      bs = s.off;
+      buf = new Uint8Array(await blob.slice(bs, Math.min(end, Math.max(s.off + s.size, s.off + _VGPS_WIN))).arrayBuffer());
+      if (s.off + s.size > bs + buf.length) return {
+        refuse: "sample past mdat"
+      };
+    }
+    var z = s.off - bs + s.size;
+    var q = s.off - bs;
+    while (q < z) {
+      if (q + s.L > z) return {
+        refuse: "unparseable video sample"
+      };
+      var len = 0;
+      for (var k = 0; k < s.L; k++) len = len * 256 + buf[q + k];
+      q += s.L;
+      if (len < 1 || q + len > z) return {
+        refuse: "unparseable video sample"
+      };
+      var act = _vgpsNalAction(s.fam, buf, q, len);
+      if (act === "refuse") return {
+        refuse: "video NAL type " + (s.fam === "avc" ? buf[q] & 0x1f : buf[q] >> 1 & 0x3f)
+      };
+      if (act === "fill") {
+        var f = _vgpsFiller(s.fam, buf, q, len);
+        var same = true;
+        for (var _k2 = 0; _k2 < len && same; _k2++) same = f[_k2] === buf[q + _k2];
+        if (!same) patches.push({
+          off: bs + q,
+          bytes: f
+        });
+      }
+      q += len;
+    }
+  }
+  return {
+    patches
+  };
+}
+var _VGPS_WIN = 8 * 1024 * 1024,
+  _VGPS_OVERLAP = 4096;
+var _VGPS_ISO_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}(?:[+-]\d+(?:\.\d+)?)?\/?/g;
+async function _vgpsScanMedia(blob, start, end, init = []) {
+  var dec = new TextDecoder("windows-1252");
+  var patches = init.slice();
+  var inPatch = o => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
+  var _loop3 = async function (w) {
+      var b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
+      var u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
+      var s = dec.decode(u8);
+      var own = i => w + i < Math.min(end, w + _VGPS_WIN);
+      var metaRe = /meta/g;
+      var m;
+      while (m = metaRe.exec(s)) {
+        var _p = m.index - 4;
+        if (_p < 0 || !own(_p) || inPatch(w + _p)) continue;
+        var sz = new DataView(u8.buffer, u8.byteOffset + _p, 4).getUint32(0);
+        if (sz < 24 || sz > 1024 * 1024 || w + _p + sz > end) continue;
+        if (s.slice(_p + 12, _p + 16) !== "hdlr" && s.slice(_p + 16, _p + 20) !== "hdlr") continue;
+        var reg = new Uint8Array(await blob.slice(w + _p, w + _p + sz).arrayBuffer());
+        var r = _stripVideoGpsRegion(reg);
+        if (r.refuse) return {
+          v: {
+            refuse: "embedded meta: " + r.refuse
+          }
+        };
+        if (r.n) patches.push({
+          off: w + _p,
+          bytes: reg
+        });
+      }
+      _VGPS_ISO_RE.lastIndex = 0;
+      while (m = _VGPS_ISO_RE.exec(s)) {
+        if (!own(m.index)) continue;
+        var abs = w + m.index,
+          host = inPatch(abs);
+        if (host) {
+          host.bytes.fill(0, abs - host.off, Math.min(host.bytes.length, abs - host.off + m[0].length));
+        } else patches.push({
+          off: abs,
+          bytes: new Uint8Array(m[0].length)
+        });
+      }
+      var chk = u8.slice();
+      for (var _p2 of patches) {
+        var a = Math.max(_p2.off, w),
+          z = Math.min(_p2.off + _p2.bytes.length, b);
+        if (a < z) chk.set(_p2.bytes.subarray(a - _p2.off, z - _p2.off), a - w);
+      }
+      var cs = dec.decode(chk);
+      if (new RegExp(_VGPS_ISO_RE.source).test(cs) || /location\.ISO6709|location\.accuracy/.test(cs)) return {
+        v: {
+          refuse: "coordinate left in media"
+        }
+      };
+    },
+    _ret3;
+  for (var w = start; w < end; w += _VGPS_WIN) {
+    _ret3 = await _loop3(w);
+    if (_ret3) return _ret3.v;
+  }
+  patches.sort((x, y) => x.off - y.off);
+  var parts = [];
+  var at = start;
+  for (var p of patches) {
+    if (p.off < at) return {
+      refuse: "overlapping patches"
+    };
+    if (p.off > at) parts.push(blob.slice(at, p.off));
+    parts.push(p.bytes);
+    at = p.off + p.bytes.length;
+  }
+  if (at < end) parts.push(blob.slice(at, end));
+  return {
+    parts,
+    n: patches.length
+  };
+}
+async function _stripVideoGps(blob) {
+  try {
+    if (!blob || typeof blob.slice !== "function") return null;
+    var size = blob.size;
+    var head = async pos => new DataView(await blob.slice(pos, Math.min(size, pos + 16)).arrayBuffer());
+    var boxes = [];
+    for (var pos = 0; pos < size;) {
+      if (pos + 8 > size) return null;
+      var h = await head(pos);
+      var boxSize = h.getUint32(0),
+        hdr = 8;
+      var type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      if (boxSize === 1) {
+        if (h.byteLength < 16) return null;
+        boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12);
+        hdr = 16;
+      } else if (boxSize === 0) boxSize = size - pos;
+      if (boxSize < hdr || pos + boxSize > size) return null;
+      if (["moof", "mfra", "sidx", "styp", "ssix"].includes(type)) return null;
+      boxes.push({
+        pos,
+        boxSize,
+        hdr,
+        type
+      });
+      pos += boxSize;
+    }
+    if (boxes.filter(b => b.type === "moov").length !== 1) return null;
+    var done = new Map();
+    var redacted = 0,
+      samples = [];
+    for (var b of boxes) {
+      if (b.type === "mdat") continue;
+      if (b.boxSize > _VGPS_MAX_BOX) return null;
+      var u8 = new Uint8Array(await blob.slice(b.pos, b.pos + b.boxSize).arrayBuffer());
+      var layout = b.type === "moov" ? [] : null;
+      var r = _stripVideoGpsRegion(u8, layout);
+      if (r.refuse) {
+        console.warn("[backup] video GPS strip refused:", r.refuse);
+        return null;
+      }
+      redacted += r.n;
+      var s = _vgpsLatin1(u8, 0, u8.byteLength);
+      if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) {
+        console.warn("[backup] video GPS strip: coordinate left in", b.type);
+        return null;
+      }
+      if (layout) {
+        var v = _vgpsSamples(u8, layout);
+        if (v.refuse) {
+          console.warn("[backup] video GPS strip refused:", v.refuse);
+          return null;
+        }
+        samples = v.samples;
+      }
+      done.set(b, u8);
+    }
+    var parts = [];
+    var covered = 0;
+    var _loop4 = async function () {
+        if (_b.type !== "mdat") {
+          parts.push(done.get(_b));
+          return 0;
+        }
+        var a = _b.pos + _b.hdr,
+          z = _b.pos + _b.boxSize;
+        var mine = samples.filter(s => s.off >= a && s.off + s.size <= z);
+        covered += mine.length;
+        var np = await _vgpsNalPatches(blob, mine.filter(s => s.fam), a, z);
+        if (np.refuse) {
+          console.warn("[backup] video GPS strip refused:", np.refuse);
+          return {
+            v: null
+          };
+        }
+        var at = a,
+          gap = 0;
+        var gaps = [];
+        for (var _s of mine) {
+          if (_s.off > at) {
+            gaps.push({
+              off: at,
+              bytes: new Uint8Array(_s.off - at)
+            });
+            gap += _s.off - at;
+          }
+          at = Math.max(at, _s.off + _s.size);
+        }
+        if (at < z) {
+          gaps.push({
+            off: at,
+            bytes: new Uint8Array(z - at)
+          });
+          gap += z - at;
+        }
+        if (gap > _VGPS_MAX_BOX) {
+          console.warn("[backup] video GPS strip refused: too much unreferenced media");
+          return {
+            v: null
+          };
+        }
+        parts.push(blob.slice(_b.pos, a));
+        var r = await _vgpsScanMedia(blob, a, z, np.patches.concat(gaps));
+        if (r.refuse) {
+          console.warn("[backup] video GPS strip refused:", r.refuse);
+          return {
+            v: null
+          };
+        }
+        parts.push(...r.parts);
+        redacted += r.n;
+      },
+      _ret4;
+    for (var _b of boxes) {
+      _ret4 = await _loop4();
+      if (_ret4 === 0) continue;
+      if (_ret4) return _ret4.v;
+    }
+    if (covered !== samples.length) {
+      console.warn("[backup] video GPS strip refused: samples outside mdat");
+      return null;
+    }
+    var out = new Blob(parts, {
+      type: blob.type || "video/quicktime"
+    });
+    if (out.size !== size) return null;
+    return {
+      blob: out,
+      redacted
+    };
+  } catch (e) {
+    console.warn("[backup] video GPS strip failed:", e && e.message);
+    return null;
+  }
+}
 function _festivalTzOffsetHours(cfg) {
   var day1 = (cfg || window.FESTIVAL_CONFIG)?.dayDates?.[1];
   if (!day1) return -7;
@@ -820,15 +1673,15 @@ function _matchArtistForPhoto({
   var minOfDay = localDate.hh * 60 + localDate.mm;
   var adjustedMin = minOfDay < 480 ? minOfDay + 1440 : minOfDay;
   var candidates = [];
-  for (var _a of artists) {
-    if (_a.day !== night) continue;
-    var [sh, sm] = _a.start.split(":").map(Number);
-    var [eh, em] = _a.end.split(":").map(Number);
+  for (var _a2 of artists) {
+    if (_a2.day !== night) continue;
+    var [sh, sm] = _a2.start.split(":").map(Number);
+    var [eh, em] = _a2.end.split(":").map(Number);
     var startMin = (sh < 8 ? sh + 24 : sh) * 60 + sm;
     var endMin = (eh < 8 ? eh + 24 : eh) * 60 + em;
     if (adjustedMin >= startMin - 5 && adjustedMin <= endMin + 10) {
       candidates.push({
-        a: _a,
+        a: _a2,
         startMin,
         endMin
       });
@@ -842,16 +1695,16 @@ function _matchArtistForPhoto({
       if (nearStage) {
         var best = null,
           bestGap = Infinity;
-        for (var _a2 of artists) {
-          if (_a2.day !== night || _a2.stage !== nearStage) continue;
-          var [_sh, _sm] = _a2.start.split(":").map(Number);
-          var [_eh, _em] = _a2.end.split(":").map(Number);
+        for (var _a3 of artists) {
+          if (_a3.day !== night || _a3.stage !== nearStage) continue;
+          var [_sh, _sm] = _a3.start.split(":").map(Number);
+          var [_eh, _em] = _a3.end.split(":").map(Number);
           var _startMin = (_sh < 8 ? _sh + 24 : _sh) * 60 + _sm;
           var _endMin = (_eh < 8 ? _eh + 24 : _eh) * 60 + _em;
           var gap = adjustedMin < _startMin ? _startMin - adjustedMin : adjustedMin > _endMin ? adjustedMin - _endMin : 0;
           if (gap > 0 && gap < bestGap) {
             bestGap = gap;
-            best = _a2;
+            best = _a3;
           }
         }
         if (best && bestGap <= 60) {
@@ -1171,7 +2024,7 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
     outsideSets = 0,
     fullNight = 0,
     already = 0;
-  var _loop2 = function () {
+  var _loop5 = function () {
       if (!a || !a.id) return 0;
       var ms = Number(a.createdMs);
       if (!isFinite(ms)) {
@@ -1198,10 +2051,10 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
       if (whole) fullNight++;
       keep.push(a);
     },
-    _ret2;
+    _ret5;
   for (var a of assets || []) {
-    _ret2 = _loop2();
-    if (_ret2 === 0) continue;
+    _ret5 = _loop5();
+    if (_ret5 === 0) continue;
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
   return {
