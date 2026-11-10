@@ -555,10 +555,17 @@ function _groundsLngLats(cfg) {
 // venue box with its ±0.004° (~440 m) margin. null = no limit. A lock to the
 // footprint waits on a SURVEYED perimeter; an estimated one never limits the
 // map (Item 1, held 2026-10-18).
+// With no venue box, a surveyed footprint (OSM ring) gives the same margin
+// around its own extent, so a masked venue cannot be panned off screen.
 function _realMapPanLimit(cfg, lib) {
   const v = cfg && cfg.venue;
-  if (!v || !v.festivalBounds) return null;
-  const fb = v.festivalBounds;
+  if (!v) return null;
+  let fb = v.festivalBounds;
+  if (!fb && Array.isArray(v.footprint) && v.footprint.length >= 3) {
+    const la = v.footprint.map(p => p[0]), lo = v.footprint.map(p => p[1]);
+    if ([...la, ...lo].every(Number.isFinite)) fb = { south: Math.min(...la), north: Math.max(...la), west: Math.min(...lo), east: Math.max(...lo) };
+  }
+  if (!fb) return null;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 
@@ -4916,13 +4923,11 @@ function RealMap({
           // the only thing you read. That is right at EDC, where outside the
           // speedway is empty desert and parking — nothing you need.
           //
-          // It is WRONG for a mapMode:"real" festival. Mana Wynwood is a
-          // building on a city street grid, and the streets are exactly how
-          // you find the door: you arrive on NW 5th Ave, not inside the
-          // venue. Masking them leaves a grey block floating in beige. With
-          // no stage pins to draw yet, the surroundings are the whole value
-          // of this screen.
-          if (FESTIVAL_CONFIG.mapMode === "real") return;
+          // A mapMode:"real" festival masks too, but only around a SURVEYED
+          // footprint (venue.footprint, an OSM ring): Jake, 2026-11-10, "should
+          // just have the venue on the map not anything else". An estimated
+          // bounds box is not the venue's shape, so it never masks a real map.
+          if (FESTIVAL_CONFIG.mapMode === "real" && !_footprintRing()) return;
           const _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           const _maskFeature = () => {

@@ -595,8 +595,19 @@ function _groundsLngLats(cfg) {
 }
 function _realMapPanLimit(cfg, lib) {
   var v = cfg && cfg.venue;
-  if (!v || !v.festivalBounds) return null;
+  if (!v) return null;
   var fb = v.festivalBounds;
+  if (!fb && Array.isArray(v.footprint) && v.footprint.length >= 3) {
+    var la = v.footprint.map(p => p[0]),
+      lo = v.footprint.map(p => p[1]);
+    if ([...la, ...lo].every(Number.isFinite)) fb = {
+      south: Math.min(...la),
+      north: Math.max(...la),
+      west: Math.min(...lo),
+      east: Math.max(...lo)
+    };
+  }
+  if (!fb) return null;
   return new lib.LngLatBounds([fb.west - 0.004, fb.south - 0.004], [fb.east + 0.004, fb.north + 0.004]);
 }
 function _liveFixUnplaced(liveOnSite, hasAffine, onRealMap) {
@@ -6662,7 +6673,7 @@ function RealMap({
         }
         applyPlurskyPalette();
         _safeLayer("outside-mask", () => {
-          if (FESTIVAL_CONFIG.mapMode === "real") return;
+          if (FESTIVAL_CONFIG.mapMode === "real" && !_footprintRing()) return;
           var _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           var _maskFeature = () => {
