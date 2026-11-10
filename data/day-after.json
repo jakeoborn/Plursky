@@ -1,5 +1,5 @@
 {
-  "_about": "Day-after cards (scripts/lib/day-after.mjs). Link-only: every source is an official recap post already verified in official-embeds.json for the same festival and day. Plur drafts; Instinct checks every claim (claimCheck); Jake looks before it goes out (approval). Only status published with both sign-offs renders, from 08:00 festival-local the day after. Set times are printed from the schedule via `artist`, never typed into copy.",
+  "_about": "Day-after cards (scripts/lib/day-after.mjs). Link-only: every source is an official recap post already verified in official-embeds.json for the same festival and day. Plur drafts; Instinct checks every claim (claimCheck); an approver looks before it goes out (approval). Only status published with both sign-offs renders, from 08:00 festival-local the day after. Set times are printed from the schedule via `artist`, never typed into copy.",
   "edc-orlando-2026": [
     {
       "id": "edco-2026-day-1",

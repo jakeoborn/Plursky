@@ -7,7 +7,7 @@
 //     verified in data/official-embeds.json (same festival, same day, verified
 //     ok for that exact record). No embeds, no media, no third-party script.
 //   - Plur drafts the copy; Instinct checks every claim against official
-//     sources (`claimCheck`); Jake looks before it goes out (`approval`).
+//     sources (`claimCheck`); an approver looks before it goes out (`approval`).
 //     Only a `published` record carrying both renders, and only from 08:00
 //     festival-local time the day after.
 //   - fails closed: one malformed record stops the build, whatever its status.
