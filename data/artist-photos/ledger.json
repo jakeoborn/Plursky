@@ -866,5 +866,20 @@
     "asset": "artist-photos/the-xx.webp",
     "sha256": "bcdccd0ec04bbf87205c3b0dcfff048a531b97619a1fc359cd40651c7d9e207b",
     "changes": "Resized to 1024px on the long edge and converted to WebP. Display may crop and overlay."
+  },
+  {
+    "artist": "Zeds Dead",
+    "author": "NSR257",
+    "source": "commons",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zeds_deaddddddd.jpg",
+    "reviewedBy": "Commons pipeline: Wikidata match",
+    "reviewedAt": "2026-11-10T23:27:45.376Z",
+    "allowExport": false,
+    "asset": "artist-photos/zeds-dead.webp",
+    "sha256": "1d83fb0fd08d492a145b501a26c9a19dd0fa7f2c6f84cf1f195131158d481ade",
+    "changes": "Wikimedia 480px thumbnail, converted to WebP. Display may crop and overlay.",
+    "wikidata": "Q3005564"
   }
 ]
