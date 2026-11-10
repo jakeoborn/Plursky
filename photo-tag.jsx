@@ -473,25 +473,38 @@ function _vgpsLatin1(u8, a, b) {
 // the standard ISO/QuickTime ones). Anything else (a dashcam's moov-level
 // `gps `, a vendor box in a trak) is blanked to `free`; a player never needs a
 // box it does not know. udta and meta have their own rules below.
+// Track-reference kinds: each is a plain list of u32 track ids.
+const _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
 const _VGPS_CHILDREN = {
-  moov: new Set(["mvhd", "trak", "udta", "meta", "iods", "mvex"]),
-  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load", "txas"]),
+  moov: new Set(["mvhd", "trak", "udta", "meta", "mvex"]),
+  trak: new Set(["tkhd", "edts", "mdia", "meta", "tapt", "tref", "udta", "load"]),
   edts: new Set(["elst"]),
   mdia: new Set(["mdhd", "hdlr", "minf", "elng", "udta"]),
   minf: new Set(["vmhd", "smhd", "gmhd", "nmhd", "hmhd", "sthd", "dinf", "stbl", "hdlr"]),
-  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd", "subs", "saiz", "saio", "padb"]),
+  stbl: new Set(["stsd", "stts", "ctts", "cslg", "stsc", "stsz", "stz2", "stco", "co64", "stss", "stsh", "stps", "sdtp", "sbgp", "sgpd"]),
   gmhd: new Set(["gmin", "text", "tmcd"]),
+  tmcd: new Set(["tcmi"]),          // only walked under gmhd
   dinf: new Set(["dref"]),
-  mvex: new Set(["mehd", "trex", "leva"]),
+  dref: new Set(["url ", "alis"]),  // self-contained data references
+  mvex: new Set(["mehd", "trex"]),
   tapt: new Set(["clef", "prof", "enof"]),
-  tref: new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "tmcd", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]),
+  tref: _VGPS_TREF_KINDS,
 };
-// Leaf boxes with a defined length: payload bytes past the parsed structure
-// are slack a vendor could fill, so they are zeroed; a payload SHORTER than its
-// structure is refused. Returns the expected payload length, or null when the
-// box has no fixed shape (hdlr/elng names, dref, sgpd, sdtp, …).
-const _VGPS_LEAF_LEN = (type, dv, p, P) => {
+// Containers the walker enters, and the header bytes before their children.
+const _VGPS_WALK = { moov: 0, trak: 0, mdia: 0, minf: 0, stbl: 0, udta: 0, meta: 0, ilst: 0, edts: 0, gmhd: 0, dinf: 0, mvex: 0, tapt: 0, tref: 0, dref: 8 };
+const _vgpsWalks = (type, parentType) => type in _VGPS_WALK || (type === "tmcd" && parentType === "gmhd");
+// The exact payload length of a movie leaf, from its own fields. Bytes past it
+// are slack a vendor could fill: zeroed. Shorter: refused. null = this leaf
+// has no shape the strip can check: the box is BLANKED (fail closed); every
+// leaf real iPhone clips carry has a shape here. Names (hdlr, elng, tcmi) are
+// not needed for playback, so only their fixed part is kept.
+const _VGPS_LEAF_LEN = (type, parentType, dv, p, P, ctx) => {
   const v = P >= 1 ? dv.getUint8(p) : 0, n = off => (P >= off + 4 ? dv.getUint32(p + off) : 0);
+  if (parentType === "tref") {             // u32 track ids; 16 bytes of a fix also look like 4 ids, so range-check
+    if (P % 4) return -1;
+    for (let o = 0; o < P; o += 4) { const id = dv.getUint32(p + o); if (id < 1 || id > 1024) return -1; }
+    return P;
+  }
   switch (type) {
     case "mvhd": return v === 1 ? 112 : 100;
     case "tkhd": return v === 1 ? 96 : 84;
@@ -502,19 +515,35 @@ const _VGPS_LEAF_LEN = (type, dv, p, P) => {
     case "nmhd": case "sthd": return 4;
     case "hmhd": return 20;
     case "gmin": return 16;
+    case "text": return 36;
+    case "load": return 16;
     case "trex": return 24;
     case "cslg": return v === 1 ? 44 : 24;
     case "clef": case "prof": case "enof": return 12;
+    case "url ": case "alis": return 4;     // flags only; a self-contained ref holds no data
+    case "hdlr": return 24;                 // fixed fields; the name is zeroed
+    case "elng": return 4;                  // the language tag is zeroed
+    case "tcmi": return 24;                 // the font name is zeroed
     case "elst": return 8 + n(4) * (v === 1 ? 20 : 12);
-    case "stts": case "ctts": case "co64": return 8 + n(4) * 8;
+    case "stts": case "ctts": case "co64": case "stsh": return 8 + n(4) * 8;
     case "stss": case "stps": case "stco": return 8 + n(4) * 4;
     case "stsc": return 8 + n(4) * 12;
-    case "stsz": return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "stsz": ctx.samples = n(8); return 12 + (n(4) === 0 ? n(8) * 4 : 0);
+    case "stz2": ctx.samples = n(8); return 12 + Math.ceil(n(8) * (P >= 8 ? dv.getUint8(p + 7) : 0) / 8);
+    case "sdtp": return ctx.samples == null ? null : 4 + ctx.samples;
     case "sbgp": return (v === 1 ? 16 : 12) + n(v === 1 ? 12 : 8) * 8;
-    default: return _VGPS_TREF_KINDS.has(type) ? P - (P % 4) : null;
+    case "sgpd": {
+      if (v !== 1 && v !== 2) return null;
+      const hdr = v === 1 ? 16 : 20, dl = n(8), count = n(hdr - 4);
+      if (dl) return hdr + count * dl;
+      if (v !== 1) return null;
+      let at = hdr;                         // v1, variable entries: each has its own u32 length
+      for (let i = 0; i < count; i++) { if (at + 4 > P) return P + 1; at += 4 + dv.getUint32(p + at); }
+      return at;
+    }
+    default: return null;
   }
 };
-const _VGPS_TREF_KINDS = new Set(["cdep", "cdsc", "fall", "rndr", "hint", "chap", "sync", "scpt", "ssrc", "vdep", "vplx", "font", "hind", "ipir", "mpod", "subt", "thmb", "auxl"]);
 // Redacts one in-memory box region. Returns { n } (items redacted) or
 // { refuse: reason }.
 function _stripVideoGpsRegion(u8) {
@@ -527,6 +556,15 @@ function _stripVideoGpsRegion(u8) {
   const visit = (start, end, depth, parentType, scope) => {
     if (depth > 8 || refuse) return;
     let pos = start;
+    const scopeCtx = {};                   // per-container: stsz's sample count, for sdtp
+    if (parentType === "stbl") {           // sdtp can come before stsz: read the count first
+      for (let q = start; q + 20 <= end; ) {
+        const qs = dv.getUint32(q);
+        if (qs < 8 || q + qs > end) break;
+        if (qs >= 20 && (type4(q + 4) === "stsz" || type4(q + 4) === "stz2")) scopeCtx.samples = dv.getUint32(q + 16);
+        q += qs;
+      }
+    }
     while (pos + 8 <= end) {
       let size = dv.getUint32(pos);
       const type = type4(pos + 4);
@@ -545,10 +583,11 @@ function _stripVideoGpsRegion(u8) {
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
         zero(payload, boxEnd); toFree(pos); n++;
-      } else if (_VGPS_CHILDREN[parentType] && _VGPS_LEAF_LEN(type, dv, payload, boxEnd - payload) !== null) {
-        const want = _VGPS_LEAF_LEN(type, dv, payload, boxEnd - payload);
-        if (want > boxEnd - payload) { refuse = "short " + type; return; }
-        if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }
+      } else if (_VGPS_CHILDREN[parentType] && type !== "stsd" && !_vgpsWalks(type, parentType)) {
+        const want = _VGPS_LEAF_LEN(type, parentType, dv, payload, boxEnd - payload, scopeCtx);
+        if (want === null) { zero(payload, boxEnd); toFree(pos); n++; }
+        else if (want < 0 || want > boxEnd - payload) { refuse = "unreadable " + type; return; }
+        else if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }
       } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
         // udta is user data, never needed for playback. Location can sit in
         // it as text (©xyz, loci) or in a vendor's BINARY box no regex can
@@ -604,10 +643,11 @@ function _stripVideoGpsRegion(u8) {
       } else if (scope && parentType === "ilst") {
         scope.items.push({ idx: dv.getUint32(pos + 4), payload, boxEnd });
       }
-      if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts", "gmhd", "dinf", "mvex", "tapt", "tref"].includes(type)) {
+      if (_vgpsWalks(type, parentType)) {
         const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
         const inner = type === "meta" ? { hit: new Set(), keep: new Set(), items: [], keysSeen: 0 } : scope;
-        visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
+        const skip = isoMeta ? 4 : type === "tmcd" ? 0 : _VGPS_WALK[type] || 0;
+        visit(Math.min(boxEnd, payload + skip), boxEnd, depth + 1, type, inner);
         if (type === "meta") {
           // Values are typed by key index. Keep-by-allowlist: an item keeps its
           // value ONLY when its index names a keep-listed key; every other item

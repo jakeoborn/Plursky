@@ -117,6 +117,16 @@ async function suite(strip, slim) {
   const short = Buffer.from(buildMov({ noGps: true, leafSlack: true }).bytes);
   { const at = short.indexOf("stco", 0, "latin1"); short.writeUInt32BE(9, at + 8); } // stco claims 9 entries, holds 4
   ok((await strip(blobOf(short))) === null, "V27 a leaf shorter than its own entry count is refused");
+  // Review on 0e77ed37: a tref kind both lists must agree on (tmcd), and an
+  // allowlisted leaf with no checkable shape (sgpd v0) are not passed through.
+  const tt = buildMov({ noGps: true, opaqueGps: "tmcd" });
+  ok(tt.bytes.includes(BIN_PLANT), "V28 setup: a binary fix inside tref/tmcd, after a real track id");
+  ok((await strip(blobOf(tt.bytes))) === null, "V28 a tref list holding values that are not track ids is refused");
+  const sg = buildMov({ noGps: true, opaqueGps: "sgpd" });
+  ok(sg.bytes.includes(BIN_PLANT), "V29 setup: a binary fix inside an sgpd v0 (no checkable shape)");
+  const rsg = await strip(blobOf(sg.bytes));
+  const sgb = rsg ? await bytesOf(rsg.blob) : Buffer.alloc(0);
+  ok(rsg && sgb.length === sg.bytes.length && !sgb.includes(BIN_PLANT), "V29 an allowlisted leaf with no checkable shape is blanked (fail closed)");
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -186,9 +196,10 @@ const MUTANTS = [
   ["top-level boxes allowlist off (uuid/XMP passes)", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["top-level uuid kept", STRIP_SRC.replace('} else if (depth === 0 && !["moov", "meta", "ftyp", "wide", "pdin"].includes(type)) {', '} else if (false) {').replace('type === "uuid" || type === "XMP_" || ', ""), SLIM_SRC],
   ["container child allowlist off (unknown box inside moov passes)", STRIP_SRC.replace("} else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {", "} else if (false) {"), SLIM_SRC],
-  ["small containers kept whole (gmhd/dinf/tref not walked)", STRIP_SRC.replace(', "gmhd", "dinf", "mvex", "tapt", "tref"].includes(type)) {', '].includes(type)) {'), SLIM_SRC],
-  ["leaf slack kept", STRIP_SRC.replace("if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }", ""), SLIM_SRC],
-  ["short leaf accepted", STRIP_SRC.replace('if (want > boxEnd - payload) { refuse = "short " + type; return; }', ""), SLIM_SRC],
+  ["unmeasured leaf kept", STRIP_SRC.replace("if (want === null) { zero(payload, boxEnd); toFree(pos); n++; }", "if (want === null) {}"), SLIM_SRC],
+  ["tref values not range-checked", STRIP_SRC.replace("if (id < 1 || id > 1024) return -1;", ""), SLIM_SRC],
+  ["leaf slack kept", STRIP_SRC.replace("else if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }", ""), SLIM_SRC],
+  ["short leaf accepted", STRIP_SRC.replace("want < 0 || want > boxEnd - payload", "want < 0"), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];

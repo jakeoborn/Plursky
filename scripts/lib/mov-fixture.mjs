@@ -45,10 +45,11 @@ function trak(timedKey, format = "mebx", second = null, nested = false, opaque =
   const v = t => nested ? [box(t, BIN_PLANT)] : [];
   // opaque: a fix inside the small containers (gmhd, dinf, tref);
   // slack: a fix in the bytes past an stco table's last entry.
-  const o = opaque ? [box("gmhd", box("gmin", Buffer.alloc(16)), box("gpsg", BIN_PLANT)), box("dinf", box("gpsd", BIN_PLANT))] : [];
-  const tref = opaque ? [box("tref", box("gpsr", BIN_PLANT))] : [];
+  const o = opaque === true ? [box("gmhd", box("gmin", Buffer.alloc(16)), box("gpsg", BIN_PLANT)), box("dinf", box("gpsd", BIN_PLANT))] : [];
+  const tref = opaque === "tmcd" ? [box("tref", box("tmcd", u32(1), BIN_PLANT))] : opaque ? [box("tref", box("gpsr", BIN_PLANT))] : [];
+  const sgpd0 = opaque === "sgpd" ? [box("sgpd", u32(0), "roll", u32(1), BIN_PLANT)] : [];
   const stco = slack ? [box("stco", u32(0), u32(0), BIN_PLANT)] : [];
-  return box("trak", ...v("vgps"), ...tref, box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), ...o, box("stbl", stsd, ...stco, ...v("gpst")))));
+  return box("trak", ...v("vgps"), ...tref, box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), ...o, box("stbl", stsd, ...stco, ...sgpd0, ...v("gpst")))));
 }
 // Deterministic filler that never spells a coordinate.
 function filler(n, seed = 7) {
@@ -76,7 +77,7 @@ export function buildMov(opts = {}) {
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);
-  const moov = box("moov", mvhd(!!opts.leafSlack), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, !!opts.opaqueGps, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
+  const moov = box("moov", mvhd(!!opts.leafSlack), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
   let media = filler(opts.mdatBytes || 64 * 1024);
   if (!opts.noGps) {
     // orphaned meta copy + a bare coordinate string, as real clips carry
