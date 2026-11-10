@@ -1,0 +1,238 @@
+{
+  "id": "hard-summer-2019",
+  "method": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "chosen": "20191214223132",
+  "archivedUrl": "https://web.archive.org/web/20191214223132/https://www.hardsummer.com/lineup/",
+  "sha256": "02860ca7beff5a39fc33be9d7f3522ee4ac886c7171b591174ff88ca0989343a",
+  "title": "Lineup – HARD Summer 2019",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 102",
+    "By Day 105"
+  ],
+  "stageOrder": [],
+  "crossTab": [
+    "Ookay (Live): alphabetical ×1; days none",
+    "Ookay: not alphabetical; days 2",
+    "Wuki & Friends: not alphabetical; days 2"
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20190530054341",
+      "archivedUrl": "https://web.archive.org/web/20190530054341/https://www.hardsummer.com/lineup/",
+      "sha256": "63ff4951b3332f03f54611fc77b69f1d4075a110001fe5c73209b7567c46d7b6",
+      "bytes": 106826,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 91,
+      "diffVsChosen": [
+        "added by the final: 2 Deep",
+        "added by the final: Choppa Dunks",
+        "added by the final: DJ Snake B2B Malaa",
+        "added by the final: Franklyn Watts B2B Steady Rock",
+        "added by the final: Kenny Beats",
+        "added by the final: LA Leakers",
+        "added by the final: Lucati",
+        "added by the final: Luke Andy",
+        "added by the final: Morelia",
+        "added by the final: Ohgeesy",
+        "added by the final: Pass The 40",
+        "added by the final: Ravell",
+        "added by the final: Rick Ross",
+        "added by the final: Sharps",
+        "added by the final: Throwdown",
+        "added by the final: ZÍA",
+        "added by the final: Ookay",
+        "added by the final: Wuki & Friends",
+        "removed by the final: G Herbo",
+        "removed by the final: Jessie Reyez",
+        "removed by the final: Mustard",
+        "removed by the final: Tommy Genesis",
+        "removed by the final: Zia"
+      ]
+    },
+    {
+      "captureTimestamp": "20190719215204",
+      "archivedUrl": "https://web.archive.org/web/20190719215204/https://www.hardsummer.com/lineup/",
+      "sha256": "b827a02cc7930f0636b5aa09c98ebe32c69ed3d2671bb5855c2275ec5e3f47fb",
+      "bytes": 106759,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 90,
+      "diffVsChosen": [
+        "added by the final: 2 Deep",
+        "added by the final: Choppa Dunks",
+        "added by the final: DJ Snake B2B Malaa",
+        "added by the final: Franklyn Watts B2B Steady Rock",
+        "added by the final: Kenny Beats",
+        "added by the final: LA Leakers",
+        "added by the final: Lucati",
+        "added by the final: Luke Andy",
+        "added by the final: Morelia",
+        "added by the final: Ohgeesy",
+        "added by the final: Pass The 40",
+        "added by the final: Ravell",
+        "added by the final: Rick Ross",
+        "added by the final: Sharps",
+        "added by the final: Throwdown",
+        "added by the final: Ookay",
+        "added by the final: Wuki & Friends",
+        "removed by the final: G Herbo",
+        "removed by the final: Jessie Reyez",
+        "removed by the final: Tommy Genesis"
+      ]
+    },
+    {
+      "captureTimestamp": "20190819130457",
+      "archivedUrl": "https://web.archive.org/web/20190819130457/https://www.hardsummer.com/lineup/",
+      "sha256": "6eaea009a6ed72619938292f693c6dc04c81c0ad1031129a6c7a8b78b527a1f0",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20190918231713",
+      "archivedUrl": "https://web.archive.org/web/20190918231713/https://www.hardsummer.com/lineup/",
+      "sha256": "5840c2e8dfffc4dc9670aa9dc47a47ac52f0de2be3b5823462a5dab98b4a6ab6",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20190927092545",
+      "archivedUrl": "https://web.archive.org/web/20190927092545/https://www.hardsummer.com/lineup/",
+      "sha256": "190514f6219fd290313d40bd89429d4a8e37ca591b124906403bfa9a100645ba",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20191019033221",
+      "archivedUrl": "https://web.archive.org/web/20191019033221/https://www.hardsummer.com/lineup/",
+      "sha256": "97e44f29a9f41e38ebb89c84f160cf254f429594ea0f5ddc0f259249cba8df5d",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20191029161122",
+      "archivedUrl": "https://web.archive.org/web/20191029161122/https://www.hardsummer.com/lineup/",
+      "sha256": "736b804376f55f22532bcbbedc7e88dfd3e3313dc4e90ed800edb8988a0da321",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20191112065452",
+      "archivedUrl": "https://web.archive.org/web/20191112065452/https://www.hardsummer.com/lineup/",
+      "sha256": "9b6bdaabcd77c13a214425f4510ad98be93cad74f501c03f58692329da3147e5",
+      "bytes": 116209,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20191129075436",
+      "archivedUrl": "https://web.archive.org/web/20191129075436/https://www.hardsummer.com/lineup/",
+      "sha256": "564b483bf2a22e167c53f652c27402b22eaea3962ddc326386a9983e09dd883b",
+      "bytes": 117212,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20191214223132",
+      "archivedUrl": "https://web.archive.org/web/20191214223132/https://www.hardsummer.com/lineup/",
+      "sha256": "02860ca7beff5a39fc33be9d7f3522ee4ac886c7171b591174ff88ca0989343a",
+      "bytes": 117533,
+      "via": "firecrawl",
+      "title": "Lineup – HARD Summer 2019",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Saturday, August 03",
+        "Sunday, August 04"
+      ],
+      "billings": 104,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}
