@@ -223,6 +223,7 @@ function _HistLibrary({ state, setState }) {
 
 const _HIST_METHOD = {
   structured_html: "Read from the festival's official set-times pages",
+  official_lineup_html: "Read from the festival's official lineup page (its set times were never archived)",
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
   official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row",
 };
@@ -252,8 +253,8 @@ function _HistProvenance({ edition, onClose }) {
               const nth = same.length > 1 ? ` ${same.indexOf(c) + 1} of ${same.length}` : "";
               return (
               <div key={i} style={{ padding: "8px 0", borderBottom: "1px solid var(--line)" }}>
-                <div style={{ fontWeight: 600 }}>{dayLabel(c.day)}</div>
-                {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Set-times page · {stamp(c.captureTimestamp)}</a>}
+                <div style={{ fontWeight: 600 }}>{c.day ? dayLabel(c.day) : "All days"}</div>
+                {c.archivedUrl && <a href={c.archivedUrl} target="_blank" rel="noopener noreferrer" style={link}>{c.page === "lineup" ? "Lineup page" : "Set-times page"} · {stamp(c.captureTimestamp)}</a>}
                 {c.imageArchivedUrl && <div><a href={c.imageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule graphic · {stamp(c.imageCapture)}</a></div>}
                 {c.pageArchivedUrl && <div><a href={c.pageArchivedUrl} target="_blank" rel="noopener noreferrer" style={link}>Schedule page · {stamp(c.pageCapture)}</a></div>}
                 {c.kind === "graphic" && <div><a href={c.foundAt} target="_blank" rel="noopener noreferrer" style={link}>Official graphic{nth} · {c.rehostedBy} · {c.published ? stamp(c.published.replace(/-/g, "")) : "no printed date"}</a></div>}
@@ -293,6 +294,7 @@ function _HistEdition({ meta, back }) {
   const scroller = React.useRef(null);
   const e = res.status === "ready" ? res.data : null;
   const lineupOnly = meta.completeness === "lineup_only";
+  const lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   const checked = React.useMemo(() => {
     const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
@@ -341,15 +343,46 @@ function _HistEdition({ meta, back }) {
   );
 
   let body = null;
+  // A lineup-only edition: the official lineup page, no times. Where the
+  // page printed a day (and a stage), the artist sits under it; the "All"
+  // tab is the whole lineup, including anything printed without a day.
+  const place = a => (a.appearances || []).map(x => [x.day && _histDayParts(meta.days.find(d => d.day === x.day) || {}).name, view.stage[x.stageId]?.name].filter(Boolean).join(" · ")).filter(Boolean).join("; ");
+  const nameRow = (a, sub) => (
+    <li key={a.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--line)" }}>
+      <div style={{ fontSize: 16, lineHeight: "21px", fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</div>
+      {sub && <div style={{ fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{sub}</div>}
+    </li>
+  );
+  const byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
-    const list = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort((a, b) => a.name.localeCompare(b.name));
+    const printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
+    const note = `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
+    let list;
+    if (query || day === "all" || !printedDays) {
+      const hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
+      list = (
+        <>
+          <ul aria-label="Lineup" style={{ listStyle: "none", margin: 0, padding: 0 }}>{hits.map(a => nameRow(a, place(a)))}</ul>
+          {!hits.length && <p style={{ color: "var(--text-2)" }}>No artist matches “{q.trim()}”.</p>}
+        </>
+      );
+    } else {
+      const onDay = e.artists.filter(a => (a.appearances || []).some(x => x.day === day));
+      const groups = e.stages.length
+        ? [...e.stages.map(st => ({ id: st.id, name: st.name, acts: onDay.filter(a => a.appearances.some(x => x.day === day && x.stageId === st.id)) })),
+           { id: "none", name: "Stage not printed", acts: onDay.filter(a => a.appearances.some(x => x.day === day && !x.stageId)) }]
+        : [{ id: "all", name: null, acts: onDay }];
+      list = groups.filter(g => g.acts.length).map(g => (
+        <section key={g.id} data-stage={g.id} style={{ marginTop: g.name ? 20 : 0 }}>
+          {g.name && <h2 style={{ margin: "0 0 2px", fontSize: 20, lineHeight: "25px", fontWeight: 700, overflowWrap: "anywhere" }}>{g.name}</h2>}
+          <ul aria-label={g.name || "Lineup"} style={{ listStyle: "none", margin: 0, padding: 0 }}>{g.acts.sort(byName).map(a => nameRow(a))}</ul>
+        </section>
+      ));
+    }
     body = (
       <>
-        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>Set times not verified for this edition: no official set times survive, so only the lineup is shown.</p>
-        <ul aria-label="Lineup" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-          {list.map(a => <li key={a.id} style={{ padding: "10px 0", borderBottom: "1px solid var(--line)", fontSize: 16, fontWeight: 600, overflowWrap: "anywhere" }}>{a.name}</li>)}
-        </ul>
-        {!list.length && <p style={{ color: "var(--text-2)" }}>No artist matches “{q.trim()}”.</p>}
+        <p style={{ margin: "4px 0 12px", fontSize: 14, color: "var(--text-2)" }}>{note}</p>
+        {list}
       </>
     );
   } else if (e && query) {
@@ -418,7 +451,7 @@ function _HistEdition({ meta, back }) {
           <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
           {checked && <> · {e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
         </p>
-        {!lineupOnly && !query && groups.map(g => (
+        {(!lineupOnly || lineupDays) && !query && groups.map(g => (
           <div key={g.name || "days"} role="group" aria-label={g.name || "Days"} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", columnGap: 6 }}>
             {g.name && <span style={{ width: 84, font: "600 13px/1.3 var(--f-ui)", color: "var(--ink-2)" }}>{g.name}</span>}
             {g.days.map(d => (
@@ -427,6 +460,7 @@ function _HistEdition({ meta, back }) {
                 {d.short.slice(0, 3)} {+d.date.slice(8)}
               </_HistChip>
             ))}
+            {lineupOnly && <_HistChip on={day === "all"} label="The whole lineup" onClick={() => { setDay("all"); scroller.current?.scrollTo({ top: 0 }); }}>All</_HistChip>}
           </div>
         ))}
         <input type="search" value={q} onChange={ev => setQ(ev.target.value)} placeholder={lineupOnly ? "Search the lineup" : "Search every day"}
