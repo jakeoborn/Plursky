@@ -2956,6 +2956,23 @@ for (const [script, label] of [
   }
 }
 
+// Memories PHOTOS lens: real GPS only. A moment sits at its own capture fix
+// (one scale, true bearings); no stage fallback, no jitter, no poster x/y.
+for (const [label, file] of [
+  ["Memories GPS lens — real fixes only, true scale and bearing, mutations", "scripts/test-memories-gps-lens.mjs"],
+  ["Memories GPS lens — real app: only GPS moments render, empty state, no coords on the wire", "scripts/test-memories-gps-lens-browser.mjs"],
+]) {
+  console.log(`▸ ${label}`);
+  try {
+    const out = execFileSync(process.execPath, [file],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`${file} failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // L3: Split the night — a split clears the clash everywhere, persists and
 // resets; Keep both accepts; the banner counts clashes and tight transitions apart.
 {
