@@ -1,0 +1,89 @@
+{
+  "id": "beyond-wonderland-socal-2022",
+  "method": "official_lineup_html",
+  "official": "https://socal.beyondwonderland.com/lineup/",
+  "chosen": "20221205023319",
+  "archivedUrl": "https://web.archive.org/web/20221205023319/https://socal.beyondwonderland.com/lineup/",
+  "sha256": "32a98c277723be5a3bd295ee43c3b46b30aae33d09d07f1ba3ba65b0c75d2b31",
+  "title": "Lineup – Beyond Wonderland SoCal 2023",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Alphabetical 84",
+    "By Day 84"
+  ],
+  "stageOrder": [],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20220111000454",
+      "archivedUrl": "https://web.archive.org/web/20220111000454/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "53f765b9131a59053570c6f72b2acf9ba2af6723e4b86cd6d5c7268bffa99062",
+      "bytes": 44559,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2022",
+      "valid": false,
+      "titled": true,
+      "dated": false,
+      "days": [],
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220524100709",
+      "archivedUrl": "https://web.archive.org/web/20220524100709/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "aa75fbcd397e3575d7013380efe51c45e96ca987a71d06ed3029259bdaa75221",
+      "bytes": 94448,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 25",
+        "Saturday, March 26"
+      ],
+      "billings": 84,
+      "diffVsChosen": [
+        "added by the final: NITTI",
+        "removed by the final: Nitti Gritti"
+      ]
+    },
+    {
+      "captureTimestamp": "20220622034508",
+      "archivedUrl": "https://web.archive.org/web/20220622034508/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "8ecd5f3e8df27ac2530e28932729f5fc6ec2a591ec19029f249df514629b8189",
+      "bytes": 94448,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 25",
+        "Saturday, March 26"
+      ],
+      "billings": 84,
+      "diffVsChosen": [
+        "added by the final: NITTI",
+        "removed by the final: Nitti Gritti"
+      ]
+    },
+    {
+      "captureTimestamp": "20221205023319",
+      "archivedUrl": "https://web.archive.org/web/20221205023319/https://socal.beyondwonderland.com/lineup/",
+      "sha256": "32a98c277723be5a3bd295ee43c3b46b30aae33d09d07f1ba3ba65b0c75d2b31",
+      "bytes": 96056,
+      "via": "firecrawl",
+      "title": "Lineup – Beyond Wonderland SoCal 2023",
+      "valid": true,
+      "titled": true,
+      "dated": true,
+      "days": [
+        "Friday, March 25",
+        "Saturday, March 26"
+      ],
+      "billings": 84,
+      "diffVsChosen": []
+    }
+  ],
+  "dropped": []
+}

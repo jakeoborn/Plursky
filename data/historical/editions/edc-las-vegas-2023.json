@@ -1,0 +1,4606 @@
+{
+ "id": "edc-las-vegas-2023",
+ "festivalId": "edc-lv",
+ "name": "EDC Las Vegas 2023",
+ "year": 2023,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-05-19",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2023-05-20",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2023-05-21",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "edc-las-vegas-2023:kinetic-field",
+   "name": "Kinetic Field"
+  },
+  {
+   "id": "edc-las-vegas-2023:cosmic-meadow",
+   "name": "Cosmic Meadow"
+  },
+  {
+   "id": "edc-las-vegas-2023:circuit-grounds",
+   "name": "Circuit Grounds"
+  },
+  {
+   "id": "edc-las-vegas-2023:neon-garden",
+   "name": "Neon Garden"
+  },
+  {
+   "id": "edc-las-vegas-2023:basspod",
+   "name": "Basspod"
+  },
+  {
+   "id": "edc-las-vegas-2023:wasteland",
+   "name": "Wasteland"
+  },
+  {
+   "id": "edc-las-vegas-2023:quantum-valley",
+   "name": "Quantum Valley"
+  },
+  {
+   "id": "edc-las-vegas-2023:stereo-bloom",
+   "name": "Stereo Bloom"
+  },
+  {
+   "id": "edc-las-vegas-2023:bionic-jungle",
+   "name": "Bionic Jungle"
+  },
+  {
+   "id": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car",
+   "name": "Parliament 2.0 30th Anniversary Art Car"
+  },
+  {
+   "id": "edc-las-vegas-2023:titanic-s-end-art-car",
+   "name": "Titanic's End Art Car"
+  },
+  {
+   "id": "edc-las-vegas-2023:boombox-art-car",
+   "name": "Boombox Art Car"
+  },
+  {
+   "id": "edc-las-vegas-2023:allegiant-rave-hangar",
+   "name": "Allegiant Rave Hangar"
+  }
+ ],
+ "artists": [
+  {
+   "id": "edc-las-vegas-2023:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:12th-planet-b2b-airglo",
+   "name": "12th Planet B2B Airglo",
+   "key": "12th-planet-b2b-airglo",
+   "performers": [
+    "12th-planet",
+    "airglo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:12th-planet-dnb",
+   "name": "12th Planet (DNB)",
+   "key": "12th-planet-dnb",
+   "performers": [
+    "12th-planet-dnb"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:30-year-dance-party",
+   "name": "30 Year Dance Party",
+   "key": "30-year-dance-party",
+   "performers": [
+    "30-year-dance-party"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:8kays",
+   "name": "8Kays",
+   "key": "8kays",
+   "performers": [
+    "8kays"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:a-hundred-drums",
+   "name": "A Hundred Drums",
+   "key": "a-hundred-drums",
+   "performers": [
+    "a-hundred-drums"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:abana",
+   "name": "Abana",
+   "key": "abana",
+   "performers": [
+    "abana"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:acraze-b2b-noizu",
+   "name": "ACRAZE B2B Noizu",
+   "key": "acraze-b2b-noizu",
+   "performers": [
+    "acraze",
+    "noizu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:acraze",
+   "name": "ACRAZE",
+   "key": "acraze",
+   "performers": [
+    "acraze"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:adrenalize",
+   "name": "Adrenalize",
+   "key": "adrenalize",
+   "performers": [
+    "adrenalize"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:afrojack-sunrise-set",
+   "name": "Afrojack (Sunrise Set)",
+   "key": "afrojack-sunrise-set",
+   "performers": [
+    "afrojack-sunrise-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:airglo",
+   "name": "Airglo",
+   "key": "airglo",
+   "performers": [
+    "airglo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ak-sports",
+   "name": "AK Sports",
+   "key": "ak-sports",
+   "performers": [
+    "ak-sports"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:alec-monopoly",
+   "name": "Alec Monopoly",
+   "key": "alec-monopoly",
+   "performers": [
+    "alec-monopoly"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:alleycvt",
+   "name": "ALLEYCVT",
+   "key": "alleycvt",
+   "performers": [
+    "alleycvt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:anabel-englund",
+   "name": "Anabel Englund",
+   "key": "anabel-englund",
+   "performers": [
+    "anabel-englund"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:anden",
+   "name": "Anden",
+   "key": "anden",
+   "performers": [
+    "anden"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:arman",
+   "name": "Arman.",
+   "key": "arman",
+   "performers": [
+    "arman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:armnhmr-house-set",
+   "name": "ARMNHMR (House Set)",
+   "key": "armnhmr-house-set",
+   "performers": [
+    "armnhmr-house-set"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:armnhmr-progressive-house-trance-set",
+   "name": "ARMNHMR (Progressive House / Trance Set)",
+   "key": "armnhmr-progressive-house-trance-set",
+   "performers": [
+    "armnhmr-progressive-house-trance-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:artbat",
+   "name": "ARTBAT",
+   "key": "artbat",
+   "performers": [
+    "artbat"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:assembly",
+   "name": "Assembly",
+   "key": "assembly",
+   "performers": [
+    "assembly"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:atdusk",
+   "name": "atDusk",
+   "key": "atdusk",
+   "performers": [
+    "atdusk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:audiofreq",
+   "name": "Audiofreq",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:azzecca",
+   "name": "Azzecca",
+   "key": "azzecca",
+   "performers": [
+    "azzecca"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bakr",
+   "name": "BAKR",
+   "key": "bakr",
+   "performers": [
+    "bakr"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:barely-alive",
+   "name": "BARELY ALIVE",
+   "key": "barely-alive",
+   "performers": [
+    "barely-alive"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ben-nicky-presents-emotional-havoc",
+   "name": "Ben Nicky presents Emotional Havoc",
+   "key": "ben-nicky-presents-emotional-havoc",
+   "performers": [
+    "ben-nicky-presents-emotional-havoc"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ben-nicky-presents-xtreme-b2b-sub-zero-project",
+   "name": "Ben Nicky presents Xtreme B2B Sub Zero Project",
+   "key": "ben-nicky-presents-xtreme-b2b-sub-zero-project",
+   "performers": [
+    "ben-nicky-presents-xtreme",
+    "sub-zero-project"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ben-ufo",
+   "name": "Ben UFO",
+   "key": "ben-ufo",
+   "performers": [
+    "ben-ufo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bensley-b2b-justin-hawkes",
+   "name": "Bensley B2B Justin Hawkes",
+   "key": "bensley-b2b-justin-hawkes",
+   "performers": [
+    "bensley",
+    "justin-hawkes"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bexxie",
+   "name": "Bexxie",
+   "key": "bexxie",
+   "performers": [
+    "bexxie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:billy-gillies",
+   "name": "Billy Gillies",
+   "key": "billy-gillies",
+   "performers": [
+    "billy-gillies"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bingewatch",
+   "name": "Bingewatch",
+   "key": "bingewatch",
+   "performers": [
+    "bingewatch"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:biscits-b2b-martin-ikin",
+   "name": "Biscits B2B Martin Ikin",
+   "key": "biscits-b2b-martin-ikin",
+   "performers": [
+    "biscits",
+    "martin-ikin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:blake-webber",
+   "name": "Blake Webber",
+   "key": "blake-webber",
+   "performers": [
+    "blake-webber"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:blanke",
+   "name": "Blanke",
+   "key": "blanke",
+   "performers": [
+    "blanke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:blastoyz",
+   "name": "Blastoyz",
+   "key": "blastoyz",
+   "performers": [
+    "blastoyz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bleu-clair",
+   "name": "Bleu Clair",
+   "key": "bleu-clair",
+   "performers": [
+    "bleu-clair"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bones-b2b-lee-wells",
+   "name": "Bones B2B Lee Wells",
+   "key": "bones-b2b-lee-wells",
+   "performers": [
+    "bones",
+    "lee-wells"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:boogie-t",
+   "name": "Boogie T",
+   "key": "boogie-t",
+   "performers": [
+    "boogie-t"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:boogie-t-b2b-dirt-monkey",
+   "name": "Boogie T B2B Dirt Monkey",
+   "key": "boogie-t-b2b-dirt-monkey",
+   "performers": [
+    "boogie-t",
+    "dirt-monkey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:borgore-b2b-level-up",
+   "name": "Borgore B2B Level Up",
+   "key": "borgore-b2b-level-up",
+   "performers": [
+    "borgore",
+    "level-up"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:born-dirty",
+   "name": "Born Dirty",
+   "key": "born-dirty",
+   "performers": [
+    "born-dirty"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:bunny-rabbit-in-the-moon",
+   "name": "Bunny (Rabbit in the Moon)",
+   "key": "bunny-rabbit-in-the-moon",
+   "performers": [
+    "bunny-rabbit-in-the-moon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:camden-cox",
+   "name": "Camden Cox",
+   "key": "camden-cox",
+   "performers": [
+    "camden-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:capozzi",
+   "name": "Capozzi",
+   "key": "capozzi",
+   "performers": [
+    "capozzi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:carola",
+   "name": "Carola",
+   "key": "carola",
+   "performers": [
+    "carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:champagne-drip",
+   "name": "Champagne Drip",
+   "key": "champagne-drip",
+   "performers": [
+    "champagne-drip"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:chaney",
+   "name": "Chaney",
+   "key": "chaney",
+   "performers": [
+    "chaney"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:christopher-lawrence",
+   "name": "Christopher Lawrence",
+   "key": "christopher-lawrence",
+   "performers": [
+    "christopher-lawrence"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:chyl",
+   "name": "CHYL",
+   "key": "chyl",
+   "performers": [
+    "chyl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:cid-b2b-sage-armstrong",
+   "name": "CID B2B Sage Armstrong",
+   "key": "cid-b2b-sage-armstrong",
+   "performers": [
+    "cid",
+    "sage-armstrong"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:cid",
+   "name": "CID",
+   "key": "cid",
+   "performers": [
+    "cid"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:cloverdale",
+   "name": "Cloverdale",
+   "key": "cloverdale",
+   "performers": [
+    "cloverdale"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:connor-q",
+   "name": "Connor q",
+   "key": "connor-q",
+   "performers": [
+    "connor-q"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:corey-divine",
+   "name": "Corey Divine",
+   "key": "corey-divine",
+   "performers": [
+    "corey-divine"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:corrupt-uk",
+   "name": "Corrupt (UK)",
+   "key": "corrupt-uk",
+   "performers": [
+    "corrupt-uk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:crespo",
+   "name": "Crespo",
+   "key": "crespo",
+   "performers": [
+    "crespo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:d-sturb",
+   "name": "D-Sturb",
+   "key": "d-sturb",
+   "performers": [
+    "d-sturb"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:danny-daze",
+   "name": "Danny Daze",
+   "key": "danny-daze",
+   "performers": [
+    "danny-daze"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:david-morales",
+   "name": "David Morales",
+   "key": "david-morales",
+   "performers": [
+    "david-morales"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:deadly-guns",
+   "name": "Deadly Guns",
+   "key": "deadly-guns",
+   "performers": [
+    "deadly-guns"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:deeper-purpose",
+   "name": "Deeper Purpose",
+   "key": "deeper-purpose",
+   "performers": [
+    "deeper-purpose"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:demigod",
+   "name": "Demigod",
+   "key": "demigod",
+   "performers": [
+    "demigod"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dennis-ferrer",
+   "name": "Dennis Ferrer",
+   "key": "dennis-ferrer",
+   "performers": [
+    "dennis-ferrer"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dionysus-and-yosuf-present-bigger-stronger-faster",
+   "name": "Dionysus & Yosuf present: Bigger, Stronger, Faster",
+   "key": "dionysus-and-yosuf-present-bigger-stronger-faster",
+   "performers": [
+    "dionysus-and-yosuf-present-bigger-stronger-faster"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:disco-dom",
+   "name": "Disco Dom",
+   "key": "disco-dom",
+   "performers": [
+    "disco-dom"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:disco-lines",
+   "name": "Disco Lines",
+   "key": "disco-lines",
+   "performers": [
+    "disco-lines"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:discovery-project-winner",
+   "name": "Discovery Project Winner",
+   "key": "discovery-project-winner",
+   "performers": [
+    "discovery-project-winner"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:discrete",
+   "name": "Discrete",
+   "key": "discrete",
+   "performers": [
+    "discrete"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-anime",
+   "name": "DJ AniMe",
+   "key": "dj-anime",
+   "performers": [
+    "dj-anime"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-dan",
+   "name": "DJ Dan",
+   "key": "dj-dan",
+   "performers": [
+    "dj-dan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-isaac",
+   "name": "DJ Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-minx",
+   "name": "DJ Minx",
+   "key": "dj-minx",
+   "performers": [
+    "dj-minx"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-topgun",
+   "name": "DJ Topgun",
+   "key": "dj-topgun",
+   "performers": [
+    "dj-topgun"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dj-trance",
+   "name": "DJ Trance",
+   "key": "dj-trance",
+   "performers": [
+    "dj-trance"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dr-phunk",
+   "name": "Dr Phunk",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:dustin-husain",
+   "name": "Dustin Husain",
+   "key": "dustin-husain",
+   "performers": [
+    "dustin-husain"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:eliminate",
+   "name": "Eliminate",
+   "key": "eliminate",
+   "performers": [
+    "eliminate"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:emo-nite",
+   "name": "Emo Nite",
+   "key": "emo-nite",
+   "performers": [
+    "emo-nite"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:enamour",
+   "name": "Enamour",
+   "key": "enamour",
+   "performers": [
+    "enamour"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:eptic",
+   "name": "Eptic",
+   "key": "eptic",
+   "performers": [
+    "eptic"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:excision-b2b-dion-timmer",
+   "name": "Excision B2B Dion Timmer",
+   "key": "excision-b2b-dion-timmer",
+   "performers": [
+    "excision",
+    "dion-timmer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fallen-b2b-richter-with-mc-dino",
+   "name": "Fallen B2B Richter with MC Dino",
+   "key": "fallen-b2b-richter-with-mc-dino",
+   "performers": [
+    "fallen",
+    "richter-with-mc-dino"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ferreck-dawn",
+   "name": "Ferreck Dawn",
+   "key": "ferreck-dawn",
+   "performers": [
+    "ferreck-dawn"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fester",
+   "name": "Fester",
+   "key": "fester",
+   "performers": [
+    "fester"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fetish",
+   "name": "FETISH",
+   "key": "fetish",
+   "performers": [
+    "fetish"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:frame-declan-james-and-decoder",
+   "name": "Frame (Declan James & Decoder)",
+   "key": "frame-declan-james-and-decoder",
+   "performers": [
+    "frame-declan-james-and-decoder"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:frankie-bones",
+   "name": "Frankie Bones",
+   "key": "frankie-bones",
+   "performers": [
+    "frankie-bones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:franky-wah",
+   "name": "Franky Wah",
+   "key": "franky-wah",
+   "performers": [
+    "franky-wah"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fred-everything",
+   "name": "Fred Everything",
+   "key": "fred-everything",
+   "performers": [
+    "fred-everything"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fredy-lane",
+   "name": "Fredy Lane",
+   "key": "fredy-lane",
+   "performers": [
+    "fredy-lane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:friction",
+   "name": "Friction",
+   "key": "friction",
+   "performers": [
+    "friction"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:frosttop",
+   "name": "FrostTop",
+   "key": "frosttop",
+   "performers": [
+    "frosttop"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:funtcase",
+   "name": "FuntCase",
+   "key": "funtcase",
+   "performers": [
+    "funtcase"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:fury-b2b-nightstalker",
+   "name": "Fury B2B Nightstalker",
+   "key": "fury-b2b-nightstalker",
+   "performers": [
+    "fury",
+    "nightstalker"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:gammer-b2b-tweekacore",
+   "name": "Gammer B2B Tweekacore",
+   "key": "gammer-b2b-tweekacore",
+   "performers": [
+    "gammer",
+    "tweekacore"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:gareth-emery",
+   "name": "Gareth Emery",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:gareth-emery-presents-decades",
+   "name": "Gareth Emery presents Decades",
+   "key": "gareth-emery-presents-decades",
+   "performers": [
+    "gareth-emery-presents-decades"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:gentlemens-club",
+   "name": "Gentlemens Club",
+   "key": "gentlemens-club",
+   "performers": [
+    "gentlemens-club"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:giuseppe-ottaviani",
+   "name": "Giuseppe Ottaviani",
+   "key": "giuseppe-ottaviani",
+   "performers": [
+    "giuseppe-ottaviani"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:glittrcat",
+   "name": "GlittrCat",
+   "key": "glittrcat",
+   "performers": [
+    "glittrcat"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:goodboys",
+   "name": "Goodboys",
+   "key": "goodboys",
+   "performers": [
+    "goodboys"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:grafix",
+   "name": "Grafix",
+   "key": "grafix",
+   "performers": [
+    "grafix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:griztronics",
+   "name": "Griztronics",
+   "key": "griztronics",
+   "performers": [
+    "griztronics"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:habstrakt",
+   "name": "Habstrakt",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:habstrakt-distorted-reality",
+   "name": "Habstrakt: Distorted Reality",
+   "key": "habstrakt-distorted-reality",
+   "performers": [
+    "habstrakt-distorted-reality"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hamdi",
+   "name": "Hamdi",
+   "key": "hamdi",
+   "performers": [
+    "hamdi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hana",
+   "name": "HANA",
+   "key": "hana",
+   "performers": [
+    "hana"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hannah-wants",
+   "name": "Hannah Wants",
+   "key": "hannah-wants",
+   "performers": [
+    "hannah-wants"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:harmson",
+   "name": "Harmson",
+   "key": "harmson",
+   "performers": [
+    "harmson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hint-of-lavender",
+   "name": "Hint of Lavender",
+   "key": "hint-of-lavender",
+   "performers": [
+    "hint-of-lavender"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hoang",
+   "name": "Hoang",
+   "key": "hoang",
+   "performers": [
+    "hoang"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hol",
+   "name": "HOL!",
+   "key": "hol",
+   "performers": [
+    "hol"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:honey",
+   "name": "Honey",
+   "key": "honey",
+   "performers": [
+    "honey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hugel",
+   "name": "Hugel",
+   "key": "hugel",
+   "performers": [
+    "hugel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:hvdes",
+   "name": "HVDES",
+   "key": "hvdes",
+   "performers": [
+    "hvdes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:if-found-b2b-highlnd",
+   "name": "If Found B2B Highlnd",
+   "key": "if-found-b2b-highlnd",
+   "performers": [
+    "if-found",
+    "highlnd"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:imanu",
+   "name": "IMANU",
+   "key": "imanu",
+   "performers": [
+    "imanu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:infected-mushroom",
+   "name": "Infected Mushroom",
+   "key": "infected-mushroom",
+   "performers": [
+    "infected-mushroom"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:isaac-civil",
+   "name": "Isaac Civil",
+   "key": "isaac-civil",
+   "performers": [
+    "isaac-civil"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:j-worra",
+   "name": "J. Worra",
+   "key": "j-worra",
+   "performers": [
+    "j-worra"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jaded",
+   "name": "Jaded",
+   "key": "jaded",
+   "performers": [
+    "jaded"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:james-hype",
+   "name": "James Hype",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jamesjamesjames",
+   "name": "jamesjamesjames",
+   "key": "jamesjamesjames",
+   "performers": [
+    "jamesjamesjames"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jason-blakemore",
+   "name": "Jason Blakemore",
+   "key": "jason-blakemore",
+   "performers": [
+    "jason-blakemore"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jerome-isma-ae",
+   "name": "Jerome Isma-Ae",
+   "key": "jerome-isma-ae",
+   "performers": [
+    "jerome-isma-ae"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:john-bryars",
+   "name": "John Bryars",
+   "key": "john-bryars",
+   "performers": [
+    "john-bryars"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jorza",
+   "name": "Jorza",
+   "key": "jorza",
+   "performers": [
+    "jorza"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:joshwa",
+   "name": "Joshwa",
+   "key": "joshwa",
+   "performers": [
+    "joshwa"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaivon",
+   "name": "Kaivon",
+   "key": "kaivon",
+   "performers": [
+    "kaivon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaleena-zanders",
+   "name": "Kaleena Zanders",
+   "key": "kaleena-zanders",
+   "performers": [
+    "kaleena-zanders"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaskade-redux",
+   "name": "Kaskade Redux",
+   "key": "kaskade-redux",
+   "performers": [
+    "kaskade-redux"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaysin",
+   "name": "Kaysin",
+   "key": "kaysin",
+   "performers": [
+    "kaysin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kaytranada",
+   "name": "Kaytranada",
+   "key": "kaytranada",
+   "performers": [
+    "kaytranada"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kettama",
+   "name": "KETTAMA",
+   "key": "kettama",
+   "performers": [
+    "kettama"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kill-script",
+   "name": "Kill Script",
+   "key": "kill-script",
+   "performers": [
+    "kill-script"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kj-sawka-of-pendulum-dnb-set",
+   "name": "KJ Sawka of Pendulum (DNB Set)",
+   "key": "kj-sawka-of-pendulum-dnb-set",
+   "performers": [
+    "kj-sawka-of-pendulum-dnb-set"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:klaxx",
+   "name": "KLAXX",
+   "key": "klaxx",
+   "performers": [
+    "klaxx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:korolova",
+   "name": "Korolova",
+   "key": "korolova",
+   "performers": [
+    "korolova"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:kream",
+   "name": "Kream",
+   "key": "kream",
+   "performers": [
+    "kream"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ksofresko",
+   "name": "KsoFresKo",
+   "key": "ksofresko",
+   "performers": [
+    "ksofresko"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
+   "performers": [
+    "lady-faith"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lady-sinclair",
+   "name": "Lady Sinclair",
+   "key": "lady-sinclair",
+   "performers": [
+    "lady-sinclair"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:layla-benitez",
+   "name": "Layla Benitez",
+   "key": "layla-benitez",
+   "performers": [
+    "layla-benitez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:le-twins",
+   "name": "Le Twins",
+   "key": "le-twins",
+   "performers": [
+    "le-twins"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:le-youth",
+   "name": "Le Youth",
+   "key": "le-youth",
+   "performers": [
+    "le-youth"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lenny-dee",
+   "name": "Lenny Dee",
+   "key": "lenny-dee",
+   "performers": [
+    "lenny-dee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lenny-v",
+   "name": "Lenny V",
+   "key": "lenny-v",
+   "performers": [
+    "lenny-v"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:levenkhan",
+   "name": "Levenkhan",
+   "key": "levenkhan",
+   "performers": [
+    "levenkhan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lil-texas",
+   "name": "Lil Texas",
+   "key": "lil-texas",
+   "performers": [
+    "lil-texas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:loco-dice-b2b-fisher",
+   "name": "Loco Dice B2B Fisher",
+   "key": "loco-dice-b2b-fisher",
+   "performers": [
+    "loco-dice",
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:louie-vega",
+   "name": "Louie Vega",
+   "key": "louie-vega",
+   "performers": [
+    "louie-vega"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:lovefingers-heidi-lawden",
+   "name": "Lovefingers + Heidi Lawden",
+   "key": "lovefingers-heidi-lawden",
+   "performers": [
+    "lovefingers-heidi-lawden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:machete",
+   "name": "Machete",
+   "key": "machete",
+   "performers": [
+    "machete"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:malaa-b2b-wax-motif",
+   "name": "Malaa B2B Wax Motif",
+   "key": "malaa-b2b-wax-motif",
+   "performers": [
+    "malaa",
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:manolo",
+   "name": "Manolo",
+   "key": "manolo",
+   "performers": [
+    "manolo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:marc-v",
+   "name": "Marc V",
+   "key": "marc-v",
+   "performers": [
+    "marc-v"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:marshmello-b2b-svdden-death",
+   "name": "Marshmello B2B Svdden Death",
+   "key": "marshmello-b2b-svdden-death",
+   "performers": [
+    "marshmello",
+    "svdden-death"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:marten-h-rger",
+   "name": "Marten Hørger",
+   "key": "marten-h-rger",
+   "performers": [
+    "marten-h-rger"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:masteria",
+   "name": "Masteria",
+   "key": "masteria",
+   "performers": [
+    "masteria"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:matroda-and-friends",
+   "name": "Matroda & Friends",
+   "key": "matroda-and-friends",
+   "performers": [
+    "matroda-and-friends"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:matt-fax",
+   "name": "Matt Fax",
+   "key": "matt-fax",
+   "performers": [
+    "matt-fax"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:matt-steffanina",
+   "name": "Matt Steffanina",
+   "key": "matt-steffanina",
+   "performers": [
+    "matt-steffanina"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:mau-p",
+   "name": "Mau P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:max-low",
+   "name": "Max Low",
+   "key": "max-low",
+   "performers": [
+    "max-low"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:meduza",
+   "name": "Meduza",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:memba",
+   "name": "MEMBA",
+   "key": "memba",
+   "performers": [
+    "memba"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:metrik-b2b-grafix",
+   "name": "Metrik B2B Grafix",
+   "key": "metrik-b2b-grafix",
+   "performers": [
+    "metrik",
+    "grafix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:miane",
+   "name": "Miane",
+   "key": "miane",
+   "performers": [
+    "miane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:midnight-tyrannosaurus",
+   "name": "Midnight Tyrannosaurus",
+   "key": "midnight-tyrannosaurus",
+   "performers": [
+    "midnight-tyrannosaurus"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:mike-dunn",
+   "name": "Mike Dunn",
+   "key": "mike-dunn",
+   "performers": [
+    "mike-dunn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:miss-dre",
+   "name": "MISS DRE",
+   "key": "miss-dre",
+   "performers": [
+    "miss-dre"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:mochakk",
+   "name": "Mochakk",
+   "key": "mochakk",
+   "performers": [
+    "mochakk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:modapit",
+   "name": "Modapit",
+   "key": "modapit",
+   "performers": [
+    "modapit"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:moody-good-throwback-set",
+   "name": "Moody Good (Throwback Set)",
+   "key": "moody-good-throwback-set",
+   "performers": [
+    "moody-good-throwback-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:morten",
+   "name": "MORTEN",
+   "key": "morten",
+   "performers": [
+    "morten"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:mrotek",
+   "name": "Mrotek",
+   "key": "mrotek",
+   "performers": [
+    "mrotek"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ms-mada-b2b-bakke",
+   "name": "Ms. Mada B2B Bakke",
+   "key": "ms-mada-b2b-bakke",
+   "performers": [
+    "ms-mada",
+    "bakke"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:mvse",
+   "name": "MVSE",
+   "key": "mvse",
+   "performers": [
+    "mvse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:nala",
+   "name": "Nala",
+   "key": "nala",
+   "performers": [
+    "nala"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:netsky",
+   "name": "Netsky",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:nick-garcia",
+   "name": "Nick Garcia",
+   "key": "nick-garcia",
+   "performers": [
+    "nick-garcia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:nightstalker",
+   "name": "Nightstalker",
+   "key": "nightstalker",
+   "performers": [
+    "nightstalker"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:no-etiquette",
+   "name": "No Etiquette",
+   "key": "no-etiquette",
+   "performers": [
+    "no-etiquette"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:nostalgix",
+   "name": "Nostalgix",
+   "key": "nostalgix",
+   "performers": [
+    "nostalgix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:nurko",
+   "name": "Nurko",
+   "key": "nurko",
+   "performers": [
+    "nurko"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:odd-mob",
+   "name": "Odd Mob",
+   "key": "odd-mob",
+   "performers": [
+    "odd-mob"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:oddkidout",
+   "name": "OddKidOut",
+   "key": "oddkidout",
+   "performers": [
+    "oddkidout"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:og-nixin",
+   "name": "OG Nixin",
+   "key": "og-nixin",
+   "performers": [
+    "og-nixin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:omar-santana",
+   "name": "Omar Santana",
+   "key": "omar-santana",
+   "performers": [
+    "omar-santana"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:orso",
+   "name": "Orso",
+   "key": "orso",
+   "performers": [
+    "orso"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:oscure",
+   "name": "Oscure",
+   "key": "oscure",
+   "performers": [
+    "oscure"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:osyris",
+   "name": "Osyris",
+   "key": "osyris",
+   "performers": [
+    "osyris"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:paul-denton",
+   "name": "Paul Denton",
+   "key": "paul-denton",
+   "performers": [
+    "paul-denton"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:pauline-herr",
+   "name": "Pauline Herr",
+   "key": "pauline-herr",
+   "performers": [
+    "pauline-herr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:pawsa",
+   "name": "PAWSA",
+   "key": "pawsa",
+   "performers": [
+    "pawsa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:peekaboo",
+   "name": "Peekaboo",
+   "key": "peekaboo",
+   "performers": [
+    "peekaboo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:pretty-pink",
+   "name": "Pretty Pink",
+   "key": "pretty-pink",
+   "performers": [
+    "pretty-pink"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:primal-luxe",
+   "name": "Primal Luxe",
+   "key": "primal-luxe",
+   "performers": [
+    "primal-luxe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:qlank",
+   "name": "Qlank",
+   "key": "qlank",
+   "performers": [
+    "qlank"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:r-a-w",
+   "name": "R.A.W.",
+   "key": "r-a-w",
+   "performers": [
+    "r-a-w"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ray-volpe",
+   "name": "Ray Volpe",
+   "key": "ray-volpe",
+   "performers": [
+    "ray-volpe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:reaper",
+   "name": "Reaper",
+   "key": "reaper",
+   "performers": [
+    "reaper"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:rebelion",
+   "name": "Rebelion",
+   "key": "rebelion",
+   "performers": [
+    "rebelion"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld (Live)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:riot-ten-b2b-jessica-audiffred",
+   "name": "Riot Ten B2B Jessica Audiffred",
+   "key": "riot-ten-b2b-jessica-audiffred",
+   "performers": [
+    "riot-ten",
+    "jessica-audiffred"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:rob-gee-30-years",
+   "name": "Rob Gee 30 Years",
+   "key": "rob-gee-30-years",
+   "performers": [
+    "rob-gee-30-years"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:rohaan",
+   "name": "Rohaan",
+   "key": "rohaan",
+   "performers": [
+    "rohaan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sabai",
+   "name": "SABAI",
+   "key": "sabai",
+   "performers": [
+    "sabai"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:said-the-sky",
+   "name": "Said The Sky",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:salute",
+   "name": "salute",
+   "key": "salute",
+   "performers": [
+    "salute"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:san-pacho",
+   "name": "San Pacho",
+   "key": "san-pacho",
+   "performers": [
+    "san-pacho"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:saymyname",
+   "name": "SAYMYNAME",
+   "key": "saymyname",
+   "performers": [
+    "saymyname"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sean-lafayette",
+   "name": "Sean Lafayette",
+   "key": "sean-lafayette",
+   "performers": [
+    "sean-lafayette"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:shei",
+   "name": "SHEI",
+   "key": "shei",
+   "performers": [
+    "shei"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sherelle",
+   "name": "SHERELLE",
+   "key": "sherelle",
+   "performers": [
+    "sherelle"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:ship-wrek",
+   "name": "Ship Wrek",
+   "key": "ship-wrek",
+   "performers": [
+    "ship-wrek"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:simfonik",
+   "name": "simfonik",
+   "key": "simfonik",
+   "performers": [
+    "simfonik"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:simply-jeff",
+   "name": "Simply Jeff",
+   "key": "simply-jeff",
+   "performers": [
+    "simply-jeff"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:skellytn-b2b-dr-apollo",
+   "name": "Skellytn B2B Dr. Apollo",
+   "key": "skellytn-b2b-dr-apollo",
+   "performers": [
+    "skellytn",
+    "dr-apollo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:slander-presents-before-dawn",
+   "name": "SLANDER presents Before Dawn",
+   "key": "slander-presents-before-dawn",
+   "performers": [
+    "slander-presents-before-dawn"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:softest-hard",
+   "name": "Softest Hard",
+   "key": "softest-hard",
+   "performers": [
+    "softest-hard"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:soren",
+   "name": "SOREN",
+   "key": "soren",
+   "performers": [
+    "soren"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sound-rush",
+   "name": "Sound Rush",
+   "key": "sound-rush",
+   "performers": [
+    "sound-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:space-laces",
+   "name": "Space Laces",
+   "key": "space-laces",
+   "performers": [
+    "space-laces"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:space-motion",
+   "name": "Space Motion",
+   "key": "space-motion",
+   "performers": [
+    "space-motion"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:spencer-brown",
+   "name": "Spencer Brown",
+   "key": "spencer-brown",
+   "performers": [
+    "spencer-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:suae",
+   "name": "Suae",
+   "key": "suae",
+   "performers": [
+    "suae"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sub-zero-project",
+   "name": "Sub Zero Project",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sullivan-king-b2b-kai-wachi",
+   "name": "Sullivan King B2B Kai Wachi",
+   "key": "sullivan-king-b2b-kai-wachi",
+   "performers": [
+    "sullivan-king",
+    "kai-wachi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:sultan-shepard",
+   "name": "Sultan + Shepard",
+   "key": "sultan-shepard",
+   "performers": [
+    "sultan-shepard"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:svdden-death-into-the-inferno",
+   "name": "Svdden Death: Into The Inferno",
+   "key": "svdden-death-into-the-inferno",
+   "performers": [
+    "svdden-death-into-the-inferno"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tchami-b2b-ac-slater",
+   "name": "Tchami B2B AC Slater",
+   "key": "tchami-b2b-ac-slater",
+   "performers": [
+    "tchami",
+    "ac-slater"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:thee-o",
+   "name": "Thee-O",
+   "key": "thee-o",
+   "performers": [
+    "thee-o"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:things-you-say",
+   "name": "Things You Say",
+   "key": "things-you-say",
+   "performers": [
+    "things-you-say"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tim-clark",
+   "name": "Tim Clark",
+   "key": "tim-clark",
+   "performers": [
+    "tim-clark"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tobehonest",
+   "name": "TOBEHONEST",
+   "key": "tobehonest",
+   "performers": [
+    "tobehonest"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:todd-terry",
+   "name": "Todd Terry",
+   "key": "todd-terry",
+   "performers": [
+    "todd-terry"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:bionic-jungle"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tom-and-collins",
+   "name": "Tom & Collins",
+   "key": "tom-and-collins",
+   "performers": [
+    "tom-and-collins"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tones",
+   "name": "Tones",
+   "key": "tones",
+   "performers": [
+    "tones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:township-rebellion",
+   "name": "Township Rebellion",
+   "key": "township-rebellion",
+   "performers": [
+    "township-rebellion"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:triode",
+   "name": "Triode",
+   "key": "triode",
+   "performers": [
+    "triode"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:trouble",
+   "name": "Trouble",
+   "key": "trouble",
+   "performers": [
+    "trouble"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tsu-nami",
+   "name": "Tsu Nami",
+   "key": "tsu-nami",
+   "performers": [
+    "tsu-nami"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:tsu-nami-presents-club-tsu",
+   "name": "Tsu Nami presents: Club Tsu",
+   "key": "tsu-nami-presents-club-tsu",
+   "performers": [
+    "tsu-nami-presents-club-tsu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:vulllgur",
+   "name": "VUlllGUR",
+   "key": "vulllgur",
+   "performers": [
+    "vulllgur"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:titanic-s-end-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:warface",
+   "name": "Warface",
+   "key": "warface",
+   "performers": [
+    "warface"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:warface-b2b-d-sturb",
+   "name": "Warface B2B D-Sturb",
+   "key": "warface-b2b-d-sturb",
+   "performers": [
+    "warface",
+    "d-sturb"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:wasteland"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:westend",
+   "name": "Westend",
+   "key": "westend",
+   "performers": [
+    "westend"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:stereo-bloom"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:will-atkinson",
+   "name": "Will Atkinson",
+   "key": "will-atkinson",
+   "performers": [
+    "will-atkinson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:will-clarke",
+   "name": "Will Clarke",
+   "key": "will-clarke",
+   "performers": [
+    "will-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:neon-garden"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:wooli",
+   "name": "Wooli",
+   "key": "wooli",
+   "performers": [
+    "wooli"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:basspod"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:circuit-grounds"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yetep",
+   "name": "yetep",
+   "key": "yetep",
+   "performers": [
+    "yetep"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yetep-throwback-set",
+   "name": "yetep (Throwback Set)",
+   "key": "yetep-throwback-set",
+   "performers": [
+    "yetep-throwback-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yokai",
+   "name": "Yokai",
+   "key": "yokai",
+   "performers": [
+    "yokai"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:allegiant-rave-hangar"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yoshi-and-razner",
+   "name": "Yoshi & Razner",
+   "key": "yoshi-and-razner",
+   "performers": [
+    "yoshi-and-razner"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:yotto",
+   "name": "Yotto",
+   "key": "yotto",
+   "performers": [
+    "yotto"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "edc-las-vegas-2023:quantum-valley"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:young-bombs",
+   "name": "Young Bombs",
+   "key": "young-bombs",
+   "performers": [
+    "young-bombs"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "edc-las-vegas-2023:boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:kinetic-field"
+    }
+   ]
+  },
+  {
+   "id": "edc-las-vegas-2023:zeds-dead-b2b-chase-and-status",
+   "name": "Zeds Dead B2B Chase & Status",
+   "key": "zeds-dead-b2b-chase-and-status",
+   "performers": [
+    "zeds-dead",
+    "chase-and-status"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "edc-las-vegas-2023:cosmic-meadow"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://lasvegas.electricdaisycarnival.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20231226212306/https://lasvegas.electricdaisycarnival.com/lineup/",
+    "captureTimestamp": "20231226212306",
+    "sha256": "5903946c0a653a11291a79fbc01abe6a7af65e466730065a3c1445306363dec2"
+   }
+  ]
+ }
+}

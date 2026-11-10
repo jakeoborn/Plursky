@@ -24,7 +24,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { listCaptures, fetchCapture } from "./wayback.mjs";
+import { listCaptures, fetchCapture, RELAY } from "./wayback.mjs";
 import { datedLabel } from "./lib.mjs";
 import { EDITIONS } from "./editions.mjs";
 
@@ -36,6 +36,20 @@ export const LINEUP_EDITIONS = {
   "escape-halloween-2025": { url: "https://escapehalloween.com/lineup/", title: "Escape Halloween 2025" },
   "beyond-wonderland-socal-2025": { url: "https://socal.beyondwonderland.com/lineup/", title: "Beyond Wonderland SoCal 2025" },
   "dreamstate-socal-2025": { url: "https://socal.dreamstateusa.com/lineup/", title: "Dreamstate SoCal 2025" },
+  "beyond-wonderland-socal-2022": { url: "https://socal.beyondwonderland.com/lineup/", title: "Beyond Wonderland SoCal 2022", staleTitle: "Lineup – Beyond Wonderland SoCal 2023" },
+  "beyond-wonderland-socal-2024": { url: "https://socal.beyondwonderland.com/lineup/", title: "Beyond Wonderland SoCal 2024" },
+  "nocturnal-wonderland-2023": { url: "https://www.nocturnalwonderland.com/lineup/", title: "Nocturnal Wonderland 2023" },
+  "hard-summer-2018": { url: "https://www.hardsummer.com/lineup/", title: "HARD Summer 2018" },
+  "hard-summer-2019": { url: "https://www.hardsummer.com/lineup/", title: "HARD Summer 2019" },
+  "hard-summer-2022": { url: "https://www.hardsummer.com/lineup/", title: "HARD Summer 2022" },
+  "hard-summer-2023": { url: "https://www.hardsummer.com/lineup/", title: "HARD Summer 2023" },
+  "hard-summer-2024": { url: "https://www.hardsummer.com/lineup/", title: "HARD Summer 2024" },
+  "escape-halloween-2023": { url: "https://escapehalloween.com/lineup/", title: "Escape Halloween 2023" },
+  "edc-las-vegas-2019": { url: "https://lasvegas.electricdaisycarnival.com/lineup/", title: "EDC Las Vegas 2019" },
+  "edc-las-vegas-2021": { url: "https://lasvegas.electricdaisycarnival.com/lineup/", title: "EDC Las Vegas 2021", staleTitle: "Lineup – EDC Las Vegas 2022" },
+  "edc-las-vegas-2023": { url: "https://lasvegas.electricdaisycarnival.com/lineup/", title: "EDC Las Vegas 2023", staleTitle: "Lineup – EDC Las Vegas 2024" },
+  "edc-orlando-2018": { url: "https://orlando.electricdaisycarnival.com/lineup/", title: "EDC Orlando 2018" },
+  "edc-mexico-2020": { url: "https://mexico.electricdaisycarnival.com/lineup/", title: "EDC Mexico 2020" },
 };
 
 const ENTITIES = { "&amp;": "&", "&#038;": "&", "&quot;": '"', "&#039;": "'", "&#8216;": "‘", "&#8217;": "’",
@@ -70,7 +84,10 @@ const tab = (page, name) => page.tabs.find(t => t.tab.toLowerCase() === name);
 export function provesEdition(page, id) {
   const ed = EDITIONS[id], want = LINEUP_EDITIONS[id];
   const days = (tab(page, "by day")?.groups || []).map(g => ({ head: g.head, date: datedLabel(g.head, ed.year) }));
-  const titled = page.title.includes(want.title);
+  // A site that never updated its <title> (Beyond SoCal's 2022 page reads
+  // "… 2023" over March 25/26 2022 day tabs) is accepted only under the exact
+  // stale title listed by hand for that edition; the day tabs still decide.
+  const titled = page.title.includes(want.title) || (!!want.staleTitle && page.title === want.staleTitle);
   const dated = days.length === ed.dates.length && days.every((d, i) => d.date === ed.dates[i][0]);
   return { valid: titled && dated, titled, dated, days: days.map(d => `${d.head}${d.date ? "" : " ✗"}`) };
 }
@@ -83,12 +100,20 @@ export function lineupRows(page, id) {
   const alpha = (tab(page, "alphabetical")?.groups || []).flatMap(g => g.acts);
   const byDay = new Map(), byStage = new Map();
   for (const g of tab(page, "by day")?.groups || []) for (const a of g.acts) byDay.set(a, [...(byDay.get(a) || []), dayOf(g.head)]);
-  const stageTab = tab(page, "by stage");
+  // A By Stage tab that prints the whole lineup under one stage heading is a
+  // site fault, not a stage assignment (Beyond SoCal 2024 printed all 119
+  // billings under Queen's Domain). It is not used, and the ledger says so.
+  let stageTab = tab(page, "by stage");
+  const pageFindings = [];
+  if (stageTab && stageTab.groups.length === 1 && alpha.length > 30 && stageTab.groups[0].acts.length >= alpha.length) {
+    pageFindings.push(`By Stage tab printed all ${stageTab.groups[0].acts.length} billings under one heading ("${stageTab.groups[0].head}"): stage tab not used`);
+    stageTab = null;
+  }
   for (const g of stageTab?.groups || []) for (const a of g.acts) byStage.set(a, [...(byStage.get(a) || []), g.head]);
 
   const billings = [];
   for (const a of [...alpha, ...byDay.keys(), ...byStage.keys()]) if (!billings.includes(a)) billings.push(a);
-  const A = count(alpha), findings = [], rows = [];
+  const A = count(alpha), findings = [...pageFindings], rows = [];
   for (const b of billings) {
     const days = byDay.get(b) || [], stages = byStage.get(b) || [];
     const where = [A.get(b) ? `alphabetical ×${A.get(b)}` : "not alphabetical", `days ${days.join("+") || "none"}`,
@@ -120,11 +145,20 @@ export async function extract(id) {
   const caps = await listCaptures(want.url.replace(/^https?:\/\//, ""), `${ed.year}0101`, `${ed.year}1231`);
   const considered = [];
   for (const c of caps) {
-    const got = await fetchCapture(c.timestamp, want.url);
+    let got;
+    try { got = await fetchCapture(c.timestamp, want.url); } catch (e) {
+      // Relay mode only: a capture the fetching client could not file is
+      // listed, never skipped silently. If it is later than the chosen
+      // capture, the edition is blocked below: it might be the final.
+      if (!RELAY) throw e;
+      considered.push({ captureTimestamp: c.timestamp, notFiled: e.message, valid: false, billings: 0 });
+      continue;
+    }
     const page = parseLineupPage(got.text);
     const proof = provesEdition(page, id);
     const parsed = proof.valid ? lineupRows(page, id) : null;
     considered.push({ captureTimestamp: got.captureTimestamp, archivedUrl: got.archivedUrl, sha256: got.sha256, bytes: got.bytes,
+      ...(got.via ? { via: got.via } : {}),
       title: page.title, ...proof, billings: parsed ? new Set(parsed.rows.map(r => r.artist)).size : 0, parsed });
   }
   const valid = considered.filter(c => c.valid && c.billings);
@@ -135,8 +169,17 @@ export async function extract(id) {
     return { ledger, rows: [] };
   }
   const chosen = valid[valid.length - 1];
+  const laterUnfiled = considered.filter(c => c.notFiled && c.captureTimestamp > chosen.captureTimestamp);
+  if (laterUnfiled.length) {
+    ledger.blocked = `relay did not file ${laterUnfiled.map(c => c.captureTimestamp).join(", ")}, later than the latest valid capture ${chosen.captureTimestamp}`;
+    ledger.considered = considered.map(({ parsed, ...c }) => c);
+    return { ledger, rows: [] };
+  }
   Object.assign(ledger, {
     chosen: chosen.captureTimestamp, archivedUrl: chosen.archivedUrl, sha256: chosen.sha256, title: chosen.title,
+    // Relayed bytes are the fetching client's copy of the id_ capture; their
+    // hash is of that copy, not of a direct Wayback response.
+    ...(chosen.via ? { relayedVia: chosen.via } : {}),
     tabs: chosen.parsed.tabs, stageOrder: chosen.parsed.stageOrder, crossTab: chosen.parsed.findings,
     considered: considered.map(({ parsed, ...c }) => ({ ...c,
       diffVsChosen: c === chosen || !c.valid ? undefined : diffLineups(chosen.parsed, parsed) })),

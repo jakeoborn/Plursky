@@ -22,6 +22,7 @@ export const OFFICIAL_HOSTS = {
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
+  "edc-mexico": ["mexico.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
 };

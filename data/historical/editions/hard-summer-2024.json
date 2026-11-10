@@ -1,0 +1,1430 @@
+{
+ "id": "hard-summer-2024",
+ "festivalId": "hard-summer",
+ "name": "HARD Summer 2024",
+ "year": 2024,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-08-03",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2024-08-04",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "hard-summer-2024:hard-stage",
+   "name": "HARD Stage"
+  },
+  {
+   "id": "hard-summer-2024:harder-stage",
+   "name": "HARDER Stage"
+  },
+  {
+   "id": "hard-summer-2024:green-stage",
+   "name": "Green Stage"
+  },
+  {
+   "id": "hard-summer-2024:purple-stage",
+   "name": "Purple Stage"
+  },
+  {
+   "id": "hard-summer-2024:pink-stage",
+   "name": "Pink Stage"
+  },
+  {
+   "id": "hard-summer-2024:beatbox-boombox-art-car",
+   "name": "Beatbox Boombox Art Car"
+  },
+  {
+   "id": "hard-summer-2024:jose-cuervo-locals-only-stage",
+   "name": "Jose Cuervo Locals Only Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "hard-summer-2024:33-below",
+   "name": "33 Below",
+   "key": "33-below",
+   "performers": [
+    "33-below"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:ahadadream",
+   "name": "Ahadadream",
+   "key": "ahadadream",
+   "performers": [
+    "ahadadream"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:alleycvt",
+   "name": "ALLEYCVT",
+   "key": "alleycvt",
+   "performers": [
+    "alleycvt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:ayybo",
+   "name": "AYYBO",
+   "key": "ayybo",
+   "performers": [
+    "ayybo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:baby-com",
+   "name": "baby.com",
+   "key": "baby-com",
+   "performers": [
+    "baby-com"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:baexploitation",
+   "name": "Baexploitation",
+   "key": "baexploitation",
+   "performers": [
+    "baexploitation"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:beltran-b2b-classmatic",
+   "name": "Beltran B2B Classmatic",
+   "key": "beltran-b2b-classmatic",
+   "performers": [
+    "beltran",
+    "classmatic"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:beme",
+   "name": "BEME",
+   "key": "beme",
+   "performers": [
+    "beme"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:bianca-maieli",
+   "name": "Bianca Maieli",
+   "key": "bianca-maieli",
+   "performers": [
+    "bianca-maieli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:bianca-oblivion",
+   "name": "Bianca Oblivion",
+   "key": "bianca-oblivion",
+   "performers": [
+    "bianca-oblivion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    },
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:bunt",
+   "name": "BUNT.",
+   "key": "bunt",
+   "performers": [
+    "bunt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:camden-cox",
+   "name": "Camden Cox",
+   "key": "camden-cox",
+   "performers": [
+    "camden-cox"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:capes",
+   "name": "Capes",
+   "key": "capes",
+   "performers": [
+    "capes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:carola",
+   "name": "Carola",
+   "key": "carola",
+   "performers": [
+    "carola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:cc-love",
+   "name": "CC Love",
+   "key": "cc-love",
+   "performers": [
+    "cc-love"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:channel-tres",
+   "name": "Channel Tres",
+   "key": "channel-tres",
+   "performers": [
+    "channel-tres"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:chase-and-status",
+   "name": "Chase & Status",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:cherry-lee",
+   "name": "Cherry Lee",
+   "key": "cherry-lee",
+   "performers": [
+    "cherry-lee"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:chloe-caillet",
+   "name": "Chloé Caillet",
+   "key": "chloe-caillet",
+   "performers": [
+    "chloe-caillet"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:chris-stussy",
+   "name": "Chris Stussy",
+   "key": "chris-stussy",
+   "performers": [
+    "chris-stussy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:cloonee",
+   "name": "Cloonee",
+   "key": "cloonee",
+   "performers": [
+    "cloonee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:cole-knight",
+   "name": "Cole Knight",
+   "key": "cole-knight",
+   "performers": [
+    "cole-knight"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:curra",
+   "name": "Curra",
+   "key": "curra",
+   "performers": [
+    "curra"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dillon-francis-moombahton-set",
+   "name": "Dillon Francis (Moombahton Set)",
+   "key": "dillon-francis-moombahton-set",
+   "performers": [
+    "dillon-francis-moombahton-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dina",
+   "name": "Dina",
+   "key": "dina",
+   "performers": [
+    "dina"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:disclosure",
+   "name": "Disclosure",
+   "key": "disclosure",
+   "performers": [
+    "disclosure"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dj-dials",
+   "name": "DJ Dials",
+   "key": "dj-dials",
+   "performers": [
+    "dj-dials"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dj-heartstring",
+   "name": "DJ Heartstring",
+   "key": "dj-heartstring",
+   "performers": [
+    "dj-heartstring"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:dj-susan",
+   "name": "DJ Susan",
+   "key": "dj-susan",
+   "performers": [
+    "dj-susan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:elderbrook",
+   "name": "Elderbrook",
+   "key": "elderbrook",
+   "performers": [
+    "elderbrook"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:etari",
+   "name": "Etari",
+   "key": "etari",
+   "performers": [
+    "etari"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    },
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:fisher-chris-lake-under-construction",
+   "name": "Fisher + Chris Lake: Under Construction",
+   "key": "fisher-chris-lake-under-construction",
+   "performers": [
+    "fisher-chris-lake-under-construction"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:fun2bjane-b2b-mad-gavs",
+   "name": "fun2bjane B2B mad gavs",
+   "key": "fun2bjane-b2b-mad-gavs",
+   "performers": [
+    "fun2bjane",
+    "mad-gavs"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:fun2bjane",
+   "name": "fun2bjane",
+   "key": "fun2bjane",
+   "performers": [
+    "fun2bjane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:giselle-peppers",
+   "name": "Giselle Peppers",
+   "key": "giselle-peppers",
+   "performers": [
+    "giselle-peppers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:gudfella",
+   "name": "GUDFELLA",
+   "key": "gudfella",
+   "performers": [
+    "gudfella"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:hamdi",
+   "name": "Hamdi",
+   "key": "hamdi",
+   "performers": [
+    "hamdi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:hayes-bradley",
+   "name": "Hayes Bradley",
+   "key": "hayes-bradley",
+   "performers": [
+    "hayes-bradley"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:hedex",
+   "name": "Hedex",
+   "key": "hedex",
+   "performers": [
+    "hedex"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:honeyluv-b2b-bontan",
+   "name": "HoneyLuv B2B Bontan",
+   "key": "honeyluv-b2b-bontan",
+   "performers": [
+    "honeyluv",
+    "bontan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:infekt",
+   "name": "INFEKT",
+   "key": "infekt",
+   "performers": [
+    "infekt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:interplanetary-criminal",
+   "name": "Interplanetary Criminal",
+   "key": "interplanetary-criminal",
+   "performers": [
+    "interplanetary-criminal"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:invt",
+   "name": "INVT",
+   "key": "invt",
+   "performers": [
+    "invt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:jamie-xx",
+   "name": "Jamie xx",
+   "key": "jamie-xx",
+   "performers": [
+    "jamie-xx"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:joaqu-n",
+   "name": "Joaqu.n",
+   "key": "joaqu-n",
+   "performers": [
+    "joaqu-n"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:juelz",
+   "name": "Juelz",
+   "key": "juelz",
+   "performers": [
+    "juelz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:jyoty",
+   "name": "Jyoty",
+   "key": "jyoty",
+   "performers": [
+    "jyoty"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:kanine",
+   "name": "Kanine",
+   "key": "kanine",
+   "performers": [
+    "kanine"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:kenny-beats",
+   "name": "Kenny Beats",
+   "key": "kenny-beats",
+   "performers": [
+    "kenny-beats"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:kerri-chandler",
+   "name": "Kerri Chandler",
+   "key": "kerri-chandler",
+   "performers": [
+    "kerri-chandler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:ketboi69-kettama-b2b-partiboi69",
+   "name": "Ketboi69 (KETTAMA B2B Partiboi69)",
+   "key": "ketboi69-kettama-b2b-partiboi69",
+   "performers": [
+    "ketboi69-kettama",
+    "partiboi69"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:kiah-g",
+   "name": "Kiah G",
+   "key": "kiah-g",
+   "performers": [
+    "kiah-g"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:laalls-b2b-cerulean",
+   "name": "LAALLS B2B cerulean",
+   "key": "laalls-b2b-cerulean",
+   "performers": [
+    "laalls",
+    "cerulean"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:lake-hills",
+   "name": "Lake Hills",
+   "key": "lake-hills",
+   "performers": [
+    "lake-hills"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:lechuga",
+   "name": "Lechuga",
+   "key": "lechuga",
+   "performers": [
+    "lechuga"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:level-up",
+   "name": "Level Up",
+   "key": "level-up",
+   "performers": [
+    "level-up"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:levity",
+   "name": "Levity",
+   "key": "levity",
+   "performers": [
+    "levity"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:lupa",
+   "name": "LUPA",
+   "key": "lupa",
+   "performers": [
+    "lupa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:mapamota",
+   "name": "Mapamota",
+   "key": "mapamota",
+   "performers": [
+    "mapamota"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:mary-droppinz",
+   "name": "Mary Droppinz",
+   "key": "mary-droppinz",
+   "performers": [
+    "mary-droppinz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:mesme",
+   "name": "Mesmé",
+   "key": "mesme",
+   "performers": [
+    "mesme"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:mochakk",
+   "name": "Mochakk",
+   "key": "mochakk",
+   "performers": [
+    "mochakk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:nazaar",
+   "name": "NAZAAR",
+   "key": "nazaar",
+   "performers": [
+    "nazaar"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:nelly-furtado",
+   "name": "Nelly Furtado",
+   "key": "nelly-furtado",
+   "performers": [
+    "nelly-furtado"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:noir-jbw",
+   "name": "Noir JBW",
+   "key": "noir-jbw",
+   "performers": [
+    "noir-jbw"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:notion",
+   "name": "Notion",
+   "key": "notion",
+   "performers": [
+    "notion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:panteros666",
+   "name": "Panteros666",
+   "key": "panteros666",
+   "performers": [
+    "panteros666"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:pocket",
+   "name": "Pocket",
+   "key": "pocket",
+   "performers": [
+    "pocket"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:purple-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:ranger-trucco",
+   "name": "Ranger Trucco",
+   "key": "ranger-trucco",
+   "performers": [
+    "ranger-trucco"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:reaper",
+   "name": "Reaper",
+   "key": "reaper",
+   "performers": [
+    "reaper"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:rezzmau5",
+   "name": "Rezzmau5",
+   "key": "rezzmau5",
+   "performers": [
+    "rezzmau5"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:saka-b2b-fly",
+   "name": "Saka B2B Fly",
+   "key": "saka-b2b-fly",
+   "performers": [
+    "saka",
+    "fly"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:san-pacho",
+   "name": "San Pacho",
+   "key": "san-pacho",
+   "performers": [
+    "san-pacho"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:seth-troxler-b2b-dj-tennis",
+   "name": "Seth Troxler B2B DJ Tennis",
+   "key": "seth-troxler-b2b-dj-tennis",
+   "performers": [
+    "seth-troxler",
+    "dj-tennis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:pink-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:sisters-of-sound-maddy-maia-b2b-tottie",
+   "name": "Sisters of Sound (Maddy Maia B2B Tottie)",
+   "key": "sisters-of-sound-maddy-maia-b2b-tottie",
+   "performers": [
+    "sisters-of-sound-maddy-maia",
+    "tottie"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:skepta-mas-tiempo",
+   "name": "Skepta (Más Tiempo)",
+   "key": "skepta-mas-tiempo",
+   "performers": [
+    "skepta-mas-tiempo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:sofi-tukker-dj-set",
+   "name": "Sofi Tukker (DJ Set)",
+   "key": "sofi-tukker-dj-set",
+   "performers": [
+    "sofi-tukker-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:sosa",
+   "name": "Sosa",
+   "key": "sosa",
+   "performers": [
+    "sosa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:soul-purpose",
+   "name": "Soul Purpose",
+   "key": "soul-purpose",
+   "performers": [
+    "soul-purpose"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:sub-focus",
+   "name": "Sub Focus",
+   "key": "sub-focus",
+   "performers": [
+    "sub-focus"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:tchami-x-malaa-no-redemption",
+   "name": "Tchami x Malaa: No Redemption",
+   "key": "tchami-x-malaa-no-redemption",
+   "performers": [
+    "tchami-x-malaa-no-redemption"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:teko",
+   "name": "Teko",
+   "key": "teko",
+   "performers": [
+    "teko"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:hard-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:trax-unit",
+   "name": "Trax Unit",
+   "key": "trax-unit",
+   "performers": [
+    "trax-unit"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:jose-cuervo-locals-only-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:voisan",
+   "name": "Voisan",
+   "key": "voisan",
+   "performers": [
+    "voisan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:beatbox-boombox-art-car"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:harder-stage"
+    }
+   ]
+  },
+  {
+   "id": "hard-summer-2024:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "hard-summer-2024:green-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.hardsummer.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20241212022141/https://www.hardsummer.com/lineup/",
+    "captureTimestamp": "20241212022141",
+    "sha256": "df15e601777165348030312182a8fcdaec18526dd817392e20ece09a22cb48e9"
+   }
+  ]
+ }
+}
