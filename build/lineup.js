@@ -4381,10 +4381,296 @@ async function copyScheduleText(state) {
     };
   }
 }
+var PLAN_SHARE_LINK_ON = false;
+function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date.now()) {
+  var contract = typeof window !== "undefined" ? window.PlurskyPlanShare : null;
+  if (!contract) return {
+    error: "unavailable",
+    rows: [],
+    left: 0
+  };
+  var list = Array.from(savedIds || []);
+  var ids = new Set(list);
+  var acts = activeLineup(list).filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
+  var rows = [];
+  var left = 0;
+  var _loop4 = function (a) {
+    var t = setTimingMin(a);
+    var dd = artistDayDate(a, now, list),
+      base = cfg.dayDates && cfg.dayDates[a.day];
+    var shift = dd && base ? dd.midnightUtc - base.midnightUtc : null;
+    var s = t && t.end != null && shift != null ? _scanActUtc(cfg, a.day, shift, a.start) : null;
+    var e = s != null ? _scanActUtc(cfg, a.day, shift, a.end) : null;
+    if (s == null || e == null || !(e > s)) {
+      left++;
+      return 1;
+    }
+    var stage = STAGES.find(x => x.id === a.stage) || UNPLACED_STAGE;
+    rows.push({
+      act: a,
+      night: dd,
+      stageName: stage.name,
+      set: {
+        id: String(a.id),
+        artist: a.name,
+        stage: stage.name,
+        startsAt: new Date(s).toISOString(),
+        endsAt: new Date(e).toISOString()
+      }
+    });
+  };
+  for (var a of acts) {
+    if (_loop4(a)) continue;
+  }
+  rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
+  if (typeof cfg.endMs !== "number") return {
+    error: "no_edition_end",
+    rows,
+    left
+  };
+  try {
+    var payload = contract.makePublicPlan({
+      kind: "schedule",
+      festivalId: cfg.id,
+      editionEnd: new Date(cfg.endMs).toISOString(),
+      sets: rows.map(r => r.set),
+      displayName: displayName || undefined
+    }, now);
+    return {
+      payload,
+      rows,
+      left
+    };
+  } catch (err) {
+    var msg = String(err && err.message || "");
+    return {
+      error: /window has ended/.test(msg) ? "ended" : /display name/.test(msg) ? "name" : "invalid",
+      rows,
+      left
+    };
+  }
+}
+function PlanShareLinkSheet({
+  saved,
+  onClose
+}) {
+  var cfg = FESTIVAL_CONFIG,
+    tz = cfg.tz;
+  var [nameOn, setNameOn] = React.useState(false);
+  var [name, setName] = React.useState("");
+  var d = planShareDraft(saved, nameOn ? name.trim() : "", cfg);
+  var fmtDay = ms => new Date(ms).toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    ...(tz ? {
+      timeZone: tz
+    } : {})
+  });
+  var byDay = [];
+  for (var r of d.rows) {
+    var g = byDay[byDay.length - 1];
+    if (g && g.night.midnightUtc === r.night.midnightUtc) g.rows.push(r);else byDay.push({
+      day: r.act.day,
+      night: r.night,
+      rows: [r]
+    });
+  }
+  var dayLabel = (n, m) => {
+    if (!m) return `Day ${n}`;
+    var date = Number.isFinite(m.y) ? new Date(Date.UTC(m.y, m.m, m.d)).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC"
+    }) : "";
+    return date ? `${m.name} · ${date}` : m.name;
+  };
+  var label = {
+    fontSize: 13,
+    color: "var(--text-2)",
+    lineHeight: "18px"
+  };
+  var ERR = {
+    ended: `Sharing for ${cfg.shortName || cfg.name} has closed. Links last until a week after the festival.`,
+    name: "That name can't go on a link. Use letters and numbers, up to 60 characters.",
+    no_edition_end: "This festival has no confirmed end date yet, so a link can't set when it ends.",
+    unavailable: "The link preview didn't load. Close and try again.",
+    invalid: "Something in this plan can't go on a link yet."
+  };
+  var footer = React.createElement("div", null, React.createElement("button", {
+    disabled: true,
+    "aria-disabled": "true",
+    style: {
+      width: "100%",
+      minHeight: 48,
+      borderRadius: 999,
+      border: "1px solid var(--line-2)",
+      background: "transparent",
+      color: "var(--text-2)",
+      font: "600 15px/20px var(--f-ui)",
+      cursor: "not-allowed"
+    }
+  }, "Create link"), React.createElement("div", {
+    style: {
+      ...label,
+      textAlign: "center",
+      marginTop: 8
+    }
+  }, "Links aren't live yet."));
+  return React.createElement(FieldSheet, {
+    title: "Share your plan as a link",
+    eyebrow: "Preview",
+    footer: footer,
+    onClose: onClose
+  }, React.createElement("div", {
+    "data-plan-share-sheet": true,
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 16
+    }
+  }, React.createElement("p", {
+    style: {
+      ...label,
+      margin: 0,
+      color: "var(--ink)",
+      fontSize: 15,
+      lineHeight: "21px"
+    }
+  }, "Anyone with the link will see exactly this. Nothing else leaves your phone."), d.error ? React.createElement("div", {
+    role: "alert",
+    "data-plan-share-error": d.error,
+    style: {
+      ...label,
+      color: "var(--ink)"
+    }
+  }, ERR[d.error] || ERR.invalid) : React.createElement(React.Fragment, null, React.createElement("div", {
+    style: {
+      border: "1px solid var(--line)",
+      borderRadius: 14,
+      padding: "12px 14px"
+    }
+  }, React.createElement("div", {
+    style: {
+      font: "700 17px/22px var(--f-ui)",
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
+    }
+  }, nameOn && name.trim() ? `${name.trim()}'s ` : "", cfg.shortName || cfg.name, " plan"), React.createElement("div", {
+    style: {
+      ...label,
+      marginTop: 2
+    }
+  }, d.rows.length, " ", d.rows.length === 1 ? "set" : "sets"), byDay.map(g => React.createElement("div", {
+    key: g.night.midnightUtc,
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("div", {
+    "data-plan-share-day": true,
+    className: "duo-label duo-ink3",
+    style: {
+      marginBottom: 4
+    }
+  }, dayLabel(g.day, g.night)), g.rows.map(r => React.createElement("div", {
+    key: r.set.id,
+    "data-plan-share-set": r.set.id,
+    style: {
+      display: "flex",
+      gap: 10,
+      padding: "6px 0",
+      borderTop: "1px solid var(--line)"
+    }
+  }, React.createElement("div", {
+    className: "duo-data-s",
+    "aria-label": `${fmt12(r.act.start)} to ${fmt12(r.act.end)}`,
+    style: {
+      width: 80,
+      flexShrink: 0,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)"
+    }
+  }, React.createElement("div", {
+    "data-plan-share-start": true
+  }, fmt12(r.act.start)), React.createElement("div", {
+    "data-plan-share-end": true
+  }, "– ", fmt12(r.act.end))), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 15,
+      fontWeight: 600,
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
+    }
+  }, r.set.artist), React.createElement("div", {
+    style: {
+      ...label,
+      overflowWrap: "anywhere"
+    }
+  }, r.stageName)))))), !d.rows.length && React.createElement("div", {
+    style: {
+      ...label,
+      marginTop: 10
+    }
+  }, "No sets with confirmed times yet.")), d.left > 0 && React.createElement("div", {
+    "data-plan-share-left": d.left,
+    style: label
+  }, d.left, " ", d.left === 1 ? "set doesn't" : "sets don't", " have confirmed times yet, so ", d.left === 1 ? "it stays" : "they stay", " off the link."), React.createElement("div", {
+    style: label,
+    "data-plan-share-ends": true
+  }, "The link stops working ", fmtDay(Date.parse(d.payload.expiresAt)), ", a week after the festival. You can turn it off sooner.")), React.createElement("label", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      minHeight: 44,
+      cursor: "pointer"
+    }
+  }, React.createElement("input", {
+    type: "checkbox",
+    checked: nameOn,
+    onChange: e => setNameOn(e.target.checked),
+    style: {
+      width: 20,
+      height: 20,
+      flexShrink: 0
+    }
+  }), React.createElement("span", {
+    style: {
+      fontSize: 15,
+      color: "var(--ink)"
+    }
+  }, "Show a name on the link")), nameOn && React.createElement("input", {
+    type: "text",
+    value: name,
+    maxLength: 60,
+    onChange: e => setName(e.target.value),
+    placeholder: "Name to show",
+    "aria-label": "Name to show on the link",
+    autoComplete: "off",
+    style: {
+      minHeight: 44,
+      padding: "0 12px",
+      borderRadius: 10,
+      border: "1px solid var(--line-2)",
+      background: "var(--s1)",
+      color: "var(--ink)",
+      font: "400 16px/20px var(--f-ui)"
+    }
+  }), React.createElement("div", {
+    style: label
+  }, "Never on the link: where you are, your notes, photos, account or crew.")));
+}
 function ShareLineupButton({
   state
 }) {
   var [open, setOpen] = React.useState(false);
+  var [linkOpen, setLinkOpen] = React.useState(false);
   var [busy, setBusy] = React.useState(false);
   var [done, setDone] = React.useState(null);
   var wrap = (key, fn) => async () => {
@@ -4485,7 +4771,18 @@ function ShareLineupButton({
     label: "Copy as text",
     sub: "Paste anywhere",
     onClick: wrap("txt", copyScheduleText)
-  }))));
+  }), PLAN_SHARE_LINK_ON && React.createElement(ShareMenuItem, {
+    icon: "lnk",
+    label: "Share as a link",
+    sub: "Preview what a link shows",
+    onClick: () => {
+      setOpen(false);
+      setLinkOpen(true);
+    }
+  }))), PLAN_SHARE_LINK_ON && linkOpen && React.createElement(PlanShareLinkSheet, {
+    saved: savedInLineup(state.saved),
+    onClose: () => setLinkOpen(false)
+  }));
 }
 function ShareMenuItem({
   icon,
@@ -4535,6 +4832,19 @@ function ShareMenuItem({
     d: "M8 3 V7"
   }), React.createElement("path", {
     d: "M16 3 V7"
+  })) : icon === "lnk" ? React.createElement("svg", {
+    width: "16",
+    height: "16",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.7",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, React.createElement("path", {
+    d: "M10 14 a4 4 0 0 0 5.66 0 l3-3 a4 4 0 0 0 -5.66 -5.66 l-1 1"
+  }), React.createElement("path", {
+    d: "M14 10 a4 4 0 0 0 -5.66 0 l-3 3 a4 4 0 0 0 5.66 5.66 l1 -1"
   })) : icon === "txt" ? React.createElement("svg", {
     width: "16",
     height: "16",
@@ -4744,7 +5054,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop4 = async function (a) {
+  var _loop5 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -4787,7 +5097,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop4(a)) break;
+    if (await _loop5(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

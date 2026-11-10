@@ -3486,6 +3486,21 @@ for (const [label, file] of [
   }
 }
 
+// ── Public plan-share link, stage 1 (#74, PM spec v2 row 4) ──────────────
+// The payload allowlist + expiry contract (one file the app and Node share),
+// its in-memory server adapter, and the flag-off preview sheet: no network,
+// no token, no schema, the link item absent as shipped.
+for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"], ["service (in-memory)", "scripts/test-public-plan-share-service.mjs"], ["stage 1 preview", "scripts/test-plan-share-stage1.mjs"]]) {
+  console.log(`▸ Plan-share ${label} gate`);
+  try {
+    const out = execFileSync(process.execPath, [file], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`plan-share ${label} failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b8b. Social embeds are tap-to-load ────────────────────────────────
 // Instagram and X posts on /f/ pages load only when the reader taps one:
 // a real browser renders and scrolls the page and asserts zero requests to
