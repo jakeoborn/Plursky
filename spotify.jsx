@@ -2006,8 +2006,9 @@ async function _backupMyWeekend(onProgress) {
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
     // A stored video is the raw file, capture GPS included; only a copy with
-    // every coordinate redacted may leave the device. If that cannot be
-    // proven (null), the clip is held back, never sent as-is.
+    // the phone's own location metadata removed may leave the device (see
+    // _stripVideoGps for what is and is not vetted). If the strip refuses
+    // (null), the clip is held back, never sent as-is.
     if (m.kind === "video" || /^video\//.test(blob.type || "")) {
       const clean = await _stripVideoGps(blob);
       if (!clean) { gpsHeld++; onProgress?.({ done, failed, total: pending.length }); continue; }

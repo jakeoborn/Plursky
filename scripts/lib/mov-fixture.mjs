@@ -15,12 +15,12 @@ const u16 = n => { const b = Buffer.alloc(2); b.writeUInt16BE(n); return b; };
 const typ = t => (Buffer.isBuffer(t) ? t : Buffer.from(t, "latin1"));
 export const box = (t, ...kids) => { const body = Buffer.concat(kids.map(k => (Buffer.isBuffer(k) ? k : Buffer.from(k, "latin1")))); return Buffer.concat([u32(8 + body.length), typ(t), body]); };
 
-export function metaBox(items, orphan = null, dupKeys = false) {
+export function metaBox(items, orphan = null, dupKeys = false, itemTail = null) {
   const hdlr = box("hdlr", u32(0), u32(0), "mdta", Buffer.alloc(12), Buffer.alloc(1));
   const keys = box("keys", u32(0), u32(items.length), ...items.map(([k]) => { const name = Buffer.from(k, "latin1"); return Buffer.concat([u32(8 + name.length), Buffer.from("mdta"), name]); }));
   // orphan: an item whose index is past the keys table (no key names it).
   const extra = orphan ? [box(u32(items.length + 7), box("data", u32(1), u32(0), orphan))] : [];
-  const ilst = box("ilst", ...items.map(([, v], i) => box(u32(i + 1), box("data", u32(1), u32(0), v))), ...extra);
+  const ilst = box("ilst", ...items.map(([k, v], i) => box(u32(i + 1), box("data", u32(1), u32(0), v), ...(itemTail && k.endsWith(".make") ? [itemTail] : []))), ...extra);
   return box("meta", hdlr, keys, ...(dupKeys ? [box("keys", u32(0), u32(1), Buffer.concat([u32(8 + 22), Buffer.from("mdta"), Buffer.from("com.vendor.capture.pos")]))] : []), ilst);
 }
 export const IPHONE_ITEMS = [
@@ -37,9 +37,24 @@ function mvhd(slack = false) {
   p.writeUInt32BE(600, 12); p.writeUInt32BE(6000, 16);
   return box("mvhd", slack ? Buffer.concat([p, BIN_PLANT]) : p);
 }
-function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false, sample = { off: 0, size: 0 }) {
-  const mebx = box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey))));
-  const entries = second ? [mebx, box(second, Buffer.alloc(6), u16(1), BIN_PLANT)] : [mebx];
+// An unknown child box carrying a binary fix, planted inside a sample entry
+// (or a kept ilst item) at the depth `entryKid` names.
+export const KID_UUID = Buffer.from("5c0ffee05c0ffee05c0ffee05c0ffee0", "hex");
+const unknownKid = () => box("uuid", KID_UUID, BIN_PLANT);
+export const ENTRY_KID_DEPTHS = ["avc1", "hvc1", "visualLongBtrt", "visualColrProf", "mp4a", "wave", "mebxKeys", "mebxKey", "tmcd", "ilstItem"];
+function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false, sample = { off: 0, size: 0 }, kid = null) {
+  // A non-mebx format gets a well-formed v0 sound-entry shape (36 bytes), so
+  // only the format allowlist can refuse it; a second entry carries a binary
+  // fix in a child box.
+  const sound = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(0), Buffer.alloc(18), ...kids);
+  const soundV1 = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(1), Buffer.alloc(18), Buffer.alloc(16), ...kids);
+  const K = d => (kid === d ? [unknownKid()] : []);
+  let mebx = format === "mebx" ? box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey), ...K("mebxKey")), ...K("mebxKeys"))) : sound(format);
+  if (kid === "mp4a") mebx = sound("mp4a", box("esds", u32(0), Buffer.alloc(8)), unknownKid());
+  if (kid === "wave") mebx = soundV1("mp4a", box("wave", box("frma", "mp4a"), box("esds", u32(0), Buffer.alloc(8)), unknownKid(), u32(8), u32(0)));     // QuickTime zero-type terminator
+  if (kid === "tmcd") mebx = box("tmcd", Buffer.alloc(6), u16(1), Buffer.alloc(18), unknownKid());
+  if (kid === "overrunAudio") mebx = sound("mp4a", Buffer.concat([u32(4096), Buffer.from("zzzz", "latin1"), BIN_PLANT]));
+  const entries = second ? [mebx, sound(second, box("zzzz", BIN_PLANT))] : [mebx];
   const stsd = box("stsd", u32(0), u32(entries.length), ...entries);
   // nested: a vendor box holding a binary fix at every container level
   const v = t => nested ? [box(t, BIN_PLANT)] : [];
@@ -99,19 +114,23 @@ function videoTrak(v, mdatStart) {
     h[22] = v.hvccSei ? 1 : 0;
     cfg = box("hvcC", h, arrays);
   }
-  const entry = box(v.fam === "avc" ? "avc1" : "hvc1", Buffer.alloc(6), u16(1), visual, cfg);
+  const kid = v.entryKid === "visualLongBtrt" ? [box("btrt", Buffer.alloc(12), BIN_PLANT)]
+    : v.entryKid === "visualColrProf" ? [box("colr", "prof", BIN_PLANT)]
+    : v.entryKid === "overrun" ? [Buffer.concat([u32(4096), Buffer.from("zzzz", "latin1"), BIN_PLANT])]
+    : v.entryKid ? [unknownKid()] : [];
+  const entry = box(v.fam === "avc" ? "avc1" : "hvc1", Buffer.alloc(6), u16(1), visual, cfg, box("pasp", u32(1), u32(1)), ...kid);
   const stsd = box("stsd", u32(0), u32(1), entry);
   const stsz = box("stsz", u32(0), u32(0), u32(samples.length + (v.countSkew || 0)), ...samples.map(s => u32(s.length)), ...Array(v.countSkew || 0).fill(u32(1)));
   const stsc = box("stsc", u32(0), u32(1), u32(1), u32(samples.length), u32(1));
   const stco = box("stco", u32(0), u32(1), u32(mdatStart));
   return { trak: box("trak", box("mdia", box("minf", box("stbl", stsd, stsz, stsc, stco)))), bytes: Buffer.concat(samples) };
 }
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, gap, mdatBytes, straddleAt, noGps }
+// opts: { entryKid (one of ENTRY_KID_DEPTHS, "overrun" or "overrunAudio"; video depths need opts.video), timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, gap, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
   if (opts.oddItem) items = [...items, ["com.vendor.capture.pos", BIN_PLANT]];
-  const meta = metaBox(items, opts.orphanItem ? BIN_PLANT : null, !!opts.dupKeys);
+  const meta = metaBox(items, opts.orphanItem ? BIN_PLANT : null, !!opts.dupKeys, opts.entryKid === "ilstItem" ? unknownKid() : null);
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);
@@ -119,7 +138,7 @@ export function buildMov(opts = {}) {
   const vt = opts.video ? videoTrak(opts.video, mdatStart) : null;
   const vlen = vt ? vt.bytes.length : 0, gapLen = opts.gap ? 512 : 0;
   const other = { off: mdatStart + vlen, size: mediaLen - vlen - gapLen };
-  const moov = box("moov", mvhd(!!opts.leafSlack), ...(vt ? [vt.trak] : []), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, opts.leafSlack === "short" ? "short" : !!opts.leafSlack, other), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
+  const moov = box("moov", mvhd(!!opts.leafSlack), ...(vt ? [vt.trak] : []), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, opts.leafSlack === "short" ? "short" : !!opts.leafSlack, other, opts.entryKid), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
   let media = filler(mediaLen);
   if (vt) vt.bytes.copy(media, 0);
   if (opts.gap) BIN_PLANT.copy(media, mediaLen - 256); // in bytes no sample table points at

@@ -20,7 +20,7 @@ import { readFileSync, existsSync, readdirSync, openAsBlob, writeFileSync, rmSyn
 import { join, dirname } from "node:path";
 import { homedir, tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
-import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT, XMP_DM, SEI_TEXT, SLICE_BODY, nal, seiNal } from "./lib/mov-fixture.mjs";
+import { buildMov, ENTRY_KID_DEPTHS, KID_UUID, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT, XMP_DM, SEI_TEXT, SLICE_BODY, nal, seiNal } from "./lib/mov-fixture.mjs";
 import { execFileSync } from "node:child_process";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -205,6 +205,46 @@ async function suite(strip, slim) {
     const bigSps = nal("avc", 7, Buffer.alloc(200, 0x5a));
     ok((await strip(blobOf(buildMov({ noGps: true, video: { fam: "avc", samples: [[bigSps, nal("avc", 5, SLICE_BODY)]] } }).bytes))) === null, "V39 an in-band parameter set over the size cap is refused");
   }
+  // Review on cfc54957: a child box inside a sample entry that is not on the
+  // entry's allowlist (a uuid with a binary fix next to avcC) went through.
+  // Each depth gets an unknown child carrying a binary fix; each must come
+  // out blanked (renamed free, payload zeroed) with the clip kept.
+  {
+    const vid = { "avc1": "avc", "hvc1": "hevc", "visualLongBtrt": "avc", "visualColrProf": "hevc" };
+    for (const d of ENTRY_KID_DEPTHS) {
+      const f = vid[d]
+        ? buildMov({ noGps: true, video: { fam: vid[d], samples: [[nal(vid[d], vid[d] === "avc" ? 5 : 19, SLICE_BODY)]], entryKid: d } })
+        : buildMov({ noGps: true, entryKid: d });
+      const planted = f.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1;
+      const r = await strip(blobOf(f.bytes));
+      const o = r ? await bytesOf(r.blob) : Buffer.alloc(0);
+      // Inside mebx keys every box is a local key id (any name), so a
+      // planted box there must parse as keyd/dtyp children; this one does
+      // not, and the clip is refused (fail closed).
+      if (d === "mebxKeys") { ok(planted === 1 && r === null, `V40 ${d}: a key-table entry that does not parse as boxes is refused (planted=${planted})`); continue; }
+      ok(planted === 1 && r && o.length === f.bytes.length && !o.includes(BIN_PLANT) && !o.includes(KID_UUID), `V40 ${d}: an unknown or malformed child (binary fix) is blanked, the clip kept (planted=${planted}, kept=${!!r})`);
+    }
+    ok((await strip(blobOf(buildMov({ noGps: true, video: { fam: "avc", samples: [[nal("avc", 5, SLICE_BODY)]], entryKid: "overrun" } }).bytes))) === null, "V41 a visual entry child that overruns its entry is refused");
+    ok((await strip(blobOf(buildMov({ noGps: true, entryKid: "overrunAudio" }).bytes))) === null, "V41b an audio entry child that overruns its entry is refused");
+    const okv = buildMov({ noGps: true, video: { fam: "avc", samples: [[nal("avc", 5, SLICE_BODY)]] } });
+    const rk = await strip(blobOf(okv.bytes));
+    ok(rk && (await bytesOf(rk.blob)).equals(okv.bytes), "V42 allowlisted children (avcC, pasp) at their real sizes pass byte-identical");
+    // The reviewer's own file (fake coordinates): x264 H.264 + AAC, a uuid
+    // child after btrt inside avc1 carrying two float64s.
+    const uf = readFileSync(join(ROOT, "scripts/fixtures/avc-entry-uuid-gps.mp4"));
+    const lat = Buffer.alloc(8); lat.writeDoubleBE(uf.readDoubleBE(uf.indexOf("uuid", 0, "latin1") + 20));
+    ok(uf.indexOf("uuid", 0, "latin1") > 0 && Math.abs(lat.readDoubleBE() - 28.54) < 1, `V43 setup: the reviewer's avc-entry-uuid fixture carries a binary latitude in a uuid inside avc1 (${lat.readDoubleBE().toFixed(4)})`);
+    const ru = await strip(blobOf(uf));
+    const uo = ru ? await bytesOf(ru.blob) : Buffer.alloc(0);
+    ok(ru && uo.length === uf.length && !uo.includes(lat) && uo.indexOf("uuid", 0, "latin1") < 0, "V43 the reviewer's avc-entry-uuid fixture uploads with the uuid child blanked (no binary latitude left)");
+    let ff = null; try { execFileSync("ffmpeg", ["-version"], { stdio: "ignore" }); ff = true; } catch {}
+    if (ff && ru) {
+      const tmp = join(tmpdir(), `uuid-gps-stripped-${process.pid}.mp4`); writeFileSync(tmp, uo);
+      let err = "x"; try { err = execFileSync("ffmpeg", ["-nostdin", "-v", "error", "-i", tmp, "-f", "null", "-"], { stdio: ["ignore", "pipe", "pipe"] }).toString(); } catch (e) { err = String(e.stderr || e); }
+      rmSync(tmp, { force: true });
+      ok(err.trim() === "", `V43b local: the stripped fixture decodes with ffmpeg, no errors (${err.trim().slice(0, 80)})`);
+    }
+  }
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -273,6 +313,14 @@ const MUTANTS = [
   ["no window overlap", STRIP_SRC.replace("_VGPS_OVERLAP = 4096", "_VGPS_OVERLAP = 0"), SLIM_SRC],
   ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
   ["only the first sample entry checked", STRIP_SRC.replace("k < count; k++", "k < Math.min(count, 1); k++"), SLIM_SRC],
+  ["sample-entry child allowlist off", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk) blank(c, c + cs);", "if (false) blank(c, c + cs);"), SLIM_SRC],
+  ["sample-entry unknown child kept", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if ((want > 0 && cs !== want) || !colrOk)"), SLIM_SRC],
+  ["sample-entry fixed size not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if (want < 0 || !colrOk)"), SLIM_SRC],
+  ["colr type not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if (want < 0 || (want > 0 && cs !== want))"), SLIM_SRC],
+  ["wave not walked", STRIP_SRC.replace('else if (t === "wave") {', 'else if (false) {'), SLIM_SRC],
+  ["mebx key entries not walked", STRIP_SRC.replace('const r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep); if (r) return r;', ""), SLIM_SRC],
+  ["sample-entry child overrun accepted", STRIP_SRC.replace('if (cs < 8 || c + cs > z) return "unreadable sample entry";', 'if (cs < 8 || c + cs > z) break;'), SLIM_SRC],
+  ["kept ilst item keeps trailing boxes", STRIP_SRC.replace("if (it.payload + ds < it.boxEnd) { zero(it.payload + ds, it.boxEnd); n++; }", ""), SLIM_SRC],
   ["track-format allowlist off", STRIP_SRC.replace("if (!_VGPS_TRACK_FORMATS.has(fmt))", "if (false)"), SLIM_SRC],
   ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}").replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
   ["timed-key allowlist off (unknown non-location-named key passes)", STRIP_SRC.replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
