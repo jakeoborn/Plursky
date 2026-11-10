@@ -297,6 +297,12 @@ h1 span.dim { color: var(--text-3); opacity: .3; }
 footer { border-top: 1px solid var(--line); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 24px; padding-bottom: max(40px, env(safe-area-inset-bottom, 0px)); font-size: 12.5px; color: var(--text-3); }
 footer nav { display: flex; gap: 18px; }
+footer .wrap.guides { display: block; padding-top: 28px; padding-bottom: 4px; }
+footer .guides .lbl { color: var(--text-2); }
+footer .guides ul { list-style: none; margin: 14px 0 0; padding: 0; columns: 4 150px; column-gap: 24px; }
+footer .guides li { break-inside: avoid; padding: 4px 0; font-size: 13.5px; }
+footer .guides a { color: var(--text-2); text-decoration: none; }
+footer .guides a:hover { color: var(--ink); text-decoration: underline; }
 
 /* ── onboarding ── */
 .ob { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: rgba(0,0,0,.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
@@ -532,7 +538,7 @@ footer nav { display: flex; gap: 18px; }
   </section>
 </main>
 
-<footer><div class="wrap"><span>PLURSKY® · Festival companion. Sample screens use real Escape Halloween 2026 set times; the counts on them are examples.</span><nav><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></nav></div></footer>
+<footer><div class="wrap guides"><span class="lbl">Festival guides</span><ul><li><a href="/f/arc-2026/">ARC Music Festival 2026</a></li><li><a href="/f/acl-2026/">Austin City Limits 2026</a></li><li><a href="/f/beyond-wonderland-gorge-2027/">Beyond Wonderland at The Gorge 2027</a></li><li><a href="/f/beyond-wonderland-socal-2027/">Beyond Wonderland SoCal 2027</a></li><li><a href="/f/coachella-2027/">Coachella 2027</a></li><li><a href="/f/countdown-nye-2026/">Countdown NYE 2026</a></li><li><a href="/f/crssd-fall-2026/">CRSSD Fest Fall 2026</a></li><li><a href="/f/decadence-colorado-2026/">Decadence Colorado 2026</a></li><li><a href="/f/dreamstate-socal-2026/">Dreamstate SoCal 2026</a></li><li><a href="/f/edc-lv-2026/">EDC Las Vegas 2026</a></li><li><a href="/f/edc-mexico-2027/">EDC Mexico 2027</a></li><li><a href="/f/edc-orlando-2026/">EDC Orlando 2026</a></li><li><a href="/f/electric-forest-2027/">Electric Forest 2027</a></li><li><a href="/f/escape-halloween-2026/">Escape Halloween 2026</a></li><li><a href="/f/governors-ball-2026/">Governors Ball 2026</a></li><li><a href="/f/hard-summer-2026/">HARD Summer 2026</a></li><li><a href="/f/iii-points-2026/">III Points 2026</a></li><li><a href="/f/lollapalooza-2026/">Lollapalooza 2026</a></li><li><a href="/f/lost-lands-2026/">Lost Lands 2026</a></li><li><a href="/f/nocturnal-wonderland-2026/">Nocturnal Wonderland 2026</a></li><li><a href="/f/outside-lands-2026/">Outside Lands 2026</a></li><li><a href="/f/portola-2026/">Portola 2026</a></li><li><a href="/f/summerfest-2026/">Summerfest 2026</a></li><li><a href="/f/tomorrowland-2027/">Tomorrowland 2027</a></li><li><a href="/f/ultra-miami-2026/">Ultra Miami 2026</a></li></ul></div><div class="wrap"><span>PLURSKY® · Festival companion. Sample screens use real Escape Halloween 2026 set times; the counts on them are examples.</span><nav><a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a></nav></div></footer>
 
 <div class="ob" id="ob" hidden role="dialog" aria-modal="true" aria-labelledby="obTitle">
   <div class="sheet">

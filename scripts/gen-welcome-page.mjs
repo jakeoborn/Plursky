@@ -77,7 +77,18 @@ if (!template.includes(MARK)) {
 }
 // Escape "<" so no festival string can close the <script> it is inlined into.
 const json = JSON.stringify({ festivals }).replace(/</g, '\\u003c');
-const html = template.replace(MARK, json);
+// Plain links to every festival page, in the footer, so the pages are one
+// click away even before the script draws the list (and for crawlers).
+const GUIDES = '<!--__FESTIVAL_GUIDES__-->';
+if (!template.includes(GUIDES)) {
+  console.error(`✗ ${path.relative(root, TEMPLATE)} lost its ${GUIDES} marker`);
+  process.exit(1);
+}
+const escHtml = (t) => String(t).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const guides = festivals.filter((f) => f.page)
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((f) => `<li><a href="${escHtml(f.page)}">${escHtml(f.name)}</a></li>`).join('');
+const html = template.replace(MARK, json).replace(GUIDES, guides);
 
 if (process.argv.includes('--check')) {
   const cur = existsSync(OUT) ? readFileSync(OUT, 'utf8') : '';
