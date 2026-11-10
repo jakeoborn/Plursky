@@ -190,6 +190,44 @@
       <dd>Tomorrowland 2027 takes place Dates TBA at De Schorre · Boom, Belgium.</dd>
     </dl>
   </section>
+  <section id="watch" class="watch" aria-labelledby="watch-h">
+    <h2 id="watch-h">Watch &amp; listen</h2>
+    <p class="note">From Tomorrowland 2027's official accounts.</p>
+    <figure class="embed embed-sp">
+      <iframe src="https://open.spotify.com/embed/playlist/0yS25E7g9xQZ1Dst5SqUZn" title="Tomorrowland 2027 playlist on Spotify" width="100%" height="352" loading="lazy" allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <p class="embed-cap">Tomorrowland 2027's official playlist on Spotify · <a href="https://open.spotify.com/playlist/0yS25E7g9xQZ1Dst5SqUZn" rel="noopener">View the original</a></p>
+    </figure>
+    <script>
+(function () {
+  var sec = document.getElementById('watch');
+  if (!sec) return;
+  var SRC = { instagram: 'https://www.instagram.com/embed.js', x: 'https://platform.twitter.com/widgets.js' };
+  var requested = {};
+  function hydrate(p, fig) {
+    if (p === 'instagram' && window.instgrm && window.instgrm.Embeds) return window.instgrm.Embeds.process();
+    if (p === 'x' && window.twttr && window.twttr.widgets) return window.twttr.widgets.load(fig);
+    if (requested[p]) return; // in flight: the script scans the page when it runs
+    requested[p] = true;
+    var s = document.createElement('script'); s.async = true; s.src = SRC[p]; document.body.appendChild(s);
+  }
+  sec.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('button.embed-load');
+    if (!b) return;
+    var fig = b.closest('figure'), bq = fig && fig.querySelector('blockquote.tap-embed');
+    if (!bq || !SRC[fig.getAttribute('data-tap')]) return;
+    var a = document.createElement('a'); a.href = bq.getAttribute('data-href'); a.rel = 'noopener';
+    a.textContent = 'View this post on ' + (fig.getAttribute('data-tap') === 'x' ? 'X' : 'Instagram');
+    bq.appendChild(a); // X's script reads the post id from this link
+    bq.className = bq.getAttribute('data-class');
+    bq.removeAttribute('data-class');
+    fig.classList.add('tapped');
+    fig.setAttribute('tabindex', '-1');
+    fig.focus({ preventScroll: true });
+    hydrate(fig.getAttribute('data-tap'), fig);
+  });
+})();
+    </script>
+  </section>
 
 
 
@@ -236,7 +274,7 @@
     <ul>
       <li>Official site: <a href="https://belgium.tomorrowland.com/" rel="noopener">https://belgium.tomorrowland.com/</a></li>
     </ul>
-    <p class="note">Last updated <time class="updated" datetime="2026-10-28">2026-10-28</time>.</p>
+    <p class="note">Last updated <time class="updated" datetime="2026-11-09">2026-11-09</time>.</p>
   </section>
 
   <footer>
