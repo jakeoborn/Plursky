@@ -2960,9 +2960,14 @@ for (const [script, label] of [
 // No GPS = no pin; coordinates never leave the device (cloud backup strips
 // them, no request carries one); a tap opens the item with night/stage/artist
 // and never moves the camera.
+// Imported videos: no coordinate leaves the device. The backup uploads a copy
+// with every capture fix redacted (or holds the clip back), and the moments
+// backup drops a video's parsedGps/gpsAccM/heading/headingRef.
 for (const [label, file] of [
   ["Map pins — selection + cloud backup strips coordinates", "scripts/test-map-pins.mjs"],
   ["Map pins — real map: pins, clusters, tap, no coords on the wire", "scripts/test-map-pins-browser.mjs"],
+  ["Video GPS strip — every fix redacted, fail closed, moments backup", "scripts/test-video-gps-strip.mjs"],
+  ["Video GPS strip — real backup flow, nothing on the wire carries a coordinate", "scripts/test-video-gps-backup-browser.mjs"],
 ]) {
   console.log(`▸ ${label}`);
   try {
@@ -3515,6 +3520,25 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Day-after cards (row 9) ──────────────────────────────────────
+// "The story of the night" on a festival page: link-only to official recap
+// posts already verified for that festival and day; renders only when
+// published with Instinct's claim check and the approval sign-off, from 08:00
+// festival-local the morning after; a bad record of any status stops the
+// build. A real browser checks the cards at 320/393 × Dark/Light with zero
+// platform requests.
+{
+  console.log("▸ Day-after cards gate — link-only, official, signed off, morning after");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-day-after.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`day-after cards failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

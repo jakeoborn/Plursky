@@ -2004,21 +2004,26 @@ function _videoDuration(blob) {
 var _POSTER_MAX_EDGE = 640;
 var _POSTER_TIMEOUT_MS = 8000;
 var _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+function _frameState(v) {
   try {
     var c = document.createElement("canvas");
     c.width = c.height = 24;
     var g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     var d = g.getImageData(0, 0, 24, 24).data;
+    var painted = false;
     for (var i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
+    return painted ? "black" : "unpainted";
   } catch {
-    return false;
+    return "ok";
   }
 }
+var _POSTER_PAINT_RETRIES = 6,
+  _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise(resolve => {
     var url = null,
@@ -2078,11 +2083,15 @@ function _videoPosterBlob(blob) {
         times = [Math.min(0.6, Math.max(0.05, dur * 0.1)), dur * 0.25, dur * 0.5, dur * 0.75].filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek();else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      var judge = tries => {
+        if (settled) return;
+        var st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch {
@@ -2805,6 +2814,7 @@ async function _backupMyWeekend(onProgress) {
     failed = 0,
     capped = false;
   var succeeded = {};
+  var gpsHeld = 0;
   for (var _m of pending) {
     var blob = await _getPhoto(_m.photoId).catch(() => null);
     if (!blob) {
@@ -2819,6 +2829,19 @@ async function _backupMyWeekend(onProgress) {
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) {
       capped = true;
       break;
+    }
+    if (_m.kind === "video" || /^video\//.test(blob.type || "")) {
+      var clean = await _stripVideoGps(blob);
+      if (!clean) {
+        gpsHeld++;
+        onProgress?.({
+          done,
+          failed,
+          total: pending.length
+        });
+        continue;
+      }
+      blob = clean.blob;
     }
     var ok = await window.sbUploadMomentMedia(_m.photoId, blob);
     if (ok) {
@@ -2847,7 +2870,8 @@ async function _backupMyWeekend(onProgress) {
     failed,
     total: pending.length,
     capped,
-    usedBytes
+    usedBytes,
+    gpsHeld
   };
 }
 function _HomeMemoryThumb({
@@ -10253,7 +10277,7 @@ function MemoriesScreen({
     return backupStat.total > here ? " · ALL FESTIVALS" : "";
   }, [allMoments, backupStat.total]);
   var _afterBackup = res => {
-    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   var handleBackup = async () => {
     if (!_isPlusSub()) {
