@@ -418,6 +418,7 @@ async function _parseVideoMeta(file) {
 var _VGPS_MAX_BOX = 64 * 1024 * 1024;
 var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
 var _VGPS_KEY_RE = /location|ISO6709|gps/i;
+var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe", "jpeg", "mjpa", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "ac-3", "ec-3", "Opus", "fLaC", "samr", "sawb", ".mp3", "mebx", "tmcd", "text", "tx3g", "wvtt", "c608"]);
 function _vgpsLatin1(u8, a, b) {
   var s = "";
   for (var i = a; i < b; i++) s += String.fromCharCode(u8[i]);
@@ -458,7 +459,7 @@ function _stripVideoGpsRegion(u8) {
         boxEnd = pos + size;
       if (type === "free" || type === "skip") {
         zero(payload, boxEnd);
-      } else if (type === "©xyz" || type === "loci") {
+      } else if (type === "©xyz" || type === "loci" || parentType === "udta" && type !== "meta") {
         zero(payload, boxEnd);
         toFree(pos);
         n++;
@@ -467,19 +468,34 @@ function _stripVideoGpsRegion(u8) {
           refuse = "timed location track";
           return;
         }
+        var count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
+        var e = payload + 8;
+        for (var k = 0; k < count; k++) {
+          var es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+          if (es < 8 || e + es > boxEnd) {
+            refuse = "unreadable sample table";
+            return;
+          }
+          var fmt = type4(e + 4);
+          if (!_VGPS_TRACK_FORMATS.has(fmt)) {
+            refuse = "unknown track format " + JSON.stringify(fmt);
+            return;
+          }
+          e += es;
+        }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
-        var count = dv.getUint32(payload + 4);
-        var k = payload + 8;
-        for (var i = 1; i <= count && k + 8 <= boxEnd; i++) {
-          var ks = dv.getUint32(k);
-          if (ks < 8 || k + ks > boxEnd) break;
-          var name = _vgpsLatin1(u8, k + 8, k + ks);
+        var _count = dv.getUint32(payload + 4);
+        var _k = payload + 8;
+        for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
+          var ks = dv.getUint32(_k);
+          if (ks < 8 || _k + ks > boxEnd) break;
+          var name = _vgpsLatin1(u8, _k + 8, _k + ks);
           if (_VGPS_KEY_RE.test(name)) {
             scope.hit.add(i);
             var red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
-            for (var j = 0; j < ks - 8; j++) u8[k + 8 + j] = red.charCodeAt(j);
+            for (var j = 0; j < ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
           }
-          k += ks;
+          _k += ks;
         }
       } else if (scope && parentType === "ilst") {
         scope.items.push({

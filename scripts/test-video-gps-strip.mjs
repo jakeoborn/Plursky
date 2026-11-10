@@ -20,7 +20,7 @@ import { readFileSync, existsSync, readdirSync, openAsBlob } from "node:fs";
 import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 import { fileURLToPath } from "node:url";
-import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S } from "./lib/mov-fixture.mjs";
+import { buildMov, PLANT, LEAKS, ISO_SHAPE, CAPTURE_UNIX_S, BIN_PLANT } from "./lib/mov-fixture.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PT = readFileSync(join(ROOT, "photo-tag.jsx"), "utf8");
@@ -73,6 +73,14 @@ async function suite(strip, slim) {
   ok((await strip(blobOf(Buffer.from("\x1aE\xdf\xa3 not an ISO-BMFF file 28.5412", "latin1")))) === null, "V11 a non-QuickTime/MP4 file is refused");
   ok((await strip(blobOf(bytes.subarray(0, bytes.length - 40)))) === null, "V12 a truncated file is refused");
   ok((await strip(null)) === null, "V13 no blob → null, no throw");
+  // Binary location (no text to grep): a vendor udta box, and a GPS track.
+  const bin = buildMov({ udtaBinary: true });
+  ok(bin.bytes.includes(BIN_PLANT), "V15 setup: the fixture carries a binary fix in udta");
+  const rbin = await strip(blobOf(bin.bytes));
+  ok(rbin && !(await bytesOf(rbin.blob)).includes(BIN_PLANT), "V15 a binary fix in an unknown udta box is blanked");
+  ok((await strip(blobOf(buildMov({ trackFormat: "gpmd" }).bytes))) === null, "V16 a track with a non-allowlisted sample format (GoPro gpmd) is refused");
+  ok((await strip(blobOf(buildMov({ trackFormat: "camm" }).bytes))) === null, "V16b a camm (camera motion/GPS) track is refused");
+  ok((await strip(blobOf(buildMov({ secondEntry: "gpmd" }).bytes))) === null, "V16c a gpmd sample entry behind an allowed first entry is refused");
   const clean = buildMov({ noGps: true });
   const rc = await strip(blobOf(clean.bytes));
   ok(rc && (await bytesOf(rc.blob)).equals(clean.bytes), "V14 a clip with no GPS uploads byte-identical");
@@ -111,11 +119,14 @@ const ok = (c, msg) => { if (c) pass++; else { fail++; console.log(`  ✗ ${msg}
 
 // M. mutations
 const MUTANTS = [
-  ["udta ©xyz left in place", STRIP_SRC.replace('type === "©xyz" || type === "loci"', "false"), SLIM_SRC],
+  ["udta location boxes left in place", STRIP_SRC.replace('type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")', "false"), SLIM_SRC],
   ["top-level free copy left in place", STRIP_SRC.replace('if (type === "free" || type === "skip") {\n        zero(payload, boxEnd);', 'if (type === "free" || type === "skip") {'), SLIM_SRC],
   ["location keys not recognised", STRIP_SRC.replace("if (_VGPS_KEY_RE.test(name)) {", "if (false) {"), SLIM_SRC],
   ["mdat passed through unscanned", STRIP_SRC.replace("const r = await _vgpsScanMedia(blob, pos + hdr, pos + boxSize);", "const r = { parts: [blob.slice(pos + hdr, pos + boxSize)], n: 0 };"), SLIM_SRC],
   ["no window overlap", STRIP_SRC.replace("_VGPS_OVERLAP = 4096", "_VGPS_OVERLAP = 0"), SLIM_SRC],
+  ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
+  ["only the first sample entry checked", STRIP_SRC.replace("k < count; k++", "k < Math.min(count, 1); k++"), SLIM_SRC],
+  ["track-format allowlist off", STRIP_SRC.replace("if (!_VGPS_TRACK_FORMATS.has(fmt))", "if (false)"), SLIM_SRC],
   ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}"), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];

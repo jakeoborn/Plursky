@@ -35,9 +35,10 @@ function mvhd() {
   p.writeUInt32BE(600, 12); p.writeUInt32BE(6000, 16);
   return box("mvhd", p);
 }
-function trak(timedKey) {
-  const mebx = box("mebx", Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey))));
-  const stsd = box("stsd", u32(0), u32(1), mebx);
+function trak(timedKey, format = "mebx", second = null) {
+  const mebx = box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey))));
+  const entries = second ? [mebx, box(second, Buffer.alloc(6), u16(1), BIN_PLANT)] : [mebx];
+  const stsd = box("stsd", u32(0), u32(entries.length), ...entries);
   return box("trak", box("mdia", box("minf", box("stbl", stsd))));
 }
 // Deterministic filler that never spells a coordinate.
@@ -47,13 +48,19 @@ function filler(n, seed = 7) {
   return b;
 }
 
-// opts: { timedKey, mdatBytes, straddleAt, noGps }
+// A fix as raw float64s, the way a vendor's binary udta box or a GPS track
+// carries it: no text for a regex to find.
+export const BIN_PLANT = (() => { const b = Buffer.alloc(16); b.writeDoubleBE(PLANT.lat, 0); b.writeDoubleBE(PLANT.lng, 8); return b; })();
+
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   const items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
   const meta = metaBox(items);
-  const udta = opts.noGps ? box("udta") : box("udta", box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso));
-  const moov = box("moov", mvhd(), trak(timedKey), meta, udta);
+  const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
+  if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
+  const udta = box("udta", ...udtaKids);
+  const moov = box("moov", mvhd(), trak(timedKey, opts.trackFormat, opts.secondEntry), meta, udta);
   let media = filler(opts.mdatBytes || 64 * 1024);
   if (!opts.noGps) {
     // orphaned meta copy + a bare coordinate string, as real clips carry

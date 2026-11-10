@@ -443,6 +443,11 @@ async function _parseVideoMeta(file) {
 const _VGPS_MAX_BOX = 64 * 1024 * 1024;
 const _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
 const _VGPS_KEY_RE = /location|ISO6709|gps/i;
+const _VGPS_TRACK_FORMATS = new Set([
+  "hvc1", "hev1", "avc1", "avc3", "av01", "vp09", "mp4v", "ap4h", "ap4x", "apch", "apcn", "apcs", "apco", "dvh1", "dvhe", "jpeg", "mjpa",
+  "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "ac-3", "ec-3", "Opus", "fLaC", "samr", "sawb", ".mp3",
+  "mebx", "tmcd", "text", "tx3g", "wvtt", "c608",
+]);
 function _vgpsLatin1(u8, a, b) {
   let s = "";
   for (let i = a; i < b; i++) s += String.fromCharCode(u8[i]);
@@ -470,13 +475,28 @@ function _stripVideoGpsRegion(u8) {
       const payload = pos + hdr, boxEnd = pos + size;
       if (type === "free" || type === "skip") {
         zero(payload, boxEnd);
-      } else if (type === "©xyz" || type === "loci") {
+      } else if (type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")) {
+        // udta is user data, never needed for playback. Location can sit in
+        // it as text (©xyz, loci) or in a vendor's BINARY box no regex can
+        // read, so every udta child but `meta` (walked below) is blanked.
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (type === "stsd") {
         // A timed metadata track (mebx) declares its keys here; its VALUES
         // live in mdat, which this never rewrites. One that names a location
         // key cannot be made clean in place.
         if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) { refuse = "timed location track"; return; }
+        // Binary GPS tracks (GoPro gpmd, camm, …) carry no text to find, so
+        // only known audio/video/timecode/text/mebx sample formats pass.
+        // EVERY sample entry is checked; an unreadable table is refused.
+        const count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
+        let e = payload + 8;
+        for (let k = 0; k < count; k++) {
+          const es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+          if (es < 8 || e + es > boxEnd) { refuse = "unreadable sample table"; return; }
+          const fmt = type4(e + 4);
+          if (!_VGPS_TRACK_FORMATS.has(fmt)) { refuse = "unknown track format " + JSON.stringify(fmt); return; }
+          e += es;
+        }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
         const count = dv.getUint32(payload + 4);
         let k = payload + 8;

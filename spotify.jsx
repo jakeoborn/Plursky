@@ -1260,19 +1260,27 @@ const _POSTER_TIMEOUT_MS = 8000;
 // lead-in, a pocket, a lens cap. A dark night-set clip still has stage lights
 // in it and passes, so only a frame with no highlights at all is skipped.
 const _BLACK_MAX_LUMA = 40;
-function _frameIsBlack(v) {
+// "ok" | "black" | "unpainted". A frame read right after `seeked` can come
+// back with nothing drawn (every pixel alpha 0) before the decoder has
+// presented it (seen on CI Chromium as 19/20 posters). That is not a black
+// frame: it is re-read, not skipped.
+function _frameState(v) {
   try {
     const c = document.createElement("canvas");
     c.width = c.height = 24;
     const g = c.getContext("2d");
     g.drawImage(v, 0, 0, 24, 24);
     const d = g.getImageData(0, 0, 24, 24).data;
+    let painted = false;
     for (let i = 0; i < d.length; i += 4) {
-      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return false;
+      if (d[i + 3] === 0) continue;
+      painted = true;
+      if (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2] > _BLACK_MAX_LUMA) return "ok";
     }
-    return true;
-  } catch { return false; }
+    return painted ? "black" : "unpainted";
+  } catch { return "ok"; }
 }
+const _POSTER_PAINT_RETRIES = 6, _POSTER_PAINT_WAIT_MS = 50;
 function _videoPosterBlob(blob) {
   return new Promise((resolve) => {
     let url = null, v = null, settled = false, timer = null;
@@ -1321,11 +1329,15 @@ function _videoPosterBlob(blob) {
           .filter((t, i, a) => t < dur && (i === 0 || t > a[i - 1] + 0.05));
         if (v.readyState >= 2) seek(); else v.onloadeddata = seek;
       };
-      v.onseeked = () => {
-        if (!_frameIsBlack(v)) return draw();
+      const judge = (tries) => {
+        if (settled) return;
+        const st = _frameState(v);
+        if (st === "unpainted" && tries < _POSTER_PAINT_RETRIES) return setTimeout(() => judge(tries + 1), _POSTER_PAINT_WAIT_MS);
+        if (st === "ok") return draw();
         if (++at < times.length) return seek();
         done(null);
       };
+      v.onseeked = () => judge(0);
       v.onerror = () => done(null);
       v.src = url;
     } catch { done(null); }
