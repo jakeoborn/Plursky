@@ -241,23 +241,41 @@ h1 span.dim { color: var(--text-3); opacity: .3; }
 .g-cap b { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
 .g-cap small { display: block; color: var(--text-2); font-size: 13px; max-width: 30ch; }
 
-.fest-list { margin-top: 36px; border-top: 1px solid var(--line-2); }
-.fest-row { display: grid; grid-template-columns: 48px 72px minmax(0, 1fr) auto 28px; gap: 18px; align-items: center; width: 100%; padding: 22px 0; border: 0; border-bottom: 1px solid var(--line-2); background: none; text-align: left; cursor: pointer; color: var(--ink); }
-.fest-row:hover h3 { color: var(--signal); }
-.fest-row[disabled] { cursor: default; }
-.fest-row[disabled] h3 { color: var(--text-2); }
+.fest-list { margin-top: 28px; border-top: 1px solid var(--line-2); }
+.fest-row { display: grid; grid-template-columns: 48px 72px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line-2); color: var(--ink); }
 .fest-row > .num { font-size: 15px; color: var(--text-2); }
 .art { width: 72px; height: 72px; border-radius: 4px; display: grid; place-items: center; font-weight: 600; font-size: 20px; letter-spacing: -.04em; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
-.fest-row h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -.045em; line-height: 1.08; transition: color .2s; }
+.fest-row h3 { margin: 0; font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; letter-spacing: -.045em; line-height: 1.08; }
+.fest-row h3 a { color: inherit; text-decoration: none; transition: color .2s; }
+.fest-row h3 a:hover { color: var(--signal); }
+.fest-row.off h3 { color: var(--text-2); }
 .fest-row p { margin: 4px 0 0; color: var(--text-2); font-size: 14.5px; }
-.fest-row .pill { font-size: 12px; padding: 7px 14px; }
+.fest-act { display: flex; align-items: center; gap: 12px; }
+.fest-act .pill { font-size: 12px; padding: 7px 14px; }
+.years { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.years .lbl { font-size: 10.5px; color: var(--text-3); margin-right: 4px; }
+.years a { font-size: 12.5px; font-weight: 500; padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 4px; color: var(--text-2); text-decoration: none; }
+.years a:hover { border-color: var(--signal); color: var(--signal); }
+.seg { display: inline-flex; margin-top: 32px; border: 1px solid var(--line-2); border-radius: 4px; padding: 3px; gap: 3px; }
+.seg button { font: inherit; font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 9px 14px; border: 0; border-radius: 2px; background: none; color: var(--text-2); cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.seg button span { opacity: .6; margin-left: 4px; }
 .mob-pill { display: none; }
 @media (max-width: 700px) {
-  .fest-row { grid-template-columns: 56px minmax(0, 1fr) 22px; gap: 14px; }
-  .fest-row > .num, .fest-row > .pill { display: none; }
+  .fest-row { grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; }
+  .fest-row > .num, .fest-act > .pill { display: none; }
   .fest-row .art { width: 56px; height: 56px; font-size: 16px; }
   .fest-row .mob-pill { display: inline-block; margin-top: 8px; }
+  .fest-act { grid-column: 2; }
+  .seg { display: flex; }
+  .seg button { flex: 1; padding: 9px 8px; }
 }
+.ob-group { margin: 22px 0 4px; color: var(--text-3); }
+.ob-group:first-child { margin-top: 0; }
+.relive-nights { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin: 4px 0 18px; }
+.relive-nights div { border: 1px solid var(--line-2); border-radius: 4px; padding: 12px; }
+.relive-nights b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -.04em; }
+.relive-nights small { color: var(--text-2); font-size: 12px; }
 
 .plus-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; margin-top: 40px; }
 .tier { border: 1px solid var(--line-2); border-radius: 4px; padding: 28px; min-width: 0; }
@@ -455,10 +473,14 @@ footer nav { display: flex; gap: 18px; }
   <section class="sec" id="festivals">
     <div class="wrap">
       <div class="sec-head">
-        <div><span class="kick">Upcoming</span><h2 class="h2x">Where to next?</h2></div>
-        <p>Lineups land in Plursky as soon as festivals publish them. Set times follow the moment they drop.</p>
+        <div><span class="kick">Every festival</span><h2 class="h2x">Every festival, every year.</h2></div>
+        <p>Plan the ones coming up and relive the ones you went to. Every festival has its own page, with each earlier year Plursky holds.</p>
       </div>
-      <div class="fest-list" id="festList"></div>
+      <div class="seg" role="tablist" aria-label="Festivals">
+        <button type="button" role="tab" id="segUp" aria-selected="true" aria-controls="festList">Coming up<span id="segUpN"></span></button>
+        <button type="button" role="tab" id="segPast" aria-selected="false" aria-controls="festList">Earlier this year<span id="segPastN"></span></button>
+      </div>
+      <div class="fest-list" id="festList" role="tabpanel"></div>
     </div>
   </section>
 
@@ -545,11 +567,19 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
   function localDay(t) { var d = new Date(t); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   var TODAY = localDay(Date.now());
   var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  function initials(s) { var w = String(s).replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean); return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "")[1] || "")).toUpperCase(); }
+  function rangeLabel(a, b) {
+    if (!a) return "";
+    var x = a.split("-").map(Number), y = (b || a).split("-").map(Number);
+    if (a === (b || a)) return MON[x[1] - 1] + " " + x[2] + ", " + x[0];
+    if (x[1] === y[1]) return MON[x[1] - 1] + " " + x[2] + "–" + y[2] + ", " + x[0];
+    return MON[x[1] - 1] + " " + x[2] + " – " + MON[y[1] - 1] + " " + y[2] + ", " + y[0];
+  }
+  function initials(s) { var w = String(s).replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(function (x) { return x && !/^(19|20)\d\d$/.test(x); }); return ((w[0] || "?")[0] + (w[1] ? w[1][0] : (w[0] || "")[1] || "")).toUpperCase(); }
   var ALL = (D.festivals || []).map(function (f) {
     var live = !!(f.start && f.end && TODAY >= f.start && TODAY <= f.end);
     return Object.assign({}, f, {
       live: live,
+      ended: !!(f.end && f.end < TODAY),
       open: !!f.available && !!f.hasSchedule,
       mono: initials(f.short || f.name),
       art: "linear-gradient(140deg," + (f.accent || "#273334") + ",#0b0620)",
@@ -562,10 +592,24 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
     if (!b.start) return -1;
     return a.start < b.start ? -1 : a.start > b.start ? 1 : a.name.localeCompare(b.name);
   });
+  // Earlier this year: festivals in the registry that have ended, plus
+  // editions this year that only the Past Festivals library holds (a festival
+  // whose registry entry has already moved on to next year). Newest first.
+  var YEAR = TODAY.slice(0, 4);
+  var ENDED = ALL.filter(function (f) { return f.ended && String(f.start || "").slice(0, 4) === YEAR; });
+  ALL.forEach(function (f) {
+    (f.past || []).forEach(function (e) {
+      if (String(e.year) !== YEAR || !e.last || e.last >= TODAY || ALL.some(function (x) { return x.id === e.id; })) return;
+      ENDED.push({ id: e.id, name: e.name, short: e.name.replace(/\s+20\d\d$/, ""), location: f.location, city: f.city, dates: rangeLabel(e.first, e.last), start: e.first, end: e.last,
+        archive: true, ended: true, open: false, page: f.page, past: (f.past || []).filter(function (x) { return x.year < e.year; }), mono: f.mono, art: f.art, stages: [] });
+    });
+  });
+  ENDED.sort(function (a, b) { return a.end < b.end ? 1 : a.end > b.end ? -1 : 0; });
   var OPEN = UPCOMING.filter(function (f) { return f.open; });
   var NEXT = OPEN[0] || null;
-  var statusOf = function (f) { return f.live ? "Live now" : f.open ? (f.scheduleTBA ? "Lineup in" : "Set times in") : "Not open yet"; };
-  var pillCls = function (f) { return f.live ? "pill live" : f.open ? "pill" : "pill off"; };
+  var statusOf = function (f) { return f.archive ? "In Past Festivals" : f.ended ? "Ended" : f.live ? "Live now" : f.open ? (f.scheduleTBA ? "Lineup in" : "Set times in") : "Not open yet"; };
+  var pillCls = function (f) { return f.live ? "pill live" : f.ended && !f.archive ? "pill off" : (f.open || f.archive) ? "pill" : "pill off"; };
+  var editionHref = function (id) { return "/?tab=past&edition=" + encodeURIComponent(id); };
 
   function countdown(target) {
     var ms = Math.max(0, (target || 0) - Date.now());
@@ -718,13 +762,41 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
     Array.prototype.forEach.call(document.querySelectorAll(".scr"), function (s) { if (s.querySelector("[data-stages]")) { var sb = s.querySelector("[data-sb]"); if (sb) sb.textContent = fmt(sim).replace(/ (AM|PM)/, ""); } });
   }, 1500);
 
-  /* ---------- upcoming list ---------- */
-  $("festList").innerHTML = UPCOMING.slice(0, 8).map(function (f, i) {
-    return '<button type="button" class="fest-row" ' + (f.open ? 'data-open-ob data-fest-pick="' + esc(f.id) + '"' : "disabled") + '>' +
-      '<span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + f.art + '" aria-hidden="true">' + esc(f.mono) + '</span>' +
-      '<span><h3>' + esc(f.name) + '</h3><p>' + esc(f.location) + ' · ' + esc(f.dates) + '</p><span class="' + pillCls(f) + ' mob-pill">' + statusOf(f) + '</span></span>' +
-      '<span class="' + pillCls(f) + '">' + statusOf(f) + '</span>' + (f.open ? '<svg class="arrow" aria-hidden="true"><use href="#i-arrow"/></svg>' : "<span></span>") + '</button>';
-  }).join("");
+  /* ---------- every festival: coming up, or earlier this year ---------- */
+  function yearsHTML(f) {
+    var p = (f.past || []).slice(0, 8);
+    if (!p.length) return "";
+    return '<div class="years"><span class="lbl">Earlier years</span>' + p.map(function (e) {
+      return '<a href="' + editionHref(e.id) + '" aria-label="' + esc(e.name) + ' in Past Festivals">' + e.year + '</a>';
+    }).join("") + ((f.past || []).length > p.length && f.page ? '<a href="' + esc(f.page) + '">All ' + f.past.length + '</a>' : "") + '</div>';
+  }
+  function actionHTML(f) {
+    if (f.archive) return '<a class="btn small" href="' + editionHref(f.id) + '">Open</a>';
+    if (f.open) return '<button type="button" class="btn small' + (f.ended ? "" : " primary") + '" data-open-ob data-fest-pick="' + esc(f.id) + '">' + (f.ended ? "Relive it" : "Plan it") + '</button>';
+    return f.page ? '<a class="btn small" href="' + esc(f.page) + '">Details</a>' : "";
+  }
+  function festRows(list) {
+    if (!list.length) return '<p class="hint" style="padding:22px 0">Nothing here yet.</p>';
+    return list.map(function (f, i) {
+      var name = f.page && !f.archive ? '<a href="' + esc(f.page) + '">' + esc(f.name) + '</a>' : esc(f.name);
+      return '<div class="fest-row' + (f.open || f.archive ? "" : " off") + '">' +
+        '<span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + f.art + '" aria-hidden="true">' + esc(f.mono) + '</span>' +
+        '<span><h3>' + name + '</h3><p>' + esc(f.location) + ' · ' + esc(f.dates) + '</p><span class="' + pillCls(f) + ' mob-pill">' + statusOf(f) + '</span>' + yearsHTML(f) + '</span>' +
+        '<span class="fest-act"><span class="' + pillCls(f) + '">' + statusOf(f) + '</span>' + actionHTML(f) + '</span></div>';
+    }).join("");
+  }
+  $("segUpN").textContent = UPCOMING.length;
+  $("segPastN").textContent = ENDED.length;
+  $("segPast").childNodes[0].nodeValue = "Earlier in " + YEAR;
+  function showList(past) {
+    $("segUp").setAttribute("aria-selected", String(!past));
+    $("segPast").setAttribute("aria-selected", String(past));
+    $("festList").setAttribute("aria-labelledby", past ? "segPast" : "segUp");
+    $("festList").innerHTML = festRows(past ? ENDED : UPCOMING);
+  }
+  $("segUp").addEventListener("click", function () { showList(false); });
+  $("segPast").addEventListener("click", function () { showList(true); });
+  showList(false);
 
   /* ---------- onboarding: real lineup in, real picks out ---------- */
   // Writes the same keys the app reads, then hands off with ?f=<id>:
@@ -734,6 +806,10 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
   var LINEUPS = {};
   var ob = $("ob"), body = $("obBody"), nextB = $("obNext"), meta = $("obMeta"), backB = $("obBack");
   var festById = function (id) { return ALL.find(function (f) { return f.id === id; }) || null; };
+  // A festival that has ended takes the short path: pick it, then relive it
+  // (Memories and Scan my weekend). Artist picks only make sense before.
+  var isPast = function () { var f = festById(state.fest); return !!(f && f.ended); };
+  var stepsTotal = function () { return isPast() ? 2 : 4; };
   var picksFor = function (id) { return state.picks[id] || (state.picks[id] = {}); };
   var pickCount = function () { return Object.keys(picksFor(state.fest)).length; };
   var lastFocus = null;
@@ -783,7 +859,7 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
   backB.addEventListener("click", function () { if (state.step > 0) { state.step--; render(); } });
   nextB.addEventListener("click", function () {
     if (state.step === 0 && !state.fest) return;
-    if (state.step < 3) { state.step++; if (state.step === 1) loadLineup(state.fest); render(); body.scrollTop = 0; }
+    if (state.step < stepsTotal() - 1) { state.step++; if (state.step === 1) loadLineup(state.fest); render(); body.scrollTop = 0; }
     else handoff();
   });
 
@@ -802,7 +878,9 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
       Object.keys(p).forEach(function (n) { p[n].forEach(function (a) { if (next.indexOf(a) < 0) next.push(a); }); });
       localStorage.setItem(key, JSON.stringify(next));
     } catch (e) {}
-    location.href = "/?f=" + encodeURIComponent(id);
+    // An ended festival opens straight on its Memories (?tab=memories survives
+    // the app's festival-switch reload; only ?f= is stripped).
+    location.href = "/?f=" + encodeURIComponent(id) + (isPast() ? "&tab=memories" : "");
   }
 
   var head = function (k1, k2, title, b1, b2) { return '<div class="ob-meta"><span class="lbl">' + k1 + '</span><span class="lbl">' + k2 + '</span></div><h3 id="obTitle">' + title + '</h3><div class="band"><div class="band-in"><span class="lbl">' + b1 + '</span><span class="lbl">' + b2 + '</span></div></div>'; };
@@ -819,19 +897,36 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
 
   function render() {
     var s = state.step, f = festById(state.fest);
-    $("obCount").textContent = (s + 1) + " / 4";
-    $("obRule").style.width = ((s + 1) * 25) + "%";
+    var total = stepsTotal();
+    $("obCount").textContent = (s + 1) + " / " + total;
+    $("obRule").style.width = ((s + 1) / total * 100) + "%";
     backB.style.visibility = s === 0 ? "hidden" : "visible";
     meta.textContent = "";
     nextB.disabled = false;
     var h = "";
     if (s === 0) {
-      h = head("Step 01", "Festival", "Pick your festival.", "Upcoming", OPEN.length + " open now") + '<div class="ob-pad"><p class="hint">Plursky loads the official lineup, stages and map.</p>' +
-        UPCOMING.slice(0, 8).map(function (x, i) {
-          return '<button type="button" class="ob-fest" data-fest="' + esc(x.id) + '" aria-pressed="' + (x.id === state.fest) + '"' + (x.open ? "" : " disabled") + '><span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + x.art + '" aria-hidden="true">' + esc(x.mono) + '</span><span><b>' + esc(x.name) + '</b><small>' + esc(x.city) + ' · ' + esc(x.dates) + '</small><span class="' + pillCls(x) + '">' + statusOf(x) + '</span></span><span class="radio" aria-hidden="true"></span></button>';
-        }).join("") + '</div>';
+      var festBtn = function (x, i) {
+        return '<button type="button" class="ob-fest" data-fest="' + esc(x.id) + '" aria-pressed="' + (x.id === state.fest) + '"' + (x.open ? "" : " disabled") + '><span class="num">' + pad(i + 1) + '</span><span class="art" style="background:' + x.art + '" aria-hidden="true">' + esc(x.mono) + '</span><span><b>' + esc(x.name) + '</b><small>' + esc(x.city) + ' · ' + esc(x.dates) + '</small><span class="' + pillCls(x) + '">' + statusOf(x) + '</span></span><span class="radio" aria-hidden="true"></span></button>';
+      };
+      var gone = ENDED.filter(function (x) { return x.open; });
+      h = head("Step 01", "Festival", "Pick your festival.", "Coming up or been already", (OPEN.length + gone.length) + " open") + '<div class="ob-pad"><p class="hint">Plan one that\'s coming up, or relive one you went to.</p>' +
+        '<div class="lbl ob-group">Coming up</div>' + UPCOMING.map(festBtn).join("") +
+        (gone.length ? '<div class="lbl ob-group">Earlier in ' + YEAR + '</div>' + gone.map(festBtn).join("") : "") + '</div>';
       nextB.textContent = "Continue";
       nextB.disabled = !f;
+    } else if (s === 1 && isPast()) {
+      var LP = LINEUPS[f.id], sets = LP && LP.status === "ready" ? LP.acts.length + " artists" : "Every set";
+      var nights = [], d0 = f.start ? new Date(f.start + "T12:00:00") : null, d1 = f.end ? new Date(f.end + "T12:00:00") : null;
+      for (var d = d0; d && d <= d1 && nights.length < 17; d = new Date(d.getTime() + 864e5)) nights.push(d);
+      var ys = (f.past || []).slice(0, 8);
+      h = head("Step 02", esc(f.datesShort), "Relive " + esc(f.short) + ".", "Your photos, sorted by set", sets) + '<div class="ob-pad">' +
+        (nights.length && nights.length <= 6 ? '<div class="relive-nights">' + nights.map(function (n, i) { return '<div><small>Night ' + (i + 1) + '</small><b>' + ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][n.getDay()] + ' ' + n.getDate() + '</b></div>'; }).join("") + '</div>' : "") +
+        '<div class="nrow"><span class="num">01</span><span><b>Scan my weekend.</b><small>On iPhone, Plursky reads your camera roll for ' + esc(f.short) + '\'s nights and finds every photo and clip. No hand-picking.</small></span><span class="tag live">New</span></div>' +
+        '<div class="nrow"><span class="num">02</span><span><b>Sorted by set.</b><small>Each shot lands on the set you were at, by time and place. On the web, add your photos in Memories.</small></span><span class="tag live">Live</span></div>' +
+        '<div class="nrow"><span class="num">03</span><span><b>Recap and playlist.</b><small>A story-sized recap and an Apple Music playlist of the sets you saw.</small></span><span class="tag live">Live</span></div>' +
+        (ys.length ? '<div style="height:18px"></div><span class="kick">Been before?</span><div class="years">' + ys.map(function (e) { return '<a href="' + editionHref(e.id) + '">' + e.year + '</a>'; }).join("") + '</div><p class="fine">Earlier years open in Past Festivals, with the stages and sets the festival published. Photo sorting covers ' + esc(f.name) + '.</p>' : "") +
+        '<div style="height:14px"></div><a class="btn" style="width:100%" href="https://apps.apple.com/us/app/plursky-live/id6768888507" rel="noopener">Get the iPhone app to scan</a></div>';
+      nextB.textContent = "Open my Memories";
     } else if (s === 1) {
       var L = LINEUPS[f.id], count = L && L.status === "ready" ? L.acts.length + " artists" : "Official lineup";
       h = head("Step 02", esc(f.short), "Pick your people.", "The artists you came for", count) + '<div class="ob-pad">' +
@@ -867,8 +962,14 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
         state.fest = b.getAttribute("data-fest"); state.q = "";
         Array.prototype.forEach.call(body.querySelectorAll("[data-fest]"), function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
         nextB.disabled = false; loadLineup(state.fest);
+        var total = stepsTotal();
+        $("obCount").textContent = "1 / " + total; $("obRule").style.width = (100 / total) + "%";
       });
     });
+    if (state.step === 1 && isPast()) {
+      var LP = LINEUPS[state.fest];
+      if (LP && LP.status === "loading" && LP.promise) LP.promise.then(function () { if (state.step === 1 && !ob.hidden) render(); });
+    }
     var chips = $("obChips");
     if (chips) {
       var L = LINEUPS[state.fest];
