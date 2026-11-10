@@ -37,7 +37,7 @@ function mvhd(slack = false) {
   p.writeUInt32BE(600, 12); p.writeUInt32BE(6000, 16);
   return box("mvhd", slack ? Buffer.concat([p, BIN_PLANT]) : p);
 }
-function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false) {
+function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false, sample = { off: 0, size: 0 }) {
   const mebx = box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey))));
   const entries = second ? [mebx, box(second, Buffer.alloc(6), u16(1), BIN_PLANT)] : [mebx];
   const stsd = box("stsd", u32(0), u32(entries.length), ...entries);
@@ -48,8 +48,14 @@ function trak(timedKey, format = "mebx", second = null, nested = false, opaque =
   const o = opaque === true ? [box("gmhd", box("gmin", Buffer.alloc(16)), box("gpsg", BIN_PLANT)), box("dinf", box("gpsd", BIN_PLANT))] : [];
   const tref = opaque === "tmcd" ? [box("tref", box("tmcd", u32(1), BIN_PLANT))] : opaque ? [box("tref", box("gpsr", BIN_PLANT))] : [];
   const sgpd0 = opaque === "sgpd" ? [box("sgpd", u32(0), "roll", u32(1), BIN_PLANT)] : [];
-  const stco = slack ? [box("stco", u32(0), u32(0), BIN_PLANT)] : [];
-  return box("trak", ...v("vgps"), ...tref, box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), ...o, box("stbl", stsd, ...stco, ...sgpd0, ...v("gpst")))));
+  // Sample tables: this track's one sample spans the media after any video
+  // samples, so every mdat byte is accounted for.
+  const one = sample.size > 0;
+  const stsz = box("stsz", u32(0), u32(one ? sample.size : 0), u32(one ? 1 : 0));
+  const stsc = box("stsc", u32(0), u32(one ? 1 : 0), ...(one ? [u32(1), u32(1), u32(1)] : []));
+  const stco = box("stco", u32(0), u32(one ? 1 : 0), ...(one ? [u32(sample.off)] : []), ...(slack === true ? [BIN_PLANT] : []));
+  const stss = slack === "short" ? [box("stss", u32(0), u32(9), u32(1))] : []; // claims 9 entries, holds 1
+  return box("trak", ...v("vgps"), ...tref, box("mdia", ...v("gpsm"), box("minf", ...v("gpsn"), ...o, box("stbl", stsd, stsz, stsc, stco, ...stss, ...sgpd0, ...v("gpst")))));
 }
 // Deterministic filler that never spells a coordinate.
 function filler(n, seed = 7) {
@@ -89,7 +95,7 @@ function videoTrak(v, mdatStart) {
   if (v.fam === "avc") cfg = box("avcC", Buffer.from([1, 0x64, 0, 0x1f, 0xff, 0xe0, 0]));
   else {
     const h = Buffer.alloc(23); h[0] = 1; h[21] = 0x03;
-    const arrays = v.hvccSei ? Buffer.concat([Buffer.from([0x80 | 39]), u16(1), u16(v.hvccSei.length), v.hvccSei]) : Buffer.alloc(0);
+    const arrays = v.hvccSei ? Buffer.concat([Buffer.from([0x80 | (v.hvccArray || 39)]), u16(1), u16(v.hvccSei.length), v.hvccSei]) : Buffer.alloc(0);
     h[22] = v.hvccSei ? 1 : 0;
     cfg = box("hvcC", h, arrays);
   }
@@ -100,7 +106,7 @@ function videoTrak(v, mdatStart) {
   const stco = box("stco", u32(0), u32(1), u32(mdatStart));
   return { trak: box("trak", box("mdia", box("minf", box("stbl", stsd, stsz, stsc, stco)))), bytes: Buffer.concat(samples) };
 }
-// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, mdatBytes, straddleAt, noGps }
+// opts: { timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, gap, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
@@ -109,11 +115,14 @@ export function buildMov(opts = {}) {
   const udtaKids = opts.noGps ? [] : [box(Buffer.from("©xyz", "latin1"), u16(PLANT.iso.length), u16(0x15c7), PLANT.iso)];
   if (opts.udtaBinary) udtaKids.push(box("GPSb", BIN_PLANT));
   const udta = box("udta", ...udtaKids);
-  const ftypLen = 8 + 12, mdatStart = ftypLen + 8 + 8;
+  const ftypLen = 8 + 12, mdatStart = ftypLen + 8 + 8, mediaLen = opts.mdatBytes || 64 * 1024;
   const vt = opts.video ? videoTrak(opts.video, mdatStart) : null;
-  const moov = box("moov", mvhd(!!opts.leafSlack), ...(vt ? [vt.trak] : []), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, !!opts.leafSlack), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
-  let media = filler(opts.mdatBytes || 64 * 1024);
+  const vlen = vt ? vt.bytes.length : 0, gapLen = opts.gap ? 512 : 0;
+  const other = { off: mdatStart + vlen, size: mediaLen - vlen - gapLen };
+  const moov = box("moov", mvhd(!!opts.leafSlack), ...(vt ? [vt.trak] : []), trak(timedKey, opts.trackFormat, opts.secondEntry, !!opts.nestedGps, opts.opaqueGps || false, opts.leafSlack === "short" ? "short" : !!opts.leafSlack, other), meta, udta, ...(opts.nestedGps ? [box("gps ", BIN_PLANT)] : []));
+  let media = filler(mediaLen);
   if (vt) vt.bytes.copy(media, 0);
+  if (opts.gap) BIN_PLANT.copy(media, mediaLen - 256); // in bytes no sample table points at
   if (!opts.noGps) {
     // orphaned meta copy + a bare coordinate string, as real clips carry
     meta.copy(media, 4096);

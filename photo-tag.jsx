@@ -587,6 +587,10 @@ function _stripVideoGpsRegion(u8, layout = null) {
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (type === "uuid" || type === "XMP_" || (parentType === "meta" && !["hdlr", "keys", "ilst"].includes(type))) {
         zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "mvex") {
+        // A fragmented movie keeps its samples in moof boxes this does not
+        // walk: refused, not guessed at.
+        refuse = "fragmented movie"; return;
       } else if (_VGPS_CHILDREN[parentType] && !_VGPS_CHILDREN[parentType].has(type)) {
         zero(payload, boxEnd); toFree(pos); n++;
       } else if (_VGPS_CHILDREN[parentType] && type !== "stsd" && !_vgpsWalks(type, parentType)) {
@@ -630,23 +634,9 @@ function _stripVideoGpsRegion(u8, layout = null) {
               const cs = dv.getUint32(c);
               if (cs < 8 || c + cs > e + es) break;
               if (type4(c + 4) === cfg) {
-                if (fam === "avc" && cs >= 13) L = (u8[c + 12] & 3) + 1;
-                if (fam === "hevc" && cs >= 31) {
-                  L = (u8[c + 29] & 3) + 1;
-                  let a = c + 31;
-                  for (let k2 = 0, na = u8[c + 30]; k2 < na; k2++) {
-                    if (a + 3 > c + cs) { L = 0; break; }
-                    const nt = u8[a] & 0x3f, nn = (u8[a + 1] << 8) | u8[a + 2]; a += 3;
-                    if ((nt < 32 || nt > 34) && nt !== 39) { refuse = "hvcC carries NAL type " + nt; return; }
-                    for (let q = 0; q < nn; q++) {
-                      if (a + 2 > c + cs) { L = 0; break; }
-                      const nl = (u8[a] << 8) | u8[a + 1];
-                      if (nt === 39 && !_vgpsFixedSei(u8, a + 2, nl)) { refuse = "hvcC carries an SEI it cannot vouch for"; return; }
-                      a += 2 + nl;
-                    }
-                  }
-                  if (a > c + cs) L = 0;
-                }
+                const r = _vgpsConfig(fam, u8, c + 8, c + cs);
+                if (r.refuse) { refuse = r.refuse; return; }
+                L = r.L;
               }
               c += cs;
             }
@@ -749,12 +739,60 @@ function _vgpsFixedSei(b, p, len) {
   }
   return false;
 }
+// Parameter sets are kept (in avcC/hvcC and in-band), so they are capped:
+// real iPhone SPS are 37 bytes; 128 leaves headroom for VUI/HDR fields while
+// leaving no room for a payload of note.
+const _VGPS_PS_MAX = 128;
+// avcC/hvcC: every NAL unit is walked and checked by ITS OWN header type, the
+// declared counts must tile the box exactly, and only parameter sets (plus,
+// in hvcC, a fixed-size display SEI) may appear. { L } or { refuse }.
+function _vgpsConfig(fam, u8, p, z) {
+  // A config NAL is typed by its OWN header, never by the array it sits in.
+  const ps = (t, at, len) => len >= 1 && len <= _VGPS_PS_MAX && at + len <= z && !(u8[at] & 0x80) &&
+    (fam === "avc" ? (u8[at] & 0x1f) === t : ((u8[at] >> 1) & 0x3f) === t);
+  if (fam === "avc") {
+    if (z - p < 7) return { refuse: "unreadable avcC" };
+    const L = (u8[p + 4] & 3) + 1;
+    let a = p + 6;
+    const lists = [[u8[p + 5] & 0x1f, 7]];
+    const walk = (n, t) => { for (let i = 0; i < n; i++) { if (a + 2 > z) return false; const len = (u8[a] << 8) | u8[a + 1]; if (!ps(t, a + 2, len)) return false; a += 2 + len; } return true; };
+    if (!walk(u8[p + 5] & 0x1f, 7)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    if (a + 1 > z) return { refuse: "unreadable avcC" };
+    const npps = u8[a++];
+    if (!walk(npps, 8)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    // High profiles: chroma/bit-depth bytes, then SPS extensions.
+    if (a < z && [100, 110, 122, 144].includes(u8[p + 1])) {
+      if (a + 4 > z) return { refuse: "unreadable avcC" };
+      a += 3; const next = u8[a++];
+      if (!walk(next, 13)) return { refuse: "avcC carries a NAL it cannot vouch for" };
+    }
+    if (a !== z) return { refuse: "avcC has trailing bytes" };
+    return { L };
+  }
+  if (z - p < 23) return { refuse: "unreadable hvcC" };
+  const L = (u8[p + 21] & 3) + 1;
+  let a = p + 23;
+  for (let k = 0, na = u8[p + 22]; k < na; k++) {
+    if (a + 3 > z) return { refuse: "unreadable hvcC" };
+    const nt = u8[a] & 0x3f, nn = (u8[a + 1] << 8) | u8[a + 2]; a += 3;
+    for (let q = 0; q < nn; q++) {
+      if (a + 2 > z) return { refuse: "unreadable hvcC" };
+      const len = (u8[a] << 8) | u8[a + 1], at = a + 2;
+      if (at + len > z) return { refuse: "unreadable hvcC" };
+      if (nt === 39 ? !_vgpsFixedSei(u8, at, len) : !(nt >= 32 && nt <= 34 && ps(nt, at, len))) return { refuse: "hvcC carries an SEI it cannot vouch for" };
+      a = at + len;
+    }
+  }
+  if (a !== z) return { refuse: "hvcC has trailing bytes" };
+  return { L };
+}
 function _vgpsNalAction(fam, b, q, len) {
   const h = b[q];
   if (h & 0x80) return "refuse";                       // forbidden_zero_bit
   if (fam === "avc") {
     const t = h & 0x1f;
-    if ((t >= 1 && t <= 5) || t === 7 || t === 8) return "keep";
+    if (t >= 1 && t <= 5) return "keep";
+    if (t === 7 || t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
     if (t === 9) return len === 2 ? "keep" : "refuse";  // AUD
     if (t === 10 || t === 11) return len === 1 ? "keep" : "refuse";
     if (t === 6 || t === 12) return "fill";             // SEI, filler
@@ -762,7 +800,8 @@ function _vgpsNalAction(fam, b, q, len) {
   }
   if (len < 2) return "refuse";
   const t = (h >> 1) & 0x3f;
-  if (t <= 9 || (t >= 16 && t <= 21) || (t >= 32 && t <= 34)) return "keep";
+  if (t <= 9 || (t >= 16 && t <= 21)) return "keep";
+  if (t >= 32 && t <= 34) return len <= _VGPS_PS_MAX ? "keep" : "refuse";
   if (t === 35) return len === 3 ? "keep" : "refuse";   // AUD
   if (t === 36 || t === 37) return len === 2 ? "keep" : "refuse";
   if (t >= 38 && t <= 40) return "fill";                // filler, prefix/suffix SEI
@@ -780,15 +819,17 @@ function _vgpsFiller(fam, b, q, len) {
   if (len > hl) out[len - 1] = 0x80;                    // rbsp trailing bits
   return out;
 }
-// moov u8 + per-track layout → [{ off, size, fam, L }] sorted, or { refuse }.
-function _vgpsVideoSamples(u8, layout) {
+// moov u8 + per-track layout → EVERY track's samples [{ off, size, fam, L }]
+// sorted (fam only for H.264/HEVC), or { refuse }. A track without sample
+// tables is refused: its bytes could not be accounted for.
+function _vgpsSamples(u8, layout) {
   const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
   const out = [];
   for (const t of layout) {
-    if (!t.fam) continue;
+    if (!t.fmts || !t.fmts.length) return { refuse: "track without a sample description" };
     if (t.fmts.some(f => _VGPS_NAL_FAMILY[f] !== undefined && _VGPS_NAL_FAMILY[f] !== t.fam)) return { refuse: "mixed video sample entries" };
     const co = t.stco != null ? t.stco : t.co64;
-    if ((t.stsz == null && t.stz2 == null) || t.stsc == null || co == null || (t.stco != null && t.co64 != null)) return { refuse: "video track without sample tables" };
+    if ((t.stsz == null && t.stz2 == null) || t.stsc == null || co == null || (t.stco != null && t.co64 != null)) return { refuse: "track without sample tables" };
     let sizes;
     if (t.stsz != null) {
       const fixed = dv.getUint32(t.stsz + 4), cnt = dv.getUint32(t.stsz + 8);
@@ -813,7 +854,7 @@ function _vgpsVideoSamples(u8, layout) {
         for (let k = 0; k < spc; k++, i++) {
           if (i >= sizes.count) return { refuse: "sample tables disagree" };
           const sz = sizes(i);
-          out.push({ off, size: sz, fam: t.fam, L: t.lenSize });
+          out.push({ off, size: sz, fam: t.fam || null, L: t.lenSize || 0 });
           off += sz;
         }
       }
@@ -930,6 +971,7 @@ async function _stripVideoGps(blob) {
       if (boxSize === 1) { if (h.byteLength < 16) return null; boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12); hdr = 16; }
       else if (boxSize === 0) boxSize = size - pos;
       if (boxSize < hdr || pos + boxSize > size) return null;
+      if (["moof", "mfra", "sidx", "styp", "ssix"].includes(type)) return null; // fragmented: refused
       boxes.push({ pos, boxSize, hdr, type });
       pos += boxSize;
     }
@@ -949,7 +991,7 @@ async function _stripVideoGps(blob) {
       const s = _vgpsLatin1(u8, 0, u8.byteLength);
       if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) { console.warn("[backup] video GPS strip: coordinate left in", b.type); return null; }
       if (layout) {
-        const v = _vgpsVideoSamples(u8, layout);
+        const v = _vgpsSamples(u8, layout);
         if (v.refuse) { console.warn("[backup] video GPS strip refused:", v.refuse); return null; }
         samples = v.samples;
       }
@@ -962,15 +1004,25 @@ async function _stripVideoGps(blob) {
       const a = b.pos + b.hdr, z = b.pos + b.boxSize;
       const mine = samples.filter(s => s.off >= a && s.off + s.size <= z);
       covered += mine.length;
-      const np = await _vgpsNalPatches(blob, mine, a, z);
+      const np = await _vgpsNalPatches(blob, mine.filter(s => s.fam), a, z);
       if (np.refuse) { console.warn("[backup] video GPS strip refused:", np.refuse); return null; }
+      // mdat bytes no track's sample tables point at are dead to every player
+      // (iPhone leaves an old copy of the location meta there): zeroed.
+      let at = a, gap = 0;
+      const gaps = [];
+      for (const s of mine) {
+        if (s.off > at) { gaps.push({ off: at, bytes: new Uint8Array(s.off - at) }); gap += s.off - at; }
+        at = Math.max(at, s.off + s.size);
+      }
+      if (at < z) { gaps.push({ off: at, bytes: new Uint8Array(z - at) }); gap += z - at; }
+      if (gap > _VGPS_MAX_BOX) { console.warn("[backup] video GPS strip refused: too much unreferenced media"); return null; }
       parts.push(blob.slice(b.pos, a));
-      const r = await _vgpsScanMedia(blob, a, z, np.patches);
+      const r = await _vgpsScanMedia(blob, a, z, np.patches.concat(gaps));
       if (r.refuse) { console.warn("[backup] video GPS strip refused:", r.refuse); return null; }
       parts.push(...r.parts); redacted += r.n;
     }
-    // Every video sample must sit inside an mdat this walked.
-    if (covered !== samples.length) { console.warn("[backup] video GPS strip refused: video samples outside mdat"); return null; }
+    // Every sample must sit inside an mdat this walked.
+    if (covered !== samples.length) { console.warn("[backup] video GPS strip refused: samples outside mdat"); return null; }
     const out = new Blob(parts, { type: blob.type || "video/quicktime" });
     if (out.size !== size) return null;
     return { blob: out, redacted };

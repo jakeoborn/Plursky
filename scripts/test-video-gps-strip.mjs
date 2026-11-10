@@ -111,12 +111,11 @@ async function suite(strip, slim) {
   const qb = rq ? await bytesOf(rq.blob) : Buffer.alloc(0);
   ok(rq && qb.length === opq.bytes.length && !qb.includes(BIN_PLANT), "V25 an unknown box inside gmhd, dinf or tref is blanked");
   const slk = buildMov({ noGps: true, leafSlack: true });
-  ok(slk.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1 === 2, "V26 setup: binary fixes past mvhd's 100 bytes and past an empty stco table");
+  ok(slk.bytes.toString("latin1").split(BIN_PLANT.toString("latin1")).length - 1 === 2, "V26 setup: binary fixes past mvhd's 100 bytes and past an stco table's last entry");
   const rs = await strip(blobOf(slk.bytes));
   const sb = rs ? await bytesOf(rs.blob) : Buffer.alloc(0);
   ok(rs && sb.length === slk.bytes.length && !sb.includes(BIN_PLANT), "V26 slack bytes past a fixed-shape leaf are zeroed");
-  const short = Buffer.from(buildMov({ noGps: true, leafSlack: true }).bytes);
-  { const at = short.indexOf("stco", 0, "latin1"); short.writeUInt32BE(9, at + 8); } // stco claims 9 entries, holds 4
+  const short = Buffer.from(buildMov({ noGps: true, leafSlack: "short" }).bytes); // an stss claims 9 entries, holds 1
   ok((await strip(blobOf(short))) === null, "V27 a leaf shorter than its own entry count is refused");
   // Review on 0e77ed37: a tref kind both lists must agree on (tmcd), and an
   // allowlisted leaf with no checkable shape (sgpd v0) are not passed through.
@@ -182,6 +181,30 @@ async function suite(strip, slim) {
       ok(err.trim() === "", `V35b local: the stripped fixture decodes with ffmpeg, no errors (${err.trim().slice(0, 80)})`);
     }
   }
+  // Review on ecf18951: bytes in mdat that no sample table points at are dead
+  // to a player but not to whoever reads the upload; a fragmented movie keeps
+  // its samples where this does not walk; config NAL units are typed by their
+  // own header and parameter sets are capped.
+  {
+    const g = buildMov({ noGps: true, gap: true });
+    ok(g.bytes.includes(BIN_PLANT), "V36 setup: a binary fix in mdat bytes no sample table points at");
+    const rg = await strip(blobOf(g.bytes));
+    const go = rg ? await bytesOf(rg.blob) : Buffer.alloc(0);
+    ok(rg && go.length === g.bytes.length && !go.includes(BIN_PLANT), "V36 unreferenced mdat bytes are zeroed");
+    const frag = Buffer.from(buildMov({ noGps: true }).bytes);
+    const mv = frag.indexOf("mvhd", 0, "latin1"); frag.write("mvex", mv, "latin1"); // the movie header now reads as mvex
+    ok((await strip(blobOf(frag))) === null, "V37 a fragmented movie (mvex) is refused");
+    const fragTop = Buffer.concat([buildMov({ noGps: true }).bytes, Buffer.from([0, 0, 0, 8]), Buffer.from("moof", "latin1")]);
+    ok((await strip(blobOf(fragTop))) === null, "V37b a top-level moof is refused");
+    const mismatch = Buffer.from([0x40, 0x01, 0x0c, 0x01, 0x80]);   // a VPS-typed NAL ...
+    const hv = buildMov({ noGps: true, video: { fam: "hevc", samples: [[nal("hevc", 19, SLICE_BODY)]], hvccSei: mismatch } }); // ... filed under the SEI array
+    ok((await strip(blobOf(hv.bytes))) === null, "V38 an hvcC NAL whose own type disagrees with its array is refused");
+    const sei = Buffer.concat([Buffer.from([0x4e, 0x01, 0x05, 0x14]), Buffer.alloc(16, 0x11), Buffer.from("28.5412,-81.3987", "latin1"), Buffer.from([0x80])]);
+    const hv2 = buildMov({ noGps: true, video: { fam: "hevc", samples: [[nal("hevc", 19, SLICE_BODY)]], hvccSei: sei, hvccArray: 32 } }); // an SEI filed as a VPS
+    ok((await strip(blobOf(hv2.bytes))) === null, "V38b an SEI filed under hvcC's VPS array is refused");
+    const bigSps = nal("avc", 7, Buffer.alloc(200, 0x5a));
+    ok((await strip(blobOf(buildMov({ noGps: true, video: { fam: "avc", samples: [[bigSps, nal("avc", 5, SLICE_BODY)]] } }).bytes))) === null, "V39 an in-band parameter set over the size cap is refused");
+  }
   // Reviewer case on af724411: a top-level XMP uuid with exif:GPSLatitude /
   // GPSLongitude in degrees,minutes form went through byte-identical.
   const xmp = buildMov({ noGps: true, xmpGps: true });
@@ -238,14 +261,14 @@ const MUTANTS = [
   ["udta location boxes left in place", STRIP_SRC.replace('type === "©xyz" || type === "loci" || (parentType === "udta" && type !== "meta")', "false"), SLIM_SRC],
   ["top-level free copy left in place", STRIP_SRC.replace('if (type === "free" || type === "skip") {\n        zero(payload, boxEnd);', 'if (type === "free" || type === "skip") {'), SLIM_SRC],
   ["location keys not recognised", STRIP_SRC.replace("if (_VGPS_KEY_RE.test(name)) {", "if (false) {"), SLIM_SRC],
-  ["mdat passed through unscanned", STRIP_SRC.replace("const r = await _vgpsScanMedia(blob, a, z, np.patches);", "const r = { parts: [blob.slice(a, z)], n: 0 };"), SLIM_SRC],
-  ["video samples not walked", STRIP_SRC.replace("const np = await _vgpsNalPatches(blob, mine, a, z);", "const np = { patches: [] };"), SLIM_SRC],
+  ["mdat passed through unscanned", STRIP_SRC.replace("const r = await _vgpsScanMedia(blob, a, z, np.patches.concat(gaps));", "const r = { parts: [blob.slice(a, z)], n: 0 };"), SLIM_SRC],
+  ["video samples not walked", STRIP_SRC.replace("const np = await _vgpsNalPatches(blob, mine.filter(s => s.fam), a, z);", "const np = { patches: [] };"), SLIM_SRC],
   ["H.264 SEI kept", STRIP_SRC.replace('if (t === 6 || t === 12) return "fill";', 'if (t === 6 || t === 12) return "keep";'), SLIM_SRC],
   ["HEVC SEI kept", STRIP_SRC.replace('if (t >= 38 && t <= 40) return "fill";', 'if (t >= 38 && t <= 40) return "keep";'), SLIM_SRC],
   ["Dolby Vision RPU kept", STRIP_SRC.replace('if (t === 62) return "fill";', 'if (t === 62) return "keep";'), SLIM_SRC],
   ["unknown NAL types kept", STRIP_SRC.replace('if (t === 62) return "fill";\n  return "refuse";', 'if (t === 62) return "fill";\n  return "keep";'), SLIM_SRC],
   ["NAL length overrun not checked", STRIP_SRC.replace("if (len < 1 || q + len > z) return", "if (len < 1) return"), SLIM_SRC],
-  ["hvcC SEI not vetted", STRIP_SRC.replace("if (nt === 39 && !_vgpsFixedSei(u8, a + 2, nl))", "if (false)"), SLIM_SRC],
+  ["hvcC SEI not vetted", STRIP_SRC.replace("nt === 39 ? !_vgpsFixedSei(u8, at, len)", "nt === 39 ? false"), SLIM_SRC],
   ["sample tables not cross-checked", STRIP_SRC.replace('if (i !== sizes.count) return { refuse: "sample tables disagree" };', ""), SLIM_SRC],
   ["no window overlap", STRIP_SRC.replace("_VGPS_OVERLAP = 4096", "_VGPS_OVERLAP = 0"), SLIM_SRC],
   ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
@@ -263,6 +286,10 @@ const MUTANTS = [
   ["tref values not range-checked", STRIP_SRC.replace("if (id < 1 || id > 1024) return -1;", ""), SLIM_SRC],
   ["leaf slack kept", STRIP_SRC.replace("else if (want < boxEnd - payload) { zero(payload + want, boxEnd); n++; }", ""), SLIM_SRC],
   ["short leaf accepted", STRIP_SRC.replace("want < 0 || want > boxEnd - payload", "want < 0"), SLIM_SRC],
+  ["unreferenced mdat bytes kept", STRIP_SRC.replace("_vgpsScanMedia(blob, a, z, np.patches.concat(gaps))", "_vgpsScanMedia(blob, a, z, np.patches)"), SLIM_SRC],
+  ["fragmented movie accepted", STRIP_SRC.replace('refuse = "fragmented movie"; return;', "").replace('if (["moof", "mfra", "sidx", "styp", "ssix"].includes(type)) return null;', ""), SLIM_SRC],
+  ["config NAL typed by its array", STRIP_SRC.replace('(fam === "avc" ? (u8[at] & 0x1f) === t : ((u8[at] >> 1) & 0x3f) === t)', "true"), SLIM_SRC],
+  ["parameter sets uncapped", STRIP_SRC.replace('if (t === 7 || t === 8) return len <= _VGPS_PS_MAX ? "keep" : "refuse";', 'if (t === 7 || t === 8) return "keep";'), SLIM_SRC],
   ["text track allowed", STRIP_SRC.replace('"mebx", "tmcd",\n]);', '"mebx", "tmcd", "tx3g",\n]);'), SLIM_SRC],
   ["moments backup keeps video coordinates", STRIP_SRC, SLIM_SRC.replace('if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];', "")],
 ];
