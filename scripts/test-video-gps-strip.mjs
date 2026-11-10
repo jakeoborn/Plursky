@@ -235,6 +235,25 @@ async function suite(strip, slim) {
     const kn = buildMov({ noGps: true, entryKid: "keydNs" });
     const rkn = await strip(blobOf(kn.bytes));
     ok(kn.bytes.includes(Buffer.from("zq9w")) && (rkn === null || !(await bytesOf(rkn.blob)).includes(Buffer.from("zq9w"))), "V42c a keyd whose namespace is not mdta does not upload its namespace bytes");
+    // Automated review on 18a1c52a: the entry's own header (compressorname,
+    // reserved/vendor/quality, the sound v1/v2 extension) went unchecked.
+    // Fields no decoder reads are rewritten to canonical values; fields a
+    // decoder reads must be plausible or the clip is refused.
+    for (const d of ["hdrName", "hdrRes"]) {
+      const f = buildMov({ noGps: true, video: { fam: "avc", samples: [[nal("avc", 5, SLICE_BODY)]], entryKid: d } });
+      const r = await strip(blobOf(f.bytes)); const o = r ? await bytesOf(r.blob) : Buffer.alloc(0);
+      ok(f.bytes.includes(BIN_PLANT) && r && o.length === f.bytes.length && !o.includes(BIN_PLANT), `V44 ${d}: a fix in the visual entry header (${d === "hdrName" ? "compressorname" : "pre_defined/quality"}) is rewritten, the clip kept`);
+    }
+    {
+      const f = buildMov({ noGps: true, entryKid: "hdrVendor" }); const v4 = BIN_PLANT.subarray(0, 4);
+      const r = await strip(blobOf(f.bytes)); const o = r ? await bytesOf(r.blob) : Buffer.alloc(0);
+      ok(f.bytes.includes(v4) && r && !o.includes(v4), "V44b a fix in a sound entry's vendor field is rewritten, the clip kept");
+    }
+    for (const [d, what] of [["hdrV2Rate", "a v2 sample rate that is a coordinate"], ["hdrV1Ext", "v1 packet fields holding a fix"], ["hdrTmcd", "timecode timing holding a fix"]]) {
+      ok((await strip(blobOf(buildMov({ noGps: true, entryKid: d }).bytes))) === null, `V44c ${what} is refused`);
+    }
+    const v2 = buildMov({ noGps: true, entryKid: "hdrV2Real" }); const rv2 = await strip(blobOf(v2.bytes));
+    ok(rv2 && (await bytesOf(rv2.blob)).equals(v2.bytes), "V44d a real-shaped v2 (apac, 48 kHz) entry passes byte-identical");
     // The reviewer's own file (fake coordinates): x264 H.264 + AAC, a uuid
     // child after btrt inside avc1 carrying two float64s.
     const uf = readFileSync(join(ROOT, "scripts/fixtures/avc-entry-uuid-gps.mp4"));
@@ -332,6 +351,13 @@ const MUTANTS = [
   ["chan length not checked", STRIP_SRC.replace('if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);', 'if (t === "chan") return true;'), SLIM_SRC],
   ["keyd namespace not checked", STRIP_SRC.replace('if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");', 'if (t === "keyd") return true;'), SLIM_SRC],
   ["alac config size not checked", STRIP_SRC.replace("alac: { alac: 36,", "alac: { alac: 0,"), SLIM_SRC],
+  ["entry header not checked", STRIP_SRC.replace("if (hb) { refuse = hb; return; }", ""), SLIM_SRC],
+  ["compressorname kept", STRIP_SRC.replace("set(50, new Array(32).fill(0));", ""), SLIM_SRC],
+  ["visual pre_defined/quality kept", STRIP_SRC.replace("set(16, new Array(16).fill(0));", ""), SLIM_SRC],
+  ["sound vendor kept", STRIP_SRC.replace("set(18, [0, 0, 0, 0, 0, 0]);", ""), SLIM_SRC],
+  ["sound v2 rate unchecked", STRIP_SRC.replace("if (!_VGPS_RATES.has(rate) || !ch", "if (!ch"), SLIM_SRC],
+  ["sound v1 packet fields unchecked", STRIP_SRC.replace('if (spp > 65536 || bpk > 65536 || bpf > 4096 || bps > 64) return "sound entry v1 fields";', ""), SLIM_SRC],
+  ["timecode timing unchecked", STRIP_SRC.replace('return "timecode entry";', "{}"), SLIM_SRC],
   ["kept ilst item keeps trailing boxes", STRIP_SRC.replace("if (it.payload + ds < it.boxEnd) { zero(it.payload + ds, it.boxEnd); n++; }", ""), SLIM_SRC],
   ["track-format allowlist off", STRIP_SRC.replace("if (!_VGPS_TRACK_FORMATS.has(fmt))", "if (false)"), SLIM_SRC],
   ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}").replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
