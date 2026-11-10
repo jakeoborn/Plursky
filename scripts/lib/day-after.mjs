@@ -171,7 +171,7 @@ export function dayAfterSection(festivalName, recs, { cfg, acts, embeds, dayTitl
     const lead = DAY_NAME_RE.test(dn || '') ? `${dn}'s story` : `Day ${r.day}'s story`;
     const chapters = r.chapters.map(ch => {
       const act = ch.artist !== undefined ? acts.find(a => a.name === ch.artist && Number(a.day) === r.day) : null;
-      const set = act ? `<p class="da-set">${esc(stageName(act.stage))} · ${clock(act.start)} – ${clock(act.end)}</p>` : '';
+      const set = act ? `<p class="da-set">Scheduled: ${esc(stageName(act.stage))} · ${clock(act.start)} – ${clock(act.end)}</p>` : '';
       const links = ch.sources.map(u => sourceLink(embeds.curated[fid].find(x => x.url === u))).join('');
       return `        <li>
           <h4>${esc(ch.title)}</h4>${set}

@@ -146,7 +146,12 @@ check(hrefs.length === 6, `expected 6 source links across days 1-3, got ${hrefs.
 check(hrefs.every(m => official.has(m[1])), 'a card links something that is not an official recap post');
 check(hrefs.every(m => /rel="noopener noreferrer"/.test(m[0])), 'a source link lacks rel=noopener noreferrer');
 check((html.match(/Curated by Plursky/g) || []).length === 3, 'a card lacks the "Curated by Plursky" label');
-check(/kineticFIELD · 10:31 PM – 12:00 AM/.test(html), 'Kaskade\'s set line is not the schedule\'s kineticFIELD 10:31 PM – 12:00 AM');
+check(/Scheduled: kineticFIELD · 10:31 PM – 12:00 AM/.test(html), 'Kaskade\'s set line is not the schedule\'s kineticFIELD 10:31 PM – 12:00 AM, marked Scheduled');
+// Instinct's claim check (Nov 9): set times rest on the official schedule, not
+// on the post, so every set line says "Scheduled" and no copy says an act DID
+// close or play a slot.
+check((html.match(/class="da-set">/g) || []).length === (html.match(/class="da-set">Scheduled: /g) || []).length, 'a set line is not marked Scheduled');
+check(!/\bcloses\b|\bclosed kineticFIELD|had the last set|(?<!scheduled for )the last set on/i.test(html), 'card copy states a set as fact (closes / had the last set) instead of scheduled');
 check(/circuitGROUNDS · 7:45 PM – 8:45 PM/.test(html) && /circuitGROUNDS · 9:50 PM – 10:55 PM/.test(html), 'Maddix/ATLiens set lines are not from the schedule');
 check(/Friday&#39;s story/.test(html) && /Sunday, November 8/.test(html), 'card day labels are wrong');
 check(/@Insomniac, official account/.test(html) && /@EDC_Orlando, official account/.test(html), 'source accounts are not named');
