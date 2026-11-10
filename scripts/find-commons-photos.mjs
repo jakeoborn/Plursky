@@ -131,10 +131,13 @@ async function wmFetch(url) {
 }
 async function api(base, params) {
   const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '5', ...params });
-  for (let i = 0; i < 5; i++) {
+  // maxlag: the servers ask bots to pause while replication is behind.
+  // Wikidata often lags for minutes, so wait it out (up to ~10 minutes).
+  for (let i = 0; i < 40; i++) {
     const j = await (await wmFetch(url)).json();
     if (!j.error || j.error.code !== 'maxlag') return j;
-    nextAt = Date.now() + 5000 * (i + 1);
+    if (i % 6 === 0) console.log(`maxlag: ${j.error.lag ?? '?'} s behind, waiting`);
+    nextAt = Date.now() + 15000;
   }
   throw new Error('maxlag persisted: ' + url.slice(0, 120));
 }
