@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
+import { pastEditionsFor } from './lib/festival-page-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TEMPLATE = path.join(root, 'scripts', 'templates', 'welcome.html');
@@ -58,6 +59,11 @@ const festivals = REG.map((e) => {
     available: !!e.available && !!ds,
     scheduleTBA: !!e.scheduleTBA,
     hasSchedule: existsSync(path.join(root, 'f', c.id, 'schedule.json')),
+    // Its own page (gen-festival-pages), and the earlier years the Past
+    // Festivals library holds for it, newest first. Each year opens in the app
+    // at ?tab=past&edition=<id>, the same link the festival page uses.
+    page: existsSync(path.join(root, 'f', c.id, 'index.html')) ? `/f/${c.id}/` : null,
+    past: pastEditionsFor(c.id, root).map((p) => ({ id: p.id, name: p.name, year: p.year, first: p.first, last: p.last, lineupOnly: !!p.lineupOnly })),
     stages: (ds && Array.isArray(ds.stages) ? ds.stages : [])
       .filter((s) => s && s.name && s.color)
       .map((s) => ({ name: s.name, color: s.color })),
@@ -71,7 +77,18 @@ if (!template.includes(MARK)) {
 }
 // Escape "<" so no festival string can close the <script> it is inlined into.
 const json = JSON.stringify({ festivals }).replace(/</g, '\\u003c');
-const html = template.replace(MARK, json);
+// Plain links to every festival page, in the footer, so the pages are one
+// click away even before the script draws the list (and for crawlers).
+const GUIDES = '<!--__FESTIVAL_GUIDES__-->';
+if (!template.includes(GUIDES)) {
+  console.error(`✗ ${path.relative(root, TEMPLATE)} lost its ${GUIDES} marker`);
+  process.exit(1);
+}
+const escHtml = (t) => String(t).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+const guides = festivals.filter((f) => f.page)
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((f) => `<li><a href="${escHtml(f.page)}">${escHtml(f.name)}</a></li>`).join('');
+const html = template.replace(MARK, json).replace(GUIDES, guides);
 
 if (process.argv.includes('--check')) {
   const cur = existsSync(OUT) ? readFileSync(OUT, 'utf8') : '';

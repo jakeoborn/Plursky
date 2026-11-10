@@ -2010,25 +2010,7 @@ function LineupScreen({
       background: "var(--ink-3)",
       flexShrink: 0
     }
-  }), "Offline · showing the schedule saved on this phone"), _schedTBA && React.createElement("div", {
-    role: "status",
-    className: "duo-card",
-    style: {
-      margin: "8px 16px 0",
-      padding: "12px 16px"
-    }
-  }, React.createElement("div", {
-    className: "duo-headline",
-    style: {
-      fontSize: 15
-    }
-  }, "Set times pending from the festival"), React.createElement("div", {
-    className: "duo-body-s duo-ink2",
-    style: {
-      marginTop: 2,
-      fontWeight: 400
-    }
-  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), wizardOpen && React.createElement(NightWizard, {
+  }), "Offline · showing the schedule saved on this phone"), wizardOpen && React.createElement(NightWizard, {
     state: state,
     setState: setState,
     onClose: () => setWizardOpen(false)
@@ -2043,7 +2025,26 @@ function LineupScreen({
     } : {
       padding: "0 20px 96px"
     }
-  }, gridLead && (() => {
+  }, _schedTBA && viewMode === "list" && React.createElement("div", {
+    role: "status",
+    "data-sched-tba": true,
+    className: "duo-card",
+    style: {
+      margin: "8px 0 4px",
+      padding: "12px 16px"
+    }
+  }, React.createElement("div", {
+    className: "duo-headline",
+    style: {
+      fontSize: 15
+    }
+  }, "Set times pending from the festival"), React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      marginTop: 2,
+      fontWeight: 400
+    }
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
@@ -2140,6 +2141,7 @@ function LineupScreen({
     }
   }, "Show all sets")), viewMode === "list" && (() => {
     var nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+    var timeCol = dayArtists.some(a => a.start && !setTimesUnconfirmed(a));
     var renderRow = (a, pinned) => {
       var stage = STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE;
       var saved = state.saved.includes(a.id);
@@ -2159,7 +2161,7 @@ function LineupScreen({
         style: {
           animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined
         }
-      }, React.createElement("div", {
+      }, timeCol && React.createElement("div", {
         "data-set-time": true,
         className: `duo-data${saved || isLive ? "" : " duo-ink2"}`,
         style: {

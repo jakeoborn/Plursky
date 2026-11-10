@@ -308,38 +308,32 @@ function useStaggerFade(depKey, skip = false) {
   var ref = React.useRef(null);
   React.useEffect(() => {
     var el = ref.current;
-    if (!el || skip || !window.IntersectionObserver) return;
-    var targets = el.querySelectorAll("[data-animate]");
-    if (!targets.length) return;
-    targets.forEach(t => {
+    if (!el || skip) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    var box = el.getBoundingClientRect();
+    var visible = [...el.querySelectorAll("[data-animate]")].filter(t => {
+      var r = t.getBoundingClientRect();
+      return r.bottom > box.top && r.top < box.bottom;
+    }).slice(0, 8);
+    if (!visible.length) return;
+    visible.forEach(t => {
+      t.style.transition = "none";
       t.style.opacity = "0";
       t.style.transform = "translateY(8px)";
     });
-    var idx = 0;
-    var obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        var t = e.target;
-        if (idx < 8) {
-          var delay = idx * 40;
-          setTimeout(() => {
-            t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
-            t.style.opacity = "1";
-            t.style.transform = "translateY(0)";
-          }, delay);
-        } else {
-          t.style.transition = "none";
-          t.style.opacity = "1";
-          t.style.transform = "translateY(0)";
-        }
-        idx++;
-        obs.unobserve(t);
+    var timers = visible.map((t, i) => setTimeout(() => {
+      t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
+      t.style.opacity = "1";
+      t.style.transform = "translateY(0)";
+    }, i * 40));
+    return () => {
+      timers.forEach(clearTimeout);
+      visible.forEach(t => {
+        t.style.transition = "";
+        t.style.opacity = "";
+        t.style.transform = "";
       });
-    }, {
-      threshold: 0.05
-    });
-    targets.forEach(t => obs.observe(t));
-    return () => obs.disconnect();
+    };
   }, [depKey]);
   return ref;
 }

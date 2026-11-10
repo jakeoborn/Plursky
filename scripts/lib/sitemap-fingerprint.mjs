@@ -112,6 +112,7 @@ export const FINGERPRINTED_ENTRY_FIELDS = [
   'available',   // the CTA verb and the "not switchable yet" note
   'scheduleTBA', // the "set times appear when the festival publishes" note
   'region',      // JSON-LD addressCountry when the location string omits it
+  'accent',      // the header rule and hero glow colour
 ];
 
 // Deliberately NOT hashed. Each one is a decision, not an oversight.
@@ -151,6 +152,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     tzAbbr: cfg.tzAbbr || '',
     dayDates: cfg.dayDates || null,
     region: entry.region || '',
+    accent: entry.accent || '',
     available: !!entry.available,
     scheduleTBA: !!entry.scheduleTBA,
     setTimesProvisional: !!cfg.setTimesProvisional,
