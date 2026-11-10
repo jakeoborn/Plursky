@@ -453,7 +453,7 @@ var _VGPS_ENTRY_KIDS = {
     wave: 0
   },
   alac: {
-    alac: 0,
+    alac: 36,
     chan: 0,
     btrt: 20,
     wave: 0
@@ -464,7 +464,7 @@ var _VGPS_ENTRY_KIDS = {
     esds: 0,
     enda: 10,
     chan: 0,
-    alac: 0,
+    alac: 36,
     "\0\0\0\0": 8
   },
   mebx: {
@@ -489,6 +489,21 @@ function _vgpsEntryKind(fmt) {
   if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
   return "pcm";
 }
+var _VGPS_DTYP_NAMES = new Set(["detected-face", "com.apple.quicktime.live-photo-info", "milli-lux", "uuid"].map(k => "com.apple.quicktime." + k));
+function _vgpsChildShapeOk(t, u8, dv, c, cs) {
+  var s4 = o => String.fromCharCode(u8[o], u8[o + 1], u8[o + 2], u8[o + 3]);
+  if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);
+  if (t === "dtyp") {
+    if (cs < 16) return false;
+    var ns = dv.getUint32(c + 8);
+    if (ns === 0) return cs === 16;
+    var name = "";
+    for (var i = c + 12; i < c + cs; i++) name += String.fromCharCode(u8[i]);
+    return ns === 1 && _VGPS_DTYP_NAMES.has(name);
+  }
+  if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");
+  return true;
+}
 function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
   var allow = _VGPS_ENTRY_KIDS[kind];
   var c = a;
@@ -498,7 +513,7 @@ function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
     var t = String.fromCharCode(u8[c + 4], u8[c + 5], u8[c + 6], u8[c + 7]);
     var want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
     var colrOk = t !== "colr" || cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx" || cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc";
-    if (want < 0 || want > 0 && cs !== want || !colrOk) blank(c, c + cs);else if (t === "wave") {
+    if (want < 0 || want > 0 && cs !== want || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank(c, c + cs);else if (t === "wave") {
       var r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep);
       if (r) return r;
     } else if (kind === "mebx" && t === "keys") {

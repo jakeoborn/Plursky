@@ -41,7 +41,7 @@ function mvhd(slack = false) {
 // (or a kept ilst item) at the depth `entryKid` names.
 export const KID_UUID = Buffer.from("5c0ffee05c0ffee05c0ffee05c0ffee0", "hex");
 const unknownKid = () => box("uuid", KID_UUID, BIN_PLANT);
-export const ENTRY_KID_DEPTHS = ["avc1", "hvc1", "visualLongBtrt", "visualColrProf", "mp4a", "wave", "mebxKeys", "mebxKey", "tmcd", "ilstItem"];
+export const ENTRY_KID_DEPTHS = ["avc1", "hvc1", "visualLongBtrt", "visualColrProf", "mp4a", "wave", "mebxKeys", "mebxKey", "tmcd", "ilstItem", "dtypOversize", "dtypName", "chanOversize", "alacOversize"];
 function trak(timedKey, format = "mebx", second = null, nested = false, opaque = false, slack = false, sample = { off: 0, size: 0 }, kid = null) {
   // A non-mebx format gets a well-formed v0 sound-entry shape (36 bytes), so
   // only the format allowlist can refuse it; a second entry carries a binary
@@ -49,7 +49,16 @@ function trak(timedKey, format = "mebx", second = null, nested = false, opaque =
   const sound = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(0), Buffer.alloc(18), ...kids);
   const soundV1 = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(1), Buffer.alloc(18), Buffer.alloc(16), ...kids);
   const K = d => (kid === d ? [unknownKid()] : []);
-  let mebx = format === "mebx" ? box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), box("keyd", "mdta", timedKey), ...K("mebxKey")), ...K("mebxKeys"))) : sound(format);
+  // dtyp shapes: real clips carry namespace 0 + a 4-byte type (16 bytes) or
+  // namespace 1 + an Apple type name; the planted ones break that shape.
+  const dtyp = kid === "dtypOversize" ? [box("dtyp", u32(0), u32(66), BIN_PLANT)]
+    : kid === "dtypName" ? [box("dtyp", u32(1), "com.vendor.fix", BIN_PLANT)]
+    : kid === "dtypReal" ? [box("dtyp", u32(0), u32(66))] : [];
+  const key2 = kid === "dtypReal" ? [box(u32(2), box("keyd", "mdta", "com.apple.quicktime.milli-lux"), box("dtyp", u32(1), "com.apple.quicktime.milli-lux"))] : [];
+  const keyd = box("keyd", kid === "keydNs" ? "zq9w" : "mdta", timedKey);
+  let mebx = format === "mebx" ? box(format, Buffer.alloc(6), u16(1), box("keys", box(u32(1), keyd, ...dtyp, ...K("mebxKey")), ...key2, ...K("mebxKeys"))) : sound(format);
+  if (kid === "chanOversize") mebx = sound("mp4a", box("esds", u32(0), Buffer.alloc(8)), box("chan", u32(0), u32(0), u32(0), u32(0), BIN_PLANT));
+  if (kid === "alacOversize") mebx = sound("alac", box("alac", Buffer.alloc(28), BIN_PLANT));
   if (kid === "mp4a") mebx = sound("mp4a", box("esds", u32(0), Buffer.alloc(8)), unknownKid());
   if (kid === "wave") mebx = soundV1("mp4a", box("wave", box("frma", "mp4a"), box("esds", u32(0), Buffer.alloc(8)), unknownKid(), u32(8), u32(0)));     // QuickTime zero-type terminator
   if (kid === "tmcd") mebx = box("tmcd", Buffer.alloc(6), u16(1), Buffer.alloc(18), unknownKid());
@@ -125,7 +134,7 @@ function videoTrak(v, mdatStart) {
   const stco = box("stco", u32(0), u32(1), u32(mdatStart));
   return { trak: box("trak", box("mdia", box("minf", box("stbl", stsd, stsz, stsc, stco)))), bytes: Buffer.concat(samples) };
 }
-// opts: { entryKid (one of ENTRY_KID_DEPTHS, "overrun" or "overrunAudio"; video depths need opts.video), timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, gap, mdatBytes, straddleAt, noGps }
+// opts: { entryKid (one of ENTRY_KID_DEPTHS, "overrun", "overrunAudio", "keydNs" or "dtypReal"; video depths need opts.video), timedKey, trackFormat, secondEntry, udtaBinary, oddItem, orphanItem, dupKeys, xmpUuid, xmpGps, nestedGps, opaqueGps, leafSlack, video, gap, mdatBytes, straddleAt, noGps }
 export function buildMov(opts = {}) {
   const timedKey = opts.timedKey || "com.apple.quicktime.video-orientation";
   let items = opts.noGps ? IPHONE_ITEMS.slice(2) : IPHONE_ITEMS;
