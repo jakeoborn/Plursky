@@ -415,6 +415,246 @@ async function _parseVideoMeta(file) {
   } catch {}
   return out;
 }
+var _VGPS_MAX_BOX = 64 * 1024 * 1024;
+var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
+var _VGPS_KEY_RE = /location|ISO6709|gps/i;
+function _vgpsLatin1(u8, a, b) {
+  var s = "";
+  for (var i = a; i < b; i++) s += String.fromCharCode(u8[i]);
+  return s;
+}
+function _stripVideoGpsRegion(u8) {
+  var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  var len = u8.byteLength;
+  var type4 = i => _vgpsLatin1(u8, i, i + 4);
+  var zero = (a, b) => {
+    for (var i = a; i < b && i < len; i++) u8[i] = 0;
+  };
+  var toFree = pos => {
+    u8[pos + 4] = 0x66;
+    u8[pos + 5] = 0x72;
+    u8[pos + 6] = 0x65;
+    u8[pos + 7] = 0x65;
+  };
+  var n = 0,
+    refuse = null;
+  var visit = (start, end, depth, parentType, scope) => {
+    if (depth > 8 || refuse) return;
+    var pos = start;
+    while (pos + 8 <= end) {
+      var size = dv.getUint32(pos);
+      var type = type4(pos + 4);
+      var hdr = 8;
+      if (size === 1) {
+        if (pos + 16 > end) break;
+        size = dv.getUint32(pos + 8) * 4294967296 + dv.getUint32(pos + 12);
+        hdr = 16;
+      } else if (size === 0) size = end - pos;
+      if (size < hdr || pos + size > end) {
+        refuse = "malformed box";
+        return;
+      }
+      var payload = pos + hdr,
+        boxEnd = pos + size;
+      if (type === "free" || type === "skip") {
+        zero(payload, boxEnd);
+      } else if (type === "©xyz" || type === "loci") {
+        zero(payload, boxEnd);
+        toFree(pos);
+        n++;
+      } else if (type === "stsd") {
+        if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) {
+          refuse = "timed location track";
+          return;
+        }
+      } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        var count = dv.getUint32(payload + 4);
+        var k = payload + 8;
+        for (var i = 1; i <= count && k + 8 <= boxEnd; i++) {
+          var ks = dv.getUint32(k);
+          if (ks < 8 || k + ks > boxEnd) break;
+          var name = _vgpsLatin1(u8, k + 8, k + ks);
+          if (_VGPS_KEY_RE.test(name)) {
+            scope.hit.add(i);
+            var red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
+            for (var j = 0; j < ks - 8; j++) u8[k + 8 + j] = red.charCodeAt(j);
+          }
+          k += ks;
+        }
+      } else if (scope && parentType === "ilst") {
+        scope.items.push({
+          idx: dv.getUint32(pos + 4),
+          payload,
+          boxEnd
+        });
+      }
+      if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
+        var isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
+        var inner = type === "meta" ? {
+          hit: new Set(),
+          items: []
+        } : scope;
+        visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
+        if (type === "meta") {
+          for (var it of inner.items) if (inner.hit.has(it.idx)) {
+            var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
+            zero(it.payload + dataHdr, it.boxEnd);
+            n++;
+          }
+        }
+      }
+      pos = boxEnd;
+    }
+  };
+  visit(0, len, 0, null, null);
+  return refuse ? {
+    refuse
+  } : {
+    n
+  };
+}
+var _VGPS_WIN = 8 * 1024 * 1024,
+  _VGPS_OVERLAP = 4096;
+var _VGPS_ISO_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}(?:[+-]\d+(?:\.\d+)?)?\/?/g;
+async function _vgpsScanMedia(blob, start, end) {
+  var dec = new TextDecoder("windows-1252");
+  var patches = [];
+  var inPatch = o => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
+  var _loop2 = async function (w) {
+      var b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
+      var u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
+      var s = dec.decode(u8);
+      var own = i => w + i < Math.min(end, w + _VGPS_WIN);
+      var metaRe = /meta/g;
+      var m;
+      while (m = metaRe.exec(s)) {
+        var _p = m.index - 4;
+        if (_p < 0 || !own(_p) || inPatch(w + _p)) continue;
+        var sz = new DataView(u8.buffer, u8.byteOffset + _p, 4).getUint32(0);
+        if (sz < 24 || sz > 1024 * 1024 || w + _p + sz > end) continue;
+        if (s.slice(_p + 12, _p + 16) !== "hdlr" && s.slice(_p + 16, _p + 20) !== "hdlr") continue;
+        var reg = new Uint8Array(await blob.slice(w + _p, w + _p + sz).arrayBuffer());
+        var r = _stripVideoGpsRegion(reg);
+        if (r.refuse) return {
+          v: {
+            refuse: "embedded meta: " + r.refuse
+          }
+        };
+        if (r.n) patches.push({
+          off: w + _p,
+          bytes: reg
+        });
+      }
+      _VGPS_ISO_RE.lastIndex = 0;
+      while (m = _VGPS_ISO_RE.exec(s)) {
+        if (!own(m.index)) continue;
+        var abs = w + m.index,
+          host = inPatch(abs);
+        if (host) {
+          host.bytes.fill(0, abs - host.off, Math.min(host.bytes.length, abs - host.off + m[0].length));
+        } else patches.push({
+          off: abs,
+          bytes: new Uint8Array(m[0].length)
+        });
+      }
+      var chk = u8.slice();
+      for (var _p2 of patches) {
+        var a = Math.max(_p2.off, w),
+          z = Math.min(_p2.off + _p2.bytes.length, b);
+        if (a < z) chk.set(_p2.bytes.subarray(a - _p2.off, z - _p2.off), a - w);
+      }
+      var cs = dec.decode(chk);
+      if (new RegExp(_VGPS_ISO_RE.source).test(cs) || /location\.ISO6709|location\.accuracy/.test(cs)) return {
+        v: {
+          refuse: "coordinate left in media"
+        }
+      };
+    },
+    _ret2;
+  for (var w = start; w < end; w += _VGPS_WIN) {
+    _ret2 = await _loop2(w);
+    if (_ret2) return _ret2.v;
+  }
+  patches.sort((x, y) => x.off - y.off);
+  var parts = [];
+  var at = start;
+  for (var p of patches) {
+    if (p.off < at) return {
+      refuse: "overlapping patches"
+    };
+    if (p.off > at) parts.push(blob.slice(at, p.off));
+    parts.push(p.bytes);
+    at = p.off + p.bytes.length;
+  }
+  if (at < end) parts.push(blob.slice(at, end));
+  return {
+    parts,
+    n: patches.length
+  };
+}
+async function _stripVideoGps(blob) {
+  try {
+    if (!blob || typeof blob.slice !== "function") return null;
+    var size = blob.size;
+    var head = async pos => new DataView(await blob.slice(pos, Math.min(size, pos + 16)).arrayBuffer());
+    var parts = [];
+    var pos = 0,
+      sawMoov = false,
+      redacted = 0;
+    while (pos < size) {
+      if (pos + 8 > size) return null;
+      var h = await head(pos);
+      var boxSize = h.getUint32(0),
+        hdr = 8;
+      var type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      if (boxSize === 1) {
+        if (h.byteLength < 16) return null;
+        boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12);
+        hdr = 16;
+      } else if (boxSize === 0) boxSize = size - pos;
+      if (boxSize < hdr || pos + boxSize > size) return null;
+      if (type === "mdat") {
+        parts.push(blob.slice(pos, pos + hdr));
+        var r = await _vgpsScanMedia(blob, pos + hdr, pos + boxSize);
+        if (r.refuse) {
+          console.warn("[backup] video GPS strip refused:", r.refuse);
+          return null;
+        }
+        parts.push(...r.parts);
+        redacted += r.n;
+      } else {
+        if (boxSize > _VGPS_MAX_BOX) return null;
+        var u8 = new Uint8Array(await blob.slice(pos, pos + boxSize).arrayBuffer());
+        var _r = _stripVideoGpsRegion(u8);
+        if (_r.refuse) {
+          console.warn("[backup] video GPS strip refused:", _r.refuse);
+          return null;
+        }
+        redacted += _r.n;
+        var s = _vgpsLatin1(u8, 0, u8.byteLength);
+        if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) {
+          console.warn("[backup] video GPS strip: coordinate left in", type);
+          return null;
+        }
+        if (type === "moov") sawMoov = true;
+        parts.push(u8);
+      }
+      pos += boxSize;
+    }
+    if (!sawMoov) return null;
+    var out = new Blob(parts, {
+      type: blob.type || "video/quicktime"
+    });
+    if (out.size !== size) return null;
+    return {
+      blob: out,
+      redacted
+    };
+  } catch (e) {
+    console.warn("[backup] video GPS strip failed:", e && e.message);
+    return null;
+  }
+}
 function _festivalTzOffsetHours(cfg) {
   var day1 = (cfg || window.FESTIVAL_CONFIG)?.dayDates?.[1];
   if (!day1) return -7;
@@ -1171,7 +1411,7 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
     outsideSets = 0,
     fullNight = 0,
     already = 0;
-  var _loop2 = function () {
+  var _loop3 = function () {
       if (!a || !a.id) return 0;
       var ms = Number(a.createdMs);
       if (!isFinite(ms)) {
@@ -1198,10 +1438,10 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
       if (whole) fullNight++;
       keep.push(a);
     },
-    _ret2;
+    _ret3;
   for (var a of assets || []) {
-    _ret2 = _loop2();
-    if (_ret2 === 0) continue;
+    _ret3 = _loop3();
+    if (_ret3 === 0) continue;
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
   return {

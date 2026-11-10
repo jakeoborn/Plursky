@@ -424,6 +424,199 @@ async function _parseVideoMeta(file) {
   return out;
 }
 
+// ── Video GPS strip for cloud backup ─────────────────────────────────────
+// Photos leave the device as a canvas re-encode (_compressMomentImage), which
+// carries no EXIF. Videos are stored raw, and an iPhone clip writes its
+// capture fix into the file: `com.apple.quicktime.location.ISO6709` (+ its
+// accuracy) in moov/meta keys+ilst, older clips a udta `©xyz`, 3GPP a `loci`.
+// Real clips (EDC LV 2026, 34 of 42) also hold a SECOND copy of that meta in
+// a top-level `free` box after moov. "Back up my weekend" uploaded those
+// bytes as-is, so the backup held every clip's coordinates.
+//
+// This returns a copy for upload with every one of those redacted IN PLACE:
+// box sizes never change, so chunk offsets (stco/co64) stay valid and the
+// clip plays as before. The media (mdat) is passed through by reference and
+// never read. Anything it cannot prove clean returns null and the caller
+// does not upload (fail closed): an unparseable container, a non-mdat box
+// too large to inspect, a timed metadata track that names a location key,
+// or a coordinate-shaped string still present after the redaction.
+const _VGPS_MAX_BOX = 64 * 1024 * 1024;
+const _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
+const _VGPS_KEY_RE = /location|ISO6709|gps/i;
+function _vgpsLatin1(u8, a, b) {
+  let s = "";
+  for (let i = a; i < b; i++) s += String.fromCharCode(u8[i]);
+  return s;
+}
+// Redacts one in-memory box region. Returns { n } (items redacted) or
+// { refuse: reason }.
+function _stripVideoGpsRegion(u8) {
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  const len = u8.byteLength;
+  const type4 = i => _vgpsLatin1(u8, i, i + 4);
+  const zero = (a, b) => { for (let i = a; i < b && i < len; i++) u8[i] = 0; };
+  const toFree = (pos) => { u8[pos + 4] = 0x66; u8[pos + 5] = 0x72; u8[pos + 6] = 0x65; u8[pos + 7] = 0x65; };
+  let n = 0, refuse = null;
+  const visit = (start, end, depth, parentType, scope) => {
+    if (depth > 8 || refuse) return;
+    let pos = start;
+    while (pos + 8 <= end) {
+      let size = dv.getUint32(pos);
+      const type = type4(pos + 4);
+      let hdr = 8;
+      if (size === 1) { if (pos + 16 > end) break; size = dv.getUint32(pos + 8) * 4294967296 + dv.getUint32(pos + 12); hdr = 16; }
+      else if (size === 0) size = end - pos;
+      if (size < hdr || pos + size > end) { refuse = "malformed box"; return; }
+      const payload = pos + hdr, boxEnd = pos + size;
+      if (type === "free" || type === "skip") {
+        zero(payload, boxEnd);
+      } else if (type === "©xyz" || type === "loci") {
+        zero(payload, boxEnd); toFree(pos); n++;
+      } else if (type === "stsd") {
+        // A timed metadata track (mebx) declares its keys here; its VALUES
+        // live in mdat, which this never rewrites. One that names a location
+        // key cannot be made clean in place.
+        if (_VGPS_KEY_RE.test(_vgpsLatin1(u8, payload, boxEnd))) { refuse = "timed location track"; return; }
+      } else if (scope && type === "keys" && boxEnd - payload >= 8) {
+        const count = dv.getUint32(payload + 4);
+        let k = payload + 8;
+        for (let i = 1; i <= count && k + 8 <= boxEnd; i++) {
+          const ks = dv.getUint32(k);
+          if (ks < 8 || k + ks > boxEnd) break;
+          const name = _vgpsLatin1(u8, k + 8, k + ks);
+          if (_VGPS_KEY_RE.test(name)) {
+            scope.hit.add(i);
+            const red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
+            for (let j = 0; j < ks - 8; j++) u8[k + 8 + j] = red.charCodeAt(j);
+          }
+          k += ks;
+        }
+      } else if (scope && parentType === "ilst") {
+        scope.items.push({ idx: dv.getUint32(pos + 4), payload, boxEnd });
+      }
+      if (["moov", "trak", "mdia", "minf", "stbl", "udta", "meta", "ilst", "edts"].includes(type)) {
+        const isoMeta = type === "meta" && !(payload + 8 <= boxEnd && type4(payload + 4) === "hdlr");
+        const inner = type === "meta" ? { hit: new Set(), items: [] } : scope;
+        visit(isoMeta ? Math.min(boxEnd, payload + 4) : payload, boxEnd, depth + 1, type, inner);
+        if (type === "meta") {
+          // Values are typed by key index; zero the whole value of each
+          // location item (its `data` box keeps its header).
+          for (const it of inner.items) if (inner.hit.has(it.idx)) {
+            const dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
+            zero(it.payload + dataHdr, it.boxEnd); n++;
+          }
+        }
+      }
+      pos = boxEnd;
+    }
+  };
+  visit(0, len, 0, null, null);
+  return refuse ? { refuse } : { n };
+}
+// The media box. Real clips (26 of those 34) carry ANOTHER copy of the
+// keys+ilst block, coordinates included, inside mdat: dead bytes from an
+// earlier moov write. mdat is read once in windows (never whole), and each
+// window gets: every embedded `meta` copy redacted like the live one, then
+// any ISO-6709-shaped string zeroed, then re-checked. Unchanged media is
+// passed through as slices of the original blob.
+const _VGPS_WIN = 8 * 1024 * 1024, _VGPS_OVERLAP = 4096;
+const _VGPS_ISO_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}(?:[+-]\d+(?:\.\d+)?)?\/?/g;
+async function _vgpsScanMedia(blob, start, end) {
+  const dec = new TextDecoder("windows-1252"); // 1 byte -> 1 char, so indexes match
+  const patches = []; // { off, bytes } absolute, non-overlapping
+  const inPatch = (o) => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
+  for (let w = start; w < end; w += _VGPS_WIN) {
+    const b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
+    const u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
+    const s = dec.decode(u8);
+    const own = i => w + i < Math.min(end, w + _VGPS_WIN); // a hit belongs to the window it starts in
+    // 1) embedded meta copies (QuickTime meta: hdlr right after the header;
+    //    ISO meta: after 4 flag bytes).
+    const metaRe = /meta/g; let m;
+    while ((m = metaRe.exec(s))) {
+      const p = m.index - 4;
+      if (p < 0 || !own(p) || inPatch(w + p)) continue;
+      const sz = new DataView(u8.buffer, u8.byteOffset + p, 4).getUint32(0);
+      if (sz < 24 || sz > 1024 * 1024 || w + p + sz > end) continue;
+      if (s.slice(p + 12, p + 16) !== "hdlr" && s.slice(p + 16, p + 20) !== "hdlr") continue;
+      const reg = new Uint8Array(await blob.slice(w + p, w + p + sz).arrayBuffer());
+      const r = _stripVideoGpsRegion(reg);
+      if (r.refuse) return { refuse: "embedded meta: " + r.refuse };
+      if (r.n) patches.push({ off: w + p, bytes: reg });
+    }
+    // 2) any remaining coordinate string, wherever it sits.
+    _VGPS_ISO_RE.lastIndex = 0;
+    while ((m = _VGPS_ISO_RE.exec(s))) {
+      if (!own(m.index)) continue;
+      const abs = w + m.index, host = inPatch(abs);
+      if (host) { host.bytes.fill(0, abs - host.off, Math.min(host.bytes.length, abs - host.off + m[0].length)); }
+      else patches.push({ off: abs, bytes: new Uint8Array(m[0].length) });
+    }
+    // 3) proof for this window: patched, it reads clean.
+    const chk = u8.slice();
+    for (const p of patches) {
+      const a = Math.max(p.off, w), z = Math.min(p.off + p.bytes.length, b);
+      if (a < z) chk.set(p.bytes.subarray(a - p.off, z - p.off), a - w);
+    }
+    const cs = dec.decode(chk);
+    if (new RegExp(_VGPS_ISO_RE.source).test(cs) || /location\.ISO6709|location\.accuracy/.test(cs)) return { refuse: "coordinate left in media" };
+  }
+  patches.sort((x, y) => x.off - y.off);
+  const parts = []; let at = start;
+  for (const p of patches) {
+    if (p.off < at) return { refuse: "overlapping patches" };
+    if (p.off > at) parts.push(blob.slice(at, p.off));
+    parts.push(p.bytes); at = p.off + p.bytes.length;
+  }
+  if (at < end) parts.push(blob.slice(at, end));
+  return { parts, n: patches.length };
+}
+// Blob in, { blob, redacted } or null out. Never throws.
+async function _stripVideoGps(blob) {
+  try {
+    if (!blob || typeof blob.slice !== "function") return null;
+    const size = blob.size;
+    const head = async (pos) => new DataView(await blob.slice(pos, Math.min(size, pos + 16)).arrayBuffer());
+    const parts = [];
+    let pos = 0, sawMoov = false, redacted = 0;
+    while (pos < size) {
+      if (pos + 8 > size) return null;
+      const h = await head(pos);
+      let boxSize = h.getUint32(0), hdr = 8;
+      const type = String.fromCharCode(h.getUint8(4), h.getUint8(5), h.getUint8(6), h.getUint8(7));
+      if (boxSize === 1) { if (h.byteLength < 16) return null; boxSize = h.getUint32(8) * 4294967296 + h.getUint32(12); hdr = 16; }
+      else if (boxSize === 0) boxSize = size - pos;
+      if (boxSize < hdr || pos + boxSize > size) return null;
+      if (type === "mdat") {
+        parts.push(blob.slice(pos, pos + hdr));
+        const r = await _vgpsScanMedia(blob, pos + hdr, pos + boxSize);
+        if (r.refuse) { console.warn("[backup] video GPS strip refused:", r.refuse); return null; }
+        parts.push(...r.parts); redacted += r.n;
+      } else {
+        if (boxSize > _VGPS_MAX_BOX) return null;
+        const u8 = new Uint8Array(await blob.slice(pos, pos + boxSize).arrayBuffer());
+        const r = _stripVideoGpsRegion(u8);
+        if (r.refuse) { console.warn("[backup] video GPS strip refused:", r.refuse); return null; }
+        redacted += r.n;
+        // Proof, not hope: after the redaction no inspected byte may still
+        // read as a coordinate or a location key.
+        const s = _vgpsLatin1(u8, 0, u8.byteLength);
+        if (_VGPS_COORD_RE.test(s) || /ISO6709/.test(s)) { console.warn("[backup] video GPS strip: coordinate left in", type); return null; }
+        if (type === "moov") sawMoov = true;
+        parts.push(u8);
+      }
+      pos += boxSize;
+    }
+    if (!sawMoov) return null;
+    const out = new Blob(parts, { type: blob.type || "video/quicktime" });
+    if (out.size !== size) return null;
+    return { blob: out, redacted };
+  } catch (e) {
+    console.warn("[backup] video GPS strip failed:", e && e.message);
+    return null;
+  }
+}
+
 // Given EXIF metadata + the list of saved-set IDs the user has tagged for
 // any night, pick the best matching artist:
 //   1. Prefer an artist whose set window contains the photo time AND whose

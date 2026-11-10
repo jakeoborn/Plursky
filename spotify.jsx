@@ -1974,7 +1974,8 @@ function _backedUpBytes(all) {
 // Mirror every not-yet-backed-up moment photo/video to Supabase Storage, then
 // stamp `backedUp` + `backedUpBytes` on the moment (one batched write at the
 // end so we don't fire N re-renders). Stops at the hard cap. Returns
-// {done, failed, total, capped, usedBytes} or {error}.
+// {done, failed, total, capped, usedBytes, gpsHeld} or {error}; gpsHeld
+// counts videos kept back because their GPS could not be proven stripped.
 async function _backupMyWeekend(onProgress) {
   if (typeof window.sbUploadMomentMedia !== "function") return { error: "offline" };
   const user = window.sbGetUser ? await window.sbGetUser() : null;
@@ -1987,10 +1988,19 @@ async function _backupMyWeekend(onProgress) {
   }
   let done = 0, failed = 0, capped = false;
   const succeeded = {}; // id -> bytes
+  let gpsHeld = 0;
   for (const m of pending) {
-    const blob = await _getPhoto(m.photoId).catch(() => null);
+    let blob = await _getPhoto(m.photoId).catch(() => null);
     if (!blob) { failed++; onProgress?.({ done, failed, total: pending.length }); continue; }
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) { capped = true; break; }
+    // A stored video is the raw file, capture GPS included; only a copy with
+    // every coordinate redacted may leave the device. If that cannot be
+    // proven (null), the clip is held back, never sent as-is.
+    if (m.kind === "video" || /^video\//.test(blob.type || "")) {
+      const clean = await _stripVideoGps(blob);
+      if (!clean) { gpsHeld++; onProgress?.({ done, failed, total: pending.length }); continue; }
+      blob = clean.blob;
+    }
     const ok = await window.sbUploadMomentMedia(m.photoId, blob);
     if (ok) { succeeded[m.id] = blob.size; usedBytes += blob.size; done++; } else failed++;
     onProgress?.({ done, failed, total: pending.length });
@@ -2001,7 +2011,7 @@ async function _backupMyWeekend(onProgress) {
     for (const n of Object.keys(cur)) cur[n] = (cur[n] || []).map(x => succeeded[x.id] != null ? { ...x, backedUp: true, backedUpBytes: succeeded[x.id] } : x);
     _writeMoments(cur);
   }
-  return { done, failed, total: pending.length, capped, usedBytes };
+  return { done, failed, total: pending.length, capped, usedBytes, gpsHeld };
 }
 
 // Single memory thumbnail for the home strip — loads its photo blob lazily.
@@ -7115,7 +7125,7 @@ function MemoriesScreen({ state, setState }) {
     if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");
     else if (res?.error) window.plurskyToast?.("Backup unavailable right now");
     else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);
-    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   const handleBackup = async () => {
     if (!_isPlusSub()) { setShowPlus(true); return; }

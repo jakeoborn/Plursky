@@ -2805,6 +2805,7 @@ async function _backupMyWeekend(onProgress) {
     failed = 0,
     capped = false;
   var succeeded = {};
+  var gpsHeld = 0;
   for (var _m of pending) {
     var blob = await _getPhoto(_m.photoId).catch(() => null);
     if (!blob) {
@@ -2819,6 +2820,19 @@ async function _backupMyWeekend(onProgress) {
     if (usedBytes + blob.size > _BACKUP_HARD_CAP) {
       capped = true;
       break;
+    }
+    if (_m.kind === "video" || /^video\//.test(blob.type || "")) {
+      var clean = await _stripVideoGps(blob);
+      if (!clean) {
+        gpsHeld++;
+        onProgress?.({
+          done,
+          failed,
+          total: pending.length
+        });
+        continue;
+      }
+      blob = clean.blob;
     }
     var ok = await window.sbUploadMomentMedia(_m.photoId, blob);
     if (ok) {
@@ -2847,7 +2861,8 @@ async function _backupMyWeekend(onProgress) {
     failed,
     total: pending.length,
     capped,
-    usedBytes
+    usedBytes,
+    gpsHeld
   };
 }
 function _HomeMemoryThumb({
@@ -10247,7 +10262,7 @@ function MemoriesScreen({
     return backupStat.total > here ? " · ALL FESTIVALS" : "";
   }, [allMoments, backupStat.total]);
   var _afterBackup = res => {
-    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}`);
+    if (res?.error === "signin") window.plurskyToast?.("Sign in on the Me tab to back up");else if (res?.error) window.plurskyToast?.("Backup unavailable right now");else if (res?.capped) window.plurskyToast?.(`Backup limit reached (${_fmtSize(_BACKUP_HARD_CAP)}) · ${res.done} saved`);else window.plurskyToast?.(`☁ Backed up ${res.done} ${res.done === 1 ? "memory" : "memories"}${res.failed ? ` · ${res.failed} failed` : ""}${res.gpsHeld ? ` · ${res.gpsHeld} ${res.gpsHeld === 1 ? "video stays" : "videos stay"} on this phone (location could not be removed)` : ""}`);
   };
   var handleBackup = async () => {
     if (!_isPlusSub()) {

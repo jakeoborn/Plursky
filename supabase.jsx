@@ -431,6 +431,11 @@ function sbOnAuthChange(cb) {
 // dedupe hash recomputed at import. Measured at ~16% of the serialized blob,
 // and dropping them costs the restore nothing.
 const _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
+// An imported video's capture fix stays on the device: raw lat/lng, its
+// accuracy and the compass heading never ride the backup. `location` stays
+// (an amenity label + metres, no coordinates). A restored clip comes back
+// without its fix, which is the rule working, not a loss to repair.
+const _VIDEO_COORD_FIELDS = ["parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   const out = {};
   for (const night of Object.keys(all || {})) {
@@ -440,6 +445,7 @@ function _slimMomentsForSync(all) {
       if (!m || typeof m !== "object") return m;
       const copy = { ...m };
       for (const f of _MOMENT_LOCAL_FIELDS) delete copy[f];
+      if (copy.kind === "video") for (const f of _VIDEO_COORD_FIELDS) delete copy[f];
       return copy;
     });
   }
