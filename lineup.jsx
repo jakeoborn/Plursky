@@ -1626,6 +1626,7 @@ function LineupScreen({ state, setState }) {
           // Now on your plan, the one lifted card (only while a set you saved
           // is actually playing; empty means absent, never a placeholder),
           // sits right there, so it is the first thing in view.
+          rows.push(<SpotifyPhotoCredit key="__spcredit" names={dayArtists.map(a => a.name)} />);
           if (nowMin != null) {
             const hour = Math.floor(nowMin / 60) * 60;
             const at = dayArtists.findIndex(a => isSetLive(a) || toNightMin(a.start) >= hour);
