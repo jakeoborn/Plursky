@@ -199,6 +199,34 @@ const officialSite = [/^https:\/\/www\.iiipoints\.com\/$/, site(['https://www.in
   check(L.resultRecord('f', one, { ok: true, reason: null }, null, '2026-09-28').sig === L.embedSig('f', one), 'the checker writes a result without its record signature');
 }
 
+// ── 3c. Recap posts: day groups, own budget, schedule-checked claims ────────
+{
+  const yr = { platform: 'youtube', url: 'https://www.youtube.com/watch?v=fqvmqwXxyns', officialAccount: 'https://www.youtube.com/@Insomniac', accountSourceUrl: 'https://www.insomniac.com/', observedAt: '2026-11-09', kind: 'recap', day: 1 };
+  const xr = (i, extra = {}) => ({ platform: 'x', url: `https://x.com/fest/status/${2119365567987474463n + BigInt(i)}`, officialAccount: 'https://x.com/fest', accountSourceUrl: 'https://f.test/', observedAt: '2026-11-09', kind: 'recap', ...extra });
+  check(L.validateEmbed(yr) === null, `control: an official YouTube day recap is rejected (${L.validateEmbed(yr)})`);
+  check(L.validateEmbed({ ...xr(1), day: 2, artist: 'Kaskade' }) === null, 'control: an X recap naming an act on a day is rejected');
+  check(L.validateEmbed({ ...xr(1), kind: 'photo', day: 2 }) !== null, 'a day on a non-recap post passes');
+  check(L.validateEmbed({ ...xr(1), artist: 'Kaskade' }) !== null, 'an artist with no day passes');
+  check(L.validateEmbed({ ...xr(1), day: 0 }) !== null && L.validateEmbed({ ...xr(1), day: '2' }) !== null, 'a day that is not a festival day number passes');
+  const curated = { f: [yr, { ...yr, url: 'https://www.youtube.com/watch?v=nk5sosoCouE' }, xr(1, { day: 3 }), xr(2, { day: 3 }), xr(3, { day: 3 }), xr(4, { day: 3 }), xr(5), xr(6),
+    { platform: 'x', url: 'https://x.com/fest/status/2022007805209702830', officialAccount: 'https://x.com/fest', accountSourceUrl: 'https://f.test/', observedAt: '2026-09-24', kind: 'lineup' }] };
+  const results = {};
+  for (const e of curated.f) results[e.url] = { ok: true, publishedAt: '2026-11-09', sig: L.embedSig('f', e) };
+  const sel = L.selectEmbeds('f', { curated, verified: { results } }, '2025-10-01');
+  check(sel.recap.days.map(g => g.day).join() === '1,3', `recap days are not 1 and 3 in order: ${sel.recap.days.map(g => g.day)}`);
+  check(sel.recap.days[0].youtube.length === 1, `a day's YouTube recap cap is not 1: ${sel.recap.days[0].youtube.length}`);
+  check(sel.recap.days[1].social.length === 3, `a day's social recap cap is not 3: ${sel.recap.days[1].social.length}`);
+  check(sel.recap.weekend.social.length === 2, `the day-less recaps are not the weekend group: ${sel.recap.weekend.social.length}`);
+  check(sel.social.length === 1 && sel.social[0].kind === 'lineup', 'recap posts spend the Watch & listen budget');
+  const html = L.embedsSection('Fest', sel, d => `D${d}`);
+  check(html.includes('<h2 id="watch-h">Fest recap</h2>') && html.includes('<h3>Day 1 · D1</h3>') && html.includes('<h3>The whole weekend</h3>') && html.includes('<h3>Watch &amp; listen</h3>'), 'the recap section headings are wrong');
+  check(html.indexOf('Day 3 · D3') < html.indexOf('The whole weekend') && html.indexOf('The whole weekend') < html.indexOf('<h3>Watch &amp; listen'), 'recap groups are out of order');
+  check(L.embedFingerprintInput(sel).some(s => s.endsWith(':3:')), 'recap posts and their day are not in the page fingerprint');
+  const noRecap = L.selectEmbeds('f', { curated: { f: [curated.f.at(-1)] }, verified: { results } }, '2025-10-01');
+  check(L.embedFingerprintInput(noRecap).join() === 'x:https://x.com/fest/status/2022007805209702830', 'a page with no recap changed its fingerprint input');
+  check(L.embedsSection('Fest', noRecap).includes('<h2 id="watch-h">Watch &amp; listen</h2>') && !L.embedsSection('Fest', noRecap).includes('<h3>'), 'a page with no recap lost its plain Watch & listen section');
+}
+
 // ── 3b. The weekly job: what it checks and what it posts ────────────────────
 {
   const html = '<iframe src="https://www.youtube-nocookie.com/embed/XX2XMvp6EL0"></iframe><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVeP_fKEeNA/"></blockquote>';
@@ -261,12 +289,22 @@ for (const id of pages) {
     const pl = (fg.match(/data-href="([^"]+)"/) || [])[1] || '';
     const iso = / data-tap="instagram"/.test(fg) ? L.instagramPublishedAt(pl) : L.xPublishedAt(pl);
     const want = iso && new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
-    check(!!what && /^(Lineup|Announcement|Photo|Photo set|Video|Aftermovie|Trailer) · Posted /.test(what), `${at} a tap-to-load post has no "kind · Posted date" line: ${what}`);
+    // A recap that shows one act leads with that act, as curated for this page.
+    const recapActs = new Set(curatedFor(id).filter(e => e.kind === 'recap' && e.artist).map(e => e.artist));
+    const lead = what && what.split(' · Posted ')[0];
+    check(!!what && (/^(Lineup|Announcement|Photo|Photo set|Video|Aftermovie|Trailer|Recap) · Posted /.test(what) || (recapActs.has(lead) && what.startsWith(lead + ' · Posted '))), `${at} a tap-to-load post has no "kind · Posted date" line: ${what}`);
     check(!!want && !!what && what.endsWith(`Posted ${want}`), `${at} a post's date line (${what}) is not its id's date (${want})`);
     check(fg.indexOf('class="embed-what"') > fg.indexOf('</blockquote>'), `${at} the date line sits inside the blockquote (it must stay outside the post's own markup)`);
   }
   check(!/IntersectionObserver/.test(sec), `${at} the social loader still fires on scroll`);
-  check(yt <= 1 && sp <= 1 && social <= 3, `${at} over the caps: ${yt} YouTube, ${social} social, ${sp} Spotify`);
+  // Caps hold per group: the page's Watch & listen list, and with recap posts
+  // each day and the whole weekend (split at the section's <h3> headings).
+  for (const [gi, g] of sec.split(/<h3>/).entries()) {
+    const gy = (g.match(/embed-yt/g) || []).length, gs = (g.match(/embed-sp/g) || []).length;
+    const gx = (g.match(/data-class="instagram-media"|data-class="twitter-tweet"/g) || []).length;
+    check(gy <= 1 && gs <= 1 && gx <= 3, `${at} group ${gi} over the caps: ${gy} YouTube, ${gx} social, ${gs} Spotify`);
+  }
+  check(/<h3>/.test(sec) === curatedFor(id).some(e => e.kind === 'recap' && okUrls.has(e.url)), `${at} has recap headings without verified recap posts, or the reverse`);
   totalEmbeds += yt + sp + social;
   // Every rendered embed is a curated, provenance-complete, verified one.
   const shown = [
