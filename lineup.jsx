@@ -1426,17 +1426,6 @@ function LineupScreen({ state, setState }) {
         </div>
       )}
 
-      {/* Open, lineup in, schedule still to come. Without this the screen is a
-          list of acts whose every time reads "—", which looks like the app
-          failed to load them rather than like the festival hasn't said yet. */}
-      {_schedTBA && (
-        <div role="status" className="duo-card" style={{ margin: "8px 16px 0", padding: "12px 16px" }}>
-          <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
-          <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
-            The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
-          </div>
-        </div>
-      )}
 
 
       {wizardOpen && (
@@ -1456,6 +1445,21 @@ function LineupScreen({ state, setState }) {
           ? { overflowY: "hidden", display: "flex", flexDirection: "column", padding: 0 }
           : { padding: "0 20px 96px" }
       }>
+        {/* Open, lineup in, schedule still to come. Without this the screen is a
+            list of acts with no times, which looks like the app failed to load
+            them rather than like the festival hasn't said yet. It rides INSIDE
+            the scroller, as the list's first item: pinned above it, it held a
+            quarter of a phone screen still while the rows slid under it, and
+            jumped with the header each time the header folded (Jake, Nov 10:
+            "When I scroll down it's weird"). LIST only: TBA forces list mode. */}
+        {_schedTBA && viewMode === "list" && (
+          <div role="status" data-sched-tba className="duo-card" style={{ margin: "8px 0 4px", padding: "12px 16px" }}>
+            <div className="duo-headline" style={{ fontSize: 15 }}>Set times pending from the festival</div>
+            <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
+              The full lineup is here. Save the acts you want and the schedule fills itself in as soon as {FESTIVAL_CONFIG.shortName || "the festival"} publishes it.
+            </div>
+          </div>
+        )}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.
@@ -1530,6 +1534,11 @@ function LineupScreen({ state, setState }) {
           // One NOW rule, before the first set that hasn't started: only on the
           // night that is actually running, and only in time order.
           const nowMin = NOW.night === day && NOW.time && sortBy === "time" ? toNightMin(NOW.time) : null;
+          // A day with no published time at all has no time column: 72px of
+          // lone dashes down the left edge read as broken data, and pushed every
+          // face and name a third of the way across a phone. The column comes
+          // back with the first real time on the day.
+          const timeCol = dayArtists.some(a => a.start && !setTimesUnconfirmed(a));
           const renderRow = (a, pinned) => {
             const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE);
             const saved = state.saved.includes(a.id);
@@ -1551,10 +1560,12 @@ function LineupScreen({ state, setState }) {
                 data-lineup-highlight={isHighlighted && !pinned ? "true" : undefined}
                 className={`duo-lrow${isLive ? " live" : saved ? " plan" : ""}`}
                 style={{ animation: isHighlighted ? "lineupFlash 1.8s ease-out" : undefined }}>
-                <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
-                  style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
-                  {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
-                </div>
+                {timeCol && (
+                  <div data-set-time className={`duo-data${saved || isLive ? "" : " duo-ink2"}`}
+                    style={{ width: 72, flexShrink: 0, whiteSpace: "nowrap", fontSize: 13 }}>
+                    {setTimesUnconfirmed(a) ? null : fmt12(a.start)}
+                  </div>
+                )}
                 <DuoAvatar name={a.name} size={42} ring={ring} />
                 <button onClick={() => setState({ ...state, artist: a.id })} style={{
                   flex: 1, minWidth: 0, minHeight: 44, padding: 0, background: "transparent", border: "none",

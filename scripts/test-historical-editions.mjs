@@ -444,8 +444,12 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Nocturnal and Beyond SoCal 2025 survive only as lineup pages. Escape, EDC
   // Orlando and Dreamstate 2025 have complete official schedules (#368/#369/
   // #371); a lineup page must never replace them.
+  // Every other lineup edition is one registered as official_lineup_html in
+  // editions.mjs (the 2010-2025 backfill); nothing else may be lineup_only.
   const LINEUP_2025 = ["beyond-wonderland-socal-2025", "nocturnal-wonderland-2025"];
-  ok(JSON.stringify(lineups.map(e => e.id).sort()) === JSON.stringify(LINEUP_2025), `expected the lineup editions ${LINEUP_2025.join(", ")}, found ${lineups.map(e => e.id).join(", ") || "none"}`);
+  const LINEUP_ALL = Object.keys(EDITIONS).filter(id => EDITIONS[id].method === "official_lineup_html" && editions[id]).sort();
+  for (const id of LINEUP_2025) ok(LINEUP_ALL.includes(id), `${id}: no longer a lineup edition`);
+  ok(JSON.stringify(lineups.map(e => e.id).sort()) === JSON.stringify(LINEUP_ALL), `expected the lineup editions ${LINEUP_ALL.join(", ")}, found ${lineups.map(e => e.id).join(", ") || "none"}`);
   for (const id of ["escape-halloween-2025", "edc-orlando-2025", "dreamstate-socal-2025"])
     ok(editions[id]?.completeness === "complete_schedule" && editions[id].sets.length > 0, `${id}: downgraded to ${editions[id]?.completeness} with ${editions[id]?.sets?.length} sets`);
   for (const e of lineups) {

@@ -29,6 +29,12 @@ if (!app.includes('const _SAVED_KEY = `${_FID}_saved_v1`')) fail('app.jsx saved-
 if (!page.includes('"plursky_saved_festivals_v1"')) fail('welcome page does not write plursky_saved_festivals_v1');
 if (!page.includes('id + "_saved_v1"')) fail('welcome page does not write <festivalId>_saved_v1');
 if (!page.includes('"/?f=" + encodeURIComponent(id)')) fail('welcome page no longer hands off with ?f=<id>');
+// An ended festival hands off to its Memories, and earlier years open in
+// Past Festivals; both are deep links the app has to keep accepting.
+const tabs = app.match(/const validTab\s*=\s*\[([^\]]*)\]/);
+if (!tabs || !/"memories"/.test(tabs[1]) || !/"past"/.test(tabs[1])) fail('app.jsx no longer accepts ?tab=memories and ?tab=past; update the welcome links');
+if (!page.includes('"&tab=memories"')) fail('welcome page no longer opens an ended festival on Memories');
+if (!page.includes('"/?tab=past&edition=" + encodeURIComponent(id)')) fail('welcome page no longer links earlier years with ?tab=past&edition=<id>');
 console.log('  ✓ hand-off keys match landing.jsx and app.jsx');
 
 const m = page.match(/window\.WELCOME_DATA = (\{[\s\S]*?\});\n/);
