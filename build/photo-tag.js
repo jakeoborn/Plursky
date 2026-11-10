@@ -418,7 +418,108 @@ async function _parseVideoMeta(file) {
 var _VGPS_MAX_BOX = 64 * 1024 * 1024;
 var _VGPS_COORD_RE = /[+-]\d{1,3}\.\d{2,}[+-]\d{1,3}\.\d{2,}/;
 var _VGPS_KEY_RE = /location|ISO6709|gps/i;
-var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "Opus", "fLaC", "mebx", "tmcd"]);
+var _VGPS_TRACK_FORMATS = new Set(["hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe", "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "mebx", "tmcd"]);
+var _VGPS_VISUAL = new Set(["avc1", "avc3", "hvc1", "hev1", "dvh1", "dvhe"]);
+var _VGPS_ENTRY_KIDS = {
+  visual: {
+    avcC: 0,
+    hvcC: 0,
+    dvcC: 32,
+    dvvC: 32,
+    dvwC: 32,
+    colr: 0,
+    amve: 16,
+    pasp: 16,
+    btrt: 20,
+    clap: 40,
+    clli: 12,
+    mdcv: 32,
+    fiel: 10
+  },
+  mp4a: {
+    esds: 0,
+    wave: 0,
+    chan: 0,
+    btrt: 20
+  },
+  apac: {
+    dapa: 0,
+    ngst: 20,
+    btrt: 20
+  },
+  pcm: {
+    chan: 0,
+    btrt: 20,
+    wave: 0
+  },
+  alac: {
+    alac: 0,
+    chan: 0,
+    btrt: 20,
+    wave: 0
+  },
+  wave: {
+    frma: 12,
+    mp4a: 12,
+    esds: 0,
+    enda: 10,
+    chan: 0,
+    alac: 0,
+    "\0\0\0\0": 8
+  },
+  mebx: {
+    keys: 0
+  },
+  mebxKey: {
+    keyd: 0,
+    dtyp: 0
+  },
+  tmcd: {}
+};
+function _vgpsEntryHeader(fmt, dv, e, es) {
+  if (_VGPS_VISUAL.has(fmt)) return 86;
+  if (fmt === "mebx") return 16;
+  if (fmt === "tmcd") return 34;
+  if (es < 18) return -1;
+  var v = dv.getUint16(e + 16);
+  return v === 0 ? 36 : v === 1 ? 52 : v === 2 ? 72 : -1;
+}
+function _vgpsEntryKind(fmt) {
+  if (_VGPS_VISUAL.has(fmt)) return "visual";
+  if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
+  return "pcm";
+}
+function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
+  var allow = _VGPS_ENTRY_KIDS[kind];
+  var c = a;
+  while (c + 8 <= z) {
+    var cs = dv.getUint32(c);
+    if (cs < 8 || c + cs > z) return "unreadable sample entry";
+    var t = String.fromCharCode(u8[c + 4], u8[c + 5], u8[c + 6], u8[c + 7]);
+    var want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
+    var colrOk = t !== "colr" || cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx" || cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc";
+    if (want < 0 || want > 0 && cs !== want || !colrOk) blank(c, c + cs);else if (t === "wave") {
+      var r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep);
+      if (r) return r;
+    } else if (kind === "mebx" && t === "keys") {
+      var k = c + 8;
+      while (k + 8 <= c + cs) {
+        var ks = dv.getUint32(k);
+        if (ks < 8 || k + ks > c + cs) return "unreadable timed keys";
+        var _r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep);
+        if (_r) return _r;
+        k += ks;
+      }
+      if (k !== c + cs) blank(k, c + cs, true);
+    } else if (onKeep) {
+      var _r2 = onKeep(t, c, c + cs);
+      if (_r2) return _r2;
+    }
+    c += cs;
+  }
+  if (c < z) blank(c, z, true);
+  return null;
+}
 var _VGPS_TIMED_KEYS = new Set(["video-orientation", "detected-face", "detected-face.bounds", "detected-face.face-id", "detected-face.roll-angle", "detected-face.yaw-angle", "live-photo-info", "com.apple.quicktime.live-photo-info", "scene-illuminance", "milli-lux", "cinematic-audio", "segment-identifier", "optical-center", "metadata.1", "uuid", "apple-maker-note.74", "apple-maker-note.97", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
 var _VGPS_KEEP_KEYS = new Set(["make", "model", "software", "creationdate", "full-frame-rate-playback-intent", "camera.lens_model", "camera.focal_length.35mm_equivalent", "camera.lens_irisfnumber"].map(k => "com.apple.quicktime." + k));
 function _vgpsLatin1(u8, a, b) {
@@ -645,73 +746,106 @@ function _stripVideoGpsRegion(u8, layout = null) {
         }
         var count = boxEnd - payload >= 8 ? dv.getUint32(payload + 4) : 0;
         var e = payload + 8;
-        for (var k = 0; k < count; k++) {
-          var es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
-          if (es < 8 || e + es > boxEnd) {
-            refuse = "unreadable sample table";
-            return;
-          }
-          var fmt = type4(e + 4);
-          if (!_VGPS_TRACK_FORMATS.has(fmt)) {
-            refuse = "unknown track format " + JSON.stringify(fmt);
-            return;
-          }
-          var fam = _VGPS_NAL_FAMILY[fmt];
-          if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
-          if (fam) {
-            var cfg = fam === "avc" ? "avcC" : "hvcC";
-            var c = e + 86,
-              L = 0;
-            while (c + 8 <= e + es) {
-              var cs = dv.getUint32(c);
-              if (cs < 8 || c + cs > e + es) break;
-              if (type4(c + 4) === cfg) {
-                var r = _vgpsConfig(fam, u8, c + 8, c + cs);
-                if (r.refuse) {
-                  refuse = r.refuse;
-                  return;
-                }
+        var _loop2 = function () {
+            var es = e + 8 <= boxEnd ? dv.getUint32(e) : 0;
+            if (es < 8 || e + es > boxEnd) {
+              refuse = "unreadable sample table";
+              return {
+                v: void 0
+              };
+            }
+            var fmt = type4(e + 4);
+            if (!_VGPS_TRACK_FORMATS.has(fmt)) {
+              refuse = "unknown track format " + JSON.stringify(fmt);
+              return {
+                v: void 0
+              };
+            }
+            var fam = _VGPS_NAL_FAMILY[fmt];
+            if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
+            var eh = _vgpsEntryHeader(fmt, dv, e, es);
+            if (eh < 0 || eh > es) {
+              refuse = "unreadable sample entry";
+              return {
+                v: void 0
+              };
+            }
+            var cfg = fam === "avc" ? "avcC" : fam ? "hvcC" : null;
+            var L = 0;
+            var blank = (a, z, tail) => {
+              zero(tail ? a : a + 8, z);
+              if (!tail) toFree(a);
+              n++;
+            };
+            var bad = _vgpsEntryChildren(_vgpsEntryKind(fmt), u8, dv, e + eh, e + es, blank, (t, a, z) => {
+              if (t === "avcC" || t === "hvcC") {
+                if (t !== cfg) return "config box " + t + " in a " + fmt + " entry";
+                var r = _vgpsConfig(fam, u8, a + 8, z);
+                if (r.refuse) return r.refuse;
+                if (L) return "two " + t + " boxes";
                 L = r.L;
               }
-              c += cs;
+              return null;
+            });
+            if (bad) {
+              refuse = bad;
+              return {
+                v: void 0
+              };
             }
-            if (L !== 1 && L !== 2 && L !== 4) {
-              refuse = "unreadable " + cfg;
-              return;
-            }
-            if (layout && curTrak) {
-              if (curTrak.fam && curTrak.fam !== fam || curTrak.lenSize && curTrak.lenSize !== L) {
-                refuse = "mixed video sample entries";
-                return;
+            if (fam) {
+              if (L !== 1 && L !== 2 && L !== 4) {
+                refuse = "unreadable " + cfg;
+                return {
+                  v: void 0
+                };
               }
-              curTrak.fam = fam;
-              curTrak.lenSize = L;
-            }
-          }
-          if (fmt === "mebx") {
-            var body = _vgpsLatin1(u8, e, e + es);
-            var at = body.indexOf("keyd"),
-              seen = 0;
-            while (at >= 4) {
-              var ks = dv.getUint32(e + at - 4);
-              if (ks < 12 || at - 4 + ks > es) {
-                refuse = "unreadable timed key";
-                return;
+              if (layout && curTrak) {
+                if (curTrak.fam && curTrak.fam !== fam || curTrak.lenSize && curTrak.lenSize !== L) {
+                  refuse = "mixed video sample entries";
+                  return {
+                    v: void 0
+                  };
+                }
+                curTrak.fam = fam;
+                curTrak.lenSize = L;
               }
-              var name = body.slice(at + 8, at - 4 + ks);
-              if (!_VGPS_TIMED_KEYS.has(name)) {
-                refuse = "timed key " + JSON.stringify(name);
-                return;
+            }
+            if (fmt === "mebx") {
+              var body = _vgpsLatin1(u8, e, e + es);
+              var at = body.indexOf("keyd"),
+                seen = 0;
+              while (at >= 4) {
+                var ks = dv.getUint32(e + at - 4);
+                if (ks < 12 || at - 4 + ks > es) {
+                  refuse = "unreadable timed key";
+                  return {
+                    v: void 0
+                  };
+                }
+                var name = body.slice(at + 8, at - 4 + ks);
+                if (!_VGPS_TIMED_KEYS.has(name)) {
+                  refuse = "timed key " + JSON.stringify(name);
+                  return {
+                    v: void 0
+                  };
+                }
+                seen++;
+                at = body.indexOf("keyd", at - 4 + ks);
               }
-              seen++;
-              at = body.indexOf("keyd", at - 4 + ks);
+              if (!seen && body.includes("keys")) {
+                refuse = "unreadable timed keys";
+                return {
+                  v: void 0
+                };
+              }
             }
-            if (!seen && body.includes("keys")) {
-              refuse = "unreadable timed keys";
-              return;
-            }
-          }
-          e += es;
+            e += es;
+          },
+          _ret2;
+        for (var k = 0; k < count; k++) {
+          _ret2 = _loop2();
+          if (_ret2) return _ret2.v;
         }
       } else if (scope && type === "keys" && boxEnd - payload >= 8) {
         if (scope.keysSeen++) {
@@ -721,16 +855,16 @@ function _stripVideoGpsRegion(u8, layout = null) {
         var _count = dv.getUint32(payload + 4);
         var _k = payload + 8;
         for (var i = 1; i <= _count && _k + 8 <= boxEnd; i++) {
-          var _ks = dv.getUint32(_k);
-          if (_ks < 8 || _k + _ks > boxEnd) break;
-          var _name = _vgpsLatin1(u8, _k + 8, _k + _ks);
-          if (_VGPS_KEEP_KEYS.has(_name)) scope.keep.add(i);
-          if (_VGPS_KEY_RE.test(_name)) {
+          var ks = dv.getUint32(_k);
+          if (ks < 8 || _k + ks > boxEnd) break;
+          var name = _vgpsLatin1(u8, _k + 8, _k + ks);
+          if (_VGPS_KEEP_KEYS.has(name)) scope.keep.add(i);
+          if (_VGPS_KEY_RE.test(name)) {
             scope.hit.add(i);
-            var red = "plursky.redacted.".padEnd(_ks - 8, "x").slice(0, _ks - 8);
-            for (var j = 0; j < _ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
+            var red = "plursky.redacted.".padEnd(ks - 8, "x").slice(0, ks - 8);
+            for (var j = 0; j < ks - 8; j++) u8[_k + 8 + j] = red.charCodeAt(j);
           }
-          _k += _ks;
+          _k += ks;
         }
       } else if (scope && parentType === "ilst") {
         scope.items.push({
@@ -756,10 +890,23 @@ function _stripVideoGpsRegion(u8, layout = null) {
         visit(Math.min(boxEnd, payload + skip), boxEnd, depth + 1, type, inner);
         curTrak = prevTrak;
         if (type === "meta") {
-          for (var it of inner.items) if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
+          for (var it of inner.items) {
             var dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
-            zero(it.payload + dataHdr, it.boxEnd);
-            n++;
+            if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
+              zero(it.payload + dataHdr, it.boxEnd);
+              n++;
+              continue;
+            }
+            var ds = dataHdr ? dv.getUint32(it.payload) : 0;
+            if (!dataHdr || ds < 16 || it.payload + ds > it.boxEnd) {
+              zero(it.payload, it.boxEnd);
+              n++;
+              continue;
+            }
+            if (it.payload + ds < it.boxEnd) {
+              zero(it.payload + ds, it.boxEnd);
+              n++;
+            }
           }
         }
       }
@@ -926,7 +1073,7 @@ function _vgpsFiller(fam, b, q, len) {
 function _vgpsSamples(u8, layout) {
   var dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
   var out = [];
-  var _loop2 = function (t) {
+  var _loop3 = function (t) {
       if (!t.fmts || !t.fmts.length) return {
         v: {
           refuse: "track without a sample description"
@@ -1000,10 +1147,10 @@ function _vgpsSamples(u8, layout) {
         }
       };
     },
-    _ret2;
+    _ret3;
   for (var t of layout) {
-    _ret2 = _loop2(t);
-    if (_ret2) return _ret2.v;
+    _ret3 = _loop3(t);
+    if (_ret3) return _ret3.v;
   }
   out.sort((x, y) => x.off - y.off);
   return {
@@ -1061,7 +1208,7 @@ async function _vgpsScanMedia(blob, start, end, init = []) {
   var dec = new TextDecoder("windows-1252");
   var patches = init.slice();
   var inPatch = o => patches.find(p => o >= p.off && o < p.off + p.bytes.length);
-  var _loop3 = async function (w) {
+  var _loop4 = async function (w) {
       var b = Math.min(end, w + _VGPS_WIN + _VGPS_OVERLAP);
       var u8 = new Uint8Array(await blob.slice(w, b).arrayBuffer());
       var s = dec.decode(u8);
@@ -1111,10 +1258,10 @@ async function _vgpsScanMedia(blob, start, end, init = []) {
         }
       };
     },
-    _ret3;
+    _ret4;
   for (var w = start; w < end; w += _VGPS_WIN) {
-    _ret3 = await _loop3(w);
-    if (_ret3) return _ret3.v;
+    _ret4 = await _loop4(w);
+    if (_ret4) return _ret4.v;
   }
   patches.sort((x, y) => x.off - y.off);
   var parts = [];
@@ -1192,7 +1339,7 @@ async function _stripVideoGps(blob) {
     }
     var parts = [];
     var covered = 0;
-    var _loop4 = async function () {
+    var _loop5 = async function () {
         if (_b.type !== "mdat") {
           parts.push(done.get(_b));
           return 0;
@@ -1245,11 +1392,11 @@ async function _stripVideoGps(blob) {
         parts.push(...r.parts);
         redacted += r.n;
       },
-      _ret4;
+      _ret5;
     for (var _b of boxes) {
-      _ret4 = await _loop4();
-      if (_ret4 === 0) continue;
-      if (_ret4) return _ret4.v;
+      _ret5 = await _loop5();
+      if (_ret5 === 0) continue;
+      if (_ret5) return _ret5.v;
     }
     if (covered !== samples.length) {
       console.warn("[backup] video GPS strip refused: samples outside mdat");
@@ -2024,7 +2171,7 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
     outsideSets = 0,
     fullNight = 0,
     already = 0;
-  var _loop5 = function () {
+  var _loop6 = function () {
       if (!a || !a.id) return 0;
       var ms = Number(a.createdMs);
       if (!isFinite(ms)) {
@@ -2051,10 +2198,10 @@ function _scanPickAssets(assets, cfgIn, seenIds, artistsIn) {
       if (whole) fullNight++;
       keep.push(a);
     },
-    _ret5;
+    _ret6;
   for (var a of assets || []) {
-    _ret5 = _loop5();
-    if (_ret5 === 0) continue;
+    _ret6 = _loop6();
+    if (_ret6 === 0) continue;
   }
   keep.sort((x, y) => Number(x.createdMs) - Number(y.createdMs));
   return {

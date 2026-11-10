@@ -453,9 +453,74 @@ const _VGPS_TRACK_FORMATS = new Set([
   // with in-band tag frames (MP3/ID3, AC-3). Audio samples that pass are NOT
   // parsed: AAC data-stream/fill elements could hold bytes (stated residual).
   "hvc1", "hev1", "avc1", "avc3", "dvh1", "dvhe",
-  "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64", "Opus", "fLaC",
+  "mp4a", "apac", "alac", "lpcm", "ipcm", "sowt", "twos", "in24", "in32", "fl32", "fl64",
   "mebx", "tmcd",
 ]);
+// ── Sample-entry children: allowlisted, everything else blanked ──
+// A sample entry (avc1, mp4a, …) is fixed fields followed by child boxes, and
+// a child can be anything: a vendor uuid with a binary fix decodes fine. Each
+// format keeps only the children it needs; a fixed-size child must have its
+// exact size (else it is blanked). Unknown children become `free`, zeroed.
+// Children must tile the entry (a <8-byte tail, the QuickTime terminator, is
+// zeroed); a child that overruns its entry refuses the clip.
+// Fixed-size fields of kept children (pasp, colr, amve, …) and the variable
+// audio configs (esds, dapa) are kept as they are (stated residual).
+const _VGPS_VISUAL = new Set(["avc1", "avc3", "hvc1", "hev1", "dvh1", "dvhe"]);
+const _VGPS_ENTRY_KIDS = {
+  visual: { avcC: 0, hvcC: 0, dvcC: 32, dvvC: 32, dvwC: 32, colr: 0, amve: 16, pasp: 16, btrt: 20, clap: 40, clli: 12, mdcv: 32, fiel: 10 },
+  mp4a: { esds: 0, wave: 0, chan: 0, btrt: 20 },
+  apac: { dapa: 0, ngst: 20, btrt: 20 },
+  pcm: { chan: 0, btrt: 20, wave: 0 },
+  alac: { alac: 0, chan: 0, btrt: 20, wave: 0 },
+  wave: { frma: 12, mp4a: 12, esds: 0, enda: 10, chan: 0, alac: 0, "\0\0\0\0": 8 },
+  mebx: { keys: 0 },
+  mebxKey: { keyd: 0, dtyp: 0 },
+  tmcd: {},
+};
+function _vgpsEntryHeader(fmt, dv, e, es) {
+  if (_VGPS_VISUAL.has(fmt)) return 86;
+  if (fmt === "mebx") return 16;
+  if (fmt === "tmcd") return 34;
+  if (es < 18) return -1;                                  // sound sample entry: version picks the size
+  const v = dv.getUint16(e + 16);
+  return v === 0 ? 36 : v === 1 ? 52 : v === 2 ? 72 : -1;
+}
+function _vgpsEntryKind(fmt) {
+  if (_VGPS_VISUAL.has(fmt)) return "visual";
+  if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
+  return "pcm";
+}
+// Walks [a, z) as child boxes under `kind`'s allowlist. onKeep(type, at, end)
+// may return a refusal string. Returns null or a refusal.
+function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
+  const allow = _VGPS_ENTRY_KIDS[kind];
+  let c = a;
+  while (c + 8 <= z) {
+    const cs = dv.getUint32(c);
+    if (cs < 8 || c + cs > z) return "unreadable sample entry";
+    const t = String.fromCharCode(u8[c + 4], u8[c + 5], u8[c + 6], u8[c + 7]);
+    const want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
+    const colrOk = t !== "colr" || (cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx") ||
+      (cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc");
+    if (want < 0 || (want > 0 && cs !== want) || !colrOk) blank(c, c + cs);
+    else if (t === "wave") { const r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep); if (r) return r; }
+    else if (kind === "mebx" && t === "keys") {
+      // keys (QuickTime metadata key table): one box per local key id (any
+      // name), each holding keyd/dtyp. No version/flags or count.
+      let k = c + 8;
+      while (k + 8 <= c + cs) {
+        const ks = dv.getUint32(k);
+        if (ks < 8 || k + ks > c + cs) return "unreadable timed keys";
+        const r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep); if (r) return r;
+        k += ks;
+      }
+      if (k !== c + cs) blank(k, c + cs, true);
+    } else if (onKeep) { const r = onKeep(t, c, c + cs); if (r) return r; }
+    c += cs;
+  }
+  if (c < z) blank(c, z, true);                            // QuickTime 4-byte terminator
+  return null;
+}
 // Timed (mebx) keys whose per-frame values live in mdat, where they cannot
 // be blanked: only these Apple keys pass; any other key refuses the clip.
 const _VGPS_TIMED_KEYS = new Set([
@@ -624,22 +689,26 @@ function _stripVideoGpsRegion(u8, layout = null) {
           if (!_VGPS_TRACK_FORMATS.has(fmt)) { refuse = "unknown track format " + JSON.stringify(fmt); return; }
           const fam = _VGPS_NAL_FAMILY[fmt];
           if (layout && curTrak) (curTrak.fmts ||= []).push(fmt);
-          if (fam) {
-            // The NAL length size is in avcC/hvcC (after the 78-byte visual
-            // sample entry fields). hvcC parameter-set arrays may only hold
-            // VPS/SPS/PPS: an SEI there would ride along untouched.
-            const cfg = fam === "avc" ? "avcC" : "hvcC";
-            let c = e + 86, L = 0;
-            while (c + 8 <= e + es) {
-              const cs = dv.getUint32(c);
-              if (cs < 8 || c + cs > e + es) break;
-              if (type4(c + 4) === cfg) {
-                const r = _vgpsConfig(fam, u8, c + 8, c + cs);
-                if (r.refuse) { refuse = r.refuse; return; }
-                L = r.L;
-              }
-              c += cs;
+          // Every entry's child boxes go through the allowlist walk. The NAL
+          // length size is in avcC/hvcC; their NAL units are vetted
+          // (_vgpsConfig): an SEI there would ride along untouched.
+          const eh = _vgpsEntryHeader(fmt, dv, e, es);
+          if (eh < 0 || eh > es) { refuse = "unreadable sample entry"; return; }
+          const cfg = fam === "avc" ? "avcC" : fam ? "hvcC" : null;
+          let L = 0;
+          const blank = (a, z, tail) => { zero(tail ? a : a + 8, z); if (!tail) toFree(a); n++; };
+          const bad = _vgpsEntryChildren(_vgpsEntryKind(fmt), u8, dv, e + eh, e + es, blank, (t, a, z) => {
+            if (t === "avcC" || t === "hvcC") {
+              if (t !== cfg) return "config box " + t + " in a " + fmt + " entry";
+              const r = _vgpsConfig(fam, u8, a + 8, z);
+              if (r.refuse) return r.refuse;
+              if (L) return "two " + t + " boxes";
+              L = r.L;
             }
+            return null;
+          });
+          if (bad) { refuse = bad; return; }
+          if (fam) {
             if (L !== 1 && L !== 2 && L !== 4) { refuse = "unreadable " + cfg; return; }
             if (layout && curTrak) {
               if ((curTrak.fam && curTrak.fam !== fam) || (curTrak.lenSize && curTrak.lenSize !== L)) { refuse = "mixed video sample entries"; return; }
@@ -694,9 +763,13 @@ function _stripVideoGpsRegion(u8, layout = null) {
           // value ONLY when its index names a keep-listed key; every other item
           // (unknown key, index past a truncated keys table, a keyless
           // iTunes-style meta) is zeroed (its `data` box keeps its header).
-          for (const it of inner.items) if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) {
+          for (const it of inner.items) {
             const dataHdr = it.payload + 16 <= it.boxEnd && type4(it.payload + 4) === "data" ? 16 : 0;
-            zero(it.payload + dataHdr, it.boxEnd); n++;
+            if (!inner.keep.has(it.idx) || inner.hit.has(it.idx)) { zero(it.payload + dataHdr, it.boxEnd); n++; continue; }
+            // A kept item keeps ONE data box; anything nested after it is zeroed.
+            const ds = dataHdr ? dv.getUint32(it.payload) : 0;
+            if (!dataHdr || ds < 16 || it.payload + ds > it.boxEnd) { zero(it.payload, it.boxEnd); n++; continue; }
+            if (it.payload + ds < it.boxEnd) { zero(it.payload + ds, it.boxEnd); n++; }
           }
         }
       }
