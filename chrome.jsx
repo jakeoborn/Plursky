@@ -228,8 +228,13 @@ function useModalOpen() {
 }
 
 // ── Stagger-fade entrance for scrollable cards ───────────────
-// Returns a ref to attach to a container. Children with
-// [data-animate] get an intersection-triggered fade-in.
+// Returns a ref to attach to a container. The [data-animate] children that
+// are ON SCREEN when it mounts fade up in a short stagger; nothing below the
+// fold is ever hidden. It used to hide every row and reveal each one from an
+// IntersectionObserver as it scrolled in: on a phone the observer fires after
+// the scroll paints, so rows arrived blank and popped in, and the first one
+// past the fold waited ~280ms then slid up 8px (Jake, Nov 10, Lineup: "When I
+// scroll down it's weird"). A row you scroll to is simply there.
 function useStaggerFade(depKey, skip = false) {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -237,33 +242,24 @@ function useStaggerFade(depKey, skip = false) {
     // skip: a list that opens somewhere other than its top (Lineup at the
     // current hour) shows its rows as they are; sliding rows in under a jump
     // reads as the list moving twice.
-    if (!el || skip || !window.IntersectionObserver) return;
-    const targets = el.querySelectorAll("[data-animate]");
-    if (!targets.length) return;
-    targets.forEach(t => { t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
-    let idx = 0;
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const t = e.target;
-        if (idx < 8) {
-          const delay = idx * 40;
-          setTimeout(() => {
-            t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
-            t.style.opacity = "1";
-            t.style.transform = "translateY(0)";
-          }, delay);
-        } else {
-          t.style.transition = "none";
-          t.style.opacity = "1";
-          t.style.transform = "translateY(0)";
-        }
-        idx++;
-        obs.unobserve(t);
-      });
-    }, { threshold: 0.05 });
-    targets.forEach(t => obs.observe(t));
-    return () => obs.disconnect();
+    if (!el || skip) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    const box = el.getBoundingClientRect();
+    const visible = [...el.querySelectorAll("[data-animate]")].filter(t => {
+      const r = t.getBoundingClientRect();
+      return r.bottom > box.top && r.top < box.bottom;
+    }).slice(0, 8);
+    if (!visible.length) return;
+    visible.forEach(t => { t.style.transition = "none"; t.style.opacity = "0"; t.style.transform = "translateY(8px)"; });
+    const timers = visible.map((t, i) => setTimeout(() => {
+      t.style.transition = "opacity 0.3s ease, transform 0.3s var(--ease-spring)";
+      t.style.opacity = "1";
+      t.style.transform = "translateY(0)";
+    }, i * 40));
+    return () => {
+      timers.forEach(clearTimeout);
+      visible.forEach(t => { t.style.transition = ""; t.style.opacity = ""; t.style.transform = ""; });
+    };
   }, [depKey]);
   return ref;
 }
