@@ -4562,7 +4562,7 @@ function PlanShareLinkSheet({
       marginTop: 2
     }
   }, d.rows.length, " ", d.rows.length === 1 ? "set" : "sets"), byDay.map(g => React.createElement("div", {
-    key: g.day,
+    key: g.night.midnightUtc,
     style: {
       marginTop: 12
     }
@@ -4583,13 +4583,19 @@ function PlanShareLinkSheet({
     }
   }, React.createElement("div", {
     className: "duo-data-s",
+    "aria-label": `${fmt12(r.act.start)} to ${fmt12(r.act.end)}`,
     style: {
-      width: 64,
+      width: 80,
       flexShrink: 0,
       fontSize: 13,
+      lineHeight: "18px",
       color: "var(--text-2)"
     }
+  }, React.createElement("div", {
+    "data-plan-share-start": true
   }, fmt12(r.act.start)), React.createElement("div", {
+    "data-plan-share-end": true
+  }, "– ", fmt12(r.act.end))), React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0

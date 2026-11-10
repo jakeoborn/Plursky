@@ -3096,11 +3096,14 @@ function PlanShareLinkSheet({ saved, onClose }) {
               </div>
               <div style={{ ...label, marginTop: 2 }}>{d.rows.length} {d.rows.length === 1 ? "set" : "sets"}</div>
               {byDay.map(g => (
-                <div key={g.day} style={{ marginTop: 12 }}>
+                <div key={g.night.midnightUtc} style={{ marginTop: 12 }}>
                   <div data-plan-share-day className="duo-label duo-ink3" style={{ marginBottom: 4 }}>{dayLabel(g.day, g.night)}</div>
                   {g.rows.map(r => (
                     <div key={r.set.id} data-plan-share-set={r.set.id} style={{ display: "flex", gap: 10, padding: "6px 0", borderTop: "1px solid var(--line)" }}>
-                      <div className="duo-data-s" style={{ width: 64, flexShrink: 0, fontSize: 13, color: "var(--text-2)" }}>{fmt12(r.act.start)}</div>
+                      <div className="duo-data-s" aria-label={`${fmt12(r.act.start)} to ${fmt12(r.act.end)}`} style={{ width: 80, flexShrink: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
+                        <div data-plan-share-start>{fmt12(r.act.start)}</div>
+                        <div data-plan-share-end>– {fmt12(r.act.end)}</div>
+                      </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 15, fontWeight: 600, color: "var(--ink)", overflowWrap: "anywhere" }}>{r.set.artist}</div>
                         <div style={{ ...label, overflowWrap: "anywhere" }}>{r.stageName}</div>

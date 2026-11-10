@@ -117,6 +117,12 @@ try {
       const payloadIds = (draft.payload?.sets || []).map(s => s.id);
       check(JSON.stringify(shown) === JSON.stringify(payloadIds), `C. the sheet shows exactly the payload's sets (${JSON.stringify(shown)} vs ${JSON.stringify(payloadIds)})`);
       check(JSON.stringify(payloadIds) === JSON.stringify(pick.ids), "C. the payload carries the three timed saves, in plan order");
+      const ends = await page.$$eval("[data-plan-share-set]", els => els.map(e => {
+        const a = window.ARTISTS.find(x => String(x.id) === e.getAttribute("data-plan-share-set"));
+        const end = e.querySelector("[data-plan-share-end]");
+        return { id: a && a.id, shown: end ? end.textContent : null, want: a ? "– " + window.fmt12(a.end) : "?" };
+      }));
+      check(ends.length === shown.length && ends.every(x => x.shown === x.want), `C. every row shows its end time (${JSON.stringify(ends)})`);
       check(JSON.stringify(Object.keys(draft.payload).sort()) === JSON.stringify(["expiresAt", "festivalId", "kind", "schemaVersion", "sets"]), "C. payload keys are the allowlist only (no name by default)");
       check(!JSON.stringify(draft.payload).includes("Profile Name"), "C. the profile name never reaches the payload");
       const endMs = await page.evaluate(() => window.FESTIVAL_CONFIG.endMs);
@@ -170,12 +176,22 @@ try {
   // Payload AND the sheet's day header must say the same date.
   {
     const ACL = "acl-2026", ACL_AT = "2026-09-20T18:00:00Z";
-    const sheetFor = async ids => {
-      const o = await open({ flagOn: true, fid: ACL, at: ACL_AT, saved: ids });
+    const sheetFor = async (ids, width = 393, mode = "dark") => {
+      const o = await open({ flagOn: true, fid: ACL, at: ACL_AT, saved: ids, width, mode });
       await o.page.locator("[data-share-lineup]").first().click();
       await o.page.getByText("Share as a link").click();
       await o.page.waitForSelector("[data-plan-share-sheet]");
       o.heads = await o.page.$$eval("[data-plan-share-day]", els => els.map(e => e.textContent.trim().toUpperCase()));
+      o.times = await o.page.$$eval("[data-plan-share-set]", els => els.map(e => [e.getAttribute("data-plan-share-set"), e.querySelector("[data-plan-share-start]")?.textContent, e.querySelector("[data-plan-share-end]")?.textContent]));
+      o.over = await o.page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth
+        || [...document.querySelectorAll("[data-plan-share-set] *")].some(el => el.scrollWidth > el.clientWidth + 1));
+      // The widest label a row can carry, measured in the real cell: it must fit its column.
+      o.widest = await o.page.evaluate(() => {
+        const cell = document.querySelector("[data-plan-share-end]"); if (!cell) return null;
+        const probe = cell.cloneNode(); probe.textContent = "– 12:00 AM"; probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap";
+        cell.parentElement.appendChild(probe); const w = probe.getBoundingClientRect().width; probe.remove();
+        return { w: Math.round(w * 10) / 10, col: cell.parentElement.clientWidth, font: getComputedStyle(cell).fontFamily.split(",")[0] };
+      });
       return o;
     };
     const w2 = await sheetFor(["af02", "af05"]);
@@ -185,8 +201,15 @@ try {
     check(JSON.stringify(got.af02) === JSON.stringify(["2026-10-09T18:00:00.000Z", "2026-10-09T18:45:00.000Z"]), `D. W2-only Happy Landing is on Fri Oct 9, not Oct 2 (${JSON.stringify(got.af02)})`);
     check(JSON.stringify(got.af05) === JSON.stringify(["2026-10-09T21:15:00.000Z", "2026-10-09T22:15:00.000Z"]), `D. a both-weekend set follows the W2 selection (${JSON.stringify(got.af05)})`);
     check(JSON.stringify(w2.heads) === JSON.stringify(["FRIDAY · OCT 9"]), `D. the W2 sheet header reads FRIDAY · OCT 9 (${JSON.stringify(w2.heads)})`);
+    check(JSON.stringify(w2.times) === JSON.stringify([["af02", "1:00 PM", "– 1:45 PM"], ["af05", "4:15 PM", "– 5:15 PM"]]), `D. each row shows start and end (${JSON.stringify(w2.times)})`);
+    check(!w2.over, "D. no overflow in the rows at 393 dark");
+    check(w2.widest && w2.widest.w <= w2.widest.col, `D. the widest end label "– 12:00 AM" fits its column (${JSON.stringify(w2.widest)})`);
     if (SHOTS) await w2.page.screenshot({ path: join(SHOTS, "plan-share-sheet-acl-w2-393-dark.png") });
     await w2.bctx.close();
+    const narrow = await sheetFor(["af02", "af05"], 320, "light");
+    check(JSON.stringify(narrow.times) === JSON.stringify(w2.times) && !narrow.over, `D. 320 light: same start/end, no overflow (${JSON.stringify(narrow.times)})`);
+    if (SHOTS) await narrow.page.screenshot({ path: join(SHOTS, "plan-share-sheet-acl-w2-320-light.png") });
+    await narrow.bctx.close();
     const w1 = await sheetFor(["af05"]);
     const d1 = await w1.page.evaluate(() => window.planShareDraft(["af05"], ""));
     check(d1.payload?.sets?.[0]?.startsAt === "2026-10-02T21:15:00.000Z", `D. the same set alone stays on Weekend 1 before the festival (${d1.payload?.sets?.[0]?.startsAt})`);
