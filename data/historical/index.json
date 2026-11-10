@@ -678,6 +678,27 @@
    }
   },
   {
+   "id": "beyond-wonderland-socal-2012",
+   "festivalId": "beyond-wonderland-socal",
+   "festivalName": "Beyond Wonderland SoCal",
+   "name": "Beyond Wonderland SoCal 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-03-17",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 46,
+    "sets": 46
+   }
+  },
+  {
    "id": "dreamstate-socal-2025",
    "festivalId": "dreamstate-socal",
    "festivalName": "Dreamstate SoCal",
@@ -1852,6 +1873,32 @@
     "stages": 4,
     "artists": 63,
     "sets": 63
+   }
+  },
+  {
+   "id": "nocturnal-wonderland-2011",
+   "festivalId": "nocturnal-wonderland",
+   "festivalName": "Nocturnal Wonderland",
+   "name": "Nocturnal Wonderland 2011",
+   "year": 2011,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-09-23",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-09-24",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 62,
+    "sets": 62
    }
   }
  ]

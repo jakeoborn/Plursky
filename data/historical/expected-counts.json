@@ -59,5 +59,7 @@
  "edc-las-vegas-2021": { "artists": 333, "stages": 0, "appearancesPerDay": [116, 119, 113], "dropped": 1 },
  "edc-las-vegas-2023": { "artists": 317, "stages": 13, "appearancesPerDay": [114, 117, 109], "dropped": 4 },
  "edc-orlando-2018": { "artists": 77, "stages": 0, "appearancesPerDay": [40, 38], "dropped": 0 },
- "edc-mexico-2020": { "artists": 251, "stages": 0, "appearancesPerDay": [74, 87, 90], "dropped": 0 }
+ "edc-mexico-2020": { "artists": 251, "stages": 0, "appearancesPerDay": [74, 87, 90], "dropped": 0 },
+ "nocturnal-wonderland-2011": { "stages": 5, "setsPerDay": [24, 38], "droppedPerDay": [0, 0] },
+ "beyond-wonderland-socal-2012": { "stages": 6, "setsPerDay": [46], "droppedPerDay": [0] }
 }

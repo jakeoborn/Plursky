@@ -18,7 +18,8 @@ export const OFFICIAL_HOSTS = {
   // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
   // archived official page and carry its hash and review entry.
   "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
-  "beyond-wonderland-socal": ["socal.beyondwonderland.com"],
+  // The 2012 and 2013 SoCal lineups lived on the root domain (lineup.php).
+  "beyond-wonderland-socal": ["socal.beyondwonderland.com", "beyondwonderland.com"],
   "beyond-wonderland-gorge": ["pnw.beyondwonderland.com"],
   "escape-halloween": ["escapehalloween.com"],
   "edc-orlando": ["orlando.electricdaisycarnival.com"],

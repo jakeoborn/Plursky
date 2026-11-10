@@ -99,6 +99,24 @@ status; anything else is refused. In relay mode a capture that was listed but
 not filed is recorded, and the edition is blocked if that capture is later
 than the one chosen. The ledger records `relayedVia`.
 
+Official lineup.php pages, 2011 to 2013 (Nocturnal Wonderland, Beyond
+Wonderland SoCal): that template printed every set with its stage and time.
+
+    node scripts/historical/extract-insomniac-php.mjs <edition-id>
+    # writes sheets/<id>.tsv and the ledger in the structured_html shape
+
+Each stage block's share title prints the stage and the date, and a page kept
+earlier years' blocks after adding the next year's, so an edition takes only
+the blocks whose printed date is one of its dates. The first valid capture
+taken after the last day is used, not the latest: the template's artist
+records were shared across years and later edits reached back into earlier
+lineups. A block the page labels as an alphabetical list ("alpha") prints
+zero-length times and is left out, listed in the ledger.
+
+The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
+hold the lineup only as a poster image, so they are graphic sources and go
+through the review path above, not a page extractor.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs

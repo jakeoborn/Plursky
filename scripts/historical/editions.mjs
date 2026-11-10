@@ -235,6 +235,12 @@ export const EDITIONS = {
   "edc-mexico-2020": { festivalId: "edc-mexico", name: "EDC Mexico 2020", year: 2020,
     timezone: "America/Mexico_City", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2020-02-28", "Friday"], ["2020-02-29", "Saturday"], ["2020-03-01", "Sunday"]] },
+  "nocturnal-wonderland-2011": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2011", year: 2011,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2011-09-23", "Friday"], ["2011-09-24", "Saturday"]] },
+  "beyond-wonderland-socal-2012": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2012", year: 2012,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
+    dates: [["2012-03-17", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
