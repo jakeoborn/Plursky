@@ -1106,6 +1106,10 @@ if (!CHECK) console.log(`[gen] index.html festival lists refreshed (${REG.length
 // today — right by the rules, and a real trap when testing by hand.
 const urls = [
   { loc: `${ORIGIN}/`, pri: '1.0', lastmod: lastmodFor(`${ORIGIN}/`, fp(idx)) },
+  // The landing and web onboarding (scripts/gen-welcome-page.mjs). Its content
+  // only moves when the template or the registry does, so the fingerprint is
+  // the generated file itself.
+  { loc: `${ORIGIN}/welcome/`, pri: '0.9', lastmod: lastmodFor(`${ORIGIN}/welcome/`, fileFp('welcome/index.html')) },
   // A page with no lineup is noindex, so it stays out of the sitemap until it
   // has one; its ledger row is kept so its date survives the wait.
   ...REG.filter(f => (DS[f.config.id]?.artists || []).some(a => a.name))
