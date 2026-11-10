@@ -3499,6 +3499,25 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8c. Day-after cards (row 9) ──────────────────────────────────────
+// "The story of the night" on a festival page: link-only to official recap
+// posts already verified for that festival and day; renders only when
+// published with Instinct's claim check and the approval sign-off, from 08:00
+// festival-local the morning after; a bad record of any status stops the
+// build. A real browser checks the cards at 320/393 × Dark/Light with zero
+// platform requests.
+{
+  console.log("▸ Day-after cards gate — link-only, official, signed off, morning after");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-day-after.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`day-after cards failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b8c. Official maps and hours, exactly as ruled ─────────────────────
 // Every map link and hours value carries its first-party URL and the date it
 // was read; a festival with no published value has no field, and the held
