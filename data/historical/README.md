@@ -75,6 +75,30 @@ Official lineup pages, for editions whose set-times pages were never archived
     # writes sheets/<id>.lineup.tsv (billing, day, stage) and the ledger;
     # the edition is lineup_only: no sets and no times, ever
 
+The lineup extractor proves an edition by the page title and its By Day tab:
+every day header must print the edition's weekday and date. Two cases it
+handles explicitly:
+
+- **Stale title.** Insomniac sometimes renames the lineup page for the next
+  year before replacing the lineup (Beyond SoCal 2022, EDC Las Vegas 2021 and
+  2023). An entry may name that one exact title as `staleTitle`; it is
+  accepted only when the day headers still print this edition's dates.
+- **Single-heading By Stage tab.** When the By Stage tab prints every billing
+  under one heading (Beyond SoCal 2024: all 119 under one stage), the stage
+  tab is not used and the edition keeps no stages. The finding is recorded.
+
+Relay mode. Where this machine cannot reach the archive directly, the
+captures are fetched elsewhere and filed into the cache first:
+
+    node scripts/historical/relay-ingest.mjs cdx <url> <from> <to> <listing.json> <via>
+    node scripts/historical/relay-ingest.mjs capture <timestamp> <url> <result.json> <via>
+    PLURSKY_WAYBACK_RELAY=1 node scripts/historical/extract-insomniac-lineup.mjs <edition-id>
+
+A capture must be the raw `id_` capture of the requested timestamp with a 200
+status; anything else is refused. In relay mode a capture that was listed but
+not filed is recorded, and the edition is blocked if that capture is later
+than the one chosen. The ledger records `relayedVia`.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs
