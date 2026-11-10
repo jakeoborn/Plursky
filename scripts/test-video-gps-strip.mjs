@@ -103,6 +103,13 @@ async function suite(strip, slim) {
   const rx = await strip(blobOf(xmp.bytes));
   const xo = rx ? (await bytesOf(rx.blob)).toString("latin1") : "";
   ok(rx && xo.length === xmp.bytes.length && !xo.includes("GPSLatitude") && !xo.includes(XMP_DM.lat) && !xo.includes(XMP_DM.lng) && !xo.includes("xmpmeta"), "V22 a top-level XMP uuid is blanked whole (no GPSLatitude, no degrees,minutes, no packet)");
+  // The reviewer's own file (scripts/fixtures/xmp-gps-fixture.mp4, fake
+  // coordinates): a playable MP4 with that XMP uuid after moov.
+  const rf = readFileSync(join(ROOT, "scripts/fixtures/xmp-gps-fixture.mp4"));
+  ok(rf.toString("latin1").includes('exif:GPSLatitude="28,32.472N"'), "V23 setup: the reviewer's xmp-gps fixture carries exif:GPSLatitude");
+  const rr = await strip(blobOf(rf));
+  const ro2 = rr ? (await bytesOf(rr.blob)).toString("latin1") : "";
+  ok(rr && ro2.length === rf.length && !/GPSLatitude|GPSLongitude|28,32\.472N|81,23\.922W|xmpmeta/.test(ro2), "V23 the reviewer's xmp-gps fixture uploads with no XMP GPS left");
   const clean = buildMov({ noGps: true });
   const rc = await strip(blobOf(clean.bytes));
   ok(rc && (await bytesOf(rc.blob)).equals(clean.bytes), "V14 a clip with no GPS uploads byte-identical");
