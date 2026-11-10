@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // SPEC-178 map pins: your own tagged photos and videos at their capture GPS.
 //
-// Locked (Jake 2026-11-05): pins for EVERY tagged item; location stays on the
+// SPEC-178 rules: pins for EVERY tagged item; location stays on the
 // device (not in diagnostic export, share cards, recaps, exports, public
 // pages, any network call); no GPS = no pin (no placeholder, no estimate).
 //
