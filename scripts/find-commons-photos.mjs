@@ -106,21 +106,37 @@ export function pickEntity(billing, entities) {
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-async function api(base, params, tries = 5) {
-  const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '5', ...params });
+// Wikimedia rate limits (2026): a client without contact details in its
+// User-Agent gets 10 requests a minute. Every Wikimedia request goes through
+// here, one at a time, at least GAP ms apart, honouring Retry-After.
+let GAP = 6500, nextAt = 0;
+async function wmFetch(url) {
   let last = '';
-  for (let i = 0; i < tries; i++) {
+  for (let i = 0; i < 6; i++) {
+    const wait = nextAt - Date.now();
+    if (wait > 0) await sleep(wait);
+    nextAt = Date.now() + GAP;
     const res = await fetch(url, { headers: { 'User-Agent': UA } }).catch(e => { last = 'network: ' + e.message; return null; });
-    if (res && res.ok) {
-      const j = await res.json();
-      if (!j.error || j.error.code !== 'maxlag') return j;
-      last = 'maxlag';
-    } else if (res) {
-      last = res.status + ' ' + (await res.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 300);
+    if (res && res.ok) return res;
+    let backoff = 5000 * 2 ** i;
+    if (res) {
+      last = res.status + ' ' + (await res.text().catch(() => '')).replace(/\s+/g, ' ').slice(0, 200);
+      const ra = +res.headers.get('retry-after');
+      if (ra > 0) backoff = Math.max(backoff, ra * 1000);
+      if (res.status !== 429 && res.status < 500) break;
     }
-    await sleep(2000 * (i + 1));
+    nextAt = Date.now() + backoff;
   }
   throw new Error('request failed (' + last + '): ' + url.slice(0, 120));
+}
+async function api(base, params) {
+  const url = base + '?' + new URLSearchParams({ format: 'json', maxlag: '5', ...params });
+  for (let i = 0; i < 5; i++) {
+    const j = await (await wmFetch(url)).json();
+    if (!j.error || j.error.code !== 'maxlag') return j;
+    nextAt = Date.now() + 5000 * (i + 1);
+  }
+  throw new Error('maxlag persisted: ' + url.slice(0, 120));
 }
 const WD = 'https://www.wikidata.org/w/api.php';
 const COMMONS = 'https://commons.wikimedia.org/w/api.php';
@@ -147,6 +163,8 @@ function parseArgs(argv) {
     else if (v === '--dry-run') a.dry = true;
     else if (v === '--festival') a.festival = argv[++i];
     else if (v === '--limit') a.limit = +argv[++i];
+    else if (v === '--offset') a.offset = +argv[++i];
+    else if (v === '--gap') a.gap = +argv[++i];
     else if (v === '--width') a.width = +argv[++i];
     else if (v === '--report') a.report = argv[++i];
   }
@@ -161,7 +179,8 @@ async function main() {
   let artists = loadArtists(args).filter(a => !have.has(a.key));
   // A billing that names several acts never gets one face.
   artists = artists.filter(a => !/\sb[23]b\s|\s[x×]\s|\spresents\s|\svs\.?\s/i.test(a.name));
-  if (args.limit) artists = artists.slice(0, args.limit);
+  if (args.gap) GAP = args.gap;
+  if (args.offset || args.limit) artists = artists.slice(args.offset || 0, args.limit ? (args.offset || 0) + args.limit : undefined);
   const skips = {}, added = [];
   const skip = (a, reason, extra = {}) => { (skips[reason] ||= []).push({ artist: a.name, ...extra }); };
 
@@ -170,14 +189,12 @@ async function main() {
   for (const a of artists) {
     const j = await api(WD, { action: 'wbsearchentities', search: a.name, language: 'en', uselang: 'en', type: 'item', limit: '7' });
     cands.set(a.key, (j.search || []).map(s => s.id));
-    await sleep(150);
   }
   // 2. Fetch every candidate item, 50 per request.
   const ids = [...new Set([...cands.values()].flat())], ents = new Map();
   for (let i = 0; i < ids.length; i += 50) {
     const j = await api(WD, { action: 'wbgetentities', ids: ids.slice(i, i + 50).join('|'), props: 'labels|aliases|claims', languages: 'en' });
     for (const [id, e] of Object.entries(j.entities || {})) ents.set(id, e);
-    await sleep(150);
   }
   // 3. Apply the match rule.
   const matched = [];
@@ -193,7 +210,6 @@ async function main() {
     const j = await api(COMMONS, { action: 'query', titles: titles.join('|'), prop: 'imageinfo', iiprop: 'url|extmetadata|mime', iiurlwidth: String(args.width) });
     const norm = new Map((j.query?.normalized || []).map(n => [n.to, n.from]));
     for (const p of Object.values(j.query?.pages || {})) info.set((norm.get(p.title) || p.title).replace(/^File:/, ''), p);
-    await sleep(150);
   }
   const imgDir = join(ROOT, 'artist-photos');
   mkdirSync(imgDir, { recursive: true });
@@ -210,8 +226,8 @@ async function main() {
     const sourceUrl = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(page.title.replace(/^File:/, '').replace(/ /g, '_')).replace(/%2C/g, ',').replace(/%28/g, '(').replace(/%29/g, ')');
     const asset = 'artist-photos/' + m.a.key + '.webp';
     if (args.dry) { added.push({ artist: m.a.name, wikidata: m.qid, license: lic.license, author, sourceUrl }); continue; }
-    const res = await fetch(ii.thumburl, { headers: { 'User-Agent': UA } }).catch(() => null);
-    if (!res || !res.ok) { skip(m.a, 'download-failed', { wikidata: m.qid }); continue; }
+    const res = await wmFetch(ii.thumburl).catch(() => null);
+    if (!res) { skip(m.a, 'download-failed', { wikidata: m.qid }); continue; }
     const tmp = join(imgDir, '.' + m.a.key + '.src');
     writeFileSync(tmp, Buffer.from(await res.arrayBuffer()));
     try { execFileSync('cwebp', ['-quiet', '-q', '78', '-metadata', 'none', tmp, '-o', join(ROOT, asset)]); }
@@ -225,7 +241,6 @@ async function main() {
       changes: `Wikimedia ${args.width}px thumbnail, converted to WebP. Display may crop and overlay.`,
       wikidata: m.qid,
     });
-    await sleep(100);
   }
   if (!args.dry) writeFileSync(LEDGER, JSON.stringify([...ledger, ...added], null, 2) + '\n');
   const report = {
