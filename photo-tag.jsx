@@ -485,6 +485,51 @@ function _vgpsEntryHeader(fmt, dv, e, es) {
   const v = dv.getUint16(e + 16);
   return v === 0 ? 36 : v === 1 ? 52 : v === 2 ? 72 : -1;
 }
+// The sample entry's own header (before its children). Fields no decoder
+// reads (reserved, vendor, quality, compressorname, resolution, frame count,
+// depth) are rewritten to their canonical values in place; fields a decoder
+// does read must hold a plausible value or the clip is refused. What stays
+// is a few bits per in-range field (width/height, channel count, …): no room
+// for a 16-byte float64 fix. Returns a refusal reason, or null; `set(at,
+// bytes)` writes and counts a change.
+const _VGPS_RATES = new Set([8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000]);
+function _vgpsEntryHeaderFix(fmt, dv, e, eh, set) {
+  const u16 = o => dv.getUint16(e + o), u32 = o => dv.getUint32(e + o);
+  const be = (n, w) => { const b = []; for (let i = w - 1; i >= 0; i--) b.push(Math.floor(n / 2 ** (8 * i)) & 0xff); return b; };
+  set(8, [0, 0, 0, 0, 0, 0]);                              // reserved
+  if (u16(14) !== 1) return "sample entry data reference";
+  if (_VGPS_VISUAL.has(fmt)) {
+    set(16, new Array(16).fill(0));                        // pre_defined/version/vendor/quality
+    if (!u16(32) || !u16(34) || u16(32) > 16384 || u16(34) > 16384) return "sample entry dimensions";
+    set(36, [0, 0x48, 0, 0, 0, 0x48, 0, 0, 0, 0, 0, 0, 0, 1]); // 72 dpi ×2, reserved, frame_count 1
+    set(50, new Array(32).fill(0));                        // compressorname
+    set(82, [0, 0x18, 0xff, 0xff]);                        // depth 24, pre_defined -1
+    return null;
+  }
+  if (fmt === "mebx") return null;
+  if (fmt === "tmcd") {
+    set(16, [0, 0, 0, 0]); set(33, [0]);                   // reserved
+    const ts = u32(24), fd = u32(28), nf = dv.getUint8(e + 32);
+    if (!ts || ts > 1000000 || !fd || fd > ts || !nf || nf > 120 || u32(20) > 0xf) return "timecode entry";
+    return null;
+  }
+  // Sound: v0 36 bytes, v1 +16, v2 72 (QuickTime / ISO).
+  const v = u16(16);
+  set(18, [0, 0, 0, 0, 0, 0]);                             // revision, vendor
+  if (v === 2) {
+    if (u16(24) !== 3 || u16(26) !== 16 || u16(28) !== 0xfffe || u16(30) !== 0 || u32(32) !== 0x10000 || u32(36) !== 72 || u32(52) !== 0x7f000000) return "sound entry v2 constants";
+    const rate = dv.getFloat64(e + 40), ch = u32(48), bits = u32(56), flags = u32(60), bpp = u32(64), fpp = u32(68);
+    if (!_VGPS_RATES.has(rate) || !ch || ch > 64 || ![0, 8, 16, 24, 32, 64].includes(bits) || flags > 0xff || bpp > 65536 || fpp > 65536) return "sound entry v2 fields";
+    return null;
+  }
+  const ch = u16(24), bits = u16(26), cid = u16(28), rate = u32(32);
+  if (!ch || ch > 64 || ![0, 8, 16, 24, 32].includes(bits) || ![0, 0xfffe, 0xffff].includes(cid) || u16(30) !== 0 || (rate & 0xffff) || !_VGPS_RATES.has(rate >>> 16)) return "sound entry fields";
+  if (v === 1) {
+    const spp = u32(36), bpk = u32(40), bpf = u32(44), bps = u32(48);
+    if (spp > 65536 || bpk > 65536 || bpf > 4096 || bps > 64) return "sound entry v1 fields";
+  }
+  return null;
+}
 function _vgpsEntryKind(fmt) {
   if (_VGPS_VISUAL.has(fmt)) return "visual";
   if (fmt === "mp4a" || fmt === "apac" || fmt === "alac" || fmt === "mebx" || fmt === "tmcd") return fmt;
@@ -718,6 +763,12 @@ function _stripVideoGpsRegion(u8, layout = null) {
           const cfg = fam === "avc" ? "avcC" : fam ? "hvcC" : null;
           let L = 0;
           const blank = (a, z, tail) => { zero(tail ? a : a + 8, z); if (!tail) toFree(a); n++; };
+          const hb = _vgpsEntryHeaderFix(fmt, dv, e, eh, (at, bytes) => {
+            let ch = false;
+            for (let i = 0; i < bytes.length; i++) if (u8[e + at + i] !== bytes[i]) { u8[e + at + i] = bytes[i]; ch = true; }
+            if (ch) n++;
+          });
+          if (hb) { refuse = hb; return; }
           const bad = _vgpsEntryChildren(_vgpsEntryKind(fmt), u8, dv, e + eh, e + es, blank, (t, a, z) => {
             if (t === "avcC" || t === "hvcC") {
               if (t !== cfg) return "config box " + t + " in a " + fmt + " entry";

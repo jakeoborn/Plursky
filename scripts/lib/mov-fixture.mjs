@@ -46,8 +46,13 @@ function trak(timedKey, format = "mebx", second = null, nested = false, opaque =
   // A non-mebx format gets a well-formed v0 sound-entry shape (36 bytes), so
   // only the format allowlist can refuse it; a second entry carries a binary
   // fix in a child box.
-  const sound = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(0), Buffer.alloc(18), ...kids);
-  const soundV1 = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(1), Buffer.alloc(18), Buffer.alloc(16), ...kids);
+  // Real-shaped headers (the strip canonicalises/range-checks them): v0 is
+  // 2 ch, 16-bit, 44.1 kHz; v1 is AAC at 48 kHz with its packet fields.
+  const sound = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(0), Buffer.alloc(6), u16(2), u16(16), u16(0), u16(0), u32(44100 * 65536), ...kids);
+  const soundV1 = (f, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(1), Buffer.alloc(6), u16(2), u16(16), u16(0xfffe), u16(0), u32(48000 * 65536), u32(1024), u32(1), u32(2), u32(2), ...kids);
+  // v2 (apac-shaped); hdrPlant puts a float64 fix where the sample rate goes.
+  const soundV2 = (f, rate, ...kids) => box(f, Buffer.alloc(6), u16(1), u16(2), Buffer.alloc(6), u16(3), u16(16), u16(0xfffe), u16(0), u32(0x10000), u32(72), rate, u32(4), u32(0x7f000000), u32(0), u32(0), u32(0), u32(1024), ...kids);
+  const f64 = n => { const b = Buffer.alloc(8); b.writeDoubleBE(n); return b; };
   const K = d => (kid === d ? [unknownKid()] : []);
   // dtyp shapes: real clips carry namespace 0 + a 4-byte type (16 bytes) or
   // namespace 1 + an Apple type name; the planted ones break that shape.
@@ -61,7 +66,13 @@ function trak(timedKey, format = "mebx", second = null, nested = false, opaque =
   if (kid === "alacOversize") mebx = sound("alac", box("alac", Buffer.alloc(28), BIN_PLANT));
   if (kid === "mp4a") mebx = sound("mp4a", box("esds", u32(0), Buffer.alloc(8)), unknownKid());
   if (kid === "wave") mebx = soundV1("mp4a", box("wave", box("frma", "mp4a"), box("esds", u32(0), Buffer.alloc(8)), unknownKid(), u32(8), u32(0)));     // QuickTime zero-type terminator
-  if (kid === "tmcd") mebx = box("tmcd", Buffer.alloc(6), u16(1), Buffer.alloc(18), unknownKid());
+  const tmcd = (ts, fd, ...kids) => box("tmcd", Buffer.alloc(6), u16(1), u32(0), u32(0), ts, fd, Buffer.from([30, 0]), ...kids);
+  if (kid === "tmcd") mebx = tmcd(u32(600), u32(20), unknownKid());
+  if (kid === "hdrV2Rate") mebx = soundV2("apac", BIN_PLANT.subarray(0, 8), box("ngst", Buffer.alloc(12)));
+  if (kid === "hdrV2Real") mebx = soundV2("apac", f64(48000), box("ngst", Buffer.alloc(12)));
+  if (kid === "hdrV1Ext") mebx = box("mp4a", Buffer.alloc(6), u16(1), u16(1), Buffer.alloc(6), u16(2), u16(16), u16(0xfffe), u16(0), u32(48000 * 65536), BIN_PLANT);
+  if (kid === "hdrVendor") mebx = box("mp4a", Buffer.alloc(6), u16(1), u16(0), u16(0), BIN_PLANT.subarray(0, 4), u16(2), u16(16), u16(0), u16(0), u32(44100 * 65536));
+  if (kid === "hdrTmcd") mebx = tmcd(BIN_PLANT.subarray(0, 4), BIN_PLANT.subarray(4, 8));
   if (kid === "overrunAudio") mebx = sound("mp4a", Buffer.concat([u32(4096), Buffer.from("zzzz", "latin1"), BIN_PLANT]));
   const entries = second ? [mebx, sound(second, box("zzzz", BIN_PLANT))] : [mebx];
   const stsd = box("stsd", u32(0), u32(entries.length), ...entries);
@@ -114,7 +125,14 @@ export function seiNal(fam, text = SEI_TEXT, extra = BIN_PLANT) {
 function videoTrak(v, mdatStart) {
   const L4 = b => Buffer.concat([u32(b.length), b]);
   const samples = v.samples.map(s => Buffer.concat(s.map(L4)));
+  // A real-shaped visual header (canonical: 72 dpi, frame_count 1, depth 24,
+  // pre_defined -1); hdrName plants a fix in compressorname, hdrRes in the
+  // resolution, reserved and quality fields.
   const visual = Buffer.alloc(70);
+  visual.writeUInt16BE(1920, 16); visual.writeUInt16BE(1080, 18); visual.writeUInt32BE(0x480000, 20); visual.writeUInt32BE(0x480000, 24);
+  visual.writeUInt16BE(1, 32); visual.writeUInt16BE(0x18, 66); visual.writeUInt16BE(0xffff, 68);
+  if (v.entryKid === "hdrName") { visual[34] = 16; BIN_PLANT.copy(visual, 35); }
+  if (v.entryKid === "hdrRes") { BIN_PLANT.copy(visual, 0, 0, 16); }
   let cfg;
   if (v.fam === "avc") cfg = box("avcC", Buffer.from([1, 0x64, 0, 0x1f, 0xff, 0xe0, 0]));
   else {
@@ -126,7 +144,7 @@ function videoTrak(v, mdatStart) {
   const kid = v.entryKid === "visualLongBtrt" ? [box("btrt", Buffer.alloc(12), BIN_PLANT)]
     : v.entryKid === "visualColrProf" ? [box("colr", "prof", BIN_PLANT)]
     : v.entryKid === "overrun" ? [Buffer.concat([u32(4096), Buffer.from("zzzz", "latin1"), BIN_PLANT])]
-    : v.entryKid ? [unknownKid()] : [];
+    : v.entryKid && !v.entryKid.startsWith("hdr") ? [unknownKid()] : [];
   const entry = box(v.fam === "avc" ? "avc1" : "hvc1", Buffer.alloc(6), u16(1), visual, cfg, box("pasp", u32(1), u32(1)), ...kid);
   const stsd = box("stsd", u32(0), u32(1), entry);
   const stsz = box("stsz", u32(0), u32(0), u32(samples.length + (v.countSkew || 0)), ...samples.map(s => u32(s.length)), ...Array(v.countSkew || 0).fill(u32(1)));
