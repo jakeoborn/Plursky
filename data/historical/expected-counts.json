@@ -1,5 +1,5 @@
 {
- "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number.",
+ "_comment": "Locked from the reviewed source sheets. setsPerDay is what each edition keeps; droppedPerDay is the printed rows the founder rulings leave out (ledger/<id>.json lists each with its reason). A change here is a data change: re-review the source before editing a number. Lineup-only editions lock artists, stages, appearancesPerDay (billed appearances on each day) and dropped.",
  "governors-ball-2025": { "stages": 3, "setsPerDay": [20, 13, 20], "droppedPerDay": [0, 0, 0] },
  "lollapalooza-2025": { "stages": 11, "setsPerDay": [55, 56, 58, 56], "droppedPerDay": [3, 4, 2, 3] },
  "hard-summer-2025": { "stages": 7, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
@@ -43,5 +43,7 @@
  "acl-2016": { "stages": 8, "setsPerDay": [39, 38, 40, 39, 38, 40], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "acl-2017": { "stages": 8, "setsPerDay": [38, 38, 38, 38, 38, 38], "droppedPerDay": [1, 1, 1, 1, 1, 1] },
  "acl-2018": { "stages": 8, "setsPerDay": [38, 38, 38, 36, 38, 37], "droppedPerDay": [1, 1, 1, 1, 1, 1] },
- "acl-2019": { "stages": 8, "setsPerDay": [32, 38, 39, 32, 39, 39], "droppedPerDay": [4, 4, 4, 5, 4, 4] }
+ "acl-2019": { "stages": 8, "setsPerDay": [32, 38, 39, 32, 39, 39], "droppedPerDay": [4, 4, 4, 5, 4, 4] },
+ "nocturnal-wonderland-2025": { "artists": 80, "stages": 5, "appearancesPerDay": [41, 39], "dropped": 0 },
+ "beyond-wonderland-socal-2025": { "artists": 131, "stages": 7, "appearancesPerDay": [65, 66], "dropped": 1 }
 }
