@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
+import { pastEditionsFor } from './lib/festival-page-data.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TEMPLATE = path.join(root, 'scripts', 'templates', 'welcome.html');
@@ -58,6 +59,11 @@ const festivals = REG.map((e) => {
     available: !!e.available && !!ds,
     scheduleTBA: !!e.scheduleTBA,
     hasSchedule: existsSync(path.join(root, 'f', c.id, 'schedule.json')),
+    // Its own page (gen-festival-pages), and the earlier years the Past
+    // Festivals library holds for it, newest first. Each year opens in the app
+    // at ?tab=past&edition=<id>, the same link the festival page uses.
+    page: existsSync(path.join(root, 'f', c.id, 'index.html')) ? `/f/${c.id}/` : null,
+    past: pastEditionsFor(c.id, root).map((p) => ({ id: p.id, name: p.name, year: p.year, first: p.first, last: p.last, lineupOnly: !!p.lineupOnly })),
     stages: (ds && Array.isArray(ds.stages) ? ds.stages : [])
       .filter((s) => s && s.name && s.color)
       .map((s) => ({ name: s.name, color: s.color })),
