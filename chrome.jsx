@@ -836,6 +836,14 @@ function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2)
     .map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+// The current festival's identity colour (registry accent), for initials.
+function _duoFaceAccent() {
+  try {
+    const id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    const e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch { return null; }
+}
 function DuoFace({ name, size, ring = "", style, className = "" }) {
   const resolved = useArtistPhoto(name);
   const rec = getArtistImage(name);
@@ -847,7 +855,7 @@ function DuoFace({ name, size, ring = "", style, className = "" }) {
   return (
     <span className={`duo-av ${ring} ${className}`.trim()} aria-hidden="true" data-face={name}
       data-photo-source={photo ? (rec?.source || "") : "initials"}
-      style={{ ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
+      style={{ ...(!photo && _duoFaceAccent() ? { "--face-acc": _duoFaceAccent() } : {}), ...(size ? { width: size, height: size, fontSize: Math.round(size * 0.32) } : {}), ...style }}>
       {photo ? <img src={photo} alt="" onError={() => setFailed(photo)} /> : _duoInitials(name)}
     </span>
   );

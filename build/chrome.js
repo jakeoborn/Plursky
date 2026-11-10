@@ -1108,6 +1108,15 @@ function _duoMembers(name) {
 function _duoInitials(name) {
   return String(name || "").split(/\s+/).filter(w => /[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w.match(/[A-Za-z0-9]/)[0].toUpperCase()).join("") || "?";
 }
+function _duoFaceAccent() {
+  try {
+    var id = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id;
+    var e = id && (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === id);
+    return e && /^#[0-9a-f]{6}$/i.test(e.accent || "") ? e.accent : null;
+  } catch {
+    return null;
+  }
+}
 function DuoFace({
   name,
   size,
@@ -1125,6 +1134,9 @@ function DuoFace({
     "data-face": name,
     "data-photo-source": photo ? rec?.source || "" : "initials",
     style: {
+      ...(!photo && _duoFaceAccent() ? {
+        "--face-acc": _duoFaceAccent()
+      } : {}),
       ...(size ? {
         width: size,
         height: size,
