@@ -184,6 +184,15 @@ export const EDITIONS = {
   "dreamstate-socal-2025": { festivalId: "dreamstate-socal", name: "Dreamstate SoCal 2025", year: 2025,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2025-11-21", "Friday"], ["2025-11-22", "Saturday"]] },
+  // Lineup only: these editions' set-times pages were never archived, so the
+  // library carries their official lineup page (billing, and the day and
+  // stage it printed) and no times (extract-insomniac-lineup.mjs).
+  "nocturnal-wonderland-2025": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-09-13", "Saturday"], ["2025-09-14", "Sunday"]] },
+  "beyond-wonderland-socal-2025": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-03-28", "Friday"], ["2025-03-29", "Saturday"]] },
 };
 
 // Rows the official schedule prints that are NOT part of the library (founder
