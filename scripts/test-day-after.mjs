@@ -152,6 +152,7 @@ check(/Scheduled: kineticFIELD · 10:31 PM – 12:00 AM/.test(html), 'Kaskade\'s
 // close or play a slot.
 check((html.match(/class="da-set">/g) || []).length === (html.match(/class="da-set">Scheduled: /g) || []).length, 'a set line is not marked Scheduled');
 check(!/\bcloses\b|\bclosed kineticFIELD|had the last set|(?<!scheduled for )the last set on/i.test(html), 'card copy states a set as fact (closes / had the last set) instead of scheduled');
+check(/Kaskade, scheduled to close kineticFIELD/.test(html) && /was scheduled to close on Sunday/.test(html) && !/\bclosed on\b/i.test(html), 'cards 2 and 3 say "scheduled to close" (no "closed on" stated as fact)');
 check(/circuitGROUNDS · 7:45 PM – 8:45 PM/.test(html) && /circuitGROUNDS · 9:50 PM – 10:55 PM/.test(html), 'Maddix/ATLiens set lines are not from the schedule');
 check(/Friday&#39;s story/.test(html) && /Sunday, November 8/.test(html), 'card day labels are wrong');
 check(/@Insomniac, official account/.test(html) && /@EDC_Orlando, official account/.test(html), 'source accounts are not named');
