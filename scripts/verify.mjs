@@ -28,6 +28,7 @@ execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: R
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-qa-press.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-welcome-page.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
