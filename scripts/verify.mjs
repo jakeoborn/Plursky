@@ -28,6 +28,7 @@ execFileSync(process.execPath, ["scripts/test-artist-bio-sources.mjs"], { cwd: R
 execFileSync(process.execPath, ["scripts/test-poster-billing.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-no-stray-jsx-comments.mjs"], { cwd: ROOT, stdio: "inherit" });
 execFileSync(process.execPath, ["scripts/test-qa-press.mjs"], { cwd: ROOT, stdio: "inherit" });
+execFileSync(process.execPath, ["scripts/test-welcome-page.mjs"], { cwd: ROOT, stdio: "inherit" });
 
 // ── 0. Tracked-symlink gate ────────────────────────────────────────────────
 // A symlink committed at the repo root killed the GitHub Pages deploy on
@@ -3524,6 +3525,25 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`embeds tap-to-load failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-b8c. Day-after cards (row 9) ──────────────────────────────────────
+// "The story of the night" on a festival page: link-only to official recap
+// posts already verified for that festival and day; renders only when
+// published with Instinct's claim check and the approval sign-off, from 08:00
+// festival-local the morning after; a bad record of any status stops the
+// build. A real browser checks the cards at 320/393 × Dark/Light with zero
+// platform requests.
+{
+  console.log("▸ Day-after cards gate — link-only, official, signed off, morning after");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-day-after.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`day-after cards failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
