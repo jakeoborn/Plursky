@@ -51,7 +51,9 @@ const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "1
 const SHOTS = process.env.PLAN_SHARE_SHOTS;
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
-  const browser = await chromium.launch({ headless: true });
+  // The runner has system Chrome, not Playwright's bundled shell (#408 CI): the repo's established selection.
+  const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
+  const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   const open = async ({ flagOn, width = 393, mode = "dark", saved = [], tab = "home", fid = FID, at = AT }) => {
     const bctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: "block", colorScheme: mode });
     await wireVendor(bctx);
