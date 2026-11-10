@@ -471,8 +471,8 @@ const _VGPS_ENTRY_KIDS = {
   mp4a: { esds: 0, wave: 0, chan: 0, btrt: 20 },
   apac: { dapa: 0, ngst: 20, btrt: 20 },
   pcm: { chan: 0, btrt: 20, wave: 0 },
-  alac: { alac: 0, chan: 0, btrt: 20, wave: 0 },
-  wave: { frma: 12, mp4a: 12, esds: 0, enda: 10, chan: 0, alac: 0, "\0\0\0\0": 8 },
+  alac: { alac: 36, chan: 0, btrt: 20, wave: 0 },
+  wave: { frma: 12, mp4a: 12, esds: 0, enda: 10, chan: 0, alac: 36, "\0\0\0\0": 8 },
   mebx: { keys: 0 },
   mebxKey: { keyd: 0, dtyp: 0 },
   tmcd: {},
@@ -492,6 +492,27 @@ function _vgpsEntryKind(fmt) {
 }
 // Walks [a, z) as child boxes under `kind`'s allowlist. onKeep(type, at, end)
 // may return a refusal string. Returns null or a refusal.
+// Variable-size children whose shape is still checkable: a child that fails
+// its check is blanked like an unknown one.
+//   chan  v/f, layout tag, bitmap, count, then count × 20-byte descriptions
+//   dtyp  namespace 0 + a 4-byte well-known type (16 bytes), or namespace 1
+//         + one of the reverse-DNS type names real iPhone clips carry
+//   keyd  namespace mdta, or fiel (a field of a structured key, e.g.
+//         detected-face.bounds); the name itself is checked per entry
+const _VGPS_DTYP_NAMES = new Set(["detected-face", "com.apple.quicktime.live-photo-info", "milli-lux", "uuid"].map(k => "com.apple.quicktime." + k));
+function _vgpsChildShapeOk(t, u8, dv, c, cs) {
+  const s4 = o => String.fromCharCode(u8[o], u8[o + 1], u8[o + 2], u8[o + 3]);
+  if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);
+  if (t === "dtyp") {
+    if (cs < 16) return false;
+    const ns = dv.getUint32(c + 8);
+    if (ns === 0) return cs === 16;
+    let name = ""; for (let i = c + 12; i < c + cs; i++) name += String.fromCharCode(u8[i]);
+    return ns === 1 && _VGPS_DTYP_NAMES.has(name);
+  }
+  if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");
+  return true;
+}
 function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
   const allow = _VGPS_ENTRY_KIDS[kind];
   let c = a;
@@ -502,7 +523,7 @@ function _vgpsEntryChildren(kind, u8, dv, a, z, blank, onKeep) {
     const want = Object.prototype.hasOwnProperty.call(allow, t) ? allow[t] : -1;
     const colrOk = t !== "colr" || (cs === 19 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclx") ||
       (cs === 18 && String.fromCharCode(u8[c + 8], u8[c + 9], u8[c + 10], u8[c + 11]) === "nclc");
-    if (want < 0 || (want > 0 && cs !== want) || !colrOk) blank(c, c + cs);
+    if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank(c, c + cs);
     else if (t === "wave") { const r = _vgpsEntryChildren("wave", u8, dv, c + 8, c + cs, blank, onKeep); if (r) return r; }
     else if (kind === "mebx" && t === "keys") {
       // keys (QuickTime metadata key table): one box per local key id (any

@@ -229,6 +229,12 @@ async function suite(strip, slim) {
     const okv = buildMov({ noGps: true, video: { fam: "avc", samples: [[nal("avc", 5, SLICE_BODY)]] } });
     const rk = await strip(blobOf(okv.bytes));
     ok(rk && (await bytesOf(rk.blob)).equals(okv.bytes), "V42 allowlisted children (avcC, pasp) at their real sizes pass byte-identical");
+    const dr = buildMov({ noGps: true, timedKey: "com.apple.quicktime.milli-lux", entryKid: "dtypReal" });
+    const rdr = await strip(blobOf(dr.bytes));
+    ok(rdr && (await bytesOf(rdr.blob)).equals(dr.bytes), "V42b mebx keys with real-shaped dtyp (namespace 0 type 66; namespace 1 Apple type name) pass byte-identical");
+    const kn = buildMov({ noGps: true, entryKid: "keydNs" });
+    const rkn = await strip(blobOf(kn.bytes));
+    ok(kn.bytes.includes(Buffer.from("zq9w")) && (rkn === null || !(await bytesOf(rkn.blob)).includes(Buffer.from("zq9w"))), "V42c a keyd whose namespace is not mdta does not upload its namespace bytes");
     // The reviewer's own file (fake coordinates): x264 H.264 + AAC, a uuid
     // child after btrt inside avc1 carrying two float64s.
     const uf = readFileSync(join(ROOT, "scripts/fixtures/avc-entry-uuid-gps.mp4"));
@@ -313,13 +319,19 @@ const MUTANTS = [
   ["no window overlap", STRIP_SRC.replace("_VGPS_OVERLAP = 4096", "_VGPS_OVERLAP = 0"), SLIM_SRC],
   ["any udta child kept (only ©xyz/loci blanked)", STRIP_SRC.replace(' || (parentType === "udta" && type !== "meta")', ""), SLIM_SRC],
   ["only the first sample entry checked", STRIP_SRC.replace("k < count; k++", "k < Math.min(count, 1); k++"), SLIM_SRC],
-  ["sample-entry child allowlist off", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk) blank(c, c + cs);", "if (false) blank(c, c + cs);"), SLIM_SRC],
-  ["sample-entry unknown child kept", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if ((want > 0 && cs !== want) || !colrOk)"), SLIM_SRC],
-  ["sample-entry fixed size not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if (want < 0 || !colrOk)"), SLIM_SRC],
-  ["colr type not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk)", "if (want < 0 || (want > 0 && cs !== want))"), SLIM_SRC],
+  ["sample-entry child allowlist off", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank(c, c + cs);", "if (false) blank(c, c + cs);"), SLIM_SRC],
+  ["sample-entry unknown child kept", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs))", "if ((want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs))"), SLIM_SRC],
+  ["sample-entry fixed size not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs))", "if (want < 0 || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs))"), SLIM_SRC],
+  ["colr type not checked", STRIP_SRC.replace("if (want < 0 || (want > 0 && cs !== want) || !colrOk || !_vgpsChildShapeOk(t, u8, dv, c, cs))", "if (want < 0 || (want > 0 && cs !== want) || !_vgpsChildShapeOk(t, u8, dv, c, cs))"), SLIM_SRC],
   ["wave not walked", STRIP_SRC.replace('else if (t === "wave") {', 'else if (false) {'), SLIM_SRC],
   ["mebx key entries not walked", STRIP_SRC.replace('const r = _vgpsEntryChildren("mebxKey", u8, dv, k + 8, k + ks, blank, onKeep); if (r) return r;', ""), SLIM_SRC],
   ["sample-entry child overrun accepted", STRIP_SRC.replace('if (cs < 8 || c + cs > z) return "unreadable sample entry";', 'if (cs < 8 || c + cs > z) break;'), SLIM_SRC],
+  ["dtyp/chan/keyd shapes not checked", STRIP_SRC.replace("|| !_vgpsChildShapeOk(t, u8, dv, c, cs)) blank", ") blank"), SLIM_SRC],
+  ["dtyp size not checked", STRIP_SRC.replace("if (ns === 0) return cs === 16;", "if (ns === 0) return true;"), SLIM_SRC],
+  ["dtyp name not checked", STRIP_SRC.replace("return ns === 1 && _VGPS_DTYP_NAMES.has(name);", "return ns === 1;"), SLIM_SRC],
+  ["chan length not checked", STRIP_SRC.replace('if (t === "chan") return cs >= 24 && cs === 24 + 20 * dv.getUint32(c + 20);', 'if (t === "chan") return true;'), SLIM_SRC],
+  ["keyd namespace not checked", STRIP_SRC.replace('if (t === "keyd") return cs > 12 && (s4(c + 8) === "mdta" || s4(c + 8) === "fiel");', 'if (t === "keyd") return true;'), SLIM_SRC],
+  ["alac config size not checked", STRIP_SRC.replace("alac: { alac: 36,", "alac: { alac: 0,"), SLIM_SRC],
   ["kept ilst item keeps trailing boxes", STRIP_SRC.replace("if (it.payload + ds < it.boxEnd) { zero(it.payload + ds, it.boxEnd); n++; }", ""), SLIM_SRC],
   ["track-format allowlist off", STRIP_SRC.replace("if (!_VGPS_TRACK_FORMATS.has(fmt))", "if (false)"), SLIM_SRC],
   ["timed location track not refused", STRIP_SRC.replace('{ refuse = "timed location track"; return; }', "{}").replace('if (!_VGPS_TIMED_KEYS.has(name)) { refuse', 'if (false) { refuse'), SLIM_SRC],
