@@ -2757,7 +2757,7 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete, showNight = false }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   // SPEC-179: the clip's OWN festival names its act and stage. A III Points
@@ -2955,7 +2955,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           </div>
         )}
         <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
-          {[stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
+          {[showNight ? _momentNightName(m, mf.cfg) : null, stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
         </div>
 
         {/* Prominent video-song proof: this is the P0 Shazam verification
@@ -4432,6 +4432,14 @@ function _momentNeedsReview(m) {
 }
 // The moment's OWN festival — a clip filed to another festival by its capture
 // date is still reviewable here, and must be retagged from that lineup.
+// SPEC-178: the night a moment is filed under, named from ITS festival's
+// calendar ("Saturday"), not the active one. Opened from a map pin, the
+// viewer has no night header around it, so the tag must say the night itself.
+function _momentNightName(m, cfg) {
+  if (!m || m.night == null) return null;
+  const d = cfg && cfg.dayDates && cfg.dayDates[m.night];
+  return (d && (d.name || d.short)) || `Night ${m.night}`;
+}
 function _momentFestival(m) {
   const fid = (m && m.festivalId) || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id);
   const ds = (window._DATA_SETS || {})[fid] || {};
@@ -5645,19 +5653,11 @@ function MemoriesMapLens({ moments, onPinTap }) {
   );
 }
 
-// Deterministic small offset from a moment id — used to nudge GPS-less
-// thumbnails off their stage's exact center so same-stage moments don't stack
-// pixel-perfect (and to give each pin a stable "scattered polaroid" rotation).
+// Deterministic hash of a moment id: gives each pin a stable tilt.
 function _idHash(id) {
   let h = 0; const s = String(id || "");
   for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
   return h >>> 0;
-}
-function _idJitter(id, amp = 2.6) {
-  const h = _idHash(id);
-  const ang = ((h % 997) / 997) * Math.PI * 2;
-  const rad = amp * (0.35 + 0.65 * (((h >>> 9) % 991) / 991));
-  return { dx: Math.cos(ang) * rad, dy: Math.sin(ang) * rad };
 }
 // Sortable capture time — prefer real EXIF/video takenAt, else createdAt.
 function _momentTime(m) {
@@ -5665,18 +5665,19 @@ function _momentTime(m) {
   return (m && m.createdAt) || 0;
 }
 
-// One scattered photo/video thumbnail pinned on the basemap. Loads its blob
-// lazily via useMomentPhoto (cloud restore-on-view), shows a stage-color ring,
-// a ▶ marker on videos, and a "+N" badge when it fronts a declustered group.
+// One photo/video thumbnail pinned at its capture fix. Loads its blob lazily
+// via useMomentPhoto (cloud restore-on-view), shows a ▶ marker on videos and a
+// "+N" badge when it fronts a declustered group.
 function _PhotoPin({ cluster, onTap }) {
   const m = cluster.face;
   const thumb = useMomentThumb(m, cluster.enabled !== false), { url } = thumb;
-  const ring = (cluster.stage && cluster.stage.color) || "#9aa";
+  const ring = "var(--acc)";
   const rot = ((_idHash(m.id) % 17) - 8); // -8..+8deg, stable per pin
   const extra = cluster.items.length - 1;
   const SIZE = cluster.items.length > 1 ? 52 : 46;
   return (
-    <button onClick={() => onTap && onTap(cluster)} style={{
+    <button onClick={() => onTap && onTap(cluster)} data-moment-ids={cluster.items.map(x => x.id).join(",")}
+      aria-label={cluster.items.length === 1 ? (m.kind === "video" ? "Video" : "Photo") : `${cluster.items.length} moments`} style={{
       position: "absolute", left: cluster.x + "%", top: cluster.y + "%",
       transform: `translate(-50%,-50%) rotate(${rot}deg)`,
       width: SIZE, height: SIZE, padding: 0, border: "none",
@@ -5710,98 +5711,132 @@ function _PhotoPin({ cluster, onTap }) {
   );
 }
 
-// Photo-scatter map lens — drops the actual photo/video thumbnails at their
-// real GPS coordinates on the festival basemap (vs MemoriesMapLens' per-stage
-// count bubbles). No GPS → sits on the tagged artist's stage with a small
-// deterministic jitter. Nearby thumbnails decluster into one face + "+N".
-// Visible thumbnails capped for perf; the rest roll into a "+N more" note.
+// PHOTOS lens: real GPS only. Each thumbnail sits where its OWN capture fix
+// says, on a plain metric surface: no poster art, no stage positions, no
+// jitter, and no fallback of any kind. A moment without a valid fix is not
+// on this lens (it is counted, not placed). Stage x/y are poster art, never a
+// survey, so nothing here may read them.
+function _lensFix(m) {
+  const g = m && m.parsedGps;
+  if (!g || typeof g.lat !== "number" || typeof g.lng !== "number") return null;
+  if (!Number.isFinite(g.lat) || !Number.isFinite(g.lng)) return null;
+  if (Math.abs(g.lat) > 90 || Math.abs(g.lng) > 180) return null;
+  if (g.lat === 0 && g.lng === 0) return null; // null island = an unset fix
+  return { lat: g.lat, lng: g.lng };
+}
+const _LENS_FAR_M = 3000;   // a fix this far from the rest is another place, not the venue
+const _LENS_MIN_SPAN_M = 40; // one shot, or shots a step apart, still get a readable scale
+// Pure layout, exported for the gate. Projects each fix onto a local plane
+// (east/north metres around the fixes' median), one scale on both axes, so
+// distances and bearings on screen are the real ones. x/y are 0-100 (%).
+function _gpsLensLayout(moments, opts) {
+  const pad = (opts && opts.pad) || 14, clusterPct = (opts && opts.clusterPct) || 6, cap = (opts && opts.cap) || 24;
+  const fixes = [];
+  let noGps = 0;
+  for (const m of (moments || [])) {
+    if (!m || !m.photoId) continue;
+    const g = _lensFix(m);
+    if (!g) { noGps++; continue; }
+    fixes.push({ m, g, t: _momentTime(m) });
+  }
+  const empty = { clusters: [], hidden: 0, noGps, far: 0, mPerPct: 0 };
+  if (!fixes.length) return empty;
+  const med = arr => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
+  const lat0 = med(fixes.map(f => f.g.lat)), lng0 = med(fixes.map(f => f.g.lng));
+  const R = 6371008.8, k = Math.PI / 180, cos0 = Math.cos(lat0 * k);
+  const pts = [];
+  let far = 0;
+  for (const f of fixes) {
+    const e = (f.g.lng - lng0) * k * R * cos0, n = (f.g.lat - lat0) * k * R;
+    if (Math.hypot(e, n) > _LENS_FAR_M) { far++; continue; }
+    pts.push({ m: f.m, t: f.t, e, n });
+  }
+  if (!pts.length) return { ...empty, far };
+  let minE = Infinity, maxE = -Infinity, minN = Infinity, maxN = -Infinity;
+  for (const p of pts) { minE = Math.min(minE, p.e); maxE = Math.max(maxE, p.e); minN = Math.min(minN, p.n); maxN = Math.max(maxN, p.n); }
+  const span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
+  const scale = (100 - 2 * pad) / span; // % per metre, same on both axes
+  const ce = (minE + maxE) / 2, cn = (minN + maxN) / 2;
+  for (const p of pts) { p.x = 50 + (p.e - ce) * scale; p.y = 50 - (p.n - cn) * scale; }
+  // Greedy decluster, newest first: a cluster sits at its newest shot's own
+  // fix; it never moves a pin to a computed centre.
+  const sorted = pts.slice().sort((a, b) => b.t - a.t);
+  const used = new Array(sorted.length).fill(false);
+  const clusters = [];
+  for (let i = 0; i < sorted.length; i++) {
+    if (used[i]) continue;
+    const head = sorted[i]; used[i] = true;
+    const group = [head];
+    for (let j = i + 1; j < sorted.length; j++) {
+      if (used[j]) continue;
+      if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= clusterPct) { used[j] = true; group.push(sorted[j]); }
+    }
+    clusters.push({ x: head.x, y: head.y, face: head.m, items: group.map(g => g.m) });
+  }
+  const visible = clusters.slice(0, cap);
+  const hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  return { clusters: visible, hidden, noGps, far, mPerPct: 1 / scale };
+}
+// A round scale-bar length that fits in about a third of the lens.
+function _lensScaleBar(mPerPct) {
+  if (!(mPerPct > 0)) return null;
+  const maxM = mPerPct * 34;
+  const steps = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000];
+  let m = steps[0];
+  for (const s of steps) if (s <= maxM) m = s;
+  return { m, pct: m / mPerPct, label: m >= 1000 ? `${m / 1000} km` : `${m} m` };
+}
 function MemoriesPhotoMapLens({ moments, onPinTap }) {
-  const CAP = 24, CLUSTER_R = 6;
-  const { clusters, hidden, unplaced } = React.useMemo(() => {
-    const placed = [];
-    let unplaced = 0;
-    for (const m of (moments || [])) {
-      if (!m.photoId) continue;
-      let xy = null, stageId = null;
-      if (m.parsedGps && typeof gpsToMap === "function") {
-        const p = gpsToMap(m.parsedGps.lat, m.parsedGps.lng);
-        if (p) { xy = { x: p.x, y: p.y }; if (typeof _nearestStageId === "function") stageId = _nearestStageId(p.x, p.y); }
-      }
-      if (!xy) {
-        const a = m.artistId ? ARTISTS.find(x => x.id === m.artistId) : null;
-        const stage = a ? STAGES.find(s => s.id === a.stage) : null;
-        // A stage with no numeric x/y counts as no stage here. Some stages
-        // ship deliberately UNPLACED — Nocturnal's Rave Cave, Lost Lands' The
-        // Grove (a campground stage on the far side of Route 13) — because a
-        // pin we cannot place is worse than no pin. map.jsx filters them via
-        // PLACED_STAGES; this fallback had no such guard, so it would have
-        // built { x: NaN, y: NaN } and drawn the moment pin at NaN.
-        if (!stage || !Number.isFinite(stage.x) || !Number.isFinite(stage.y)) { unplaced++; continue; }
-        const j = _idJitter(m.id);
-        xy = { x: stage.x + j.dx, y: stage.y + j.dy };
-        stageId = stage.id;
-      }
-      if (!stageId && typeof _nearestStageId === "function") stageId = _nearestStageId(xy.x, xy.y);
-      const stage = stageId ? STAGES.find(s => s.id === stageId) : null;
-      placed.push({ m, x: xy.x, y: xy.y, stage, t: _momentTime(m) });
-    }
-    // Greedy decluster: newest first, absorb everything within CLUSTER_R units.
-    const sorted = placed.slice().sort((a, b) => b.t - a.t);
-    const used = new Array(sorted.length).fill(false);
-    const clusters = [];
-    for (let i = 0; i < sorted.length; i++) {
-      if (used[i]) continue;
-      const head = sorted[i]; used[i] = true;
-      const group = [head];
-      for (let j = i + 1; j < sorted.length; j++) {
-        if (used[j]) continue;
-        if (Math.hypot(sorted[j].x - head.x, sorted[j].y - head.y) <= CLUSTER_R) { used[j] = true; group.push(sorted[j]); }
-      }
-      clusters.push({ x: head.x, y: head.y, stage: head.stage, face: head.m, items: group.map(g => g.m) });
-    }
-    const visible = clusters.slice(0, CAP);
-    const hidden = clusters.slice(CAP).reduce((n, c) => n + c.items.length, 0);
-    return { clusters: visible, hidden, unplaced };
-  }, [moments]);
-
+  const { clusters, hidden, noGps, far, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  const bar = _lensScaleBar(mPerPct);
+  const notes = (
+    (hidden > 0 || noGps > 0 || far > 0) && (
+      <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
+        {hidden > 0 && <span>+{hidden} MORE CLUSTERED</span>}
+        {noGps > 0 && <span>{noGps} WITHOUT GPS NOT SHOWN</span>}
+        {far > 0 && <span>{far} FAR FROM THE REST NOT SHOWN</span>}
+      </div>
+    )
+  );
   if (!clusters.length) {
     return (
-      <div style={{ padding: "28px 14px", textAlign: "center", marginTop: 14, border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
-        <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
-          NOTHING TO MAP YET — IMPORT GPS PHOTOS OR TAG SETS
+      <div style={{ marginTop: 14 }}>
+        <div data-gps-lens-empty="1" style={{ padding: "28px 14px", textAlign: "center", border: "1px dashed var(--line-2)", borderRadius: 14, background: "var(--paper-2)" }}>
+          <div className="mono" style={{ fontSize: 9, letterSpacing: 1.3, color: "var(--muted)", fontWeight: 700 }}>
+            NO GPS IN THESE MOMENTS · SHOTS TAKEN WITH LOCATION ON SHOW UP HERE
+          </div>
         </div>
+        {notes}
       </div>
     );
   }
-
-  const img = (typeof FESTIVAL_CONFIG !== "undefined") ? FESTIVAL_CONFIG.mapImage : null;
   return (
     <div style={{ marginTop: 14 }}>
-      <div style={{
+      <div data-gps-lens="1" style={{
         position: "relative", width: "100%", aspectRatio: "1 / 1",
         borderRadius: 16, overflow: "hidden", border: "1px solid var(--line)",
-        background: "var(--paper)",
+        background: "var(--paper-2)",
       }}>
-        <svg viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"
-          style={{ position: "absolute", inset: 0, display: "block" }}>
-          {img && <image href={img} x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>}
-          <rect x="0" y="0" width="100" height="100" fill="rgba(8,7,11,0.5)"/>
-        </svg>
         {clusters.map((c, i) => <_PhotoPin key={c.face.id || i} cluster={c} onTap={onPinTap}/>)}
       </div>
-      {(hidden > 0 || unplaced > 0) && (
-        <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
-          {hidden > 0 && <span>+{hidden} MORE THUMBNAIL{hidden === 1 ? "" : "S"} CLUSTERED</span>}
-          {unplaced > 0 && <span>+{unplaced} UNTAGGED NOT ON THE MAP</span>}
-        </div>
-      )}
+      <div style={{ position: "relative", height: 22, marginTop: 6 }}>
+        {bar && (
+          <>
+            <span data-gps-lens-bar={bar.m} role="img" aria-label={`Scale: ${bar.label}`} style={{ position: "absolute", left: 0, top: 4, width: `${bar.pct}%`, height: 3, borderRadius: 2, background: "var(--muted)" }}/>
+            <span className="mono" aria-hidden="true" style={{ position: "absolute", left: 0, top: 10, fontSize: 8.5, fontWeight: 700, color: "var(--muted)", letterSpacing: 0.6 }}>{bar.label}</span>
+          </>
+        )}
+        <span className="mono" aria-label="North is up" style={{ position: "absolute", right: 0, top: 2, fontSize: 9, fontWeight: 800, color: "var(--muted)", letterSpacing: 1 }}>N ↑</span>
+      </div>
+      {notes}
     </div>
   );
 }
 
 // MAP-lens wrapper: a CLUSTERS ⇄ PHOTOS segmented toggle over the two lenses.
 // Defaults to CLUSTERS (the v206 count-bubble view) so existing behavior is
-// preserved; PHOTOS is the v212 GPS photo-scatter. Choice persists.
+// preserved; PHOTOS places each moment at its own real GPS fix and nothing
+// else (no stage fallback, no poster projection). Choice persists.
 function MemoriesMapTab({ moments, onPinTap }) {
   const [mode, setMode] = React.useState(() => {
     try { return localStorage.getItem("plursky_maplens_mode") === "photos" ? "photos" : "clusters"; } catch { return "clusters"; }

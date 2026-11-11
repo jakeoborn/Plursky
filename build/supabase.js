@@ -260,8 +260,7 @@ function sbOnAuthChange(cb) {
   });
   return () => data.subscription.unsubscribe();
 }
-var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256"];
-var _VIDEO_COORD_FIELDS = ["parsedGps", "gpsAccM", "heading", "headingRef"];
+var _MOMENT_LOCAL_FIELDS = ["nativePath", "_fingerprint", "_contentSha256", "parsedGps", "gpsAccM", "heading", "headingRef"];
 function _slimMomentsForSync(all) {
   var out = {};
   for (var night of Object.keys(all || {})) {
@@ -273,7 +272,6 @@ function _slimMomentsForSync(all) {
         ...m
       };
       for (var f of _MOMENT_LOCAL_FIELDS) delete copy[f];
-      if (copy.kind === "video") for (var _f of _VIDEO_COORD_FIELDS) delete copy[_f];
       return copy;
     });
   }
