@@ -261,6 +261,25 @@ export const EDITIONS = {
   "edc-las-vegas-2023": { festivalId: "edc-lv", name: "EDC Las Vegas 2023", year: 2023,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2023-05-19", "Friday"], ["2023-05-20", "Saturday"], ["2023-05-21", "Sunday"]] },
+  "edc-orlando-2015": { festivalId: "edc-orlando", name: "EDC Orlando 2015", year: 2015,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-11-06", "Friday"], ["2015-11-07", "Saturday"]] },
+  // `undated`: the lineup page printed no days (extract-insomniac-lineup.mjs).
+  "edc-orlando-2016": { festivalId: "edc-orlando", name: "EDC Orlando 2016", year: 2016,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/" }] },
+  "edc-las-vegas-2016": { festivalId: "edc-lv", name: "EDC Las Vegas 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+  "edc-las-vegas-2017": { festivalId: "edc-lv", name: "EDC Las Vegas 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]],
+    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
+      source: "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
   "edc-orlando-2018": { festivalId: "edc-orlando", name: "EDC Orlando 2018", year: 2018,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
@@ -382,6 +401,9 @@ export const PRINTED_NON_LATIN = {
   "beyond-wonderland-socal-2026": ["Cntrl Alt DΞLΞTΞ"],
   // Read by eye on the official graphic (review/escape-halloween-2024.json).
   "escape-halloween-2024": ["DAKЯΣD"],
+  // The duo's own Greek lambda, in the page's artist_data list.
+  "edc-las-vegas-2016": ["Axwell Λ Ingrosso"],
+  "edc-las-vegas-2017": ["Axwell Λ Ingrosso"],
 };
 
 const ACTIVITY_REASON = "non-music Bonus Tracks activity";
