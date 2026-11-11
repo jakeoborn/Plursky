@@ -2,7 +2,7 @@
 // TOMORROWLAND THAILAND 2026 — Wisdom Valley · Chon Buri, Thailand
 // Dec 11–13, 2026. The first Tomorrowland edition in Thailand.
 // ═══════════════════════════════════════════════════════════════════════
-// LINEUP-ONLY SCAFFOLD, gated (available: false). The lineup, its day split
+// LINEUP-ONLY, OPEN (available: true, scheduleTBA: true; Jake 2026-11-11: switch on the festivals with a full lineup). Set times still TBA. The lineup, its day split
 // AND its stage split are official; set times and the site map are not
 // published.
 //
@@ -289,6 +289,6 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["tomorrowland-thailand-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    registry: { available: false, scheduleTBA: true, accent: "#f59e0b", emoji: "🐘", region: "Asia" },
+    registry: { available: true, scheduleTBA: true, accent: "#f59e0b", emoji: "🐘", region: "Asia" },
   };
 })();
