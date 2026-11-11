@@ -8,6 +8,10 @@
 //      true bearing (north up): no position comes from anywhere but the fix.
 //   B4 no GPS in the night → the empty state, zero pins.
 //   B5 network: no request during boot or the lens carries a fixture coordinate.
+//   B7 accuracy (SPEC-192 ws3): a precise shot gets a solid ring centred on its
+//      pin, its diameter = 2 × its accuracy at the pins' own px-per-metre; a
+//      coarse shot's ring and pin are dashed; a shot with no recorded accuracy
+//      gets no ring and a dotted pin; both are counted in the notes.
 //   B6 no page errors. A screenshot is written for the pixel check.
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
@@ -60,7 +64,7 @@ async function seed(page, mode) {
     });
     const list = mode === "none"
       ? [mk("m_nogps", timed[0], null), mk("m_nogps2", timed[1], null)]
-      : [mk("m_a", timed[0], FIX.a), mk("m_b", timed[1], FIX.b, { kind: "video", takenAt: "2026-11-07 23:10:00" }), mk("m_c", null, FIX.c, { takenAt: "2026-11-07 21:05:00" }),
+      : [mk("m_a", timed[0], FIX.a), mk("m_b", timed[1], FIX.b, { kind: "video", takenAt: "2026-11-07 23:10:00", gpsAccM: 250 }), mk("m_c", null, FIX.c, { takenAt: "2026-11-07 21:05:00", gpsAccM: null }),
          mk("m_nogps", timed[0], null), mk("m_null", timed[1], { lat: 0, lng: 0 })];
     localStorage.setItem("plursky_moments_v1", JSON.stringify({ 2: list }));
     // Real image blobs, so the pixel check sees thumbnails, not placeholders.
@@ -102,7 +106,10 @@ try {
       const box = lens.getBoundingClientRect();
       const pins = [...lens.querySelectorAll("[data-moment-ids]")].map(el => { const b = el.getBoundingClientRect(); return { ids: el.dataset.momentIds.split(","), x: b.left + b.width / 2, y: b.top + b.height / 2 }; });
       const img = window.FESTIVAL_CONFIG.mapImage;
-      return { pins, html: lens.outerHTML, poster: !!lens.querySelector("image, img[src*='map'], svg image") || (img ? lens.outerHTML.includes(img) : false), box: { w: box.width, h: box.height }, bar: document.querySelector("[data-gps-lens-bar]")?.getAttribute("data-gps-lens-bar") };
+      const rings = [...lens.querySelectorAll("[data-gps-lens-ring]")].map(el => { const b = el.getBoundingClientRect(); return { id: el.dataset.gpsLensRing, cls: el.dataset.acc, accM: +el.dataset.accM, x: b.left + b.width / 2, y: b.top + b.height / 2, d: b.width, h: b.height, style: getComputedStyle(el).borderTopStyle }; });
+      const pinAcc = Object.fromEntries([...lens.querySelectorAll("[data-moment-ids]")].map(el => [el.dataset.momentIds, { acc: el.dataset.acc, border: getComputedStyle(el.firstElementChild).borderTopStyle, label: el.getAttribute("aria-label") }]));
+      const notes = Object.fromEntries([...document.querySelectorAll("[data-gps-lens-note]")].map(el => [el.dataset.gpsLensNote, el.textContent]));
+      return { pins, rings, pinAcc, notes, html: lens.outerHTML, poster: !!lens.querySelector("image, img[src*='map'], svg image") || (img ? lens.outerHTML.includes(img) : false), box: { w: box.width, h: box.height }, bar: document.querySelector("[data-gps-lens-bar]")?.getAttribute("data-gps-lens-bar") };
     });
     check(!!r, "B1 the PHOTOS lens renders");
     if (r) {
@@ -123,6 +130,15 @@ try {
           if (d > 0.03) bearing = false;
         }
         check(Math.max(...ks) / Math.min(...ks) < 1.03, `B3 one px-per-metre scale across every pair (${ks.map(k => k.toFixed(3)).join(", ")})`);
+        const pxPerM = ks.reduce((a, b) => a + b, 0) / ks.length;
+        const ra = r.rings.find(g => g.id === "m_a"), rb = r.rings.find(g => g.id === "m_b");
+        check(!!ra && ra.cls === "precise" && ra.style === "solid", `B7 the 8 m shot has a solid precise ring (${ra && ra.cls}/${ra && ra.style})`);
+        check(!!ra && Math.abs(ra.d - 2 * 8 * pxPerM) < 1.5 && Math.abs(ra.d - ra.h) < 0.5, `B7b its diameter is 2 × 8 m at the pins' scale (${ra && ra.d.toFixed(1)}px vs ${(16 * pxPerM).toFixed(1)}px)`);
+        check(!!ra && Math.hypot(ra.x - at.m_a.x, ra.y - at.m_a.y) < 1, "B7c the ring is centred on its own pin");
+        check(!!rb && rb.cls === "coarse" && rb.style === "dashed" && r.pinAcc.m_b?.border === "dashed" && /rough location/.test(r.pinAcc.m_b?.label || ""), `B7d the 250 m shot's ring and pin are dashed, said in its label (${rb && rb.cls}/${rb && rb.style}/${r.pinAcc.m_b?.border})`);
+        check(!r.rings.some(g => g.id === "m_c") && r.pinAcc.m_c?.acc === "unknown" && r.pinAcc.m_c?.border === "dotted" && /accuracy unknown/.test(r.pinAcc.m_c?.label || ""), "B7e no accuracy → no ring, a dotted pin, said in its label");
+        check(/^1 ROUGH FIX/.test(r.notes.coarse || "") && /^1 NO ACCURACY/.test(r.notes.unknown || ""), `B7f the notes count rough and unknown fixes (${JSON.stringify(r.notes)})`);
+
         check(bearing, "B3b every pair's on-screen bearing is its true bearing, north up");
       }
       check(!!r.bar, "B3c a metric scale bar is drawn");
