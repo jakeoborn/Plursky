@@ -150,7 +150,19 @@ try {
     const t = await page.evaluate(() => ({
       pill: document.querySelector("[data-artist-day-pill]")?.textContent || null,
       card: document.querySelector("[data-artist-set-card]")?.innerText || null,
-      body: document.body.innerText,
+      // The page minus the career section. That section lists the act's OTHER
+      // festival years with their real set times (Lollapalooza Kidzapalooza
+      // 2016 at 12:00 PM since #428), which are true and must not read as a
+      // leaked 2026 Summerfest time. It loads after the page, so before this
+      // the check passed or failed on load order.
+      body: (() => {
+        const cs = [...document.querySelectorAll("[data-artist-career]")];
+        const prev = cs.map(c => c.style.display);
+        cs.forEach(c => { c.style.display = "none"; });
+        const txt = document.body.innerText;
+        cs.forEach((c, i) => { c.style.display = prev[i]; });
+        return txt;
+      })(),
     }));
     check(t.pill === `DAY 4 · ${COPY}`, `L. artist: the day pill reads "DAY 4 · ${COPY}" (got ${JSON.stringify(t.pill)})`);
     check(t.card && t.card.includes(COPY) && !LEGACY.test(t.card) && !/→/.test(t.card), "L. artist: the set card says the words, no time and no range");
