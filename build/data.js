@@ -779,6 +779,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "lost-lands-2026",
+    officialEvent: {
+      website: "https://www.lostlandsfestival.com/",
+      observedAt: "2026-11-11"
+    },
     scheduleSource: {
       url: "https://github.com/johnta2000/johnta2000.github.io/blob/01315c1f03c0a01c9a8294132ac8cb6480a49ac3/convex/lostLandsSetTimes.ts",
       observedAt: "2026-09-10",
@@ -1059,6 +1063,10 @@ var FESTIVALS_REGISTRY = [{
 }, {
   config: {
     id: "acl-2026",
+    officialEvent: {
+      website: "https://www.aclfestival.com/",
+      observedAt: "2026-11-11"
+    },
     scheduleSource: {
       url: "https://www.aclfestival.com/schedule",
       observedAt: "2026-09-30",
