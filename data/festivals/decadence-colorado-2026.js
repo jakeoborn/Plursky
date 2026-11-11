@@ -249,6 +249,9 @@
       // reader to wonder about. 100,416 m². This is the BUILDING; the event
       // uses 400,000+ sq ft of it. See the header before reading it as the
       // festival perimeter.
+      // The footprint is the festival grounds (an indoor show, so the building is the festival), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [39.7443483, -104.996556], [39.744366, -104.9965002], [39.7443708, -104.9964503],
         [39.7443689, -104.9964085], [39.7444321, -104.9963955], [39.7444184, -104.9963271],

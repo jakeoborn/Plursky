@@ -7008,7 +7008,7 @@ function RealMap({
         }
         applyPlurskyPalette();
         _safeLayer("outside-mask", () => {
-          if (FESTIVAL_CONFIG.mapMode === "real" && !_footprintRing()) return;
+          if (FESTIVAL_CONFIG.mapMode === "real" && !(_footprintRing() && FESTIVAL_CONFIG.venue?.footprintIsGrounds === true)) return;
           var _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           var _maskFeature = () => {

@@ -405,6 +405,9 @@
       // about. 64,524 m². OSM tags this `source=knowledge`, so it is the
       // best published outline rather than a survey; see the header before
       // treating it as measured, and replace it from an official map.
+      // The footprint is the festival grounds (the park the festival fills), so the real map
+      // masks everything outside it.
+      footprintIsGrounds: true,
       footprint: [
         [32.72003, -117.17285], [32.72003, -117.17234], [32.72001, -117.17124],
         [32.72005, -117.17124], [32.72088, -117.17124], [32.72107, -117.17123],

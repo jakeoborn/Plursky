@@ -5174,7 +5174,10 @@ function RealMap({
           // footprint (venue.footprint, an OSM ring): Jake, 2026-11-10, "should
           // just have the venue on the map not anything else". An estimated
           // bounds box is not the venue's shape, so it never masks a real map.
-          if (FESTIVAL_CONFIG.mapMode === "real" && !_footprintRing()) return;
+          // Nor does a footprint that is only a building on the grounds (Portola's
+          // cargo shed, with the pier apron outside it): a real map masks only
+          // where the data says venue.footprintIsGrounds.
+          if (FESTIVAL_CONFIG.mapMode === "real" && !(_footprintRing() && FESTIVAL_CONFIG.venue?.footprintIsGrounds === true)) return;
           const _hole = _footprintRing() || _boundsRing();
           if (!_hole) return;
           const _maskFeature = () => {
