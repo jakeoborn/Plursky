@@ -25,7 +25,7 @@ import { parseLineupPage, provesEdition, lineupRows, LINEUP_EDITIONS, printedRan
 import { parseAclSchedule, axisMinutes, readAxis } from "./historical/acl-schedule.mjs";
 import { parseTomorrowland, eventDay } from "./historical/tml-schedule.mjs";
 import { parseElectricForest, navDay } from "./historical/ef-schedule.mjs";
-import { parseCoachella } from "./historical/coachella-lineup.mjs";
+import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -259,6 +259,44 @@ if (base && edc) {
     coMust("a Coachella set with no stage in the 2016 layout", coPage.replace(`${coSep}\n Sahara`, `${coSep}\n `));
     coMust("a Coachella card with no name", coPage.replace("<h1>Later Act</h1>", ""));
     coMust("a Coachella page with no cards", "<div>nothing</div>");
+    // Coachella 2017's lineup data: start and end where the data has them,
+    // open-ended without an end, incomplete with no start, a TBD stage or a
+    // bare 00:00 start, one set for an act listed twice under two spellings.
+    const coEv = (date, label, start, end, loc) => ({ event_date: date, date_time: label, start_time: start, end_time: end, location: loc, start_time_display: "" });
+    const coAct = (name, w1, w2 = false) => ({ id: "1", name, festival_year: "2017", events: { weekend1: w1, weekend2: w2 } });
+    const coData = acts => `<lineup-listing v-bind:artists="${JSON.stringify(acts).replace(/&/g, "&amp;").replace(/"/g, "&quot;")}"></lineup-listing>`;
+    const fri17 = "Friday, April 14, 2017";
+    const coActs = [coAct("R&oacute;is&iacute;n Murphy", coEv("2017-04-14", fri17, "18:00:00", "18:50:00", "Gobi")),
+      coAct("Late Act", coEv("2017-04-14", fri17, "23:35:00", null, "Sahara")),
+      coAct("No Time", coEv("2017-04-14", fri17, null, null, "Do Lab")), coAct("Unplaced", coEv("2017-04-14", fri17, "20:00:00", "21:00:00", "TBD")),
+      coAct("Midnight Blank", coEv("2017-04-14", fri17, "00:00:00", null, "Mojave")),
+      coAct("Shannon & the Clams", coEv("2017-04-14", fri17, "17:00:00", "17:50:00", "Sonora")), coAct("Shannon and the Clams", coEv("2017-04-14", fri17, "17:00:00", "17:50:00", "Sonora")),
+      coAct("Host Only", false)];
+    const cd = parseCoachellaData(coData(coActs), { year: 2017 });
+    ok(JSON.stringify(cd.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd]), d.incomplete.map(x => x.artist), d.duplicates, d.respelled])) === JSON.stringify([
+      ["2017-04-14", [["Gobi", "18:00", "18:50", "Róisín Murphy", false], ["Sahara", "23:35", "", "Late Act", true], ["Sonora", "17:00", "17:50", "Shannon & the Clams", false]],
+        ["No Time", "Unplaced", "Midnight Blank"], 1, ["Shannon and the Clams = Shannon & the Clams"]]]) && cd.unscheduled.join() === "Host Only",
+      `Coachella 2017 data read wrong: ${JSON.stringify(cd)}`);
+    const cdMust = (what, acts, year = 2017) => { let bad = false; try { parseCoachellaData(typeof acts === "string" ? acts : coData(acts), { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    cdMust("a Coachella 2017 data page read as another year", coActs, 2016);
+    cdMust("a Coachella 2017 event whose printed date is not its event_date", [coAct("A", coEv("2017-04-15", fri17, "18:00:00", "19:00:00", "Gobi"))]);
+    cdMust("a Coachella 2017 time that is not a clock time", [coAct("A", coEv("2017-04-14", fri17, "6pm", "19:00:00", "Gobi"))]);
+    cdMust("a Coachella 2017 act with a name entity the reader does not know", [coAct("A&eth;", coEv("2017-04-14", fri17, "18:00:00", "19:00:00", "Gobi"))]);
+    cdMust("a Coachella 2017 page with no lineup data", "<div>nothing</div>");
+    // Coachella 2012's hidden overlays: "date | time | stage" lines, a TBD
+    // line incomplete, every set open-ended.
+    const coOv = (id, name, lines, yr = "2012") => `<div class="artist-overlay" id="artist-${id}">\n<div class="artist-info">\n<h1 style="x">${name}</h1>\n<p class="artist-text-currentyear">${yr} Appearance</p><p class="artist-text">${lines.join("<br>")}</p></div></div>`;
+    const ovPage = coOv(60, "Gary Clark Jr.", ["Friday April 13th | TBD", "Friday April 20th | 4:30pm | Gobi"]) + coOv(61, "Dr. Dre &amp; Snoop Dogg", ["Sunday April 15th | 10:55pm | Main Stage"]);
+    const ov = parseCoachella2012(ovPage, { year: 2012 });
+    ok(JSON.stringify(ov.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist, x.openEnd]), d.incomplete.map(x => x.printed)])) === JSON.stringify([
+      ["2012-04-13", [], ["Friday April 13th | TBD"]], ["2012-04-15", [["Main Stage", "22:55", "", "Dr. Dre & Snoop Dogg", true]], []],
+      ["2012-04-20", [["Gobi", "16:30", "", "Gary Clark Jr.", true]], []]]), `Coachella 2012 overlays read wrong: ${JSON.stringify(ov)}`);
+    const ovMust = (what, html, year = 2012) => { let bad = false; try { parseCoachella2012(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    ovMust("a Coachella 2012 overlay for another year's appearances", coOv(1, "A", ["Friday April 13th | 4:30pm | Gobi"], "2011"));
+    ovMust("a Coachella 2012 date whose weekday is wrong", ovPage.replace("Friday April 20th", "Saturday April 20th"));
+    ovMust("a Coachella 2012 time that is not a clock time", ovPage.replace("4:30pm", "late"));
+    ovMust("a Coachella 2012 line with no stage", ovPage.replace(" | Gobi", ""));
+    ovMust("a Coachella 2012 page with no overlays", "<div>nothing</div>");
     ok(datedLabel("Friday 19 July 2019", 2019) === "2019-07-19" && datedLabel("Friday 19 July 2019", 2018) === null, "a European day label must print the edition year");
     ok(stageFor({ stageAs: { "The Rose Garden": "Rose Garden" } }, "The Rose Garden") === "Rose Garden", "stageAs may drop a leading The");
     let theRename = false; try { stageFor({ stageAs: { "The Library": "Library Bar" } }, "The Library"); } catch { theRename = true; }

@@ -778,6 +778,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "coachella:sonora",
+     "names": [
+      {
+       "printed": "Sonora",
+       "editions": [
+        "coachella-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:main-stage",
+     "names": [
+      {
+       "printed": "Main Stage",
+       "editions": [
+        "coachella-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -122,6 +122,21 @@
    "source": "https://summerfest.com/lineup"
   },
   {
+   "printed": "Jimmy Cliff with Tim Armstrong and the Engine Band",
+   "performers": [
+    {
+     "name": "Jimmy Cliff",
+     "role": "performer"
+    },
+    {
+     "name": "Tim Armstrong and the Engine Band",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\": the first name is the performer, the added name is credited as a guest on the same set, as printed (never split on \"and\").",
+   "source": "https://www.coachella.com/lineup/"
+  },
+  {
    "printed": "OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger",
    "performers": [
     {
@@ -2330,6 +2345,14 @@
   {
    "key": "rac",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "nao",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "The Geek x Vrv",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

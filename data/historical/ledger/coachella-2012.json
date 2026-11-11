@@ -1,0 +1,170 @@
+{
+  "id": "coachella-2012",
+  "method": "official_sources",
+  "official": "https://www.coachella.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-04-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Friday April 13th",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 46,
+          "format": "coachella-overlays",
+          "stages": 5,
+          "openEnded": 46,
+          "incomplete": [
+            "Gary Clark Jr.: Friday April 13th | TBD",
+            "Lucent Dossier Experience: Friday April 13th | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-04-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Saturday April 14th",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 50,
+          "format": "coachella-overlays",
+          "stages": 5,
+          "openEnded": 50,
+          "incomplete": [
+            "Lucent Dossier Experience: Saturday April 14th | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2012-04-15",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Sunday April 15th",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 45,
+          "format": "coachella-overlays",
+          "stages": 5,
+          "openEnded": 45,
+          "incomplete": [
+            "Lucent Dossier Experience: Sunday April 15th | TBD"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2012-04-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Friday April 20th",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 50,
+          "format": "coachella-overlays",
+          "stages": 6,
+          "openEnded": 50
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2012-04-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Saturday April 21st",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 53,
+          "format": "coachella-overlays",
+          "stages": 6,
+          "openEnded": 53
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2012-04-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.coachella.com/lineup/list/date/all",
+          "archivedUrl": "https://web.archive.org/web/20120529111444/http://www.coachella.com/lineup/list/date/all",
+          "captureTimestamp": "20120529111444",
+          "printed": "Sunday April 22nd",
+          "sha256": "39aacadc85d768a0ad85cb766f8622e9c858d97072f257d70cf7c65e4bcc2074",
+          "bytes": 248680,
+          "rows": 49,
+          "format": "coachella-overlays",
+          "stages": 6,
+          "openEnded": 49
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "",
+      "start": "",
+      "end": "",
+      "billing": "Gary Clark Jr.",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 1,
+      "stage": "",
+      "start": "",
+      "end": "",
+      "billing": "Lucent Dossier Experience",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 2,
+      "stage": "",
+      "start": "",
+      "end": "",
+      "billing": "Lucent Dossier Experience",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    },
+    {
+      "day": 3,
+      "stage": "",
+      "start": "",
+      "end": "",
+      "billing": "Lucent Dossier Experience",
+      "reason": "the page prints this entry without its set time or its stage (what it prints is kept in the sheet)",
+      "incomplete": true
+    }
+  ],
+  "dropped": []
+}

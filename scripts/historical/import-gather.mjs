@@ -40,13 +40,14 @@ import { readSheet } from "./build-editions.mjs";
 import { parseAclSchedule } from "./acl-schedule.mjs";
 import { parseTomorrowland } from "./tml-schedule.mjs";
 import { parseElectricForest } from "./ef-schedule.mjs";
-import { parseCoachella } from "./coachella-lineup.mjs";
+import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./coachella-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // Pages that print a set with a start and no end: Electric Forest's grid
-// ("2:15am - Close") and Coachella's lineup cards (no end times at all).
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards"]);
+// ("2:15am - Close"), Coachella's lineup cards and 2012 overlays (no end
+// times at all) and Coachella 2017's lineup data (a few sets without an end).
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -309,18 +310,28 @@ export async function importGather(id, dir) {
             ...(d.untimed.length && { untimed: d.untimed.map(x => `${x.artist}: ${x.printed}`) }),
             ...(d.misprints.length && { misprints: d.misprints.map(x => `${x.artist}: ${x.misprint}`) }) });
         }
-      } else if (s.format === "coachella-cards") {
+      } else if (s.format === "coachella-cards" || s.format === "coachella-data" || s.format === "coachella-overlays") {
         // One page lists every act's sets on both weekends, each with its
         // printed date, start and stage, and no end (coachella-lineup.mjs).
         // Every day it prints is the edition's and is cited; every set is
         // open-ended, and the sheet must say so row for row. Acts whose card
         // lists no set are kept in the ledger, never as sets.
-        const page = parseCoachella(cap.text, { year: ed.year });
+        // The 2017 page (coachella-data) holds the same sets as data, with
+        // an end where it has one: a row is open-ended exactly when its set
+        // has no end.
+        const data = s.format === "coachella-data";
+        const page = (data ? parseCoachellaData : s.format === "coachella-overlays" ? parseCoachella2012 : parseCoachella)(cap.text, { year: ed.year });
         const dayOf = date => ed.dates.findIndex(([d]) => d === date) + 1;
         const printedDays = page.days.map(d => dayOf(d.date));
         if (printedDays.some(d => d < 1)) throw new Error(`${s.url} @${s.captureTimestamp}: prints a day that is not the edition's (${page.days.map(d => d.date).join(", ")})`);
         if (printedDays.join() !== days.join()) throw new Error(`${s.url} @${s.captureTimestamp}: prints days ${printedDays.join(",")}, the sheet cites it for ${days.join(",")}`);
-        if (got.some(r => r.openEnd !== "1")) throw new Error(`${s.url} @${s.captureTimestamp}: the page prints no end times, so every row must be open-ended`);
+        if (!data && got.some(r => r.openEnd !== "1")) throw new Error(`${s.url} @${s.captureTimestamp}: the page prints no end times, so every row must be open-ended`);
+        if (data) {
+          const ok = (d, x) => [d, x.stage, x.start, x.artist].join("|");
+          const pg = page.days.flatMap(d => d.sets.filter(x => x.openEnd).map(x => ok(dayOf(d.date), x))).sort().join("\n");
+          const sh = got.filter(r => r.openEnd === "1").map(r => ok(r.day, r)).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: the open-ended rows are not the sets the data gives no end\n  page: ${pg}\n  sheet: ${sh}`);
+        }
         for (const d of page.days) {
           const day = dayOf(d.date);
           if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints "${d.label}", the receipt says "${s.printed[day]}"`);
@@ -329,10 +340,10 @@ export async function importGather(id, dir) {
           const k = x => [x.stage, x.start, x.artist ?? x.billing].join("|");
           const pg = d.incomplete.map(k).sort().join("\n"), sh = excluded.filter(x => x.day === day && x.incomplete).map(k).sort().join("\n");
           if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${d.incomplete.length} incomplete entr(ies), the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
-          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: "", artist: x.artist })));
-          Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: d.stages.length, openEnded: d.sets.length,
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { stages: d.stages.length, openEnded: d.sets.filter(x => x.openEnd).length,
             ...(d.incomplete.length && { incomplete: d.incomplete.map(x => `${x.artist}: ${x.printed}`) }),
-            ...(d.duplicates && { duplicateSets: d.duplicates }) });
+            ...(d.duplicates && { duplicateSets: d.duplicates }), ...(d.respelled && { respelled: d.respelled }) });
         }
         if (page.unscheduled.length) unscheduledLedger.push({ archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp, acts: page.unscheduled });
       } else if (s.format === "day-tabs") {

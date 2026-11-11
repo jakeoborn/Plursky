@@ -772,6 +772,52 @@
    }
   },
   {
+   "id": "coachella-2017",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-04-14",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-04-15",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-04-16",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2017-04-21",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2017-04-22",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2017-04-23",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 229,
+    "sets": 398
+   }
+  },
+  {
    "id": "coachella-2016",
    "festivalId": "coachella",
    "festivalName": "Coachella",
@@ -907,6 +953,52 @@
     "stages": 7,
     "artists": 212,
     "sets": 391
+   }
+  },
+  {
+   "id": "coachella-2012",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2012",
+   "year": 2012,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-04-13",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2012-04-14",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2012-04-15",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2012-04-20",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2012-04-21",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2012-04-22",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 149,
+    "sets": 293
    }
   },
   {

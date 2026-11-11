@@ -79,7 +79,8 @@ act are dropped as `event-block`; the Silent Disco is dropped as operational.
 2014's archived pages print a lineup only, and 2024's schedule page has not
 been read yet.
 
-Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`):
+Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
+2012, `coachella-overlays`; 2017, `coachella-data`):
 
     node scripts/historical/gather-coachella.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> ...]
     node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
@@ -95,10 +96,28 @@ one of them. The `data-weekend` attribute is not read (2016 marks both
 weekends "1"); the printed date decides the day. An entry printed without its
 time ("Saturday, April 19, 2014 | Gobi") or its stage is excluded as
 incomplete, with what it prints kept in the sheet; a card with no set (a host)
-is kept in the ledger as unscheduled, never as a set. 2017's page is a
-different design (its sets sit in the page's script data, and some carry end
-times) and has its own Set Times page, not read yet. 2014's Weekend 1 view
+is kept in the ledger as unscheduled, never as a set. 2014's Weekend 1 view
 lists no Do Lab sets; nothing is added for them.
+
+2012's page (`/lineup/list/date/all`) prints each act's sets in a hidden
+overlay, under "2012 Appearance": "Friday April 20th | 4:30pm | Gobi", start
+times only, so every set is open-ended; a line printed "| TBD" is excluded as
+incomplete. It lists one Do Lab act (Lucent Dossier Experience); nothing is
+added for the others. NOISIΛ keeps the lambda the page prints
+(`PRINTED_NON_LATIN`).
+
+2017's page holds its whole lineup as one data attribute
+(`<lineup-listing v-bind:artists>`), which its script draws as the cards: per
+act and weekend the date (with its printed form), start, end and stage. A set
+with an end keeps it; one with no end is open-ended (the sheet's `openEnd`
+rows must be exactly those). A set with no start, a "TBD" stage, or a bare
+00:00 start with no end (the page's blank value) is excluded as incomplete.
+The data lists one act twice under two spellings ("Shannon & the Clams",
+"Shannon and the Clams"): one set, the first spelling kept, the other named in
+the ledger's `respelled`. Names keep their own HTML entities in the data
+("R&oacute;is&iacute;n"), read as their letters. 2018's archived lineup page
+is an empty shell and 2019's Set Times page loads its times by script, so
+neither is readable from the archive.
 
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
 
