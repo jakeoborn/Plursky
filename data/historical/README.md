@@ -38,6 +38,25 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Archived Tomorrowland timetables (2017–2019, 2022, 2023, format `tml-stages`):
+
+    node scripts/historical/gather-tml.mjs <edition-id> <gather-dir> <official-url> <ts> <url> <location|heading>
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+One /en/festival/line-up/stages/<day> page prints every day of every
+weekend, each set with its printed range and its data-start/data-end (which
+must agree). Each heading pairs a stage with that day's host, in an order
+that changed: 2018 and 2019 print the host first ("Holosphere - Freedom
+Stage by Budweiser", `location`), 2022 on print the stage first ("Rose
+Garden - Rampage", `heading`); 2017 prints only the host. The importer holds
+the receipt to the reading that names the fewer stages, and the hosts go in
+the ledger. The Thursday before each weekend (The Gathering) is printed but
+is not a festival day: its sets are excluded as `offDay` rows, by date. A
+stage printed two ways (case, spacing, a leading "The") is carried onto its
+most-printed form with `stageAs`. 2017's only timetable capture is from the
+Monday between the weekends (July 24); every other year's is from the last
+day or after it. 2024 and later have no archived timetable.
+
 Archived C3 schedule grids (ACL, Lollapalooza 2013–2019, format `acl-grid`):
 
     node scripts/historical/gather-acl-grid.mjs <edition-id> <gather-dir> <official-url> <ts> <url> [<ts> <url> …]
