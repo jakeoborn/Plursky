@@ -8564,10 +8564,13 @@ function _PhotoPin({
   var rot = _idHash(m.id) % 17 - 8;
   var extra = cluster.items.length - 1;
   var SIZE = cluster.items.length > 1 ? 52 : 46;
+  var acc = cluster.acc;
+  var accSay = acc === "unknown" ? ", location accuracy unknown" : acc === "coarse" ? ", rough location" : "";
   return React.createElement("button", {
     onClick: () => onTap && onTap(cluster),
     "data-moment-ids": cluster.items.map(x => x.id).join(","),
-    "aria-label": cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`,
+    "data-acc": acc || undefined,
+    "aria-label": (cluster.items.length === 1 ? m.kind === "video" ? "Video" : "Photo" : `${cluster.items.length} moments`) + accSay,
     style: {
       position: "absolute",
       left: cluster.x + "%",
@@ -8587,7 +8590,7 @@ function _PhotoPin({
       height: "100%",
       borderRadius: 10,
       overflow: "hidden",
-      border: `2px solid ${ring}`,
+      border: `2px ${acc === "unknown" ? "dotted" : acc === "coarse" ? "dashed" : "solid"} ${ring}`,
       background: url ? "var(--paper)" : "var(--paper-2)",
       boxShadow: "0 3px 9px rgba(var(--shade-rgb),0.5)"
     }
@@ -8645,6 +8648,15 @@ function _lensFix(m) {
     lng: g.lng
   };
 }
+function _lensAcc(m) {
+  var a = m && m.gpsAccM;
+  return typeof a === "number" && Number.isFinite(a) && a > 0 ? a : null;
+}
+function _lensAccClass(acc) {
+  if (acc == null) return "unknown";
+  return acc <= STAGE_FIX_PHOTO.maxAccM ? "precise" : "coarse";
+}
+var _LENS_RING_CAP = 60;
 var _LENS_FAR_M = 3000;
 var _LENS_MIN_SPAN_M = 40;
 function _gpsLensLayout(moments, opts) {
@@ -8668,9 +8680,13 @@ function _gpsLensLayout(moments, opts) {
   }
   var empty = {
     clusters: [],
+    rings: [],
+    ringsCut: 0,
     hidden: 0,
     noGps,
     far: 0,
+    coarse: 0,
+    unknownAcc: 0,
     mPerPct: 0
   };
   if (!fixes.length) return empty;
@@ -8692,11 +8708,14 @@ function _gpsLensLayout(moments, opts) {
       far++;
       continue;
     }
+    var acc = _lensAcc(f.m);
     pts.push({
       m: f.m,
       t: f.t,
       e,
-      n
+      n,
+      acc,
+      cls: _lensAccClass(acc)
     });
   }
   if (!pts.length) return {
@@ -8708,10 +8727,11 @@ function _gpsLensLayout(moments, opts) {
     minN = Infinity,
     maxN = -Infinity;
   for (var p of pts) {
-    minE = Math.min(minE, p.e);
-    maxE = Math.max(maxE, p.e);
-    minN = Math.min(minN, p.n);
-    maxN = Math.max(maxN, p.n);
+    var r = p.cls === "precise" ? p.acc : 0;
+    minE = Math.min(minE, p.e - r);
+    maxE = Math.max(maxE, p.e + r);
+    minN = Math.min(minN, p.n - r);
+    maxN = Math.max(maxN, p.n + r);
   }
   var span = Math.max(maxE - minE, maxN - minN, _LENS_MIN_SPAN_M);
   var scale = (100 - 2 * pad) / span;
@@ -8740,16 +8760,42 @@ function _gpsLensLayout(moments, opts) {
       x: head.x,
       y: head.y,
       face: head.m,
-      items: group.map(g => g.m)
+      acc: head.cls,
+      items: group.map(g => g.m),
+      pts: group
     });
   }
   var visible = clusters.slice(0, cap);
   var hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
+  var rings = [];
+  var ringsCut = 0;
+  for (var c of visible) for (var _p2 of c.pts) {
+    if (_p2.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) {
+      ringsCut++;
+      continue;
+    }
+    rings.push({
+      id: _p2.m.id,
+      x: _p2.x,
+      y: _p2.y,
+      r: _p2.acc * scale,
+      accM: _p2.acc,
+      cls: _p2.cls
+    });
+  }
+  for (var _c of visible) delete _c.pts;
+  var coarse = pts.filter(p => p.cls === "coarse").length,
+    unknownAcc = pts.filter(p => p.cls === "unknown").length;
   return {
     clusters: visible,
+    rings,
+    ringsCut,
     hidden,
     noGps,
     far,
+    coarse,
+    unknownAcc,
     mPerPct: 1 / scale
   };
 }
@@ -8771,13 +8817,17 @@ function MemoriesPhotoMapLens({
 }) {
   var {
     clusters,
+    rings,
+    ringsCut,
     hidden,
     noGps,
     far,
+    coarse,
+    unknownAcc,
     mPerPct
   } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
   var bar = _lensScaleBar(mPerPct);
-  var notes = (hidden > 0 || noGps > 0 || far > 0) && React.createElement("div", {
+  var notes = (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8.5,
@@ -8790,7 +8840,13 @@ function MemoriesPhotoMapLens({
       flexWrap: "wrap",
       gap: 10
     }
-  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"));
+  }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"), coarse > 0 && React.createElement("span", {
+    "data-gps-lens-note": "coarse"
+  }, coarse, " ROUGH FIX (OVER ", STAGE_FIX_PHOTO.maxAccM, " M), DASHED"), ringsCut > 0 && React.createElement("span", {
+    "data-gps-lens-note": "rings-cut"
+  }, ringsCut, " MORE ACCURACY ", ringsCut === 1 ? "RING" : "RINGS", " NOT DRAWN"), unknownAcc > 0 && React.createElement("span", {
+    "data-gps-lens-note": "unknown"
+  }, unknownAcc, " NO ACCURACY RECORDED, DOTTED"));
   if (!clusters.length) {
     return React.createElement("div", {
       style: {
@@ -8830,7 +8886,26 @@ function MemoriesPhotoMapLens({
       border: "1px solid var(--line)",
       background: "var(--paper-2)"
     }
-  }, clusters.map((c, i) => React.createElement(_PhotoPin, {
+  }, rings.map(g => React.createElement("span", {
+    key: "ring-" + g.id,
+    "data-gps-lens-ring": g.id,
+    "data-acc": g.cls,
+    "data-acc-m": g.accM,
+    "aria-hidden": "true",
+    style: {
+      position: "absolute",
+      left: g.x - g.r + "%",
+      top: g.y - g.r + "%",
+      width: 2 * g.r + "%",
+      height: 2 * g.r + "%",
+      borderRadius: "50%",
+      boxSizing: "border-box",
+      pointerEvents: "none",
+      zIndex: 1,
+      border: g.cls === "precise" ? "1.5px solid color-mix(in srgb, var(--acc) 70%, transparent)" : "1.5px dashed color-mix(in srgb, var(--acc) 60%, transparent)",
+      background: g.cls === "precise" ? "color-mix(in srgb, var(--acc) 13%, transparent)" : "color-mix(in srgb, var(--acc) 6%, transparent)"
+    }
+  })), clusters.map((c, i) => React.createElement(_PhotoPin, {
     key: c.face.id || i,
     cluster: c,
     onTap: onPinTap
