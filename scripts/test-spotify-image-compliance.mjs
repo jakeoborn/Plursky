@@ -439,13 +439,19 @@ try {
     check(direct === 0, `[proxy] api.spotify.com was called ${direct} time(s) with no token`);
     // 503: the function is not set up; one ask, then quiet for the session.
     await page.close(); mode = 'off'; asked = 0;
-    const page2 = await ctx.newPage(); await boot(page2, '?tab=lineup');
+    const page2 = await ctx.newPage(); await boot(page2);
     await page2.evaluate(() => localStorage.setItem('artist_images_v1', '{}'));
-    await page2.reload({ waitUntil: 'domcontentloaded' });
-    await page2.waitForFunction(() => document.querySelectorAll('.duo-av').length > 3, null, { timeout: 30000 }).catch(() => {});
-    await sleep(2500);
-    const faces = await page2.evaluate(() => document.querySelectorAll('.duo-av').length);
-    check(faces > 3 && asked === 1, `[proxy] after a 503 the faces kept asking the function (${asked} asks for ${faces} faces)`);
+    // Six faces with no stored photo ask through the photo queue at once.
+    const faces = await page2.evaluate(() => {
+      const names = window.ARTISTS.filter(x => !getPermanentArtistImage(x.name)).slice(0, 6).map(x => x.name);
+      const el = document.createElement('div'); document.body.appendChild(el);
+      ReactDOM.createRoot(el).render(React.createElement(React.Fragment, null, names.map(n =>
+        React.createElement(function Probe() { useArtistPhoto(n); return null; }, { key: n }))));
+      return names.length;
+    });
+    await sleep(3000);
+    const after = await page2.evaluate(async () => (await _fetchProxyPhoto('Plursky Probe Name')) === null && !_photoProxyUsable());
+    check(faces === 6 && asked === 1 && after, `[proxy] after a 503 the faces kept asking the function (${asked} asks for ${faces} faces; off: ${after})`);
     await ctx.close();
   }
 
