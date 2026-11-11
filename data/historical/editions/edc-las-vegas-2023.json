@@ -1363,20 +1363,6 @@
    ]
   },
   {
-   "id": "edc-las-vegas-2023:discovery-project-winner",
-   "name": "Discovery Project Winner",
-   "key": "discovery-project-winner",
-   "performers": [
-    "discovery-project-winner"
-   ],
-   "appearances": [
-    {
-     "day": 2,
-     "stageId": "edc-las-vegas-2023:parliament-2-0-30th-anniversary-art-car"
-    }
-   ]
-  },
-  {
    "id": "edc-las-vegas-2023:discrete",
    "name": "Discrete",
    "key": "discrete",

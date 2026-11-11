@@ -1,0 +1,1645 @@
+{
+ "id": "electric-forest-2012",
+ "festivalId": "electric-forest",
+ "name": "Electric Forest 2012",
+ "year": 2012,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-06-28",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2012-06-29",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2012-06-30",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2012-07-01",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "electric-forest-2012:ranch-arena",
+   "name": "Ranch Arena"
+  },
+  {
+   "id": "electric-forest-2012:sherwood-court",
+   "name": "Sherwood Court"
+  },
+  {
+   "id": "electric-forest-2012:tripolee",
+   "name": "Tripolee"
+  },
+  {
+   "id": "electric-forest-2012:forest-stage",
+   "name": "Forest Stage"
+  },
+  {
+   "id": "electric-forest-2012:wagon-wheel",
+   "name": "Wagon Wheel"
+  }
+ ],
+ "artists": [
+  {
+   "id": "electric-forest-2012:reggie-watts",
+   "name": "Reggie Watts",
+   "key": "reggie-watts",
+   "performers": [
+    "reggie-watts"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:ghostland-observatory",
+   "name": "Ghostland Observatory",
+   "key": "ghostland-observatory",
+   "performers": [
+    "ghostland-observatory"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:conspirator",
+   "name": "Conspirator",
+   "key": "conspirator",
+   "performers": [
+    "conspirator"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:eoto",
+   "name": "EOTO",
+   "key": "eoto",
+   "performers": [
+    "eoto"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:congo-sanchez",
+   "name": "Congo Sanchez",
+   "key": "congo-sanchez",
+   "performers": [
+    "congo-sanchez"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:afrolicious",
+   "name": "Afrolicious",
+   "key": "afrolicious",
+   "performers": [
+    "afrolicious"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:thunderball",
+   "name": "Thunderball",
+   "key": "thunderball",
+   "performers": [
+    "thunderball"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:funk-ark-ft-frank-mitchell-jr",
+   "name": "Funk Ark ft. Frank Mitchell Jr.",
+   "key": "funk-ark-ft-frank-mitchell-jr",
+   "performers": [
+    "funk-ark-ft-frank-mitchell-jr"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:novalima",
+   "name": "Novalima",
+   "key": "novalima",
+   "performers": [
+    "novalima"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nickodemus",
+   "name": "Nickodemus",
+   "key": "nickodemus",
+   "performers": [
+    "nickodemus"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:see-i",
+   "name": "See-I",
+   "key": "see-i",
+   "performers": [
+    "see-i"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:rob-garza",
+   "name": "Rob Garza",
+   "key": "rob-garza",
+   "performers": [
+    "rob-garza"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:dixon-s-violin",
+   "name": "Dixon's Violin",
+   "key": "dixon-s-violin",
+   "performers": [
+    "dixon-s-violin"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:dumptruck-butterlips",
+   "name": "Dumptruck Butterlips",
+   "key": "dumptruck-butterlips",
+   "performers": [
+    "dumptruck-butterlips"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nathaniel-rateliff",
+   "name": "Nathaniel Rateliff",
+   "key": "nathaniel-rateliff",
+   "performers": [
+    "nathaniel-rateliff"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:collaboraction",
+   "name": "Collaboraction",
+   "key": "collaboraction",
+   "performers": [
+    "collaboraction"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:quixotic",
+   "name": "Quixotic",
+   "key": "quixotic",
+   "performers": [
+    "quixotic"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:vau-de-vire-society",
+   "name": "Vau de Vire Society",
+   "key": "vau-de-vire-society",
+   "performers": [
+    "vau-de-vire-society"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:brenton-duvall",
+   "name": "Brenton Duvall",
+   "key": "brenton-duvall",
+   "performers": [
+    "brenton-duvall"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:wyllys",
+   "name": "Wyllys",
+   "key": "wyllys",
+   "performers": [
+    "wyllys"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:human-agency",
+   "name": "Human Agency",
+   "key": "human-agency",
+   "performers": [
+    "human-agency"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:r-d",
+   "name": "R/D",
+   "key": "r-d",
+   "performers": [
+    "r-d"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:gary-clark-jr",
+   "name": "Gary Clark Jr.",
+   "key": "gary-clark-jr",
+   "performers": [
+    "gary-clark-jr"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:midnite",
+   "name": "Midnite",
+   "key": "midnite",
+   "performers": [
+    "midnite"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-string-cheese-incident",
+   "name": "The String Cheese Incident",
+   "key": "the-string-cheese-incident",
+   "performers": [
+    "the-string-cheese-incident"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:thievery-corporation",
+   "name": "Thievery Corporation",
+   "key": "thievery-corporation",
+   "performers": [
+    "thievery-corporation"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:morning-teleportation",
+   "name": "Morning Teleportation",
+   "key": "morning-teleportation",
+   "performers": [
+    "morning-teleportation"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-soul-rebels",
+   "name": "The Soul Rebels",
+   "key": "the-soul-rebels",
+   "performers": [
+    "the-soul-rebels"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:break-science-featuring-chali-2na",
+   "name": "Break Science featuring Chali 2na",
+   "key": "break-science-featuring-chali-2na",
+   "performers": [
+    "break-science-featuring-chali-2na"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:paper-diamond",
+   "name": "Paper Diamond",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:sts9",
+   "name": "STS9",
+   "key": "sts9",
+   "performers": [
+    "sts9"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:cherub",
+   "name": "Cherub",
+   "key": "cherub",
+   "performers": [
+    "cherub"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:brothers-past",
+   "name": "Brothers Past",
+   "key": "brothers-past",
+   "performers": [
+    "brothers-past"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nit-grit",
+   "name": "Nit GriT",
+   "key": "nit-grit",
+   "performers": [
+    "nit-grit"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:minnesota",
+   "name": "Minnesota",
+   "key": "minnesota",
+   "performers": [
+    "minnesota"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:alvin-risk",
+   "name": "Alvin Risk",
+   "key": "alvin-risk",
+   "performers": [
+    "alvin-risk"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:autoerotique",
+   "name": "AutoErotique",
+   "key": "autoerotique",
+   "performers": [
+    "autoerotique"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:felix-cartal",
+   "name": "Felix Cartal",
+   "key": "felix-cartal",
+   "performers": [
+    "felix-cartal"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:datsik",
+   "name": "Datsik",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:wala",
+   "name": "WALA",
+   "key": "wala",
+   "performers": [
+    "wala"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-infamous-stringdusters",
+   "name": "The Infamous Stringdusters",
+   "key": "the-infamous-stringdusters",
+   "performers": [
+    "the-infamous-stringdusters"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:virtual-boy",
+   "name": "Virtual Boy",
+   "key": "virtual-boy",
+   "performers": [
+    "virtual-boy"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich",
+   "name": "Paxahau Presents a Stirring Evening of Live Ambient Aural Exploration with Robert Rich",
+   "key": "paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich",
+   "performers": [
+    "paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:dj-solo",
+   "name": "DJ SOLO",
+   "key": "dj-solo",
+   "performers": [
+    "dj-solo"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:drfameus",
+   "name": "DrFameus",
+   "key": "drfameus",
+   "performers": [
+    "drfameus"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:paul-basic",
+   "name": "Paul Basic",
+   "key": "paul-basic",
+   "performers": [
+    "paul-basic"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-knocks",
+   "name": "The Knocks",
+   "key": "the-knocks",
+   "performers": [
+    "the-knocks"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:crizzly",
+   "name": "Crizzly",
+   "key": "crizzly",
+   "performers": [
+    "crizzly"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-infamous-stringdusters-with-special-guests",
+   "name": "The Infamous Stringdusters with Special Guests",
+   "key": "the-infamous-stringdusters-with-special-guests",
+   "performers": [
+    "the-infamous-stringdusters-with-special-guests"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:girl-talk",
+   "name": "Girl Talk",
+   "key": "girl-talk",
+   "performers": [
+    "girl-talk"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:fruit-bats",
+   "name": "Fruit Bats",
+   "key": "fruit-bats",
+   "performers": [
+    "fruit-bats"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:zoogma",
+   "name": "Zoogma",
+   "key": "zoogma",
+   "performers": [
+    "zoogma"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-coop",
+   "name": "The Coop",
+   "key": "the-coop",
+   "performers": [
+    "the-coop"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:balkan-beat-box",
+   "name": "Balkan Beat Box",
+   "key": "balkan-beat-box",
+   "performers": [
+    "balkan-beat-box"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:franki-chan",
+   "name": "Franki Chan",
+   "key": "franki-chan",
+   "performers": [
+    "franki-chan"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:hottub",
+   "name": "HOTTUB",
+   "key": "hottub",
+   "performers": [
+    "hottub"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:pictureplane",
+   "name": "Pictureplane",
+   "key": "pictureplane",
+   "performers": [
+    "pictureplane"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:chromatics",
+   "name": "Chromatics",
+   "key": "chromatics",
+   "performers": [
+    "chromatics"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:big-freedia",
+   "name": "Big Freedia",
+   "key": "big-freedia",
+   "performers": [
+    "big-freedia"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:das-racist",
+   "name": "Das Racist",
+   "key": "das-racist",
+   "performers": [
+    "das-racist"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:glass-candy",
+   "name": "Glass Candy",
+   "key": "glass-candy",
+   "performers": [
+    "glass-candy"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:dada-life",
+   "name": "Dada Life",
+   "key": "dada-life",
+   "performers": [
+    "dada-life"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:mixcloud-mix-match-winner-prymativ",
+   "name": "Mixcloud Mix Match Winner Prymativ",
+   "key": "mixcloud-mix-match-winner-prymativ",
+   "performers": [
+    "mixcloud-mix-match-winner-prymativ"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nadis-warriors",
+   "name": "Nadis Warriors",
+   "key": "nadis-warriors",
+   "performers": [
+    "nadis-warriors"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:love-in-the-circus",
+   "name": "Love in the Circus",
+   "key": "love-in-the-circus",
+   "performers": [
+    "love-in-the-circus"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nobody-beats-the-drum-dj",
+   "name": "Nobody Beats the Drum (DJ)",
+   "key": "nobody-beats-the-drum-dj",
+   "performers": [
+    "nobody-beats-the-drum-dj"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:karl-denson-s-tiny-universe",
+   "name": "Karl Denson's Tiny Universe",
+   "key": "karl-denson-s-tiny-universe",
+   "performers": [
+    "karl-denson-s-tiny-universe"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-travelin-mccourys-featuring-keller-williams",
+   "name": "The Travelin' McCourys featuring Keller Williams",
+   "key": "the-travelin-mccourys-featuring-keller-williams",
+   "performers": [
+    "the-travelin-mccourys-featuring-keller-williams"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:elephant-revival",
+   "name": "Elephant Revival",
+   "key": "elephant-revival",
+   "performers": [
+    "elephant-revival"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:papadosio",
+   "name": "Papadosio",
+   "key": "papadosio",
+   "performers": [
+    "papadosio"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:ivan-neville-s-dumpstaphunk",
+   "name": "Ivan Neville's Dumpstaphunk",
+   "key": "ivan-neville-s-dumpstaphunk",
+   "performers": [
+    "ivan-neville-s-dumpstaphunk"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-crane-wives",
+   "name": "The Crane Wives",
+   "key": "the-crane-wives",
+   "performers": [
+    "the-crane-wives"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:adventure-club",
+   "name": "Adventure Club",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-m-machine",
+   "name": "The M Machine",
+   "key": "the-m-machine",
+   "performers": [
+    "the-m-machine"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:nobody-beats-the-drum",
+   "name": "Nobody Beats the Drum",
+   "key": "nobody-beats-the-drum",
+   "performers": [
+    "nobody-beats-the-drum"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:mim0sa",
+   "name": "MiM0SA",
+   "key": "mim0sa",
+   "performers": [
+    "mim0sa"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:the-untz-challenge-iii-spektr",
+   "name": "The Untz Challenge III / SPEKTR",
+   "key": "the-untz-challenge-iii-spektr",
+   "performers": [
+    "the-untz-challenge-iii-spektr"
+   ]
+  },
+  {
+   "id": "electric-forest-2012:inspired-flight",
+   "name": "Inspired Flight",
+   "key": "inspired-flight",
+   "performers": [
+    "inspired-flight"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "electric-forest-2012:d1:ranch-arena:1900:reggie-watts",
+   "artistId": "electric-forest-2012:reggie-watts",
+   "day": 1,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:ranch-arena:2030:borgore",
+   "artistId": "electric-forest-2012:borgore",
+   "day": 1,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "electric-forest-2012:d1:ranch-arena:2215:wolfgang-gartner",
+   "artistId": "electric-forest-2012:wolfgang-gartner",
+   "day": 1,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:ranch-arena:0000:ghostland-observatory",
+   "artistId": "electric-forest-2012:ghostland-observatory",
+   "day": 1,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "electric-forest-2012:d1:sherwood-court:2100:conspirator",
+   "artistId": "electric-forest-2012:conspirator",
+   "day": 1,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2012:d1:sherwood-court:2245:eoto",
+   "artistId": "electric-forest-2012:eoto",
+   "day": 1,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "22:45",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:sherwood-court:0030:beats-antique",
+   "artistId": "electric-forest-2012:beats-antique",
+   "day": 1,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "00:30",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:1800:congo-sanchez",
+   "artistId": "electric-forest-2012:congo-sanchez",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "18:00",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:1830:afrolicious",
+   "artistId": "electric-forest-2012:afrolicious",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:1930:thunderball",
+   "artistId": "electric-forest-2012:thunderball",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:2030:funk-ark-ft-frank-mitchell-jr",
+   "artistId": "electric-forest-2012:funk-ark-ft-frank-mitchell-jr",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "20:30",
+   "end": "21:40"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:2140:novalima",
+   "artistId": "electric-forest-2012:novalima",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "21:40",
+   "end": "22:40"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:2240:nickodemus",
+   "artistId": "electric-forest-2012:nickodemus",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "22:40",
+   "end": "23:40"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:2340:see-i",
+   "artistId": "electric-forest-2012:see-i",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "23:40",
+   "end": "00:50"
+  },
+  {
+   "id": "electric-forest-2012:d1:tripolee:0050:rob-garza",
+   "artistId": "electric-forest-2012:rob-garza",
+   "day": 1,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "00:50",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:1900:dixon-s-violin",
+   "artistId": "electric-forest-2012:dixon-s-violin",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:2000:dumptruck-butterlips",
+   "artistId": "electric-forest-2012:dumptruck-butterlips",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:2115:nathaniel-rateliff",
+   "artistId": "electric-forest-2012:nathaniel-rateliff",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "21:15",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:2215:collaboraction",
+   "artistId": "electric-forest-2012:collaboraction",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "22:15",
+   "end": "22:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:2300:quixotic",
+   "artistId": "electric-forest-2012:quixotic",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "23:00",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2012:d1:forest-stage:0015:vau-de-vire-society",
+   "artistId": "electric-forest-2012:vau-de-vire-society",
+   "day": 1,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "00:15",
+   "end": "01:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:wagon-wheel:2100:brenton-duvall",
+   "artistId": "electric-forest-2012:brenton-duvall",
+   "day": 1,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2012:d1:wagon-wheel:2215:wyllys",
+   "artistId": "electric-forest-2012:wyllys",
+   "day": 1,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2012:d1:wagon-wheel:2330:human-agency",
+   "artistId": "electric-forest-2012:human-agency",
+   "day": 1,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2012:d1:wagon-wheel:0100:r-d",
+   "artistId": "electric-forest-2012:r-d",
+   "day": 1,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:ranch-arena:1515:gary-clark-jr",
+   "artistId": "electric-forest-2012:gary-clark-jr",
+   "day": 2,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "15:15",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:ranch-arena:1730:midnite",
+   "artistId": "electric-forest-2012:midnite",
+   "day": 2,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:ranch-arena:2000:the-string-cheese-incident",
+   "artistId": "electric-forest-2012:the-string-cheese-incident",
+   "day": 2,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "20:00",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:ranch-arena:0030:thievery-corporation",
+   "artistId": "electric-forest-2012:thievery-corporation",
+   "day": 2,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "00:30",
+   "end": "02:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:1415:morning-teleportation",
+   "artistId": "electric-forest-2012:morning-teleportation",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:1545:nathaniel-rateliff",
+   "artistId": "electric-forest-2012:nathaniel-rateliff",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:1715:the-soul-rebels",
+   "artistId": "electric-forest-2012:the-soul-rebels",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:1845:break-science-featuring-chali-2na",
+   "artistId": "electric-forest-2012:break-science-featuring-chali-2na",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:2200:paper-diamond",
+   "artistId": "electric-forest-2012:paper-diamond",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:sherwood-court:0000:sts9",
+   "artistId": "electric-forest-2012:sts9",
+   "day": 2,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "00:00",
+   "end": "02:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:1500:cherub",
+   "artistId": "electric-forest-2012:cherub",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:1615:brothers-past",
+   "artistId": "electric-forest-2012:brothers-past",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:1730:nit-grit",
+   "artistId": "electric-forest-2012:nit-grit",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:1845:minnesota",
+   "artistId": "electric-forest-2012:minnesota",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:2000:alvin-risk",
+   "artistId": "electric-forest-2012:alvin-risk",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:2115:autoerotique",
+   "artistId": "electric-forest-2012:autoerotique",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:2230:felix-cartal",
+   "artistId": "electric-forest-2012:felix-cartal",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:2345:zeds-dead",
+   "artistId": "electric-forest-2012:zeds-dead",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "23:45",
+   "end": "00:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:0100:datsik",
+   "artistId": "electric-forest-2012:datsik",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:tripolee:0215:steve-aoki",
+   "artistId": "electric-forest-2012:steve-aoki",
+   "day": 2,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "02:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:1400:collaboraction",
+   "artistId": "electric-forest-2012:collaboraction",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "14:00",
+   "end": "14:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:1430:the-soul-rebels",
+   "artistId": "electric-forest-2012:the-soul-rebels",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:1630:wala",
+   "artistId": "electric-forest-2012:wala",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:1800:the-infamous-stringdusters",
+   "artistId": "electric-forest-2012:the-infamous-stringdusters",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:2030:virtual-boy",
+   "artistId": "electric-forest-2012:virtual-boy",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:2200:quixotic",
+   "artistId": "electric-forest-2012:quixotic",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "22:00",
+   "end": "22:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:forest-stage:2330:paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich",
+   "artistId": "electric-forest-2012:paxahau-presents-a-stirring-evening-of-live-ambient-aural-exploration-with-robert-rich",
+   "day": 2,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "23:30",
+   "end": "02:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:2100:dj-solo",
+   "artistId": "electric-forest-2012:dj-solo",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:2215:griz",
+   "artistId": "electric-forest-2012:griz",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "22:15",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:2330:drfameus",
+   "artistId": "electric-forest-2012:drfameus",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:0045:paul-basic",
+   "artistId": "electric-forest-2012:paul-basic",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "00:45",
+   "end": "01:45"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:0200:the-knocks",
+   "artistId": "electric-forest-2012:the-knocks",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "electric-forest-2012:d2:wagon-wheel:0315:crizzly",
+   "artistId": "electric-forest-2012:crizzly",
+   "day": 2,
+   "stageId": "electric-forest-2012:wagon-wheel",
+   "start": "03:15",
+   "end": "04:15"
+  },
+  {
+   "id": "electric-forest-2012:d3:ranch-arena:1515:the-infamous-stringdusters-with-special-guests",
+   "artistId": "electric-forest-2012:the-infamous-stringdusters-with-special-guests",
+   "day": 3,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "15:15",
+   "end": "16:45"
+  },
+  {
+   "id": "electric-forest-2012:d3:ranch-arena:1730:santigold",
+   "artistId": "electric-forest-2012:santigold",
+   "day": 3,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "17:30",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:ranch-arena:2000:the-string-cheese-incident",
+   "artistId": "electric-forest-2012:the-string-cheese-incident",
+   "day": 3,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "20:00",
+   "end": "00:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:ranch-arena:0045:girl-talk",
+   "artistId": "electric-forest-2012:girl-talk",
+   "day": 3,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:sherwood-court:1430:fruit-bats",
+   "artistId": "electric-forest-2012:fruit-bats",
+   "day": 3,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:sherwood-court:1600:zoogma",
+   "artistId": "electric-forest-2012:zoogma",
+   "day": 3,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:sherwood-court:1730:the-coop",
+   "artistId": "electric-forest-2012:the-coop",
+   "day": 3,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:sherwood-court:1900:balkan-beat-box",
+   "artistId": "electric-forest-2012:balkan-beat-box",
+   "day": 3,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:sherwood-court:0000:sts9",
+   "artistId": "electric-forest-2012:sts9",
+   "day": 3,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "00:00",
+   "end": "02:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:1430:franki-chan",
+   "artistId": "electric-forest-2012:franki-chan",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:1500:hottub",
+   "artistId": "electric-forest-2012:hottub",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:1615:pictureplane",
+   "artistId": "electric-forest-2012:pictureplane",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:1730:chromatics",
+   "artistId": "electric-forest-2012:chromatics",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:1845:big-freedia",
+   "artistId": "electric-forest-2012:big-freedia",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:2000:das-racist",
+   "artistId": "electric-forest-2012:das-racist",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:2115:glass-candy",
+   "artistId": "electric-forest-2012:glass-candy",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:2230:12th-planet",
+   "artistId": "electric-forest-2012:12th-planet",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:0015:dada-life",
+   "artistId": "electric-forest-2012:dada-life",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "00:15",
+   "end": "01:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:tripolee:0200:major-lazer",
+   "artistId": "electric-forest-2012:major-lazer",
+   "day": 3,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "02:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:1530:dumptruck-butterlips",
+   "artistId": "electric-forest-2012:dumptruck-butterlips",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:1645:mixcloud-mix-match-winner-prymativ",
+   "artistId": "electric-forest-2012:mixcloud-mix-match-winner-prymativ",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:1730:dixon-s-violin",
+   "artistId": "electric-forest-2012:dixon-s-violin",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:1830:nadis-warriors",
+   "artistId": "electric-forest-2012:nadis-warriors",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:2000:love-in-the-circus",
+   "artistId": "electric-forest-2012:love-in-the-circus",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:2130:nobody-beats-the-drum-dj",
+   "artistId": "electric-forest-2012:nobody-beats-the-drum-dj",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "electric-forest-2012:d3:forest-stage:0130:vau-de-vire-society",
+   "artistId": "electric-forest-2012:vau-de-vire-society",
+   "day": 3,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "01:30",
+   "end": "02:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:ranch-arena:1500:karl-denson-s-tiny-universe",
+   "artistId": "electric-forest-2012:karl-denson-s-tiny-universe",
+   "day": 4,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:ranch-arena:1700:the-travelin-mccourys-featuring-keller-williams",
+   "artistId": "electric-forest-2012:the-travelin-mccourys-featuring-keller-williams",
+   "day": 4,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:ranch-arena:1845:the-string-cheese-incident",
+   "artistId": "electric-forest-2012:the-string-cheese-incident",
+   "day": 4,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "18:45",
+   "end": "22:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:ranch-arena:2300:bassnectar",
+   "artistId": "electric-forest-2012:bassnectar",
+   "day": 4,
+   "stageId": "electric-forest-2012:ranch-arena",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "electric-forest-2012:d4:sherwood-court:1415:elephant-revival",
+   "artistId": "electric-forest-2012:elephant-revival",
+   "day": 4,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "14:15",
+   "end": "15:30"
+  },
+  {
+   "id": "electric-forest-2012:d4:sherwood-court:1600:papadosio",
+   "artistId": "electric-forest-2012:papadosio",
+   "day": 4,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:sherwood-court:1745:ivan-neville-s-dumpstaphunk",
+   "artistId": "electric-forest-2012:ivan-neville-s-dumpstaphunk",
+   "day": 4,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "electric-forest-2012:d4:sherwood-court:0030:big-gigantic",
+   "artistId": "electric-forest-2012:big-gigantic",
+   "day": 4,
+   "stageId": "electric-forest-2012:sherwood-court",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:1345:the-crane-wives",
+   "artistId": "electric-forest-2012:the-crane-wives",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:1445:adventure-club",
+   "artistId": "electric-forest-2012:adventure-club",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:1600:the-m-machine",
+   "artistId": "electric-forest-2012:the-m-machine",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:1715:nobody-beats-the-drum",
+   "artistId": "electric-forest-2012:nobody-beats-the-drum",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:1830:gramatik",
+   "artistId": "electric-forest-2012:gramatik",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:2000:mim0sa",
+   "artistId": "electric-forest-2012:mim0sa",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:tripolee:2145:richie-hawtin",
+   "artistId": "electric-forest-2012:richie-hawtin",
+   "day": 4,
+   "stageId": "electric-forest-2012:tripolee",
+   "start": "21:45",
+   "end": "23:15"
+  },
+  {
+   "id": "electric-forest-2012:d4:forest-stage:1630:the-untz-challenge-iii-spektr",
+   "artistId": "electric-forest-2012:the-untz-challenge-iii-spektr",
+   "day": 4,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "16:30",
+   "end": "17:00"
+  },
+  {
+   "id": "electric-forest-2012:d4:forest-stage:1730:dj-solo",
+   "artistId": "electric-forest-2012:dj-solo",
+   "day": 4,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "electric-forest-2012:d4:forest-stage:1845:inspired-flight",
+   "artistId": "electric-forest-2012:inspired-flight",
+   "day": 4,
+   "stageId": "electric-forest-2012:forest-stage",
+   "start": "18:45",
+   "end": "19:45"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://electricforestfestival.com/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+    "captureTimestamp": "20120705170750",
+    "printed": "Thursday - June 28th",
+    "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+    "rows": 25
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+    "captureTimestamp": "20120705170750",
+    "printed": "Friday - June 29th",
+    "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+    "rows": 38
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+    "captureTimestamp": "20120705170750",
+    "printed": "Saturday - June 30th",
+    "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+    "rows": 32
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20120705170750/http://electricforestfestival.com/set-times.php",
+    "captureTimestamp": "20120705170750",
+    "printed": "Sunday - July 1st",
+    "sha256": "409e18e59ec3b189e47f300970431d1947293e82030a1125ccff5338f42d8dd4",
+    "rows": 23
+   }
+  ]
+ }
+}

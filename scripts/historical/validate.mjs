@@ -11,6 +11,7 @@ export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
   "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
   "hard-summer": ["hardsummer.com"],
+  "electric-forest": ["electricforestfestival.com", "electricforest.com"],
   "edc-lv": ["lasvegas.electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the

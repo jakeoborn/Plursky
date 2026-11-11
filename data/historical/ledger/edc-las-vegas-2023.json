@@ -324,6 +324,13 @@
   ],
   "dropped": [
     {
+      "day": 2,
+      "stage": "Parliament 2.0 30th Anniversary Art Car",
+      "billing": "Discovery Project Winner",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
       "day": 1,
       "stage": "Kinetic Field",
       "billing": "Fireworks",
