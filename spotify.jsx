@@ -5755,7 +5755,7 @@ function _gpsLensLayout(moments, opts) {
     if (!g) { noGps++; continue; }
     fixes.push({ m, g, t: _momentTime(m) });
   }
-  const empty = { clusters: [], rings: [], hidden: 0, noGps, far: 0, coarse: 0, unknownAcc: 0, mPerPct: 0 };
+  const empty = { clusters: [], rings: [], ringsCut: 0, hidden: 0, noGps, far: 0, coarse: 0, unknownAcc: 0, mPerPct: 0 };
   if (!fixes.length) return empty;
   const med = arr => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(s.length / 2)]; };
   const lat0 = med(fixes.map(f => f.g.lat)), lng0 = med(fixes.map(f => f.g.lng));
@@ -5799,14 +5799,17 @@ function _gpsLensLayout(moments, opts) {
   const hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
   // One ring per shot on the lens, centred on that shot's OWN fix (not its
   // cluster's), radius = its own accuracy at lens scale. Unknown gets none.
+  // Past the cap a ring is counted (ringsCut), never dropped silently.
   const rings = [];
+  let ringsCut = 0;
   for (const c of visible) for (const p of c.pts) {
-    if (p.cls === "unknown" || rings.length >= _LENS_RING_CAP) continue;
+    if (p.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) { ringsCut++; continue; }
     rings.push({ id: p.m.id, x: p.x, y: p.y, r: p.acc * scale, accM: p.acc, cls: p.cls });
   }
   for (const c of visible) delete c.pts;
   const coarse = pts.filter(p => p.cls === "coarse").length, unknownAcc = pts.filter(p => p.cls === "unknown").length;
-  return { clusters: visible, rings, hidden, noGps, far, coarse, unknownAcc, mPerPct: 1 / scale };
+  return { clusters: visible, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct: 1 / scale };
 }
 // A round scale-bar length that fits in about a third of the lens.
 function _lensScaleBar(mPerPct) {
@@ -5818,15 +5821,16 @@ function _lensScaleBar(mPerPct) {
   return { m, pct: m / mPerPct, label: m >= 1000 ? `${m / 1000} km` : `${m} m` };
 }
 function MemoriesPhotoMapLens({ moments, onPinTap }) {
-  const { clusters, rings, hidden, noGps, far, coarse, unknownAcc, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
+  const { clusters, rings, ringsCut, hidden, noGps, far, coarse, unknownAcc, mPerPct } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
   const bar = _lensScaleBar(mPerPct);
   const notes = (
-    (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0) && (
+    (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && (
       <div className="mono" style={{ fontSize: 8.5, letterSpacing: 1, color: "var(--muted)", fontWeight: 600, marginTop: 8, opacity: 0.85, display: "flex", flexWrap: "wrap", gap: 10 }}>
         {hidden > 0 && <span>+{hidden} MORE CLUSTERED</span>}
         {noGps > 0 && <span>{noGps} WITHOUT GPS NOT SHOWN</span>}
         {far > 0 && <span>{far} FAR FROM THE REST NOT SHOWN</span>}
         {coarse > 0 && <span data-gps-lens-note="coarse">{coarse} ROUGH FIX (OVER {STAGE_FIX_PHOTO.maxAccM} M), DASHED</span>}
+        {ringsCut > 0 && <span data-gps-lens-note="rings-cut">{ringsCut} MORE ACCURACY {ringsCut === 1 ? "RING" : "RINGS"} NOT DRAWN</span>}
         {unknownAcc > 0 && <span data-gps-lens-note="unknown">{unknownAcc} NO ACCURACY RECORDED, DOTTED</span>}
       </div>
     )

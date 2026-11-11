@@ -8681,6 +8681,7 @@ function _gpsLensLayout(moments, opts) {
   var empty = {
     clusters: [],
     rings: [],
+    ringsCut: 0,
     hidden: 0,
     noGps,
     far: 0,
@@ -8767,8 +8768,13 @@ function _gpsLensLayout(moments, opts) {
   var visible = clusters.slice(0, cap);
   var hidden = clusters.slice(cap).reduce((n, c) => n + c.items.length, 0);
   var rings = [];
+  var ringsCut = 0;
   for (var c of visible) for (var _p2 of c.pts) {
-    if (_p2.cls === "unknown" || rings.length >= _LENS_RING_CAP) continue;
+    if (_p2.cls === "unknown") continue;
+    if (rings.length >= _LENS_RING_CAP) {
+      ringsCut++;
+      continue;
+    }
     rings.push({
       id: _p2.m.id,
       x: _p2.x,
@@ -8784,6 +8790,7 @@ function _gpsLensLayout(moments, opts) {
   return {
     clusters: visible,
     rings,
+    ringsCut,
     hidden,
     noGps,
     far,
@@ -8811,6 +8818,7 @@ function MemoriesPhotoMapLens({
   var {
     clusters,
     rings,
+    ringsCut,
     hidden,
     noGps,
     far,
@@ -8819,7 +8827,7 @@ function MemoriesPhotoMapLens({
     mPerPct
   } = React.useMemo(() => _gpsLensLayout(moments), [moments]);
   var bar = _lensScaleBar(mPerPct);
-  var notes = (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0) && React.createElement("div", {
+  var notes = (hidden > 0 || noGps > 0 || far > 0 || coarse > 0 || unknownAcc > 0 || ringsCut > 0) && React.createElement("div", {
     className: "mono",
     style: {
       fontSize: 8.5,
@@ -8834,7 +8842,9 @@ function MemoriesPhotoMapLens({
     }
   }, hidden > 0 && React.createElement("span", null, "+", hidden, " MORE CLUSTERED"), noGps > 0 && React.createElement("span", null, noGps, " WITHOUT GPS NOT SHOWN"), far > 0 && React.createElement("span", null, far, " FAR FROM THE REST NOT SHOWN"), coarse > 0 && React.createElement("span", {
     "data-gps-lens-note": "coarse"
-  }, coarse, " ROUGH FIX (OVER ", STAGE_FIX_PHOTO.maxAccM, " M), DASHED"), unknownAcc > 0 && React.createElement("span", {
+  }, coarse, " ROUGH FIX (OVER ", STAGE_FIX_PHOTO.maxAccM, " M), DASHED"), ringsCut > 0 && React.createElement("span", {
+    "data-gps-lens-note": "rings-cut"
+  }, ringsCut, " MORE ACCURACY ", ringsCut === 1 ? "RING" : "RINGS", " NOT DRAWN"), unknownAcc > 0 && React.createElement("span", {
     "data-gps-lens-note": "unknown"
   }, unknownAcc, " NO ACCURACY RECORDED, DOTTED"));
   if (!clusters.length) {
