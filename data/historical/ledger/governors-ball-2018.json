@@ -1,0 +1,69 @@
+{
+  "id": "governors-ball-2018",
+  "method": "official_sources",
+  "official": "https://www.governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-06-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.governorsballmusicfestival.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20180612023504/https://www.governorsballmusicfestival.com/schedule/",
+          "captureTimestamp": "20180612023504",
+          "printed": "Friday Jun 1st",
+          "sha256": "17e11db4db9fd0592044e163afc3ba6707fdf6758bfda542c3b4a4b3bbcd9f57",
+          "bytes": 311257,
+          "rows": 23,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 10:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-06-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.governorsballmusicfestival.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20180612023504/https://www.governorsballmusicfestival.com/schedule/",
+          "captureTimestamp": "20180612023504",
+          "printed": "Saturday Jun 2nd",
+          "sha256": "17e11db4db9fd0592044e163afc3ba6707fdf6758bfda542c3b4a4b3bbcd9f57",
+          "bytes": 311257,
+          "rows": 22,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 10:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-06-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.governorsballmusicfestival.com/schedule/",
+          "archivedUrl": "https://web.archive.org/web/20180612023504/https://www.governorsballmusicfestival.com/schedule/",
+          "captureTimestamp": "20180612023504",
+          "printed": "Sunday Jun 3rd",
+          "sha256": "17e11db4db9fd0592044e163afc3ba6707fdf6758bfda542c3b4a4b3bbcd9f57",
+          "bytes": 311257,
+          "rows": 21,
+          "format": "acl-grid",
+          "meridiem": "printed hour axis",
+          "axis": "11:30am … 10:30pm",
+          "emPerMinute": 0.2
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
