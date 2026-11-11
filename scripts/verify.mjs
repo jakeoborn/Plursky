@@ -561,7 +561,13 @@ if (fdata.length) {
     if (!Array.isArray(g.bounds) || g.bounds.length !== 4 || [B.w, B.s, B.e, B.n].some((v, i) => Math.abs(v - g.bounds[i]) > 1e-7)) why.push("bounds differ from the build");
     if (g.rmsM !== O.rmsM || g.looRmsM !== O.looRmsM) why.push(`rms ${g.rmsM}/${g.looRmsM} != built ${O.rmsM}/${O.looRmsM}`);
     if (g.model !== T.model) why.push(`model ${g.model} != ${T.model}`);
-    if (!(cfg.mapImage && T.plate === cfg.mapImage)) why.push(`fitted plate ${T.plate} is not the festival's mapImage ${cfg.mapImage}`);
+    // The plate is the festival's own art: either its mapImage, or the official
+    // map kept as a source under map-sources/art/ (Jake, 2026-11-11: "use the
+    // map we do it for other festivals") with the first-party page it came from.
+    const artPlate = typeof T.plate === "string" && T.plate.startsWith("map-sources/art/");
+    if (!(T.plate && (T.plate === cfg.mapImage || artPlate))) why.push(`fitted plate ${T.plate} is neither the festival's mapImage ${cfg.mapImage} nor official art under map-sources/art/`);
+    else if (!existsSync(join(ROOT, T.plate))) why.push(`fitted plate ${T.plate} is missing`);
+    if (artPlate && !/^https:\/\//.test(T.source || "")) why.push(`official art ${T.plate} names no https source page`);
     if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
     else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m`);
   }

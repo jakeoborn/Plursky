@@ -1,0 +1,142 @@
+{
+  "festivalId": "summerfest-2026",
+  "plate": "map-sources/art/summerfest-2026-official.webp",
+  "source": "https://s3.summerfest.com/assets/images/maps/SF26_GroundsMap-Layered_050426.jpg",
+  "artPolygon": [
+    [
+      0,
+      0
+    ],
+    [
+      1104,
+      0
+    ],
+    [
+      1104,
+      510
+    ],
+    [
+      98,
+      510
+    ],
+    [
+      98,
+      393
+    ],
+    [
+      0,
+      393
+    ]
+  ],
+  "model": "affine",
+  "measuredAt": "2026-11-11",
+  "method": "Summerfest 2026 grounds map (official layered JPG, downscaled to 1124 px wide before cropping to the map panel). The art is rotated: up is east (the lake), left is north; its compass rose is decorative and is masked out. Ties are street crossings, entry gates, Skyglider stations and Pebble Beach read off a zoomed pixel grid and matched to OpenStreetMap (api.openstreetmap.org map calls around Henry Maier Festival Park); where OSM draws a feature as an area or several nodes the mean is used, as named. Stages are never ties.",
+  "ties": [
+    {
+      "name": "E Chicago St x N Lincoln Memorial Dr",
+      "px": 324,
+      "py": 409,
+      "lat": 43.0330665,
+      "lng": -87.900404
+    },
+    {
+      "name": "E Summerfest Pl x N Lincoln Memorial Dr",
+      "px": 785,
+      "py": 485,
+      "lat": 43.0290531,
+      "lng": -87.9013981
+    },
+    {
+      "name": "Mid Entry Gate",
+      "px": 319,
+      "py": 333,
+      "lat": 43.0331,
+      "lng": -87.8993
+    },
+    {
+      "name": "South Entry Gate",
+      "px": 785,
+      "py": 383,
+      "lat": 43.0290601,
+      "lng": -87.9001018
+    },
+    {
+      "name": "North Entry Gate",
+      "px": 20,
+      "py": 278,
+      "lat": 43.0355123,
+      "lng": -87.8985309
+    },
+    {
+      "name": "Skyglider north station",
+      "px": 210,
+      "py": 291,
+      "lat": 43.0341233,
+      "lng": -87.8989875
+    },
+    {
+      "name": "Skyglider south station",
+      "px": 701,
+      "py": 270,
+      "lat": 43.0297648,
+      "lng": -87.8986992
+    },
+    {
+      "name": "Pebble Beach",
+      "px": 493,
+      "py": 48,
+      "lat": 43.0316042,
+      "lng": -87.8958855
+    }
+  ],
+  "checks": [
+    {
+      "name": "Fountain",
+      "px": 321,
+      "py": 274,
+      "lat": 43.0330768,
+      "lng": -87.8988031
+    },
+    {
+      "name": "BMO Pavilion",
+      "px": 843,
+      "py": 94,
+      "lat": 43.0286713,
+      "lng": -87.8964478
+    }
+  ],
+  "output": {
+    "image": "geo-maps/summerfest-2026.webp",
+    "size": [
+      568,
+      1106
+    ],
+    "metresPerPixel": 0.953,
+    "bounds": {
+      "w": -87.9017934,
+      "s": 43.0263342,
+      "e": -87.8951567,
+      "n": 43.0358206
+    },
+    "rmsM": 9.4,
+    "worstM": 17.5,
+    "looRmsM": 14.7,
+    "residualsM": {
+      "E Chicago St x N Lincoln Memorial Dr": 6.8,
+      "E Summerfest Pl x N Lincoln Memorial Dr": 2.0,
+      "Mid Entry Gate": 7.9,
+      "South Entry Gate": 2.8,
+      "North Entry Gate": 16.2,
+      "Skyglider north station": 17.5,
+      "Skyglider south station": 3.8,
+      "Pebble Beach": 1.6
+    },
+    "checksM": {
+      "Fountain": 12.3,
+      "BMO Pavilion": 11.9
+    },
+    "inputsSha256": "4737dfd7cab1751c3ff8bb83bf17e0b5d982737f7224fed11a04d9d269795b12",
+    "plateSha256": "f2a018dfec729e9cc27d0483b70577714eff69b35b67aca1bcab2b098ac71b0d",
+    "sha256": "1df9c28dc34473ca6b1616c2799964374debaaf0a9b71968b76dc4eb8d33525c"
+  }
+}

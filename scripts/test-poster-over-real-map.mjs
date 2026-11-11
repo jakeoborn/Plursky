@@ -91,6 +91,11 @@ const EXPECTED = {
   // placed; stages are not, so these still pin nothing.
   fitted:    ["edc-orlando-2026", "hard-summer-2026", "iii-points-2026"],
 };
+// Festivals whose own official art is fitted to the streets, whatever their
+// tier: the real map lays the warped plate at its measured bounds. A checked
+// festival keeps its stage pins; the art placement is separate (Jake,
+// 2026-11-11: "use the map we do it for other festivals").
+const GEOREFFED = [...EXPECTED.fitted, "summerfest-2026", "lollapalooza-2026", "outside-lands-2026"];
 const expectedTier = id => EXPECTED.checked.includes(id) ? "checked" : EXPECTED.unchecked.includes(id) ? "unchecked"
   : EXPECTED.fitted.includes(id) ? "fitted" : "none";
 
@@ -109,6 +114,7 @@ function fleet(mapSrc) {
     ok((t === "checked") === ver, `${id}: "checked" must mean geometryVerifiedFor() passes (tier ${t}, verified ${ver})`);
     if (cfg.mapMode === "real") ok(t === "none", `${id}: mapMode "real" has no art to lay over (tier ${t})`);
     if (t === "fitted") ok(!!P.artGeorefFor(cfg), `${id}: "fitted" needs a mapGeoref that passes artGeorefFor()`);
+    ok(!!(t !== "none" && P.artGeorefFor(cfg)) === GEOREFFED.includes(id), `${id}: fitted art placement ${!!P.artGeorefFor(cfg)} (tier ${t}), expected ${GEOREFFED.includes(id)}`);
   }
   // A loose fit never places art: the rms ceiling is the claim "fits within metres".
   {
@@ -126,8 +132,8 @@ function fleet(mapSrc) {
     ok(A.id === id, `active festival is ${A.id}, not ${id} (a gated id silently loads the default)`);
     ok(A.tier === expectedTier(id), `${id} active: POSTER_TIER "${A.tier}", expected "${expectedTier(id)}"`);
     const checked = expectedTier(id) === "checked";
-    if (expectedTier(id) === "fitted") {
-      ok(A.artGeoref && A.officialSrc === A.artGeoref.image, `${id}: fitted, so the real map lays the fitted plate (src ${A.officialSrc})`);
+    if (GEOREFFED.includes(id)) {
+      ok(A.artGeoref && A.officialSrc === A.artGeoref.image, `${id}: fitted art, so the real map lays the fitted plate (src ${A.officialSrc})`);
     } else {
       ok(!A.artGeoref && A.officialSrc === A.cfg.mapImage, `${id}: not fitted, so the real map lays the art itself (src ${A.officialSrc})`);
     }

@@ -50,10 +50,10 @@ const BLANK_STYLE = JSON.stringify({ version: 8, sources: {}, layers: [{ id: "bg
 // The map is a during-festival tab, so each case pins the clock inside its festival.
 const tag0 = C => C.fix ? `${C.fid}@${C.fix.stage}` : C.fid;
 const CASES = [
-  { fid: "summerfest-2026",  at: "2026-06-19T23:00:00Z", pins: true,  overlay: "checked" },
+  { fid: "summerfest-2026",  at: "2026-06-19T23:00:00Z", pins: true,  overlay: "checked", georef: true },
   // Outside Lands is wide east-west: its edge stages are where a pan limit
   // that ignores the opening view clipped a name off-screen.
-  { fid: "outside-lands-2026", at: "2026-08-08T23:00:00Z", pins: true, overlay: "checked" },
+  { fid: "outside-lands-2026", at: "2026-08-08T23:00:00Z", pins: true, overlay: "checked", georef: true },
   // Ultra's is the longest posture label; at 393 pt it is the one that fits
   // beside a shrinking title and printed over it. III Points runs at 320 pt.
   { fid: "ultra-miami-2026", at: "2026-03-28T23:00:00Z", pins: false, overlay: "unchecked" },
@@ -201,9 +201,11 @@ try {
     if (C.overlay === "checked") check(r.layer && r.opacity >= 0.75, `${tag}: festival map at full strength (layer ${r.layer}, opacity ${r.opacity})`);
     if (C.overlay === "unchecked") check(r.layer && r.opacity > 0 && r.opacity <= 0.5, `${tag}: festival map faded (layer ${r.layer}, opacity ${r.opacity})`);
     if (C.overlay === "none") check(!r.layer, `${tag}: no festival map drawn`);
-    if (C.overlay === "fitted") {
+    if (C.overlay === "fitted") check(r.layer && r.opacity > 0.5 && r.opacity < 1, `${tag}: fitted map drawn strong but not opaque (layer ${r.layer}, opacity ${r.opacity})`);
+    // Fitted art (any tier: Summerfest and Outside Lands are checked AND lay
+    // their official map, fitted by street ties): the warped plate at its bounds.
+    if (C.overlay === "fitted" || C.georef) {
       const g = r.georef, src = r.overlaySrc;
-      check(r.layer && r.opacity > 0.5 && r.opacity < 1, `${tag}: fitted map drawn strong but not opaque (layer ${r.layer}, opacity ${r.opacity})`);
       check(!!g && !!src && String(src.url || "").endsWith(g.image), `${tag}: fitted map draws the warped plate ${g && g.image} (got ${src && src.url})`);
       const [w, s, e, n] = (g && g.bounds) || [];
       const want = [[w, n], [e, n], [e, s], [w, s]];

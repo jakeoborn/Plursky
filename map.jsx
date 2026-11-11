@@ -512,6 +512,9 @@ function posterTierFor(cfg, affine, verified) {
   return affine ? "unchecked" : "none";
 }
 const POSTER_TIER = posterTierFor(FESTIVAL_CONFIG, MAP_AFFINE, MAP_REGISTRATION_SOURCED);
+// A checked festival can carry a fit too (Summerfest, Lollapalooza, Outside
+// Lands: their official maps, Jake 2026-11-11). Its own art then replaces the
+// drawn overlay on the real map; its stages keep their checked pins.
 const ART_GEOREF = POSTER_TIER === "none" ? null : artGeorefFor(FESTIVAL_CONFIG);
 // The image the real map lays down: the fitted plate where there is one,
 // otherwise the art itself, placed corner by corner through the affine.
