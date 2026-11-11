@@ -1,0 +1,1295 @@
+{
+ "id": "countdown-nye-2023",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2023",
+ "year": 2023,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-12-30",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2023-12-31",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "countdown-nye-2023:mothership",
+   "name": "Mothership"
+  },
+  {
+   "id": "countdown-nye-2023:nebula",
+   "name": "Nebula"
+  },
+  {
+   "id": "countdown-nye-2023:area-51",
+   "name": "Area 51"
+  },
+  {
+   "id": "countdown-nye-2023:twilight-zone",
+   "name": "Twilight Zone"
+  },
+  {
+   "id": "countdown-nye-2023:galactik-gate",
+   "name": "Galactik Gate"
+  }
+ ],
+ "artists": [
+  {
+   "id": "countdown-nye-2023:4b-x-jstjr",
+   "name": "4B x JSTJR",
+   "key": "4b-x-jstjr",
+   "performers": [
+    "4b-x-jstjr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:airglo",
+   "name": "Airglo",
+   "key": "airglo",
+   "performers": [
+    "airglo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:alrt",
+   "name": "ALRT",
+   "key": "alrt",
+   "performers": [
+    "alrt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:audien",
+   "name": "Audien",
+   "key": "audien",
+   "performers": [
+    "audien"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:audien-house-set",
+   "name": "Audien (House Set)",
+   "key": "audien-house-set",
+   "performers": [
+    "audien-house-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:beastboi",
+   "name": "beastboi.",
+   "key": "beastboi",
+   "performers": [
+    "beastboi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:bec",
+   "name": "BEC",
+   "key": "bec",
+   "performers": [
+    "bec"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:benda",
+   "name": "Benda",
+   "key": "benda",
+   "performers": [
+    "benda"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:black-v-neck",
+   "name": "Black V Neck",
+   "key": "black-v-neck",
+   "performers": [
+    "black-v-neck"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:blossom",
+   "name": "Blossom",
+   "key": "blossom",
+   "performers": [
+    "blossom"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:bonnie-x-clyde",
+   "name": "BONNIE X CLYDE",
+   "key": "bonnie-x-clyde",
+   "performers": [
+    "bonnie-x-clyde"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:deadmau5",
+   "name": "deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:devault",
+   "name": "Devault",
+   "key": "devault",
+   "performers": [
+    "devault"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:doc-martin",
+   "name": "Doc Martin",
+   "key": "doc-martin",
+   "performers": [
+    "doc-martin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:eazybaked",
+   "name": "EAZYBAKED",
+   "key": "eazybaked",
+   "performers": [
+    "eazybaked"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:egzod",
+   "name": "Egzod",
+   "key": "egzod",
+   "performers": [
+    "egzod"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:fish-scale",
+   "name": "Fish Scale",
+   "key": "fish-scale",
+   "performers": [
+    "fish-scale"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:frosttop",
+   "name": "FrostTop",
+   "key": "frosttop",
+   "performers": [
+    "frosttop"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:g-jones",
+   "name": "G Jones",
+   "key": "g-jones",
+   "performers": [
+    "g-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:gem-and-tauri",
+   "name": "Gem & Tauri",
+   "key": "gem-and-tauri",
+   "performers": [
+    "gem-and-tauri"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:gentlemens-club",
+   "name": "Gentlemens Club",
+   "key": "gentlemens-club",
+   "performers": [
+    "gentlemens-club"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:grabbitz",
+   "name": "Grabbitz",
+   "key": "grabbitz",
+   "performers": [
+    "grabbitz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:gudfella",
+   "name": "GUDFELLA",
+   "key": "gudfella",
+   "performers": [
+    "gudfella"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:habstrakt-presents-distorted-reality",
+   "name": "Habstrakt presents: Distorted Reality",
+   "key": "habstrakt-presents-distorted-reality",
+   "performers": [
+    "habstrakt-presents-distorted-reality"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:j-worra-b2b-miane",
+   "name": "J. Worra B2B Miane",
+   "key": "j-worra-b2b-miane",
+   "performers": [
+    "j-worra",
+    "miane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:joyryde-b2b-habstrakt",
+   "name": "JOYRYDE B2B Habstrakt",
+   "key": "joyryde-b2b-habstrakt",
+   "performers": [
+    "joyryde",
+    "habstrakt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:juuku",
+   "name": "Juuku",
+   "key": "juuku",
+   "performers": [
+    "juuku"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:kaspikc",
+   "name": "KaspikC",
+   "key": "kaspikc",
+   "performers": [
+    "kaspikc"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:klaxx",
+   "name": "KLAXX",
+   "key": "klaxx",
+   "performers": [
+    "klaxx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:layton-giordani",
+   "name": "Layton Giordani",
+   "key": "layton-giordani",
+   "performers": [
+    "layton-giordani"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:lizzy-jane",
+   "name": "Lizzy Jane",
+   "key": "lizzy-jane",
+   "performers": [
+    "lizzy-jane"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:lyny",
+   "name": "LYNY",
+   "key": "lyny",
+   "performers": [
+    "lyny"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:maddy-o-neal",
+   "name": "Maddy O'Neal",
+   "key": "maddy-o-neal",
+   "performers": [
+    "maddy-o-neal"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:malixe",
+   "name": "Malixe",
+   "key": "malixe",
+   "performers": [
+    "malixe"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:manila-killa-b2b-myrne",
+   "name": "Manila Killa B2B Myrne",
+   "key": "manila-killa-b2b-myrne",
+   "performers": [
+    "manila-killa",
+    "myrne"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:mary-droppinz",
+   "name": "Mary Droppinz",
+   "key": "mary-droppinz",
+   "performers": [
+    "mary-droppinz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:matt-sassari",
+   "name": "Matt Sassari",
+   "key": "matt-sassari",
+   "performers": [
+    "matt-sassari"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:mau-p",
+   "name": "Mau P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:memba",
+   "name": "MEMBA",
+   "key": "memba",
+   "performers": [
+    "memba"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:michael-sparks",
+   "name": "Michael Sparks",
+   "key": "michael-sparks",
+   "performers": [
+    "michael-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:miss-dre",
+   "name": "MISS DRE",
+   "key": "miss-dre",
+   "performers": [
+    "miss-dre"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:modapit",
+   "name": "Modapit",
+   "key": "modapit",
+   "performers": [
+    "modapit"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:moksi",
+   "name": "Moksi",
+   "key": "moksi",
+   "performers": [
+    "moksi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:morten",
+   "name": "MORTEN",
+   "key": "morten",
+   "performers": [
+    "morten"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:nero-dj-set",
+   "name": "NERO (DJ Set)",
+   "key": "nero-dj-set",
+   "performers": [
+    "nero-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:noizu-b2b-joshwa",
+   "name": "Noizu B2B Joshwa",
+   "key": "noizu-b2b-joshwa",
+   "performers": [
+    "noizu",
+    "joshwa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:osyris",
+   "name": "Osyris",
+   "key": "osyris",
+   "performers": [
+    "osyris"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:pauline-herr",
+   "name": "Pauline Herr",
+   "key": "pauline-herr",
+   "performers": [
+    "pauline-herr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:porter-robinson-dj-set",
+   "name": "Porter Robinson (DJ Set)",
+   "key": "porter-robinson-dj-set",
+   "performers": [
+    "porter-robinson-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:ray-volpe-b2b-crankdat",
+   "name": "Ray Volpe B2B Crankdat",
+   "key": "ray-volpe-b2b-crankdat",
+   "performers": [
+    "ray-volpe",
+    "crankdat"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:riot-ten",
+   "name": "Riot Ten",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:sabai",
+   "name": "SABAI",
+   "key": "sabai",
+   "performers": [
+    "sabai"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:slushii",
+   "name": "Slushii",
+   "key": "slushii",
+   "performers": [
+    "slushii"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:sofi-tukker-dj-set",
+   "name": "Sofi Tukker (DJ Set)",
+   "key": "sofi-tukker-dj-set",
+   "performers": [
+    "sofi-tukker-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:space-laces",
+   "name": "Space Laces",
+   "key": "space-laces",
+   "performers": [
+    "space-laces"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:super-future",
+   "name": "Super Future",
+   "key": "super-future",
+   "performers": [
+    "super-future"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:svdden-death",
+   "name": "Svdden Death",
+   "key": "svdden-death",
+   "performers": [
+    "svdden-death"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:syence",
+   "name": "Syence",
+   "key": "syence",
+   "performers": [
+    "syence"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:synymata",
+   "name": "Synymata",
+   "key": "synymata",
+   "performers": [
+    "synymata"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:telykast",
+   "name": "TELYKAST",
+   "key": "telykast",
+   "performers": [
+    "telykast"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:mothership"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:tong",
+   "name": "TONG",
+   "key": "tong",
+   "performers": [
+    "tong"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:township-rebellion",
+   "name": "Township Rebellion",
+   "key": "township-rebellion",
+   "performers": [
+    "township-rebellion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:twilight-zone"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:trivecta",
+   "name": "Trivecta",
+   "key": "trivecta",
+   "performers": [
+    "trivecta"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:nebula"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:vampa",
+   "name": "VAMPA",
+   "key": "vampa",
+   "performers": [
+    "vampa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:ydg",
+   "name": "YDG",
+   "key": "ydg",
+   "performers": [
+    "ydg"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:yetep-throwback-set",
+   "name": "yetep (Throwback Set)",
+   "key": "yetep-throwback-set",
+   "performers": [
+    "yetep-throwback-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:galactik-gate"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:zeke-beats",
+   "name": "ZEKE BEATS",
+   "key": "zeke-beats",
+   "performers": [
+    "zeke-beats"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  },
+  {
+   "id": "countdown-nye-2023:zingara",
+   "name": "Zingara",
+   "key": "zingara",
+   "performers": [
+    "zingara"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "countdown-nye-2023:area-51"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://countdownnye.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20240104235746/https://countdownnye.com/lineup/",
+    "captureTimestamp": "20240104235746",
+    "sha256": "042b36a78e1e5c301c0334a9e100ffb5a03d143334633adf885b10d001c1b12b"
+   }
+  ]
+ }
+}

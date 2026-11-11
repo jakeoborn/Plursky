@@ -99,6 +99,44 @@ status; anything else is refused. In relay mode a capture that was listed but
 not filed is recorded, and the edition is blocked if that capture is later
 than the one chosen. The ledger records `relayedVia`.
 
+Official lineup.php pages, 2011 to 2013 (Nocturnal Wonderland, Beyond
+Wonderland SoCal): that template printed every set with its stage and time.
+
+    node scripts/historical/extract-insomniac-php.mjs <edition-id>
+    # writes sheets/<id>.tsv and the ledger in the structured_html shape
+
+Each stage block's share title prints the stage and the date, and a page kept
+earlier years' blocks after adding the next year's, so an edition takes only
+the blocks whose printed date is one of its dates. The first valid capture
+taken after the last day is used, not the latest: the template's artist
+records were shared across years and later edits reached back into earlier
+lineups. A block the page labels as an alphabetical list ("alpha") prints
+zero-length times and is left out, listed in the ledger.
+
+In 2012 and 2013 these pages print "Discovery Project" as a whole stage of
+named, billed DJs. The founder's ruling (2026-11-10) keeps that stage as
+printed in those three editions; `KEPT_STAGES` in editions.mjs names them,
+and only the stage name is exempt from the drop check. A bare "Discovery
+Project" billing is still an unnamed slot everywhere.
+
+The 2015 and 2016 /experience/lineup/ pages build their lineup from
+`performer-item` blocks (`data-title`, `data-date`) under day headers; the
+lineup extractor reads those when the page has no tab list. A By Stage
+heading written "Name (Weekday)" is split into the stage and the day, and
+the day is checked against By Day. On these lineup-only pages a bare
+"Discovery Project" (no stage, no time) is the contest slot before its
+winner was named, so it is dropped as an unnamed slot (`lineupDropReason`);
+the live lineup's stageless entry is unaffected.
+
+Countdown NYE ends on 31 December, so its pages are often only captured in
+early January. A lineup entry can give its own capture `window`, and the
+validator accepts a capture from the next year only within 31 days after
+the edition's last day.
+
+The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
+hold the lineup only as a poster image, so they are graphic sources and go
+through the review path above, not a page extractor.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs
