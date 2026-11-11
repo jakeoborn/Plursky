@@ -119,6 +119,20 @@ printed in those three editions; `KEPT_STAGES` in editions.mjs names them,
 and only the stage name is exempt from the drop check. A bare "Discovery
 Project" billing is still an unnamed slot everywhere.
 
+The 2015 and 2016 /experience/lineup/ pages build their lineup from
+`performer-item` blocks (`data-title`, `data-date`) under day headers; the
+lineup extractor reads those when the page has no tab list. A By Stage
+heading written "Name (Weekday)" is split into the stage and the day, and
+the day is checked against By Day. On these lineup-only pages a bare
+"Discovery Project" (no stage, no time) is the contest slot before its
+winner was named, so it is dropped as an unnamed slot (`lineupDropReason`);
+the live lineup's stageless entry is unaffected.
+
+Countdown NYE ends on 31 December, so its pages are often only captured in
+early January. A lineup entry can give its own capture `window`, and the
+validator accepts a capture from the next year only within 31 days after
+the edition's last day.
+
 The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
 hold the lineup only as a poster image, so they are graphic sources and go
 through the review path above, not a page extractor.

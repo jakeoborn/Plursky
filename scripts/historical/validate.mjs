@@ -25,6 +25,7 @@ export const OFFICIAL_HOSTS = {
   "edc-orlando": ["orlando.electricdaisycarnival.com"],
   "edc-mexico": ["mexico.electricdaisycarnival.com"],
   "nocturnal-wonderland": ["nocturnalwonderland.com"],
+  "countdown-nye": ["countdownnye.com"],
   "dreamstate-socal": ["dreamstateusa.com"],
 };
 
@@ -73,6 +74,17 @@ const strings = x => typeof x === "string" ? [x, ...x.split(":").slice(1)]
   : x && typeof x === "object" ? Object.values(x).flatMap(strings) : [];
 
 // `dropped` is ledger/<id>.json's record of the printed rows the build left out.
+// A year-end edition (New Year's Eve) is often only captured in the first
+// days of January: a capture from the next year counts only when it falls
+// within 31 days after the edition's last day.
+function earlyNextYear(ts, e) {
+  const last = (e.days || []).map(d => d.date).sort().pop();
+  if (!last || !ts.startsWith(String(e.year + 1))) return false;
+  const cap = Date.UTC(+ts.slice(0, 4), +ts.slice(4, 6) - 1, +ts.slice(6, 8));
+  const end = Date.parse(last + "T00:00:00Z");
+  return cap > end && cap - end <= 31 * 864e5;
+}
+
 export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   const p = [];
   const meta = EDITIONS[e.id];
@@ -125,7 +137,7 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     const url = c.archivedUrl || c.pageArchivedUrl;
     const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
     const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} ${where}`);
-    if (ts && !ts.startsWith(String(e.year))) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
+    if (ts && !ts.startsWith(String(e.year)) && !earlyNextYear(ts, e)) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
     if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} ${where} graphic`);
     if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} ${where}: artifact hash missing`);
   }

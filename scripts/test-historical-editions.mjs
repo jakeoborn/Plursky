@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
+import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
@@ -121,6 +121,11 @@ if (base && edc) {
       }, e, undefined, /: dropped show-segment /);
     }
     ok(!dropReason("GROW", "Neon Garden") && !dropReason("Discovery Project", ""), "a show-segment name off Kinetic Field, or a stageless Discovery Project, must not be dropped");
+    ok(lineupDropReason("Discovery Project", "")?.category === "unnamed-slot" && !lineupDropReason("Discovery Project Winner Name", ""), "a past lineup page's bare Discovery Project is an unnamed slot; a named act is kept");
+    for (const id of ["nocturnal-wonderland-2016", "beyond-wonderland-socal-2016"]) {
+      const ed = editions[id];
+      ok(ed && !ed.artists.some(a => /^discovery project$/i.test(a.name)), `${id}: the bare Discovery Project slot must not be listed as an artist`);
+    }
     // The 2012 and 2013 lineup.php "Discovery Project" stage of named DJs is
     // kept by name (KEPT_STAGES), and nothing else about it is exempt: a bare
     // "Discovery Project" set on it is still an unnamed slot.
@@ -134,6 +139,16 @@ if (base && edc) {
         const a = { id: `${id}:discovery-project-back`, name: "Discovery Project", key: artistKey("Discovery Project"), performers: [] };
         m.artists.push(a); m.sets.push({ ...m.sets.find(s => s.stageId === st.id), id: `${id}:d1:x:9999:discovery-project`, artistId: a.id });
       }, k, undefined, /: dropped unnamed-slot /);
+    }
+    // New Year's Eve: a capture from early January counts, a later one does not.
+    const nye = editions["countdown-nye-2023"];
+    ok(nye && nye.provenance.captures[0].captureTimestamp.startsWith("2024"), "countdown-nye-2023 must keep its early-January capture: it locks the year-end rule");
+    if (nye) {
+      const at = ts => m => { const c = m.provenance.captures[0]; c.archivedUrl = c.archivedUrl.replace(/\/web\/\d+\//, `/web/${ts}/`); c.captureTimestamp = ts; };
+      mustFail("a New Year's Eve capture from February of the next year", at("20240215120000"), nye, undefined, /is not from 2023/);
+      mustFail("a New Year's Eve capture from before the year", at("20221231120000"), nye, undefined, /is not from 2023/);
+      const okP = validateEdition((() => { const m = clone(nye); at("20240120120000")(m); return m; })(), { expected: expected[nye.id], review: reviewFor(nye.id), dropped: droppedFor(nye.id) });
+      ok(!okP.length, `a New Year's Eve capture 20 days after the last day must pass: ${okP.join("; ")}`);
     }
     // An unnamed B2B partner stays in the billing but is no performer.
     const dw = editions["edc-orlando-2021"]?.artists.find(a => a.name === "DRINKURWATER B2B Special Guest");

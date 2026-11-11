@@ -235,6 +235,27 @@ export const EDITIONS = {
   "edc-mexico-2020": { festivalId: "edc-mexico", name: "EDC Mexico 2020", year: 2020,
     timezone: "America/Mexico_City", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2020-02-28", "Friday"], ["2020-02-29", "Saturday"], ["2020-03-01", "Sunday"]] },
+  "beyond-wonderland-socal-2019": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-03-22", "Friday"], ["2019-03-23", "Saturday"]] },
+  "countdown-nye-2022": { festivalId: "countdown-nye", name: "Countdown NYE 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-12-30", "Friday"], ["2022-12-31", "Saturday"]] },
+  "countdown-nye-2023": { festivalId: "countdown-nye", name: "Countdown NYE 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-12-30", "Saturday"], ["2023-12-31", "Sunday"]] },
+  "escape-halloween-2015": { festivalId: "escape-halloween", name: "Escape Halloween 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-10-30", "Friday"], ["2015-10-31", "Saturday"]] },
+  "nocturnal-wonderland-2015": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-09-04", "Friday"], ["2015-09-05", "Saturday"], ["2015-09-06", "Sunday"]] },
+  "nocturnal-wonderland-2016": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-09-02", "Friday"], ["2016-09-03", "Saturday"], ["2016-09-04", "Sunday"]] },
+  "beyond-wonderland-socal-2016": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
   "nocturnal-wonderland-2011": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2011", year: 2011,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
     dates: [["2011-09-23", "Friday"], ["2011-09-24", "Saturday"]] },
@@ -336,6 +357,15 @@ const ACTIVITY_REASON = "non-music Bonus Tracks activity";
 // Why a printed row (billing on stage) is dropped, or null if it is a set.
 // Compared case-folded and by slug, so an id segment or a re-cased billing
 // is caught too.
+// A past edition's lineup page (no stage, no time) that prints a bare
+// "Discovery Project" is the contest slot before its winner was named, as on
+// a printed stage: in the library it is an unnamed slot. The live lineup's
+// stageless entry stays (dropReason alone leaves it).
+export function lineupDropReason(billing, stage = "") {
+  return dropReason(billing, stage) || (!String(stage).trim() && /^discovery project$/i.test(String(billing).trim())
+    ? { category: "unnamed-slot", reason: "unnamed slot: no performer was billed" } : null);
+}
+
 export function dropReason(billing, stage = "") {
   const name = String(billing).trim(), st = String(stage).trim();
   const hits = (re, x) => re.test(x) || re.test(x.replace(/-/g, " "));
