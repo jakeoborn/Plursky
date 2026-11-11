@@ -3781,7 +3781,8 @@ function MomentLightbox({
   onArtistClick,
   onUpdate,
   onRecoverNight,
-  onDelete
+  onDelete,
+  showNight = false
 }) {
   var m = moments[index];
   var photoUrl = useMomentPhoto(m?.photoId);
@@ -4055,7 +4056,7 @@ function MomentLightbox({
     style: {
       fontWeight: 400
     }
-  }, [stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
+  }, [showNight ? _momentNightName(m, mf.cfg) : null, stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")), m.kind === "video" && !m.confirmedSong && React.createElement("button", {
     onClick: runIdentify,
     disabled: idState !== "idle" && idState !== "fail",
     style: {
@@ -6165,6 +6166,11 @@ function _momentNeedsReview(m) {
   if (!m || m.tagSource === "unknown") return false;
   if (m.needsRetag || m.tagAmbiguous || m.tagSuggested || _REVIEW_WARN.has(m.tagSource)) return true;
   return !m.artistId && !m.stageId && m.tagSource !== "off_stage" && m.tagSource !== "off_venue";
+}
+function _momentNightName(m, cfg) {
+  if (!m || m.night == null) return null;
+  var d = cfg && cfg.dayDates && cfg.dayDates[m.night];
+  return d && (d.name || d.short) || `Night ${m.night}`;
 }
 function _momentFestival(m) {
   var fid = m && m.festivalId || window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id;

@@ -2757,7 +2757,7 @@ function _FavBadge({ style }) {
   );
 }
 
-function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete }) {
+function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick, onUpdate, onRecoverNight, onDelete, showNight = false }) {
   const m = moments[index];
   const photoUrl = useMomentPhoto(m?.photoId);
   // SPEC-179: the clip's OWN festival names its act and stage. A III Points
@@ -2955,7 +2955,7 @@ function MomentLightbox({ moments, index, onClose, onIndexChange, onArtistClick,
           </div>
         )}
         <div className="duo-body-s duo-ink2" style={{ fontWeight: 400 }}>
-          {[stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
+          {[showNight ? _momentNightName(m, mf.cfg) : null, stage?.name, prettyTime, m.location?.label].filter(Boolean).join(" · ")}
         </div>
 
         {/* Prominent video-song proof: this is the P0 Shazam verification
@@ -4432,6 +4432,14 @@ function _momentNeedsReview(m) {
 }
 // The moment's OWN festival — a clip filed to another festival by its capture
 // date is still reviewable here, and must be retagged from that lineup.
+// SPEC-178: the night a moment is filed under, named from ITS festival's
+// calendar ("Saturday"), not the active one. Opened from a map pin, the
+// viewer has no night header around it, so the tag must say the night itself.
+function _momentNightName(m, cfg) {
+  if (!m || m.night == null) return null;
+  const d = cfg && cfg.dayDates && cfg.dayDates[m.night];
+  return (d && (d.name || d.short)) || `Night ${m.night}`;
+}
 function _momentFestival(m) {
   const fid = (m && m.festivalId) || (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id);
   const ds = (window._DATA_SETS || {})[fid] || {};
